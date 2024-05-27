@@ -1,0 +1,74 @@
+openapi: "3.1.0"
+info:
+  version: 0.1.0
+  title: Common API models for OpenHES
+  description: Common API models for OpenHES
+  license:
+    name: BSL-1.0
+    url: https://opensource.org/licenses/BSL-1.0
+  contact:
+    name: Cybros Labs team
+    email: info@cybroslabs.com
+    url: https://www.cybroslabs.com/index-en.html
+
+components:
+  schemas:
+    ContainerResourcesCpuStrSchema:
+      type: string
+      description: CPU resource value in string form. Represents number of cores, or millicores if the value is suffixed with 'm'.
+      pattern: "^[1-9][0-9]*m?$"
+      example: "100m"
+
+    ContainerResourcesCpuIntSchema:
+      type: number
+      description: CPU resource value in numeric form. Represents number of cores, or millicores if the value is suffixed with 'm'.
+      format: float
+      example: 1
+      minimum: 0.1
+
+    ContainerResourcesMemorySchema:
+      type: string
+      description: Memory resource value. The value is suffixed with a unit of measurement, such as 'Mi' for mebibytes.
+      pattern: "^[1-9][0-9]*[KMGTP]i$"
+      example: "256Mi"
+
+    ContainerResourcesSchema:
+      type: object
+      description: CPU and memory resource values.
+      example:
+        cpu: "100m"
+        memory: "256Mi"
+      properties:
+        cpu:
+          oneOf:
+            - $ref: "#/components/schemas/ContainerResourcesCpuStrSchema"
+            - $ref: "#/components/schemas/ContainerResourcesCpuIntSchema"
+        memory:
+          $ref: "#/components/schemas/ContainerResourcesMemorySchema"
+      required:
+        - cpu
+        - memory
+
+    ContainerResourcesSetSchema:
+      type: object
+      description: Resource values for a container.
+      examples:
+        - limits:
+            cpu: 1
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+        - limits:
+            cpu: "2"
+            memory: "1Gi"
+          requests:
+            cpu: 1
+            memory: "256Mi"
+      properties:
+        limits:
+          $ref: "#/components/schemas/ContainerResourcesSchema"
+        requests:
+          $ref: "#/components/schemas/ContainerResourcesSchema"
+      required:
+        - limits

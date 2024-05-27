@@ -1,0 +1,528 @@
+syntax = "proto3";
+package pbdriver;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// The driver service definition.
+// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
+service Driver {
+    // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+    rpc StartJob(StartJobRequest) returns (stream ProgressUpdate);
+    // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
+    rpc CancelJob(CancelJobRequest) returns (CommonResponse);
+}
+
+// The Taskmaster service definition.
+// Those are the gRPC services that the Taskmaster provides for other components.
+service DriverHost {
+    // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
+    rpc NegotiateStart(NegotiateRequest) returns (CommonResponse);
+    // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
+    rpc CacheSet(CacheSetRequest) returns (google.protobuf.Empty);
+    // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+    rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
+    // The method called by the API to enqueue new jobs. The parameter contains the job specification, the connection info, the job type, the list of actions to be executed, and the webhook URL.
+    rpc EnqueueJobs(QueueJobListRequest) returns (CommonResponse);
+    // The method called by the API to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
+    rpc RegisterDriver(RegisterDriverRequest) returns (CommonResponse);
+    // The method called by the API to get the list of drivers.
+    rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
+    // The method called by the API to unregister driver from the system. The parameter contains the driver type.
+    rpc UnregisterDriver(UnregisterDriverRequest) returns (CommonResponse);
+    // The method called by the API to get the job status. The parameter contains the job identifier.
+    rpc GetJob(GetJobRequest) returns (GetJobResponse);
+    // The method to get the system configuration.
+    rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
+    // The method to set the system configuration.
+    rpc SetConfig(SystemConfig) returns (CommonResponse);
+    // The method to purge all jobs (queued/running/finished) from the system.
+    rpc PurgeJobs(google.protobuf.Empty) returns (CommonResponse);
+    // The method to get the driver templates.
+    rpc GetDriverTemplates(GetDriverTemplatesRequest) returns (DriverTemplates);
+    // The method to cancel the job.
+    rpc CancelJob(CancelJobsRequest) returns (google.protobuf.Empty);
+}
+
+// Driver -> Taskmaster job/action progress update message
+message ProgressUpdate {
+    // The oneof field containing the progress update data - either for job or for action.
+    oneof progress {
+        JobProgressUpdate job = 1; // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
+        ActionProgressUpdate action = 2; // The action progress update data. It shall be called for each action in the job.
+    }
+}
+
+// Sub-message containing action progress update
+message ActionProgressUpdate {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+    string action_id = 2 [json_name="a"]; // The action identifier.
+    ActionErrorCode code = 3 [json_name="c"]; // The status related to the action.
+    optional ActionData data = 4 [json_name="d"]; // The action result data. Shall be empty if the code is not OK.
+}
+
+// Sub-message containing job progress update
+message JobProgressUpdate {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+    JobErrorCode code = 2 [json_name="c"]; // The status related to the job and or action update message.
+}
+
+// Sub-message containing action-based variant of data values
+message ActionData {
+    oneof data {
+        google.protobuf.Empty nodata = 1 [json_name="n"]; // No data
+        BillingValues billings = 2 [json_name="r"]; // Register values
+        ProfileValues profile = 3 [json_name="p"]; // Profile values
+    }
+}
+
+// Sub-message containing profile-typed values
+message ProfileValues {
+    int32 period = 1 [json_name="p"]; // The period of the profile values.
+    string unit = 2 [json_name="u"]; // The unit of the profile values.
+    repeated ProfileBlok blocks = 3 [json_name="b"]; // The list of continuous profile blocks.
+}
+
+// Sub-message containing a single profile block
+message ProfileBlok {
+    int64 start_timestamp = 1 [json_name="t"]; // The start timestamp of the block.
+    repeated MeasuredValue values = 2 [json_name="v"]; // The list of profile values. Values are ordered by timestamp.
+}
+
+// Sub-message containing billing-typed values
+message BillingValues {
+    repeated BillingValue values = 1 [json_name="v"]; // The list of register values.
+}
+
+// Sub-message containing billing-typed value
+message BillingValue {
+    int64 timestamp = 1 [json_name="t"]; // The timestamp of the value.
+    string unit = 2 [json_name="u"]; // The unit of the value.
+    MeasuredValue value = 3 [json_name="v"]; // The value.
+}
+
+// Sub-message containing measured value
+message MeasuredValue {
+    optional int64 status = 1 [json_name="s"]; // The status of the value.
+    oneof value {
+        double double_value = 2 [json_name="d"]; // The double-typed value.
+        int64 int_value = 3 [json_name="i"]; // The integer-typed value.
+    }
+    int32 exponent = 4 [json_name="e"]; // The exponent of the value.
+}
+
+// Driver -> Taskmaster cache set request message
+message CacheSetRequest {
+    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
+    AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+}
+
+// Driver -> Taskmaster cache get request message
+message CacheGetRequest {
+    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
+}
+
+// Taskmaster -> Driver cache get response message
+message CacheGetResponse {
+    ErrorCode result = 1 [json_name="r"]; // The result of the cache get operation.
+    AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+}
+
+// Driver -> Taskmaster negotiate/health-check request message
+message NegotiateRequest {
+    string version = 1; // The driver version.
+    uint32 listening_port = 2; // The port the driver will listen on.
+    string meter_type = 3;
+    int32 max_concurrent_jobs = 4; // The maximum number of concurrent jobs the driver can handle.
+    int32 typical_mem_usage = 5;
+    DriverTemplates templates = 6; // The connection and action templates.
+}
+
+// Sub-message containing attribute definition
+message AttributeDefinition {
+    string name = 1 [json_name="n"]; // The name of the attribute.
+    string description = 2 [json_name="d"]; // The description of the attribute.
+    AttributeType type = 3 [json_name="t"]; // The type of the attribute.
+    bool mandatory = 4 [json_name="m"]; // The attribute is mandatory or not.s
+    optional AttributeValue default_value = 5 [json_name="v"]; // The default value of the attribute.
+}
+
+// Sub-message containing job action attributes
+message JobActionAttributes {
+    ActionType type = 1 [json_name="t"]; // The action type.
+    repeated AttributeDefinition attributes = 2 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
+}
+
+// Taskmaster -> Driver cancel job request message
+message CancelJobRequest {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+}
+
+// API -> Taskmaster cancel job request message
+message CancelJobsRequest {
+    repeated string job_id = 1 [json_name="id"]; // The job identifier.
+}
+
+// API -> Taskmaster new job request message
+message QueueJobRequest {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+    ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
+    JobSpecification job_specification = 3 [json_name="js"]; // The job parameters.
+    string driver_type = 4 [json_name="t"]; // The driver type.
+    repeated JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
+    optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
+}
+
+message StartJobRequest {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+    ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
+    JobSpecification job_specification = 3 [json_name="js"]; // The job parameters.
+    repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
+}
+
+// API -> Taskmaster get job request message
+message GetJobRequest {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+}
+
+// Taskmaster -> API get job response message
+message GetJobResponse {
+    QueueJobRequest spec = 1 [json_name="j"]; // The original job specification
+    JobStatus status = 2 [json_name="s"]; // The status of the job
+}
+
+// Sub-message containing job status info
+message JobStatus {
+    JobStatusCode status = 1 [json_name="s"]; // The status of the job.
+    optional JobErrorCode code = 2 [json_name="c"]; // The error code of the job.
+    repeated ActionResult results = 3 [json_name="r"]; // The result data for all job actions.
+    google.protobuf.Timestamp created_at = 4 [json_name="tc"]; // The creation timestamp of the job.
+    optional google.protobuf.Timestamp started_at = 5 [json_name="ts"]; // The start timestamp of the job.
+    optional google.protobuf.Timestamp finished_at = 6 [json_name="tf"]; // The finish timestamp of the job.
+    int32 attempts_done = 7 [json_name="ad"]; // The number of attempts already done.
+}
+
+// Job statuses
+enum JobStatusCode {
+    // The job is waiting in the queue
+    JOB_STATUS_QUEUED = 0;
+    // The job is running
+    JOB_STATUS_RUNNING = 1;
+    // The job is completed
+    JOB_STATUS_COMPLETED = 2;
+    // The job is failed
+    JOB_STATUS_FAILED = 3;
+    // The job is cancelled
+    JOB_STATUS_CANCELLED = 4;
+    // The job has expired 
+    JOB_STATUS_EXPIRED = 5;
+}
+
+// Sub-message containing action result for a single action.
+message ActionResult {
+    string action_id = 1 [json_name="id"]; // The action identifier.
+    ActionErrorCode status = 2 [json_name="s"]; // The status of the action.
+    ActionData data = 3 [json_name="d"]; // The action result data.
+}
+
+// API -> Taskmaster register (install/update) driver request message
+message RegisterDriverRequest {
+    string driver_type = 1; // The driver unique identifier.
+    string image = 2; // The docker image of the driver.
+    ContainerResourceSet resources = 3; // The resource requirements of the driver.
+}
+
+// Taskmaster -> API get drivers response message
+message GetDriversResponse {
+    ErrorCode result = 1; // The result of the operation.
+    repeated DriverInfo drivers = 2; // The list of drivers.
+}
+
+// Sub-message containing driver info
+message DriverInfo {
+    string driver_type = 1; // The driver unique identifier.
+    string image = 2; // The docker image of the driver.
+    ContainerResourceSet resources = 3; // The resource requirements of the driver.
+}
+
+// Sub-message containing container resource limits and requests
+message ContainerResourceSet {
+    ContainerResources limits = 1 [json_name="l"]; // The resource limits.
+    optional ContainerResources requests = 2 [json_name="r"]; // The resource requests.
+}
+
+// Sub-message containing container resource requirements
+message ContainerResources {
+    string cpu = 1 [json_name="c"]; // The CPU resources.
+    string memory = 2 [json_name="m"]; // The memory resources.
+}
+
+// Sub-message containing connection info
+message ConnectionInfo {
+    string hostname = 1 [json_name="h"]; // The meter IP and or homename. The hostname shall be resolvable using DNS and the IP address shall be reachable.
+    map<string,AttributeValue> attributes = 2 [json_name="a"]; // The connection attributes.
+}
+
+// Job priorities
+enum JobPriority {
+    // The lowest priority
+    PRIORITY_0 = 0;
+    // The priority 1
+    PRIORITY_1 = 1;
+    // The priority 2
+    PRIORITY_2 = 2;
+    // The priority 3
+    PRIORITY_3 = 3;
+    // The priority 4
+    PRIORITY_4 = 4;
+    // The priority 5
+    PRIORITY_5 = 5;
+    // The priority 6
+    PRIORITY_6 = 6;
+    // The priority 7
+    PRIORITY_7 = 7;
+    // The highest priority
+    PRIORITY_8 = 8;
+}
+
+// Sub-message containing job parameters
+message JobSpecification {
+    int64 max_duration = 1 [json_name="md"]; // Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
+    JobPriority priority = 2 [json_name="p"]; // Priority of the job.
+    int32 attempts = 3 [json_name="a"]; // Maximum number of attempts, 1 is the minimum.
+    int64 retry_delay = 4 [json_name="rd"]; // Delay in miliseconds between two attempts.
+    uint64 defer_start = 5 [json_name="ds"]; // Number of miliseconds to wait before starting the job.
+    google.protobuf.Timestamp expires_at = 6 [json_name="et"]; // The timestamp when the job expires.
+}
+
+// Attribute types
+enum AttributeType {
+    // Integer attribute type
+    ATTRIBUTE_TYPE_INT = 0;
+    // String attribute type
+    ATTRIBUTE_TYPE_STRING = 1;
+    // Double attribute type
+    ATTRIBUTE_TYPE_DOUBLE = 2;
+    // Binary attribute type
+    ATTRIBUTE_TYPE_BINARY = 3;
+    // Date/time attribute type
+    ATTRIBUTE_TYPE_TIMESTAMP = 4;
+}
+
+// Action types
+enum ActionType {
+    // Get billing value, for example instantaneous values. The action covers specific register.
+    ACTION_TYPE_GET_REGISTER = 0;
+    // Get periodical profile, for example load-profile. The action covers specific profile column.
+    ACTION_TYPE_GET_PERIODICAL_PROFILE = 1;
+    // Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.
+    ACTION_TYPE_GET_IRREGULAR_PROFILE = 2;
+    // Get event log. The action covers specific event log.
+    ACTION_TYPE_GET_EVENTS = 3;
+
+    // Get clock. The action returns time in UTC.
+    ACTION_TYPE_GET_CLOCK = 10;
+    // Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+    ACTION_TYPE_SYNC_CLOCK = 11;
+
+    // Get relay state. The action covers single relay.
+    ACTION_TYPE_GET_RELAY_STATE = 20;
+    // Set relay state. The action covers single relay.
+    ACTION_TYPE_SET_RELAY_STATE = 21;
+
+    // Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
+    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;
+    // Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.
+    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;
+
+    // Get time-of-use table.
+    ACTION_TYPE_GET_TOU = 24;
+    // Set time-of-use table.
+    ACTION_TYPE_SET_TOU = 25;
+
+    // Get limiter settings. The action covers single limiter.
+    ACTION_TYPE_GET_LIMITER = 26;
+    // Set limiter settings. The action covers single limiter.
+    ACTION_TYPE_SET_LIMITER = 27;
+
+    // Reseet billing period.
+    ACTION_TYPE_RESET_BILLING_PERIOD = 40;
+
+    // Start firmware update. The action updates starts FW upgrade procedure.
+    ACTION_TYPE_FW_UPDATE = 50;
+}
+
+// Sub-message containing job action specification
+message JobAction {
+    string action_id = 1 [json_name="id"]; // The action identifier.
+    map<string,AttributeValue> attributes = 2 [json_name="a"]; // The action attributes.
+    oneof action {
+        ActionGetRegister get_register = 3 [json_name="a3"] ; // The get register action specification.
+        ActionGetPeriodicalProfile get_periodical_profile = 4 [json_name="a4"]; // The get periodical profile action specification.
+        ActionGetIrregularProfile get_irregular_profile = 5 [json_name="a5"]; // The get irregular profile action specification.
+        ActionGetEvents get_events = 6 [json_name="a6"]; // The get events action specification. 
+        ActionGetClock get_clock = 7 [json_name="a7"]; // The get clock action specification.
+        ActionSyncClock sync_clock = 8 [json_name="a8"]; // The sync clock action specification. 
+        ActionGetRelayState get_relay_state = 9 [json_name="a9"]; // The get relay state action specification.
+        ActionSetRelayState set_relay_state = 10 [json_name="a10"]; // The set relay state action specification.
+        ActionGetDisconnectorState get_disconnector_state = 11 [json_name="a11"]; // The get disconnector state action specification.
+        ActionSetDisconnectorState set_disconnector_state = 12 [json_name="a12"]; // The set disconnector state action specification.
+        ActionGetTou get_tou = 13 [json_name="a13"]; // The get tou action specification.
+        ActionSetTou set_tou = 14 [json_name="a14"]; // The set tou action specification.
+        ActionGetLimiter get_limiter = 15 [json_name="a15"]; // The get limiter action specification.
+        ActionSetLimiter set_limiter = 16 [json_name="a16"]; // The set limiter action specification.
+        ActionResetBillingPeriod reset_billing_period = 17 [json_name="a17"]; // The reset billing period action specification.
+        ActionFwUpdate fw_update = 18 [json_name="a18"]; // The firmware update action specification.
+    }
+}
+
+// Sub-message containing get register action specification
+message ActionGetRegister {
+}
+
+// Sub-message containing get periodical profile action specification
+message ActionGetPeriodicalProfile {
+    google.protobuf.Timestamp from = 1 [json_name="f"]; // The start timestamp of the profile.
+    google.protobuf.Timestamp to = 2 [json_name="t"]; // The end timestamp of the profile.
+}
+
+// Sub-message containing get irregular profile action specification
+message ActionGetIrregularProfile {
+}
+
+// Sub-message containing get events action specification
+message ActionGetEvents {
+}
+
+// Sub-message containing get clock action specification
+message ActionGetClock {
+}
+
+// Sub-message containing sync clock action specification
+message ActionSyncClock {
+}
+
+// Sub-message containing get relay state action specification
+message ActionGetRelayState {
+}
+
+// Sub-message containing set relay state action specification
+message ActionSetRelayState {
+}
+
+// Sub-message containing get disconnector state action specification
+message ActionGetDisconnectorState {
+}
+
+// Sub-message containing set disconnector state action specification
+message ActionSetDisconnectorState {
+}
+
+// Sub-message containing get tou action specification
+message ActionGetTou {
+}
+
+// Sub-message containing set tou action specification
+message ActionSetTou {
+}
+
+// Sub-message containing get limiter action specification
+message ActionGetLimiter {
+}
+
+// Sub-message containing set limiter action specification
+message ActionSetLimiter {
+}
+
+// Sub-message containing reset billing period action specification
+message ActionResetBillingPeriod {
+}
+
+// Sub-message containing firmware update action specification
+message ActionFwUpdate {
+}
+
+// Sub-message containing single attribute value specification
+message AttributeValue {
+    oneof value {
+        string str_value = 1 [json_name="s"]; // The string-typed value.
+        int64 int_value = 2 [json_name="i"]; // The integer-typed value.
+        double double_value = 3 [json_name="d"]; // The double-typed value.
+        bytes binary_value = 4 [json_name="b"]; // The binary-typed value.
+    }
+}
+
+// Error codes related to job actions
+enum ActionErrorCode {
+    // The action has been completed successfully.
+    ERROR_CODE_ACTION_OK = 0;
+    // The action is not supported by the driver (or device).
+    ERROR_CODE_ACTION_UNSUPPORTED = 1;
+    // The action failed.
+    ERROR_CODE_ACTION_ERROR = 5;
+}
+
+// Error codes related to jobs
+enum JobErrorCode {
+    // The job has been completed successfully.
+    ERROR_CODE_JOB_OK = 0;
+    // There is no free slot in the driver to handle the job; the job shall be send again later.
+    ERROR_CODE_JOB_BUSY = 1;
+    // The job failed, the retry will be attempted.
+    ERROR_CODE_JOB_ERROR = 5;
+    // The job failed, the retry will NOT be attempted.
+    ERROR_CODE_JOB_FATAL = 9;
+}
+
+// Error codes
+enum ErrorCode {
+    // No error
+    ERROR_CODE_OK = 0;
+    // Generic error
+    ERROR_CODE_ERROR = 4;
+}
+
+// Common gRPC response message
+message CommonResponse {
+    ErrorCode result = 1; // The result of the operation.
+}
+
+// API -> Taskmaster request for a list of new jobs
+message QueueJobListRequest {
+    repeated QueueJobRequest requests = 1; // The list of new job requests.
+}
+
+// API -> Taskmaster request to unregister driver
+message UnregisterDriverRequest {
+    string driver_type = 1; // The driver unique identifier.
+}
+
+// API <-> Taskmaster request/response for system configuration
+message SystemConfig {
+    int32 max_replicas = 1; // The maximum number of replicas for the driver.
+}
+
+// API <-> Taskmaster request/response for system configuration
+message SystemConfigResponse {
+    SystemConfig config = 1; // The maximum number of replicas for the driver.
+    SystemConfigStatus status = 2; // The system status.
+}
+
+// Sub-message containing system status
+message SystemConfigStatus {
+    int64 queue_length = 1; // The length of the job queue.
+}
+
+// API -> Taskmaster request to get driver templates
+message GetDriverTemplatesRequest{
+    string driver_type = 1; // The driver unique identifier.
+}
+
+// Taskmaster -> API response containing driver templates
+// Sub-message in driver negotiation request
+message DriverTemplates {
+    repeated AttributeDefinition connection_attributes = 1; // The template of the connection attributes. It is represented as a list of attribute definitions.
+    repeated JobActionAttributes action_attributes = 2; // The templates of the job actions for all supported action types.
+}

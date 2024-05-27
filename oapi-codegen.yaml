@@ -1,0 +1,4 @@
+generate:
+  - types
+  - skip-prune
+  - spec

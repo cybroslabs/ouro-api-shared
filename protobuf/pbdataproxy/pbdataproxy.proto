@@ -1,0 +1,18 @@
+syntax = "proto3";
+package pbdataproxy;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy";
+
+import "google/protobuf/empty.proto";
+
+// The driver service definition.
+// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
+service DataproxyHost {
+    // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+    rpc NotifyBulkJonFinished(BulkJobEventData) returns (google.protobuf.Empty);
+}
+
+// Taskmaster -> Dataproxy job/action progress update message
+message BulkJobEventData {    
+    bytes job_id = 1 [json_name="i"]; // The job identifier.
+}

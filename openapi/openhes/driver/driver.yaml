@@ -1,0 +1,148 @@
+openapi: "3.1.0"
+info:
+  version: 0.1.0
+  title: Common API models for OpenHES
+  description: Common API models for OpenHES
+  license:
+    name: BSL-1.0
+    url: https://opensource.org/licenses/BSL-1.0
+  contact:
+    name: Cybros Labs team
+    email: info@cybroslabs.com
+    url: https://www.cybroslabs.com/index-en.html
+
+components:
+  schemas:
+    GenericObject: {}
+
+    DriverSchema:
+      type: object
+      description: >
+        Schema that holds the communication driver details.
+      example:
+        spec:
+          driverType: "CYBROSLABS_MAGEMETER_DLMS"
+          image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
+          resources:
+            cpu: 2
+            memory: "512Mi"
+      properties:
+        spec:
+          $ref: "#/components/schemas/DriverSpecSchema"
+
+    DriverSpecSchema:
+      type: object
+      description: >
+        Schema that registers new or updates already registered communication drivers.
+      example:
+        driverType: "CYBROSLABS_MAGEMETER_DLMS"
+        image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
+        resources:
+          cpu: 2
+          memory: "512Mi"
+      required:
+        - driverType
+        - image
+        - resources
+      properties:
+        driverType:
+          type: string
+          pattern: "^[a-zA-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$"
+          example: "CYBROSLABS_MAGEMETER_DLMS"
+        image:
+          type: string
+          pattern: "^[a-zA-Z0-9-.]+(:[0-9]+)?[a-zA-Z0-9/]+(:[a-zA-Z0-9-]+|@sha256:[0-9a-f]+)?"
+          example: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1 (or using digest @sha256:1234567890abcdef)"
+        resources:
+          $ref: "../../k8s/containers/containers.yaml#/components/schemas/ContainerResourcesSetSchema"
+
+    DriverDetailsSchema:
+      type: object
+      description: >
+        Schema that gets the communication driver details.
+      example:
+        spec:
+          driverType: "CYBROSLABS_MAGEMETER_DLMS"
+          image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
+          resources:
+            cpu: 2
+            memory: "512Mi"
+      allOf:
+        - $ref: "#/components/schemas/DriverSchema"
+
+    DriverActionAttributeSchema:
+      type: object
+      description: >
+        Schema that holds the specification of the driver action attribute.
+      example:
+        type: GET_REGISTER
+        attributes:
+          - name: "A+"
+            description: "Register A+"
+            type: STRING
+            mandatory: true
+            defaultValue: "0-0:1.8.0.255"
+          - name: "A-"
+            description: "Register A-"
+            type: STRING
+            mandatory: false
+            defaultValue: "0-0:2.8.0.255"
+      properties:
+        type:
+          $ref: "../job/job.yaml#/components/schemas/ActionTypeSchema"         
+        attributes:
+          $ref: "#/components/schemas/DriverAttributesSchema"
+
+    DriverAttributesSchema:
+      type: array
+      description: >
+        The list of attributes supported by the driver.
+      example:
+        - name: "register"
+          description: "Some register."
+          type: STRING
+          mandatory: true
+          defaultValue: "0-0:1.8.0.255"
+      items:
+        $ref: "#/components/schemas/DriverAttributeSchema"
+
+    DriverAttributeSchema:
+      type: object
+      description: >
+        Schema that holds the specification of the driver attribute.
+      example:
+        name: "register"
+        description: "The register to get."
+        type: STRING
+        mandatory: true
+        defaultValue: "0-0:1.8.0.255"
+      properties:
+        name:
+          type: string
+          description: >
+            The name of the attribute.
+        description:
+          type: string
+          description: >
+            The description of the attribute.
+        type:
+          type: string
+          enum:
+            - STRING
+            - INTEGER
+            - NUMBER
+            - BOOLEAN
+            - BINARY
+          description: >
+            The type of the attribute.
+              * `STRING` - The attribute is a string.
+              * `INTEGER` - The attribute is an integer.
+              * `NUMBER` - The attribute is a decimal number.
+              * `BOOLEAN` - The attribute is a boolean.
+              * `BINARY` - The attribute is a binary.
+        mandatory:
+          type: boolean
+          description: >
+            Indicates whether the attribute is mandatory or not.
+        defaultValue:
+          $ref: "#/components/schemas/GenericObject"
