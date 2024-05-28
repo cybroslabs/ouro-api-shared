@@ -1,5 +1,5 @@
 syntax = "proto3";
-package pbdriver;
+package io.clbs.openhes.pbdriver;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver";
 
@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 // The driver service definition.
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
-service Driver {
+service DriverService {
     // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
     rpc StartJob(StartJobRequest) returns (stream ProgressUpdate);
     // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
@@ -17,7 +17,7 @@ service Driver {
 
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
-service DriverHost {
+service TaskmasterService {
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
     rpc NegotiateStart(NegotiateRequest) returns (CommonResponse);
     // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -87,7 +87,7 @@ message ProfileValues {
 
 // Sub-message containing a single profile block
 message ProfileBlok {
-    int64 start_timestamp = 1 [json_name="t"]; // The start timestamp of the block.
+    google.protobuf.Timestamp start_timestamp = 1 [json_name="t"]; // The start timestamp of the block.
     repeated MeasuredValue values = 2 [json_name="v"]; // The list of profile values. Values are ordered by timestamp.
 }
 
@@ -98,7 +98,7 @@ message BillingValues {
 
 // Sub-message containing billing-typed value
 message BillingValue {
-    int64 timestamp = 1 [json_name="t"]; // The timestamp of the value.
+    google.protobuf.Timestamp timestamp = 1 [json_name="t"]; // The timestamp of the value.
     string unit = 2 [json_name="u"]; // The unit of the value.
     MeasuredValue value = 3 [json_name="v"]; // The value.
 }
@@ -169,7 +169,7 @@ message CancelJobsRequest {
 message QueueJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    JobSpecification job_specification = 3 [json_name="js"]; // The job parameters.
+    JobSettings job_specification = 3 [json_name="js"]; // The job parameters.
     string driver_type = 4 [json_name="t"]; // The driver type.
     repeated JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
     optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
@@ -178,7 +178,7 @@ message QueueJobRequest {
 message StartJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    JobSpecification job_specification = 3 [json_name="js"]; // The job parameters.
+    JobSettings job_specification = 3 [json_name="js"]; // The job parameters.
     repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
 }
 
@@ -288,7 +288,7 @@ enum JobPriority {
 }
 
 // Sub-message containing job parameters
-message JobSpecification {
+message JobSettings {
     int64 max_duration = 1 [json_name="md"]; // Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
     JobPriority priority = 2 [json_name="p"]; // Priority of the job.
     int32 attempts = 3 [json_name="a"]; // Maximum number of attempts, 1 is the minimum.

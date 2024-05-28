@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v5.26.1
-// source: protobuf/pbdriver/pbdriver.proto
+// source: pbdriver.proto
 
 package pbdriver
 
@@ -20,34 +20,34 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Driver_StartJob_FullMethodName  = "/pbdriver.Driver/StartJob"
-	Driver_CancelJob_FullMethodName = "/pbdriver.Driver/CancelJob"
+	DriverService_StartJob_FullMethodName  = "/io.clbs.openhes.pbdriver.DriverService/StartJob"
+	DriverService_CancelJob_FullMethodName = "/io.clbs.openhes.pbdriver.DriverService/CancelJob"
 )
 
-// DriverClient is the client API for Driver service.
+// DriverServiceClient is the client API for DriverService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DriverClient interface {
+type DriverServiceClient interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (Driver_StartJobClient, error)
+	StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (DriverService_StartJobClient, error)
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
 	CancelJob(ctx context.Context, in *CancelJobRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 }
 
-type driverClient struct {
+type driverServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDriverClient(cc grpc.ClientConnInterface) DriverClient {
-	return &driverClient{cc}
+func NewDriverServiceClient(cc grpc.ClientConnInterface) DriverServiceClient {
+	return &driverServiceClient{cc}
 }
 
-func (c *driverClient) StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (Driver_StartJobClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Driver_ServiceDesc.Streams[0], Driver_StartJob_FullMethodName, opts...)
+func (c *driverServiceClient) StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (DriverService_StartJobClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DriverService_ServiceDesc.Streams[0], DriverService_StartJob_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &driverStartJobClient{stream}
+	x := &driverServiceStartJobClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -57,16 +57,16 @@ func (c *driverClient) StartJob(ctx context.Context, in *StartJobRequest, opts .
 	return x, nil
 }
 
-type Driver_StartJobClient interface {
+type DriverService_StartJobClient interface {
 	Recv() (*ProgressUpdate, error)
 	grpc.ClientStream
 }
 
-type driverStartJobClient struct {
+type driverServiceStartJobClient struct {
 	grpc.ClientStream
 }
 
-func (x *driverStartJobClient) Recv() (*ProgressUpdate, error) {
+func (x *driverServiceStartJobClient) Recv() (*ProgressUpdate, error) {
 	m := new(ProgressUpdate)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -74,130 +74,130 @@ func (x *driverStartJobClient) Recv() (*ProgressUpdate, error) {
 	return m, nil
 }
 
-func (c *driverClient) CancelJob(ctx context.Context, in *CancelJobRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *driverServiceClient) CancelJob(ctx context.Context, in *CancelJobRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, Driver_CancelJob_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, DriverService_CancelJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DriverServer is the server API for Driver service.
-// All implementations must embed UnimplementedDriverServer
+// DriverServiceServer is the server API for DriverService service.
+// All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility
-type DriverServer interface {
+type DriverServiceServer interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	StartJob(*StartJobRequest, Driver_StartJobServer) error
+	StartJob(*StartJobRequest, DriverService_StartJobServer) error
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
 	CancelJob(context.Context, *CancelJobRequest) (*CommonResponse, error)
-	mustEmbedUnimplementedDriverServer()
+	mustEmbedUnimplementedDriverServiceServer()
 }
 
-// UnimplementedDriverServer must be embedded to have forward compatible implementations.
-type UnimplementedDriverServer struct {
+// UnimplementedDriverServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedDriverServiceServer struct {
 }
 
-func (UnimplementedDriverServer) StartJob(*StartJobRequest, Driver_StartJobServer) error {
+func (UnimplementedDriverServiceServer) StartJob(*StartJobRequest, DriverService_StartJobServer) error {
 	return status.Errorf(codes.Unimplemented, "method StartJob not implemented")
 }
-func (UnimplementedDriverServer) CancelJob(context.Context, *CancelJobRequest) (*CommonResponse, error) {
+func (UnimplementedDriverServiceServer) CancelJob(context.Context, *CancelJobRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
 }
-func (UnimplementedDriverServer) mustEmbedUnimplementedDriverServer() {}
+func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
 
-// UnsafeDriverServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DriverServer will
+// UnsafeDriverServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DriverServiceServer will
 // result in compilation errors.
-type UnsafeDriverServer interface {
-	mustEmbedUnimplementedDriverServer()
+type UnsafeDriverServiceServer interface {
+	mustEmbedUnimplementedDriverServiceServer()
 }
 
-func RegisterDriverServer(s grpc.ServiceRegistrar, srv DriverServer) {
-	s.RegisterService(&Driver_ServiceDesc, srv)
+func RegisterDriverServiceServer(s grpc.ServiceRegistrar, srv DriverServiceServer) {
+	s.RegisterService(&DriverService_ServiceDesc, srv)
 }
 
-func _Driver_StartJob_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _DriverService_StartJob_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StartJobRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DriverServer).StartJob(m, &driverStartJobServer{stream})
+	return srv.(DriverServiceServer).StartJob(m, &driverServiceStartJobServer{stream})
 }
 
-type Driver_StartJobServer interface {
+type DriverService_StartJobServer interface {
 	Send(*ProgressUpdate) error
 	grpc.ServerStream
 }
 
-type driverStartJobServer struct {
+type driverServiceStartJobServer struct {
 	grpc.ServerStream
 }
 
-func (x *driverStartJobServer) Send(m *ProgressUpdate) error {
+func (x *driverServiceStartJobServer) Send(m *ProgressUpdate) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Driver_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DriverService_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CancelJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverServer).CancelJob(ctx, in)
+		return srv.(DriverServiceServer).CancelJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Driver_CancelJob_FullMethodName,
+		FullMethod: DriverService_CancelJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServer).CancelJob(ctx, req.(*CancelJobRequest))
+		return srv.(DriverServiceServer).CancelJob(ctx, req.(*CancelJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Driver_ServiceDesc is the grpc.ServiceDesc for Driver service.
+// DriverService_ServiceDesc is the grpc.ServiceDesc for DriverService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Driver_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pbdriver.Driver",
-	HandlerType: (*DriverServer)(nil),
+var DriverService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "io.clbs.openhes.pbdriver.DriverService",
+	HandlerType: (*DriverServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CancelJob",
-			Handler:    _Driver_CancelJob_Handler,
+			Handler:    _DriverService_CancelJob_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StartJob",
-			Handler:       _Driver_StartJob_Handler,
+			Handler:       _DriverService_StartJob_Handler,
 			ServerStreams: true,
 		},
 	},
-	Metadata: "protobuf/pbdriver/pbdriver.proto",
+	Metadata: "pbdriver.proto",
 }
 
 const (
-	DriverHost_NegotiateStart_FullMethodName     = "/pbdriver.DriverHost/NegotiateStart"
-	DriverHost_CacheSet_FullMethodName           = "/pbdriver.DriverHost/CacheSet"
-	DriverHost_CacheGet_FullMethodName           = "/pbdriver.DriverHost/CacheGet"
-	DriverHost_EnqueueJobs_FullMethodName        = "/pbdriver.DriverHost/EnqueueJobs"
-	DriverHost_RegisterDriver_FullMethodName     = "/pbdriver.DriverHost/RegisterDriver"
-	DriverHost_GetDrivers_FullMethodName         = "/pbdriver.DriverHost/GetDrivers"
-	DriverHost_UnregisterDriver_FullMethodName   = "/pbdriver.DriverHost/UnregisterDriver"
-	DriverHost_GetJob_FullMethodName             = "/pbdriver.DriverHost/GetJob"
-	DriverHost_GetConfig_FullMethodName          = "/pbdriver.DriverHost/GetConfig"
-	DriverHost_SetConfig_FullMethodName          = "/pbdriver.DriverHost/SetConfig"
-	DriverHost_PurgeJobs_FullMethodName          = "/pbdriver.DriverHost/PurgeJobs"
-	DriverHost_GetDriverTemplates_FullMethodName = "/pbdriver.DriverHost/GetDriverTemplates"
-	DriverHost_CancelJob_FullMethodName          = "/pbdriver.DriverHost/CancelJob"
+	TaskmasterService_NegotiateStart_FullMethodName     = "/io.clbs.openhes.pbdriver.TaskmasterService/NegotiateStart"
+	TaskmasterService_CacheSet_FullMethodName           = "/io.clbs.openhes.pbdriver.TaskmasterService/CacheSet"
+	TaskmasterService_CacheGet_FullMethodName           = "/io.clbs.openhes.pbdriver.TaskmasterService/CacheGet"
+	TaskmasterService_EnqueueJobs_FullMethodName        = "/io.clbs.openhes.pbdriver.TaskmasterService/EnqueueJobs"
+	TaskmasterService_RegisterDriver_FullMethodName     = "/io.clbs.openhes.pbdriver.TaskmasterService/RegisterDriver"
+	TaskmasterService_GetDrivers_FullMethodName         = "/io.clbs.openhes.pbdriver.TaskmasterService/GetDrivers"
+	TaskmasterService_UnregisterDriver_FullMethodName   = "/io.clbs.openhes.pbdriver.TaskmasterService/UnregisterDriver"
+	TaskmasterService_GetJob_FullMethodName             = "/io.clbs.openhes.pbdriver.TaskmasterService/GetJob"
+	TaskmasterService_GetConfig_FullMethodName          = "/io.clbs.openhes.pbdriver.TaskmasterService/GetConfig"
+	TaskmasterService_SetConfig_FullMethodName          = "/io.clbs.openhes.pbdriver.TaskmasterService/SetConfig"
+	TaskmasterService_PurgeJobs_FullMethodName          = "/io.clbs.openhes.pbdriver.TaskmasterService/PurgeJobs"
+	TaskmasterService_GetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbdriver.TaskmasterService/GetDriverTemplates"
+	TaskmasterService_CancelJob_FullMethodName          = "/io.clbs.openhes.pbdriver.TaskmasterService/CancelJob"
 )
 
-// DriverHostClient is the client API for DriverHost service.
+// TaskmasterServiceClient is the client API for TaskmasterService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DriverHostClient interface {
+type TaskmasterServiceClient interface {
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(ctx context.Context, in *NegotiateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -226,135 +226,135 @@ type DriverHostClient interface {
 	CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type driverHostClient struct {
+type taskmasterServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDriverHostClient(cc grpc.ClientConnInterface) DriverHostClient {
-	return &driverHostClient{cc}
+func NewTaskmasterServiceClient(cc grpc.ClientConnInterface) TaskmasterServiceClient {
+	return &taskmasterServiceClient{cc}
 }
 
-func (c *driverHostClient) NegotiateStart(ctx context.Context, in *NegotiateRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *NegotiateRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_NegotiateStart_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_NegotiateStart_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverHost_CacheSet_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_CacheSet_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error) {
+func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error) {
 	out := new(CacheGetResponse)
-	err := c.cc.Invoke(ctx, DriverHost_CacheGet_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_CacheGet_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) EnqueueJobs(ctx context.Context, in *QueueJobListRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) EnqueueJobs(ctx context.Context, in *QueueJobListRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_EnqueueJobs_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_EnqueueJobs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_RegisterDriver_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_RegisterDriver_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error) {
+func (c *taskmasterServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error) {
 	out := new(GetDriversResponse)
-	err := c.cc.Invoke(ctx, DriverHost_GetDrivers_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetDrivers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_UnregisterDriver_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_UnregisterDriver_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error) {
+func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error) {
 	out := new(GetJobResponse)
-	err := c.cc.Invoke(ctx, DriverHost_GetJob_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error) {
+func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error) {
 	out := new(SystemConfigResponse)
-	err := c.cc.Invoke(ctx, DriverHost_GetConfig_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetConfig_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_SetConfig_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_SetConfig_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *taskmasterServiceClient) PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CommonResponse, error) {
 	out := new(CommonResponse)
-	err := c.cc.Invoke(ctx, DriverHost_PurgeJobs_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_PurgeJobs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*DriverTemplates, error) {
+func (c *taskmasterServiceClient) GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*DriverTemplates, error) {
 	out := new(DriverTemplates)
-	err := c.cc.Invoke(ctx, DriverHost_GetDriverTemplates_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetDriverTemplates_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHostClient) CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverHost_CancelJob_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_CancelJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DriverHostServer is the server API for DriverHost service.
-// All implementations must embed UnimplementedDriverHostServer
+// TaskmasterServiceServer is the server API for TaskmasterService service.
+// All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility
-type DriverHostServer interface {
+type TaskmasterServiceServer interface {
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(context.Context, *NegotiateRequest) (*CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -381,359 +381,359 @@ type DriverHostServer interface {
 	GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*DriverTemplates, error)
 	// The method to cancel the job.
 	CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedDriverHostServer()
+	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
-// UnimplementedDriverHostServer must be embedded to have forward compatible implementations.
-type UnimplementedDriverHostServer struct {
+// UnimplementedTaskmasterServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTaskmasterServiceServer struct {
 }
 
-func (UnimplementedDriverHostServer) NegotiateStart(context.Context, *NegotiateRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *NegotiateRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NegotiateStart not implemented")
 }
-func (UnimplementedDriverHostServer) CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheSet not implemented")
 }
-func (UnimplementedDriverHostServer) CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error) {
+func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheGet not implemented")
 }
-func (UnimplementedDriverHostServer) EnqueueJobs(context.Context, *QueueJobListRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) EnqueueJobs(context.Context, *QueueJobListRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EnqueueJobs not implemented")
 }
-func (UnimplementedDriverHostServer) RegisterDriver(context.Context, *RegisterDriverRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) RegisterDriver(context.Context, *RegisterDriverRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterDriver not implemented")
 }
-func (UnimplementedDriverHostServer) GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
 }
-func (UnimplementedDriverHostServer) UnregisterDriver(context.Context, *UnregisterDriverRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) UnregisterDriver(context.Context, *UnregisterDriverRequest) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnregisterDriver not implemented")
 }
-func (UnimplementedDriverHostServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (UnimplementedDriverHostServer) GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
 }
-func (UnimplementedDriverHostServer) SetConfig(context.Context, *SystemConfig) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *SystemConfig) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
 }
-func (UnimplementedDriverHostServer) PurgeJobs(context.Context, *emptypb.Empty) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.Empty) (*CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeJobs not implemented")
 }
-func (UnimplementedDriverHostServer) GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*DriverTemplates, error) {
+func (UnimplementedTaskmasterServiceServer) GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*DriverTemplates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverTemplates not implemented")
 }
-func (UnimplementedDriverHostServer) CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
 }
-func (UnimplementedDriverHostServer) mustEmbedUnimplementedDriverHostServer() {}
+func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
 
-// UnsafeDriverHostServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DriverHostServer will
+// UnsafeTaskmasterServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TaskmasterServiceServer will
 // result in compilation errors.
-type UnsafeDriverHostServer interface {
-	mustEmbedUnimplementedDriverHostServer()
+type UnsafeTaskmasterServiceServer interface {
+	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
-func RegisterDriverHostServer(s grpc.ServiceRegistrar, srv DriverHostServer) {
-	s.RegisterService(&DriverHost_ServiceDesc, srv)
+func RegisterTaskmasterServiceServer(s grpc.ServiceRegistrar, srv TaskmasterServiceServer) {
+	s.RegisterService(&TaskmasterService_ServiceDesc, srv)
 }
 
-func _DriverHost_NegotiateStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_NegotiateStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(NegotiateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).NegotiateStart(ctx, in)
+		return srv.(TaskmasterServiceServer).NegotiateStart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_NegotiateStart_FullMethodName,
+		FullMethod: TaskmasterService_NegotiateStart_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).NegotiateStart(ctx, req.(*NegotiateRequest))
+		return srv.(TaskmasterServiceServer).NegotiateStart(ctx, req.(*NegotiateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_CacheSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_CacheSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CacheSetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).CacheSet(ctx, in)
+		return srv.(TaskmasterServiceServer).CacheSet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_CacheSet_FullMethodName,
+		FullMethod: TaskmasterService_CacheSet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).CacheSet(ctx, req.(*CacheSetRequest))
+		return srv.(TaskmasterServiceServer).CacheSet(ctx, req.(*CacheSetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_CacheGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_CacheGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CacheGetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).CacheGet(ctx, in)
+		return srv.(TaskmasterServiceServer).CacheGet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_CacheGet_FullMethodName,
+		FullMethod: TaskmasterService_CacheGet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).CacheGet(ctx, req.(*CacheGetRequest))
+		return srv.(TaskmasterServiceServer).CacheGet(ctx, req.(*CacheGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_EnqueueJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_EnqueueJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueueJobListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).EnqueueJobs(ctx, in)
+		return srv.(TaskmasterServiceServer).EnqueueJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_EnqueueJobs_FullMethodName,
+		FullMethod: TaskmasterService_EnqueueJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).EnqueueJobs(ctx, req.(*QueueJobListRequest))
+		return srv.(TaskmasterServiceServer).EnqueueJobs(ctx, req.(*QueueJobListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_RegisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_RegisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).RegisterDriver(ctx, in)
+		return srv.(TaskmasterServiceServer).RegisterDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_RegisterDriver_FullMethodName,
+		FullMethod: TaskmasterService_RegisterDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).RegisterDriver(ctx, req.(*RegisterDriverRequest))
+		return srv.(TaskmasterServiceServer).RegisterDriver(ctx, req.(*RegisterDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_GetDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_GetDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).GetDrivers(ctx, in)
+		return srv.(TaskmasterServiceServer).GetDrivers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_GetDrivers_FullMethodName,
+		FullMethod: TaskmasterService_GetDrivers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).GetDrivers(ctx, req.(*emptypb.Empty))
+		return srv.(TaskmasterServiceServer).GetDrivers(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_UnregisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_UnregisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnregisterDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).UnregisterDriver(ctx, in)
+		return srv.(TaskmasterServiceServer).UnregisterDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_UnregisterDriver_FullMethodName,
+		FullMethod: TaskmasterService_UnregisterDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).UnregisterDriver(ctx, req.(*UnregisterDriverRequest))
+		return srv.(TaskmasterServiceServer).UnregisterDriver(ctx, req.(*UnregisterDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).GetJob(ctx, in)
+		return srv.(TaskmasterServiceServer).GetJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_GetJob_FullMethodName,
+		FullMethod: TaskmasterService_GetJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).GetJob(ctx, req.(*GetJobRequest))
+		return srv.(TaskmasterServiceServer).GetJob(ctx, req.(*GetJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).GetConfig(ctx, in)
+		return srv.(TaskmasterServiceServer).GetConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_GetConfig_FullMethodName,
+		FullMethod: TaskmasterService_GetConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).GetConfig(ctx, req.(*emptypb.Empty))
+		return srv.(TaskmasterServiceServer).GetConfig(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_SetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_SetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SystemConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).SetConfig(ctx, in)
+		return srv.(TaskmasterServiceServer).SetConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_SetConfig_FullMethodName,
+		FullMethod: TaskmasterService_SetConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).SetConfig(ctx, req.(*SystemConfig))
+		return srv.(TaskmasterServiceServer).SetConfig(ctx, req.(*SystemConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_PurgeJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_PurgeJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).PurgeJobs(ctx, in)
+		return srv.(TaskmasterServiceServer).PurgeJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_PurgeJobs_FullMethodName,
+		FullMethod: TaskmasterService_PurgeJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).PurgeJobs(ctx, req.(*emptypb.Empty))
+		return srv.(TaskmasterServiceServer).PurgeJobs(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_GetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_GetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDriverTemplatesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).GetDriverTemplates(ctx, in)
+		return srv.(TaskmasterServiceServer).GetDriverTemplates(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_GetDriverTemplates_FullMethodName,
+		FullMethod: TaskmasterService_GetDriverTemplates_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).GetDriverTemplates(ctx, req.(*GetDriverTemplatesRequest))
+		return srv.(TaskmasterServiceServer).GetDriverTemplates(ctx, req.(*GetDriverTemplatesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverHost_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CancelJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DriverHostServer).CancelJob(ctx, in)
+		return srv.(TaskmasterServiceServer).CancelJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DriverHost_CancelJob_FullMethodName,
+		FullMethod: TaskmasterService_CancelJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHostServer).CancelJob(ctx, req.(*CancelJobsRequest))
+		return srv.(TaskmasterServiceServer).CancelJob(ctx, req.(*CancelJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// DriverHost_ServiceDesc is the grpc.ServiceDesc for DriverHost service.
+// TaskmasterService_ServiceDesc is the grpc.ServiceDesc for TaskmasterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var DriverHost_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pbdriver.DriverHost",
-	HandlerType: (*DriverHostServer)(nil),
+var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "io.clbs.openhes.pbdriver.TaskmasterService",
+	HandlerType: (*TaskmasterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "NegotiateStart",
-			Handler:    _DriverHost_NegotiateStart_Handler,
+			Handler:    _TaskmasterService_NegotiateStart_Handler,
 		},
 		{
 			MethodName: "CacheSet",
-			Handler:    _DriverHost_CacheSet_Handler,
+			Handler:    _TaskmasterService_CacheSet_Handler,
 		},
 		{
 			MethodName: "CacheGet",
-			Handler:    _DriverHost_CacheGet_Handler,
+			Handler:    _TaskmasterService_CacheGet_Handler,
 		},
 		{
 			MethodName: "EnqueueJobs",
-			Handler:    _DriverHost_EnqueueJobs_Handler,
+			Handler:    _TaskmasterService_EnqueueJobs_Handler,
 		},
 		{
 			MethodName: "RegisterDriver",
-			Handler:    _DriverHost_RegisterDriver_Handler,
+			Handler:    _TaskmasterService_RegisterDriver_Handler,
 		},
 		{
 			MethodName: "GetDrivers",
-			Handler:    _DriverHost_GetDrivers_Handler,
+			Handler:    _TaskmasterService_GetDrivers_Handler,
 		},
 		{
 			MethodName: "UnregisterDriver",
-			Handler:    _DriverHost_UnregisterDriver_Handler,
+			Handler:    _TaskmasterService_UnregisterDriver_Handler,
 		},
 		{
 			MethodName: "GetJob",
-			Handler:    _DriverHost_GetJob_Handler,
+			Handler:    _TaskmasterService_GetJob_Handler,
 		},
 		{
 			MethodName: "GetConfig",
-			Handler:    _DriverHost_GetConfig_Handler,
+			Handler:    _TaskmasterService_GetConfig_Handler,
 		},
 		{
 			MethodName: "SetConfig",
-			Handler:    _DriverHost_SetConfig_Handler,
+			Handler:    _TaskmasterService_SetConfig_Handler,
 		},
 		{
 			MethodName: "PurgeJobs",
-			Handler:    _DriverHost_PurgeJobs_Handler,
+			Handler:    _TaskmasterService_PurgeJobs_Handler,
 		},
 		{
 			MethodName: "GetDriverTemplates",
-			Handler:    _DriverHost_GetDriverTemplates_Handler,
+			Handler:    _TaskmasterService_GetDriverTemplates_Handler,
 		},
 		{
 			MethodName: "CancelJob",
-			Handler:    _DriverHost_CancelJob_Handler,
+			Handler:    _TaskmasterService_CancelJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protobuf/pbdriver/pbdriver.proto",
+	Metadata: "pbdriver.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v5.26.1
-// source: protobuf/pbdataproxy/pbdataproxy.proto
+// source: pbdataproxy.proto
 
 package pbdataproxy
 
@@ -20,93 +20,210 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DataproxyHost_NotifyBulkJonFinished_FullMethodName = "/pbdataproxy.DataproxyHost/NotifyBulkJonFinished"
+	DataproxyService_NotifyJobFinished_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/NotifyJobFinished"
+	DataproxyService_BatchCreateBulks_FullMethodName  = "/io.clbs.openhes.pbdataproxy.DataproxyService/BatchCreateBulks"
+	DataproxyService_GetBulks_FullMethodName          = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulks"
+	DataproxyService_GetBulk_FullMethodName           = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
 )
 
-// DataproxyHostClient is the client API for DataproxyHost service.
+// DataproxyServiceClient is the client API for DataproxyService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DataproxyHostClient interface {
-	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	NotifyBulkJonFinished(ctx context.Context, in *BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error)
+type DataproxyServiceClient interface {
+	// The method called by the Taskmaster to notify about finished job.
+	NotifyJobFinished(ctx context.Context, in *BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method called by the RestApi to start a new bulk of jobs.
+	BatchCreateBulks(ctx context.Context, in *BatchCreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method called by the RestApi to retrieve stored bulks.
+	GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error)
+	// The method called by the RestApi to retrieve single bulk.
+	GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error)
 }
 
-type dataproxyHostClient struct {
+type dataproxyServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDataproxyHostClient(cc grpc.ClientConnInterface) DataproxyHostClient {
-	return &dataproxyHostClient{cc}
+func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClient {
+	return &dataproxyServiceClient{cc}
 }
 
-func (c *dataproxyHostClient) NotifyBulkJonFinished(ctx context.Context, in *BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) NotifyJobFinished(ctx context.Context, in *BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DataproxyHost_NotifyBulkJonFinished_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, DataproxyService_NotifyJobFinished_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DataproxyHostServer is the server API for DataproxyHost service.
-// All implementations must embed UnimplementedDataproxyHostServer
+func (c *dataproxyServiceClient) BatchCreateBulks(ctx context.Context, in *BatchCreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_BatchCreateBulks_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error) {
+	out := new(GetBulksResponse)
+	err := c.cc.Invoke(ctx, DataproxyService_GetBulks_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error) {
+	out := new(GetBulkResponse)
+	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DataproxyServiceServer is the server API for DataproxyService service.
+// All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility
-type DataproxyHostServer interface {
-	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	NotifyBulkJonFinished(context.Context, *BulkJobEventData) (*emptypb.Empty, error)
-	mustEmbedUnimplementedDataproxyHostServer()
+type DataproxyServiceServer interface {
+	// The method called by the Taskmaster to notify about finished job.
+	NotifyJobFinished(context.Context, *BulkJobEventData) (*emptypb.Empty, error)
+	// The method called by the RestApi to start a new bulk of jobs.
+	BatchCreateBulks(context.Context, *BatchCreateBulksRequest) (*emptypb.Empty, error)
+	// The method called by the RestApi to retrieve stored bulks.
+	GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error)
+	// The method called by the RestApi to retrieve single bulk.
+	GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error)
+	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
-// UnimplementedDataproxyHostServer must be embedded to have forward compatible implementations.
-type UnimplementedDataproxyHostServer struct {
+// UnimplementedDataproxyServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedDataproxyServiceServer struct {
 }
 
-func (UnimplementedDataproxyHostServer) NotifyBulkJonFinished(context.Context, *BulkJobEventData) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotifyBulkJonFinished not implemented")
+func (UnimplementedDataproxyServiceServer) NotifyJobFinished(context.Context, *BulkJobEventData) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyJobFinished not implemented")
 }
-func (UnimplementedDataproxyHostServer) mustEmbedUnimplementedDataproxyHostServer() {}
+func (UnimplementedDataproxyServiceServer) BatchCreateBulks(context.Context, *BatchCreateBulksRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BatchCreateBulks not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulks not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 
-// UnsafeDataproxyHostServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DataproxyHostServer will
+// UnsafeDataproxyServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DataproxyServiceServer will
 // result in compilation errors.
-type UnsafeDataproxyHostServer interface {
-	mustEmbedUnimplementedDataproxyHostServer()
+type UnsafeDataproxyServiceServer interface {
+	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
-func RegisterDataproxyHostServer(s grpc.ServiceRegistrar, srv DataproxyHostServer) {
-	s.RegisterService(&DataproxyHost_ServiceDesc, srv)
+func RegisterDataproxyServiceServer(s grpc.ServiceRegistrar, srv DataproxyServiceServer) {
+	s.RegisterService(&DataproxyService_ServiceDesc, srv)
 }
 
-func _DataproxyHost_NotifyBulkJonFinished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DataproxyService_NotifyJobFinished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BulkJobEventData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataproxyHostServer).NotifyBulkJonFinished(ctx, in)
+		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataproxyHost_NotifyBulkJonFinished_FullMethodName,
+		FullMethod: DataproxyService_NotifyJobFinished_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyHostServer).NotifyBulkJonFinished(ctx, req.(*BulkJobEventData))
+		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, req.(*BulkJobEventData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// DataproxyHost_ServiceDesc is the grpc.ServiceDesc for DataproxyHost service.
+func _DataproxyService_BatchCreateBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BatchCreateBulksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).BatchCreateBulks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_BatchCreateBulks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).BatchCreateBulks(ctx, req.(*BatchCreateBulksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBulksReuqest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetBulks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetBulks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetBulks(ctx, req.(*GetBulksReuqest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*GetBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var DataproxyHost_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pbdataproxy.DataproxyHost",
-	HandlerType: (*DataproxyHostServer)(nil),
+var DataproxyService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "io.clbs.openhes.pbdataproxy.DataproxyService",
+	HandlerType: (*DataproxyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "NotifyBulkJonFinished",
-			Handler:    _DataproxyHost_NotifyBulkJonFinished_Handler,
+			MethodName: "NotifyJobFinished",
+			Handler:    _DataproxyService_NotifyJobFinished_Handler,
+		},
+		{
+			MethodName: "BatchCreateBulks",
+			Handler:    _DataproxyService_BatchCreateBulks_Handler,
+		},
+		{
+			MethodName: "GetBulks",
+			Handler:    _DataproxyService_GetBulks_Handler,
+		},
+		{
+			MethodName: "GetBulk",
+			Handler:    _DataproxyService_GetBulk_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protobuf/pbdataproxy/pbdataproxy.proto",
+	Metadata: "pbdataproxy.proto",
 }

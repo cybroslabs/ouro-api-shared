@@ -1,14 +1,14 @@
 .PHONY: gen-go
 gen-go:
-	protoc \
-		--go_out=./ --go_opt=paths=source_relative \
-		--go-grpc_out=./ --go-grpc_opt=paths=source_relative \
-		protobuf/pbdriver/pbdriver.proto
+	cd protobuf && protoc \
+		--go_out=./pbdriver --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdriver --go-grpc_opt=paths=source_relative \
+		pbdriver.proto
 
-	protoc \
-		--go_out=./ --go_opt=paths=source_relative \
-		--go-grpc_out=./ --go-grpc_opt=paths=source_relative \
-		protobuf/pbdataproxy/pbdataproxy.proto
+	cd protobuf && protoc \
+		--go_out=./pbdataproxy --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdataproxy --go-grpc_opt=paths=source_relative \
+		pbdataproxy.proto
 
 .PHONY: generate
 generate:
