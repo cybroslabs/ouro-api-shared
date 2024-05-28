@@ -169,7 +169,7 @@ message CancelJobsRequest {
 message QueueJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    JobSettings job_specification = 3 [json_name="js"]; // The job parameters.
+    JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
     string driver_type = 4 [json_name="t"]; // The driver type.
     repeated JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
     optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
@@ -178,7 +178,7 @@ message QueueJobRequest {
 message StartJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    JobSettings job_specification = 3 [json_name="js"]; // The job parameters.
+    JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
     repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
 }
 
