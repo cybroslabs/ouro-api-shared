@@ -3,10 +3,12 @@ package job
 import (
 	"errors"
 	"fmt"
+	"net/url"
 	"strings"
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -16,6 +18,14 @@ var (
 	ErrInvalidJobStatus     = errors.New("invalid job status")
 	ErrInvalidActionType    = errors.New("invalid action type")
 	ErrUnknownJobActionType = fmt.Errorf("unknown job action type")
+)
+
+const (
+	DefaultPriority    = pbdriver.JobPriority_PRIORITY_0
+	DefaultMaxDuration = int64(5 * 60 * 1000)
+	DefaultRetryDelay  = int64(60 * 1000)
+	DefaultAttempts    = int32(1)
+	DefaultDeferStart  = uint64(0)
 )
 
 // Converts the job action list - gRPC to Rest API
@@ -479,4 +489,185 @@ func G2RActionType(actionType pbdriver.ActionType) (ActionTypeSchema, error) {
 		return "", ErrInvalidActionType
 	}
 	return ActionTypeSchema(result), nil
+}
+
+// Converts the job settings - gRPC to Rest API
+func G2RJobSettings(settings *pbdriver.JobSettings) (*JobSettingsSchema, error) {
+	intPriority := int32(settings.Priority)
+
+	// gRPC is in milliseconds, REST is in seconds
+	max_duration := settings.MaxDuration / 1000
+	retry_delay := settings.RetryDelay / 1000
+	defer_start := int64(settings.DeferStart / 1000)
+
+	var expires_at *time.Time = nil
+	if ts := settings.ExpiresAt; ts != nil {
+		t := ts.AsTime()
+		expires_at = &t
+	}
+
+	result := &JobSettingsSchema{
+		Attempts:    &settings.Attempts,
+		MaxDuration: &max_duration,
+		Priority:    &intPriority,
+		RetryDelay:  &retry_delay,
+		DeferStart:  &defer_start,
+		ExpiresAt:   expires_at,
+		WebhookURL:  nil, // FIXME
+	}
+
+	return result, nil
+}
+
+// Converts the job settings - Rest API to gRPC
+func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) {
+	webhook_uri := settings.WebhookURL
+	if webhook_uri != nil {
+		if *webhook_uri == "" {
+			webhook_uri = nil
+		} else {
+			uri, err := url.ParseRequestURI(*webhook_uri)
+			if err != nil {
+				return nil, fmt.Errorf("Error while parsing webhook url: %v", err)
+			}
+			if uri.Scheme != "http" && uri.Scheme != "https" {
+				return nil, fmt.Errorf("Invalid WebhookURL scheme, given: %s. Only http or https is accepted.", uri.Scheme)
+			}
+		}
+	}
+
+	job_priority := DefaultPriority
+	if pr := settings.Priority; pr != nil {
+		if *pr < 0 || *pr > 9 {
+			return nil, fmt.Errorf("Error while converting priority %v, value out of range.", *pr)
+		}
+		job_priority = (pbdriver.JobPriority)(*pr)
+	}
+
+	max_duration := DefaultMaxDuration
+	if pr := settings.MaxDuration; pr != nil {
+		// REST is in seconds, gRPC is in milliseconds
+		max_duration = *pr * 1000
+	}
+
+	retry_delay := DefaultRetryDelay
+	if pr := settings.RetryDelay; pr != nil {
+		// REST is in seconds, gRPC is in milliseconds
+		retry_delay = *pr * 1000
+	}
+
+	attempts := DefaultAttempts
+	if pr := settings.Attempts; pr != nil {
+		attempts = *pr
+	}
+
+	defer_start := DefaultDeferStart
+	if pr := settings.DeferStart; pr != nil {
+		defer_start = uint64(*pr * 1000)
+	}
+
+	var expires_at *timestamppb.Timestamp = nil
+	if ts := settings.ExpiresAt; ts != nil {
+		expires_at = timestamppb.New(*ts)
+	}
+
+	return &pbdriver.JobSettings{
+		Attempts:    attempts,
+		MaxDuration: max_duration,
+		Priority:    job_priority,
+		RetryDelay:  retry_delay,
+		DeferStart:  defer_start,
+		ExpiresAt:   expires_at,
+		// FIXME: WebhookURL: webhook_uri,
+	}, nil
+}
+
+// Converts the bulk spec - gRPC to Rest API
+func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
+	actions, err := G2RJobActions(spec.JobActions)
+	if err != nil {
+		return nil, err
+	}
+
+	devices := make(JobDeviceListSchema, len(spec.Devices))
+	for i := range spec.Devices {
+		devices[i].Id, err = uuid.Parse(spec.Devices[i].Id)
+		if err != nil {
+			return nil, err
+		}
+		devices[i].ExternalID = &spec.Devices[i].ExternalId
+		devices[i].Attributes = attribute.G2RAttributes(spec.Devices[i].ConnectionInfo.Attributes)
+		devices[i].Endpoint = spec.Devices[i].ConnectionInfo.Hostname
+	}
+
+	id, err := uuid.Parse(spec.BulkId)
+	if err != nil {
+		return nil, err
+	}
+
+	var corr_id *string
+	if spec.CorrelationId != "" {
+		corr_id = &spec.CorrelationId
+	}
+
+	settings, err := G2RJobSettings(spec.Settings)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &BulkSpecSchema{
+		Id:               id,
+		CorrelationID:    corr_id,
+		DeviceDriverType: &spec.DeviceDriverType,
+		Settings:         settings,
+		Devices:          devices,
+		Actions:          *actions,
+	}
+
+	return result, nil
+}
+
+func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
+	actions, err := R2GJobActions(&spec.Actions)
+	if err != nil {
+		return nil, err
+	}
+
+	devices := make([]*pbdataproxy.JobDevice, len(spec.Devices))
+	for i := range spec.Devices {
+		device_attributes, err := attribute.R2GAttributes(spec.Devices[i].Attributes)
+		if err != nil {
+			return nil, err
+		}
+
+		devices[i] = &pbdataproxy.JobDevice{
+			Id: spec.Devices[i].Id.String(),
+			ConnectionInfo: &pbdriver.ConnectionInfo{
+				Hostname:   spec.Devices[i].Endpoint,
+				Attributes: device_attributes,
+			},
+			ExternalId: *spec.Devices[i].ExternalID,
+		}
+	}
+
+	bulk_id := spec.Id.String()
+
+	var corr_id string
+	if spec.CorrelationID != nil {
+		corr_id = *spec.CorrelationID
+	}
+
+	settings, err := R2GJobSettings(spec.Settings)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pbdataproxy.BulkSpec{
+		BulkId:           bulk_id,
+		CorrelationId:    corr_id,
+		DeviceDriverType: *spec.DeviceDriverType,
+		Settings:         settings,
+		Devices:          devices,
+		JobActions:       actions,
+	}, nil
 }

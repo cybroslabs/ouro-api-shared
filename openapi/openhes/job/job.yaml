@@ -80,7 +80,7 @@ components:
         externalID:
           type: string
           description: >
-            The public ID of the device.
+            The public ID of the device.         
         endpoint:
           description: >
             The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
@@ -384,7 +384,6 @@ components:
           type: string
           description: >
             The correlation ID of the bulk. The correlation ID is used to group the bulks.
-          format: uuid
           nullable: true
         devices:
           $ref: "#/components/schemas/JobDeviceListSchema"
