@@ -74,7 +74,7 @@ const (
 	JobStatusSchemaCodeOK    JobStatusSchemaCode = "OK"
 )
 
-// ActionID The ID of the related action. The ID must be the same as the action ID in the job action.
+// ActionID The ID of the action.
 type ActionID = openapi_types.UUID
 
 // ActionTypeSchema The type of action.
@@ -99,7 +99,7 @@ type ActionTypeSchema string
 // AttributesSchema Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 type AttributesSchema = attribute.Attributes
 
-// BulkID The ID of the bulk job. The ID must be unique.
+// BulkID The ID of the bulk job. The ID must be unique across the OpenHES components.
 type BulkID = openapi_types.UUID
 
 // BulkSpecSchema Schema that holds the jobs for single device type.
@@ -113,7 +113,7 @@ type BulkSpecSchema struct {
 	// Devices List of devices to be queued.
 	Devices JobDeviceListSchema `json:"devices"`
 
-	// Id The ID of the bulk job. The ID must be unique.
+	// Id The ID of the bulk job. The ID must be unique across the OpenHES components.
 	Id BulkID `json:"id"`
 
 	// Settings Schema that holds the settings of the job.
@@ -143,7 +143,7 @@ type JobActionCommonSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id ActionID `json:"id"`
 }
 
@@ -152,7 +152,7 @@ type JobActionFwUpdateSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -162,7 +162,7 @@ type JobActionGetClockSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -172,7 +172,7 @@ type JobActionGetDisconnectorStateSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -182,7 +182,7 @@ type JobActionGetEventsSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -192,7 +192,7 @@ type JobActionGetIrregularProfileSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -202,7 +202,7 @@ type JobActionGetLimiterSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -212,7 +212,7 @@ type JobActionGetPeriodicalProfileSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id ActionID `json:"id"`
 
 	// ParamTfrom The start time of the profile data.
@@ -228,7 +228,7 @@ type JobActionGetRegisterSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -238,7 +238,7 @@ type JobActionGetRelayStateSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -248,7 +248,7 @@ type JobActionGetTouSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -261,7 +261,7 @@ type JobActionResetBillingPeriodSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -278,7 +278,7 @@ type JobActionResultSchema struct {
 	// Data The result data of the action.
 	Data JobActionResultSchema_Data `json:"data"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id ActionID `json:"id"`
 }
 
@@ -304,7 +304,7 @@ type JobActionSetDisconnectorStateSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -314,7 +314,7 @@ type JobActionSetLimiterSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -324,7 +324,7 @@ type JobActionSetRelayStateSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -334,7 +334,7 @@ type JobActionSetTouSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -344,7 +344,7 @@ type JobActionSyncClockSchema struct {
 	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
-	// Id The ID of the related action. The ID must be the same as the action ID in the job action.
+	// Id The ID of the action.
 	Id   ActionID `json:"id"`
 	Type string   `json:"type"`
 }
@@ -360,11 +360,14 @@ type JobDeviceSchema struct {
 	// Endpoint The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
 	Endpoint string `json:"endpoint"`
 
-	// Id The ID of the job. The ID must be unique.
+	// ExternalID The public ID of the device.
+	ExternalID *string `json:"externalID,omitempty"`
+
+	// Id The ID of the job. The ID must be unique across the OpenHES components.
 	Id JobID `json:"id"`
 }
 
-// JobID The ID of the job. The ID must be unique.
+// JobID The ID of the job. The ID must be unique across the OpenHES components.
 type JobID = openapi_types.UUID
 
 // JobSettingsSchema Schema that holds the settings of the job.
@@ -912,58 +915,58 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

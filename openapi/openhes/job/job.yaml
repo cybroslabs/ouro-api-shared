@@ -74,6 +74,10 @@ components:
       properties:
         id:
           $ref: "#/components/schemas/JobID"
+        externalID:
+          type: string
+          description: >
+            The public ID of the device.
         endpoint:
           description: >
             The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
@@ -455,20 +459,20 @@ components:
     BulkID:
       type: string
       description: >
-        The ID of the bulk job. The ID must be unique.
+        The ID of the bulk job. The ID must be unique across the OpenHES components.
       format: uuid
 
     JobID:
       type: string
       description: >
-        The ID of the job. The ID must be unique.
+        The ID of the job. The ID must be unique across the OpenHES components.
       format: uuid
 
     ActionID:
       type: string
       format: uuid
       description: >
-        The ID of the related action. The ID must be the same as the action ID in the job action.
+        The ID of the action.
 
     ActionTypeSchema:
       type: string

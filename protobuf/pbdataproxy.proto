@@ -47,9 +47,10 @@ message GetBulkResponse {
 
 // Sub-message representing a single device in a bulk.
 message JobDevice {
-    string device_id = 1 [json_name="i"]; // The device (job) identifier.
+    string id = 1 [json_name="i"]; // The device (job) identifier.
     string device_group_id = 2 [json_name="g"]; // The group identifier.
-    pbdriver.ConnectionInfo connection_info = 3 [json_name="c"]; // The conenction (device) parameters.
+    string external_id = 3 [json_name="e"]; // The external identifier.
+    pbdriver.ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
 }
 
 // RestApi -> DataProxy - the message holds data for bulk listing request.
@@ -59,7 +60,7 @@ message GetBulksReuqest {
     optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
     // FIXME: Should not not be optional!
     optional string org_id = 4 [json_name="o"]; // The organization identifier filter.
-    // FIXME: Add DeviceId filter here.
+    // TODO: Add Device-Id filter here.
 }
 
 // DataProxy -> RestApi - the message holds list of bulks.
