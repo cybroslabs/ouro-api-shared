@@ -457,6 +457,16 @@ func G2RActionResultCode(status pbdriver.ActionResultCode) (JobActionResultSchem
 	}
 }
 
+// Converts the action type - Rest API to gRPC
+func R2GActionType(actionType ActionTypeSchema) (pbdriver.ActionType, error) {
+	action_name := "ACTION_TYPE_" + string(actionType)
+	no, ok := pbdriver.ActionType_value[action_name]
+	if !ok {
+		return -1, ErrInvalidActionType
+	}
+	return pbdriver.ActionType(no), nil
+}
+
 // Converts the action type - gRPC to Rest API
 func G2RActionType(actionType pbdriver.ActionType) (ActionTypeSchema, error) {
 	no := int32(actionType.Number())
