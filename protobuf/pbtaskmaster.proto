@@ -21,76 +21,30 @@ service TaskmasterService {
     // The method called by the RestApi to get the job status. The parameter contains the job identifier.
     rpc GetJob(GetJobRequest) returns (GetJobResponse);
     // The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
-    rpc PurgeJobs(google.protobuf.Empty) returns (CommonResponse);
+    rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
     // The method called by the RestApi to cancel the job.
     rpc CancelJob(CancelJobsRequest) returns (google.protobuf.Empty);
 
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
-    rpc NegotiateStart(pbdriver.NegotiateRequest) returns (CommonResponse);
+    rpc NegotiateStart(pbdriver.NegotiateRequest) returns (pbdriver.CommonResponse);
     // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
     rpc CacheSet(CacheSetRequest) returns (google.protobuf.Empty);
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
     
     // The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-    rpc RegisterDriver(RegisterDriverRequest) returns (CommonResponse);    
+    rpc RegisterDriver(RegisterDriverRequest) returns (google.protobuf.Empty);    
     // The method called by the RestApi to get the list of drivers.
     rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
     // The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-    rpc UnregisterDriver(UnregisterDriverRequest) returns (CommonResponse);
+    rpc UnregisterDriver(UnregisterDriverRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
     rpc GetDriverTemplates(GetDriverTemplatesRequest) returns (pbdriver.DriverTemplates);
 
     // The method called by the RestApi to get the system configuration.
     rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
     // The method called by the RestApi to set the system configuration.
-    rpc SetConfig(SystemConfig) returns (CommonResponse);
-}
-
-
-
-// Sub-message containing action-based variant of data values
-message ActionData {
-    oneof data {
-        google.protobuf.Empty nodata = 1 [json_name="n"]; // No data
-        BillingValues billings = 2 [json_name="r"]; // Register values
-        ProfileValues profile = 3 [json_name="p"]; // Profile values
-    }
-}
-
-// Sub-message containing profile-typed values
-message ProfileValues {
-    int32 period = 1 [json_name="p"]; // The period of the profile values.
-    string unit = 2 [json_name="u"]; // The unit of the profile values.
-    repeated ProfileBlok blocks = 3 [json_name="b"]; // The list of continuous profile blocks.
-}
-
-// Sub-message containing a single profile block
-message ProfileBlok {
-    google.protobuf.Timestamp start_timestamp = 1 [json_name="t"]; // The start timestamp of the block.
-    repeated MeasuredValue values = 2 [json_name="v"]; // The list of profile values. Values are ordered by timestamp.
-}
-
-// Sub-message containing billing-typed values
-message BillingValues {
-    repeated BillingValue values = 1 [json_name="v"]; // The list of register values.
-}
-
-// Sub-message containing billing-typed value
-message BillingValue {
-    google.protobuf.Timestamp timestamp = 1 [json_name="t"]; // The timestamp of the value.
-    string unit = 2 [json_name="u"]; // The unit of the value.
-    MeasuredValue value = 3 [json_name="v"]; // The value.
-}
-
-// Sub-message containing measured value
-message MeasuredValue {
-    optional int64 status = 1 [json_name="s"]; // The status of the value.
-    oneof value {
-        double double_value = 2 [json_name="d"]; // The double-typed value.
-        int64 int_value = 3 [json_name="i"]; // The integer-typed value.
-    }
-    int32 exponent = 4 [json_name="e"]; // The exponent of the value.
+    rpc SetConfig(SystemConfig) returns (google.protobuf.Empty);
 }
 
 // Driver -> Taskmaster cache set request message
@@ -106,7 +60,7 @@ message CacheGetRequest {
 
 // Taskmaster -> Driver cache get response message
 message CacheGetResponse {
-    ErrorCode result = 1 [json_name="r"]; // The result of the cache get operation.
+    pbdriver.ErrorCode result = 1 [json_name="r"]; // The result of the cache get operation.
     pbdriver.AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
 }
 
@@ -140,7 +94,7 @@ message GetJobResponse {
 // Sub-message containing job status info
 message JobStatus {
     JobStatusCode status = 1 [json_name="s"]; // The status of the job.
-    optional JobErrorCode code = 2 [json_name="c"]; // The error code of the job.
+    optional pbdriver.JobErrorCode code = 2 [json_name="c"]; // The error code of the job.
     repeated ActionResult results = 3 [json_name="r"]; // The result data for all job actions.
     google.protobuf.Timestamp created_at = 4 [json_name="tc"]; // The creation timestamp of the job.
     optional google.protobuf.Timestamp started_at = 5 [json_name="ts"]; // The start timestamp of the job.
@@ -167,8 +121,8 @@ enum JobStatusCode {
 // Sub-message containing action result for a single action.
 message ActionResult {
     string action_id = 1 [json_name="id"]; // The action identifier.
-    ActionResultCode status = 2 [json_name="s"]; // The status of the action.
-    ActionData data = 3 [json_name="d"]; // The action result data.
+    pbdriver.ActionResultCode status = 2 [json_name="s"]; // The status of the action.
+    pbdriver.ActionData data = 3 [json_name="d"]; // The action result data.
 }
 
 // API -> Taskmaster register (install/update) driver request message
@@ -180,7 +134,7 @@ message RegisterDriverRequest {
 
 // Taskmaster -> API get drivers response message
 message GetDriversResponse {
-    ErrorCode result = 1; // The result of the operation.
+    pbdriver.ErrorCode result = 1; // The result of the operation.
     repeated DriverInfo drivers = 2; // The list of drivers.
 }
 
@@ -202,187 +156,6 @@ message ContainerResources {
     string cpu = 1 [json_name="c"]; // The CPU resources.
     string memory = 2 [json_name="m"]; // The memory resources.
 }
-
-// Job priorities
-enum JobPriority {
-    // The lowest priority
-    PRIORITY_0 = 0;
-    // The priority 1
-    PRIORITY_1 = 1;
-    // The priority 2
-    PRIORITY_2 = 2;
-    // The priority 3
-    PRIORITY_3 = 3;
-    // The priority 4
-    PRIORITY_4 = 4;
-    // The priority 5
-    PRIORITY_5 = 5;
-    // The priority 6
-    PRIORITY_6 = 6;
-    // The priority 7
-    PRIORITY_7 = 7;
-    // The highest priority
-    PRIORITY_8 = 8;
-}
-
-// Attribute types
-enum AttributeType {
-    // Integer attribute type
-    ATTRIBUTE_TYPE_INT = 0;
-    // String attribute type
-    ATTRIBUTE_TYPE_STRING = 1;
-    // Double attribute type
-    ATTRIBUTE_TYPE_DOUBLE = 2;
-    // Binary attribute type
-    ATTRIBUTE_TYPE_BINARY = 3;
-    // Date/time attribute type
-    ATTRIBUTE_TYPE_TIMESTAMP = 4;
-}
-
-// Action types
-enum ActionType {
-    // Get billing value, for example instantaneous values. The action covers specific register.
-    ACTION_TYPE_GET_REGISTER = 0;
-    // Get periodical profile, for example load-profile. The action covers specific profile column.
-    ACTION_TYPE_GET_PERIODICAL_PROFILE = 1;
-    // Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.
-    ACTION_TYPE_GET_IRREGULAR_PROFILE = 2;
-    // Get event log. The action covers specific event log.
-    ACTION_TYPE_GET_EVENTS = 3;
-
-    // Get clock. The action returns time in UTC.
-    ACTION_TYPE_GET_CLOCK = 10;
-    // Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
-    ACTION_TYPE_SYNC_CLOCK = 11;
-
-    // Get relay state. The action covers single relay.
-    ACTION_TYPE_GET_RELAY_STATE = 20;
-    // Set relay state. The action covers single relay.
-    ACTION_TYPE_SET_RELAY_STATE = 21;
-
-    // Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
-    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;
-    // Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.
-    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;
-
-    // Get time-of-use table.
-    ACTION_TYPE_GET_TOU = 24;
-    // Set time-of-use table.
-    ACTION_TYPE_SET_TOU = 25;
-
-    // Get limiter settings. The action covers single limiter.
-    ACTION_TYPE_GET_LIMITER = 26;
-    // Set limiter settings. The action covers single limiter.
-    ACTION_TYPE_SET_LIMITER = 27;
-
-    // Reseet billing period.
-    ACTION_TYPE_RESET_BILLING_PERIOD = 40;
-
-    // Start firmware update. The action updates starts FW upgrade procedure.
-    ACTION_TYPE_FW_UPDATE = 50;
-}
-
-// Sub-message containing get register action specification
-message ActionGetRegister {
-}
-
-// Sub-message containing get periodical profile action specification
-message ActionGetPeriodicalProfile {
-    google.protobuf.Timestamp from = 1 [json_name="f"]; // The start timestamp of the profile.
-    google.protobuf.Timestamp to = 2 [json_name="t"]; // The end timestamp of the profile.
-}
-
-// Sub-message containing get irregular profile action specification
-message ActionGetIrregularProfile {
-}
-
-// Sub-message containing get events action specification
-message ActionGetEvents {
-}
-
-// Sub-message containing get clock action specification
-message ActionGetClock {
-}
-
-// Sub-message containing sync clock action specification
-message ActionSyncClock {
-}
-
-// Sub-message containing get relay state action specification
-message ActionGetRelayState {
-}
-
-// Sub-message containing set relay state action specification
-message ActionSetRelayState {
-}
-
-// Sub-message containing get disconnector state action specification
-message ActionGetDisconnectorState {
-}
-
-// Sub-message containing set disconnector state action specification
-message ActionSetDisconnectorState {
-}
-
-// Sub-message containing get tou action specification
-message ActionGetTou {
-}
-
-// Sub-message containing set tou action specification
-message ActionSetTou {
-}
-
-// Sub-message containing get limiter action specification
-message ActionGetLimiter {
-}
-
-// Sub-message containing set limiter action specification
-message ActionSetLimiter {
-}
-
-// Sub-message containing reset billing period action specification
-message ActionResetBillingPeriod {
-}
-
-// Sub-message containing firmware update action specification
-message ActionFwUpdate {
-}
-
-// Result codes related to job actions
-enum ActionResultCode {
-    // The action has been completed successfully.
-    ERROR_CODE_ACTION_OK = 0;
-    // The action is not supported by the driver (or device).
-    ERROR_CODE_ACTION_UNSUPPORTED = 1;
-    // The action failed.
-    ERROR_CODE_ACTION_ERROR = 5;
-}
-
-// Error codes related to jobs
-enum JobErrorCode {
-    // The job has been completed successfully.
-    JOB_ERROR_CODE_NONE = 0;
-    // There is no free slot in the driver to handle the job; the job shall be send again later.
-    JOB_ERROR_CODE_BUSY = 1;
-    // The job failed, the retry will be attempted.
-    JOB_ERROR_CODE_ERROR = 5;
-    // The job failed, the retry will NOT be attempted.
-    JOB_ERROR_CODE_FATAL = 9;
-}
-
-// Error codes
-enum ErrorCode {
-    // No error
-    ERROR_CODE_OK = 0;
-    // Generic error
-    ERROR_CODE_ERROR = 4;
-}
-
-// Common gRPC response message
-message CommonResponse {
-    ErrorCode result = 1; // The result of the operation.
-}
-
 
 // API -> Taskmaster request to unregister driver
 message UnregisterDriverRequest {

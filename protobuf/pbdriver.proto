@@ -105,31 +105,6 @@ message StartJobRequest {
     repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
 }
 
-// Taskmaster -> API get drivers response message
-message GetDriversResponse {
-    ErrorCode result = 1; // The result of the operation.
-    repeated DriverInfo drivers = 2; // The list of drivers.
-}
-
-// Sub-message containing driver info
-message DriverInfo {
-    string driver_type = 1; // The driver unique identifier.
-    string image = 2; // The docker image of the driver.
-    ContainerResourceSet resources = 3; // The resource requirements of the driver.
-}
-
-// Sub-message containing container resource limits and requests
-message ContainerResourceSet {
-    ContainerResources limits = 1 [json_name="l"]; // The resource limits.
-    optional ContainerResources requests = 2 [json_name="r"]; // The resource requests.
-}
-
-// Sub-message containing container resource requirements
-message ContainerResources {
-    string cpu = 1 [json_name="c"]; // The CPU resources.
-    string memory = 2 [json_name="m"]; // The memory resources.
-}
-
 // Sub-message containing connection info
 message ConnectionInfo {
     string hostname = 1 [json_name="h"]; // The meter IP and or homename. The hostname shall be resolvable using DNS and the IP address shall be reachable.

@@ -1269,238 +1269,6 @@ func (x *StartJobRequest) GetJobActions() []*JobAction {
 	return nil
 }
 
-// Taskmaster -> API get drivers response message
-type GetDriversResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Result  ErrorCode     `protobuf:"varint,1,opt,name=result,proto3,enum=io.clbs.openhes.pbdriver.ErrorCode" json:"result,omitempty"` // The result of the operation.
-	Drivers []*DriverInfo `protobuf:"bytes,2,rep,name=drivers,proto3" json:"drivers,omitempty"`                                        // The list of drivers.
-}
-
-func (x *GetDriversResponse) Reset() {
-	*x = GetDriversResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetDriversResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDriversResponse) ProtoMessage() {}
-
-func (x *GetDriversResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDriversResponse.ProtoReflect.Descriptor instead.
-func (*GetDriversResponse) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *GetDriversResponse) GetResult() ErrorCode {
-	if x != nil {
-		return x.Result
-	}
-	return ErrorCode_ERROR_CODE_OK
-}
-
-func (x *GetDriversResponse) GetDrivers() []*DriverInfo {
-	if x != nil {
-		return x.Drivers
-	}
-	return nil
-}
-
-// Sub-message containing driver info
-type DriverInfo struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	DriverType string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType,proto3" json:"driver_type,omitempty"` // The driver unique identifier.
-	Image      string                `protobuf:"bytes,2,opt,name=image,proto3" json:"image,omitempty"`                             // The docker image of the driver.
-	Resources  *ContainerResourceSet `protobuf:"bytes,3,opt,name=resources,proto3" json:"resources,omitempty"`                     // The resource requirements of the driver.
-}
-
-func (x *DriverInfo) Reset() {
-	*x = DriverInfo{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[13]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DriverInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DriverInfo) ProtoMessage() {}
-
-func (x *DriverInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[13]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DriverInfo.ProtoReflect.Descriptor instead.
-func (*DriverInfo) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *DriverInfo) GetDriverType() string {
-	if x != nil {
-		return x.DriverType
-	}
-	return ""
-}
-
-func (x *DriverInfo) GetImage() string {
-	if x != nil {
-		return x.Image
-	}
-	return ""
-}
-
-func (x *DriverInfo) GetResources() *ContainerResourceSet {
-	if x != nil {
-		return x.Resources
-	}
-	return nil
-}
-
-// Sub-message containing container resource limits and requests
-type ContainerResourceSet struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Limits   *ContainerResources `protobuf:"bytes,1,opt,name=limits,json=l,proto3" json:"limits,omitempty"`           // The resource limits.
-	Requests *ContainerResources `protobuf:"bytes,2,opt,name=requests,json=r,proto3,oneof" json:"requests,omitempty"` // The resource requests.
-}
-
-func (x *ContainerResourceSet) Reset() {
-	*x = ContainerResourceSet{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[14]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ContainerResourceSet) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ContainerResourceSet) ProtoMessage() {}
-
-func (x *ContainerResourceSet) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[14]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ContainerResourceSet.ProtoReflect.Descriptor instead.
-func (*ContainerResourceSet) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *ContainerResourceSet) GetLimits() *ContainerResources {
-	if x != nil {
-		return x.Limits
-	}
-	return nil
-}
-
-func (x *ContainerResourceSet) GetRequests() *ContainerResources {
-	if x != nil {
-		return x.Requests
-	}
-	return nil
-}
-
-// Sub-message containing container resource requirements
-type ContainerResources struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Cpu    string `protobuf:"bytes,1,opt,name=cpu,json=c,proto3" json:"cpu,omitempty"`       // The CPU resources.
-	Memory string `protobuf:"bytes,2,opt,name=memory,json=m,proto3" json:"memory,omitempty"` // The memory resources.
-}
-
-func (x *ContainerResources) Reset() {
-	*x = ContainerResources{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[15]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ContainerResources) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ContainerResources) ProtoMessage() {}
-
-func (x *ContainerResources) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[15]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ContainerResources.ProtoReflect.Descriptor instead.
-func (*ContainerResources) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *ContainerResources) GetCpu() string {
-	if x != nil {
-		return x.Cpu
-	}
-	return ""
-}
-
-func (x *ContainerResources) GetMemory() string {
-	if x != nil {
-		return x.Memory
-	}
-	return ""
-}
-
 // Sub-message containing connection info
 type ConnectionInfo struct {
 	state         protoimpl.MessageState
@@ -1514,7 +1282,7 @@ type ConnectionInfo struct {
 func (x *ConnectionInfo) Reset() {
 	*x = ConnectionInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[16]
+		mi := &file_pbdriver_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1527,7 +1295,7 @@ func (x *ConnectionInfo) String() string {
 func (*ConnectionInfo) ProtoMessage() {}
 
 func (x *ConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[16]
+	mi := &file_pbdriver_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1540,7 +1308,7 @@ func (x *ConnectionInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectionInfo.ProtoReflect.Descriptor instead.
 func (*ConnectionInfo) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{16}
+	return file_pbdriver_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ConnectionInfo) GetHostname() string {
@@ -1574,7 +1342,7 @@ type JobSettings struct {
 func (x *JobSettings) Reset() {
 	*x = JobSettings{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[17]
+		mi := &file_pbdriver_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1587,7 +1355,7 @@ func (x *JobSettings) String() string {
 func (*JobSettings) ProtoMessage() {}
 
 func (x *JobSettings) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[17]
+	mi := &file_pbdriver_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1600,7 +1368,7 @@ func (x *JobSettings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JobSettings.ProtoReflect.Descriptor instead.
 func (*JobSettings) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{17}
+	return file_pbdriver_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *JobSettings) GetMaxDuration() int64 {
@@ -1677,7 +1445,7 @@ type JobAction struct {
 func (x *JobAction) Reset() {
 	*x = JobAction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[18]
+		mi := &file_pbdriver_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1690,7 +1458,7 @@ func (x *JobAction) String() string {
 func (*JobAction) ProtoMessage() {}
 
 func (x *JobAction) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[18]
+	mi := &file_pbdriver_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1703,7 +1471,7 @@ func (x *JobAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JobAction.ProtoReflect.Descriptor instead.
 func (*JobAction) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{18}
+	return file_pbdriver_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *JobAction) GetActionId() string {
@@ -1949,7 +1717,7 @@ type ActionGetRegister struct {
 func (x *ActionGetRegister) Reset() {
 	*x = ActionGetRegister{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[19]
+		mi := &file_pbdriver_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1962,7 +1730,7 @@ func (x *ActionGetRegister) String() string {
 func (*ActionGetRegister) ProtoMessage() {}
 
 func (x *ActionGetRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[19]
+	mi := &file_pbdriver_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1975,7 +1743,7 @@ func (x *ActionGetRegister) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetRegister.ProtoReflect.Descriptor instead.
 func (*ActionGetRegister) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{19}
+	return file_pbdriver_proto_rawDescGZIP(), []int{15}
 }
 
 // Sub-message containing get periodical profile action specification
@@ -1991,7 +1759,7 @@ type ActionGetPeriodicalProfile struct {
 func (x *ActionGetPeriodicalProfile) Reset() {
 	*x = ActionGetPeriodicalProfile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[20]
+		mi := &file_pbdriver_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2004,7 +1772,7 @@ func (x *ActionGetPeriodicalProfile) String() string {
 func (*ActionGetPeriodicalProfile) ProtoMessage() {}
 
 func (x *ActionGetPeriodicalProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[20]
+	mi := &file_pbdriver_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2017,7 +1785,7 @@ func (x *ActionGetPeriodicalProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetPeriodicalProfile.ProtoReflect.Descriptor instead.
 func (*ActionGetPeriodicalProfile) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{20}
+	return file_pbdriver_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ActionGetPeriodicalProfile) GetFrom() *timestamppb.Timestamp {
@@ -2044,7 +1812,7 @@ type ActionGetIrregularProfile struct {
 func (x *ActionGetIrregularProfile) Reset() {
 	*x = ActionGetIrregularProfile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[21]
+		mi := &file_pbdriver_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2057,7 +1825,7 @@ func (x *ActionGetIrregularProfile) String() string {
 func (*ActionGetIrregularProfile) ProtoMessage() {}
 
 func (x *ActionGetIrregularProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[21]
+	mi := &file_pbdriver_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2070,7 +1838,7 @@ func (x *ActionGetIrregularProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetIrregularProfile.ProtoReflect.Descriptor instead.
 func (*ActionGetIrregularProfile) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{21}
+	return file_pbdriver_proto_rawDescGZIP(), []int{17}
 }
 
 // Sub-message containing get events action specification
@@ -2083,7 +1851,7 @@ type ActionGetEvents struct {
 func (x *ActionGetEvents) Reset() {
 	*x = ActionGetEvents{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[22]
+		mi := &file_pbdriver_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2096,7 +1864,7 @@ func (x *ActionGetEvents) String() string {
 func (*ActionGetEvents) ProtoMessage() {}
 
 func (x *ActionGetEvents) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[22]
+	mi := &file_pbdriver_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2109,7 +1877,7 @@ func (x *ActionGetEvents) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetEvents.ProtoReflect.Descriptor instead.
 func (*ActionGetEvents) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{22}
+	return file_pbdriver_proto_rawDescGZIP(), []int{18}
 }
 
 // Sub-message containing get clock action specification
@@ -2122,7 +1890,7 @@ type ActionGetClock struct {
 func (x *ActionGetClock) Reset() {
 	*x = ActionGetClock{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[23]
+		mi := &file_pbdriver_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2135,7 +1903,7 @@ func (x *ActionGetClock) String() string {
 func (*ActionGetClock) ProtoMessage() {}
 
 func (x *ActionGetClock) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[23]
+	mi := &file_pbdriver_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2148,7 +1916,7 @@ func (x *ActionGetClock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetClock.ProtoReflect.Descriptor instead.
 func (*ActionGetClock) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{23}
+	return file_pbdriver_proto_rawDescGZIP(), []int{19}
 }
 
 // Sub-message containing sync clock action specification
@@ -2161,7 +1929,7 @@ type ActionSyncClock struct {
 func (x *ActionSyncClock) Reset() {
 	*x = ActionSyncClock{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[24]
+		mi := &file_pbdriver_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2174,7 +1942,7 @@ func (x *ActionSyncClock) String() string {
 func (*ActionSyncClock) ProtoMessage() {}
 
 func (x *ActionSyncClock) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[24]
+	mi := &file_pbdriver_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2187,7 +1955,7 @@ func (x *ActionSyncClock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionSyncClock.ProtoReflect.Descriptor instead.
 func (*ActionSyncClock) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{24}
+	return file_pbdriver_proto_rawDescGZIP(), []int{20}
 }
 
 // Sub-message containing get relay state action specification
@@ -2200,7 +1968,7 @@ type ActionGetRelayState struct {
 func (x *ActionGetRelayState) Reset() {
 	*x = ActionGetRelayState{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[25]
+		mi := &file_pbdriver_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2213,7 +1981,7 @@ func (x *ActionGetRelayState) String() string {
 func (*ActionGetRelayState) ProtoMessage() {}
 
 func (x *ActionGetRelayState) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[25]
+	mi := &file_pbdriver_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2226,7 +1994,7 @@ func (x *ActionGetRelayState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetRelayState.ProtoReflect.Descriptor instead.
 func (*ActionGetRelayState) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{25}
+	return file_pbdriver_proto_rawDescGZIP(), []int{21}
 }
 
 // Sub-message containing set relay state action specification
@@ -2239,7 +2007,7 @@ type ActionSetRelayState struct {
 func (x *ActionSetRelayState) Reset() {
 	*x = ActionSetRelayState{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[26]
+		mi := &file_pbdriver_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2252,7 +2020,7 @@ func (x *ActionSetRelayState) String() string {
 func (*ActionSetRelayState) ProtoMessage() {}
 
 func (x *ActionSetRelayState) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[26]
+	mi := &file_pbdriver_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2265,7 +2033,7 @@ func (x *ActionSetRelayState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionSetRelayState.ProtoReflect.Descriptor instead.
 func (*ActionSetRelayState) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{26}
+	return file_pbdriver_proto_rawDescGZIP(), []int{22}
 }
 
 // Sub-message containing get disconnector state action specification
@@ -2278,7 +2046,7 @@ type ActionGetDisconnectorState struct {
 func (x *ActionGetDisconnectorState) Reset() {
 	*x = ActionGetDisconnectorState{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[27]
+		mi := &file_pbdriver_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2291,7 +2059,7 @@ func (x *ActionGetDisconnectorState) String() string {
 func (*ActionGetDisconnectorState) ProtoMessage() {}
 
 func (x *ActionGetDisconnectorState) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[27]
+	mi := &file_pbdriver_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2304,7 +2072,7 @@ func (x *ActionGetDisconnectorState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetDisconnectorState.ProtoReflect.Descriptor instead.
 func (*ActionGetDisconnectorState) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{27}
+	return file_pbdriver_proto_rawDescGZIP(), []int{23}
 }
 
 // Sub-message containing set disconnector state action specification
@@ -2317,7 +2085,7 @@ type ActionSetDisconnectorState struct {
 func (x *ActionSetDisconnectorState) Reset() {
 	*x = ActionSetDisconnectorState{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[28]
+		mi := &file_pbdriver_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2330,7 +2098,7 @@ func (x *ActionSetDisconnectorState) String() string {
 func (*ActionSetDisconnectorState) ProtoMessage() {}
 
 func (x *ActionSetDisconnectorState) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[28]
+	mi := &file_pbdriver_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2343,7 +2111,7 @@ func (x *ActionSetDisconnectorState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionSetDisconnectorState.ProtoReflect.Descriptor instead.
 func (*ActionSetDisconnectorState) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{28}
+	return file_pbdriver_proto_rawDescGZIP(), []int{24}
 }
 
 // Sub-message containing get tou action specification
@@ -2356,7 +2124,7 @@ type ActionGetTou struct {
 func (x *ActionGetTou) Reset() {
 	*x = ActionGetTou{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[29]
+		mi := &file_pbdriver_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2369,7 +2137,7 @@ func (x *ActionGetTou) String() string {
 func (*ActionGetTou) ProtoMessage() {}
 
 func (x *ActionGetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[29]
+	mi := &file_pbdriver_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2382,7 +2150,7 @@ func (x *ActionGetTou) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetTou.ProtoReflect.Descriptor instead.
 func (*ActionGetTou) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{29}
+	return file_pbdriver_proto_rawDescGZIP(), []int{25}
 }
 
 // Sub-message containing set tou action specification
@@ -2395,7 +2163,7 @@ type ActionSetTou struct {
 func (x *ActionSetTou) Reset() {
 	*x = ActionSetTou{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[30]
+		mi := &file_pbdriver_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2408,7 +2176,7 @@ func (x *ActionSetTou) String() string {
 func (*ActionSetTou) ProtoMessage() {}
 
 func (x *ActionSetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[30]
+	mi := &file_pbdriver_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2421,7 +2189,7 @@ func (x *ActionSetTou) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionSetTou.ProtoReflect.Descriptor instead.
 func (*ActionSetTou) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{30}
+	return file_pbdriver_proto_rawDescGZIP(), []int{26}
 }
 
 // Sub-message containing get limiter action specification
@@ -2434,7 +2202,7 @@ type ActionGetLimiter struct {
 func (x *ActionGetLimiter) Reset() {
 	*x = ActionGetLimiter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[31]
+		mi := &file_pbdriver_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2447,7 +2215,7 @@ func (x *ActionGetLimiter) String() string {
 func (*ActionGetLimiter) ProtoMessage() {}
 
 func (x *ActionGetLimiter) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[31]
+	mi := &file_pbdriver_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2460,7 +2228,7 @@ func (x *ActionGetLimiter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionGetLimiter.ProtoReflect.Descriptor instead.
 func (*ActionGetLimiter) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{31}
+	return file_pbdriver_proto_rawDescGZIP(), []int{27}
 }
 
 // Sub-message containing set limiter action specification
@@ -2473,7 +2241,7 @@ type ActionSetLimiter struct {
 func (x *ActionSetLimiter) Reset() {
 	*x = ActionSetLimiter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[32]
+		mi := &file_pbdriver_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2486,7 +2254,7 @@ func (x *ActionSetLimiter) String() string {
 func (*ActionSetLimiter) ProtoMessage() {}
 
 func (x *ActionSetLimiter) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[32]
+	mi := &file_pbdriver_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2499,7 +2267,7 @@ func (x *ActionSetLimiter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionSetLimiter.ProtoReflect.Descriptor instead.
 func (*ActionSetLimiter) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{32}
+	return file_pbdriver_proto_rawDescGZIP(), []int{28}
 }
 
 // Sub-message containing reset billing period action specification
@@ -2512,7 +2280,7 @@ type ActionResetBillingPeriod struct {
 func (x *ActionResetBillingPeriod) Reset() {
 	*x = ActionResetBillingPeriod{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[33]
+		mi := &file_pbdriver_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2525,7 +2293,7 @@ func (x *ActionResetBillingPeriod) String() string {
 func (*ActionResetBillingPeriod) ProtoMessage() {}
 
 func (x *ActionResetBillingPeriod) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[33]
+	mi := &file_pbdriver_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2538,7 +2306,7 @@ func (x *ActionResetBillingPeriod) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionResetBillingPeriod.ProtoReflect.Descriptor instead.
 func (*ActionResetBillingPeriod) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{33}
+	return file_pbdriver_proto_rawDescGZIP(), []int{29}
 }
 
 // Sub-message containing firmware update action specification
@@ -2551,7 +2319,7 @@ type ActionFwUpdate struct {
 func (x *ActionFwUpdate) Reset() {
 	*x = ActionFwUpdate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[34]
+		mi := &file_pbdriver_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2564,7 +2332,7 @@ func (x *ActionFwUpdate) String() string {
 func (*ActionFwUpdate) ProtoMessage() {}
 
 func (x *ActionFwUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[34]
+	mi := &file_pbdriver_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2577,7 +2345,7 @@ func (x *ActionFwUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionFwUpdate.ProtoReflect.Descriptor instead.
 func (*ActionFwUpdate) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{34}
+	return file_pbdriver_proto_rawDescGZIP(), []int{30}
 }
 
 // Sub-message containing single attribute value specification
@@ -2598,7 +2366,7 @@ type AttributeValue struct {
 func (x *AttributeValue) Reset() {
 	*x = AttributeValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[35]
+		mi := &file_pbdriver_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2611,7 +2379,7 @@ func (x *AttributeValue) String() string {
 func (*AttributeValue) ProtoMessage() {}
 
 func (x *AttributeValue) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[35]
+	mi := &file_pbdriver_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2624,7 +2392,7 @@ func (x *AttributeValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttributeValue.ProtoReflect.Descriptor instead.
 func (*AttributeValue) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{35}
+	return file_pbdriver_proto_rawDescGZIP(), []int{31}
 }
 
 func (m *AttributeValue) GetValue() isAttributeValue_Value {
@@ -2702,7 +2470,7 @@ type CommonResponse struct {
 func (x *CommonResponse) Reset() {
 	*x = CommonResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[36]
+		mi := &file_pbdriver_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2715,7 +2483,7 @@ func (x *CommonResponse) String() string {
 func (*CommonResponse) ProtoMessage() {}
 
 func (x *CommonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[36]
+	mi := &file_pbdriver_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2728,7 +2496,7 @@ func (x *CommonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommonResponse.ProtoReflect.Descriptor instead.
 func (*CommonResponse) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{36}
+	return file_pbdriver_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CommonResponse) GetResult() ErrorCode {
@@ -2751,7 +2519,7 @@ type DriverTemplates struct {
 func (x *DriverTemplates) Reset() {
 	*x = DriverTemplates{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[37]
+		mi := &file_pbdriver_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2764,7 +2532,7 @@ func (x *DriverTemplates) String() string {
 func (*DriverTemplates) ProtoMessage() {}
 
 func (x *DriverTemplates) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[37]
+	mi := &file_pbdriver_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2777,7 +2545,7 @@ func (x *DriverTemplates) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DriverTemplates.ProtoReflect.Descriptor instead.
 func (*DriverTemplates) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{37}
+	return file_pbdriver_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *DriverTemplates) GetConnectionAttributes() []*AttributeDefinition {
@@ -2806,7 +2574,7 @@ type CancelJobRequest struct {
 func (x *CancelJobRequest) Reset() {
 	*x = CancelJobRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[38]
+		mi := &file_pbdriver_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2819,7 +2587,7 @@ func (x *CancelJobRequest) String() string {
 func (*CancelJobRequest) ProtoMessage() {}
 
 func (x *CancelJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[38]
+	mi := &file_pbdriver_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2832,7 +2600,7 @@ func (x *CancelJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelJobRequest.ProtoReflect.Descriptor instead.
 func (*CancelJobRequest) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{38}
+	return file_pbdriver_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CancelJobRequest) GetJobId() string {
@@ -2859,7 +2627,7 @@ type NegotiateRequest struct {
 func (x *NegotiateRequest) Reset() {
 	*x = NegotiateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbdriver_proto_msgTypes[39]
+		mi := &file_pbdriver_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2872,7 +2640,7 @@ func (x *NegotiateRequest) String() string {
 func (*NegotiateRequest) ProtoMessage() {}
 
 func (x *NegotiateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdriver_proto_msgTypes[39]
+	mi := &file_pbdriver_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2885,7 +2653,7 @@ func (x *NegotiateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NegotiateRequest.ProtoReflect.Descriptor instead.
 func (*NegotiateRequest) Descriptor() ([]byte, []int) {
-	return file_pbdriver_proto_rawDescGZIP(), []int{39}
+	return file_pbdriver_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *NegotiateRequest) GetVersion() string {
@@ -3056,40 +2824,7 @@ var file_pbdriver_proto_rawDesc = []byte{
 	0x73, 0x12, 0x3b, 0x0a, 0x0b, 0x6a, 0x6f, 0x62, 0x5f, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
 	0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73,
 	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65,
-	0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x01, 0x61, 0x22, 0x91,
-	0x01, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x44, 0x72, 0x69, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x23, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e,
-	0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72,
-	0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x12, 0x3e, 0x0a, 0x07, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x73, 0x18, 0x02, 0x20,
-	0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70,
-	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x44,
-	0x72, 0x69, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x07, 0x64, 0x72, 0x69, 0x76, 0x65,
-	0x72, 0x73, 0x22, 0x91, 0x01, 0x0a, 0x0a, 0x44, 0x72, 0x69, 0x76, 0x65, 0x72, 0x49, 0x6e, 0x66,
-	0x6f, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x5f, 0x74, 0x79, 0x70, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x54, 0x79,
-	0x70, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x4c, 0x0a, 0x09, 0x72, 0x65, 0x73, 0x6f,
-	0x75, 0x72, 0x63, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x69, 0x6f,
-	0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62,
-	0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x53, 0x65, 0x74, 0x52, 0x09, 0x72, 0x65, 0x73,
-	0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x22, 0xac, 0x01, 0x0a, 0x14, 0x43, 0x6f, 0x6e, 0x74, 0x61,
-	0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x53, 0x65, 0x74, 0x12,
-	0x3f, 0x0a, 0x06, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x2c, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65,
-	0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x61,
-	0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x52, 0x01, 0x6c,
-	0x12, 0x46, 0x0a, 0x08, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65,
-	0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f,
-	0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73,
-	0x48, 0x00, 0x52, 0x01, 0x72, 0x88, 0x01, 0x01, 0x42, 0x0b, 0x0a, 0x09, 0x5f, 0x72, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x73, 0x22, 0x37, 0x0a, 0x12, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
-	0x65, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x12, 0x0e, 0x0a, 0x03, 0x63,
-	0x70, 0x75, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x63, 0x12, 0x11, 0x0a, 0x06, 0x6d,
-	0x65, 0x6d, 0x6f, 0x72, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x6d, 0x22, 0xdf,
+	0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x01, 0x61, 0x22, 0xdf,
 	0x01, 0x0a, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x6e, 0x66,
 	0x6f, 0x12, 0x13, 0x0a, 0x08, 0x68, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x01, 0x68, 0x12, 0x4f, 0x0a, 0x0a, 0x61, 0x74, 0x74, 0x72, 0x69, 0x62,
@@ -3387,7 +3122,7 @@ func file_pbdriver_proto_rawDescGZIP() []byte {
 }
 
 var file_pbdriver_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_pbdriver_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_pbdriver_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_pbdriver_proto_goTypes = []interface{}{
 	(JobPriority)(0),                   // 0: io.clbs.openhes.pbdriver.JobPriority
 	(AttributeType)(0),                 // 1: io.clbs.openhes.pbdriver.AttributeType
@@ -3407,38 +3142,34 @@ var file_pbdriver_proto_goTypes = []interface{}{
 	(*AttributeDefinition)(nil),        // 15: io.clbs.openhes.pbdriver.AttributeDefinition
 	(*JobActionAttributes)(nil),        // 16: io.clbs.openhes.pbdriver.JobActionAttributes
 	(*StartJobRequest)(nil),            // 17: io.clbs.openhes.pbdriver.StartJobRequest
-	(*GetDriversResponse)(nil),         // 18: io.clbs.openhes.pbdriver.GetDriversResponse
-	(*DriverInfo)(nil),                 // 19: io.clbs.openhes.pbdriver.DriverInfo
-	(*ContainerResourceSet)(nil),       // 20: io.clbs.openhes.pbdriver.ContainerResourceSet
-	(*ContainerResources)(nil),         // 21: io.clbs.openhes.pbdriver.ContainerResources
-	(*ConnectionInfo)(nil),             // 22: io.clbs.openhes.pbdriver.ConnectionInfo
-	(*JobSettings)(nil),                // 23: io.clbs.openhes.pbdriver.JobSettings
-	(*JobAction)(nil),                  // 24: io.clbs.openhes.pbdriver.JobAction
-	(*ActionGetRegister)(nil),          // 25: io.clbs.openhes.pbdriver.ActionGetRegister
-	(*ActionGetPeriodicalProfile)(nil), // 26: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile
-	(*ActionGetIrregularProfile)(nil),  // 27: io.clbs.openhes.pbdriver.ActionGetIrregularProfile
-	(*ActionGetEvents)(nil),            // 28: io.clbs.openhes.pbdriver.ActionGetEvents
-	(*ActionGetClock)(nil),             // 29: io.clbs.openhes.pbdriver.ActionGetClock
-	(*ActionSyncClock)(nil),            // 30: io.clbs.openhes.pbdriver.ActionSyncClock
-	(*ActionGetRelayState)(nil),        // 31: io.clbs.openhes.pbdriver.ActionGetRelayState
-	(*ActionSetRelayState)(nil),        // 32: io.clbs.openhes.pbdriver.ActionSetRelayState
-	(*ActionGetDisconnectorState)(nil), // 33: io.clbs.openhes.pbdriver.ActionGetDisconnectorState
-	(*ActionSetDisconnectorState)(nil), // 34: io.clbs.openhes.pbdriver.ActionSetDisconnectorState
-	(*ActionGetTou)(nil),               // 35: io.clbs.openhes.pbdriver.ActionGetTou
-	(*ActionSetTou)(nil),               // 36: io.clbs.openhes.pbdriver.ActionSetTou
-	(*ActionGetLimiter)(nil),           // 37: io.clbs.openhes.pbdriver.ActionGetLimiter
-	(*ActionSetLimiter)(nil),           // 38: io.clbs.openhes.pbdriver.ActionSetLimiter
-	(*ActionResetBillingPeriod)(nil),   // 39: io.clbs.openhes.pbdriver.ActionResetBillingPeriod
-	(*ActionFwUpdate)(nil),             // 40: io.clbs.openhes.pbdriver.ActionFwUpdate
-	(*AttributeValue)(nil),             // 41: io.clbs.openhes.pbdriver.AttributeValue
-	(*CommonResponse)(nil),             // 42: io.clbs.openhes.pbdriver.CommonResponse
-	(*DriverTemplates)(nil),            // 43: io.clbs.openhes.pbdriver.DriverTemplates
-	(*CancelJobRequest)(nil),           // 44: io.clbs.openhes.pbdriver.CancelJobRequest
-	(*NegotiateRequest)(nil),           // 45: io.clbs.openhes.pbdriver.NegotiateRequest
-	nil,                                // 46: io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry
-	nil,                                // 47: io.clbs.openhes.pbdriver.JobAction.AttributesEntry
-	(*emptypb.Empty)(nil),              // 48: google.protobuf.Empty
-	(*timestamppb.Timestamp)(nil),      // 49: google.protobuf.Timestamp
+	(*ConnectionInfo)(nil),             // 18: io.clbs.openhes.pbdriver.ConnectionInfo
+	(*JobSettings)(nil),                // 19: io.clbs.openhes.pbdriver.JobSettings
+	(*JobAction)(nil),                  // 20: io.clbs.openhes.pbdriver.JobAction
+	(*ActionGetRegister)(nil),          // 21: io.clbs.openhes.pbdriver.ActionGetRegister
+	(*ActionGetPeriodicalProfile)(nil), // 22: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile
+	(*ActionGetIrregularProfile)(nil),  // 23: io.clbs.openhes.pbdriver.ActionGetIrregularProfile
+	(*ActionGetEvents)(nil),            // 24: io.clbs.openhes.pbdriver.ActionGetEvents
+	(*ActionGetClock)(nil),             // 25: io.clbs.openhes.pbdriver.ActionGetClock
+	(*ActionSyncClock)(nil),            // 26: io.clbs.openhes.pbdriver.ActionSyncClock
+	(*ActionGetRelayState)(nil),        // 27: io.clbs.openhes.pbdriver.ActionGetRelayState
+	(*ActionSetRelayState)(nil),        // 28: io.clbs.openhes.pbdriver.ActionSetRelayState
+	(*ActionGetDisconnectorState)(nil), // 29: io.clbs.openhes.pbdriver.ActionGetDisconnectorState
+	(*ActionSetDisconnectorState)(nil), // 30: io.clbs.openhes.pbdriver.ActionSetDisconnectorState
+	(*ActionGetTou)(nil),               // 31: io.clbs.openhes.pbdriver.ActionGetTou
+	(*ActionSetTou)(nil),               // 32: io.clbs.openhes.pbdriver.ActionSetTou
+	(*ActionGetLimiter)(nil),           // 33: io.clbs.openhes.pbdriver.ActionGetLimiter
+	(*ActionSetLimiter)(nil),           // 34: io.clbs.openhes.pbdriver.ActionSetLimiter
+	(*ActionResetBillingPeriod)(nil),   // 35: io.clbs.openhes.pbdriver.ActionResetBillingPeriod
+	(*ActionFwUpdate)(nil),             // 36: io.clbs.openhes.pbdriver.ActionFwUpdate
+	(*AttributeValue)(nil),             // 37: io.clbs.openhes.pbdriver.AttributeValue
+	(*CommonResponse)(nil),             // 38: io.clbs.openhes.pbdriver.CommonResponse
+	(*DriverTemplates)(nil),            // 39: io.clbs.openhes.pbdriver.DriverTemplates
+	(*CancelJobRequest)(nil),           // 40: io.clbs.openhes.pbdriver.CancelJobRequest
+	(*NegotiateRequest)(nil),           // 41: io.clbs.openhes.pbdriver.NegotiateRequest
+	nil,                                // 42: io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry
+	nil,                                // 43: io.clbs.openhes.pbdriver.JobAction.AttributesEntry
+	(*emptypb.Empty)(nil),              // 44: google.protobuf.Empty
+	(*timestamppb.Timestamp)(nil),      // 45: google.protobuf.Timestamp
 }
 var file_pbdriver_proto_depIdxs = []int32{
 	8,  // 0: io.clbs.openhes.pbdriver.ProgressUpdate.job:type_name -> io.clbs.openhes.pbdriver.JobProgressUpdate
@@ -3446,64 +3177,59 @@ var file_pbdriver_proto_depIdxs = []int32{
 	3,  // 2: io.clbs.openhes.pbdriver.ActionProgressUpdate.code:type_name -> io.clbs.openhes.pbdriver.ActionResultCode
 	9,  // 3: io.clbs.openhes.pbdriver.ActionProgressUpdate.data:type_name -> io.clbs.openhes.pbdriver.ActionData
 	4,  // 4: io.clbs.openhes.pbdriver.JobProgressUpdate.code:type_name -> io.clbs.openhes.pbdriver.JobErrorCode
-	48, // 5: io.clbs.openhes.pbdriver.ActionData.nodata:type_name -> google.protobuf.Empty
+	44, // 5: io.clbs.openhes.pbdriver.ActionData.nodata:type_name -> google.protobuf.Empty
 	12, // 6: io.clbs.openhes.pbdriver.ActionData.billings:type_name -> io.clbs.openhes.pbdriver.BillingValues
 	10, // 7: io.clbs.openhes.pbdriver.ActionData.profile:type_name -> io.clbs.openhes.pbdriver.ProfileValues
 	11, // 8: io.clbs.openhes.pbdriver.ProfileValues.blocks:type_name -> io.clbs.openhes.pbdriver.ProfileBlok
-	49, // 9: io.clbs.openhes.pbdriver.ProfileBlok.start_timestamp:type_name -> google.protobuf.Timestamp
+	45, // 9: io.clbs.openhes.pbdriver.ProfileBlok.start_timestamp:type_name -> google.protobuf.Timestamp
 	14, // 10: io.clbs.openhes.pbdriver.ProfileBlok.values:type_name -> io.clbs.openhes.pbdriver.MeasuredValue
 	13, // 11: io.clbs.openhes.pbdriver.BillingValues.values:type_name -> io.clbs.openhes.pbdriver.BillingValue
-	49, // 12: io.clbs.openhes.pbdriver.BillingValue.timestamp:type_name -> google.protobuf.Timestamp
+	45, // 12: io.clbs.openhes.pbdriver.BillingValue.timestamp:type_name -> google.protobuf.Timestamp
 	14, // 13: io.clbs.openhes.pbdriver.BillingValue.value:type_name -> io.clbs.openhes.pbdriver.MeasuredValue
 	1,  // 14: io.clbs.openhes.pbdriver.AttributeDefinition.type:type_name -> io.clbs.openhes.pbdriver.AttributeType
-	41, // 15: io.clbs.openhes.pbdriver.AttributeDefinition.default_value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	37, // 15: io.clbs.openhes.pbdriver.AttributeDefinition.default_value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
 	2,  // 16: io.clbs.openhes.pbdriver.JobActionAttributes.type:type_name -> io.clbs.openhes.pbdriver.ActionType
 	15, // 17: io.clbs.openhes.pbdriver.JobActionAttributes.attributes:type_name -> io.clbs.openhes.pbdriver.AttributeDefinition
-	22, // 18: io.clbs.openhes.pbdriver.StartJobRequest.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
-	23, // 19: io.clbs.openhes.pbdriver.StartJobRequest.job_settings:type_name -> io.clbs.openhes.pbdriver.JobSettings
-	24, // 20: io.clbs.openhes.pbdriver.StartJobRequest.job_actions:type_name -> io.clbs.openhes.pbdriver.JobAction
-	5,  // 21: io.clbs.openhes.pbdriver.GetDriversResponse.result:type_name -> io.clbs.openhes.pbdriver.ErrorCode
-	19, // 22: io.clbs.openhes.pbdriver.GetDriversResponse.drivers:type_name -> io.clbs.openhes.pbdriver.DriverInfo
-	20, // 23: io.clbs.openhes.pbdriver.DriverInfo.resources:type_name -> io.clbs.openhes.pbdriver.ContainerResourceSet
-	21, // 24: io.clbs.openhes.pbdriver.ContainerResourceSet.limits:type_name -> io.clbs.openhes.pbdriver.ContainerResources
-	21, // 25: io.clbs.openhes.pbdriver.ContainerResourceSet.requests:type_name -> io.clbs.openhes.pbdriver.ContainerResources
-	46, // 26: io.clbs.openhes.pbdriver.ConnectionInfo.attributes:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry
-	0,  // 27: io.clbs.openhes.pbdriver.JobSettings.priority:type_name -> io.clbs.openhes.pbdriver.JobPriority
-	49, // 28: io.clbs.openhes.pbdriver.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
-	47, // 29: io.clbs.openhes.pbdriver.JobAction.attributes:type_name -> io.clbs.openhes.pbdriver.JobAction.AttributesEntry
-	25, // 30: io.clbs.openhes.pbdriver.JobAction.get_register:type_name -> io.clbs.openhes.pbdriver.ActionGetRegister
-	26, // 31: io.clbs.openhes.pbdriver.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile
-	27, // 32: io.clbs.openhes.pbdriver.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.pbdriver.ActionGetIrregularProfile
-	28, // 33: io.clbs.openhes.pbdriver.JobAction.get_events:type_name -> io.clbs.openhes.pbdriver.ActionGetEvents
-	29, // 34: io.clbs.openhes.pbdriver.JobAction.get_clock:type_name -> io.clbs.openhes.pbdriver.ActionGetClock
-	30, // 35: io.clbs.openhes.pbdriver.JobAction.sync_clock:type_name -> io.clbs.openhes.pbdriver.ActionSyncClock
-	31, // 36: io.clbs.openhes.pbdriver.JobAction.get_relay_state:type_name -> io.clbs.openhes.pbdriver.ActionGetRelayState
-	32, // 37: io.clbs.openhes.pbdriver.JobAction.set_relay_state:type_name -> io.clbs.openhes.pbdriver.ActionSetRelayState
-	33, // 38: io.clbs.openhes.pbdriver.JobAction.get_disconnector_state:type_name -> io.clbs.openhes.pbdriver.ActionGetDisconnectorState
-	34, // 39: io.clbs.openhes.pbdriver.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.pbdriver.ActionSetDisconnectorState
-	35, // 40: io.clbs.openhes.pbdriver.JobAction.get_tou:type_name -> io.clbs.openhes.pbdriver.ActionGetTou
-	36, // 41: io.clbs.openhes.pbdriver.JobAction.set_tou:type_name -> io.clbs.openhes.pbdriver.ActionSetTou
-	37, // 42: io.clbs.openhes.pbdriver.JobAction.get_limiter:type_name -> io.clbs.openhes.pbdriver.ActionGetLimiter
-	38, // 43: io.clbs.openhes.pbdriver.JobAction.set_limiter:type_name -> io.clbs.openhes.pbdriver.ActionSetLimiter
-	39, // 44: io.clbs.openhes.pbdriver.JobAction.reset_billing_period:type_name -> io.clbs.openhes.pbdriver.ActionResetBillingPeriod
-	40, // 45: io.clbs.openhes.pbdriver.JobAction.fw_update:type_name -> io.clbs.openhes.pbdriver.ActionFwUpdate
-	49, // 46: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile.from:type_name -> google.protobuf.Timestamp
-	49, // 47: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile.to:type_name -> google.protobuf.Timestamp
-	5,  // 48: io.clbs.openhes.pbdriver.CommonResponse.result:type_name -> io.clbs.openhes.pbdriver.ErrorCode
-	15, // 49: io.clbs.openhes.pbdriver.DriverTemplates.connection_attributes:type_name -> io.clbs.openhes.pbdriver.AttributeDefinition
-	16, // 50: io.clbs.openhes.pbdriver.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.pbdriver.JobActionAttributes
-	43, // 51: io.clbs.openhes.pbdriver.NegotiateRequest.templates:type_name -> io.clbs.openhes.pbdriver.DriverTemplates
-	41, // 52: io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
-	41, // 53: io.clbs.openhes.pbdriver.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
-	17, // 54: io.clbs.openhes.pbdriver.DriverService.StartJob:input_type -> io.clbs.openhes.pbdriver.StartJobRequest
-	44, // 55: io.clbs.openhes.pbdriver.DriverService.CancelJob:input_type -> io.clbs.openhes.pbdriver.CancelJobRequest
-	6,  // 56: io.clbs.openhes.pbdriver.DriverService.StartJob:output_type -> io.clbs.openhes.pbdriver.ProgressUpdate
-	42, // 57: io.clbs.openhes.pbdriver.DriverService.CancelJob:output_type -> io.clbs.openhes.pbdriver.CommonResponse
-	56, // [56:58] is the sub-list for method output_type
-	54, // [54:56] is the sub-list for method input_type
-	54, // [54:54] is the sub-list for extension type_name
-	54, // [54:54] is the sub-list for extension extendee
-	0,  // [0:54] is the sub-list for field type_name
+	18, // 18: io.clbs.openhes.pbdriver.StartJobRequest.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
+	19, // 19: io.clbs.openhes.pbdriver.StartJobRequest.job_settings:type_name -> io.clbs.openhes.pbdriver.JobSettings
+	20, // 20: io.clbs.openhes.pbdriver.StartJobRequest.job_actions:type_name -> io.clbs.openhes.pbdriver.JobAction
+	42, // 21: io.clbs.openhes.pbdriver.ConnectionInfo.attributes:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry
+	0,  // 22: io.clbs.openhes.pbdriver.JobSettings.priority:type_name -> io.clbs.openhes.pbdriver.JobPriority
+	45, // 23: io.clbs.openhes.pbdriver.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
+	43, // 24: io.clbs.openhes.pbdriver.JobAction.attributes:type_name -> io.clbs.openhes.pbdriver.JobAction.AttributesEntry
+	21, // 25: io.clbs.openhes.pbdriver.JobAction.get_register:type_name -> io.clbs.openhes.pbdriver.ActionGetRegister
+	22, // 26: io.clbs.openhes.pbdriver.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile
+	23, // 27: io.clbs.openhes.pbdriver.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.pbdriver.ActionGetIrregularProfile
+	24, // 28: io.clbs.openhes.pbdriver.JobAction.get_events:type_name -> io.clbs.openhes.pbdriver.ActionGetEvents
+	25, // 29: io.clbs.openhes.pbdriver.JobAction.get_clock:type_name -> io.clbs.openhes.pbdriver.ActionGetClock
+	26, // 30: io.clbs.openhes.pbdriver.JobAction.sync_clock:type_name -> io.clbs.openhes.pbdriver.ActionSyncClock
+	27, // 31: io.clbs.openhes.pbdriver.JobAction.get_relay_state:type_name -> io.clbs.openhes.pbdriver.ActionGetRelayState
+	28, // 32: io.clbs.openhes.pbdriver.JobAction.set_relay_state:type_name -> io.clbs.openhes.pbdriver.ActionSetRelayState
+	29, // 33: io.clbs.openhes.pbdriver.JobAction.get_disconnector_state:type_name -> io.clbs.openhes.pbdriver.ActionGetDisconnectorState
+	30, // 34: io.clbs.openhes.pbdriver.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.pbdriver.ActionSetDisconnectorState
+	31, // 35: io.clbs.openhes.pbdriver.JobAction.get_tou:type_name -> io.clbs.openhes.pbdriver.ActionGetTou
+	32, // 36: io.clbs.openhes.pbdriver.JobAction.set_tou:type_name -> io.clbs.openhes.pbdriver.ActionSetTou
+	33, // 37: io.clbs.openhes.pbdriver.JobAction.get_limiter:type_name -> io.clbs.openhes.pbdriver.ActionGetLimiter
+	34, // 38: io.clbs.openhes.pbdriver.JobAction.set_limiter:type_name -> io.clbs.openhes.pbdriver.ActionSetLimiter
+	35, // 39: io.clbs.openhes.pbdriver.JobAction.reset_billing_period:type_name -> io.clbs.openhes.pbdriver.ActionResetBillingPeriod
+	36, // 40: io.clbs.openhes.pbdriver.JobAction.fw_update:type_name -> io.clbs.openhes.pbdriver.ActionFwUpdate
+	45, // 41: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile.from:type_name -> google.protobuf.Timestamp
+	45, // 42: io.clbs.openhes.pbdriver.ActionGetPeriodicalProfile.to:type_name -> google.protobuf.Timestamp
+	5,  // 43: io.clbs.openhes.pbdriver.CommonResponse.result:type_name -> io.clbs.openhes.pbdriver.ErrorCode
+	15, // 44: io.clbs.openhes.pbdriver.DriverTemplates.connection_attributes:type_name -> io.clbs.openhes.pbdriver.AttributeDefinition
+	16, // 45: io.clbs.openhes.pbdriver.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.pbdriver.JobActionAttributes
+	39, // 46: io.clbs.openhes.pbdriver.NegotiateRequest.templates:type_name -> io.clbs.openhes.pbdriver.DriverTemplates
+	37, // 47: io.clbs.openhes.pbdriver.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	37, // 48: io.clbs.openhes.pbdriver.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	17, // 49: io.clbs.openhes.pbdriver.DriverService.StartJob:input_type -> io.clbs.openhes.pbdriver.StartJobRequest
+	40, // 50: io.clbs.openhes.pbdriver.DriverService.CancelJob:input_type -> io.clbs.openhes.pbdriver.CancelJobRequest
+	6,  // 51: io.clbs.openhes.pbdriver.DriverService.StartJob:output_type -> io.clbs.openhes.pbdriver.ProgressUpdate
+	38, // 52: io.clbs.openhes.pbdriver.DriverService.CancelJob:output_type -> io.clbs.openhes.pbdriver.CommonResponse
+	51, // [51:53] is the sub-list for method output_type
+	49, // [49:51] is the sub-list for method input_type
+	49, // [49:49] is the sub-list for extension type_name
+	49, // [49:49] is the sub-list for extension extendee
+	0,  // [0:49] is the sub-list for field type_name
 }
 
 func init() { file_pbdriver_proto_init() }
@@ -3657,54 +3383,6 @@ func file_pbdriver_proto_init() {
 			}
 		}
 		file_pbdriver_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDriversResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pbdriver_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DriverInfo); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pbdriver_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ContainerResourceSet); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pbdriver_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ContainerResources); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pbdriver_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConnectionInfo); i {
 			case 0:
 				return &v.state
@@ -3716,7 +3394,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*JobSettings); i {
 			case 0:
 				return &v.state
@@ -3728,7 +3406,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*JobAction); i {
 			case 0:
 				return &v.state
@@ -3740,7 +3418,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetRegister); i {
 			case 0:
 				return &v.state
@@ -3752,7 +3430,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetPeriodicalProfile); i {
 			case 0:
 				return &v.state
@@ -3764,7 +3442,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetIrregularProfile); i {
 			case 0:
 				return &v.state
@@ -3776,7 +3454,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetEvents); i {
 			case 0:
 				return &v.state
@@ -3788,7 +3466,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetClock); i {
 			case 0:
 				return &v.state
@@ -3800,7 +3478,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionSyncClock); i {
 			case 0:
 				return &v.state
@@ -3812,7 +3490,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetRelayState); i {
 			case 0:
 				return &v.state
@@ -3824,7 +3502,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionSetRelayState); i {
 			case 0:
 				return &v.state
@@ -3836,7 +3514,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetDisconnectorState); i {
 			case 0:
 				return &v.state
@@ -3848,7 +3526,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionSetDisconnectorState); i {
 			case 0:
 				return &v.state
@@ -3860,7 +3538,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetTou); i {
 			case 0:
 				return &v.state
@@ -3872,7 +3550,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionSetTou); i {
 			case 0:
 				return &v.state
@@ -3884,7 +3562,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionGetLimiter); i {
 			case 0:
 				return &v.state
@@ -3896,7 +3574,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionSetLimiter); i {
 			case 0:
 				return &v.state
@@ -3908,7 +3586,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionResetBillingPeriod); i {
 			case 0:
 				return &v.state
@@ -3920,7 +3598,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ActionFwUpdate); i {
 			case 0:
 				return &v.state
@@ -3932,7 +3610,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AttributeValue); i {
 			case 0:
 				return &v.state
@@ -3944,7 +3622,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CommonResponse); i {
 			case 0:
 				return &v.state
@@ -3956,7 +3634,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DriverTemplates); i {
 			case 0:
 				return &v.state
@@ -3968,7 +3646,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CancelJobRequest); i {
 			case 0:
 				return &v.state
@@ -3980,7 +3658,7 @@ func file_pbdriver_proto_init() {
 				return nil
 			}
 		}
-		file_pbdriver_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdriver_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NegotiateRequest); i {
 			case 0:
 				return &v.state
@@ -4008,8 +3686,7 @@ func file_pbdriver_proto_init() {
 		(*MeasuredValue_IntValue)(nil),
 	}
 	file_pbdriver_proto_msgTypes[9].OneofWrappers = []interface{}{}
-	file_pbdriver_proto_msgTypes[14].OneofWrappers = []interface{}{}
-	file_pbdriver_proto_msgTypes[18].OneofWrappers = []interface{}{
+	file_pbdriver_proto_msgTypes[14].OneofWrappers = []interface{}{
 		(*JobAction_GetRegister)(nil),
 		(*JobAction_GetPeriodicalProfile)(nil),
 		(*JobAction_GetIrregularProfile)(nil),
@@ -4027,7 +3704,7 @@ func file_pbdriver_proto_init() {
 		(*JobAction_ResetBillingPeriod)(nil),
 		(*JobAction_FwUpdate)(nil),
 	}
-	file_pbdriver_proto_msgTypes[35].OneofWrappers = []interface{}{
+	file_pbdriver_proto_msgTypes[31].OneofWrappers = []interface{}{
 		(*AttributeValue_StrValue)(nil),
 		(*AttributeValue_IntValue)(nil),
 		(*AttributeValue_DoubleValue)(nil),
@@ -4039,7 +3716,7 @@ func file_pbdriver_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pbdriver_proto_rawDesc,
 			NumEnums:      6,
-			NumMessages:   42,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

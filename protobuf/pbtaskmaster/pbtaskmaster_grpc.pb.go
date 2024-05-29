@@ -51,27 +51,27 @@ type TaskmasterServiceClient interface {
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
-	PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CommonResponse, error)
+	PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
-	NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*CommonResponse, error)
+	NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
 	CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error)
 	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error)
+	RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error)
 	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error)
+	UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
-	SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*CommonResponse, error)
+	SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type taskmasterServiceClient struct {
@@ -118,8 +118,8 @@ func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *GetJobRequest,
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CommonResponse, error) {
-	out := new(CommonResponse)
+func (c *taskmasterServiceClient) PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_PurgeJobs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -136,8 +136,8 @@ func (c *taskmasterServiceClient) CancelJob(ctx context.Context, in *CancelJobsR
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
-	out := new(CommonResponse)
+func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error) {
+	out := new(pbdriver.CommonResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_NegotiateStart_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -163,8 +163,8 @@ func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *CacheGetRequ
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
-	out := new(CommonResponse)
+func (c *taskmasterServiceClient) RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_RegisterDriver_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -181,8 +181,8 @@ func (c *taskmasterServiceClient) GetDrivers(ctx context.Context, in *emptypb.Em
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
-	out := new(CommonResponse)
+func (c *taskmasterServiceClient) UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_UnregisterDriver_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -208,8 +208,8 @@ func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Emp
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*CommonResponse, error) {
-	out := new(CommonResponse)
+func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_SetConfig_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -230,27 +230,27 @@ type TaskmasterServiceServer interface {
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
-	PurgeJobs(context.Context, *emptypb.Empty) (*CommonResponse, error)
+	PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
-	NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*CommonResponse, error)
+	NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
 	CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error)
 	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(context.Context, *RegisterDriverRequest) (*CommonResponse, error)
+	RegisterDriver(context.Context, *RegisterDriverRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error)
 	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(context.Context, *UnregisterDriverRequest) (*CommonResponse, error)
+	UnregisterDriver(context.Context, *UnregisterDriverRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
-	SetConfig(context.Context, *SystemConfig) (*CommonResponse, error)
+	SetConfig(context.Context, *SystemConfig) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -270,13 +270,13 @@ func (UnimplementedTaskmasterServiceServer) GetBulk(context.Context, *GetBulkReq
 func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.Empty) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NegotiateStart not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error) {
@@ -285,13 +285,13 @@ func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *CacheSetR
 func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheGet not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) RegisterDriver(context.Context, *RegisterDriverRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) RegisterDriver(context.Context, *RegisterDriverRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterDriver not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) UnregisterDriver(context.Context, *UnregisterDriverRequest) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) UnregisterDriver(context.Context, *UnregisterDriverRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnregisterDriver not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error) {
@@ -300,7 +300,7 @@ func (UnimplementedTaskmasterServiceServer) GetDriverTemplates(context.Context, 
 func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *SystemConfig) (*CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *SystemConfig) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}

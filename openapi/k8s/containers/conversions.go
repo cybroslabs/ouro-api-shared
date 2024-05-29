@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	"github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
 )
 
 var (
@@ -12,7 +12,7 @@ var (
 )
 
 // Converts the container resources - gRPC to REST
-func G2RContainerResources(in *ContainerResourcesSchema) (*pbdriver.ContainerResources, error) {
+func G2RContainerResources(in *ContainerResourcesSchema) (*pbtaskmaster.ContainerResources, error) {
 	if in == nil {
 		return nil, nil
 	}
@@ -30,7 +30,7 @@ func G2RContainerResources(in *ContainerResourcesSchema) (*pbdriver.ContainerRes
 	} else if cpu_s, err := in.Cpu.AsContainerResourcesCpuStrSchema(); err == nil {
 		cpu = cpu_s
 	}
-	return &pbdriver.ContainerResources{
+	return &pbtaskmaster.ContainerResources{
 		Cpu:    cpu,
 		Memory: in.Memory,
 	}, nil
