@@ -528,10 +528,10 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 		} else {
 			uri, err := url.ParseRequestURI(*webhook_uri)
 			if err != nil {
-				return nil, fmt.Errorf("Error while parsing webhook url: %v", err)
+				return nil, fmt.Errorf("error while parsing webhook url: %v", err)
 			}
 			if uri.Scheme != "http" && uri.Scheme != "https" {
-				return nil, fmt.Errorf("Invalid WebhookURL scheme, given: %s. Only http or https is accepted.", uri.Scheme)
+				return nil, fmt.Errorf("invalid WebhookURL scheme, given %s, only http or https is accepted", uri.Scheme)
 			}
 		}
 	}
@@ -539,7 +539,7 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 	job_priority := DefaultPriority
 	if pr := settings.Priority; pr != nil {
 		if *pr < 0 || *pr > 9 {
-			return nil, fmt.Errorf("Error while converting priority %v, value out of range.", *pr)
+			return nil, fmt.Errorf("error while converting priority %v, value out of range", *pr)
 		}
 		job_priority = (pbdriver.JobPriority)(*pr)
 	}
