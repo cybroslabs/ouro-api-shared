@@ -424,15 +424,15 @@ func G2RJobAction(action *pbdriver.JobAction, result *JobActionSchema) error {
 // Converts the job status code - gRPC to Rest API
 func G2RJobStatus(status pbtaskmaster.JobStatusCode) (JobStatusCodeEnumSchema, error) {
 	switch status {
-	case pbdriver.JobStatusCode_JOB_STATUS_QUEUED:
+	case pbtaskmaster.JobStatusCode_JOB_STATUS_QUEUED:
 		return JobStatusCodeEnumSchemaQUEUED, nil
-	case pbdriver.JobStatusCode_JOB_STATUS_RUNNING:
+	case pbtaskmaster.JobStatusCode_JOB_STATUS_RUNNING:
 		return JobStatusCodeEnumSchemaRUNNING, nil
-	case pbdriver.JobStatusCode_JOB_STATUS_COMPLETED:
+	case pbtaskmaster.JobStatusCode_JOB_STATUS_COMPLETED:
 		return JobStatusCodeEnumSchemaCOMPLETED, nil
-	case pbdriver.JobStatusCode_JOB_STATUS_CANCELLED:
+	case pbtaskmaster.JobStatusCode_JOB_STATUS_CANCELLED:
 		return JobStatusCodeEnumSchemaCANCELLED, nil
-	case pbdriver.JobStatusCode_JOB_STATUS_EXPIRED:
+	case pbtaskmaster.JobStatusCode_JOB_STATUS_EXPIRED:
 		return JobStatusCodeEnumSchemaEXPIRED, nil
 	default:
 		return JobStatusCodeEnumSchemaQUEUED, ErrInvalidJobStatus
@@ -583,7 +583,7 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 }
 
 // Converts the bulk spec - gRPC to Rest API
-func G2RBulkSpec(spec *pbdriver.BulkSpec) (*BulkSpecSchema, error) {
+func G2RBulkSpec(spec *pbtaskmaster.BulkSpec) (*BulkSpecSchema, error) {
 	actions, err := G2RJobActions(spec.JobActions)
 	if err != nil {
 		return nil, err
@@ -627,20 +627,20 @@ func G2RBulkSpec(spec *pbdriver.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
-func R2GBulkSpec(spec *BulkSpecSchema) (*pbdriver.BulkSpec, error) {
+func R2GBulkSpec(spec *BulkSpecSchema) (*pbtaskmaster.BulkSpec, error) {
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
 		return nil, err
 	}
 
-	devices := make([]*pbdriver.JobDevice, len(spec.Devices))
+	devices := make([]*pbtaskmaster.JobDevice, len(spec.Devices))
 	for i := range spec.Devices {
 		device_attributes, err := attribute.R2GAttributes(spec.Devices[i].Attributes)
 		if err != nil {
 			return nil, err
 		}
 
-		devices[i] = &pbdriver.JobDevice{
+		devices[i] = &pbtaskmaster.JobDevice{
 			Id: spec.Devices[i].Id.String(),
 			ConnectionInfo: &pbdriver.ConnectionInfo{
 				Hostname:   spec.Devices[i].Endpoint,
@@ -662,7 +662,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdriver.BulkSpec, error) {
 		return nil, err
 	}
 
-	return &pbdriver.BulkSpec{
+	return &pbtaskmaster.BulkSpec{
 		BulkId:           bulk_id,
 		CorrelationId:    corr_id,
 		DeviceDriverType: *spec.DeviceDriverType,

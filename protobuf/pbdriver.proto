@@ -370,3 +370,13 @@ message DriverTemplates {
 message CancelJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
 }
+
+// Driver -> Taskmaster negotiate/health-check request message
+message NegotiateRequest {
+    string version = 1; // The driver version.
+    uint32 listening_port = 2; // The port the driver will listen on.
+    string meter_type = 3;
+    int32 max_concurrent_jobs = 4; // The maximum number of concurrent jobs the driver can handle.
+    int32 typical_mem_usage = 5;
+    DriverTemplates templates = 6; // The connection and action templates.
+}
