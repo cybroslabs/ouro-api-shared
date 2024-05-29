@@ -389,7 +389,7 @@ components:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
           $ref: "#/components/schemas/JobActionListSchema"
-        type:
+        deviceDriverType:
           description: >
             The device type related to the job. The type must be one of the supported device types.
           type: string
