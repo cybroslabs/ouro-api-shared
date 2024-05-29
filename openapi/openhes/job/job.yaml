@@ -12,34 +12,6 @@ info:
 
 components:
   schemas:
-    JobSpecSchema:
-      description: Schema that holds the job definition.
-      type: object
-      properties:
-        id:
-          $ref: "#/components/schemas/JobID"
-        device:
-          $ref: "#/components/schemas/JobDeviceSchema"
-        settings:
-          $ref: "#/components/schemas/JobSettingsSchema"
-        actions:
-          $ref: "#/components/schemas/JobActionListSchema"
-        type:
-          description: >
-            The device type related to the job. The type must be one of the supported device types.
-          type: string
-          minLength: 1
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-        - id
-        - device
-        - settings
-        - actions
-        - type
-
     JobStatusEnumSchema:
       type: integer
       description: The status of the job.
@@ -100,6 +72,8 @@ components:
     JobDeviceSchema:
       type: object
       properties:
+        id:
+          $ref: "#/components/schemas/JobID"
         endpoint:
           description: >
             The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
@@ -107,16 +81,9 @@ components:
         attributes:
           $ref: "#/components/schemas/AttributesSchema"
       required:
+        - id
         - endpoint
         - attributes
-
-    JobIdDeviceSchema:
-      allOf:
-        - $ref: "#/components/schemas/JobDeviceSchema"
-        - type: object
-          properties:
-            id:
-              $ref: "#/components/schemas/JobID"
 
     JobDeviceListSchema:
       type: array
@@ -124,7 +91,7 @@ components:
         List of devices to be queued.
       minLength: 1
       items:
-        $ref: "#/components/schemas/JobIdDeviceSchema"
+        $ref: "#/components/schemas/JobDeviceSchema"
 
     JobActionSchema:
       description: Schema that holds the action definition.
@@ -405,7 +372,13 @@ components:
         Schema that holds the jobs for single device type.
       properties:
         id:
-          $ref: "#/components/schemas/BulkJobID"
+          $ref: "#/components/schemas/BulkID"
+        correlationID:
+          type: string
+          description: >
+            The correlation ID of the bulk. The correlation ID is used to group the bulks.
+          format: uuid
+          nullable: true
         devices:
           $ref: "#/components/schemas/JobDeviceListSchema"
         settings:
@@ -479,28 +452,23 @@ components:
           - type: boolean
         nullable: true
 
-    BulkJobID:
+    BulkID:
       type: string
       description: >
         The ID of the bulk job. The ID must be unique.
       format: uuid
-      x-go-type: BulkID
 
     JobID:
       type: string
       description: >
         The ID of the job. The ID must be unique.
       format: uuid
-      x-go-type: ID
 
     ActionID:
       type: string
       format: uuid
       description: >
         The ID of the related action. The ID must be the same as the action ID in the job action.
-      x-go-type: action.ID
-      x-go-type-import:
-        path: github.com/cybroslabs/hes-2-apis/openapi/openhes/job/action
 
     ActionTypeSchema:
       type: string

@@ -12,7 +12,7 @@ service DataproxyService {
     // The method called by the Taskmaster to notify about finished job.
     rpc NotifyJobFinished(BulkJobEventData) returns (google.protobuf.Empty);
     // The method called by the RestApi to start a new bulk of jobs.
-    rpc BatchCreateBulks(BatchCreateBulksRequest) returns (google.protobuf.Empty);
+    rpc CreateBulk(CreateBulksRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to retrieve stored bulks.
     rpc GetBulks(GetBulksReuqest) returns (GetBulksResponse);
     // The method called by the RestApi to retrieve single bulk.
@@ -25,17 +25,18 @@ message BulkJobEventData {
 }
 
 // RestApi -> DataProxy
-message BatchCreateBulksRequest {
-    repeated BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
+message CreateBulksRequest {
+    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
 }
 
 // Sub-message - holds the bulk job specification.
 message BulkSpec {
     string bulk_id = 1 [json_name="i"]; // The bulk identifier.
-    string org_id = 2 [json_name="o"]; // The organization identifier.
-    repeated JobDevice devices = 3 [json_name="d"]; // The list of devices in the bulk.
-    pbdriver.JobSettings settings = 4 [json_name="s"]; // The bulk-shared job settings.    
-    repeated pbdriver.JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
+    string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string org_id = 3 [json_name="o"]; // The organization identifier.
+    repeated JobDevice devices = 4 [json_name="d"]; // The list of devices in the bulk.
+    pbdriver.JobSettings settings = 5 [json_name="s"]; // The bulk-shared job settings.    
+    repeated pbdriver.JobAction job_actions = 6 [json_name="a"]; // The list actions to be executed.
 }
 
 // DataProxy -> RestApi - the message holds the bulk info and it's status.
