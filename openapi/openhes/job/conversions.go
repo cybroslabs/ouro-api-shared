@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
-	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	"github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -422,7 +422,7 @@ func G2RJobAction(action *pbdriver.JobAction, result *JobActionSchema) error {
 }
 
 // Converts the job status code - gRPC to Rest API
-func G2RJobStatus(status pbdriver.JobStatusCode) (JobStatusCodeEnumSchema, error) {
+func G2RJobStatus(status pbtaskmaster.JobStatusCode) (JobStatusCodeEnumSchema, error) {
 	switch status {
 	case pbdriver.JobStatusCode_JOB_STATUS_QUEUED:
 		return JobStatusCodeEnumSchemaQUEUED, nil
@@ -583,7 +583,7 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 }
 
 // Converts the bulk spec - gRPC to Rest API
-func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
+func G2RBulkSpec(spec *pbdriver.BulkSpec) (*BulkSpecSchema, error) {
 	actions, err := G2RJobActions(spec.JobActions)
 	if err != nil {
 		return nil, err
@@ -627,20 +627,20 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
-func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
+func R2GBulkSpec(spec *BulkSpecSchema) (*pbdriver.BulkSpec, error) {
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
 		return nil, err
 	}
 
-	devices := make([]*pbdataproxy.JobDevice, len(spec.Devices))
+	devices := make([]*pbdriver.JobDevice, len(spec.Devices))
 	for i := range spec.Devices {
 		device_attributes, err := attribute.R2GAttributes(spec.Devices[i].Attributes)
 		if err != nil {
 			return nil, err
 		}
 
-		devices[i] = &pbdataproxy.JobDevice{
+		devices[i] = &pbdriver.JobDevice{
 			Id: spec.Devices[i].Id.String(),
 			ConnectionInfo: &pbdriver.ConnectionInfo{
 				Hostname:   spec.Devices[i].Endpoint,
@@ -662,7 +662,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		return nil, err
 	}
 
-	return &pbdataproxy.BulkSpec{
+	return &pbdriver.BulkSpec{
 		BulkId:           bulk_id,
 		CorrelationId:    corr_id,
 		DeviceDriverType: *spec.DeviceDriverType,
