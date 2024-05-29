@@ -6,6 +6,7 @@ import (
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 )
 
+// Converts the attribute type - gRPC to REST
 func G2RAttributeType(attributeType pbdriver.AttributeType) AttributeDefinitionSchemaType {
 	switch attributeType {
 	case pbdriver.AttributeType_ATTRIBUTE_TYPE_STRING:
@@ -21,6 +22,7 @@ func G2RAttributeType(attributeType pbdriver.AttributeType) AttributeDefinitionS
 	}
 }
 
+// Converts the attribute definition - gRPC to REST
 func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDefinitionSchema, error) {
 	attr_type := G2RAttributeType(attrDef.Type)
 
