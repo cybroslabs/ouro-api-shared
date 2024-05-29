@@ -6,6 +6,11 @@ gen-go:
 		pbdriver.proto
 
 	cd protobuf && protoc \
+		--go_out=./pbtaskmaster --go_opt=paths=source_relative \
+		--go-grpc_out=./pbtaskmaster --go-grpc_opt=paths=source_relative \
+		pbtaskmaster.proto
+
+	cd protobuf && protoc \
 		--go_out=./pbdataproxy --go_opt=paths=source_relative \
 		--go-grpc_out=./pbdataproxy --go-grpc_opt=paths=source_relative \
 		pbdataproxy.proto

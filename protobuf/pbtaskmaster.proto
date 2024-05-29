@@ -1,42 +1,53 @@
 syntax = "proto3";
-package io.clbs.openhes.pbdriver;
+package io.clbs.openhes.pbtaskmaster;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver";
+option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
-// The driver service definition.
-// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
-service DriverService {
-    // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-    rpc StartJob(StartJobRequest) returns (stream ProgressUpdate);
-    // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-    rpc CancelJob(CancelJobRequest) returns (CommonResponse);
+
+
+// The Taskmaster service definition.
+// Those are the gRPC services that the Taskmaster provides for other components.
+service TaskmasterService {
+    // The method called by the RestApi to start a new bulk of jobs.
+    rpc CreateBulk(CreateBulksRequest) returns (google.protobuf.Empty);
+    // The method called by the RestApi to retrieve stored bulks.
+    rpc GetBulks(GetBulksReuqest) returns (GetBulksResponse);
+    // The method called by the RestApi to retrieve single bulk.
+    rpc GetBulk(GetBulkRequest) returns (GetBulkResponse);
+     
+    // The method called by the API to get the job status. The parameter contains the job identifier.
+    rpc GetJob(GetJobRequest) returns (GetJobResponse);
+    // The method to purge all jobs (queued/running/finished) from the system.
+    rpc PurgeJobs(google.protobuf.Empty) returns (CommonResponse);
+    // The method to cancel the job.
+    rpc CancelJob(CancelJobsRequest) returns (google.protobuf.Empty);
+
+    // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
+    rpc NegotiateStart(NegotiateRequest) returns (CommonResponse);
+    // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
+    rpc CacheSet(CacheSetRequest) returns (google.protobuf.Empty);
+    // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+    rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
+    
+    // The method called by the API to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
+    rpc RegisterDriver(RegisterDriverRequest) returns (CommonResponse);    
+    // The method called by the API to get the list of drivers.
+    rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
+    // The method called by the API to unregister driver from the system. The parameter contains the driver type.
+    rpc UnregisterDriver(UnregisterDriverRequest) returns (CommonResponse);
+    // The method to get the driver templates.
+    rpc GetDriverTemplates(GetDriverTemplatesRequest) returns (DriverTemplates);
+
+    // The method to get the system configuration.
+    rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
+    // The method to set the system configuration.
+    rpc SetConfig(SystemConfig) returns (CommonResponse);
 }
 
-// Driver -> Taskmaster job/action progress update message
-message ProgressUpdate {
-    // The oneof field containing the progress update data - either for job or for action.
-    oneof progress {
-        JobProgressUpdate job = 1; // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
-        ActionProgressUpdate action = 2; // The action progress update data. It shall be called for each action in the job.
-    }
-}
 
-// Sub-message containing action progress update
-message ActionProgressUpdate {
-    string job_id = 1 [json_name="id"]; // The job identifier.
-    string action_id = 2 [json_name="a"]; // The action identifier.
-    ActionResultCode code = 3 [json_name="c"]; // The status related to the action.
-    optional ActionData data = 4 [json_name="d"]; // The action result data. Shall be empty if the code is not OK.
-}
-
-// Sub-message containing job progress update
-message JobProgressUpdate {
-    string job_id = 1 [json_name="id"]; // The job identifier.
-    JobErrorCode code = 2 [json_name="c"]; // The status related to the job and or action update message.
-}
 
 // Sub-message containing action-based variant of data values
 message ActionData {
@@ -82,6 +93,22 @@ message MeasuredValue {
     int32 exponent = 4 [json_name="e"]; // The exponent of the value.
 }
 
+// Driver -> Taskmaster cache set request message
+message CacheSetRequest {
+    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
+    AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+}
+
+// Driver -> Taskmaster cache get request message
+message CacheGetRequest {
+    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
+}
+
+// Taskmaster -> Driver cache get response message
+message CacheGetResponse {
+    ErrorCode result = 1 [json_name="r"]; // The result of the cache get operation.
+    AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+}
 
 // Sub-message containing attribute definition
 message AttributeDefinition {
@@ -98,11 +125,72 @@ message JobActionAttributes {
     repeated AttributeDefinition attributes = 2 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
 }
 
-message StartJobRequest {
+// API -> Taskmaster cancel job request message
+message CancelJobsRequest {
+    repeated string job_id = 1 [json_name="id"]; // The job identifier.
+}
+
+// API -> Taskmaster new job request message
+message QueueJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
     JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
-    repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
+    string driver_type = 4 [json_name="t"]; // The driver type.
+    repeated JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
+    optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
+}
+
+
+// API -> Taskmaster get job request message
+message GetJobRequest {
+    string job_id = 1 [json_name="id"]; // The job identifier.
+}
+
+// Taskmaster -> API get job response message
+message GetJobResponse {
+    QueueJobRequest spec = 1 [json_name="j"]; // The original job specification
+    JobStatus status = 2 [json_name="s"]; // The status of the job
+}
+
+// Sub-message containing job status info
+message JobStatus {
+    JobStatusCode status = 1 [json_name="s"]; // The status of the job.
+    optional JobErrorCode code = 2 [json_name="c"]; // The error code of the job.
+    repeated ActionResult results = 3 [json_name="r"]; // The result data for all job actions.
+    google.protobuf.Timestamp created_at = 4 [json_name="tc"]; // The creation timestamp of the job.
+    optional google.protobuf.Timestamp started_at = 5 [json_name="ts"]; // The start timestamp of the job.
+    optional google.protobuf.Timestamp finished_at = 6 [json_name="tf"]; // The finish timestamp of the job.
+    int32 attempts_done = 7 [json_name="ad"]; // The number of attempts already done.
+}
+
+// Job statuses
+enum JobStatusCode {
+    // The job is waiting in the queue
+    JOB_STATUS_QUEUED = 0;
+    // The job is running
+    JOB_STATUS_RUNNING = 1;
+    // The job is completed
+    JOB_STATUS_COMPLETED = 2;
+    // The job is failed
+    JOB_STATUS_FAILED = 3;
+    // The job is cancelled
+    JOB_STATUS_CANCELLED = 4;
+    // The job has expired 
+    JOB_STATUS_EXPIRED = 5;
+}
+
+// Sub-message containing action result for a single action.
+message ActionResult {
+    string action_id = 1 [json_name="id"]; // The action identifier.
+    ActionResultCode status = 2 [json_name="s"]; // The status of the action.
+    ActionData data = 3 [json_name="d"]; // The action result data.
+}
+
+// API -> Taskmaster register (install/update) driver request message
+message RegisterDriverRequest {
+    string driver_type = 1; // The driver unique identifier.
+    string image = 2; // The docker image of the driver.
+    ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
 
 // Taskmaster -> API get drivers response message
@@ -360,13 +448,103 @@ message CommonResponse {
     ErrorCode result = 1; // The result of the operation.
 }
 
+
+// API -> Taskmaster request to unregister driver
+message UnregisterDriverRequest {
+    string driver_type = 1; // The driver unique identifier.
+}
+
+// API <-> Taskmaster request/response for system configuration
+message SystemConfig {
+    int32 max_replicas = 1; // The maximum number of replicas for the driver.
+}
+
+// API <-> Taskmaster request/response for system configuration
+message SystemConfigResponse {
+    SystemConfig config = 1; // The maximum number of replicas for the driver.
+    SystemConfigStatus status = 2; // The system status.
+}
+
+// Sub-message containing system status
+message SystemConfigStatus {
+    int64 queue_length = 1; // The length of the job queue.
+}
+
+// Driver -> Taskmaster negotiate/health-check request message
+message NegotiateRequest {
+    string version = 1; // The driver version.
+    uint32 listening_port = 2; // The port the driver will listen on.
+    string meter_type = 3;
+    int32 max_concurrent_jobs = 4; // The maximum number of concurrent jobs the driver can handle.
+    int32 typical_mem_usage = 5;
+    DriverTemplates templates = 6; // The connection and action templates.
+}
+
+// API -> Taskmaster request to get driver templates
+message GetDriverTemplatesRequest{
+    string driver_type = 1; // The driver unique identifier.
+}
+
+// Taskmaster -> API response containing driver templates
 // Sub-message in driver negotiation request
 message DriverTemplates {
     repeated AttributeDefinition connection_attributes = 1; // The template of the connection attributes. It is represented as a list of attribute definitions.
     repeated JobActionAttributes action_attributes = 2; // The templates of the job actions for all supported action types.
 }
 
-// Taskmaster -> Driver cancel job request message
-message CancelJobRequest {
-    string job_id = 1 [json_name="id"]; // The job identifier.
+/******/
+
+
+// Taskmaster -> Dataproxy job/action progress update message
+message BulkJobEventData {    
+    bytes job_id = 1 [json_name="i"]; // The job identifier.
+}
+
+// RestApi -> DataProxy
+message CreateBulksRequest {
+    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
+}
+
+// Sub-message - holds the bulk job specification.
+message BulkSpec {
+    string bulk_id = 1 [json_name="i"]; // The bulk identifier.
+    string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string org_id = 3 [json_name="o"]; // The organization identifier.
+    string device_driver_type = 4 [json_name="t"]; // The device driver type.
+    repeated JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
+    JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
+    repeated JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
+}
+
+// DataProxy -> RestApi - the message holds the bulk info and it's status.
+message GetBulkResponse {
+    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
+    JobStatus status = 2 [json_name="t"]; // The bulk-job status/data.
+}
+
+// Sub-message representing a single device in a bulk.
+message JobDevice {
+    string id = 1 [json_name="i"]; // The device (job) identifier.
+    string external_id = 3 [json_name="e"]; // The external identifier.
+    ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
+}
+
+// RestApi -> DataProxy - the message holds data for bulk listing request.
+message GetBulksReuqest {
+    optional google.protobuf.Timestamp tfrom = 1 [json_name="tf"]; // The time range filter - left limit. Optional.
+    optional google.protobuf.Timestamp tto = 2 [json_name="tt"]; // The time range filter - right limit. Optional.
+    optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
+    // FIXME: Should not not be optional!
+    optional string org_id = 4 [json_name="o"]; // The organization identifier filter.
+    // TODO: Add Device-Id filter here.
+}
+
+// DataProxy -> RestApi - the message holds list of bulks.
+message GetBulksResponse {
+    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.    
+}
+
+// RestApi -> DataProxt - the message holds single bulk request.
+message GetBulkRequest {
+    string bulk_id = 1 [json_name="i"]; // The bulk identifier to be retrieved.
 }

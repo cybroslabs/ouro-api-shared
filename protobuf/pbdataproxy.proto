@@ -4,71 +4,16 @@ package io.clbs.openhes.pbdataproxy;
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy";
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
-import "pbdriver.proto";
+import "pbtaskmaster.proto";
 
 // The Dataproxy related service definition.
 service DataproxyService {
     // The method called by the Taskmaster to notify about finished job.
-    rpc NotifyJobFinished(BulkJobEventData) returns (google.protobuf.Empty);
+    rpc NotifyJobFinished(pbtaskmaster.BulkJobEventData) returns (google.protobuf.Empty);
     // The method called by the RestApi to start a new bulk of jobs.
-    rpc CreateBulk(CreateBulksRequest) returns (google.protobuf.Empty);
+    rpc CreateBulk(pbtaskmaster.CreateBulksRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to retrieve stored bulks.
-    rpc GetBulks(GetBulksReuqest) returns (GetBulksResponse);
+    rpc GetBulks(pbtaskmaster.GetBulksReuqest) returns (pbtaskmaster.GetBulksResponse);
     // The method called by the RestApi to retrieve single bulk.
-    rpc GetBulk(GetBulkRequest) returns (GetBulkResponse);
-}
-
-// Taskmaster -> Dataproxy job/action progress update message
-message BulkJobEventData {    
-    bytes job_id = 1 [json_name="i"]; // The job identifier.
-}
-
-// RestApi -> DataProxy
-message CreateBulksRequest {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-}
-
-// Sub-message - holds the bulk job specification.
-message BulkSpec {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier.
-    string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string org_id = 3 [json_name="o"]; // The organization identifier.
-    string device_driver_type = 4 [json_name="t"]; // The device driver type.
-    repeated JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
-    pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
-    repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
-}
-
-// DataProxy -> RestApi - the message holds the bulk info and it's status.
-message GetBulkResponse {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-    pbdriver.JobStatus status = 2 [json_name="t"]; // The bulk-job status/data.
-}
-
-// Sub-message representing a single device in a bulk.
-message JobDevice {
-    string id = 1 [json_name="i"]; // The device (job) identifier.
-    string external_id = 3 [json_name="e"]; // The external identifier.
-    pbdriver.ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
-}
-
-// RestApi -> DataProxy - the message holds data for bulk listing request.
-message GetBulksReuqest {
-    optional google.protobuf.Timestamp tfrom = 1 [json_name="tf"]; // The time range filter - left limit. Optional.
-    optional google.protobuf.Timestamp tto = 2 [json_name="tt"]; // The time range filter - right limit. Optional.
-    optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
-    // FIXME: Should not not be optional!
-    optional string org_id = 4 [json_name="o"]; // The organization identifier filter.
-    // TODO: Add Device-Id filter here.
-}
-
-// DataProxy -> RestApi - the message holds list of bulks.
-message GetBulksResponse {
-    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.    
-}
-
-// RestApi -> DataProxt - the message holds single bulk request.
-message GetBulkRequest {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier to be retrieved.
+    rpc GetBulk(pbtaskmaster.GetBulkRequest) returns (pbtaskmaster.GetBulkResponse);
 }
