@@ -59,7 +59,7 @@ message ProgressUpdate {
 message ActionProgressUpdate {
     string job_id = 1 [json_name="id"]; // The job identifier.
     string action_id = 2 [json_name="a"]; // The action identifier.
-    ActionErrorCode code = 3 [json_name="c"]; // The status related to the action.
+    ActionResultCode code = 3 [json_name="c"]; // The status related to the action.
     optional ActionData data = 4 [json_name="d"]; // The action result data. Shall be empty if the code is not OK.
 }
 
@@ -223,7 +223,7 @@ enum JobStatusCode {
 // Sub-message containing action result for a single action.
 message ActionResult {
     string action_id = 1 [json_name="id"]; // The action identifier.
-    ActionErrorCode status = 2 [json_name="s"]; // The status of the action.
+    ActionResultCode status = 2 [json_name="s"]; // The status of the action.
     ActionData data = 3 [json_name="d"]; // The action result data.
 }
 
@@ -454,8 +454,8 @@ message AttributeValue {
     }
 }
 
-// Error codes related to job actions
-enum ActionErrorCode {
+// Result codes related to job actions
+enum ActionResultCode {
     // The action has been completed successfully.
     ERROR_CODE_ACTION_OK = 0;
     // The action is not supported by the driver (or device).
@@ -467,13 +467,13 @@ enum ActionErrorCode {
 // Error codes related to jobs
 enum JobErrorCode {
     // The job has been completed successfully.
-    ERROR_CODE_JOB_OK = 0;
+    JOB_ERROR_CODE_NONE = 0;
     // There is no free slot in the driver to handle the job; the job shall be send again later.
-    ERROR_CODE_JOB_BUSY = 1;
+    JOB_ERROR_CODE_BUSY = 1;
     // The job failed, the retry will be attempted.
-    ERROR_CODE_JOB_ERROR = 5;
+    JOB_ERROR_CODE_ERROR = 5;
     // The job failed, the retry will NOT be attempted.
-    ERROR_CODE_JOB_FATAL = 9;
+    JOB_ERROR_CODE_FATAL = 9;
 }
 
 // Error codes

@@ -14,11 +14,11 @@ var (
 	ErrUnknownAPIAttributeType = fmt.Errorf("unknown API attribute type")
 )
 
-func AttributesToAPIv1Attributes(attrs Attributes) (map[string]*pbdriver.AttributeValue, error) {
+func R2GAttributes(attrs Attributes) (map[string]*pbdriver.AttributeValue, error) {
 	apiAttrs := make(map[string]*pbdriver.AttributeValue)
 	for k, v := range attrs {
 
-		av, err := AttributeToAPIv1AttributeValue(v)
+		av, err := _R2GAttributeValue(v)
 		if err != nil {
 			return nil, err
 		}
@@ -28,7 +28,7 @@ func AttributesToAPIv1Attributes(attrs Attributes) (map[string]*pbdriver.Attribu
 	return apiAttrs, nil
 }
 
-func AttributeToAPIv1AttributeValue(attr Value) (*pbdriver.AttributeValue, error) {
+func _R2GAttributeValue(attr Value) (*pbdriver.AttributeValue, error) {
 	t := reflect.TypeOf(attr)
 
 	switch typed_attr := attr.(type) {
@@ -99,15 +99,15 @@ func AttributeToAPIv1AttributeValue(attr Value) (*pbdriver.AttributeValue, error
 	}
 }
 
-func APIv1AttributesToAttributes(attrs map[string]*pbdriver.AttributeValue) Attributes {
+func G2RAttributes(attrs map[string]*pbdriver.AttributeValue) Attributes {
 	attributes := make(Attributes)
 	for k, v := range attrs {
-		attributes[k] = APIv1AttributeValueToAttribute(v)
+		attributes[k] = _G2RAttributeValue(v)
 	}
 	return attributes
 }
 
-func APIv1AttributeValueToAttribute(attr *pbdriver.AttributeValue) Value {
+func _G2RAttributeValue(attr *pbdriver.AttributeValue) Value {
 	switch typed_attr := attr.Value.(type) {
 	case *pbdriver.AttributeValue_StrValue:
 		return typed_attr.StrValue

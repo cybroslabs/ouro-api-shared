@@ -12,7 +12,7 @@ info:
 
 components:
   schemas:
-    JobStatusEnumSchema:
+    JobStatusCodeEnumSchema:
       type: integer
       description: The status of the job.
       enum: [0, 1, 2, 3, 4]
@@ -28,6 +28,18 @@ components:
         - The job is completed.
         - The job has been cancelled.
         - The job has expired.
+
+    JobErrorCodeSchema:
+      type: string
+      enum:
+        - NONE
+        - ERROR
+        - FATAL
+      description: >
+        The result of the job.
+          * `NONE` - No error, the job has been successfully processed.
+          * `ERROR` - Some error(s) have occurred during the processing of the job.
+          * `FATAL` - The job could not be processed due to a fatal error.
 
     JobStatusSchema:
       description: Schema that holds the status of the job.
@@ -46,18 +58,9 @@ components:
           format: date-time
           nullable: true
         status:
-          $ref: "#/components/schemas/JobStatusEnumSchema"
+          $ref: "#/components/schemas/JobStatusCodeEnumSchema"
         code:
-          type: string
-          enum:
-            - OK
-            - ERROR
-            - FATAL
-          description: >
-            The result of the job.
-              * `OK` - The job has been successfully processed.
-              * `ERROR` - Some error(s) have occurred during the processing of the job.
-              * `FATAL` - The job could not be processed due to a fatal error.
+          $ref: "#/components/schemas/JobErrorCodeSchema"
         results:
           description: >
             The results of the actions. If an action has not been processed, the result is not present.

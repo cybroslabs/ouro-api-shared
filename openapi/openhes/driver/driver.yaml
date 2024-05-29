@@ -104,9 +104,9 @@ components:
           mandatory: true
           defaultValue: "0-0:1.8.0.255"
       items:
-        $ref: "#/components/schemas/DriverAttributeSchema"
+        $ref: "#/components/schemas/AttributeDefinitionSchema"
 
-    DriverAttributeSchema:
+    AttributeDefinitionSchema:
       type: object
       description: >
         Schema that holds the specification of the driver attribute.
