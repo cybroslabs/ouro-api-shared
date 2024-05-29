@@ -25,6 +25,7 @@ const (
 	DataproxyService_CreateBulk_FullMethodName        = "/io.clbs.openhes.pbdataproxy.DataproxyService/CreateBulk"
 	DataproxyService_GetBulks_FullMethodName          = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulks"
 	DataproxyService_GetBulk_FullMethodName           = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
+	DataproxyService_GetJob_FullMethodName            = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetJob"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -39,6 +40,8 @@ type DataproxyServiceClient interface {
 	GetBulks(ctx context.Context, in *pbtaskmaster.GetBulksReuqest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
 	GetBulk(ctx context.Context, in *pbtaskmaster.GetBulkRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulkResponse, error)
+	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
+	GetJob(ctx context.Context, in *pbtaskmaster.GetJobRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetJobResponse, error)
 }
 
 type dataproxyServiceClient struct {
@@ -85,6 +88,15 @@ func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *pbtaskmaster.G
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) GetJob(ctx context.Context, in *pbtaskmaster.GetJobRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetJobResponse, error) {
+	out := new(pbtaskmaster.GetJobResponse)
+	err := c.cc.Invoke(ctx, DataproxyService_GetJob_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility
@@ -97,6 +109,8 @@ type DataproxyServiceServer interface {
 	GetBulks(context.Context, *pbtaskmaster.GetBulksReuqest) (*pbtaskmaster.GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
 	GetBulk(context.Context, *pbtaskmaster.GetBulkRequest) (*pbtaskmaster.GetBulkResponse, error)
+	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
+	GetJob(context.Context, *pbtaskmaster.GetJobRequest) (*pbtaskmaster.GetJobResponse, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -115,6 +129,9 @@ func (UnimplementedDataproxyServiceServer) GetBulks(context.Context, *pbtaskmast
 }
 func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *pbtaskmaster.GetBulkRequest) (*pbtaskmaster.GetBulkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetJob(context.Context, *pbtaskmaster.GetJobRequest) (*pbtaskmaster.GetJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 
@@ -201,6 +218,24 @@ func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(pbtaskmaster.GetJobRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetJob(ctx, req.(*pbtaskmaster.GetJobRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -223,6 +258,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulk",
 			Handler:    _DataproxyService_GetBulk_Handler,
+		},
+		{
+			MethodName: "GetJob",
+			Handler:    _DataproxyService_GetJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

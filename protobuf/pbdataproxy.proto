@@ -16,4 +16,6 @@ service DataproxyService {
     rpc GetBulks(pbtaskmaster.GetBulksReuqest) returns (pbtaskmaster.GetBulksResponse);
     // The method called by the RestApi to retrieve single bulk.
     rpc GetBulk(pbtaskmaster.GetBulkRequest) returns (pbtaskmaster.GetBulkResponse);
+    // The method called by the RestApi to get the job status. The parameter contains the job identifier.
+    rpc GetJob(pbtaskmaster.GetJobRequest) returns (pbtaskmaster.GetJobResponse);
 }
