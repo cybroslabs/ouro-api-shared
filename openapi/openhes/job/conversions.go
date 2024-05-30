@@ -65,7 +65,7 @@ func G2RJobActions(actions []*pbdriver.JobAction) (*JobActionListSchema, error) 
 
 // Converts the job action - Rest API to gRPC
 func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
-	if tmp, err := action.AsJobActionGetRegisterSchema(); err == nil {
+	if tmp, err := asJobActionGetRegisterSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -78,7 +78,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetPeriodicalProfileSchema(); err == nil {
+	if tmp, err := asJobActionGetPeriodicalProfileSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -102,7 +102,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetIrregularProfileSchema(); err == nil {
+	if tmp, err := asJobActionGetIrregularProfileSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -115,7 +115,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetEventsSchema(); err == nil {
+	if tmp, err := asJobActionGetEventsSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -128,7 +128,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetClockSchema(); err == nil {
+	if tmp, err := asJobActionGetClockSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -141,7 +141,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionSyncClockSchema(); err == nil {
+	if tmp, err := asJobActionSyncClockSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -154,7 +154,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetRelayStateSchema(); err == nil {
+	if tmp, err := asJobActionGetRelayStateSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -167,7 +167,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionSetRelayStateSchema(); err == nil {
+	if tmp, err := asJobActionSetRelayStateSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -180,7 +180,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetDisconnectorStateSchema(); err == nil {
+	if tmp, err := asJobActionGetDisconnectorStateSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -193,7 +193,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionSetDisconnectorStateSchema(); err == nil {
+	if tmp, err := asJobActionSetDisconnectorStateSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -206,7 +206,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetTouSchema(); err == nil {
+	if tmp, err := asJobActionGetTouSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -219,7 +219,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionSetTouSchema(); err == nil {
+	if tmp, err := asJobActionSetTouSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -232,7 +232,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionGetLimiterSchema(); err == nil {
+	if tmp, err := asJobActionGetLimiterSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -245,7 +245,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionSetLimiterSchema(); err == nil {
+	if tmp, err := asJobActionSetLimiterSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -258,7 +258,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionResetBillingPeriodSchema(); err == nil {
+	if tmp, err := asJobActionResetBillingPeriodSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
@@ -271,7 +271,7 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			},
 		}, nil
 	}
-	if tmp, err := action.AsJobActionFwUpdateSchema(); err == nil {
+	if tmp, err := asJobActionFwUpdateSchema(action); err == nil {
 		attr, err := attribute.R2GAttributes(tmp.Attributes)
 		if err != nil {
 			return nil, err
