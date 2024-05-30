@@ -629,6 +629,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
+// Converts the bulk spec - Rest API to gRPC
 func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
@@ -674,6 +675,40 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	}, nil
 }
 
+// Converts the bulk status code - gRPC to Rest API
+func G2RBulkStatusCode(status pbdataproxy.BulkStatusCode) (BulkStatusEnumSchema, error) {
+	switch status {
+	case pbdataproxy.BulkStatusCode_BULK_STATUS_QUEUED:
+		return BulkStatusEnumSchemaQUEUED, nil
+	case pbdataproxy.BulkStatusCode_BULK_STATUS_RUNNING:
+		return BulkStatusEnumSchemaRUNNING, nil
+	case pbdataproxy.BulkStatusCode_BULK_STATUS_COMPLETED:
+		return BulkStatusEnumSchemaCOMPLETED, nil
+	case pbdataproxy.BulkStatusCode_BULK_STATUS_CANCELLED:
+		return BulkStatusEnumSchemaCANCELLED, nil
+	case pbdataproxy.BulkStatusCode_BULK_STATUS_EXPIRED:
+		return BulkStatusEnumSchemaEXPIRED, nil
+	default:
+		return BulkStatusEnumSchemaQUEUED, ErrInvalidJobStatus
+	}
+}
+
+// Converts the bulk status - gRPC to Rest API
+func G2RBulkStatus(status *pbdataproxy.BulkStatus) (*BulkStatusSchema, error) {
+	status_code, err := G2RBulkStatusCode(status.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &BulkStatusSchema{
+		StartedAt:  nil,
+		FinishedAt: nil,
+		Status:     status_code,
+	}
+	return result, nil
+}
+
+// Converts the job status - gRPC to Rest API
 func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 	status_code, err := G2RJobStatusCode(status.Status)
 	if err != nil {

@@ -38,10 +38,35 @@ message BulkSpec {
     repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
 }
 
+// Bulk statuses
+enum BulkStatusCode {
+    // The job is waiting in the queue
+    BULK_STATUS_QUEUED = 0;
+    // The job is running
+    BULK_STATUS_RUNNING = 1;
+    // The job is completed
+    BULK_STATUS_COMPLETED = 2;
+    // The job is cancelled
+    BULK_STATUS_CANCELLED = 3;
+    // The job has expired 
+    BULK_STATUS_EXPIRED = 4;
+}
+
+// Sub-message - holds the bulk job status.
+message BulkStatus {
+    BulkStatusCode status = 1 [json_name="s"]; // The job status.
+    repeated BulkJobStatus jobs = 2 [json_name="j"]; // The list of job statuses.
+}
+
+message BulkJobStatus {
+    string job_id = 1 [json_name="i"]; // The job identifier.
+    pbtaskmaster.JobStatus status = 2 [json_name="s"]; // The job status.
+}
+
 // DataProxy -> RestApi - the message holds the bulk info and it's status.
 message GetBulkResponse {
     BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-    pbtaskmaster.JobStatus status = 2 [json_name="t"]; // The bulk-job status/data.
+    repeated BulkStatus status = 2 [json_name="t"]; // The bulk-job status/data.
 }
 
 // RestApi -> DataProxy - the message holds data for bulk listing request.
