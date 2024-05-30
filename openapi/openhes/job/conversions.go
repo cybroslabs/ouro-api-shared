@@ -515,7 +515,6 @@ func G2RJobSettings(settings *pbdriver.JobSettings) (*JobSettingsSchema, error) 
 		RetryDelay:  &retry_delay,
 		DeferStart:  &defer_start,
 		ExpiresAt:   expires_at,
-		WebhookURL:  nil, // FIXME
 	}
 
 	return result, nil
@@ -523,21 +522,6 @@ func G2RJobSettings(settings *pbdriver.JobSettings) (*JobSettingsSchema, error) 
 
 // Converts the job settings - Rest API to gRPC
 func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) {
-	webhook_uri := settings.WebhookURL
-	if webhook_uri != nil {
-		if *webhook_uri == "" {
-			webhook_uri = nil
-		} else {
-			uri, err := url.ParseRequestURI(*webhook_uri)
-			if err != nil {
-				return nil, fmt.Errorf("error while parsing webhook url: %v", err)
-			}
-			if uri.Scheme != "http" && uri.Scheme != "https" {
-				return nil, fmt.Errorf("invalid WebhookURL scheme, given %s, only http or https is accepted", uri.Scheme)
-			}
-		}
-	}
-
 	job_priority := DefaultPriority
 	if pr := settings.Priority; pr != nil {
 		if *pr < 0 || *pr > 9 {
@@ -580,7 +564,6 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 		RetryDelay:  retry_delay,
 		DeferStart:  defer_start,
 		ExpiresAt:   expires_at,
-		// FIXME: WebhookURL: webhook_uri,
 	}, nil
 }
 
@@ -624,6 +607,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		Settings:         settings,
 		Devices:          devices,
 		Actions:          *actions,
+		WebhookURL:       spec.WebhookUrl,
 	}
 
 	return result, nil
@@ -631,6 +615,21 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 
 // Converts the bulk spec - Rest API to gRPC
 func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
+	webhook_url := spec.WebhookURL
+	if webhook_url != nil {
+		if *webhook_url == "" {
+			webhook_url = nil
+		} else {
+			uri, err := url.ParseRequestURI(*webhook_url)
+			if err != nil {
+				return nil, fmt.Errorf("error while parsing webhook url: %v", err)
+			}
+			if uri.Scheme != "http" && uri.Scheme != "https" {
+				return nil, fmt.Errorf("invalid WebhookURL scheme, given %s, only http or https is accepted", uri.Scheme)
+			}
+		}
+	}
+
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
 		return nil, err
@@ -672,6 +671,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		Settings:         settings,
 		Devices:          devices,
 		JobActions:       actions,
+		WebhookUrl:       webhook_url,
 	}, nil
 }
 

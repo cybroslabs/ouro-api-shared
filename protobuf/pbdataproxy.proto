@@ -36,6 +36,7 @@ message BulkSpec {
     repeated pbtaskmaster.JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
     pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
     repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
+    optional string webhook_url = 8 [json_name="h"]; // The webhook URL to call when the bulk is completed.
 }
 
 // Bulk statuses

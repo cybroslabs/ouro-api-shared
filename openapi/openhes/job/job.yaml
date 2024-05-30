@@ -396,6 +396,12 @@ components:
             The device type related to the job. The type must be one of the supported device types.
           type: string
           minLength: 1
+        webhookURL:
+          type: string
+          description: >
+            The URL of the webhook to send the notification when any job in the bulk is done.
+          format: uri
+          nullable: true
       required:
         - id
         - devices
@@ -553,9 +559,3 @@ components:
           description: Time when the job expires.
           type: string
           format: date-time
-        webhookURL:
-          type: string
-          description: >
-            The URL of the webhook to send the notification when any job in the bulk is done.
-          format: uri
-          nullable: true
