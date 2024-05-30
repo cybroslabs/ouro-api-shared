@@ -5,17 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
-	"regexp"
 
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
+
+	"k8s.io/apimachinery/pkg/api/resource"
 )
 
 var (
 	ErrInvalidResourceCpuValue    = fmt.Errorf("invalid cpu value")
 	ErrInvalidResourceMemoryValue = fmt.Errorf("invalid memory value")
-
-	reCpuResource    = regexp.MustCompile(`^[0-9]+m?$`)
-	reMemoryResource = regexp.MustCompile(`^[0-9]+[EPTGMk]i?$`)
 )
 
 // Converts the container resources - gRPC to REST
@@ -31,7 +29,8 @@ func G2RContainerResources(in *ContainerResourcesSchema) (*pbtaskmaster.Containe
 	d.UseNumber()
 	err := d.Decode(&cpu_f)
 	if err == nil {
-		if math.Mod(float64(cpu_f), 10) != 0 {
+		// 0.01 is the minimum scale for CPU in our case
+		if math.Mod(float64(cpu_f)*100, 1) != 0 {
 			return nil, ErrInvalidResourceCpuValue
 		}
 		if math.Mod(float64(cpu_f), 1) != 0 {
@@ -47,13 +46,14 @@ func G2RContainerResources(in *ContainerResourcesSchema) (*pbtaskmaster.Containe
 		if err != nil {
 			return nil, ErrInvalidResourceCpuValue
 		}
-		if !reCpuResource.MatchString(cpu_s) {
+		_, err = resource.ParseQuantity(cpu_s)
+		if err != nil {
 			return nil, ErrInvalidResourceCpuValue
 		}
 		cpu = cpu_s
 	}
 
-	if reMemoryResource.MatchString(in.Memory) {
+	if _, err := resource.ParseQuantity(in.Memory); err != nil {
 		return nil, ErrInvalidResourceMemoryValue
 	}
 
