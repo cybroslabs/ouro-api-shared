@@ -1,6 +1,11 @@
 .PHONY: gen-go
 gen-go:
 	cd protobuf && protoc \
+		--go_out=./pbdeviceregistry --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdeviceregistry --go-grpc_opt=paths=source_relative \
+		pbdeviceregistry.proto
+
+	cd protobuf && protoc \
 		--go_out=./pbdriver --go_opt=paths=source_relative \
 		--go-grpc_out=./pbdriver --go-grpc_opt=paths=source_relative \
 		pbdriver.proto
