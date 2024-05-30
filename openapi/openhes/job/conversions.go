@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	driverdata "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
@@ -18,7 +19,7 @@ import (
 var (
 	ErrInvalidJobStatus     = errors.New("invalid job status")
 	ErrInvalidActionType    = errors.New("invalid action type")
-	ErrUnknownJobActionType = fmt.Errorf("unknown job action type")
+	ErrUnknownJobActionType = errors.New("unknown job action type")
 )
 
 const (
@@ -423,7 +424,7 @@ func G2RJobAction(action *pbdriver.JobAction, result *JobActionSchema) error {
 }
 
 // Converts the job status code - gRPC to Rest API
-func G2RJobStatus(status pbtaskmaster.JobStatusCode) (JobStatusCodeEnumSchema, error) {
+func G2RJobStatusCode(status pbtaskmaster.JobStatusCode) (JobStatusCodeEnumSchema, error) {
 	switch status {
 	case pbtaskmaster.JobStatusCode_JOB_STATUS_QUEUED:
 		return JobStatusCodeEnumSchemaQUEUED, nil
@@ -671,4 +672,147 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		Devices:          devices,
 		JobActions:       actions,
 	}, nil
+}
+
+func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
+	status_code, err := G2RJobStatusCode(status.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	error_code, err := G2RJobErrorCode(*status.Code)
+	if err != nil {
+		return nil, err
+	}
+
+	var started_at *time.Time = nil
+	if ts := status.StartedAt; ts != nil {
+		t := ts.AsTime()
+		started_at = &t
+	}
+
+	var finished_at *time.Time = nil
+	if ts := status.FinishedAt; ts != nil {
+		t := ts.AsTime()
+		finished_at = &t
+	}
+
+	var results_ptr *[]JobActionResultSchema = nil
+	if len(status.Results) > 0 {
+		results := make([]JobActionResultSchema, len(status.Results))
+		for i, result := range status.Results {
+			results[i].Id, err = uuid.Parse(result.ActionId)
+			if err != nil {
+				return nil, err
+			}
+
+			results[i].Code, err = G2RActionResultCode(status.Results[i].Status)
+			if err != nil {
+				return nil, err
+			}
+
+			ar := &results[i]
+			if rd := result.Data; rd != nil {
+				// Handle BV & LP data
+				switch d := rd.Data.(type) {
+				case *pbdriver.ActionData_Billings:
+					if dbv := d.Billings; dbv != nil {
+						v := dbv.Values
+						tmp := make(driverdata.DeviceRegistersDataSchema, len(v))
+						for i, v := range v {
+							if ts := v.Timestamp; ts != nil {
+								ts_time := ts.AsTime()
+								tmp[i].Timestamp = &ts_time
+							}
+							tmp[i].Unit = &v.Unit
+
+							tmp_valueinfo := &driverdata.GenericValueStatusSchema{
+								Exponent: &v.Value.Exponent,
+								Status:   v.Value.Status,
+							}
+							tmp_value := &driverdata.GenericValueStatusSchema_Value{}
+							switch vt := v.Value.Value.(type) {
+							case *pbdriver.MeasuredValue_IntValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue1(vt.IntValue)
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+							case *pbdriver.MeasuredValue_DoubleValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue2(vt.DoubleValue)
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+							default:
+								return nil, fmt.Errorf("unknown value type: %v", vt)
+							}
+						}
+						err = ar.Data.FromExternalRef0DeviceRegistersDataSchema(tmp)
+						if err != nil {
+							return nil, err
+						}
+					}
+				case *pbdriver.ActionData_Profile:
+					if dlp := d.Profile; dlp != nil {
+						blocks := dlp.Blocks
+
+						tmp_blocks := make([]driverdata.DeviceProfileBlockSchema, len(blocks))
+						tmp := driverdata.DeviceProfileDataSchema{
+							Unit:   dlp.Unit,
+							Period: dlp.Period,
+							Blocks: tmp_blocks,
+						}
+						for i, vb := range blocks {
+							if ts := vb.StartTimestamp; ts != nil {
+								ts_time := ts.AsTime()
+								tmp_blocks[i].Start = &ts_time
+							}
+							tmp_values := make([]driverdata.GenericValueStatusSchema, len(vb.Values))
+							for j, v := range vb.Values {
+								tmp_valueinfo := &tmp_values[j]
+								tmp_valueinfo.Exponent = &v.Exponent
+								tmp_valueinfo.Status = v.Status
+								tmp_value := &driverdata.GenericValueStatusSchema_Value{}
+								switch vt := v.Value.(type) {
+								case *pbdriver.MeasuredValue_IntValue:
+									err = tmp_value.FromGenericValueStatusSchemaValue1(vt.IntValue)
+									if err != nil {
+										return nil, err
+									}
+									tmp_valueinfo.Value = tmp_value
+								case *pbdriver.MeasuredValue_DoubleValue:
+									err = tmp_value.FromGenericValueStatusSchemaValue2(vt.DoubleValue)
+									if err != nil {
+										return nil, err
+									}
+									tmp_valueinfo.Value = tmp_value
+								default:
+									return nil, fmt.Errorf("unknown value type: %v", vt)
+								}
+							}
+							tmp_blocks[i].Values = &tmp_values
+						}
+						err = ar.Data.FromExternalRef0DeviceProfileDataSchema(tmp)
+						if err != nil {
+							return nil, err
+						}
+					}
+				}
+			}
+		}
+		results_ptr = &results
+	}
+
+	result := &JobStatusSchema{
+		StartedAt:  started_at,
+		FinishedAt: finished_at,
+		Results:    results_ptr,
+		Status:     status_code,
+		Code:       error_code,
+	}
+
+	return result, nil
 }
