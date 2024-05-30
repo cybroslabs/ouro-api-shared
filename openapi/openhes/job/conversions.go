@@ -575,14 +575,15 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	}
 
 	devices := make(JobDeviceListSchema, len(spec.Devices))
-	for i := range spec.Devices {
-		devices[i].Id, err = uuid.Parse(spec.Devices[i].Id)
+	for i, device := range spec.Devices {
+		target := &devices[i]
+		target.Id, err = uuid.Parse(device.Id)
 		if err != nil {
 			return nil, err
 		}
-		devices[i].ExternalID = &spec.Devices[i].ExternalId
-		devices[i].Attributes = attribute.G2RAttributes(spec.Devices[i].ConnectionInfo.Attributes)
-		devices[i].Endpoint = spec.Devices[i].ConnectionInfo.Hostname
+		target.ExternalID = &device.ExternalId
+		target.Attributes = attribute.G2RAttributes(device.ConnectionInfo.Attributes)
+		target.Endpoint = device.ConnectionInfo.Hostname
 	}
 
 	id, err := uuid.Parse(spec.BulkId)
@@ -636,19 +637,24 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	}
 
 	devices := make([]*pbtaskmaster.JobDevice, len(spec.Devices))
-	for i := range spec.Devices {
-		device_attributes, err := attribute.R2GAttributes(spec.Devices[i].Attributes)
+	for i, device := range spec.Devices {
+		device_attributes, err := attribute.R2GAttributes(device.Attributes)
 		if err != nil {
 			return nil, err
 		}
 
+		external_id := ""
+		if device.ExternalID != nil {
+			external_id = *device.ExternalID
+		}
+
 		devices[i] = &pbtaskmaster.JobDevice{
-			Id: spec.Devices[i].Id.String(),
+			Id: device.Id.String(),
 			ConnectionInfo: &pbdriver.ConnectionInfo{
-				Hostname:   spec.Devices[i].Endpoint,
+				Hostname:   device.Endpoint,
 				Attributes: device_attributes,
 			},
-			ExternalId: *spec.Devices[i].ExternalID,
+			ExternalId: external_id,
 		}
 	}
 
