@@ -21,12 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	TaskmasterService_CreateBulk_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CreateBulk"
-	TaskmasterService_GetBulks_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetBulks"
-	TaskmasterService_GetBulk_FullMethodName            = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetBulk"
+	TaskmasterService_QueueJobs_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/QueueJobs"
 	TaskmasterService_GetJob_FullMethodName             = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetJob"
 	TaskmasterService_PurgeJobs_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/PurgeJobs"
-	TaskmasterService_CancelJob_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CancelJob"
+	TaskmasterService_CancelJobs_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CancelJobs"
 	TaskmasterService_NegotiateStart_FullMethodName     = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/NegotiateStart"
 	TaskmasterService_CacheSet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheSet"
 	TaskmasterService_CacheGet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheGet"
@@ -42,18 +40,13 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TaskmasterServiceClient interface {
-	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *CreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error)
-	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error)
+	QueueJobs(ctx context.Context, in *QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
 	PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CancelJobs(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -82,27 +75,9 @@ func NewTaskmasterServiceClient(cc grpc.ClientConnInterface) TaskmasterServiceCl
 	return &taskmasterServiceClient{cc}
 }
 
-func (c *taskmasterServiceClient) CreateBulk(ctx context.Context, in *CreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, TaskmasterService_CreateBulk_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error) {
-	out := new(GetBulksResponse)
-	err := c.cc.Invoke(ctx, TaskmasterService_GetBulks_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error) {
-	out := new(GetBulkResponse)
-	err := c.cc.Invoke(ctx, TaskmasterService_GetBulk_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_QueueJobs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,9 +102,9 @@ func (c *taskmasterServiceClient) PurgeJobs(ctx context.Context, in *emptypb.Emp
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CancelJob(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, TaskmasterService_CancelJob_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, TaskmasterService_CancelJobs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -221,18 +196,13 @@ func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfi
 // All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility
 type TaskmasterServiceServer interface {
-	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(context.Context, *CreateBulksRequest) (*emptypb.Empty, error)
-	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error)
-	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error)
+	QueueJobs(context.Context, *QueueJobsRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
 	PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
+	CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -258,14 +228,8 @@ type TaskmasterServiceServer interface {
 type UnimplementedTaskmasterServiceServer struct {
 }
 
-func (UnimplementedTaskmasterServiceServer) CreateBulk(context.Context, *CreateBulksRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBulks not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *QueueJobsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueueJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
@@ -273,8 +237,8 @@ func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *GetJobReque
 func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeJobs not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CancelJob(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
+func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NegotiateStart not implemented")
@@ -316,56 +280,20 @@ func RegisterTaskmasterServiceServer(s grpc.ServiceRegistrar, srv TaskmasterServ
 	s.RegisterService(&TaskmasterService_ServiceDesc, srv)
 }
 
-func _TaskmasterService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateBulksRequest)
+func _TaskmasterService_QueueJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueueJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).CreateBulk(ctx, in)
+		return srv.(TaskmasterServiceServer).QueueJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TaskmasterService_CreateBulk_FullMethodName,
+		FullMethod: TaskmasterService_QueueJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CreateBulk(ctx, req.(*CreateBulksRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBulksReuqest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).GetBulks(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_GetBulks_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetBulks(ctx, req.(*GetBulksReuqest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBulkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).GetBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_GetBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetBulk(ctx, req.(*GetBulkRequest))
+		return srv.(TaskmasterServiceServer).QueueJobs(ctx, req.(*QueueJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -406,20 +334,20 @@ func _TaskmasterService_PurgeJobs_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TaskmasterService_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CancelJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).CancelJob(ctx, in)
+		return srv.(TaskmasterServiceServer).CancelJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TaskmasterService_CancelJob_FullMethodName,
+		FullMethod: TaskmasterService_CancelJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CancelJob(ctx, req.(*CancelJobsRequest))
+		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*CancelJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -594,16 +522,8 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TaskmasterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateBulk",
-			Handler:    _TaskmasterService_CreateBulk_Handler,
-		},
-		{
-			MethodName: "GetBulks",
-			Handler:    _TaskmasterService_GetBulks_Handler,
-		},
-		{
-			MethodName: "GetBulk",
-			Handler:    _TaskmasterService_GetBulk_Handler,
+			MethodName: "QueueJobs",
+			Handler:    _TaskmasterService_QueueJobs_Handler,
 		},
 		{
 			MethodName: "GetJob",
@@ -614,8 +534,8 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TaskmasterService_PurgeJobs_Handler,
 		},
 		{
-			MethodName: "CancelJob",
-			Handler:    _TaskmasterService_CancelJob_Handler,
+			MethodName: "CancelJobs",
+			Handler:    _TaskmasterService_CancelJobs_Handler,
 		},
 		{
 			MethodName: "NegotiateStart",

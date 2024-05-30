@@ -11,19 +11,13 @@ import "pbdriver.proto";
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 service TaskmasterService {
-    // The method called by the RestApi to start a new bulk of jobs.
-    rpc CreateBulk(CreateBulksRequest) returns (google.protobuf.Empty);
-    // The method called by the RestApi to retrieve stored bulks.
-    rpc GetBulks(GetBulksReuqest) returns (GetBulksResponse);
-    // The method called by the RestApi to retrieve single bulk.
-    rpc GetBulk(GetBulkRequest) returns (GetBulkResponse);
-     
+    rpc QueueJobs(QueueJobsRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the job status. The parameter contains the job identifier.
     rpc GetJob(GetJobRequest) returns (GetJobResponse);
     // The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
     rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
     // The method called by the RestApi to cancel the job.
-    rpc CancelJob(CancelJobsRequest) returns (google.protobuf.Empty);
+    rpc CancelJobs(CancelJobsRequest) returns (google.protobuf.Empty);
 
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
     rpc NegotiateStart(pbdriver.NegotiateRequest) returns (pbdriver.CommonResponse);
@@ -69,8 +63,13 @@ message CancelJobsRequest {
     repeated string job_id = 1 [json_name="id"]; // The job identifier.
 }
 
+// API -> Taskmaster queue jobs request message
+message QueueJobsRequest {
+    repeated JobSpec spec = 1 [json_name="j"]; // The list of jobs to be queued.
+}
+
 // API -> Taskmaster new job request message
-message QueueJobRequest {
+message JobSpec {
     string job_id = 1 [json_name="id"]; // The job identifier.
     pbdriver.ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
     pbdriver.JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
@@ -79,15 +78,15 @@ message QueueJobRequest {
     optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
 }
 
-
 // API -> Taskmaster get job request message
 message GetJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
 }
 
+
 // Taskmaster -> API get job response message
 message GetJobResponse {
-    QueueJobRequest spec = 1 [json_name="j"]; // The original job specification
+    JobSpec spec = 1 [json_name="j"]; // The original job specification
     JobStatus status = 2 [json_name="s"]; // The status of the job
 }
 
@@ -179,35 +178,13 @@ message SystemConfigStatus {
 }
 
 // API -> Taskmaster request to get driver templates
-message GetDriverTemplatesRequest{
+message GetDriverTemplatesRequest {
     string driver_type = 1; // The driver unique identifier.
 }
 
 // Taskmaster -> Dataproxy job/action progress update message
-message BulkJobEventData {    
+message JobEventData {    
     bytes job_id = 1 [json_name="i"]; // The job identifier.
-}
-
-// RestApi -> DataProxy
-message CreateBulksRequest {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-}
-
-// Sub-message - holds the bulk job specification.
-message BulkSpec {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier.
-    string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string org_id = 3 [json_name="o"]; // The organization identifier.
-    string device_driver_type = 4 [json_name="t"]; // The device driver type.
-    repeated JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
-    pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
-    repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
-}
-
-// DataProxy -> RestApi - the message holds the bulk info and it's status.
-message GetBulkResponse {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-    JobStatus status = 2 [json_name="t"]; // The bulk-job status/data.
 }
 
 // Sub-message representing a single device in a bulk.
@@ -215,24 +192,4 @@ message JobDevice {
     string id = 1 [json_name="i"]; // The device (job) identifier.
     string external_id = 3 [json_name="e"]; // The external identifier.
     pbdriver.ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
-}
-
-// RestApi -> DataProxy - the message holds data for bulk listing request.
-message GetBulksReuqest {
-    optional google.protobuf.Timestamp tfrom = 1 [json_name="tf"]; // The time range filter - left limit. Optional.
-    optional google.protobuf.Timestamp tto = 2 [json_name="tt"]; // The time range filter - right limit. Optional.
-    optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
-    // FIXME: Should not not be optional!
-    optional string org_id = 4 [json_name="o"]; // The organization identifier filter.
-    // TODO: Add Device-Id filter here.
-}
-
-// DataProxy -> RestApi - the message holds list of bulks.
-message GetBulksResponse {
-    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.    
-}
-
-// RestApi -> DataProxt - the message holds single bulk request.
-message GetBulkRequest {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier to be retrieved.
 }

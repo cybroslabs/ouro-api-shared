@@ -33,13 +33,13 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataproxyServiceClient interface {
 	// The method called by the Taskmaster to notify about finished job.
-	NotifyJobFinished(ctx context.Context, in *pbtaskmaster.BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	NotifyJobFinished(ctx context.Context, in *pbtaskmaster.JobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *pbtaskmaster.CreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateBulk(ctx context.Context, in *CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(ctx context.Context, in *pbtaskmaster.GetBulksReuqest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulksResponse, error)
+	GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(ctx context.Context, in *pbtaskmaster.GetBulkRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulkResponse, error)
+	GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(ctx context.Context, in *pbtaskmaster.GetJobRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetJobResponse, error)
 }
@@ -52,7 +52,7 @@ func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClie
 	return &dataproxyServiceClient{cc}
 }
 
-func (c *dataproxyServiceClient) NotifyJobFinished(ctx context.Context, in *pbtaskmaster.BulkJobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) NotifyJobFinished(ctx context.Context, in *pbtaskmaster.JobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_NotifyJobFinished_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -61,7 +61,7 @@ func (c *dataproxyServiceClient) NotifyJobFinished(ctx context.Context, in *pbta
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *pbtaskmaster.CreateBulksRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateBulk_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -70,8 +70,8 @@ func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *pbtaskmaste
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetBulks(ctx context.Context, in *pbtaskmaster.GetBulksReuqest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulksResponse, error) {
-	out := new(pbtaskmaster.GetBulksResponse)
+func (c *dataproxyServiceClient) GetBulks(ctx context.Context, in *GetBulksReuqest, opts ...grpc.CallOption) (*GetBulksResponse, error) {
+	out := new(GetBulksResponse)
 	err := c.cc.Invoke(ctx, DataproxyService_GetBulks_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -79,8 +79,8 @@ func (c *dataproxyServiceClient) GetBulks(ctx context.Context, in *pbtaskmaster.
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *pbtaskmaster.GetBulkRequest, opts ...grpc.CallOption) (*pbtaskmaster.GetBulkResponse, error) {
-	out := new(pbtaskmaster.GetBulkResponse)
+func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (*GetBulkResponse, error) {
+	out := new(GetBulkResponse)
 	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,13 +102,13 @@ func (c *dataproxyServiceClient) GetJob(ctx context.Context, in *pbtaskmaster.Ge
 // for forward compatibility
 type DataproxyServiceServer interface {
 	// The method called by the Taskmaster to notify about finished job.
-	NotifyJobFinished(context.Context, *pbtaskmaster.BulkJobEventData) (*emptypb.Empty, error)
+	NotifyJobFinished(context.Context, *pbtaskmaster.JobEventData) (*emptypb.Empty, error)
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(context.Context, *pbtaskmaster.CreateBulksRequest) (*emptypb.Empty, error)
+	CreateBulk(context.Context, *CreateBulkRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(context.Context, *pbtaskmaster.GetBulksReuqest) (*pbtaskmaster.GetBulksResponse, error)
+	GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(context.Context, *pbtaskmaster.GetBulkRequest) (*pbtaskmaster.GetBulkResponse, error)
+	GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(context.Context, *pbtaskmaster.GetJobRequest) (*pbtaskmaster.GetJobResponse, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
@@ -118,16 +118,16 @@ type DataproxyServiceServer interface {
 type UnimplementedDataproxyServiceServer struct {
 }
 
-func (UnimplementedDataproxyServiceServer) NotifyJobFinished(context.Context, *pbtaskmaster.BulkJobEventData) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) NotifyJobFinished(context.Context, *pbtaskmaster.JobEventData) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyJobFinished not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *pbtaskmaster.CreateBulksRequest) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetBulks(context.Context, *pbtaskmaster.GetBulksReuqest) (*pbtaskmaster.GetBulksResponse, error) {
+func (UnimplementedDataproxyServiceServer) GetBulks(context.Context, *GetBulksReuqest) (*GetBulksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulks not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *pbtaskmaster.GetBulkRequest) (*pbtaskmaster.GetBulkResponse, error) {
+func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *GetBulkRequest) (*GetBulkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetJob(context.Context, *pbtaskmaster.GetJobRequest) (*pbtaskmaster.GetJobResponse, error) {
@@ -147,7 +147,7 @@ func RegisterDataproxyServiceServer(s grpc.ServiceRegistrar, srv DataproxyServic
 }
 
 func _DataproxyService_NotifyJobFinished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.BulkJobEventData)
+	in := new(pbtaskmaster.JobEventData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -159,13 +159,13 @@ func _DataproxyService_NotifyJobFinished_Handler(srv interface{}, ctx context.Co
 		FullMethod: DataproxyService_NotifyJobFinished_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, req.(*pbtaskmaster.BulkJobEventData))
+		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, req.(*pbtaskmaster.JobEventData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.CreateBulksRequest)
+	in := new(CreateBulkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -177,13 +177,13 @@ func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: DataproxyService_CreateBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).CreateBulk(ctx, req.(*pbtaskmaster.CreateBulksRequest))
+		return srv.(DataproxyServiceServer).CreateBulk(ctx, req.(*CreateBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.GetBulksReuqest)
+	in := new(GetBulksReuqest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -195,13 +195,13 @@ func _DataproxyService_GetBulks_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: DataproxyService_GetBulks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetBulks(ctx, req.(*pbtaskmaster.GetBulksReuqest))
+		return srv.(DataproxyServiceServer).GetBulks(ctx, req.(*GetBulksReuqest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.GetBulkRequest)
+	in := new(GetBulkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -213,7 +213,7 @@ func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: DataproxyService_GetBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*pbtaskmaster.GetBulkRequest))
+		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*GetBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

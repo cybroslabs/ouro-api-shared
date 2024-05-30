@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
 	"github.com/google/uuid"
@@ -583,7 +584,7 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 }
 
 // Converts the bulk spec - gRPC to Rest API
-func G2RBulkSpec(spec *pbtaskmaster.BulkSpec) (*BulkSpecSchema, error) {
+func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	actions, err := G2RJobActions(spec.JobActions)
 	if err != nil {
 		return nil, err
@@ -627,7 +628,7 @@ func G2RBulkSpec(spec *pbtaskmaster.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
-func R2GBulkSpec(spec *BulkSpecSchema) (*pbtaskmaster.BulkSpec, error) {
+func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
 		return nil, err
@@ -662,7 +663,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbtaskmaster.BulkSpec, error) {
 		return nil, err
 	}
 
-	return &pbtaskmaster.BulkSpec{
+	return &pbdataproxy.BulkSpec{
 		BulkId:           bulk_id,
 		CorrelationId:    corr_id,
 		DeviceDriverType: *spec.DeviceDriverType,
