@@ -400,7 +400,7 @@ components:
         - id
         - devices
         - actions
-        - type
+        - deviceDriverType
 
     BulkStatusEnumSchema:
       type: integer
