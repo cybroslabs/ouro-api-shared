@@ -66,7 +66,7 @@ message BulkJobStatus {
 // DataProxy -> RestApi - the message holds the bulk info and it's status.
 message GetBulkResponse {
     BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-    repeated BulkStatus status = 2 [json_name="t"]; // The bulk-job status/data.
+    BulkStatus status = 2 [json_name="t"]; // The bulk-job status/data.
 }
 
 // RestApi -> DataProxy - the message holds data for bulk listing request.
