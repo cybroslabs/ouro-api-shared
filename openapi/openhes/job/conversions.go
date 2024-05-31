@@ -586,31 +586,25 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 
 		if ci := device.ConnectionInfo; ci != nil {
 			if tcp := ci.GetTcp(); tcp != nil {
-				ci_struct := &ConnectionTypeSchema{}
-				err := ci_struct.FromConnectionTypeTcpSchema(ConnectionTypeTcpSchema{
+				err := target.ConnectionInfo.FromConnectionTypeTcpSchema(ConnectionTypeTcpSchema{
 					Host: tcp.Host,
 					Port: int(tcp.Port),
 				})
 				if err != nil {
 					return nil, err
 				}
-				target.ConnectionInfo = ci_struct
 			} else if phone := ci.GetPhone(); phone != nil {
-				ci_struct := &ConnectionTypeSchema{}
-				err := ci_struct.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
+				err := target.ConnectionInfo.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
 					Number: phone.Number,
 				})
 				if err != nil {
 					return nil, err
 				}
-				target.ConnectionInfo = ci_struct
 			} else if serial := ci.GetSerial(); serial != nil {
-				ci_struct := &ConnectionTypeSchema{}
-				err := ci_struct.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
+				err := target.ConnectionInfo.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
 				if err != nil {
 					return nil, err
 				}
-				target.ConnectionInfo = ci_struct
 			}
 		}
 	}
@@ -681,24 +675,23 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 			DeviceAttributes: device_attributes,
 		}
 
-		if ci := device.ConnectionInfo; ci != nil {
-			if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_Tcp{
-					Tcp: &pbdriver.ConnectionTypeTcp{
-						Host: tcp.Host,
-						Port: uint32(tcp.Port),
-					},
-				}
-			} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_Phone{
-					Phone: &pbdriver.ConnectionTypePhone{
-						Number: phone.Number,
-					},
-				}
-			} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_Serial{
-					Serial: &pbdriver.ConnectionTypeSerial{},
-				}
+		ci := device.ConnectionInfo
+		if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
+			ci_struct.Connection = &pbdriver.ConnectionInfo_Tcp{
+				Tcp: &pbdriver.ConnectionTypeTcp{
+					Host: tcp.Host,
+					Port: uint32(tcp.Port),
+				},
+			}
+		} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
+			ci_struct.Connection = &pbdriver.ConnectionInfo_Phone{
+				Phone: &pbdriver.ConnectionTypePhone{
+					Number: phone.Number,
+				},
+			}
+		} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
+			ci_struct.Connection = &pbdriver.ConnectionInfo_Serial{
+				Serial: &pbdriver.ConnectionTypeSerial{},
 			}
 		}
 

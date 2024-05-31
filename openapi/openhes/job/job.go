@@ -383,7 +383,7 @@ type JobDeviceListSchema = []JobDeviceSchema
 
 // JobDeviceSchema defines model for JobDeviceSchema.
 type JobDeviceSchema struct {
-	ConnectionInfo *ConnectionTypeSchema `json:"connectionInfo,omitempty"`
+	ConnectionInfo ConnectionTypeSchema `json:"connectionInfo"`
 
 	// DeviceAttributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	DeviceAttributes AttributesSchema `json:"deviceAttributes"`
@@ -1072,17 +1072,17 @@ var swaggerSpec = []string{
 	"V9tcvc5AHXB42pDq4isfQ6MhYjuGRCX+PWZgv3Ir0tXqb1n4qIE+X6r7rE8ZfCCjcgwDT6ZRcZqOmfkR",
 	"o2oR7jHzPXJk4/nemcJeXtSYny5L8BwOxPz3kxiTHRJj81OkOOYnTnHI1hTH/EQR3fx3ENHJQxHd/Lkj",
 	"uvkJIzrZHtHtn3PPAknxVOI0qGxZWL2RqBUfNwa3ruq2GtweFVTauY4IKisDPGFSXnM1ZCveNr+3RK+o",
-	"07580qUifNbrS+Kmkvg0W8Y0LFXDu0oslP/rVune7qZ/y5fNPnqSZMyVal8zqirPK2ooNLjxAx2e9Xl0",
-	"8IVlNUr9xJe70GxsXi+NuY3zgrxD11jz6bFiiZv3l4vLUR4gaiZCnsWRiw9LKZYoA630BK2IIrGdtRoy",
-	"arlKYaIh7A0P7fq0PDX5wq9M6s8AuhZeuFFVKH3385CkylMIMS6qEfM+GlcHdEHSV2xRVCu+fXu4VFFr",
-	"8gq05+irA7wyR+OuZAotYcWFu4jIdWZFhVRF0X1JVl+1RsHYX7/5+sWLEm8vfLzZUnrprQKvVIBrbXSd",
-	"e51vJxLy+SoTxBLcp/+9ZVRvDuLKVAsU2hehKutfXlVEffnGJ2sqKBdUbeusTF3LAWz3Fr0NVwFKbM3i",
-	"dl9zMyZf81aR375tYaKhEMYWOGmDedy7E8fQE5+dmHc4v+WrE0ew9dFJ3m//zUnF1NeenOStX+bFSbEa",
-	"T3lw4tbFn69tOZn3z86H4MgXKjZvivJB5dOtYo8f9yzEntry0JEuq5lLaVLPhB3OrgauZtP4BC4lnF9s",
-	"POJOopI6f2iUq3Ajj3p54xB2Y35jgLu9u2kyGg1Pb1zyte6u6f7U+cUhZ4qEBgFICI2N/Vjxv+2ey/ZC",
-	"nmgZSKJp9M13NCJLiRQQ3ZIJPWqjVCovzs/v7+971cHnlEWgN2tvo5JYixvTEJg0G8ORfTcfnb3svahR",
-	"4ykwyTMRQo+L9bkbKM/z/tq2UhXDrmjwcjpECY8gti9fnS+EA3wHQtrFfdFzQ93rX3yBX/fs7ClRG4kv",
-	"9II9/C8AAP//BVY+LqREAAA=",
+	"07580qUifNbrS+Kmkvg0W8Y0LFXDu0oslP/rVune7qZ/y5fNPnoFLY/gDZ77QEdkfR4dfFRZDUw/8eUu",
+	"GhubB0tjbkO7IO/QNbx8enhY4ub95eJylMeEmomQZ3HkQsJSViXKQOs5QSuiSGxnrUaJWq5SZGgIeyNC",
+	"uyQtr0u+8MOSeuV/11oLN6oKpe9KHpJUeWofxkUBYt5H4+qALkj66iuKAsW3bw9XJ2pNXoF2Fn2lf1fm",
+	"NNxVSaElrLhwdw+5zqyokKqosy/J6ivQKBj76zdfv3hR4u2FjzdbPS+9hd+Vom+tja5zr/OFREI+X2WC",
+	"WIL79L+3jOrNQVxlaoFC+yJUZf3Lq4qoL9/4ZE0F5YKqbZ2VqWs5gO3eorfhKkCJrVnc7mtuxuRr3iry",
+	"27ctTDTUvtiaJm0wj3tq4hh64ksT8/Tmt3xo4gi2vjPJ++0/M6mY+tork7z1yzwyKVbjKW9M3Lr4U7Qt",
+	"h/H+2fkQHPkoxaZKUT6ofLpV7PHjXoLYU1seOtJlNVkpTbaZsMMJ1cCVaRqfwGWB87uMR1xDVLLlD41y",
+	"FZ7jUY9tHMJuzG8McLenNk1Go+G1jcu31t013Z86VzjkTJHQIAAJobGxHyv+t90L2V7IEy0DSTSNvvmO",
+	"RmQpkQKiWzKhR22USuXF+fn9/X2vOvicsgj0Zu1tVBJrcWMaApNmYziy7+ajs5e9FzVqPAUmeSZC6HGx",
+	"PncD5XneX9tWqmLY1QleToco4RHE9rGr84VwgO9ASLu4L3puqHvwiy/w656dPSVqI/GFXrCH/wUAAP//",
+	"qovexpdEAAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

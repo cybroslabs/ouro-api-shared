@@ -359,7 +359,6 @@ message CommonResponse {
 
 // Sub-message in driver negotiation request
 message DriverTemplates {
-    repeated AttributeDefinition communication_unit_attributes = 1; // The template of the connection attributes related to the communication unit. From top view communication units can be shared for multiple devices. It is represented as a list of attribute definitions.
     repeated AttributeDefinition device_attributes = 2; // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
     repeated JobActionAttributes action_attributes = 3; // The templates of the job actions for all supported action types.
 }

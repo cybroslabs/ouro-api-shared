@@ -139,7 +139,7 @@ components:
           $ref: "#/components/schemas/AttributesSchema"
       required:
         - id
-        - communicationUnitAttributes
+        - connectionInfo
         - deviceAttributes
 
     JobDeviceListSchema:
