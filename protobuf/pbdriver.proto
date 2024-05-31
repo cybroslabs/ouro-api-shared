@@ -108,7 +108,8 @@ message StartJobRequest {
 // Sub-message containing connection info
 message ConnectionInfo {
     string hostname = 1 [json_name="h"]; // The meter IP and or homename. The hostname shall be resolvable using DNS and the IP address shall be reachable.
-    map<string,AttributeValue> attributes = 2 [json_name="a"]; // The connection attributes.
+    map<string,AttributeValue> communication_unit_attributes = 2 [json_name="cua"]; // The connection attributes related to the communication unit.
+    map<string,AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
 }
 
 // Job priorities
@@ -337,8 +338,9 @@ message CommonResponse {
 
 // Sub-message in driver negotiation request
 message DriverTemplates {
-    repeated AttributeDefinition connection_attributes = 1; // The template of the connection attributes. It is represented as a list of attribute definitions.
-    repeated JobActionAttributes action_attributes = 2; // The templates of the job actions for all supported action types.
+    repeated AttributeDefinition communication_unit_attributes = 1; // The template of the connection attributes related to the communication unit. From top view communication units can be shared for multiple devices. It is represented as a list of attribute definitions.
+    repeated AttributeDefinition device_attributes = 2; // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
+    repeated JobActionAttributes action_attributes = 3; // The templates of the job actions for all supported action types.
 }
 
 // Taskmaster -> Driver cancel job request message

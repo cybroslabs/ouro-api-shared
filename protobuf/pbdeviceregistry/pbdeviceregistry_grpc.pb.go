@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DeviceRegistryService_CreateDevice_FullMethodName = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
-	DeviceRegistryService_GetDevice_FullMethodName    = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevice"
+	DeviceRegistryService_CreateDevice_FullMethodName      = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
+	DeviceRegistryService_GetDevices_FullMethodName        = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevices"
+	DeviceRegistryService_CreateDeviceGroup_FullMethodName = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
+	DeviceRegistryService_GetDeviceGroups_FullMethodName   = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDeviceGroups"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -29,9 +30,13 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*DeviceSpec, error)
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevice(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
+	GetDevices(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
+	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+	CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error)
+	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
+	GetDeviceGroups(ctx context.Context, in *GetDeviceGroupRequest, opts ...grpc.CallOption) (*GetDeviceGroupResponse, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -42,8 +47,8 @@ func NewDeviceRegistryServiceClient(cc grpc.ClientConnInterface) DeviceRegistryS
 	return &deviceRegistryServiceClient{cc}
 }
 
-func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*DeviceSpec, error) {
+	out := new(DeviceSpec)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDevice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -51,9 +56,27 @@ func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error) {
+func (c *deviceRegistryServiceClient) GetDevices(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error) {
 	out := new(GetDeviceResponse)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevice_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevices_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error) {
+	out := new(DeviceGroupSpec)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDeviceGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDeviceGroups(ctx context.Context, in *GetDeviceGroupRequest, opts ...grpc.CallOption) (*GetDeviceGroupResponse, error) {
+	out := new(GetDeviceGroupResponse)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceGroups_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,9 +88,13 @@ func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *GetDevi
 // for forward compatibility
 type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(context.Context, *CreateDeviceRequest) (*emptypb.Empty, error)
+	CreateDevice(context.Context, *CreateDeviceRequest) (*DeviceSpec, error)
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevice(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
+	GetDevices(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
+	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+	CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*DeviceGroupSpec, error)
+	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
+	GetDeviceGroups(context.Context, *GetDeviceGroupRequest) (*GetDeviceGroupResponse, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -75,11 +102,17 @@ type DeviceRegistryServiceServer interface {
 type UnimplementedDeviceRegistryServiceServer struct {
 }
 
-func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *CreateDeviceRequest) (*emptypb.Empty, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *CreateDeviceRequest) (*DeviceSpec, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
+func (UnimplementedDeviceRegistryServiceServer) GetDevices(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDevices not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*DeviceGroupSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroups(context.Context, *GetDeviceGroupRequest) (*GetDeviceGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroups not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 
@@ -112,20 +145,56 @@ func _DeviceRegistryService_CreateDevice_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_GetDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceRegistryService_GetDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, in)
+		return srv.(DeviceRegistryServiceServer).GetDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_GetDevice_FullMethodName,
+		FullMethod: DeviceRegistryService_GetDevices_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, req.(*GetDeviceRequest))
+		return srv.(DeviceRegistryServiceServer).GetDevices(ctx, req.(*GetDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDeviceGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).CreateDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_CreateDeviceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).CreateDeviceGroup(ctx, req.(*CreateDeviceGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeviceGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDeviceGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDeviceGroups_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDeviceGroups(ctx, req.(*GetDeviceGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -142,8 +211,16 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_CreateDevice_Handler,
 		},
 		{
-			MethodName: "GetDevice",
-			Handler:    _DeviceRegistryService_GetDevice_Handler,
+			MethodName: "GetDevices",
+			Handler:    _DeviceRegistryService_GetDevices_Handler,
+		},
+		{
+			MethodName: "CreateDeviceGroup",
+			Handler:    _DeviceRegistryService_CreateDeviceGroup_Handler,
+		},
+		{
+			MethodName: "GetDeviceGroups",
+			Handler:    _DeviceRegistryService_GetDeviceGroups_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

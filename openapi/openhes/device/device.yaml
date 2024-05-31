@@ -1,0 +1,22 @@
+openapi: "3.1.0"
+info:
+  version: 0.1.0
+  title: Common API models for OpenHES
+  description: Common API models for OpenHES
+  license:
+    name: BSL-1.0
+    url: https://opensource.org/licenses/BSL-1.0
+  contact:
+    name: Cybros Labs team
+    email: info@cybroslabs.com
+    url: https://www.cybroslabs.com/index-en.html
+
+# components:
+#   schemas:
+#     CommunicationUnit:
+#       type: object
+#       description: >
+#         Schema that holds the communication unit.
+#     DeviceSchema:
+#     DeviceGroupSchema:  
+#     #
