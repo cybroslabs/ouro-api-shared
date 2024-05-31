@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -36,25 +37,25 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-	CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error)
+	CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnits(ctx context.Context, in *GetCommunicationUnitRequest, opts ...grpc.CallOption) (*GetCommunicationUnitResponse, error)
 	// The method called by the RestAPI to add a new device to the communication unit. The parameter contains the communication unit specification.
-	AddDeviceToCommunicationUnit(ctx context.Context, in *AddDevicesToCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error)
+	AddDeviceToCommunicationUnit(ctx context.Context, in *AddDevicesToCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the communication unit. The parameter contains the communication unit specification.
-	RemoveDeviceFromCommunicationUnit(ctx context.Context, in *RemoveDevicesFromCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error)
+	RemoveDeviceFromCommunicationUnit(ctx context.Context, in *RemoveDevicesFromCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*DeviceSpec, error)
+	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevices(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-	CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error)
+	CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
 	GetDeviceGroups(ctx context.Context, in *GetDeviceGroupRequest, opts ...grpc.CallOption) (*GetDeviceGroupResponse, error)
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
-	AddDeviceToGroup(ctx context.Context, in *AddDevicesToGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error)
+	AddDeviceToGroup(ctx context.Context, in *AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
-	RemoveDeviceFromGroup(ctx context.Context, in *RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error)
+	RemoveDeviceFromGroup(ctx context.Context, in *RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -65,8 +66,8 @@ func NewDeviceRegistryServiceClient(cc grpc.ClientConnInterface) DeviceRegistryS
 	return &deviceRegistryServiceClient{cc}
 }
 
-func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error) {
-	out := new(CommunicationUnitSpec)
+func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateCommunicationUnit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +84,8 @@ func (c *deviceRegistryServiceClient) GetCommunicationUnits(ctx context.Context,
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) AddDeviceToCommunicationUnit(ctx context.Context, in *AddDevicesToCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error) {
-	out := new(CommunicationUnitSpec)
+func (c *deviceRegistryServiceClient) AddDeviceToCommunicationUnit(ctx context.Context, in *AddDevicesToCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_AddDeviceToCommunicationUnit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +93,8 @@ func (c *deviceRegistryServiceClient) AddDeviceToCommunicationUnit(ctx context.C
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) RemoveDeviceFromCommunicationUnit(ctx context.Context, in *RemoveDevicesFromCommunicationUnitRequest, opts ...grpc.CallOption) (*CommunicationUnitSpec, error) {
-	out := new(CommunicationUnitSpec)
+func (c *deviceRegistryServiceClient) RemoveDeviceFromCommunicationUnit(ctx context.Context, in *RemoveDevicesFromCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_RemoveDeviceFromCommunicationUnit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,8 +102,8 @@ func (c *deviceRegistryServiceClient) RemoveDeviceFromCommunicationUnit(ctx cont
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*DeviceSpec, error) {
-	out := new(DeviceSpec)
+func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDevice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -119,8 +120,8 @@ func (c *deviceRegistryServiceClient) GetDevices(ctx context.Context, in *GetDev
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error) {
-	out := new(DeviceGroupSpec)
+func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDeviceGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -137,8 +138,8 @@ func (c *deviceRegistryServiceClient) GetDeviceGroups(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) AddDeviceToGroup(ctx context.Context, in *AddDevicesToGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error) {
-	out := new(DeviceGroupSpec)
+func (c *deviceRegistryServiceClient) AddDeviceToGroup(ctx context.Context, in *AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_AddDeviceToGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -146,8 +147,8 @@ func (c *deviceRegistryServiceClient) AddDeviceToGroup(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) RemoveDeviceFromGroup(ctx context.Context, in *RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*DeviceGroupSpec, error) {
-	out := new(DeviceGroupSpec)
+func (c *deviceRegistryServiceClient) RemoveDeviceFromGroup(ctx context.Context, in *RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_RemoveDeviceFromGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -160,25 +161,25 @@ func (c *deviceRegistryServiceClient) RemoveDeviceFromGroup(ctx context.Context,
 // for forward compatibility
 type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-	CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*CommunicationUnitSpec, error)
+	CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnits(context.Context, *GetCommunicationUnitRequest) (*GetCommunicationUnitResponse, error)
 	// The method called by the RestAPI to add a new device to the communication unit. The parameter contains the communication unit specification.
-	AddDeviceToCommunicationUnit(context.Context, *AddDevicesToCommunicationUnitRequest) (*CommunicationUnitSpec, error)
+	AddDeviceToCommunicationUnit(context.Context, *AddDevicesToCommunicationUnitRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the communication unit. The parameter contains the communication unit specification.
-	RemoveDeviceFromCommunicationUnit(context.Context, *RemoveDevicesFromCommunicationUnitRequest) (*CommunicationUnitSpec, error)
+	RemoveDeviceFromCommunicationUnit(context.Context, *RemoveDevicesFromCommunicationUnitRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(context.Context, *CreateDeviceRequest) (*DeviceSpec, error)
+	CreateDevice(context.Context, *CreateDeviceRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevices(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-	CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*DeviceGroupSpec, error)
+	CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
 	GetDeviceGroups(context.Context, *GetDeviceGroupRequest) (*GetDeviceGroupResponse, error)
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
-	AddDeviceToGroup(context.Context, *AddDevicesToGroupRequest) (*DeviceGroupSpec, error)
+	AddDeviceToGroup(context.Context, *AddDevicesToGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
-	RemoveDeviceFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*DeviceGroupSpec, error)
+	RemoveDeviceFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -186,34 +187,34 @@ type DeviceRegistryServiceServer interface {
 type UnimplementedDeviceRegistryServiceServer struct {
 }
 
-func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*CommunicationUnitSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnits(context.Context, *GetCommunicationUnitRequest) (*GetCommunicationUnitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnits not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) AddDeviceToCommunicationUnit(context.Context, *AddDevicesToCommunicationUnitRequest) (*CommunicationUnitSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) AddDeviceToCommunicationUnit(context.Context, *AddDevicesToCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDeviceToCommunicationUnit not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceFromCommunicationUnit(context.Context, *RemoveDevicesFromCommunicationUnitRequest) (*CommunicationUnitSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceFromCommunicationUnit(context.Context, *RemoveDevicesFromCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceFromCommunicationUnit not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *CreateDeviceRequest) (*DeviceSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *CreateDeviceRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDevices(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevices not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*DeviceGroupSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroups(context.Context, *GetDeviceGroupRequest) (*GetDeviceGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroups not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) AddDeviceToGroup(context.Context, *AddDevicesToGroupRequest) (*DeviceGroupSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) AddDeviceToGroup(context.Context, *AddDevicesToGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDeviceToGroup not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*DeviceGroupSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceFromGroup not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}

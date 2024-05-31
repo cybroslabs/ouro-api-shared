@@ -10,27 +10,27 @@ import "pbdriver.proto";
 // The Deviceregistry service definition.
 service DeviceRegistryService {
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-    rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc GetCommunicationUnits(GetCommunicationUnitRequest) returns (GetCommunicationUnitResponse);
     // The method called by the RestAPI to add a new device to the communication unit. The parameter contains the communication unit specification.
-    rpc AddDeviceToCommunicationUnit(AddDevicesToCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    rpc AddDeviceToCommunicationUnit(AddDevicesToCommunicationUnitRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the communication unit. The parameter contains the communication unit specification.
-    rpc RemoveDeviceFromCommunicationUnit(RemoveDevicesFromCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    rpc RemoveDeviceFromCommunicationUnit(RemoveDevicesFromCommunicationUnitRequest) returns (google.protobuf.Empty);
     
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
-    rpc CreateDevice(CreateDeviceRequest) returns (DeviceSpec);
+    rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.    
     rpc GetDevices(GetDeviceRequest) returns (GetDeviceResponse);
     
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-    rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (DeviceGroupSpec);
+    rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
     rpc GetDeviceGroups(GetDeviceGroupRequest) returns (GetDeviceGroupResponse);
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
-    rpc AddDeviceToGroup(AddDevicesToGroupRequest) returns (DeviceGroupSpec);
+    rpc AddDeviceToGroup(AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
-    rpc RemoveDeviceFromGroup(RemoveDevicesFromGroupRequest) returns (DeviceGroupSpec);
+    rpc RemoveDeviceFromGroup(RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 }
 
 // RestApi -> DriverRegistry - The communication unit specification.
