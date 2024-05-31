@@ -85,12 +85,15 @@ components:
           description: >
             The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
           type: string
-        attributes:
+        communicationUnitAttributes:
+          $ref: "#/components/schemas/AttributesSchema"
+        deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
       required:
         - id
         - endpoint
-        - attributes
+        - communicationUnitAttributes
+        - deviceAttributes
 
     JobDeviceListSchema:
       type: array
