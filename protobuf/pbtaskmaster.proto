@@ -73,7 +73,7 @@ message JobSpec {
     string job_id = 1 [json_name="id"]; // The job identifier.
     pbdriver.ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
     pbdriver.JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
-    string driver_type = 4 [json_name="t"]; // The driver type.
+    string device_type = 4 [json_name="t"]; // The device (driver) type.
     repeated pbdriver.JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
     optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
 }
@@ -126,7 +126,7 @@ message ActionResult {
 
 // API -> Taskmaster register (install/update) driver request message
 message RegisterDriverRequest {
-    string driver_type = 1; // The driver unique identifier.
+    string device_type = 1; // The driver unique identifier.
     string image = 2; // The docker image of the driver.
     ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
@@ -139,7 +139,7 @@ message GetDriversResponse {
 
 // Sub-message containing driver info
 message DriverInfo {
-    string driver_type = 1; // The driver unique identifier.
+    string device_type = 1; // The driver unique identifier.
     string image = 2; // The docker image of the driver.
     ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
@@ -158,7 +158,7 @@ message ContainerResources {
 
 // API -> Taskmaster request to unregister driver
 message UnregisterDriverRequest {
-    string driver_type = 1; // The driver unique identifier.
+    string device_type = 1; // The driver unique identifier.
 }
 
 // API <-> Taskmaster request/response for system configuration
@@ -179,7 +179,7 @@ message SystemConfigStatus {
 
 // API -> Taskmaster request to get driver templates
 message GetDriverTemplatesRequest {
-    string driver_type = 1; // The driver unique identifier.
+    string device_type = 1; // The driver unique identifier.
 }
 
 // Taskmaster -> Dataproxy job/action progress update message

@@ -21,7 +21,7 @@ components:
         Schema that holds the communication driver details.
       example:
         spec:
-          driverType: "CYBROSLABS_MAGEMETER_DLMS"
+          deviceType: "CYBROSLABS_MAGEMETER_DLMS"
           image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
           resources:
             cpu: 2
@@ -35,17 +35,17 @@ components:
       description: >
         Schema that registers new or updates already registered communication drivers.
       example:
-        driverType: "CYBROSLABS_MAGEMETER_DLMS"
+        deviceType: "CYBROSLABS_MAGEMETER_DLMS"
         image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
         resources:
           cpu: 2
           memory: "512Mi"
       required:
-        - driverType
+        - deviceType
         - image
         - resources
       properties:
-        driverType:
+        deviceType:
           type: string
           pattern: "^[a-zA-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$"
           example: "CYBROSLABS_MAGEMETER_DLMS"
@@ -62,7 +62,7 @@ components:
         Schema that gets the communication driver details.
       example:
         spec:
-          driverType: "CYBROSLABS_MAGEMETER_DLMS"
+          deviceType: "CYBROSLABS_MAGEMETER_DLMS"
           image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
           resources:
             cpu: 2
