@@ -9,14 +9,54 @@ import "pbdriver.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
+    // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+    rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+    rpc GetCommunicationUnits(GetCommunicationUnitRequest) returns (GetCommunicationUnitResponse);
+    // The method called by the RestAPI to add a new device to the communication unit. The parameter contains the communication unit specification.
+    rpc AddDeviceToCommunicationUnit(AddDevicesToCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    // The method called by the RestAPI to remove a device from the communication unit. The parameter contains the communication unit specification.
+    rpc RemoveDeviceFromCommunicationUnit(RemoveDevicesFromCommunicationUnitRequest) returns (CommunicationUnitSpec);
+    
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(CreateDeviceRequest) returns (DeviceSpec);
-    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.    
     rpc GetDevices(GetDeviceRequest) returns (GetDeviceResponse);
+    
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (DeviceGroupSpec);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
     rpc GetDeviceGroups(GetDeviceGroupRequest) returns (GetDeviceGroupResponse);
+    // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+    rpc AddDeviceToGroup(AddDevicesToGroupRequest) returns (DeviceGroupSpec);
+    // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+    rpc RemoveDeviceFromGroup(RemoveDevicesFromGroupRequest) returns (DeviceGroupSpec);
+}
+
+// RestApi -> DriverRegistry - The communication unit specification.
+message CreateCommunicationUnitRequest {
+    CommunicationUnitSpec spec = 1 [json_name = "s"]; // The communication unit specification.
+}
+
+// RestApi -> DriverRegistry - the request message to get the information about the communication unit.
+message GetCommunicationUnitRequest {
+    optional int64 id = 1 [json_name="i"]; // The unique identifier of the communication unit.
+    optional string public_id = 2 [json_name="p"]; // The UUID of the communication unit.
+    optional string name = 3 [json_name="n"]; // The name of the communication unit.
+}
+
+// DriverRegistry -> RestApi - the message holds the information about the communication unit.
+message GetCommunicationUnitResponse {
+    repeated CommunicationUnitSpec spec = 1 [json_name = "s"]; // The communication unit specification.
+}
+
+// Sub-message - the communication unit specification.
+message CommunicationUnitSpec {
+    int64 id = 1 [json_name="i"]; // The unique identifier of the communication unit.
+    string public_id = 2 [json_name="p"]; // The UUID of the communication unit.
+    string name = 3 [json_name="n"]; // The name of the communication unit.
+    map<string,pbdriver.AttributeValue> attributes = 4 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
+    repeated int64 device_id = 5 [json_name="d"]; // The list of device identifiers that are part of the communication unit.
 }
 
 // RestApi -> DriverRegistry - the request message to create a new device.
@@ -38,12 +78,13 @@ message GetDeviceResponse {
     // TODO: Add status
 }
 
+// Sub-message - the device specification.
 message DeviceSpec {
     int64 id = 1 [json_name="i"]; // The unique identifier of the device.
     string public_id = 2 [json_name="p"]; // The UUID of the device.
     string external_id = 3 [json_name="e"]; // The external identifier of the device.
     string name = 4 [json_name="n"]; // The name of the device.
-    repeated pbdriver.AttributeDefinition attributes = 5 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
+    map<string,pbdriver.AttributeValue> attributes = 5 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
 }
 
 // Sub-message that represents the device group.
@@ -70,4 +111,28 @@ message GetDeviceGroupRequest {
 message GetDeviceGroupResponse {
     repeated DeviceGroupSpec spec = 1 [json_name = "s"]; // The device group specification.
     // TODO: Add status
+}
+
+// RestApi -> DriverRegistry - the request message to add a new device to the device group.
+message AddDevicesToGroupRequest {
+    int64 group_id = 1 [json_name="g"]; // The unique identifier of the device group.
+    repeated int64 device_id = 2 [json_name="d"]; // The unique identifier of the device.
+}
+
+// RestApi -> DriverRegistry - the request message to remove a device from the device group.
+message RemoveDevicesFromGroupRequest {
+    int64 group_id = 1 [json_name="g"]; // The unique identifier of the device group.
+    repeated int64 device_id = 2 [json_name="d"]; // The unique identifier of the device.
+}
+
+// RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
+message AddDevicesToCommunicationUnitRequest {
+    int64 communication_unit_id = 1 [json_name="c"]; // The unique identifier of the communication unit.
+    repeated int64 device_id = 2 [json_name="d"]; // The unique identifier of the device.
+}
+
+// RestApi -> DriverRegistry - the request message to remove a device from the communication unit.
+message RemoveDevicesFromCommunicationUnitRequest {
+    int64 communication_unit_id = 1 [json_name="c"]; // The unique identifier of the communication unit.
+    repeated int64 device_id = 2 [json_name="d"]; // The unique identifier of the device.
 }
