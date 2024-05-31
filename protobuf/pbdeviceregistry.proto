@@ -12,19 +12,19 @@ service DeviceRegistryService {
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
     rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-    rpc GetCommunicationUnits(GetCommunicationUnitRequest) returns (GetCommunicationUnitResponse);
+    rpc GetCommunicationUnits(GetCommunicationUnitsRequest) returns (GetCommunicationUnitsResponse);
     
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.    
-    rpc GetDevices(GetDeviceRequest) returns (GetDeviceResponse);
+    rpc GetDevices(GetDevicesRequest) returns (GetDevicesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-    rpc GetDeviceGroups(GetDeviceGroupRequest) returns (GetDeviceGroupResponse);
+    rpc GetDeviceGroups(GetDeviceGroupsRequest) returns (GetDeviceGroupsResponse);
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
     rpc AddDevicesToGroup(AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
@@ -37,14 +37,14 @@ message CreateCommunicationUnitRequest {
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the communication unit.
-message GetCommunicationUnitRequest {
+message GetCommunicationUnitsRequest {
     optional string id = 1 [json_name="i"]; // The UUID of the communication unit.
     optional string external_id = 2 [json_name="e"]; // The external identifier of the communication unit.
     optional string name = 3 [json_name="n"]; // The name of the communication unit.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the communication unit.
-message GetCommunicationUnitResponse {
+message GetCommunicationUnitsResponse {
     repeated CommunicationUnitSpec spec = 1 [json_name = "s"]; // The communication unit specification.
 }
 
@@ -66,14 +66,14 @@ message CreateDeviceRequest {
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the device.
-message GetDeviceRequest {
+message GetDevicesRequest {
     optional string id = 1 [json_name="i"]; // The UUID of the device.
     optional string external_id = 2 [json_name="e"]; // The external identifier of the device.
     optional string name = 3 [json_name="n"]; // The name of the device.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device.
-message GetDeviceResponse {
+message GetDevicesResponse {
     repeated DeviceSpec spec = 1 [json_name = "s"]; // The device specification.
     // TODO: Add status
 }
@@ -101,13 +101,13 @@ message CreateDeviceGroupRequest {
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the device group.
-message GetDeviceGroupRequest {
+message GetDeviceGroupsRequest {
     optional string id = 1 [json_name="i"]; // The UUID of the device group.
     optional string name = 2 [json_name="n"]; // The name of the device group.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
-message GetDeviceGroupResponse {
+message GetDeviceGroupsResponse {
     repeated DeviceGroupSpec spec = 1 [json_name = "s"]; // The device group specification.
     // TODO: Add status
 }
