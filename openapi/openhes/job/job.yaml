@@ -426,7 +426,7 @@ components:
     BulkSpecSchema:
       type: object
       description: >
-        Schema that holds the jobs for single device type.
+        Schema that holds the one or more jobs for single driver type.
       properties:
         id:
           $ref: "#/components/schemas/BulkID"
@@ -441,9 +441,9 @@ components:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
           $ref: "#/components/schemas/JobActionListSchema"
-        deviceType:
+        driverType:
           description: >
-            The device type related to the job. The type must be one of the supported device types.
+            The driver type related to the job. The type must be one of the supported driver types.
           type: string
           minLength: 1
         webhookURL:
@@ -456,7 +456,7 @@ components:
         - id
         - devices
         - actions
-        - deviceType
+        - driverType
 
     BulkStatusEnumSchema:
       type: integer

@@ -96,7 +96,7 @@ type DriverSchema struct {
 
 // DriverSpecSchema Schema that registers new or updates already registered communication drivers.
 type DriverSpecSchema struct {
-	DeviceType string `json:"deviceType"`
+	DriverType string `json:"driverType"`
 	Image      string `json:"image"`
 
 	// Resources Resource values for a container.
@@ -132,14 +132,14 @@ var swaggerSpec = []string{
 	"aYqeQXhPHL7AZwjs1sha7udCIflt2Ofhr+j9Mhl7kctMqovZTbow2Zf5fCX7Ly5idm1u3sfyGxvlN61n",
 	"s91q1vtwZCtLL/f3sVpNF2docquaQhKpkir3UFUBeuWV4KCFlIE4HvYsZDl9kTi7zegY98F3m9p536Cj",
 	"duuKqEobf+EBUkkcC6khQKttKR32ov/WeM8FK/bxL1vElw6mGthJjJvfTgq0iJRkW4B1A5rQqIQUiaIz",
-	"poFlzpu3c6Tk1qCzbyiCsYTvKi4rtcDqP6gwU542cE/Uh4W1vf/pejadj3vX88fb3nBwO1gMZo8341vz",
-	"tkkZWRuaQPi/gmxlolq+YO3sf9uqbPvblRQqIivlGh4GGqQbREx5T11sWlDWlvIGelFqoJfdi7SBNqff",
-	"29rQ7w2UanvYGXxGKsXgny7tEtVRfPMPj4jDs1lc7ccOhUgkgQTbnACC2giomjfw/0/ID9/RCztfSqvq",
-	"MZPL6ytxf+u5f11mvx336nH5vnhY1u6ymctldf+Z9+hrEzJlXksCugal0Q9qQy4uP3rdi2//ePnxT99d",
-	"dcjKDyD8ptb8jnvltpYfvvbSRfzDN98X5+30uCBbfvjXTrYhJm5o6Ou8rMTjjQtOvlDu7zilcO1wLGuq",
-	"232qX1a8l7TsKA9FmidGd3qMgREaYS+9+qFA28QC5zOnn56jMVkppIGYm0Qaro3WsfLa7efn51aVuU15",
-	"AJ9d4K2NZtHBpx3cF4wJjnp3I8REAJFdkqcx8D8PTLZF1Aeu0nzJjLiej91uq3OgW8TALRItIdftjFG1",
-	"d/SmT1Bt0/uEUlPT1rxOK2M10klMsYe/bVntMdEbhT2eRNHrvwMAAP//eOcnXEQaAAA=",
+	"poFlzpu3c6Tk1qCzbyiCsYTvKi4rtcDqP6gwU55p4FKyhbW9/+l6Np2Pe9fzx9vecHA7WAxmjzfjW/O2",
+	"SRlZG5pA+L+CbGWiWr5g7ex/28pq+9uVFCoiK+UaHgYapBtETHlPXWxaUNaW8gZ6UWqgl92LtIE2p9/b",
+	"2tDvDZRqe9gZfEYqxeCfLu0S1VF88w+PiMOzWVztxw6FSCSBBNucAILaCBxC//8K+cE7esnOl9Kqeszk",
+	"8vpK3N967l+X2W/HvXpcvi8elrW7bOZyWd1/5j362oRMmdeSgK5BafSD2pCLy49e9+LbP15+/NN3Vx2y",
+	"8gMIv6k1v+Neua3lh6+9dBH/8M33xXk7PS7Ilh/+tZNtiIkbGvo6LyvxeOOCky+U+ztOKVw7HMua6naf",
+	"6pcV7yUtO8pDkeaJ0Z0eY2CERthLr34o0DaxwPnM6afnaExWCmkg5iaRhmujday8dvv5+blVZW5THsBn",
+	"F3hro1l08GkH9wVjgqPe3QgxEUBkl+RpDPzPA5NtEfWBqzRfMiOu52O32+oc6BYxcItES8h1O2NU7R29",
+	"6RNU2/Q+odTUtDWv08pYjXQSU+zhb1tWe0z0RmGPJ1H0+u8AAAD//28kAMNEGgAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

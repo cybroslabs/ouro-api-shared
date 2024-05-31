@@ -627,7 +627,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	result := &BulkSpecSchema{
 		Id:            id,
 		CorrelationID: corr_id,
-		DeviceType:    spec.DeviceType,
+		DriverType:    spec.DriverType,
 		Settings:      settings,
 		Devices:       devices,
 		Actions:       *actions,
@@ -717,7 +717,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	return &pbdataproxy.BulkSpec{
 		BulkId:        bulk_id,
 		CorrelationId: corr_id,
-		DeviceType:    spec.DeviceType,
+		DriverType:    spec.DriverType,
 		Settings:      settings,
 		Devices:       devices,
 		JobActions:    actions,

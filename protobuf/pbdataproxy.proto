@@ -32,7 +32,7 @@ message BulkSpec {
     string bulk_id = 1 [json_name="i"]; // The bulk identifier.
     string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
     string org_id = 3 [json_name="o"]; // The organization identifier.
-    string device_type = 4 [json_name="t"]; // The device (driver) type.
+    string driver_type = 4 [json_name="t"]; // The device (driver) type.
     repeated pbtaskmaster.JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
     pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
     repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
