@@ -58,16 +58,25 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 	}
 
 	if tcp := communicationUnit.GetTcp(); tcp != nil {
-		result.ConnectionInfo.FromConnectionTypeTcpSchema(job.ConnectionTypeTcpSchema{
+		err := result.ConnectionInfo.FromConnectionTypeTcpSchema(job.ConnectionTypeTcpSchema{
 			Host: tcp.Host,
 			Port: int(tcp.Port),
 		})
+		if err != nil {
+			return nil, err
+		}
 	} else if phone := communicationUnit.GetPhone(); phone != nil {
-		result.ConnectionInfo.FromConnectionTypePhoneSchema(job.ConnectionTypePhoneSchema{
+		err := result.ConnectionInfo.FromConnectionTypePhoneSchema(job.ConnectionTypePhoneSchema{
 			Number: phone.Number,
 		})
+		if err != nil {
+			return nil, err
+		}
 	} else if serial := communicationUnit.GetSerial(); serial != nil {
-		result.ConnectionInfo.FromConnectionTypeSerialSchema(job.ConnectionTypeSerialSchema{})
+		err := result.ConnectionInfo.FromConnectionTypeSerialSchema(job.ConnectionTypeSerialSchema{})
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return result, nil

@@ -587,20 +587,29 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		if ci := device.ConnectionInfo; ci != nil {
 			if tcp := ci.GetTcp(); tcp != nil {
 				ci_struct := &ConnectionTypeSchema{}
-				ci_struct.FromConnectionTypeTcpSchema(ConnectionTypeTcpSchema{
+				err := ci_struct.FromConnectionTypeTcpSchema(ConnectionTypeTcpSchema{
 					Host: tcp.Host,
 					Port: int(tcp.Port),
 				})
+				if err != nil {
+					return nil, err
+				}
 				target.ConnectionInfo = ci_struct
 			} else if phone := ci.GetPhone(); phone != nil {
 				ci_struct := &ConnectionTypeSchema{}
-				ci_struct.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
+				err := ci_struct.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
 					Number: phone.Number,
 				})
+				if err != nil {
+					return nil, err
+				}
 				target.ConnectionInfo = ci_struct
 			} else if serial := ci.GetSerial(); serial != nil {
 				ci_struct := &ConnectionTypeSchema{}
-				ci_struct.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
+				err := ci_struct.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
+				if err != nil {
+					return nil, err
+				}
 				target.ConnectionInfo = ci_struct
 			}
 		}
