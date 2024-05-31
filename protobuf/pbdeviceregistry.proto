@@ -53,10 +53,14 @@ message CommunicationUnitSpec {
     string id = 1 [json_name="i"]; // The UUID of the communication unit.
     optional string external_id = 2 [json_name="e"]; // The external identifier of the communication unit.
     string name = 3 [json_name="n"]; // The name of the communication unit.
-    oneof connection_type {
-        pbdriver.ConnectionTypeTcp tcp = 4 [json_name="t"]; // The TCP connection type.
-        pbdriver.ConnectionTypePhone phone = 5 [json_name="p"]; // The phone connection type.
-        pbdriver.ConnectionTypeSerial serial = 6 [json_name="s"]; // The serial connection type.
+    ConnectionType connection_type = 4 [json_name="c"]; // The connection type.
+}
+
+message ConnectionType {
+    oneof type {
+        pbdriver.ConnectionTypeTcp tcp = 1 [json_name="t"]; // The TCP connection type.
+        pbdriver.ConnectionTypePhone phone = 2 [json_name="p"]; // The phone connection type.
+        pbdriver.ConnectionTypeSerial serial = 3 [json_name="s"]; // The serial connection type.
     }
 }
 
@@ -83,8 +87,13 @@ message DeviceSpec {
     string id = 1 [json_name="i"]; // The UUID of the device.
     optional string external_id = 2 [json_name="e"]; // The external identifier of the device.
     string name = 3 [json_name="n"]; // The name of the device.
-    map<string,pbdriver.AttributeValue> attributes = 4 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
+    KeyValue attributes = 4 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
     repeated string communication_unit_id = 5 [json_name="c"]; // The list of communication unit identifiers that allows to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
+}
+
+// Sub-message - holds the key-value pair(s).
+message KeyValue {
+    map<string,pbdriver.AttributeValue> kv = 1 [json_name="o"]; // The key-value pair(s) representation.
 }
 
 // Sub-message that represents the device group.

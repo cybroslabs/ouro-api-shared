@@ -22,24 +22,24 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 
 	ci := communicationUnit.ConnectionInfo
 	if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
-		ci := &pbdeviceregistry.CommunicationUnitSpec_Tcp{
+		ci := &pbdeviceregistry.ConnectionType_Tcp{
 			Tcp: &pbdriver.ConnectionTypeTcp{
 				Host: tcp.Host,
 			},
 		}
-		result.ConnectionType = ci
+		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
 	} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
-		ci := &pbdeviceregistry.CommunicationUnitSpec_Phone{
+		ci := &pbdeviceregistry.ConnectionType_Phone{
 			Phone: &pbdriver.ConnectionTypePhone{
 				Number: phone.Number,
 			},
 		}
-		result.ConnectionType = ci
+		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
 	} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
-		ci := &pbdeviceregistry.CommunicationUnitSpec_Serial{
+		ci := &pbdeviceregistry.ConnectionType_Serial{
 			Serial: &pbdriver.ConnectionTypeSerial{},
 		}
-		result.ConnectionType = ci
+		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
 	}
 
 	return result, nil
@@ -57,25 +57,27 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 		Name:       communicationUnit.Name,
 	}
 
-	if tcp := communicationUnit.GetTcp(); tcp != nil {
-		err := result.ConnectionInfo.FromConnectionTypeTcpSchema(job.ConnectionTypeTcpSchema{
-			Host: tcp.Host,
-			Port: int(tcp.Port),
-		})
-		if err != nil {
-			return nil, err
-		}
-	} else if phone := communicationUnit.GetPhone(); phone != nil {
-		err := result.ConnectionInfo.FromConnectionTypePhoneSchema(job.ConnectionTypePhoneSchema{
-			Number: phone.Number,
-		})
-		if err != nil {
-			return nil, err
-		}
-	} else if serial := communicationUnit.GetSerial(); serial != nil {
-		err := result.ConnectionInfo.FromConnectionTypeSerialSchema(job.ConnectionTypeSerialSchema{})
-		if err != nil {
-			return nil, err
+	if ct := communicationUnit.ConnectionType; ct != nil {
+		if tcp := ct.GetTcp(); tcp != nil {
+			err := result.ConnectionInfo.FromConnectionTypeTcpSchema(job.ConnectionTypeTcpSchema{
+				Host: tcp.Host,
+				Port: int(tcp.Port),
+			})
+			if err != nil {
+				return nil, err
+			}
+		} else if phone := ct.GetPhone(); phone != nil {
+			err := result.ConnectionInfo.FromConnectionTypePhoneSchema(job.ConnectionTypePhoneSchema{
+				Number: phone.Number,
+			})
+			if err != nil {
+				return nil, err
+			}
+		} else if serial := ct.GetSerial(); serial != nil {
+			err := result.ConnectionInfo.FromConnectionTypeSerialSchema(job.ConnectionTypeSerialSchema{})
+			if err != nil {
+				return nil, err
+			}
 		}
 	}
 
@@ -99,7 +101,7 @@ func R2GDevice(device *DeviceSchema) (*pbdeviceregistry.DeviceSpec, error) {
 		Id:                  device.Id.String(),
 		ExternalId:          device.ExternalID,
 		Name:                device.Name,
-		Attributes:          attributes,
+		Attributes:          &pbdeviceregistry.KeyValue{Kv: attributes},
 		CommunicationUnitId: make([]string, cu_cnt),
 	}
 
@@ -119,11 +121,18 @@ func G2RDevice(device *pbdeviceregistry.DeviceSpec) (*DeviceSchema, error) {
 
 	cu_cnt := len(device.CommunicationUnitId)
 
+	var attrs attribute.Attributes
+	if da := device.Attributes; da != nil {
+		attrs = attribute.G2RAttributes(da.Kv)
+	} else {
+		attrs = nil
+	}
+
 	result := &DeviceSchema{
 		Id:                  uuid.MustParse(device.Id),
 		ExternalID:          device.ExternalId,
 		Name:                device.Name,
-		Attributes:          attribute.G2RAttributes(device.Attributes),
+		Attributes:          attrs,
 		CommunicationUnitID: make([]uuid.UUID, cu_cnt),
 	}
 
