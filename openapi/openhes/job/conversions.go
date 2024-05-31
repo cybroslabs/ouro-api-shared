@@ -30,7 +30,7 @@ const (
 	DefaultDeferStart  = uint64(0)
 )
 
-// Converts the job action list - gRPC to Rest API
+// Converts the job action list - Rest API to gRPC
 func R2GJobActions(actions *JobActionListSchema) ([]*pbdriver.JobAction, error) {
 	if actions == nil {
 		return nil, nil
@@ -47,7 +47,7 @@ func R2GJobActions(actions *JobActionListSchema) ([]*pbdriver.JobAction, error) 
 	return result, nil
 }
 
-// Converts the job action list - Rest API to gRPC
+// Converts the job action list - gRPC to Rest API
 func G2RJobActions(actions []*pbdriver.JobAction) (*JobActionListSchema, error) {
 	if actions == nil {
 		return nil, nil

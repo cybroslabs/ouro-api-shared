@@ -11,12 +11,92 @@ info:
     email: info@cybroslabs.com
     url: https://www.cybroslabs.com/index-en.html
 
-# components:
-#   schemas:
-#     CommunicationUnit:
-#       type: object
-#       description: >
-#         Schema that holds the communication unit.
-#     DeviceSchema:
-#     DeviceGroupSchema:  
-#     #
+components:
+  schemas:
+    CommunicationUnitID:
+      type: string
+      description: >
+        The ID of the communication unit. The ID must be unique across the OpenHES components.
+      format: uuid
+
+    DeviceID:
+      type: string
+      description: >
+        The ID of the device. The ID must be unique across the OpenHES components.
+      format: uuid
+
+    DeviceGroupID:
+      type: string
+      description: >
+        The ID of the device group. The ID must be unique across the OpenHES components.
+      format: uuid
+
+    CommunicationUnitSchema:
+      type: object
+      description: >
+        Schema that holds the communication unit info.
+      properties:
+        id:
+          $ref: "#/components/schemas/CommunicationUnitID"
+        externalID:
+          type: string
+          description: >
+            The public ID of the device.         
+          nullable: true
+        name:
+          type: string
+          description: >
+            The name of the communication unit.
+          minLength: 1
+        attributes:
+          $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
+      required:
+        - id
+        - name
+        - attributes
+
+    DeviceSchema:
+      type: object
+      description: >
+        Schema that holds the device info.
+      properties:
+        id:
+          $ref: "#/components/schemas/DeviceID"
+        externalID:
+          type: string
+          description: >
+            The public ID of the device.         
+          nullable: true
+        name:
+          type: string
+          description: >
+            The name of the device.
+          minLength: 1
+        attributes:
+          $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
+      required:
+        - id
+        - name
+        - attributes    
+
+    DeviceGroupSchema:
+      type: object
+      description: >
+        Schema that holds the device group info.
+      properties:
+        id:
+          $ref: "#/components/schemas/DeviceGroupID"
+        externalID:
+          type: string
+          description: >
+            The public ID of the device.         
+          nullable: true
+        name:
+          type: string
+          description: >
+            The name of the device group.
+          minLength: 1
+      required:
+        - id
+        - name
+        

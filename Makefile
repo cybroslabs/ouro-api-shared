@@ -22,6 +22,9 @@ gen-go:
 
 .PHONY: generate
 generate:
+	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/rfc/rfc7807/rfc7807.go -package rfc7807 \
+		./openapi/rfc/rfc7807/rfc7807.yaml
+	
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/k8s/containers/containers.go -package containers \
 		./openapi/k8s/containers/containers.yaml
 
@@ -36,5 +39,6 @@ generate:
 		-import-mapping '"../../openhes/driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata","../../k8s/containers/containers.yaml":"github.com/cybroslabs/hes-2-apis/openapi/k8s/containers","../job/job.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"' \
 		./openapi/openhes/driver/driver.yaml
 
-	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/rfc/rfc7807/rfc7807.go -package rfc7807 \
-		./openapi/rfc/rfc7807/rfc7807.yaml
+	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/device/device.go -package device \
+		-import-mapping '"../job/job.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"' \
+		./openapi/openhes/device/device.yaml

@@ -367,7 +367,7 @@ type JobDeviceSchema struct {
 	Endpoint string `json:"endpoint"`
 
 	// ExternalID The public ID of the device.
-	ExternalID *string `json:"externalID,omitempty"`
+	ExternalID *string `json:"externalID"`
 
 	// Id The ID of the job. The ID must be unique across the OpenHES components.
 	Id JobID `json:"id"`
@@ -961,17 +961,17 @@ var swaggerSpec = []string{
 	"HCmOxZlTHLI1xbE4U0S3+B1EdPJYRLd46YhuccaITrZHdIfn3ItAkhdPnweVHfPLNxKVQsTG4NZV4JWD",
 	"25OCSjvXCUFlaUBNmBTHKXOFiCtG1fWzbgbt+p5HA1iQcNp4vexa8wIBM2MPDSABFpiApvhViouTCvGT",
 	"Aj9kPOLbnQ3rcoKuUJswNJohEgQCpPQQQSGXipEY9HMScgauZBuZAuKYRkQgGjQUKcCD1loSNZX+Juk6",
-	"on6h6jdbT/ZXT7Y92PiOr5sijRxg76j4a6TZEJcMdbzZ58HRj8jKYfdHvt7HmhPzgcaE28DVyzp0DZ6f",
-	"H/wWuHl/vbweZxGvZsLnaRS4gLeQMwpS0LuYoA1RJLKzlmNgva5C3GsI18a7VlQt1fRfuJC+WuPctZLE",
-	"jSpDWVdwAHGiaio7Jm4zbbJKXWMdHdA5ybrqkZg80Fhj/fatsYP2x+u68o8ANqBd4brCxoE56/c1YGgN",
-	"Gy7czUqmMxsqpMpriQtrrSs/yRn727ffvHpV4O1VHW+2QljWFreWClu1NrrOvc7XLTF5GKSCWIKH9H+w",
-	"jOrNYSvRCyi0C6G81r++KS319V/q1poIygVVuyorM9dyBNsDobfhKkCJnRFud5mbMZnMW5f89m0LEw2V",
-	"PbZiSxvM08rpHUPPrKY3Hxl8zmJ6R7C1lj7rd1hKXzL1lUr6rPXLFNLn0nhOHb2TS30CuuWQPjw7H70T",
-	"C++dg5MNKp5uJXv8tGp3e2rLY0e6LKdipcmlE3Y8Xey5IlTjE7gcd3ZT84RLltJdwGPjunK/+KQPCjIX",
-	"0o75zAB3+5ygyWg0fFHgsslVd033p2zDrYIyRXyDAMSERsZ+bPjf918E9nwe6zWQWNPom/doTNYSKSC6",
-	"JRV6VKhUIq8uL+/v73vlwZeUBaA3ay9UcaSXG1EfmDQbw5F9txhfvO69qlDjCTDJU+FDj4vtpRsoL7P+",
-	"2rZSFcG+CvJ6NkIxDyCyH/c5Xwh7+A6EtMJ91XND3QeO+Ap/3bOzJ0SFEl9pgT3+PwAA//+HdYTqh0EA",
-	"AA==",
+	"on6h6jdbT/bXraK3Pfj4jq+bIo8ccO+oOtRItyFOGer4s8+Dox+VlcPwj3y9jz0n5oONCbeBrJd16BpM",
+	"Pz8YLnDz/np5Pc4iYM2Ez9MocAFwIYcUpKB3NUEbokhkZy3HxHpdhTjYEK6Nf62oWqrrv3BhfbXmuWtl",
+	"iRtVhrKuAAHiRNVUekzc5tpklbvGWjqgc5J11SQxeaCxxvrtW2MX7Y/XdeUgAWxAu8Z1hY4Dc/bva8LQ",
+	"GjZcuJuWTGc2VEiV1xYX1lpXjpIz9rdvv3n1qsDbqzrebMWwrC12LRW6am10nXudr19i8jBIBbEED+n/",
+	"YBnVm8NWphdQaBdCea1/fVNa6uu/1K01EZQLqnZVVmau5Qi2B0Jvw1WAEjsj3O4yN2Mymbcu+e3bFiYa",
+	"Kn1sBZc2mKeV1zuGnlldbz46+JzF9Y5ga2191u+wtL5k6iuV9Vnrlymsz6XxnLp6J5f6hHTLIX14dj56",
+	"JxbiO4cnG1Q83Ur2+GnV7/bUlseOdFlOzUqTWyfsePrYc0WpxidwOe/s5uYJly6lu4HHxnXlfvJJHxhk",
+	"LqUd85kB7vZ5QZPRaPjCwGWXq+6a7k/ZhlsFZYr4BgGICY2M/djwv++/EOz5PNZrILGm0Tfv0ZisJVJA",
+	"dEsq9KhQqUReXV7e39/3yoMvKQtAb9ZeqOJILzeiPjBpNoYj+24xvnjde1WhxhNgkqfChx4X20s3UF5m",
+	"/bVtpSqCfVXk9WyEYh5AZD/2c74Q9vAdCGmF+6rnhroPHvEV/rpnZ0+ICiW+0gJ7/H8AAAD//ykH+/6X",
+	"QQAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

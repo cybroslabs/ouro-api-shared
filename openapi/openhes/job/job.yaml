@@ -81,6 +81,7 @@ components:
           type: string
           description: >
             The public ID of the device.         
+          nullable: true
         endpoint:
           description: >
             The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
