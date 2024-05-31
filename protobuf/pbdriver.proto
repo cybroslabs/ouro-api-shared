@@ -107,9 +107,30 @@ message StartJobRequest {
 
 // Sub-message containing connection info
 message ConnectionInfo {
-    string hostname = 1 [json_name="h"]; // The meter IP and or homename. The hostname shall be resolvable using DNS and the IP address shall be reachable.
-    map<string,AttributeValue> communication_unit_attributes = 2 [json_name="cua"]; // The connection attributes related to the communication unit.
-    map<string,AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
+    map<string,AttributeValue> device_attributes = 2 [json_name="da"]; // The connection attributes to the device.
+    oneof connection {
+        ConnectionTypeTcp tcp = 3 [json_name="t"]; // The TCP connection type.
+        ConnectionTypePhone phone = 4 [json_name="p"]; // The phone connection type.
+        ConnectionTypeSerial serial = 5 [json_name="s"]; // The serial connection type.
+    }
+}
+
+// Sub-message containing connection info for TCP connection type
+message ConnectionTypeTcp {
+    string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
+    uint32 port = 2 [json_name="p"]; // The TCP port number of the device to connect to.
+    optional int32 timeout = 3 [json_name="to"]; // The timeout in seconds for the connection.
+}
+
+// Sub-message containing connection info for TCP connection type
+message ConnectionTypePhone {
+    string number = 1 [json_name="h"]; // The phone number of the device to connect to.
+    // TODO: Add phone (via modem) connection attributes
+}
+
+// Sub-message containing connection info for TCP connection type
+message ConnectionTypeSerial {
+    // TODO: Add serial connection attributes
 }
 
 // Job priorities
