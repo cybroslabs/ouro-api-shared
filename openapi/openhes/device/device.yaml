@@ -48,12 +48,19 @@ components:
           description: >
             The name of the communication unit.
           minLength: 1
-        attributes:
-          $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
+        connectionInfo:
+          $ref: "../job/job.yaml#/components/schemas/ConnectionTypeSchema"
       required:
         - id
         - name
-        - attributes
+        - connectionInfo
+
+    CommunicationUnitListID:
+      type: array
+      description: >
+        The list of communication unit IDs.
+      items:
+        $ref: "#/components/schemas/CommunicationUnitID"
 
     DeviceSchema:
       type: object
@@ -72,11 +79,14 @@ components:
           description: >
             The name of the device.
           minLength: 1
+        communicationUnitID:
+          $ref: "#/components/schemas/CommunicationUnitListID"          
         attributes:
           $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
       required:
         - id
         - name
+        - communicationUnitID
         - attributes    
 
     DeviceGroupSchema:

@@ -110,8 +110,8 @@ type BulkSpecSchema struct {
 	// CorrelationID The correlation ID of the bulk. The correlation ID is used to group the bulks.
 	CorrelationID *string `json:"correlationID"`
 
-	// DeviceDriverType The device type related to the job. The type must be one of the supported device types.
-	DeviceDriverType string `json:"deviceDriverType"`
+	// DeviceType The device type related to the job. The type must be one of the supported device types.
+	DeviceType string `json:"deviceType"`
 
 	// Devices List of devices to be queued.
 	Devices JobDeviceListSchema `json:"devices"`
@@ -139,6 +139,32 @@ type BulkStatusSchema struct {
 
 	// Status The status of the bulk.
 	Status BulkStatusEnumSchema `json:"status"`
+}
+
+// ConnectionTypePhoneSchema Schema that holds the phone connection info.
+type ConnectionTypePhoneSchema struct {
+	// Number The phone number of the device.
+	Number string `json:"number"`
+}
+
+// ConnectionTypeSchema defines model for ConnectionTypeSchema.
+type ConnectionTypeSchema struct {
+	union json.RawMessage
+}
+
+// ConnectionTypeSerialSchema Schema that holds the phone connection info.
+type ConnectionTypeSerialSchema struct {
+	// Number The phone number of the device.
+	Number string `json:"number"`
+}
+
+// ConnectionTypeTcpSchema Schema that holds the TCP connection info.
+type ConnectionTypeTcpSchema struct {
+	// Host The IP address or hostname of the device.
+	Host string `json:"host"`
+
+	// Port The port number of the device.
+	Port int `json:"port"`
 }
 
 // JobActionCommonSchema Common fields shared for all actions.
@@ -357,14 +383,10 @@ type JobDeviceListSchema = []JobDeviceSchema
 
 // JobDeviceSchema defines model for JobDeviceSchema.
 type JobDeviceSchema struct {
-	// CommunicationUnitAttributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	CommunicationUnitAttributes AttributesSchema `json:"communicationUnitAttributes"`
+	ConnectionInfo *ConnectionTypeSchema `json:"connectionInfo,omitempty"`
 
 	// DeviceAttributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	DeviceAttributes AttributesSchema `json:"deviceAttributes"`
-
-	// Endpoint The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
-	Endpoint string `json:"endpoint"`
 
 	// ExternalID The public ID of the device.
 	ExternalID *string `json:"externalID"`
@@ -425,6 +447,94 @@ type JobStatusSchema struct {
 
 	// Status The status of the job.
 	Status JobStatusCodeEnumSchema `json:"status"`
+}
+
+// AsConnectionTypeTcpSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeTcpSchema
+func (t ConnectionTypeSchema) AsConnectionTypeTcpSchema() (ConnectionTypeTcpSchema, error) {
+	var body ConnectionTypeTcpSchema
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromConnectionTypeTcpSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeTcpSchema
+func (t *ConnectionTypeSchema) FromConnectionTypeTcpSchema(v ConnectionTypeTcpSchema) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeConnectionTypeTcpSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeTcpSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypeTcpSchema(v ConnectionTypeTcpSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsConnectionTypePhoneSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypePhoneSchema
+func (t ConnectionTypeSchema) AsConnectionTypePhoneSchema() (ConnectionTypePhoneSchema, error) {
+	var body ConnectionTypePhoneSchema
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromConnectionTypePhoneSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypePhoneSchema
+func (t *ConnectionTypeSchema) FromConnectionTypePhoneSchema(v ConnectionTypePhoneSchema) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeConnectionTypePhoneSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypePhoneSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypePhoneSchema(v ConnectionTypePhoneSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsConnectionTypeSerialSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeSerialSchema
+func (t ConnectionTypeSchema) AsConnectionTypeSerialSchema() (ConnectionTypeSerialSchema, error) {
+	var body ConnectionTypeSerialSchema
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromConnectionTypeSerialSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeSerialSchema
+func (t *ConnectionTypeSchema) FromConnectionTypeSerialSchema(v ConnectionTypeSerialSchema) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeConnectionTypeSerialSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeSerialSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypeSerialSchema(v ConnectionTypeSerialSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConnectionTypeSchema) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConnectionTypeSchema) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
 }
 
 // AsExternalRef0DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef0.DeviceRegistersDataSchema
@@ -918,60 +1028,61 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"QQAA",
+	"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",
+	"9II9/C8AAP//BVY+LqREAAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

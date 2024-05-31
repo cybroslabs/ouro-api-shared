@@ -72,6 +72,57 @@ components:
         - status
         - code
 
+    ConnectionTypeTcpSchema:
+      type: object
+      description: >
+        Schema that holds the TCP connection info.
+      properties:
+        host:
+          type: string
+          description: >
+            The IP address or hostname of the device.
+        port:
+          type: integer
+          description: >
+            The port number of the device.
+          minimum: 1
+          maximum: 65535
+      required:
+        - host
+        - port
+
+    ConnectionTypePhoneSchema:
+      type: object
+      description: >
+        Schema that holds the phone connection info.
+      properties:
+        number:
+          type: string
+          description: >
+            The phone number of the device.
+          minLength: 1
+      required:
+        - number
+
+    ConnectionTypeSerialSchema:
+      type: object
+      description: >
+        Schema that holds the phone connection info.
+      properties:
+        number:
+          type: string
+          description: >
+            The phone number of the device.
+          minLength: 1
+      required:
+        - number
+
+    ConnectionTypeSchema:
+      oneOf:
+        - $ref: "#/components/schemas/ConnectionTypeTcpSchema"
+        - $ref: "#/components/schemas/ConnectionTypePhoneSchema"
+        - $ref: "#/components/schemas/ConnectionTypeSerialSchema"
+
     JobDeviceSchema:
       type: object
       properties:
@@ -82,17 +133,12 @@ components:
           description: >
             The public ID of the device.         
           nullable: true
-        endpoint:
-          description: >
-            The endpoint of the device. Depending on the device driver supported technology, the endpoint can be an IP address, a hostname, a phone number or similar id.
-          type: string
-        communicationUnitAttributes:
-          $ref: "#/components/schemas/AttributesSchema"
+        connectionInfo:
+          $ref: "#/components/schemas/ConnectionTypeSchema"
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
       required:
         - id
-        - endpoint
         - communicationUnitAttributes
         - deviceAttributes
 
@@ -395,7 +441,7 @@ components:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
           $ref: "#/components/schemas/JobActionListSchema"
-        deviceDriverType:
+        deviceType:
           description: >
             The device type related to the job. The type must be one of the supported device types.
           type: string
@@ -410,7 +456,7 @@ components:
         - id
         - devices
         - actions
-        - deviceDriverType
+        - deviceType
 
     BulkStatusEnumSchema:
       type: integer

@@ -582,9 +582,28 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 			return nil, err
 		}
 		target.ExternalID = &device.ExternalId
-		target.CommunicationUnitAttributes = attribute.G2RAttributes(device.ConnectionInfo.CommunicationUnitAttributes)
 		target.DeviceAttributes = attribute.G2RAttributes(device.ConnectionInfo.DeviceAttributes)
-		target.Endpoint = device.ConnectionInfo.Hostname
+
+		if ci := device.ConnectionInfo; ci != nil {
+			if tcp := ci.GetTcp(); tcp != nil {
+				ci_struct := &ConnectionTypeSchema{}
+				ci_struct.FromConnectionTypeTcpSchema(ConnectionTypeTcpSchema{
+					Host: tcp.Host,
+					Port: int(tcp.Port),
+				})
+				target.ConnectionInfo = ci_struct
+			} else if phone := ci.GetPhone(); phone != nil {
+				ci_struct := &ConnectionTypeSchema{}
+				ci_struct.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
+					Number: phone.Number,
+				})
+				target.ConnectionInfo = ci_struct
+			} else if serial := ci.GetSerial(); serial != nil {
+				ci_struct := &ConnectionTypeSchema{}
+				ci_struct.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
+				target.ConnectionInfo = ci_struct
+			}
+		}
 	}
 
 	id, err := uuid.Parse(spec.BulkId)
@@ -603,13 +622,13 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	}
 
 	result := &BulkSpecSchema{
-		Id:               id,
-		CorrelationID:    corr_id,
-		DeviceDriverType: spec.DeviceDriverType,
-		Settings:         settings,
-		Devices:          devices,
-		Actions:          *actions,
-		WebhookURL:       spec.WebhookUrl,
+		Id:            id,
+		CorrelationID: corr_id,
+		DeviceType:    spec.DeviceType,
+		Settings:      settings,
+		Devices:       devices,
+		Actions:       *actions,
+		WebhookURL:    spec.WebhookUrl,
 	}
 
 	return result, nil
@@ -639,11 +658,6 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 
 	devices := make([]*pbtaskmaster.JobDevice, len(spec.Devices))
 	for i, device := range spec.Devices {
-		communication_unit_attributes, err := attribute.R2GAttributes(device.CommunicationUnitAttributes)
-		if err != nil {
-			return nil, err
-		}
-
 		device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
 		if err != nil {
 			return nil, err
@@ -654,14 +668,35 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 			external_id = *device.ExternalID
 		}
 
+		ci_struct := &pbdriver.ConnectionInfo{
+			DeviceAttributes: device_attributes,
+		}
+
+		if ci := device.ConnectionInfo; ci != nil {
+			if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_Tcp{
+					Tcp: &pbdriver.ConnectionTypeTcp{
+						Host: tcp.Host,
+						Port: uint32(tcp.Port),
+					},
+				}
+			} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_Phone{
+					Phone: &pbdriver.ConnectionTypePhone{
+						Number: phone.Number,
+					},
+				}
+			} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_Serial{
+					Serial: &pbdriver.ConnectionTypeSerial{},
+				}
+			}
+		}
+
 		devices[i] = &pbtaskmaster.JobDevice{
-			Id: device.Id.String(),
-			ConnectionInfo: &pbdriver.ConnectionInfo{
-				Hostname:                    device.Endpoint,
-				DeviceAttributes:            device_attributes,
-				CommunicationUnitAttributes: communication_unit_attributes,
-			},
-			ExternalId: external_id,
+			Id:             device.Id.String(),
+			ConnectionInfo: ci_struct,
+			ExternalId:     external_id,
 		}
 	}
 
@@ -678,13 +713,13 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	}
 
 	return &pbdataproxy.BulkSpec{
-		BulkId:           bulk_id,
-		CorrelationId:    corr_id,
-		DeviceDriverType: spec.DeviceDriverType,
-		Settings:         settings,
-		Devices:          devices,
-		JobActions:       actions,
-		WebhookUrl:       webhook_url,
+		BulkId:        bulk_id,
+		CorrelationId: corr_id,
+		DeviceType:    spec.DeviceType,
+		Settings:      settings,
+		Devices:       devices,
+		JobActions:    actions,
+		WebhookUrl:    webhook_url,
 	}, nil
 }
 
