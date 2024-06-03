@@ -182,8 +182,8 @@ type JobActionFwUpdateSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id           ActionID               `json:"id"`
+	TypeFwUpdate map[string]interface{} `json:"type_fw_update"`
 }
 
 // JobActionGetClockSchema defines model for JobActionGetClockSchema.
@@ -192,8 +192,8 @@ type JobActionGetClockSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id           ActionID               `json:"id"`
+	TypeGetClock map[string]interface{} `json:"type_get_clock"`
 }
 
 // JobActionGetDisconnectorStateSchema defines model for JobActionGetDisconnectorStateSchema.
@@ -202,8 +202,8 @@ type JobActionGetDisconnectorStateSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                       ActionID               `json:"id"`
+	TypeGetDisconnectorState map[string]interface{} `json:"type_get_disconnector_state"`
 }
 
 // JobActionGetEventsSchema defines model for JobActionGetEventsSchema.
@@ -212,8 +212,8 @@ type JobActionGetEventsSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id            ActionID               `json:"id"`
+	TypeGetEvents map[string]interface{} `json:"type_get_events"`
 }
 
 // JobActionGetIrregularProfileSchema defines model for JobActionGetIrregularProfileSchema.
@@ -222,8 +222,8 @@ type JobActionGetIrregularProfileSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                      ActionID               `json:"id"`
+	TypeGetIrregularProfile map[string]interface{} `json:"type_get_irregular_profile"`
 }
 
 // JobActionGetLimiterSchema defines model for JobActionGetLimiterSchema.
@@ -232,8 +232,8 @@ type JobActionGetLimiterSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id             ActionID               `json:"id"`
+	TypeGetLimiter map[string]interface{} `json:"type_get_limiter"`
 }
 
 // JobActionGetPeriodicalProfileSchema defines model for JobActionGetPeriodicalProfileSchema.
@@ -248,8 +248,8 @@ type JobActionGetPeriodicalProfileSchema struct {
 	ParamTfrom *time.Time `json:"param_tfrom,omitempty"`
 
 	// ParamTto The end time of the profile data.
-	ParamTto *time.Time `json:"param_tto,omitempty"`
-	Type     string     `json:"type"`
+	ParamTto                 *time.Time             `json:"param_tto,omitempty"`
+	TypeGetPeriodicalProfile map[string]interface{} `json:"type_get_periodical_profile"`
 }
 
 // JobActionGetRegisterSchema defines model for JobActionGetRegisterSchema.
@@ -258,8 +258,8 @@ type JobActionGetRegisterSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id              ActionID               `json:"id"`
+	TypeGetRegister map[string]interface{} `json:"type_get_register"`
 }
 
 // JobActionGetRelayStateSchema defines model for JobActionGetRelayStateSchema.
@@ -268,8 +268,8 @@ type JobActionGetRelayStateSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                ActionID               `json:"id"`
+	TypeGetRelayState map[string]interface{} `json:"type_get_relay_state"`
 }
 
 // JobActionGetTouSchema defines model for JobActionGetTouSchema.
@@ -278,8 +278,8 @@ type JobActionGetTouSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id         ActionID               `json:"id"`
+	TypeGetTou map[string]interface{} `json:"type_get_tou"`
 }
 
 // JobActionListSchema List of actions to be queued. The empty array is not valid, at least one action must be present. The actions are processed in the order they are defined in the list.
@@ -291,8 +291,8 @@ type JobActionResetBillingPeriodSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                     ActionID               `json:"id"`
+	TypeResetBillingPeriod map[string]interface{} `json:"type_reset_billing_period"`
 }
 
 // JobActionResultSchema defines model for JobActionResultSchema.
@@ -334,8 +334,8 @@ type JobActionSetDisconnectorStateSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                       ActionID               `json:"id"`
+	TypeSetDisconnectorState map[string]interface{} `json:"type_set_disconnector_state"`
 }
 
 // JobActionSetLimiterSchema defines model for JobActionSetLimiterSchema.
@@ -344,8 +344,8 @@ type JobActionSetLimiterSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id             ActionID               `json:"id"`
+	TypeSetLimiter map[string]interface{} `json:"type_set_limiter"`
 }
 
 // JobActionSetRelayStateSchema defines model for JobActionSetRelayStateSchema.
@@ -354,8 +354,8 @@ type JobActionSetRelayStateSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id                ActionID               `json:"id"`
+	TypeSetRelayState map[string]interface{} `json:"type_set_relay_state"`
 }
 
 // JobActionSetTouSchema defines model for JobActionSetTouSchema.
@@ -364,8 +364,8 @@ type JobActionSetTouSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id         ActionID               `json:"id"`
+	TypeSetTou map[string]interface{} `json:"type_set_tou"`
 }
 
 // JobActionSyncClockSchema defines model for JobActionSyncClockSchema.
@@ -374,8 +374,8 @@ type JobActionSyncClockSchema struct {
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
-	Id   ActionID `json:"id"`
-	Type string   `json:"type"`
+	Id            ActionID               `json:"id"`
+	TypeSyncClock map[string]interface{} `json:"type_sync_clock"`
 }
 
 // JobDeviceListSchema List of devices to be queued.
@@ -1028,61 +1028,62 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"8YVesMf/BAAA//8jK5Sqo0QAAA==",
+	"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",
+	"4rfndvaYqL3El3rBHv8XAAD//1rxgq6pRAAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

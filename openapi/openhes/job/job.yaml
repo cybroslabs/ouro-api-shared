@@ -131,7 +131,7 @@ components:
         externalID:
           type: string
           description: >
-            The public ID of the device.         
+            The public ID of the device.
           nullable: true
         connectionInfo:
           $ref: "#/components/schemas/ConnectionTypeSchema"
@@ -168,8 +168,8 @@ components:
         - $ref: "#/components/schemas/JobActionGetLimiterSchema"
         - $ref: "#/components/schemas/JobActionSetLimiterSchema"
         - $ref: "#/components/schemas/JobActionResetBillingPeriodSchema"
-        - $ref: "#/components/schemas/JobActionFwUpdateSchema"        
-    
+        - $ref: "#/components/schemas/JobActionFwUpdateSchema"
+
     JobActionCommonSchema:
       type: object
       description: >
@@ -182,18 +182,17 @@ components:
       required:
         - id
         - attributes
-      
+
     JobActionGetRegisterSchema:
       description: Schema that holds the action definition to get register.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_REGISTER$'
+            type_get_register:
+              type: object
           required:
-            - type
+            - type_get_register
 
     JobActionGetPeriodicalProfileSchema:
       description: Schema that holds the action definition to get periodical profile.
@@ -201,9 +200,8 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_PERIODICAL_PROFILE$'
+            type_get_periodical_profile:
+              type: object
             param_tfrom:
               type: string
               format: date-time
@@ -215,7 +213,7 @@ components:
               description: >
                 The end time of the profile data.
           required:
-            - type            
+            - type_get_periodical_profile
 
     JobActionGetIrregularProfileSchema:
       description: Schema that holds the action definition to get irregular profile.
@@ -223,11 +221,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_IRREGULAR_PROFILE$'
+            type_get_irregular_profile:
+              type: object
           required:
-            - type
+            - type_get_irregular_profile
 
     JobActionGetEventsSchema:
       description: Schema that holds the action definition to get events.
@@ -235,11 +232,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_EVENTS$'
+            type_get_events:
+              type: object
           required:
-            - type
+            - type_get_events
 
     JobActionGetClockSchema:
       description: Schema that holds the action definition to get clock.
@@ -247,11 +243,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_CLOCK$'
+            type_get_clock:
+              type: object
           required:
-            - type
+            - type_get_clock
 
     JobActionSyncClockSchema:
       description: Schema that holds the action definition to sync clock.
@@ -259,11 +254,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^SYNC_CLOCK$'
+            type_sync_clock:
+              type: object
           required:
-            - type
+            - type_sync_clock
 
     JobActionGetRelayStateSchema:
       description: Schema that holds the action definition to get relay state.
@@ -271,11 +265,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_RELAY_STATE$'
+            type_get_relay_state:
+              type: object
           required:
-            - type
+            - type_get_relay_state
 
     JobActionSetRelayStateSchema:
       description: Schema that holds the action definition to set relay state.
@@ -283,11 +276,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^SET_RELAY_STATE$'
+            type_set_relay_state:
+              type: object
           required:
-            - type
+            - type_set_relay_state
 
     JobActionGetDisconnectorStateSchema:
       description: Schema that holds the action definition to get disconnector state.
@@ -295,11 +287,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_DISCONNECTOR_STATE$'
+            type_get_disconnector_state:
+              type: object
           required:
-            - type
+            - type_get_disconnector_state
 
     JobActionSetDisconnectorStateSchema:
       description: Schema that holds the action definition to set disconnector state.
@@ -307,11 +298,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^SET_DISCONNECTOR_STATE$'
+            type_set_disconnector_state:
+              type: object
           required:
-            - type
+            - type_set_disconnector_state
 
     JobActionGetTouSchema:
       description: Schema that holds the action definition to get time-of-use table.
@@ -319,11 +309,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_TOU$'
+            type_get_tou:
+              type: object
           required:
-            - type
+            - type_get_tou
 
     JobActionSetTouSchema:
       description: Schema that holds the action definition to set time-of-use table.
@@ -331,11 +320,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^SET_TOU$'
+            type_set_tou:
+              type: object
           required:
-            - type
+            - type_set_tou
 
     JobActionGetLimiterSchema:
       description: Schema that holds the action definition to get limiter settings.
@@ -343,11 +331,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^GET_LIMITER$'
+            type_get_limiter:
+              type: object
           required:
-            - type
+            - type_get_limiter
 
     JobActionSetLimiterSchema:
       description: Schema that holds the action definition to set limiter settings.
@@ -355,11 +342,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^SET_LIMITER$'
+            type_set_limiter:
+              type: object
           required:
-            - type
+            - type_set_limiter
 
     JobActionResetBillingPeriodSchema:
       description: Schema that holds the action definition to reset billing period.
@@ -367,11 +353,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^RESET_BILLING_PERIOD$'
+            type_reset_billing_period:
+              type: object
           required:
-            - type
+            - type_reset_billing_period
 
     JobActionFwUpdateSchema:
       description: Schema that holds the action definition to start firmware update.
@@ -379,11 +364,10 @@ components:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
           properties:
-            type:
-              type: string
-              pattern: '^FW_UPDATE$'
+            type_fw_update:
+              type: object
           required:
-            - type
+            - type_fw_update
 
     JobActionListSchema:
       type: array
