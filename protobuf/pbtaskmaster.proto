@@ -18,6 +18,9 @@ service TaskmasterService {
     rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
     // The method called by the RestApi to cancel the job.
     rpc CancelJobs(CancelJobsRequest) returns (google.protobuf.Empty);
+    
+    // Subcribe for notification stream
+    rpc Subscribe(google.protobuf.Empty) returns (stream StreamEventsData);
 
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
     rpc NegotiateStart(pbdriver.NegotiateRequest) returns (pbdriver.CommonResponse);
@@ -39,6 +42,18 @@ service TaskmasterService {
     rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
     // The method called by the RestApi to set the system configuration.
     rpc SetConfig(SystemConfig) returns (google.protobuf.Empty);
+}
+
+// Taskmaster -> Dataproxy event message
+message StreamEventsData {
+    oneof data {
+        StreamEventsDataJobFinished job_done = 1 [json_name="jf"];
+    }
+}
+
+// Sub-message - job-finished event data
+message StreamEventsDataJobFinished {
+    string job_id = 1 [json_name="i"];
 }
 
 // Driver -> Taskmaster cache set request message

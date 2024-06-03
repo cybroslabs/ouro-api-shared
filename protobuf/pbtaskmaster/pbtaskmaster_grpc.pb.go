@@ -25,6 +25,7 @@ const (
 	TaskmasterService_GetJob_FullMethodName             = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetJob"
 	TaskmasterService_PurgeJobs_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/PurgeJobs"
 	TaskmasterService_CancelJobs_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CancelJobs"
+	TaskmasterService_Subscribe_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/Subscribe"
 	TaskmasterService_NegotiateStart_FullMethodName     = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/NegotiateStart"
 	TaskmasterService_CacheSet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheSet"
 	TaskmasterService_CacheGet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheGet"
@@ -47,6 +48,8 @@ type TaskmasterServiceClient interface {
 	PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Subcribe for notification stream
+	Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (TaskmasterService_SubscribeClient, error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -109,6 +112,38 @@ func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *CancelJobs
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *taskmasterServiceClient) Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (TaskmasterService_SubscribeClient, error) {
+	stream, err := c.cc.NewStream(ctx, &TaskmasterService_ServiceDesc.Streams[0], TaskmasterService_Subscribe_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &taskmasterServiceSubscribeClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type TaskmasterService_SubscribeClient interface {
+	Recv() (*StreamEventsData, error)
+	grpc.ClientStream
+}
+
+type taskmasterServiceSubscribeClient struct {
+	grpc.ClientStream
+}
+
+func (x *taskmasterServiceSubscribeClient) Recv() (*StreamEventsData, error) {
+	m := new(StreamEventsData)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error) {
@@ -203,6 +238,8 @@ type TaskmasterServiceServer interface {
 	PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
+	// Subcribe for notification stream
+	Subscribe(*emptypb.Empty, TaskmasterService_SubscribeServer) error
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
@@ -239,6 +276,9 @@ func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.
 }
 func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) Subscribe(*emptypb.Empty, TaskmasterService_SubscribeServer) error {
+	return status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NegotiateStart not implemented")
@@ -350,6 +390,27 @@ func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context,
 		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*CancelJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_Subscribe_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(emptypb.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(TaskmasterServiceServer).Subscribe(m, &taskmasterServiceSubscribeServer{stream})
+}
+
+type TaskmasterService_SubscribeServer interface {
+	Send(*StreamEventsData) error
+	grpc.ServerStream
+}
+
+type taskmasterServiceSubscribeServer struct {
+	grpc.ServerStream
+}
+
+func (x *taskmasterServiceSubscribeServer) Send(m *StreamEventsData) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _TaskmasterService_NegotiateStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -574,6 +635,12 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TaskmasterService_SetConfig_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Subscribe",
+			Handler:       _TaskmasterService_Subscribe_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "pbtaskmaster.proto",
 }
