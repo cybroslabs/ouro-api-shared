@@ -8,7 +8,6 @@ package pbdataproxy
 
 import (
 	context "context"
-	pbtaskmaster "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,19 +20,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DataproxyService_NotifyJobFinished_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/NotifyJobFinished"
-	DataproxyService_CreateBulk_FullMethodName        = "/io.clbs.openhes.pbdataproxy.DataproxyService/CreateBulk"
-	DataproxyService_GetBulks_FullMethodName          = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulks"
-	DataproxyService_GetBulk_FullMethodName           = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
-	DataproxyService_GetJobStatus_FullMethodName      = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetJobStatus"
+	DataproxyService_CreateBulk_FullMethodName   = "/io.clbs.openhes.pbdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_GetBulks_FullMethodName     = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulks"
+	DataproxyService_GetBulk_FullMethodName      = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
+	DataproxyService_GetJobStatus_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetJobStatus"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataproxyServiceClient interface {
-	// The method called by the Taskmaster to notify about finished job.
-	NotifyJobFinished(ctx context.Context, in *pbtaskmaster.JobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(ctx context.Context, in *CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
@@ -50,15 +46,6 @@ type dataproxyServiceClient struct {
 
 func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClient {
 	return &dataproxyServiceClient{cc}
-}
-
-func (c *dataproxyServiceClient) NotifyJobFinished(ctx context.Context, in *pbtaskmaster.JobEventData, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DataproxyService_NotifyJobFinished_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -101,8 +88,6 @@ func (c *dataproxyServiceClient) GetJobStatus(ctx context.Context, in *GetJobSta
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility
 type DataproxyServiceServer interface {
-	// The method called by the Taskmaster to notify about finished job.
-	NotifyJobFinished(context.Context, *pbtaskmaster.JobEventData) (*emptypb.Empty, error)
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(context.Context, *CreateBulkRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
@@ -118,9 +103,6 @@ type DataproxyServiceServer interface {
 type UnimplementedDataproxyServiceServer struct {
 }
 
-func (UnimplementedDataproxyServiceServer) NotifyJobFinished(context.Context, *pbtaskmaster.JobEventData) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotifyJobFinished not implemented")
-}
 func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
@@ -144,24 +126,6 @@ type UnsafeDataproxyServiceServer interface {
 
 func RegisterDataproxyServiceServer(s grpc.ServiceRegistrar, srv DataproxyServiceServer) {
 	s.RegisterService(&DataproxyService_ServiceDesc, srv)
-}
-
-func _DataproxyService_NotifyJobFinished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.JobEventData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_NotifyJobFinished_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).NotifyJobFinished(ctx, req.(*pbtaskmaster.JobEventData))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -243,10 +207,6 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.pbdataproxy.DataproxyService",
 	HandlerType: (*DataproxyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "NotifyJobFinished",
-			Handler:    _DataproxyService_NotifyJobFinished_Handler,
-		},
 		{
 			MethodName: "CreateBulk",
 			Handler:    _DataproxyService_CreateBulk_Handler,

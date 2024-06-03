@@ -10,8 +10,6 @@ import "pbdriver.proto";
 
 // The Dataproxy related service definition.
 service DataproxyService {
-    // The method called by the Taskmaster to notify about finished job.
-    rpc NotifyJobFinished(pbtaskmaster.JobEventData) returns (google.protobuf.Empty);
     // The method called by the RestApi to start a new bulk of jobs.
     rpc CreateBulk(CreateBulkRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to retrieve stored bulks.
