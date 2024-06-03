@@ -36,6 +36,7 @@ message ActionProgressUpdate {
 message JobProgressUpdate {
     string job_id = 1 [json_name="id"]; // The job identifier.
     JobErrorCode code = 2 [json_name="c"]; // The status related to the job and or action update message.
+    int64 duration = 3 [json_name="d"]; // The duration of the job in miliseconds.
 }
 
 // Sub-message containing action-based variant of data values
