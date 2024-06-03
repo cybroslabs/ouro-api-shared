@@ -78,7 +78,7 @@ message JobSpec {
     optional string webhook_url = 6 [json_name="h"]; // The webhook URL to call when the job is completed.
 }
 
-// API -> Taskmaster get job request message
+// Dataproxy -> Taskmaster get job request message
 message GetJobRequest {
     string job_id = 1 [json_name="id"]; // The job identifier.
 }

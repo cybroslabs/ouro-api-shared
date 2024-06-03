@@ -432,7 +432,7 @@ func (x *JobSpec) GetWebhookUrl() string {
 	return ""
 }
 
-// API -> Taskmaster get job request message
+// Dataproxy -> Taskmaster get job request message
 type GetJobRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -19,7 +19,7 @@ service DataproxyService {
     // The method called by the RestApi to retrieve single bulk.
     rpc GetBulk(GetBulkRequest) returns (GetBulkResponse);
     // The method called by the RestApi to get the job status. The parameter contains the job identifier.
-    rpc GetJob(pbtaskmaster.GetJobRequest) returns (pbtaskmaster.GetJobResponse);
+    rpc GetJobStatus(GetJobStatusRequest) returns (GetJobStatusResponse);
 }
 
 // RestApi -> DataProxy
@@ -88,4 +88,14 @@ message GetBulksResponse {
 // RestApi -> DataProxt - the message holds single bulk request.
 message GetBulkRequest {
     string bulk_id = 1 [json_name="i"]; // The bulk identifier to be retrieved.
+}
+
+// RestApi -> DataProxy - request to get the job status.
+message GetJobStatusRequest {
+    string job_id = 1 [json_name="i"]; // The job identifier.
+}
+
+// DataProxy -> RestApi - the message holds the job status.
+message GetJobStatusResponse {
+    pbtaskmaster.JobStatus status = 1 [json_name="s"]; // The status of the job
 }
