@@ -20,8 +20,6 @@ var (
 	ErrInvalidJobStatus     = errors.New("invalid job status")
 	ErrInvalidActionType    = errors.New("invalid action type")
 	ErrUnknownJobActionType = errors.New("unknown job action type")
-
-	emptyMapStringObject = make(map[string]interface{})
 )
 
 const (
@@ -323,98 +321,98 @@ func G2RJobAction(action *pbdriver.JobAction, result *JobActionSchema) error {
 	} else if tmp := action.GetGetIrregularProfile(); tmp != nil {
 		err := result.FromJobActionGetIrregularProfileSchema(JobActionGetIrregularProfileSchema{
 			Id:                      action_id,
-			TypeGetIrregularProfile: emptyMapStringObject,
+			TypeGetIrregularProfile: 1,
 			Attributes:              attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetEvents(); tmp != nil {
 		err := result.FromJobActionGetEventsSchema(JobActionGetEventsSchema{
 			Id:            action_id,
-			TypeGetEvents: emptyMapStringObject,
+			TypeGetEvents: 1,
 			Attributes:    attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetClock(); tmp != nil {
 		err := result.FromJobActionGetClockSchema(JobActionGetClockSchema{
 			Id:           action_id,
-			TypeGetClock: emptyMapStringObject,
+			TypeGetClock: 1,
 			Attributes:   attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetSyncClock(); tmp != nil {
 		err := result.FromJobActionSyncClockSchema(JobActionSyncClockSchema{
 			Id:            action_id,
-			TypeSyncClock: emptyMapStringObject,
+			TypeSyncClock: 1,
 			Attributes:    attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetRelayState(); tmp != nil {
 		err := result.FromJobActionGetRelayStateSchema(JobActionGetRelayStateSchema{
 			Id:                action_id,
-			TypeGetRelayState: emptyMapStringObject,
+			TypeGetRelayState: 1,
 			Attributes:        attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetSetRelayState(); tmp != nil {
 		err := result.FromJobActionSetRelayStateSchema(JobActionSetRelayStateSchema{
 			Id:                action_id,
-			TypeSetRelayState: emptyMapStringObject,
+			TypeSetRelayState: 1,
 			Attributes:        attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetDisconnectorState(); tmp != nil {
 		err := result.FromJobActionGetDisconnectorStateSchema(JobActionGetDisconnectorStateSchema{
 			Id:                       action_id,
-			TypeGetDisconnectorState: emptyMapStringObject,
+			TypeGetDisconnectorState: 1,
 			Attributes:               attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetSetDisconnectorState(); tmp != nil {
 		err := result.FromJobActionSetDisconnectorStateSchema(JobActionSetDisconnectorStateSchema{
 			Id:                       action_id,
-			TypeSetDisconnectorState: emptyMapStringObject,
+			TypeSetDisconnectorState: 1,
 			Attributes:               attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetTou(); tmp != nil {
 		err := result.FromJobActionGetTouSchema(JobActionGetTouSchema{
 			Id:         action_id,
-			TypeGetTou: emptyMapStringObject,
+			TypeGetTou: 1,
 			Attributes: attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetSetTou(); tmp != nil {
 		err := result.FromJobActionSetTouSchema(JobActionSetTouSchema{
 			Id:         action_id,
-			TypeSetTou: emptyMapStringObject,
+			TypeSetTou: 1,
 			Attributes: attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetGetLimiter(); tmp != nil {
 		err := result.FromJobActionGetLimiterSchema(JobActionGetLimiterSchema{
 			Id:             action_id,
-			TypeGetLimiter: emptyMapStringObject,
+			TypeGetLimiter: 1,
 			Attributes:     attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetSetLimiter(); tmp != nil {
 		err := result.FromJobActionSetLimiterSchema(JobActionSetLimiterSchema{
 			Id:             action_id,
-			TypeSetLimiter: emptyMapStringObject,
+			TypeSetLimiter: 1,
 			Attributes:     attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetResetBillingPeriod(); tmp != nil {
 		err := result.FromJobActionResetBillingPeriodSchema(JobActionResetBillingPeriodSchema{
 			Id:                     action_id,
-			TypeResetBillingPeriod: emptyMapStringObject,
+			TypeResetBillingPeriod: 1,
 			Attributes:             attribute.G2RAttributes(action.Attributes),
 		})
 		return err
 	} else if tmp := action.GetFwUpdate(); tmp != nil {
 		err := result.FromJobActionFwUpdateSchema(JobActionFwUpdateSchema{
 			Id:           action_id,
-			TypeFwUpdate: emptyMapStringObject,
+			TypeFwUpdate: 1,
 			Attributes:   attribute.G2RAttributes(action.Attributes),
 		})
 		return err

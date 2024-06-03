@@ -190,7 +190,9 @@ components:
         - type: object
           properties:
             type_get_register:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_register
 
@@ -201,7 +203,9 @@ components:
         - type: object
           properties:
             type_get_periodical_profile:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
             param_tfrom:
               type: string
               format: date-time
@@ -222,7 +226,9 @@ components:
         - type: object
           properties:
             type_get_irregular_profile:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_irregular_profile
 
@@ -233,7 +239,9 @@ components:
         - type: object
           properties:
             type_get_events:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_events
 
@@ -244,7 +252,9 @@ components:
         - type: object
           properties:
             type_get_clock:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_clock
 
@@ -255,7 +265,9 @@ components:
         - type: object
           properties:
             type_sync_clock:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_sync_clock
 
@@ -266,7 +278,9 @@ components:
         - type: object
           properties:
             type_get_relay_state:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_relay_state
 
@@ -277,7 +291,9 @@ components:
         - type: object
           properties:
             type_set_relay_state:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_set_relay_state
 
@@ -288,7 +304,9 @@ components:
         - type: object
           properties:
             type_get_disconnector_state:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_disconnector_state
 
@@ -299,7 +317,9 @@ components:
         - type: object
           properties:
             type_set_disconnector_state:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_set_disconnector_state
 
@@ -310,7 +330,9 @@ components:
         - type: object
           properties:
             type_get_tou:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_tou
 
@@ -321,7 +343,9 @@ components:
         - type: object
           properties:
             type_set_tou:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_set_tou
 
@@ -332,7 +356,9 @@ components:
         - type: object
           properties:
             type_get_limiter:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_get_limiter
 
@@ -343,7 +369,9 @@ components:
         - type: object
           properties:
             type_set_limiter:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_set_limiter
 
@@ -354,7 +382,9 @@ components:
         - type: object
           properties:
             type_reset_billing_period:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_reset_billing_period
 
@@ -365,7 +395,9 @@ components:
         - type: object
           properties:
             type_fw_update:
-              type: object
+              type: integer
+              minimum: 1
+              maximum: 1
           required:
             - type_fw_update
 
