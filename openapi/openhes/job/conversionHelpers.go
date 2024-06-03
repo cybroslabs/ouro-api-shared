@@ -10,7 +10,11 @@ func asJobActionGetRegisterSchema(action *JobActionSchema) (JobActionGetRegister
 	tmp := JobActionGetRegisterSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetRegister != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetRegister"}
+	}
 	return tmp, err
 }
 
@@ -19,7 +23,11 @@ func asJobActionGetPeriodicalProfileSchema(action *JobActionSchema) (JobActionGe
 	tmp := JobActionGetPeriodicalProfileSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetPeriodicalProfile != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetPeriodicalProfile"}
+	}
 	return tmp, err
 }
 
@@ -28,7 +36,11 @@ func asJobActionGetIrregularProfileSchema(action *JobActionSchema) (JobActionGet
 	tmp := JobActionGetIrregularProfileSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetIrregularProfile != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetIrregularProfile"}
+	}
 	return tmp, err
 }
 
@@ -37,7 +49,11 @@ func asJobActionGetEventsSchema(action *JobActionSchema) (JobActionGetEventsSche
 	tmp := JobActionGetEventsSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetEvents != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetEvents"}
+	}
 	return tmp, err
 }
 
@@ -46,7 +62,11 @@ func asJobActionGetClockSchema(action *JobActionSchema) (JobActionGetClockSchema
 	tmp := JobActionGetClockSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetClock != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetClock"}
+	}
 	return tmp, err
 }
 
@@ -55,7 +75,11 @@ func asJobActionSyncClockSchema(action *JobActionSchema) (JobActionSyncClockSche
 	tmp := JobActionSyncClockSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeSyncClock != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeSyncClock"}
+	}
 	return tmp, err
 }
 
@@ -64,7 +88,11 @@ func asJobActionGetRelayStateSchema(action *JobActionSchema) (JobActionGetRelayS
 	tmp := JobActionGetRelayStateSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetRelayState != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetRelayState"}
+	}
 	return tmp, err
 }
 
@@ -73,7 +101,11 @@ func asJobActionSetRelayStateSchema(action *JobActionSchema) (JobActionSetRelayS
 	tmp := JobActionSetRelayStateSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeSetRelayState != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeSetRelayState"}
+	}
 	return tmp, err
 }
 
@@ -82,7 +114,11 @@ func asJobActionGetDisconnectorStateSchema(action *JobActionSchema) (JobActionGe
 	tmp := JobActionGetDisconnectorStateSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetDisconnectorState != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetDisconnectorState"}
+	}
 	return tmp, err
 }
 
@@ -91,7 +127,11 @@ func asJobActionSetDisconnectorStateSchema(action *JobActionSchema) (JobActionSe
 	tmp := JobActionSetDisconnectorStateSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeSetDisconnectorState != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeSetDisconnectorState"}
+	}
 	return tmp, err
 }
 
@@ -100,7 +140,11 @@ func asJobActionGetTouSchema(action *JobActionSchema) (JobActionGetTouSchema, er
 	tmp := JobActionGetTouSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetTou != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetTou"}
+	}
 	return tmp, err
 }
 
@@ -109,7 +153,11 @@ func asJobActionSetTouSchema(action *JobActionSchema) (JobActionSetTouSchema, er
 	tmp := JobActionSetTouSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeSetTou != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeSetTou"}
+	}
 	return tmp, err
 }
 
@@ -118,7 +166,11 @@ func asJobActionGetLimiterSchema(action *JobActionSchema) (JobActionGetLimiterSc
 	tmp := JobActionGetLimiterSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeGetLimiter != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeGetLimiter"}
+	}
 	return tmp, err
 }
 
@@ -127,7 +179,11 @@ func asJobActionSetLimiterSchema(action *JobActionSchema) (JobActionSetLimiterSc
 	tmp := JobActionSetLimiterSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeSetLimiter != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeSetLimiter"}
+	}
 	return tmp, err
 }
 
@@ -136,7 +192,11 @@ func asJobActionResetBillingPeriodSchema(action *JobActionSchema) (JobActionRese
 	tmp := JobActionResetBillingPeriodSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeResetBillingPeriod != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeResetBillingPeriod"}
+	}
 	return tmp, err
 }
 
@@ -145,6 +205,10 @@ func asJobActionFwUpdateSchema(action *JobActionSchema) (JobActionFwUpdateSchema
 	tmp := JobActionFwUpdateSchema{}
 	d := json.NewDecoder(bytes.NewReader(action.union))
 	d.UseNumber()
+	d.DisallowUnknownFields()
 	err := d.Decode(&tmp)
+	if err == nil && tmp.TypeFwUpdate != 1 {
+		err = &json.UnmarshalTypeError{Field: "TypeFwUpdate"}
+	}
 	return tmp, err
 }
