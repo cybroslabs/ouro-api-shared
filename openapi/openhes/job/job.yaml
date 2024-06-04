@@ -23,7 +23,7 @@ components:
         - CANCELLED
         - EXPIRED
       x-enum-descriptions:
-        - The job is queued for processing. This status is also set after attempt fails.
+        - The job is queued for processing. This status is also set after an attempt fails.
         - The job is currently being processed.
         - The job is completed.
         - The job has been cancelled.
@@ -42,7 +42,7 @@ components:
           * `FATAL` - The job could not be processed due to a fatal error.
 
     JobStatusSchema:
-      description: Schema that holds the status of the job.
+      description: Schema that describes the status of a job.
       type: object
       properties:
         startedAt:
@@ -75,12 +75,12 @@ components:
     ConnectionTypeTcpSchema:
       type: object
       description: >
-        Schema that holds the TCP connection info.
+        Schema that describes the TCP connection.
       properties:
         host:
           type: string
           description: >
-            The IP address or hostname of the device.
+            The IP address or the hostname of the device.
         port:
           type: integer
           description: >
@@ -94,7 +94,7 @@ components:
     ConnectionTypePhoneSchema:
       type: object
       description: >
-        Schema that holds the phone connection info.
+        Schema that describes the phone connection.
       properties:
         number:
           type: string
@@ -107,16 +107,8 @@ components:
     ConnectionTypeSerialSchema:
       type: object
       description: >
-        Schema that holds the phone connection info.
-      properties:
-        number:
-          type: string
-          description: >
-            The phone number of the device.
-          minLength: 1
-      required:
-        - number
-
+        Schema that describes the serial line connection.
+      
     ConnectionTypeSchema:
       oneOf:
         - $ref: "#/components/schemas/ConnectionTypeTcpSchema"
@@ -131,7 +123,7 @@ components:
         externalID:
           type: string
           description: >
-            The public ID of the device.
+            The public ID of the device.         
           nullable: true
         connectionInfo:
           $ref: "#/components/schemas/ConnectionTypeSchema"
@@ -151,7 +143,7 @@ components:
         $ref: "#/components/schemas/JobDeviceSchema"
 
     JobActionSchema:
-      description: Schema that holds the action definition.
+      description: Schema that describes actions.
       oneOf:
         - $ref: "#/components/schemas/JobActionGetRegisterSchema"
         - $ref: "#/components/schemas/JobActionGetPeriodicalProfileSchema"
@@ -168,8 +160,8 @@ components:
         - $ref: "#/components/schemas/JobActionGetLimiterSchema"
         - $ref: "#/components/schemas/JobActionSetLimiterSchema"
         - $ref: "#/components/schemas/JobActionResetBillingPeriodSchema"
-        - $ref: "#/components/schemas/JobActionFwUpdateSchema"
-
+        - $ref: "#/components/schemas/JobActionFwUpdateSchema"        
+    
     JobActionCommonSchema:
       type: object
       description: >
@@ -182,9 +174,9 @@ components:
       required:
         - id
         - attributes
-
+      
     JobActionGetRegisterSchema:
-      description: Schema that holds the action definition to get register.
+      description: Schema that describes the action to get a register.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -197,7 +189,7 @@ components:
             - type_get_register
 
     JobActionGetPeriodicalProfileSchema:
-      description: Schema that holds the action definition to get periodical profile.
+      description: Schema that describes the action to get a periodical profile.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -220,7 +212,7 @@ components:
             - type_get_periodical_profile
 
     JobActionGetIrregularProfileSchema:
-      description: Schema that holds the action definition to get irregular profile.
+      description: Schema that holds the action definition to get an irregular profile.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -246,7 +238,7 @@ components:
             - type_get_events
 
     JobActionGetClockSchema:
-      description: Schema that holds the action definition to get clock.
+      description: Schema that describes the action to get clock.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -259,7 +251,7 @@ components:
             - type_get_clock
 
     JobActionSyncClockSchema:
-      description: Schema that holds the action definition to sync clock.
+      description: Schema that describes the action to synchronize the clock.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -272,7 +264,7 @@ components:
             - type_sync_clock
 
     JobActionGetRelayStateSchema:
-      description: Schema that holds the action definition to get relay state.
+      description: Schema that describes the action to get the relay state.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -285,7 +277,7 @@ components:
             - type_get_relay_state
 
     JobActionSetRelayStateSchema:
-      description: Schema that holds the action definition to set relay state.
+      description: Schema that describes the action to set the relay state.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -298,7 +290,7 @@ components:
             - type_set_relay_state
 
     JobActionGetDisconnectorStateSchema:
-      description: Schema that holds the action definition to get disconnector state.
+      description: Schema that describes the action to get the disconnector state.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -311,7 +303,7 @@ components:
             - type_get_disconnector_state
 
     JobActionSetDisconnectorStateSchema:
-      description: Schema that holds the action definition to set disconnector state.
+      description: Schema that describes the action to set the disconnector state.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -324,7 +316,7 @@ components:
             - type_set_disconnector_state
 
     JobActionGetTouSchema:
-      description: Schema that holds the action definition to get time-of-use table.
+      description: Schema that describes the action to get the time-of-use table.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -337,7 +329,7 @@ components:
             - type_get_tou
 
     JobActionSetTouSchema:
-      description: Schema that holds the action definition to set time-of-use table.
+      description: Schema that describes the action to set the time-of-use table.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -350,7 +342,7 @@ components:
             - type_set_tou
 
     JobActionGetLimiterSchema:
-      description: Schema that holds the action definition to get limiter settings.
+      description: Schema that describes the action to get the limiter settings.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -363,7 +355,7 @@ components:
             - type_get_limiter
 
     JobActionSetLimiterSchema:
-      description: Schema that holds the action definition to set limiter settings.
+      description: Schema that describes the action to set the limiter settings.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -376,7 +368,7 @@ components:
             - type_set_limiter
 
     JobActionResetBillingPeriodSchema:
-      description: Schema that holds the action definition to reset billing period.
+      description: Schema that describes the action to reset the billing period.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -389,7 +381,7 @@ components:
             - type_reset_billing_period
 
     JobActionFwUpdateSchema:
-      description: Schema that holds the action definition to start firmware update.
+      description: Schema that describes the action to start a firmware update.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -404,8 +396,8 @@ components:
     JobActionListSchema:
       type: array
       description: >
-        List of actions to be queued. The empty array is not valid, at least one action must be present.
-        The actions are processed in the order they are defined in the list.
+        A list of actions to be processed. An empty array is not valid, at least one action must be present.
+        The actions are processed in the same order as they are defined in the list.
       minLength: 1
       items:
         $ref: "#/components/schemas/JobActionSchema"
@@ -423,10 +415,10 @@ components:
             - ERROR
             - NOT_PROCESSED
           description: >
-            The result of the action. If the action was successful, the value is true and vice versa.
+            The result of the action. If the action is successful, the value is true and vice versa.
               * `OK` - The action has been successfully processed.
               * `UNSUPPORTED` - The action is not supported by the driver.
-              * `ERROR` - Some error(s) have occurred during the processing of the action.
+              * `ERROR` - Some errors have occurred during the processing of the action.
               * `NOT_PROCESSED` - The action has not been processed.
         data:
           description: >
@@ -442,14 +434,14 @@ components:
     BulkSpecSchema:
       type: object
       description: >
-        Schema that holds the one or more jobs for single driver type.
+        Schema that describes jobs for a specific driver type.
       properties:
         id:
           $ref: "#/components/schemas/BulkID"
         correlationID:
           type: string
           description: >
-            The correlation ID of the bulk. The correlation ID is used to group the bulks.
+            The correlation ID of the bulk. The correlation ID is used to group bulks.
           nullable: true
         devices:
           $ref: "#/components/schemas/JobDeviceListSchema"
@@ -485,14 +477,14 @@ components:
         - CANCELLED
         - EXPIRED
       x-enum-descriptions:
-        - The bulk is queued for processing. This status is also set after attempt fails.
+        - The bulk is queued for processing. This status is also set after an attempt fails.
         - The bulk is currently being processed.
         - The bulk is completed.
         - The bulk has been cancelled.
         - The bulk has expired.
 
     BulkStatusSchema:
-      description: Schema that holds the status of the bulk of jobs.
+      description: Schema that describes the bulk status.
       type: object
       properties:
         startedAt:
@@ -516,7 +508,7 @@ components:
     AttributesSchema:
       type: object
       description: >
-        Schema that holds a set of attributes and their values.
+        Schema that describes a set of attributes and their values.
         The key is the property name and the value is the property value.
         The value can be of type string, integer, number, boolean, binary, or null.
       x-go-type: attribute.Attributes
@@ -533,13 +525,13 @@ components:
     BulkID:
       type: string
       description: >
-        The ID of the bulk job. The ID must be unique across the OpenHES components.
+        The ID of the job bulk. The ID must be unique across all OpenHES components.
       format: uuid
 
     JobID:
       type: string
       description: >
-        The ID of the job. The ID must be unique across the OpenHES components.
+        The ID of the job. The ID must be unique across all OpenHES components.
       format: uuid
 
     ActionID:
@@ -569,12 +561,12 @@ components:
         - FW_UPDATE
       description: >
         The type of action.
-          * `GET_REGISTER` - The action is to get billing value, for example instantaneous values.
-          * `GET_PERIODICAL_PROFILE` - The action is to get periodical profile, for example load-profile.
-          * `GET_IRREGULAR_PROFILE` - The action is to get non-periodical profile, for example daily profile or monthly billing registers.
-          * `GET_EVENTS` - The action is to get event log.
+          * `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
+          * `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
+          * `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
+          * `GET_EVENTS` - The action is to get an event log.
           * `GET_CLOCK` - The action is to get the clock.
-          * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device, it can forcefully set it if force attribute is set.
+          * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
           * `GET_RELAY_STATE` - The action is to get the relay state.
           * `SET_RELAY_STATE` - The action is to set the relay state.
           * `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
@@ -583,45 +575,45 @@ components:
           * `SET_TOU` - The action is to set the time-of-use table.
           * `GET_LIMITER` - The action is to get the limiter settings.
           * `SET_LIMITER` - The action is to set the limiter settings.
-          * `RESET_BILLING_PERIOD` - The action is to reset billing period.
-          * `FW_UPDATE` - The action is to start firmware update.
+          * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
+          * `FW_UPDATE` - The action is to start a firmware update.
 
     JobSettingsSchema:
       type: object
       description: >
-        Schema that holds the settings of the job.
+        Schema that describes job settings.
       properties:
         maxDuration:
-          description: Maximum duration in seconds to process the job.
+          description: The maximum duration in seconds to process the job.
           type: integer
           format: int64
           minimum: 15
           maximum: 7200
         priority:
-          description: Priority of the job.
+          description: The priority of the job.
           type: integer
           format: int32
           minimum: 0
           maximum: 9
         attempts:
-          description: Number of attempts to process the job.
+          description: The number of attempts to process the job.
           type: integer
           format: int32
           minimum: 1
           maximum: 99
         retryDelay:
-          description: Delay in seconds before retrying the job.
+          description: The delay in seconds before retrying the job.
           type: integer
           format: int64
           minimum: 0
           maximum: 999
         deferStart:
-          description: Delay in seconds before starting the first attempt of the job.
+          description: The delay in seconds before starting the first attempt of the job.
           type: integer
           format: int64
           minimum: 0
           maximum: 86400
         expiresAt:
-          description: Time when the job expires.
+          description: The time when the job expires.
           type: string
           format: date-time

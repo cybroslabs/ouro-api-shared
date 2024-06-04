@@ -18,7 +18,7 @@ components:
     DriverSchema:
       type: object
       description: >
-        Schema that holds the communication driver details.
+        Schema that describes the communication driver details.
       example:
         spec:
           driverType: "CYBROSLABS_MAGEMETER_DLMS"
@@ -73,7 +73,7 @@ components:
     DriverActionAttributeSchema:
       type: object
       description: >
-        Schema that holds the specification of the driver action attribute.
+        Schema that describes a driver action attribute.
       example:
         type: GET_REGISTER
         attributes:
@@ -89,7 +89,7 @@ components:
             defaultValue: "0-0:2.8.0.255"
       properties:
         type:
-          $ref: "../job/job.yaml#/components/schemas/ActionTypeSchema"         
+          $ref: "../job/job.yaml#/components/schemas/ActionTypeSchema"
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 
@@ -109,7 +109,7 @@ components:
     AttributeDefinitionSchema:
       type: object
       description: >
-        Schema that holds the specification of the driver attribute.
+        Schema that describes a driver attribute.
       example:
         name: "register"
         description: "The register to get."
