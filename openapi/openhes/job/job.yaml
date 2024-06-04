@@ -108,7 +108,7 @@ components:
       type: object
       description: >
         Schema that describes the serial line connection.
-      
+
     ConnectionTypeSchema:
       oneOf:
         - $ref: "#/components/schemas/ConnectionTypeTcpSchema"
@@ -123,7 +123,7 @@ components:
         externalID:
           type: string
           description: >
-            The public ID of the device.         
+            The public ID of the device.
           nullable: true
         connectionInfo:
           $ref: "#/components/schemas/ConnectionTypeSchema"
@@ -160,8 +160,8 @@ components:
         - $ref: "#/components/schemas/JobActionGetLimiterSchema"
         - $ref: "#/components/schemas/JobActionSetLimiterSchema"
         - $ref: "#/components/schemas/JobActionResetBillingPeriodSchema"
-        - $ref: "#/components/schemas/JobActionFwUpdateSchema"        
-    
+        - $ref: "#/components/schemas/JobActionFwUpdateSchema"
+
     JobActionCommonSchema:
       type: object
       description: >
@@ -174,7 +174,7 @@ components:
       required:
         - id
         - attributes
-      
+
     JobActionGetRegisterSchema:
       description: Schema that describes the action to get a register.
       allOf:
