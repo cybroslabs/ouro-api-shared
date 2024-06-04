@@ -77,6 +77,10 @@ components:
       description: >
         Schema that describes the TCP connection.
       properties:
+        type_tcp:
+          type: integer
+          minimum: 1
+          maximum: 1
         host:
           type: string
           description: >
@@ -88,6 +92,7 @@ components:
           minimum: 1
           maximum: 65535
       required:
+        - type_tcp
         - host
         - port
 
@@ -96,18 +101,30 @@ components:
       description: >
         Schema that describes the phone connection.
       properties:
+        type_phone:
+          type: integer
+          minimum: 1
+          maximum: 1
         number:
           type: string
           description: >
             The phone number of the device.
           minLength: 1
       required:
+        - phone
         - number
 
     ConnectionTypeSerialSchema:
       type: object
       description: >
         Schema that describes the serial line connection.
+      properties:
+        type_serial:
+          type: integer
+          minimum: 1
+          maximum: 1
+      required:
+        - type_serial
 
     ConnectionTypeSchema:
       oneOf:
