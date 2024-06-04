@@ -18,7 +18,7 @@ components:
     DriverSchema:
       type: object
       description: >
-        Schema that describes the communication driver details.
+        Schema that describes communication driver details.
       example:
         spec:
           driverType: "CYBROSLABS_MAGEMETER_DLMS"
@@ -59,7 +59,7 @@ components:
     DriverDetailsSchema:
       type: object
       description: >
-        Schema that gets the communication driver details.
+        Schema that describes communication driver details.
       example:
         spec:
           driverType: "CYBROSLABS_MAGEMETER_DLMS"
@@ -73,7 +73,7 @@ components:
     DriverActionAttributeSchema:
       type: object
       description: >
-        Schema that describes a driver action attribute.
+        Schema that describes driver action attributes.
       example:
         type: GET_REGISTER
         attributes:
@@ -96,7 +96,7 @@ components:
     DriverAttributesSchema:
       type: array
       description: >
-        The list of attributes supported by the driver.
+        Schema that describes a list of attributes supported by a driver.
       example:
         - name: "register"
           description: "Some register."

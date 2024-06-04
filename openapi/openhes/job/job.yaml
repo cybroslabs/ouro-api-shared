@@ -229,7 +229,7 @@ components:
             - type_get_periodical_profile
 
     JobActionGetIrregularProfileSchema:
-      description: Schema that describes the action definition to get an irregular profile.
+      description: Schema that describes the action to get an irregular profile.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -242,7 +242,7 @@ components:
             - type_get_irregular_profile
 
     JobActionGetEventsSchema:
-      description: Schema that describes the action definition to get events.
+      description: Schema that describes the action to get events.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -255,7 +255,7 @@ components:
             - type_get_events
 
     JobActionGetClockSchema:
-      description: Schema that describes the action to get clock.
+      description: Schema that describes the action to get the clock.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -474,7 +474,7 @@ components:
         webhookURL:
           type: string
           description: >
-            The URL of the webhook to send the notification when any job in the bulk is done.
+            The URL of the webhook to send a notification when any job in the bulk is done.
           format: uri
           nullable: true
       required:
@@ -485,7 +485,7 @@ components:
 
     BulkStatusEnumSchema:
       type: integer
-      description: The status of the bulk.
+      description: The status of a bulk.
       enum: [0, 1, 2, 3, 4]
       x-enum-varnames:
         - QUEUED

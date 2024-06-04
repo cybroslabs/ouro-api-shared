@@ -16,25 +16,25 @@ components:
     CommunicationUnitID:
       type: string
       description: >
-        The ID of the communication unit. The ID must be unique across the OpenHES components.
+        The ID of the communication unit. The ID must be unique across all OpenHES components.
       format: uuid
 
     DeviceID:
       type: string
       description: >
-        The ID of the device. The ID must be unique across the OpenHES components.
+        The ID of the device. The ID must be unique across all OpenHES components.
       format: uuid
 
     DeviceGroupID:
       type: string
       description: >
-        The ID of the device group. The ID must be unique across the OpenHES components.
+        The ID of the device group. The ID must be unique across all OpenHES components.
       format: uuid
 
     CommunicationUnitSchema:
       type: object
       description: >
-        Schema that describes a communication unit details.
+        Schema that describes communication unit details.
       properties:
         id:
           $ref: "#/components/schemas/CommunicationUnitID"
