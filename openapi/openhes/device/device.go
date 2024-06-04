@@ -23,11 +23,11 @@ type CommunicationUnitID = openapi_types.UUID
 // CommunicationUnitListID The list of communication unit IDs.
 type CommunicationUnitListID = []CommunicationUnitID
 
-// CommunicationUnitSchema Schema that holds the communication unit info.
+// CommunicationUnitSchema Schema that describes a communication unit details.
 type CommunicationUnitSchema struct {
 	ConnectionInfo externalRef0.ConnectionTypeSchema `json:"connectionInfo"`
 
-	// ExternalID The public ID of the device.
+	// ExternalID The public ID of the communication unit.
 	ExternalID *string `json:"externalID"`
 
 	// Id The ID of the communication unit. The ID must be unique across the OpenHES components.
@@ -40,9 +40,9 @@ type CommunicationUnitSchema struct {
 // DeviceGroupID The ID of the device group. The ID must be unique across the OpenHES components.
 type DeviceGroupID = openapi_types.UUID
 
-// DeviceGroupSchema Schema that holds the device group info.
+// DeviceGroupSchema Schema that describes device group details.
 type DeviceGroupSchema struct {
-	// ExternalID The public ID of the device.
+	// ExternalID The public ID of the device group.
 	ExternalID *string `json:"externalID"`
 
 	// Id The ID of the device group. The ID must be unique across the OpenHES components.
@@ -55,9 +55,9 @@ type DeviceGroupSchema struct {
 // DeviceID The ID of the device. The ID must be unique across the OpenHES components.
 type DeviceID = openapi_types.UUID
 
-// DeviceSchema Schema that holds the device info.
+// DeviceSchema Schema that describes device details.
 type DeviceSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// CommunicationUnitID The list of communication unit IDs.
@@ -76,22 +76,23 @@ type DeviceSchema struct {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"AAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

@@ -78,12 +78,12 @@ const (
 type ActionID = openapi_types.UUID
 
 // ActionTypeSchema The type of action.
-//   - `GET_REGISTER` - The action is to get billing value, for example instantaneous values.
-//   - `GET_PERIODICAL_PROFILE` - The action is to get periodical profile, for example load-profile.
-//   - `GET_IRREGULAR_PROFILE` - The action is to get non-periodical profile, for example daily profile or monthly billing registers.
-//   - `GET_EVENTS` - The action is to get event log.
+//   - `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
+//   - `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
+//   - `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
+//   - `GET_EVENTS` - The action is to get an event log.
 //   - `GET_CLOCK` - The action is to get the clock.
-//   - `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device, it can forcefully set it if force attribute is set.
+//   - `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
 //   - `GET_RELAY_STATE` - The action is to get the relay state.
 //   - `SET_RELAY_STATE` - The action is to set the relay state.
 //   - `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
@@ -92,22 +92,22 @@ type ActionID = openapi_types.UUID
 //   - `SET_TOU` - The action is to set the time-of-use table.
 //   - `GET_LIMITER` - The action is to get the limiter settings.
 //   - `SET_LIMITER` - The action is to set the limiter settings.
-//   - `RESET_BILLING_PERIOD` - The action is to reset billing period.
-//   - `FW_UPDATE` - The action is to start firmware update.
+//   - `RESET_BILLING_PERIOD` - The action is to reset the billing period.
+//   - `FW_UPDATE` - The action is to start a firmware update.
 type ActionTypeSchema string
 
-// AttributesSchema Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+// AttributesSchema Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 type AttributesSchema = attribute.Attributes
 
-// BulkID The ID of the bulk job. The ID must be unique across the OpenHES components.
+// BulkID The ID of the job bulk. The ID must be unique across all OpenHES components.
 type BulkID = openapi_types.UUID
 
-// BulkSpecSchema Schema that holds the one or more jobs for single driver type.
+// BulkSpecSchema Schema that describes jobs for a specific driver type.
 type BulkSpecSchema struct {
-	// Actions List of actions to be queued. The empty array is not valid, at least one action must be present. The actions are processed in the order they are defined in the list.
+	// Actions A list of actions to be processed. An empty array is not valid, at least one action must be present. The actions are processed in the same order as they are defined in the list.
 	Actions JobActionListSchema `json:"actions"`
 
-	// CorrelationID The correlation ID of the bulk. The correlation ID is used to group the bulks.
+	// CorrelationID The correlation ID of the bulk. The correlation ID is used to group bulks.
 	CorrelationID *string `json:"correlationID"`
 
 	// Devices List of devices to be queued.
@@ -116,10 +116,10 @@ type BulkSpecSchema struct {
 	// DriverType The driver type related to the job. The type must be one of the supported driver types.
 	DriverType string `json:"driverType"`
 
-	// Id The ID of the bulk job. The ID must be unique across the OpenHES components.
+	// Id The ID of the job bulk. The ID must be unique across all OpenHES components.
 	Id BulkID `json:"id"`
 
-	// Settings Schema that holds the settings of the job.
+	// Settings Schema that describes job settings.
 	Settings *JobSettingsSchema `json:"settings,omitempty"`
 
 	// WebhookURL The URL of the webhook to send the notification when any job in the bulk is done.
@@ -129,7 +129,7 @@ type BulkSpecSchema struct {
 // BulkStatusEnumSchema The status of the bulk.
 type BulkStatusEnumSchema int
 
-// BulkStatusSchema Schema that holds the status of the bulk of jobs.
+// BulkStatusSchema Schema that describes the bulk status.
 type BulkStatusSchema struct {
 	// FinishedAt The time when the bulk has been marked as completed.
 	FinishedAt *time.Time `json:"finishedAt"`
@@ -141,7 +141,7 @@ type BulkStatusSchema struct {
 	Status BulkStatusEnumSchema `json:"status"`
 }
 
-// ConnectionTypePhoneSchema Schema that holds the phone connection info.
+// ConnectionTypePhoneSchema Schema that describes the phone connection.
 type ConnectionTypePhoneSchema struct {
 	// Number The phone number of the device.
 	Number string `json:"number"`
@@ -152,15 +152,12 @@ type ConnectionTypeSchema struct {
 	union json.RawMessage
 }
 
-// ConnectionTypeSerialSchema Schema that holds the phone connection info.
-type ConnectionTypeSerialSchema struct {
-	// Number The phone number of the device.
-	Number string `json:"number"`
-}
+// ConnectionTypeSerialSchema Schema that describes the serial line connection.
+type ConnectionTypeSerialSchema = map[string]interface{}
 
-// ConnectionTypeTcpSchema Schema that holds the TCP connection info.
+// ConnectionTypeTcpSchema Schema that describes the TCP connection.
 type ConnectionTypeTcpSchema struct {
-	// Host The IP address or hostname of the device.
+	// Host The IP address or the hostname of the device.
 	Host string `json:"host"`
 
 	// Port The port number of the device.
@@ -169,7 +166,7 @@ type ConnectionTypeTcpSchema struct {
 
 // JobActionCommonSchema Common fields shared for all actions.
 type JobActionCommonSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -178,7 +175,7 @@ type JobActionCommonSchema struct {
 
 // JobActionFwUpdateSchema defines model for JobActionFwUpdateSchema.
 type JobActionFwUpdateSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -188,7 +185,7 @@ type JobActionFwUpdateSchema struct {
 
 // JobActionGetClockSchema defines model for JobActionGetClockSchema.
 type JobActionGetClockSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -198,7 +195,7 @@ type JobActionGetClockSchema struct {
 
 // JobActionGetDisconnectorStateSchema defines model for JobActionGetDisconnectorStateSchema.
 type JobActionGetDisconnectorStateSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -208,7 +205,7 @@ type JobActionGetDisconnectorStateSchema struct {
 
 // JobActionGetEventsSchema defines model for JobActionGetEventsSchema.
 type JobActionGetEventsSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -218,7 +215,7 @@ type JobActionGetEventsSchema struct {
 
 // JobActionGetIrregularProfileSchema defines model for JobActionGetIrregularProfileSchema.
 type JobActionGetIrregularProfileSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -228,7 +225,7 @@ type JobActionGetIrregularProfileSchema struct {
 
 // JobActionGetLimiterSchema defines model for JobActionGetLimiterSchema.
 type JobActionGetLimiterSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -238,7 +235,7 @@ type JobActionGetLimiterSchema struct {
 
 // JobActionGetPeriodicalProfileSchema defines model for JobActionGetPeriodicalProfileSchema.
 type JobActionGetPeriodicalProfileSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -254,7 +251,7 @@ type JobActionGetPeriodicalProfileSchema struct {
 
 // JobActionGetRegisterSchema defines model for JobActionGetRegisterSchema.
 type JobActionGetRegisterSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -264,7 +261,7 @@ type JobActionGetRegisterSchema struct {
 
 // JobActionGetRelayStateSchema defines model for JobActionGetRelayStateSchema.
 type JobActionGetRelayStateSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -274,7 +271,7 @@ type JobActionGetRelayStateSchema struct {
 
 // JobActionGetTouSchema defines model for JobActionGetTouSchema.
 type JobActionGetTouSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -282,12 +279,12 @@ type JobActionGetTouSchema struct {
 	TypeGetTou int      `json:"type_get_tou"`
 }
 
-// JobActionListSchema List of actions to be queued. The empty array is not valid, at least one action must be present. The actions are processed in the order they are defined in the list.
+// JobActionListSchema A list of actions to be processed. An empty array is not valid, at least one action must be present. The actions are processed in the same order as they are defined in the list.
 type JobActionListSchema = []JobActionSchema
 
 // JobActionResetBillingPeriodSchema defines model for JobActionResetBillingPeriodSchema.
 type JobActionResetBillingPeriodSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -297,10 +294,10 @@ type JobActionResetBillingPeriodSchema struct {
 
 // JobActionResultSchema defines model for JobActionResultSchema.
 type JobActionResultSchema struct {
-	// Code The result of the action. If the action was successful, the value is true and vice versa.
+	// Code The result of the action. If the action is successful, the value is true and vice versa.
 	//   * `OK` - The action has been successfully processed.
 	//   * `UNSUPPORTED` - The action is not supported by the driver.
-	//   * `ERROR` - Some error(s) have occurred during the processing of the action.
+	//   * `ERROR` - Some errors have occurred during the processing of the action.
 	//   * `NOT_PROCESSED` - The action has not been processed.
 	Code JobActionResultSchemaCode `json:"code"`
 
@@ -311,10 +308,10 @@ type JobActionResultSchema struct {
 	Id ActionID `json:"id"`
 }
 
-// JobActionResultSchemaCode The result of the action. If the action was successful, the value is true and vice versa.
+// JobActionResultSchemaCode The result of the action. If the action is successful, the value is true and vice versa.
 //   - `OK` - The action has been successfully processed.
 //   - `UNSUPPORTED` - The action is not supported by the driver.
-//   - `ERROR` - Some error(s) have occurred during the processing of the action.
+//   - `ERROR` - Some errors have occurred during the processing of the action.
 //   - `NOT_PROCESSED` - The action has not been processed.
 type JobActionResultSchemaCode string
 
@@ -323,14 +320,14 @@ type JobActionResultSchema_Data struct {
 	union json.RawMessage
 }
 
-// JobActionSchema Schema that holds the action definition.
+// JobActionSchema Schema that describes actions.
 type JobActionSchema struct {
 	union json.RawMessage
 }
 
 // JobActionSetDisconnectorStateSchema defines model for JobActionSetDisconnectorStateSchema.
 type JobActionSetDisconnectorStateSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -340,7 +337,7 @@ type JobActionSetDisconnectorStateSchema struct {
 
 // JobActionSetLimiterSchema defines model for JobActionSetLimiterSchema.
 type JobActionSetLimiterSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -350,7 +347,7 @@ type JobActionSetLimiterSchema struct {
 
 // JobActionSetRelayStateSchema defines model for JobActionSetRelayStateSchema.
 type JobActionSetRelayStateSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -360,7 +357,7 @@ type JobActionSetRelayStateSchema struct {
 
 // JobActionSetTouSchema defines model for JobActionSetTouSchema.
 type JobActionSetTouSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -370,7 +367,7 @@ type JobActionSetTouSchema struct {
 
 // JobActionSyncClockSchema defines model for JobActionSyncClockSchema.
 type JobActionSyncClockSchema struct {
-	// Attributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	Attributes AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
@@ -385,13 +382,13 @@ type JobDeviceListSchema = []JobDeviceSchema
 type JobDeviceSchema struct {
 	ConnectionInfo ConnectionTypeSchema `json:"connectionInfo"`
 
-	// DeviceAttributes Schema that holds a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+	// DeviceAttributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	DeviceAttributes AttributesSchema `json:"deviceAttributes"`
 
 	// ExternalID The public ID of the device.
 	ExternalID *string `json:"externalID"`
 
-	// Id The ID of the job. The ID must be unique across the OpenHES components.
+	// Id The ID of the job. The ID must be unique across all OpenHES components.
 	Id JobID `json:"id"`
 }
 
@@ -401,34 +398,34 @@ type JobDeviceSchema struct {
 //   - `FATAL` - The job could not be processed due to a fatal error.
 type JobErrorCodeSchema string
 
-// JobID The ID of the job. The ID must be unique across the OpenHES components.
+// JobID The ID of the job. The ID must be unique across all OpenHES components.
 type JobID = openapi_types.UUID
 
-// JobSettingsSchema Schema that holds the settings of the job.
+// JobSettingsSchema Schema that describes job settings.
 type JobSettingsSchema struct {
-	// Attempts Number of attempts to process the job.
+	// Attempts The number of attempts to process the job.
 	Attempts *int32 `json:"attempts,omitempty"`
 
-	// DeferStart Delay in seconds before starting the first attempt of the job.
+	// DeferStart The delay in seconds before starting the first attempt of the job.
 	DeferStart *int64 `json:"deferStart,omitempty"`
 
-	// ExpiresAt Time when the job expires.
+	// ExpiresAt The time when the job expires.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
 
-	// MaxDuration Maximum duration in seconds to process the job.
+	// MaxDuration The maximum duration in seconds to process the job.
 	MaxDuration *int64 `json:"maxDuration,omitempty"`
 
-	// Priority Priority of the job.
+	// Priority The priority of the job.
 	Priority *int32 `json:"priority,omitempty"`
 
-	// RetryDelay Delay in seconds before retrying the job.
+	// RetryDelay The delay in seconds before retrying the job.
 	RetryDelay *int64 `json:"retryDelay,omitempty"`
 }
 
 // JobStatusCodeEnumSchema The status of the job.
 type JobStatusCodeEnumSchema int
 
-// JobStatusSchema Schema that holds the status of the job.
+// JobStatusSchema Schema that describes the status of a job.
 type JobStatusSchema struct {
 	// Code The result of the job.
 	//   * `NONE` - No error, the job has been successfully processed.
@@ -1028,62 +1025,63 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"H4sIAAAAAAAC/7xb63PjNpL/V1C4+3B3RcvzyOR2/Gk9smZWiWJpJTm7qeyUA5EtCTMkwACgPdqU//ct",
+	"PPgSQZGypXyyTAAN9A+NfqHxBw55knIGTEl89QeW4RYSYn5eh4pyNr7RvyOQoaCp/oCv8HILaHyD+Bqp",
+	"LSBi+g3+xXCA11wkROErnGU0wgFWuxTwFZZKULbBT4EjutylsDAz+YnrYZp8QRqh/0O/fRot7+ejT+PF",
+	"cjT/DV2gZTE5ohIpjjagEEErGseUbdADiTMI0JoLBN9IksYQIMqkIkwRBjyTtoeskp+N5uPpzXh4Pbmf",
+	"zacfx5PRgYlSEJRHNCQxSgVf03h/tpiT6MI1VWcZz+ejT3eT63mPSRhnFy0TBSgiNN7l3xAXKOFMbeNd",
+	"gYGADZUKRI3J0c+j2+WifU6G4AGYQjHfVIcNJ9Phj62jtCSEMQ+/5kMWv9wOD4yROxZuBWf031AZW+1X",
+	"6SHLLogy808EDzSEARpbIVxzEQIiSgm6yhToSSSoAFFlm9ZZHO/0J9lcqZWryfUv94vl9XJ0kEUBMdkh",
+	"qYgqdnTRY7hsH65nvxkvhtPb29FwOZ33WEREZcgZg1Bx0VxLT2Kyk5he2XJ6d3ApiiZwwdcXmQSkyCqu",
+	"raRtsOwarGeejH8aHzromkBME6pAaIKKso2sTn5ovOwYPx9pCh/Gk8n49pNTCl5CAnJS+YmzZzUn9PEf",
+	"93ezm9YtUEToM76mInkkAlCWRhZ/HGBgWYKvfsVVrYcD7NdSrqGhWNx3e+LdP+ZM4gCXB9Q1VIRYNze+",
+	"+CXVdfU2OAlyXeyvyt667+V/PtxxgAsU8WefSckPvSxNCokiqoEm8UzwFISiYGwaYbvpGl/9+keDTPGF",
+	"MgUbENVPLEtW9S8rzmMgDD99DjDL4lgLL75SIoOnYM+e2UUhtSUK2ZYVSESMDGoTV6weERZpUaIiN0xG",
+	"Yr7CzojLFrSi17zsECMJ5N1t50YX89VSsB1CwtDKWFVjXS3j2iIadgNkmQyQYy1AK8qI2AXarGgWrVQ6",
+	"/vnqC4QKB/jbxYZfuI8FK4NyS6pdLmiScqH0PqREbfEV3lC1zVaDkCeX4W4luIzJSl5uQV68uSAplZc8",
+	"BUZSav5uQV4WU+CnpwB/yOKv3f7JF75Cqyx2xmV8g5JMKg1FxujvmT6SgkuJSByjaQrsb6MFKn2inm6N",
+	"XskihbDNqfELwRe+ksZjIEimENI1DVEk6AMIs0d27rQuwEZ/mJ//LWCNr/B/XZarvXTu2+UPfGU9rQmV",
+	"yi3qKcAhF9oCHfLrKl0qGJb47bVTiTIJkVHKgmep6elQqx8MD2rWhvdh5sb0rDNjkVoaoj5OKkgau6vs",
+	"Mp1IWG5MYy4PnEHOr8xSLaoQVak4thLKJsA2WoBfe5iiURc/TmyfApzbnR4ILFzXkv9HWG05/3o3n/j5",
+	"v5tPcnZcV2v6nNpgXGmBszv5uAWGCNuZw+I8LL2Ten8jzmD/GAjavb9PARbwe0YFRNqOmYOT73hQCHJt",
+	"Hz/vK5j8aCmiMjliWXIoapCmV01kSzv6KngdvAneBt+Vc+SaXqso3euiQlLqJS8rKPyeQQaROa2p4CFI",
+	"SdlGC5H2NO3EVCsRab0LstZ+BWFav0OSKrQmNJZ6PVWiYSYEMKUddjDOg6UMUaMj1xGF2mvYEolWAEzr",
+	"9hDi2NMM31K9AQMNrePygQhtPwyHf78b3Y20iZ3f3d6Obz/hAA+nP80mo6X5Ory+HY4mE/N79M/ZeD66",
+	"wZ9re3KcwivEyiI2aKi3NWVUbiG6Vi2BIU3ACqtqgJAQ8RUiRKpo1cVWO1cXmkQf5WScs+etxC8rL1uL",
+	"ymQfvdI4KfvH0JHynbShDQNcfD7bcgbHb2+qh6GwIOUzYs6f8uJqx9se+VF2sV639t3j1c3TzWvJJmfg",
+	"HMRDSNdHL8O00MrHjKsifNzIBQhK4nzo5yY/1fYjNk+acSimni3sgLAE4Yj5lsNZh6hsuWw5gOMZIlEk",
+	"QErtoWpquq/xjD1i0zhSuSfqkUAu1CEBJN9ook3K9+/evX1nBNL+/7phWPbl0TDjpvYJpfVyZjad8yHm",
+	"4ddnbCFlm9jsnqIs45lEK5M24esiTxQRRXxYG43XalqFsjovN68ug9Km0xqA25imS4c1IfjZjKtosx6w",
+	"1cYcAV5MpaoiVSQIcYCpgqRz+Z+AgaChmb9mIMt1EyHIzr/sE6zYbMsxK26Vua4V3xBFnmEeOmTQrv/4",
+	"RVdwthmYlrNt2nIZri5Ge70SQs6i/ZiPMvX2DW4e7gBnjLacF93im8WrjPa0hIPAkS/4aVcYc5fkfd6O",
+	"5Cni1i3RB1oqkqTtjpBpLpRlQaefYuiHYit6TrM8/2Q+dQIrn4dsfjarSfjjjqVnZz3HspW1482GTRU9",
+	"UrVFVBWBDWGRDiTMEn0Skrf5dzFvzXfSZqb6nrHS9e0K+Frofv+dl24hNE2yFUKlO9jMF3ZPUukT8Uw7",
+	"+EGflKJXIouMzpAnCWdtO2xb0ZpCHEkkt0S4QITEsUs+S29eqczYdUhmI93aK+dRXCZ60wKV2T8f4v3j",
+	"453JkFcSvXHcw1/3g6fB31N1uxTu14/3Ng+vvxTe3uujPL09Qk2mPge9j6a7MjhwX1DD6BOoYd11PANG",
+	"G1D35g7tpRiVhE6E0QaUu93bR+WmctGl1SScHaHq1dq9uVo7BVweqifEruVKcB/M0YOG5uwImotoeQrU",
+	"HKVTIBXBmjJaBc0Sb4A0FgI2WUyE81TPDhfNJ7x3TucpkGsSPQ+IhKFiqtxpbkA6sTe2Z0fS3QyfAr+c",
+	"1IkPaePueh+qWVE1cmbxS4kgyb1aC570zR40Y6J+sYKbSvEWV5NFJ5mm2Luy8uaUJ8pD9YTC4StMaghH",
+	"Hlmc/SDlwc8pcCtonRStnKoHo5js/hxPwdQFnc5FqJI7sdqpVjDtA7bk2dmRUjw7BUKazImRaVYz1fCp",
+	"XF43dNd1kStwIZqmu4LKfSC6ZgiSVO2QCfsRlYhxpUNVGgWIKBQD0RRYsbL8VjsVIHXcXik/kkgHDwXx",
+	"/MJXmty5iEAgYpjcmX7GUpe99EqPSGQU/JfRovcKp8hmFAPmIEF9sGVV1padVbhMKde9K+O6L5OIL5E0",
+	"L80TiV1r6dk+iFlckbs64yGPWnIgwozbK/HNiy3LIjaZhVqG1lkc7NUiicxWKD3QENADCEnymrjpfkFo",
+	"cW9aUrNVrU723bi728XdbDadL0eeWjx9GMqijdXOxjGmsiAfP5rPp6YccMETQCAEFxJtyQMgHpqL+AhF",
+	"mfYActfBXdw26pwNtdvp8n42nw5Hi0VjPZohvSDDVJWPSlnf9Ecc4ApLOMBmgTjANdLekjftzxzcN5PR",
+	"9tRn97vebM9+dl1Ttt0QmDvKl2aJjLQ65g+miY5Lf+ZZsd7wHPCjuvDp458fQ6MlwjyGRC2SP2bgsHZZ",
+	"1NcK7Fj4rIE+f6z/rC8ZfCB1dMwCXkyj5mAdM/MzRjUi7WPme+bIVnvfm8JeetgonT5bcB6HQp4lAyjP",
+	"mgGUPTOAiz8nEyNPl4mRp8/EyF6ZmMWfFkjK0waS8jyBpOwKJBfnDyTlaQJJedpAUvYLJPdN6Jkg2rHw",
+	"NFc8FUqnAsr7dsyB1CgVb7iBExdru2JkF2vbos3jIls71xGRbW2AJxzLS+HGbM275veWMBZV9dcvutCF",
+	"bwoEI3HbK4E0W8U0rDwQqFbIdZazdgcCP/BVexRQA8nDb0tsMNIR35BHB1+e1uPeL3xVxnu35hHXLbeh",
+	"Y1C8LekZvnrCz/+R/3tMAFpZzcfr5fUkjzr1IkKexZELOiuZnSgDLd4ErYkisZ21HodqviqxpyHsjTnt",
+	"lnS/tTnnM5vmO4j+L22qj/x85Q+QpKqlzqQsBs37aVAdygXfvnqWQm++f39YcWoxXoP2SttKMCNjL8sq",
+	"NbSCNRfuciUXmjUVUhVvDiqb4iuKKRb3l++/e/Wqsr5XvvXZlwSyXz28xtsNGPS+dUnIt5tMEEvUN4db",
+	"sD4l9tlKBY3uDanz/P9vaiy/fufjORWUC6p2LUrQtR7AeU8IujAWoMTuRm/0cTJgxuUy0Mn6+/cdC2mp",
+	"P7K1ZVqDHvcSxy3ohQ9xzMukE7/DcTQ7n+Hk/fZf4dTUf+MRTt56njc4xYY8o9iv2B6Sb44/L9xhovct",
+	"6lNw5AMe97guH1S1eaXBe/arGWvL5SFDL+tJUmlS3FpaDiVyAxe/GE/B5Z7zW5ZnXIzUUvRPrXwVbuRR",
+	"D5Mcwm7MiQHu9yypTXO0vExyed6mE6f7U+cXh5wpEhoEICE0Nkpkzf9aviIehDzRPJBE0xia72hCVhIp",
+	"ILolE3rUVqlUXl1ePj4+DuqDLymLQB/XwVYlsWY3piEwaQ6GI/thMbl4PXjVoMZTYJJnIoQBF5tLN1Be",
+	"5v21gqUqhrJg83o2RgmPILYPgp2HhAP8AELazX01cEPdo2h8hd8O7OwpUVuJr/SGPf0nAAD//68lYbbS",
+	"RQAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

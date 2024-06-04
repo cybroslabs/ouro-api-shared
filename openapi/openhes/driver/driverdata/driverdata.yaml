@@ -16,7 +16,7 @@ components:
     GenericValueStatusSchema:
       type: object
       description: >
-        Schema that holds the single value with its status and exponent.
+        Schema that describes the single value with its status and exponent.
       properties:
         status:
           type: integer
@@ -42,7 +42,7 @@ components:
     DeviceRegisterDataSchema:
       type: object
       description: >
-        Schema that holds the register data.
+        Schema that describes the register data.
       properties:
         timestamp:
           type: string
@@ -59,14 +59,14 @@ components:
     DeviceProfileBlockValuesSchema:
       type: array
       description: >
-        Schema that holds the list of profile values.
+        Schema that describes the list of profile values.
       items:
         $ref: "#/components/schemas/GenericValueStatusSchema"
 
     DeviceProfileBlockSchema:
       type: object
       description: >
-        Schema that holds the single continuous block of profile data.
+        Schema that describes the single continuous block of profile data.
       properties:
         start:
           type: string
@@ -79,21 +79,21 @@ components:
     DeviceProfileBlocksSchema:
       type: array
       description: >
-        Schema that holds the list of profile blocks.
+        Schema that describes the list of profile blocks.
       items:
         $ref: "#/components/schemas/DeviceProfileBlockSchema"
 
     DeviceRegistersDataSchema:
       type: array
       description: >
-        Schema that holds the list of registers.
+        Schema that describes the list of registers.
       items:
         $ref: "#/components/schemas/DeviceRegisterDataSchema"
 
     DeviceProfileDataSchema:
       type: object
       description: >
-        Schema that holds the profile data.
+        Schema that describes the profile data.
       properties:
         blocks:
           $ref: "#/components/schemas/DeviceProfileBlocksSchema"

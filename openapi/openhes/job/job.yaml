@@ -212,7 +212,7 @@ components:
             - type_get_periodical_profile
 
     JobActionGetIrregularProfileSchema:
-      description: Schema that holds the action definition to get an irregular profile.
+      description: Schema that describes the action definition to get an irregular profile.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object
@@ -225,7 +225,7 @@ components:
             - type_get_irregular_profile
 
     JobActionGetEventsSchema:
-      description: Schema that holds the action definition to get events.
+      description: Schema that describes the action definition to get events.
       allOf:
         - $ref: "#/components/schemas/JobActionCommonSchema"
         - type: object

@@ -18,24 +18,24 @@ import (
 	"github.com/oapi-codegen/runtime"
 )
 
-// DeviceProfileBlockSchema Schema that holds the single continuous block of profile data.
+// DeviceProfileBlockSchema Schema that describes the single continuous block of profile data.
 type DeviceProfileBlockSchema struct {
 	// Start The start time of the block.
 	Start *time.Time `json:"start,omitempty"`
 
-	// Values Schema that holds the list of profile values.
+	// Values Schema that describes the list of profile values.
 	Values *DeviceProfileBlockValuesSchema `json:"values,omitempty"`
 }
 
-// DeviceProfileBlockValuesSchema Schema that holds the list of profile values.
+// DeviceProfileBlockValuesSchema Schema that describes the list of profile values.
 type DeviceProfileBlockValuesSchema = []GenericValueStatusSchema
 
-// DeviceProfileBlocksSchema Schema that holds the list of profile blocks.
+// DeviceProfileBlocksSchema Schema that describes the list of profile blocks.
 type DeviceProfileBlocksSchema = []DeviceProfileBlockSchema
 
-// DeviceProfileDataSchema Schema that holds the profile data.
+// DeviceProfileDataSchema Schema that describes the profile data.
 type DeviceProfileDataSchema struct {
-	// Blocks Schema that holds the list of profile blocks.
+	// Blocks Schema that describes the list of profile blocks.
 	Blocks DeviceProfileBlocksSchema `json:"blocks"`
 
 	// Period The period of the profile data in seconds.
@@ -45,7 +45,7 @@ type DeviceProfileDataSchema struct {
 	Unit string `json:"unit"`
 }
 
-// DeviceRegisterDataSchema Schema that holds the register data.
+// DeviceRegisterDataSchema Schema that describes the register data.
 type DeviceRegisterDataSchema struct {
 	// Timestamp The timestamp of the data.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
@@ -53,14 +53,14 @@ type DeviceRegisterDataSchema struct {
 	// Unit The unit of the data.
 	Unit *string `json:"unit,omitempty"`
 
-	// Value Schema that holds the single value with its status and exponent.
+	// Value Schema that describes the single value with its status and exponent.
 	Value *GenericValueStatusSchema `json:"value,omitempty"`
 }
 
-// DeviceRegistersDataSchema Schema that holds the list of registers.
+// DeviceRegistersDataSchema Schema that describes the list of registers.
 type DeviceRegistersDataSchema = []DeviceRegisterDataSchema
 
-// GenericValueStatusSchema Schema that holds the single value with its status and exponent.
+// GenericValueStatusSchema Schema that describes the single value with its status and exponent.
 type GenericValueStatusSchema struct {
 	// Exponent The exponent of the value.
 	Exponent *int32 `json:"exponent,omitempty"`
@@ -206,18 +206,18 @@ func (t *GenericValueStatusSchema_Value) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/6RVQW/bOgz+KwLfO6Z23+uwg09b12EbUKDFMuzS9SDLdMxNljyJTloE+e+DLDtNG2eJ",
-	"t5shih8/fvxorUHZurEGDXvI1uBVhbXsPq9wSQpvnS1J46W26se8C4ZYgV45apisgQziueBKsqisLrzg",
-	"CoUns9AolDVMprWtF3kAEbYUTQQVhWSZfDMwg8bZBh0TRhYsHe/X+RJQQ0gw1RiAQp0ONaKU1tWSIYNC",
-	"Mp6FSzADfmwQMvDsyCxgM4Ol1G2s86/DEjL4J30SIe0VSPfb/9rl9SJsNltkm39HxQH5SM6JwmnyvKtS",
-	"5Bs7JMb6KPUPaNCR6mrPWXK7Jb3lLJ2Tj+OU/5JtN44pbA/67BjbK8lyGtdjvovcpxPe0bdBR7YY926M",
-	"Db7dJSPICI/KmsK/cDIZvvj/ycVkGBfoQqXW0IEdCZGxKhH6xT5sZuDwZ0sOC8juBgl6+G0/9wfd/hkX",
-	"5Bnd9Gm4PvPgOMICe5Z1M97mNjz0+oRz2o/gNAUPKtf/Sf58GzdHRfXTVR32cVB3+iqOTHRkFQ+2Ne15",
-	"6CQUK+JKEPvwe+fWC2kKgQ+R3pgzhtj49IboMMGuxsl7FSkcfH0Cvd/jvn41irs1yz7sDpA1eFNCdrfe",
-	"c9v6hCI7dwrb5nrH9qat8/5Of5Jbq1Ea2NyPODEckSltIByecKk6sbGWpLuSpX2jHnNnvZa5T5StYQZG",
-	"1gHjXXcurmXuBaMMkdaFrIq58Vmarlar5HlySqbAhzM0ScW1DnI9V+nK0RKdCJYUb28/idoWqL0orRM3",
-	"DZqP7+cwA00Kje807plczq/P/kvO9wjYBo23rVOYWLdI+0SfDveDHsQaT628ROcj0fOkzw8lZEOQwUUS",
-	"KTSSKw+ZabXe/AoAAP//9oK5GHgJAAA=",
+	"H4sIAAAAAAAC/6xVwW7bOBD9FWJ2j46U3Sz2oFObpmgLBEhQF72kOVDUyJ6WIlVyZCcw9O8FRclxYqm2",
+	"g94EDue9x8c34gaUrWpr0LCHbANeLbGS3ecVrkjhrbMlabzUVv2Yd8VQK9ArRzWTNZBBXBe8lCxiJUcv",
+	"eInCk1loFMoaJtPYxos8AAlbijoCi0KyTL4ZmEHtbI2OCaMSlo73ub4E1FASTBUGoMDToUaU0rpKMmRQ",
+	"SMazsAlmwI81QgaeHZkFtDNYSd1Enr8dlpDBX+mTEWnvQrpvwdeurzeibbfINv+OigPygZ4TzNPkedep",
+	"qDmekhirg/I/oEFHquOfs+RmK3yrWzonH8dl/wHF3bWcongyc4cUX0mWp+s9lMGo/3TROz7X6MgW4zmO",
+	"tSHDu2IEGeFRWVP4F6kmwxf/PiWaDOMCXWBqDE3MS6iMsUToF7PRzsDhz4YcFpDdDRb08Nvz3E8m/zMu",
+	"yDO6192I67snryQMtGdZ1eNH3ZaH8z7hHPdjOM7FSff6P8vrJ7M9aKx/nbPDbA4Onz6WIzc7MpaTRzv9",
+	"2eisFGvipSD24bfPjRfSFAIfosSxhAy18VscqsNNdhxHz1iUMPkqBXm/x/3/v1HcbWj2YXeArMGbErK7",
+	"zV7qNkeQ7OwpbJPrnfibpsr7Pf1Kbq1GaaC9H0lkWCJT2iA4PO1SdWZjJUl3lKV9ox5zZ72WuU+UrWAG",
+	"RlYB4123Lq5l7gWjDJXGha4lc+2zNF2v18nz5pRMgQ9naJIlVzrY9dylK0crdCLEUry9/SQqW6D2orRO",
+	"3NRoPr6fwww0KTS+87hXcjm/PvsnOd8TYGs03jZOYWLdIu0bfTrsD34QazyWeYXOR6HnSd8fKGRNkMFF",
+	"EiXUkpceMtNo3f4KAAD//yI+QfaUCQAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
