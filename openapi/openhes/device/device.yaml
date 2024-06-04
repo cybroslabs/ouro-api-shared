@@ -34,14 +34,14 @@ components:
     CommunicationUnitSchema:
       type: object
       description: >
-        Schema that holds the communication unit info.
+        Schema that describes a communication unit details.
       properties:
         id:
           $ref: "#/components/schemas/CommunicationUnitID"
         externalID:
           type: string
           description: >
-            The public ID of the device.         
+            The public ID of the communication unit.
           nullable: true
         name:
           type: string
@@ -65,14 +65,14 @@ components:
     DeviceSchema:
       type: object
       description: >
-        Schema that holds the device info.
+        Schema that describes device details.
       properties:
         id:
           $ref: "#/components/schemas/DeviceID"
         externalID:
           type: string
           description: >
-            The public ID of the device.         
+            The public ID of the device.
           nullable: true
         name:
           type: string
@@ -80,26 +80,26 @@ components:
             The name of the device.
           minLength: 1
         communicationUnitID:
-          $ref: "#/components/schemas/CommunicationUnitListID"          
+          $ref: "#/components/schemas/CommunicationUnitListID"
         attributes:
           $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
       required:
         - id
         - name
         - communicationUnitID
-        - attributes    
+        - attributes
 
     DeviceGroupSchema:
       type: object
       description: >
-        Schema that holds the device group info.
+        Schema that describes device group details.
       properties:
         id:
           $ref: "#/components/schemas/DeviceGroupID"
         externalID:
           type: string
           description: >
-            The public ID of the device.         
+            The public ID of the device group.
           nullable: true
         name:
           type: string
@@ -109,4 +109,3 @@ components:
       required:
         - id
         - name
-        

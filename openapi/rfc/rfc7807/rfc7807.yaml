@@ -16,7 +16,7 @@ components:
     ProblemDetailsSchema:
       type: object
       description: >
-        Schema that carries the details of an error in an HTTP response.
+        Schema that describes errors in HTTP responses.
         See https://datatracker.ietf.org/doc/html/rfc7807 for more information.
       examples:
         - type: "https://example.com/probs/not-found"

@@ -27,7 +27,7 @@ const (
 	STRING  AttributeDefinitionSchemaType = "STRING"
 )
 
-// AttributeDefinitionSchema Schema that holds the specification of the driver attribute.
+// AttributeDefinitionSchema Schema that describes a driver attribute.
 type AttributeDefinitionSchema struct {
 	DefaultValue *GenericObject `json:"defaultValue,omitempty"`
 
@@ -57,18 +57,18 @@ type AttributeDefinitionSchema struct {
 //   - `BINARY` - The attribute is a binary.
 type AttributeDefinitionSchemaType string
 
-// DriverActionAttributeSchema Schema that holds the specification of the driver action attribute.
+// DriverActionAttributeSchema Schema that describes a driver action attribute.
 type DriverActionAttributeSchema struct {
 	// Attributes The list of attributes supported by the driver.
 	Attributes *DriverAttributesSchema `json:"attributes,omitempty"`
 
 	// Type The type of action.
-	//   * `GET_REGISTER` - The action is to get billing value, for example instantaneous values.
-	//   * `GET_PERIODICAL_PROFILE` - The action is to get periodical profile, for example load-profile.
-	//   * `GET_IRREGULAR_PROFILE` - The action is to get non-periodical profile, for example daily profile or monthly billing registers.
-	//   * `GET_EVENTS` - The action is to get event log.
+	//   * `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
+	//   * `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
+	//   * `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
+	//   * `GET_EVENTS` - The action is to get an event log.
 	//   * `GET_CLOCK` - The action is to get the clock.
-	//   * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device, it can forcefully set it if force attribute is set.
+	//   * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
 	//   * `GET_RELAY_STATE` - The action is to get the relay state.
 	//   * `SET_RELAY_STATE` - The action is to set the relay state.
 	//   * `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
@@ -77,18 +77,18 @@ type DriverActionAttributeSchema struct {
 	//   * `SET_TOU` - The action is to set the time-of-use table.
 	//   * `GET_LIMITER` - The action is to get the limiter settings.
 	//   * `SET_LIMITER` - The action is to set the limiter settings.
-	//   * `RESET_BILLING_PERIOD` - The action is to reset billing period.
-	//   * `FW_UPDATE` - The action is to start firmware update.
+	//   * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
+	//   * `FW_UPDATE` - The action is to start a firmware update.
 	Type *externalRef2.ActionTypeSchema `json:"type,omitempty"`
 }
 
 // DriverAttributesSchema The list of attributes supported by the driver.
 type DriverAttributesSchema = []AttributeDefinitionSchema
 
-// DriverDetailsSchema Schema that holds the communication driver details.
+// DriverDetailsSchema Schema that describes the communication driver details.
 type DriverDetailsSchema = DriverSchema
 
-// DriverSchema Schema that holds the communication driver details.
+// DriverSchema Schema that describes the communication driver details.
 type DriverSchema struct {
 	// Spec Schema that registers new or updates already registered communication drivers.
 	Spec *DriverSpecSchema `json:"spec,omitempty"`
@@ -109,37 +109,37 @@ type GenericObject = interface{}
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
