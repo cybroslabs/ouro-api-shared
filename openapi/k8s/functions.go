@@ -12,20 +12,15 @@ var (
 
 // GetCurrentNamespace returns the namespace of the pod in which the application is running. If the namespace is not found, it returns "default".
 func GetCurrentNamespace() (namespace string, loaded bool) {
-	if _namespace == "" {
-		if data, err := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/namespace"); err == nil {
-			if ns := strings.TrimSpace(string(data)); len(ns) > 0 {
-				_namespace = ns
-				_namespaceLoaded = true
-				return ns, true
-			}
+	if !_namespaceLoaded {
+		ns := os.Getenv("NAMESPACE")
+		if len(ns) == 0 {
+			ns = "default"
+		} else {
+			ns = strings.TrimSpace(ns)
 		}
-		if ns, ok := os.LookupEnv("NAMESPACE"); ok && len(ns) > 0 {
-			_namespace = ns
-			_namespaceLoaded = true
-			return ns, true
-		}
-		_namespace = "default"
+		_namespace = ns
+		_namespaceLoaded = true
 	}
 	return _namespace, _namespaceLoaded
 }
