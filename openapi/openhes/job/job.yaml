@@ -111,7 +111,7 @@ components:
             The phone number of the device.
           minLength: 1
       required:
-        - phone
+        - type_phone
         - number
 
     ConnectionTypeSerialSchema:
