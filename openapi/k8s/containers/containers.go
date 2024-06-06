@@ -113,17 +113,17 @@ func (t *ContainerResourcesSchema_Cpu) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/7RUbWvbSBD+K8tcwHDIkpXjDqIv19aUNDQmIU4/GRdW61E0RfvS3VUcY/Tfy0qOHDt2",
-	"8wL9JntnnnlednYNQkujFSrvIFuDEyVK3n6OtfKcFNobdLq2At3Y1BfKT9uSULFAJywZT1pBBuPrb8xu",
-	"Stk9r2pkpJiqJVoSrNBWxuwGjUUXhoWDHC3TBRPaoouYtkxSVVH7k1HBfNnjOObqoqAHXLAl+ZIN5CCG",
-	"CPCBS1MhZGkEYQD3kEFRae4hAkmKZC0hG8VpBH5lEDLopkITHZY39fZt8py3pO7+sDpIRyMJERjuPdpA",
-	"5vssHZ7NZ6Ph2fxv+f8J9Po6Pof1TVBquzqmrzvdkxiz2+M0OasV+aBRIne1RYnKR8zVomTcscGEBsEY",
-	"JjGnfOXR7Yo6/fe/CR1VNfs6Ob+9ntMrtf0uNa4WTB5St0toDcLUW7O7jp5nE4Gx2qD1hK4vXoNWeFVA",
-	"NlvDicUCMvgr2W5Uslmn5IXL1kTvaN+uYjNvtnzfirRzK5omAos/a7K4gGzWiuyh530SOv+Bwh9JAo++",
-	"EDe77reXgzPxCPEkDdc6WpEkvzU7fRJKet5GEriie1JzLL3g8B4cnMIrANMDWPP9u7BFfpv3ffw7c9+H",
-	"sZfchtLzzEIhqUK3CgOa8OETJacKsvbog1jlVruK5y4WOtipuAwY4/Z/dslzxzzycFLb0FV6b1yWJMvl",
-	"Mt5tTkgt8GGIKi69rILUvQXVUmrFPl5fMKkXWHW34sqg+vJ5ChFUJFC5dj03JD5NL4dpPHo2WxtUnSex",
-	"tnfJptElj/VNBJ58+/S8NPQerevojeJNa0DnhiCDf+JuuuG+dJCpuqqaXwEAAP//Vd+Y/0cHAAA=",
+	"H4sIAAAAAAAC/7RU62vbMBD/V8StEBiOHbdsUH/ZI4yurKGl6T6FDBTlXN+wHpPkpiH4fx+yU6dJk/UB",
+	"++ZEd7/7PXRagdDSaIXKO8hW4ESBkjefQ608J4X2Gp2urEA3NNW58uOmJFTM0QlLxpNWkMHw6iez61J2",
+	"x8sKGSmmKomWBMu1lTG7RmPRhWHhYIaW6ZwJbdFFTFsmqSyp+ckoZ77ocBxzVZ7TPc7ZgnzBerIXQwR4",
+	"z6UpEbI0gjCAe8ggLzX3EIEkRbKSkA3iNAK/NAgZtFOhjvbLG3v7OnnOW1K3/1kdpIOBhAgM9x5tIPNr",
+	"kvZPp5NB/3T6Xn46gk5fy2e/vhFKbZeH9LWnOxJjdnOYJmeVIh80SuSusihR+Yi5ShSMO9YbUS8YwyTO",
+	"aLb06LZFHX/4OKKDqiY/Rmc3V1N6obZ/pcbVnMl96rYJrUCYamN229HxrCMwVhu0ntB1xSvQCi9zyCYr",
+	"OLKYQwbvks1GJet1Sp65bHX0hvbNKtbTesP3tUhbt6KuI7D4pyKLc8gmjcgOetoloWe/UfgDSeDBF+J6",
+	"2/3mcnAmHiAepeEaR0uS5Ddmp49CSc+aSAJXdI9qDqUXHN6Bg2N4AWC6B2u6exc2yK/zvot/a+7bMHaS",
+	"W1N6mlkoJJXrRmFAEz58ouRUQtYcfRbLmdWu5DMXCx3sVFwGjGHzP7vgM8c88nBS2dBVeG9cliSLxSLe",
+	"bk5IzfG+jyouvCyD1J0F1VJqxb5cnTOp51i2t+LSoPr+bQwRlCRQuWY91yS+ji/6aTx4MlsbVK0nsba3",
+	"ybrRJQ/1dQSefPP0PDf0Dq1r6Q3idWtA54Ygg5N4EJ+071bhIFNVWdZ/AwAA//9G3QI5RwcAAA==",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
