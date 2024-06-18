@@ -32,9 +32,10 @@ message BulkSpec {
     string org_id = 3 [json_name="o"]; // The organization identifier.
     string driver_type = 4 [json_name="t"]; // The device (driver) type.
     repeated pbtaskmaster.JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
-    pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.    
+    pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.
     repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
     optional string webhook_url = 8 [json_name="h"]; // The webhook URL to call when the bulk is completed.
+    string user_id = 9 [json_name="u"]; // The user identifier.
 }
 
 // Bulk statuses
@@ -47,7 +48,7 @@ enum BulkStatusCode {
     BULK_STATUS_COMPLETED = 2;
     // The job is cancelled
     BULK_STATUS_CANCELLED = 3;
-    // The job has expired 
+    // The job has expired
     BULK_STATUS_EXPIRED = 4;
 }
 
@@ -73,14 +74,12 @@ message GetBulksReuqest {
     optional google.protobuf.Timestamp tfrom = 1 [json_name="tf"]; // The time range filter - left limit. Optional.
     optional google.protobuf.Timestamp tto = 2 [json_name="tt"]; // The time range filter - right limit. Optional.
     optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
-    // FIXME: Should not not be optional!
-    optional string org_id = 4 [json_name="o"]; // The organization identifier filter.
     // TODO: Add Device-Id filter here.
 }
 
 // DataProxy -> RestApi - the message holds list of bulks.
 message GetBulksResponse {
-    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.    
+    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.
 }
 
 // RestApi -> DataProxt - the message holds single bulk request.
