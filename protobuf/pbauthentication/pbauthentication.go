@@ -1,4 +1,4 @@
-package authentication
+package pbauthentication
 
 import (
 	"context"
@@ -7,12 +7,12 @@ import (
 )
 
 // NewGrpcIncomingContext returns a new outgoing context with the subject and issuer in gRPC metadata.
-func NewGrpcOutgoingContext(subject string, issuer string) context.Context {
-	return NewGrpcOutgoingContextFromContext(context.Background(), subject, issuer)
+func NewOutgoingContext(subject string, issuer string) context.Context {
+	return NewOutgoingContextFromContext(context.Background(), subject, issuer)
 }
 
 // NewGrpcIncomingContextFromContext returns outgoing context derived from ctx with the subject and issuer in gRPC metadata.
-func NewGrpcOutgoingContextFromContext(ctx context.Context, subject string, issuer string) context.Context {
+func NewOutgoingContextFromContext(ctx context.Context, subject string, issuer string) context.Context {
 	md := metadata.MD{}
 	if len(subject) > 0 {
 		md.Append("io-clbs-openhes-auth-sub", subject)
@@ -24,7 +24,7 @@ func NewGrpcOutgoingContextFromContext(ctx context.Context, subject string, issu
 }
 
 // GetGrpcAuthInfo returns the subject and issuer from incoming gRPC context.
-func GetGrpcAuthInfo(ctx context.Context) (subject string, issuer string) {
+func FromIncomingContext(ctx context.Context) (subject string, issuer string) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return "", ""
