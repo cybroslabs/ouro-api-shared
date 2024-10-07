@@ -9,7 +9,7 @@ retract (
 
 require (
 	github.com/cerbos/cerbos-sdk-go v0.2.9
-	github.com/getkin/kin-openapi v0.127.0
+	github.com/getkin/kin-openapi v0.128.0
 	github.com/google/uuid v1.6.0
 	github.com/oapi-codegen/runtime v1.1.1
 	google.golang.org/grpc v1.66.0
