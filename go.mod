@@ -12,7 +12,7 @@ require (
 	github.com/getkin/kin-openapi v0.127.0
 	github.com/google/uuid v1.6.0
 	github.com/oapi-codegen/runtime v1.1.1
-	google.golang.org/grpc v1.66.0
+	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.34.2
 	k8s.io/apimachinery v0.31.0
 )
@@ -55,9 +55,9 @@ require (
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.26.0 // indirect
+	golang.org/x/crypto v0.27.0 // indirect
 	golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e // indirect
-	golang.org/x/net v0.28.0 // indirect
+	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect
 	golang.org/x/text v0.18.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240903143218-8af14fe29dc1 // indirect
