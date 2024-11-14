@@ -347,6 +347,8 @@ enum JobErrorCode {
     JOB_ERROR_CODE_BUSY = 1;
     // The job failed, the retry will be attempted.
     JOB_ERROR_CODE_ERROR = 5;
+	// This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
+	JOB_ERROR_CODE_ALREADY_EXISTS = 8;
     // The job failed, the retry will NOT be attempted.
     JOB_ERROR_CODE_FATAL = 9;
 }
