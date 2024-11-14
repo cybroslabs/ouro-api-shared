@@ -7,10 +7,10 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 // The driver service definition.
-// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
+// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
 service DriverService {
     // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-    rpc StartJob(StartJobRequest) returns (stream ProgressUpdate);
+    rpc StartJob(StartJobsRequest) returns (stream ProgressUpdate);
     // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
     rpc CancelJob(CancelJobRequest) returns (CommonResponse);
 }
@@ -99,9 +99,15 @@ message JobActionAttributes {
     repeated AttributeDefinition attributes = 2 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
 }
 
-message StartJobRequest {
-    string job_id = 1 [json_name="id"]; // The job identifier.
+// Taskmaster -> Driver start job request message
+message StartJobsRequest {
     ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
+    repeated StartJobData jobs = 1 [json_name="j"]; // The list of jobs to be started with the same connection info.
+}
+
+// Sub-message containing job start request for single device
+message StartJobData {
+    string job_id = 1 [json_name="id"]; // The job identifier.
     JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
     repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
 }
@@ -231,9 +237,9 @@ message JobAction {
         ActionGetRegister get_register = 3 [json_name="a3"] ; // The get register action specification.
         ActionGetPeriodicalProfile get_periodical_profile = 4 [json_name="a4"]; // The get periodical profile action specification.
         ActionGetIrregularProfile get_irregular_profile = 5 [json_name="a5"]; // The get irregular profile action specification.
-        ActionGetEvents get_events = 6 [json_name="a6"]; // The get events action specification. 
+        ActionGetEvents get_events = 6 [json_name="a6"]; // The get events action specification.
         ActionGetClock get_clock = 7 [json_name="a7"]; // The get clock action specification.
-        ActionSyncClock sync_clock = 8 [json_name="a8"]; // The sync clock action specification. 
+        ActionSyncClock sync_clock = 8 [json_name="a8"]; // The sync clock action specification.
         ActionGetRelayState get_relay_state = 9 [json_name="a9"]; // The get relay state action specification.
         ActionSetRelayState set_relay_state = 10 [json_name="a10"]; // The set relay state action specification.
         ActionGetDisconnectorState get_disconnector_state = 11 [json_name="a11"]; // The get disconnector state action specification.
