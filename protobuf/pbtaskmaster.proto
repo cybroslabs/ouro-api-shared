@@ -18,7 +18,7 @@ service TaskmasterService {
     rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
     // The method called by the RestApi to cancel the job.
     rpc CancelJobs(CancelJobsRequest) returns (google.protobuf.Empty);
-    
+
     // Subcribe for notification stream
     rpc Subscribe(google.protobuf.Empty) returns (stream StreamEventsData);
 
@@ -28,9 +28,9 @@ service TaskmasterService {
     rpc CacheSet(CacheSetRequest) returns (google.protobuf.Empty);
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
-    
+
     // The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-    rpc RegisterDriver(RegisterDriverRequest) returns (google.protobuf.Empty);    
+    rpc RegisterDriver(RegisterDriverRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the list of drivers.
     rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
     // The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
@@ -127,7 +127,7 @@ enum JobStatusCode {
     JOB_STATUS_FAILED = 3;
     // The job is cancelled
     JOB_STATUS_CANCELLED = 4;
-    // The job has expired 
+    // The job has expired
     JOB_STATUS_EXPIRED = 5;
 }
 
@@ -178,6 +178,7 @@ message UnregisterDriverRequest {
 // API <-> Taskmaster request/response for system configuration
 message SystemConfig {
     int32 max_replicas = 1; // The maximum number of replicas for the driver.
+    int32 max_cascade_device_count = 2; // The maximum number of cascade devices for the driver.
 }
 
 // API <-> Taskmaster request/response for system configuration
@@ -197,7 +198,7 @@ message GetDriverTemplatesRequest {
 }
 
 // Taskmaster -> Dataproxy job/action progress update message
-message JobEventData {    
+message JobEventData {
     bytes job_id = 1 [json_name="i"]; // The job identifier.
 }
 
