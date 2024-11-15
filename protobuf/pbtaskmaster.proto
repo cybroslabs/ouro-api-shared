@@ -87,9 +87,10 @@ message QueueJobsRequest {
 message JobSpec {
     string job_id = 1 [json_name="id"]; // The job identifier.
     pbdriver.ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    pbdriver.JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
-    string driver_type = 4 [json_name="t"]; // The device (driver) type.
-    repeated pbdriver.JobAction job_actions = 5 [json_name="a"]; // The list actions to be executed.
+    map<string,pbdriver.AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
+    pbdriver.JobSettings job_settings = 4 [json_name="js"]; // The job parameters.
+    string driver_type = 5 [json_name="t"]; // The device (driver) type.
+    repeated pbdriver.JobAction job_actions = 6 [json_name="a"]; // The list actions to be executed.
 }
 
 // Dataproxy -> Taskmaster get job request message
