@@ -580,7 +580,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 			return nil, err
 		}
 		target.ExternalID = &device.ExternalId
-		target.DeviceAttributes = attribute.G2RAttributes(device.ConnectionInfo.DeviceAttributes)
+		target.DeviceAttributes = attribute.G2RAttributes(device.DeviceAttributes)
 
 		if ci := device.ConnectionInfo; ci != nil {
 			if tcp := ci.GetTcp(); tcp != nil {
@@ -669,9 +669,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 			external_id = *device.ExternalID
 		}
 
-		ci_struct := &pbdriver.ConnectionInfo{
-			DeviceAttributes: device_attributes,
-		}
+		ci_struct := &pbdriver.ConnectionInfo{}
 
 		ci := device.ConnectionInfo
 		if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
@@ -694,9 +692,10 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		}
 
 		devices[i] = &pbtaskmaster.JobDevice{
-			Id:             device.Id.String(),
-			ConnectionInfo: ci_struct,
-			ExternalId:     external_id,
+			Id:               device.Id.String(),
+			DeviceAttributes: device_attributes,
+			ConnectionInfo:   ci_struct,
+			ExternalId:       external_id,
 		}
 	}
 

@@ -204,6 +204,7 @@ message JobEventData {
 // Sub-message representing a single device in a bulk.
 message JobDevice {
     string id = 1 [json_name="i"]; // The device (job) identifier.
-    string external_id = 3 [json_name="e"]; // The external identifier.
+    string external_id = 2 [json_name="e"]; // The external identifier.
+    map<string,pbdriver.AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
     pbdriver.ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
 }
