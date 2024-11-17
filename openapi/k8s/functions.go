@@ -6,19 +6,19 @@ import (
 )
 
 var (
-	_namespace       = ""
-	_namespaceLoaded = false
+	namespace       = ""
+	namespaceLoaded = false
 )
 
 // GetCurrentNamespace returns the namespace of the pod in which the application is running. If the namespace is not found, it returns "default".
-func GetCurrentNamespace() (namespace string, loaded bool) {
-	if !_namespaceLoaded {
+func GetCurrentNamespace() string {
+	if !namespaceLoaded {
 		ns := strings.TrimSpace(os.Getenv("NAMESPACE"))
 		if len(ns) == 0 {
 			ns = "default"
 		}
-		_namespace = ns
-		_namespaceLoaded = true
+		namespace = ns
+		namespaceLoaded = true
 	}
-	return _namespace, _namespaceLoaded
+	return namespace
 }
