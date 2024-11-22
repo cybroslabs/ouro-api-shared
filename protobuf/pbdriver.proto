@@ -335,6 +335,8 @@ enum ActionResultCode {
     ERROR_CODE_ACTION_OK = 0;
     // The action is not supported by the driver (or device).
     ERROR_CODE_ACTION_UNSUPPORTED = 1;
+    // The action is pending.
+    ERROR_CODE_ACTION_PENDING = 3;
     // The action failed.
     ERROR_CODE_ACTION_ERROR = 5;
 }
