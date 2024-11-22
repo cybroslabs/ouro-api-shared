@@ -32,10 +32,10 @@ require (
 	github.com/go-openapi/swag v0.23.0 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/google/cel-go v0.22.0 // indirect
+	github.com/google/cel-go v0.22.1 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0 // indirect
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.23.0 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.24.0 // indirect
 	github.com/invopop/yaml v0.3.1 // indirect
 	github.com/jdxcode/netrc v1.0.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
