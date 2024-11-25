@@ -591,15 +591,19 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				if err != nil {
 					return nil, err
 				}
-			} else if phone := ci.GetPhone(); phone != nil {
-				err := target.ConnectionInfo.FromConnectionTypePhoneSchema(ConnectionTypePhoneSchema{
-					Number: phone.Number,
+			} else if modem := ci.GetModem(); modem != nil {
+				err := target.ConnectionInfo.FromConnectionTypeModemSchema(ConnectionTypeModemSchema{
+					Number: modem.Number,
 				})
 				if err != nil {
 					return nil, err
 				}
-			} else if serial := ci.GetSerial(); serial != nil {
-				err := target.ConnectionInfo.FromConnectionTypeSerialSchema(ConnectionTypeSerialSchema{})
+			} else if moxa := ci.GetMoxa(); moxa != nil {
+				err := target.ConnectionInfo.FromConnectionTypeMoxaSchema(ConnectionTypeMoxaSchema{
+					Host:        moxa.Host,
+					DataPort:    int(moxa.DataPort),
+					CommandPort: int(moxa.CommandPort),
+				})
 				if err != nil {
 					return nil, err
 				}
@@ -679,15 +683,19 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 					Port: uint32(tcp.Port),
 				},
 			}
-		} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_Phone{
-				Phone: &pbdriver.ConnectionTypePhone{
+		} else if phone, err := ci.AsConnectionTypeModemSchema(); err == nil {
+			ci_struct.Connection = &pbdriver.ConnectionInfo_Modem{
+				Modem: &pbdriver.ConnectionTypeModem{
 					Number: phone.Number,
 				},
 			}
-		} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_Serial{
-				Serial: &pbdriver.ConnectionTypeSerial{},
+		} else if moxa, err := ci.AsConnectionTypeMoxaSchema(); err == nil {
+			ci_struct.Connection = &pbdriver.ConnectionInfo_Moxa{
+				Moxa: &pbdriver.ConnectionTypeMoxa{
+					Host:        moxa.Host,
+					DataPort:    uint32(moxa.DataPort),
+					CommandPort: uint32(moxa.CommandPort),
+				},
 			}
 		}
 

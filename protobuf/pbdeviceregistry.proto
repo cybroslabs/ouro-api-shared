@@ -13,14 +13,14 @@ service DeviceRegistryService {
     rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc GetCommunicationUnits(GetCommunicationUnitsRequest) returns (GetCommunicationUnitsResponse);
-    
+
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.Empty);
-    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.    
+    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevices(GetDevicesRequest) returns (GetDevicesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
-    
+
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
@@ -59,8 +59,8 @@ message CommunicationUnitSpec {
 message ConnectionType {
     oneof type {
         pbdriver.ConnectionTypeTcp tcp = 1 [json_name="t"]; // The TCP connection type.
-        pbdriver.ConnectionTypePhone phone = 2 [json_name="p"]; // The phone connection type.
-        pbdriver.ConnectionTypeSerial serial = 3 [json_name="s"]; // The serial connection type.
+        pbdriver.ConnectionTypeModem modem = 2 [json_name="p"]; // The modem connection type.
+        pbdriver.ConnectionTypeMoxa moxa = 3 [json_name="s"]; // The Moxa connection type.
     }
 }
 

@@ -25,19 +25,24 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 		ci := &pbdeviceregistry.ConnectionType_Tcp{
 			Tcp: &pbdriver.ConnectionTypeTcp{
 				Host: tcp.Host,
+				Port: uint32(tcp.Port),
 			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
-	} else if phone, err := ci.AsConnectionTypePhoneSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Phone{
-			Phone: &pbdriver.ConnectionTypePhone{
-				Number: phone.Number,
+	} else if modem, err := ci.AsConnectionTypeModemSchema(); err == nil {
+		ci := &pbdeviceregistry.ConnectionType_Modem{
+			Modem: &pbdriver.ConnectionTypeModem{
+				Number: modem.Number,
 			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
-	} else if _, err := ci.AsConnectionTypeSerialSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Serial{
-			Serial: &pbdriver.ConnectionTypeSerial{},
+	} else if moxa, err := ci.AsConnectionTypeMoxaSchema(); err == nil {
+		ci := &pbdeviceregistry.ConnectionType_Moxa{
+			Moxa: &pbdriver.ConnectionTypeMoxa{
+				Host:        moxa.Host,
+				DataPort:    uint32(moxa.DataPort),
+				CommandPort: uint32(moxa.CommandPort),
+			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
 	}
@@ -66,15 +71,19 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 			if err != nil {
 				return nil, err
 			}
-		} else if phone := ct.GetPhone(); phone != nil {
-			err := result.ConnectionInfo.FromConnectionTypePhoneSchema(job.ConnectionTypePhoneSchema{
-				Number: phone.Number,
+		} else if modem := ct.GetModem(); modem != nil {
+			err := result.ConnectionInfo.FromConnectionTypeModemSchema(job.ConnectionTypeModemSchema{
+				Number: modem.Number,
 			})
 			if err != nil {
 				return nil, err
 			}
-		} else if serial := ct.GetSerial(); serial != nil {
-			err := result.ConnectionInfo.FromConnectionTypeSerialSchema(job.ConnectionTypeSerialSchema{})
+		} else if moxa := ct.GetMoxa(); moxa != nil {
+			err := result.ConnectionInfo.FromConnectionTypeMoxaSchema(job.ConnectionTypeMoxaSchema{
+				Host:        moxa.Host,
+				DataPort:    int(moxa.DataPort),
+				CommandPort: int(moxa.CommandPort),
+			})
 			if err != nil {
 				return nil, err
 			}

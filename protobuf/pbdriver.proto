@@ -117,8 +117,8 @@ message StartJobData {
 message ConnectionInfo {
     oneof connection {
         ConnectionTypeTcp tcp = 1 [json_name="t"]; // The TCP connection type.
-        ConnectionTypePhone phone = 2 [json_name="p"]; // The phone connection type.
-        ConnectionTypeSerial serial = 3 [json_name="s"]; // The serial connection type.
+        ConnectionTypeModem modem = 2 [json_name="p"]; // The phone connection type.
+        ConnectionTypeMoxa moxa = 3 [json_name="s"]; // The Moxa connection type.
     }
 }
 
@@ -129,15 +129,16 @@ message ConnectionTypeTcp {
     optional int32 timeout = 3 [json_name="to"]; // The timeout in seconds for the connection.
 }
 
-// Sub-message containing connection info for TCP connection type
-message ConnectionTypePhone {
+// Sub-message containing connection info for modem connection type
+message ConnectionTypeModem {
     string number = 1 [json_name="h"]; // The phone number of the device to connect to.
-    // TODO: Add phone (via modem) connection attributes
 }
 
-// Sub-message containing connection info for TCP connection type
-message ConnectionTypeSerial {
-    // TODO: Add serial connection attributes
+// Sub-message containing connection info for Moxa connection type
+message ConnectionTypeMoxa {
+    string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
+    uint32 dataPort = 2 [json_name="dp"]; // The TCP port number of the device to connect to - data port.
+    uint32 commandPort = 3 [json_name="cp"]; // The TCP port number of the device to connect to - command port.
 }
 
 // Job priorities

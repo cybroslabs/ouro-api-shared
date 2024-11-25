@@ -96,12 +96,12 @@ components:
         - host
         - port
 
-    ConnectionTypePhoneSchema:
+    ConnectionTypeModemSchema:
       type: object
       description: >
-        Schema that describes the phone connection.
+        Schema that describes the modem connection.
       properties:
-        type_phone:
+        type_modem:
           type: integer
           minimum: 1
           maximum: 1
@@ -111,26 +111,45 @@ components:
             The phone number of the device.
           minLength: 1
       required:
-        - type_phone
+        - type_modem
         - number
 
-    ConnectionTypeSerialSchema:
+    ConnectionTypeMoxaSchema:
       type: object
       description: >
-        Schema that describes the serial line connection.
+        Schema that describes the MOXA connection.
       properties:
-        type_serial:
+        type_moxa:
           type: integer
           minimum: 1
           maximum: 1
+        host:
+          type: string
+          description: >
+            The IP address or the hostname of the device.
+        dataPort:
+          type: integer
+          description: >
+            The port number of the device.
+          minimum: 1
+          maximum: 65535
+        commandPort:
+          type: integer
+          description: >
+            The port number of the device.
+          minimum: 1
+          maximum: 65535
       required:
-        - type_serial
+        - type_moxa
+        - host
+        - dataPort
+        - commandPort
 
     ConnectionTypeSchema:
       oneOf:
         - $ref: "#/components/schemas/ConnectionTypeTcpSchema"
-        - $ref: "#/components/schemas/ConnectionTypePhoneSchema"
-        - $ref: "#/components/schemas/ConnectionTypeSerialSchema"
+        - $ref: "#/components/schemas/ConnectionTypeModemSchema"
+        - $ref: "#/components/schemas/ConnectionTypeMoxaSchema"
 
     JobDeviceSchema:
       type: object
