@@ -409,9 +409,9 @@ enum ApplicationProtocol {
     // The LIS200 protocol.
     APPPROTO_LIS200 = 4;
     // The ANSI C12 protocol.
-    ANSI_C12 = 5;
+    APPPROTO_ANSI_C12 = 5;
     // The MQTT protocol.
-    MQTT = 6;
+    APPPROTO_MQTT = 6;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
