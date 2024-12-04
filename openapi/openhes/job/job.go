@@ -141,15 +141,23 @@ type BulkStatusSchema struct {
 	Status BulkStatusEnumSchema `json:"status"`
 }
 
-// ConnectionTypeModemSchema Schema that describes the modem connection.
-type ConnectionTypeModemSchema struct {
+// ConnectionTypePhoneLineSchema Schema that describes the phone line (modem) connection.
+type ConnectionTypePhoneLineSchema struct {
 	// Number The phone number of the device.
-	Number    string `json:"number"`
-	TypeModem int    `json:"type_modem"`
+	Number string `json:"number"`
+
+	// PoolId The modem pool ID.
+	PoolId    openapi_types.UUID `json:"pool_id"`
+	TypeModem int                `json:"type_modem"`
 }
 
-// ConnectionTypeMoxaSchema Schema that describes the MOXA connection.
-type ConnectionTypeMoxaSchema struct {
+// ConnectionTypeSchema defines model for ConnectionTypeSchema.
+type ConnectionTypeSchema struct {
+	union json.RawMessage
+}
+
+// ConnectionTypeSerialMoxaSchema Schema that describes the MOXA connection.
+type ConnectionTypeSerialMoxaSchema struct {
 	// CommandPort The port number of the device.
 	CommandPort int `json:"commandPort"`
 
@@ -161,13 +169,8 @@ type ConnectionTypeMoxaSchema struct {
 	TypeMoxa int    `json:"type_moxa"`
 }
 
-// ConnectionTypeSchema defines model for ConnectionTypeSchema.
-type ConnectionTypeSchema struct {
-	union json.RawMessage
-}
-
-// ConnectionTypeTcpSchema Schema that describes the TCP connection.
-type ConnectionTypeTcpSchema struct {
+// ConnectionTypeTcpIpSchema Schema that describes the TCP/IP connection.
+type ConnectionTypeTcpIpSchema struct {
 	// Host The IP address or the hostname of the device.
 	Host string `json:"host"`
 
@@ -458,22 +461,22 @@ type JobStatusSchema struct {
 	Status JobStatusCodeEnumSchema `json:"status"`
 }
 
-// AsConnectionTypeTcpSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeTcpSchema
-func (t ConnectionTypeSchema) AsConnectionTypeTcpSchema() (ConnectionTypeTcpSchema, error) {
-	var body ConnectionTypeTcpSchema
+// AsConnectionTypeTcpIpSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeTcpIpSchema
+func (t ConnectionTypeSchema) AsConnectionTypeTcpIpSchema() (ConnectionTypeTcpIpSchema, error) {
+	var body ConnectionTypeTcpIpSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromConnectionTypeTcpSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeTcpSchema
-func (t *ConnectionTypeSchema) FromConnectionTypeTcpSchema(v ConnectionTypeTcpSchema) error {
+// FromConnectionTypeTcpIpSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeTcpIpSchema
+func (t *ConnectionTypeSchema) FromConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeConnectionTypeTcpSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeTcpSchema
-func (t *ConnectionTypeSchema) MergeConnectionTypeTcpSchema(v ConnectionTypeTcpSchema) error {
+// MergeConnectionTypeTcpIpSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeTcpIpSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -484,22 +487,22 @@ func (t *ConnectionTypeSchema) MergeConnectionTypeTcpSchema(v ConnectionTypeTcpS
 	return err
 }
 
-// AsConnectionTypeModemSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeModemSchema
-func (t ConnectionTypeSchema) AsConnectionTypeModemSchema() (ConnectionTypeModemSchema, error) {
-	var body ConnectionTypeModemSchema
+// AsConnectionTypePhoneLineSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypePhoneLineSchema
+func (t ConnectionTypeSchema) AsConnectionTypePhoneLineSchema() (ConnectionTypePhoneLineSchema, error) {
+	var body ConnectionTypePhoneLineSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromConnectionTypeModemSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeModemSchema
-func (t *ConnectionTypeSchema) FromConnectionTypeModemSchema(v ConnectionTypeModemSchema) error {
+// FromConnectionTypePhoneLineSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypePhoneLineSchema
+func (t *ConnectionTypeSchema) FromConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeConnectionTypeModemSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeModemSchema
-func (t *ConnectionTypeSchema) MergeConnectionTypeModemSchema(v ConnectionTypeModemSchema) error {
+// MergeConnectionTypePhoneLineSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypePhoneLineSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -510,22 +513,22 @@ func (t *ConnectionTypeSchema) MergeConnectionTypeModemSchema(v ConnectionTypeMo
 	return err
 }
 
-// AsConnectionTypeMoxaSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeMoxaSchema
-func (t ConnectionTypeSchema) AsConnectionTypeMoxaSchema() (ConnectionTypeMoxaSchema, error) {
-	var body ConnectionTypeMoxaSchema
+// AsConnectionTypeSerialMoxaSchema returns the union data inside the ConnectionTypeSchema as a ConnectionTypeSerialMoxaSchema
+func (t ConnectionTypeSchema) AsConnectionTypeSerialMoxaSchema() (ConnectionTypeSerialMoxaSchema, error) {
+	var body ConnectionTypeSerialMoxaSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromConnectionTypeMoxaSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeMoxaSchema
-func (t *ConnectionTypeSchema) FromConnectionTypeMoxaSchema(v ConnectionTypeMoxaSchema) error {
+// FromConnectionTypeSerialMoxaSchema overwrites any union data inside the ConnectionTypeSchema as the provided ConnectionTypeSerialMoxaSchema
+func (t *ConnectionTypeSchema) FromConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeConnectionTypeMoxaSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeMoxaSchema
-func (t *ConnectionTypeSchema) MergeConnectionTypeMoxaSchema(v ConnectionTypeMoxaSchema) error {
+// MergeConnectionTypeSerialMoxaSchema performs a merge with any union data inside the ConnectionTypeSchema, using the provided ConnectionTypeSerialMoxaSchema
+func (t *ConnectionTypeSchema) MergeConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1037,63 +1040,64 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"vBq81aeXqK3EF1pgT/8NAAD//61vnEZrSAAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

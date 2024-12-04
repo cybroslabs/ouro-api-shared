@@ -21,24 +21,24 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 	}
 
 	ci := communicationUnit.ConnectionInfo
-	if tcp, err := ci.AsConnectionTypeTcpSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Tcp{
-			Tcp: &pbdriver.ConnectionTypeTcp{
+	if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
+		ci := &pbdeviceregistry.ConnectionType_Tcpip{
+			Tcpip: &pbdriver.ConnectionTypeTcpIp{
 				Host: tcp.Host,
 				Port: uint32(tcp.Port),
 			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
-	} else if modem, err := ci.AsConnectionTypeModemSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Modem{
-			Modem: &pbdriver.ConnectionTypeModem{
+	} else if modem, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
+		ci := &pbdeviceregistry.ConnectionType_ModemPool{
+			ModemPool: &pbdriver.ConnectionTypeModemPool{
 				Number: modem.Number,
 			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
-	} else if moxa, err := ci.AsConnectionTypeMoxaSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Moxa{
-			Moxa: &pbdriver.ConnectionTypeMoxa{
+	} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+		ci := &pbdeviceregistry.ConnectionType_SerialMoxa{
+			SerialMoxa: &pbdriver.ConnectionTypeSerialMoxa{
 				Host:        moxa.Host,
 				DataPort:    uint32(moxa.DataPort),
 				CommandPort: uint32(moxa.CommandPort),
@@ -63,26 +63,26 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 	}
 
 	if ct := communicationUnit.ConnectionType; ct != nil {
-		if tcp := ct.GetTcp(); tcp != nil {
-			err := result.ConnectionInfo.FromConnectionTypeTcpSchema(job.ConnectionTypeTcpSchema{
-				Host: tcp.Host,
-				Port: int(tcp.Port),
+		if tcpip := ct.GetTcpip(); tcpip != nil {
+			err := result.ConnectionInfo.FromConnectionTypeTcpIpSchema(job.ConnectionTypeTcpIpSchema{
+				Host: tcpip.Host,
+				Port: int(tcpip.Port),
 			})
 			if err != nil {
 				return nil, err
 			}
-		} else if modem := ct.GetModem(); modem != nil {
-			err := result.ConnectionInfo.FromConnectionTypeModemSchema(job.ConnectionTypeModemSchema{
+		} else if modem := ct.GetModemPool(); modem != nil {
+			err := result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
 				Number: modem.Number,
 			})
 			if err != nil {
 				return nil, err
 			}
-		} else if moxa := ct.GetMoxa(); moxa != nil {
-			err := result.ConnectionInfo.FromConnectionTypeMoxaSchema(job.ConnectionTypeMoxaSchema{
-				Host:        moxa.Host,
-				DataPort:    int(moxa.DataPort),
-				CommandPort: int(moxa.CommandPort),
+		} else if serial_moxa := ct.GetSerialMoxa(); serial_moxa != nil {
+			err := result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
+				Host:        serial_moxa.Host,
+				DataPort:    int(serial_moxa.DataPort),
+				CommandPort: int(serial_moxa.CommandPort),
 			})
 			if err != nil {
 				return nil, err

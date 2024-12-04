@@ -72,10 +72,10 @@ components:
         - status
         - code
 
-    ConnectionTypeTcpSchema:
+    ConnectionTypeTcpIpSchema:
       type: object
       description: >
-        Schema that describes the TCP connection.
+        Schema that describes the TCP/IP connection.
       properties:
         type_tcp:
           type: integer
@@ -96,10 +96,10 @@ components:
         - host
         - port
 
-    ConnectionTypeModemSchema:
+    ConnectionTypePhoneLineSchema:
       type: object
       description: >
-        Schema that describes the modem connection.
+        Schema that describes the phone line (modem) connection.
       properties:
         type_modem:
           type: integer
@@ -110,11 +110,17 @@ components:
           description: >
             The phone number of the device.
           minLength: 1
+        pool_id:
+          type: string
+          description: >
+            The modem pool ID.
+          format: uuid
       required:
         - type_modem
         - number
+        - pool_id
 
-    ConnectionTypeMoxaSchema:
+    ConnectionTypeSerialMoxaSchema:
       type: object
       description: >
         Schema that describes the MOXA connection.
@@ -147,9 +153,9 @@ components:
 
     ConnectionTypeSchema:
       oneOf:
-        - $ref: "#/components/schemas/ConnectionTypeTcpSchema"
-        - $ref: "#/components/schemas/ConnectionTypeModemSchema"
-        - $ref: "#/components/schemas/ConnectionTypeMoxaSchema"
+        - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
+        - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
+        - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
 
     JobDeviceSchema:
       type: object

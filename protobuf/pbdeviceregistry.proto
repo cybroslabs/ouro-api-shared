@@ -58,9 +58,9 @@ message CommunicationUnitSpec {
 
 message ConnectionType {
     oneof type {
-        pbdriver.ConnectionTypeTcp tcp = 1 [json_name="t"]; // The TCP connection type.
-        pbdriver.ConnectionTypeModem modem = 2 [json_name="p"]; // The modem connection type.
-        pbdriver.ConnectionTypeMoxa moxa = 3 [json_name="s"]; // The Moxa connection type.
+        pbdriver.ConnectionTypeTcpIp tcpip = 1 [json_name="t"]; // The TCP/IP connection type.
+        pbdriver.ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone line connection type.
+        pbdriver.ConnectionTypeSerialMoxa serial_moxa = 3 [json_name="s"]; // The controlled serial line (Moxa) connection type.
     }
 }
 

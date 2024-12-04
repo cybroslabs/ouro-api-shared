@@ -116,26 +116,27 @@ message StartJobData {
 // Sub-message containing connection info
 message ConnectionInfo {
     oneof connection {
-        ConnectionTypeTcp tcp = 1 [json_name="t"]; // The TCP connection type.
-        ConnectionTypeModem modem = 2 [json_name="p"]; // The phone connection type.
-        ConnectionTypeMoxa moxa = 3 [json_name="s"]; // The Moxa connection type.
+        ConnectionTypeTcpIp tcpip = 1 [json_name="t"]; // The TCP connection type.
+        ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone connection type.
+        ConnectionTypeSerialMoxa serial_moxa = 3 [json_name="s"]; // The Moxa connection type.
     }
 }
 
 // Sub-message containing connection info for TCP connection type
-message ConnectionTypeTcp {
+message ConnectionTypeTcpIp {
     string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
     uint32 port = 2 [json_name="p"]; // The TCP port number of the device to connect to.
     optional int32 timeout = 3 [json_name="to"]; // The timeout in seconds for the connection.
 }
 
-// Sub-message containing connection info for modem connection type
-message ConnectionTypeModem {
+// Sub-message containing connection info for phone line (modem) connection type
+message ConnectionTypeModemPool {
     string number = 1 [json_name="h"]; // The phone number of the device to connect to.
+    string pool_id = 2 [json_name="p"]; // The modem pool identifier.
 }
 
-// Sub-message containing connection info for Moxa connection type
-message ConnectionTypeMoxa {
+// Sub-message containing connection info for controlled-serial line (Moxa) connection type
+message ConnectionTypeSerialMoxa {
     string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
     uint32 dataPort = 2 [json_name="dp"]; // The TCP port number of the device to connect to - data port.
     uint32 commandPort = 3 [json_name="cp"]; // The TCP port number of the device to connect to - command port.
@@ -369,10 +370,76 @@ message CommonResponse {
     ErrorCode result = 1; // The result of the operation.
 }
 
+// Connection types
+enum CommunicationType {
+    // The communication is done via direct TCP/IP.
+    COMMUNICATION_TYPE_TCPIP = 0;
+    // The communication is done via phone line (modem).
+    COMMUNICATION_TYPE_MODEM_POOL = 1;
+    // The communication is done via controller-serial line (Moxa).
+    COMMUNICATION_TYPE_SERIAL_LINE_MOXA = 2;
+
+    // The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).
+    COMMUNICATION_TYPE_LISTENING = 99;
+}
+
+// Data link protocols
+enum DataLinkProtocol {
+    // The IEC 62056-21 (IEC-61107, VDEW) protocol. In combination with DLMS protocol the driver starts by IEC and switches to the mode E and typically DLMS over HDLC. Supports client/server addressing = multiple devices on the same line.
+    LINKPROTO_IEC_62056_21 = 0;
+    // The HDLC framing. Supports client/server addressing = multiple devices on the same line.
+    LINKPROTO_HDLC = 1;
+    // The COSEM wrapper. Supports client/server addressing = multiple devices on the same line.
+    LINKPROTO_COSEM_WRAPPER = 2;
+
+    // The data link protocol is not applicable, this is applicable only for listening communication type.
+    LINKPROTO_NOT_APPLICABLE = 99;
+}
+
+// Application protocols
+enum ApplicationProtocol {
+    // The IEC 62056-21 (IEC-61107, VDEW) protocol.
+    APPPROTO_IEC_62056_21 = 0;
+    // The DLMS short-name protocol.
+    APPPROTO_DLMS_SN = 1;
+    // The DLMS logical-name protocol.
+    APPPROTO_DLMS_LN = 2;
+    // The SCTM protocol.
+    APPPROTO_SCTM = 3;
+    // The LIS200 protocol.
+    APPPROTO_LIS200 = 4;
+    // The ANSI C12 protocol.
+    ANSI_C12 = 5;
+    // The MQTT protocol.
+    MQTT = 6;
+}
+
+// Sub-message containing destription for one data link protocol, e.g. HDLC.
+message DataLinkTemplate {
+    // The data link protocol.
+    DataLinkProtocol link_protocols = 2 [json_name="lp"];
+    // The list of application protocols supported by the driver.
+    repeated ApplicationProtocol app_protocols = 3 [json_name="ap"];
+}
+
+// Sub-message containing destription for one communication type, e.g. TCP/IP.
+message CommunicationTemplate {
+    // The type of the communication.
+    CommunicationType type = 1 [json_name="t"];
+    // The list of data link protocols and their app protocols supported by the driver.
+    repeated DataLinkTemplate templates = 2 [json_name="dl"];
+}
+
 // Sub-message in driver negotiation request
 message DriverTemplates {
-    repeated AttributeDefinition device_attributes = 2; // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
-    repeated JobActionAttributes action_attributes = 3; // The templates of the job actions for all supported action types.
+    // The display name of the driver, should be in form of the handled device. Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+    string display_name = 1 [json_name="dn"];
+    // The metadata of the communication templates. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
+    repeated CommunicationTemplate communication_templates = 2 [json_name="ct"];
+    // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
+    repeated AttributeDefinition device_attributes = 3 [json_name="ad"];
+    // The templates of the job actions for all supported action types.
+    repeated JobActionAttributes action_attributes = 4 [json_name="aa"];
 }
 
 // Taskmaster -> Driver cancel job request message
@@ -384,7 +451,7 @@ message CancelJobRequest {
 message NegotiateRequest {
     string version = 1; // The driver version.
     uint32 listening_port = 2; // The port the driver will listen on.
-    string meter_type = 3; // The type of the meter the driver is for.
+    string meter_type = 3; // The type of the meter the driver is for. Must be in format '<manufacturer> <device_type> [<device_type_version>]'. Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
     int32 max_concurrent_jobs = 4; // The maximum number of concurrent jobs the driver can handle.
     uint32 max_cascade_depth = 5; // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc. The value 0 means that the driver can handle any number of cascading jobs.
     int32 typical_mem_usage = 6; // The typical memory usage of the driver in MB.
