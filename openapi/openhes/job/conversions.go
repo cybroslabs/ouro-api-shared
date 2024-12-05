@@ -23,7 +23,7 @@ var (
 )
 
 const (
-	DefaultPriority    = pbdriver.JobPriority_PRIORITY_0
+	DefaultPriority    = pbdriver.JobPriority_JOB_PRIORITY_0
 	DefaultMaxDuration = int64(5 * 60 * 1000)
 	DefaultRetryDelay  = int64(60 * 1000)
 	DefaultAttempts    = int32(1)
@@ -597,21 +597,23 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				if err != nil {
 					return nil, err
 				}
-				err := target.ConnectionInfo.FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
+				err = target.ConnectionInfo.FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
 					Number: modem.Number,
 					PoolId: pool_id,
 				})
 				if err != nil {
 					return nil, err
 				}
-			} else if moxa := ci.GetSerialMoxa(); moxa != nil {
-				err := target.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
-					Host:        moxa.Host,
-					DataPort:    int(moxa.DataPort),
-					CommandPort: int(moxa.CommandPort),
-				})
-				if err != nil {
-					return nil, err
+			} else if controller_serial := ci.GetSerialOverIp(); controller_serial != nil {
+				if moxa := controller_serial.GetMoxa(); moxa != nil {
+					err = target.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
+						Host:        moxa.Host,
+						DataPort:    int(moxa.DataPort),
+						CommandPort: int(moxa.CommandPort),
+					})
+					if err != nil {
+						return nil, err
+					}
 				}
 			}
 		}
@@ -684,7 +686,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		ci := device.ConnectionInfo
 		if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
 			ci_struct.Connection = &pbdriver.ConnectionInfo_Tcpip{
-				Tcpip: &pbdriver.ConnectionTypeTcpIp{
+				Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
 					Host: tcp.Host,
 					Port: uint32(tcp.Port),
 				},
@@ -697,11 +699,15 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				},
 			}
 		} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_SerialMoxa{
-				SerialMoxa: &pbdriver.ConnectionTypeSerialMoxa{
-					Host:        moxa.Host,
-					DataPort:    uint32(moxa.DataPort),
-					CommandPort: uint32(moxa.CommandPort),
+			ci_struct.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
+				SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+					Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+						Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+							Host:        moxa.Host,
+							DataPort:    uint32(moxa.DataPort),
+							CommandPort: uint32(moxa.CommandPort),
+						},
+					},
 				},
 			}
 		}

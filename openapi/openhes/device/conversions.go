@@ -1,11 +1,17 @@
 package device
 
 import (
+	"errors"
+
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistry"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	"github.com/google/uuid"
+)
+
+var (
+	ErrInvalidConnectionType = errors.New("invalid connection type")
 )
 
 // Converts the communication unit - Rest API to gRPC
@@ -23,7 +29,7 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 	ci := communicationUnit.ConnectionInfo
 	if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
 		ci := &pbdeviceregistry.ConnectionType_Tcpip{
-			Tcpip: &pbdriver.ConnectionTypeTcpIp{
+			Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
 				Host: tcp.Host,
 				Port: uint32(tcp.Port),
 			},
@@ -38,10 +44,14 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
 	} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
 		ci := &pbdeviceregistry.ConnectionType_SerialMoxa{
-			SerialMoxa: &pbdriver.ConnectionTypeSerialMoxa{
-				Host:        moxa.Host,
-				DataPort:    uint32(moxa.DataPort),
-				CommandPort: uint32(moxa.CommandPort),
+			SerialMoxa: &pbdriver.ConnectionTypeControlledSerial{
+				Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+					Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+						Host:        moxa.Host,
+						DataPort:    uint32(moxa.DataPort),
+						CommandPort: uint32(moxa.CommandPort),
+					},
+				},
 			},
 		}
 		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
@@ -62,32 +72,37 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 		Name:       communicationUnit.Name,
 	}
 
+	var err error
+
 	if ct := communicationUnit.ConnectionType; ct != nil {
 		if tcpip := ct.GetTcpip(); tcpip != nil {
-			err := result.ConnectionInfo.FromConnectionTypeTcpIpSchema(job.ConnectionTypeTcpIpSchema{
+			err = result.ConnectionInfo.FromConnectionTypeTcpIpSchema(job.ConnectionTypeTcpIpSchema{
 				Host: tcpip.Host,
 				Port: int(tcpip.Port),
 			})
-			if err != nil {
-				return nil, err
-			}
 		} else if modem := ct.GetModemPool(); modem != nil {
-			err := result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
+			err = result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
 				Number: modem.Number,
 			})
-			if err != nil {
-				return nil, err
+		} else if controlled_serial := ct.GetSerialMoxa(); controlled_serial != nil {
+			if moxa := controlled_serial.GetMoxa(); moxa != nil {
+				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
+					Host:        moxa.Host,
+					DataPort:    int(moxa.DataPort),
+					CommandPort: int(moxa.CommandPort),
+				})
+			} else {
+				err = ErrInvalidConnectionType
 			}
-		} else if serial_moxa := ct.GetSerialMoxa(); serial_moxa != nil {
-			err := result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
-				Host:        serial_moxa.Host,
-				DataPort:    int(serial_moxa.DataPort),
-				CommandPort: int(serial_moxa.CommandPort),
-			})
-			if err != nil {
-				return nil, err
-			}
+		} else {
+			err = ErrInvalidConnectionType
 		}
+	} else {
+		err = ErrInvalidConnectionType
+	}
+
+	if err != nil {
+		return nil, err
 	}
 
 	return result, nil

@@ -113,17 +113,130 @@ message StartJobData {
     repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
 }
 
-// Sub-message containing connection info
-message ConnectionInfo {
-    oneof connection {
-        ConnectionTypeTcpIp tcpip = 1 [json_name="t"]; // The TCP connection type.
-        ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone connection type.
-        ConnectionTypeSerialMoxa serial_moxa = 3 [json_name="s"]; // The Moxa connection type.
+// Sub-message containing modem connection connected behind a IP-to-serial converter
+message ModemOverControlledSerial {
+    ConnectionTypeControlledSerial serial = 1 [json_name="s"]; // The serial connection type.
+    SerialConfig serial_config = 2 [json_name="sc"]; // The serial port configuration related to the modem.
+}
+
+// Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+message ConnectionTypeControlledSerial {
+    // IP-to-serial converter description.
+    oneof converter {
+        ConnectionTypeSerialMoxa moxa = 1 [json_name="m"]; // The Moxa connection type.
+        // TBA: Add Advanctech and other IP-to-serial converters.
     }
 }
 
+// Sub-message containing modem connection info
+message ModemInfo {
+    string at_init = 1 [json_name="ati"]; // The modem initialization command.
+    string at_test = 2 [json_name="att"]; // The modem test command.
+    string at_config = 3 [json_name="atc"]; // The modem configuration command.
+    string at_dial = 4 [json_name="atd"]; // The modem dial command.
+    string at_hangup = 5 [json_name="ath"]; // The modem hangup command.
+    string at_escape = 6 [json_name="ate"]; // The modem escape command.
+    bool at_dsr = 7 [json_name="ats"]; // The modem DSR command.
+    uint32 connect_timeout = 8 [json_name="ct"]; // The modem connection timeout.
+    // The modem connection description.
+    oneof modem_connection {
+        ConnectionTypeDirectTcpIp tcpip = 9 [json_name="t"]; // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+        ModemOverControlledSerial serial_over_ip = 10 [json_name="soi"]; // The serial over IP connection type. The modem is connected to a IP-to-serial converter and the converter requires serial port configuration to be set.
+    }
+}
+
+// Parity types
+enum SerialConfigParity {
+    // No parity
+    PARITY_NONE = 0;
+    // Even parity
+    PARITY_EVEN = 1;
+    // Odd parity
+    PARITY_ODD = 2;
+    // Mark parity
+    PARITY_MARK = 3;
+    // Space parity
+    PARITY_SPACE = 4;
+}
+
+// Baud rate types
+enum SerialConfigBaudRate {
+    // 110 baud
+    BAUD_RATE_110 = 0;
+    // 300 baud
+    BAUD_RATE_300 = 1;
+    // 600 baud
+    BAUD_RATE_600 = 2;
+    // 1200 baud
+    BAUD_RATE_1200 = 3;
+    // 2400 baud
+    BAUD_RATE_2400 = 4;
+    // 4800 baud
+    BAUD_RATE_4800 = 5;
+    // 9600 baud
+    BAUD_RATE_9600 = 6;
+    // 14400 baud
+    BAUD_RATE_14400 = 7;
+    // 19200 baud
+    BAUD_RATE_19200 = 8;
+    // 38400 baud
+    BAUD_RATE_38400 = 9;
+    // 57600 baud
+    BAUD_RATE_57600 = 10;
+    // 115200 baud
+    BAUD_RATE_115200 = 11;
+    // 230400 baud
+    BAUD_RATE_230400 = 12;
+    // 460800 baud
+    BAUD_RATE_460800 = 13;
+    // 921600 baud
+    BAUD_RATE_921600 = 14;
+}
+
+// Data bits types
+enum SerialConfigDataBits {
+    // 5 data bits
+    DATA_BITS_5 = 0;
+    // 6 data bits
+    DATA_BITS_6 = 1;
+    // 7 data bits
+    DATA_BITS_7 = 2;
+    // 8 data bits
+    DATA_BITS_8 = 3;
+}
+
+// Stop bits types
+enum SerialConfigStopBits {
+    // 1 stop bit
+    STOP_BITS_1 = 0;
+    // 1.5 stop bits
+    STOP_BITS_1_5 = 1;
+    // 2 stop bits
+    STOP_BITS_2 = 2;
+}
+
+// Sub-message containing serial port configuration
+message SerialConfig {
+    SerialConfigBaudRate baud_rate = 1 [json_name="b"]; // The baud rate.
+    SerialConfigParity parity = 2 [json_name="p"]; // The parity.
+    SerialConfigDataBits data_bits = 3 [json_name="d"]; // The data bits.
+    SerialConfigStopBits stop_bits = 4 [json_name="s"]; // The stop bits.
+}
+
+// Sub-message containing connection info
+message ConnectionInfo {
+    // The entrypoint connection description. It can be either direct TCP, a modem from a pool or a direct serial line over IP (using IP-to-serial converter).
+    oneof connection {
+        ConnectionTypeDirectTcpIp tcpip = 1 [json_name="t"]; // The TCP connection type.
+        ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone connection type.
+        ConnectionTypeControlledSerial serial_over_ip = 3 [json_name="sip"]; // The serial over IP connection type.
+    }
+    // The modem device assigne to given job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
+    optional ModemInfo modem = 4 [json_name="pm"];
+}
+
 // Sub-message containing connection info for TCP connection type
-message ConnectionTypeTcpIp {
+message ConnectionTypeDirectTcpIp {
     string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
     uint32 port = 2 [json_name="p"]; // The TCP port number of the device to connect to.
     optional int32 timeout = 3 [json_name="to"]; // The timeout in seconds for the connection.
@@ -132,7 +245,7 @@ message ConnectionTypeTcpIp {
 // Sub-message containing connection info for phone line (modem) connection type
 message ConnectionTypeModemPool {
     string number = 1 [json_name="h"]; // The phone number of the device to connect to.
-    string pool_id = 2 [json_name="p"]; // The modem pool identifier.
+    string pool_id = 2 [json_name="p"]; // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
@@ -145,23 +258,23 @@ message ConnectionTypeSerialMoxa {
 // Job priorities
 enum JobPriority {
     // The lowest priority
-    PRIORITY_0 = 0;
+    JOB_PRIORITY_0 = 0;
     // The priority 1
-    PRIORITY_1 = 1;
+    JOB_PRIORITY_1 = 1;
     // The priority 2
-    PRIORITY_2 = 2;
+    JOB_PRIORITY_2 = 2;
     // The priority 3
-    PRIORITY_3 = 3;
+    JOB_PRIORITY_3 = 3;
     // The priority 4
-    PRIORITY_4 = 4;
+    JOB_PRIORITY_4 = 4;
     // The priority 5
-    PRIORITY_5 = 5;
+    JOB_PRIORITY_5 = 5;
     // The priority 6
-    PRIORITY_6 = 6;
+    JOB_PRIORITY_6 = 6;
     // The priority 7
-    PRIORITY_7 = 7;
+    JOB_PRIORITY_7 = 7;
     // The highest priority
-    PRIORITY_8 = 8;
+    JOB_PRIORITY_8 = 8;
 }
 
 // Sub-message containing job parameters
@@ -427,13 +540,11 @@ message CommunicationTemplate {
     // The type of the communication.
     CommunicationType type = 1 [json_name="t"];
     // The list of data link protocols and their app protocols supported by the driver.
-    repeated DataLinkTemplate templates = 2 [json_name="dl"];
+    repeated DataLinkTemplate datalink = 2 [json_name="dl"];
 }
 
 // Sub-message in driver negotiation request
 message DriverTemplates {
-    // The display name of the driver, should be in form of the handled device. Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-    string display_name = 1 [json_name="dn"];
     // The metadata of the communication templates. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
     repeated CommunicationTemplate communication_templates = 2 [json_name="ct"];
     // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
@@ -449,11 +560,25 @@ message CancelJobRequest {
 
 // Driver -> Taskmaster negotiate/health-check request message
 message NegotiateRequest {
-    string version = 1; // The driver version.
-    uint32 listening_port = 2; // The port the driver will listen on.
-    string meter_type = 3; // The type of the meter the driver is for. Must be in format '<manufacturer> <device_type> [<device_type_version>]'. Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-    int32 max_concurrent_jobs = 4; // The maximum number of concurrent jobs the driver can handle.
-    uint32 max_cascade_depth = 5; // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc. The value 0 means that the driver can handle any number of cascading jobs.
-    int32 typical_mem_usage = 6; // The typical memory usage of the driver in MB.
-    DriverTemplates templates = 7; // The connection and action templates.
+    // The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+    string version = 1;
+    // The port the driver's gRPC will listen on.
+    uint32 listening_port = 2;
+    // The technical/internal ID of the driver.
+    string meter_type = 3;
+    // The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+    int32 max_concurrent_jobs = 4;
+    // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
+    // The value 0 means that the driver can handle any number of cascading jobs.
+    uint32 max_cascade_depth = 5;
+    // The typical memory usage of the driver in MB.
+    int32 typical_mem_usage = 6;
+    // The connection and action templates.
+    DriverTemplates templates = 7;
+    // The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+    // It must respect upper/lower characters.
+    // The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+    //
+    // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+    string display_name = 8;
 }
