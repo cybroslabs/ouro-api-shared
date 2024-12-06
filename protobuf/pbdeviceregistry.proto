@@ -4,31 +4,46 @@ package io.clbs.openhes.pbdeviceregistry;
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistry";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "pbdriver.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-    rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
+    rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc GetCommunicationUnits(GetCommunicationUnitsRequest) returns (GetCommunicationUnitsResponse);
 
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
-    rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.Empty);
+    rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.StringValue);
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevices(GetDevicesRequest) returns (GetDevicesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-    rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
+    rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
     rpc GetDeviceGroups(GetDeviceGroupsRequest) returns (GetDeviceGroupsResponse);
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
     rpc AddDevicesToGroup(AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
+
+    // The method to get the information about the modem pool. The method returns the modem pool information.
+    rpc GetModemByPool(GetModemPoolRequest) returns (GetModemPoolResponse);
+    // The method to create a new modem pool. The method returns the new object identifier.
+    rpc CreateModemPool(CreateModemPoolRequest) returns (google.protobuf.StringValue);
+    // The method to delete the modem pool.
+    rpc DeleteModemPool(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // The method to create a new modem within the pool. The method returns the new object identifier.
+    rpc CreateModem(ModifyModemRequest) returns (google.protobuf.StringValue);
+    // The method to update the modem within the pool. The method returns the updated object identifier, it'll be the same as the input.
+    rpc UpdateModem(ModifyModemRequest) returns (google.protobuf.StringValue);
+    // The method to delete the modem within the pool.
+    rpc DeleteModem(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }
 
 // RestApi -> DriverRegistry - The communication unit specification.
@@ -137,4 +152,22 @@ message RemoveDevicesFromGroupRequest {
 message SetDeviceCommunicationUnitsRequest {
     string device_id = 1 [json_name="d"]; // The unique identifier of the device.
     repeated string communication_unit_id = 2 [json_name="c"]; // The unique identifier of the communication unit.
+}
+
+message GetModemPoolRequest {
+    string pool_id = 1 [json_name="p"]; // The modem pool identifier.
+}
+
+message GetModemPoolResponse {
+    repeated pbdriver.ModemInfo modems = 1 [json_name="m"]; // The modems registered within the pool.
+    string name = 2 [json_name="n"]; // The name of the modem pool.
+}
+
+message CreateModemPoolRequest {
+    string name = 1 [json_name="n"]; // The name of the modem pool to be created. It must be unique within the system.
+}
+
+message ModifyModemRequest {
+    string pool_id = 1 [json_name="p"]; // The modem pool identifier, required for update operation.
+    pbdriver.ModemInfo modem = 2 [json_name="m"]; // The modem specification.
 }

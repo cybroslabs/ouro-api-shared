@@ -130,6 +130,8 @@ message ConnectionTypeControlledSerial {
 
 // Sub-message containing modem connection info
 message ModemInfo {
+    string id = 12 [json_name="i"]; // The modem identifier. It is automatically generated during creation.
+    string name = 11 [json_name="n"]; // The name of the modem.
     string at_init = 1 [json_name="ati"]; // The modem initialization command.
     string at_test = 2 [json_name="att"]; // The modem test command.
     string at_config = 3 [json_name="atc"]; // The modem configuration command.
