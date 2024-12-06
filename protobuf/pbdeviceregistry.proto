@@ -26,14 +26,14 @@ service DeviceRegistryService {
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-    rpc GetDeviceGroups(GetDeviceGroupsRequest) returns (GetDeviceGroupsResponse);
+    rpc GetDeviceGroups(google.protobuf.StringValue) returns (GetDeviceGroupsResponse);
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
     rpc AddDevicesToGroup(AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 
     // The method to get the information about the modem pool. The method returns the modem pool information.
-    rpc GetModemByPool(GetModemPoolRequest) returns (GetModemPoolResponse);
+    rpc GetModemByPool(google.protobuf.StringValue) returns (GetModemPoolResponse);
     // The method to create a new modem pool.
     rpc CreateModemPool(SetModemPoolRequest) returns (google.protobuf.Empty);
     // The method to update the modem pool.
@@ -124,12 +124,6 @@ message DeviceGroupSpec {
 // RestApi -> DriverRegistry - the request message to get the information about the device group.
 message CreateDeviceGroupRequest {
     DeviceGroupSpec spec = 1 [json_name = "s"]; // The device group specification.
-}
-
-// RestApi -> DriverRegistry - the request message to get the information about the device group.
-message GetDeviceGroupsRequest {
-    optional string id = 1 [json_name="i"]; // The UUID of the device group.
-    optional string name = 2 [json_name="n"]; // The name of the device group.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
