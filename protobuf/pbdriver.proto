@@ -529,12 +529,20 @@ enum ApplicationProtocol {
     APPPROTO_MQTT = 6;
 }
 
+// Sub-message containing destription for one application protocol, e.g. DLMS_SN.
+message ApplicationProtocolTemplate {
+    // The application protocol.
+    ApplicationProtocol protocol = 1 [json_name="p"];
+    // The list of attribute definitions for the protocol.
+    repeated AttributeDefinition attributes = 2 [json_name="a"];
+}
+
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
 message DataLinkTemplate {
     // The data link protocol.
     DataLinkProtocol link_protocols = 2 [json_name="lp"];
     // The list of application protocols supported by the driver.
-    repeated ApplicationProtocol app_protocols = 3 [json_name="ap"];
+    repeated ApplicationProtocolTemplate app_protocols = 3 [json_name="ap"];
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.
