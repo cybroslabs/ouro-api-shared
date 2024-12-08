@@ -75,20 +75,20 @@ func R2GContainerResources(in *ContainerResourcesSchema) (*pbtaskmaster.Containe
 	}
 
 	var cpu string
-	var cpu_f ContainerResourcesCpuIntSchema
+	var cpu_f ContainerResourcesCpuNumSchema
 
 	d := json.NewDecoder(bytes.NewReader(in.Cpu.union))
 	d.UseNumber()
 	err := d.Decode(&cpu_f)
 	if err == nil {
-		// 0.01 is the minimum scale for CPU in our case
-		if math.Mod(float64(cpu_f)*100, 1) != 0 {
+		// 0.001 is the minimum scale for CPU in our case
+		if cpu_f == 0 || math.Mod(float64(cpu_f)*1000, 1) != 0 {
 			return nil, ErrInvalidResourceCpuValue
 		}
 		if math.Mod(float64(cpu_f), 1) != 0 {
-			cpu = fmt.Sprintf("%fm", cpu_f*1000)
+			cpu = fmt.Sprintf("%.0fm", cpu_f*1000)
 		} else {
-			cpu = fmt.Sprintf("%f", cpu_f)
+			cpu = fmt.Sprintf("%.0f", cpu_f)
 		}
 	} else {
 		var cpu_s ContainerResourcesCpuStrSchema

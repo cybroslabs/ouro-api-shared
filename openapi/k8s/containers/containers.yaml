@@ -19,12 +19,12 @@ components:
       pattern: "^[1-9][0-9]*m?$"
       example: "100m"
 
-    ContainerResourcesCpuIntSchema:
+    ContainerResourcesCpuNumSchema:
       type: number
       description: CPU resource value in numeric form. Represents number of cores, or millicores if the value is suffixed with 'm'.
       format: float
       example: 1
-      minimum: 0.1
+      minimum: 0.001
 
     ContainerResourcesMemorySchema:
       type: string
@@ -42,7 +42,7 @@ components:
         cpu:
           oneOf:
             - $ref: "#/components/schemas/ContainerResourcesCpuStrSchema"
-            - $ref: "#/components/schemas/ContainerResourcesCpuIntSchema"
+            - $ref: "#/components/schemas/ContainerResourcesCpuNumSchema"
         memory:
           $ref: "#/components/schemas/ContainerResourcesMemorySchema"
       required:

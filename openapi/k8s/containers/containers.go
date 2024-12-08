@@ -17,8 +17,8 @@ import (
 	"github.com/oapi-codegen/runtime"
 )
 
-// ContainerResourcesCpuIntSchema CPU resource value in numeric form. Represents number of cores, or millicores if the value is suffixed with 'm'.
-type ContainerResourcesCpuIntSchema = float32
+// ContainerResourcesCpuNumSchema CPU resource value in numeric form. Represents number of cores, or millicores if the value is suffixed with 'm'.
+type ContainerResourcesCpuNumSchema = float32
 
 // ContainerResourcesCpuStrSchema CPU resource value in string form. Represents number of cores, or millicores if the value is suffixed with 'm'.
 type ContainerResourcesCpuStrSchema = string
@@ -74,22 +74,22 @@ func (t *ContainerResourcesSchema_Cpu) MergeContainerResourcesCpuStrSchema(v Con
 	return err
 }
 
-// AsContainerResourcesCpuIntSchema returns the union data inside the ContainerResourcesSchema_Cpu as a ContainerResourcesCpuIntSchema
-func (t ContainerResourcesSchema_Cpu) AsContainerResourcesCpuIntSchema() (ContainerResourcesCpuIntSchema, error) {
-	var body ContainerResourcesCpuIntSchema
+// AsContainerResourcesCpuNumSchema returns the union data inside the ContainerResourcesSchema_Cpu as a ContainerResourcesCpuNumSchema
+func (t ContainerResourcesSchema_Cpu) AsContainerResourcesCpuNumSchema() (ContainerResourcesCpuNumSchema, error) {
+	var body ContainerResourcesCpuNumSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromContainerResourcesCpuIntSchema overwrites any union data inside the ContainerResourcesSchema_Cpu as the provided ContainerResourcesCpuIntSchema
-func (t *ContainerResourcesSchema_Cpu) FromContainerResourcesCpuIntSchema(v ContainerResourcesCpuIntSchema) error {
+// FromContainerResourcesCpuNumSchema overwrites any union data inside the ContainerResourcesSchema_Cpu as the provided ContainerResourcesCpuNumSchema
+func (t *ContainerResourcesSchema_Cpu) FromContainerResourcesCpuNumSchema(v ContainerResourcesCpuNumSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeContainerResourcesCpuIntSchema performs a merge with any union data inside the ContainerResourcesSchema_Cpu, using the provided ContainerResourcesCpuIntSchema
-func (t *ContainerResourcesSchema_Cpu) MergeContainerResourcesCpuIntSchema(v ContainerResourcesCpuIntSchema) error {
+// MergeContainerResourcesCpuNumSchema performs a merge with any union data inside the ContainerResourcesSchema_Cpu, using the provided ContainerResourcesCpuNumSchema
+func (t *ContainerResourcesSchema_Cpu) MergeContainerResourcesCpuNumSchema(v ContainerResourcesCpuNumSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -113,17 +113,17 @@ func (t *ContainerResourcesSchema_Cpu) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/7RU62vbMBD/V8StEBiOHbdsUH/ZI4yurKGl6T6FDBTlXN+wHpPkpiH4fx+yU6dJk/UB",
-	"++ZEd7/7PXRagdDSaIXKO8hW4ESBkjefQ608J4X2Gp2urEA3NNW58uOmJFTM0QlLxpNWkMHw6iez61J2",
-	"x8sKGSmmKomWBMu1lTG7RmPRhWHhYIaW6ZwJbdFFTFsmqSyp+ckoZ77ocBxzVZ7TPc7ZgnzBerIXQwR4",
-	"z6UpEbI0gjCAe8ggLzX3EIEkRbKSkA3iNAK/NAgZtFOhjvbLG3v7OnnOW1K3/1kdpIOBhAgM9x5tIPNr",
-	"kvZPp5NB/3T6Xn46gk5fy2e/vhFKbZeH9LWnOxJjdnOYJmeVIh80SuSusihR+Yi5ShSMO9YbUS8YwyTO",
-	"aLb06LZFHX/4OKKDqiY/Rmc3V1N6obZ/pcbVnMl96rYJrUCYamN229HxrCMwVhu0ntB1xSvQCi9zyCYr",
-	"OLKYQwbvks1GJet1Sp65bHX0hvbNKtbTesP3tUhbt6KuI7D4pyKLc8gmjcgOetoloWe/UfgDSeDBF+J6",
-	"2/3mcnAmHiAepeEaR0uS5Ddmp49CSc+aSAJXdI9qDqUXHN6Bg2N4AWC6B2u6exc2yK/zvot/a+7bMHaS",
-	"W1N6mlkoJJXrRmFAEz58ouRUQtYcfRbLmdWu5DMXCx3sVFwGjGHzP7vgM8c88nBS2dBVeG9cliSLxSLe",
-	"bk5IzfG+jyouvCyD1J0F1VJqxb5cnTOp51i2t+LSoPr+bQwRlCRQuWY91yS+ji/6aTx4MlsbVK0nsba3",
-	"ybrRJQ/1dQSefPP0PDf0Dq1r6Q3idWtA54Ygg5N4EJ+071bhIFNVWdZ/AwAA//9G3QI5RwcAAA==",
+	"H4sIAAAAAAAC/7RUWWvbQBD+K8s0YCiyjoQWopcepqSlcRPi9Mm4sJZH8RTt0T3iGKP/XlZy5NixmwP6",
+	"JntnvvmOnV1BoYRWEqWzkK/AFnMUvPkcKOk4STRXaJU3BdqB9j+8GDUloWKGtjCkHSkJOQwufzKzLmW3",
+	"vPLISDLpBRoqWKmMiNkVaoM2DAsHUzRMlaxQBm3ElGGCqoqan4xK5uYdjmXWlyXd4YwtyM1ZT/RiiADv",
+	"uNAVQp5FEAZwBzmUleIOIhAkSXgBeRqnaRaBW2qEHNq5UEf7BY6ceZlA6wzJm/+sD7I0FRCB5s6hCWR+",
+	"jbP+6WSc9k8nb8WHI+j0tXz26xuiUGZ5SF97uiMxZteHaXLmJbmgUSC33qBA6SJmfTFn3LLekHrBGCZw",
+	"StOlQ7st6vjd+yEdVDX+Pjy7vpzQM7X9KzUuZ0zsU7dNaAWF9huz246OZx2BNkqjcYS2K16BknhRQj5e",
+	"wZHBEnJ4k2x2KlkvVPLEZaujV7RvlrGe1Bu+L0XauhV1HYHBP54MziAfNyI76EmXhJr+xsIdSALdoTCu",
+	"tt1vLgdnxT3EgzRs42hFgtzG7OxBKNlZE0ngivZBzaH0gsM7cHAMzwDM9mBNdu/CBvll3nfxb819HcZO",
+	"cmtKjzMLhSRL1SgMaIULnyg4VZA3Rx+L5dQoW/GpjQsV7JRcBIxB8z8751PLHPJw4k3omjunbZ4ki8Ui",
+	"3m5OSM7wro8ynjtRBak7C6qEUJJ9uvzGhJph1d6KC43y65cRRFBRgdI267km8Xl03s/i9NFspVG2nsTK",
+	"3CTrRpvc19cROHLN0/PU0Fs0tqWXxuvWgM41QQ4ncRqftO/W3EIufVXVfwMAAP//oc6Ge0kHAAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
