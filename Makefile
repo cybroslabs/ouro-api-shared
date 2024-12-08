@@ -1,3 +1,6 @@
+.PHONE: all
+all: gen-go generate
+
 .PHONY: gen-go
 gen-go:
 	cd protobuf && protoc \
@@ -24,7 +27,7 @@ gen-go:
 generate:
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/rfc/rfc7807/rfc7807.go -package rfc7807 \
 		./openapi/rfc/rfc7807/rfc7807.yaml
-	
+
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/k8s/containers/containers.go -package containers \
 		./openapi/k8s/containers/containers.yaml
 

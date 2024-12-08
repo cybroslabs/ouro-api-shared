@@ -141,7 +141,6 @@ message ActionResult {
 
 // API -> Taskmaster register (install/update) driver request message
 message RegisterDriverRequest {
-    string driver_type = 1; // The driver unique identifier.
     string image = 2; // The docker image of the driver.
     ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
