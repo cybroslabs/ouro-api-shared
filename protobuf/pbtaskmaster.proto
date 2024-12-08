@@ -139,14 +139,9 @@ message ActionResult {
     pbdriver.ActionData data = 3 [json_name="d"]; // The action result data.
 }
 
-message DriverImagePullSecrets {
-    string name = 1; // The name of the secret.
-    optional string dockerconfigjson = 2; // The dockerconfigjson of the secret.
-}
-
 // API -> Taskmaster register (install/update) driver request message
 message RegisterDriverRequest {
-    optional DriverImagePullSecrets image_pull_secrets = 1; // The image pull secrets.
+    repeated string image_pull_secrets = 1; // The image pull secrets.
     string image = 2; // The docker image of the driver.
     ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
@@ -160,7 +155,7 @@ message GetDriversResponse {
 // Sub-message containing driver info
 message DriverInfo {
     string driver_type = 1; // The driver unique identifier.
-    optional DriverImagePullSecrets image_pull_secrets = 2; // The image pull secrets.
+    repeated string image_pull_secrets = 2; // The image pull secrets.
     string image = 3; // The docker image of the driver.
     ContainerResourceSet resources = 4; // The resource requirements of the driver.
 }

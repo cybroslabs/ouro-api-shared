@@ -33,30 +33,20 @@ components:
         spec:
           $ref: "#/components/schemas/DriverSpecSchema"
 
-    DriverImagePullSecretsSchema:
-      type: object
+    ImagePullSecretsSchema:
+      type: array
       description: >
-        Schema that describes the image pull secrets for a driver. If dockerconfigjson is not provided, the secret must already exist in the cluster.
-      example:
-        name: "my-image-pull-secrets"
-        dockerconfigjson: "eyJhdXRocyI6eyJnaGNyLmlvIjp7InVzZXJuYW1lIjoiaWFtIiwicGFzc3dvcmQiOiJnaHBfbWFnaWNzdHJpbmciLCJlbWFpbCI6ImlhbUBleGFtcGxlLmNvbSIsImF1dGgiOiJhV0Z0T21kb2NGOXRZV2RwWTNOMGNtbHVadz09In19fQ=="
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          description: >
-            The name of the image pull secret.
-        dockerconfigjson:
-          type: string
-          description: >
-            The base64 encoded docker config json for the image pull secret.
+        Schema that describes the image pull secrets for the driver.
+      items:
+        type: string
 
     DriverSpecSchema:
       type: object
       description: >
         Schema that registers new or updates already registered communication drivers.
       example:
+        imagePullSecrets:
+          - "my_secret_name"
         image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
         resources:
           limits:
@@ -70,7 +60,7 @@ components:
         - resources
       properties:
         imagePullSecrets:
-          $ref: "#/components/schemas/DriverImagePullSecretsSchema"
+          $ref: "#/components/schemas/ImagePullSecretsSchema"
         image:
           type: string
           pattern: "^[a-zA-Z0-9-.]+(:[0-9]+)?[a-zA-Z0-9/]+(:[a-zA-Z0-9-]+|@sha256:[0-9a-f]+)?"
