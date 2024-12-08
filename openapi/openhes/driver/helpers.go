@@ -15,21 +15,14 @@ func GetDataLinkAttributes(linkProtocol pbdriver.DataLinkProtocol) ([]pbdriver.A
 		// COSEM Wrapper attributes
 		return []pbdriver.AttributeDefinition{
 			{
-				Name:         "Version",
-				Description:  "Version of the COSEM Wrapper",
-				Type:         pbdriver.AttributeType_ATTRIBUTE_TYPE_INT,
-				Mandatory:    true,
-				DefaultValue: &default_COSEM_Wrapper_Version,
-			},
-			{
-				Name:        "SourceAddress",
-				Description: "Source address of the COSEM Wrapper",
+				Name:        "cw_source_address",
+				Description: "Source address",
 				Type:        pbdriver.AttributeType_ATTRIBUTE_TYPE_INT,
 				Mandatory:   true,
 			},
 			{
-				Name:        "DestinationAddress",
-				Description: "Destination address of the COSEM Wrapper",
+				Name:        "cw_destination_address",
+				Description: "Destination address",
 				Type:        pbdriver.AttributeType_ATTRIBUTE_TYPE_INT,
 				Mandatory:   true,
 			},
@@ -38,13 +31,13 @@ func GetDataLinkAttributes(linkProtocol pbdriver.DataLinkProtocol) ([]pbdriver.A
 		// HDLC attributes
 		return []pbdriver.AttributeDefinition{
 			{
-				Name:        "ClientAddress",
+				Name:        "hdlc_client_address",
 				Description: "Client address",
 				Type:        pbdriver.AttributeType_ATTRIBUTE_TYPE_INT,
 				Mandatory:   true,
 			},
 			{
-				Name:        "ServerAddress",
+				Name:        "hdlc_server_address",
 				Description: "Server address",
 				Type:        pbdriver.AttributeType_ATTRIBUTE_TYPE_INT,
 				Mandatory:   true,
@@ -54,12 +47,14 @@ func GetDataLinkAttributes(linkProtocol pbdriver.DataLinkProtocol) ([]pbdriver.A
 		// IEC 62056-21 attributes
 		return []pbdriver.AttributeDefinition{
 			{
-				Name:        "SerialNumber",
-				Description: "Serial number",
+				Name:        "iec62056_client_address",
+				Description: "IEC serial",
 				Type:        pbdriver.AttributeType_ATTRIBUTE_TYPE_STRING,
-				Mandatory:   true,
+				Mandatory:   false,
 			},
 		}, nil
+	} else if linkProtocol == pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE {
+		return []pbdriver.AttributeDefinition{}, nil
 	} else {
 		return nil, fmt.Errorf("unknown link protocol '%v'", linkProtocol)
 	}
