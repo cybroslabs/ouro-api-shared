@@ -33,6 +33,25 @@ components:
         spec:
           $ref: "#/components/schemas/DriverSpecSchema"
 
+    DriverImagePullSecretsSchema:
+      type: object
+      description: >
+        Schema that describes the image pull secrets for a driver. If dockerconfigjson is not provided, the secret must already exist in the cluster.
+      example:
+        name: "my-image-pull-secrets"
+        dockerconfigjson: "eyJhdXRocyI6eyJnaGNyLmlvIjp7InVzZXJuYW1lIjoiaWFtIiwicGFzc3dvcmQiOiJnaHBfbWFnaWNzdHJpbmciLCJlbWFpbCI6ImlhbUBleGFtcGxlLmNvbSIsImF1dGgiOiJhV0Z0T21kb2NGOXRZV2RwWTNOMGNtbHVadz09In19fQ=="
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >
+            The name of the image pull secret.
+        dockerconfigjson:
+          type: string
+          description: >
+            The base64 encoded docker config json for the image pull secret.
+
     DriverSpecSchema:
       type: object
       description: >
@@ -50,6 +69,8 @@ components:
         - image
         - resources
       properties:
+        imagePullSecrets:
+          $ref: "#/components/schemas/DriverImagePullSecretsSchema"
         image:
           type: string
           pattern: "^[a-zA-Z0-9-.]+(:[0-9]+)?[a-zA-Z0-9/]+(:[a-zA-Z0-9-]+|@sha256:[0-9a-f]+)?"
