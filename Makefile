@@ -23,6 +23,11 @@ gen-go:
 		--go-grpc_out=./pbdataproxy --go-grpc_opt=paths=source_relative \
 		pbdataproxy.proto
 
+	cd protobuf && protoc \
+		--go_out=./pbdriveroperator --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdriveroperator --go-grpc_opt=paths=source_relative \
+		pbdriveroperator.proto
+
 .PHONY: generate
 generate:
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/rfc/rfc7807/rfc7807.go -package rfc7807 \

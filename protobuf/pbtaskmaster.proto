@@ -146,6 +146,14 @@ message RegisterDriverRequest {
     ContainerResourceSet resources = 3; // The resource requirements of the driver.
 }
 
+// Driver registration statuses
+enum DriverRegistrationStatus {
+    // The driver is not registered. This is the first status of the driver after the registration request.
+    DRIVER_NOT_REGISTERED = 0;
+    // The driver is registered. This is the final status of the driver after the registration request.
+    DRIVER_REGISTERED = 1;
+}
+
 // Taskmaster -> API get drivers response message
 message GetDriversResponse {
     pbdriver.ErrorCode result = 1; // The result of the operation.
@@ -154,10 +162,11 @@ message GetDriversResponse {
 
 // Sub-message containing driver info
 message DriverInfo {
-    string driver_type = 1; // The driver unique identifier.
-    repeated string image_pull_secrets = 2; // The image pull secrets.
-    string image = 3; // The docker image of the driver.
-    ContainerResourceSet resources = 4; // The resource requirements of the driver.
+    DriverRegistrationStatus status = 1; // The driver registration status.
+    string driver_type = 2; // The driver unique identifier.
+    repeated string image_pull_secrets = 3; // The image pull secrets.
+    string image = 4; // The docker image of the driver.
+    ContainerResourceSet resources = 5; // The resource requirements of the driver.
 }
 
 // Sub-message containing container resource limits and requests
