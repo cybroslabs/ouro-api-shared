@@ -1,15 +1,18 @@
 package driver
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 )
 
 var (
-	default_COSEM_Wrapper_Version = pbdriver.AttributeValue{Value: &pbdriver.AttributeValue_IntValue{IntValue: 1}}
+	ErrUnknownDataLinkProtocol = errors.Join(errors.ErrUnsupported, errors.New("unknown data link protocol"))
 )
 
+// GetDataLinkAttributes returns the attributes for the given data link protocol.
+// Those are typically device addresses or other configuration parameters.
 func GetDataLinkAttributes(linkProtocol pbdriver.DataLinkProtocol) ([]pbdriver.AttributeDefinition, error) {
 	if linkProtocol == pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER {
 		// COSEM Wrapper attributes
@@ -56,6 +59,6 @@ func GetDataLinkAttributes(linkProtocol pbdriver.DataLinkProtocol) ([]pbdriver.A
 	} else if linkProtocol == pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE {
 		return []pbdriver.AttributeDefinition{}, nil
 	} else {
-		return nil, fmt.Errorf("unknown link protocol '%v'", linkProtocol)
+		return nil, errors.Join(ErrUnknownDataLinkProtocol, fmt.Errorf("protocol '%v'", linkProtocol))
 	}
 }

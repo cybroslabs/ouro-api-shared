@@ -500,14 +500,18 @@ enum CommunicationType {
 
 // Data link protocols
 enum DataLinkProtocol {
-    // The IEC 62056-21 (IEC-61107, VDEW) protocol. In combination with DLMS protocol the driver starts by IEC and switches to the mode E and typically DLMS over HDLC. Supports client/server addressing = multiple devices on the same line.
+    // The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
     LINKPROTO_IEC_62056_21 = 0;
-    // The HDLC framing. Supports client/server addressing = multiple devices on the same line.
+    // The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
     LINKPROTO_HDLC = 1;
-    // The COSEM wrapper. Supports client/server addressing = multiple devices on the same line.
+    // The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
     LINKPROTO_COSEM_WRAPPER = 2;
+    // The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+    LINKPROTO_MODBUS = 3;
+    // The M-Bus protocol. It shall be used for M-Bus application protocol.
+    LINKPROTO_MBUS = 4;
 
-    // The data link protocol is not applicable, this is applicable only for listening communication type.
+    // The data link protocol is not applicable. It's useful for listening communication type.
     LINKPROTO_NOT_APPLICABLE = 99;
 }
 
@@ -555,9 +559,9 @@ message CommunicationTemplate {
 
 // Sub-message in driver negotiation request
 message DriverTemplates {
-    // The metadata of the communication templates. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
+    // The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
     repeated CommunicationTemplate communication_templates = 2 [json_name="ct"];
-    // The template of the connection attributes related to the device. It is represented as a list of attribute definitions.
+    // The templates of the generic device related attributes.
     repeated AttributeDefinition device_attributes = 3 [json_name="ad"];
     // The templates of the job actions for all supported action types.
     repeated JobActionAttributes action_attributes = 4 [json_name="aa"];
