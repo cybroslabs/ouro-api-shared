@@ -23,9 +23,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DriverOperatorService_RegisterDriver_FullMethodName     = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/RegisterDriver"
 	DriverOperatorService_GetDrivers_FullMethodName         = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDrivers"
-	DriverOperatorService_UnregisterDriver_FullMethodName   = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/UnregisterDriver"
 	DriverOperatorService_GetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDriverTemplates"
 	DriverOperatorService_SetDriverScale_FullMethodName     = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/SetDriverScale"
 	DriverOperatorService_GetDriverScale_FullMethodName     = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDriverScale"
@@ -39,12 +37,8 @@ const (
 // The Driver Operator service definition.
 // Those are the gRPC services that the Driver Operator provides for other components.
 type DriverOperatorServiceClient interface {
-	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(ctx context.Context, in *pbtaskmaster.RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmaster.GetDriversResponse, error)
-	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(ctx context.Context, in *pbtaskmaster.UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriverTemplates(ctx context.Context, in *pbtaskmaster.GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error)
 	// The method called by the Taskmaster to set the driver scale.
@@ -64,30 +58,10 @@ func NewDriverOperatorServiceClient(cc grpc.ClientConnInterface) DriverOperatorS
 	return &driverOperatorServiceClient{cc}
 }
 
-func (c *driverOperatorServiceClient) RegisterDriver(ctx context.Context, in *pbtaskmaster.RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverOperatorService_RegisterDriver_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *driverOperatorServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmaster.GetDriversResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(pbtaskmaster.GetDriversResponse)
 	err := c.cc.Invoke(ctx, DriverOperatorService_GetDrivers_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *driverOperatorServiceClient) UnregisterDriver(ctx context.Context, in *pbtaskmaster.UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverOperatorService_UnregisterDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -141,12 +115,8 @@ func (c *driverOperatorServiceClient) StartUpgrade(ctx context.Context, in *Star
 // The Driver Operator service definition.
 // Those are the gRPC services that the Driver Operator provides for other components.
 type DriverOperatorServiceServer interface {
-	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(context.Context, *pbtaskmaster.RegisterDriverRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	GetDrivers(context.Context, *emptypb.Empty) (*pbtaskmaster.GetDriversResponse, error)
-	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(context.Context, *pbtaskmaster.UnregisterDriverRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriverTemplates(context.Context, *pbtaskmaster.GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error)
 	// The method called by the Taskmaster to set the driver scale.
@@ -166,14 +136,8 @@ type DriverOperatorServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverOperatorServiceServer struct{}
 
-func (UnimplementedDriverOperatorServiceServer) RegisterDriver(context.Context, *pbtaskmaster.RegisterDriverRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterDriver not implemented")
-}
 func (UnimplementedDriverOperatorServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*pbtaskmaster.GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
-}
-func (UnimplementedDriverOperatorServiceServer) UnregisterDriver(context.Context, *pbtaskmaster.UnregisterDriverRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnregisterDriver not implemented")
 }
 func (UnimplementedDriverOperatorServiceServer) GetDriverTemplates(context.Context, *pbtaskmaster.GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverTemplates not implemented")
@@ -208,24 +172,6 @@ func RegisterDriverOperatorServiceServer(s grpc.ServiceRegistrar, srv DriverOper
 	s.RegisterService(&DriverOperatorService_ServiceDesc, srv)
 }
 
-func _DriverOperatorService_RegisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.RegisterDriverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverOperatorServiceServer).RegisterDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverOperatorService_RegisterDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverOperatorServiceServer).RegisterDriver(ctx, req.(*pbtaskmaster.RegisterDriverRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DriverOperatorService_GetDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -240,24 +186,6 @@ func _DriverOperatorService_GetDrivers_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DriverOperatorServiceServer).GetDrivers(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DriverOperatorService_UnregisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.UnregisterDriverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverOperatorServiceServer).UnregisterDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverOperatorService_UnregisterDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverOperatorServiceServer).UnregisterDriver(ctx, req.(*pbtaskmaster.UnregisterDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -342,16 +270,8 @@ var DriverOperatorService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DriverOperatorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "RegisterDriver",
-			Handler:    _DriverOperatorService_RegisterDriver_Handler,
-		},
-		{
 			MethodName: "GetDrivers",
 			Handler:    _DriverOperatorService_GetDrivers_Handler,
-		},
-		{
-			MethodName: "UnregisterDriver",
-			Handler:    _DriverOperatorService_UnregisterDriver_Handler,
 		},
 		{
 			MethodName: "GetDriverTemplates",

@@ -12,12 +12,8 @@ import "pbtaskmaster.proto";
 // The Driver Operator service definition.
 // Those are the gRPC services that the Driver Operator provides for other components.
 service DriverOperatorService {
-    // The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-    rpc RegisterDriver(pbtaskmaster.RegisterDriverRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the list of drivers.
     rpc GetDrivers(google.protobuf.Empty) returns (pbtaskmaster.GetDriversResponse);
-    // The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-    rpc UnregisterDriver(pbtaskmaster.UnregisterDriverRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
     rpc GetDriverTemplates(pbtaskmaster.GetDriverTemplatesRequest) returns (pbdriver.DriverTemplates);
 
@@ -31,12 +27,14 @@ service DriverOperatorService {
     rpc StartUpgrade(StartUpgradeRequest) returns (google.protobuf.Empty);
 }
 
+// Taskmaster -> Driver Operator driver-scale change request message
 message SetDriverScaleRequest {
     string driver_type = 1; // The driver unique identifier.
     uint32 replicas = 2; // The number of replicas to scale to.
     string taskmaster_url = 3; // The URL of the Taskmaster service the driver shall connect to.
 }
 
+// Taskmaster -> Driver Operator get driver-scale message
 message GetDriverScaleRequest {
     string driver_type = 1; // The driver unique identifier.
     uint32 replicas = 2; // The number of replicas to scale to.
