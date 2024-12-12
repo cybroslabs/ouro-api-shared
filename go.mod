@@ -14,7 +14,7 @@ require (
 	github.com/oapi-codegen/runtime v1.1.1
 	google.golang.org/grpc v1.68.1
 	google.golang.org/protobuf v1.35.2
-	k8s.io/apimachinery v0.31.4
+	k8s.io/apimachinery v0.32.0
 )
 
 require (
