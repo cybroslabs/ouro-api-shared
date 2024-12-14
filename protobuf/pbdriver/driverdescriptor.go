@@ -33,7 +33,7 @@ func EncodeDriverDescriptor(descriptor *NegotiateRequest) (string, error) {
 	return string(json), err
 }
 
-// Decodes the driver descriptor from a string. Returns the decoded descriptor, encoded base64 proto buf form of a descriptor and an error.
+// Decodes the driver descriptor from an io reader. Returns the decoded descriptor, encoded base64 proto buf form of a descriptor and an error.
 func DecodeDriverDescriptor(data io.ReadCloser) (*NegotiateRequest, string, error) {
 	var descriptor_holder driverDescriptor
 	err := json.NewDecoder(data).Decode(&descriptor_holder)
@@ -41,17 +41,27 @@ func DecodeDriverDescriptor(data io.ReadCloser) (*NegotiateRequest, string, erro
 		return nil, "", err
 	}
 
-	var bin []byte
-	bin, err = base64.URLEncoding.DecodeString(descriptor_holder.Descriptor)
+	var descriptor *NegotiateRequest
+	descriptor, err = DecodeDriverDescriptorFromString(descriptor_holder.Descriptor)
 	if err != nil {
 		return nil, "", err
 	}
 
-	var descriptor NegotiateRequest
-	err = proto.Unmarshal(bin, &descriptor)
+	return descriptor, descriptor_holder.Descriptor, nil
+}
+
+// Decodes the driver descriptor from a string. Returns the decoded descriptor and an error.
+func DecodeDriverDescriptorFromString(descriptor string) (*NegotiateRequest, error) {
+	bin, err := base64.URLEncoding.DecodeString(descriptor)
 	if err != nil {
-		return nil, "", err
+		return nil, err
 	}
 
-	return &descriptor, descriptor_holder.Descriptor, nil
+	result := &NegotiateRequest{}
+	err = proto.Unmarshal(bin, result)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
 }
