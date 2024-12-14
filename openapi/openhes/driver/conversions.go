@@ -57,10 +57,10 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 	return result, nil
 }
 
-func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*CommunicationTemplateSchema, error) {
+func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*DriverCommunicationTemplateSchema, error) {
 	t := commTemp.Type.String()
-	datalink_tpls := make([]DatalinkTemplateSchema, len(commTemp.Datalinks))
-	result := &CommunicationTemplateSchema{
+	datalink_tpls := make([]DriverDatalinkTemplateSchema, len(commTemp.Datalinks))
+	result := &DriverCommunicationTemplateSchema{
 		Type:              &t,
 		DatalinkTemplates: &datalink_tpls,
 	}
@@ -72,7 +72,7 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Commun
 		lp := dl_data.LinkProtocol.String()
 		datalink_tpls[dl_idx].LinkProtocol = &lp
 		if dl_app_cnt := len(dl_data.AppProtocols); dl_app_cnt > 0 {
-			dl_app_protocol := make([]AppProtocolSchema, dl_app_cnt)
+			dl_app_protocol := make([]DriverAppProtocolSchema, dl_app_cnt)
 			datalink_tpls[dl_idx].AppProtocols = &dl_app_protocol
 			for ap_idx, ap_data := range dl_data.AppProtocols {
 				if ap_data == nil {
