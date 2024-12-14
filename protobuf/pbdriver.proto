@@ -544,7 +544,7 @@ message ApplicationProtocolTemplate {
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
 message DataLinkTemplate {
     // The data link protocol.
-    DataLinkProtocol link_protocols = 2 [json_name="lp"];
+    DataLinkProtocol link_protocol = 2 [json_name="lp"];
     // The list of application protocols supported by the driver.
     repeated ApplicationProtocolTemplate app_protocols = 3 [json_name="ap"];
 }
@@ -554,7 +554,7 @@ message CommunicationTemplate {
     // The type of the communication.
     CommunicationType type = 1 [json_name="t"];
     // The list of data link protocols and their app protocols supported by the driver.
-    repeated DataLinkTemplate datalink = 2 [json_name="dl"];
+    repeated DataLinkTemplate datalinks = 2 [json_name="dl"];
 }
 
 // Sub-message in driver negotiation request

@@ -128,6 +128,56 @@ components:
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 
+    DriverCommunicationTemplateSchema:
+      type: object
+      description: >
+        Schema that describes the communication template.
+      properties:
+        type:
+          type: string
+          description: >
+            The type of the communication template.
+        datalinkTemplates:
+          $ref: "#/components/schemas/DriverDatalinkTemplateSchemas"
+
+    DriverDatalinkTemplateSchemas:
+      type: array
+      description: >
+        The list of datalink templates valid for the communication template.
+      items:
+        $ref: "#/components/schemas/DriverDatalinkTemplateSchema"
+
+    DriverDatalinkTemplateSchema:
+      type: object
+      description: >
+        Schema that describes the datalink template.
+      properties:
+        linkProtocol:
+          type: string
+          description: >
+            The link protocol.
+        appProtocols:
+          $ref: "#/components/schemas/DriverAppProtocolsSchema"
+
+    DriverAppProtocolsSchema:
+      type: array
+      description: >
+        The list of application protocols valid for the datalink template.
+      items:
+        $ref: "#/components/schemas/DriverAppProtocolSchema"
+
+    DriverAppProtocolSchema:
+      type: object
+      description: >
+        Schema that describes the application protocol.
+      properties:
+        protocol:
+          type: string
+          description: >
+            The application protocol.
+        profile:
+          $ref: "#/components/schemas/DriverAttributesSchema"
+
     DriverAttributesSchema:
       type: array
       description: >

@@ -56,3 +56,44 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 
 	return result, nil
 }
+
+func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*CommunicationTemplateSchema, error) {
+	t := commTemp.Type.String()
+	datalink_tpls := make([]DatalinkTemplateSchema, len(commTemp.Datalinks))
+	result := &CommunicationTemplateSchema{
+		Type:              &t,
+		DatalinkTemplates: &datalink_tpls,
+	}
+
+	for dl_idx, dl_data := range commTemp.Datalinks {
+		if dl_data == nil {
+			return nil, fmt.Errorf("datalink template contains nil")
+		}
+		lp := dl_data.LinkProtocol.String()
+		datalink_tpls[dl_idx].LinkProtocol = &lp
+		if dl_app_cnt := len(dl_data.AppProtocols); dl_app_cnt > 0 {
+			dl_app_protocol := make([]AppProtocolSchema, dl_app_cnt)
+			datalink_tpls[dl_idx].AppProtocols = &dl_app_protocol
+			for ap_idx, ap_data := range dl_data.AppProtocols {
+				if ap_data == nil {
+					return nil, fmt.Errorf("app protocol contains nil")
+				}
+				ap := ap_data.Protocol.String()
+				dl_app_protocol[ap_idx].Protocol = &ap
+				if ap_attr_cnt := len(ap_data.Attributes); ap_attr_cnt > 0 {
+					attrs := make([]AttributeDefinitionSchema, ap_attr_cnt)
+					dl_app_protocol[ap_idx].Profile = &attrs
+					for attr_idx, attr := range ap_data.Attributes {
+						attr_def, err := G2RAttributeDefinition(attr)
+						if err != nil {
+							return nil, err
+						}
+						attrs[attr_idx] = *attr_def
+					}
+				}
+			}
+		}
+	}
+
+	return result, nil
+}
