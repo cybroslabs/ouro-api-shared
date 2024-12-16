@@ -35,8 +35,9 @@ message SetDriverScaleRequest {
 
 // Taskmaster -> Driver Operator get driver-scale message
 message GetDriverScaleRequest {
-    string driver_type = 1; // The driver unique identifier.
-    uint32 replicas = 2; // The number of replicas to scale to.
+    string taskmaster_id = 1; // The Taskmaster identifier. It is statefulset so value must be either full pod name or suffix integer of the pod name. For example: taskmaster-0 or 0.
+    string driver_type = 2; // The driver unique identifier.
+    uint32 replicas = 3; // The number of replicas to scale to.
 }
 
 message StartUpgradeRequest {

@@ -24,6 +24,10 @@ func G2RAttributeType(attributeType pbdriver.AttributeType) AttributeDefinitionS
 
 // Converts the attribute definition - gRPC to REST
 func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDefinitionSchema, error) {
+	if attrDef == nil {
+		return nil, nil
+	}
+
 	attr_type := G2RAttributeType(attrDef.Type)
 
 	result := &AttributeDefinitionSchema{
@@ -58,6 +62,10 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 }
 
 func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*DriverCommunicationTemplateSchema, error) {
+	if commTemp == nil {
+		return nil, nil
+	}
+
 	t := commTemp.Type.String()
 	datalink_tpls := make([]DriverDatalinkTemplateSchema, len(commTemp.Datalinks))
 	result := &DriverCommunicationTemplateSchema{
@@ -81,14 +89,17 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Driver
 				ap := ap_data.Protocol.String()
 				dl_app_protocol[ap_idx].Protocol = &ap
 				if ap_attr_cnt := len(ap_data.Attributes); ap_attr_cnt > 0 {
-					attrs := make([]AttributeDefinitionSchema, ap_attr_cnt)
+					attrs := make([]AttributeDefinitionSchema, 0, ap_attr_cnt)
 					dl_app_protocol[ap_idx].Profile = &attrs
-					for attr_idx, attr := range ap_data.Attributes {
+					for _, attr := range ap_data.Attributes {
 						attr_def, err := G2RAttributeDefinition(attr)
 						if err != nil {
 							return nil, err
 						}
-						attrs[attr_idx] = *attr_def
+						if attr_def == nil {
+							continue
+						}
+						attrs = append(attrs, *attr_def)
 					}
 				}
 			}
