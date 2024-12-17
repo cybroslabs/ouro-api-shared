@@ -6,15 +6,16 @@ option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperator"
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "pbdriver.proto";
-import "pbtaskmaster.proto";
 
 // The Driver Operator service definition.
 // Those are the gRPC services that the Driver Operator provides for other components.
 service DriverOperatorService {
     // The method called by the RestApi to get the list of drivers.
-    rpc GetDrivers(google.protobuf.Empty) returns (pbtaskmaster.GetDriversResponse);
+    rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
+    // The method called by the Driver to set the driver templates. The parameter contains the driver templates.
+    rpc SetDriverTemplates(pbdriver.NegotiateRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
-    rpc GetDriverTemplates(pbtaskmaster.GetDriverTemplatesRequest) returns (pbdriver.DriverTemplates);
+    rpc GetDriverTemplates(GetDriverTemplatesRequest) returns (pbdriver.DriverTemplates);
 
     // The method called by the Taskmaster to set the driver scale.
     rpc SetDriverScale(SetDriverScaleRequest) returns (google.protobuf.Empty);
@@ -43,4 +44,21 @@ message StartUpgradeRequest {
     string driver_type = 1; // The driver unique identifier.
     string driver_version = 2; // The driver version to be started. It must be a valid version of the driver and should be exactly +1 against the version of the data to be upgraded; or the major version can be +1 if current data version is the latest possible minor version.
     string deviceregistry_url = 3; // The URL of the DeviceRegistry service the driver shall connect to.
+}
+
+// API -> Taskmaster request to get driver templates
+message GetDriverTemplatesRequest {
+    string driver_type = 1; // The driver unique identifier.
+}
+
+// Sub-message containing driver info
+message DriverInfo {
+    string driver_type = 1; // The driver unique identifier.
+    string version = 2; // The version of the driver.
+}
+
+// Taskmaster -> API get drivers response message
+message GetDriversResponse {
+    pbdriver.ErrorCode result = 1; // The result of the operation.
+    repeated DriverInfo drivers = 2; // The list of drivers.
 }

@@ -12,9 +12,8 @@ import (
 	"path"
 	"strings"
 
-	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/k8s/containers"
-	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
-	externalRef2 "github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
+	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
+	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/getkin/kin-openapi/openapi3"
 )
 
@@ -79,7 +78,7 @@ type DriverActionAttributeSchema struct {
 	//   * `SET_LIMITER` - The action is to set the limiter settings.
 	//   * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
 	//   * `FW_UPDATE` - The action is to start a firmware update.
-	Type *externalRef2.ActionTypeSchema `json:"type,omitempty"`
+	Type *externalRef1.ActionTypeSchema `json:"type,omitempty"`
 }
 
 // DriverAppProtocolSchema Schema that describes the application protocol.
@@ -118,83 +117,52 @@ type DriverDatalinkTemplateSchema struct {
 // DriverDatalinkTemplateSchemas The list of datalink templates valid for the communication template.
 type DriverDatalinkTemplateSchemas = []DriverDatalinkTemplateSchema
 
-// DriverDetailsSchema defines model for DriverDetailsSchema.
-type DriverDetailsSchema struct {
-	// Spec Schema that registers new or updates already registered communication drivers.
-	Spec *DriverSpecSchema `json:"spec,omitempty"`
-
-	// Status Schema that describes the status of a driver.
-	Status *DriverStatusSchema `json:"status,omitempty"`
-}
-
 // DriverSchema Schema that describes communication driver details.
 type DriverSchema struct {
-	// Spec Schema that registers new or updates already registered communication drivers.
+	// Spec Schema containing communication driver spec.
 	Spec *DriverSpecSchema `json:"spec,omitempty"`
 }
 
-// DriverSpecSchema Schema that registers new or updates already registered communication drivers.
+// DriverSpecSchema Schema containing communication driver spec.
 type DriverSpecSchema struct {
-	Image string `json:"image"`
-
-	// ImagePullSecrets Schema that describes the image pull secrets for the driver.
-	ImagePullSecrets *ImagePullSecretsSchema `json:"imagePullSecrets,omitempty"`
-
-	// Resources Resource values for a container.
-	Resources externalRef0.ContainerResourcesSetSchema `json:"resources"`
-}
-
-// DriverStatusSchema Schema that describes the status of a driver.
-type DriverStatusSchema struct {
+	// DriverType The driver type identifier.
 	DriverType string `json:"driverType"`
+
+	// Version The version of the driver.
+	Version string `json:"version"`
 }
 
 // GenericObject defines model for GenericObject.
 type GenericObject = interface{}
 
-// ImagePullSecretsSchema Schema that describes the image pull secrets for the driver.
-type ImagePullSecretsSchema = []string
-
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"IwAA",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
@@ -234,19 +202,13 @@ func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
 		res[pathToFile] = rawSpec
 	}
 
-	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../../k8s/containers/containers.yaml")) {
+	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../../openhes/driver/driverdata/driverdata.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}
 		res[rawPath] = rawFunc
 	}
-	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../../openhes/driver/driverdata/driverdata.yaml")) {
-		if _, ok := res[rawPath]; ok {
-			// it is not possible to compare functions in golang, so always overwrite the old value
-		}
-		res[rawPath] = rawFunc
-	}
-	for rawPath, rawFunc := range externalRef2.PathToRawSpec(path.Join(path.Dir(pathToFile), "../job/job.yaml")) {
+	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../job/job.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}

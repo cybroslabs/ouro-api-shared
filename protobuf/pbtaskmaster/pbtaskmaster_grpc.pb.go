@@ -21,20 +21,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskmasterService_QueueJobs_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/QueueJobs"
-	TaskmasterService_GetJob_FullMethodName             = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetJob"
-	TaskmasterService_PurgeJobs_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/PurgeJobs"
-	TaskmasterService_CancelJobs_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CancelJobs"
-	TaskmasterService_Subscribe_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/Subscribe"
-	TaskmasterService_NegotiateStart_FullMethodName     = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/NegotiateStart"
-	TaskmasterService_CacheSet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheSet"
-	TaskmasterService_CacheGet_FullMethodName           = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheGet"
-	TaskmasterService_RegisterDriver_FullMethodName     = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/RegisterDriver"
-	TaskmasterService_GetDrivers_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetDrivers"
-	TaskmasterService_UnregisterDriver_FullMethodName   = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/UnregisterDriver"
-	TaskmasterService_GetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetDriverTemplates"
-	TaskmasterService_GetConfig_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetConfig"
-	TaskmasterService_SetConfig_FullMethodName          = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/SetConfig"
+	TaskmasterService_QueueJobs_FullMethodName      = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/QueueJobs"
+	TaskmasterService_GetJob_FullMethodName         = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetJob"
+	TaskmasterService_PurgeJobs_FullMethodName      = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/PurgeJobs"
+	TaskmasterService_CancelJobs_FullMethodName     = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CancelJobs"
+	TaskmasterService_Subscribe_FullMethodName      = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/Subscribe"
+	TaskmasterService_NegotiateStart_FullMethodName = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/NegotiateStart"
+	TaskmasterService_CacheSet_FullMethodName       = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheSet"
+	TaskmasterService_CacheGet_FullMethodName       = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/CacheGet"
+	TaskmasterService_GetConfig_FullMethodName      = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/GetConfig"
+	TaskmasterService_SetConfig_FullMethodName      = "/io.clbs.openhes.pbtaskmaster.TaskmasterService/SetConfig"
 )
 
 // TaskmasterServiceClient is the client API for TaskmasterService service.
@@ -59,14 +55,6 @@ type TaskmasterServiceClient interface {
 	CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error)
-	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the list of drivers.
-	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error)
-	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the driver templates.
-	GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
@@ -170,46 +158,6 @@ func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *CacheGetRequ
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) RegisterDriver(ctx context.Context, in *RegisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, TaskmasterService_RegisterDriver_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetDriversResponse)
-	err := c.cc.Invoke(ctx, TaskmasterService_GetDrivers_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) UnregisterDriver(ctx context.Context, in *UnregisterDriverRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, TaskmasterService_UnregisterDriver_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdriver.DriverTemplates)
-	err := c.cc.Invoke(ctx, TaskmasterService_GetDriverTemplates_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SystemConfigResponse)
@@ -252,14 +200,6 @@ type TaskmasterServiceServer interface {
 	CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error)
-	// The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-	RegisterDriver(context.Context, *RegisterDriverRequest) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the list of drivers.
-	GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error)
-	// The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-	UnregisterDriver(context.Context, *UnregisterDriverRequest) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the driver templates.
-	GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
@@ -297,18 +237,6 @@ func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *CacheSetR
 }
 func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheGet not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) RegisterDriver(context.Context, *RegisterDriverRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterDriver not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) UnregisterDriver(context.Context, *UnregisterDriverRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnregisterDriver not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDriverTemplates not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
@@ -474,78 +402,6 @@ func _TaskmasterService_CacheGet_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TaskmasterService_RegisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterDriverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).RegisterDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_RegisterDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).RegisterDriver(ctx, req.(*RegisterDriverRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_GetDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).GetDrivers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_GetDrivers_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetDrivers(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_UnregisterDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnregisterDriverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).UnregisterDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_UnregisterDriver_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).UnregisterDriver(ctx, req.(*UnregisterDriverRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_GetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDriverTemplatesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).GetDriverTemplates(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_GetDriverTemplates_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetDriverTemplates(ctx, req.(*GetDriverTemplatesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TaskmasterService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -616,22 +472,6 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CacheGet",
 			Handler:    _TaskmasterService_CacheGet_Handler,
-		},
-		{
-			MethodName: "RegisterDriver",
-			Handler:    _TaskmasterService_RegisterDriver_Handler,
-		},
-		{
-			MethodName: "GetDrivers",
-			Handler:    _TaskmasterService_GetDrivers_Handler,
-		},
-		{
-			MethodName: "UnregisterDriver",
-			Handler:    _TaskmasterService_UnregisterDriver_Handler,
-		},
-		{
-			MethodName: "GetDriverTemplates",
-			Handler:    _TaskmasterService_GetDriverTemplates_Handler,
 		},
 		{
 			MethodName: "GetConfig",

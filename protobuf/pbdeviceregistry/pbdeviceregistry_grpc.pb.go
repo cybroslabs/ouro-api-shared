@@ -8,6 +8,7 @@ package pbdeviceregistry
 
 import (
 	context "context"
+	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,6 +22,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	DeviceRegistryService_SetDriverTemplates_FullMethodName          = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDriverTemplates"
 	DeviceRegistryService_CreateCommunicationUnit_FullMethodName     = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
 	DeviceRegistryService_GetCommunicationUnits_FullMethodName       = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetCommunicationUnits"
 	DeviceRegistryService_CreateDevice_FullMethodName                = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
@@ -45,6 +47,8 @@ const (
 //
 // The Deviceregistry service definition.
 type DeviceRegistryServiceClient interface {
+	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+	SetDriverTemplates(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -85,6 +89,16 @@ type deviceRegistryServiceClient struct {
 
 func NewDeviceRegistryServiceClient(cc grpc.ClientConnInterface) DeviceRegistryServiceClient {
 	return &deviceRegistryServiceClient{cc}
+}
+
+func (c *deviceRegistryServiceClient) SetDriverTemplates(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDriverTemplates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Context, in *CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -253,6 +267,8 @@ func (c *deviceRegistryServiceClient) DeleteModem(ctx context.Context, in *wrapp
 //
 // The Deviceregistry service definition.
 type DeviceRegistryServiceServer interface {
+	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+	SetDriverTemplates(context.Context, *pbdriver.NegotiateRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -295,6 +311,9 @@ type DeviceRegistryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDeviceRegistryServiceServer struct{}
 
+func (UnimplementedDeviceRegistryServiceServer) SetDriverTemplates(context.Context, *pbdriver.NegotiateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDriverTemplates not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
@@ -362,6 +381,24 @@ func RegisterDeviceRegistryServiceServer(s grpc.ServiceRegistrar, srv DeviceRegi
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&DeviceRegistryService_ServiceDesc, srv)
+}
+
+func _DeviceRegistryService_SetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(pbdriver.NegotiateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDriverTemplates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDriverTemplates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDriverTemplates(ctx, req.(*pbdriver.NegotiateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DeviceRegistryService_CreateCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -659,6 +696,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.pbdeviceregistry.DeviceRegistryService",
 	HandlerType: (*DeviceRegistryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SetDriverTemplates",
+			Handler:    _DeviceRegistryService_SetDriverTemplates_Handler,
+		},
 		{
 			MethodName: "CreateCommunicationUnit",
 			Handler:    _DeviceRegistryService_CreateCommunicationUnit_Handler,

@@ -15,95 +15,37 @@ components:
   schemas:
     GenericObject: {}
 
+    DriverSpecSchema:
+      type: object
+      description: >
+        Schema containing communication driver spec.
+      example:
+        driverType: "CYBROSLABS_MAGEMETER_DLMS"
+        version: "v1.2.3"
+      required:
+        - driverType
+        - version
+      properties:
+        driverType:
+          type: string
+          description: >
+            The driver type identifier.
+        version:
+          type: string
+          description: >
+            The version of the driver.
+
     DriverSchema:
       type: object
       description: >
         Schema that describes communication driver details.
       example:
         spec:
-          image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
-          resources:
-            limits:
-              cpu: 1
-              memory: "256Mi"
-            requests:
-              cpu: "100m"
-              memory: "64Mi"
+          driverType: "CYBROSLABS_MAGEMETER_DLMS"
+          version: "v1.2.3"
       properties:
         spec:
           $ref: "#/components/schemas/DriverSpecSchema"
-
-    ImagePullSecretsSchema:
-      type: array
-      description: >
-        Schema that describes the image pull secrets for the driver.
-      items:
-        type: string
-
-    DriverSpecSchema:
-      type: object
-      description: >
-        Schema that registers new or updates already registered communication drivers.
-      example:
-        imagePullSecrets:
-          - "my_secret_name"
-        image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
-        resources:
-          limits:
-            cpu: 1
-            memory: "256Mi"
-          requests:
-            cpu: "100m"
-            memory: "64Mi"
-      required:
-        - image
-        - resources
-      properties:
-        imagePullSecrets:
-          $ref: "#/components/schemas/ImagePullSecretsSchema"
-        image:
-          type: string
-          pattern: "^[a-zA-Z0-9-.]+(:[0-9]+)?[a-zA-Z0-9/]+(:[a-zA-Z0-9-]+|@sha256:[0-9a-f]+)?"
-          example: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1 (or using digest @sha256:1234567890abcdef)"
-        resources:
-          $ref: "../../k8s/containers/containers.yaml#/components/schemas/ContainerResourcesSetSchema"
-
-    DriverStatusSchema:
-      type: object
-      description: >
-        Schema that describes the status of a driver.
-      example:
-        driverType: "CYBROSLABS_MAGEMETER_DLMS"
-      required:
-        - driverType
-      properties:
-        driverType:
-          type: string
-          pattern: "^[a-zA-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$"
-          example: "CYBROSLABS_MAGEMETER_DLMS"
-
-    DriverDetailsSchema:
-      type: object
-      description: >
-        Schema that describes communication driver details.
-      example:
-        spec:
-          image: "docker.example.com/example/driver/cybroslabs-magemeter-dlms:v1"
-          resources:
-            limits:
-              cpu: 1
-              memory: "256Mi"
-            requests:
-              cpu: "100m"
-              memory: "64Mi"
-        status:
-          driverType: "CYBROSLABS_MAGEMETER_DLMS"
-      allOf:
-        - $ref: "#/components/schemas/DriverSchema"
-        - type: object
-          properties:
-            status:
-              $ref: "#/components/schemas/DriverStatusSchema"
 
     DriverActionAttributeSchema:
       type: object

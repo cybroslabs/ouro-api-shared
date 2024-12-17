@@ -9,7 +9,6 @@ package pbdriveroperator
 import (
 	context "context"
 	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
-	pbtaskmaster "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	DriverOperatorService_GetDrivers_FullMethodName         = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDrivers"
+	DriverOperatorService_SetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/SetDriverTemplates"
 	DriverOperatorService_GetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDriverTemplates"
 	DriverOperatorService_SetDriverScale_FullMethodName     = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/SetDriverScale"
 	DriverOperatorService_GetDriverScale_FullMethodName     = "/io.clbs.openhes.pbdriveroperator.DriverOperatorService/GetDriverScale"
@@ -38,9 +38,11 @@ const (
 // Those are the gRPC services that the Driver Operator provides for other components.
 type DriverOperatorServiceClient interface {
 	// The method called by the RestApi to get the list of drivers.
-	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmaster.GetDriversResponse, error)
+	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error)
+	// The method called by the Driver to set the driver templates. The parameter contains the driver templates.
+	SetDriverTemplates(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
-	GetDriverTemplates(ctx context.Context, in *pbtaskmaster.GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error)
+	GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error)
 	// The method called by the Taskmaster to set the driver scale.
 	SetDriverScale(ctx context.Context, in *SetDriverScaleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the Taskmaster to get the driver scale.
@@ -58,9 +60,9 @@ func NewDriverOperatorServiceClient(cc grpc.ClientConnInterface) DriverOperatorS
 	return &driverOperatorServiceClient{cc}
 }
 
-func (c *driverOperatorServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmaster.GetDriversResponse, error) {
+func (c *driverOperatorServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetDriversResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbtaskmaster.GetDriversResponse)
+	out := new(GetDriversResponse)
 	err := c.cc.Invoke(ctx, DriverOperatorService_GetDrivers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -68,7 +70,17 @@ func (c *driverOperatorServiceClient) GetDrivers(ctx context.Context, in *emptyp
 	return out, nil
 }
 
-func (c *driverOperatorServiceClient) GetDriverTemplates(ctx context.Context, in *pbtaskmaster.GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error) {
+func (c *driverOperatorServiceClient) SetDriverTemplates(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DriverOperatorService_SetDriverTemplates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *driverOperatorServiceClient) GetDriverTemplates(ctx context.Context, in *GetDriverTemplatesRequest, opts ...grpc.CallOption) (*pbdriver.DriverTemplates, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(pbdriver.DriverTemplates)
 	err := c.cc.Invoke(ctx, DriverOperatorService_GetDriverTemplates_FullMethodName, in, out, cOpts...)
@@ -116,9 +128,11 @@ func (c *driverOperatorServiceClient) StartUpgrade(ctx context.Context, in *Star
 // Those are the gRPC services that the Driver Operator provides for other components.
 type DriverOperatorServiceServer interface {
 	// The method called by the RestApi to get the list of drivers.
-	GetDrivers(context.Context, *emptypb.Empty) (*pbtaskmaster.GetDriversResponse, error)
+	GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error)
+	// The method called by the Driver to set the driver templates. The parameter contains the driver templates.
+	SetDriverTemplates(context.Context, *pbdriver.NegotiateRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
-	GetDriverTemplates(context.Context, *pbtaskmaster.GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error)
+	GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error)
 	// The method called by the Taskmaster to set the driver scale.
 	SetDriverScale(context.Context, *SetDriverScaleRequest) (*emptypb.Empty, error)
 	// The method called by the Taskmaster to get the driver scale.
@@ -136,10 +150,13 @@ type DriverOperatorServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverOperatorServiceServer struct{}
 
-func (UnimplementedDriverOperatorServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*pbtaskmaster.GetDriversResponse, error) {
+func (UnimplementedDriverOperatorServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
 }
-func (UnimplementedDriverOperatorServiceServer) GetDriverTemplates(context.Context, *pbtaskmaster.GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error) {
+func (UnimplementedDriverOperatorServiceServer) SetDriverTemplates(context.Context, *pbdriver.NegotiateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDriverTemplates not implemented")
+}
+func (UnimplementedDriverOperatorServiceServer) GetDriverTemplates(context.Context, *GetDriverTemplatesRequest) (*pbdriver.DriverTemplates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverTemplates not implemented")
 }
 func (UnimplementedDriverOperatorServiceServer) SetDriverScale(context.Context, *SetDriverScaleRequest) (*emptypb.Empty, error) {
@@ -190,8 +207,26 @@ func _DriverOperatorService_GetDrivers_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DriverOperatorService_SetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(pbdriver.NegotiateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverOperatorServiceServer).SetDriverTemplates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverOperatorService_SetDriverTemplates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverOperatorServiceServer).SetDriverTemplates(ctx, req.(*pbdriver.NegotiateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DriverOperatorService_GetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmaster.GetDriverTemplatesRequest)
+	in := new(GetDriverTemplatesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -203,7 +238,7 @@ func _DriverOperatorService_GetDriverTemplates_Handler(srv interface{}, ctx cont
 		FullMethod: DriverOperatorService_GetDriverTemplates_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverOperatorServiceServer).GetDriverTemplates(ctx, req.(*pbtaskmaster.GetDriverTemplatesRequest))
+		return srv.(DriverOperatorServiceServer).GetDriverTemplates(ctx, req.(*GetDriverTemplatesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -272,6 +307,10 @@ var DriverOperatorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDrivers",
 			Handler:    _DriverOperatorService_GetDrivers_Handler,
+		},
+		{
+			MethodName: "SetDriverTemplates",
+			Handler:    _DriverOperatorService_SetDriverTemplates_Handler,
 		},
 		{
 			MethodName: "GetDriverTemplates",

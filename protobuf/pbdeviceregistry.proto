@@ -9,6 +9,9 @@ import "pbdriver.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
+    // The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+    rpc SetDriverTemplates(pbdriver.NegotiateRequest) returns (google.protobuf.Empty);
+
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
     rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.

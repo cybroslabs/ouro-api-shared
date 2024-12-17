@@ -29,15 +29,6 @@ service TaskmasterService {
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
 
-    // The method called by the RestApi to register the new driver to the Kubernetes. The parameter contains the driver type and the docker image.
-    rpc RegisterDriver(RegisterDriverRequest) returns (google.protobuf.Empty);
-    // The method called by the RestApi to get the list of drivers.
-    rpc GetDrivers(google.protobuf.Empty) returns (GetDriversResponse);
-    // The method called by the RestApi to unregister driver from the system. The parameter contains the driver type.
-    rpc UnregisterDriver(UnregisterDriverRequest) returns (google.protobuf.Empty);
-    // The method called by the RestApi to get the driver templates.
-    rpc GetDriverTemplates(GetDriverTemplatesRequest) returns (pbdriver.DriverTemplates);
-
     // The method called by the RestApi to get the system configuration.
     rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
     // The method called by the RestApi to set the system configuration.
@@ -139,53 +130,6 @@ message ActionResult {
     pbdriver.ActionData data = 3 [json_name="d"]; // The action result data.
 }
 
-// API -> Taskmaster register (install/update) driver request message
-message RegisterDriverRequest {
-    repeated string image_pull_secrets = 1; // The image pull secrets.
-    string image = 2; // The docker image of the driver.
-    ContainerResourceSet resources = 3; // The resource requirements of the driver.
-}
-
-// Driver registration statuses
-enum DriverRegistrationStatus {
-    // The driver is not registered. This is the first status of the driver after the registration request.
-    DRIVER_NOT_REGISTERED = 0;
-    // The driver is registered. This is the final status of the driver after the registration request.
-    DRIVER_REGISTERED = 1;
-}
-
-// Taskmaster -> API get drivers response message
-message GetDriversResponse {
-    pbdriver.ErrorCode result = 1; // The result of the operation.
-    repeated DriverInfo drivers = 2; // The list of drivers.
-}
-
-// Sub-message containing driver info
-message DriverInfo {
-    DriverRegistrationStatus status = 1; // The driver registration status.
-    string driver_type = 2; // The driver unique identifier.
-    repeated string image_pull_secrets = 3; // The image pull secrets.
-    string image = 4; // The docker image of the driver.
-    ContainerResourceSet resources = 5; // The resource requirements of the driver.
-}
-
-// Sub-message containing container resource limits and requests
-message ContainerResourceSet {
-    ContainerResources limits = 1 [json_name="l"]; // The resource limits.
-    optional ContainerResources requests = 2 [json_name="r"]; // The resource requests.
-}
-
-// Sub-message containing container resource requirements
-message ContainerResources {
-    string cpu = 1 [json_name="c"]; // The CPU resources.
-    string memory = 2 [json_name="m"]; // The memory resources.
-}
-
-// API -> Taskmaster request to unregister driver
-message UnregisterDriverRequest {
-    string driver_type = 1; // The driver unique identifier.
-}
-
 // API <-> Taskmaster request/response for system configuration
 message SystemConfig {
     int32 max_replicas = 1; // The maximum number of replicas for the driver.
@@ -203,10 +147,7 @@ message SystemConfigStatus {
     int64 queue_length = 1; // The length of the job queue.
 }
 
-// API -> Taskmaster request to get driver templates
-message GetDriverTemplatesRequest {
-    string driver_type = 1; // The driver unique identifier.
-}
+
 
 // Taskmaster -> Dataproxy job/action progress update message
 message JobEventData {
