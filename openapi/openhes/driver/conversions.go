@@ -48,6 +48,8 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 			tmp = dvx.DoubleValue
 		case *pbdriver.AttributeValue_BinaryValue:
 			tmp = dvx.BinaryValue
+		case *pbdriver.AttributeValue_BoolValue:
+			tmp = dvx.BoolValue
 		case nil:
 			tmp = nil
 		default:

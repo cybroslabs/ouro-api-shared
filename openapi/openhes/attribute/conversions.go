@@ -82,6 +82,13 @@ func _R2GAttributeValue(attr Value) (*pbdriver.AttributeValue, error) {
 
 			return &pbdriver.AttributeValue{Value: tpv}, nil
 
+		case reflect.Bool:
+			tpv := &pbdriver.AttributeValue_BoolValue{
+				BoolValue: attr.(bool),
+			}
+
+			return &pbdriver.AttributeValue{Value: tpv}, nil
+
 		case reflect.Slice:
 			if t.Elem().Kind() != reflect.Uint8 {
 				return nil, ErrUnknownAttributeType
@@ -120,6 +127,9 @@ func _G2RAttributeValue(attr *pbdriver.AttributeValue) Value {
 
 	case *pbdriver.AttributeValue_BinaryValue:
 		return typed_attr.BinaryValue
+
+	case *pbdriver.AttributeValue_BoolValue:
+		return typed_attr.BoolValue
 
 	default:
 		log.Default().Printf("attribute: %v", attr)

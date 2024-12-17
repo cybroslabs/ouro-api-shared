@@ -443,6 +443,7 @@ message AttributeValue {
         int64 int_value = 2 [json_name="i"]; // The integer-typed value.
         double double_value = 3 [json_name="d"]; // The double-typed value.
         bytes binary_value = 4 [json_name="b"]; // The binary-typed value.
+        bool bool_value = 5 [json_name="x"]; // The boolean-typed value.
     }
 }
 
