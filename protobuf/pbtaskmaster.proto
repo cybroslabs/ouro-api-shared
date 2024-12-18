@@ -7,7 +7,6 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "pbdriver.proto";
 
-
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 service TaskmasterService {
@@ -38,73 +37,72 @@ service TaskmasterService {
 // Taskmaster -> Dataproxy event message
 message StreamEventsData {
     oneof data {
-        StreamEventsDataJobFinished job_done = 1 [json_name="jf"];
+        StreamEventsDataJobFinished job_done = 1;
     }
 }
 
 // Sub-message - job-finished event data
 message StreamEventsDataJobFinished {
-    string job_id = 1 [json_name="i"];
+    string job_id = 1;
 }
 
 // Driver -> Taskmaster cache set request message
 message CacheSetRequest {
-    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
-    pbdriver.AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+    string key                    = 1;  // The key of the cache entry. The key is unique within the driver type.
+    pbdriver.AttributeValue value = 2;  // The value of the cache entry.
 }
 
 // Driver -> Taskmaster cache get request message
 message CacheGetRequest {
-    string key = 1 [json_name="k"]; // The key of the cache entry. The key is unique within the driver type.
+    string key = 1;  // The key of the cache entry. The key is unique within the driver type.
 }
 
 // Taskmaster -> Driver cache get response message
 message CacheGetResponse {
-    pbdriver.ErrorCode result = 1 [json_name="r"]; // The result of the cache get operation.
-    pbdriver.AttributeValue value = 2 [json_name="v"]; // The value of the cache entry.
+    pbdriver.ErrorCode result     = 1;  // The result of the cache get operation.
+    pbdriver.AttributeValue value = 2;  // The value of the cache entry.
 }
 
 // API -> Taskmaster cancel job request message
 message CancelJobsRequest {
-    repeated string job_id = 1 [json_name="id"]; // The job identifier.
+    repeated string job_id = 1;  // The job identifier.
 }
 
 // API -> Taskmaster queue jobs request message
 message QueueJobsRequest {
-    repeated JobSpec spec = 1 [json_name="j"]; // The list of jobs to be queued.
+    repeated JobSpec spec = 1;  // The list of jobs to be queued.
 }
 
 // Sub-message - job specification
 message JobSpec {
-    string job_id = 1 [json_name="id"]; // The job identifier.
-    pbdriver.ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    map<string,pbdriver.AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
-    pbdriver.JobSettings job_settings = 4 [json_name="js"]; // The job parameters.
-    string driver_type = 5 [json_name="t"]; // The device (driver) type.
-    repeated pbdriver.JobAction job_actions = 6 [json_name="a"]; // The list actions to be executed.
+    string job_id                                          = 1;  // The job identifier.
+    pbdriver.ConnectionInfo connection_info                = 2;  // The connection info for the job.
+    map<string, pbdriver.AttributeValue> device_attributes = 3;  // The connection attributes to the device.
+    pbdriver.JobSettings job_settings                      = 4;  // The job parameters.
+    string driver_type                                     = 5;  // The device (driver) type.
+    repeated pbdriver.JobAction job_actions                = 6;  // The list actions to be executed.
 }
 
 // Dataproxy -> Taskmaster get job request message
 message GetJobRequest {
-    string job_id = 1 [json_name="id"]; // The job identifier.
+    string job_id = 1;  // The job identifier.
 }
-
 
 // Taskmaster -> API get job response message
 message GetJobResponse {
-    JobSpec spec = 1 [json_name="j"]; // The original job specification
-    JobStatus status = 2 [json_name="s"]; // The status of the job
+    JobSpec spec     = 1;  // The original job specification
+    JobStatus status = 2;  // The status of the job
 }
 
 // Sub-message containing job status info
 message JobStatus {
-    JobStatusCode status = 1 [json_name="s"]; // The status of the job.
-    optional pbdriver.JobErrorCode code = 2 [json_name="c"]; // The error code of the job.
-    repeated ActionResult results = 3 [json_name="r"]; // The result data for all job actions.
-    google.protobuf.Timestamp created_at = 4 [json_name="tc"]; // The creation timestamp of the job.
-    optional google.protobuf.Timestamp started_at = 5 [json_name="ts"]; // The start timestamp of the job.
-    optional google.protobuf.Timestamp finished_at = 6 [json_name="tf"]; // The finish timestamp of the job.
-    int32 attempts_done = 7 [json_name="ad"]; // The number of attempts already done.
+    JobStatusCode status                           = 1;  // The status of the job.
+    optional pbdriver.JobErrorCode code            = 2;  // The error code of the job.
+    repeated ActionResult results                  = 3;  // The result data for all job actions.
+    google.protobuf.Timestamp created_at           = 4;  // The creation timestamp of the job.
+    optional google.protobuf.Timestamp started_at  = 5;  // The start timestamp of the job.
+    optional google.protobuf.Timestamp finished_at = 6;  // The finish timestamp of the job.
+    int32 attempts_done                            = 7;  // The number of attempts already done.
 }
 
 // Job statuses
@@ -125,39 +123,37 @@ enum JobStatusCode {
 
 // Sub-message containing action result for a single action.
 message ActionResult {
-    string action_id = 1 [json_name="id"]; // The action identifier.
-    pbdriver.ActionResultCode status = 2 [json_name="s"]; // The status of the action.
-    pbdriver.ActionData data = 3 [json_name="d"]; // The action result data.
+    string action_id                 = 1;  // The action identifier.
+    pbdriver.ActionResultCode status = 2;  // The status of the action.
+    pbdriver.ActionData data         = 3;  // The action result data.
 }
 
 // API <-> Taskmaster request/response for system configuration
 message SystemConfig {
-    int32 max_replicas = 1; // The maximum number of replicas for the driver.
-    int32 max_cascade_device_count = 2; // The maximum number of cascade devices for the driver.
+    int32 max_replicas             = 1;  // The maximum number of replicas for the driver.
+    int32 max_cascade_device_count = 2;  // The maximum number of cascade devices for the driver.
 }
 
 // API <-> Taskmaster request/response for system configuration
 message SystemConfigResponse {
-    SystemConfig config = 1; // The maximum number of replicas for the driver.
-    SystemConfigStatus status = 2; // The system status.
+    SystemConfig config       = 1;  // The maximum number of replicas for the driver.
+    SystemConfigStatus status = 2;  // The system status.
 }
 
 // Sub-message containing system status
 message SystemConfigStatus {
-    int64 queue_length = 1; // The length of the job queue.
+    int64 queue_length = 1;  // The length of the job queue.
 }
-
-
 
 // Taskmaster -> Dataproxy job/action progress update message
 message JobEventData {
-    bytes job_id = 1 [json_name="i"]; // The job identifier.
+    bytes job_id = 1;  // The job identifier.
 }
 
 // Sub-message representing a single device in a bulk.
 message JobDevice {
-    string id = 1 [json_name="i"]; // The device (job) identifier.
-    string external_id = 2 [json_name="e"]; // The external identifier.
-    map<string,pbdriver.AttributeValue> device_attributes = 3 [json_name="da"]; // The connection attributes to the device.
-    pbdriver.ConnectionInfo connection_info = 4 [json_name="c"]; // The conenction (device) parameters.
+    string id                                              = 1;  // The device (job) identifier.
+    string external_id                                     = 2;  // The external identifier.
+    map<string, pbdriver.AttributeValue> device_attributes = 3;  // The connection attributes to the device.
+    pbdriver.ConnectionInfo connection_info                = 4;  // The conenction (device) parameters.
 }

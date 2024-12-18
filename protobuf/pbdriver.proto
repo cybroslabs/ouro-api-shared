@@ -19,131 +19,130 @@ service DriverService {
 message ProgressUpdate {
     // The oneof field containing the progress update data - either for job or for action.
     oneof progress {
-        JobProgressUpdate job = 1; // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
-        ActionProgressUpdate action = 2; // The action progress update data. It shall be called for each action in the job.
+        JobProgressUpdate job       = 1;  // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
+        ActionProgressUpdate action = 2;  // The action progress update data. It shall be called for each action in the job.
     }
 }
 
 // Sub-message containing action progress update
 message ActionProgressUpdate {
-    string job_id = 1 [json_name="id"]; // The job identifier.
-    string action_id = 2 [json_name="a"]; // The action identifier.
-    ActionResultCode code = 3 [json_name="c"]; // The status related to the action.
-    optional ActionData data = 4 [json_name="d"]; // The action result data. Shall be empty if the code is not OK.
+    string job_id            = 1;  // The job identifier.
+    string action_id         = 2;  // The action identifier.
+    ActionResultCode code    = 3;  // The status related to the action.
+    optional ActionData data = 4;  // The action result data. Shall be empty if the code is not OK.
 }
 
 // Sub-message containing job progress update
 message JobProgressUpdate {
-    string job_id = 1 [json_name="id"]; // The job identifier.
-    JobErrorCode code = 2 [json_name="c"]; // The status related to the job and or action update message.
-    int64 duration = 3 [json_name="d"]; // The duration of the job in miliseconds.
+    string job_id     = 1;  // The job identifier.
+    JobErrorCode code = 2;  // The status related to the job and or action update message.
+    int64 duration    = 3;  // The duration of the job in miliseconds.
 }
 
 // Sub-message containing action-based variant of data values
 message ActionData {
     oneof data {
-        google.protobuf.Empty nodata = 1 [json_name="n"]; // No data
-        BillingValues billings = 2 [json_name="r"]; // Register values
-        ProfileValues profile = 3 [json_name="p"]; // Profile values
+        google.protobuf.Empty nodata = 1;  // No data
+        BillingValues billings       = 2;  // Register values
+        ProfileValues profile        = 3;  // Profile values
     }
 }
 
 // Sub-message containing profile-typed values
 message ProfileValues {
-    int32 period = 1 [json_name="p"]; // The period of the profile values.
-    string unit = 2 [json_name="u"]; // The unit of the profile values.
-    repeated ProfileBlok blocks = 3 [json_name="b"]; // The list of continuous profile blocks.
+    int32 period                = 1;  // The period of the profile values.
+    string unit                 = 2;  // The unit of the profile values.
+    repeated ProfileBlok blocks = 3;  // The list of continuous profile blocks.
 }
 
 // Sub-message containing a single profile block
 message ProfileBlok {
-    google.protobuf.Timestamp start_timestamp = 1 [json_name="t"]; // The start timestamp of the block.
-    repeated MeasuredValue values = 2 [json_name="v"]; // The list of profile values. Values are ordered by timestamp.
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredValue values             = 2;  // The list of profile values. Values are ordered by timestamp.
 }
 
 // Sub-message containing billing-typed values
 message BillingValues {
-    repeated BillingValue values = 1 [json_name="v"]; // The list of register values.
+    repeated BillingValue values = 1;  // The list of register values.
 }
 
 // Sub-message containing billing-typed value
 message BillingValue {
-    google.protobuf.Timestamp timestamp = 1 [json_name="t"]; // The timestamp of the value.
-    string unit = 2 [json_name="u"]; // The unit of the value.
-    MeasuredValue value = 3 [json_name="v"]; // The value.
+    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
+    string unit                         = 2;  // The unit of the value.
+    MeasuredValue value                 = 3;  // The value.
 }
 
 // Sub-message containing measured value
 message MeasuredValue {
-    optional int64 status = 1 [json_name="s"]; // The status of the value.
+    optional int64 status = 1;  // The status of the value.
     oneof value {
-        double double_value = 2 [json_name="d"]; // The double-typed value.
-        int64 int_value = 3 [json_name="i"]; // The integer-typed value.
+        double double_value = 2;  // The double-typed value.
+        int64 int_value     = 3;  // The integer-typed value.
     }
-    int32 exponent = 4 [json_name="e"]; // The exponent of the value.
+    int32 exponent = 4;  // The exponent of the value.
 }
-
 
 // Sub-message containing attribute definition
 message AttributeDefinition {
-    string name = 1 [json_name="n"]; // The name of the attribute.
-    string description = 2 [json_name="d"]; // The description of the attribute.
-    AttributeType type = 3 [json_name="t"]; // The type of the attribute.
-    bool mandatory = 4 [json_name="m"]; // The attribute is mandatory or not.s
-    optional AttributeValue default_value = 5 [json_name="v"]; // The default value of the attribute.
+    string name                           = 1;  // The name of the attribute.
+    string description                    = 2;  // The description of the attribute.
+    AttributeType type                    = 3;  // The type of the attribute.
+    bool mandatory                        = 4;  // The attribute is mandatory or not.s
+    optional AttributeValue default_value = 5;  // The default value of the attribute.
 }
 
 // Sub-message containing job action attributes
 message JobActionAttributes {
-    ActionType type = 1 [json_name="t"]; // The action type.
-    repeated AttributeDefinition attributes = 2 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
+    ActionType type                         = 1;  // The action type.
+    repeated AttributeDefinition attributes = 2;  // The template of the action attributes. It is represented as a list of attribute definitions.
 }
 
 // Taskmaster -> Driver start job request message
 message StartJobsRequest {
-    ConnectionInfo connection_info = 2 [json_name="ci"]; // The connection info for the job.
-    repeated StartJobData jobs = 1 [json_name="j"]; // The list of jobs to be started with the same connection info.
+    ConnectionInfo connection_info = 2;  // The connection info for the job.
+    repeated StartJobData jobs     = 1;  // The list of jobs to be started with the same connection info.
 }
 
 // Sub-message containing job start request for single device
 message StartJobData {
-    map<string,AttributeValue> device_attributes = 1 [json_name="da"]; // The connection attributes to the device.
-    string job_id = 2 [json_name="id"]; // The job identifier.
-    JobSettings job_settings = 3 [json_name="js"]; // The job parameters.
-    repeated JobAction job_actions = 4 [json_name="a"]; // The list actions to be executed.
+    map<string, AttributeValue> device_attributes = 1;  // The connection attributes to the device.
+    string job_id                                 = 2;  // The job identifier.
+    JobSettings job_settings                      = 3;  // The job parameters.
+    repeated JobAction job_actions                = 4;  // The list actions to be executed.
 }
 
 // Sub-message containing modem connection connected behind a IP-to-serial converter
 message ModemOverControlledSerial {
-    ConnectionTypeControlledSerial serial = 1 [json_name="s"]; // The serial connection type.
-    SerialConfig serial_config = 2 [json_name="sc"]; // The serial port configuration related to the modem.
+    ConnectionTypeControlledSerial serial = 1;  // The serial connection type.
+    SerialConfig serial_config            = 2;  // The serial port configuration related to the modem.
 }
 
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
 message ConnectionTypeControlledSerial {
     // IP-to-serial converter description.
     oneof converter {
-        ConnectionTypeSerialMoxa moxa = 1 [json_name="m"]; // The Moxa connection type.
+        ConnectionTypeSerialMoxa moxa = 1;  // The Moxa connection type.
         // TBA: Add Advanctech and other IP-to-serial converters.
     }
 }
 
 // Sub-message containing modem connection info
 message ModemInfo {
-    string id = 12 [json_name="i"]; // The modem identifier. It is automatically generated during creation.
-    string name = 11 [json_name="n"]; // The name of the modem.
-    string at_init = 1 [json_name="ati"]; // The modem initialization command.
-    string at_test = 2 [json_name="att"]; // The modem test command.
-    string at_config = 3 [json_name="atc"]; // The modem configuration command.
-    string at_dial = 4 [json_name="atd"]; // The modem dial command.
-    string at_hangup = 5 [json_name="ath"]; // The modem hangup command.
-    string at_escape = 6 [json_name="ate"]; // The modem escape command.
-    bool at_dsr = 7 [json_name="ats"]; // The modem DSR command.
-    uint32 connect_timeout = 8 [json_name="ct"]; // The modem connection timeout.
+    string id              = 12;  // The modem identifier. It is automatically generated during creation.
+    string name            = 11;  // The name of the modem.
+    string at_init         = 1;   // The modem initialization command.
+    string at_test         = 2;   // The modem test command.
+    string at_config       = 3;   // The modem configuration command.
+    string at_dial         = 4;   // The modem dial command.
+    string at_hangup       = 5;   // The modem hangup command.
+    string at_escape       = 6;   // The modem escape command.
+    bool at_dsr            = 7;   // The modem DSR command.
+    uint32 connect_timeout = 8;   // The modem connection timeout.
     // The modem connection description.
     oneof modem_connection {
-        ConnectionTypeDirectTcpIp tcpip = 9 [json_name="t"]; // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
-        ModemOverControlledSerial serial_over_ip = 10 [json_name="soi"]; // The serial over IP connection type. The modem is connected to a IP-to-serial converter and the converter requires serial port configuration to be set.
+        ConnectionTypeDirectTcpIp tcpip          = 9;   // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+        ModemOverControlledSerial serial_over_ip = 10;  // The serial over IP connection type. The modem is connected to a IP-to-serial converter and the converter requires serial port configuration to be set.
     }
 }
 
@@ -219,42 +218,42 @@ enum SerialConfigStopBits {
 
 // Sub-message containing serial port configuration
 message SerialConfig {
-    SerialConfigBaudRate baud_rate = 1 [json_name="b"]; // The baud rate.
-    SerialConfigParity parity = 2 [json_name="p"]; // The parity.
-    SerialConfigDataBits data_bits = 3 [json_name="d"]; // The data bits.
-    SerialConfigStopBits stop_bits = 4 [json_name="s"]; // The stop bits.
+    SerialConfigBaudRate baud_rate = 1;  // The baud rate.
+    SerialConfigParity parity      = 2;  // The parity.
+    SerialConfigDataBits data_bits = 3;  // The data bits.
+    SerialConfigStopBits stop_bits = 4;  // The stop bits.
 }
 
 // Sub-message containing connection info
 message ConnectionInfo {
     // The entrypoint connection description. It can be either direct TCP, a modem from a pool or a direct serial line over IP (using IP-to-serial converter).
     oneof connection {
-        ConnectionTypeDirectTcpIp tcpip = 1 [json_name="t"]; // The TCP connection type.
-        ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone connection type.
-        ConnectionTypeControlledSerial serial_over_ip = 3 [json_name="sip"]; // The serial over IP connection type.
+        ConnectionTypeDirectTcpIp tcpip               = 1;  // The TCP connection type.
+        ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
+        ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
     // The modem device assigne to given job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
-    optional ModemInfo modem = 4 [json_name="pm"];
+    optional ModemInfo modem = 4;
 }
 
 // Sub-message containing connection info for TCP connection type
 message ConnectionTypeDirectTcpIp {
-    string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
-    uint32 port = 2 [json_name="p"]; // The TCP port number of the device to connect to.
-    optional int32 timeout = 3 [json_name="to"]; // The timeout in seconds for the connection.
+    string host            = 1;  // The host name or IP address of the device to connect to.
+    uint32 port            = 2;  // The TCP port number of the device to connect to.
+    optional int32 timeout = 3;  // The timeout in seconds for the connection.
 }
 
 // Sub-message containing connection info for phone line (modem) connection type
 message ConnectionTypeModemPool {
-    string number = 1 [json_name="h"]; // The phone number of the device to connect to.
-    string pool_id = 2 [json_name="p"]; // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
+    string number  = 1;  // The phone number of the device to connect to.
+    string pool_id = 2;  // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
 message ConnectionTypeSerialMoxa {
-    string host = 1 [json_name="h"]; // The host name or IP address of the device to connect to.
-    uint32 dataPort = 2 [json_name="dp"]; // The TCP port number of the device to connect to - data port.
-    uint32 commandPort = 3 [json_name="cp"]; // The TCP port number of the device to connect to - command port.
+    string host        = 1;  // The host name or IP address of the device to connect to.
+    uint32 dataPort    = 2;  // The TCP port number of the device to connect to - data port.
+    uint32 commandPort = 3;  // The TCP port number of the device to connect to - command port.
 }
 
 // Job priorities
@@ -281,12 +280,12 @@ enum JobPriority {
 
 // Sub-message containing job parameters
 message JobSettings {
-    int64 max_duration = 1 [json_name="md"]; // Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
-    JobPriority priority = 2 [json_name="p"]; // Priority of the job.
-    int32 attempts = 3 [json_name="a"]; // Maximum number of attempts, 1 is the minimum.
-    int64 retry_delay = 4 [json_name="rd"]; // Delay in miliseconds between two attempts.
-    uint64 defer_start = 5 [json_name="ds"]; // Number of miliseconds to wait before starting the job.
-    google.protobuf.Timestamp expires_at = 6 [json_name="et"]; // The timestamp when the job expires.
+    int64 max_duration                   = 1;  // Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
+    JobPriority priority                 = 2;  // Priority of the job.
+    int32 attempts                       = 3;  // Maximum number of attempts, 1 is the minimum.
+    int64 retry_delay                    = 4;  // Delay in miliseconds between two attempts.
+    uint64 defer_start                   = 5;  // Number of miliseconds to wait before starting the job.
+    google.protobuf.Timestamp expires_at = 6;  // The timestamp when the job expires.
 }
 
 // Attribute types
@@ -348,25 +347,25 @@ enum ActionType {
 
 // Sub-message containing job action specification
 message JobAction {
-    string action_id = 1 [json_name="id"]; // The action identifier.
-    map<string,AttributeValue> attributes = 2 [json_name="a"]; // The action attributes.
+    string action_id                       = 1;  // The action identifier.
+    map<string, AttributeValue> attributes = 2;  // The action attributes.
     oneof action {
-        ActionGetRegister get_register = 3 [json_name="a3"] ; // The get register action specification.
-        ActionGetPeriodicalProfile get_periodical_profile = 4 [json_name="a4"]; // The get periodical profile action specification.
-        ActionGetIrregularProfile get_irregular_profile = 5 [json_name="a5"]; // The get irregular profile action specification.
-        ActionGetEvents get_events = 6 [json_name="a6"]; // The get events action specification.
-        ActionGetClock get_clock = 7 [json_name="a7"]; // The get clock action specification.
-        ActionSyncClock sync_clock = 8 [json_name="a8"]; // The sync clock action specification.
-        ActionGetRelayState get_relay_state = 9 [json_name="a9"]; // The get relay state action specification.
-        ActionSetRelayState set_relay_state = 10 [json_name="a10"]; // The set relay state action specification.
-        ActionGetDisconnectorState get_disconnector_state = 11 [json_name="a11"]; // The get disconnector state action specification.
-        ActionSetDisconnectorState set_disconnector_state = 12 [json_name="a12"]; // The set disconnector state action specification.
-        ActionGetTou get_tou = 13 [json_name="a13"]; // The get tou action specification.
-        ActionSetTou set_tou = 14 [json_name="a14"]; // The set tou action specification.
-        ActionGetLimiter get_limiter = 15 [json_name="a15"]; // The get limiter action specification.
-        ActionSetLimiter set_limiter = 16 [json_name="a16"]; // The set limiter action specification.
-        ActionResetBillingPeriod reset_billing_period = 17 [json_name="a17"]; // The reset billing period action specification.
-        ActionFwUpdate fw_update = 18 [json_name="a18"]; // The firmware update action specification.
+        ActionGetRegister get_register                    = 3;   // The get register action specification.
+        ActionGetPeriodicalProfile get_periodical_profile = 4;   // The get periodical profile action specification.
+        ActionGetIrregularProfile get_irregular_profile   = 5;   // The get irregular profile action specification.
+        ActionGetEvents get_events                        = 6;   // The get events action specification.
+        ActionGetClock get_clock                          = 7;   // The get clock action specification.
+        ActionSyncClock sync_clock                        = 8;   // The sync clock action specification.
+        ActionGetRelayState get_relay_state               = 9;   // The get relay state action specification.
+        ActionSetRelayState set_relay_state               = 10;  // The set relay state action specification.
+        ActionGetDisconnectorState get_disconnector_state = 11;  // The get disconnector state action specification.
+        ActionSetDisconnectorState set_disconnector_state = 12;  // The set disconnector state action specification.
+        ActionGetTou get_tou                              = 13;  // The get tou action specification.
+        ActionSetTou set_tou                              = 14;  // The set tou action specification.
+        ActionGetLimiter get_limiter                      = 15;  // The get limiter action specification.
+        ActionSetLimiter set_limiter                      = 16;  // The set limiter action specification.
+        ActionResetBillingPeriod reset_billing_period     = 17;  // The reset billing period action specification.
+        ActionFwUpdate fw_update                          = 18;  // The firmware update action specification.
     }
 }
 
@@ -376,8 +375,8 @@ message ActionGetRegister {
 
 // Sub-message containing get periodical profile action specification
 message ActionGetPeriodicalProfile {
-    google.protobuf.Timestamp from = 1 [json_name="f"]; // The start timestamp of the profile.
-    google.protobuf.Timestamp to = 2 [json_name="t"]; // The end timestamp of the profile.
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
 }
 
 // Sub-message containing get irregular profile action specification
@@ -439,11 +438,11 @@ message ActionFwUpdate {
 // Sub-message containing single attribute value specification
 message AttributeValue {
     oneof value {
-        string str_value = 1 [json_name="s"]; // The string-typed value.
-        int64 int_value = 2 [json_name="i"]; // The integer-typed value.
-        double double_value = 3 [json_name="d"]; // The double-typed value.
-        bytes binary_value = 4 [json_name="b"]; // The binary-typed value.
-        bool bool_value = 5 [json_name="x"]; // The boolean-typed value.
+        string str_value    = 1;  // The string-typed value.
+        int64 int_value     = 2;  // The integer-typed value.
+        double double_value = 3;  // The double-typed value.
+        bytes binary_value  = 4;  // The binary-typed value.
+        bool bool_value     = 5;  // The boolean-typed value.
     }
 }
 
@@ -467,8 +466,8 @@ enum JobErrorCode {
     JOB_ERROR_CODE_BUSY = 1;
     // The job failed, the retry will be attempted.
     JOB_ERROR_CODE_ERROR = 5;
-	// This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
-	JOB_ERROR_CODE_ALREADY_EXISTS = 8;
+    // This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
+    JOB_ERROR_CODE_ALREADY_EXISTS = 8;
     // The job failed, the retry will NOT be attempted.
     JOB_ERROR_CODE_FATAL = 9;
 }
@@ -483,7 +482,7 @@ enum ErrorCode {
 
 // Common gRPC response message
 message CommonResponse {
-    ErrorCode result = 1; // The result of the operation.
+    ErrorCode result = 1;  // The result of the operation.
 }
 
 // Connection types
@@ -537,40 +536,40 @@ enum ApplicationProtocol {
 // Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 message ApplicationProtocolTemplate {
     // The application protocol.
-    ApplicationProtocol protocol = 1 [json_name="p"];
+    ApplicationProtocol protocol = 1;
     // The list of attribute definitions for the protocol.
-    repeated AttributeDefinition attributes = 2 [json_name="a"];
+    repeated AttributeDefinition attributes = 2;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
 message DataLinkTemplate {
     // The data link protocol.
-    DataLinkProtocol link_protocol = 2 [json_name="lp"];
+    DataLinkProtocol link_protocol = 2;
     // The list of application protocols supported by the driver.
-    repeated ApplicationProtocolTemplate app_protocols = 3 [json_name="ap"];
+    repeated ApplicationProtocolTemplate app_protocols = 3;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.
 message CommunicationTemplate {
     // The type of the communication.
-    CommunicationType type = 1 [json_name="t"];
+    CommunicationType type = 1;
     // The list of data link protocols and their app protocols supported by the driver.
-    repeated DataLinkTemplate datalinks = 2 [json_name="dl"];
+    repeated DataLinkTemplate datalinks = 2;
 }
 
 // Sub-message in driver negotiation request
 message DriverTemplates {
     // The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
-    repeated CommunicationTemplate communication_templates = 2 [json_name="ct"];
+    repeated CommunicationTemplate communication_templates = 2;
     // The templates of the generic device related attributes.
-    repeated AttributeDefinition device_attributes = 3 [json_name="ad"];
+    repeated AttributeDefinition device_attributes = 3;
     // The templates of the job actions for all supported action types.
-    repeated JobActionAttributes action_attributes = 4 [json_name="aa"];
+    repeated JobActionAttributes action_attributes = 4;
 }
 
 // Taskmaster -> Driver cancel job request message
 message CancelJobRequest {
-    string job_id = 1 [json_name="id"]; // The job identifier.
+    string job_id = 1;  // The job identifier.
 }
 
 // Driver -> Taskmaster negotiate/health-check request message

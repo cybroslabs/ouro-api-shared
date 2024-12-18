@@ -22,20 +22,20 @@ service DataproxyService {
 
 // RestApi -> DataProxy
 message CreateBulkRequest {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
+    BulkSpec spec = 1;  // The bulk-job spec.
 }
 
 // Sub-message - holds the bulk job specification.
 message BulkSpec {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier.
-    string correlation_id = 2 [json_name="c"]; // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string org_id = 3 [json_name="o"]; // The organization identifier.
-    string driver_type = 4 [json_name="t"]; // The device (driver) type.
-    repeated pbtaskmaster.JobDevice devices = 5 [json_name="d"]; // The list of devices in the bulk.
-    pbdriver.JobSettings settings = 6 [json_name="s"]; // The bulk-shared job settings.
-    repeated pbdriver.JobAction job_actions = 7 [json_name="a"]; // The list actions to be executed.
-    optional string webhook_url = 8 [json_name="h"]; // The webhook URL to call when the bulk is completed.
-    string user_id = 9 [json_name="u"]; // The user identifier.
+    string bulk_id                          = 1;  // The bulk identifier.
+    string correlation_id                   = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string org_id                           = 3;  // The organization identifier.
+    string driver_type                      = 4;  // The device (driver) type.
+    repeated pbtaskmaster.JobDevice devices = 5;  // The list of devices in the bulk.
+    pbdriver.JobSettings settings           = 6;  // The bulk-shared job settings.
+    repeated pbdriver.JobAction job_actions = 7;  // The list actions to be executed.
+    optional string webhook_url             = 8;  // The webhook URL to call when the bulk is completed.
+    string user_id                          = 9;  // The user identifier.
 }
 
 // Bulk statuses
@@ -54,45 +54,45 @@ enum BulkStatusCode {
 
 // Sub-message - holds the bulk job status.
 message BulkStatus {
-    BulkStatusCode status = 1 [json_name="s"]; // The job status.
-    repeated BulkJobStatus jobs = 2 [json_name="j"]; // The list of job statuses.
+    BulkStatusCode status       = 1;  // The job status.
+    repeated BulkJobStatus jobs = 2;  // The list of job statuses.
 }
 
 message BulkJobStatus {
-    string job_id = 1 [json_name="i"]; // The job identifier.
-    pbtaskmaster.JobStatus status = 2 [json_name="s"]; // The job status.
+    string job_id                 = 1;  // The job identifier.
+    pbtaskmaster.JobStatus status = 2;  // The job status.
 }
 
 // DataProxy -> RestApi - the message holds the bulk info and it's status.
 message GetBulkResponse {
-    BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
-    BulkStatus status = 2 [json_name="t"]; // The bulk-job status/data.
+    BulkSpec spec     = 1;  // The bulk-job spec.
+    BulkStatus status = 2;  // The bulk-job status/data.
 }
 
 // RestApi -> DataProxy - the message holds data for bulk listing request.
 message GetBulksReuqest {
-    optional google.protobuf.Timestamp tfrom = 1 [json_name="tf"]; // The time range filter - left limit. Optional.
-    optional google.protobuf.Timestamp tto = 2 [json_name="tt"]; // The time range filter - right limit. Optional.
-    optional bool include_data = 3 [json_name="d"]; // The result content filter - if true then data are included in the response.
+    optional google.protobuf.Timestamp tfrom = 1;  // The time range filter - left limit. Optional.
+    optional google.protobuf.Timestamp tto   = 2;  // The time range filter - right limit. Optional.
+    optional bool include_data               = 3;  // The result content filter - if true then data are included in the response.
     // TODO: Add Device-Id filter here.
 }
 
 // DataProxy -> RestApi - the message holds list of bulks.
 message GetBulksResponse {
-    repeated GetBulkResponse bulks = 1 [json_name="b"]; // The list of bulk jobs related to the original request.
+    repeated GetBulkResponse bulks = 1;  // The list of bulk jobs related to the original request.
 }
 
 // RestApi -> DataProxt - the message holds single bulk request.
 message GetBulkRequest {
-    string bulk_id = 1 [json_name="i"]; // The bulk identifier to be retrieved.
+    string bulk_id = 1;  // The bulk identifier to be retrieved.
 }
 
 // RestApi -> DataProxy - request to get the job status.
 message GetJobStatusRequest {
-    string job_id = 1 [json_name="i"]; // The job identifier.
+    string job_id = 1;  // The job identifier.
 }
 
 // DataProxy -> RestApi - the message holds the job status.
 message GetJobStatusResponse {
-    pbtaskmaster.JobStatus status = 1 [json_name="s"]; // The status of the job
+    pbtaskmaster.JobStatus status = 1;  // The status of the job
 }

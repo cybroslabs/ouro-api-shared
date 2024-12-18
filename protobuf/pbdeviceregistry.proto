@@ -51,121 +51,121 @@ service DeviceRegistryService {
 
 // RestApi -> DriverRegistry - The communication unit specification.
 message CreateCommunicationUnitRequest {
-    CommunicationUnitSpec spec = 1 [json_name = "s"]; // The communication unit specification.
+    CommunicationUnitSpec spec = 1;  // The communication unit specification.
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the communication unit.
 message GetCommunicationUnitsRequest {
-    optional string id = 1 [json_name="i"]; // The UUID of the communication unit.
-    optional string external_id = 2 [json_name="e"]; // The external identifier of the communication unit.
-    optional string name = 3 [json_name="n"]; // The name of the communication unit.
+    optional string id          = 1;  // The UUID of the communication unit.
+    optional string external_id = 2;  // The external identifier of the communication unit.
+    optional string name        = 3;  // The name of the communication unit.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the communication unit.
 message GetCommunicationUnitsResponse {
-    repeated CommunicationUnitSpec spec = 1 [json_name = "s"]; // The communication unit specification.
+    repeated CommunicationUnitSpec spec = 1;  // The communication unit specification.
 }
 
 // Sub-message - the communication unit specification.
 message CommunicationUnitSpec {
-    string id = 1 [json_name="i"]; // The UUID of the communication unit.
-    optional string external_id = 2 [json_name="e"]; // The external identifier of the communication unit.
-    string name = 3 [json_name="n"]; // The name of the communication unit.
-    ConnectionType connection_type = 4 [json_name="c"]; // The connection type.
+    string id                      = 1;  // The UUID of the communication unit.
+    optional string external_id    = 2;  // The external identifier of the communication unit.
+    string name                    = 3;  // The name of the communication unit.
+    ConnectionType connection_type = 4;  // The connection type.
 }
 
 message ConnectionType {
     oneof type {
-        pbdriver.ConnectionTypeDirectTcpIp tcpip = 1 [json_name="t"]; // The TCP/IP connection type.
-        pbdriver.ConnectionTypeModemPool modem_pool = 2 [json_name="p"]; // The phone line connection type.
-        pbdriver.ConnectionTypeControlledSerial serial_moxa = 3 [json_name="s"]; // The controlled serial line (Moxa) connection type.
+        pbdriver.ConnectionTypeDirectTcpIp tcpip            = 1;  // The TCP/IP connection type.
+        pbdriver.ConnectionTypeModemPool modem_pool         = 2;  // The phone line connection type.
+        pbdriver.ConnectionTypeControlledSerial serial_moxa = 3;  // The controlled serial line (Moxa) connection type.
     }
 }
 
 // RestApi -> DriverRegistry - the request message to create a new device.
 message CreateDeviceRequest {
-    DeviceSpec spec = 1 [json_name = "s"]; // The device specification.
+    DeviceSpec spec = 1;  // The device specification.
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the device.
 message GetDevicesRequest {
-    optional string id = 1 [json_name="i"]; // The UUID of the device.
-    optional string external_id = 2 [json_name="e"]; // The external identifier of the device.
-    optional string name = 3 [json_name="n"]; // The name of the device.
+    optional string id          = 1;  // The UUID of the device.
+    optional string external_id = 2;  // The external identifier of the device.
+    optional string name        = 3;  // The name of the device.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device.
 message GetDevicesResponse {
-    repeated DeviceSpec spec = 1 [json_name = "s"]; // The device specification.
+    repeated DeviceSpec spec = 1;  // The device specification.
     // TODO: Add status
 }
 
 // Sub-message - the device specification.
 message DeviceSpec {
-    string id = 1 [json_name="i"]; // The UUID of the device.
-    optional string external_id = 2 [json_name="e"]; // The external identifier of the device.
-    string name = 3 [json_name="n"]; // The name of the device.
-    KeyValue attributes = 4 [json_name="a"]; // The template of the action attributes. It is represented as a list of attribute definitions.
-    repeated string communication_unit_id = 5 [json_name="c"]; // The list of communication unit identifiers that allows to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
+    string id                             = 1;  // The UUID of the device.
+    optional string external_id           = 2;  // The external identifier of the device.
+    string name                           = 3;  // The name of the device.
+    KeyValue attributes                   = 4;  // The template of the action attributes. It is represented as a list of attribute definitions.
+    repeated string communication_unit_id = 5;  // The list of communication unit identifiers that allows to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
 }
 
 // Sub-message - holds the key-value pair(s).
 message KeyValue {
-    map<string,pbdriver.AttributeValue> kv = 1 [json_name="o"]; // The key-value pair(s) representation.
+    map<string, pbdriver.AttributeValue> kv = 1;  // The key-value pair(s) representation.
 }
 
 // Sub-message that represents the device group.
 message DeviceGroupSpec {
-    string id = 1 [json_name="i"]; // The UUID of the device group.
-    optional string external_id = 2 [json_name="e"]; // The external identifier of the communication unit.
-    string name = 3 [json_name="n"]; // The name of the device group.
-    repeated string device_id = 4 [json_name="d"]; // The list of device identifiers that are part of the group.
+    string id                   = 1;  // The UUID of the device group.
+    optional string external_id = 2;  // The external identifier of the communication unit.
+    string name                 = 3;  // The name of the device group.
+    repeated string device_id   = 4;  // The list of device identifiers that are part of the group.
 }
 
 // RestApi -> DriverRegistry - the request message to get the information about the device group.
 message CreateDeviceGroupRequest {
-    DeviceGroupSpec spec = 1 [json_name = "s"]; // The device group specification.
+    DeviceGroupSpec spec = 1;  // The device group specification.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
 message GetDeviceGroupsResponse {
-    repeated DeviceGroupSpec spec = 1 [json_name = "s"]; // The device group specification.
+    repeated DeviceGroupSpec spec = 1;  // The device group specification.
     // TODO: Add status
 }
 
 // RestApi -> DriverRegistry - the request message to add a new device to the device group.
 message AddDevicesToGroupRequest {
-    string group_id = 1 [json_name="g"]; // The unique identifier of the device group.
-    repeated string device_id = 2 [json_name="d"]; // The unique identifier of the device.
+    string group_id           = 1;  // The unique identifier of the device group.
+    repeated string device_id = 2;  // The unique identifier of the device.
 }
 
 // RestApi -> DriverRegistry - the request message to remove a device from the device group.
 message RemoveDevicesFromGroupRequest {
-    string group_id = 1 [json_name="g"]; // The unique identifier of the device group.
-    repeated string device_id = 2 [json_name="d"]; // The unique identifier of the device.
+    string group_id           = 1;  // The unique identifier of the device group.
+    repeated string device_id = 2;  // The unique identifier of the device.
 }
 
 // RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
 message SetDeviceCommunicationUnitsRequest {
-    string device_id = 1 [json_name="d"]; // The unique identifier of the device.
-    repeated string communication_unit_id = 2 [json_name="c"]; // The unique identifier of the communication unit.
+    string device_id                      = 1;  // The unique identifier of the device.
+    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
 }
 
 message GetModemPoolRequest {
-    string pool_id = 1 [json_name="p"]; // The modem pool identifier.
+    string pool_id = 1;  // The modem pool identifier.
 }
 
 message GetModemPoolResponse {
-    repeated pbdriver.ModemInfo modems = 1 [json_name="m"]; // The modems registered within the pool.
-    string name = 2 [json_name="n"]; // The name of the modem pool.
+    repeated pbdriver.ModemInfo modems = 1;  // The modems registered within the pool.
+    string name                        = 2;  // The name of the modem pool.
 }
 
 message SetModemPoolRequest {
-    string pool_id = 1 [json_name="p"]; // The modem pool identifier. It must be unique within the system.
-    string name = 2 [json_name="n"]; // The name of the modem pool to be created. It must be unique within the system.
+    string pool_id = 1;  // The modem pool identifier. It must be unique within the system.
+    string name    = 2;  // The name of the modem pool to be created. It must be unique within the system.
 }
 
 message SetModemRequest {
-    string pool_id = 1 [json_name="p"]; // The modem pool identifier, required for update operation.
-    pbdriver.ModemInfo modem = 2 [json_name="m"]; // The modem specification.
+    string pool_id           = 1;  // The modem pool identifier, required for update operation.
+    pbdriver.ModemInfo modem = 2;  // The modem specification.
 }
