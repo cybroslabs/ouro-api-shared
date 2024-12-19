@@ -88,8 +88,8 @@ func R2GJobAction(action *JobActionSchema) (*pbdriver.JobAction, error) {
 			param_tfrom = timestamppb.New(*tmp.ParamTfrom)
 		}
 		var param_tto *timestamppb.Timestamp
-		if tmp.ParamTfrom != nil {
-			param_tto = timestamppb.New(*tmp.ParamTfrom)
+		if tmp.ParamTto != nil {
+			param_tto = timestamppb.New(*tmp.ParamTto)
 		}
 		return &pbdriver.JobAction{
 			ActionId:   tmp.Id.String(),
