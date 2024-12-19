@@ -90,8 +90,7 @@ message GetJobRequest {
 
 // Taskmaster -> API get job response message
 message GetJobResponse {
-    JobSpec spec     = 1;  // The original job specification
-    JobStatus status = 2;  // The status of the job
+    JobStatus status = 1;  // The status of the job
 }
 
 // Sub-message containing job status info

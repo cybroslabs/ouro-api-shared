@@ -20,8 +20,8 @@ github.com/bufbuild/protovalidate-go v0.8.0 h1:Xs3kCLCJ4tQiogJ0iOXm+ClKw/KviW3nL
 github.com/bufbuild/protovalidate-go v0.8.0/go.mod h1:JPWZInGm2y2NBg3vKDKdDIkvDjyLv31J3hLH5GIFc/Q=
 github.com/cenkalti/backoff/v4 v4.3.0 h1:MyRJ/UdXutAwSAT+s3wNd7MfTIcy71VQueUuFK343L8=
 github.com/cenkalti/backoff/v4 v4.3.0/go.mod h1:Y3VNntkOUPxTVeUxJ/G5vcM//AlwfmyYozVcomhLiZE=
-github.com/cerbos/cerbos-sdk-go v0.2.12 h1:Nvplwvms3idVDyMPKGB630AF2gVXrdEnrxxBsEvYuX4=
-github.com/cerbos/cerbos-sdk-go v0.2.12/go.mod h1:P9hg+NfYcstdQw4u3Dn20VwIYHqjIHnpP1Ca1SgazCI=
+github.com/cerbos/cerbos-sdk-go v0.2.13 h1:LYTstW0kQxlDJYQRDcH8JujN0WYiWCGltGpn2F72gUo=
+github.com/cerbos/cerbos-sdk-go v0.2.13/go.mod h1:9bkxW0c2ZbwMWnv8OpkGdx8xpcH8+zx+85Tshon0jgQ=
 github.com/cerbos/cerbos/api/genpb v0.40.0 h1:4DbSY1krFTrPDmI5SndXu8qX+zi0mhimTa5TzBM1COs=
 github.com/cerbos/cerbos/api/genpb v0.40.0/go.mod h1:OuWT4RJkmIxqLos3+c6y3NLDjoggOlTAXb04vQaMQIY=
 github.com/containerd/continuity v0.4.3 h1:6HVkalIp+2u1ZLH1J/pYX2oBVXlJZvh1X1A7bEZ9Su8=

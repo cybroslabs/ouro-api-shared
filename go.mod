@@ -8,7 +8,7 @@ retract (
 )
 
 require (
-	github.com/cerbos/cerbos-sdk-go v0.2.12
+	github.com/cerbos/cerbos-sdk-go v0.2.13
 	github.com/getkin/kin-openapi v0.128.0
 	github.com/google/uuid v1.6.0
 	github.com/oapi-codegen/runtime v1.1.1
