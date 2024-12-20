@@ -171,6 +171,8 @@ components:
             - NUMBER
             - BOOLEAN
             - BINARY
+            - TIMESTAMP
+            - TIMESTAMPTZ
           description: >
             The type of the attribute.
               * `STRING` - The attribute is a string.
@@ -178,6 +180,8 @@ components:
               * `NUMBER` - The attribute is a decimal number.
               * `BOOLEAN` - The attribute is a boolean.
               * `BINARY` - The attribute is a binary.
+              * `TIMESTAMP` - The attribute is a timestamp; it shal not timezone-aware and it's always encoded as a UNIX timestamp number (~UTC).
+              * `TIMESTAMPTZ` - The attribute is a timestamp; it is timezone-aware and it's always encoded as an ISO 8601 string.
         mandatory:
           type: boolean
           description: >

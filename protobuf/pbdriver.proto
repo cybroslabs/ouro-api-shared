@@ -298,8 +298,12 @@ enum AttributeType {
     ATTRIBUTE_TYPE_DOUBLE = 2;
     // Binary attribute type
     ATTRIBUTE_TYPE_BINARY = 3;
-    // Date/time attribute type
+    // Date/time attribute type, stored as integer (UNIX timestamp)
     ATTRIBUTE_TYPE_TIMESTAMP = 4;
+    // Date/time attribute type, stored as string in ISO-8601
+    ATTRIBUTE_TYPE_TIMESTAMP_TZ = 5;
+    // Bool attribute type
+    ATTRIBUTE_TYPE_BOOL = 6;
 }
 
 // Action types

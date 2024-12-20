@@ -17,6 +17,12 @@ func G2RAttributeType(attributeType pbdriver.AttributeType) AttributeDefinitionS
 		return NUMBER
 	case pbdriver.AttributeType_ATTRIBUTE_TYPE_BINARY:
 		return BINARY
+	case pbdriver.AttributeType_ATTRIBUTE_TYPE_TIMESTAMP:
+		return TIMESTAMP
+	case pbdriver.AttributeType_ATTRIBUTE_TYPE_TIMESTAMP_TZ:
+		return TIMESTAMPTZ
+	case pbdriver.AttributeType_ATTRIBUTE_TYPE_BOOL:
+		return BOOLEAN
 	default:
 		return STRING
 	}
@@ -37,23 +43,54 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 		Mandatory:   &attrDef.Mandatory,
 	}
 
-	if dv := attrDef.DefaultValue; dv != nil {
+	// Some default-value content validation
+	if attrDef.DefaultValue != nil {
 		var tmp interface{}
-		switch dvx := dv.Value.(type) {
-		case *pbdriver.AttributeValue_StrValue:
-			tmp = dvx.StrValue
-		case *pbdriver.AttributeValue_IntValue:
-			tmp = dvx.IntValue
-		case *pbdriver.AttributeValue_DoubleValue:
-			tmp = dvx.DoubleValue
-		case *pbdriver.AttributeValue_BinaryValue:
-			tmp = dvx.BinaryValue
-		case *pbdriver.AttributeValue_BoolValue:
-			tmp = dvx.BoolValue
-		case nil:
-			tmp = nil
+		switch attr_type {
+		case STRING:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_StrValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type STRING but default value is not of type StrValue", attrDef.Name)
+			} else {
+				tmp = d.StrValue
+			}
+		case INTEGER:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_IntValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type INTEGER but default value is not of type IntValue", attrDef.Name)
+			} else {
+				tmp = d.IntValue
+			}
+		case NUMBER:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_DoubleValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type NUMBER but default value is not of type DoubleValue", attrDef.Name)
+			} else {
+				tmp = d.DoubleValue
+			}
+		case BINARY:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_BinaryValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type BINARY but default value is not of type BinaryValue", attrDef.Name)
+			} else {
+				tmp = d.BinaryValue
+			}
+		case BOOLEAN:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_BoolValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type BOOLEAN but default value is not of type BoolValue", attrDef.Name)
+			} else {
+				tmp = d.BoolValue
+			}
+		case TIMESTAMP:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_IntValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type TIMESTAMP but default value is not of type IntValue", attrDef.Name)
+			} else {
+				tmp = d.IntValue
+			}
+		case TIMESTAMPTZ:
+			if d, ok := attrDef.DefaultValue.Value.(*pbdriver.AttributeValue_StrValue); !ok {
+				return nil, fmt.Errorf("attribute %s is of type TIMESTAMPTZ but default value is not of type StrValue", attrDef.Name)
+			} else {
+				tmp = d.StrValue
+			}
 		default:
-			return nil, fmt.Errorf("unknown default value type: %v", dv.Value)
+			return nil, fmt.Errorf("unknown attribute type: %v", attrDef.Type)
 		}
 		if tmp != nil {
 			result.DefaultValue = &tmp
