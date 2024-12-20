@@ -81,6 +81,8 @@ components:
             The type of the communication template.
         datalinkTemplates:
           $ref: "#/components/schemas/DriverDatalinkTemplateSchemas"
+        appProtocolTemplates:
+          $ref: "#/components/schemas/DriverAppProtocolsSchema"
 
     DriverDatalinkTemplateSchemas:
       type: array
@@ -98,8 +100,17 @@ components:
           type: string
           description: >
             The link protocol.
-        appProtocols:
-          $ref: "#/components/schemas/DriverAppProtocolsSchema"
+        appProtocolRefs:
+          $ref: "#/components/schemas/DriverAppProtocolRefsSchema"
+
+    DriverAppProtocolRefsSchema:
+      type: array
+      description: >
+        The list of application protocol references valid for the datalink template.
+      items:
+        type: string
+        description: >
+          The application protocol reference.
 
     DriverAppProtocolsSchema:
       type: array
@@ -117,7 +128,7 @@ components:
           type: string
           description: >
             The application protocol.
-        profile:
+        attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 
     DriverAttributesSchema:

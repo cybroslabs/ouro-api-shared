@@ -535,18 +535,20 @@ enum ApplicationProtocol {
 
 // Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 message ApplicationProtocolTemplate {
+    // Unique identifier of the application protocol.
+    string id = 1;
     // The application protocol.
-    ApplicationProtocol protocol = 1;
+    ApplicationProtocol protocol = 2;
     // The list of attribute definitions for the protocol.
-    repeated AttributeDefinition attributes = 2;
+    repeated AttributeDefinition attributes = 3;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
 message DataLinkTemplate {
     // The data link protocol.
-    DataLinkProtocol link_protocol = 2;
-    // The list of application protocols supported by the driver.
-    repeated ApplicationProtocolTemplate app_protocols = 3;
+    DataLinkProtocol link_protocol = 1;
+    // The list of application protocol identifiers supported by the driver.
+    repeated string app_protocol_refs = 2;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.
@@ -560,7 +562,9 @@ message CommunicationTemplate {
 // Sub-message in driver negotiation request
 message DriverTemplates {
     // The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
-    repeated CommunicationTemplate communication_templates = 2;
+    repeated CommunicationTemplate communication_templates = 1;
+    // The templates of the application protocols supported by the driver.
+    repeated ApplicationProtocolTemplate app_protocols = 2;
     // The templates of the generic device related attributes.
     repeated AttributeDefinition device_attributes = 3;
     // The templates of the job actions for all supported action types.

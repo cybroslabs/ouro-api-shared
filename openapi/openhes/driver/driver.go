@@ -81,10 +81,13 @@ type DriverActionAttributeSchema struct {
 	Type *externalRef1.ActionTypeSchema `json:"type,omitempty"`
 }
 
+// DriverAppProtocolRefsSchema The list of application protocol references valid for the datalink template.
+type DriverAppProtocolRefsSchema = []string
+
 // DriverAppProtocolSchema Schema that describes the application protocol.
 type DriverAppProtocolSchema struct {
-	// Profile Schema that describes a list of attributes supported by a driver.
-	Profile *DriverAttributesSchema `json:"profile,omitempty"`
+	// Attributes Schema that describes a list of attributes supported by a driver.
+	Attributes *DriverAttributesSchema `json:"attributes,omitempty"`
 
 	// Protocol The application protocol.
 	Protocol *string `json:"protocol,omitempty"`
@@ -98,6 +101,9 @@ type DriverAttributesSchema = []AttributeDefinitionSchema
 
 // DriverCommunicationTemplateSchema Schema that describes the communication template.
 type DriverCommunicationTemplateSchema struct {
+	// AppProtocolTemplates The list of application protocols valid for the datalink template.
+	AppProtocolTemplates *DriverAppProtocolsSchema `json:"appProtocolTemplates,omitempty"`
+
 	// DatalinkTemplates The list of datalink templates valid for the communication template.
 	DatalinkTemplates *DriverDatalinkTemplateSchemas `json:"datalinkTemplates,omitempty"`
 
@@ -107,8 +113,8 @@ type DriverCommunicationTemplateSchema struct {
 
 // DriverDatalinkTemplateSchema Schema that describes the datalink template.
 type DriverDatalinkTemplateSchema struct {
-	// AppProtocols The list of application protocols valid for the datalink template.
-	AppProtocols *DriverAppProtocolsSchema `json:"appProtocols,omitempty"`
+	// AppProtocolRefs The list of application protocol references valid for the datalink template.
+	AppProtocolRefs *DriverAppProtocolRefsSchema `json:"appProtocolRefs,omitempty"`
 
 	// LinkProtocol The link protocol.
 	LinkProtocol *string `json:"linkProtocol,omitempty"`
@@ -138,31 +144,32 @@ type GenericObject = interface{}
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"zORO9F7hEU8Ze/knAAD//1f9DXtcFwAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

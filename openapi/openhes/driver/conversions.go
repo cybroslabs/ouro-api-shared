@@ -81,30 +81,36 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Driver
 		}
 		lp := dl_data.LinkProtocol.String()
 		datalink_tpls[dl_idx].LinkProtocol = &lp
-		if dl_app_cnt := len(dl_data.AppProtocols); dl_app_cnt > 0 {
-			dl_app_protocol := make([]DriverAppProtocolSchema, dl_app_cnt)
-			datalink_tpls[dl_idx].AppProtocols = &dl_app_protocol
-			for ap_idx, ap_data := range dl_data.AppProtocols {
-				if ap_data == nil {
-					return nil, fmt.Errorf("app protocol contains nil")
-				}
-				ap := ap_data.Protocol.String()
-				dl_app_protocol[ap_idx].Protocol = &ap
-				if ap_attr_cnt := len(ap_data.Attributes); ap_attr_cnt > 0 {
-					attrs := make([]AttributeDefinitionSchema, 0, ap_attr_cnt)
-					dl_app_protocol[ap_idx].Profile = &attrs
-					for _, attr := range ap_data.Attributes {
-						attr_def, err := G2RAttributeDefinition(attr)
-						if err != nil {
-							return nil, err
-						}
-						if attr_def == nil {
-							continue
-						}
-						attrs = append(attrs, *attr_def)
-					}
-				}
+		if dl_app_cnt := len(dl_data.AppProtocolRefs); dl_app_cnt > 0 {
+			// Let's use the same slice for the app protocols
+			datalink_tpls[dl_idx].AppProtocolRefs = &dl_data.AppProtocolRefs
+		}
+	}
+
+	return result, nil
+}
+
+func G2RAppProtocolTemplate(appProtocolTemplate *pbdriver.ApplicationProtocolTemplate) (*DriverAppProtocolSchema, error) {
+	if appProtocolTemplate == nil {
+		return nil, nil
+	}
+
+	ap := appProtocolTemplate.Protocol.String()
+	result := &DriverAppProtocolSchema{
+		Protocol: &ap,
+	}
+	if ap_attr_cnt := len(appProtocolTemplate.Attributes); ap_attr_cnt > 0 {
+		attrs := make([]AttributeDefinitionSchema, 0, ap_attr_cnt)
+		result.Attributes = &attrs
+		for _, attr := range appProtocolTemplate.Attributes {
+			attr_def, err := G2RAttributeDefinition(attr)
+			if err != nil {
+				return nil, err
 			}
+			if attr_def == nil {
+				continue
+			}
+			attrs = append(attrs, *attr_def)
 		}
 	}
 
