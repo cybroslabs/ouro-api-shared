@@ -565,10 +565,8 @@ message DriverTemplates {
     repeated CommunicationTemplate communication_templates = 1;
     // The templates of the application protocols supported by the driver.
     repeated ApplicationProtocolTemplate app_protocols = 2;
-    // The templates of the generic device related attributes.
-    repeated AttributeDefinition device_attributes = 3;
     // The templates of the job actions for all supported action types.
-    repeated JobActionAttributes action_attributes = 4;
+    repeated JobActionAttributes action_attributes = 3;
 }
 
 // Taskmaster -> Driver cancel job request message
