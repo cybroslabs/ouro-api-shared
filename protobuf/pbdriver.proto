@@ -232,8 +232,6 @@ message ConnectionInfo {
         ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
-    // The modem device assigne to given job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
-    optional ModemInfo modem = 4;
 }
 
 // Sub-message containing connection info for TCP connection type
@@ -245,8 +243,12 @@ message ConnectionTypeDirectTcpIp {
 
 // Sub-message containing connection info for phone line (modem) connection type
 message ConnectionTypeModemPool {
-    string number  = 1;  // The phone number of the device to connect to.
-    string pool_id = 2;  // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
+    // The phone number of the device to connect to.
+    string number  = 1;
+    // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
+    string pool_id = 2;
+    // The modem device assigne to given job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
+    optional ModemInfo modem = 4;
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
