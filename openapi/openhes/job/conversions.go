@@ -849,6 +849,35 @@ func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 								}
 								tmp_valueinfo.Value = tmp_value
 								tmp[i].Value = tmp_valueinfo
+							case *pbdriver.MeasuredValue_StrValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue0(vt.StrValue)
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+							case *pbdriver.MeasuredValue_TimestampValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue1(vt.TimestampValue.AsTime().UnixMilli())
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+							case *pbdriver.MeasuredValue_TimestampTzValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue0(vt.TimestampTzValue)
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+							case *pbdriver.MeasuredValue_BoolValue:
+								err = tmp_value.FromGenericValueStatusSchemaValue3(vt.BoolValue)
+								if err != nil {
+									return nil, err
+								}
+								tmp_valueinfo.Value = tmp_value
+								tmp[i].Value = tmp_valueinfo
+
 							default:
 								return nil, fmt.Errorf("unknown value type: %v", vt)
 							}

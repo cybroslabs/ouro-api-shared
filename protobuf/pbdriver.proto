@@ -79,8 +79,12 @@ message MeasuredValue {
     oneof value {
         double double_value = 2;  // The double-typed value.
         int64 int_value     = 3;  // The integer-typed value.
+        string str_value    = 4;  // The string-typed value.
+        google.protobuf.Timestamp timestamp_value = 5;  // The timestamp-typed value.
+        string timestamp_tz_value = 6; // The timestamp with timezone-typed value, stored as string in ISO-8601.
+        bool bool_value     = 7;  // The boolean-typed value.
     }
-    int32 exponent = 4;  // The exponent of the value.
+    int32 exponent = 8;  // The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
 }
 
 // Sub-message containing attribute definition
