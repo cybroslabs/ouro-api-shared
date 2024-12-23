@@ -20,6 +20,7 @@ var (
 	ErrInvalidJobStatus     = errors.New("invalid job status")
 	ErrInvalidActionType    = errors.New("invalid action type")
 	ErrUnknownJobActionType = errors.New("unknown job action type")
+	ErrInvalidDeviceList    = errors.New("invalid device list")
 )
 
 const (
@@ -61,6 +62,23 @@ func G2RJobActions(actions []*pbdriver.JobAction) (*JobActionListSchema, error) 
 		}
 	}
 	return &result, nil
+}
+
+// Converts the job action list - gRPC to Rest API
+func G2RJobActionsTo(actions []*pbdriver.JobAction, result *JobActionListSchema) error {
+	if actions == nil {
+		*result = nil
+		return nil
+	}
+
+	*result = make(JobActionListSchema, len(actions))
+	for i := range actions {
+		err := G2RJobAction(actions[i], &(*result)[i])
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // Converts the job action - Rest API to gRPC
@@ -567,12 +585,9 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 
 // Converts the bulk spec - gRPC to Rest API
 func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
-	actions, err := G2RJobActions(spec.JobActions)
-	if err != nil {
-		return nil, err
-	}
+	var err error
 
-	devices := make(JobDeviceListSchema, len(spec.Devices))
+	devices := make(JobCustomDeviceListSchema, len(spec.Devices))
 	for i, device := range spec.Devices {
 		target := &devices[i]
 		target.Id, err = uuid.Parse(device.Id)
@@ -620,7 +635,8 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		}
 	}
 
-	id, err := uuid.Parse(spec.BulkId)
+	var id uuid.UUID
+	id, err = uuid.Parse(spec.BulkId)
 	if err != nil {
 		return nil, err
 	}
@@ -630,7 +646,8 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		corr_id = &spec.CorrelationId
 	}
 
-	settings, err := G2RJobSettings(spec.Settings)
+	var settings *JobSettingsSchema
+	settings, err = G2RJobSettings(spec.Settings)
 	if err != nil {
 		return nil, err
 	}
@@ -640,9 +657,17 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		CorrelationID: corr_id,
 		DriverType:    spec.DriverType,
 		Settings:      settings,
-		Devices:       devices,
-		Actions:       *actions,
 		WebhookURL:    spec.WebhookUrl,
+	}
+
+	err = G2RJobActionsTo(spec.JobActions, &result.Actions)
+	if err != nil {
+		return nil, err
+	}
+
+	err = result.Devices.FromJobCustomDeviceListSchema(devices)
+	if err != nil {
+		return nil, err
 	}
 
 	return result, nil
@@ -670,51 +695,63 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		return nil, err
 	}
 
-	devices := make([]*pbdataproxy.JobDevice, len(spec.Devices))
-	for i, device := range spec.Devices {
-		device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
-		if err != nil {
-			return nil, err
-		}
-
-		ci_struct := &pbdriver.ConnectionInfo{}
-
-		ci := device.ConnectionInfo
-		if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_Tcpip{
-				Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
-					Host: tcp.Host,
-					Port: uint32(tcp.Port),
-				},
+	var devices []*pbdataproxy.JobDevice
+	if device_list, err := spec.Devices.AsJobCustomDeviceListSchema(); err == nil {
+		devices = make([]*pbdataproxy.JobDevice, len(device_list))
+		for i, device := range device_list {
+			device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
+			if err != nil {
+				return nil, err
 			}
-		} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_ModemPool{
-				ModemPool: &pbdriver.ConnectionTypeModemPool{
-					Number: phone.Number,
-					PoolId: phone.PoolId.String(),
-				},
-			}
-		} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-			ci_struct.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
-				SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
-					Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
-						Moxa: &pbdriver.ConnectionTypeSerialMoxa{
-							Host:        moxa.Host,
-							DataPort:    uint32(moxa.DataPort),
-							CommandPort: uint32(moxa.CommandPort),
+
+			ci_struct := &pbdriver.ConnectionInfo{}
+
+			ci := device.ConnectionInfo
+			if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_Tcpip{
+					Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
+						Host: tcp.Host,
+						Port: uint32(tcp.Port),
+					},
+				}
+			} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_ModemPool{
+					ModemPool: &pbdriver.ConnectionTypeModemPool{
+						Number: phone.Number,
+						PoolId: phone.PoolId.String(),
+					},
+				}
+			} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+				ci_struct.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
+					SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+						Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+							Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+								Host:        moxa.Host,
+								DataPort:    uint32(moxa.DataPort),
+								CommandPort: uint32(moxa.CommandPort),
+							},
 						},
 					},
-				},
+				}
+			}
+
+			devices[i] = &pbdataproxy.JobDevice{
+				Id:               device.Id.String(),
+				DeviceAttributes: device_attributes,
+				ConnectionInfo:   ci_struct,
+				ExternalId:       device.ExternalID,
+				Timezone:         device.Timezone,
 			}
 		}
-
-		devices[i] = &pbdataproxy.JobDevice{
-			Id:               device.Id.String(),
-			DeviceAttributes: device_attributes,
-			ConnectionInfo:   ci_struct,
-			ExternalId:       device.ExternalID,
-			Timezone:         device.Timezone,
+	} else if device_list, err := spec.Devices.AsJobDeviceListSchema(); err == nil {
+		devices = make([]*pbdataproxy.JobDevice, len(device_list))
+		for i, device := range device_list {
+			devices[i] = &pbdataproxy.JobDevice{
+				Id: device.String(),
+			}
 		}
+	} else {
+		return nil, ErrInvalidDeviceList
 	}
 
 	bulk_id := spec.Id.String()

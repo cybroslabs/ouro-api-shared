@@ -157,7 +157,7 @@ components:
         - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
         - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
 
-    JobDeviceSchema:
+    JobCustomDeviceSchema:
       type: object
       properties:
         id:
@@ -184,10 +184,18 @@ components:
     JobDeviceListSchema:
       type: array
       description: >
-        List of devices to be queued.
+        List of device identifiers to be queued, look for devices in device registry.
       minLength: 1
       items:
-        $ref: "#/components/schemas/JobDeviceSchema"
+        $ref: "#/components/schemas/JobID"
+
+    JobCustomDeviceListSchema:
+      type: array
+      description: >
+        List of custom-devices to be queued.
+      minLength: 1
+      items:
+        $ref: "#/components/schemas/JobCustomDeviceSchema"
 
     JobActionSchema:
       description: Schema that describes actions.
@@ -491,7 +499,9 @@ components:
             The correlation ID of the bulk. The correlation ID is used to group bulks.
           nullable: true
         devices:
-          $ref: "#/components/schemas/JobDeviceListSchema"
+          oneOf:
+            - $ref: "#/components/schemas/JobCustomDeviceListSchema"
+            - $ref: "#/components/schemas/JobDeviceListSchema"
         settings:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:

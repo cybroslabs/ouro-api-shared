@@ -14,18 +14,18 @@ var (
 	ErrUnknownAPIAttributeType = fmt.Errorf("unknown API attribute type")
 )
 
-func R2GAttributes(attrs Attributes) (map[string]*pbdriver.AttributeValue, error) {
-	apiAttrs := make(map[string]*pbdriver.AttributeValue)
+func R2GAttributes(attrs Attributes) (result map[string]*pbdriver.AttributeValue, err error) {
+	result = make(map[string]*pbdriver.AttributeValue)
 	for k, v := range attrs {
-
-		av, err := _R2GAttributeValue(v)
+		var av *pbdriver.AttributeValue
+		av, err = _R2GAttributeValue(v)
 		if err != nil {
-			return nil, err
+			result = nil
+			return
 		}
-
-		apiAttrs[k] = av
+		result[k] = av
 	}
-	return apiAttrs, nil
+	return
 }
 
 func _R2GAttributeValue(attr Value) (*pbdriver.AttributeValue, error) {
