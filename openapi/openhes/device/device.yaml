@@ -83,6 +83,11 @@ components:
           $ref: "#/components/schemas/CommunicationUnitListID"
         attributes:
           $ref: "../job/job.yaml#/components/schemas/AttributesSchema"
+        timezone:
+          type: string
+          description: >
+            The timezone of the device.
+          nullable: true
       required:
         - id
         - name

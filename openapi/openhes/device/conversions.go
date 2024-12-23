@@ -127,6 +127,7 @@ func R2GDevice(device *DeviceSchema) (*pbdeviceregistry.DeviceSpec, error) {
 		Name:                device.Name,
 		Attributes:          attributes,
 		CommunicationUnitId: make([]string, cu_cnt),
+		Timezone:            device.Timezone,
 	}
 
 	tmp := result.CommunicationUnitId
@@ -158,6 +159,7 @@ func G2RDevice(device *pbdeviceregistry.DeviceSpec) (*DeviceSchema, error) {
 		Name:                device.Name,
 		Attributes:          attrs,
 		CommunicationUnitID: make([]uuid.UUID, cu_cnt),
+		Timezone:            device.Timezone,
 	}
 
 	tmp := result.CommunicationUnitID
