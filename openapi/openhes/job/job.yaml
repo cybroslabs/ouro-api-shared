@@ -171,6 +171,11 @@ components:
           $ref: "#/components/schemas/ConnectionTypeSchema"
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
+        timezone:
+          type: string
+          description: >
+            The timezone of the device.
+          nullable: true
       required:
         - id
         - connectionInfo

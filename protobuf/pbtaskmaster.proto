@@ -148,11 +148,3 @@ message SystemConfigStatus {
 message JobEventData {
     bytes job_id = 1;  // The job identifier.
 }
-
-// Sub-message representing a single device in a bulk.
-message JobDevice {
-    string id                                              = 1;  // The device (job) identifier.
-    string external_id                                     = 2;  // The external identifier.
-    map<string, pbdriver.AttributeValue> device_attributes = 3;  // The connection attributes to the device.
-    pbdriver.ConnectionInfo connection_info                = 4;  // The conenction (device) parameters.
-}

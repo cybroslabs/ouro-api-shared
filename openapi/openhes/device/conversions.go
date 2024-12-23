@@ -125,7 +125,7 @@ func R2GDevice(device *DeviceSchema) (*pbdeviceregistry.DeviceSpec, error) {
 		Id:                  device.Id.String(),
 		ExternalId:          device.ExternalID,
 		Name:                device.Name,
-		Attributes:          &pbdeviceregistry.KeyValue{Kv: attributes},
+		Attributes:          attributes,
 		CommunicationUnitId: make([]string, cu_cnt),
 	}
 
@@ -147,7 +147,7 @@ func G2RDevice(device *pbdeviceregistry.DeviceSpec) (*DeviceSchema, error) {
 
 	var attrs attribute.Attributes
 	if da := device.Attributes; da != nil {
-		attrs = attribute.G2RAttributes(da.Kv)
+		attrs = attribute.G2RAttributes(da)
 	} else {
 		attrs = nil
 	}

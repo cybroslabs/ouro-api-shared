@@ -579,8 +579,9 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		if err != nil {
 			return nil, err
 		}
-		target.ExternalID = &device.ExternalId
+		target.ExternalID = device.ExternalId
 		target.DeviceAttributes = attribute.G2RAttributes(device.DeviceAttributes)
+		target.Timezone = device.Timezone
 
 		if ci := device.ConnectionInfo; ci != nil {
 			if tcp := ci.GetTcpip(); tcp != nil {
@@ -669,16 +670,11 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		return nil, err
 	}
 
-	devices := make([]*pbtaskmaster.JobDevice, len(spec.Devices))
+	devices := make([]*pbdataproxy.JobDevice, len(spec.Devices))
 	for i, device := range spec.Devices {
 		device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
 		if err != nil {
 			return nil, err
-		}
-
-		external_id := ""
-		if device.ExternalID != nil {
-			external_id = *device.ExternalID
 		}
 
 		ci_struct := &pbdriver.ConnectionInfo{}
@@ -712,11 +708,12 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 			}
 		}
 
-		devices[i] = &pbtaskmaster.JobDevice{
+		devices[i] = &pbdataproxy.JobDevice{
 			Id:               device.Id.String(),
 			DeviceAttributes: device_attributes,
 			ConnectionInfo:   ci_struct,
-			ExternalId:       external_id,
+			ExternalId:       device.ExternalID,
+			Timezone:         device.Timezone,
 		}
 	}
 
