@@ -151,7 +151,7 @@ components:
         - dataPort
         - commandPort
 
-    ConnectionTypeSchema:
+    ConnectionInfoSchema:
       oneOf:
         - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
         - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
@@ -182,7 +182,7 @@ components:
             The public ID of the device.
           nullable: true
         connectionInfo:
-          $ref: "#/components/schemas/ConnectionTypeSchema"
+          $ref: "#/components/schemas/ConnectionInfoSchema"
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
         timezone:

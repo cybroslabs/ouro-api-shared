@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	ErrInvalidConnectionType = errors.New("invalid connection type")
+	ErrInvalidConnectionInfo = errors.New("invalid connection info")
 )
 
 // Converts the communication unit - Rest API to gRPC
@@ -34,14 +34,14 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 				Port: uint32(tcp.Port),
 			},
 		}
-		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
+		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if modem, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
 		ci := &pbdriver.ConnectionInfo_ModemPool{
 			ModemPool: &pbdriver.ConnectionTypeModemPool{
 				Number: modem.Number,
 			},
 		}
-		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
+		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
 		ci := &pbdriver.ConnectionInfo_SerialOverIp{
 			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
@@ -54,7 +54,7 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 				},
 			},
 		}
-		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
+		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	}
 
 	return result, nil
@@ -74,17 +74,17 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 
 	var err error
 
-	if ct := communicationUnit.ConnectionType; ct != nil {
-		if tcpip := ct.GetTcpip(); tcpip != nil {
+	if ci := communicationUnit.ConnectionInfo; ci != nil {
+		if tcpip := ci.GetTcpip(); tcpip != nil {
 			err = result.ConnectionInfo.FromConnectionTypeTcpIpSchema(job.ConnectionTypeTcpIpSchema{
 				Host: tcpip.Host,
 				Port: int(tcpip.Port),
 			})
-		} else if modem := ct.GetModemPool(); modem != nil {
+		} else if modem := ci.GetModemPool(); modem != nil {
 			err = result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
 				Number: modem.Number,
 			})
-		} else if controlled_serial := ct.GetSerialOverIp(); controlled_serial != nil {
+		} else if controlled_serial := ci.GetSerialOverIp(); controlled_serial != nil {
 			if moxa := controlled_serial.GetMoxa(); moxa != nil {
 				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
 					Host:        moxa.Host,
@@ -92,13 +92,13 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 					CommandPort: int(moxa.CommandPort),
 				})
 			} else {
-				err = ErrInvalidConnectionType
+				err = ErrInvalidConnectionInfo
 			}
 		} else {
-			err = ErrInvalidConnectionType
+			err = ErrInvalidConnectionInfo
 		}
 	} else {
-		err = ErrInvalidConnectionType
+		err = ErrInvalidConnectionInfo
 	}
 
 	if err != nil {

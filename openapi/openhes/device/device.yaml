@@ -49,7 +49,7 @@ components:
             The name of the communication unit.
           minLength: 1
         connectionInfo:
-          $ref: "../job/job.yaml#/components/schemas/ConnectionTypeSchema"
+          $ref: "../job/job.yaml#/components/schemas/ConnectionInfoSchema"
       required:
         - id
         - name
