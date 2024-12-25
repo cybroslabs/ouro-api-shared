@@ -23,6 +23,8 @@ service DeviceRegistryService {
     rpc GetDevices(GetDevicesRequest) returns (GetDevicesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
+    // The method called by the RestAPI to get communication units definitions linked to the device(s).
+    rpc GetDevicesCommunicationUnits(SetDevicesCommunicationUnitsResponse) returns (GetDevicesCommunicationUnitsResponse);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(CreateDeviceGroupRequest) returns (google.protobuf.Empty);
@@ -145,6 +147,21 @@ message RemoveDevicesFromGroupRequest {
 message SetDeviceCommunicationUnitsRequest {
     string device_id                      = 1;  // The unique identifier of the device.
     repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+}
+
+// RestApi -> DriverRegistry - the request message to get
+message SetDevicesCommunicationUnitsResponse {
+    repeated string device_id = 1;  // The unique identifier of the device.
+}
+
+// DriverRegistry -> RestApi - the message holds the information about the communication units linked to the device.
+message GetDevicesCommunicationUnitsResponse {
+    map<string, DeviceCommunicationUnits> devices = 1;  // The list of devices with their communication units.
+}
+
+// Sub-message that represents the communication units linked to the device.
+message DeviceCommunicationUnits {
+    repeated ConnectionType communication_units = 1;  // The list of communication units linked to the device.
 }
 
 message GetModemPoolRequest {

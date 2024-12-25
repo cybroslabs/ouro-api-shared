@@ -22,23 +22,24 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeviceRegistryService_SetDriverTemplates_FullMethodName          = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDriverTemplates"
-	DeviceRegistryService_CreateCommunicationUnit_FullMethodName     = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
-	DeviceRegistryService_GetCommunicationUnits_FullMethodName       = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetCommunicationUnits"
-	DeviceRegistryService_CreateDevice_FullMethodName                = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
-	DeviceRegistryService_GetDevices_FullMethodName                  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevices"
-	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
-	DeviceRegistryService_CreateDeviceGroup_FullMethodName           = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
-	DeviceRegistryService_GetDeviceGroups_FullMethodName             = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDeviceGroups"
-	DeviceRegistryService_AddDevicesToGroup_FullMethodName           = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
-	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName      = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
-	DeviceRegistryService_GetModemByPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetModemByPool"
-	DeviceRegistryService_CreateModemPool_FullMethodName             = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateModemPool"
-	DeviceRegistryService_UpdateModemPool_FullMethodName             = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/UpdateModemPool"
-	DeviceRegistryService_DeleteModemPool_FullMethodName             = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/DeleteModemPool"
-	DeviceRegistryService_CreateModem_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateModem"
-	DeviceRegistryService_UpdateModem_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/UpdateModem"
-	DeviceRegistryService_DeleteModem_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/DeleteModem"
+	DeviceRegistryService_SetDriverTemplates_FullMethodName           = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDriverTemplates"
+	DeviceRegistryService_CreateCommunicationUnit_FullMethodName      = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
+	DeviceRegistryService_GetCommunicationUnits_FullMethodName        = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetCommunicationUnits"
+	DeviceRegistryService_CreateDevice_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
+	DeviceRegistryService_GetDevices_FullMethodName                   = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevices"
+	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
+	DeviceRegistryService_GetDevicesCommunicationUnits_FullMethodName = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevicesCommunicationUnits"
+	DeviceRegistryService_CreateDeviceGroup_FullMethodName            = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
+	DeviceRegistryService_GetDeviceGroups_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDeviceGroups"
+	DeviceRegistryService_AddDevicesToGroup_FullMethodName            = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
+	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName       = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
+	DeviceRegistryService_GetModemByPool_FullMethodName               = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetModemByPool"
+	DeviceRegistryService_CreateModemPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateModemPool"
+	DeviceRegistryService_UpdateModemPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/UpdateModemPool"
+	DeviceRegistryService_DeleteModemPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/DeleteModemPool"
+	DeviceRegistryService_CreateModem_FullMethodName                  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateModem"
+	DeviceRegistryService_UpdateModem_FullMethodName                  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/UpdateModem"
+	DeviceRegistryService_DeleteModem_FullMethodName                  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/DeleteModem"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -59,6 +60,8 @@ type DeviceRegistryServiceClient interface {
 	GetDevices(ctx context.Context, in *GetDevicesRequest, opts ...grpc.CallOption) (*GetDevicesResponse, error)
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(ctx context.Context, in *SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method called by the RestAPI to get communication units definitions linked to the device(s).
+	GetDevicesCommunicationUnits(ctx context.Context, in *SetDevicesCommunicationUnitsResponse, opts ...grpc.CallOption) (*GetDevicesCommunicationUnitsResponse, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(ctx context.Context, in *CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
@@ -145,6 +148,16 @@ func (c *deviceRegistryServiceClient) SetDeviceCommunicationUnits(ctx context.Co
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDevicesCommunicationUnits(ctx context.Context, in *SetDevicesCommunicationUnitsResponse, opts ...grpc.CallOption) (*GetDevicesCommunicationUnitsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDevicesCommunicationUnitsResponse)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevicesCommunicationUnits_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -279,6 +292,8 @@ type DeviceRegistryServiceServer interface {
 	GetDevices(context.Context, *GetDevicesRequest) (*GetDevicesResponse, error)
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
+	// The method called by the RestAPI to get communication units definitions linked to the device(s).
+	GetDevicesCommunicationUnits(context.Context, *SetDevicesCommunicationUnitsResponse) (*GetDevicesCommunicationUnitsResponse, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
@@ -328,6 +343,9 @@ func (UnimplementedDeviceRegistryServiceServer) GetDevices(context.Context, *Get
 }
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(context.Context, *SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDevicesCommunicationUnits(context.Context, *SetDevicesCommunicationUnitsResponse) (*GetDevicesCommunicationUnitsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDevicesCommunicationUnits not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *CreateDeviceGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -487,6 +505,24 @@ func _DeviceRegistryService_SetDeviceCommunicationUnits_Handler(srv interface{},
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).SetDeviceCommunicationUnits(ctx, req.(*SetDeviceCommunicationUnitsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDevicesCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDevicesCommunicationUnitsResponse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDevicesCommunicationUnits(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDevicesCommunicationUnits_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDevicesCommunicationUnits(ctx, req.(*SetDevicesCommunicationUnitsResponse))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -719,6 +755,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetDeviceCommunicationUnits",
 			Handler:    _DeviceRegistryService_SetDeviceCommunicationUnits_Handler,
+		},
+		{
+			MethodName: "GetDevicesCommunicationUnits",
+			Handler:    _DeviceRegistryService_GetDevicesCommunicationUnits_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",
