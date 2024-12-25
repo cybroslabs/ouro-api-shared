@@ -607,37 +607,40 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		target.DeviceAttributes = attribute.G2RAttributes(device.DeviceAttributes)
 		target.Timezone = device.Timezone
 
-		if ci := device.ConnectionInfo; ci != nil {
-			if tcp := ci.GetTcpip(); tcp != nil {
-				err := target.ConnectionInfo.FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
-					Host: tcp.Host,
-					Port: int(tcp.Port),
-				})
-				if err != nil {
-					return nil, err
-				}
-			} else if modem := ci.GetModemPool(); modem != nil {
-				var pool_id uuid.UUID
-				pool_id, err = uuid.Parse(modem.PoolId)
-				if err != nil {
-					return nil, err
-				}
-				err = target.ConnectionInfo.FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
-					Number: modem.Number,
-					PoolId: pool_id,
-				})
-				if err != nil {
-					return nil, err
-				}
-			} else if controller_serial := ci.GetSerialOverIp(); controller_serial != nil {
-				if moxa := controller_serial.GetMoxa(); moxa != nil {
-					err = target.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
-						Host:        moxa.Host,
-						DataPort:    int(moxa.DataPort),
-						CommandPort: int(moxa.CommandPort),
+		target.ConnectionInfo = make([]ConnectionTypeSchema, len(device.ConnectionInfo))
+		for i, ci := range device.ConnectionInfo {
+			if ci != nil {
+				if tcp := ci.GetTcpip(); tcp != nil {
+					err := target.ConnectionInfo[i].FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
+						Host: tcp.Host,
+						Port: int(tcp.Port),
 					})
 					if err != nil {
 						return nil, err
+					}
+				} else if modem := ci.GetModemPool(); modem != nil {
+					var pool_id uuid.UUID
+					pool_id, err = uuid.Parse(modem.PoolId)
+					if err != nil {
+						return nil, err
+					}
+					err = target.ConnectionInfo[i].FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
+						Number: modem.Number,
+						PoolId: pool_id,
+					})
+					if err != nil {
+						return nil, err
+					}
+				} else if controller_serial := ci.GetSerialOverIp(); controller_serial != nil {
+					if moxa := controller_serial.GetMoxa(); moxa != nil {
+						err = target.ConnectionInfo[i].FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
+							Host:        moxa.Host,
+							DataPort:    int(moxa.DataPort),
+							CommandPort: int(moxa.CommandPort),
+						})
+						if err != nil {
+							return nil, err
+						}
 					}
 				}
 			}
@@ -704,58 +707,57 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		return nil, err
 	}
 
-	var devices []*pbdataproxy.JobDevice
+	var devices []*pbtaskmaster.JobDevice
 	if device_list, err := spec.Devices.AsJobCustomDeviceListSchema(); err == nil {
-		devices = make([]*pbdataproxy.JobDevice, len(device_list))
+		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
 			device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
 			if err != nil {
 				return nil, err
 			}
 
-			ci_struct := &pbdriver.ConnectionInfo{}
-
-			ci := device.ConnectionInfo
-			if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_Tcpip{
-					Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
-						Host: tcp.Host,
-						Port: uint32(tcp.Port),
-					},
-				}
-			} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_ModemPool{
-					ModemPool: &pbdriver.ConnectionTypeModemPool{
-						Number: phone.Number,
-						PoolId: phone.PoolId.String(),
-					},
-				}
-			} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-				ci_struct.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
-					SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
-						Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
-							Moxa: &pbdriver.ConnectionTypeSerialMoxa{
-								Host:        moxa.Host,
-								DataPort:    uint32(moxa.DataPort),
-								CommandPort: uint32(moxa.CommandPort),
-							},
-						},
-					},
-				}
-			}
-
-			devices[i] = &pbdataproxy.JobDevice{
+			r := &pbtaskmaster.JobDevice{
 				Id:               device.Id.String(),
 				DeviceAttributes: device_attributes,
-				ConnectionInfo:   ci_struct,
 				ExternalId:       device.ExternalID,
 				Timezone:         device.Timezone,
 			}
+			devices[i] = r
+			r.ConnectionInfo = make([]*pbdriver.ConnectionInfo, len(device.ConnectionInfo))
+			for i, ci := range device.ConnectionInfo {
+				if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
+					r.ConnectionInfo[i].Connection = &pbdriver.ConnectionInfo_Tcpip{
+						Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
+							Host: tcp.Host,
+							Port: uint32(tcp.Port),
+						},
+					}
+				} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
+					r.ConnectionInfo[i].Connection = &pbdriver.ConnectionInfo_ModemPool{
+						ModemPool: &pbdriver.ConnectionTypeModemPool{
+							Number: phone.Number,
+							PoolId: phone.PoolId.String(),
+						},
+					}
+				} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+					r.ConnectionInfo[i].Connection = &pbdriver.ConnectionInfo_SerialOverIp{
+						SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+							Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+								Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+									Host:        moxa.Host,
+									DataPort:    uint32(moxa.DataPort),
+									CommandPort: uint32(moxa.CommandPort),
+								},
+							},
+						},
+					}
+				}
+			}
 		}
 	} else if device_list, err := spec.Devices.AsJobDeviceListSchema(); err == nil {
-		devices = make([]*pbdataproxy.JobDevice, len(device_list))
+		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
-			devices[i] = &pbdataproxy.JobDevice{
+			devices[i] = &pbtaskmaster.JobDevice{
 				Id: device.String(),
 			}
 		}

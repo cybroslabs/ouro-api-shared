@@ -75,12 +75,19 @@ message QueueJobsRequest {
 
 // Sub-message - job specification
 message JobSpec {
-    string job_id                                          = 1;  // The job identifier.
-    pbdriver.ConnectionInfo connection_info                = 2;  // The connection info for the job.
+    JobDevice device                        = 1;  // The device info.
+    pbdriver.JobSettings job_settings       = 4;  // The job parameters.
+    string driver_type                      = 5;  // The device (driver) type.
+    repeated pbdriver.JobAction job_actions = 6;  // The list actions to be executed.
+}
+
+// Sub-message representing a single device info.
+message JobDevice {
+    string id                                              = 1;  // The device (job) identifier.
+    optional string external_id                            = 2;  // The external identifier.
     map<string, pbdriver.AttributeValue> device_attributes = 3;  // The connection attributes to the device.
-    pbdriver.JobSettings job_settings                      = 4;  // The job parameters.
-    string driver_type                                     = 5;  // The device (driver) type.
-    repeated pbdriver.JobAction job_actions                = 6;  // The list actions to be executed.
+    repeated pbdriver.ConnectionInfo connection_info       = 4;  // The conenction (device) parameters.
+    optional string timezone                               = 5;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Dataproxy -> Taskmaster get job request message
