@@ -73,15 +73,7 @@ message CommunicationUnitSpec {
     string id                      = 1;  // The UUID of the communication unit.
     optional string external_id    = 2;  // The external identifier of the communication unit.
     string name                    = 3;  // The name of the communication unit.
-    ConnectionType connection_type = 4;  // The connection type.
-}
-
-message ConnectionType {
-    oneof type {
-        pbdriver.ConnectionTypeDirectTcpIp tcpip            = 1;  // The TCP/IP connection type.
-        pbdriver.ConnectionTypeModemPool modem_pool         = 2;  // The phone line connection type.
-        pbdriver.ConnectionTypeControlledSerial serial_moxa = 3;  // The controlled serial line (Moxa) connection type.
-    }
+    pbdriver.ConnectionInfo connection_type = 4;  // The connection type.
 }
 
 // RestApi -> DriverRegistry - the request message to create a new device.
@@ -161,7 +153,7 @@ message GetDevicesCommunicationUnitsResponse {
 
 // Sub-message that represents the communication units linked to the device.
 message DeviceCommunicationUnits {
-    repeated ConnectionType communication_units = 1;  // The list of communication units linked to the device.
+    repeated pbdriver.ConnectionInfo communication_units = 1;  // The list of communication units linked to the device.
 }
 
 message GetModemPoolRequest {

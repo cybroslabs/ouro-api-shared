@@ -28,23 +28,23 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 
 	ci := communicationUnit.ConnectionInfo
 	if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_Tcpip{
+		ci := &pbdriver.ConnectionInfo_Tcpip{
 			Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
 				Host: tcp.Host,
 				Port: uint32(tcp.Port),
 			},
 		}
-		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
+		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if modem, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_ModemPool{
+		ci := &pbdriver.ConnectionInfo_ModemPool{
 			ModemPool: &pbdriver.ConnectionTypeModemPool{
 				Number: modem.Number,
 			},
 		}
-		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
+		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-		ci := &pbdeviceregistry.ConnectionType_SerialMoxa{
-			SerialMoxa: &pbdriver.ConnectionTypeControlledSerial{
+		ci := &pbdriver.ConnectionInfo_SerialOverIp{
+			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
 				Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
 					Moxa: &pbdriver.ConnectionTypeSerialMoxa{
 						Host:        moxa.Host,
@@ -54,7 +54,7 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 				},
 			},
 		}
-		result.ConnectionType = &pbdeviceregistry.ConnectionType{Type: ci}
+		result.ConnectionType = &pbdriver.ConnectionInfo{Connection: ci}
 	}
 
 	return result, nil
@@ -84,7 +84,7 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 			err = result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
 				Number: modem.Number,
 			})
-		} else if controlled_serial := ct.GetSerialMoxa(); controlled_serial != nil {
+		} else if controlled_serial := ct.GetSerialOverIp(); controlled_serial != nil {
 			if moxa := controlled_serial.GetMoxa(); moxa != nil {
 				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
 					Host:        moxa.Host,
