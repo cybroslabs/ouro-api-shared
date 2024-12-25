@@ -639,6 +639,13 @@ components:
       type: object
       description: >
         Schema that describes job settings.
+      example:
+        maxDuration: 3600
+        priority: 0
+        attempts: [1]
+        retryDelay: 60
+        deferStart: 0
+        expiresAt: "2027-12-31T23:59:59Z"
       properties:
         maxDuration:
           description: The maximum duration in seconds to process the job.
@@ -646,30 +653,37 @@ components:
           format: int64
           minimum: 15
           maximum: 7200
+          default: 3600
         priority:
-          description: The priority of the job.
+          description: The priority of the job. The lower the value, the lower the priority.
           type: integer
           format: int32
           minimum: 0
           maximum: 9
+          default: 0
         attempts:
-          description: The number of attempts to process the job.
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 99
+          description: The number of attempts to process the job per communication unit. The default is [1].
+          type: array
+          default: [1]
+          items:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 99
         retryDelay:
           description: The delay in seconds before retrying the job.
           type: integer
           format: int64
           minimum: 0
           maximum: 999
+          default: 60
         deferStart:
           description: The delay in seconds before starting the first attempt of the job.
           type: integer
           format: int64
           minimum: 0
           maximum: 86400
+          default: 0
         expiresAt:
           description: The time when the job expires.
           type: string

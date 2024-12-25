@@ -24,11 +24,21 @@ var (
 )
 
 const (
-	DefaultPriority    = pbdriver.JobPriority_JOB_PRIORITY_0
+	// Default job priority (lowest)
+	DefaultPriority = pbdriver.JobPriority_JOB_PRIORITY_0
+	// Default job duration in milliseconds
 	DefaultMaxDuration = int64(5 * 60 * 1000)
-	DefaultRetryDelay  = int64(60 * 1000)
-	DefaultAttempts    = int32(1)
-	DefaultDeferStart  = uint64(0)
+	// Default job retry delay in milliseconds
+	DefaultRetryDelay = int64(60 * 1000)
+	// Default job attempts
+	DefaultAttempts = int32(1)
+	// Default job defer start in milliseconds
+	DefaultDeferStart = uint64(0)
+)
+
+var (
+	// Default job attempts in a list form
+	defaultAttemptsList = []int32{DefaultAttempts}
 )
 
 // Converts the job action list - Rest API to gRPC
@@ -538,49 +548,48 @@ func G2RJobSettings(settings *pbdriver.JobSettings) (*JobSettingsSchema, error) 
 
 // Converts the job settings - Rest API to gRPC
 func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) {
-	job_priority := DefaultPriority
+	result := &pbdriver.JobSettings{}
+
 	if pr := settings.Priority; pr != nil {
 		if *pr < 0 || *pr > 9 {
 			return nil, fmt.Errorf("error while converting priority %v, value out of range", *pr)
 		}
-		job_priority = (pbdriver.JobPriority)(*pr)
+		result.Priority = (pbdriver.JobPriority)(*pr)
+	} else {
+		result.Priority = DefaultPriority
 	}
 
-	max_duration := DefaultMaxDuration
 	if pr := settings.MaxDuration; pr != nil {
 		// REST is in seconds, gRPC is in milliseconds
-		max_duration = *pr * 1000
+		result.MaxDuration = *pr * 1000
+	} else {
+		result.MaxDuration = DefaultMaxDuration
 	}
 
-	retry_delay := DefaultRetryDelay
 	if pr := settings.RetryDelay; pr != nil {
 		// REST is in seconds, gRPC is in milliseconds
-		retry_delay = *pr * 1000
+		result.RetryDelay = *pr * 1000
+	} else {
+		result.RetryDelay = DefaultRetryDelay
 	}
 
-	attempts := DefaultAttempts
-	if pr := settings.Attempts; pr != nil {
-		attempts = *pr
-	}
-
-	defer_start := DefaultDeferStart
 	if pr := settings.DeferStart; pr != nil {
-		defer_start = uint64(*pr * 1000)
+		result.DeferStart = uint64(*pr * 1000)
+	} else {
+		result.DeferStart = DefaultDeferStart
 	}
 
-	var expires_at *timestamppb.Timestamp = nil
 	if ts := settings.ExpiresAt; ts != nil {
-		expires_at = timestamppb.New(*ts)
+		result.ExpiresAt = timestamppb.New(*ts)
 	}
 
-	return &pbdriver.JobSettings{
-		Attempts:    attempts,
-		MaxDuration: max_duration,
-		Priority:    job_priority,
-		RetryDelay:  retry_delay,
-		DeferStart:  defer_start,
-		ExpiresAt:   expires_at,
-	}, nil
+	if pr := settings.Attempts; pr != nil {
+		result.Attempts = *pr
+	} else {
+		result.Attempts = defaultAttemptsList
+	}
+
+	return result, nil
 }
 
 // Converts the bulk spec - gRPC to Rest API
