@@ -664,6 +664,7 @@ components:
         attempts:
           description: The number of attempts to process the job per communication unit. The default is [1].
           type: array
+          minItems: 1
           default: [1]
           items:
             type: integer
