@@ -75,10 +75,11 @@ message QueueJobsRequest {
 
 // Sub-message - job specification
 message JobSpec {
-    JobDevice device                        = 1;  // The device info.
-    pbdriver.JobSettings job_settings       = 4;  // The job parameters.
-    string driver_type                      = 5;  // The device (driver) type.
-    repeated pbdriver.JobAction job_actions = 6;  // The list actions to be executed.
+    string job_id                           = 1;  // The job identifier.
+    JobDevice device                        = 2;  // The device info.
+    pbdriver.JobSettings job_settings       = 3;  // The job parameters.
+    string driver_type                      = 4;  // The device (driver) type.
+    repeated pbdriver.JobAction job_actions = 5;  // The list actions to be executed.
 }
 
 // Sub-message representing a single device info.
