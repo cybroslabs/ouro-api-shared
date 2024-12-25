@@ -525,7 +525,7 @@ type JobDevice struct {
 	DeviceId         *string                             `protobuf:"bytes,2,opt,name=device_id,json=deviceId,proto3,oneof" json:"device_id,omitempty"`                                                                                             // The device identifier. If set then all below is loaded from the device registry.
 	ExternalId       *string                             `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3,oneof" json:"external_id,omitempty"`                                                                                       // The external identifier.
 	DeviceAttributes map[string]*pbdriver.AttributeValue `protobuf:"bytes,4,rep,name=device_attributes,json=deviceAttributes,proto3" json:"device_attributes,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // The connection attributes to the device.
-	ConnectionInfo   []*pbdriver.ConnectionInfo          `protobuf:"bytes,5,rep,name=connection_info,json=connectionInfo,proto3" json:"connection_info,omitempty"`                                                                                 // The conenction (device) parameters.
+	ConnectionInfo   *pbdriver.ConnectionInfo            `protobuf:"bytes,5,opt,name=connection_info,json=connectionInfo,proto3" json:"connection_info,omitempty"`                                                                                 // The conenction (device) parameters.
 	Timezone         *string                             `protobuf:"bytes,6,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`                                                                                                             // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -589,7 +589,7 @@ func (x *JobDevice) GetDeviceAttributes() map[string]*pbdriver.AttributeValue {
 	return nil
 }
 
-func (x *JobDevice) GetConnectionInfo() []*pbdriver.ConnectionInfo {
+func (x *JobDevice) GetConnectionInfo() *pbdriver.ConnectionInfo {
 	if x != nil {
 		return x.ConnectionInfo
 	}
@@ -1121,7 +1121,7 @@ var file_pbtaskmaster_proto_rawDesc = []byte{
 	0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65,
 	0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x10, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x41, 0x74,
 	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x12, 0x51, 0x0a, 0x0f, 0x63, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x05, 0x20, 0x03, 0x28,
+	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x05, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x28, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e,
 	0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f, 0x6e,
 	0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0e, 0x63, 0x6f, 0x6e,
