@@ -157,6 +157,20 @@ components:
         - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
         - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
 
+    JobDeviceSchema:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/JobID"
+        deviceId:
+          type: string
+          description: >
+            The ID of the device.
+          format: uuid
+      required:
+        - id
+        - deviceId
+
     JobCustomDeviceSchema:
       type: object
       properties:
@@ -192,7 +206,7 @@ components:
         List of device identifiers to be queued, look for devices in device registry.
       minLength: 1
       items:
-        $ref: "#/components/schemas/JobID"
+        $ref: "#/components/schemas/JobDeviceSchema"
 
     JobCustomDeviceListSchema:
       type: array

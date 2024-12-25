@@ -415,7 +415,16 @@ type JobCustomDeviceSchema struct {
 }
 
 // JobDeviceListSchema List of device identifiers to be queued, look for devices in device registry.
-type JobDeviceListSchema = []JobID
+type JobDeviceListSchema = []JobDeviceSchema
+
+// JobDeviceSchema defines model for JobDeviceSchema.
+type JobDeviceSchema struct {
+	// DeviceId The ID of the device.
+	DeviceId openapi_types.UUID `json:"deviceId"`
+
+	// Id The ID of the job. The ID must be unique across all OpenHES components.
+	Id JobID `json:"id"`
+}
 
 // JobErrorCodeSchema The result of the job.
 //   - `NONE` - No error, the job has been successfully processed.
@@ -1156,24 +1165,24 @@ var swaggerSpec = []string{
 	"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",
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

@@ -85,10 +85,11 @@ message JobSpec {
 // Sub-message representing a single device info.
 message JobDevice {
     string id                                              = 1;  // The device (job) identifier.
-    optional string external_id                            = 2;  // The external identifier.
-    map<string, pbdriver.AttributeValue> device_attributes = 3;  // The connection attributes to the device.
-    repeated pbdriver.ConnectionInfo connection_info       = 4;  // The conenction (device) parameters.
-    optional string timezone                               = 5;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    optional string device_id                              = 2;  // The device identifier. If set then all below is loaded from the device registry.
+    optional string external_id                            = 3;  // The external identifier.
+    map<string, pbdriver.AttributeValue> device_attributes = 4;  // The connection attributes to the device.
+    repeated pbdriver.ConnectionInfo connection_info       = 5;  // The conenction (device) parameters.
+    optional string timezone                               = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Dataproxy -> Taskmaster get job request message

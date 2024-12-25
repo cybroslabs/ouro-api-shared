@@ -757,8 +757,10 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	} else if device_list, err := spec.Devices.AsJobDeviceListSchema(); err == nil {
 		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
+			dev_id := device.DeviceId.String()
 			devices[i] = &pbtaskmaster.JobDevice{
-				Id: device.String(),
+				Id:       device.Id.String(),
+				DeviceId: &dev_id,
 			}
 		}
 	} else {
