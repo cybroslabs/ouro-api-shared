@@ -3,6 +3,7 @@ package driver
 import (
 	"fmt"
 
+	"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 )
 
@@ -142,15 +143,42 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Driver
 	return result, nil
 }
 
+var (
+	appProtoANSIC12    = job.APPPROTOANSIC12
+	appProtoDLMSLN     = job.APPPROTODLMSLN
+	appProtoDLMSSN     = job.APPPROTODLMSSN
+	appProtoIEC6205621 = job.APPPROTOIEC6205621
+	appProtoLIS200     = job.APPPROTOLIS200
+	appProtoMQTT       = job.APPPROTOMQTT
+	appProtoSCTM       = job.APPPROTOSCTM
+)
+
 func G2RAppProtocolTemplate(appProtocolTemplate *pbdriver.ApplicationProtocolTemplate) (*DriverAppProtocolSchema, error) {
 	if appProtocolTemplate == nil {
 		return nil, nil
 	}
 
-	ap := appProtocolTemplate.Protocol.String()
-	result := &DriverAppProtocolSchema{
-		Protocol: &ap,
+	result := &DriverAppProtocolSchema{}
+
+	var proto = appProtocolTemplate.Protocol
+	if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN {
+		result.Protocol = &appProtoDLMSLN
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN {
+		result.Protocol = &appProtoDLMSSN
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21 {
+		result.Protocol = &appProtoIEC6205621
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_LIS200 {
+		result.Protocol = &appProtoLIS200
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_MQTT {
+		result.Protocol = &appProtoMQTT
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_SCTM {
+		result.Protocol = &appProtoSCTM
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12 {
+		result.Protocol = &appProtoANSIC12
+	} else {
+		return nil, fmt.Errorf("unknown application protocol: %v", proto)
 	}
+
 	if ap_attr_cnt := len(appProtocolTemplate.Attributes); ap_attr_cnt > 0 {
 		attrs := make([]AttributeDefinitionSchema, 0, ap_attr_cnt)
 		result.Attributes = &attrs

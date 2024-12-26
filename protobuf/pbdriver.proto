@@ -114,7 +114,8 @@ message StartJobData {
     string job_id                                 = 2;  // The job identifier.
     JobSettings job_settings                      = 3;  // The job parameters.
     repeated JobAction job_actions                = 4;  // The list actions to be executed.
-    optional string timezone                      = 5;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    ApplicationProtocol app_protocol              = 5;  // The application protocol.
+    optional string timezone                      = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Sub-message containing modem connection connected behind a IP-to-serial converter
@@ -237,6 +238,7 @@ message ConnectionInfo {
         ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
+    DataLinkProtocol link_protocol = 4;  // The data link protocol.
 }
 
 // Sub-message containing connection info for TCP connection type

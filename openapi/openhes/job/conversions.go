@@ -741,11 +741,33 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				}
 			}
 
+			var app_protocol pbdriver.ApplicationProtocol
+			if device.ApplicationProtocol == nil {
+				return nil, fmt.Errorf("application protocol is not set for device %s", device.Id.String())
+			} else if *device.ApplicationProtocol == APPPROTODLMSLN {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN
+			} else if *device.ApplicationProtocol == APPPROTODLMSSN {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN
+			} else if *device.ApplicationProtocol == APPPROTOANSIC12 {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12
+			} else if *device.ApplicationProtocol == APPPROTOIEC6205621 {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21
+			} else if *device.ApplicationProtocol == APPPROTOLIS200 {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_LIS200
+			} else if *device.ApplicationProtocol == APPPROTOMQTT {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_MQTT
+			} else if *device.ApplicationProtocol == APPPROTOSCTM {
+				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_SCTM
+			} else {
+				return nil, fmt.Errorf("invalid application protocol %s", *device.ApplicationProtocol)
+			}
+
 			devices[i] = &pbtaskmaster.JobDevice{
 				Id:               device.Id.String(),
 				DeviceAttributes: device_attributes,
 				ExternalId:       device.ExternalID,
 				ConnectionInfo:   connection_info,
+				AppProtocol:      app_protocol,
 				Timezone:         device.Timezone,
 			}
 		}

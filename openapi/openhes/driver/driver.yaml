@@ -127,9 +127,7 @@ components:
         Schema that describes the application protocol.
       properties:
         protocol:
-          type: string
-          description: >
-            The application protocol.
+          $ref: "../job/job.yaml#/components/schemas/ApplicationProtocolSchema"
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 

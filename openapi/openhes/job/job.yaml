@@ -171,6 +171,26 @@ components:
         - id
         - deviceId
 
+    ApplicationProtocolSchema:
+      type: string
+      enum:
+        - APPPROTO_IEC_62056_21
+        - APPPROTO_DLMS_SN
+        - APPPROTO_DLMS_LN
+        - APPPROTO_SCTM
+        - APPPROTO_LIS200
+        - APPPROTO_ANSI_C12
+        - APPPROTO_MQTT
+      description: >
+        The type of the attribute.
+          * `APPPROTO_IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
+          * `APPPROTO_DLMS_SN` - The DLMS short-name protocol.
+          * `APPPROTO_DLMS_LN` - The DLMS logical-name protocol.
+          * `APPPROTO_SCTM` - The SCTM protocol.
+          * `APPPROTO_LIS200` - The LIS200 protocol.
+          * `APPPROTO_ANSI_C12` - The ANSI C12 protocol.
+          * `APPPROTO_MQTT` - The MQTT protocol.
+
     JobCustomDeviceSchema:
       type: object
       properties:
@@ -185,6 +205,8 @@ components:
           $ref: "#/components/schemas/ConnectionInfoSchema"
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
+        applicationProtocol:
+          $ref: "#/components/schemas/ApplicationProtocolSchema"
         timezone:
           type: string
           description: >
