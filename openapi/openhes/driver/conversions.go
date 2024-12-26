@@ -116,11 +116,26 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Driver
 		if dl_data == nil {
 			return nil, fmt.Errorf("datalink template contains nil")
 		}
+
+		dl_out := &datalink_tpls[dl_idx]
+
+		attr_out := make([]AttributeDefinitionSchema, 0, len(dl_data.Attributes))
+		for _, attr := range dl_data.Attributes {
+			attr_def, err := G2RAttributeDefinition(attr)
+			if err != nil {
+				return nil, err
+			}
+			if attr_def != nil {
+				attr_out = append(attr_out, *attr_def)
+			}
+		}
+		dl_out.Attributes = &attr_out
+
 		lp := dl_data.LinkProtocol.String()
-		datalink_tpls[dl_idx].LinkProtocol = &lp
+		dl_out.LinkProtocol = &lp
 		if dl_app_cnt := len(dl_data.AppProtocolRefs); dl_app_cnt > 0 {
 			// Let's use the same slice for the app protocols
-			datalink_tpls[dl_idx].AppProtocolRefs = &dl_data.AppProtocolRefs
+			dl_out.AppProtocolRefs = &dl_data.AppProtocolRefs
 		}
 	}
 
