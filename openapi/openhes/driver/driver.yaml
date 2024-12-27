@@ -47,6 +47,44 @@ components:
         spec:
           $ref: "#/components/schemas/DriverSpecSchema"
 
+    ActionTypeSchema:
+      type: string
+      enum:
+        - GET_REGISTER
+        - GET_PERIODICAL_PROFILE
+        - GET_IRREGULAR_PROFILE
+        - GET_EVENTS
+        - GET_CLOCK
+        - SYNC_CLOCK
+        - GET_RELAY_STATE
+        - SET_RELAY_STATE
+        - GET_DISCONNECTOR_STATE
+        - SET_DISCONNECTOR_STATE
+        - GET_TOU
+        - SET_TOU
+        - GET_LIMITER
+        - SET_LIMITER
+        - RESET_BILLING_PERIOD
+        - FW_UPDATE
+      description: >
+        The type of action.
+          * `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
+          * `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
+          * `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
+          * `GET_EVENTS` - The action is to get an event log.
+          * `GET_CLOCK` - The action is to get the clock.
+          * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
+          * `GET_RELAY_STATE` - The action is to get the relay state.
+          * `SET_RELAY_STATE` - The action is to set the relay state.
+          * `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
+          * `SET_DISCONNECTOR_STATE` - The action is to set the disconnector state.
+          * `GET_TOU` - The action is to get the time-of-use table.
+          * `SET_TOU` - The action is to set the time-of-use table.
+          * `GET_LIMITER` - The action is to get the limiter settings.
+          * `SET_LIMITER` - The action is to set the limiter settings.
+          * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
+          * `FW_UPDATE` - The action is to start a firmware update.
+
     DriverActionAttributeSchema:
       type: object
       description: >
@@ -66,7 +104,7 @@ components:
             defaultValue: "0-0:2.8.0.255"
       properties:
         type:
-          $ref: "../job/job.yaml#/components/schemas/ActionTypeSchema"
+          $ref: "#/components/schemas/ActionTypeSchema"
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 
@@ -91,15 +129,53 @@ components:
       items:
         $ref: "#/components/schemas/DriverDatalinkTemplateSchema"
 
+    ApplicationProtocolSchema:
+      type: string
+      enum:
+        - IEC_62056_21
+        - DLMS_SN
+        - DLMS_LN
+        - SCTM
+        - LIS200
+        - ANSI_C12
+        - MQTT
+        - MODBUS
+      description: >
+        The type of the application layer.
+          * `IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
+          * `DLMS_SN` - The DLMS short-name protocol.
+          * `DLMS_LN` - The DLMS logical-name protocol.
+          * `SCTM` - The SCTM protocol.
+          * `LIS200` - The LIS200 protocol.
+          * `ANSI_C12` - The ANSI C12 protocol.
+          * `MQTT` - The MQTT protocol.
+          * `MODBUS` - The Modbus protocol.
+
+    DataLinkProtocolSchema:
+      type: string
+      enum:
+        - IEC_62056_21
+        - HDLC
+        - COSEM_WRAPPER
+        - MODBUS
+        - MBUS
+        - NOT_APPLICABLE
+      description: >
+        The type of the data-link layer.
+          * `IEC_62056_21` - The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+          * `HDLC` - The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+          * `COSEM_WRAPPER` - The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+          * `MODBUS` - The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+          * `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
+          * `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
+
     DriverDatalinkTemplateSchema:
       type: object
       description: >
         Schema that describes the datalink template.
       properties:
         linkProtocol:
-          type: string
-          description: >
-            The link protocol.
+          $ref: "#/components/schemas/DataLinkProtocolSchema"
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
         appProtocolRefs:
@@ -110,9 +186,7 @@ components:
       description: >
         The list of application protocol references valid for the datalink template.
       items:
-        type: string
-        description: >
-          The application protocol reference, case insensitive.
+        $ref: "#/components/schemas/ApplicationProtocolSchema"
 
     DriverAppProtocolsSchema:
       type: array
@@ -127,7 +201,7 @@ components:
         Schema that describes the application protocol.
       properties:
         protocol:
-          $ref: "../job/job.yaml#/components/schemas/ApplicationProtocolSchema"
+          $ref: "#/components/schemas/ApplicationProtocolSchema"
         attributes:
           $ref: "#/components/schemas/DriverAttributesSchema"
 

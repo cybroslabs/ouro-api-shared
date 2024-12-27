@@ -13,8 +13,39 @@ import (
 	"strings"
 
 	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
-	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/getkin/kin-openapi/openapi3"
+)
+
+// Defines values for ActionTypeSchema.
+const (
+	FWUPDATE             ActionTypeSchema = "FW_UPDATE"
+	GETCLOCK             ActionTypeSchema = "GET_CLOCK"
+	GETDISCONNECTORSTATE ActionTypeSchema = "GET_DISCONNECTOR_STATE"
+	GETEVENTS            ActionTypeSchema = "GET_EVENTS"
+	GETIRREGULARPROFILE  ActionTypeSchema = "GET_IRREGULAR_PROFILE"
+	GETLIMITER           ActionTypeSchema = "GET_LIMITER"
+	GETPERIODICALPROFILE ActionTypeSchema = "GET_PERIODICAL_PROFILE"
+	GETREGISTER          ActionTypeSchema = "GET_REGISTER"
+	GETRELAYSTATE        ActionTypeSchema = "GET_RELAY_STATE"
+	GETTOU               ActionTypeSchema = "GET_TOU"
+	RESETBILLINGPERIOD   ActionTypeSchema = "RESET_BILLING_PERIOD"
+	SETDISCONNECTORSTATE ActionTypeSchema = "SET_DISCONNECTOR_STATE"
+	SETLIMITER           ActionTypeSchema = "SET_LIMITER"
+	SETRELAYSTATE        ActionTypeSchema = "SET_RELAY_STATE"
+	SETTOU               ActionTypeSchema = "SET_TOU"
+	SYNCCLOCK            ActionTypeSchema = "SYNC_CLOCK"
+)
+
+// Defines values for ApplicationProtocolSchema.
+const (
+	ApplicationProtocolSchemaANSIC12    ApplicationProtocolSchema = "ANSI_C12"
+	ApplicationProtocolSchemaDLMSLN     ApplicationProtocolSchema = "DLMS_LN"
+	ApplicationProtocolSchemaDLMSSN     ApplicationProtocolSchema = "DLMS_SN"
+	ApplicationProtocolSchemaIEC6205621 ApplicationProtocolSchema = "IEC_62056_21"
+	ApplicationProtocolSchemaLIS200     ApplicationProtocolSchema = "LIS200"
+	ApplicationProtocolSchemaMODBUS     ApplicationProtocolSchema = "MODBUS"
+	ApplicationProtocolSchemaMQTT       ApplicationProtocolSchema = "MQTT"
+	ApplicationProtocolSchemaSCTM       ApplicationProtocolSchema = "SCTM"
 )
 
 // Defines values for AttributeDefinitionSchemaType.
@@ -27,6 +58,46 @@ const (
 	TIMESTAMP   AttributeDefinitionSchemaType = "TIMESTAMP"
 	TIMESTAMPTZ AttributeDefinitionSchemaType = "TIMESTAMPTZ"
 )
+
+// Defines values for DataLinkProtocolSchema.
+const (
+	DataLinkProtocolSchemaCOSEMWRAPPER  DataLinkProtocolSchema = "COSEM_WRAPPER"
+	DataLinkProtocolSchemaHDLC          DataLinkProtocolSchema = "HDLC"
+	DataLinkProtocolSchemaIEC6205621    DataLinkProtocolSchema = "IEC_62056_21"
+	DataLinkProtocolSchemaMBUS          DataLinkProtocolSchema = "MBUS"
+	DataLinkProtocolSchemaMODBUS        DataLinkProtocolSchema = "MODBUS"
+	DataLinkProtocolSchemaNOTAPPLICABLE DataLinkProtocolSchema = "NOT_APPLICABLE"
+)
+
+// ActionTypeSchema The type of action.
+//   - `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
+//   - `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
+//   - `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
+//   - `GET_EVENTS` - The action is to get an event log.
+//   - `GET_CLOCK` - The action is to get the clock.
+//   - `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
+//   - `GET_RELAY_STATE` - The action is to get the relay state.
+//   - `SET_RELAY_STATE` - The action is to set the relay state.
+//   - `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
+//   - `SET_DISCONNECTOR_STATE` - The action is to set the disconnector state.
+//   - `GET_TOU` - The action is to get the time-of-use table.
+//   - `SET_TOU` - The action is to set the time-of-use table.
+//   - `GET_LIMITER` - The action is to get the limiter settings.
+//   - `SET_LIMITER` - The action is to set the limiter settings.
+//   - `RESET_BILLING_PERIOD` - The action is to reset the billing period.
+//   - `FW_UPDATE` - The action is to start a firmware update.
+type ActionTypeSchema string
+
+// ApplicationProtocolSchema The type of the application layer.
+//   - `IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
+//   - `DLMS_SN` - The DLMS short-name protocol.
+//   - `DLMS_LN` - The DLMS logical-name protocol.
+//   - `SCTM` - The SCTM protocol.
+//   - `LIS200` - The LIS200 protocol.
+//   - `ANSI_C12` - The ANSI C12 protocol.
+//   - `MQTT` - The MQTT protocol.
+//   - `MODBUS` - The Modbus protocol.
+type ApplicationProtocolSchema string
 
 // AttributeDefinitionSchema Schema that describes a driver attribute.
 type AttributeDefinitionSchema struct {
@@ -62,6 +133,15 @@ type AttributeDefinitionSchema struct {
 //   - `TIMESTAMPTZ` - The attribute is a timestamp; it is timezone-aware and it's always encoded as an ISO 8601 string.
 type AttributeDefinitionSchemaType string
 
+// DataLinkProtocolSchema The type of the data-link layer.
+//   - `IEC_62056_21` - The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+//   - `HDLC` - The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+//   - `COSEM_WRAPPER` - The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+//   - `MODBUS` - The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+//   - `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
+//   - `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
+type DataLinkProtocolSchema string
+
 // DriverActionAttributeSchema Schema that describes driver action attributes.
 type DriverActionAttributeSchema struct {
 	// Attributes Schema that describes a list of attributes supported by a driver.
@@ -84,26 +164,27 @@ type DriverActionAttributeSchema struct {
 	//   * `SET_LIMITER` - The action is to set the limiter settings.
 	//   * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
 	//   * `FW_UPDATE` - The action is to start a firmware update.
-	Type *externalRef1.ActionTypeSchema `json:"type,omitempty"`
+	Type *ActionTypeSchema `json:"type,omitempty"`
 }
 
 // DriverAppProtocolRefsSchema The list of application protocol references valid for the datalink template.
-type DriverAppProtocolRefsSchema = []string
+type DriverAppProtocolRefsSchema = []ApplicationProtocolSchema
 
 // DriverAppProtocolSchema Schema that describes the application protocol.
 type DriverAppProtocolSchema struct {
 	// Attributes Schema that describes a list of attributes supported by a driver.
 	Attributes *DriverAttributesSchema `json:"attributes,omitempty"`
 
-	// Protocol The type of the attribute.
-	//   * `APPPROTO_IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
-	//   * `APPPROTO_DLMS_SN` - The DLMS short-name protocol.
-	//   * `APPPROTO_DLMS_LN` - The DLMS logical-name protocol.
-	//   * `APPPROTO_SCTM` - The SCTM protocol.
-	//   * `APPPROTO_LIS200` - The LIS200 protocol.
-	//   * `APPPROTO_ANSI_C12` - The ANSI C12 protocol.
-	//   * `APPPROTO_MQTT` - The MQTT protocol.
-	Protocol *externalRef1.ApplicationProtocolSchema `json:"protocol,omitempty"`
+	// Protocol The type of the application layer.
+	//   * `IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
+	//   * `DLMS_SN` - The DLMS short-name protocol.
+	//   * `DLMS_LN` - The DLMS logical-name protocol.
+	//   * `SCTM` - The SCTM protocol.
+	//   * `LIS200` - The LIS200 protocol.
+	//   * `ANSI_C12` - The ANSI C12 protocol.
+	//   * `MQTT` - The MQTT protocol.
+	//   * `MODBUS` - The Modbus protocol.
+	Protocol *ApplicationProtocolSchema `json:"protocol,omitempty"`
 }
 
 // DriverAppProtocolsSchema The list of application protocols valid for the datalink template.
@@ -132,8 +213,14 @@ type DriverDatalinkTemplateSchema struct {
 	// Attributes Schema that describes a list of attributes supported by a driver.
 	Attributes *DriverAttributesSchema `json:"attributes,omitempty"`
 
-	// LinkProtocol The link protocol.
-	LinkProtocol *string `json:"linkProtocol,omitempty"`
+	// LinkProtocol The type of the data-link layer.
+	//   * `IEC_62056_21` - The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+	//   * `HDLC` - The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+	//   * `COSEM_WRAPPER` - The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+	//   * `MODBUS` - The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+	//   * `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
+	//   * `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
+	LinkProtocol *DataLinkProtocolSchema `json:"linkProtocol,omitempty"`
 }
 
 // DriverDatalinkTemplateSchemas The list of datalink templates valid for the communication template.
@@ -160,37 +247,42 @@ type GenericObject = interface{}
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"/D8AAP//0Z7k61AbAAA=",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
@@ -231,12 +323,6 @@ func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
 	}
 
 	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../../openhes/driver/driverdata/driverdata.yaml")) {
-		if _, ok := res[rawPath]; ok {
-			// it is not possible to compare functions in golang, so always overwrite the old value
-		}
-		res[rawPath] = rawFunc
-	}
-	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../job/job.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}

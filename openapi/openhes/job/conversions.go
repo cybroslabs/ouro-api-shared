@@ -4,10 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
-	"strings"
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
 	driverdata "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
@@ -18,7 +18,6 @@ import (
 
 var (
 	ErrInvalidJobStatus     = errors.New("invalid job status")
-	ErrInvalidActionType    = errors.New("invalid action type")
 	ErrUnknownJobActionType = errors.New("unknown job action type")
 	ErrInvalidDeviceList    = errors.New("invalid device list")
 )
@@ -495,30 +494,6 @@ func G2RActionResultCode(status pbdriver.ActionResultCode) (JobActionResultSchem
 	}
 }
 
-// Converts the action type - Rest API to gRPC
-func R2GActionType(actionType ActionTypeSchema) (pbdriver.ActionType, error) {
-	action_name := "ACTION_TYPE_" + string(actionType)
-	no, ok := pbdriver.ActionType_value[action_name]
-	if !ok {
-		return -1, ErrInvalidActionType
-	}
-	return pbdriver.ActionType(no), nil
-}
-
-// Converts the action type - gRPC to Rest API
-func G2RActionType(actionType pbdriver.ActionType) (ActionTypeSchema, error) {
-	no := int32(actionType.Number())
-	action_name, ok := pbdriver.ActionType_name[no]
-	if !ok {
-		return "", ErrInvalidActionType
-	}
-	result, ok := strings.CutPrefix(action_name, "ACTION_TYPE_")
-	if !ok {
-		return "", ErrInvalidActionType
-	}
-	return ActionTypeSchema(result), nil
-}
-
 // Converts the job settings - gRPC to Rest API
 func G2RJobSettings(settings *pbdriver.JobSettings) (*JobSettingsSchema, error) {
 	intPriority := int32(settings.Priority)
@@ -741,25 +716,9 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				}
 			}
 
-			var app_protocol pbdriver.ApplicationProtocol
-			if device.ApplicationProtocol == nil {
-				return nil, fmt.Errorf("application protocol is not set for device %s", device.Id.String())
-			} else if *device.ApplicationProtocol == APPPROTODLMSLN {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN
-			} else if *device.ApplicationProtocol == APPPROTODLMSSN {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN
-			} else if *device.ApplicationProtocol == APPPROTOANSIC12 {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12
-			} else if *device.ApplicationProtocol == APPPROTOIEC6205621 {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21
-			} else if *device.ApplicationProtocol == APPPROTOLIS200 {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_LIS200
-			} else if *device.ApplicationProtocol == APPPROTOMQTT {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_MQTT
-			} else if *device.ApplicationProtocol == APPPROTOSCTM {
-				app_protocol = pbdriver.ApplicationProtocol_APPPROTO_SCTM
-			} else {
-				return nil, fmt.Errorf("invalid application protocol %s", *device.ApplicationProtocol)
+			app_protocol, err := driver.R2GAppProtocol(device.ApplicationProtocol)
+			if err != nil {
+				return nil, err
 			}
 
 			devices[i] = &pbtaskmaster.JobDevice{
@@ -946,7 +905,7 @@ func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 								return nil, fmt.Errorf("unknown value type: %v", vt)
 							}
 						}
-						err = ar.Data.FromExternalRef0DeviceRegistersDataSchema(tmp)
+						err = ar.Data.FromExternalRef1DeviceRegistersDataSchema(tmp)
 						if err != nil {
 							return nil, err
 						}
@@ -991,7 +950,7 @@ func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 							}
 							tmp_blocks[i].Values = &tmp_values
 						}
-						err = ar.Data.FromExternalRef0DeviceProfileDataSchema(tmp)
+						err = ar.Data.FromExternalRef1DeviceProfileDataSchema(tmp)
 						if err != nil {
 							return nil, err
 						}

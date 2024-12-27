@@ -171,26 +171,6 @@ components:
         - id
         - deviceId
 
-    ApplicationProtocolSchema:
-      type: string
-      enum:
-        - APPPROTO_IEC_62056_21
-        - APPPROTO_DLMS_SN
-        - APPPROTO_DLMS_LN
-        - APPPROTO_SCTM
-        - APPPROTO_LIS200
-        - APPPROTO_ANSI_C12
-        - APPPROTO_MQTT
-      description: >
-        The type of the attribute.
-          * `APPPROTO_IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
-          * `APPPROTO_DLMS_SN` - The DLMS short-name protocol.
-          * `APPPROTO_DLMS_LN` - The DLMS logical-name protocol.
-          * `APPPROTO_SCTM` - The SCTM protocol.
-          * `APPPROTO_LIS200` - The LIS200 protocol.
-          * `APPPROTO_ANSI_C12` - The ANSI C12 protocol.
-          * `APPPROTO_MQTT` - The MQTT protocol.
-
     JobCustomDeviceSchema:
       type: object
       properties:
@@ -206,7 +186,7 @@ components:
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
         applicationProtocol:
-          $ref: "#/components/schemas/ApplicationProtocolSchema"
+          $ref: "../driver/driver.yaml#/components/schemas/ApplicationProtocolSchema"
         timezone:
           type: string
           description: >
@@ -632,44 +612,6 @@ components:
       format: uuid
       description: >
         The ID of the action.
-
-    ActionTypeSchema:
-      type: string
-      enum:
-        - GET_REGISTER
-        - GET_PERIODICAL_PROFILE
-        - GET_IRREGULAR_PROFILE
-        - GET_EVENTS
-        - GET_CLOCK
-        - SYNC_CLOCK
-        - GET_RELAY_STATE
-        - SET_RELAY_STATE
-        - GET_DISCONNECTOR_STATE
-        - SET_DISCONNECTOR_STATE
-        - GET_TOU
-        - SET_TOU
-        - GET_LIMITER
-        - SET_LIMITER
-        - RESET_BILLING_PERIOD
-        - FW_UPDATE
-      description: >
-        The type of action.
-          * `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
-          * `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
-          * `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
-          * `GET_EVENTS` - The action is to get an event log.
-          * `GET_CLOCK` - The action is to get the clock.
-          * `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
-          * `GET_RELAY_STATE` - The action is to get the relay state.
-          * `SET_RELAY_STATE` - The action is to set the relay state.
-          * `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
-          * `SET_DISCONNECTOR_STATE` - The action is to set the disconnector state.
-          * `GET_TOU` - The action is to get the time-of-use table.
-          * `SET_TOU` - The action is to set the time-of-use table.
-          * `GET_LIMITER` - The action is to get the limiter settings.
-          * `SET_LIMITER` - The action is to set the limiter settings.
-          * `RESET_BILLING_PERIOD` - The action is to reset the billing period.
-          * `FW_UPDATE` - The action is to start a firmware update.
 
     JobSettingsSchema:
       type: object

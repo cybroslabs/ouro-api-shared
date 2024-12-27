@@ -1,10 +1,15 @@
 package driver
 
 import (
+	"errors"
 	"fmt"
+	"strings"
 
-	"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+)
+
+var (
+	ErrInvalidActionType = errors.New("invalid action type")
 )
 
 // Converts the attribute type - gRPC to REST
@@ -101,7 +106,7 @@ func G2RAttributeDefinition(attrDef *pbdriver.AttributeDefinition) (*AttributeDe
 	return result, nil
 }
 
-func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*DriverCommunicationTemplateSchema, error) {
+func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate, appProtocols []*pbdriver.ApplicationProtocolTemplate) (*DriverCommunicationTemplateSchema, error) {
 	if commTemp == nil {
 		return nil, nil
 	}
@@ -132,26 +137,151 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate) (*Driver
 		}
 		dl_out.Attributes = &attr_out
 
-		lp := dl_data.LinkProtocol.String()
-		dl_out.LinkProtocol = &lp
+		lp, err := G2RDataLinkProtocol(dl_data.LinkProtocol)
+		if err != nil {
+			return nil, err
+		}
+		dl_out.LinkProtocol = lp
+
 		if dl_app_cnt := len(dl_data.AppProtocolRefs); dl_app_cnt > 0 {
 			// Let's use the same slice for the app protocols
-			dl_out.AppProtocolRefs = &dl_data.AppProtocolRefs
+			ap := make(DriverAppProtocolRefsSchema, dl_app_cnt)
+			for ap_idx, ap_data := range dl_data.AppProtocolRefs {
+				ap_out, err := G2RAppProtocol(ap_data)
+				if err != nil {
+					return nil, err
+				}
+				ap[ap_idx] = *ap_out
+			}
+			dl_out.AppProtocolRefs = &ap
 		}
 	}
 
 	return result, nil
 }
 
+// Converts the action type - Rest API to gRPC
+func R2GActionType(actionType ActionTypeSchema) (pbdriver.ActionType, error) {
+	action_name := "ACTION_TYPE_" + string(actionType)
+	no, ok := pbdriver.ActionType_value[action_name]
+	if !ok {
+		return -1, ErrInvalidActionType
+	}
+	return pbdriver.ActionType(no), nil
+}
+
+// Converts the action type - gRPC to Rest API
+func G2RActionType(actionType pbdriver.ActionType) (ActionTypeSchema, error) {
+	no := int32(actionType.Number())
+	action_name, ok := pbdriver.ActionType_name[no]
+	if !ok {
+		return "", ErrInvalidActionType
+	}
+	result, ok := strings.CutPrefix(action_name, "ACTION_TYPE_")
+	if !ok {
+		return "", ErrInvalidActionType
+	}
+	return ActionTypeSchema(result), nil
+}
+
 var (
-	appProtoANSIC12    = job.APPPROTOANSIC12
-	appProtoDLMSLN     = job.APPPROTODLMSLN
-	appProtoDLMSSN     = job.APPPROTODLMSSN
-	appProtoIEC6205621 = job.APPPROTOIEC6205621
-	appProtoLIS200     = job.APPPROTOLIS200
-	appProtoMQTT       = job.APPPROTOMQTT
-	appProtoSCTM       = job.APPPROTOSCTM
+	appProtoANSIC12    = ApplicationProtocolSchemaANSIC12
+	appProtoDLMSLN     = ApplicationProtocolSchemaDLMSLN
+	appProtoDLMSSN     = ApplicationProtocolSchemaDLMSSN
+	appProtoIEC6205621 = ApplicationProtocolSchemaIEC6205621
+	appProtoLIS200     = ApplicationProtocolSchemaLIS200
+	appProtoMQTT       = ApplicationProtocolSchemaMQTT
+	appProtoSCTM       = ApplicationProtocolSchemaSCTM
 )
+
+var (
+	dlProtoCOSEMWRAPPER  = DataLinkProtocolSchemaCOSEMWRAPPER
+	dlProtoHDLC          = DataLinkProtocolSchemaHDLC
+	dlProtoIEC6205621    = DataLinkProtocolSchemaIEC6205621
+	dlProtoMBUS          = DataLinkProtocolSchemaMBUS
+	dlProtoMODBUS        = DataLinkProtocolSchemaMODBUS
+	dlProtoNOTAPPLICABLE = DataLinkProtocolSchemaNOTAPPLICABLE
+)
+
+func R2GAppProtocol(proto *ApplicationProtocolSchema) (pbdriver.ApplicationProtocol, error) {
+	if proto == nil {
+		return 0, fmt.Errorf("application protocol is nil")
+	} else if *proto == ApplicationProtocolSchemaDLMSLN {
+		return pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN, nil
+	} else if *proto == ApplicationProtocolSchemaDLMSSN {
+		return pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN, nil
+	} else if *proto == ApplicationProtocolSchemaANSIC12 {
+		return pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12, nil
+	} else if *proto == ApplicationProtocolSchemaIEC6205621 {
+		return pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21, nil
+	} else if *proto == ApplicationProtocolSchemaLIS200 {
+		return pbdriver.ApplicationProtocol_APPPROTO_LIS200, nil
+	} else if *proto == ApplicationProtocolSchemaMQTT {
+		return pbdriver.ApplicationProtocol_APPPROTO_MQTT, nil
+	} else if *proto == ApplicationProtocolSchemaSCTM {
+		return pbdriver.ApplicationProtocol_APPPROTO_SCTM, nil
+	} else {
+		return 0, fmt.Errorf("invalid application protocol %s", *proto)
+	}
+}
+
+func G2RAppProtocol(proto pbdriver.ApplicationProtocol) (*ApplicationProtocolSchema, error) {
+	if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN {
+		return &appProtoDLMSLN, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN {
+		return &appProtoDLMSSN, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21 {
+		return &appProtoIEC6205621, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_LIS200 {
+		return &appProtoLIS200, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_MQTT {
+		return &appProtoMQTT, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_SCTM {
+		return &appProtoSCTM, nil
+	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12 {
+		return &appProtoANSIC12, nil
+	} else {
+		return nil, fmt.Errorf("unknown application protocol: %v", proto)
+	}
+}
+
+func R2GDataLinkProtocol(proto *DataLinkProtocolSchema) (pbdriver.DataLinkProtocol, error) {
+	if proto == nil {
+		return 0, fmt.Errorf("application protocol is nil")
+	} else if *proto == DataLinkProtocolSchemaCOSEMWRAPPER {
+		return pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER, nil
+	} else if *proto == DataLinkProtocolSchemaHDLC {
+		return pbdriver.DataLinkProtocol_LINKPROTO_HDLC, nil
+	} else if *proto == DataLinkProtocolSchemaIEC6205621 {
+		return pbdriver.DataLinkProtocol_LINKPROTO_IEC_62056_21, nil
+	} else if *proto == DataLinkProtocolSchemaMBUS {
+		return pbdriver.DataLinkProtocol_LINKPROTO_MBUS, nil
+	} else if *proto == DataLinkProtocolSchemaMODBUS {
+		return pbdriver.DataLinkProtocol_LINKPROTO_MODBUS, nil
+	} else if *proto == dlProtoNOTAPPLICABLE {
+		return pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE, nil
+	} else {
+		return 0, fmt.Errorf("invalid application protocol %s", *proto)
+	}
+}
+
+func G2RDataLinkProtocol(proto pbdriver.DataLinkProtocol) (*DataLinkProtocolSchema, error) {
+	if proto == pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER {
+		return &dlProtoCOSEMWRAPPER, nil
+	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_HDLC {
+		return &dlProtoHDLC, nil
+	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_IEC_62056_21 {
+		return &dlProtoIEC6205621, nil
+	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_MBUS {
+		return &dlProtoMBUS, nil
+	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_MODBUS {
+		return &dlProtoMODBUS, nil
+	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE {
+		return &dlProtoNOTAPPLICABLE, nil
+	} else {
+		return nil, fmt.Errorf("unknown application protocol: %v", proto)
+	}
+}
 
 func G2RAppProtocolTemplate(appProtocolTemplate *pbdriver.ApplicationProtocolTemplate) (*DriverAppProtocolSchema, error) {
 	if appProtocolTemplate == nil {
@@ -160,23 +290,10 @@ func G2RAppProtocolTemplate(appProtocolTemplate *pbdriver.ApplicationProtocolTem
 
 	result := &DriverAppProtocolSchema{}
 
-	var proto = appProtocolTemplate.Protocol
-	if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_LN {
-		result.Protocol = &appProtoDLMSLN
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_DLMS_SN {
-		result.Protocol = &appProtoDLMSSN
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_IEC_62056_21 {
-		result.Protocol = &appProtoIEC6205621
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_LIS200 {
-		result.Protocol = &appProtoLIS200
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_MQTT {
-		result.Protocol = &appProtoMQTT
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_SCTM {
-		result.Protocol = &appProtoSCTM
-	} else if proto == pbdriver.ApplicationProtocol_APPPROTO_ANSI_C12 {
-		result.Protocol = &appProtoANSIC12
-	} else {
-		return nil, fmt.Errorf("unknown application protocol: %v", proto)
+	var err error
+	result.Protocol, err = G2RAppProtocol(appProtocolTemplate.Protocol)
+	if err != nil {
+		return nil, err
 	}
 
 	if ap_attr_cnt := len(appProtocolTemplate.Attributes); ap_attr_cnt > 0 {

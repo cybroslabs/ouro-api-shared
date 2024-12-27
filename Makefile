@@ -37,11 +37,11 @@ generate:
 		./openapi/openhes/driver/driverdata/driverdata.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/job/job.go -package job \
-		-import-mapping '"../driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"' \
+		-import-mapping '"../driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata","../driver/driver.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"' \
 		./openapi/openhes/job/job.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/driver/driver.go -package driver \
-		-import-mapping '"../../openhes/driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata","../job/job.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"' \
+		-import-mapping '"../../openhes/driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"' \
 		./openapi/openhes/driver/driver.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/device/device.go -package device \

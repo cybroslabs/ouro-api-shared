@@ -561,7 +561,7 @@ message DataLinkTemplate {
     // The data link protocol.
     DataLinkProtocol link_protocol = 1;
     // The list of application protocol identifiers supported by the driver.
-    repeated string app_protocol_refs = 2;
+    repeated ApplicationProtocol app_protocol_refs = 2;
     // The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
     repeated AttributeDefinition attributes = 3;
 }

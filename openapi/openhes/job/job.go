@@ -15,41 +15,11 @@ import (
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
-	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
+	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
+	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
-)
-
-// Defines values for ActionTypeSchema.
-const (
-	FWUPDATE             ActionTypeSchema = "FW_UPDATE"
-	GETCLOCK             ActionTypeSchema = "GET_CLOCK"
-	GETDISCONNECTORSTATE ActionTypeSchema = "GET_DISCONNECTOR_STATE"
-	GETEVENTS            ActionTypeSchema = "GET_EVENTS"
-	GETIRREGULARPROFILE  ActionTypeSchema = "GET_IRREGULAR_PROFILE"
-	GETLIMITER           ActionTypeSchema = "GET_LIMITER"
-	GETPERIODICALPROFILE ActionTypeSchema = "GET_PERIODICAL_PROFILE"
-	GETREGISTER          ActionTypeSchema = "GET_REGISTER"
-	GETRELAYSTATE        ActionTypeSchema = "GET_RELAY_STATE"
-	GETTOU               ActionTypeSchema = "GET_TOU"
-	RESETBILLINGPERIOD   ActionTypeSchema = "RESET_BILLING_PERIOD"
-	SETDISCONNECTORSTATE ActionTypeSchema = "SET_DISCONNECTOR_STATE"
-	SETLIMITER           ActionTypeSchema = "SET_LIMITER"
-	SETRELAYSTATE        ActionTypeSchema = "SET_RELAY_STATE"
-	SETTOU               ActionTypeSchema = "SET_TOU"
-	SYNCCLOCK            ActionTypeSchema = "SYNC_CLOCK"
-)
-
-// Defines values for ApplicationProtocolSchema.
-const (
-	APPPROTOANSIC12    ApplicationProtocolSchema = "APPPROTO_ANSI_C12"
-	APPPROTODLMSLN     ApplicationProtocolSchema = "APPPROTO_DLMS_LN"
-	APPPROTODLMSSN     ApplicationProtocolSchema = "APPPROTO_DLMS_SN"
-	APPPROTOIEC6205621 ApplicationProtocolSchema = "APPPROTO_IEC_62056_21"
-	APPPROTOLIS200     ApplicationProtocolSchema = "APPPROTO_LIS200"
-	APPPROTOMQTT       ApplicationProtocolSchema = "APPPROTO_MQTT"
-	APPPROTOSCTM       ApplicationProtocolSchema = "APPPROTO_SCTM"
 )
 
 // Defines values for BulkStatusEnumSchema.
@@ -87,35 +57,6 @@ const (
 
 // ActionID The ID of the action.
 type ActionID = openapi_types.UUID
-
-// ActionTypeSchema The type of action.
-//   - `GET_REGISTER` - The action is to get a billing value, for example, instantaneous values.
-//   - `GET_PERIODICAL_PROFILE` - The action is to get a periodical profile, for example, load-profile.
-//   - `GET_IRREGULAR_PROFILE` - The action is to get a non-periodical profile, for, daily profile or monthly billing registers.
-//   - `GET_EVENTS` - The action is to get an event log.
-//   - `GET_CLOCK` - The action is to get the clock.
-//   - `SYNC_CLOCK` - The action is to synchronize the clock. The action synchronizes the clock in the device. If the force attribute is set, it forcefully sets the clock.
-//   - `GET_RELAY_STATE` - The action is to get the relay state.
-//   - `SET_RELAY_STATE` - The action is to set the relay state.
-//   - `GET_DISCONNECTOR_STATE` - The action is to get the disconnector state.
-//   - `SET_DISCONNECTOR_STATE` - The action is to set the disconnector state.
-//   - `GET_TOU` - The action is to get the time-of-use table.
-//   - `SET_TOU` - The action is to set the time-of-use table.
-//   - `GET_LIMITER` - The action is to get the limiter settings.
-//   - `SET_LIMITER` - The action is to set the limiter settings.
-//   - `RESET_BILLING_PERIOD` - The action is to reset the billing period.
-//   - `FW_UPDATE` - The action is to start a firmware update.
-type ActionTypeSchema string
-
-// ApplicationProtocolSchema The type of the attribute.
-//   - `APPPROTO_IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
-//   - `APPPROTO_DLMS_SN` - The DLMS short-name protocol.
-//   - `APPPROTO_DLMS_LN` - The DLMS logical-name protocol.
-//   - `APPPROTO_SCTM` - The SCTM protocol.
-//   - `APPPROTO_LIS200` - The LIS200 protocol.
-//   - `APPPROTO_ANSI_C12` - The ANSI C12 protocol.
-//   - `APPPROTO_MQTT` - The MQTT protocol.
-type ApplicationProtocolSchema string
 
 // AttributesSchema Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 type AttributesSchema = attribute.Attributes
@@ -419,16 +360,17 @@ type JobCustomDeviceListSchema = []JobCustomDeviceSchema
 
 // JobCustomDeviceSchema defines model for JobCustomDeviceSchema.
 type JobCustomDeviceSchema struct {
-	// ApplicationProtocol The type of the attribute.
-	//   * `APPPROTO_IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
-	//   * `APPPROTO_DLMS_SN` - The DLMS short-name protocol.
-	//   * `APPPROTO_DLMS_LN` - The DLMS logical-name protocol.
-	//   * `APPPROTO_SCTM` - The SCTM protocol.
-	//   * `APPPROTO_LIS200` - The LIS200 protocol.
-	//   * `APPPROTO_ANSI_C12` - The ANSI C12 protocol.
-	//   * `APPPROTO_MQTT` - The MQTT protocol.
-	ApplicationProtocol *ApplicationProtocolSchema `json:"applicationProtocol,omitempty"`
-	ConnectionInfo      ConnectionInfoSchema       `json:"connectionInfo"`
+	// ApplicationProtocol The type of the application layer.
+	//   * `IEC_62056_21` - The IEC 62056-21 (IEC-61107, VDEW) protocol.
+	//   * `DLMS_SN` - The DLMS short-name protocol.
+	//   * `DLMS_LN` - The DLMS logical-name protocol.
+	//   * `SCTM` - The SCTM protocol.
+	//   * `LIS200` - The LIS200 protocol.
+	//   * `ANSI_C12` - The ANSI C12 protocol.
+	//   * `MQTT` - The MQTT protocol.
+	//   * `MODBUS` - The Modbus protocol.
+	ApplicationProtocol *externalRef0.ApplicationProtocolSchema `json:"applicationProtocol,omitempty"`
+	ConnectionInfo      ConnectionInfoSchema                    `json:"connectionInfo"`
 
 	// DeviceAttributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
 	DeviceAttributes AttributesSchema `json:"deviceAttributes"`
@@ -659,22 +601,22 @@ func (t *ConnectionInfoSchema) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsExternalRef0DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef0.DeviceRegistersDataSchema
-func (t JobActionResultSchema_Data) AsExternalRef0DeviceRegistersDataSchema() (externalRef0.DeviceRegistersDataSchema, error) {
-	var body externalRef0.DeviceRegistersDataSchema
+// AsExternalRef1DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceRegistersDataSchema
+func (t JobActionResultSchema_Data) AsExternalRef1DeviceRegistersDataSchema() (externalRef1.DeviceRegistersDataSchema, error) {
+	var body externalRef1.DeviceRegistersDataSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromExternalRef0DeviceRegistersDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef0.DeviceRegistersDataSchema
-func (t *JobActionResultSchema_Data) FromExternalRef0DeviceRegistersDataSchema(v externalRef0.DeviceRegistersDataSchema) error {
+// FromExternalRef1DeviceRegistersDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceRegistersDataSchema
+func (t *JobActionResultSchema_Data) FromExternalRef1DeviceRegistersDataSchema(v externalRef1.DeviceRegistersDataSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeExternalRef0DeviceRegistersDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef0.DeviceRegistersDataSchema
-func (t *JobActionResultSchema_Data) MergeExternalRef0DeviceRegistersDataSchema(v externalRef0.DeviceRegistersDataSchema) error {
+// MergeExternalRef1DeviceRegistersDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef1.DeviceRegistersDataSchema
+func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceRegistersDataSchema(v externalRef1.DeviceRegistersDataSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -685,22 +627,22 @@ func (t *JobActionResultSchema_Data) MergeExternalRef0DeviceRegistersDataSchema(
 	return err
 }
 
-// AsExternalRef0DeviceProfileDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef0.DeviceProfileDataSchema
-func (t JobActionResultSchema_Data) AsExternalRef0DeviceProfileDataSchema() (externalRef0.DeviceProfileDataSchema, error) {
-	var body externalRef0.DeviceProfileDataSchema
+// AsExternalRef1DeviceProfileDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceProfileDataSchema
+func (t JobActionResultSchema_Data) AsExternalRef1DeviceProfileDataSchema() (externalRef1.DeviceProfileDataSchema, error) {
+	var body externalRef1.DeviceProfileDataSchema
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromExternalRef0DeviceProfileDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef0.DeviceProfileDataSchema
-func (t *JobActionResultSchema_Data) FromExternalRef0DeviceProfileDataSchema(v externalRef0.DeviceProfileDataSchema) error {
+// FromExternalRef1DeviceProfileDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceProfileDataSchema
+func (t *JobActionResultSchema_Data) FromExternalRef1DeviceProfileDataSchema(v externalRef1.DeviceProfileDataSchema) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeExternalRef0DeviceProfileDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef0.DeviceProfileDataSchema
-func (t *JobActionResultSchema_Data) MergeExternalRef0DeviceProfileDataSchema(v externalRef0.DeviceProfileDataSchema) error {
+// MergeExternalRef1DeviceProfileDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef1.DeviceProfileDataSchema
+func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceProfileDataSchema(v externalRef1.DeviceProfileDataSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1150,71 +1092,65 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
@@ -1254,7 +1190,13 @@ func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
 		res[pathToFile] = rawSpec
 	}
 
-	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driverdata/driverdata.yaml")) {
+	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driver.yaml")) {
+		if _, ok := res[rawPath]; ok {
+			// it is not possible to compare functions in golang, so always overwrite the old value
+		}
+		res[rawPath] = rawFunc
+	}
+	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driverdata/driverdata.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}
