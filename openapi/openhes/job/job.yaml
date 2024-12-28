@@ -152,10 +152,15 @@ components:
         - commandPort
 
     ConnectionInfoSchema:
-      oneOf:
-        - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
-        - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
-        - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
+      allOf:
+        - type: object
+          properties:
+            linkProtocol:
+              $ref: "../driver/driver.yaml#/components/schemas/DataLinkProtocolSchema"
+        - oneOf:
+          - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
+          - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
+          - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
 
     JobDeviceSchema:
       type: object

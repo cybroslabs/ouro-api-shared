@@ -687,7 +687,14 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				return nil, err
 			}
 
-			connection_info := &pbdriver.ConnectionInfo{}
+			link_proto, err := driver.R2GDataLinkProtocol(device.ConnectionInfo.LinkProtocol)
+			if err != nil {
+				return nil, err
+			}
+
+			connection_info := &pbdriver.ConnectionInfo{
+				LinkProtocol: link_proto,
+			}
 			if tcp, err := device.ConnectionInfo.AsConnectionTypeTcpIpSchema(); err == nil {
 				connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
 					Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
