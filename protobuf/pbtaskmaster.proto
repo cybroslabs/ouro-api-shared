@@ -75,7 +75,6 @@ message QueueJobsRequest {
 
 // Sub-message - job specification
 message JobSpec {
-    string job_id                           = 1;  // The job identifier.
     JobDevice device                        = 2;  // The device info.
     pbdriver.JobSettings job_settings       = 3;  // The job parameters.
     string driver_type                      = 4;  // The device (driver) type.
