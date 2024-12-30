@@ -21,7 +21,7 @@ require (
 	cel.dev/expr v0.19.1 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
-	github.com/bufbuild/protovalidate-go v0.8.0 // indirect
+	github.com/bufbuild/protovalidate-go v0.8.2 // indirect
 	github.com/cerbos/cerbos/api/genpb v0.40.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.3.0 // indirect
