@@ -247,7 +247,7 @@ func G2RAppProtocol(proto pbdriver.ApplicationProtocol) (*ApplicationProtocolSch
 
 func R2GDataLinkProtocol(proto *DataLinkProtocolSchema) (pbdriver.DataLinkProtocol, error) {
 	if proto == nil {
-		return 0, fmt.Errorf("application protocol is nil")
+		return 0, fmt.Errorf("data link protocol is nil")
 	} else if *proto == DataLinkProtocolSchemaCOSEMWRAPPER {
 		return pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER, nil
 	} else if *proto == DataLinkProtocolSchemaHDLC {
@@ -261,7 +261,7 @@ func R2GDataLinkProtocol(proto *DataLinkProtocolSchema) (pbdriver.DataLinkProtoc
 	} else if *proto == dlProtoNOTAPPLICABLE {
 		return pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE, nil
 	} else {
-		return 0, fmt.Errorf("invalid application protocol %s", *proto)
+		return 0, fmt.Errorf("invalid data link protocol %s", *proto)
 	}
 }
 
