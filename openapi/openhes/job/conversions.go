@@ -581,9 +581,10 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		target.ExternalID = device.ExternalId
 		target.DeviceAttributes = attribute.G2RAttributes(device.DeviceAttributes)
 		target.Timezone = device.Timezone
-		if ci := device.ConnectionInfo; ci != nil {
+		target.ConnectionInfo = make([]ConnectionInfoSchema, len(device.ConnectionInfo))
+		for j, ci := range device.ConnectionInfo {
 			if tcp := ci.GetTcpip(); tcp != nil {
-				err := target.ConnectionInfo.FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
+				err := target.ConnectionInfo[j].FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
 					Host: tcp.Host,
 					Port: int(tcp.Port),
 				})
@@ -596,7 +597,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				if err != nil {
 					return nil, err
 				}
-				err = target.ConnectionInfo.FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
+				err = target.ConnectionInfo[j].FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
 					Number: modem.Number,
 					PoolId: pool_id,
 				})
@@ -605,7 +606,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				}
 			} else if controller_serial := ci.GetSerialOverIp(); controller_serial != nil {
 				if moxa := controller_serial.GetMoxa(); moxa != nil {
-					err = target.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
+					err = target.ConnectionInfo[j].FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
 						Host:        moxa.Host,
 						DataPort:    int(moxa.DataPort),
 						CommandPort: int(moxa.CommandPort),
@@ -687,39 +688,44 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				return nil, err
 			}
 
-			link_proto, err := driver.R2GDataLinkProtocol(device.ConnectionInfo.LinkProtocol)
-			if err != nil {
-				return nil, err
-			}
+			connection_info_list := make([]*pbdriver.ConnectionInfo, len(device.ConnectionInfo))
+			for j, ci := range device.ConnectionInfo {
+				link_proto, err := driver.R2GDataLinkProtocol(ci.LinkProtocol)
+				if err != nil {
+					return nil, err
+				}
 
-			connection_info := &pbdriver.ConnectionInfo{
-				LinkProtocol: link_proto,
-			}
-			if tcp, err := device.ConnectionInfo.AsConnectionTypeTcpIpSchema(); err == nil {
-				connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
-					Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
-						Host: tcp.Host,
-						Port: uint32(tcp.Port),
-					},
+				connection_info := &pbdriver.ConnectionInfo{
+					LinkProtocol: link_proto,
 				}
-			} else if phone, err := device.ConnectionInfo.AsConnectionTypePhoneLineSchema(); err == nil {
-				connection_info.Connection = &pbdriver.ConnectionInfo_ModemPool{
-					ModemPool: &pbdriver.ConnectionTypeModemPool{
-						Number: phone.Number,
-						PoolId: phone.PoolId.String(),
-					},
-				}
-			} else if moxa, err := device.ConnectionInfo.AsConnectionTypeSerialMoxaSchema(); err == nil {
-				connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
-					SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
-						Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
-							Moxa: &pbdriver.ConnectionTypeSerialMoxa{
-								Host:        moxa.Host,
-								DataPort:    uint32(moxa.DataPort),
-								CommandPort: uint32(moxa.CommandPort),
+				connection_info_list[j] = connection_info
+
+				if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
+					connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
+						Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
+							Host: tcp.Host,
+							Port: uint32(tcp.Port),
+						},
+					}
+				} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
+					connection_info.Connection = &pbdriver.ConnectionInfo_ModemPool{
+						ModemPool: &pbdriver.ConnectionTypeModemPool{
+							Number: phone.Number,
+							PoolId: phone.PoolId.String(),
+						},
+					}
+				} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+					connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
+						SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+							Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+								Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+									Host:        moxa.Host,
+									DataPort:    uint32(moxa.DataPort),
+									CommandPort: uint32(moxa.CommandPort),
+								},
 							},
 						},
-					},
+					}
 				}
 			}
 
@@ -732,7 +738,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				Id:               device.Id.String(),
 				DeviceAttributes: device_attributes,
 				ExternalId:       device.ExternalID,
-				ConnectionInfo:   connection_info,
+				ConnectionInfo:   connection_info_list,
 				AppProtocol:      app_protocol,
 				Timezone:         device.Timezone,
 			}

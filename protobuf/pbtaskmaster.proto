@@ -88,7 +88,7 @@ message JobDevice {
     optional string device_id                              = 2;  // The device identifier. If set then all below is loaded from the device registry.
     optional string external_id                            = 3;  // The external identifier.
     map<string, pbdriver.AttributeValue> device_attributes = 4;  // The connection attributes to the device.
-    pbdriver.ConnectionInfo connection_info                = 5;  // The conenction (device) parameters.
+    repeated pbdriver.ConnectionInfo connection_info                = 5;  // The conenction (device) parameters.
     pbdriver.ApplicationProtocol app_protocol              = 6;  // The application protocol.
     optional string timezone                               = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
