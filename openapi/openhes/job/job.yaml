@@ -187,7 +187,12 @@ components:
             The public ID of the device.
           nullable: true
         connectionInfo:
-          $ref: "#/components/schemas/ConnectionInfoSchema"
+          type: array
+          description: >
+            The connection information of the device.
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/ConnectionInfoSchema"
         deviceAttributes:
           $ref: "#/components/schemas/AttributesSchema"
         applicationProtocol:
