@@ -1,5 +1,3 @@
 package attribute
 
-type Attributes map[string]Value
-
-type Value interface{}
+type Attributes map[string]interface{}

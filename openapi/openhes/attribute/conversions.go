@@ -28,7 +28,7 @@ func R2GAttributes(attrs Attributes) (result map[string]*pbdriver.AttributeValue
 	return
 }
 
-func _R2GAttributeValue(attr Value) (*pbdriver.AttributeValue, error) {
+func _R2GAttributeValue(attr interface{}) (*pbdriver.AttributeValue, error) {
 	t := reflect.TypeOf(attr)
 
 	switch typed_attr := attr.(type) {
@@ -114,7 +114,7 @@ func G2RAttributes(attrs map[string]*pbdriver.AttributeValue) Attributes {
 	return attributes
 }
 
-func _G2RAttributeValue(attr *pbdriver.AttributeValue) Value {
+func _G2RAttributeValue(attr *pbdriver.AttributeValue) interface{} {
 	switch typed_attr := attr.Value.(type) {
 	case *pbdriver.AttributeValue_StrValue:
 		return typed_attr.StrValue
