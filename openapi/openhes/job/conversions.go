@@ -1,6 +1,8 @@
 package job
 
 import (
+	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/url"
@@ -657,6 +659,26 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
+func decodeJobCustomDeviceList(raw json.RawMessage) (JobCustomDeviceListSchema, error) {
+	var devices JobCustomDeviceListSchema
+	d := json.NewDecoder(bytes.NewReader(raw))
+	d.UseNumber()
+	if err := d.Decode(&devices); err != nil {
+		return nil, err
+	}
+	return devices, nil
+}
+
+func decodeJobDeviceList(raw json.RawMessage) (JobDeviceListSchema, error) {
+	var devices JobDeviceListSchema
+	d := json.NewDecoder(bytes.NewReader(raw))
+	d.UseNumber()
+	if err := d.Decode(&devices); err != nil {
+		return nil, err
+	}
+	return devices, nil
+}
+
 // Converts the bulk spec - Rest API to gRPC
 func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	webhook_url := spec.WebhookURL
@@ -680,7 +702,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	}
 
 	var devices []*pbtaskmaster.JobDevice
-	if device_list, err := spec.Devices.AsJobCustomDeviceListSchema(); err == nil {
+	if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err != nil {
 		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
 			device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
@@ -743,7 +765,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				Timezone:         device.Timezone,
 			}
 		}
-	} else if device_list, err := spec.Devices.AsJobDeviceListSchema(); err == nil {
+	} else if device_list, err := decodeJobDeviceList(spec.Devices.Union); err == nil {
 		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
 			dev_id := device.DeviceId.String()
