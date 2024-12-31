@@ -702,7 +702,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 	}
 
 	var devices []*pbtaskmaster.JobDevice
-	if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err != nil {
+	if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err == nil {
 		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 		for i, device := range device_list {
 			device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
