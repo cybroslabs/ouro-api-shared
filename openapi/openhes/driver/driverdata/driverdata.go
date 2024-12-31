@@ -86,20 +86,20 @@ type GenericValueStatusSchemaValue3 = bool
 
 // GenericValueStatusSchema_Value The value.
 type GenericValueStatusSchema_Value struct {
-	union json.RawMessage
+	Union json.RawMessage
 }
 
 // AsGenericValueStatusSchemaValue0 returns the union data inside the GenericValueStatusSchema_Value as a GenericValueStatusSchemaValue0
 func (t GenericValueStatusSchema_Value) AsGenericValueStatusSchemaValue0() (GenericValueStatusSchemaValue0, error) {
 	var body GenericValueStatusSchemaValue0
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromGenericValueStatusSchemaValue0 overwrites any union data inside the GenericValueStatusSchema_Value as the provided GenericValueStatusSchemaValue0
 func (t *GenericValueStatusSchema_Value) FromGenericValueStatusSchemaValue0(v GenericValueStatusSchemaValue0) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -110,22 +110,22 @@ func (t *GenericValueStatusSchema_Value) MergeGenericValueStatusSchemaValue0(v G
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsGenericValueStatusSchemaValue1 returns the union data inside the GenericValueStatusSchema_Value as a GenericValueStatusSchemaValue1
 func (t GenericValueStatusSchema_Value) AsGenericValueStatusSchemaValue1() (GenericValueStatusSchemaValue1, error) {
 	var body GenericValueStatusSchemaValue1
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromGenericValueStatusSchemaValue1 overwrites any union data inside the GenericValueStatusSchema_Value as the provided GenericValueStatusSchemaValue1
 func (t *GenericValueStatusSchema_Value) FromGenericValueStatusSchemaValue1(v GenericValueStatusSchemaValue1) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -136,22 +136,22 @@ func (t *GenericValueStatusSchema_Value) MergeGenericValueStatusSchemaValue1(v G
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsGenericValueStatusSchemaValue2 returns the union data inside the GenericValueStatusSchema_Value as a GenericValueStatusSchemaValue2
 func (t GenericValueStatusSchema_Value) AsGenericValueStatusSchemaValue2() (GenericValueStatusSchemaValue2, error) {
 	var body GenericValueStatusSchemaValue2
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromGenericValueStatusSchemaValue2 overwrites any union data inside the GenericValueStatusSchema_Value as the provided GenericValueStatusSchemaValue2
 func (t *GenericValueStatusSchema_Value) FromGenericValueStatusSchemaValue2(v GenericValueStatusSchemaValue2) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -162,22 +162,22 @@ func (t *GenericValueStatusSchema_Value) MergeGenericValueStatusSchemaValue2(v G
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsGenericValueStatusSchemaValue3 returns the union data inside the GenericValueStatusSchema_Value as a GenericValueStatusSchemaValue3
 func (t GenericValueStatusSchema_Value) AsGenericValueStatusSchemaValue3() (GenericValueStatusSchemaValue3, error) {
 	var body GenericValueStatusSchemaValue3
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromGenericValueStatusSchemaValue3 overwrites any union data inside the GenericValueStatusSchema_Value as the provided GenericValueStatusSchemaValue3
 func (t *GenericValueStatusSchema_Value) FromGenericValueStatusSchemaValue3(v GenericValueStatusSchemaValue3) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -188,18 +188,18 @@ func (t *GenericValueStatusSchema_Value) MergeGenericValueStatusSchemaValue3(v G
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 func (t GenericValueStatusSchema_Value) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
+	b, err := t.Union.MarshalJSON()
 	return b, err
 }
 
 func (t *GenericValueStatusSchema_Value) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
+	err := t.Union.UnmarshalJSON(b)
 	return err
 }
 

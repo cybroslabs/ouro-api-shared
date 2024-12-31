@@ -88,7 +88,7 @@ type BulkSpecSchema struct {
 
 // BulkSpecSchema_Devices defines model for BulkSpecSchema.Devices.
 type BulkSpecSchema_Devices struct {
-	union json.RawMessage
+	Union json.RawMessage
 }
 
 // BulkStatusEnumSchema The status of a bulk.
@@ -116,7 +116,7 @@ type ConnectionInfoSchema struct {
 	//   * `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
 	//   * `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
 	LinkProtocol *externalRef0.DataLinkProtocolSchema `json:"linkProtocol,omitempty"`
-	union        json.RawMessage
+	Union        json.RawMessage
 }
 
 // ConnectionTypePhoneLineSchema Schema that describes the phone line (modem) connection.
@@ -305,12 +305,12 @@ type JobActionResultSchemaCode string
 
 // JobActionResultSchema_Data The result data of the action.
 type JobActionResultSchema_Data struct {
-	union json.RawMessage
+	Union json.RawMessage
 }
 
 // JobActionSchema Schema that describes actions.
 type JobActionSchema struct {
-	union json.RawMessage
+	Union json.RawMessage
 }
 
 // JobActionSetDisconnectorStateSchema defines model for JobActionSetDisconnectorStateSchema.
@@ -464,14 +464,14 @@ type JobStatusSchema struct {
 // AsJobCustomDeviceListSchema returns the union data inside the BulkSpecSchema_Devices as a JobCustomDeviceListSchema
 func (t BulkSpecSchema_Devices) AsJobCustomDeviceListSchema() (JobCustomDeviceListSchema, error) {
 	var body JobCustomDeviceListSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobCustomDeviceListSchema overwrites any union data inside the BulkSpecSchema_Devices as the provided JobCustomDeviceListSchema
 func (t *BulkSpecSchema_Devices) FromJobCustomDeviceListSchema(v JobCustomDeviceListSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -482,22 +482,22 @@ func (t *BulkSpecSchema_Devices) MergeJobCustomDeviceListSchema(v JobCustomDevic
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobDeviceListSchema returns the union data inside the BulkSpecSchema_Devices as a JobDeviceListSchema
 func (t BulkSpecSchema_Devices) AsJobDeviceListSchema() (JobDeviceListSchema, error) {
 	var body JobDeviceListSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobDeviceListSchema overwrites any union data inside the BulkSpecSchema_Devices as the provided JobDeviceListSchema
 func (t *BulkSpecSchema_Devices) FromJobDeviceListSchema(v JobDeviceListSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -508,32 +508,32 @@ func (t *BulkSpecSchema_Devices) MergeJobDeviceListSchema(v JobDeviceListSchema)
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 func (t BulkSpecSchema_Devices) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
+	b, err := t.Union.MarshalJSON()
 	return b, err
 }
 
 func (t *BulkSpecSchema_Devices) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
+	err := t.Union.UnmarshalJSON(b)
 	return err
 }
 
 // AsConnectionTypeTcpIpSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeTcpIpSchema
 func (t ConnectionInfoSchema) AsConnectionTypeTcpIpSchema() (ConnectionTypeTcpIpSchema, error) {
 	var body ConnectionTypeTcpIpSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromConnectionTypeTcpIpSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeTcpIpSchema
 func (t *ConnectionInfoSchema) FromConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -544,22 +544,22 @@ func (t *ConnectionInfoSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTc
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsConnectionTypePhoneLineSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypePhoneLineSchema
 func (t ConnectionInfoSchema) AsConnectionTypePhoneLineSchema() (ConnectionTypePhoneLineSchema, error) {
 	var body ConnectionTypePhoneLineSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromConnectionTypePhoneLineSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypePhoneLineSchema
 func (t *ConnectionInfoSchema) FromConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -570,22 +570,22 @@ func (t *ConnectionInfoSchema) MergeConnectionTypePhoneLineSchema(v ConnectionTy
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsConnectionTypeSerialMoxaSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeSerialMoxaSchema
 func (t ConnectionInfoSchema) AsConnectionTypeSerialMoxaSchema() (ConnectionTypeSerialMoxaSchema, error) {
 	var body ConnectionTypeSerialMoxaSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromConnectionTypeSerialMoxaSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeSerialMoxaSchema
 func (t *ConnectionInfoSchema) FromConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -596,18 +596,18 @@ func (t *ConnectionInfoSchema) MergeConnectionTypeSerialMoxaSchema(v ConnectionT
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 func (t ConnectionInfoSchema) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
+	b, err := t.Union.MarshalJSON()
 	if err != nil {
 		return nil, err
 	}
 	object := make(map[string]json.RawMessage)
-	if t.union != nil {
+	if t.Union != nil {
 		err = json.Unmarshal(b, &object)
 		if err != nil {
 			return nil, err
@@ -625,7 +625,7 @@ func (t ConnectionInfoSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ConnectionInfoSchema) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
+	err := t.Union.UnmarshalJSON(b)
 	if err != nil {
 		return err
 	}
@@ -648,14 +648,14 @@ func (t *ConnectionInfoSchema) UnmarshalJSON(b []byte) error {
 // AsExternalRef1DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceRegistersDataSchema
 func (t JobActionResultSchema_Data) AsExternalRef1DeviceRegistersDataSchema() (externalRef1.DeviceRegistersDataSchema, error) {
 	var body externalRef1.DeviceRegistersDataSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromExternalRef1DeviceRegistersDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceRegistersDataSchema
 func (t *JobActionResultSchema_Data) FromExternalRef1DeviceRegistersDataSchema(v externalRef1.DeviceRegistersDataSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -666,22 +666,22 @@ func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceRegistersDataSchema(
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsExternalRef1DeviceProfileDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceProfileDataSchema
 func (t JobActionResultSchema_Data) AsExternalRef1DeviceProfileDataSchema() (externalRef1.DeviceProfileDataSchema, error) {
 	var body externalRef1.DeviceProfileDataSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromExternalRef1DeviceProfileDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceProfileDataSchema
 func (t *JobActionResultSchema_Data) FromExternalRef1DeviceProfileDataSchema(v externalRef1.DeviceProfileDataSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -692,32 +692,32 @@ func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceProfileDataSchema(v 
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 func (t JobActionResultSchema_Data) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
+	b, err := t.Union.MarshalJSON()
 	return b, err
 }
 
 func (t *JobActionResultSchema_Data) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
+	err := t.Union.UnmarshalJSON(b)
 	return err
 }
 
 // AsJobActionGetRegisterSchema returns the union data inside the JobActionSchema as a JobActionGetRegisterSchema
 func (t JobActionSchema) AsJobActionGetRegisterSchema() (JobActionGetRegisterSchema, error) {
 	var body JobActionGetRegisterSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetRegisterSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetRegisterSchema
 func (t *JobActionSchema) FromJobActionGetRegisterSchema(v JobActionGetRegisterSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -728,22 +728,22 @@ func (t *JobActionSchema) MergeJobActionGetRegisterSchema(v JobActionGetRegister
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetPeriodicalProfileSchema returns the union data inside the JobActionSchema as a JobActionGetPeriodicalProfileSchema
 func (t JobActionSchema) AsJobActionGetPeriodicalProfileSchema() (JobActionGetPeriodicalProfileSchema, error) {
 	var body JobActionGetPeriodicalProfileSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetPeriodicalProfileSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetPeriodicalProfileSchema
 func (t *JobActionSchema) FromJobActionGetPeriodicalProfileSchema(v JobActionGetPeriodicalProfileSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -754,22 +754,22 @@ func (t *JobActionSchema) MergeJobActionGetPeriodicalProfileSchema(v JobActionGe
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetIrregularProfileSchema returns the union data inside the JobActionSchema as a JobActionGetIrregularProfileSchema
 func (t JobActionSchema) AsJobActionGetIrregularProfileSchema() (JobActionGetIrregularProfileSchema, error) {
 	var body JobActionGetIrregularProfileSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetIrregularProfileSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetIrregularProfileSchema
 func (t *JobActionSchema) FromJobActionGetIrregularProfileSchema(v JobActionGetIrregularProfileSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -780,22 +780,22 @@ func (t *JobActionSchema) MergeJobActionGetIrregularProfileSchema(v JobActionGet
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetEventsSchema returns the union data inside the JobActionSchema as a JobActionGetEventsSchema
 func (t JobActionSchema) AsJobActionGetEventsSchema() (JobActionGetEventsSchema, error) {
 	var body JobActionGetEventsSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetEventsSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetEventsSchema
 func (t *JobActionSchema) FromJobActionGetEventsSchema(v JobActionGetEventsSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -806,22 +806,22 @@ func (t *JobActionSchema) MergeJobActionGetEventsSchema(v JobActionGetEventsSche
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetClockSchema returns the union data inside the JobActionSchema as a JobActionGetClockSchema
 func (t JobActionSchema) AsJobActionGetClockSchema() (JobActionGetClockSchema, error) {
 	var body JobActionGetClockSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetClockSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetClockSchema
 func (t *JobActionSchema) FromJobActionGetClockSchema(v JobActionGetClockSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -832,22 +832,22 @@ func (t *JobActionSchema) MergeJobActionGetClockSchema(v JobActionGetClockSchema
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionSyncClockSchema returns the union data inside the JobActionSchema as a JobActionSyncClockSchema
 func (t JobActionSchema) AsJobActionSyncClockSchema() (JobActionSyncClockSchema, error) {
 	var body JobActionSyncClockSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionSyncClockSchema overwrites any union data inside the JobActionSchema as the provided JobActionSyncClockSchema
 func (t *JobActionSchema) FromJobActionSyncClockSchema(v JobActionSyncClockSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -858,22 +858,22 @@ func (t *JobActionSchema) MergeJobActionSyncClockSchema(v JobActionSyncClockSche
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetRelayStateSchema returns the union data inside the JobActionSchema as a JobActionGetRelayStateSchema
 func (t JobActionSchema) AsJobActionGetRelayStateSchema() (JobActionGetRelayStateSchema, error) {
 	var body JobActionGetRelayStateSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetRelayStateSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetRelayStateSchema
 func (t *JobActionSchema) FromJobActionGetRelayStateSchema(v JobActionGetRelayStateSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -884,22 +884,22 @@ func (t *JobActionSchema) MergeJobActionGetRelayStateSchema(v JobActionGetRelayS
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionSetRelayStateSchema returns the union data inside the JobActionSchema as a JobActionSetRelayStateSchema
 func (t JobActionSchema) AsJobActionSetRelayStateSchema() (JobActionSetRelayStateSchema, error) {
 	var body JobActionSetRelayStateSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionSetRelayStateSchema overwrites any union data inside the JobActionSchema as the provided JobActionSetRelayStateSchema
 func (t *JobActionSchema) FromJobActionSetRelayStateSchema(v JobActionSetRelayStateSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -910,22 +910,22 @@ func (t *JobActionSchema) MergeJobActionSetRelayStateSchema(v JobActionSetRelayS
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetDisconnectorStateSchema returns the union data inside the JobActionSchema as a JobActionGetDisconnectorStateSchema
 func (t JobActionSchema) AsJobActionGetDisconnectorStateSchema() (JobActionGetDisconnectorStateSchema, error) {
 	var body JobActionGetDisconnectorStateSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetDisconnectorStateSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetDisconnectorStateSchema
 func (t *JobActionSchema) FromJobActionGetDisconnectorStateSchema(v JobActionGetDisconnectorStateSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -936,22 +936,22 @@ func (t *JobActionSchema) MergeJobActionGetDisconnectorStateSchema(v JobActionGe
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionSetDisconnectorStateSchema returns the union data inside the JobActionSchema as a JobActionSetDisconnectorStateSchema
 func (t JobActionSchema) AsJobActionSetDisconnectorStateSchema() (JobActionSetDisconnectorStateSchema, error) {
 	var body JobActionSetDisconnectorStateSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionSetDisconnectorStateSchema overwrites any union data inside the JobActionSchema as the provided JobActionSetDisconnectorStateSchema
 func (t *JobActionSchema) FromJobActionSetDisconnectorStateSchema(v JobActionSetDisconnectorStateSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -962,22 +962,22 @@ func (t *JobActionSchema) MergeJobActionSetDisconnectorStateSchema(v JobActionSe
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetTouSchema returns the union data inside the JobActionSchema as a JobActionGetTouSchema
 func (t JobActionSchema) AsJobActionGetTouSchema() (JobActionGetTouSchema, error) {
 	var body JobActionGetTouSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetTouSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetTouSchema
 func (t *JobActionSchema) FromJobActionGetTouSchema(v JobActionGetTouSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -988,22 +988,22 @@ func (t *JobActionSchema) MergeJobActionGetTouSchema(v JobActionGetTouSchema) er
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionSetTouSchema returns the union data inside the JobActionSchema as a JobActionSetTouSchema
 func (t JobActionSchema) AsJobActionSetTouSchema() (JobActionSetTouSchema, error) {
 	var body JobActionSetTouSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionSetTouSchema overwrites any union data inside the JobActionSchema as the provided JobActionSetTouSchema
 func (t *JobActionSchema) FromJobActionSetTouSchema(v JobActionSetTouSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -1014,22 +1014,22 @@ func (t *JobActionSchema) MergeJobActionSetTouSchema(v JobActionSetTouSchema) er
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionGetLimiterSchema returns the union data inside the JobActionSchema as a JobActionGetLimiterSchema
 func (t JobActionSchema) AsJobActionGetLimiterSchema() (JobActionGetLimiterSchema, error) {
 	var body JobActionGetLimiterSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionGetLimiterSchema overwrites any union data inside the JobActionSchema as the provided JobActionGetLimiterSchema
 func (t *JobActionSchema) FromJobActionGetLimiterSchema(v JobActionGetLimiterSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -1040,22 +1040,22 @@ func (t *JobActionSchema) MergeJobActionGetLimiterSchema(v JobActionGetLimiterSc
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionSetLimiterSchema returns the union data inside the JobActionSchema as a JobActionSetLimiterSchema
 func (t JobActionSchema) AsJobActionSetLimiterSchema() (JobActionSetLimiterSchema, error) {
 	var body JobActionSetLimiterSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionSetLimiterSchema overwrites any union data inside the JobActionSchema as the provided JobActionSetLimiterSchema
 func (t *JobActionSchema) FromJobActionSetLimiterSchema(v JobActionSetLimiterSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -1066,22 +1066,22 @@ func (t *JobActionSchema) MergeJobActionSetLimiterSchema(v JobActionSetLimiterSc
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionResetBillingPeriodSchema returns the union data inside the JobActionSchema as a JobActionResetBillingPeriodSchema
 func (t JobActionSchema) AsJobActionResetBillingPeriodSchema() (JobActionResetBillingPeriodSchema, error) {
 	var body JobActionResetBillingPeriodSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionResetBillingPeriodSchema overwrites any union data inside the JobActionSchema as the provided JobActionResetBillingPeriodSchema
 func (t *JobActionSchema) FromJobActionResetBillingPeriodSchema(v JobActionResetBillingPeriodSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -1092,22 +1092,22 @@ func (t *JobActionSchema) MergeJobActionResetBillingPeriodSchema(v JobActionRese
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 // AsJobActionFwUpdateSchema returns the union data inside the JobActionSchema as a JobActionFwUpdateSchema
 func (t JobActionSchema) AsJobActionFwUpdateSchema() (JobActionFwUpdateSchema, error) {
 	var body JobActionFwUpdateSchema
-	err := json.Unmarshal(t.union, &body)
+	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
 // FromJobActionFwUpdateSchema overwrites any union data inside the JobActionSchema as the provided JobActionFwUpdateSchema
 func (t *JobActionSchema) FromJobActionFwUpdateSchema(v JobActionFwUpdateSchema) error {
 	b, err := json.Marshal(v)
-	t.union = b
+	t.Union = b
 	return err
 }
 
@@ -1118,18 +1118,18 @@ func (t *JobActionSchema) MergeJobActionFwUpdateSchema(v JobActionFwUpdateSchema
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
 	return err
 }
 
 func (t JobActionSchema) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
+	b, err := t.Union.MarshalJSON()
 	return b, err
 }
 
 func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
+	err := t.Union.UnmarshalJSON(b)
 	return err
 }
 

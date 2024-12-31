@@ -47,3 +47,5 @@ generate:
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/device/device.go -package device \
 		-import-mapping '"../job/job.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"' \
 		./openapi/openhes/device/device.yaml
+
+	find ./openapi -type f -name '*.go' | xargs sed -i '' -e "s|union\( *\)json.RawMessage|Union\1json.RawMessage|g; s|t.union|t.Union|g"
