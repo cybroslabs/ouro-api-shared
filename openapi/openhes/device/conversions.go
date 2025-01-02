@@ -56,10 +56,14 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 		}
 		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if serial_direct, err := ci.AsConnectionTypeSerialDirectSchema(); err == nil {
-		ci := &pbdriver.ConnectionTypeControlledSerial_Direct{
-			Direct: &pbdriver.ConnectionTypeSerialDirect{
-				Host: serial_direct.Host,
-				Port: uint32(serial_direct.Port),
+		ci := &pbdriver.ConnectionInfo_SerialOverIp{
+			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+				Converter: &pbdriver.ConnectionTypeControlledSerial_Direct{
+					Direct: &pbdriver.ConnectionTypeSerialDirect{
+						Host: serial_direct.Host,
+						Port: uint32(serial_direct.Port),
+					},
+				},
 			},
 		}
 		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}

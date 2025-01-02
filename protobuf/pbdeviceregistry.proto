@@ -36,7 +36,7 @@ service DeviceRegistryService {
     rpc RemoveDevicesFromGroup(RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 
     // The method to get the information about the modem pool. The method returns the modem pool information.
-    rpc GetModemByPool(google.protobuf.StringValue) returns (GetModemPoolResponse);
+    rpc GetModemPool(google.protobuf.StringValue) returns (GetModemPoolResponse);
     // The method to create a new modem pool.
     rpc CreateModemPool(SetModemPoolRequest) returns (google.protobuf.Empty);
     // The method to update the modem pool.
