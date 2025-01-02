@@ -112,9 +112,9 @@ components:
           minLength: 1
         pool_id:
           type: string
+          format: uuid
           description: >
             The modem pool ID.
-          format: uuid
       required:
         - type_modem
         - number
@@ -201,9 +201,9 @@ components:
           $ref: "#/components/schemas/JobID"
         deviceId:
           type: string
+          format: uuid
           description: >
             The ID of the device.
-          format: uuid
       required:
         - id
         - deviceId
@@ -639,15 +639,15 @@ components:
 
     BulkID:
       type: string
+      format: uuid
       description: >
         The ID of the job bulk. The ID must be unique across all OpenHES components.
-      format: uuid
 
     JobID:
       type: string
+      format: uuid
       description: >
         The ID of the job. The ID must be unique across all OpenHES components.
-      format: uuid
 
     ActionID:
       type: string

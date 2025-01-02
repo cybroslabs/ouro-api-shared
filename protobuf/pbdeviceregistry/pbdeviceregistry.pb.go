@@ -932,6 +932,7 @@ func (x *DeviceCommunicationUnits) GetCommunicationUnits() []*pbdriver.Connectio
 	return nil
 }
 
+// RestApi -> DriverRegistry - the request message to get the modem pool info.
 type GetModemPoolRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PoolId        string                 `protobuf:"bytes,1,opt,name=pool_id,json=poolId,proto3" json:"pool_id,omitempty"` // The modem pool identifier.
@@ -976,6 +977,7 @@ func (x *GetModemPoolRequest) GetPoolId() string {
 	return ""
 }
 
+// DriverRegistry -> RestApi - the message holds the information about the modem pool.
 type GetModemPoolResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Modems        []*pbdriver.ModemInfo  `protobuf:"bytes,1,rep,name=modems,proto3" json:"modems,omitempty"` // The modems registered within the pool.

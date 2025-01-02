@@ -156,10 +156,12 @@ message DeviceCommunicationUnits {
     repeated pbdriver.ConnectionInfo communication_units = 1;  // The list of communication units linked to the device.
 }
 
+// RestApi -> DriverRegistry - the request message to get the modem pool info.
 message GetModemPoolRequest {
     string pool_id = 1;  // The modem pool identifier.
 }
 
+// DriverRegistry -> RestApi - the message holds the information about the modem pool.
 message GetModemPoolResponse {
     repeated pbdriver.ModemInfo modems = 1;  // The modems registered within the pool.
     string name                        = 2;  // The name of the modem pool.
