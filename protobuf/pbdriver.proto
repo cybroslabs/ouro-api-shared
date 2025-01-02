@@ -240,6 +240,7 @@ message ConnectionInfo {
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
     DataLinkProtocol link_protocol = 4;  // The data link protocol.
+    optional string custom_grouping_id = 5; // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
 }
 
 // Sub-message containing connection info for TCP connection type
