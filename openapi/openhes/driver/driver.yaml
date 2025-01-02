@@ -180,6 +180,10 @@ components:
           $ref: "#/components/schemas/DriverAttributesSchema"
         appProtocolRefs:
           $ref: "#/components/schemas/DriverAppProtocolRefsSchema"
+      required:
+        - linkProtocol
+        - attributes
+        - appProtocolRefs
 
     DriverAppProtocolRefsSchema:
       type: array

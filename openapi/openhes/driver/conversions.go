@@ -135,7 +135,7 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate, appProto
 				attr_out = append(attr_out, *attr_def)
 			}
 		}
-		dl_out.Attributes = &attr_out
+		dl_out.Attributes = attr_out
 
 		lp, err := G2RDataLinkProtocol(dl_data.LinkProtocol)
 		if err != nil {
@@ -153,7 +153,7 @@ func G2RCommunicationTemplate(commTemp *pbdriver.CommunicationTemplate, appProto
 				}
 				ap[ap_idx] = *ap_out
 			}
-			dl_out.AppProtocolRefs = &ap
+			dl_out.AppProtocolRefs = ap
 		}
 	}
 
@@ -245,41 +245,39 @@ func G2RAppProtocol(proto pbdriver.ApplicationProtocol) (*ApplicationProtocolSch
 	}
 }
 
-func R2GDataLinkProtocol(proto *DataLinkProtocolSchema) (pbdriver.DataLinkProtocol, error) {
-	if proto == nil {
-		return 0, fmt.Errorf("data link protocol is nil")
-	} else if *proto == DataLinkProtocolSchemaCOSEMWRAPPER {
+func R2GDataLinkProtocol(proto DataLinkProtocolSchema) (pbdriver.DataLinkProtocol, error) {
+	if proto == DataLinkProtocolSchemaCOSEMWRAPPER {
 		return pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER, nil
-	} else if *proto == DataLinkProtocolSchemaHDLC {
+	} else if proto == DataLinkProtocolSchemaHDLC {
 		return pbdriver.DataLinkProtocol_LINKPROTO_HDLC, nil
-	} else if *proto == DataLinkProtocolSchemaIEC6205621 {
+	} else if proto == DataLinkProtocolSchemaIEC6205621 {
 		return pbdriver.DataLinkProtocol_LINKPROTO_IEC_62056_21, nil
-	} else if *proto == DataLinkProtocolSchemaMBUS {
+	} else if proto == DataLinkProtocolSchemaMBUS {
 		return pbdriver.DataLinkProtocol_LINKPROTO_MBUS, nil
-	} else if *proto == DataLinkProtocolSchemaMODBUS {
+	} else if proto == DataLinkProtocolSchemaMODBUS {
 		return pbdriver.DataLinkProtocol_LINKPROTO_MODBUS, nil
-	} else if *proto == dlProtoNOTAPPLICABLE {
+	} else if proto == dlProtoNOTAPPLICABLE {
 		return pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE, nil
 	} else {
-		return 0, fmt.Errorf("invalid data link protocol %s", *proto)
+		return 0, fmt.Errorf("invalid data link protocol %s", proto)
 	}
 }
 
-func G2RDataLinkProtocol(proto pbdriver.DataLinkProtocol) (*DataLinkProtocolSchema, error) {
+func G2RDataLinkProtocol(proto pbdriver.DataLinkProtocol) (DataLinkProtocolSchema, error) {
 	if proto == pbdriver.DataLinkProtocol_LINKPROTO_COSEM_WRAPPER {
-		return &dlProtoCOSEMWRAPPER, nil
+		return dlProtoCOSEMWRAPPER, nil
 	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_HDLC {
-		return &dlProtoHDLC, nil
+		return dlProtoHDLC, nil
 	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_IEC_62056_21 {
-		return &dlProtoIEC6205621, nil
+		return dlProtoIEC6205621, nil
 	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_MBUS {
-		return &dlProtoMBUS, nil
+		return dlProtoMBUS, nil
 	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_MODBUS {
-		return &dlProtoMODBUS, nil
+		return dlProtoMODBUS, nil
 	} else if proto == pbdriver.DataLinkProtocol_LINKPROTO_NOT_APPLICABLE {
-		return &dlProtoNOTAPPLICABLE, nil
+		return dlProtoNOTAPPLICABLE, nil
 	} else {
-		return nil, fmt.Errorf("unknown application protocol: %v", proto)
+		return "", fmt.Errorf("unknown application protocol: %v", proto)
 	}
 }
 

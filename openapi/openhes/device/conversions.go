@@ -20,30 +20,34 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 		return nil, nil
 	}
 
-	result := &pbdeviceregistry.CommunicationUnitSpec{
-		Id:         communicationUnit.Id.String(),
-		ExternalId: communicationUnit.ExternalID,
-		Name:       communicationUnit.Name,
+	ci := communicationUnit.ConnectionInfo
+
+	connection_info := &pbdriver.ConnectionInfo{
+		CustomGroupingId: ci.CustomGroupingId,
 	}
 
-	ci := communicationUnit.ConnectionInfo
+	result := &pbdeviceregistry.CommunicationUnitSpec{
+		Id:             communicationUnit.Id.String(),
+		ExternalId:     communicationUnit.ExternalID,
+		Name:           communicationUnit.Name,
+		ConnectionInfo: connection_info,
+	}
+
 	if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
-		ci := &pbdriver.ConnectionInfo_Tcpip{
+		connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
 			Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
 				Host: tcp.Host,
 				Port: uint32(tcp.Port),
 			},
 		}
-		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if modem, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
-		ci := &pbdriver.ConnectionInfo_ModemPool{
+		connection_info.Connection = &pbdriver.ConnectionInfo_ModemPool{
 			ModemPool: &pbdriver.ConnectionTypeModemPool{
 				Number: modem.Number,
 			},
 		}
-		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if serial_moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-		ci := &pbdriver.ConnectionInfo_SerialOverIp{
+		connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
 			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
 				Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
 					Moxa: &pbdriver.ConnectionTypeSerialMoxa{
@@ -54,9 +58,8 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 				},
 			},
 		}
-		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
 	} else if serial_direct, err := ci.AsConnectionTypeSerialDirectSchema(); err == nil {
-		ci := &pbdriver.ConnectionInfo_SerialOverIp{
+		connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
 			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
 				Converter: &pbdriver.ConnectionTypeControlledSerial_Direct{
 					Direct: &pbdriver.ConnectionTypeSerialDirect{
@@ -66,7 +69,8 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 				},
 			},
 		}
-		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
+	} else {
+		return nil, ErrInvalidConnectionInfo
 	}
 
 	return result, nil
