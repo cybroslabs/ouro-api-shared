@@ -510,8 +510,10 @@ enum CommunicationType {
     COMMUNICATION_TYPE_TCPIP = 0;
     // The communication is done via phone line (modem).
     COMMUNICATION_TYPE_MODEM_POOL = 1;
+    // The communication is done via direct serial line.
+    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 2;
     // The communication is done via controller-serial line (Moxa).
-    COMMUNICATION_TYPE_SERIAL_LINE_MOXA = 2;
+    COMMUNICATION_TYPE_SERIAL_LINE_MOXA = 3;
 
     // The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).
     COMMUNICATION_TYPE_LISTENING = 99;
