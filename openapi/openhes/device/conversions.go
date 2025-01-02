@@ -42,16 +42,24 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 			},
 		}
 		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
-	} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+	} else if serial_moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
 		ci := &pbdriver.ConnectionInfo_SerialOverIp{
 			SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
 				Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
 					Moxa: &pbdriver.ConnectionTypeSerialMoxa{
-						Host:        moxa.Host,
-						DataPort:    uint32(moxa.DataPort),
-						CommandPort: uint32(moxa.CommandPort),
+						Host:        serial_moxa.Host,
+						DataPort:    uint32(serial_moxa.DataPort),
+						CommandPort: uint32(serial_moxa.CommandPort),
 					},
 				},
+			},
+		}
+		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
+	} else if serial_direct, err := ci.AsConnectionTypeSerialDirectSchema(); err == nil {
+		ci := &pbdriver.ConnectionTypeControlledSerial_Direct{
+			Direct: &pbdriver.ConnectionTypeSerialDirect{
+				Host: serial_direct.Host,
+				Port: uint32(serial_direct.Port),
 			},
 		}
 		result.ConnectionInfo = &pbdriver.ConnectionInfo{Connection: ci}
@@ -85,11 +93,16 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 				Number: modem.Number,
 			})
 		} else if controlled_serial := ci.GetSerialOverIp(); controlled_serial != nil {
-			if moxa := controlled_serial.GetMoxa(); moxa != nil {
+			if serial_moxa := controlled_serial.GetMoxa(); serial_moxa != nil {
 				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
-					Host:        moxa.Host,
-					DataPort:    int(moxa.DataPort),
-					CommandPort: int(moxa.CommandPort),
+					Host:        serial_moxa.Host,
+					DataPort:    int(serial_moxa.DataPort),
+					CommandPort: int(serial_moxa.CommandPort),
+				})
+			} else if serial_direct := controlled_serial.GetDirect(); serial_direct != nil {
+				err = result.ConnectionInfo.FromConnectionTypeSerialDirectSchema(job.ConnectionTypeSerialDirectSchema{
+					Host: serial_direct.Host,
+					Port: int(serial_direct.Port),
 				})
 			} else {
 				err = ErrInvalidConnectionInfo

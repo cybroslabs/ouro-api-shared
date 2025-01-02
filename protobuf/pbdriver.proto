@@ -128,7 +128,8 @@ message ModemOverControlledSerial {
 message ConnectionTypeControlledSerial {
     // IP-to-serial converter description.
     oneof converter {
-        ConnectionTypeSerialMoxa moxa = 1;  // The Moxa connection type.
+        ConnectionTypeSerialDirect direct = 1;  // The simple direct serial connection type.
+        ConnectionTypeSerialMoxa moxa     = 2;  // The Moxa connection type.
         // TBA: Add Advanctech and other IP-to-serial converters.
     }
 }
@@ -256,6 +257,11 @@ message ConnectionTypeModemPool {
     string pool_id = 2;
     // The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
     optional ModemInfo modem = 4;
+}
+
+message ConnectionTypeSerialDirect {
+    string host = 1;  // The host name or IP address of the device to connect to.
+    uint32 port = 2;  // The TCP port number of the device to connect to.
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type

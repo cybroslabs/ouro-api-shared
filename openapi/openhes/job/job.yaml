@@ -123,9 +123,9 @@ components:
     ConnectionTypeSerialMoxaSchema:
       type: object
       description: >
-        Schema that describes the MOXA connection.
+        Schema that describes the IP-to-serial connection using a Moxa device. The Moxa supports dynamic serial configuration changes via command connection.
       properties:
-        type_moxa:
+        type_serial_moxa:
           type: integer
           minimum: 1
           maximum: 1
@@ -146,10 +146,34 @@ components:
           minimum: 1
           maximum: 65535
       required:
-        - type_moxa
+        - type_serial_moxa
         - host
         - dataPort
         - commandPort
+
+    ConnectionTypeSerialDirectSchema:
+      type: object
+      description: >
+        Schema that describes the direct IP to serial connection. It represents simple physical line without any on-demand confiration (e.g. speed or parity) as the configuration is statically set on the IP-to-serial device.
+      properties:
+        type_serial_direct:
+          type: integer
+          minimum: 1
+          maximum: 1
+        host:
+          type: string
+          description: >
+            The IP address or the hostname of the device.
+        port:
+          type: integer
+          description: >
+            The port number of the device.
+          minimum: 1
+          maximum: 65535
+      required:
+        - type_serial_direct
+        - host
+        - port
 
     ConnectionInfoSchema:
       allOf:
@@ -161,6 +185,7 @@ components:
           - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
           - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
           - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
+          - $ref: "#/components/schemas/ConnectionTypeSerialDirectSchema"
 
     JobDeviceSchema:
       type: object
