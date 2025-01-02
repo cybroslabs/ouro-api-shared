@@ -118,12 +118,6 @@ message StartJobData {
     optional string timezone                      = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
-// Sub-message containing modem connection connected behind a IP-to-serial converter
-message ModemOverControlledSerial {
-    ConnectionTypeControlledSerial serial = 1;  // The serial connection type.
-    SerialConfig serial_config            = 2;  // The serial port configuration related to the modem.
-}
-
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
 message ConnectionTypeControlledSerial {
     // IP-to-serial converter description.
@@ -136,20 +130,20 @@ message ConnectionTypeControlledSerial {
 
 // Sub-message containing modem connection info
 message ModemInfo {
-    string id              = 12;  // The modem identifier. It is automatically generated during creation.
-    string name            = 11;  // The name of the modem.
-    string at_init         = 1;   // The modem initialization command.
-    string at_test         = 2;   // The modem test command.
-    string at_config       = 3;   // The modem configuration command.
-    string at_dial         = 4;   // The modem dial command.
-    string at_hangup       = 5;   // The modem hangup command.
-    string at_escape       = 6;   // The modem escape command.
-    bool at_dsr            = 7;   // The modem DSR command.
-    uint32 connect_timeout = 8;   // The modem connection timeout.
+    string id              = 1;   // The modem identifier. It is automatically generated during creation.
+    string name            = 2;   // The name of the modem.
+    string at_init         = 3;   // The modem initialization command.
+    string at_test         = 4;   // The modem test command.
+    string at_config       = 5;   // The modem configuration command.
+    string at_dial         = 6;   // The modem dial command.
+    string at_hangup       = 7;   // The modem hangup command.
+    string at_escape       = 8;   // The modem escape command.
+    bool at_dsr            = 9;   // The modem DSR command.
+    uint32 connect_timeout = 10;  // The modem connection timeout.
     // The modem connection description.
     oneof modem_connection {
-        ConnectionTypeDirectTcpIp tcpip          = 9;   // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
-        ModemOverControlledSerial serial_over_ip = 10;  // The serial over IP connection type. The modem is connected to a IP-to-serial converter and the converter requires serial port configuration to be set.
+        ConnectionTypeDirectTcpIp tcpip = 11;  // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+        // This is then reserved for future connection options.
     }
 }
 
@@ -239,8 +233,8 @@ message ConnectionInfo {
         ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
-    DataLinkProtocol link_protocol = 4;  // The data link protocol.
-    optional string custom_grouping_id = 5; // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
+    DataLinkProtocol link_protocol     = 4;  // The data link protocol.
+    optional string custom_grouping_id = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
 }
 
 // Sub-message containing connection info for TCP connection type

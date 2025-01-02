@@ -37,7 +37,7 @@ generate:
 		./openapi/openhes/driver/driverdata/driverdata.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/job/job.go -package job \
-		-import-mapping '"../driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata","../driver/driver.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"' \
+		-import-mapping '"../driver/driverdata/driverdata.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata","../driver/driver.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver","../device/device.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/device"' \
 		./openapi/openhes/job/job.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/driver/driver.go -package driver \
@@ -45,7 +45,7 @@ generate:
 		./openapi/openhes/driver/driver.yaml
 
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/openhes/device/device.go -package device \
-		-import-mapping '"../job/job.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"' \
+		-import-mapping '"../driver/driver.yaml":"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"' \
 		./openapi/openhes/device/device.yaml
 
 	find ./openapi -type f -name '*.go' | xargs sed -i '' -e "s|union\( *\)json\.RawMessage|Union\1json.RawMessage|g; s|t\.union|t.Union|g; s|action\.union|action.Union|g"

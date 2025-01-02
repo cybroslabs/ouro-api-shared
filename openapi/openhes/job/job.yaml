@@ -72,128 +72,6 @@ components:
         - status
         - code
 
-    ConnectionTypeTcpIpSchema:
-      type: object
-      description: >
-        Schema that describes the TCP/IP connection.
-      properties:
-        type_tcp:
-          type: integer
-          minimum: 1
-          maximum: 1
-        host:
-          type: string
-          description: >
-            The IP address or the hostname of the device.
-        port:
-          type: integer
-          description: >
-            The port number of the device.
-          minimum: 1
-          maximum: 65535
-      required:
-        - type_tcp
-        - host
-        - port
-
-    ConnectionTypePhoneLineSchema:
-      type: object
-      description: >
-        Schema that describes the phone line (modem) connection.
-      properties:
-        type_modem:
-          type: integer
-          minimum: 1
-          maximum: 1
-        number:
-          type: string
-          description: >
-            The phone number of the device.
-          minLength: 1
-        pool_id:
-          type: string
-          format: uuid
-          description: >
-            The modem pool ID.
-      required:
-        - type_modem
-        - number
-        - pool_id
-
-    ConnectionTypeSerialMoxaSchema:
-      type: object
-      description: >
-        Schema that describes the IP-to-serial connection using a Moxa device. The Moxa supports dynamic serial configuration changes via command connection.
-      properties:
-        type_serial_moxa:
-          type: integer
-          minimum: 1
-          maximum: 1
-        host:
-          type: string
-          description: >
-            The IP address or the hostname of the device.
-        dataPort:
-          type: integer
-          description: >
-            The port number of the device.
-          minimum: 1
-          maximum: 65535
-        commandPort:
-          type: integer
-          description: >
-            The port number of the device.
-          minimum: 1
-          maximum: 65535
-      required:
-        - type_serial_moxa
-        - host
-        - dataPort
-        - commandPort
-
-    ConnectionTypeSerialDirectSchema:
-      type: object
-      description: >
-        Schema that describes the direct IP to serial connection. It represents simple physical line without any on-demand confiration (e.g. speed or parity) as the configuration is statically set on the IP-to-serial device.
-      properties:
-        type_serial_direct:
-          type: integer
-          minimum: 1
-          maximum: 1
-        host:
-          type: string
-          description: >
-            The IP address or the hostname of the device.
-        port:
-          type: integer
-          description: >
-            The port number of the device.
-          minimum: 1
-          maximum: 65535
-      required:
-        - type_serial_direct
-        - host
-        - port
-
-    ConnectionInfoSchema:
-      allOf:
-        - type: object
-          properties:
-            linkProtocol:
-              $ref: "../driver/driver.yaml#/components/schemas/DataLinkProtocolSchema"
-            customGroupingId:
-              type: string
-              description: >
-                The custom group ID of the device.
-              nullable: true
-          required:
-            - linkProtocol
-        - oneOf:
-          - $ref: "#/components/schemas/ConnectionTypeTcpIpSchema"
-          - $ref: "#/components/schemas/ConnectionTypePhoneLineSchema"
-          - $ref: "#/components/schemas/ConnectionTypeSerialMoxaSchema"
-          - $ref: "#/components/schemas/ConnectionTypeSerialDirectSchema"
-
     JobDeviceSchema:
       type: object
       properties:
@@ -224,9 +102,9 @@ components:
             The connection information of the device.
           minItems: 1
           items:
-            $ref: "#/components/schemas/ConnectionInfoSchema"
+            $ref: "../device/device.yaml#/components/schemas/ConnectionInfoSchema"
         deviceAttributes:
-          $ref: "#/components/schemas/AttributesSchema"
+          $ref: "../device/device.yaml#/components/schemas/AttributesSchema"
         applicationProtocol:
           $ref: "../driver/driver.yaml#/components/schemas/ApplicationProtocolSchema"
         timezone:
@@ -283,7 +161,7 @@ components:
         id:
           $ref: "#/components/schemas/ActionID"
         attributes:
-          $ref: "#/components/schemas/AttributesSchema"
+          $ref: "../device/device.yaml#/components/schemas/AttributesSchema"
       required:
         - id
         - attributes
@@ -618,24 +496,6 @@ components:
           $ref: "#/components/schemas/BulkStatusEnumSchema"
       required:
         - status
-
-    # map[string](string|boolean|int|float|binary)
-    AttributesSchema:
-      type: object
-      description: >
-        Schema that describes a set of attributes and their values.
-        The key is the property name and the value is the property value.
-        The value can be of type string, integer, number, boolean, binary, or null.
-      x-go-type: attribute.Attributes
-      x-go-type-import:
-        path: github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute
-      additionalProperties:
-        anyOf:
-          - type: string
-          - type: integer
-          - type: number
-          - type: boolean
-        nullable: true
 
     BulkID:
       type: string

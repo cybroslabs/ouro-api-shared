@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	odevice "github.com/cybroslabs/hes-2-apis/openapi/openhes/device"
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
 	driverdata "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
@@ -19,9 +20,10 @@ import (
 )
 
 var (
-	ErrInvalidJobStatus     = errors.New("invalid job status")
-	ErrUnknownJobActionType = errors.New("unknown job action type")
-	ErrInvalidDeviceList    = errors.New("invalid device list")
+	ErrInvalidJobStatus      = errors.New("invalid job status")
+	ErrUnknownJobActionType  = errors.New("unknown job action type")
+	ErrInvalidDeviceList     = errors.New("invalid device list")
+	ErrInvalidConnectionInfo = errors.New("invalid connection info")
 )
 
 const (
@@ -583,12 +585,12 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		target.ExternalID = device.ExternalId
 		target.DeviceAttributes = attribute.G2RAttributes(device.DeviceAttributes)
 		target.Timezone = device.Timezone
-		target.ConnectionInfo = make([]ConnectionInfoSchema, len(device.ConnectionInfo))
+		target.ConnectionInfo = make([]odevice.ConnectionInfoSchema, len(device.ConnectionInfo))
 		for j, ci := range device.ConnectionInfo {
 			if tcp := ci.GetTcpip(); tcp != nil {
-				err := target.ConnectionInfo[j].FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
+				err := target.ConnectionInfo[j].FromConnectionTypeTcpIpSchema(odevice.ConnectionTypeTcpIpSchema{
 					Host: tcp.Host,
-					Port: int(tcp.Port),
+					Port: tcp.Port,
 				})
 				if err != nil {
 					return nil, err
@@ -599,7 +601,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				if err != nil {
 					return nil, err
 				}
-				err = target.ConnectionInfo[j].FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
+				err = target.ConnectionInfo[j].FromConnectionTypePhoneLineSchema(odevice.ConnectionTypePhoneLineSchema{
 					Number: modem.Number,
 					PoolId: pool_id,
 				})
@@ -608,15 +610,27 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				}
 			} else if controller_serial := ci.GetSerialOverIp(); controller_serial != nil {
 				if moxa := controller_serial.GetMoxa(); moxa != nil {
-					err = target.ConnectionInfo[j].FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
+					err = target.ConnectionInfo[j].FromConnectionTypeSerialMoxaSchema(odevice.ConnectionTypeSerialMoxaSchema{
 						Host:        moxa.Host,
-						DataPort:    int(moxa.DataPort),
-						CommandPort: int(moxa.CommandPort),
+						DataPort:    moxa.DataPort,
+						CommandPort: moxa.CommandPort,
 					})
 					if err != nil {
 						return nil, err
 					}
+				} else if direct := controller_serial.GetDirect(); direct != nil {
+					err = target.ConnectionInfo[j].FromConnectionTypeSerialDirectSchema(odevice.ConnectionTypeSerialDirectSchema{
+						Host: direct.Host,
+						Port: direct.Port,
+					})
+					if err != nil {
+						return nil, err
+					}
+				} else {
+					return nil, ErrInvalidConnectionInfo
 				}
+			} else {
+				return nil, ErrInvalidConnectionInfo
 			}
 		}
 	}
@@ -940,7 +954,7 @@ func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 								return nil, fmt.Errorf("unknown value type: %v", vt)
 							}
 						}
-						err = ar.Data.FromExternalRef1DeviceRegistersDataSchema(tmp)
+						err = ar.Data.FromExternalRef2DeviceRegistersDataSchema(tmp)
 						if err != nil {
 							return nil, err
 						}
@@ -985,7 +999,7 @@ func G2RJobStatus(status *pbtaskmaster.JobStatus) (*JobStatusSchema, error) {
 							}
 							tmp_blocks[i].Values = &tmp_values
 						}
-						err = ar.Data.FromExternalRef1DeviceProfileDataSchema(tmp)
+						err = ar.Data.FromExternalRef2DeviceProfileDataSchema(tmp)
 						if err != nil {
 							return nil, err
 						}

@@ -35,6 +35,8 @@ service DeviceRegistryService {
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 
+    // The method to get list of the modem pools.
+    rpc GetModemPools(google.protobuf.Empty) returns (GetModemPoolsResponse);
     // The method to get the information about the modem pool. The method returns the modem pool information.
     rpc GetModemPool(google.protobuf.StringValue) returns (GetModemPoolResponse);
     // The method to create a new modem pool.
@@ -154,6 +156,17 @@ message GetDevicesCommunicationUnitsResponse {
 // Sub-message that represents the communication units linked to the device.
 message DeviceCommunicationUnits {
     repeated pbdriver.ConnectionInfo communication_units = 1;  // The list of communication units linked to the device.
+}
+
+// Sub-message that represents the modem pool.
+message ModemPoolSpec {
+    string pool_id = 1;  // The modem pool identifier.
+    string name    = 2;  // The name of the modem pool.
+}
+
+// RestApi -> DriverRegistry - the request message to get the modem pools.
+message GetModemPoolsResponse {
+    repeated ModemPoolSpec pools = 1;  // The list of modem pools.
 }
 
 // RestApi -> DriverRegistry - the request message to get the modem pool info.

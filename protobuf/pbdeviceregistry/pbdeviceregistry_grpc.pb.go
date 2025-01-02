@@ -33,6 +33,7 @@ const (
 	DeviceRegistryService_GetDeviceGroups_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDeviceGroups"
 	DeviceRegistryService_AddDevicesToGroup_FullMethodName            = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
 	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName       = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
+	DeviceRegistryService_GetModemPools_FullMethodName                = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetModemPools"
 	DeviceRegistryService_GetModemPool_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetModemPool"
 	DeviceRegistryService_CreateModemPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateModemPool"
 	DeviceRegistryService_UpdateModemPool_FullMethodName              = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/UpdateModemPool"
@@ -70,6 +71,8 @@ type DeviceRegistryServiceClient interface {
 	AddDevicesToGroup(ctx context.Context, in *AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(ctx context.Context, in *RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method to get list of the modem pools.
+	GetModemPools(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetModemPoolsResponse, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
 	GetModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*GetModemPoolResponse, error)
 	// The method to create a new modem pool.
@@ -204,6 +207,16 @@ func (c *deviceRegistryServiceClient) RemoveDevicesFromGroup(ctx context.Context
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetModemPools(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetModemPoolsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetModemPoolsResponse)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetModemPools_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) GetModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*GetModemPoolResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetModemPoolResponse)
@@ -302,6 +315,8 @@ type DeviceRegistryServiceServer interface {
 	AddDevicesToGroup(context.Context, *AddDevicesToGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
+	// The method to get list of the modem pools.
+	GetModemPools(context.Context, *emptypb.Empty) (*GetModemPoolsResponse, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
 	GetModemPool(context.Context, *wrapperspb.StringValue) (*GetModemPoolResponse, error)
 	// The method to create a new modem pool.
@@ -358,6 +373,9 @@ func (UnimplementedDeviceRegistryServiceServer) AddDevicesToGroup(context.Contex
 }
 func (UnimplementedDeviceRegistryServiceServer) RemoveDevicesFromGroup(context.Context, *RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDevicesFromGroup not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetModemPools(context.Context, *emptypb.Empty) (*GetModemPoolsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModemPools not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetModemPool(context.Context, *wrapperspb.StringValue) (*GetModemPoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModemPool not implemented")
@@ -599,6 +617,24 @@ func _DeviceRegistryService_RemoveDevicesFromGroup_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetModemPools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetModemPools(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetModemPools_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetModemPools(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_GetModemPool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
@@ -775,6 +811,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveDevicesFromGroup",
 			Handler:    _DeviceRegistryService_RemoveDevicesFromGroup_Handler,
+		},
+		{
+			MethodName: "GetModemPools",
+			Handler:    _DeviceRegistryService_GetModemPools_Handler,
 		},
 		{
 			MethodName: "GetModemPool",

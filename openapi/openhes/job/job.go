@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
-	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
-	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
+	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/device"
+	externalRef1 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
+	externalRef2 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver/driverdata"
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
@@ -57,9 +57,6 @@ const (
 
 // ActionID The ID of the action.
 type ActionID = openapi_types.UUID
-
-// AttributesSchema Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-type AttributesSchema = attribute.Attributes
 
 // BulkID The ID of the job bulk. The ID must be unique across all OpenHES components.
 type BulkID = openapi_types.UUID
@@ -106,69 +103,10 @@ type BulkStatusSchema struct {
 	Status BulkStatusEnumSchema `json:"status"`
 }
 
-// ConnectionInfoSchema defines model for ConnectionInfoSchema.
-type ConnectionInfoSchema struct {
-	// CustomGroupingId The custom group ID of the device.
-	CustomGroupingId *string `json:"customGroupingId"`
-
-	// LinkProtocol The type of the data-link layer.
-	//   * `IEC_62056_21` - The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
-	//   * `HDLC` - The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
-	//   * `COSEM_WRAPPER` - The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
-	//   * `MODBUS` - The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
-	//   * `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
-	//   * `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
-	LinkProtocol externalRef0.DataLinkProtocolSchema `json:"linkProtocol"`
-	Union        json.RawMessage
-}
-
-// ConnectionTypePhoneLineSchema Schema that describes the phone line (modem) connection.
-type ConnectionTypePhoneLineSchema struct {
-	// Number The phone number of the device.
-	Number string `json:"number"`
-
-	// PoolId The modem pool ID.
-	PoolId    openapi_types.UUID `json:"pool_id"`
-	TypeModem int                `json:"type_modem"`
-}
-
-// ConnectionTypeSerialDirectSchema Schema that describes the direct IP to serial connection. It represents simple physical line without any on-demand confiration (e.g. speed or parity) as the configuration is statically set on the IP-to-serial device.
-type ConnectionTypeSerialDirectSchema struct {
-	// Host The IP address or the hostname of the device.
-	Host string `json:"host"`
-
-	// Port The port number of the device.
-	Port             int `json:"port"`
-	TypeSerialDirect int `json:"type_serial_direct"`
-}
-
-// ConnectionTypeSerialMoxaSchema Schema that describes the IP-to-serial connection using a Moxa device. The Moxa supports dynamic serial configuration changes via command connection.
-type ConnectionTypeSerialMoxaSchema struct {
-	// CommandPort The port number of the device.
-	CommandPort int `json:"commandPort"`
-
-	// DataPort The port number of the device.
-	DataPort int `json:"dataPort"`
-
-	// Host The IP address or the hostname of the device.
-	Host           string `json:"host"`
-	TypeSerialMoxa int    `json:"type_serial_moxa"`
-}
-
-// ConnectionTypeTcpIpSchema Schema that describes the TCP/IP connection.
-type ConnectionTypeTcpIpSchema struct {
-	// Host The IP address or the hostname of the device.
-	Host string `json:"host"`
-
-	// Port The port number of the device.
-	Port    int `json:"port"`
-	TypeTcp int `json:"type_tcp"`
-}
-
 // JobActionCommonSchema Common fields shared for all actions.
 type JobActionCommonSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id ActionID `json:"id"`
@@ -177,7 +115,7 @@ type JobActionCommonSchema struct {
 // JobActionFwUpdateSchema defines model for JobActionFwUpdateSchema.
 type JobActionFwUpdateSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id           ActionID `json:"id"`
@@ -187,7 +125,7 @@ type JobActionFwUpdateSchema struct {
 // JobActionGetClockSchema defines model for JobActionGetClockSchema.
 type JobActionGetClockSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id           ActionID `json:"id"`
@@ -197,7 +135,7 @@ type JobActionGetClockSchema struct {
 // JobActionGetDisconnectorStateSchema defines model for JobActionGetDisconnectorStateSchema.
 type JobActionGetDisconnectorStateSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                       ActionID `json:"id"`
@@ -207,7 +145,7 @@ type JobActionGetDisconnectorStateSchema struct {
 // JobActionGetEventsSchema defines model for JobActionGetEventsSchema.
 type JobActionGetEventsSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id            ActionID `json:"id"`
@@ -217,7 +155,7 @@ type JobActionGetEventsSchema struct {
 // JobActionGetIrregularProfileSchema defines model for JobActionGetIrregularProfileSchema.
 type JobActionGetIrregularProfileSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                      ActionID `json:"id"`
@@ -227,7 +165,7 @@ type JobActionGetIrregularProfileSchema struct {
 // JobActionGetLimiterSchema defines model for JobActionGetLimiterSchema.
 type JobActionGetLimiterSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id             ActionID `json:"id"`
@@ -237,7 +175,7 @@ type JobActionGetLimiterSchema struct {
 // JobActionGetPeriodicalProfileSchema defines model for JobActionGetPeriodicalProfileSchema.
 type JobActionGetPeriodicalProfileSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id ActionID `json:"id"`
@@ -253,7 +191,7 @@ type JobActionGetPeriodicalProfileSchema struct {
 // JobActionGetRegisterSchema defines model for JobActionGetRegisterSchema.
 type JobActionGetRegisterSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id              ActionID `json:"id"`
@@ -263,7 +201,7 @@ type JobActionGetRegisterSchema struct {
 // JobActionGetRelayStateSchema defines model for JobActionGetRelayStateSchema.
 type JobActionGetRelayStateSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                ActionID `json:"id"`
@@ -273,7 +211,7 @@ type JobActionGetRelayStateSchema struct {
 // JobActionGetTouSchema defines model for JobActionGetTouSchema.
 type JobActionGetTouSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id         ActionID `json:"id"`
@@ -286,7 +224,7 @@ type JobActionListSchema = []JobActionSchema
 // JobActionResetBillingPeriodSchema defines model for JobActionResetBillingPeriodSchema.
 type JobActionResetBillingPeriodSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                     ActionID `json:"id"`
@@ -329,7 +267,7 @@ type JobActionSchema struct {
 // JobActionSetDisconnectorStateSchema defines model for JobActionSetDisconnectorStateSchema.
 type JobActionSetDisconnectorStateSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                       ActionID `json:"id"`
@@ -339,7 +277,7 @@ type JobActionSetDisconnectorStateSchema struct {
 // JobActionSetLimiterSchema defines model for JobActionSetLimiterSchema.
 type JobActionSetLimiterSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id             ActionID `json:"id"`
@@ -349,7 +287,7 @@ type JobActionSetLimiterSchema struct {
 // JobActionSetRelayStateSchema defines model for JobActionSetRelayStateSchema.
 type JobActionSetRelayStateSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id                ActionID `json:"id"`
@@ -359,7 +297,7 @@ type JobActionSetRelayStateSchema struct {
 // JobActionSetTouSchema defines model for JobActionSetTouSchema.
 type JobActionSetTouSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id         ActionID `json:"id"`
@@ -369,7 +307,7 @@ type JobActionSetTouSchema struct {
 // JobActionSyncClockSchema defines model for JobActionSyncClockSchema.
 type JobActionSyncClockSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes AttributesSchema `json:"attributes"`
+	Attributes externalRef0.AttributesSchema `json:"attributes"`
 
 	// Id The ID of the action.
 	Id            ActionID `json:"id"`
@@ -390,13 +328,13 @@ type JobCustomDeviceSchema struct {
 	//   * `ANSI_C12` - The ANSI C12 protocol.
 	//   * `MQTT` - The MQTT protocol.
 	//   * `MODBUS` - The Modbus protocol.
-	ApplicationProtocol *externalRef0.ApplicationProtocolSchema `json:"applicationProtocol,omitempty"`
+	ApplicationProtocol *externalRef1.ApplicationProtocolSchema `json:"applicationProtocol,omitempty"`
 
 	// ConnectionInfo The connection information of the device.
-	ConnectionInfo []ConnectionInfoSchema `json:"connectionInfo"`
+	ConnectionInfo []externalRef0.ConnectionInfoSchema `json:"connectionInfo"`
 
 	// DeviceAttributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	DeviceAttributes AttributesSchema `json:"deviceAttributes"`
+	DeviceAttributes externalRef0.AttributesSchema `json:"deviceAttributes"`
 
 	// ExternalID The public ID of the device.
 	ExternalID *string `json:"externalID"`
@@ -536,22 +474,22 @@ func (t *BulkSpecSchema_Devices) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsConnectionTypeTcpIpSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeTcpIpSchema
-func (t ConnectionInfoSchema) AsConnectionTypeTcpIpSchema() (ConnectionTypeTcpIpSchema, error) {
-	var body ConnectionTypeTcpIpSchema
+// AsExternalRef2DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef2.DeviceRegistersDataSchema
+func (t JobActionResultSchema_Data) AsExternalRef2DeviceRegistersDataSchema() (externalRef2.DeviceRegistersDataSchema, error) {
+	var body externalRef2.DeviceRegistersDataSchema
 	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
-// FromConnectionTypeTcpIpSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeTcpIpSchema
-func (t *ConnectionInfoSchema) FromConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+// FromExternalRef2DeviceRegistersDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef2.DeviceRegistersDataSchema
+func (t *JobActionResultSchema_Data) FromExternalRef2DeviceRegistersDataSchema(v externalRef2.DeviceRegistersDataSchema) error {
 	b, err := json.Marshal(v)
 	t.Union = b
 	return err
 }
 
-// MergeConnectionTypeTcpIpSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeTcpIpSchema
-func (t *ConnectionInfoSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+// MergeExternalRef2DeviceRegistersDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef2.DeviceRegistersDataSchema
+func (t *JobActionResultSchema_Data) MergeExternalRef2DeviceRegistersDataSchema(v externalRef2.DeviceRegistersDataSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -562,183 +500,22 @@ func (t *ConnectionInfoSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTc
 	return err
 }
 
-// AsConnectionTypePhoneLineSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypePhoneLineSchema
-func (t ConnectionInfoSchema) AsConnectionTypePhoneLineSchema() (ConnectionTypePhoneLineSchema, error) {
-	var body ConnectionTypePhoneLineSchema
+// AsExternalRef2DeviceProfileDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef2.DeviceProfileDataSchema
+func (t JobActionResultSchema_Data) AsExternalRef2DeviceProfileDataSchema() (externalRef2.DeviceProfileDataSchema, error) {
+	var body externalRef2.DeviceProfileDataSchema
 	err := json.Unmarshal(t.Union, &body)
 	return body, err
 }
 
-// FromConnectionTypePhoneLineSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypePhoneLineSchema
-func (t *ConnectionInfoSchema) FromConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
+// FromExternalRef2DeviceProfileDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef2.DeviceProfileDataSchema
+func (t *JobActionResultSchema_Data) FromExternalRef2DeviceProfileDataSchema(v externalRef2.DeviceProfileDataSchema) error {
 	b, err := json.Marshal(v)
 	t.Union = b
 	return err
 }
 
-// MergeConnectionTypePhoneLineSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypePhoneLineSchema
-func (t *ConnectionInfoSchema) MergeConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.Union, b)
-	t.Union = merged
-	return err
-}
-
-// AsConnectionTypeSerialMoxaSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeSerialMoxaSchema
-func (t ConnectionInfoSchema) AsConnectionTypeSerialMoxaSchema() (ConnectionTypeSerialMoxaSchema, error) {
-	var body ConnectionTypeSerialMoxaSchema
-	err := json.Unmarshal(t.Union, &body)
-	return body, err
-}
-
-// FromConnectionTypeSerialMoxaSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeSerialMoxaSchema
-func (t *ConnectionInfoSchema) FromConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
-	b, err := json.Marshal(v)
-	t.Union = b
-	return err
-}
-
-// MergeConnectionTypeSerialMoxaSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeSerialMoxaSchema
-func (t *ConnectionInfoSchema) MergeConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.Union, b)
-	t.Union = merged
-	return err
-}
-
-// AsConnectionTypeSerialDirectSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeSerialDirectSchema
-func (t ConnectionInfoSchema) AsConnectionTypeSerialDirectSchema() (ConnectionTypeSerialDirectSchema, error) {
-	var body ConnectionTypeSerialDirectSchema
-	err := json.Unmarshal(t.Union, &body)
-	return body, err
-}
-
-// FromConnectionTypeSerialDirectSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeSerialDirectSchema
-func (t *ConnectionInfoSchema) FromConnectionTypeSerialDirectSchema(v ConnectionTypeSerialDirectSchema) error {
-	b, err := json.Marshal(v)
-	t.Union = b
-	return err
-}
-
-// MergeConnectionTypeSerialDirectSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeSerialDirectSchema
-func (t *ConnectionInfoSchema) MergeConnectionTypeSerialDirectSchema(v ConnectionTypeSerialDirectSchema) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.Union, b)
-	t.Union = merged
-	return err
-}
-
-func (t ConnectionInfoSchema) MarshalJSON() ([]byte, error) {
-	b, err := t.Union.MarshalJSON()
-	if err != nil {
-		return nil, err
-	}
-	object := make(map[string]json.RawMessage)
-	if t.Union != nil {
-		err = json.Unmarshal(b, &object)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	if t.CustomGroupingId != nil {
-		object["customGroupingId"], err = json.Marshal(t.CustomGroupingId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customGroupingId': %w", err)
-		}
-	}
-
-	object["linkProtocol"], err = json.Marshal(t.LinkProtocol)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'linkProtocol': %w", err)
-	}
-
-	b, err = json.Marshal(object)
-	return b, err
-}
-
-func (t *ConnectionInfoSchema) UnmarshalJSON(b []byte) error {
-	err := t.Union.UnmarshalJSON(b)
-	if err != nil {
-		return err
-	}
-	object := make(map[string]json.RawMessage)
-	err = json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["customGroupingId"]; found {
-		err = json.Unmarshal(raw, &t.CustomGroupingId)
-		if err != nil {
-			return fmt.Errorf("error reading 'customGroupingId': %w", err)
-		}
-	}
-
-	if raw, found := object["linkProtocol"]; found {
-		err = json.Unmarshal(raw, &t.LinkProtocol)
-		if err != nil {
-			return fmt.Errorf("error reading 'linkProtocol': %w", err)
-		}
-	}
-
-	return err
-}
-
-// AsExternalRef1DeviceRegistersDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceRegistersDataSchema
-func (t JobActionResultSchema_Data) AsExternalRef1DeviceRegistersDataSchema() (externalRef1.DeviceRegistersDataSchema, error) {
-	var body externalRef1.DeviceRegistersDataSchema
-	err := json.Unmarshal(t.Union, &body)
-	return body, err
-}
-
-// FromExternalRef1DeviceRegistersDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceRegistersDataSchema
-func (t *JobActionResultSchema_Data) FromExternalRef1DeviceRegistersDataSchema(v externalRef1.DeviceRegistersDataSchema) error {
-	b, err := json.Marshal(v)
-	t.Union = b
-	return err
-}
-
-// MergeExternalRef1DeviceRegistersDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef1.DeviceRegistersDataSchema
-func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceRegistersDataSchema(v externalRef1.DeviceRegistersDataSchema) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.Union, b)
-	t.Union = merged
-	return err
-}
-
-// AsExternalRef1DeviceProfileDataSchema returns the union data inside the JobActionResultSchema_Data as a externalRef1.DeviceProfileDataSchema
-func (t JobActionResultSchema_Data) AsExternalRef1DeviceProfileDataSchema() (externalRef1.DeviceProfileDataSchema, error) {
-	var body externalRef1.DeviceProfileDataSchema
-	err := json.Unmarshal(t.Union, &body)
-	return body, err
-}
-
-// FromExternalRef1DeviceProfileDataSchema overwrites any union data inside the JobActionResultSchema_Data as the provided externalRef1.DeviceProfileDataSchema
-func (t *JobActionResultSchema_Data) FromExternalRef1DeviceProfileDataSchema(v externalRef1.DeviceProfileDataSchema) error {
-	b, err := json.Marshal(v)
-	t.Union = b
-	return err
-}
-
-// MergeExternalRef1DeviceProfileDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef1.DeviceProfileDataSchema
-func (t *JobActionResultSchema_Data) MergeExternalRef1DeviceProfileDataSchema(v externalRef1.DeviceProfileDataSchema) error {
+// MergeExternalRef2DeviceProfileDataSchema performs a merge with any union data inside the JobActionResultSchema_Data, using the provided externalRef2.DeviceProfileDataSchema
+func (t *JobActionResultSchema_Data) MergeExternalRef2DeviceProfileDataSchema(v externalRef2.DeviceProfileDataSchema) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1188,75 +965,75 @@ func (t *JobActionSchema) UnmarshalJSON(b []byte) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"UwAA",
+	"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",
+	"/x8AAP//BavHpspVAAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
@@ -1296,13 +1073,19 @@ func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
 		res[pathToFile] = rawSpec
 	}
 
-	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driver.yaml")) {
+	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../device/device.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}
 		res[rawPath] = rawFunc
 	}
-	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driverdata/driverdata.yaml")) {
+	for rawPath, rawFunc := range externalRef1.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driver.yaml")) {
+		if _, ok := res[rawPath]; ok {
+			// it is not possible to compare functions in golang, so always overwrite the old value
+		}
+		res[rawPath] = rawFunc
+	}
+	for rawPath, rawFunc := range externalRef2.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driverdata/driverdata.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}

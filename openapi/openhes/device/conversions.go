@@ -4,7 +4,6 @@ import (
 	"errors"
 
 	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
-	"github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistry"
 	"github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	"github.com/google/uuid"
@@ -92,25 +91,25 @@ func G2RCommunicationUnit(communicationUnit *pbdeviceregistry.CommunicationUnitS
 
 	if ci := communicationUnit.ConnectionInfo; ci != nil {
 		if tcpip := ci.GetTcpip(); tcpip != nil {
-			err = result.ConnectionInfo.FromConnectionTypeTcpIpSchema(job.ConnectionTypeTcpIpSchema{
+			err = result.ConnectionInfo.FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
 				Host: tcpip.Host,
-				Port: int(tcpip.Port),
+				Port: tcpip.Port,
 			})
 		} else if modem := ci.GetModemPool(); modem != nil {
-			err = result.ConnectionInfo.FromConnectionTypePhoneLineSchema(job.ConnectionTypePhoneLineSchema{
+			err = result.ConnectionInfo.FromConnectionTypePhoneLineSchema(ConnectionTypePhoneLineSchema{
 				Number: modem.Number,
 			})
 		} else if controlled_serial := ci.GetSerialOverIp(); controlled_serial != nil {
 			if serial_moxa := controlled_serial.GetMoxa(); serial_moxa != nil {
-				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(job.ConnectionTypeSerialMoxaSchema{
+				err = result.ConnectionInfo.FromConnectionTypeSerialMoxaSchema(ConnectionTypeSerialMoxaSchema{
 					Host:        serial_moxa.Host,
-					DataPort:    int(serial_moxa.DataPort),
-					CommandPort: int(serial_moxa.CommandPort),
+					DataPort:    serial_moxa.DataPort,
+					CommandPort: serial_moxa.CommandPort,
 				})
 			} else if serial_direct := controlled_serial.GetDirect(); serial_direct != nil {
-				err = result.ConnectionInfo.FromConnectionTypeSerialDirectSchema(job.ConnectionTypeSerialDirectSchema{
+				err = result.ConnectionInfo.FromConnectionTypeSerialDirectSchema(ConnectionTypeSerialDirectSchema{
 					Host: serial_direct.Host,
-					Port: int(serial_direct.Port),
+					Port: serial_direct.Port,
 				})
 			} else {
 				err = ErrInvalidConnectionInfo
@@ -216,6 +215,104 @@ func G2RDeviceGroupType(deviceGroupType *pbdeviceregistry.DeviceGroupSpec) (*Dev
 		Id:         uuid.MustParse(deviceGroupType.Id),
 		ExternalID: deviceGroupType.ExternalId,
 		Name:       deviceGroupType.Name,
+	}
+
+	return result, nil
+}
+
+// Converts the modem pool - Rest API to gRPC
+func R2GModemPool(modemPool *ModemPoolSchema) (*pbdeviceregistry.ModemPoolSpec, error) {
+	if modemPool == nil {
+		return nil, nil
+	}
+	result := &pbdeviceregistry.ModemPoolSpec{
+		PoolId: modemPool.Id.String(),
+		Name:   modemPool.Name,
+	}
+	return result, nil
+}
+
+// Converts the modem pool - gRPC to Rest API
+func G2RModemPool(modemPool *pbdeviceregistry.ModemPoolSpec) (*ModemPoolSchema, error) {
+	if modemPool == nil {
+		return nil, nil
+	}
+	pool_id, err := uuid.Parse(modemPool.PoolId)
+	if err != nil {
+		return nil, err
+	}
+	result := &ModemPoolSchema{
+		Id:   pool_id,
+		Name: modemPool.Name,
+	}
+	return result, nil
+}
+
+// Converts the modem - Rest API to gRPC
+func R2GModem(modem *ModemSchema) (*pbdriver.ModemInfo, error) {
+	if modem == nil {
+		return nil, nil
+	}
+
+	result := &pbdriver.ModemInfo{
+		Id:             modem.Id.String(),
+		Name:           modem.Name,
+		AtInit:         modem.AtInit,
+		AtTest:         modem.AtTest,
+		AtConfig:       modem.AtConfig,
+		AtDial:         modem.AtDial,
+		AtHangup:       modem.AtHangup,
+		AtEscape:       modem.AtEscape,
+		AtDsr:          modem.AtDsr,
+		ConnectTimeout: modem.ConnectTimeout,
+	}
+
+	if tcp_ip, err := modem.Connection.AsConnectionTypeTcpIpSchema(); err == nil {
+		result.ModemConnection = &pbdriver.ModemInfo_Tcpip{
+			Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
+				Host: tcp_ip.Host,
+				Port: uint32(tcp_ip.Port),
+			},
+		}
+	} else {
+		return nil, ErrInvalidConnectionInfo
+	}
+
+	return result, nil
+}
+
+// Converts the modem - gRPC to Rest API
+func G2RModem(modem *pbdriver.ModemInfo) (*ModemSchema, error) {
+	if modem == nil {
+		return nil, nil
+	}
+	modem_id, err := uuid.Parse(modem.Id)
+	if err != nil {
+		return nil, err
+	}
+	result := &ModemSchema{
+		Id:             modem_id,
+		Name:           modem.Name,
+		AtInit:         modem.AtInit,
+		AtTest:         modem.AtTest,
+		AtConfig:       modem.AtConfig,
+		AtDial:         modem.AtDial,
+		AtHangup:       modem.AtHangup,
+		AtEscape:       modem.AtEscape,
+		AtDsr:          modem.AtDsr,
+		ConnectTimeout: modem.ConnectTimeout,
+	}
+
+	if tcpip := modem.GetTcpip(); tcpip != nil {
+		err = result.Connection.FromConnectionTypeTcpIpSchema(ConnectionTypeTcpIpSchema{
+			Host: tcpip.Host,
+			Port: tcpip.Port,
+		})
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		return nil, ErrInvalidConnectionInfo
 	}
 
 	return result, nil

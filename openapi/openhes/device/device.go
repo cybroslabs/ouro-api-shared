@@ -7,15 +7,21 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"net/url"
 	"path"
 	"strings"
 
-	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/job"
+	"github.com/cybroslabs/hes-2-apis/openapi/openhes/attribute"
+	externalRef0 "github.com/cybroslabs/hes-2-apis/openapi/openhes/driver"
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
+
+// AttributesSchema Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
+type AttributesSchema = attribute.Attributes
 
 // CommunicationUnitID The ID of the communication unit. The ID must be unique across all OpenHES components.
 type CommunicationUnitID = openapi_types.UUID
@@ -25,7 +31,7 @@ type CommunicationUnitListID = []CommunicationUnitID
 
 // CommunicationUnitSchema Schema that describes communication unit details.
 type CommunicationUnitSchema struct {
-	ConnectionInfo externalRef0.ConnectionInfoSchema `json:"connectionInfo"`
+	ConnectionInfo ConnectionInfoSchema `json:"connectionInfo"`
 
 	// ExternalID The public ID of the communication unit.
 	ExternalID *string `json:"externalID"`
@@ -35,6 +41,65 @@ type CommunicationUnitSchema struct {
 
 	// Name The name of the communication unit.
 	Name string `json:"name"`
+}
+
+// ConnectionInfoSchema defines model for ConnectionInfoSchema.
+type ConnectionInfoSchema struct {
+	// CustomGroupingId The custom group ID of the device.
+	CustomGroupingId *string `json:"customGroupingId"`
+
+	// LinkProtocol The type of the data-link layer.
+	//   * `IEC_62056_21` - The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+	//   * `HDLC` - The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+	//   * `COSEM_WRAPPER` - The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+	//   * `MODBUS` - The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+	//   * `MBUS` - The M-Bus protocol. It shall be used for M-Bus application protocol.
+	//   * `NOT_APPLICABLE` - The data link protocol is not applicable. It's useful for listening communication type.
+	LinkProtocol externalRef0.DataLinkProtocolSchema `json:"linkProtocol"`
+	Union        json.RawMessage
+}
+
+// ConnectionTypePhoneLineSchema Schema that describes the phone line (modem) connection.
+type ConnectionTypePhoneLineSchema struct {
+	// Number The phone number of the device.
+	Number string `json:"number"`
+
+	// PoolId The modem pool ID.
+	PoolId    openapi_types.UUID `json:"pool_id"`
+	TypeModem int                `json:"type_modem"`
+}
+
+// ConnectionTypeSerialDirectSchema Schema that describes the direct IP to serial connection. It represents simple physical line without any on-demand confiration (e.g. speed or parity) as the configuration is statically set on the IP-to-serial device.
+type ConnectionTypeSerialDirectSchema struct {
+	// Host The IP address or the hostname of the device.
+	Host string `json:"host"`
+
+	// Port The port number of the device.
+	Port             uint32 `json:"port"`
+	TypeSerialDirect int    `json:"type_serial_direct"`
+}
+
+// ConnectionTypeSerialMoxaSchema Schema that describes the IP-to-serial connection using a Moxa device. The Moxa supports dynamic serial configuration changes via command connection.
+type ConnectionTypeSerialMoxaSchema struct {
+	// CommandPort The port number of the device.
+	CommandPort uint32 `json:"commandPort"`
+
+	// DataPort The port number of the device.
+	DataPort uint32 `json:"dataPort"`
+
+	// Host The IP address or the hostname of the device.
+	Host           string `json:"host"`
+	TypeSerialMoxa int    `json:"type_serial_moxa"`
+}
+
+// ConnectionTypeTcpIpSchema Schema that describes the TCP/IP connection.
+type ConnectionTypeTcpIpSchema struct {
+	// Host The IP address or the hostname of the device.
+	Host string `json:"host"`
+
+	// Port The port number of the device.
+	Port    uint32 `json:"port"`
+	TypeTcp int    `json:"type_tcp"`
 }
 
 // DeviceGroupID The ID of the device group. The ID must be unique across all OpenHES components.
@@ -58,7 +123,7 @@ type DeviceID = openapi_types.UUID
 // DeviceSchema Schema that describes device details.
 type DeviceSchema struct {
 	// Attributes Schema that describes a set of attributes and their values. The key is the property name and the value is the property value. The value can be of type string, integer, number, boolean, binary, or null.
-	Attributes externalRef0.AttributesSchema `json:"attributes"`
+	Attributes AttributesSchema `json:"attributes"`
 
 	// CommunicationUnitID The list of communication unit IDs.
 	CommunicationUnitID CommunicationUnitListID `json:"communicationUnitID"`
@@ -76,38 +141,290 @@ type DeviceSchema struct {
 	Timezone *string `json:"timezone"`
 }
 
+// ModemConnectionSchema Schema that describes modem connection details. Currently only TCP/IP connection is supported.
+type ModemConnectionSchema struct {
+	Union json.RawMessage
+}
+
+// ModemPoolSchema Schema that describes modem pool details.
+type ModemPoolSchema struct {
+	// Id The modem pool identifier. It is automatically generated during creation.
+	Id openapi_types.UUID `json:"id"`
+
+	// Name The name of the modem pool.
+	Name string `json:"name"`
+}
+
+// ModemSchema Schema that describes modem details.
+type ModemSchema struct {
+	// AtConfig The modem configuration command.
+	AtConfig string `json:"at_config"`
+
+	// AtDial The modem dial command.
+	AtDial string `json:"at_dial"`
+
+	// AtDsr The modem DSR command.
+	AtDsr bool `json:"at_dsr"`
+
+	// AtEscape The modem escape command.
+	AtEscape string `json:"at_escape"`
+
+	// AtHangup The modem hangup command.
+	AtHangup string `json:"at_hangup"`
+
+	// AtInit The modem initialization command.
+	AtInit string `json:"at_init"`
+
+	// AtTest The modem test command.
+	AtTest string `json:"at_test"`
+
+	// ConnectTimeout The modem connection timeout in seconds.
+	ConnectTimeout uint32 `json:"connect_timeout"`
+
+	// Connection Schema that describes modem connection details. Currently only TCP/IP connection is supported.
+	Connection ModemConnectionSchema `json:"connection"`
+
+	// Id The modem identifier. It is automatically generated during creation.
+	Id openapi_types.UUID `json:"id"`
+
+	// Name The name of the modem.
+	Name string `json:"name"`
+}
+
+// AsConnectionTypeTcpIpSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeTcpIpSchema
+func (t ConnectionInfoSchema) AsConnectionTypeTcpIpSchema() (ConnectionTypeTcpIpSchema, error) {
+	var body ConnectionTypeTcpIpSchema
+	err := json.Unmarshal(t.Union, &body)
+	return body, err
+}
+
+// FromConnectionTypeTcpIpSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeTcpIpSchema
+func (t *ConnectionInfoSchema) FromConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+	b, err := json.Marshal(v)
+	t.Union = b
+	return err
+}
+
+// MergeConnectionTypeTcpIpSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeTcpIpSchema
+func (t *ConnectionInfoSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
+	return err
+}
+
+// AsConnectionTypePhoneLineSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypePhoneLineSchema
+func (t ConnectionInfoSchema) AsConnectionTypePhoneLineSchema() (ConnectionTypePhoneLineSchema, error) {
+	var body ConnectionTypePhoneLineSchema
+	err := json.Unmarshal(t.Union, &body)
+	return body, err
+}
+
+// FromConnectionTypePhoneLineSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypePhoneLineSchema
+func (t *ConnectionInfoSchema) FromConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
+	b, err := json.Marshal(v)
+	t.Union = b
+	return err
+}
+
+// MergeConnectionTypePhoneLineSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypePhoneLineSchema
+func (t *ConnectionInfoSchema) MergeConnectionTypePhoneLineSchema(v ConnectionTypePhoneLineSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
+	return err
+}
+
+// AsConnectionTypeSerialMoxaSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeSerialMoxaSchema
+func (t ConnectionInfoSchema) AsConnectionTypeSerialMoxaSchema() (ConnectionTypeSerialMoxaSchema, error) {
+	var body ConnectionTypeSerialMoxaSchema
+	err := json.Unmarshal(t.Union, &body)
+	return body, err
+}
+
+// FromConnectionTypeSerialMoxaSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeSerialMoxaSchema
+func (t *ConnectionInfoSchema) FromConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
+	b, err := json.Marshal(v)
+	t.Union = b
+	return err
+}
+
+// MergeConnectionTypeSerialMoxaSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeSerialMoxaSchema
+func (t *ConnectionInfoSchema) MergeConnectionTypeSerialMoxaSchema(v ConnectionTypeSerialMoxaSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
+	return err
+}
+
+// AsConnectionTypeSerialDirectSchema returns the union data inside the ConnectionInfoSchema as a ConnectionTypeSerialDirectSchema
+func (t ConnectionInfoSchema) AsConnectionTypeSerialDirectSchema() (ConnectionTypeSerialDirectSchema, error) {
+	var body ConnectionTypeSerialDirectSchema
+	err := json.Unmarshal(t.Union, &body)
+	return body, err
+}
+
+// FromConnectionTypeSerialDirectSchema overwrites any union data inside the ConnectionInfoSchema as the provided ConnectionTypeSerialDirectSchema
+func (t *ConnectionInfoSchema) FromConnectionTypeSerialDirectSchema(v ConnectionTypeSerialDirectSchema) error {
+	b, err := json.Marshal(v)
+	t.Union = b
+	return err
+}
+
+// MergeConnectionTypeSerialDirectSchema performs a merge with any union data inside the ConnectionInfoSchema, using the provided ConnectionTypeSerialDirectSchema
+func (t *ConnectionInfoSchema) MergeConnectionTypeSerialDirectSchema(v ConnectionTypeSerialDirectSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
+	return err
+}
+
+func (t ConnectionInfoSchema) MarshalJSON() ([]byte, error) {
+	b, err := t.Union.MarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	object := make(map[string]json.RawMessage)
+	if t.Union != nil {
+		err = json.Unmarshal(b, &object)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	if t.CustomGroupingId != nil {
+		object["customGroupingId"], err = json.Marshal(t.CustomGroupingId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'customGroupingId': %w", err)
+		}
+	}
+
+	object["linkProtocol"], err = json.Marshal(t.LinkProtocol)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'linkProtocol': %w", err)
+	}
+
+	b, err = json.Marshal(object)
+	return b, err
+}
+
+func (t *ConnectionInfoSchema) UnmarshalJSON(b []byte) error {
+	err := t.Union.UnmarshalJSON(b)
+	if err != nil {
+		return err
+	}
+	object := make(map[string]json.RawMessage)
+	err = json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["customGroupingId"]; found {
+		err = json.Unmarshal(raw, &t.CustomGroupingId)
+		if err != nil {
+			return fmt.Errorf("error reading 'customGroupingId': %w", err)
+		}
+	}
+
+	if raw, found := object["linkProtocol"]; found {
+		err = json.Unmarshal(raw, &t.LinkProtocol)
+		if err != nil {
+			return fmt.Errorf("error reading 'linkProtocol': %w", err)
+		}
+	}
+
+	return err
+}
+
+// AsConnectionTypeTcpIpSchema returns the union data inside the ModemConnectionSchema as a ConnectionTypeTcpIpSchema
+func (t ModemConnectionSchema) AsConnectionTypeTcpIpSchema() (ConnectionTypeTcpIpSchema, error) {
+	var body ConnectionTypeTcpIpSchema
+	err := json.Unmarshal(t.Union, &body)
+	return body, err
+}
+
+// FromConnectionTypeTcpIpSchema overwrites any union data inside the ModemConnectionSchema as the provided ConnectionTypeTcpIpSchema
+func (t *ModemConnectionSchema) FromConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+	b, err := json.Marshal(v)
+	t.Union = b
+	return err
+}
+
+// MergeConnectionTypeTcpIpSchema performs a merge with any union data inside the ModemConnectionSchema, using the provided ConnectionTypeTcpIpSchema
+func (t *ModemConnectionSchema) MergeConnectionTypeTcpIpSchema(v ConnectionTypeTcpIpSchema) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.Union, b)
+	t.Union = merged
+	return err
+}
+
+func (t ModemConnectionSchema) MarshalJSON() ([]byte, error) {
+	b, err := t.Union.MarshalJSON()
+	return b, err
+}
+
+func (t *ModemConnectionSchema) UnmarshalJSON(b []byte) error {
+	err := t.Union.UnmarshalJSON(b)
+	return err
+}
+
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
@@ -147,7 +464,7 @@ func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
 		res[pathToFile] = rawSpec
 	}
 
-	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../job/job.yaml")) {
+	for rawPath, rawFunc := range externalRef0.PathToRawSpec(path.Join(path.Dir(pathToFile), "../driver/driver.yaml")) {
 		if _, ok := res[rawPath]; ok {
 			// it is not possible to compare functions in golang, so always overwrite the old value
 		}
