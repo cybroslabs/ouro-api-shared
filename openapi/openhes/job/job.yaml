@@ -117,14 +117,19 @@ components:
         - connectionInfo
         - deviceAttributes
 
+    JobDeviceListDiscriminator:
+      type: string
+      description: >
+        The type of the list of devices.
+      enum:
+        - JOBDEVICESID
+        - JOBDEVICESFULL
+
     JobDeviceListTypedSchema:
       type: object
       properties:
         listType:
-          type: string
-          default: "JOBDEVICESID"
-          enum:
-            - JOBDEVICESID
+          $ref: "#/components/schemas/JobDeviceListDiscriminator"
         items:
           $ref: "#/components/schemas/JobDeviceListSchema"
       required:
@@ -143,10 +148,7 @@ components:
       type: object
       properties:
         listType:
-          type: string
-          default: "JOBDEVICESFULL"
-          enum:
-            - JOBDEVICESFULL
+          $ref: "#/components/schemas/JobDeviceListDiscriminator"
         items:
           $ref: "#/components/schemas/JobCustomDeviceListSchema"
       required:
