@@ -624,3 +624,13 @@ message NegotiateRequest {
     // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
     string display_name = 8;
 }
+
+// Addon for DB
+message ArrayOfModemInfo {
+    repeated ModemInfo items = 1;
+}
+
+// Addon for DB
+message ArrayOfConnectionInfo {
+    repeated ConnectionInfo items = 1;
+}
