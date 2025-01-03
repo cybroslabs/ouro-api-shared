@@ -575,11 +575,9 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	var err error
 
-	wrapper := JobCustomDeviceListTypedSchema{
-		Items: make([]JobCustomDeviceSchema, len(spec.Devices)),
-	}
+	items := make([]JobCustomDeviceSchema, len(spec.Devices))
 	for i, device := range spec.Devices {
-		target := &wrapper.Items[i]
+		target := &items[i]
 		target.Id, err = uuid.Parse(device.Id)
 		if err != nil {
 			return nil, err
@@ -635,6 +633,10 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 				return nil, ErrInvalidConnectionInfo
 			}
 		}
+	}
+
+	wrapper := JobCustomDeviceListTypedSchema{
+		Items: &items,
 	}
 
 	var id uuid.UUID

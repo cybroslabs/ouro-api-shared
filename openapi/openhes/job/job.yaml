@@ -132,6 +132,8 @@ components:
           $ref: "#/components/schemas/JobDeviceListDiscriminator"
         items:
           $ref: "#/components/schemas/JobDeviceListSchema"
+      required:
+        - listType
 
     JobDeviceListSchema:
       type: array
@@ -148,6 +150,8 @@ components:
           $ref: "#/components/schemas/JobDeviceListDiscriminator"
         items:
           $ref: "#/components/schemas/JobCustomDeviceListSchema"
+      required:
+        - listType
 
     JobCustomDeviceListSchema:
       type: array
