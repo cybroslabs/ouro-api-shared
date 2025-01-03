@@ -246,11 +246,6 @@ components:
           properties:
             linkProtocol:
               $ref: "../driver/driver.yaml#/components/schemas/DataLinkProtocolSchema"
-            customGroupingId:
-              type: string
-              description: >
-                The custom group ID of the device.
-              nullable: true
           required:
             - linkProtocol
         - oneOf:

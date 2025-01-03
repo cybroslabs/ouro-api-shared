@@ -21,9 +21,7 @@ func R2GCommunicationUnit(communicationUnit *CommunicationUnitSchema) (*pbdevice
 
 	ci := communicationUnit.ConnectionInfo
 
-	connection_info := &pbdriver.ConnectionInfo{
-		CustomGroupingId: ci.CustomGroupingId,
-	}
+	connection_info := &pbdriver.ConnectionInfo{}
 
 	result := &pbdeviceregistry.CommunicationUnitSpec{
 		Id:             communicationUnit.Id.String(),
