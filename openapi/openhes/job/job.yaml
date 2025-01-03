@@ -466,13 +466,13 @@ components:
           nullable: true
         devices:
           oneOf:
-            - $ref: "#/components/schemas/JobCustomDeviceListTypedSchema"
             - $ref: "#/components/schemas/JobDeviceListTypedSchema"
+            - $ref: "#/components/schemas/JobCustomDeviceListTypedSchema"
           discriminator:
             propertyName: listType
             mapping:
-              JOBDEVICESID: "#/components/schemas/JobCustomDeviceListTypedSchema"
-              JOBDEVICESFULL: "#/components/schemas/JobDeviceListTypedSchema"
+              JOBDEVICESID: "#/components/schemas/JobDeviceListTypedSchema"
+              JOBDEVICESFULL: "#/components/schemas/JobCustomDeviceListTypedSchema"
         settings:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
