@@ -575,9 +575,11 @@ func R2GJobSettings(settings *JobSettingsSchema) (*pbdriver.JobSettings, error) 
 func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	var err error
 
-	devices := make(JobCustomDeviceListSchema, len(spec.Devices))
+	wrapper := JobCustomDeviceListTypedSchema{
+		Items: make([]JobCustomDeviceSchema, len(spec.Devices)),
+	}
 	for i, device := range spec.Devices {
-		target := &devices[i]
+		target := &wrapper.Items[i]
 		target.Id, err = uuid.Parse(device.Id)
 		if err != nil {
 			return nil, err
@@ -665,7 +667,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 		return nil, err
 	}
 
-	err = result.Devices.FromJobCustomDeviceListSchema(devices)
+	err = result.Devices.FromJobCustomDeviceListTypedSchema(wrapper)
 	if err != nil {
 		return nil, err
 	}
@@ -710,82 +712,90 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 		}
 	}
 
+	list_type, _ := spec.Devices.Discriminator()
+
 	actions, err := R2GJobActions(&spec.Actions)
 	if err != nil {
 		return nil, err
 	}
 
 	var devices []*pbtaskmaster.JobDevice
-	if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err == nil {
-		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
-		for i, device := range device_list {
-			device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
-			if err != nil {
-				return nil, err
-			}
-
-			connection_info_list := make([]*pbdriver.ConnectionInfo, len(device.ConnectionInfo))
-			for j, ci := range device.ConnectionInfo {
-				link_proto, err := driver.R2GDataLinkProtocol(ci.LinkProtocol)
+	if list_type == string(JOBDEVICESFULL) {
+		if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err == nil {
+			devices = make([]*pbtaskmaster.JobDevice, len(device_list))
+			for i, device := range device_list {
+				device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
 				if err != nil {
 					return nil, err
 				}
 
-				connection_info := &pbdriver.ConnectionInfo{
-					LinkProtocol: link_proto,
-				}
-				connection_info_list[j] = connection_info
+				connection_info_list := make([]*pbdriver.ConnectionInfo, len(device.ConnectionInfo))
+				for j, ci := range device.ConnectionInfo {
+					link_proto, err := driver.R2GDataLinkProtocol(ci.LinkProtocol)
+					if err != nil {
+						return nil, err
+					}
 
-				if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
-					connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
-						Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
-							Host: tcp.Host,
-							Port: uint32(tcp.Port),
-						},
+					connection_info := &pbdriver.ConnectionInfo{
+						LinkProtocol: link_proto,
 					}
-				} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
-					connection_info.Connection = &pbdriver.ConnectionInfo_ModemPool{
-						ModemPool: &pbdriver.ConnectionTypeModemPool{
-							Number: phone.Number,
-							PoolId: phone.PoolId.String(),
-						},
-					}
-				} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
-					connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
-						SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
-							Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
-								Moxa: &pbdriver.ConnectionTypeSerialMoxa{
-									Host:        moxa.Host,
-									DataPort:    uint32(moxa.DataPort),
-									CommandPort: uint32(moxa.CommandPort),
+					connection_info_list[j] = connection_info
+
+					if tcp, err := ci.AsConnectionTypeTcpIpSchema(); err == nil {
+						connection_info.Connection = &pbdriver.ConnectionInfo_Tcpip{
+							Tcpip: &pbdriver.ConnectionTypeDirectTcpIp{
+								Host: tcp.Host,
+								Port: uint32(tcp.Port),
+							},
+						}
+					} else if phone, err := ci.AsConnectionTypePhoneLineSchema(); err == nil {
+						connection_info.Connection = &pbdriver.ConnectionInfo_ModemPool{
+							ModemPool: &pbdriver.ConnectionTypeModemPool{
+								Number: phone.Number,
+								PoolId: phone.PoolId.String(),
+							},
+						}
+					} else if moxa, err := ci.AsConnectionTypeSerialMoxaSchema(); err == nil {
+						connection_info.Connection = &pbdriver.ConnectionInfo_SerialOverIp{
+							SerialOverIp: &pbdriver.ConnectionTypeControlledSerial{
+								Converter: &pbdriver.ConnectionTypeControlledSerial_Moxa{
+									Moxa: &pbdriver.ConnectionTypeSerialMoxa{
+										Host:        moxa.Host,
+										DataPort:    uint32(moxa.DataPort),
+										CommandPort: uint32(moxa.CommandPort),
+									},
 								},
 							},
-						},
+						}
 					}
 				}
-			}
 
-			app_protocol, err := driver.R2GAppProtocol(device.ApplicationProtocol)
-			if err != nil {
-				return nil, err
-			}
+				app_protocol, err := driver.R2GAppProtocol(device.ApplicationProtocol)
+				if err != nil {
+					return nil, err
+				}
 
-			devices[i] = &pbtaskmaster.JobDevice{
-				Id:               device.Id.String(),
-				DeviceAttributes: device_attributes,
-				ExternalId:       device.ExternalID,
-				ConnectionInfo:   connection_info_list,
-				AppProtocol:      app_protocol,
-				Timezone:         device.Timezone,
+				devices[i] = &pbtaskmaster.JobDevice{
+					Id:               device.Id.String(),
+					DeviceAttributes: device_attributes,
+					ExternalId:       device.ExternalID,
+					ConnectionInfo:   connection_info_list,
+					AppProtocol:      app_protocol,
+					Timezone:         device.Timezone,
+				}
 			}
+		} else {
+			return nil, ErrInvalidConnectionInfo
 		}
-	} else if device_list, err := decodeJobDeviceList(spec.Devices.Union); err == nil {
-		devices = make([]*pbtaskmaster.JobDevice, len(device_list))
-		for i, device := range device_list {
-			dev_id := device.DeviceId.String()
-			devices[i] = &pbtaskmaster.JobDevice{
-				Id:       device.Id.String(),
-				DeviceId: &dev_id,
+	} else if list_type == string(JOBDEVICESID) {
+		if device_list, err := decodeJobDeviceList(spec.Devices.Union); err == nil {
+			devices = make([]*pbtaskmaster.JobDevice, len(device_list))
+			for i, device := range device_list {
+				dev_id := device.DeviceId.String()
+				devices[i] = &pbtaskmaster.JobDevice{
+					Id:       device.Id.String(),
+					DeviceId: &dev_id,
+				}
 			}
 		}
 	} else {

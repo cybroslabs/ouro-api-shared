@@ -117,6 +117,20 @@ components:
         - connectionInfo
         - deviceAttributes
 
+    JobDeviceListTypedSchema:
+      type: object
+      properties:
+        listType:
+          type: string
+          default: "JOB_DEVICES_ID"
+          enum:
+            - JOB_DEVICES_ID
+        items:
+          $ref: "#/components/schemas/JobDeviceListSchema"
+      required:
+        - listType
+        - items
+
     JobDeviceListSchema:
       type: array
       description: >
@@ -124,6 +138,20 @@ components:
       minLength: 1
       items:
         $ref: "#/components/schemas/JobDeviceSchema"
+
+    JobCustomDeviceListTypedSchema:
+      type: object
+      properties:
+        listType:
+          type: string
+          default: "JOB_DEVICES_FULL"
+          enum:
+            - JOB_DEVICES_FULL
+        items:
+          $ref: "#/components/schemas/JobCustomDeviceListSchema"
+      required:
+        - listType
+        - items
 
     JobCustomDeviceListSchema:
       type: array
@@ -436,8 +464,13 @@ components:
           nullable: true
         devices:
           oneOf:
-            - $ref: "#/components/schemas/JobCustomDeviceListSchema"
-            - $ref: "#/components/schemas/JobDeviceListSchema"
+            - $ref: "#/components/schemas/JobCustomDeviceListTypedSchema"
+            - $ref: "#/components/schemas/JobDeviceListTypedSchema"
+          discriminator:
+            propertyName: listType
+            mapping:
+              full: "#/components/schemas/JobCustomDeviceListTypedSchema"
+              id: "#/components/schemas/JobDeviceListTypedSchema"
         settings:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
