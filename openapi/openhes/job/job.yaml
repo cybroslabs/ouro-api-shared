@@ -469,8 +469,8 @@ components:
           discriminator:
             propertyName: listType
             mapping:
-              full: "#/components/schemas/JobCustomDeviceListTypedSchema"
-              id: "#/components/schemas/JobDeviceListTypedSchema"
+              JOB_DEVICES_ID: "#/components/schemas/JobCustomDeviceListTypedSchema"
+              JOB_DEVICES_FULL: "#/components/schemas/JobDeviceListTypedSchema"
         settings:
           $ref: "#/components/schemas/JobSettingsSchema"
         actions:
