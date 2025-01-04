@@ -677,24 +677,34 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
-func decodeJobCustomDeviceList(raw json.RawMessage) (JobCustomDeviceListSchema, error) {
-	var devices JobCustomDeviceListSchema
+func decodeJobCustomDeviceList(raw json.RawMessage) (*JobCustomDeviceListSchema, error) {
+	var devices JobCustomDeviceListTypedSchema
 	d := json.NewDecoder(bytes.NewReader(raw))
 	d.UseNumber()
 	if err := d.Decode(&devices); err != nil {
 		return nil, err
 	}
-	return devices, nil
+	result := devices.Items
+	if result == nil {
+		t := make(JobCustomDeviceListSchema, 0)
+		result = &t
+	}
+	return result, nil
 }
 
-func decodeJobDeviceList(raw json.RawMessage) (JobDeviceListSchema, error) {
-	var devices JobDeviceListSchema
+func decodeJobDeviceList(raw json.RawMessage) (*JobDeviceListSchema, error) {
+	var devices JobDeviceListTypedSchema
 	d := json.NewDecoder(bytes.NewReader(raw))
 	d.UseNumber()
 	if err := d.Decode(&devices); err != nil {
 		return nil, err
 	}
-	return devices, nil
+	result := devices.Items
+	if result == nil {
+		t := make(JobDeviceListSchema, 0)
+		result = &t
+	}
+	return result, nil
 }
 
 // Converts the bulk spec - Rest API to gRPC
