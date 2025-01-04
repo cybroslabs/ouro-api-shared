@@ -677,7 +677,7 @@ func G2RBulkSpec(spec *pbdataproxy.BulkSpec) (*BulkSpecSchema, error) {
 	return result, nil
 }
 
-func decodeJobCustomDeviceList(raw json.RawMessage) (*JobCustomDeviceListSchema, error) {
+func decodeJobCustomDeviceList(raw json.RawMessage) (JobCustomDeviceListSchema, error) {
 	var devices JobCustomDeviceListTypedSchema
 	d := json.NewDecoder(bytes.NewReader(raw))
 	d.UseNumber()
@@ -686,13 +686,12 @@ func decodeJobCustomDeviceList(raw json.RawMessage) (*JobCustomDeviceListSchema,
 	}
 	result := devices.Items
 	if result == nil {
-		t := make(JobCustomDeviceListSchema, 0)
-		result = &t
+		return make(JobCustomDeviceListSchema, 0), nil
 	}
-	return result, nil
+	return *result, nil
 }
 
-func decodeJobDeviceList(raw json.RawMessage) (*JobDeviceListSchema, error) {
+func decodeJobDeviceList(raw json.RawMessage) (JobDeviceListSchema, error) {
 	var devices JobDeviceListTypedSchema
 	d := json.NewDecoder(bytes.NewReader(raw))
 	d.UseNumber()
@@ -701,10 +700,9 @@ func decodeJobDeviceList(raw json.RawMessage) (*JobDeviceListSchema, error) {
 	}
 	result := devices.Items
 	if result == nil {
-		t := make(JobDeviceListSchema, 0)
-		result = &t
+		return make(JobDeviceListSchema, 0), nil
 	}
-	return result, nil
+	return *result, nil
 }
 
 // Converts the bulk spec - Rest API to gRPC
@@ -733,7 +731,7 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 
 	var devices []*pbtaskmaster.JobDevice
 	if list_type == string(JOBDEVICESFULL) {
-		if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err == nil {
+		if device_list, err := decodeJobCustomDeviceList(spec.Devices.Union); err == nil && device_list != nil {
 			devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 			for i, device := range device_list {
 				device_attributes, err := attribute.R2GAttributes(device.DeviceAttributes)
@@ -797,10 +795,10 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 				}
 			}
 		} else {
-			return nil, ErrInvalidConnectionInfo
+			return nil, ErrInvalidDeviceList
 		}
 	} else if list_type == string(JOBDEVICESID) {
-		if device_list, err := decodeJobDeviceList(spec.Devices.Union); err == nil {
+		if device_list, err := decodeJobDeviceList(spec.Devices.Union); err == nil && device_list != nil {
 			devices = make([]*pbtaskmaster.JobDevice, len(device_list))
 			for i, device := range device_list {
 				dev_id := device.DeviceId.String()
@@ -809,6 +807,8 @@ func R2GBulkSpec(spec *BulkSpecSchema) (*pbdataproxy.BulkSpec, error) {
 					DeviceId: &dev_id,
 				}
 			}
+		} else {
+			return nil, ErrInvalidDeviceList
 		}
 	} else {
 		return nil, ErrInvalidDeviceList
