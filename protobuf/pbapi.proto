@@ -5,9 +5,9 @@ option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbapi";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "pbtaskmaster.proto";
-import "pbdriver.proto";
-import "pbdataproxy.proto";
+import "pbtaskmaster-models.proto";
+import "pbdriver-models.proto";
+import "pbdataproxy-models.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
