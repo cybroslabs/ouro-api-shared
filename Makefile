@@ -4,6 +4,31 @@ all: gen-go generate
 .PHONY: gen-go
 gen-go:
 	cd protobuf && protoc \
+		--go_out=./pbdeviceregistrymodels --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdeviceregistrymodels --go-grpc_opt=paths=source_relative \
+		pbdeviceregistry-models.proto
+
+	cd protobuf && protoc \
+		--go_out=./pbdrivermodels --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdrivermodels --go-grpc_opt=paths=source_relative \
+		pbdriver-models.proto
+
+	cd protobuf && protoc \
+		--go_out=./pbtaskmastermodels --go_opt=paths=source_relative \
+		--go-grpc_out=./pbtaskmastermodels --go-grpc_opt=paths=source_relative \
+		pbtaskmaster-models.proto
+
+	cd protobuf && protoc \
+		--go_out=./pbdataproxymodels --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdataproxymodels --go-grpc_opt=paths=source_relative \
+		pbdataproxy-models.proto
+
+	cd protobuf && protoc \
+		--go_out=./pbdriveroperatormodels --go_opt=paths=source_relative \
+		--go-grpc_out=./pbdriveroperatormodels --go-grpc_opt=paths=source_relative \
+		pbdriveroperator-models.proto
+
+	cd protobuf && protoc \
 		--go_out=./pbdeviceregistry --go_opt=paths=source_relative \
 		--go-grpc_out=./pbdeviceregistry --go-grpc_opt=paths=source_relative \
 		pbdeviceregistry.proto

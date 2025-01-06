@@ -8,7 +8,7 @@ package pbapi
 
 import (
 	context "context"
-	pbdataproxy "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
+	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -34,13 +34,13 @@ const (
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *pbdataproxy.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateBulk(ctx context.Context, in *pbdataproxymodels.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(ctx context.Context, in *pbdataproxy.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxy.GetBulksResponse, error)
+	GetBulks(ctx context.Context, in *pbdataproxymodels.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(ctx context.Context, in *pbdataproxy.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxy.GetBulkResponse, error)
+	GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJobStatus(ctx context.Context, in *pbdataproxy.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxy.GetJobStatusResponse, error)
+	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
 }
 
 type apiServiceClient struct {
@@ -51,7 +51,7 @@ func NewApiServiceClient(cc grpc.ClientConnInterface) ApiServiceClient {
 	return &apiServiceClient{cc}
 }
 
-func (c *apiServiceClient) CreateBulk(ctx context.Context, in *pbdataproxy.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateBulk(ctx context.Context, in *pbdataproxymodels.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ApiService_CreateBulk_FullMethodName, in, out, cOpts...)
@@ -61,9 +61,9 @@ func (c *apiServiceClient) CreateBulk(ctx context.Context, in *pbdataproxy.Creat
 	return out, nil
 }
 
-func (c *apiServiceClient) GetBulks(ctx context.Context, in *pbdataproxy.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxy.GetBulksResponse, error) {
+func (c *apiServiceClient) GetBulks(ctx context.Context, in *pbdataproxymodels.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulksResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxy.GetBulksResponse)
+	out := new(pbdataproxymodels.GetBulksResponse)
 	err := c.cc.Invoke(ctx, ApiService_GetBulks_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -71,9 +71,9 @@ func (c *apiServiceClient) GetBulks(ctx context.Context, in *pbdataproxy.GetBulk
 	return out, nil
 }
 
-func (c *apiServiceClient) GetBulk(ctx context.Context, in *pbdataproxy.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxy.GetBulkResponse, error) {
+func (c *apiServiceClient) GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxy.GetBulkResponse)
+	out := new(pbdataproxymodels.GetBulkResponse)
 	err := c.cc.Invoke(ctx, ApiService_GetBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -81,9 +81,9 @@ func (c *apiServiceClient) GetBulk(ctx context.Context, in *pbdataproxy.GetBulkR
 	return out, nil
 }
 
-func (c *apiServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxy.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxy.GetJobStatusResponse, error) {
+func (c *apiServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxy.GetJobStatusResponse)
+	out := new(pbdataproxymodels.GetJobStatusResponse)
 	err := c.cc.Invoke(ctx, ApiService_GetJobStatus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -98,13 +98,13 @@ func (c *apiServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxy.Get
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(context.Context, *pbdataproxy.CreateBulkRequest) (*emptypb.Empty, error)
+	CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(context.Context, *pbdataproxy.GetBulksReuqest) (*pbdataproxy.GetBulksResponse, error)
+	GetBulks(context.Context, *pbdataproxymodels.GetBulksReuqest) (*pbdataproxymodels.GetBulksResponse, error)
 	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(context.Context, *pbdataproxy.GetBulkRequest) (*pbdataproxy.GetBulkResponse, error)
+	GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJobStatus(context.Context, *pbdataproxy.GetJobStatusRequest) (*pbdataproxy.GetJobStatusResponse, error)
+	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -115,16 +115,16 @@ type ApiServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedApiServiceServer struct{}
 
-func (UnimplementedApiServiceServer) CreateBulk(context.Context, *pbdataproxy.CreateBulkRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
-func (UnimplementedApiServiceServer) GetBulks(context.Context, *pbdataproxy.GetBulksReuqest) (*pbdataproxy.GetBulksResponse, error) {
+func (UnimplementedApiServiceServer) GetBulks(context.Context, *pbdataproxymodels.GetBulksReuqest) (*pbdataproxymodels.GetBulksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulks not implemented")
 }
-func (UnimplementedApiServiceServer) GetBulk(context.Context, *pbdataproxy.GetBulkRequest) (*pbdataproxy.GetBulkResponse, error) {
+func (UnimplementedApiServiceServer) GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
 }
-func (UnimplementedApiServiceServer) GetJobStatus(context.Context, *pbdataproxy.GetJobStatusRequest) (*pbdataproxy.GetJobStatusResponse, error) {
+func (UnimplementedApiServiceServer) GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobStatus not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
@@ -149,7 +149,7 @@ func RegisterApiServiceServer(s grpc.ServiceRegistrar, srv ApiServiceServer) {
 }
 
 func _ApiService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxy.CreateBulkRequest)
+	in := new(pbdataproxymodels.CreateBulkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -161,13 +161,13 @@ func _ApiService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: ApiService_CreateBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CreateBulk(ctx, req.(*pbdataproxy.CreateBulkRequest))
+		return srv.(ApiServiceServer).CreateBulk(ctx, req.(*pbdataproxymodels.CreateBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxy.GetBulksReuqest)
+	in := new(pbdataproxymodels.GetBulksReuqest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -179,13 +179,13 @@ func _ApiService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: ApiService_GetBulks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetBulks(ctx, req.(*pbdataproxy.GetBulksReuqest))
+		return srv.(ApiServiceServer).GetBulks(ctx, req.(*pbdataproxymodels.GetBulksReuqest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxy.GetBulkRequest)
+	in := new(pbdataproxymodels.GetBulkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -197,13 +197,13 @@ func _ApiService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: ApiService_GetBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetBulk(ctx, req.(*pbdataproxy.GetBulkRequest))
+		return srv.(ApiServiceServer).GetBulk(ctx, req.(*pbdataproxymodels.GetBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_GetJobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxy.GetJobStatusRequest)
+	in := new(pbdataproxymodels.GetJobStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -215,7 +215,7 @@ func _ApiService_GetJobStatus_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: ApiService_GetJobStatus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetJobStatus(ctx, req.(*pbdataproxy.GetJobStatusRequest))
+		return srv.(ApiServiceServer).GetJobStatus(ctx, req.(*pbdataproxymodels.GetJobStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

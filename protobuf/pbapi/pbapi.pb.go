@@ -7,9 +7,9 @@
 package pbapi
 
 import (
-	pbdataproxy "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxy"
-	_ "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
-	_ "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmaster"
+	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
+	_ "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
+	_ "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmastermodels"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -72,14 +72,14 @@ var file_pbapi_proto_rawDesc = []byte{
 }
 
 var file_pbapi_proto_goTypes = []any{
-	(*pbdataproxy.CreateBulkRequest)(nil),    // 0: io.clbs.openhes.pbdataproxy.CreateBulkRequest
-	(*pbdataproxy.GetBulksReuqest)(nil),      // 1: io.clbs.openhes.pbdataproxy.GetBulksReuqest
-	(*pbdataproxy.GetBulkRequest)(nil),       // 2: io.clbs.openhes.pbdataproxy.GetBulkRequest
-	(*pbdataproxy.GetJobStatusRequest)(nil),  // 3: io.clbs.openhes.pbdataproxy.GetJobStatusRequest
-	(*emptypb.Empty)(nil),                    // 4: google.protobuf.Empty
-	(*pbdataproxy.GetBulksResponse)(nil),     // 5: io.clbs.openhes.pbdataproxy.GetBulksResponse
-	(*pbdataproxy.GetBulkResponse)(nil),      // 6: io.clbs.openhes.pbdataproxy.GetBulkResponse
-	(*pbdataproxy.GetJobStatusResponse)(nil), // 7: io.clbs.openhes.pbdataproxy.GetJobStatusResponse
+	(*pbdataproxymodels.CreateBulkRequest)(nil),    // 0: io.clbs.openhes.pbdataproxy.CreateBulkRequest
+	(*pbdataproxymodels.GetBulksReuqest)(nil),      // 1: io.clbs.openhes.pbdataproxy.GetBulksReuqest
+	(*pbdataproxymodels.GetBulkRequest)(nil),       // 2: io.clbs.openhes.pbdataproxy.GetBulkRequest
+	(*pbdataproxymodels.GetJobStatusRequest)(nil),  // 3: io.clbs.openhes.pbdataproxy.GetJobStatusRequest
+	(*emptypb.Empty)(nil),                          // 4: google.protobuf.Empty
+	(*pbdataproxymodels.GetBulksResponse)(nil),     // 5: io.clbs.openhes.pbdataproxy.GetBulksResponse
+	(*pbdataproxymodels.GetBulkResponse)(nil),      // 6: io.clbs.openhes.pbdataproxy.GetBulkResponse
+	(*pbdataproxymodels.GetJobStatusResponse)(nil), // 7: io.clbs.openhes.pbdataproxy.GetJobStatusResponse
 }
 var file_pbapi_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.pbdataproxy.ApiService.CreateBulk:input_type -> io.clbs.openhes.pbdataproxy.CreateBulkRequest

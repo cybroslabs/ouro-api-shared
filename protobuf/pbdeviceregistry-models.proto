@@ -1,7 +1,7 @@
 syntax = "proto3";
 package io.clbs.openhes.pbdeviceregistry;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistry";
+option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistrymodels";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";

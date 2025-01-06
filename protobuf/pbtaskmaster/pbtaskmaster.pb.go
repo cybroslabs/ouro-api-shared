@@ -7,7 +7,8 @@
 package pbtaskmaster
 
 import (
-	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
+	pbtaskmastermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmastermodels"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -99,19 +100,19 @@ var file_pbtaskmaster_proto_rawDesc = []byte{
 }
 
 var file_pbtaskmaster_proto_goTypes = []any{
-	(*QueueJobsRequest)(nil),          // 0: io.clbs.openhes.pbtaskmaster.QueueJobsRequest
-	(*GetJobRequest)(nil),             // 1: io.clbs.openhes.pbtaskmaster.GetJobRequest
-	(*emptypb.Empty)(nil),             // 2: google.protobuf.Empty
-	(*CancelJobsRequest)(nil),         // 3: io.clbs.openhes.pbtaskmaster.CancelJobsRequest
-	(*pbdriver.NegotiateRequest)(nil), // 4: io.clbs.openhes.pbdriver.NegotiateRequest
-	(*CacheSetRequest)(nil),           // 5: io.clbs.openhes.pbtaskmaster.CacheSetRequest
-	(*CacheGetRequest)(nil),           // 6: io.clbs.openhes.pbtaskmaster.CacheGetRequest
-	(*SystemConfig)(nil),              // 7: io.clbs.openhes.pbtaskmaster.SystemConfig
-	(*GetJobResponse)(nil),            // 8: io.clbs.openhes.pbtaskmaster.GetJobResponse
-	(*StreamEventsData)(nil),          // 9: io.clbs.openhes.pbtaskmaster.StreamEventsData
-	(*pbdriver.CommonResponse)(nil),   // 10: io.clbs.openhes.pbdriver.CommonResponse
-	(*CacheGetResponse)(nil),          // 11: io.clbs.openhes.pbtaskmaster.CacheGetResponse
-	(*SystemConfigResponse)(nil),      // 12: io.clbs.openhes.pbtaskmaster.SystemConfigResponse
+	(*pbtaskmastermodels.QueueJobsRequest)(nil),     // 0: io.clbs.openhes.pbtaskmaster.QueueJobsRequest
+	(*pbtaskmastermodels.GetJobRequest)(nil),        // 1: io.clbs.openhes.pbtaskmaster.GetJobRequest
+	(*emptypb.Empty)(nil),                           // 2: google.protobuf.Empty
+	(*pbtaskmastermodels.CancelJobsRequest)(nil),    // 3: io.clbs.openhes.pbtaskmaster.CancelJobsRequest
+	(*pbdrivermodels.NegotiateRequest)(nil),         // 4: io.clbs.openhes.pbdriver.NegotiateRequest
+	(*pbtaskmastermodels.CacheSetRequest)(nil),      // 5: io.clbs.openhes.pbtaskmaster.CacheSetRequest
+	(*pbtaskmastermodels.CacheGetRequest)(nil),      // 6: io.clbs.openhes.pbtaskmaster.CacheGetRequest
+	(*pbtaskmastermodels.SystemConfig)(nil),         // 7: io.clbs.openhes.pbtaskmaster.SystemConfig
+	(*pbtaskmastermodels.GetJobResponse)(nil),       // 8: io.clbs.openhes.pbtaskmaster.GetJobResponse
+	(*pbtaskmastermodels.StreamEventsData)(nil),     // 9: io.clbs.openhes.pbtaskmaster.StreamEventsData
+	(*pbdrivermodels.CommonResponse)(nil),           // 10: io.clbs.openhes.pbdriver.CommonResponse
+	(*pbtaskmastermodels.CacheGetResponse)(nil),     // 11: io.clbs.openhes.pbtaskmaster.CacheGetResponse
+	(*pbtaskmastermodels.SystemConfigResponse)(nil), // 12: io.clbs.openhes.pbtaskmaster.SystemConfigResponse
 }
 var file_pbtaskmaster_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.pbtaskmaster.TaskmasterService.QueueJobs:input_type -> io.clbs.openhes.pbtaskmaster.QueueJobsRequest
@@ -146,7 +147,6 @@ func file_pbtaskmaster_proto_init() {
 	if File_pbtaskmaster_proto != nil {
 		return
 	}
-	file_pbtaskmaster_models_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

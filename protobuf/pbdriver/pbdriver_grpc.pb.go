@@ -8,6 +8,7 @@ package pbdriver
 
 import (
 	context "context"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,9 +32,9 @@ const (
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
 type DriverServiceClient interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	StartJob(ctx context.Context, in *StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ProgressUpdate], error)
+	StartJob(ctx context.Context, in *pbdrivermodels.StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[pbdrivermodels.ProgressUpdate], error)
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-	CancelJob(ctx context.Context, in *CancelJobRequest, opts ...grpc.CallOption) (*CommonResponse, error)
+	CancelJob(ctx context.Context, in *pbdrivermodels.CancelJobRequest, opts ...grpc.CallOption) (*pbdrivermodels.CommonResponse, error)
 }
 
 type driverServiceClient struct {
@@ -44,13 +45,13 @@ func NewDriverServiceClient(cc grpc.ClientConnInterface) DriverServiceClient {
 	return &driverServiceClient{cc}
 }
 
-func (c *driverServiceClient) StartJob(ctx context.Context, in *StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ProgressUpdate], error) {
+func (c *driverServiceClient) StartJob(ctx context.Context, in *pbdrivermodels.StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[pbdrivermodels.ProgressUpdate], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &DriverService_ServiceDesc.Streams[0], DriverService_StartJob_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[StartJobsRequest, ProgressUpdate]{ClientStream: stream}
+	x := &grpc.GenericClientStream[pbdrivermodels.StartJobsRequest, pbdrivermodels.ProgressUpdate]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -61,11 +62,11 @@ func (c *driverServiceClient) StartJob(ctx context.Context, in *StartJobsRequest
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DriverService_StartJobClient = grpc.ServerStreamingClient[ProgressUpdate]
+type DriverService_StartJobClient = grpc.ServerStreamingClient[pbdrivermodels.ProgressUpdate]
 
-func (c *driverServiceClient) CancelJob(ctx context.Context, in *CancelJobRequest, opts ...grpc.CallOption) (*CommonResponse, error) {
+func (c *driverServiceClient) CancelJob(ctx context.Context, in *pbdrivermodels.CancelJobRequest, opts ...grpc.CallOption) (*pbdrivermodels.CommonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CommonResponse)
+	out := new(pbdrivermodels.CommonResponse)
 	err := c.cc.Invoke(ctx, DriverService_CancelJob_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -81,9 +82,9 @@ func (c *driverServiceClient) CancelJob(ctx context.Context, in *CancelJobReques
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
 type DriverServiceServer interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
-	StartJob(*StartJobsRequest, grpc.ServerStreamingServer[ProgressUpdate]) error
+	StartJob(*pbdrivermodels.StartJobsRequest, grpc.ServerStreamingServer[pbdrivermodels.ProgressUpdate]) error
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-	CancelJob(context.Context, *CancelJobRequest) (*CommonResponse, error)
+	CancelJob(context.Context, *pbdrivermodels.CancelJobRequest) (*pbdrivermodels.CommonResponse, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -94,10 +95,10 @@ type DriverServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverServiceServer struct{}
 
-func (UnimplementedDriverServiceServer) StartJob(*StartJobsRequest, grpc.ServerStreamingServer[ProgressUpdate]) error {
+func (UnimplementedDriverServiceServer) StartJob(*pbdrivermodels.StartJobsRequest, grpc.ServerStreamingServer[pbdrivermodels.ProgressUpdate]) error {
 	return status.Errorf(codes.Unimplemented, "method StartJob not implemented")
 }
-func (UnimplementedDriverServiceServer) CancelJob(context.Context, *CancelJobRequest) (*CommonResponse, error) {
+func (UnimplementedDriverServiceServer) CancelJob(context.Context, *pbdrivermodels.CancelJobRequest) (*pbdrivermodels.CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
@@ -122,18 +123,18 @@ func RegisterDriverServiceServer(s grpc.ServiceRegistrar, srv DriverServiceServe
 }
 
 func _DriverService_StartJob_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StartJobsRequest)
+	m := new(pbdrivermodels.StartJobsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DriverServiceServer).StartJob(m, &grpc.GenericServerStream[StartJobsRequest, ProgressUpdate]{ServerStream: stream})
+	return srv.(DriverServiceServer).StartJob(m, &grpc.GenericServerStream[pbdrivermodels.StartJobsRequest, pbdrivermodels.ProgressUpdate]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DriverService_StartJobServer = grpc.ServerStreamingServer[ProgressUpdate]
+type DriverService_StartJobServer = grpc.ServerStreamingServer[pbdrivermodels.ProgressUpdate]
 
 func _DriverService_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CancelJobRequest)
+	in := new(pbdrivermodels.CancelJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -145,7 +146,7 @@ func _DriverService_CancelJob_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: DriverService_CancelJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).CancelJob(ctx, req.(*CancelJobRequest))
+		return srv.(DriverServiceServer).CancelJob(ctx, req.(*pbdrivermodels.CancelJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

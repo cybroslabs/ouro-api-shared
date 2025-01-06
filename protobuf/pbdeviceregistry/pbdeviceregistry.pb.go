@@ -7,7 +7,8 @@
 package pbdeviceregistry
 
 import (
-	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	pbdeviceregistrymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistrymodels"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -172,26 +173,26 @@ var file_pbdeviceregistry_proto_rawDesc = []byte{
 }
 
 var file_pbdeviceregistry_proto_goTypes = []any{
-	(*pbdriver.NegotiateRequest)(nil),            // 0: io.clbs.openhes.pbdriver.NegotiateRequest
-	(*CreateCommunicationUnitRequest)(nil),       // 1: io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest
-	(*GetCommunicationUnitsRequest)(nil),         // 2: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest
-	(*CreateDeviceRequest)(nil),                  // 3: io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest
-	(*GetDevicesRequest)(nil),                    // 4: io.clbs.openhes.pbdeviceregistry.GetDevicesRequest
-	(*SetDeviceCommunicationUnitsRequest)(nil),   // 5: io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest
-	(*GetDevicesCommunicationUnitsRequest)(nil),  // 6: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest
-	(*CreateDeviceGroupRequest)(nil),             // 7: io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest
-	(*wrapperspb.StringValue)(nil),               // 8: google.protobuf.StringValue
-	(*AddDevicesToGroupRequest)(nil),             // 9: io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest
-	(*RemoveDevicesFromGroupRequest)(nil),        // 10: io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest
-	(*emptypb.Empty)(nil),                        // 11: google.protobuf.Empty
-	(*SetModemPoolRequest)(nil),                  // 12: io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
-	(*SetModemRequest)(nil),                      // 13: io.clbs.openhes.pbdeviceregistry.SetModemRequest
-	(*GetCommunicationUnitsResponse)(nil),        // 14: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
-	(*GetDevicesResponse)(nil),                   // 15: io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
-	(*GetDevicesCommunicationUnitsResponse)(nil), // 16: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
-	(*GetDeviceGroupsResponse)(nil),              // 17: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
-	(*GetModemPoolsResponse)(nil),                // 18: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
-	(*GetModemPoolResponse)(nil),                 // 19: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
+	(*pbdrivermodels.NegotiateRequest)(nil),                             // 0: io.clbs.openhes.pbdriver.NegotiateRequest
+	(*pbdeviceregistrymodels.CreateCommunicationUnitRequest)(nil),       // 1: io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest
+	(*pbdeviceregistrymodels.GetCommunicationUnitsRequest)(nil),         // 2: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest
+	(*pbdeviceregistrymodels.CreateDeviceRequest)(nil),                  // 3: io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest
+	(*pbdeviceregistrymodels.GetDevicesRequest)(nil),                    // 4: io.clbs.openhes.pbdeviceregistry.GetDevicesRequest
+	(*pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest)(nil),   // 5: io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest
+	(*pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest)(nil),  // 6: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest
+	(*pbdeviceregistrymodels.CreateDeviceGroupRequest)(nil),             // 7: io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest
+	(*wrapperspb.StringValue)(nil),                                      // 8: google.protobuf.StringValue
+	(*pbdeviceregistrymodels.AddDevicesToGroupRequest)(nil),             // 9: io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest
+	(*pbdeviceregistrymodels.RemoveDevicesFromGroupRequest)(nil),        // 10: io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest
+	(*emptypb.Empty)(nil),                                               // 11: google.protobuf.Empty
+	(*pbdeviceregistrymodels.SetModemPoolRequest)(nil),                  // 12: io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
+	(*pbdeviceregistrymodels.SetModemRequest)(nil),                      // 13: io.clbs.openhes.pbdeviceregistry.SetModemRequest
+	(*pbdeviceregistrymodels.GetCommunicationUnitsResponse)(nil),        // 14: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
+	(*pbdeviceregistrymodels.GetDevicesResponse)(nil),                   // 15: io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
+	(*pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse)(nil), // 16: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
+	(*pbdeviceregistrymodels.GetDeviceGroupsResponse)(nil),              // 17: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
+	(*pbdeviceregistrymodels.GetModemPoolsResponse)(nil),                // 18: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
+	(*pbdeviceregistrymodels.GetModemPoolResponse)(nil),                 // 19: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
 }
 var file_pbdeviceregistry_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.pbdeviceregistry.DeviceRegistryService.SetDriverTemplates:input_type -> io.clbs.openhes.pbdriver.NegotiateRequest
@@ -244,7 +245,6 @@ func file_pbdeviceregistry_proto_init() {
 	if File_pbdeviceregistry_proto != nil {
 		return
 	}
-	file_pbdeviceregistry_models_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

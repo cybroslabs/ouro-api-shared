@@ -7,6 +7,7 @@
 package pbdriver
 
 import (
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
@@ -53,10 +54,10 @@ var file_pbdriver_proto_rawDesc = []byte{
 }
 
 var file_pbdriver_proto_goTypes = []any{
-	(*StartJobsRequest)(nil), // 0: io.clbs.openhes.pbdriver.StartJobsRequest
-	(*CancelJobRequest)(nil), // 1: io.clbs.openhes.pbdriver.CancelJobRequest
-	(*ProgressUpdate)(nil),   // 2: io.clbs.openhes.pbdriver.ProgressUpdate
-	(*CommonResponse)(nil),   // 3: io.clbs.openhes.pbdriver.CommonResponse
+	(*pbdrivermodels.StartJobsRequest)(nil), // 0: io.clbs.openhes.pbdriver.StartJobsRequest
+	(*pbdrivermodels.CancelJobRequest)(nil), // 1: io.clbs.openhes.pbdriver.CancelJobRequest
+	(*pbdrivermodels.ProgressUpdate)(nil),   // 2: io.clbs.openhes.pbdriver.ProgressUpdate
+	(*pbdrivermodels.CommonResponse)(nil),   // 3: io.clbs.openhes.pbdriver.CommonResponse
 }
 var file_pbdriver_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.pbdriver.DriverService.StartJob:input_type -> io.clbs.openhes.pbdriver.StartJobsRequest
@@ -75,7 +76,6 @@ func file_pbdriver_proto_init() {
 	if File_pbdriver_proto != nil {
 		return
 	}
-	file_pbdriver_models_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

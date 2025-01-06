@@ -8,7 +8,8 @@ package pbtaskmaster
 
 import (
 	context "context"
-	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
+	pbtaskmastermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmastermodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -40,25 +41,25 @@ const (
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceClient interface {
-	QueueJobs(ctx context.Context, in *QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	QueueJobs(ctx context.Context, in *pbtaskmastermodels.QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error)
+	GetJob(ctx context.Context, in *pbtaskmastermodels.GetJobRequest, opts ...grpc.CallOption) (*pbtaskmastermodels.GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
 	PurgeJobs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Subcribe for notification stream
-	Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamEventsData], error)
+	Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[pbtaskmastermodels.StreamEventsData], error)
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
-	NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error)
+	NegotiateStart(ctx context.Context, in *pbdrivermodels.NegotiateRequest, opts ...grpc.CallOption) (*pbdrivermodels.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
-	CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CacheSet(ctx context.Context, in *pbtaskmastermodels.CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
-	CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error)
+	CacheGet(ctx context.Context, in *pbtaskmastermodels.CacheGetRequest, opts ...grpc.CallOption) (*pbtaskmastermodels.CacheGetResponse, error)
 	// The method called by the RestApi to get the system configuration.
-	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error)
+	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
-	SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetConfig(ctx context.Context, in *pbtaskmastermodels.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type taskmasterServiceClient struct {
@@ -69,7 +70,7 @@ func NewTaskmasterServiceClient(cc grpc.ClientConnInterface) TaskmasterServiceCl
 	return &taskmasterServiceClient{cc}
 }
 
-func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *pbtaskmastermodels.QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_QueueJobs_FullMethodName, in, out, cOpts...)
@@ -79,9 +80,9 @@ func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *QueueJobsRe
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error) {
+func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *pbtaskmastermodels.GetJobRequest, opts ...grpc.CallOption) (*pbtaskmastermodels.GetJobResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetJobResponse)
+	out := new(pbtaskmastermodels.GetJobResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_GetJob_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,7 +100,7 @@ func (c *taskmasterServiceClient) PurgeJobs(ctx context.Context, in *emptypb.Emp
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_CancelJobs_FullMethodName, in, out, cOpts...)
@@ -109,13 +110,13 @@ func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *CancelJobs
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamEventsData], error) {
+func (c *taskmasterServiceClient) Subscribe(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[pbtaskmastermodels.StreamEventsData], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &TaskmasterService_ServiceDesc.Streams[0], TaskmasterService_Subscribe_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[emptypb.Empty, StreamEventsData]{ClientStream: stream}
+	x := &grpc.GenericClientStream[emptypb.Empty, pbtaskmastermodels.StreamEventsData]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -126,11 +127,11 @@ func (c *taskmasterServiceClient) Subscribe(ctx context.Context, in *emptypb.Emp
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TaskmasterService_SubscribeClient = grpc.ServerStreamingClient[StreamEventsData]
+type TaskmasterService_SubscribeClient = grpc.ServerStreamingClient[pbtaskmastermodels.StreamEventsData]
 
-func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdriver.NegotiateRequest, opts ...grpc.CallOption) (*pbdriver.CommonResponse, error) {
+func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdrivermodels.NegotiateRequest, opts ...grpc.CallOption) (*pbdrivermodels.CommonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdriver.CommonResponse)
+	out := new(pbdrivermodels.CommonResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_NegotiateStart_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -138,7 +139,7 @@ func (c *taskmasterServiceClient) NegotiateStart(ctx context.Context, in *pbdriv
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CacheSet(ctx context.Context, in *CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CacheSet(ctx context.Context, in *pbtaskmastermodels.CacheSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_CacheSet_FullMethodName, in, out, cOpts...)
@@ -148,9 +149,9 @@ func (c *taskmasterServiceClient) CacheSet(ctx context.Context, in *CacheSetRequ
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *CacheGetRequest, opts ...grpc.CallOption) (*CacheGetResponse, error) {
+func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *pbtaskmastermodels.CacheGetRequest, opts ...grpc.CallOption) (*pbtaskmastermodels.CacheGetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CacheGetResponse)
+	out := new(pbtaskmastermodels.CacheGetResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_CacheGet_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -158,9 +159,9 @@ func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *CacheGetRequ
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SystemConfigResponse, error) {
+func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfigResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SystemConfigResponse)
+	out := new(pbtaskmastermodels.SystemConfigResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_GetConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -168,7 +169,7 @@ func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Emp
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *pbtaskmastermodels.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_SetConfig_FullMethodName, in, out, cOpts...)
@@ -185,25 +186,25 @@ func (c *taskmasterServiceClient) SetConfig(ctx context.Context, in *SystemConfi
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceServer interface {
-	QueueJobs(context.Context, *QueueJobsRequest) (*emptypb.Empty, error)
+	QueueJobs(context.Context, *pbtaskmastermodels.QueueJobsRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error)
+	GetJob(context.Context, *pbtaskmastermodels.GetJobRequest) (*pbtaskmastermodels.GetJobResponse, error)
 	// The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
 	PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error)
+	CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error)
 	// Subcribe for notification stream
-	Subscribe(*emptypb.Empty, grpc.ServerStreamingServer[StreamEventsData]) error
+	Subscribe(*emptypb.Empty, grpc.ServerStreamingServer[pbtaskmastermodels.StreamEventsData]) error
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
-	NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error)
+	NegotiateStart(context.Context, *pbdrivermodels.NegotiateRequest) (*pbdrivermodels.CommonResponse, error)
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
-	CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error)
+	CacheSet(context.Context, *pbtaskmastermodels.CacheSetRequest) (*emptypb.Empty, error)
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
-	CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error)
+	CacheGet(context.Context, *pbtaskmastermodels.CacheGetRequest) (*pbtaskmastermodels.CacheGetResponse, error)
 	// The method called by the RestApi to get the system configuration.
-	GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error)
+	GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfigResponse, error)
 	// The method called by the RestApi to set the system configuration.
-	SetConfig(context.Context, *SystemConfig) (*emptypb.Empty, error)
+	SetConfig(context.Context, *pbtaskmastermodels.SystemConfig) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -214,34 +215,34 @@ type TaskmasterServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTaskmasterServiceServer struct{}
 
-func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *QueueJobsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *pbtaskmastermodels.QueueJobsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueueJobs not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *pbtaskmastermodels.GetJobRequest) (*pbtaskmastermodels.GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) PurgeJobs(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurgeJobs not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *CancelJobsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) Subscribe(*emptypb.Empty, grpc.ServerStreamingServer[StreamEventsData]) error {
+func (UnimplementedTaskmasterServiceServer) Subscribe(*emptypb.Empty, grpc.ServerStreamingServer[pbtaskmastermodels.StreamEventsData]) error {
 	return status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdriver.NegotiateRequest) (*pbdriver.CommonResponse, error) {
+func (UnimplementedTaskmasterServiceServer) NegotiateStart(context.Context, *pbdrivermodels.NegotiateRequest) (*pbdrivermodels.CommonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NegotiateStart not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *CacheSetRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *pbtaskmastermodels.CacheSetRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheSet not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *CacheGetRequest) (*CacheGetResponse, error) {
+func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *pbtaskmastermodels.CacheGetRequest) (*pbtaskmastermodels.CacheGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheGet not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*SystemConfigResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *SystemConfig) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *pbtaskmastermodels.SystemConfig) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
@@ -266,7 +267,7 @@ func RegisterTaskmasterServiceServer(s grpc.ServiceRegistrar, srv TaskmasterServ
 }
 
 func _TaskmasterService_QueueJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueueJobsRequest)
+	in := new(pbtaskmastermodels.QueueJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -278,13 +279,13 @@ func _TaskmasterService_QueueJobs_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: TaskmasterService_QueueJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).QueueJobs(ctx, req.(*QueueJobsRequest))
+		return srv.(TaskmasterServiceServer).QueueJobs(ctx, req.(*pbtaskmastermodels.QueueJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetJobRequest)
+	in := new(pbtaskmastermodels.GetJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -296,7 +297,7 @@ func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: TaskmasterService_GetJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetJob(ctx, req.(*GetJobRequest))
+		return srv.(TaskmasterServiceServer).GetJob(ctx, req.(*pbtaskmastermodels.GetJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,7 +321,7 @@ func _TaskmasterService_PurgeJobs_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CancelJobsRequest)
+	in := new(pbtaskmastermodels.CancelJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +333,7 @@ func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context,
 		FullMethod: TaskmasterService_CancelJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*CancelJobsRequest))
+		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*pbtaskmastermodels.CancelJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -342,14 +343,14 @@ func _TaskmasterService_Subscribe_Handler(srv interface{}, stream grpc.ServerStr
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(TaskmasterServiceServer).Subscribe(m, &grpc.GenericServerStream[emptypb.Empty, StreamEventsData]{ServerStream: stream})
+	return srv.(TaskmasterServiceServer).Subscribe(m, &grpc.GenericServerStream[emptypb.Empty, pbtaskmastermodels.StreamEventsData]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TaskmasterService_SubscribeServer = grpc.ServerStreamingServer[StreamEventsData]
+type TaskmasterService_SubscribeServer = grpc.ServerStreamingServer[pbtaskmastermodels.StreamEventsData]
 
 func _TaskmasterService_NegotiateStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdriver.NegotiateRequest)
+	in := new(pbdrivermodels.NegotiateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -361,13 +362,13 @@ func _TaskmasterService_NegotiateStart_Handler(srv interface{}, ctx context.Cont
 		FullMethod: TaskmasterService_NegotiateStart_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).NegotiateStart(ctx, req.(*pbdriver.NegotiateRequest))
+		return srv.(TaskmasterServiceServer).NegotiateStart(ctx, req.(*pbdrivermodels.NegotiateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TaskmasterService_CacheSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CacheSetRequest)
+	in := new(pbtaskmastermodels.CacheSetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -379,13 +380,13 @@ func _TaskmasterService_CacheSet_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: TaskmasterService_CacheSet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CacheSet(ctx, req.(*CacheSetRequest))
+		return srv.(TaskmasterServiceServer).CacheSet(ctx, req.(*pbtaskmastermodels.CacheSetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TaskmasterService_CacheGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CacheGetRequest)
+	in := new(pbtaskmastermodels.CacheGetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -397,7 +398,7 @@ func _TaskmasterService_CacheGet_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: TaskmasterService_CacheGet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CacheGet(ctx, req.(*CacheGetRequest))
+		return srv.(TaskmasterServiceServer).CacheGet(ctx, req.(*pbtaskmastermodels.CacheGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -421,7 +422,7 @@ func _TaskmasterService_GetConfig_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _TaskmasterService_SetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SystemConfig)
+	in := new(pbtaskmastermodels.SystemConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -433,7 +434,7 @@ func _TaskmasterService_SetConfig_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: TaskmasterService_SetConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).SetConfig(ctx, req.(*SystemConfig))
+		return srv.(TaskmasterServiceServer).SetConfig(ctx, req.(*pbtaskmastermodels.SystemConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }

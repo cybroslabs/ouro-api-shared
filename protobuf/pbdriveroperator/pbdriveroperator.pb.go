@@ -7,7 +7,8 @@
 package pbdriveroperator
 
 import (
-	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
+	pbdriveroperatormodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperatormodels"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -83,15 +84,15 @@ var file_pbdriveroperator_proto_rawDesc = []byte{
 }
 
 var file_pbdriveroperator_proto_goTypes = []any{
-	(*emptypb.Empty)(nil),             // 0: google.protobuf.Empty
-	(*pbdriver.NegotiateRequest)(nil), // 1: io.clbs.openhes.pbdriver.NegotiateRequest
-	(*GetDriverTemplatesRequest)(nil), // 2: io.clbs.openhes.pbdriveroperator.GetDriverTemplatesRequest
-	(*SetDriverScaleRequest)(nil),     // 3: io.clbs.openhes.pbdriveroperator.SetDriverScaleRequest
-	(*GetDriverScaleRequest)(nil),     // 4: io.clbs.openhes.pbdriveroperator.GetDriverScaleRequest
-	(*StartUpgradeRequest)(nil),       // 5: io.clbs.openhes.pbdriveroperator.StartUpgradeRequest
-	(*GetDriversResponse)(nil),        // 6: io.clbs.openhes.pbdriveroperator.GetDriversResponse
-	(*pbdriver.DriverTemplates)(nil),  // 7: io.clbs.openhes.pbdriver.DriverTemplates
-	(*wrapperspb.UInt32Value)(nil),    // 8: google.protobuf.UInt32Value
+	(*emptypb.Empty)(nil),                                    // 0: google.protobuf.Empty
+	(*pbdrivermodels.NegotiateRequest)(nil),                  // 1: io.clbs.openhes.pbdriver.NegotiateRequest
+	(*pbdriveroperatormodels.GetDriverTemplatesRequest)(nil), // 2: io.clbs.openhes.pbdriveroperator.GetDriverTemplatesRequest
+	(*pbdriveroperatormodels.SetDriverScaleRequest)(nil),     // 3: io.clbs.openhes.pbdriveroperator.SetDriverScaleRequest
+	(*pbdriveroperatormodels.GetDriverScaleRequest)(nil),     // 4: io.clbs.openhes.pbdriveroperator.GetDriverScaleRequest
+	(*pbdriveroperatormodels.StartUpgradeRequest)(nil),       // 5: io.clbs.openhes.pbdriveroperator.StartUpgradeRequest
+	(*pbdriveroperatormodels.GetDriversResponse)(nil),        // 6: io.clbs.openhes.pbdriveroperator.GetDriversResponse
+	(*pbdrivermodels.DriverTemplates)(nil),                   // 7: io.clbs.openhes.pbdriver.DriverTemplates
+	(*wrapperspb.UInt32Value)(nil),                           // 8: google.protobuf.UInt32Value
 }
 var file_pbdriveroperator_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.pbdriveroperator.DriverOperatorService.GetDrivers:input_type -> google.protobuf.Empty
@@ -118,7 +119,6 @@ func file_pbdriveroperator_proto_init() {
 	if File_pbdriveroperator_proto != nil {
 		return
 	}
-	file_pbdriveroperator_models_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
