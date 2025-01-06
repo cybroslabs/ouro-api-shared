@@ -8,15 +8,19 @@ import "google/protobuf/timestamp.proto";
 import "pbtaskmaster-models.proto";
 import "pbdriver-models.proto";
 import "pbdataproxy-models.proto";
+import "pbdriveroperator-models.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
-    // The method called by the RestApi to start a new bulk of jobs.
+    // Starts a new bulk of jobs.
     rpc CreateBulk(pbdataproxy.CreateBulkRequest) returns (google.protobuf.Empty);
-    // The method called by the RestApi to retrieve stored bulks.
+    // Retrieves the list of bulks.
     rpc GetBulks(pbdataproxy.GetBulksReuqest) returns (pbdataproxy.GetBulksResponse);
-    // The method called by the RestApi to retrieve single bulk.
+    // Retrieves the bulk info and status.
     rpc GetBulk(pbdataproxy.GetBulkRequest) returns (pbdataproxy.GetBulkResponse);
-    // The method called by the RestApi to get the job status. The parameter contains the job identifier.
+    // Retrieves the job status.
     rpc GetJobStatus(pbdataproxy.GetJobStatusRequest) returns (pbdataproxy.GetJobStatusResponse);
+
+    // Retrieves the list of drivers.
+    rpc GetDrivers(google.protobuf.Empty) returns (pbdriveroperator.GetDriversResponse);
 }

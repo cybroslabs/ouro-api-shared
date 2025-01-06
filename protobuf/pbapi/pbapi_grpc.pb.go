@@ -9,6 +9,7 @@ package pbapi
 import (
 	context "context"
 	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
+	pbdriveroperatormodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperatormodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,6 +26,7 @@ const (
 	ApiService_GetBulks_FullMethodName     = "/io.clbs.openhes.pbdataproxy.ApiService/GetBulks"
 	ApiService_GetBulk_FullMethodName      = "/io.clbs.openhes.pbdataproxy.ApiService/GetBulk"
 	ApiService_GetJobStatus_FullMethodName = "/io.clbs.openhes.pbdataproxy.ApiService/GetJobStatus"
+	ApiService_GetDrivers_FullMethodName   = "/io.clbs.openhes.pbdataproxy.ApiService/GetDrivers"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -41,6 +43,8 @@ type ApiServiceClient interface {
 	GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// The method called by the RestApi to get the list of drivers.
+	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdriveroperatormodels.GetDriversResponse, error)
 }
 
 type apiServiceClient struct {
@@ -91,6 +95,16 @@ func (c *apiServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxymode
 	return out, nil
 }
 
+func (c *apiServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdriveroperatormodels.GetDriversResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(pbdriveroperatormodels.GetDriversResponse)
+	err := c.cc.Invoke(ctx, ApiService_GetDrivers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -105,6 +119,8 @@ type ApiServiceServer interface {
 	GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// The method called by the RestApi to get the list of drivers.
+	GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -126,6 +142,9 @@ func (UnimplementedApiServiceServer) GetBulk(context.Context, *pbdataproxymodels
 }
 func (UnimplementedApiServiceServer) GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobStatus not implemented")
+}
+func (UnimplementedApiServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -220,6 +239,24 @@ func _ApiService_GetJobStatus_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDrivers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDrivers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDrivers(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +279,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetJobStatus",
 			Handler:    _ApiService_GetJobStatus_Handler,
+		},
+		{
+			MethodName: "GetDrivers",
+			Handler:    _ApiService_GetDrivers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
