@@ -44,7 +44,7 @@ message JobCustomDeviceList {
 }
 
 message JobDeviceList {
-    repeated JobDevice custom_devices = 5;  // The list of devices in the bulk.
+    repeated JobDevice list = 5;  // The list of devices in the bulk.
 }
 
 message JobDevice {
