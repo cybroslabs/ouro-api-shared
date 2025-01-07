@@ -39,14 +39,14 @@ message PublicCreateBulkRequest {
     string webhook_url                  = 8;  // The webhook URL to call when the bulk is completed.
 }
 
-message JobDeviceList {
+message JobCustomDeviceList {
     repeated pbtaskmaster.JobDevice list = 5;  // The list of devices in the bulk.
 }
 
-message JobCustomDeviceList {
-    repeated JobCustomDevice custom_devices = 5;  // The list of devices in the bulk.
+message JobDeviceList {
+    repeated JobDevice custom_devices = 5;  // The list of devices in the bulk.
 }
 
-message JobCustomDevice {
+message JobDevice {
     string id = 1;  // The device identifier.
 }
