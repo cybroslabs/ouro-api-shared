@@ -1,4 +1,5 @@
-syntax = "proto3";
+// Editions version of proto3 file
+edition = "2023";
 package io.clbs.openhes.pbdriver;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels";
@@ -20,7 +21,7 @@ message ActionProgressUpdate {
     string job_id            = 1;  // The job identifier.
     string action_id         = 2;  // The action identifier.
     ActionResultCode code    = 3;  // The status related to the action.
-    optional ActionData data = 4;  // The action result data. Shall be empty if the code is not OK.
+    ActionData data = 4;  // The action result data. Shall be empty if the code is not OK.
 }
 
 // Sub-message containing job progress update
@@ -66,7 +67,7 @@ message BillingValue {
 
 // Sub-message containing measured value
 message MeasuredValue {
-    optional int64 status = 1;  // The status of the value.
+    int64 status = 1;  // The status of the value.
     int32 exponent        = 2;  // The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
     oneof value {
         double double_value                       = 3;  // The double-typed value.
@@ -84,7 +85,7 @@ message AttributeDefinition {
     string description                    = 2;  // The description of the attribute.
     AttributeType type                    = 3;  // The type of the attribute.
     bool mandatory                        = 4;  // The attribute is mandatory or not.s
-    optional AttributeValue default_value = 5;  // The default value of the attribute.
+    AttributeValue default_value = 5;  // The default value of the attribute.
 }
 
 // Sub-message containing job action attributes
@@ -106,7 +107,7 @@ message StartJobData {
     JobSettings job_settings                      = 3;  // The job parameters.
     repeated JobAction job_actions                = 4;  // The list actions to be executed.
     ApplicationProtocol app_protocol              = 5;  // The application protocol.
-    optional string timezone                      = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string timezone                      = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
@@ -225,14 +226,14 @@ message ConnectionInfo {
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
     DataLinkProtocol link_protocol     = 4;  // The data link protocol.
-    optional string custom_grouping_id = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
+    string custom_grouping_id = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
 }
 
 // Sub-message containing connection info for TCP connection type
 message ConnectionTypeDirectTcpIp {
     string host            = 1;  // The host name or IP address of the device to connect to.
     uint32 port            = 2;  // The TCP port number of the device to connect to.
-    optional int32 timeout = 3;  // The timeout in seconds for the connection.
+    int32 timeout = 3;  // The timeout in seconds for the connection.
 }
 
 // Sub-message containing connection info for phone line (modem) connection type
@@ -242,7 +243,7 @@ message ConnectionTypeModemPool {
     // The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
     string pool_id = 2;
     // The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
-    optional ModemInfo modem = 4;
+    ModemInfo modem = 4;
 }
 
 message ConnectionTypeSerialDirect {
@@ -571,7 +572,7 @@ message CommunicationTemplate {
 // Sub-message containing access level definition
 message AccessLevelTemplate {
     string id            = 1;  // The access level identifier, such as "1", "G", "16" or similar.
-    optional string name = 2;  // The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".
+    string name = 2;  // The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".
 }
 
 // Sub-message in driver negotiation request

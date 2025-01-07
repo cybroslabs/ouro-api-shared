@@ -1,4 +1,5 @@
-syntax = "proto3";
+// Editions version of proto3 file
+edition = "2023";
 package io.clbs.openhes.pbdataproxy;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels";
@@ -22,7 +23,7 @@ message BulkSpec {
     repeated pbtaskmaster.JobDevice devices = 5;  // The list of devices in the bulk.
     pbdriver.JobSettings settings           = 6;  // The bulk-shared job settings.
     repeated pbdriver.JobAction job_actions = 7;  // The list actions to be executed.
-    optional string webhook_url             = 8;  // The webhook URL to call when the bulk is completed.
+    string webhook_url                      = 8;  // The webhook URL to call when the bulk is completed.
     string user_id                          = 9;  // The user identifier.
 }
 
@@ -59,9 +60,9 @@ message GetBulkResponse {
 
 // RestApi -> DataProxy - the message holds data for bulk listing request.
 message GetBulksReuqest {
-    optional google.protobuf.Timestamp tfrom = 1;  // The time range filter - left limit. Optional.
-    optional google.protobuf.Timestamp tto   = 2;  // The time range filter - right limit. Optional.
-    optional bool include_data               = 3;  // The result content filter - if true then data are included in the response.
+    google.protobuf.Timestamp tfrom = 1;  // The time range filter - left limit. Optional.
+    google.protobuf.Timestamp tto   = 2;  // The time range filter - right limit. Optional.
+    bool include_data               = 3;  // The result content filter - if true then data are included in the response.
     // TODO: Add Device-Id filter here.
 }
 

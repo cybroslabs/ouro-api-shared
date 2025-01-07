@@ -1,4 +1,5 @@
-syntax = "proto3";
+// Editions version of proto3 file
+edition = "2023";
 package io.clbs.openhes.pbdriveroperator;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperator";
