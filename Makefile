@@ -89,6 +89,9 @@ gen-go:
 		--go_out=./pbapi \
 		--go-grpc_out=./pbapi \
 		--go-grpc_opt=paths=source_relative \
+		--include_imports \
+		--include_source_info \
+		--descriptor_set_out=./pbapi/pbapi.pb \
 		pbapi.proto
 
 .PHONY: generate
