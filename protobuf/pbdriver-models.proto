@@ -18,10 +18,10 @@ message ProgressUpdate {
 
 // Sub-message containing action progress update
 message ActionProgressUpdate {
-    string job_id            = 1;  // The job identifier.
-    string action_id         = 2;  // The action identifier.
-    ActionResultCode code    = 3;  // The status related to the action.
-    ActionData data = 4;  // The action result data. Shall be empty if the code is not OK.
+    string job_id         = 1;  // The job identifier.
+    string action_id      = 2;  // The action identifier.
+    ActionResultCode code = 3;  // The status related to the action.
+    ActionData data       = 4;  // The action result data. Shall be empty if the code is not OK.
 }
 
 // Sub-message containing job progress update
@@ -67,8 +67,8 @@ message BillingValue {
 
 // Sub-message containing measured value
 message MeasuredValue {
-    int64 status = 1;  // The status of the value.
-    int32 exponent        = 2;  // The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
+    int64 status   = 1;  // The status of the value.
+    int32 exponent = 2;  // The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
     oneof value {
         double double_value                       = 3;  // The double-typed value.
         int64 int_value                           = 4;  // The integer-typed value.
@@ -81,17 +81,20 @@ message MeasuredValue {
 
 // Sub-message containing attribute definition
 message AttributeDefinition {
-    string name                           = 1;  // The name of the attribute.
-    string description                    = 2;  // The description of the attribute.
-    AttributeType type                    = 3;  // The type of the attribute.
-    bool mandatory                        = 4;  // The attribute is mandatory or not.s
+    string name                  = 1;  // The name of the attribute.
+    string description           = 2;  // The description of the attribute.
+    AttributeType type           = 3;  // The type of the attribute.
+    bool mandatory               = 4;  // The attribute is mandatory or not.
     AttributeValue default_value = 5;  // The default value of the attribute.
+    map<string, string> options  = 6;  // Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.
 }
 
 // Sub-message containing job action attributes
 message JobActionAttributes {
-    ActionType type                         = 1;  // The action type.
-    repeated AttributeDefinition attributes = 2;  // The template of the action attributes. It is represented as a list of attribute definitions.
+    // The type of action for which this instance of the template is defined.
+    ActionType type = 1;
+    // The template of the action attributes. It is represented as a list of attribute definitions.
+    repeated AttributeDefinition attributes = 2;
 }
 
 // Taskmaster -> Driver start job request message
@@ -107,7 +110,7 @@ message StartJobData {
     JobSettings job_settings                      = 3;  // The job parameters.
     repeated JobAction job_actions                = 4;  // The list actions to be executed.
     ApplicationProtocol app_protocol              = 5;  // The application protocol.
-    string timezone                      = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string timezone                               = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
@@ -225,14 +228,14 @@ message ConnectionInfo {
         ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
-    DataLinkProtocol link_protocol     = 4;  // The data link protocol.
-    string custom_grouping_id = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
+    DataLinkProtocol link_protocol = 4;  // The data link protocol.
+    string custom_grouping_id      = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
 }
 
 // Sub-message containing connection info for TCP connection type
 message ConnectionTypeDirectTcpIp {
-    string host            = 1;  // The host name or IP address of the device to connect to.
-    uint32 port            = 2;  // The TCP port number of the device to connect to.
+    string host   = 1;  // The host name or IP address of the device to connect to.
+    uint32 port   = 2;  // The TCP port number of the device to connect to.
     int32 timeout = 3;  // The timeout in seconds for the connection.
 }
 
@@ -387,10 +390,14 @@ message ActionGetPeriodicalProfile {
 
 // Sub-message containing get irregular profile action specification
 message ActionGetIrregularProfile {
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
 }
 
 // Sub-message containing get events action specification
 message ActionGetEvents {
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
 }
 
 // Sub-message containing get clock action specification
@@ -571,7 +578,7 @@ message CommunicationTemplate {
 
 // Sub-message containing access level definition
 message AccessLevelTemplate {
-    string id            = 1;  // The access level identifier, such as "1", "G", "16" or similar.
+    string id   = 1;  // The access level identifier, such as "1", "G", "16" or similar.
     string name = 2;  // The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".
 }
 
@@ -581,10 +588,29 @@ message DriverTemplates {
     repeated CommunicationTemplate communication_templates = 1;
     // The templates of the application protocols supported by the driver.
     repeated ApplicationProtocolTemplate app_protocols = 2;
-    // The templates of the job actions for all supported action types.
+    // The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.
     repeated JobActionAttributes action_attributes = 3;
     // The templates of the access levels supported by the driver.
     repeated AccessLevelTemplate access_templates = 4;
+    // The templates of the job actions constraints.
+    JobActionContraints action_constraints = 5;
+}
+
+// Defines a mesasge as a list of strings.
+message StringList {
+    // The list of strings.
+    repeated string items = 1;
+}
+
+// Sub-message containing constraints for job actions.
+message JobActionContraints {
+    // Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+    // Action: ACTION_TYPE_GET_REGISTER
+    map<string, string> get_register_type_name = 1;
+    // Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+    // See JobActionAttributes for the attribute definitions.
+    // Action: ACTION_TYPE_GET_REGISTER
+    map<string, StringList> get_register_type_attributes = 2;
 }
 
 // Taskmaster -> Driver cancel job request message
