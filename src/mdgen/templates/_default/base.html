@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OpenHES API</title>
+    <title>{{ sable_config.module_title }}</title>
     <link rel="stylesheet" href="static/mystyles.css" />
     <script src="static/fontawesome.js"></script>
     <script src="static/lunr.js"></script>
@@ -15,22 +15,34 @@
         <div class="level-left">
           <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
             <a class="link is-info" href="index.html">
-              OpenHES API
+              {{ sable_config.module_title }}
             </a>
           </p>
         </div>
 
         <div class="level-right">
-          
+          {% if sable_config.enable_lunr_search  %}
           <form action="search.html" class="mr-2 has-text-centered">
             <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
             <input type="submit" class="button is-primary mr-5" value="Search" />
           </form>
-          
+          {% endif %}
 
           <p class="level-item has-text-centered is-size-5">
-            <a href="" class="link is-info mr-5" target="_blank">
-              
+            <a href="{{ sable_config.repository_url }}" class="link is-info mr-5" target="_blank">
+              {% if sable_config.repository_type | string == "RepositoryType.GITHUB" %}
+              <span class="icon">
+                <i class="fa-brands fa-github"></i>
+              </span>
+              {% elif sable_config.repository_type | string == "RepositoryType.BITBUCKET" %}
+              <span class="icon">
+                <i class="fa-brands fa-bitbucket"></i>
+              </span>
+              {% elif sable_config.repository_type | string == "RepositoryType.GITLAB" %}
+              <span class="icon">
+                <i class="fa-brands fa-gitlab"></i>
+              </span>
+              {% endif %}
               <span>Source</span>
             </a>
 
@@ -58,49 +70,13 @@
       </nav>
     </div>
 
-    <div id="main-content" class="container mb-6">
-  
-    <p class="mb-2">
-      <a style="font-size: 0.9em" href="#packages">↓ Packages</a>
-    </p>
-    <div class="block content"><h1>OpenHES gRPC API documentation.</h1>
-<p>This is an awesome documentation for OpenHES gRPC API.</p></div>
-  
-  <h3 id="packages" class="title is-3">
-    Packages
-  </h3>
-  <div class="block">This site contains the documentation for the following Protobuf packages.</div>
-  <div class="block">
-  
-    <h5 class="title is-5">
-      
-        <a href="io.clbs.openhes.pbdriver.html">io.clbs.openhes.pbdriver</a>
-      
-    </h4>
-    
-  
-    <h5 class="title is-5">
-      
-        <a href="io.clbs.openhes.pbapi.html">io.clbs.openhes.pbapi</a>
-      
-    </h4>
-    
-  
-    <h5 class="title is-5">
-      
-        <a href="io.clbs.openhes.pbtaskmaster.html">io.clbs.openhes.pbtaskmaster</a>
-      
-    </h4>
-    
-  
-  </div>
-</div>
+    <div id="main-content" class="container mb-6">{% block content %}{% endblock %}</div>
 
     <footer class="footer">
       <div class="content has-text-centered">
-        
-          <p>© 2025 cybros labs</p>
-        
+        {% if sable_config.footer_content %}
+          <p>{{ sable_config.footer_content | safe }}</p>
+        {% endif %}
         <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
       </div>
     </footer>

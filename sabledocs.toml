@@ -1,6 +1,0 @@
-module-title = "OpenHES API"
-input-descriptor-file = "protobuf/pbapi/pbapi.pb"
-output-dir = "protobuf/pbapi/docs"
-hidden-packages = ["google.protobuf", "io.clbs.openhes.pbdataproxy", "io.clbs.openhes.pbdriver", "io.clbs.openhes.pbdriveroperator", "io.clbs.openhes.pbtaskmaster"]
-footer-content = "© 2050 cybros labs"
-main-page-content-file = "docs-index.md"

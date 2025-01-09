@@ -1,3 +1,3 @@
 # OpenHES gRPC API documentation.
 
-This is an awesome documentation for OpenGES gRPC API.
+This is an awesome documentation for OpenHES gRPC API.

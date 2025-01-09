@@ -94,7 +94,7 @@ gen-go:
 		--descriptor_set_out=./pbapi/pbapi.pb \
 		pbapi.proto
 
-	sabledocs
+	./src/mdgen/main.py
 
 .PHONY: generate
 generate:
