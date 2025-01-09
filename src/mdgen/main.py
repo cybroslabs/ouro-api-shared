@@ -71,6 +71,21 @@ if __name__ == "__main__":
             if n.package
         )
     )
+    for svc in package_map["io.clbs.openhes.pbapi"].services:
+        for m in svc.methods:
+            used_messages.add(
+                (
+                    m.request.full_type,
+                    m.request.package.name if m.request.package else None,
+                )
+            )
+            used_messages.add(
+                (
+                    m.response.full_type,
+                    m.response.package.name if m.response.package else None,
+                )
+            )
+
     used_enums = set(
         (
             (

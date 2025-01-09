@@ -74,6 +74,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.AccessLevelTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AccessLevelTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.ActionFwUpdate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ActionFwUpdate</code> 
@@ -218,6 +227,42 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ApplicationProtocolTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ApplicationProtocolTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.AttributeDefinition">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AttributeDefinition</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.AttributeValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AttributeValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.CommunicationTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.ConnectionInfo">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ConnectionInfo</code> 
@@ -272,9 +317,45 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.DataLinkTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DataLinkTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.DriverTemplates">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DriverTemplates</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.JobAction">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>JobAction</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.JobActionAttributes">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobActionAttributes</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.JobActionContraints">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobActionContraints</code> 
         </a>
       </p>
       
@@ -313,6 +394,71 @@
       Messages
     </h3>
 
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.AccessLevelTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.AccessLevelTemplate" title="io.clbs.openhes.pbdriver.AccessLevelTemplate">message AccessLevelTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing access level definition</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The access level identifier, such as "1", "G", "16" or similar.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
     
       
       <div class="block">
@@ -968,6 +1114,427 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ApplicationProtocolTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ApplicationProtocolTemplate" title="io.clbs.openhes.pbdriver.ApplicationProtocolTemplate">message ApplicationProtocolTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one application protocol, e.g. DLMS_SN.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier of the application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.ApplicationProtocol"><span title="io.clbs.openhes.pbdriver.ApplicationProtocol">io.clbs.openhes.pbdriver.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.AttributeDefinition"><span title="io.clbs.openhes.pbdriver.AttributeDefinition">io.clbs.openhes.pbdriver.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.AttributeDefinition">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.AttributeDefinition" title="io.clbs.openhes.pbdriver.AttributeDefinition">message AttributeDefinition</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing attribute definition</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        description
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The description of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AttributeType">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.AttributeType"><span title="io.clbs.openhes.pbdriver.AttributeType">io.clbs.openhes.pbdriver.AttributeType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        mandatory
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The attribute is mandatory or not.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        default_value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AttributeValue">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.AttributeValue"><span title="io.clbs.openhes.pbdriver.AttributeValue">io.clbs.openhes.pbdriver.AttributeValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The default value of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        options
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.AttributeValue">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.AttributeValue" title="io.clbs.openhes.pbdriver.AttributeValue">message AttributeValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing single attribute value specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof value</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            str_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The string-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            int_value
+          </td>
+          <td>
+            <code title="int64">
+              
+              <span>int64</span>
+            </code>
+          </td>
+          <td class="content"><p>The integer-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            double_value
+          </td>
+          <td>
+            <code title="double">
+              
+              <span>double</span>
+            </code>
+          </td>
+          <td class="content"><p>The double-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            binary_value
+          </td>
+          <td>
+            <code title="bytes">
+              
+              <span>bytes</span>
+            </code>
+          </td>
+          <td class="content"><p>The binary-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            bool_value
+          </td>
+          <td>
+            <code title="bool">
+              
+              <span>bool</span>
+            </code>
+          </td>
+          <td class="content"><p>The boolean-typed value.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.CommunicationTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.CommunicationTemplate" title="io.clbs.openhes.pbdriver.CommunicationTemplate">message CommunicationTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one communication type, e.g. TCP/IP.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.CommunicationType">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.CommunicationType"><span title="io.clbs.openhes.pbdriver.CommunicationType">io.clbs.openhes.pbdriver.CommunicationType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the communication.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        datalinks
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.DataLinkTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DataLinkTemplate"><span title="io.clbs.openhes.pbdriver.DataLinkTemplate">io.clbs.openhes.pbdriver.DataLinkTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of data link protocols and their app protocols supported by the driver.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ConnectionInfo">
   <span>
     <a href="#message-io.clbs.openhes.pbdriver.ConnectionInfo" title="io.clbs.openhes.pbdriver.ConnectionInfo">message ConnectionInfo</a>
@@ -1497,6 +2064,216 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.DataLinkTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.DataLinkTemplate" title="io.clbs.openhes.pbdriver.DataLinkTemplate">message DataLinkTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one data link protocol, e.g. HDLC.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        link_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.DataLinkProtocol">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.DataLinkProtocol"><span title="io.clbs.openhes.pbdriver.DataLinkProtocol">io.clbs.openhes.pbdriver.DataLinkProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data link protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocol_refs
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ApplicationProtocol">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.ApplicationProtocol"><span title="io.clbs.openhes.pbdriver.ApplicationProtocol">io.clbs.openhes.pbdriver.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of application protocol identifiers supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.AttributeDefinition"><span title="io.clbs.openhes.pbdriver.AttributeDefinition">io.clbs.openhes.pbdriver.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.DriverTemplates">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.DriverTemplates" title="io.clbs.openhes.pbdriver.DriverTemplates">message DriverTemplates</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message in driver negotiation request</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communication_templates
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.CommunicationTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.CommunicationTemplate"><span title="io.clbs.openhes.pbdriver.CommunicationTemplate">io.clbs.openhes.pbdriver.CommunicationTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocols
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ApplicationProtocolTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ApplicationProtocolTemplate"><span title="io.clbs.openhes.pbdriver.ApplicationProtocolTemplate">io.clbs.openhes.pbdriver.ApplicationProtocolTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the application protocols supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        action_attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.JobActionAttributes">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.JobActionAttributes"><span title="io.clbs.openhes.pbdriver.JobActionAttributes">io.clbs.openhes.pbdriver.JobActionAttributes</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        access_templates
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AccessLevelTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.AccessLevelTemplate"><span title="io.clbs.openhes.pbdriver.AccessLevelTemplate">io.clbs.openhes.pbdriver.AccessLevelTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the access levels supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        action_constraints
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.JobActionContraints">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.JobActionContraints"><span title="io.clbs.openhes.pbdriver.JobActionContraints">io.clbs.openhes.pbdriver.JobActionContraints</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the job actions constraints.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.JobAction">
   <span>
     <a href="#message-io.clbs.openhes.pbdriver.JobAction" title="io.clbs.openhes.pbdriver.JobAction">message JobAction</a>
@@ -1882,6 +2659,143 @@
           
         </tr>
       
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.JobActionAttributes">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.JobActionAttributes" title="io.clbs.openhes.pbdriver.JobActionAttributes">message JobActionAttributes</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job action attributes</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ActionType">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.ActionType"><span title="io.clbs.openhes.pbdriver.ActionType">io.clbs.openhes.pbdriver.ActionType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of action for which this instance of the template is defined.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.AttributeDefinition"><span title="io.clbs.openhes.pbdriver.AttributeDefinition">io.clbs.openhes.pbdriver.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The template of the action attributes. It is represented as a list of attribute definitions.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.JobActionContraints">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.JobActionContraints" title="io.clbs.openhes.pbdriver.JobActionContraints">message JobActionContraints</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing constraints for job actions.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        get_register_type_name
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Contains all the register types &amp; their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+Action: ACTION_TYPE_GET_REGISTER</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        get_register_type_attributes
+      </td>
+      <td>
+        <code title="map&lt;string, StringList&gt;">
+          
+          <span>map&lt;string, StringList&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Contains all the register types &amp; their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+See JobActionAttributes for the attribute definitions.
+Action: ACTION_TYPE_GET_REGISTER</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
