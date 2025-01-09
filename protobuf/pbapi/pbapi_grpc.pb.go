@@ -11,11 +11,13 @@ package pbapi
 import (
 	context "context"
 	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
+	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	pbdriveroperatormodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperatormodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,11 +26,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ApiService_CreateBulk_FullMethodName   = "/io.clbs.openhes.pbapi.ApiService/CreateBulk"
-	ApiService_GetBulks_FullMethodName     = "/io.clbs.openhes.pbapi.ApiService/GetBulks"
-	ApiService_GetBulk_FullMethodName      = "/io.clbs.openhes.pbapi.ApiService/GetBulk"
-	ApiService_GetJobStatus_FullMethodName = "/io.clbs.openhes.pbapi.ApiService/GetJobStatus"
-	ApiService_GetDrivers_FullMethodName   = "/io.clbs.openhes.pbapi.ApiService/GetDrivers"
+	ApiService_CreateBulk_FullMethodName         = "/io.clbs.openhes.pbapi.ApiService/CreateBulk"
+	ApiService_GetBulks_FullMethodName           = "/io.clbs.openhes.pbapi.ApiService/GetBulks"
+	ApiService_GetBulk_FullMethodName            = "/io.clbs.openhes.pbapi.ApiService/GetBulk"
+	ApiService_GetJobStatus_FullMethodName       = "/io.clbs.openhes.pbapi.ApiService/GetJobStatus"
+	ApiService_GetDrivers_FullMethodName         = "/io.clbs.openhes.pbapi.ApiService/GetDrivers"
+	ApiService_GetDriverTemplates_FullMethodName = "/io.clbs.openhes.pbapi.ApiService/GetDriverTemplates"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -47,6 +50,8 @@ type ApiServiceClient interface {
 	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
 	// Retrieves the list of drivers.
 	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdriveroperatormodels.GetDriversResponse, error)
+	// Retrieves the driver templates.
+	GetDriverTemplates(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdrivermodels.DriverTemplates, error)
 }
 
 type apiServiceClient struct {
@@ -107,6 +112,16 @@ func (c *apiServiceClient) GetDrivers(ctx context.Context, in *emptypb.Empty, op
 	return out, nil
 }
 
+func (c *apiServiceClient) GetDriverTemplates(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdrivermodels.DriverTemplates, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(pbdrivermodels.DriverTemplates)
+	err := c.cc.Invoke(ctx, ApiService_GetDriverTemplates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -123,6 +138,8 @@ type ApiServiceServer interface {
 	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
 	// Retrieves the list of drivers.
 	GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error)
+	// Retrieves the driver templates.
+	GetDriverTemplates(context.Context, *wrapperspb.StringValue) (*pbdrivermodels.DriverTemplates, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -147,6 +164,9 @@ func (UnimplementedApiServiceServer) GetJobStatus(context.Context, *pbdataproxym
 }
 func (UnimplementedApiServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
+}
+func (UnimplementedApiServiceServer) GetDriverTemplates(context.Context, *wrapperspb.StringValue) (*pbdrivermodels.DriverTemplates, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDriverTemplates not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -259,6 +279,24 @@ func _ApiService_GetDrivers_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDriverTemplates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDriverTemplates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDriverTemplates(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -285,6 +323,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDrivers",
 			Handler:    _ApiService_GetDrivers_Handler,
+		},
+		{
+			MethodName: "GetDriverTemplates",
+			Handler:    _ApiService_GetDriverTemplates_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
