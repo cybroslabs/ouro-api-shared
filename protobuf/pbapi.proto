@@ -14,12 +14,17 @@ import "pbdriveroperator-models.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
+    // @group: Bulks
+    // @group: Jobs
     // Starts a new bulk of jobs.
     rpc CreateBulk(PublicCreateBulkRequest) returns (google.protobuf.Empty);
+    // @group: Bulks
     // Retrieves the list of bulks.
     rpc GetBulks(pbdataproxy.GetBulksReuqest) returns (pbdataproxy.GetBulksResponse);
+    // @group: Bulks
     // Retrieves the bulk info and status.
     rpc GetBulk(pbdataproxy.GetBulkRequest) returns (pbdataproxy.GetBulkResponse);
+    // @group: Bulks
     // Retrieves the job status.
     rpc GetJobStatus(pbdataproxy.GetJobStatusRequest) returns (pbdataproxy.GetJobStatusResponse);
 

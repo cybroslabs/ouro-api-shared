@@ -11,22 +11,29 @@
   <p>{{ service.description_html | safe }}</p>
 </div>
 
-{% for method in service.methods %}
-<div class="box">
-  <div class="block">
-    <h5 class="title is-5" id="service-{{ service.full_name }}-{{ method.name }}">
-      <a href="#service-{{ service.full_name }}-{{ method.name }}">
-        rpc <code>{{ method.name }}</code>
-      </a>
-    </h5>
-    Request: <code>{{ common.type_name(method.request) | trim }}</code><br>
-    Response: <code>{{ common.type_name(method.response) }}</code><br>
-  </div>
+{% for group, group_methods in tagged_methods %}
+  <div class="taggroup">
+    {% if group %}
+    <h4>{{ group }}</h4>
+    {% endif %}
+    {% for method in group_methods %}
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-{{ service.full_name }}-{{ method.name }}">
+          <a href="#service-{{ service.full_name }}-{{ method.name }}">
+            rpc <code>{{ method.name }}</code>
+          </a>
+        </h5>
+        Request: <code>{{ common.type_name(method.request) | trim }}</code><br>
+        Response: <code>{{ common.type_name(method.response) }}</code><br>
+      </div>
 
-  {% if method.description_html %}
-  <div class="block">
-    <p>{{ method.description_html | safe }}</p>
+      {% if method.description_html %}
+      <div class="block">
+        <p>{{ method.description_html | safe }}</p>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
-  {% endif %}
-</div>
 {% endfor %}

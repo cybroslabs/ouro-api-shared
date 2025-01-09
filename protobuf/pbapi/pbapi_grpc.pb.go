@@ -40,12 +40,17 @@ const (
 //
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
+	// @group: Bulks
+	// @group: Jobs
 	// Starts a new bulk of jobs.
 	CreateBulk(ctx context.Context, in *PublicCreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Retrieves the list of bulks.
 	GetBulks(ctx context.Context, in *pbdataproxymodels.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulksResponse, error)
+	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error)
+	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
 	// Retrieves the list of drivers.
@@ -128,12 +133,17 @@ func (c *apiServiceClient) GetDriverTemplates(ctx context.Context, in *wrappersp
 //
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
+	// @group: Bulks
+	// @group: Jobs
 	// Starts a new bulk of jobs.
 	CreateBulk(context.Context, *PublicCreateBulkRequest) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Retrieves the list of bulks.
 	GetBulks(context.Context, *pbdataproxymodels.GetBulksReuqest) (*pbdataproxymodels.GetBulksResponse, error)
+	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error)
+	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
 	// Retrieves the list of drivers.

@@ -29,23 +29,6 @@
           {% endif %}
 
           <p class="level-item has-text-centered is-size-5">
-            <a href="{{ sable_config.repository_url }}" class="link is-info mr-5" target="_blank">
-              {% if sable_config.repository_type | string == "RepositoryType.GITHUB" %}
-              <span class="icon">
-                <i class="fa-brands fa-github"></i>
-              </span>
-              {% elif sable_config.repository_type | string == "RepositoryType.BITBUCKET" %}
-              <span class="icon">
-                <i class="fa-brands fa-bitbucket"></i>
-              </span>
-              {% elif sable_config.repository_type | string == "RepositoryType.GITLAB" %}
-              <span class="icon">
-                <i class="fa-brands fa-gitlab"></i>
-              </span>
-              {% endif %}
-              <span>Source</span>
-            </a>
-
             <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
               <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <mask class="moon" id="moon-mask">

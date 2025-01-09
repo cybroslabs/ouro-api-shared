@@ -8080,3 +8080,20 @@ body.dark strong {
   [data-theme="dark"] .sun-and-moon > .moon > circle {
     transition-duration: .5s;
     transition-delay: .25s; } }
+
+.taggroup > h4 {
+  display: block;
+  margin-top:1em;
+  margin-bottom:1em;
+  padding: 0.5em 1em;
+  font-weight: 600;
+  border-radius: 2px;
+}
+.taggroup > h4 {
+  color: white;
+  background-color: color(srgb 0.0054 0.4343 0.7238);
+}
+[data-theme="dark"] .taggroup > h4 {
+  color: #181818;
+  background-color: color(srgb 0.9607 0.9608 0.9609);
+}

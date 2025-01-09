@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os
+import os, json, itertools, re
 import markdown
 from shutil import copy, copytree, rmtree
-from proto_descriptor_parser import parse_proto_descriptor, SableConfig
+from proto_descriptor_parser import (
+    parse_proto_descriptor,
+    SableConfig,
+    markdown_to_html,
+)
+from sabledocs.lunr_search import build_search_index
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from typing import Set
+
+re_group = re.compile(r"@([a-z]+): (.*)")
 
 
 def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
@@ -52,12 +59,14 @@ if __name__ == "__main__":
         (p for p in sable_context.non_hidden_packages if p.name.startswith("io.clbs"))
     )
 
-    # Go though non-hidden packages and gather all the used messages and enums
     package_map = {p.name: p for p in sable_context.packages}
+    main_package = package_map["io.clbs.openhes.pbapi"]
+
+    # Go though non-hidden packages and gather all the used messages and enums
     used_messages = set(
         (
             (m.full_type, m.package.name if m.package else None)
-            for m in package_map["io.clbs.openhes.pbapi"].messages
+            for m in main_package.messages
         )
     )
     used_messages.update(
@@ -66,12 +75,12 @@ if __name__ == "__main__":
                 n.full_type,
                 n.package.name,
             )
-            for m in package_map["io.clbs.openhes.pbapi"].messages
+            for m in main_package.messages
             for n in m.fields
             if n.package
         )
     )
-    for svc in package_map["io.clbs.openhes.pbapi"].services:
+    for svc in main_package.services:
         for m in svc.methods:
             used_messages.add(
                 (
@@ -92,7 +101,7 @@ if __name__ == "__main__":
                 e.full_name,
                 e.package.name if e.package else None,
             )
-            for e in package_map["io.clbs.openhes.pbapi"].enums
+            for e in main_package.enums
         )
     )
 
@@ -100,7 +109,7 @@ if __name__ == "__main__":
 
     # Filter out only what is used
     for package in sable_context.packages:
-        if package.name == "io.clbs.openhes.pbapi":
+        if package.name == main_package.name:
             continue
 
         package.services = []
@@ -155,6 +164,34 @@ if __name__ == "__main__":
                 f"WARNING: The configured main content page, {sable_config.main_page_content_file} was not found."
             )
 
+    tagger_services = []
+    for svc in sorted(main_package.services, key=lambda x: x.name):
+        tagger_methods = []
+        for i in svc.methods:
+            m = re_group.findall(i.description)
+            if m:
+                group = next((x[1] for x in m if x[0] == "group"), None)
+
+                desc = re_group.sub("", i.description).strip()
+                i.description_html = markdown_to_html(desc, sable_config)
+
+            else:
+                group = None
+
+            tagger_methods.append({"group": group, "method": i})
+        tagged_groups = list(
+            sorted(
+                (
+                    (a, list((m["method"] for m in b)))
+                    for a, b in itertools.groupby(
+                        tagger_methods, key=lambda x: x["group"]
+                    )
+                ),
+                key=lambda x: x[0] if x[0] else "",
+            )
+        )
+        tagger_services.append((svc, tagged_groups))
+
     with open(os.path.join(sable_config.output_dir, "index.html"), "wb") as fh:
         output = (
             jinja_env.get_template("index.html")
@@ -165,11 +202,28 @@ if __name__ == "__main__":
                 non_hidden_packages=visible_packages,
                 all_messages=sable_context.all_messages,
                 all_enums=sable_context.all_enums,
+                tagger_services=tagger_services,
             )
             .encode("utf-8")
         )
 
         fh.write(output)
+
+    if sable_config.enable_lunr_search:
+        (search_documents, search_index) = build_search_index(sable_context)
+
+        with open(os.path.join(sable_config.output_dir, "search.html"), "wb") as fh:
+            output = (
+                jinja_env.get_template("search.html")
+                .render(
+                    sable_config=sable_config,
+                    search_documents=json.dumps(search_documents),
+                    search_index=json.dumps(search_index.serialize()),
+                )
+                .encode("utf-8")
+            )
+
+            fh.write(output)
 
     index_abs_path = os.path.abspath(
         os.path.join(sable_config.output_dir, "index.html")
