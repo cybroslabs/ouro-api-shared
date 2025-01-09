@@ -1,0 +1,3 @@
+module-title = "OpenHES API"
+input-descriptor-file = "protobuf/pbapi/pbapi.pb"
+output-dir = "protobuf/pbapi/docs"

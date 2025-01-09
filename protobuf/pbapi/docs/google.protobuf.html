@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenHES API</title>
+    <link rel="stylesheet" href="static/mystyles.css" />
+    <script src="static/fontawesome.js"></script>
+    <script src="static/lunr.js"></script>
+    <script src="static/theme.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="level pt-6 mb-5 pb-2 bottom-border">
+        <div class="level-left">
+          <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
+            <a class="link is-info" href="index.html">
+              OpenHES API
+            </a>
+          </p>
+        </div>
+
+        <div class="level-right">
+          
+          <form action="search.html" class="mr-2 has-text-centered">
+            <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
+            <input type="submit" class="button is-primary mr-5" value="Search" />
+          </form>
+          
+
+          <p class="level-item has-text-centered is-size-5">
+            <a href="" class="link is-info mr-5" target="_blank">
+              
+              <span>Source</span>
+            </a>
+
+            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
+              <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-content" class="container mb-6">
+  <p class="mb-2">
+    <a style="font-size: 0.9em" href="index.html">← Back to packages</a>
+  </p>
+  <h3 class="title is-3">
+    
+    Package <code>google.protobuf</code>
+    
+  </h3>
+
+  <div class="block">
+    
+
+    
+      
+      <p>
+        <a href="#message-google.protobuf.BoolValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BoolValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.BytesValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BytesValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.DoubleValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DoubleValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.Empty">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Empty</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.FloatValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FloatValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.Int32Value">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Int32Value</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.Int64Value">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Int64Value</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.StringValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>StringValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.Timestamp">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Timestamp</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.UInt32Value">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>UInt32Value</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-google.protobuf.UInt64Value">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>UInt64Value</code> 
+        </a>
+      </p>
+      
+    
+
+    
+  </div>
+
+  <div class="block">
+      
+  </div>
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Messages
+    </h3>
+
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.BoolValue">
+  <span>
+    <a href="#message-google.protobuf.BoolValue" title="google.protobuf.BoolValue">message BoolValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>bool</code>.</p>
+<p>The JSON representation for <code>BoolValue</code> is JSON <code>true</code> and <code>false</code>.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The bool value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.BytesValue">
+  <span>
+    <a href="#message-google.protobuf.BytesValue" title="google.protobuf.BytesValue">message BytesValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>bytes</code>.</p>
+<p>The JSON representation for <code>BytesValue</code> is JSON string.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The bytes value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.DoubleValue">
+  <span>
+    <a href="#message-google.protobuf.DoubleValue" title="google.protobuf.DoubleValue">message DoubleValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>double</code>.</p>
+<p>The JSON representation for <code>DoubleValue</code> is JSON number.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="double">
+          
+          <span>double</span>
+        </code>
+      </td>
+      <td class="content"><p>The double value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.Empty">
+  <span>
+    <a href="#message-google.protobuf.Empty" title="google.protobuf.Empty">message Empty</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>A generic empty message that you can re-use to avoid defining duplicated
+empty messages in your APIs. A typical example is to use it as the request
+or the response type of an API method. For instance:</p>
+<pre><code>service Foo {
+  rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+</code></pre>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.FloatValue">
+  <span>
+    <a href="#message-google.protobuf.FloatValue" title="google.protobuf.FloatValue">message FloatValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>float</code>.</p>
+<p>The JSON representation for <code>FloatValue</code> is JSON number.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="float">
+          
+          <span>float</span>
+        </code>
+      </td>
+      <td class="content"><p>The float value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.Int32Value">
+  <span>
+    <a href="#message-google.protobuf.Int32Value" title="google.protobuf.Int32Value">message Int32Value</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>int32</code>.</p>
+<p>The JSON representation for <code>Int32Value</code> is JSON number.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The int32 value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.Int64Value">
+  <span>
+    <a href="#message-google.protobuf.Int64Value" title="google.protobuf.Int64Value">message Int64Value</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>int64</code>.</p>
+<p>The JSON representation for <code>Int64Value</code> is JSON string.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The int64 value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.StringValue">
+  <span>
+    <a href="#message-google.protobuf.StringValue" title="google.protobuf.StringValue">message StringValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>string</code>.</p>
+<p>The JSON representation for <code>StringValue</code> is JSON string.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The string value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.Timestamp">
+  <span>
+    <a href="#message-google.protobuf.Timestamp" title="google.protobuf.Timestamp">message Timestamp</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>A Timestamp represents a point in time independent of any time zone or local
+calendar, encoded as a count of seconds and fractions of seconds at
+nanosecond resolution. The count is relative to an epoch at UTC midnight on
+January 1, 1970, in the proleptic Gregorian calendar which extends the
+Gregorian calendar backwards to year one.</p>
+<p>All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+second table is needed for interpretation, using a <a href="https://developers.google.com/time/smear">24-hour linear
+smear</a>.</p>
+<p>The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+restricting to that range, we ensure that we can convert to and from <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC
+3339</a> date strings.</p>
+<h1>Examples</h1>
+<p>Example 1: Compute Timestamp from POSIX <code>time()</code>.</p>
+<pre><code>Timestamp timestamp;
+timestamp.set_seconds(time(NULL));
+timestamp.set_nanos(0);
+</code></pre>
+<p>Example 2: Compute Timestamp from POSIX <code>gettimeofday()</code>.</p>
+<pre><code>struct timeval tv;
+gettimeofday(&amp;tv, NULL);
+
+Timestamp timestamp;
+timestamp.set_seconds(tv.tv_sec);
+timestamp.set_nanos(tv.tv_usec * 1000);
+</code></pre>
+<p>Example 3: Compute Timestamp from Win32 <code>GetSystemTimeAsFileTime()</code>.</p>
+<pre><code>FILETIME ft;
+GetSystemTimeAsFileTime(&amp;ft);
+UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;
+
+// A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+// is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+Timestamp timestamp;
+timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+</code></pre>
+<p>Example 4: Compute Timestamp from Java <code>System.currentTimeMillis()</code>.</p>
+<pre><code>long millis = System.currentTimeMillis();
+
+Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+    .setNanos((int) ((millis % 1000) * 1000000)).build();
+</code></pre>
+<p>Example 5: Compute Timestamp from Java <code>Instant.now()</code>.</p>
+<pre><code>Instant now = Instant.now();
+
+Timestamp timestamp =
+    Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+        .setNanos(now.getNano()).build();
+</code></pre>
+<p>Example 6: Compute Timestamp from current time in Python.</p>
+<pre><code>timestamp = Timestamp()
+timestamp.GetCurrentTime()
+</code></pre>
+<h1>JSON Mapping</h1>
+<p>In JSON format, the Timestamp type is encoded as a string in the
+<a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> format. That is, the
+format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+where {year} is always expressed using four digits while {month}, {day},
+{hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+is required. A proto3 JSON serializer should always use UTC (as indicated by
+"Z") when printing the Timestamp type and a proto3 JSON parser should be
+able to accept both UTC and other timezones (as indicated by an offset).</p>
+<p>For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+01:30 UTC on January 15, 2017.</p>
+<p>In JavaScript, one can convert a Date object to this format using the
+standard
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">toISOString()</a>
+method. In Python, a standard <code>datetime.datetime</code> object can be converted
+to this format using
+<a href="https://docs.python.org/2/library/time.html#time.strftime"><code>strftime</code></a> with
+the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+the Joda Time's <a href="http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()"><code>ISODateTimeFormat.dateTime()</code></a> to obtain a formatter capable of generating timestamps in this format.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        seconds
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>Represents seconds of UTC time since Unix epoch
+1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+9999-12-31T23:59:59Z inclusive.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        nanos
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Non-negative fractions of a second at nanosecond resolution. Negative
+second values with fractions must still have non-negative nanos values
+that count forward in time. Must be from 0 to 999,999,999
+inclusive.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.UInt32Value">
+  <span>
+    <a href="#message-google.protobuf.UInt32Value" title="google.protobuf.UInt32Value">message UInt32Value</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>uint32</code>.</p>
+<p>The JSON representation for <code>UInt32Value</code> is JSON number.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The uint32 value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-google.protobuf.UInt64Value">
+  <span>
+    <a href="#message-google.protobuf.UInt64Value" title="google.protobuf.UInt64Value">message UInt64Value</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Wrapper message for <code>uint64</code>.</p>
+<p>The JSON representation for <code>UInt64Value</code> is JSON string.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="uint64">
+          
+          <span>uint64</span>
+        </code>
+      </td>
+      <td class="content"><p>The uint64 value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+
+  
+
+  
+
+</div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+        <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

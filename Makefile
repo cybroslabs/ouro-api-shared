@@ -94,6 +94,8 @@ gen-go:
 		--descriptor_set_out=./pbapi/pbapi.pb \
 		pbapi.proto
 
+	sabledocs
+
 .PHONY: generate
 generate:
 	oapi-codegen --config ./oapi-codegen.yaml -o ./openapi/rfc/rfc7807/rfc7807.go -package rfc7807 \
