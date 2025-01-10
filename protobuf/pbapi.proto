@@ -29,6 +29,12 @@ service ApiService {
     // @group: Bulks
     // Retrieves the job status.
     rpc GetJobStatus(pbdataproxy.GetJobStatusRequest) returns (pbdataproxy.GetJobStatusResponse);
+    // @group: Bulks
+    // Cancels the bulk of jobs.
+    rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Bulks
+    // Cancels the job(s) identified by the job identifier(s).
+    rpc CancelJobs(pbtaskmaster.CancelJobsRequest) returns (google.protobuf.Empty);
 
     // @group: Driver Info
     // Retrieves the list of drivers.

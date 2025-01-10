@@ -14,6 +14,7 @@ import (
 	pbdeviceregistrymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistrymodels"
 	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	pbdriveroperatormodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdriveroperatormodels"
+	pbtaskmastermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmastermodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,6 +32,8 @@ const (
 	ApiService_GetBulks_FullMethodName                     = "/io.clbs.openhes.pbapi.ApiService/GetBulks"
 	ApiService_GetBulk_FullMethodName                      = "/io.clbs.openhes.pbapi.ApiService/GetBulk"
 	ApiService_GetJobStatus_FullMethodName                 = "/io.clbs.openhes.pbapi.ApiService/GetJobStatus"
+	ApiService_CancelBulk_FullMethodName                   = "/io.clbs.openhes.pbapi.ApiService/CancelBulk"
+	ApiService_CancelJobs_FullMethodName                   = "/io.clbs.openhes.pbapi.ApiService/CancelJobs"
 	ApiService_GetDrivers_FullMethodName                   = "/io.clbs.openhes.pbapi.ApiService/GetDrivers"
 	ApiService_GetDriverTemplates_FullMethodName           = "/io.clbs.openhes.pbapi.ApiService/GetDriverTemplates"
 	ApiService_CreateCommunicationUnit_FullMethodName      = "/io.clbs.openhes.pbapi.ApiService/CreateCommunicationUnit"
@@ -74,6 +77,12 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs.
+	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Cancels the job(s) identified by the job identifier(s).
+	CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdriveroperatormodels.GetDriversResponse, error)
@@ -202,6 +211,26 @@ func (c *apiServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxymode
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(pbdataproxymodels.GetJobStatusResponse)
 	err := c.cc.Invoke(ctx, ApiService_GetJobStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_CancelBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_CancelJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -438,6 +467,12 @@ type ApiServiceServer interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs.
+	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Cancels the job(s) identified by the job identifier(s).
+	CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error)
@@ -543,6 +578,12 @@ func (UnimplementedApiServiceServer) GetBulk(context.Context, *pbdataproxymodels
 }
 func (UnimplementedApiServiceServer) GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobStatus not implemented")
+}
+func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+}
+func (UnimplementedApiServiceServer) CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
 func (UnimplementedApiServiceServer) GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDrivers not implemented")
@@ -696,6 +737,42 @@ func _ApiService_GetJobStatus_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).GetJobStatus(ctx, req.(*pbdataproxymodels.GetJobStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CancelBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CancelBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(pbtaskmastermodels.CancelJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CancelJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CancelJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CancelJobs(ctx, req.(*pbtaskmastermodels.CancelJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1100,6 +1177,14 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetJobStatus",
 			Handler:    _ApiService_GetJobStatus_Handler,
+		},
+		{
+			MethodName: "CancelBulk",
+			Handler:    _ApiService_CancelBulk_Handler,
+		},
+		{
+			MethodName: "CancelJobs",
+			Handler:    _ApiService_CancelJobs_Handler,
 		},
 		{
 			MethodName: "GetDrivers",
