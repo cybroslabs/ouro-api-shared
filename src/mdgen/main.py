@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os, json, itertools, re
+import os, json, itertools, re, copy
 import markdown
 from shutil import copy, copytree, rmtree
 from proto_descriptor_parser import (
@@ -14,9 +14,11 @@ from typing import Set
 
 re_group = re.compile(r"@([a-z]+): (.*)")
 re_spaces = re.compile(r"\s+")
+re_type_map = re.compile(r"map<string,\s*([^\s]+)\s*>")
 
 
 def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
+    origin = set(packages_map)
     # Clone before iterating
     nested_packages = set()
     for t_name, p_name in list(base_messages):
@@ -24,15 +26,26 @@ def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
             continue
         for p in packages_map[p_name].messages:
             if p.full_type == t_name:
+                if t_name.endswith("GetDevicesCommunicationUnitsResponse"):
+                    pass
                 for f in p.fields:
                     if f.package:
                         base_messages.add((f.full_type, f.package.name))
                         if f.package.name != p_name:
                             nested_packages.add(f.package.name)
+                    elif (ft := re_type_map.match(f.full_type or "")) is not None:
+                        # This does not work as the map type is not containing the package name...
+                        parts = ft.group(1).rsplit(".", 1)
+                        if len(parts) == 2:
+                            base_messages.add((parts[1], parts[0]))
+                            if parts[0] != p_name:
+                                nested_packages.add(parts[0])
 
-    package_map = {k: v for k, v in packages_map.items() if k in nested_packages}
-    if package_map:
-        filter_used(package_map, base_messages, base_enums)
+    nested_packages_map = {
+        k: v for k, v in packages_map.items() if k in nested_packages
+    }
+    if nested_packages_map:
+        filter_used(nested_packages_map, base_messages, base_enums)
 
 
 if __name__ == "__main__":

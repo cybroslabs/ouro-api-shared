@@ -229,7 +229,7 @@ def parse_field(
         )
         if entry_nested_type is not None and entry_nested_type.is_map_entry:
             mf.type = f"map<{entry_nested_type.fields[0].type}, {entry_nested_type.fields[1].type}>"
-            mf.full_type = f"map<{entry_nested_type.fields[0].type}, {entry_nested_type.fields[1].type}>"
+            mf.full_type = f"map<{entry_nested_type.fields[0].full_type}, {entry_nested_type.fields[1].full_type}>"
             mf.label = ""
 
     # We only set the oneof name if the field is not a Proto3 optional.
