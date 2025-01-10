@@ -1178,10 +1178,10 @@ func (b0 CreateDeviceGroupRequest_builder) Build() *CreateDeviceGroupRequest {
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
 type GetDeviceGroupsResponse struct {
-	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec *[]*DeviceGroupSpec    `protobuf:"bytes,1,rep,name=spec" json:"spec,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState              `protogen:"opaque.v1"`
+	xxx_hidden_Groups map[string]*DeviceGroupOverviewSpec `protobuf:"bytes,1,rep,name=groups" json:"groups,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *GetDeviceGroupsResponse) Reset() {
@@ -1209,30 +1209,241 @@ func (x *GetDeviceGroupsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetDeviceGroupsResponse) GetSpec() []*DeviceGroupSpec {
+func (x *GetDeviceGroupsResponse) GetGroups() map[string]*DeviceGroupOverviewSpec {
 	if x != nil {
-		if x.xxx_hidden_Spec != nil {
-			return *x.xxx_hidden_Spec
-		}
+		return x.xxx_hidden_Groups
 	}
 	return nil
 }
 
-func (x *GetDeviceGroupsResponse) SetSpec(v []*DeviceGroupSpec) {
-	x.xxx_hidden_Spec = &v
+func (x *GetDeviceGroupsResponse) SetGroups(v map[string]*DeviceGroupOverviewSpec) {
+	x.xxx_hidden_Groups = v
 }
 
 type GetDeviceGroupsResponse_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Spec []*DeviceGroupSpec
+	Groups map[string]*DeviceGroupOverviewSpec
 }
 
 func (b0 GetDeviceGroupsResponse_builder) Build() *GetDeviceGroupsResponse {
 	m0 := &GetDeviceGroupsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Spec = &b.Spec
+	x.xxx_hidden_Groups = b.Groups
+	return m0
+}
+
+type DeviceGroupOverviewSpec struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	xxx_hidden_ExternalId  *string                `protobuf:"bytes,2,opt,name=external_id,json=externalId" json:"external_id,omitempty"`
+	xxx_hidden_Name        *string                `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *DeviceGroupOverviewSpec) Reset() {
+	*x = DeviceGroupOverviewSpec{}
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceGroupOverviewSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceGroupOverviewSpec) ProtoMessage() {}
+
+func (x *DeviceGroupOverviewSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceGroupOverviewSpec) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceGroupOverviewSpec) GetExternalId() string {
+	if x != nil {
+		if x.xxx_hidden_ExternalId != nil {
+			return *x.xxx_hidden_ExternalId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceGroupOverviewSpec) GetName() string {
+	if x != nil {
+		if x.xxx_hidden_Name != nil {
+			return *x.xxx_hidden_Name
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceGroupOverviewSpec) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *DeviceGroupOverviewSpec) SetExternalId(v string) {
+	x.xxx_hidden_ExternalId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *DeviceGroupOverviewSpec) SetName(v string) {
+	x.xxx_hidden_Name = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+}
+
+func (x *DeviceGroupOverviewSpec) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DeviceGroupOverviewSpec) HasExternalId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DeviceGroupOverviewSpec) HasName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *DeviceGroupOverviewSpec) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *DeviceGroupOverviewSpec) ClearExternalId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ExternalId = nil
+}
+
+func (x *DeviceGroupOverviewSpec) ClearName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Name = nil
+}
+
+type DeviceGroupOverviewSpec_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id         *string
+	ExternalId *string
+	Name       *string
+}
+
+func (b0 DeviceGroupOverviewSpec_builder) Build() *DeviceGroupOverviewSpec {
+	m0 := &DeviceGroupOverviewSpec{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Id = b.Id
+	}
+	if b.ExternalId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_ExternalId = b.ExternalId
+	}
+	if b.Name != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_Name = b.Name
+	}
+	return m0
+}
+
+// DriverRegistry -> RestApi - the message holds the information about the device group.
+type GetDeviceGroupResponse struct {
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec" json:"spec,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetDeviceGroupResponse) Reset() {
+	*x = GetDeviceGroupResponse{}
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDeviceGroupResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDeviceGroupResponse) ProtoMessage() {}
+
+func (x *GetDeviceGroupResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetDeviceGroupResponse) GetSpec() *DeviceGroupSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *GetDeviceGroupResponse) SetSpec(v *DeviceGroupSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *GetDeviceGroupResponse) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *GetDeviceGroupResponse) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+type GetDeviceGroupResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec *DeviceGroupSpec
+}
+
+func (b0 GetDeviceGroupResponse_builder) Build() *GetDeviceGroupResponse {
+	m0 := &GetDeviceGroupResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
 	return m0
 }
 
@@ -1249,7 +1460,7 @@ type AddDevicesToGroupRequest struct {
 
 func (x *AddDevicesToGroupRequest) Reset() {
 	*x = AddDevicesToGroupRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[11]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1261,7 +1472,7 @@ func (x *AddDevicesToGroupRequest) String() string {
 func (*AddDevicesToGroupRequest) ProtoMessage() {}
 
 func (x *AddDevicesToGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[11]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1342,7 +1553,7 @@ type RemoveDevicesFromGroupRequest struct {
 
 func (x *RemoveDevicesFromGroupRequest) Reset() {
 	*x = RemoveDevicesFromGroupRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[12]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1354,7 +1565,7 @@ func (x *RemoveDevicesFromGroupRequest) String() string {
 func (*RemoveDevicesFromGroupRequest) ProtoMessage() {}
 
 func (x *RemoveDevicesFromGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[12]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1435,7 +1646,7 @@ type SetDeviceCommunicationUnitsRequest struct {
 
 func (x *SetDeviceCommunicationUnitsRequest) Reset() {
 	*x = SetDeviceCommunicationUnitsRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[13]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1447,7 +1658,7 @@ func (x *SetDeviceCommunicationUnitsRequest) String() string {
 func (*SetDeviceCommunicationUnitsRequest) ProtoMessage() {}
 
 func (x *SetDeviceCommunicationUnitsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[13]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1525,7 +1736,7 @@ type GetDevicesCommunicationUnitsRequest struct {
 
 func (x *GetDevicesCommunicationUnitsRequest) Reset() {
 	*x = GetDevicesCommunicationUnitsRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[14]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1537,7 +1748,7 @@ func (x *GetDevicesCommunicationUnitsRequest) String() string {
 func (*GetDevicesCommunicationUnitsRequest) ProtoMessage() {}
 
 func (x *GetDevicesCommunicationUnitsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[14]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1583,7 +1794,7 @@ type GetDevicesCommunicationUnitsResponse struct {
 
 func (x *GetDevicesCommunicationUnitsResponse) Reset() {
 	*x = GetDevicesCommunicationUnitsResponse{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[15]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1595,7 +1806,7 @@ func (x *GetDevicesCommunicationUnitsResponse) String() string {
 func (*GetDevicesCommunicationUnitsResponse) ProtoMessage() {}
 
 func (x *GetDevicesCommunicationUnitsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[15]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1641,7 +1852,7 @@ type DeviceCommunicationUnits struct {
 
 func (x *DeviceCommunicationUnits) Reset() {
 	*x = DeviceCommunicationUnits{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[16]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1653,7 +1864,7 @@ func (x *DeviceCommunicationUnits) String() string {
 func (*DeviceCommunicationUnits) ProtoMessage() {}
 
 func (x *DeviceCommunicationUnits) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[16]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1704,7 +1915,7 @@ type ModemPoolSpec struct {
 
 func (x *ModemPoolSpec) Reset() {
 	*x = ModemPoolSpec{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[17]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1716,7 +1927,7 @@ func (x *ModemPoolSpec) String() string {
 func (*ModemPoolSpec) ProtoMessage() {}
 
 func (x *ModemPoolSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[17]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1813,7 +2024,7 @@ type GetModemPoolsResponse struct {
 
 func (x *GetModemPoolsResponse) Reset() {
 	*x = GetModemPoolsResponse{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[18]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1825,7 +2036,7 @@ func (x *GetModemPoolsResponse) String() string {
 func (*GetModemPoolsResponse) ProtoMessage() {}
 
 func (x *GetModemPoolsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[18]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1875,7 +2086,7 @@ type GetModemPoolRequest struct {
 
 func (x *GetModemPoolRequest) Reset() {
 	*x = GetModemPoolRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[19]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1887,7 +2098,7 @@ func (x *GetModemPoolRequest) String() string {
 func (*GetModemPoolRequest) ProtoMessage() {}
 
 func (x *GetModemPoolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[19]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1955,7 +2166,7 @@ type GetModemPoolResponse struct {
 
 func (x *GetModemPoolResponse) Reset() {
 	*x = GetModemPoolResponse{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[20]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1967,7 +2178,7 @@ func (x *GetModemPoolResponse) String() string {
 func (*GetModemPoolResponse) ProtoMessage() {}
 
 func (x *GetModemPoolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[20]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2049,7 +2260,7 @@ type SetModemPoolRequest struct {
 
 func (x *SetModemPoolRequest) Reset() {
 	*x = SetModemPoolRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[21]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2061,7 +2272,7 @@ func (x *SetModemPoolRequest) String() string {
 func (*SetModemPoolRequest) ProtoMessage() {}
 
 func (x *SetModemPoolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[21]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2160,7 +2371,7 @@ type SetModemRequest struct {
 
 func (x *SetModemRequest) Reset() {
 	*x = SetModemRequest{}
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[22]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2172,7 +2383,7 @@ func (x *SetModemRequest) String() string {
 func (*SetModemRequest) ProtoMessage() {}
 
 func (x *SetModemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pbdeviceregistry_models_proto_msgTypes[22]
+	mi := &file_pbdeviceregistry_models_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2347,9 +2558,30 @@ var file_pbdeviceregistry_models_proto_rawDesc = []byte{
 	0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73,
 	0x2e, 0x70, 0x62, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
 	0x79, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x53, 0x70, 0x65,
-	0x63, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x22, 0x60, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x44, 0x65,
-	0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x45, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x63, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x22, 0xee, 0x01, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x06, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x45, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70,
+	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x72, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x47,
+	0x72, 0x6f, 0x75, 0x70, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x67, 0x72, 0x6f, 0x75,
+	0x70, 0x73, 0x1a, 0x74, 0x0a, 0x0b, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x45, 0x6e, 0x74, 0x72,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x4f, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x39, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65,
+	0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x72, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x72, 0x79, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x4f, 0x76, 0x65, 0x72, 0x76, 0x69, 0x65, 0x77, 0x53, 0x70, 0x65, 0x63, 0x52, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x5e, 0x0a, 0x17, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4f, 0x76, 0x65, 0x72, 0x76, 0x69, 0x65, 0x77, 0x53,
+	0x70, 0x65, 0x63, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x5f, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x45, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x31, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68,
 	0x65, 0x73, 0x2e, 0x70, 0x62, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x72, 0x65, 0x67, 0x69, 0x73,
 	0x74, 0x72, 0x79, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x53,
@@ -2438,7 +2670,7 @@ var file_pbdeviceregistry_models_proto_rawDesc = []byte{
 	0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
 }
 
-var file_pbdeviceregistry_models_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_pbdeviceregistry_models_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_pbdeviceregistry_models_proto_goTypes = []any{
 	(*CreateCommunicationUnitRequest)(nil),       // 0: io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest
 	(*GetCommunicationUnitsRequest)(nil),         // 1: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest
@@ -2451,45 +2683,50 @@ var file_pbdeviceregistry_models_proto_goTypes = []any{
 	(*DeviceGroupSpec)(nil),                      // 8: io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec
 	(*CreateDeviceGroupRequest)(nil),             // 9: io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest
 	(*GetDeviceGroupsResponse)(nil),              // 10: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
-	(*AddDevicesToGroupRequest)(nil),             // 11: io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest
-	(*RemoveDevicesFromGroupRequest)(nil),        // 12: io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest
-	(*SetDeviceCommunicationUnitsRequest)(nil),   // 13: io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest
-	(*GetDevicesCommunicationUnitsRequest)(nil),  // 14: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest
-	(*GetDevicesCommunicationUnitsResponse)(nil), // 15: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
-	(*DeviceCommunicationUnits)(nil),             // 16: io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits
-	(*ModemPoolSpec)(nil),                        // 17: io.clbs.openhes.pbdeviceregistry.ModemPoolSpec
-	(*GetModemPoolsResponse)(nil),                // 18: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
-	(*GetModemPoolRequest)(nil),                  // 19: io.clbs.openhes.pbdeviceregistry.GetModemPoolRequest
-	(*GetModemPoolResponse)(nil),                 // 20: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
-	(*SetModemPoolRequest)(nil),                  // 21: io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
-	(*SetModemRequest)(nil),                      // 22: io.clbs.openhes.pbdeviceregistry.SetModemRequest
-	nil,                                          // 23: io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry
-	nil,                                          // 24: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry
-	(*pbdrivermodels.ConnectionInfo)(nil),        // 25: io.clbs.openhes.pbdriver.ConnectionInfo
-	(*pbdrivermodels.ModemInfo)(nil),             // 26: io.clbs.openhes.pbdriver.ModemInfo
-	(*pbdrivermodels.AttributeValue)(nil),        // 27: io.clbs.openhes.pbdriver.AttributeValue
+	(*DeviceGroupOverviewSpec)(nil),              // 11: io.clbs.openhes.pbdeviceregistry.DeviceGroupOverviewSpec
+	(*GetDeviceGroupResponse)(nil),               // 12: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse
+	(*AddDevicesToGroupRequest)(nil),             // 13: io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest
+	(*RemoveDevicesFromGroupRequest)(nil),        // 14: io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest
+	(*SetDeviceCommunicationUnitsRequest)(nil),   // 15: io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest
+	(*GetDevicesCommunicationUnitsRequest)(nil),  // 16: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest
+	(*GetDevicesCommunicationUnitsResponse)(nil), // 17: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
+	(*DeviceCommunicationUnits)(nil),             // 18: io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits
+	(*ModemPoolSpec)(nil),                        // 19: io.clbs.openhes.pbdeviceregistry.ModemPoolSpec
+	(*GetModemPoolsResponse)(nil),                // 20: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
+	(*GetModemPoolRequest)(nil),                  // 21: io.clbs.openhes.pbdeviceregistry.GetModemPoolRequest
+	(*GetModemPoolResponse)(nil),                 // 22: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
+	(*SetModemPoolRequest)(nil),                  // 23: io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
+	(*SetModemRequest)(nil),                      // 24: io.clbs.openhes.pbdeviceregistry.SetModemRequest
+	nil,                                          // 25: io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry
+	nil,                                          // 26: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse.GroupsEntry
+	nil,                                          // 27: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry
+	(*pbdrivermodels.ConnectionInfo)(nil),        // 28: io.clbs.openhes.pbdriver.ConnectionInfo
+	(*pbdrivermodels.ModemInfo)(nil),             // 29: io.clbs.openhes.pbdriver.ModemInfo
+	(*pbdrivermodels.AttributeValue)(nil),        // 30: io.clbs.openhes.pbdriver.AttributeValue
 }
 var file_pbdeviceregistry_models_proto_depIdxs = []int32{
 	3,  // 0: io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec
 	3,  // 1: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse.spec:type_name -> io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec
-	25, // 2: io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
+	28, // 2: io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
 	7,  // 3: io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceSpec
 	7,  // 4: io.clbs.openhes.pbdeviceregistry.GetDevicesResponse.spec:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceSpec
-	23, // 5: io.clbs.openhes.pbdeviceregistry.DeviceSpec.attributes:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry
+	25, // 5: io.clbs.openhes.pbdeviceregistry.DeviceSpec.attributes:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry
 	8,  // 6: io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest.spec:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec
-	8,  // 7: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse.spec:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec
-	24, // 8: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.devices:type_name -> io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry
-	25, // 9: io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits.communication_units:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
-	17, // 10: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse.pools:type_name -> io.clbs.openhes.pbdeviceregistry.ModemPoolSpec
-	26, // 11: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse.modems:type_name -> io.clbs.openhes.pbdriver.ModemInfo
-	26, // 12: io.clbs.openhes.pbdeviceregistry.SetModemRequest.modem:type_name -> io.clbs.openhes.pbdriver.ModemInfo
-	27, // 13: io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
-	16, // 14: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry.value:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	26, // 7: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse.groups:type_name -> io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse.GroupsEntry
+	8,  // 8: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse.spec:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec
+	27, // 9: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.devices:type_name -> io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry
+	28, // 10: io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits.communication_units:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
+	19, // 11: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse.pools:type_name -> io.clbs.openhes.pbdeviceregistry.ModemPoolSpec
+	29, // 12: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse.modems:type_name -> io.clbs.openhes.pbdriver.ModemInfo
+	29, // 13: io.clbs.openhes.pbdeviceregistry.SetModemRequest.modem:type_name -> io.clbs.openhes.pbdriver.ModemInfo
+	30, // 14: io.clbs.openhes.pbdeviceregistry.DeviceSpec.AttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	11, // 15: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse.GroupsEntry.value:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceGroupOverviewSpec
+	18, // 16: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse.DevicesEntry.value:type_name -> io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnits
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_pbdeviceregistry_models_proto_init() }
@@ -2503,7 +2740,7 @@ func file_pbdeviceregistry_models_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pbdeviceregistry_models_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   25,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

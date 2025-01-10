@@ -150,6 +150,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDeviceGroupResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>GetDeviceGroupsResponse</code> 
@@ -950,9 +959,9 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse">
   <span>
-    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse" title="io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">message GetDeviceGroupsResponse</a>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse" title="io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse">message GetDeviceGroupResponse</a>
   
   </span>
   
@@ -982,13 +991,61 @@
       <td>
         <code title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
           
-            repeated
-          
           <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec"><span title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec</span>
     </a>
         </code>
       </td>
       <td class="content"><p>The device group specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse" title="io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">message GetDeviceGroupsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        groups
+      </td>
+      <td>
+        <code title="map&lt;string, DeviceGroupOverviewSpec&gt;">
+          
+          <span>map&lt;string, DeviceGroupOverviewSpec&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of device groups.</p></td>
       
     </tr>
     

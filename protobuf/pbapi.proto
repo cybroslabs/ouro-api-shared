@@ -69,8 +69,14 @@ service ApiService {
     rpc CreateDeviceGroup(pbdeviceregistry.CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: devicegroup
-    // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-    rpc GetDeviceGroups(google.protobuf.StringValue) returns (pbdeviceregistry.GetDeviceGroupsResponse);
+    // The method returns a list of device groups.
+    rpc GetDeviceGroups(google.protobuf.Empty) returns (pbdeviceregistry.GetDeviceGroupsResponse);
+    // @group: Devices
+    // @tag: devicegroup
+    // The method returns single device group.
+    // @param The device group identifier.
+    // @return The device group specification.
+    rpc GetDeviceGroup(google.protobuf.StringValue) returns (pbdeviceregistry.GetDeviceGroupResponse);
     // @group: Devices
     // @tag: devicegroup
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
@@ -79,6 +85,7 @@ service ApiService {
     // @tag: devicegroup
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(pbdeviceregistry.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
+
 
     // @group: Devices
     // @tag: modempool

@@ -41,6 +41,7 @@ const (
 	ApiService_GetDevicesCommunicationUnits_FullMethodName = "/io.clbs.openhes.pbapi.ApiService/GetDevicesCommunicationUnits"
 	ApiService_CreateDeviceGroup_FullMethodName            = "/io.clbs.openhes.pbapi.ApiService/CreateDeviceGroup"
 	ApiService_GetDeviceGroups_FullMethodName              = "/io.clbs.openhes.pbapi.ApiService/GetDeviceGroups"
+	ApiService_GetDeviceGroup_FullMethodName               = "/io.clbs.openhes.pbapi.ApiService/GetDeviceGroup"
 	ApiService_AddDevicesToGroup_FullMethodName            = "/io.clbs.openhes.pbapi.ApiService/AddDevicesToGroup"
 	ApiService_RemoveDevicesFromGroup_FullMethodName       = "/io.clbs.openhes.pbapi.ApiService/RemoveDevicesFromGroup"
 	ApiService_GetModemPools_FullMethodName                = "/io.clbs.openhes.pbapi.ApiService/GetModemPools"
@@ -109,8 +110,14 @@ type ApiServiceClient interface {
 	CreateDeviceGroup(ctx context.Context, in *pbdeviceregistrymodels.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-	GetDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error)
+	// The method returns a list of device groups.
+	GetDeviceGroups(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error)
+	// @group: Devices
+	// @tag: devicegroup
+	// The method returns single device group.
+	// @param The device group identifier.
+	// @return The device group specification.
+	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupResponse, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
@@ -291,10 +298,20 @@ func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *pbdevicere
 	return out, nil
 }
 
-func (c *apiServiceClient) GetDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error) {
+func (c *apiServiceClient) GetDeviceGroups(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(pbdeviceregistrymodels.GetDeviceGroupsResponse)
 	err := c.cc.Invoke(ctx, ApiService_GetDeviceGroups_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDeviceGroupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(pbdeviceregistrymodels.GetDeviceGroupResponse)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceGroup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -457,8 +474,14 @@ type ApiServiceServer interface {
 	CreateDeviceGroup(context.Context, *pbdeviceregistrymodels.CreateDeviceGroupRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-	GetDeviceGroups(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error)
+	// The method returns a list of device groups.
+	GetDeviceGroups(context.Context, *emptypb.Empty) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error)
+	// @group: Devices
+	// @tag: devicegroup
+	// The method returns single device group.
+	// @param The device group identifier.
+	// @return The device group specification.
+	GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.GetDeviceGroupResponse, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
@@ -548,8 +571,11 @@ func (UnimplementedApiServiceServer) GetDevicesCommunicationUnits(context.Contex
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *pbdeviceregistrymodels.CreateDeviceGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
 }
-func (UnimplementedApiServiceServer) GetDeviceGroups(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error) {
+func (UnimplementedApiServiceServer) GetDeviceGroups(context.Context, *emptypb.Empty) (*pbdeviceregistrymodels.GetDeviceGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroups not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.GetDeviceGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroup not implemented")
 }
 func (UnimplementedApiServiceServer) AddDevicesToGroup(context.Context, *pbdeviceregistrymodels.AddDevicesToGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDevicesToGroup not implemented")
@@ -837,7 +863,7 @@ func _ApiService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context,
 }
 
 func _ApiService_GetDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -849,7 +875,25 @@ func _ApiService_GetDeviceGroups_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: ApiService_GetDeviceGroups_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetDeviceGroups(ctx, req.(*wrapperspb.StringValue))
+		return srv.(ApiServiceServer).GetDeviceGroups(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceGroup(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1096,6 +1140,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceGroups",
 			Handler:    _ApiService_GetDeviceGroups_Handler,
+		},
+		{
+			MethodName: "GetDeviceGroup",
+			Handler:    _ApiService_GetDeviceGroup_Handler,
 		},
 		{
 			MethodName: "AddDevicesToGroup",
