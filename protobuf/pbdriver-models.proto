@@ -643,6 +643,12 @@ message NegotiateRequest {
     string display_name = 8;
 }
 
+// Addon
+message DeviceConnectionInfo {
+    ConnectionInfo communication_unit = 1;  // The unique identifier of the communication unit.
+    ApplicationProtocol app_protocol = 2;  // The application protocol to be used for the communication over the communication unit.
+}
+
 // Addon for DB
 message ArrayOfModemInfo {
     repeated ModemInfo items = 1;
@@ -650,5 +656,5 @@ message ArrayOfModemInfo {
 
 // Addon for DB
 message ArrayOfConnectionInfo {
-    repeated ConnectionInfo items = 1;
+    repeated DeviceConnectionInfo items = 1;
 }
