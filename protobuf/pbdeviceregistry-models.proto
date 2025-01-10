@@ -125,7 +125,12 @@ message GetDevicesCommunicationUnitsResponse {
 
 // Sub-message that represents the communication units linked to the device.
 message DeviceCommunicationUnits {
-    repeated pbdriver.ConnectionInfo communication_units = 1;  // The list of communication units linked to the device.
+    repeated DeviceConnectionInfo communication_units = 1;  // The list of communication units linked to the device.
+}
+
+message DeviceConnectionInfo {
+    pbdriver.ConnectionInfo communication_unit = 1;  // The unique identifier of the communication unit.
+    pbdriver.ApplicationProtocol app_protocol = 2;  // The application protocol to be used for the communication over the communication unit.
 }
 
 // Sub-message that represents the modem pool.
