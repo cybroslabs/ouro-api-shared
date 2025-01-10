@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenHES API</title>
+    <link rel="stylesheet" href="static/mystyles.css" />
+    <script src="static/fontawesome.js"></script>
+    <script src="static/lunr.js"></script>
+    <script src="static/theme.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="level pt-6 mb-5 pb-2 bottom-border">
+        <div class="level-left">
+          <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
+            <a class="link is-info" href="index.html">
+              OpenHES API
+            </a>
+          </p>
+        </div>
+
+        <div class="level-right">
+          
+          <form action="search.html" class="mr-2 has-text-centered">
+            <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
+            <input type="submit" class="button is-primary mr-5" value="Search" />
+          </form>
+          
+
+          <p class="level-item has-text-centered is-size-5">
+            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
+              <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-content" class="container mb-6">
+  <p class="mb-2">
+    <a style="font-size: 0.9em" href="index.html">← Back to packages</a>
+  </p>
+  <h3 class="title is-3">
+    
+    Package <code>io.clbs.openhes.pbdeviceregistry</code>
+    
+  </h3>
+
+  <div class="block">
+    
+
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AddDevicesToGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnitSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateCommunicationUnitRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateDeviceGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateDeviceRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceGroupSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetCommunicationUnitsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetCommunicationUnitsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDeviceGroupsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDevicesCommunicationUnitsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDevicesCommunicationUnitsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDevicesRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDevicesResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetModemPoolResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetModemPoolsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.ModemPoolSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ModemPoolSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RemoveDevicesFromGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetDeviceCommunicationUnitsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetModemPoolRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.SetModemRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetModemRequest</code> 
+        </a>
+      </p>
+      
+    
+
+    
+  </div>
+
+  <div class="block">
+      
+  </div>
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Messages
+    </h3>
+
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest" title="io.clbs.openhes.pbdeviceregistry.AddDevicesToGroupRequest">message AddDevicesToGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to add a new device to the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        group_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec" title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">message CommunicationUnitSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message - the communication unit specification.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        connection_info
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ConnectionInfo">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ConnectionInfo"><span title="io.clbs.openhes.pbdriver.ConnectionInfo">io.clbs.openhes.pbdriver.ConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The connection info.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest" title="io.clbs.openhes.pbdeviceregistry.CreateCommunicationUnitRequest">message CreateCommunicationUnitRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - The communication unit specification.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec"><span title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest" title="io.clbs.openhes.pbdeviceregistry.CreateDeviceGroupRequest">message CreateDeviceGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to get the information about the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec"><span title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device group specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest" title="io.clbs.openhes.pbdeviceregistry.CreateDeviceRequest">message CreateDeviceRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to create a new device.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.DeviceSpec">
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceSpec"><span title="io.clbs.openhes.pbdeviceregistry.DeviceSpec">io.clbs.openhes.pbdeviceregistry.DeviceSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec" title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">message DeviceGroupSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message that represents the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of device identifiers that are part of the group.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.DeviceSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceSpec" title="io.clbs.openhes.pbdeviceregistry.DeviceSpec">message DeviceSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message - the device specification.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, AttributeValue&gt;">
+          
+          <span>map&lt;string, AttributeValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The template of the action attributes. It is represented as a list of attribute definitions.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        communication_unit_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of communication unit identifiers that allows to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        timezone
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest" title="io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest">message GetCommunicationUnitsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to get the information about the communication unit.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the communication unit.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse" title="io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse">message GetCommunicationUnitsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the communication unit.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec"><span title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse" title="io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse">message GetDeviceGroupsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec"><span title="io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device group specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest" title="io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsRequest">message GetDevicesCommunicationUnitsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to get</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse" title="io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse">message GetDevicesCommunicationUnitsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the communication units linked to the device.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        devices
+      </td>
+      <td>
+        <code title="map&lt;string, DeviceCommunicationUnits&gt;">
+          
+          <span>map&lt;string, DeviceCommunicationUnits&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of devices with their communication units.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDevicesRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesRequest" title="io.clbs.openhes.pbdeviceregistry.GetDevicesRequest">message GetDevicesRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to get the information about the device.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetDevicesResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetDevicesResponse" title="io.clbs.openhes.pbdeviceregistry.GetDevicesResponse">message GetDevicesResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the device.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.DeviceSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceSpec"><span title="io.clbs.openhes.pbdeviceregistry.DeviceSpec">io.clbs.openhes.pbdeviceregistry.DeviceSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse" title="io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse">message GetModemPoolResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the modem pool.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        modems
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ModemInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ModemInfo"><span title="io.clbs.openhes.pbdriver.ModemInfo">io.clbs.openhes.pbdriver.ModemInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modems registered within the pool.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the modem pool.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse" title="io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse">message GetModemPoolsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to get the modem pools.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pools
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.ModemPoolSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.ModemPoolSpec"><span title="io.clbs.openhes.pbdeviceregistry.ModemPoolSpec">io.clbs.openhes.pbdeviceregistry.ModemPoolSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of modem pools.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.ModemPoolSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.ModemPoolSpec" title="io.clbs.openhes.pbdeviceregistry.ModemPoolSpec">message ModemPoolSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message that represents the modem pool.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the modem pool.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest" title="io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest">message RemoveDevicesFromGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to remove a device from the device group.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        group_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest" title="io.clbs.openhes.pbdeviceregistry.SetDeviceCommunicationUnitsRequest">message SetDeviceCommunicationUnitsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RestApi -&gt; DriverRegistry - the request message to add a new device to the communication unit.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        communication_unit_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest" title="io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest">message SetModemPoolRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier. It must be unique within the system.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the modem pool to be created. It must be unique within the system.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.SetModemRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.SetModemRequest" title="io.clbs.openhes.pbdeviceregistry.SetModemRequest">message SetModemRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier, required for update operation.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        modem
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ModemInfo">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ModemInfo"><span title="io.clbs.openhes.pbdriver.ModemInfo">io.clbs.openhes.pbdriver.ModemInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+
+  
+
+  
+
+</div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+          <p>© 2025 cybros labs</p>
+        
+        <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
