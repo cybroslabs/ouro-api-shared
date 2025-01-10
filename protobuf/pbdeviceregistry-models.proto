@@ -104,8 +104,13 @@ message RemoveDevicesFromGroupRequest {
 
 // RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
 message SetDeviceCommunicationUnitsRequest {
-    string device_id                      = 1;  // The unique identifier of the device.
-    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+    string device_id                                         = 1;  // The unique identifier of the device.
+    repeated DeviceCommunicationUnit communication_units = 2;  // The list of linked communication units.
+}
+
+message DeviceCommunicationUnit {
+    string communication_unit_id              = 1;  // The unique identifier of the communication unit.
+    pbdriver.ApplicationProtocol app_protocol = 2;  // The application protocol to be used for the communication over the communication unit.
 }
 
 // RestApi -> DriverRegistry - the request message to get

@@ -114,6 +114,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceCommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceGroupSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceGroupSpec</code> 
@@ -588,6 +597,72 @@
         </code>
       </td>
       <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit" title="io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit">message DeviceCommunicationUnit</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communication_unit_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.ApplicationProtocol"><span title="io.clbs.openhes.pbdriver.ApplicationProtocol">io.clbs.openhes.pbdriver.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol to be used for the communication over the communication unit.</p></td>
       
     </tr>
     
@@ -1590,17 +1665,18 @@
     <tr>
       <td>2</td>
       <td>
-        communication_unit_id
+        communication_units
       </td>
       <td>
-        <code title="string">
+        <code title="io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit">
           
             repeated
           
-          <span>string</span>
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit"><span title="io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit">io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit</span>
+    </a>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      <td class="content"><p>The list of linked communication units.</p></td>
       
     </tr>
     
