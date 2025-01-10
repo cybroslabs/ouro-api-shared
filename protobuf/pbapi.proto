@@ -43,7 +43,7 @@ service ApiService {
     // Retrieves the driver templates.
     rpc GetDriverTemplates(google.protobuf.StringValue) returns (pbdriver.DriverTemplates);
 
-        // @group: Devices
+    // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
     rpc CreateCommunicationUnit(pbdeviceregistry.CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
@@ -91,7 +91,6 @@ service ApiService {
     // @tag: devicegroup
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(pbdeviceregistry.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
-
 
     // @group: Devices
     // @tag: modempool

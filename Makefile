@@ -83,16 +83,9 @@ gen-go:
 		--go-grpc_opt=paths=source_relative \
 		pbdriveroperator.proto
 
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbapi \
-		--go-grpc_out=./pbapi \
-		--go-grpc_opt=paths=source_relative \
-		--include_imports \
-		--include_source_info \
-		--descriptor_set_out=./pbapi/pbapi.pb \
-		pbapi.proto
+	cd protobuf && buf generate
+
+	cd protobuf && buf build -o pbapi/pbapi.binpb
 
 	./src/mdgen/main.py
 

@@ -1,0 +1,16 @@
+version: v2
+plugins:
+  # - local: protoc-gen-go
+  #   out: pbapi
+  #   opt: paths=source_relative
+  # - local: protoc-gen-connect-go
+  #   out: pbapi
+  #   opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/go
+    out: pbapi
+    opt:
+      - paths=source_relative
+      - default_api_level=API_OPAQUE
+inputs:
+  - proto_file: pbapi.proto
+    include_package_files: true

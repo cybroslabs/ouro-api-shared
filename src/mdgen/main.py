@@ -50,7 +50,9 @@ def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
 
 if __name__ == "__main__":
     sable_config = SableConfig("mdgen.toml")
-    sable_config.input_descriptor_file = os.path.join("protobuf", "pbapi", "pbapi.pb")
+    sable_config.input_descriptor_file = os.path.join(
+        "protobuf", "pbapi", "pbapi.binpb"
+    )
     sable_context = parse_proto_descriptor(sable_config)
 
     template_base_dir = (
