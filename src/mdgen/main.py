@@ -13,6 +13,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from typing import Set
 
 re_group = re.compile(r"@([a-z]+): (.*)")
+re_spaces = re.compile(r"\s+")
 
 
 def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
@@ -171,6 +172,7 @@ if __name__ == "__main__":
             m = re_group.findall(i.description)
             if m:
                 group = next((x[1] for x in m if x[0] == "group"), None)
+                tags = list((re_spaces.sub("", x[1]) for x in m if x[0] == "tag"))
 
                 desc = re_group.sub("", i.description).strip()
                 i.description_html = markdown_to_html(desc, sable_config)
@@ -178,11 +180,11 @@ if __name__ == "__main__":
             else:
                 group = None
 
-            tagger_methods.append({"group": group, "method": i})
+            tagger_methods.append({"group": group, "method": i, "tags": tags})
         tagged_groups = list(
             sorted(
                 (
-                    (a, list((m["method"] for m in b)))
+                    (a, list(((m["method"], m["tags"]) for m in b)))
                     for a, b in itertools.groupby(
                         tagger_methods, key=lambda x: x["group"]
                     )

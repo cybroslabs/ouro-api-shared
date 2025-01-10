@@ -16,7 +16,7 @@
     {% if group %}
     <h4>{{ group }}</h4>
     {% endif %}
-    {% for method in group_methods %}
+    {% for method, tags in group_methods %}
     <div class="box">
       <div class="block">
         <h5 class="title is-5" id="service-{{ service.full_name }}-{{ method.name }}">
@@ -24,6 +24,13 @@
             rpc <code>{{ method.name }}</code>
           </a>
         </h5>
+        {% if tags %}
+        <div class="tags">
+          {% for tag in tags %}
+          <span class="tag">#{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
         Request: <code>{{ common.type_name(method.request) | trim }}</code><br>
         Response: <code>{{ common.type_name(method.response) }}</code><br>
       </div>

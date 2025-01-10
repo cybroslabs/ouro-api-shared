@@ -41,7 +41,8 @@ const (
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
 	// @group: Bulks
-	// @group: Jobs
+	// @tag: acquisition
+	// @tag: action
 	// Starts a new bulk of jobs.
 	CreateBulk(ctx context.Context, in *PublicCreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -53,8 +54,10 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Driver Info
 	// Retrieves the list of drivers.
 	GetDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbdriveroperatormodels.GetDriversResponse, error)
+	// @group: Driver Info
 	// Retrieves the driver templates.
 	GetDriverTemplates(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdrivermodels.DriverTemplates, error)
 }
@@ -134,7 +137,8 @@ func (c *apiServiceClient) GetDriverTemplates(ctx context.Context, in *wrappersp
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
 	// @group: Bulks
-	// @group: Jobs
+	// @tag: acquisition
+	// @tag: action
 	// Starts a new bulk of jobs.
 	CreateBulk(context.Context, *PublicCreateBulkRequest) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -146,8 +150,10 @@ type ApiServiceServer interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Driver Info
 	// Retrieves the list of drivers.
 	GetDrivers(context.Context, *emptypb.Empty) (*pbdriveroperatormodels.GetDriversResponse, error)
+	// @group: Driver Info
 	// Retrieves the driver templates.
 	GetDriverTemplates(context.Context, *wrapperspb.StringValue) (*pbdrivermodels.DriverTemplates, error)
 	mustEmbedUnimplementedApiServiceServer()

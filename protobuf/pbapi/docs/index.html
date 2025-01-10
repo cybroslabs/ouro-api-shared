@@ -85,51 +85,6 @@
 
   <div class="taggroup">
     
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.pbapi.ApiService-GetDrivers">
-          <a href="#service-io.clbs.openhes.pbapi.ApiService-GetDrivers">
-            rpc <code>GetDrivers</code>
-          </a>
-        </h5>
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.pbdriveroperator.html#message-io.clbs.openhes.pbdriveroperator.GetDriversResponse"><span title="io.clbs.openhes.pbdriveroperator.GetDriversResponse">io.clbs.openhes.pbdriveroperator.GetDriversResponse</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the list of drivers.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.pbapi.ApiService-GetDriverTemplates">
-          <a href="#service-io.clbs.openhes.pbapi.ApiService-GetDriverTemplates">
-            rpc <code>GetDriverTemplates</code>
-          </a>
-        </h5>
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DriverTemplates"><span title="io.clbs.openhes.pbdriver.DriverTemplates">io.clbs.openhes.pbdriver.DriverTemplates</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the driver templates.</p></p>
-      </div>
-      
-    </div>
-    
-  </div>
-
-  <div class="taggroup">
-    
     <h4>Bulks</h4>
     
     
@@ -140,6 +95,15 @@
             rpc <code>CreateBulk</code>
           </a>
         </h5>
+        
+        <div class="tags">
+          
+          <span class="tag">#acquisition</span>
+          
+          <span class="tag">#action</span>
+          
+        </div>
+        
         Request: <code><a href="io.clbs.openhes.pbapi.html#message-io.clbs.openhes.pbapi.PublicCreateBulkRequest"><span title="io.clbs.openhes.pbapi.PublicCreateBulkRequest">io.clbs.openhes.pbapi.PublicCreateBulkRequest</span>
     </a></code><br>
         Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
@@ -160,6 +124,7 @@
             rpc <code>GetBulks</code>
           </a>
         </h5>
+        
         Request: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetBulksReuqest"><span title="io.clbs.openhes.pbdataproxy.GetBulksReuqest">io.clbs.openhes.pbdataproxy.GetBulksReuqest</span>
     </a></code><br>
         Response: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetBulksResponse"><span title="io.clbs.openhes.pbdataproxy.GetBulksResponse">io.clbs.openhes.pbdataproxy.GetBulksResponse</span>
@@ -180,6 +145,7 @@
             rpc <code>GetBulk</code>
           </a>
         </h5>
+        
         Request: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetBulkRequest"><span title="io.clbs.openhes.pbdataproxy.GetBulkRequest">io.clbs.openhes.pbdataproxy.GetBulkRequest</span>
     </a></code><br>
         Response: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetBulkResponse"><span title="io.clbs.openhes.pbdataproxy.GetBulkResponse">io.clbs.openhes.pbdataproxy.GetBulkResponse</span>
@@ -200,6 +166,7 @@
             rpc <code>GetJobStatus</code>
           </a>
         </h5>
+        
         Request: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetJobStatusRequest"><span title="io.clbs.openhes.pbdataproxy.GetJobStatusRequest">io.clbs.openhes.pbdataproxy.GetJobStatusRequest</span>
     </a></code><br>
         Response: <code><a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.GetJobStatusResponse"><span title="io.clbs.openhes.pbdataproxy.GetJobStatusResponse">io.clbs.openhes.pbdataproxy.GetJobStatusResponse</span>
@@ -209,6 +176,55 @@
       
       <div class="block">
         <p><p>Retrieves the job status.</p></p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <div class="taggroup">
+    
+    <h4>Driver Info</h4>
+    
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.pbapi.ApiService-GetDrivers">
+          <a href="#service-io.clbs.openhes.pbapi.ApiService-GetDrivers">
+            rpc <code>GetDrivers</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.pbdriveroperator.html#message-io.clbs.openhes.pbdriveroperator.GetDriversResponse"><span title="io.clbs.openhes.pbdriveroperator.GetDriversResponse">io.clbs.openhes.pbdriveroperator.GetDriversResponse</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the list of drivers.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.pbapi.ApiService-GetDriverTemplates">
+          <a href="#service-io.clbs.openhes.pbapi.ApiService-GetDriverTemplates">
+            rpc <code>GetDriverTemplates</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DriverTemplates"><span title="io.clbs.openhes.pbdriver.DriverTemplates">io.clbs.openhes.pbdriver.DriverTemplates</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the driver templates.</p></p>
       </div>
       
     </div>

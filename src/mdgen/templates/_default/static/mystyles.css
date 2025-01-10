@@ -8088,8 +8088,6 @@ body.dark strong {
   padding: 0.5em 1em;
   font-weight: 600;
   border-radius: 2px;
-}
-.taggroup > h4 {
   color: white;
   background-color: color(srgb 0.0054 0.4343 0.7238);
 }
