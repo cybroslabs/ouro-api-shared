@@ -231,6 +231,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ArrayOfConnectionInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.AttributeDefinition">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>AttributeDefinition</code> 
@@ -321,6 +330,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.DeviceConnectionInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceConnectionInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.DriverTemplates">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DriverTemplates</code> 
@@ -369,6 +387,15 @@
         <a href="#message-io.clbs.openhes.pbdriver.ModemInfo">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ModemInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.StringList">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>StringList</code> 
         </a>
       </p>
       
@@ -1179,6 +1206,59 @@
         </code>
       </td>
       <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo" title="io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">message ArrayOfConnectionInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Addon for DB</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DeviceConnectionInfo"><span title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">io.clbs.openhes.pbdriver.DeviceConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"></td>
       
     </tr>
     
@@ -2132,6 +2212,73 @@
         </code>
       </td>
       <td class="content"><p>The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.DeviceConnectionInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.DeviceConnectionInfo" title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">message DeviceConnectionInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Addon</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communication_unit
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ConnectionInfo">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ConnectionInfo"><span title="io.clbs.openhes.pbdriver.ConnectionInfo">io.clbs.openhes.pbdriver.ConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.pbdriver.html#enum-io.clbs.openhes.pbdriver.ApplicationProtocol"><span title="io.clbs.openhes.pbdriver.ApplicationProtocol">io.clbs.openhes.pbdriver.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol to be used for the communication over the communication unit.</p></td>
       
     </tr>
     
@@ -3135,6 +3282,58 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           
         </tr>
       
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.StringList">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.StringList" title="io.clbs.openhes.pbdriver.StringList">message StringList</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a mesasge as a list of strings.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of strings.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>

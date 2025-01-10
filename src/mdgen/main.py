@@ -37,7 +37,7 @@ def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
                         # This does not work as the map type is not containing the package name...
                         parts = ft.group(1).rsplit(".", 1)
                         if len(parts) == 2:
-                            base_messages.add((parts[1], parts[0]))
+                            base_messages.add((ft.group(1), parts[0]))
                             if parts[0] != p_name:
                                 nested_packages.add(parts[0])
 
