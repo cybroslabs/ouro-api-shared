@@ -1,0 +1,11 @@
+version: v2
+plugins:
+  - local: protoc-gen-es
+    out: pbapi/es
+    # Also generate any imported dependencies
+    include_imports: true
+    # Add more plugin options here
+    opt: target=ts
+inputs:
+  - proto_file: pbapi.proto
+    include_package_files: true
