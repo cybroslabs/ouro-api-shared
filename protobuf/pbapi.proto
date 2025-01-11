@@ -148,5 +148,6 @@ message JobDeviceList {
 }
 
 message JobDevice {
-    string id = 1;  // The device identifier.
+    string id        = 1;  // The device's job identifier within the parent bulk.
+    string device_id = 2;  // The device identifier.
 }
