@@ -105,7 +105,7 @@ message StartJobsRequest {
 
 // Sub-message containing job start request for single device
 message StartJobData {
-    map<string, AttributeValue> device_attributes = 1;  // The connection attributes to the device.
+    map<string, AttributeValue> device_attributes = 1;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
     string job_id                                 = 2;  // The job identifier.
     JobSettings job_settings                      = 3;  // The job parameters.
     repeated JobAction job_actions                = 4;  // The list actions to be executed.
@@ -645,8 +645,9 @@ message NegotiateRequest {
 
 // Addon
 message DeviceConnectionInfo {
-    ConnectionInfo communication_unit = 1;  // The unique identifier of the communication unit.
-    ApplicationProtocol app_protocol = 2;  // The application protocol to be used for the communication over the communication unit.
+    ConnectionInfo communication_unit             = 1;  // The unique identifier of the communication unit.
+    ApplicationProtocol app_protocol              = 2;  // The application protocol to be used for the communication over the communication unit.
+    map<string, AttributeValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
 }
 
 // Addon for DB
