@@ -10,7 +10,7 @@ retract (
 require (
 	connectrpc.com/connect v1.18.1
 	github.com/cerbos/cerbos-sdk-go v0.2.13
-	google.golang.org/grpc v1.69.2
+	google.golang.org/grpc v1.69.4
 	google.golang.org/protobuf v1.36.2
 )
 

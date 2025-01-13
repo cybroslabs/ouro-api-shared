@@ -797,7 +797,7 @@ export type ConnectionTypeDirectTcpIp = Message<"io.clbs.openhes.pbdriver.Connec
   port: number;
 
   /**
-   * The timeout in seconds for the connection.
+   * The timeout in miliseconds for the connection.
    *
    * @generated from field: int32 timeout = 3;
    */

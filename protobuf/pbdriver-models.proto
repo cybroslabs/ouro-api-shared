@@ -236,7 +236,7 @@ message ConnectionInfo {
 message ConnectionTypeDirectTcpIp {
     string host   = 1;  // The host name or IP address of the device to connect to.
     uint32 port   = 2;  // The TCP port number of the device to connect to.
-    int32 timeout = 3;  // The timeout in seconds for the connection.
+    int32 timeout = 3;  // The timeout in miliseconds for the connection.
 }
 
 // Sub-message containing connection info for phone line (modem) connection type
