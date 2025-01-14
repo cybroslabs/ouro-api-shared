@@ -402,6 +402,62 @@
     
 
     
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.ActionType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ActionType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.ApplicationProtocol">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ApplicationProtocol</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.AttributeType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>AttributeType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.CommunicationType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>CommunicationType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.DataLinkProtocol">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>DataLinkProtocol</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.ErrorCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ErrorCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.JobErrorCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>JobErrorCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.JobPriority">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>JobPriority</code> 
+        </a>
+      </p>
+    
   </div>
 
   <div class="block">
@@ -3358,6 +3414,548 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     
 
   
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ActionType">
+  <a href="#enum-io.clbs.openhes.pbdriver.ActionType" title="io.clbs.openhes.pbdriver.ActionType">enum ActionType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Action types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_REGISTER</code></td>
+      <td>0</td>
+      <td class="content"><p>Get billing value, for example instantaneous values. The action covers specific register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_PERIODICAL_PROFILE</code></td>
+      <td>1</td>
+      <td class="content"><p>Get periodical profile, for example load-profile. The action covers specific profile column.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_IRREGULAR_PROFILE</code></td>
+      <td>2</td>
+      <td class="content"><p>Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_EVENTS</code></td>
+      <td>3</td>
+      <td class="content"><p>Get event log. The action covers specific event log.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_CLOCK</code></td>
+      <td>10</td>
+      <td class="content"><p>Get clock. The action returns time in UTC.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SYNC_CLOCK</code></td>
+      <td>11</td>
+      <td class="content"><p>Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_RELAY_STATE</code></td>
+      <td>20</td>
+      <td class="content"><p>Get relay state. The action covers single relay.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_RELAY_STATE</code></td>
+      <td>21</td>
+      <td class="content"><p>Set relay state. The action covers single relay.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_DISCONNECTOR_STATE</code></td>
+      <td>22</td>
+      <td class="content"><p>Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_DISCONNECTOR_STATE</code></td>
+      <td>23</td>
+      <td class="content"><p>Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_TOU</code></td>
+      <td>24</td>
+      <td class="content"><p>Get time-of-use table.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_TOU</code></td>
+      <td>25</td>
+      <td class="content"><p>Set time-of-use table.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_LIMITER</code></td>
+      <td>26</td>
+      <td class="content"><p>Get limiter settings. The action covers single limiter.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_LIMITER</code></td>
+      <td>27</td>
+      <td class="content"><p>Set limiter settings. The action covers single limiter.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_RESET_BILLING_PERIOD</code></td>
+      <td>40</td>
+      <td class="content"><p>Reseet billing period.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_FW_UPDATE</code></td>
+      <td>50</td>
+      <td class="content"><p>Start firmware update. The action updates starts FW upgrade procedure.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ApplicationProtocol">
+  <a href="#enum-io.clbs.openhes.pbdriver.ApplicationProtocol" title="io.clbs.openhes.pbdriver.ApplicationProtocol">enum ApplicationProtocol</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Application protocols</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>APPPROTO_IEC_62056_21</code></td>
+      <td>0</td>
+      <td class="content"><p>The IEC 62056-21 (IEC-61107, VDEW) protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_DLMS_SN</code></td>
+      <td>1</td>
+      <td class="content"><p>The DLMS short-name protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_DLMS_LN</code></td>
+      <td>2</td>
+      <td class="content"><p>The DLMS logical-name protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_SCTM</code></td>
+      <td>3</td>
+      <td class="content"><p>The SCTM protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_LIS200</code></td>
+      <td>4</td>
+      <td class="content"><p>The LIS200 protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_ANSI_C12</code></td>
+      <td>5</td>
+      <td class="content"><p>The ANSI C12 protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_MQTT</code></td>
+      <td>6</td>
+      <td class="content"><p>The MQTT protocol.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.AttributeType">
+  <a href="#enum-io.clbs.openhes.pbdriver.AttributeType" title="io.clbs.openhes.pbdriver.AttributeType">enum AttributeType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Attribute types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_INT</code></td>
+      <td>0</td>
+      <td class="content"><p>Integer attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_STRING</code></td>
+      <td>1</td>
+      <td class="content"><p>String attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_DOUBLE</code></td>
+      <td>2</td>
+      <td class="content"><p>Double attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_BINARY</code></td>
+      <td>3</td>
+      <td class="content"><p>Binary attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_TIMESTAMP</code></td>
+      <td>4</td>
+      <td class="content"><p>Date/time attribute type, stored as integer (UNIX timestamp)</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_TIMESTAMP_TZ</code></td>
+      <td>5</td>
+      <td class="content"><p>Date/time attribute type, stored as string in ISO-8601</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_BOOL</code></td>
+      <td>6</td>
+      <td class="content"><p>Bool attribute type</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.CommunicationType">
+  <a href="#enum-io.clbs.openhes.pbdriver.CommunicationType" title="io.clbs.openhes.pbdriver.CommunicationType">enum CommunicationType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Connection types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_TCPIP</code></td>
+      <td>0</td>
+      <td class="content"><p>The communication is done via direct TCP/IP.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_MODEM_POOL</code></td>
+      <td>1</td>
+      <td class="content"><p>The communication is done via phone line (modem).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_SERIAL_LINE_DIRECT</code></td>
+      <td>2</td>
+      <td class="content"><p>The communication is done via direct serial line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_SERIAL_LINE_MOXA</code></td>
+      <td>3</td>
+      <td class="content"><p>The communication is done via controller-serial line (Moxa).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_LISTENING</code></td>
+      <td>99</td>
+      <td class="content"><p>The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.DataLinkProtocol">
+  <a href="#enum-io.clbs.openhes.pbdriver.DataLinkProtocol" title="io.clbs.openhes.pbdriver.DataLinkProtocol">enum DataLinkProtocol</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Data link protocols</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>LINKPROTO_IEC_62056_21</code></td>
+      <td>0</td>
+      <td class="content"><p>The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_HDLC</code></td>
+      <td>1</td>
+      <td class="content"><p>The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_COSEM_WRAPPER</code></td>
+      <td>2</td>
+      <td class="content"><p>The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_MODBUS</code></td>
+      <td>3</td>
+      <td class="content"><p>The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_MBUS</code></td>
+      <td>4</td>
+      <td class="content"><p>The M-Bus protocol. It shall be used for M-Bus application protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_NOT_APPLICABLE</code></td>
+      <td>99</td>
+      <td class="content"><p>The data link protocol is not applicable. It's useful for listening communication type.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ErrorCode">
+  <a href="#enum-io.clbs.openhes.pbdriver.ErrorCode" title="io.clbs.openhes.pbdriver.ErrorCode">enum ErrorCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Error codes</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ERROR_CODE_OK</code></td>
+      <td>0</td>
+      <td class="content"><p>No error</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ERROR</code></td>
+      <td>4</td>
+      <td class="content"><p>Generic error</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.JobErrorCode">
+  <a href="#enum-io.clbs.openhes.pbdriver.JobErrorCode" title="io.clbs.openhes.pbdriver.JobErrorCode">enum JobErrorCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Error codes related to jobs</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_NONE</code></td>
+      <td>0</td>
+      <td class="content"><p>The job has been completed successfully.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_BUSY</code></td>
+      <td>1</td>
+      <td class="content"><p>There is no free slot in the driver to handle the job; the job shall be send again later.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_ERROR</code></td>
+      <td>5</td>
+      <td class="content"><p>The job failed, the retry will be attempted.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_ALREADY_EXISTS</code></td>
+      <td>8</td>
+      <td class="content"><p>This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_FATAL</code></td>
+      <td>9</td>
+      <td class="content"><p>The job failed, the retry will NOT be attempted.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.JobPriority">
+  <a href="#enum-io.clbs.openhes.pbdriver.JobPriority" title="io.clbs.openhes.pbdriver.JobPriority">enum JobPriority</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Job priorities</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_0</code></td>
+      <td>0</td>
+      <td class="content"><p>The lowest priority</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_1</code></td>
+      <td>1</td>
+      <td class="content"><p>The priority 1</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_2</code></td>
+      <td>2</td>
+      <td class="content"><p>The priority 2</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_3</code></td>
+      <td>3</td>
+      <td class="content"><p>The priority 3</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_4</code></td>
+      <td>4</td>
+      <td class="content"><p>The priority 4</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_5</code></td>
+      <td>5</td>
+      <td class="content"><p>The priority 5</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_6</code></td>
+      <td>6</td>
+      <td class="content"><p>The priority 6</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_7</code></td>
+      <td>7</td>
+      <td class="content"><p>The priority 7</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_8</code></td>
+      <td>8</td>
+      <td class="content"><p>The highest priority</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
 
   
 

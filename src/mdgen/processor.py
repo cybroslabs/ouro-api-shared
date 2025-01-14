@@ -22,17 +22,23 @@ def filter_used(packages_map, base_messages: Set[str], base_enums: Set[str]):
                 if t_name.endswith("GetDevicesCommunicationUnitsResponse"):
                     pass
                 for f in p.fields:
-                    if f.package:
-                        base_messages.add((f.full_type, f.package.name))
+                    if f.type_kind == "ENUM":
+                        base_enums.add((f.full_type, f.package.name))
                         if f.package.name != p_name:
                             nested_packages.add(f.package.name)
-                    elif (ft := re_type_map.match(f.full_type or "")) is not None:
-                        # This does not work as the map type is not containing the package name...
-                        parts = ft.group(1).rsplit(".", 1)
-                        if len(parts) == 2:
-                            base_messages.add((ft.group(1), parts[0]))
-                            if parts[0] != p_name:
-                                nested_packages.add(parts[0])
+
+                    elif f.type_kind == "MESSAGE":
+                        if f.package:
+                            base_messages.add((f.full_type, f.package.name))
+                            if f.package.name != p_name:
+                                nested_packages.add(f.package.name)
+                        elif (ft := re_type_map.match(f.full_type or "")) is not None:
+                            # This does not work as the map type is not containing the package name...
+                            parts = ft.group(1).rsplit(".", 1)
+                            if len(parts) == 2:
+                                base_messages.add((ft.group(1), parts[0]))
+                                if parts[0] != p_name:
+                                    nested_packages.add(parts[0])
 
     nested_packages_map = {
         k: v for k, v in packages_map.items() if k in nested_packages

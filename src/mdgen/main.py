@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os, json, itertools, re, copy
-import markdown
-from shutil import copy, copytree, rmtree
+import os
 from proto_descriptor_parser import (
     parse_proto_descriptor,
     SableConfig,
-    markdown_to_html,
 )
-from sabledocs.lunr_search import build_search_index
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-from typing import Set
 
 from processor import run
 import gen_html
+import gen_graphql
 
 if __name__ == "__main__":
     sable_config = SableConfig("mdgen.toml")
@@ -24,3 +19,4 @@ if __name__ == "__main__":
 
     visible_packages, tagged_service = run(sable_config, sable_context)
     gen_html.generate(sable_config, sable_context, visible_packages, tagged_service)
+    gen_graphql.generate(sable_config, sable_context, visible_packages, tagged_service)
