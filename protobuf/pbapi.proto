@@ -127,6 +127,7 @@ service ApiService {
 }
 
 message PublicCreateBulkRequest {
+    // @gqltype: UUID
     string id             = 1;  // The bulk identifier.
     string correlation_id = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
     string driver_type    = 3;  // The device (driver) type.

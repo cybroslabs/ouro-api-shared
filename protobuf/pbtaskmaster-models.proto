@@ -33,7 +33,6 @@ message CacheGetRequest {
 
 // Taskmaster -> Driver cache get response message
 message CacheGetResponse {
-    pbdriver.ErrorCode result     = 1;  // The result of the cache get operation.
     pbdriver.AttributeValue value = 2;  // The value of the cache entry.
 }
 
@@ -58,12 +57,12 @@ message JobSpec {
 // Sub-message representing a single device info.
 message JobDevice {
     string id                                              = 1;  // The device (job) identifier.
-    string device_id                              = 2;  // The device identifier. If set then all below is loaded from the device registry.
-    string external_id                            = 3;  // The external identifier.
+    string device_id                                       = 2;  // The device identifier. If set then all below is loaded from the device registry.
+    string external_id                                     = 3;  // The external identifier.
     map<string, pbdriver.AttributeValue> device_attributes = 4;  // The connection attributes to the device.
-    repeated pbdriver.ConnectionInfo connection_info                = 5;  // The conenction (device) parameters.
+    repeated pbdriver.ConnectionInfo connection_info       = 5;  // The conenction (device) parameters.
     pbdriver.ApplicationProtocol app_protocol              = 6;  // The application protocol.
-    string timezone                               = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string timezone                                        = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Dataproxy -> Taskmaster get job request message
@@ -78,13 +77,13 @@ message GetJobResponse {
 
 // Sub-message containing job status info
 message JobStatus {
-    JobStatusCode status                           = 1;  // The status of the job.
+    JobStatusCode status                  = 1;  // The status of the job.
     pbdriver.JobErrorCode code            = 2;  // The error code of the job.
-    repeated ActionResult results                  = 3;  // The result data for all job actions.
-    google.protobuf.Timestamp created_at           = 4;  // The creation timestamp of the job.
+    repeated ActionResult results         = 3;  // The result data for all job actions.
+    google.protobuf.Timestamp created_at  = 4;  // The creation timestamp of the job.
     google.protobuf.Timestamp started_at  = 5;  // The start timestamp of the job.
     google.protobuf.Timestamp finished_at = 6;  // The finish timestamp of the job.
-    int32 attempts_done                            = 7;  // The number of attempts already done.
+    int32 attempts_done                   = 7;  // The number of attempts already done.
 }
 
 // Job statuses
