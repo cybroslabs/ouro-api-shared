@@ -78,6 +78,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ActionData">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionData</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.ActionFwUpdate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ActionFwUpdate</code> 
@@ -258,6 +267,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.BillingValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BillingValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.BillingValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BillingValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.CommunicationTemplate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CommunicationTemplate</code> 
@@ -384,9 +411,36 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.MeasuredValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>MeasuredValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.ModemInfo">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ModemInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ProfileBlok">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ProfileBlok</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ProfileValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ProfileValues</code> 
         </a>
       </p>
       
@@ -401,6 +455,13 @@
       
     
 
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdriver.ActionResultCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ActionResultCode</code> 
+        </a>
+      </p>
     
       <p>
         <a href="#enum-io.clbs.openhes.pbdriver.ActionType">
@@ -531,6 +592,111 @@
       
     </tr>
     
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ActionData">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ActionData" title="io.clbs.openhes.pbdriver.ActionData">message ActionData</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing action-based variant of data values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof data</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            nodata
+          </td>
+          <td>
+            <code title="google.protobuf.Empty">
+              
+              <span>google.protobuf.Empty</span>
+            </code>
+          </td>
+          <td class="content"><p>No data</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            billings
+          </td>
+          <td>
+            <code title="io.clbs.openhes.pbdriver.BillingValues">
+              
+              <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.BillingValues"><span title="io.clbs.openhes.pbdriver.BillingValues">io.clbs.openhes.pbdriver.BillingValues</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>Register values</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            profile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.pbdriver.ProfileValues">
+              
+              <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ProfileValues"><span title="io.clbs.openhes.pbdriver.ProfileValues">io.clbs.openhes.pbdriver.ProfileValues</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>Profile values</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -1586,6 +1752,140 @@
           
         </tr>
       
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.BillingValue">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.BillingValue" title="io.clbs.openhes.pbdriver.BillingValue">message BillingValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed value</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.MeasuredValue">
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.MeasuredValue"><span title="io.clbs.openhes.pbdriver.MeasuredValue">io.clbs.openhes.pbdriver.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.BillingValues">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.BillingValues" title="io.clbs.openhes.pbdriver.BillingValues">message BillingValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.BillingValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.BillingValue"><span title="io.clbs.openhes.pbdriver.BillingValue">io.clbs.openhes.pbdriver.BillingValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of register values.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -3148,6 +3448,196 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.MeasuredValue">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.MeasuredValue" title="io.clbs.openhes.pbdriver.MeasuredValue">message MeasuredValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing measured value</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The status of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        exponent
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof value</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            double_value
+          </td>
+          <td>
+            <code title="double">
+              
+              <span>double</span>
+            </code>
+          </td>
+          <td class="content"><p>The double-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            int_value
+          </td>
+          <td>
+            <code title="int64">
+              
+              <span>int64</span>
+            </code>
+          </td>
+          <td class="content"><p>The integer-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            str_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The string-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            6
+          </td>
+          <td>
+            timestamp_value
+          </td>
+          <td>
+            <code title="google.protobuf.Timestamp">
+              
+              <span>google.protobuf.Timestamp</span>
+            </code>
+          </td>
+          <td class="content"><p>The timestamp-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            7
+          </td>
+          <td>
+            timestamp_tz_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The timestamp with timezone-typed value, stored as string in ISO-8601.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            8
+          </td>
+          <td>
+            bool_value
+          </td>
+          <td>
+            <code title="bool">
+              
+              <span>bool</span>
+            </code>
+          </td>
+          <td class="content"><p>The boolean-typed value.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ModemInfo">
   <span>
     <a href="#message-io.clbs.openhes.pbdriver.ModemInfo" title="io.clbs.openhes.pbdriver.ModemInfo">message ModemInfo</a>
@@ -3364,6 +3854,157 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ProfileBlok">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ProfileBlok" title="io.clbs.openhes.pbdriver.ProfileBlok">message ProfileBlok</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing a single profile block</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        start_timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the block.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.MeasuredValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.MeasuredValue"><span title="io.clbs.openhes.pbdriver.MeasuredValue">io.clbs.openhes.pbdriver.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of profile values. Values are ordered by timestamp.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ProfileValues">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ProfileValues" title="io.clbs.openhes.pbdriver.ProfileValues">message ProfileValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing profile-typed values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        period
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The period of the profile values.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the profile values.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        blocks
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.ProfileBlok">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.ProfileBlok"><span title="io.clbs.openhes.pbdriver.ProfileBlok">io.clbs.openhes.pbdriver.ProfileBlok</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.StringList">
   <span>
     <a href="#message-io.clbs.openhes.pbdriver.StringList" title="io.clbs.openhes.pbdriver.StringList">message StringList</a>
@@ -3421,6 +4062,54 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       Enums
     </h3>
 
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ActionResultCode">
+  <a href="#enum-io.clbs.openhes.pbdriver.ActionResultCode" title="io.clbs.openhes.pbdriver.ActionResultCode">enum ActionResultCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Result codes related to job actions</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_OK</code></td>
+      <td>0</td>
+      <td class="content"><p>The action has been completed successfully.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_UNSUPPORTED</code></td>
+      <td>1</td>
+      <td class="content"><p>The action is not supported by the driver (or device).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_PENDING</code></td>
+      <td>3</td>
+      <td class="content"><p>The action is pending.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_ERROR</code></td>
+      <td>5</td>
+      <td class="content"><p>The action failed.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
     
     <div class="block">
       <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ActionType">

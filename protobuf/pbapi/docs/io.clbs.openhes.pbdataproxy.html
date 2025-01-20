@@ -69,6 +69,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdataproxy.BulkJobStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BulkJobStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdataproxy.BulkSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>BulkSpec</code> 
@@ -141,6 +150,13 @@
     
 
     
+      <p>
+        <a href="#enum-io.clbs.openhes.pbdataproxy.BulkStatusCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>BulkStatusCode</code> 
+        </a>
+      </p>
+    
   </div>
 
   <div class="block">
@@ -155,6 +171,72 @@
       Messages
     </h3>
 
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdataproxy.BulkJobStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdataproxy.BulkJobStatus" title="io.clbs.openhes.pbdataproxy.BulkJobStatus">message BulkJobStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        job_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The job identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbtaskmaster.JobStatus">
+          
+          <a href="io.clbs.openhes.pbtaskmaster.html#message-io.clbs.openhes.pbtaskmaster.JobStatus"><span title="io.clbs.openhes.pbtaskmaster.JobStatus">io.clbs.openhes.pbtaskmaster.JobStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The job status.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
     
       
       <div class="block">
@@ -755,6 +837,68 @@
     
 
   
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdataproxy.BulkStatusCode">
+  <a href="#enum-io.clbs.openhes.pbdataproxy.BulkStatusCode" title="io.clbs.openhes.pbdataproxy.BulkStatusCode">enum BulkStatusCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Bulk statuses</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>BULK_STATUS_QUEUED</code></td>
+      <td>0</td>
+      <td class="content"><p>The job is waiting in the queue</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_RUNNING</code></td>
+      <td>1</td>
+      <td class="content"><p>The job is running</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_COMPLETED</code></td>
+      <td>2</td>
+      <td class="content"><p>The job is completed</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_CANCELLED</code></td>
+      <td>3</td>
+      <td class="content"><p>The job is cancelled</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_EXPIRED</code></td>
+      <td>4</td>
+      <td class="content"><p>The job has expired</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
 
   
 

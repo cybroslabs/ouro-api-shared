@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pbtaskmaster-models.proto.
  */
 export const file_pbtaskmaster_models: GenFile = /*@__PURE__*/
-  fileDesc("ChlwYnRhc2ttYXN0ZXItbW9kZWxzLnByb3RvEhxpby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyImkKEFN0cmVhbUV2ZW50c0RhdGESTQoIam9iX2RvbmUYASABKAsyOS5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLlN0cmVhbUV2ZW50c0RhdGFKb2JGaW5pc2hlZEgAQgYKBGRhdGEiLQobU3RyZWFtRXZlbnRzRGF0YUpvYkZpbmlzaGVkEg4KBmpvYl9pZBgBIAEoCSJXCg9DYWNoZVNldFJlcXVlc3QSCwoDa2V5GAEgASgJEjcKBXZhbHVlGAIgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkF0dHJpYnV0ZVZhbHVlIh4KD0NhY2hlR2V0UmVxdWVzdBILCgNrZXkYASABKAkiSwoQQ2FjaGVHZXRSZXNwb25zZRI3CgV2YWx1ZRgCIAEoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BdHRyaWJ1dGVWYWx1ZSIjChFDYW5jZWxKb2JzUmVxdWVzdBIOCgZqb2JfaWQYASADKAkiRwoQUXVldWVKb2JzUmVxdWVzdBIzCgRzcGVjGAEgAygLMiUuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JTcGVjIs4BCgdKb2JTcGVjEjcKBmRldmljZRgCIAEoCzInLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuSm9iRGV2aWNlEjsKDGpvYl9zZXR0aW5ncxgDIAEoCzIlLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JTZXR0aW5ncxITCgtkcml2ZXJfdHlwZRgEIAEoCRI4Cgtqb2JfYWN0aW9ucxgFIAMoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JBY3Rpb24ilgMKCUpvYkRldmljZRIKCgJpZBgBIAEoCRIRCglkZXZpY2VfaWQYAiABKAkSEwoLZXh0ZXJuYWxfaWQYAyABKAkSWAoRZGV2aWNlX2F0dHJpYnV0ZXMYBCADKAsyPS5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYkRldmljZS5EZXZpY2VBdHRyaWJ1dGVzRW50cnkSQQoPY29ubmVjdGlvbl9pbmZvGAUgAygLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkNvbm5lY3Rpb25JbmZvEkMKDGFwcF9wcm90b2NvbBgGIAEoDjItLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BcHBsaWNhdGlvblByb3RvY29sEhAKCHRpbWV6b25lGAcgASgJGmEKFURldmljZUF0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSNwoFdmFsdWUYAiABKAsyKC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXR0cmlidXRlVmFsdWU6AjgBIh8KDUdldEpvYlJlcXVlc3QSDgoGam9iX2lkGAEgASgJIkkKDkdldEpvYlJlc3BvbnNlEjcKBnN0YXR1cxgBIAEoCzInLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuSm9iU3RhdHVzIuMCCglKb2JTdGF0dXMSOwoGc3RhdHVzGAEgASgOMisuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JTdGF0dXNDb2RlEjQKBGNvZGUYAiABKA4yJi5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iRXJyb3JDb2RlEjsKB3Jlc3VsdHMYAyADKAsyKi5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkFjdGlvblJlc3VsdBIuCgpjcmVhdGVkX2F0GAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpzdGFydGVkX2F0GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgtmaW5pc2hlZF9hdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFQoNYXR0ZW1wdHNfZG9uZRgHIAEoBSKRAQoMQWN0aW9uUmVzdWx0EhEKCWFjdGlvbl9pZBgBIAEoCRI6CgZzdGF0dXMYAiABKA4yKi5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQWN0aW9uUmVzdWx0Q29kZRIyCgRkYXRhGAMgASgLMiQuaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkFjdGlvbkRhdGEiRgoMU3lzdGVtQ29uZmlnEhQKDG1heF9yZXBsaWNhcxgBIAEoBRIgChhtYXhfY2FzY2FkZV9kZXZpY2VfY291bnQYAiABKAUilAEKFFN5c3RlbUNvbmZpZ1Jlc3BvbnNlEjoKBmNvbmZpZxgBIAEoCzIqLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuU3lzdGVtQ29uZmlnEkAKBnN0YXR1cxgCIAEoCzIwLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuU3lzdGVtQ29uZmlnU3RhdHVzIioKElN5c3RlbUNvbmZpZ1N0YXR1cxIUCgxxdWV1ZV9sZW5ndGgYASABKAMiHgoMSm9iRXZlbnREYXRhEg4KBmpvYl9pZBgBIAEoDCqhAQoNSm9iU3RhdHVzQ29kZRIVChFKT0JfU1RBVFVTX1FVRVVFRBAAEhYKEkpPQl9TVEFUVVNfUlVOTklORxABEhgKFEpPQl9TVEFUVVNfQ09NUExFVEVEEAISFQoRSk9CX1NUQVRVU19GQUlMRUQQAxIYChRKT0JfU1RBVFVTX0NBTkNFTExFRBAEEhYKEkpPQl9TVEFUVVNfRVhQSVJFRBAFQj5aPGdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL3Byb3RvYnVmL3BidGFza21hc3Rlcm1vZGVsc2IIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_pbdriver_models]);
+  fileDesc("ChlwYnRhc2ttYXN0ZXItbW9kZWxzLnByb3RvEhxpby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyImkKEFN0cmVhbUV2ZW50c0RhdGESTQoIam9iX2RvbmUYASABKAsyOS5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLlN0cmVhbUV2ZW50c0RhdGFKb2JGaW5pc2hlZEgAQgYKBGRhdGEiLQobU3RyZWFtRXZlbnRzRGF0YUpvYkZpbmlzaGVkEg4KBmpvYl9pZBgBIAEoCSJXCg9DYWNoZVNldFJlcXVlc3QSCwoDa2V5GAEgASgJEjcKBXZhbHVlGAIgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkF0dHJpYnV0ZVZhbHVlIh4KD0NhY2hlR2V0UmVxdWVzdBILCgNrZXkYASABKAkiSwoQQ2FjaGVHZXRSZXNwb25zZRI3CgV2YWx1ZRgCIAEoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BdHRyaWJ1dGVWYWx1ZSIjChFDYW5jZWxKb2JzUmVxdWVzdBIOCgZqb2JfaWQYASADKAkiRwoQUXVldWVKb2JzUmVxdWVzdBIzCgRzcGVjGAEgAygLMiUuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JTcGVjIs4BCgdKb2JTcGVjEjcKBmRldmljZRgCIAEoCzInLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuSm9iRGV2aWNlEjsKDGpvYl9zZXR0aW5ncxgDIAEoCzIlLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JTZXR0aW5ncxITCgtkcml2ZXJfdHlwZRgEIAEoCRI4Cgtqb2JfYWN0aW9ucxgFIAMoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JBY3Rpb24ilgMKCUpvYkRldmljZRIKCgJpZBgBIAEoCRIRCglkZXZpY2VfaWQYAiABKAkSEwoLZXh0ZXJuYWxfaWQYAyABKAkSWAoRZGV2aWNlX2F0dHJpYnV0ZXMYBCADKAsyPS5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYkRldmljZS5EZXZpY2VBdHRyaWJ1dGVzRW50cnkSQQoPY29ubmVjdGlvbl9pbmZvGAUgAygLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkNvbm5lY3Rpb25JbmZvEkMKDGFwcF9wcm90b2NvbBgGIAEoDjItLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BcHBsaWNhdGlvblByb3RvY29sEhAKCHRpbWV6b25lGAcgASgJGmEKFURldmljZUF0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSNwoFdmFsdWUYAiABKAsyKC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXR0cmlidXRlVmFsdWU6AjgBIh8KDUdldEpvYlJlcXVlc3QSDgoGam9iX2lkGAEgASgJIkkKDkdldEpvYlJlc3BvbnNlEjcKBnN0YXR1cxgBIAEoCzInLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuSm9iU3RhdHVzIoMBChNKb2JEb25lTm90aWZpY2F0aW9uEjMKBHNwZWMYASABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYlNwZWMSNwoGc3RhdHVzGAIgASgLMicuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JTdGF0dXMi4wIKCUpvYlN0YXR1cxI7CgZzdGF0dXMYASABKA4yKy5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYlN0YXR1c0NvZGUSNAoEY29kZRgCIAEoDjImLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JFcnJvckNvZGUSOwoHcmVzdWx0cxgDIAMoCzIqLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuQWN0aW9uUmVzdWx0Ei4KCmNyZWF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnN0YXJ0ZWRfYXQYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2ZpbmlzaGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIVCg1hdHRlbXB0c19kb25lGAcgASgFIpEBCgxBY3Rpb25SZXN1bHQSEQoJYWN0aW9uX2lkGAEgASgJEjoKBnN0YXR1cxgCIAEoDjIqLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BY3Rpb25SZXN1bHRDb2RlEjIKBGRhdGEYAyABKAsyJC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQWN0aW9uRGF0YSJGCgxTeXN0ZW1Db25maWcSFAoMbWF4X3JlcGxpY2FzGAEgASgFEiAKGG1heF9jYXNjYWRlX2RldmljZV9jb3VudBgCIAEoBSKUAQoUU3lzdGVtQ29uZmlnUmVzcG9uc2USOgoGY29uZmlnGAEgASgLMiouaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5TeXN0ZW1Db25maWcSQAoGc3RhdHVzGAIgASgLMjAuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5TeXN0ZW1Db25maWdTdGF0dXMiKgoSU3lzdGVtQ29uZmlnU3RhdHVzEhQKDHF1ZXVlX2xlbmd0aBgBIAEoAyIeCgxKb2JFdmVudERhdGESDgoGam9iX2lkGAEgASgMKqEBCg1Kb2JTdGF0dXNDb2RlEhUKEUpPQl9TVEFUVVNfUVVFVUVEEAASFgoSSk9CX1NUQVRVU19SVU5OSU5HEAESGAoUSk9CX1NUQVRVU19DT01QTEVURUQQAhIVChFKT0JfU1RBVFVTX0ZBSUxFRBADEhgKFEpPQl9TVEFUVVNfQ0FOQ0VMTEVEEAQSFgoSSk9CX1NUQVRVU19FWFBJUkVEEAVCPlo8Z2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvcHJvdG9idWYvcGJ0YXNrbWFzdGVybW9kZWxzYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_pbdriver_models]);
 
 /**
  * Taskmaster -> Dataproxy event message
@@ -320,6 +320,34 @@ export const GetJobResponseSchema: GenMessage<GetJobResponse> = /*@__PURE__*/
   messageDesc(file_pbtaskmaster_models, 10);
 
 /**
+ * Message used to notify DP that the job is done, sent by Taskmaster
+ *
+ * @generated from message io.clbs.openhes.pbtaskmaster.JobDoneNotification
+ */
+export type JobDoneNotification = Message<"io.clbs.openhes.pbtaskmaster.JobDoneNotification"> & {
+  /**
+   * The job specification.
+   *
+   * @generated from field: io.clbs.openhes.pbtaskmaster.JobSpec spec = 1;
+   */
+  spec?: JobSpec;
+
+  /**
+   * The status of the job
+   *
+   * @generated from field: io.clbs.openhes.pbtaskmaster.JobStatus status = 2;
+   */
+  status?: JobStatus;
+};
+
+/**
+ * Describes the message io.clbs.openhes.pbtaskmaster.JobDoneNotification.
+ * Use `create(JobDoneNotificationSchema)` to create a new message.
+ */
+export const JobDoneNotificationSchema: GenMessage<JobDoneNotification> = /*@__PURE__*/
+  messageDesc(file_pbtaskmaster_models, 11);
+
+/**
  * Sub-message containing job status info
  *
  * @generated from message io.clbs.openhes.pbtaskmaster.JobStatus
@@ -380,7 +408,7 @@ export type JobStatus = Message<"io.clbs.openhes.pbtaskmaster.JobStatus"> & {
  * Use `create(JobStatusSchema)` to create a new message.
  */
 export const JobStatusSchema: GenMessage<JobStatus> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 11);
+  messageDesc(file_pbtaskmaster_models, 12);
 
 /**
  * Sub-message containing action result for a single action.
@@ -415,7 +443,7 @@ export type ActionResult = Message<"io.clbs.openhes.pbtaskmaster.ActionResult"> 
  * Use `create(ActionResultSchema)` to create a new message.
  */
 export const ActionResultSchema: GenMessage<ActionResult> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 12);
+  messageDesc(file_pbtaskmaster_models, 13);
 
 /**
  * API <-> Taskmaster request/response for system configuration
@@ -443,7 +471,7 @@ export type SystemConfig = Message<"io.clbs.openhes.pbtaskmaster.SystemConfig"> 
  * Use `create(SystemConfigSchema)` to create a new message.
  */
 export const SystemConfigSchema: GenMessage<SystemConfig> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 13);
+  messageDesc(file_pbtaskmaster_models, 14);
 
 /**
  * API <-> Taskmaster request/response for system configuration
@@ -471,7 +499,7 @@ export type SystemConfigResponse = Message<"io.clbs.openhes.pbtaskmaster.SystemC
  * Use `create(SystemConfigResponseSchema)` to create a new message.
  */
 export const SystemConfigResponseSchema: GenMessage<SystemConfigResponse> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 14);
+  messageDesc(file_pbtaskmaster_models, 15);
 
 /**
  * Sub-message containing system status
@@ -492,7 +520,7 @@ export type SystemConfigStatus = Message<"io.clbs.openhes.pbtaskmaster.SystemCon
  * Use `create(SystemConfigStatusSchema)` to create a new message.
  */
 export const SystemConfigStatusSchema: GenMessage<SystemConfigStatus> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 15);
+  messageDesc(file_pbtaskmaster_models, 16);
 
 /**
  * Taskmaster -> Dataproxy job/action progress update message
@@ -513,7 +541,7 @@ export type JobEventData = Message<"io.clbs.openhes.pbtaskmaster.JobEventData"> 
  * Use `create(JobEventDataSchema)` to create a new message.
  */
 export const JobEventDataSchema: GenMessage<JobEventData> = /*@__PURE__*/
-  messageDesc(file_pbtaskmaster_models, 16);
+  messageDesc(file_pbtaskmaster_models, 17);
 
 /**
  * Job statuses

@@ -29,6 +29,8 @@ export const file_pbapi: GenFile = /*@__PURE__*/
  */
 export type PublicCreateBulkRequest = Message<"io.clbs.openhes.pbapi.PublicCreateBulkRequest"> & {
   /**
+   * @gqltype: UUID
+   *
    * The bulk identifier.
    *
    * @generated from field: string id = 1;

@@ -75,6 +75,13 @@ message GetJobResponse {
     JobStatus status = 1;  // The status of the job
 }
 
+// Message used to notify DP that the job is done, sent by Taskmaster
+message JobDoneNotification {
+    JobSpec spec = 1;  // The job specification.
+    JobStatus status = 2;  // The status of the job
+}
+
+
 // Sub-message containing job status info
 message JobStatus {
     JobStatusCode status                  = 1;  // The status of the job.
