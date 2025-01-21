@@ -122,17 +122,6 @@ message SystemConfig {
     int32 max_cascade_device_count = 2;  // The maximum number of cascade devices for the driver.
 }
 
-// API <-> Taskmaster request/response for system configuration
-message SystemConfigResponse {
-    SystemConfig config       = 1;  // The maximum number of replicas for the driver.
-    SystemConfigStatus status = 2;  // The system status.
-}
-
-// Sub-message containing system status
-message SystemConfigStatus {
-    int64 queue_length = 1;  // The length of the job queue.
-}
-
 // Taskmaster -> Dataproxy job/action progress update message
 message JobEventData {
     bytes job_id = 1;  // The job identifier.

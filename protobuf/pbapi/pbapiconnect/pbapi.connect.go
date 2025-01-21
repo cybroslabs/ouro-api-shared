@@ -108,6 +108,10 @@ const (
 	ApiServiceUpdateModemProcedure = "/io.clbs.openhes.pbapi.ApiService/UpdateModem"
 	// ApiServiceDeleteModemProcedure is the fully-qualified name of the ApiService's DeleteModem RPC.
 	ApiServiceDeleteModemProcedure = "/io.clbs.openhes.pbapi.ApiService/DeleteModem"
+	// ApiServiceGetConfigProcedure is the fully-qualified name of the ApiService's GetConfig RPC.
+	ApiServiceGetConfigProcedure = "/io.clbs.openhes.pbapi.ApiService/GetConfig"
+	// ApiServiceSetConfigProcedure is the fully-qualified name of the ApiService's SetConfig RPC.
+	ApiServiceSetConfigProcedure = "/io.clbs.openhes.pbapi.ApiService/SetConfig"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.pbapi.ApiService service.
@@ -216,6 +220,12 @@ type ApiServiceClient interface {
 	// @tag: modem
 	// The method to delete the modem within the pool.
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Configuration
+	// The method to get the system configuration.
+	GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbtaskmastermodels.SystemConfig], error)
+	// @group: Configuration
+	// The method to set the system configuration.
+	SetConfig(context.Context, *connect.Request[pbtaskmastermodels.SystemConfig]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.pbapi.ApiService service. By
@@ -391,6 +401,18 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteModem")),
 			connect.WithClientOptions(opts...),
 		),
+		getConfig: connect.NewClient[emptypb.Empty, pbtaskmastermodels.SystemConfig](
+			httpClient,
+			baseURL+ApiServiceGetConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		setConfig: connect.NewClient[pbtaskmastermodels.SystemConfig, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceSetConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -423,6 +445,8 @@ type apiServiceClient struct {
 	createModem                  *connect.Client[pbdeviceregistrymodels.SetModemRequest, emptypb.Empty]
 	updateModem                  *connect.Client[pbdeviceregistrymodels.SetModemRequest, emptypb.Empty]
 	deleteModem                  *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	getConfig                    *connect.Client[emptypb.Empty, pbtaskmastermodels.SystemConfig]
+	setConfig                    *connect.Client[pbtaskmastermodels.SystemConfig, emptypb.Empty]
 }
 
 // CreateBulk calls io.clbs.openhes.pbapi.ApiService.CreateBulk.
@@ -560,6 +584,16 @@ func (c *apiServiceClient) DeleteModem(ctx context.Context, req *connect.Request
 	return c.deleteModem.CallUnary(ctx, req)
 }
 
+// GetConfig calls io.clbs.openhes.pbapi.ApiService.GetConfig.
+func (c *apiServiceClient) GetConfig(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[pbtaskmastermodels.SystemConfig], error) {
+	return c.getConfig.CallUnary(ctx, req)
+}
+
+// SetConfig calls io.clbs.openhes.pbapi.ApiService.SetConfig.
+func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[pbtaskmastermodels.SystemConfig]) (*connect.Response[emptypb.Empty], error) {
+	return c.setConfig.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.pbapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Bulks
@@ -666,6 +700,12 @@ type ApiServiceHandler interface {
 	// @tag: modem
 	// The method to delete the modem within the pool.
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Configuration
+	// The method to get the system configuration.
+	GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbtaskmastermodels.SystemConfig], error)
+	// @group: Configuration
+	// The method to set the system configuration.
+	SetConfig(context.Context, *connect.Request[pbtaskmastermodels.SystemConfig]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -837,6 +877,18 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("DeleteModem")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetConfigHandler := connect.NewUnaryHandler(
+		ApiServiceGetConfigProcedure,
+		svc.GetConfig,
+		connect.WithSchema(apiServiceMethods.ByName("GetConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceSetConfigHandler := connect.NewUnaryHandler(
+		ApiServiceSetConfigProcedure,
+		svc.SetConfig,
+		connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.pbapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateBulkProcedure:
@@ -893,6 +945,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateModemHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteModemProcedure:
 			apiServiceDeleteModemHandler.ServeHTTP(w, r)
+		case ApiServiceGetConfigProcedure:
+			apiServiceGetConfigHandler.ServeHTTP(w, r)
+		case ApiServiceSetConfigProcedure:
+			apiServiceSetConfigHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -1008,4 +1064,12 @@ func (UnimplementedApiServiceHandler) UpdateModem(context.Context, *connect.Requ
 
 func (UnimplementedApiServiceHandler) DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.DeleteModem is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbtaskmastermodels.SystemConfig], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) SetConfig(context.Context, *connect.Request[pbtaskmastermodels.SystemConfig]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.SetConfig is not implemented"))
 }

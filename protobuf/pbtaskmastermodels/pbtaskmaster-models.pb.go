@@ -1761,176 +1761,6 @@ func (b0 SystemConfig_builder) Build() *SystemConfig {
 	return m0
 }
 
-// API <-> Taskmaster request/response for system configuration
-type SystemConfigResponse struct {
-	state             protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Config *SystemConfig          `protobuf:"bytes,1,opt,name=config" json:"config,omitempty"`
-	xxx_hidden_Status *SystemConfigStatus    `protobuf:"bytes,2,opt,name=status" json:"status,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
-}
-
-func (x *SystemConfigResponse) Reset() {
-	*x = SystemConfigResponse{}
-	mi := &file_pbtaskmaster_models_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SystemConfigResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SystemConfigResponse) ProtoMessage() {}
-
-func (x *SystemConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pbtaskmaster_models_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *SystemConfigResponse) GetConfig() *SystemConfig {
-	if x != nil {
-		return x.xxx_hidden_Config
-	}
-	return nil
-}
-
-func (x *SystemConfigResponse) GetStatus() *SystemConfigStatus {
-	if x != nil {
-		return x.xxx_hidden_Status
-	}
-	return nil
-}
-
-func (x *SystemConfigResponse) SetConfig(v *SystemConfig) {
-	x.xxx_hidden_Config = v
-}
-
-func (x *SystemConfigResponse) SetStatus(v *SystemConfigStatus) {
-	x.xxx_hidden_Status = v
-}
-
-func (x *SystemConfigResponse) HasConfig() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Config != nil
-}
-
-func (x *SystemConfigResponse) HasStatus() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Status != nil
-}
-
-func (x *SystemConfigResponse) ClearConfig() {
-	x.xxx_hidden_Config = nil
-}
-
-func (x *SystemConfigResponse) ClearStatus() {
-	x.xxx_hidden_Status = nil
-}
-
-type SystemConfigResponse_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Config *SystemConfig
-	Status *SystemConfigStatus
-}
-
-func (b0 SystemConfigResponse_builder) Build() *SystemConfigResponse {
-	m0 := &SystemConfigResponse{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_Config = b.Config
-	x.xxx_hidden_Status = b.Status
-	return m0
-}
-
-// Sub-message containing system status
-type SystemConfigStatus struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_QueueLength int64                  `protobuf:"varint,1,opt,name=queue_length,json=queueLength" json:"queue_length,omitempty"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
-}
-
-func (x *SystemConfigStatus) Reset() {
-	*x = SystemConfigStatus{}
-	mi := &file_pbtaskmaster_models_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SystemConfigStatus) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SystemConfigStatus) ProtoMessage() {}
-
-func (x *SystemConfigStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_pbtaskmaster_models_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *SystemConfigStatus) GetQueueLength() int64 {
-	if x != nil {
-		return x.xxx_hidden_QueueLength
-	}
-	return 0
-}
-
-func (x *SystemConfigStatus) SetQueueLength(v int64) {
-	x.xxx_hidden_QueueLength = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
-}
-
-func (x *SystemConfigStatus) HasQueueLength() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *SystemConfigStatus) ClearQueueLength() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_QueueLength = 0
-}
-
-type SystemConfigStatus_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	QueueLength *int64
-}
-
-func (b0 SystemConfigStatus_builder) Build() *SystemConfigStatus {
-	m0 := &SystemConfigStatus{}
-	b, x := &b0, m0
-	_, _ = b, x
-	if b.QueueLength != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_QueueLength = *b.QueueLength
-	}
-	return m0
-}
-
 // Taskmaster -> Dataproxy job/action progress update message
 type JobEventData struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
@@ -1943,7 +1773,7 @@ type JobEventData struct {
 
 func (x *JobEventData) Reset() {
 	*x = JobEventData{}
-	mi := &file_pbtaskmaster_models_proto_msgTypes[17]
+	mi := &file_pbtaskmaster_models_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1955,7 +1785,7 @@ func (x *JobEventData) String() string {
 func (*JobEventData) ProtoMessage() {}
 
 func (x *JobEventData) ProtoReflect() protoreflect.Message {
-	mi := &file_pbtaskmaster_models_proto_msgTypes[17]
+	mi := &file_pbtaskmaster_models_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2162,21 +1992,7 @@ var file_pbtaskmaster_models_proto_rawDesc = []byte{
 	0x61, 0x73, 0x12, 0x37, 0x0a, 0x18, 0x6d, 0x61, 0x78, 0x5f, 0x63, 0x61, 0x73, 0x63, 0x61, 0x64,
 	0x65, 0x5f, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x05, 0x52, 0x15, 0x6d, 0x61, 0x78, 0x43, 0x61, 0x73, 0x63, 0x61, 0x64, 0x65,
-	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0xa4, 0x01, 0x0a, 0x14,
-	0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f,
-	0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x74, 0x61, 0x73, 0x6b, 0x6d, 0x61, 0x73,
-	0x74, 0x65, 0x72, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x48, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x30, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c,
-	0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x74, 0x61, 0x73,
-	0x6b, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x22, 0x37, 0x0a, 0x12, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x71, 0x75, 0x65, 0x75,
-	0x65, 0x5f, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
-	0x71, 0x75, 0x65, 0x75, 0x65, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x22, 0x25, 0x0a, 0x0c, 0x4a,
+	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x25, 0x0a, 0x0c, 0x4a,
 	0x6f, 0x62, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x15, 0x0a, 0x06, 0x6a,
 	0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x6a, 0x6f, 0x62,
 	0x49, 0x64, 0x2a, 0xa1, 0x01, 0x0a, 0x0d, 0x4a, 0x6f, 0x62, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
@@ -2198,7 +2014,7 @@ var file_pbtaskmaster_models_proto_rawDesc = []byte{
 }
 
 var file_pbtaskmaster_models_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pbtaskmaster_models_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_pbtaskmaster_models_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_pbtaskmaster_models_proto_goTypes = []any{
 	(JobStatusCode)(0),                      // 0: io.clbs.openhes.pbtaskmaster.JobStatusCode
 	(*StreamEventsData)(nil),                // 1: io.clbs.openhes.pbtaskmaster.StreamEventsData
@@ -2216,50 +2032,46 @@ var file_pbtaskmaster_models_proto_goTypes = []any{
 	(*JobStatus)(nil),                       // 13: io.clbs.openhes.pbtaskmaster.JobStatus
 	(*ActionResult)(nil),                    // 14: io.clbs.openhes.pbtaskmaster.ActionResult
 	(*SystemConfig)(nil),                    // 15: io.clbs.openhes.pbtaskmaster.SystemConfig
-	(*SystemConfigResponse)(nil),            // 16: io.clbs.openhes.pbtaskmaster.SystemConfigResponse
-	(*SystemConfigStatus)(nil),              // 17: io.clbs.openhes.pbtaskmaster.SystemConfigStatus
-	(*JobEventData)(nil),                    // 18: io.clbs.openhes.pbtaskmaster.JobEventData
-	nil,                                     // 19: io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry
-	(*pbdrivermodels.AttributeValue)(nil),   // 20: io.clbs.openhes.pbdriver.AttributeValue
-	(*pbdrivermodels.JobSettings)(nil),      // 21: io.clbs.openhes.pbdriver.JobSettings
-	(*pbdrivermodels.JobAction)(nil),        // 22: io.clbs.openhes.pbdriver.JobAction
-	(*pbdrivermodels.ConnectionInfo)(nil),   // 23: io.clbs.openhes.pbdriver.ConnectionInfo
-	(pbdrivermodels.ApplicationProtocol)(0), // 24: io.clbs.openhes.pbdriver.ApplicationProtocol
-	(pbdrivermodels.JobErrorCode)(0),        // 25: io.clbs.openhes.pbdriver.JobErrorCode
-	(*timestamppb.Timestamp)(nil),           // 26: google.protobuf.Timestamp
-	(pbdrivermodels.ActionResultCode)(0),    // 27: io.clbs.openhes.pbdriver.ActionResultCode
-	(*pbdrivermodels.ActionData)(nil),       // 28: io.clbs.openhes.pbdriver.ActionData
+	(*JobEventData)(nil),                    // 16: io.clbs.openhes.pbtaskmaster.JobEventData
+	nil,                                     // 17: io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry
+	(*pbdrivermodels.AttributeValue)(nil),   // 18: io.clbs.openhes.pbdriver.AttributeValue
+	(*pbdrivermodels.JobSettings)(nil),      // 19: io.clbs.openhes.pbdriver.JobSettings
+	(*pbdrivermodels.JobAction)(nil),        // 20: io.clbs.openhes.pbdriver.JobAction
+	(*pbdrivermodels.ConnectionInfo)(nil),   // 21: io.clbs.openhes.pbdriver.ConnectionInfo
+	(pbdrivermodels.ApplicationProtocol)(0), // 22: io.clbs.openhes.pbdriver.ApplicationProtocol
+	(pbdrivermodels.JobErrorCode)(0),        // 23: io.clbs.openhes.pbdriver.JobErrorCode
+	(*timestamppb.Timestamp)(nil),           // 24: google.protobuf.Timestamp
+	(pbdrivermodels.ActionResultCode)(0),    // 25: io.clbs.openhes.pbdriver.ActionResultCode
+	(*pbdrivermodels.ActionData)(nil),       // 26: io.clbs.openhes.pbdriver.ActionData
 }
 var file_pbtaskmaster_models_proto_depIdxs = []int32{
 	2,  // 0: io.clbs.openhes.pbtaskmaster.StreamEventsData.job_done:type_name -> io.clbs.openhes.pbtaskmaster.StreamEventsDataJobFinished
-	20, // 1: io.clbs.openhes.pbtaskmaster.CacheSetRequest.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
-	20, // 2: io.clbs.openhes.pbtaskmaster.CacheGetResponse.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	18, // 1: io.clbs.openhes.pbtaskmaster.CacheSetRequest.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	18, // 2: io.clbs.openhes.pbtaskmaster.CacheGetResponse.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
 	8,  // 3: io.clbs.openhes.pbtaskmaster.QueueJobsRequest.spec:type_name -> io.clbs.openhes.pbtaskmaster.JobSpec
 	9,  // 4: io.clbs.openhes.pbtaskmaster.JobSpec.device:type_name -> io.clbs.openhes.pbtaskmaster.JobDevice
-	21, // 5: io.clbs.openhes.pbtaskmaster.JobSpec.job_settings:type_name -> io.clbs.openhes.pbdriver.JobSettings
-	22, // 6: io.clbs.openhes.pbtaskmaster.JobSpec.job_actions:type_name -> io.clbs.openhes.pbdriver.JobAction
-	19, // 7: io.clbs.openhes.pbtaskmaster.JobDevice.device_attributes:type_name -> io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry
-	23, // 8: io.clbs.openhes.pbtaskmaster.JobDevice.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
-	24, // 9: io.clbs.openhes.pbtaskmaster.JobDevice.app_protocol:type_name -> io.clbs.openhes.pbdriver.ApplicationProtocol
+	19, // 5: io.clbs.openhes.pbtaskmaster.JobSpec.job_settings:type_name -> io.clbs.openhes.pbdriver.JobSettings
+	20, // 6: io.clbs.openhes.pbtaskmaster.JobSpec.job_actions:type_name -> io.clbs.openhes.pbdriver.JobAction
+	17, // 7: io.clbs.openhes.pbtaskmaster.JobDevice.device_attributes:type_name -> io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry
+	21, // 8: io.clbs.openhes.pbtaskmaster.JobDevice.connection_info:type_name -> io.clbs.openhes.pbdriver.ConnectionInfo
+	22, // 9: io.clbs.openhes.pbtaskmaster.JobDevice.app_protocol:type_name -> io.clbs.openhes.pbdriver.ApplicationProtocol
 	13, // 10: io.clbs.openhes.pbtaskmaster.GetJobResponse.status:type_name -> io.clbs.openhes.pbtaskmaster.JobStatus
 	8,  // 11: io.clbs.openhes.pbtaskmaster.JobDoneNotification.spec:type_name -> io.clbs.openhes.pbtaskmaster.JobSpec
 	13, // 12: io.clbs.openhes.pbtaskmaster.JobDoneNotification.status:type_name -> io.clbs.openhes.pbtaskmaster.JobStatus
 	0,  // 13: io.clbs.openhes.pbtaskmaster.JobStatus.status:type_name -> io.clbs.openhes.pbtaskmaster.JobStatusCode
-	25, // 14: io.clbs.openhes.pbtaskmaster.JobStatus.code:type_name -> io.clbs.openhes.pbdriver.JobErrorCode
+	23, // 14: io.clbs.openhes.pbtaskmaster.JobStatus.code:type_name -> io.clbs.openhes.pbdriver.JobErrorCode
 	14, // 15: io.clbs.openhes.pbtaskmaster.JobStatus.results:type_name -> io.clbs.openhes.pbtaskmaster.ActionResult
-	26, // 16: io.clbs.openhes.pbtaskmaster.JobStatus.created_at:type_name -> google.protobuf.Timestamp
-	26, // 17: io.clbs.openhes.pbtaskmaster.JobStatus.started_at:type_name -> google.protobuf.Timestamp
-	26, // 18: io.clbs.openhes.pbtaskmaster.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
-	27, // 19: io.clbs.openhes.pbtaskmaster.ActionResult.status:type_name -> io.clbs.openhes.pbdriver.ActionResultCode
-	28, // 20: io.clbs.openhes.pbtaskmaster.ActionResult.data:type_name -> io.clbs.openhes.pbdriver.ActionData
-	15, // 21: io.clbs.openhes.pbtaskmaster.SystemConfigResponse.config:type_name -> io.clbs.openhes.pbtaskmaster.SystemConfig
-	17, // 22: io.clbs.openhes.pbtaskmaster.SystemConfigResponse.status:type_name -> io.clbs.openhes.pbtaskmaster.SystemConfigStatus
-	20, // 23: io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
-	24, // [24:24] is the sub-list for method output_type
-	24, // [24:24] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	24, // 16: io.clbs.openhes.pbtaskmaster.JobStatus.created_at:type_name -> google.protobuf.Timestamp
+	24, // 17: io.clbs.openhes.pbtaskmaster.JobStatus.started_at:type_name -> google.protobuf.Timestamp
+	24, // 18: io.clbs.openhes.pbtaskmaster.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
+	25, // 19: io.clbs.openhes.pbtaskmaster.ActionResult.status:type_name -> io.clbs.openhes.pbdriver.ActionResultCode
+	26, // 20: io.clbs.openhes.pbtaskmaster.ActionResult.data:type_name -> io.clbs.openhes.pbdriver.ActionData
+	18, // 21: io.clbs.openhes.pbtaskmaster.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.pbdriver.AttributeValue
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_pbtaskmaster_models_proto_init() }
@@ -2276,7 +2088,7 @@ func file_pbtaskmaster_models_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pbtaskmaster_models_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   19,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

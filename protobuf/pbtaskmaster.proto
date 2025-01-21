@@ -31,7 +31,7 @@ service TaskmasterService {
     rpc CacheGet(CacheGetRequest) returns (CacheGetResponse);
 
     // The method called by the RestApi to get the system configuration.
-    rpc GetConfig(google.protobuf.Empty) returns (SystemConfigResponse);
+    rpc GetConfig(google.protobuf.Empty) returns (SystemConfig);
     // The method called by the RestApi to set the system configuration.
     rpc SetConfig(SystemConfig) returns (google.protobuf.Empty);
 }

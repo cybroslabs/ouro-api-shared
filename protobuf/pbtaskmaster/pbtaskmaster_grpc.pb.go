@@ -59,7 +59,7 @@ type TaskmasterServiceClient interface {
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(ctx context.Context, in *pbtaskmastermodels.CacheGetRequest, opts ...grpc.CallOption) (*pbtaskmastermodels.CacheGetResponse, error)
 	// The method called by the RestApi to get the system configuration.
-	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfigResponse, error)
+	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(ctx context.Context, in *pbtaskmastermodels.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -161,9 +161,9 @@ func (c *taskmasterServiceClient) CacheGet(ctx context.Context, in *pbtaskmaster
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfigResponse, error) {
+func (c *taskmasterServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbtaskmastermodels.SystemConfig, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbtaskmastermodels.SystemConfigResponse)
+	out := new(pbtaskmastermodels.SystemConfig)
 	err := c.cc.Invoke(ctx, TaskmasterService_GetConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -204,7 +204,7 @@ type TaskmasterServiceServer interface {
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	CacheGet(context.Context, *pbtaskmastermodels.CacheGetRequest) (*pbtaskmastermodels.CacheGetResponse, error)
 	// The method called by the RestApi to get the system configuration.
-	GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfigResponse, error)
+	GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(context.Context, *pbtaskmastermodels.SystemConfig) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
@@ -241,7 +241,7 @@ func (UnimplementedTaskmasterServiceServer) CacheSet(context.Context, *pbtaskmas
 func (UnimplementedTaskmasterServiceServer) CacheGet(context.Context, *pbtaskmastermodels.CacheGetRequest) (*pbtaskmastermodels.CacheGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CacheGet not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfigResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetConfig(context.Context, *emptypb.Empty) (*pbtaskmastermodels.SystemConfig, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) SetConfig(context.Context, *pbtaskmastermodels.SystemConfig) (*emptypb.Empty, error) {

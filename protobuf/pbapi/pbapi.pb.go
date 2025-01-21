@@ -663,7 +663,7 @@ var file_pbapi_proto_rawDesc = []byte{
 	0x38, 0x0a, 0x09, 0x4a, 0x6f, 0x62, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x12, 0x0e, 0x0a, 0x02,
 	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a, 0x09,
 	0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x08, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x32, 0xf4, 0x15, 0x0a, 0x0a, 0x41, 0x70,
+	0x08, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x32, 0x96, 0x17, 0x0a, 0x0a, 0x41, 0x70,
 	0x69, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x54, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x42, 0x75, 0x6c, 0x6b, 0x12, 0x2e, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73,
 	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x61, 0x70, 0x69, 0x2e, 0x50,
@@ -839,10 +839,21 @@ var file_pbapi_proto_rawDesc = []byte{
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
 	0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
-	0x42, 0x31, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63,
-	0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f, 0x68, 0x65, 0x73, 0x2d, 0x32, 0x2d,
-	0x61, 0x70, 0x69, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x70, 0x62,
-	0x61, 0x70, 0x69, 0x62, 0x08, 0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
+	0x12, 0x4f, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x16, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x2a, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e,
+	0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x70, 0x62, 0x74, 0x61, 0x73, 0x6b, 0x6d, 0x61,
+	0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x12, 0x4f, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x2a,
+	0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73,
+	0x2e, 0x70, 0x62, 0x74, 0x61, 0x73, 0x6b, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x79,
+	0x73, 0x74, 0x65, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x42, 0x31, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
+	0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f, 0x68, 0x65, 0x73, 0x2d,
+	0x32, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f,
+	0x70, 0x62, 0x61, 0x70, 0x69, 0x62, 0x08, 0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70,
+	0xe8, 0x07,
 }
 
 var file_pbapi_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
@@ -871,18 +882,19 @@ var file_pbapi_proto_goTypes = []any{
 	(*pbdeviceregistrymodels.RemoveDevicesFromGroupRequest)(nil),        // 21: io.clbs.openhes.pbdeviceregistry.RemoveDevicesFromGroupRequest
 	(*pbdeviceregistrymodels.SetModemPoolRequest)(nil),                  // 22: io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
 	(*pbdeviceregistrymodels.SetModemRequest)(nil),                      // 23: io.clbs.openhes.pbdeviceregistry.SetModemRequest
-	(*pbdataproxymodels.GetBulksResponse)(nil),                          // 24: io.clbs.openhes.pbdataproxy.GetBulksResponse
-	(*pbdataproxymodels.GetBulkResponse)(nil),                           // 25: io.clbs.openhes.pbdataproxy.GetBulkResponse
-	(*pbdataproxymodels.GetJobStatusResponse)(nil),                      // 26: io.clbs.openhes.pbdataproxy.GetJobStatusResponse
-	(*pbdriveroperatormodels.GetDriversResponse)(nil),                   // 27: io.clbs.openhes.pbdriveroperator.GetDriversResponse
-	(*pbdrivermodels.DriverTemplates)(nil),                              // 28: io.clbs.openhes.pbdriver.DriverTemplates
-	(*pbdeviceregistrymodels.GetCommunicationUnitsResponse)(nil),        // 29: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
-	(*pbdeviceregistrymodels.GetDevicesResponse)(nil),                   // 30: io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
-	(*pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse)(nil), // 31: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
-	(*pbdeviceregistrymodels.GetDeviceGroupsResponse)(nil),              // 32: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
-	(*pbdeviceregistrymodels.GetDeviceGroupResponse)(nil),               // 33: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse
-	(*pbdeviceregistrymodels.GetModemPoolsResponse)(nil),                // 34: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
-	(*pbdeviceregistrymodels.GetModemPoolResponse)(nil),                 // 35: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
+	(*pbtaskmastermodels.SystemConfig)(nil),                             // 24: io.clbs.openhes.pbtaskmaster.SystemConfig
+	(*pbdataproxymodels.GetBulksResponse)(nil),                          // 25: io.clbs.openhes.pbdataproxy.GetBulksResponse
+	(*pbdataproxymodels.GetBulkResponse)(nil),                           // 26: io.clbs.openhes.pbdataproxy.GetBulkResponse
+	(*pbdataproxymodels.GetJobStatusResponse)(nil),                      // 27: io.clbs.openhes.pbdataproxy.GetJobStatusResponse
+	(*pbdriveroperatormodels.GetDriversResponse)(nil),                   // 28: io.clbs.openhes.pbdriveroperator.GetDriversResponse
+	(*pbdrivermodels.DriverTemplates)(nil),                              // 29: io.clbs.openhes.pbdriver.DriverTemplates
+	(*pbdeviceregistrymodels.GetCommunicationUnitsResponse)(nil),        // 30: io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
+	(*pbdeviceregistrymodels.GetDevicesResponse)(nil),                   // 31: io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
+	(*pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse)(nil), // 32: io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
+	(*pbdeviceregistrymodels.GetDeviceGroupsResponse)(nil),              // 33: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
+	(*pbdeviceregistrymodels.GetDeviceGroupResponse)(nil),               // 34: io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse
+	(*pbdeviceregistrymodels.GetModemPoolsResponse)(nil),                // 35: io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
+	(*pbdeviceregistrymodels.GetModemPoolResponse)(nil),                 // 36: io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
 }
 var file_pbapi_proto_depIdxs = []int32{
 	2,  // 0: io.clbs.openhes.pbapi.PublicCreateBulkRequest.devices:type_name -> io.clbs.openhes.pbapi.JobDeviceList
@@ -918,35 +930,39 @@ var file_pbapi_proto_depIdxs = []int32{
 	23, // 30: io.clbs.openhes.pbapi.ApiService.CreateModem:input_type -> io.clbs.openhes.pbdeviceregistry.SetModemRequest
 	23, // 31: io.clbs.openhes.pbapi.ApiService.UpdateModem:input_type -> io.clbs.openhes.pbdeviceregistry.SetModemRequest
 	10, // 32: io.clbs.openhes.pbapi.ApiService.DeleteModem:input_type -> google.protobuf.StringValue
-	12, // 33: io.clbs.openhes.pbapi.ApiService.CreateBulk:output_type -> google.protobuf.Empty
-	24, // 34: io.clbs.openhes.pbapi.ApiService.GetBulks:output_type -> io.clbs.openhes.pbdataproxy.GetBulksResponse
-	25, // 35: io.clbs.openhes.pbapi.ApiService.GetBulk:output_type -> io.clbs.openhes.pbdataproxy.GetBulkResponse
-	26, // 36: io.clbs.openhes.pbapi.ApiService.GetJobStatus:output_type -> io.clbs.openhes.pbdataproxy.GetJobStatusResponse
-	12, // 37: io.clbs.openhes.pbapi.ApiService.CancelBulk:output_type -> google.protobuf.Empty
-	12, // 38: io.clbs.openhes.pbapi.ApiService.CancelJobs:output_type -> google.protobuf.Empty
-	27, // 39: io.clbs.openhes.pbapi.ApiService.GetDrivers:output_type -> io.clbs.openhes.pbdriveroperator.GetDriversResponse
-	28, // 40: io.clbs.openhes.pbapi.ApiService.GetDriverTemplates:output_type -> io.clbs.openhes.pbdriver.DriverTemplates
-	12, // 41: io.clbs.openhes.pbapi.ApiService.CreateCommunicationUnit:output_type -> google.protobuf.Empty
-	29, // 42: io.clbs.openhes.pbapi.ApiService.GetCommunicationUnits:output_type -> io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
-	12, // 43: io.clbs.openhes.pbapi.ApiService.CreateDevice:output_type -> google.protobuf.Empty
-	30, // 44: io.clbs.openhes.pbapi.ApiService.GetDevices:output_type -> io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
-	12, // 45: io.clbs.openhes.pbapi.ApiService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
-	31, // 46: io.clbs.openhes.pbapi.ApiService.GetDevicesCommunicationUnits:output_type -> io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
-	12, // 47: io.clbs.openhes.pbapi.ApiService.CreateDeviceGroup:output_type -> google.protobuf.Empty
-	32, // 48: io.clbs.openhes.pbapi.ApiService.GetDeviceGroups:output_type -> io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
-	33, // 49: io.clbs.openhes.pbapi.ApiService.GetDeviceGroup:output_type -> io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse
-	12, // 50: io.clbs.openhes.pbapi.ApiService.AddDevicesToGroup:output_type -> google.protobuf.Empty
-	12, // 51: io.clbs.openhes.pbapi.ApiService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
-	34, // 52: io.clbs.openhes.pbapi.ApiService.GetModemPools:output_type -> io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
-	35, // 53: io.clbs.openhes.pbapi.ApiService.GetModemPool:output_type -> io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
-	12, // 54: io.clbs.openhes.pbapi.ApiService.CreateModemPool:output_type -> google.protobuf.Empty
-	12, // 55: io.clbs.openhes.pbapi.ApiService.UpdateModemPool:output_type -> google.protobuf.Empty
-	12, // 56: io.clbs.openhes.pbapi.ApiService.DeleteModemPool:output_type -> google.protobuf.Empty
-	12, // 57: io.clbs.openhes.pbapi.ApiService.CreateModem:output_type -> google.protobuf.Empty
-	12, // 58: io.clbs.openhes.pbapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
-	12, // 59: io.clbs.openhes.pbapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
-	33, // [33:60] is the sub-list for method output_type
-	6,  // [6:33] is the sub-list for method input_type
+	12, // 33: io.clbs.openhes.pbapi.ApiService.GetConfig:input_type -> google.protobuf.Empty
+	24, // 34: io.clbs.openhes.pbapi.ApiService.SetConfig:input_type -> io.clbs.openhes.pbtaskmaster.SystemConfig
+	12, // 35: io.clbs.openhes.pbapi.ApiService.CreateBulk:output_type -> google.protobuf.Empty
+	25, // 36: io.clbs.openhes.pbapi.ApiService.GetBulks:output_type -> io.clbs.openhes.pbdataproxy.GetBulksResponse
+	26, // 37: io.clbs.openhes.pbapi.ApiService.GetBulk:output_type -> io.clbs.openhes.pbdataproxy.GetBulkResponse
+	27, // 38: io.clbs.openhes.pbapi.ApiService.GetJobStatus:output_type -> io.clbs.openhes.pbdataproxy.GetJobStatusResponse
+	12, // 39: io.clbs.openhes.pbapi.ApiService.CancelBulk:output_type -> google.protobuf.Empty
+	12, // 40: io.clbs.openhes.pbapi.ApiService.CancelJobs:output_type -> google.protobuf.Empty
+	28, // 41: io.clbs.openhes.pbapi.ApiService.GetDrivers:output_type -> io.clbs.openhes.pbdriveroperator.GetDriversResponse
+	29, // 42: io.clbs.openhes.pbapi.ApiService.GetDriverTemplates:output_type -> io.clbs.openhes.pbdriver.DriverTemplates
+	12, // 43: io.clbs.openhes.pbapi.ApiService.CreateCommunicationUnit:output_type -> google.protobuf.Empty
+	30, // 44: io.clbs.openhes.pbapi.ApiService.GetCommunicationUnits:output_type -> io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
+	12, // 45: io.clbs.openhes.pbapi.ApiService.CreateDevice:output_type -> google.protobuf.Empty
+	31, // 46: io.clbs.openhes.pbapi.ApiService.GetDevices:output_type -> io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
+	12, // 47: io.clbs.openhes.pbapi.ApiService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
+	32, // 48: io.clbs.openhes.pbapi.ApiService.GetDevicesCommunicationUnits:output_type -> io.clbs.openhes.pbdeviceregistry.GetDevicesCommunicationUnitsResponse
+	12, // 49: io.clbs.openhes.pbapi.ApiService.CreateDeviceGroup:output_type -> google.protobuf.Empty
+	33, // 50: io.clbs.openhes.pbapi.ApiService.GetDeviceGroups:output_type -> io.clbs.openhes.pbdeviceregistry.GetDeviceGroupsResponse
+	34, // 51: io.clbs.openhes.pbapi.ApiService.GetDeviceGroup:output_type -> io.clbs.openhes.pbdeviceregistry.GetDeviceGroupResponse
+	12, // 52: io.clbs.openhes.pbapi.ApiService.AddDevicesToGroup:output_type -> google.protobuf.Empty
+	12, // 53: io.clbs.openhes.pbapi.ApiService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
+	35, // 54: io.clbs.openhes.pbapi.ApiService.GetModemPools:output_type -> io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse
+	36, // 55: io.clbs.openhes.pbapi.ApiService.GetModemPool:output_type -> io.clbs.openhes.pbdeviceregistry.GetModemPoolResponse
+	12, // 56: io.clbs.openhes.pbapi.ApiService.CreateModemPool:output_type -> google.protobuf.Empty
+	12, // 57: io.clbs.openhes.pbapi.ApiService.UpdateModemPool:output_type -> google.protobuf.Empty
+	12, // 58: io.clbs.openhes.pbapi.ApiService.DeleteModemPool:output_type -> google.protobuf.Empty
+	12, // 59: io.clbs.openhes.pbapi.ApiService.CreateModem:output_type -> google.protobuf.Empty
+	12, // 60: io.clbs.openhes.pbapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
+	12, // 61: io.clbs.openhes.pbapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
+	24, // 62: io.clbs.openhes.pbapi.ApiService.GetConfig:output_type -> io.clbs.openhes.pbtaskmaster.SystemConfig
+	12, // 63: io.clbs.openhes.pbapi.ApiService.SetConfig:output_type -> google.protobuf.Empty
+	35, // [35:64] is the sub-list for method output_type
+	6,  // [6:35] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
