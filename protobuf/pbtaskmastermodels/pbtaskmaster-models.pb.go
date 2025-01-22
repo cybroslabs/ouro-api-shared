@@ -1767,9 +1767,19 @@ func (x *SystemConfig) ClearMaxSlotsPerDriver() {
 type SystemConfig_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	MaxReplicas           *int32
+	// The maximum number of replicas for the driver.
+	//
+	//	 0 represents no active replicas will run, effectively disabling acquisition
+	//	>0 represents the maximum number of replicas per driver
+	MaxReplicas *int32
+	// The maximum number of cascade devices for the driver. Minimum is 1.
 	MaxCascadeDeviceCount *int32
-	MaxSlotsPerDriver     *int32
+	// The maximum number of slots per driver
+	//
+	//	-1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+	//	 0 represents no active slots will run, effectively disabling acquisition
+	//	>0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+	MaxSlotsPerDriver *int32
 }
 
 func (b0 SystemConfig_builder) Build() *SystemConfig {

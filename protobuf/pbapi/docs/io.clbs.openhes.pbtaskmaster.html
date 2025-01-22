@@ -598,7 +598,11 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of replicas for the driver.</p></td>
+      <td class="content"><p>The maximum number of replicas for the driver.
+   0 represents no active replicas will run, effectively disabling acquisition</p>
+<blockquote>
+<p>0 represents the maximum number of replicas per driver</p>
+</blockquote></td>
       
     </tr>
     
@@ -613,7 +617,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of cascade devices for the driver.</p></td>
+      <td class="content"><p>The maximum number of cascade devices for the driver. Minimum is 1.</p></td>
       
     </tr>
     
@@ -628,7 +632,12 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of slots per driver</p></td>
+      <td class="content"><p>The maximum number of slots per driver
+  -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+   0 represents no active slots will run, effectively disabling acquisition</p>
+<blockquote>
+<p>0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver</p>
+</blockquote></td>
       
     </tr>
     
