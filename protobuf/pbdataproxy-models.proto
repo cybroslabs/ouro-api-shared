@@ -53,7 +53,7 @@ message BulkJobStatus {
 }
 
 // DataProxy -> RestApi - the message holds the bulk info and it's status.
-message GetBulkResponse {
+message Bulk {
     BulkSpec spec     = 1;  // The bulk-job spec.
     BulkStatus status = 2;  // The bulk-job status/data.
 }
@@ -67,8 +67,8 @@ message GetBulksReuqest {
 }
 
 // DataProxy -> RestApi - the message holds list of bulks.
-message GetBulksResponse {
-    repeated GetBulkResponse bulks = 1;  // The list of bulk jobs related to the original request.
+message ArrayOfBulk {
+    repeated Bulk items = 1;  // The list of bulks.
 }
 
 // RestApi -> DataProxt - the message holds single bulk request.
@@ -82,6 +82,6 @@ message GetJobStatusRequest {
 }
 
 // DataProxy -> RestApi - the message holds the job status.
-message GetJobStatusResponse {
+message BulkJob {
     pbtaskmaster.JobStatus status = 1;  // The status of the job
 }

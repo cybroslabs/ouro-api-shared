@@ -12,6 +12,7 @@ import "pbdriver-models.proto";
 import "pbdataproxy-models.proto";
 import "pbdriveroperator-models.proto";
 import "pbdeviceregistry-models.proto";
+import "models.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
@@ -22,13 +23,13 @@ service ApiService {
     rpc CreateBulk(PublicCreateBulkRequest) returns (google.protobuf.Empty);
     // @group: Bulks
     // Retrieves the list of bulks.
-    rpc GetBulks(pbdataproxy.GetBulksReuqest) returns (pbdataproxy.GetBulksResponse);
+    rpc ListBulks(models.ListSelector) returns (pbdataproxy.ArrayOfBulk);
     // @group: Bulks
     // Retrieves the bulk info and status.
-    rpc GetBulk(pbdataproxy.GetBulkRequest) returns (pbdataproxy.GetBulkResponse);
+    rpc GetBulk(google.protobuf.StringValue) returns (pbdataproxy.Bulk);
     // @group: Bulks
     // Retrieves the job status.
-    rpc GetJobStatus(pbdataproxy.GetJobStatusRequest) returns (pbdataproxy.GetJobStatusResponse);
+    rpc GetBulkJob(google.protobuf.StringValue) returns (pbdataproxy.BulkJob);
     // @group: Bulks
     // Cancels the bulk of jobs.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
@@ -38,7 +39,7 @@ service ApiService {
 
     // @group: Driver Info
     // Retrieves the list of drivers.
-    rpc GetDrivers(google.protobuf.Empty) returns (pbdriveroperator.GetDriversResponse);
+    rpc ListDrivers(models.ListSelector) returns (pbdriveroperator.GetDriversResponse);
     // @group: Driver Info
     // Retrieves the driver templates.
     rpc GetDriverTemplates(google.protobuf.StringValue) returns (pbdriver.DriverTemplates);
@@ -50,7 +51,11 @@ service ApiService {
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-    rpc GetCommunicationUnits(pbdeviceregistry.GetCommunicationUnitsRequest) returns (pbdeviceregistry.GetCommunicationUnitsResponse);
+    rpc ListCommunicationUnit(models.ListSelector) returns (pbdeviceregistry.ArrayOfCommunicationUnitSpec);
+    // @group: Devices
+    // @tag: communicationunit
+    // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+    rpc GetCommunicationUnit(google.protobuf.StringValue) returns (pbdeviceregistry.CommunicationUnitSpec);
 
     // @group: Devices
     // @tag: device
@@ -59,7 +64,11 @@ service ApiService {
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-    rpc GetDevices(pbdeviceregistry.GetDevicesRequest) returns (pbdeviceregistry.GetDevicesResponse);
+    rpc ListDevices(models.ListSelector) returns (pbdeviceregistry.DeviceSpec);
+    // @group: Devices
+    // @tag: device
+    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+    rpc GetDevice(google.protobuf.StringValue) returns (pbdeviceregistry.DeviceSpec);
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to replace ordered set of linked communication units.
@@ -67,7 +76,7 @@ service ApiService {
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
-    rpc GetDevicesCommunicationUnits(pbdeviceregistry.GetDevicesCommunicationUnitsRequest) returns (pbdeviceregistry.GetDevicesCommunicationUnitsResponse);
+    rpc GetDevicesCommunicationUnits(google.protobuf.StringValue) returns (pbdriver.ArrayOfConnectionInfo);
 
     // @group: Devices
     // @tag: devicegroup
@@ -76,7 +85,7 @@ service ApiService {
     // @group: Devices
     // @tag: devicegroup
     // The method returns a list of device groups.
-    rpc GetDeviceGroups(google.protobuf.Empty) returns (pbdeviceregistry.GetDeviceGroupsResponse);
+    rpc ListDeviceGroups(models.ListSelector) returns (pbdeviceregistry.GetDeviceGroupsResponse);
     // @group: Devices
     // @tag: devicegroup
     // The method returns single device group.
@@ -95,7 +104,7 @@ service ApiService {
     // @group: Devices
     // @tag: modempool
     // The method to get list of the modem pools.
-    rpc GetModemPools(google.protobuf.Empty) returns (pbdeviceregistry.GetModemPoolsResponse);
+    rpc ListModemPools(models.ListSelector) returns (pbdeviceregistry.GetModemPoolsResponse);
     // @group: Devices
     // @tag: modempool
     // The method to get the information about the modem pool. The method returns the modem pool information.

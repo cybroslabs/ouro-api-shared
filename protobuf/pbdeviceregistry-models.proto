@@ -21,7 +21,7 @@ message GetCommunicationUnitsRequest {
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the communication unit.
-message GetCommunicationUnitsResponse {
+message ArrayOfCommunicationUnitSpec {
     repeated CommunicationUnitSpec spec = 1;  // The communication unit specification.
 }
 
@@ -46,9 +46,13 @@ message GetDevicesRequest {
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the device.
-message GetDevicesResponse {
-    repeated DeviceSpec spec = 1;  // The device specification.
+message Device {
+    DeviceSpec spec = 1;  // The device specification.
     // TODO: Add status
+}
+
+message ArrayOfDevice {
+    repeated Device items = 1; // The list of devices.
 }
 
 // Sub-message - the device specification.

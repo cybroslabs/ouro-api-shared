@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pbdeviceregistry-models.proto.
  */
 export const file_pbdeviceregistry_models: GenFile = /*@__PURE__*/
-  fileDesc("Ch1wYmRldmljZXJlZ2lzdHJ5LW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkiZwoeQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXRSZXF1ZXN0EkUKBHNwZWMYASABKAsyNy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Db21tdW5pY2F0aW9uVW5pdFNwZWMiTQocR2V0Q29tbXVuaWNhdGlvblVuaXRzUmVxdWVzdBIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJImYKHUdldENvbW11bmljYXRpb25Vbml0c1Jlc3BvbnNlEkUKBHNwZWMYASADKAsyNy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Db21tdW5pY2F0aW9uVW5pdFNwZWMiiQEKFUNvbW11bmljYXRpb25Vbml0U3BlYxIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJEkEKD2Nvbm5lY3Rpb25faW5mbxgEIAEoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Db25uZWN0aW9uSW5mbyJRChNDcmVhdGVEZXZpY2VSZXF1ZXN0EjoKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VTcGVjIkIKEUdldERldmljZXNSZXF1ZXN0EgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkiUAoSR2V0RGV2aWNlc1Jlc3BvbnNlEjoKBHNwZWMYASADKAsyLC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VTcGVjItgCCgpEZXZpY2VTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSUAoKYXR0cmlidXRlcxgEIAMoCzI8LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMuQXR0cmlidXRlc0VudHJ5EloKF2NvbW11bmljYXRpb25fdW5pdF9saW5rGAUgAygLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQSEAoIdGltZXpvbmUYBiABKAkaWwoPQXR0cmlidXRlc0VudHJ5EgsKA2tleRgBIAEoCRI3CgV2YWx1ZRgCIAEoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BdHRyaWJ1dGVWYWx1ZToCOAEiUwoPRGV2aWNlR3JvdXBTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSEQoJZGV2aWNlX2lkGAQgAygJIlsKGENyZWF0ZURldmljZUdyb3VwUmVxdWVzdBI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBTcGVjItoBChdHZXREZXZpY2VHcm91cHNSZXNwb25zZRJVCgZncm91cHMYASADKAsyRS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXREZXZpY2VHcm91cHNSZXNwb25zZS5Hcm91cHNFbnRyeRpoCgtHcm91cHNFbnRyeRILCgNrZXkYASABKAkSSAoFdmFsdWUYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VHcm91cE92ZXJ2aWV3U3BlYzoCOAEiSAoXRGV2aWNlR3JvdXBPdmVydmlld1NwZWMSCgoCaWQYASABKAkSEwoLZXh0ZXJuYWxfaWQYAiABKAkSDAoEbmFtZRgDIAEoCSJZChZHZXREZXZpY2VHcm91cFJlc3BvbnNlEj8KBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VHcm91cFNwZWMiPwoYQWRkRGV2aWNlc1RvR3JvdXBSZXF1ZXN0EhAKCGdyb3VwX2lkGAEgASgJEhEKCWRldmljZV9pZBgCIAMoCSJECh1SZW1vdmVEZXZpY2VzRnJvbUdyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkijwEKIlNldERldmljZUNvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgASgJElYKE2NvbW11bmljYXRpb25fdW5pdHMYAiADKAsyOS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VDb21tdW5pY2F0aW9uVW5pdCJ9ChdEZXZpY2VDb21tdW5pY2F0aW9uVW5pdBIdChVjb21tdW5pY2F0aW9uX3VuaXRfaWQYASABKAkSQwoMYXBwX3Byb3RvY29sGAIgASgOMi0uaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkFwcGxpY2F0aW9uUHJvdG9jb2wiOAojR2V0RGV2aWNlc0NvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgAygJIu0BCiRHZXREZXZpY2VzQ29tbXVuaWNhdGlvblVuaXRzUmVzcG9uc2USZAoHZGV2aWNlcxgBIAMoCzJTLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkdldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHNSZXNwb25zZS5EZXZpY2VzRW50cnkaXwoMRGV2aWNlc0VudHJ5EgsKA2tleRgBIAEoCRI+CgV2YWx1ZRgCIAEoCzIvLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BcnJheU9mQ29ubmVjdGlvbkluZm86AjgBIi4KDU1vZGVtUG9vbFNwZWMSDwoHcG9vbF9pZBgBIAEoCRIMCgRuYW1lGAIgASgJIlcKFUdldE1vZGVtUG9vbHNSZXNwb25zZRI+CgVwb29scxgBIAMoCzIvLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5Lk1vZGVtUG9vbFNwZWMiJgoTR2V0TW9kZW1Qb29sUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJIlkKFEdldE1vZGVtUG9vbFJlc3BvbnNlEjMKBm1vZGVtcxgBIAMoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Nb2RlbUluZm8SDAoEbmFtZRgCIAEoCSI0ChNTZXRNb2RlbVBvb2xSZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkSDAoEbmFtZRgCIAEoCSJWCg9TZXRNb2RlbVJlcXVlc3QSDwoHcG9vbF9pZBgBIAEoCRIyCgVtb2RlbRgCIAEoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Nb2RlbUluZm9CQlpAZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvcHJvdG9idWYvcGJkZXZpY2VyZWdpc3RyeW1vZGVsc2IIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models]);
+  fileDesc("Ch1wYmRldmljZXJlZ2lzdHJ5LW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkiZwoeQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXRSZXF1ZXN0EkUKBHNwZWMYASABKAsyNy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Db21tdW5pY2F0aW9uVW5pdFNwZWMiTQocR2V0Q29tbXVuaWNhdGlvblVuaXRzUmVxdWVzdBIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJImUKHEFycmF5T2ZDb21tdW5pY2F0aW9uVW5pdFNwZWMSRQoEc3BlYxgBIAMoCzI3LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkNvbW11bmljYXRpb25Vbml0U3BlYyKJAQoVQ29tbXVuaWNhdGlvblVuaXRTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSQQoPY29ubmVjdGlvbl9pbmZvGAQgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkNvbm5lY3Rpb25JbmZvIlEKE0NyZWF0ZURldmljZVJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiQgoRR2V0RGV2aWNlc1JlcXVlc3QSCgoCaWQYASABKAkSEwoLZXh0ZXJuYWxfaWQYAiABKAkSDAoEbmFtZRgDIAEoCSJECgZEZXZpY2USOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiSAoNQXJyYXlPZkRldmljZRI3CgVpdGVtcxgBIAMoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZSLYAgoKRGV2aWNlU3BlYxIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJElAKCmF0dHJpYnV0ZXMYBCADKAsyPC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VTcGVjLkF0dHJpYnV0ZXNFbnRyeRJaChdjb21tdW5pY2F0aW9uX3VuaXRfbGluaxgFIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZUNvbW11bmljYXRpb25Vbml0EhAKCHRpbWV6b25lGAYgASgJGlsKD0F0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSNwoFdmFsdWUYAiABKAsyKC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXR0cmlidXRlVmFsdWU6AjgBIlMKD0RldmljZUdyb3VwU3BlYxIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJEhEKCWRldmljZV9pZBgEIAMoCSJbChhDcmVhdGVEZXZpY2VHcm91cFJlcXVlc3QSPwoEc3BlYxgBIAEoCzIxLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZUdyb3VwU3BlYyLaAQoXR2V0RGV2aWNlR3JvdXBzUmVzcG9uc2USVQoGZ3JvdXBzGAEgAygLMkUuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuR2V0RGV2aWNlR3JvdXBzUmVzcG9uc2UuR3JvdXBzRW50cnkaaAoLR3JvdXBzRW50cnkSCwoDa2V5GAEgASgJEkgKBXZhbHVlGAIgASgLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBPdmVydmlld1NwZWM6AjgBIkgKF0RldmljZUdyb3VwT3ZlcnZpZXdTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkiWQoWR2V0RGV2aWNlR3JvdXBSZXNwb25zZRI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBTcGVjIj8KGEFkZERldmljZXNUb0dyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkiRAodUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJIo8BCiJTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAEoCRJWChNjb21tdW5pY2F0aW9uX3VuaXRzGAIgAygLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQifQoXRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQSHQoVY29tbXVuaWNhdGlvbl91bml0X2lkGAEgASgJEkMKDGFwcF9wcm90b2NvbBgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BcHBsaWNhdGlvblByb3RvY29sIjgKI0dldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAMoCSLtAQokR2V0RGV2aWNlc0NvbW11bmljYXRpb25Vbml0c1Jlc3BvbnNlEmQKB2RldmljZXMYASADKAsyUy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXREZXZpY2VzQ29tbXVuaWNhdGlvblVuaXRzUmVzcG9uc2UuRGV2aWNlc0VudHJ5Gl8KDERldmljZXNFbnRyeRILCgNrZXkYASABKAkSPgoFdmFsdWUYAiABKAsyLy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXJyYXlPZkNvbm5lY3Rpb25JbmZvOgI4ASIuCg1Nb2RlbVBvb2xTcGVjEg8KB3Bvb2xfaWQYASABKAkSDAoEbmFtZRgCIAEoCSJXChVHZXRNb2RlbVBvb2xzUmVzcG9uc2USPgoFcG9vbHMYASADKAsyLy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Nb2RlbVBvb2xTcGVjIiYKE0dldE1vZGVtUG9vbFJlcXVlc3QSDwoHcG9vbF9pZBgBIAEoCSJZChRHZXRNb2RlbVBvb2xSZXNwb25zZRIzCgZtb2RlbXMYASADKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuTW9kZW1JbmZvEgwKBG5hbWUYAiABKAkiNAoTU2V0TW9kZW1Qb29sUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEgwKBG5hbWUYAiABKAkiVgoPU2V0TW9kZW1SZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkSMgoFbW9kZW0YAiABKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuTW9kZW1JbmZvQkJaQGdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL3Byb3RvYnVmL3BiZGV2aWNlcmVnaXN0cnltb2RlbHNiCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models]);
 
 /**
  * RestApi -> DriverRegistry - The communication unit specification.
@@ -74,9 +74,9 @@ export const GetCommunicationUnitsRequestSchema: GenMessage<GetCommunicationUnit
 /**
  * DriverRegistry -> RestApi - the message holds the information about the communication unit.
  *
- * @generated from message io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse
+ * @generated from message io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec
  */
-export type GetCommunicationUnitsResponse = Message<"io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse"> & {
+export type ArrayOfCommunicationUnitSpec = Message<"io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec"> & {
   /**
    * The communication unit specification.
    *
@@ -86,10 +86,10 @@ export type GetCommunicationUnitsResponse = Message<"io.clbs.openhes.pbdevicereg
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsResponse.
- * Use `create(GetCommunicationUnitsResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec.
+ * Use `create(ArrayOfCommunicationUnitSpecSchema)` to create a new message.
  */
-export const GetCommunicationUnitsResponseSchema: GenMessage<GetCommunicationUnitsResponse> = /*@__PURE__*/
+export const ArrayOfCommunicationUnitSpecSchema: GenMessage<ArrayOfCommunicationUnitSpec> = /*@__PURE__*/
   messageDesc(file_pbdeviceregistry_models, 2);
 
 /**
@@ -193,23 +193,42 @@ export const GetDevicesRequestSchema: GenMessage<GetDevicesRequest> = /*@__PURE_
 /**
  * DriverRegistry -> RestApi - the message holds the information about the device.
  *
- * @generated from message io.clbs.openhes.pbdeviceregistry.GetDevicesResponse
+ * @generated from message io.clbs.openhes.pbdeviceregistry.Device
  */
-export type GetDevicesResponse = Message<"io.clbs.openhes.pbdeviceregistry.GetDevicesResponse"> & {
+export type Device = Message<"io.clbs.openhes.pbdeviceregistry.Device"> & {
   /**
    * The device specification.
    *
-   * @generated from field: repeated io.clbs.openhes.pbdeviceregistry.DeviceSpec spec = 1;
+   * @generated from field: io.clbs.openhes.pbdeviceregistry.DeviceSpec spec = 1;
    */
-  spec: DeviceSpec[];
+  spec?: DeviceSpec;
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdeviceregistry.GetDevicesResponse.
- * Use `create(GetDevicesResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdeviceregistry.Device.
+ * Use `create(DeviceSchema)` to create a new message.
  */
-export const GetDevicesResponseSchema: GenMessage<GetDevicesResponse> = /*@__PURE__*/
+export const DeviceSchema: GenMessage<Device> = /*@__PURE__*/
   messageDesc(file_pbdeviceregistry_models, 6);
+
+/**
+ * @generated from message io.clbs.openhes.pbdeviceregistry.ArrayOfDevice
+ */
+export type ArrayOfDevice = Message<"io.clbs.openhes.pbdeviceregistry.ArrayOfDevice"> & {
+  /**
+   * The list of devices.
+   *
+   * @generated from field: repeated io.clbs.openhes.pbdeviceregistry.Device items = 1;
+   */
+  items: Device[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.pbdeviceregistry.ArrayOfDevice.
+ * Use `create(ArrayOfDeviceSchema)` to create a new message.
+ */
+export const ArrayOfDeviceSchema: GenMessage<ArrayOfDevice> = /*@__PURE__*/
+  messageDesc(file_pbdeviceregistry_models, 7);
 
 /**
  * Sub-message - the device specification.
@@ -265,7 +284,7 @@ export type DeviceSpec = Message<"io.clbs.openhes.pbdeviceregistry.DeviceSpec"> 
  * Use `create(DeviceSpecSchema)` to create a new message.
  */
 export const DeviceSpecSchema: GenMessage<DeviceSpec> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 7);
+  messageDesc(file_pbdeviceregistry_models, 8);
 
 /**
  * Sub-message that represents the device group.
@@ -307,7 +326,7 @@ export type DeviceGroupSpec = Message<"io.clbs.openhes.pbdeviceregistry.DeviceGr
  * Use `create(DeviceGroupSpecSchema)` to create a new message.
  */
 export const DeviceGroupSpecSchema: GenMessage<DeviceGroupSpec> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 8);
+  messageDesc(file_pbdeviceregistry_models, 9);
 
 /**
  * RestApi -> DriverRegistry - the request message to get the information about the device group.
@@ -328,7 +347,7 @@ export type CreateDeviceGroupRequest = Message<"io.clbs.openhes.pbdeviceregistry
  * Use `create(CreateDeviceGroupRequestSchema)` to create a new message.
  */
 export const CreateDeviceGroupRequestSchema: GenMessage<CreateDeviceGroupRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 9);
+  messageDesc(file_pbdeviceregistry_models, 10);
 
 /**
  * DriverRegistry -> RestApi - the message holds the information about the device group.
@@ -349,7 +368,7 @@ export type GetDeviceGroupsResponse = Message<"io.clbs.openhes.pbdeviceregistry.
  * Use `create(GetDeviceGroupsResponseSchema)` to create a new message.
  */
 export const GetDeviceGroupsResponseSchema: GenMessage<GetDeviceGroupsResponse> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 10);
+  messageDesc(file_pbdeviceregistry_models, 11);
 
 /**
  * @generated from message io.clbs.openhes.pbdeviceregistry.DeviceGroupOverviewSpec
@@ -382,7 +401,7 @@ export type DeviceGroupOverviewSpec = Message<"io.clbs.openhes.pbdeviceregistry.
  * Use `create(DeviceGroupOverviewSpecSchema)` to create a new message.
  */
 export const DeviceGroupOverviewSpecSchema: GenMessage<DeviceGroupOverviewSpec> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 11);
+  messageDesc(file_pbdeviceregistry_models, 12);
 
 /**
  * DriverRegistry -> RestApi - the message holds the information about the device group.
@@ -403,7 +422,7 @@ export type GetDeviceGroupResponse = Message<"io.clbs.openhes.pbdeviceregistry.G
  * Use `create(GetDeviceGroupResponseSchema)` to create a new message.
  */
 export const GetDeviceGroupResponseSchema: GenMessage<GetDeviceGroupResponse> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 12);
+  messageDesc(file_pbdeviceregistry_models, 13);
 
 /**
  * RestApi -> DriverRegistry - the request message to add a new device to the device group.
@@ -431,7 +450,7 @@ export type AddDevicesToGroupRequest = Message<"io.clbs.openhes.pbdeviceregistry
  * Use `create(AddDevicesToGroupRequestSchema)` to create a new message.
  */
 export const AddDevicesToGroupRequestSchema: GenMessage<AddDevicesToGroupRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 13);
+  messageDesc(file_pbdeviceregistry_models, 14);
 
 /**
  * RestApi -> DriverRegistry - the request message to remove a device from the device group.
@@ -459,7 +478,7 @@ export type RemoveDevicesFromGroupRequest = Message<"io.clbs.openhes.pbdevicereg
  * Use `create(RemoveDevicesFromGroupRequestSchema)` to create a new message.
  */
 export const RemoveDevicesFromGroupRequestSchema: GenMessage<RemoveDevicesFromGroupRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 14);
+  messageDesc(file_pbdeviceregistry_models, 15);
 
 /**
  * RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
@@ -487,7 +506,7 @@ export type SetDeviceCommunicationUnitsRequest = Message<"io.clbs.openhes.pbdevi
  * Use `create(SetDeviceCommunicationUnitsRequestSchema)` to create a new message.
  */
 export const SetDeviceCommunicationUnitsRequestSchema: GenMessage<SetDeviceCommunicationUnitsRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 15);
+  messageDesc(file_pbdeviceregistry_models, 16);
 
 /**
  * @generated from message io.clbs.openhes.pbdeviceregistry.DeviceCommunicationUnit
@@ -513,7 +532,7 @@ export type DeviceCommunicationUnit = Message<"io.clbs.openhes.pbdeviceregistry.
  * Use `create(DeviceCommunicationUnitSchema)` to create a new message.
  */
 export const DeviceCommunicationUnitSchema: GenMessage<DeviceCommunicationUnit> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 16);
+  messageDesc(file_pbdeviceregistry_models, 17);
 
 /**
  * RestApi -> DriverRegistry - the request message to get
@@ -534,7 +553,7 @@ export type GetDevicesCommunicationUnitsRequest = Message<"io.clbs.openhes.pbdev
  * Use `create(GetDevicesCommunicationUnitsRequestSchema)` to create a new message.
  */
 export const GetDevicesCommunicationUnitsRequestSchema: GenMessage<GetDevicesCommunicationUnitsRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 17);
+  messageDesc(file_pbdeviceregistry_models, 18);
 
 /**
  * DriverRegistry -> RestApi - the message holds the information about the communication units linked to the device.
@@ -555,7 +574,7 @@ export type GetDevicesCommunicationUnitsResponse = Message<"io.clbs.openhes.pbde
  * Use `create(GetDevicesCommunicationUnitsResponseSchema)` to create a new message.
  */
 export const GetDevicesCommunicationUnitsResponseSchema: GenMessage<GetDevicesCommunicationUnitsResponse> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 18);
+  messageDesc(file_pbdeviceregistry_models, 19);
 
 /**
  * Sub-message that represents the modem pool.
@@ -583,7 +602,7 @@ export type ModemPoolSpec = Message<"io.clbs.openhes.pbdeviceregistry.ModemPoolS
  * Use `create(ModemPoolSpecSchema)` to create a new message.
  */
 export const ModemPoolSpecSchema: GenMessage<ModemPoolSpec> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 19);
+  messageDesc(file_pbdeviceregistry_models, 20);
 
 /**
  * RestApi -> DriverRegistry - the request message to get the modem pools.
@@ -604,7 +623,7 @@ export type GetModemPoolsResponse = Message<"io.clbs.openhes.pbdeviceregistry.Ge
  * Use `create(GetModemPoolsResponseSchema)` to create a new message.
  */
 export const GetModemPoolsResponseSchema: GenMessage<GetModemPoolsResponse> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 20);
+  messageDesc(file_pbdeviceregistry_models, 21);
 
 /**
  * RestApi -> DriverRegistry - the request message to get the modem pool info.
@@ -625,7 +644,7 @@ export type GetModemPoolRequest = Message<"io.clbs.openhes.pbdeviceregistry.GetM
  * Use `create(GetModemPoolRequestSchema)` to create a new message.
  */
 export const GetModemPoolRequestSchema: GenMessage<GetModemPoolRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 21);
+  messageDesc(file_pbdeviceregistry_models, 22);
 
 /**
  * DriverRegistry -> RestApi - the message holds the information about the modem pool.
@@ -653,7 +672,7 @@ export type GetModemPoolResponse = Message<"io.clbs.openhes.pbdeviceregistry.Get
  * Use `create(GetModemPoolResponseSchema)` to create a new message.
  */
 export const GetModemPoolResponseSchema: GenMessage<GetModemPoolResponse> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 22);
+  messageDesc(file_pbdeviceregistry_models, 23);
 
 /**
  * @generated from message io.clbs.openhes.pbdeviceregistry.SetModemPoolRequest
@@ -679,7 +698,7 @@ export type SetModemPoolRequest = Message<"io.clbs.openhes.pbdeviceregistry.SetM
  * Use `create(SetModemPoolRequestSchema)` to create a new message.
  */
 export const SetModemPoolRequestSchema: GenMessage<SetModemPoolRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 23);
+  messageDesc(file_pbdeviceregistry_models, 24);
 
 /**
  * @generated from message io.clbs.openhes.pbdeviceregistry.SetModemRequest
@@ -705,5 +724,5 @@ export type SetModemRequest = Message<"io.clbs.openhes.pbdeviceregistry.SetModem
  * Use `create(SetModemRequestSchema)` to create a new message.
  */
 export const SetModemRequestSchema: GenMessage<SetModemRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 24);
+  messageDesc(file_pbdeviceregistry_models, 25);
 

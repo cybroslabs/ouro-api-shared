@@ -8,6 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
+	models "github.com/cybroslabs/hes-2-apis/protobuf/models"
 	pbapi "github.com/cybroslabs/hes-2-apis/protobuf/pbapi"
 	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
 	pbdeviceregistrymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistrymodels"
@@ -42,31 +43,36 @@ const (
 const (
 	// ApiServiceCreateBulkProcedure is the fully-qualified name of the ApiService's CreateBulk RPC.
 	ApiServiceCreateBulkProcedure = "/io.clbs.openhes.pbapi.ApiService/CreateBulk"
-	// ApiServiceGetBulksProcedure is the fully-qualified name of the ApiService's GetBulks RPC.
-	ApiServiceGetBulksProcedure = "/io.clbs.openhes.pbapi.ApiService/GetBulks"
+	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
+	ApiServiceListBulksProcedure = "/io.clbs.openhes.pbapi.ApiService/ListBulks"
 	// ApiServiceGetBulkProcedure is the fully-qualified name of the ApiService's GetBulk RPC.
 	ApiServiceGetBulkProcedure = "/io.clbs.openhes.pbapi.ApiService/GetBulk"
-	// ApiServiceGetJobStatusProcedure is the fully-qualified name of the ApiService's GetJobStatus RPC.
-	ApiServiceGetJobStatusProcedure = "/io.clbs.openhes.pbapi.ApiService/GetJobStatus"
+	// ApiServiceGetBulkJobProcedure is the fully-qualified name of the ApiService's GetBulkJob RPC.
+	ApiServiceGetBulkJobProcedure = "/io.clbs.openhes.pbapi.ApiService/GetBulkJob"
 	// ApiServiceCancelBulkProcedure is the fully-qualified name of the ApiService's CancelBulk RPC.
 	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.pbapi.ApiService/CancelBulk"
 	// ApiServiceCancelJobsProcedure is the fully-qualified name of the ApiService's CancelJobs RPC.
 	ApiServiceCancelJobsProcedure = "/io.clbs.openhes.pbapi.ApiService/CancelJobs"
-	// ApiServiceGetDriversProcedure is the fully-qualified name of the ApiService's GetDrivers RPC.
-	ApiServiceGetDriversProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDrivers"
+	// ApiServiceListDriversProcedure is the fully-qualified name of the ApiService's ListDrivers RPC.
+	ApiServiceListDriversProcedure = "/io.clbs.openhes.pbapi.ApiService/ListDrivers"
 	// ApiServiceGetDriverTemplatesProcedure is the fully-qualified name of the ApiService's
 	// GetDriverTemplates RPC.
 	ApiServiceGetDriverTemplatesProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDriverTemplates"
 	// ApiServiceCreateCommunicationUnitProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationUnit RPC.
 	ApiServiceCreateCommunicationUnitProcedure = "/io.clbs.openhes.pbapi.ApiService/CreateCommunicationUnit"
-	// ApiServiceGetCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
-	// GetCommunicationUnits RPC.
-	ApiServiceGetCommunicationUnitsProcedure = "/io.clbs.openhes.pbapi.ApiService/GetCommunicationUnits"
+	// ApiServiceListCommunicationUnitProcedure is the fully-qualified name of the ApiService's
+	// ListCommunicationUnit RPC.
+	ApiServiceListCommunicationUnitProcedure = "/io.clbs.openhes.pbapi.ApiService/ListCommunicationUnit"
+	// ApiServiceGetCommunicationUnitProcedure is the fully-qualified name of the ApiService's
+	// GetCommunicationUnit RPC.
+	ApiServiceGetCommunicationUnitProcedure = "/io.clbs.openhes.pbapi.ApiService/GetCommunicationUnit"
 	// ApiServiceCreateDeviceProcedure is the fully-qualified name of the ApiService's CreateDevice RPC.
 	ApiServiceCreateDeviceProcedure = "/io.clbs.openhes.pbapi.ApiService/CreateDevice"
-	// ApiServiceGetDevicesProcedure is the fully-qualified name of the ApiService's GetDevices RPC.
-	ApiServiceGetDevicesProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDevices"
+	// ApiServiceListDevicesProcedure is the fully-qualified name of the ApiService's ListDevices RPC.
+	ApiServiceListDevicesProcedure = "/io.clbs.openhes.pbapi.ApiService/ListDevices"
+	// ApiServiceGetDeviceProcedure is the fully-qualified name of the ApiService's GetDevice RPC.
+	ApiServiceGetDeviceProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDevice"
 	// ApiServiceSetDeviceCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
 	// SetDeviceCommunicationUnits RPC.
 	ApiServiceSetDeviceCommunicationUnitsProcedure = "/io.clbs.openhes.pbapi.ApiService/SetDeviceCommunicationUnits"
@@ -76,9 +82,9 @@ const (
 	// ApiServiceCreateDeviceGroupProcedure is the fully-qualified name of the ApiService's
 	// CreateDeviceGroup RPC.
 	ApiServiceCreateDeviceGroupProcedure = "/io.clbs.openhes.pbapi.ApiService/CreateDeviceGroup"
-	// ApiServiceGetDeviceGroupsProcedure is the fully-qualified name of the ApiService's
-	// GetDeviceGroups RPC.
-	ApiServiceGetDeviceGroupsProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDeviceGroups"
+	// ApiServiceListDeviceGroupsProcedure is the fully-qualified name of the ApiService's
+	// ListDeviceGroups RPC.
+	ApiServiceListDeviceGroupsProcedure = "/io.clbs.openhes.pbapi.ApiService/ListDeviceGroups"
 	// ApiServiceGetDeviceGroupProcedure is the fully-qualified name of the ApiService's GetDeviceGroup
 	// RPC.
 	ApiServiceGetDeviceGroupProcedure = "/io.clbs.openhes.pbapi.ApiService/GetDeviceGroup"
@@ -88,9 +94,9 @@ const (
 	// ApiServiceRemoveDevicesFromGroupProcedure is the fully-qualified name of the ApiService's
 	// RemoveDevicesFromGroup RPC.
 	ApiServiceRemoveDevicesFromGroupProcedure = "/io.clbs.openhes.pbapi.ApiService/RemoveDevicesFromGroup"
-	// ApiServiceGetModemPoolsProcedure is the fully-qualified name of the ApiService's GetModemPools
+	// ApiServiceListModemPoolsProcedure is the fully-qualified name of the ApiService's ListModemPools
 	// RPC.
-	ApiServiceGetModemPoolsProcedure = "/io.clbs.openhes.pbapi.ApiService/GetModemPools"
+	ApiServiceListModemPoolsProcedure = "/io.clbs.openhes.pbapi.ApiService/ListModemPools"
 	// ApiServiceGetModemPoolProcedure is the fully-qualified name of the ApiService's GetModemPool RPC.
 	ApiServiceGetModemPoolProcedure = "/io.clbs.openhes.pbapi.ApiService/GetModemPool"
 	// ApiServiceCreateModemPoolProcedure is the fully-qualified name of the ApiService's
@@ -123,13 +129,13 @@ type ApiServiceClient interface {
 	CreateBulk(context.Context, *connect.Request[pbapi.PublicCreateBulkRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
-	GetBulks(context.Context, *connect.Request[pbdataproxymodels.GetBulksReuqest]) (*connect.Response[pbdataproxymodels.GetBulksResponse], error)
+	ListBulks(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdataproxymodels.ArrayOfBulk], error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
-	GetBulk(context.Context, *connect.Request[pbdataproxymodels.GetBulkRequest]) (*connect.Response[pbdataproxymodels.GetBulkResponse], error)
+	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.Bulk], error)
 	// @group: Bulks
 	// Retrieves the job status.
-	GetJobStatus(context.Context, *connect.Request[pbdataproxymodels.GetJobStatusRequest]) (*connect.Response[pbdataproxymodels.GetJobStatusResponse], error)
+	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.BulkJob], error)
 	// @group: Bulks
 	// Cancels the bulk of jobs.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
@@ -138,7 +144,7 @@ type ApiServiceClient interface {
 	CancelJobs(context.Context, *connect.Request[pbtaskmastermodels.CancelJobsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
-	GetDrivers(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error)
+	ListDrivers(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error)
 	// @group: Driver Info
 	// Retrieves the driver templates.
 	GetDriverTemplates(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.DriverTemplates], error)
@@ -149,7 +155,11 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetCommunicationUnitsResponse], error)
+	ListCommunicationUnit(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec], error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	GetCommunicationUnit(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.CommunicationUnitSpec], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -157,7 +167,11 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevices(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesResponse], error)
+	ListDevices(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to replace ordered set of linked communication units.
@@ -165,7 +179,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse], error)
+	GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.ArrayOfConnectionInfo], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -173,7 +187,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns a list of device groups.
-	GetDeviceGroups(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error)
+	ListDeviceGroups(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns single device group.
@@ -191,7 +205,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
-	GetModemPools(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error)
+	ListModemPools(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get the information about the modem pool. The method returns the modem pool information.
@@ -245,22 +259,22 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
 			connect.WithClientOptions(opts...),
 		),
-		getBulks: connect.NewClient[pbdataproxymodels.GetBulksReuqest, pbdataproxymodels.GetBulksResponse](
+		listBulks: connect.NewClient[models.ListSelector, pbdataproxymodels.ArrayOfBulk](
 			httpClient,
-			baseURL+ApiServiceGetBulksProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetBulks")),
+			baseURL+ApiServiceListBulksProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListBulks")),
 			connect.WithClientOptions(opts...),
 		),
-		getBulk: connect.NewClient[pbdataproxymodels.GetBulkRequest, pbdataproxymodels.GetBulkResponse](
+		getBulk: connect.NewClient[wrapperspb.StringValue, pbdataproxymodels.Bulk](
 			httpClient,
 			baseURL+ApiServiceGetBulkProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
 			connect.WithClientOptions(opts...),
 		),
-		getJobStatus: connect.NewClient[pbdataproxymodels.GetJobStatusRequest, pbdataproxymodels.GetJobStatusResponse](
+		getBulkJob: connect.NewClient[wrapperspb.StringValue, pbdataproxymodels.BulkJob](
 			httpClient,
-			baseURL+ApiServiceGetJobStatusProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetJobStatus")),
+			baseURL+ApiServiceGetBulkJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 			connect.WithClientOptions(opts...),
 		),
 		cancelBulk: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
@@ -275,10 +289,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CancelJobs")),
 			connect.WithClientOptions(opts...),
 		),
-		getDrivers: connect.NewClient[emptypb.Empty, pbdriveroperatormodels.GetDriversResponse](
+		listDrivers: connect.NewClient[models.ListSelector, pbdriveroperatormodels.GetDriversResponse](
 			httpClient,
-			baseURL+ApiServiceGetDriversProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetDrivers")),
+			baseURL+ApiServiceListDriversProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDrivers")),
 			connect.WithClientOptions(opts...),
 		),
 		getDriverTemplates: connect.NewClient[wrapperspb.StringValue, pbdrivermodels.DriverTemplates](
@@ -293,10 +307,16 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnit")),
 			connect.WithClientOptions(opts...),
 		),
-		getCommunicationUnits: connect.NewClient[pbdeviceregistrymodels.GetCommunicationUnitsRequest, pbdeviceregistrymodels.GetCommunicationUnitsResponse](
+		listCommunicationUnit: connect.NewClient[models.ListSelector, pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec](
 			httpClient,
-			baseURL+ApiServiceGetCommunicationUnitsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnits")),
+			baseURL+ApiServiceListCommunicationUnitProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnit")),
+			connect.WithClientOptions(opts...),
+		),
+		getCommunicationUnit: connect.NewClient[wrapperspb.StringValue, pbdeviceregistrymodels.CommunicationUnitSpec](
+			httpClient,
+			baseURL+ApiServiceGetCommunicationUnitProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnit")),
 			connect.WithClientOptions(opts...),
 		),
 		createDevice: connect.NewClient[pbdeviceregistrymodels.CreateDeviceRequest, emptypb.Empty](
@@ -305,10 +325,16 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateDevice")),
 			connect.WithClientOptions(opts...),
 		),
-		getDevices: connect.NewClient[pbdeviceregistrymodels.GetDevicesRequest, pbdeviceregistrymodels.GetDevicesResponse](
+		listDevices: connect.NewClient[models.ListSelector, pbdeviceregistrymodels.DeviceSpec](
 			httpClient,
-			baseURL+ApiServiceGetDevicesProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetDevices")),
+			baseURL+ApiServiceListDevicesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDevices")),
+			connect.WithClientOptions(opts...),
+		),
+		getDevice: connect.NewClient[wrapperspb.StringValue, pbdeviceregistrymodels.DeviceSpec](
+			httpClient,
+			baseURL+ApiServiceGetDeviceProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDevice")),
 			connect.WithClientOptions(opts...),
 		),
 		setDeviceCommunicationUnits: connect.NewClient[pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest, emptypb.Empty](
@@ -317,7 +343,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetDeviceCommunicationUnits")),
 			connect.WithClientOptions(opts...),
 		),
-		getDevicesCommunicationUnits: connect.NewClient[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest, pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse](
+		getDevicesCommunicationUnits: connect.NewClient[wrapperspb.StringValue, pbdrivermodels.ArrayOfConnectionInfo](
 			httpClient,
 			baseURL+ApiServiceGetDevicesCommunicationUnitsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetDevicesCommunicationUnits")),
@@ -329,10 +355,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateDeviceGroup")),
 			connect.WithClientOptions(opts...),
 		),
-		getDeviceGroups: connect.NewClient[emptypb.Empty, pbdeviceregistrymodels.GetDeviceGroupsResponse](
+		listDeviceGroups: connect.NewClient[models.ListSelector, pbdeviceregistrymodels.GetDeviceGroupsResponse](
 			httpClient,
-			baseURL+ApiServiceGetDeviceGroupsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetDeviceGroups")),
+			baseURL+ApiServiceListDeviceGroupsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDeviceGroups")),
 			connect.WithClientOptions(opts...),
 		),
 		getDeviceGroup: connect.NewClient[wrapperspb.StringValue, pbdeviceregistrymodels.GetDeviceGroupResponse](
@@ -353,10 +379,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("RemoveDevicesFromGroup")),
 			connect.WithClientOptions(opts...),
 		),
-		getModemPools: connect.NewClient[emptypb.Empty, pbdeviceregistrymodels.GetModemPoolsResponse](
+		listModemPools: connect.NewClient[models.ListSelector, pbdeviceregistrymodels.GetModemPoolsResponse](
 			httpClient,
-			baseURL+ApiServiceGetModemPoolsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetModemPools")),
+			baseURL+ApiServiceListModemPoolsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListModemPools")),
 			connect.WithClientOptions(opts...),
 		),
 		getModemPool: connect.NewClient[wrapperspb.StringValue, pbdeviceregistrymodels.GetModemPoolResponse](
@@ -419,25 +445,27 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
 	createBulk                   *connect.Client[pbapi.PublicCreateBulkRequest, emptypb.Empty]
-	getBulks                     *connect.Client[pbdataproxymodels.GetBulksReuqest, pbdataproxymodels.GetBulksResponse]
-	getBulk                      *connect.Client[pbdataproxymodels.GetBulkRequest, pbdataproxymodels.GetBulkResponse]
-	getJobStatus                 *connect.Client[pbdataproxymodels.GetJobStatusRequest, pbdataproxymodels.GetJobStatusResponse]
+	listBulks                    *connect.Client[models.ListSelector, pbdataproxymodels.ArrayOfBulk]
+	getBulk                      *connect.Client[wrapperspb.StringValue, pbdataproxymodels.Bulk]
+	getBulkJob                   *connect.Client[wrapperspb.StringValue, pbdataproxymodels.BulkJob]
 	cancelBulk                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	cancelJobs                   *connect.Client[pbtaskmastermodels.CancelJobsRequest, emptypb.Empty]
-	getDrivers                   *connect.Client[emptypb.Empty, pbdriveroperatormodels.GetDriversResponse]
+	listDrivers                  *connect.Client[models.ListSelector, pbdriveroperatormodels.GetDriversResponse]
 	getDriverTemplates           *connect.Client[wrapperspb.StringValue, pbdrivermodels.DriverTemplates]
 	createCommunicationUnit      *connect.Client[pbdeviceregistrymodels.CreateCommunicationUnitRequest, emptypb.Empty]
-	getCommunicationUnits        *connect.Client[pbdeviceregistrymodels.GetCommunicationUnitsRequest, pbdeviceregistrymodels.GetCommunicationUnitsResponse]
+	listCommunicationUnit        *connect.Client[models.ListSelector, pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec]
+	getCommunicationUnit         *connect.Client[wrapperspb.StringValue, pbdeviceregistrymodels.CommunicationUnitSpec]
 	createDevice                 *connect.Client[pbdeviceregistrymodels.CreateDeviceRequest, emptypb.Empty]
-	getDevices                   *connect.Client[pbdeviceregistrymodels.GetDevicesRequest, pbdeviceregistrymodels.GetDevicesResponse]
+	listDevices                  *connect.Client[models.ListSelector, pbdeviceregistrymodels.DeviceSpec]
+	getDevice                    *connect.Client[wrapperspb.StringValue, pbdeviceregistrymodels.DeviceSpec]
 	setDeviceCommunicationUnits  *connect.Client[pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
-	getDevicesCommunicationUnits *connect.Client[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest, pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse]
+	getDevicesCommunicationUnits *connect.Client[wrapperspb.StringValue, pbdrivermodels.ArrayOfConnectionInfo]
 	createDeviceGroup            *connect.Client[pbdeviceregistrymodels.CreateDeviceGroupRequest, emptypb.Empty]
-	getDeviceGroups              *connect.Client[emptypb.Empty, pbdeviceregistrymodels.GetDeviceGroupsResponse]
+	listDeviceGroups             *connect.Client[models.ListSelector, pbdeviceregistrymodels.GetDeviceGroupsResponse]
 	getDeviceGroup               *connect.Client[wrapperspb.StringValue, pbdeviceregistrymodels.GetDeviceGroupResponse]
 	addDevicesToGroup            *connect.Client[pbdeviceregistrymodels.AddDevicesToGroupRequest, emptypb.Empty]
 	removeDevicesFromGroup       *connect.Client[pbdeviceregistrymodels.RemoveDevicesFromGroupRequest, emptypb.Empty]
-	getModemPools                *connect.Client[emptypb.Empty, pbdeviceregistrymodels.GetModemPoolsResponse]
+	listModemPools               *connect.Client[models.ListSelector, pbdeviceregistrymodels.GetModemPoolsResponse]
 	getModemPool                 *connect.Client[wrapperspb.StringValue, pbdeviceregistrymodels.GetModemPoolResponse]
 	createModemPool              *connect.Client[pbdeviceregistrymodels.SetModemPoolRequest, emptypb.Empty]
 	updateModemPool              *connect.Client[pbdeviceregistrymodels.SetModemPoolRequest, emptypb.Empty]
@@ -454,19 +482,19 @@ func (c *apiServiceClient) CreateBulk(ctx context.Context, req *connect.Request[
 	return c.createBulk.CallUnary(ctx, req)
 }
 
-// GetBulks calls io.clbs.openhes.pbapi.ApiService.GetBulks.
-func (c *apiServiceClient) GetBulks(ctx context.Context, req *connect.Request[pbdataproxymodels.GetBulksReuqest]) (*connect.Response[pbdataproxymodels.GetBulksResponse], error) {
-	return c.getBulks.CallUnary(ctx, req)
+// ListBulks calls io.clbs.openhes.pbapi.ApiService.ListBulks.
+func (c *apiServiceClient) ListBulks(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdataproxymodels.ArrayOfBulk], error) {
+	return c.listBulks.CallUnary(ctx, req)
 }
 
 // GetBulk calls io.clbs.openhes.pbapi.ApiService.GetBulk.
-func (c *apiServiceClient) GetBulk(ctx context.Context, req *connect.Request[pbdataproxymodels.GetBulkRequest]) (*connect.Response[pbdataproxymodels.GetBulkResponse], error) {
+func (c *apiServiceClient) GetBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.Bulk], error) {
 	return c.getBulk.CallUnary(ctx, req)
 }
 
-// GetJobStatus calls io.clbs.openhes.pbapi.ApiService.GetJobStatus.
-func (c *apiServiceClient) GetJobStatus(ctx context.Context, req *connect.Request[pbdataproxymodels.GetJobStatusRequest]) (*connect.Response[pbdataproxymodels.GetJobStatusResponse], error) {
-	return c.getJobStatus.CallUnary(ctx, req)
+// GetBulkJob calls io.clbs.openhes.pbapi.ApiService.GetBulkJob.
+func (c *apiServiceClient) GetBulkJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.BulkJob], error) {
+	return c.getBulkJob.CallUnary(ctx, req)
 }
 
 // CancelBulk calls io.clbs.openhes.pbapi.ApiService.CancelBulk.
@@ -479,9 +507,9 @@ func (c *apiServiceClient) CancelJobs(ctx context.Context, req *connect.Request[
 	return c.cancelJobs.CallUnary(ctx, req)
 }
 
-// GetDrivers calls io.clbs.openhes.pbapi.ApiService.GetDrivers.
-func (c *apiServiceClient) GetDrivers(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error) {
-	return c.getDrivers.CallUnary(ctx, req)
+// ListDrivers calls io.clbs.openhes.pbapi.ApiService.ListDrivers.
+func (c *apiServiceClient) ListDrivers(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error) {
+	return c.listDrivers.CallUnary(ctx, req)
 }
 
 // GetDriverTemplates calls io.clbs.openhes.pbapi.ApiService.GetDriverTemplates.
@@ -494,9 +522,14 @@ func (c *apiServiceClient) CreateCommunicationUnit(ctx context.Context, req *con
 	return c.createCommunicationUnit.CallUnary(ctx, req)
 }
 
-// GetCommunicationUnits calls io.clbs.openhes.pbapi.ApiService.GetCommunicationUnits.
-func (c *apiServiceClient) GetCommunicationUnits(ctx context.Context, req *connect.Request[pbdeviceregistrymodels.GetCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetCommunicationUnitsResponse], error) {
-	return c.getCommunicationUnits.CallUnary(ctx, req)
+// ListCommunicationUnit calls io.clbs.openhes.pbapi.ApiService.ListCommunicationUnit.
+func (c *apiServiceClient) ListCommunicationUnit(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec], error) {
+	return c.listCommunicationUnit.CallUnary(ctx, req)
+}
+
+// GetCommunicationUnit calls io.clbs.openhes.pbapi.ApiService.GetCommunicationUnit.
+func (c *apiServiceClient) GetCommunicationUnit(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.CommunicationUnitSpec], error) {
+	return c.getCommunicationUnit.CallUnary(ctx, req)
 }
 
 // CreateDevice calls io.clbs.openhes.pbapi.ApiService.CreateDevice.
@@ -504,9 +537,14 @@ func (c *apiServiceClient) CreateDevice(ctx context.Context, req *connect.Reques
 	return c.createDevice.CallUnary(ctx, req)
 }
 
-// GetDevices calls io.clbs.openhes.pbapi.ApiService.GetDevices.
-func (c *apiServiceClient) GetDevices(ctx context.Context, req *connect.Request[pbdeviceregistrymodels.GetDevicesRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesResponse], error) {
-	return c.getDevices.CallUnary(ctx, req)
+// ListDevices calls io.clbs.openhes.pbapi.ApiService.ListDevices.
+func (c *apiServiceClient) ListDevices(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error) {
+	return c.listDevices.CallUnary(ctx, req)
+}
+
+// GetDevice calls io.clbs.openhes.pbapi.ApiService.GetDevice.
+func (c *apiServiceClient) GetDevice(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error) {
+	return c.getDevice.CallUnary(ctx, req)
 }
 
 // SetDeviceCommunicationUnits calls io.clbs.openhes.pbapi.ApiService.SetDeviceCommunicationUnits.
@@ -515,7 +553,7 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, req 
 }
 
 // GetDevicesCommunicationUnits calls io.clbs.openhes.pbapi.ApiService.GetDevicesCommunicationUnits.
-func (c *apiServiceClient) GetDevicesCommunicationUnits(ctx context.Context, req *connect.Request[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse], error) {
+func (c *apiServiceClient) GetDevicesCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.ArrayOfConnectionInfo], error) {
 	return c.getDevicesCommunicationUnits.CallUnary(ctx, req)
 }
 
@@ -524,9 +562,9 @@ func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, req *connect.R
 	return c.createDeviceGroup.CallUnary(ctx, req)
 }
 
-// GetDeviceGroups calls io.clbs.openhes.pbapi.ApiService.GetDeviceGroups.
-func (c *apiServiceClient) GetDeviceGroups(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error) {
-	return c.getDeviceGroups.CallUnary(ctx, req)
+// ListDeviceGroups calls io.clbs.openhes.pbapi.ApiService.ListDeviceGroups.
+func (c *apiServiceClient) ListDeviceGroups(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error) {
+	return c.listDeviceGroups.CallUnary(ctx, req)
 }
 
 // GetDeviceGroup calls io.clbs.openhes.pbapi.ApiService.GetDeviceGroup.
@@ -544,9 +582,9 @@ func (c *apiServiceClient) RemoveDevicesFromGroup(ctx context.Context, req *conn
 	return c.removeDevicesFromGroup.CallUnary(ctx, req)
 }
 
-// GetModemPools calls io.clbs.openhes.pbapi.ApiService.GetModemPools.
-func (c *apiServiceClient) GetModemPools(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error) {
-	return c.getModemPools.CallUnary(ctx, req)
+// ListModemPools calls io.clbs.openhes.pbapi.ApiService.ListModemPools.
+func (c *apiServiceClient) ListModemPools(ctx context.Context, req *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error) {
+	return c.listModemPools.CallUnary(ctx, req)
 }
 
 // GetModemPool calls io.clbs.openhes.pbapi.ApiService.GetModemPool.
@@ -603,13 +641,13 @@ type ApiServiceHandler interface {
 	CreateBulk(context.Context, *connect.Request[pbapi.PublicCreateBulkRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
-	GetBulks(context.Context, *connect.Request[pbdataproxymodels.GetBulksReuqest]) (*connect.Response[pbdataproxymodels.GetBulksResponse], error)
+	ListBulks(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdataproxymodels.ArrayOfBulk], error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
-	GetBulk(context.Context, *connect.Request[pbdataproxymodels.GetBulkRequest]) (*connect.Response[pbdataproxymodels.GetBulkResponse], error)
+	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.Bulk], error)
 	// @group: Bulks
 	// Retrieves the job status.
-	GetJobStatus(context.Context, *connect.Request[pbdataproxymodels.GetJobStatusRequest]) (*connect.Response[pbdataproxymodels.GetJobStatusResponse], error)
+	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.BulkJob], error)
 	// @group: Bulks
 	// Cancels the bulk of jobs.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
@@ -618,7 +656,7 @@ type ApiServiceHandler interface {
 	CancelJobs(context.Context, *connect.Request[pbtaskmastermodels.CancelJobsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
-	GetDrivers(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error)
+	ListDrivers(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error)
 	// @group: Driver Info
 	// Retrieves the driver templates.
 	GetDriverTemplates(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.DriverTemplates], error)
@@ -629,7 +667,11 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetCommunicationUnitsResponse], error)
+	ListCommunicationUnit(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec], error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	GetCommunicationUnit(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.CommunicationUnitSpec], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -637,7 +679,11 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevices(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesResponse], error)
+	ListDevices(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to replace ordered set of linked communication units.
@@ -645,7 +691,7 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse], error)
+	GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.ArrayOfConnectionInfo], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -653,7 +699,7 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns a list of device groups.
-	GetDeviceGroups(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error)
+	ListDeviceGroups(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns single device group.
@@ -671,7 +717,7 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
-	GetModemPools(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error)
+	ListModemPools(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get the information about the modem pool. The method returns the modem pool information.
@@ -721,10 +767,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetBulksHandler := connect.NewUnaryHandler(
-		ApiServiceGetBulksProcedure,
-		svc.GetBulks,
-		connect.WithSchema(apiServiceMethods.ByName("GetBulks")),
+	apiServiceListBulksHandler := connect.NewUnaryHandler(
+		ApiServiceListBulksProcedure,
+		svc.ListBulks,
+		connect.WithSchema(apiServiceMethods.ByName("ListBulks")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetBulkHandler := connect.NewUnaryHandler(
@@ -733,10 +779,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetJobStatusHandler := connect.NewUnaryHandler(
-		ApiServiceGetJobStatusProcedure,
-		svc.GetJobStatus,
-		connect.WithSchema(apiServiceMethods.ByName("GetJobStatus")),
+	apiServiceGetBulkJobHandler := connect.NewUnaryHandler(
+		ApiServiceGetBulkJobProcedure,
+		svc.GetBulkJob,
+		connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCancelBulkHandler := connect.NewUnaryHandler(
@@ -751,10 +797,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CancelJobs")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetDriversHandler := connect.NewUnaryHandler(
-		ApiServiceGetDriversProcedure,
-		svc.GetDrivers,
-		connect.WithSchema(apiServiceMethods.ByName("GetDrivers")),
+	apiServiceListDriversHandler := connect.NewUnaryHandler(
+		ApiServiceListDriversProcedure,
+		svc.ListDrivers,
+		connect.WithSchema(apiServiceMethods.ByName("ListDrivers")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetDriverTemplatesHandler := connect.NewUnaryHandler(
@@ -769,10 +815,16 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnit")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetCommunicationUnitsHandler := connect.NewUnaryHandler(
-		ApiServiceGetCommunicationUnitsProcedure,
-		svc.GetCommunicationUnits,
-		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnits")),
+	apiServiceListCommunicationUnitHandler := connect.NewUnaryHandler(
+		ApiServiceListCommunicationUnitProcedure,
+		svc.ListCommunicationUnit,
+		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnit")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetCommunicationUnitHandler := connect.NewUnaryHandler(
+		ApiServiceGetCommunicationUnitProcedure,
+		svc.GetCommunicationUnit,
+		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnit")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateDeviceHandler := connect.NewUnaryHandler(
@@ -781,10 +833,16 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateDevice")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetDevicesHandler := connect.NewUnaryHandler(
-		ApiServiceGetDevicesProcedure,
-		svc.GetDevices,
-		connect.WithSchema(apiServiceMethods.ByName("GetDevices")),
+	apiServiceListDevicesHandler := connect.NewUnaryHandler(
+		ApiServiceListDevicesProcedure,
+		svc.ListDevices,
+		connect.WithSchema(apiServiceMethods.ByName("ListDevices")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetDeviceHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceProcedure,
+		svc.GetDevice,
+		connect.WithSchema(apiServiceMethods.ByName("GetDevice")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceSetDeviceCommunicationUnitsHandler := connect.NewUnaryHandler(
@@ -805,10 +863,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateDeviceGroup")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetDeviceGroupsHandler := connect.NewUnaryHandler(
-		ApiServiceGetDeviceGroupsProcedure,
-		svc.GetDeviceGroups,
-		connect.WithSchema(apiServiceMethods.ByName("GetDeviceGroups")),
+	apiServiceListDeviceGroupsHandler := connect.NewUnaryHandler(
+		ApiServiceListDeviceGroupsProcedure,
+		svc.ListDeviceGroups,
+		connect.WithSchema(apiServiceMethods.ByName("ListDeviceGroups")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetDeviceGroupHandler := connect.NewUnaryHandler(
@@ -829,10 +887,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("RemoveDevicesFromGroup")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetModemPoolsHandler := connect.NewUnaryHandler(
-		ApiServiceGetModemPoolsProcedure,
-		svc.GetModemPools,
-		connect.WithSchema(apiServiceMethods.ByName("GetModemPools")),
+	apiServiceListModemPoolsHandler := connect.NewUnaryHandler(
+		ApiServiceListModemPoolsProcedure,
+		svc.ListModemPools,
+		connect.WithSchema(apiServiceMethods.ByName("ListModemPools")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetModemPoolHandler := connect.NewUnaryHandler(
@@ -893,44 +951,48 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		switch r.URL.Path {
 		case ApiServiceCreateBulkProcedure:
 			apiServiceCreateBulkHandler.ServeHTTP(w, r)
-		case ApiServiceGetBulksProcedure:
-			apiServiceGetBulksHandler.ServeHTTP(w, r)
+		case ApiServiceListBulksProcedure:
+			apiServiceListBulksHandler.ServeHTTP(w, r)
 		case ApiServiceGetBulkProcedure:
 			apiServiceGetBulkHandler.ServeHTTP(w, r)
-		case ApiServiceGetJobStatusProcedure:
-			apiServiceGetJobStatusHandler.ServeHTTP(w, r)
+		case ApiServiceGetBulkJobProcedure:
+			apiServiceGetBulkJobHandler.ServeHTTP(w, r)
 		case ApiServiceCancelBulkProcedure:
 			apiServiceCancelBulkHandler.ServeHTTP(w, r)
 		case ApiServiceCancelJobsProcedure:
 			apiServiceCancelJobsHandler.ServeHTTP(w, r)
-		case ApiServiceGetDriversProcedure:
-			apiServiceGetDriversHandler.ServeHTTP(w, r)
+		case ApiServiceListDriversProcedure:
+			apiServiceListDriversHandler.ServeHTTP(w, r)
 		case ApiServiceGetDriverTemplatesProcedure:
 			apiServiceGetDriverTemplatesHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationUnitProcedure:
 			apiServiceCreateCommunicationUnitHandler.ServeHTTP(w, r)
-		case ApiServiceGetCommunicationUnitsProcedure:
-			apiServiceGetCommunicationUnitsHandler.ServeHTTP(w, r)
+		case ApiServiceListCommunicationUnitProcedure:
+			apiServiceListCommunicationUnitHandler.ServeHTTP(w, r)
+		case ApiServiceGetCommunicationUnitProcedure:
+			apiServiceGetCommunicationUnitHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceProcedure:
 			apiServiceCreateDeviceHandler.ServeHTTP(w, r)
-		case ApiServiceGetDevicesProcedure:
-			apiServiceGetDevicesHandler.ServeHTTP(w, r)
+		case ApiServiceListDevicesProcedure:
+			apiServiceListDevicesHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceProcedure:
+			apiServiceGetDeviceHandler.ServeHTTP(w, r)
 		case ApiServiceSetDeviceCommunicationUnitsProcedure:
 			apiServiceSetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDevicesCommunicationUnitsProcedure:
 			apiServiceGetDevicesCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceGroupProcedure:
 			apiServiceCreateDeviceGroupHandler.ServeHTTP(w, r)
-		case ApiServiceGetDeviceGroupsProcedure:
-			apiServiceGetDeviceGroupsHandler.ServeHTTP(w, r)
+		case ApiServiceListDeviceGroupsProcedure:
+			apiServiceListDeviceGroupsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceGroupProcedure:
 			apiServiceGetDeviceGroupHandler.ServeHTTP(w, r)
 		case ApiServiceAddDevicesToGroupProcedure:
 			apiServiceAddDevicesToGroupHandler.ServeHTTP(w, r)
 		case ApiServiceRemoveDevicesFromGroupProcedure:
 			apiServiceRemoveDevicesFromGroupHandler.ServeHTTP(w, r)
-		case ApiServiceGetModemPoolsProcedure:
-			apiServiceGetModemPoolsHandler.ServeHTTP(w, r)
+		case ApiServiceListModemPoolsProcedure:
+			apiServiceListModemPoolsHandler.ServeHTTP(w, r)
 		case ApiServiceGetModemPoolProcedure:
 			apiServiceGetModemPoolHandler.ServeHTTP(w, r)
 		case ApiServiceCreateModemPoolProcedure:
@@ -962,16 +1024,16 @@ func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Reque
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.CreateBulk is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetBulks(context.Context, *connect.Request[pbdataproxymodels.GetBulksReuqest]) (*connect.Response[pbdataproxymodels.GetBulksResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetBulks is not implemented"))
+func (UnimplementedApiServiceHandler) ListBulks(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdataproxymodels.ArrayOfBulk], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListBulks is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetBulk(context.Context, *connect.Request[pbdataproxymodels.GetBulkRequest]) (*connect.Response[pbdataproxymodels.GetBulkResponse], error) {
+func (UnimplementedApiServiceHandler) GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.Bulk], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetBulk is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetJobStatus(context.Context, *connect.Request[pbdataproxymodels.GetJobStatusRequest]) (*connect.Response[pbdataproxymodels.GetJobStatusResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetJobStatus is not implemented"))
+func (UnimplementedApiServiceHandler) GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdataproxymodels.BulkJob], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetBulkJob is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
@@ -982,8 +1044,8 @@ func (UnimplementedApiServiceHandler) CancelJobs(context.Context, *connect.Reque
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.CancelJobs is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDrivers(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetDrivers is not implemented"))
+func (UnimplementedApiServiceHandler) ListDrivers(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdriveroperatormodels.GetDriversResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListDrivers is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetDriverTemplates(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.DriverTemplates], error) {
@@ -994,23 +1056,31 @@ func (UnimplementedApiServiceHandler) CreateCommunicationUnit(context.Context, *
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.CreateCommunicationUnit is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetCommunicationUnitsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetCommunicationUnits is not implemented"))
+func (UnimplementedApiServiceHandler) ListCommunicationUnit(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListCommunicationUnit is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetCommunicationUnit(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.CommunicationUnitSpec], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetCommunicationUnit is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateDevice(context.Context, *connect.Request[pbdeviceregistrymodels.CreateDeviceRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.CreateDevice is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDevices(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetDevices is not implemented"))
+func (UnimplementedApiServiceHandler) ListDevices(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListDevices is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.DeviceSpec], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetDevice is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) SetDeviceCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.SetDeviceCommunicationUnits is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDevicesCommunicationUnits(context.Context, *connect.Request[pbdeviceregistrymodels.GetDevicesCommunicationUnitsRequest]) (*connect.Response[pbdeviceregistrymodels.GetDevicesCommunicationUnitsResponse], error) {
+func (UnimplementedApiServiceHandler) GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdrivermodels.ArrayOfConnectionInfo], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetDevicesCommunicationUnits is not implemented"))
 }
 
@@ -1018,8 +1088,8 @@ func (UnimplementedApiServiceHandler) CreateDeviceGroup(context.Context, *connec
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.CreateDeviceGroup is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDeviceGroups(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetDeviceGroups is not implemented"))
+func (UnimplementedApiServiceHandler) ListDeviceGroups(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListDeviceGroups is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetDeviceGroup(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.GetDeviceGroupResponse], error) {
@@ -1034,8 +1104,8 @@ func (UnimplementedApiServiceHandler) RemoveDevicesFromGroup(context.Context, *c
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.RemoveDevicesFromGroup is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetModemPools(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.GetModemPools is not implemented"))
+func (UnimplementedApiServiceHandler) ListModemPools(context.Context, *connect.Request[models.ListSelector]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.pbapi.ApiService.ListModemPools is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetModemPool(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[pbdeviceregistrymodels.GetModemPoolResponse], error) {

@@ -10,6 +10,7 @@ package pbdeviceregistry
 
 import (
 	context "context"
+	models "github.com/cybroslabs/hes-2-apis/protobuf/models"
 	pbdeviceregistrymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdeviceregistrymodels"
 	pbdrivermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdrivermodels"
 	grpc "google.golang.org/grpc"
@@ -27,9 +28,11 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceRegistryService_SetDriverTemplates_FullMethodName           = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDriverTemplates"
 	DeviceRegistryService_CreateCommunicationUnit_FullMethodName      = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
-	DeviceRegistryService_GetCommunicationUnits_FullMethodName        = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetCommunicationUnits"
+	DeviceRegistryService_ListCommunicationUnit_FullMethodName        = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/ListCommunicationUnit"
+	DeviceRegistryService_GetCommunicationUnit_FullMethodName         = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
 	DeviceRegistryService_CreateDevice_FullMethodName                 = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDevice"
-	DeviceRegistryService_GetDevices_FullMethodName                   = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevices"
+	DeviceRegistryService_ListDevices_FullMethodName                  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/ListDevices"
+	DeviceRegistryService_GetDevice_FullMethodName                    = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevice"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName  = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDevicesCommunicationUnits_FullMethodName = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/GetDevicesCommunicationUnits"
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName            = "/io.clbs.openhes.pbdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
@@ -57,12 +60,24 @@ type DeviceRegistryServiceClient interface {
 	SetDriverTemplates(ctx context.Context, in *pbdrivermodels.NegotiateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(ctx context.Context, in *pbdeviceregistrymodels.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnits(ctx context.Context, in *pbdeviceregistrymodels.GetCommunicationUnitsRequest, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetCommunicationUnitsResponse, error)
+	ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.CommunicationUnitSpec, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(ctx context.Context, in *pbdeviceregistrymodels.CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevices(ctx context.Context, in *pbdeviceregistrymodels.GetDevicesRequest, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDevicesResponse, error)
+	ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfDevice, error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.Device, error)
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(ctx context.Context, in *pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
@@ -125,10 +140,20 @@ func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Contex
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetCommunicationUnits(ctx context.Context, in *pbdeviceregistrymodels.GetCommunicationUnitsRequest, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetCommunicationUnitsResponse, error) {
+func (c *deviceRegistryServiceClient) ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdeviceregistrymodels.GetCommunicationUnitsResponse)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_GetCommunicationUnits_FullMethodName, in, out, cOpts...)
+	out := new(pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.CommunicationUnitSpec, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(pbdeviceregistrymodels.CommunicationUnitSpec)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,10 +170,20 @@ func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *pbde
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDevices(ctx context.Context, in *pbdeviceregistrymodels.GetDevicesRequest, opts ...grpc.CallOption) (*pbdeviceregistrymodels.GetDevicesResponse, error) {
+func (c *deviceRegistryServiceClient) ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfDevice, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdeviceregistrymodels.GetDevicesResponse)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevices_FullMethodName, in, out, cOpts...)
+	out := new(pbdeviceregistrymodels.ArrayOfDevice)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDevices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdeviceregistrymodels.Device, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(pbdeviceregistrymodels.Device)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevice_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -315,12 +350,24 @@ type DeviceRegistryServiceServer interface {
 	SetDriverTemplates(context.Context, *pbdrivermodels.NegotiateRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *pbdeviceregistrymodels.CreateCommunicationUnitRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnits(context.Context, *pbdeviceregistrymodels.GetCommunicationUnitsRequest) (*pbdeviceregistrymodels.GetCommunicationUnitsResponse, error)
+	ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.CommunicationUnitSpec, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(context.Context, *pbdeviceregistrymodels.CreateDeviceRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	GetDevices(context.Context, *pbdeviceregistrymodels.GetDevicesRequest) (*pbdeviceregistrymodels.GetDevicesResponse, error)
+	ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfDevice, error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	GetDevice(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.Device, error)
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
@@ -369,14 +416,20 @@ func (UnimplementedDeviceRegistryServiceServer) SetDriverTemplates(context.Conte
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *pbdeviceregistrymodels.CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnits(context.Context, *pbdeviceregistrymodels.GetCommunicationUnitsRequest) (*pbdeviceregistrymodels.GetCommunicationUnitsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnits not implemented")
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnit not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.CommunicationUnitSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *pbdeviceregistrymodels.CreateDeviceRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDevices(context.Context, *pbdeviceregistrymodels.GetDevicesRequest) (*pbdeviceregistrymodels.GetDevicesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDevices not implemented")
+func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfDevice, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDevices not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.Device, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(context.Context, *pbdeviceregistrymodels.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
@@ -480,20 +533,38 @@ func _DeviceRegistryService_CreateCommunicationUnit_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_GetCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdeviceregistrymodels.GetCommunicationUnitsRequest)
+func _DeviceRegistryService_ListCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(models.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).GetCommunicationUnits(ctx, in)
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_GetCommunicationUnits_FullMethodName,
+		FullMethod: DeviceRegistryService_ListCommunicationUnit_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetCommunicationUnits(ctx, req.(*pbdeviceregistrymodels.GetCommunicationUnitsRequest))
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnit(ctx, req.(*models.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetCommunicationUnit(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -516,20 +587,38 @@ func _DeviceRegistryService_CreateDevice_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_GetDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdeviceregistrymodels.GetDevicesRequest)
+func _DeviceRegistryService_ListDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(models.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).GetDevices(ctx, in)
+		return srv.(DeviceRegistryServiceServer).ListDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_GetDevices_FullMethodName,
+		FullMethod: DeviceRegistryService_ListDevices_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetDevices(ctx, req.(*pbdeviceregistrymodels.GetDevicesRequest))
+		return srv.(DeviceRegistryServiceServer).ListDevices(ctx, req.(*models.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDevice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -820,16 +909,24 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_CreateCommunicationUnit_Handler,
 		},
 		{
-			MethodName: "GetCommunicationUnits",
-			Handler:    _DeviceRegistryService_GetCommunicationUnits_Handler,
+			MethodName: "ListCommunicationUnit",
+			Handler:    _DeviceRegistryService_ListCommunicationUnit_Handler,
+		},
+		{
+			MethodName: "GetCommunicationUnit",
+			Handler:    _DeviceRegistryService_GetCommunicationUnit_Handler,
 		},
 		{
 			MethodName: "CreateDevice",
 			Handler:    _DeviceRegistryService_CreateDevice_Handler,
 		},
 		{
-			MethodName: "GetDevices",
-			Handler:    _DeviceRegistryService_GetDevices_Handler,
+			MethodName: "ListDevices",
+			Handler:    _DeviceRegistryService_ListDevices_Handler,
+		},
+		{
+			MethodName: "GetDevice",
+			Handler:    _DeviceRegistryService_GetDevice_Handler,
 		},
 		{
 			MethodName: "SetDeviceCommunicationUnits",

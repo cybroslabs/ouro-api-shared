@@ -95,3 +95,8 @@ gen-go:
 	cd protobuf && npx buf generate --template buf.gen.npx.yaml
 
 	./src/mdgen/main.py
+
+.PHONY: more
+more:
+	cd protobuf && npx buf generate --template buf.gen.graphql.yaml
+	go run github.com/99designs/gqlgen generate

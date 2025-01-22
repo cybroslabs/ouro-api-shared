@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pbdataproxy-models.proto.
  */
 export const file_pbdataproxy_models: GenFile = /*@__PURE__*/
-  fileDesc("ChhwYmRhdGFwcm94eS1tb2RlbHMucHJvdG8SG2lvLmNsYnMub3Blbmhlcy5wYmRhdGFwcm94eSJIChFDcmVhdGVCdWxrUmVxdWVzdBIzCgRzcGVjGAEgASgLMiUuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtTcGVjIqsCCghCdWxrU3BlYxIPCgdidWxrX2lkGAEgASgJEhYKDmNvcnJlbGF0aW9uX2lkGAIgASgJEg4KBm9yZ19pZBgDIAEoCRITCgtkcml2ZXJfdHlwZRgEIAEoCRI4CgdkZXZpY2VzGAUgAygLMicuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JEZXZpY2USNwoIc2V0dGluZ3MYBiABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iU2V0dGluZ3MSOAoLam9iX2FjdGlvbnMYByADKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iQWN0aW9uEhMKC3dlYmhvb2tfdXJsGAggASgJEg8KB3VzZXJfaWQYCSABKAkigwEKCkJ1bGtTdGF0dXMSOwoGc3RhdHVzGAEgASgOMisuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtTdGF0dXNDb2RlEjgKBGpvYnMYAiADKAsyKi5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsa0pvYlN0YXR1cyJYCg1CdWxrSm9iU3RhdHVzEg4KBmpvYl9pZBgBIAEoCRI3CgZzdGF0dXMYAiABKAsyJy5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYlN0YXR1cyJ/Cg9HZXRCdWxrUmVzcG9uc2USMwoEc3BlYxgBIAEoCzIlLmlvLmNsYnMub3Blbmhlcy5wYmRhdGFwcm94eS5CdWxrU3BlYxI3CgZzdGF0dXMYAiABKAsyJy5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsa1N0YXR1cyJ7Cg9HZXRCdWxrc1JldXFlc3QSKQoFdGZyb20YASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEicKA3R0bxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFAoMaW5jbHVkZV9kYXRhGAMgASgIIk8KEEdldEJ1bGtzUmVzcG9uc2USOwoFYnVsa3MYASADKAsyLC5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuR2V0QnVsa1Jlc3BvbnNlIiEKDkdldEJ1bGtSZXF1ZXN0Eg8KB2J1bGtfaWQYASABKAkiJQoTR2V0Sm9iU3RhdHVzUmVxdWVzdBIOCgZqb2JfaWQYASABKAkiTwoUR2V0Sm9iU3RhdHVzUmVzcG9uc2USNwoGc3RhdHVzGAEgASgLMicuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JTdGF0dXMqkAEKDkJ1bGtTdGF0dXNDb2RlEhYKEkJVTEtfU1RBVFVTX1FVRVVFRBAAEhcKE0JVTEtfU1RBVFVTX1JVTk5JTkcQARIZChVCVUxLX1NUQVRVU19DT01QTEVURUQQAhIZChVCVUxLX1NUQVRVU19DQU5DRUxMRUQQAxIXChNCVUxLX1NUQVRVU19FWFBJUkVEEARCPVo7Z2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvcHJvdG9idWYvcGJkYXRhcHJveHltb2RlbHNiCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_pbtaskmaster_models, file_pbdriver_models]);
+  fileDesc("ChhwYmRhdGFwcm94eS1tb2RlbHMucHJvdG8SG2lvLmNsYnMub3Blbmhlcy5wYmRhdGFwcm94eSJIChFDcmVhdGVCdWxrUmVxdWVzdBIzCgRzcGVjGAEgASgLMiUuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtTcGVjIqsCCghCdWxrU3BlYxIPCgdidWxrX2lkGAEgASgJEhYKDmNvcnJlbGF0aW9uX2lkGAIgASgJEg4KBm9yZ19pZBgDIAEoCRITCgtkcml2ZXJfdHlwZRgEIAEoCRI4CgdkZXZpY2VzGAUgAygLMicuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JEZXZpY2USNwoIc2V0dGluZ3MYBiABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iU2V0dGluZ3MSOAoLam9iX2FjdGlvbnMYByADKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iQWN0aW9uEhMKC3dlYmhvb2tfdXJsGAggASgJEg8KB3VzZXJfaWQYCSABKAkigwEKCkJ1bGtTdGF0dXMSOwoGc3RhdHVzGAEgASgOMisuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtTdGF0dXNDb2RlEjgKBGpvYnMYAiADKAsyKi5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsa0pvYlN0YXR1cyJYCg1CdWxrSm9iU3RhdHVzEg4KBmpvYl9pZBgBIAEoCRI3CgZzdGF0dXMYAiABKAsyJy5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYlN0YXR1cyJ0CgRCdWxrEjMKBHNwZWMYASABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsa1NwZWMSNwoGc3RhdHVzGAIgASgLMicuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtTdGF0dXMiewoPR2V0QnVsa3NSZXVxZXN0EikKBXRmcm9tGAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBInCgN0dG8YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhQKDGluY2x1ZGVfZGF0YRgDIAEoCCI/CgtBcnJheU9mQnVsaxIwCgVpdGVtcxgBIAMoCzIhLmlvLmNsYnMub3Blbmhlcy5wYmRhdGFwcm94eS5CdWxrIiEKDkdldEJ1bGtSZXF1ZXN0Eg8KB2J1bGtfaWQYASABKAkiJQoTR2V0Sm9iU3RhdHVzUmVxdWVzdBIOCgZqb2JfaWQYASABKAkiQgoHQnVsa0pvYhI3CgZzdGF0dXMYASABKAsyJy5pby5jbGJzLm9wZW5oZXMucGJ0YXNrbWFzdGVyLkpvYlN0YXR1cyqQAQoOQnVsa1N0YXR1c0NvZGUSFgoSQlVMS19TVEFUVVNfUVVFVUVEEAASFwoTQlVMS19TVEFUVVNfUlVOTklORxABEhkKFUJVTEtfU1RBVFVTX0NPTVBMRVRFRBACEhkKFUJVTEtfU1RBVFVTX0NBTkNFTExFRBADEhcKE0JVTEtfU1RBVFVTX0VYUElSRUQQBEI9WjtnaXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9wcm90b2J1Zi9wYmRhdGFwcm94eW1vZGVsc2IIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_pbtaskmaster_models, file_pbdriver_models]);
 
 /**
  * RestApi -> DataProxy
@@ -173,9 +173,9 @@ export const BulkJobStatusSchema: GenMessage<BulkJobStatus> = /*@__PURE__*/
 /**
  * DataProxy -> RestApi - the message holds the bulk info and it's status.
  *
- * @generated from message io.clbs.openhes.pbdataproxy.GetBulkResponse
+ * @generated from message io.clbs.openhes.pbdataproxy.Bulk
  */
-export type GetBulkResponse = Message<"io.clbs.openhes.pbdataproxy.GetBulkResponse"> & {
+export type Bulk = Message<"io.clbs.openhes.pbdataproxy.Bulk"> & {
   /**
    * The bulk-job spec.
    *
@@ -192,10 +192,10 @@ export type GetBulkResponse = Message<"io.clbs.openhes.pbdataproxy.GetBulkRespon
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdataproxy.GetBulkResponse.
- * Use `create(GetBulkResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdataproxy.Bulk.
+ * Use `create(BulkSchema)` to create a new message.
  */
-export const GetBulkResponseSchema: GenMessage<GetBulkResponse> = /*@__PURE__*/
+export const BulkSchema: GenMessage<Bulk> = /*@__PURE__*/
   messageDesc(file_pbdataproxy_models, 4);
 
 /**
@@ -236,22 +236,22 @@ export const GetBulksReuqestSchema: GenMessage<GetBulksReuqest> = /*@__PURE__*/
 /**
  * DataProxy -> RestApi - the message holds list of bulks.
  *
- * @generated from message io.clbs.openhes.pbdataproxy.GetBulksResponse
+ * @generated from message io.clbs.openhes.pbdataproxy.ArrayOfBulk
  */
-export type GetBulksResponse = Message<"io.clbs.openhes.pbdataproxy.GetBulksResponse"> & {
+export type ArrayOfBulk = Message<"io.clbs.openhes.pbdataproxy.ArrayOfBulk"> & {
   /**
-   * The list of bulk jobs related to the original request.
+   * The list of bulks.
    *
-   * @generated from field: repeated io.clbs.openhes.pbdataproxy.GetBulkResponse bulks = 1;
+   * @generated from field: repeated io.clbs.openhes.pbdataproxy.Bulk items = 1;
    */
-  bulks: GetBulkResponse[];
+  items: Bulk[];
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdataproxy.GetBulksResponse.
- * Use `create(GetBulksResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdataproxy.ArrayOfBulk.
+ * Use `create(ArrayOfBulkSchema)` to create a new message.
  */
-export const GetBulksResponseSchema: GenMessage<GetBulksResponse> = /*@__PURE__*/
+export const ArrayOfBulkSchema: GenMessage<ArrayOfBulk> = /*@__PURE__*/
   messageDesc(file_pbdataproxy_models, 6);
 
 /**
@@ -299,9 +299,9 @@ export const GetJobStatusRequestSchema: GenMessage<GetJobStatusRequest> = /*@__P
 /**
  * DataProxy -> RestApi - the message holds the job status.
  *
- * @generated from message io.clbs.openhes.pbdataproxy.GetJobStatusResponse
+ * @generated from message io.clbs.openhes.pbdataproxy.BulkJob
  */
-export type GetJobStatusResponse = Message<"io.clbs.openhes.pbdataproxy.GetJobStatusResponse"> & {
+export type BulkJob = Message<"io.clbs.openhes.pbdataproxy.BulkJob"> & {
   /**
    * The status of the job
    *
@@ -311,10 +311,10 @@ export type GetJobStatusResponse = Message<"io.clbs.openhes.pbdataproxy.GetJobSt
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdataproxy.GetJobStatusResponse.
- * Use `create(GetJobStatusResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdataproxy.BulkJob.
+ * Use `create(BulkJobSchema)` to create a new message.
  */
-export const GetJobStatusResponseSchema: GenMessage<GetJobStatusResponse> = /*@__PURE__*/
+export const BulkJobSchema: GenMessage<BulkJob> = /*@__PURE__*/
   messageDesc(file_pbdataproxy_models, 9);
 
 /**

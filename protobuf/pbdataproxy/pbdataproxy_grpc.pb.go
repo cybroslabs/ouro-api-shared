@@ -10,12 +10,13 @@ package pbdataproxy
 
 import (
 	context "context"
+	models "github.com/cybroslabs/hes-2-apis/protobuf/models"
 	pbdataproxymodels "github.com/cybroslabs/hes-2-apis/protobuf/pbdataproxymodels"
-	pbtaskmastermodels "github.com/cybroslabs/hes-2-apis/protobuf/pbtaskmastermodels"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -25,12 +26,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataproxyService_CreateBulk_FullMethodName   = "/io.clbs.openhes.pbdataproxy.DataproxyService/CreateBulk"
-	DataproxyService_GetBulks_FullMethodName     = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulks"
-	DataproxyService_GetBulk_FullMethodName      = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
-	DataproxyService_GetJobStatus_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetJobStatus"
-	DataproxyService_CancelBulk_FullMethodName   = "/io.clbs.openhes.pbdataproxy.DataproxyService/CancelBulk"
-	DataproxyService_CancelJobs_FullMethodName   = "/io.clbs.openhes.pbdataproxy.DataproxyService/CancelJobs"
+	DataproxyService_CreateBulk_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_ListBulks_FullMethodName  = "/io.clbs.openhes.pbdataproxy.DataproxyService/ListBulks"
+	DataproxyService_GetBulk_FullMethodName    = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulk"
+	DataproxyService_GetBulkJob_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_CancelBulk_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_CancelJobs_FullMethodName = "/io.clbs.openhes.pbdataproxy.DataproxyService/CancelJobs"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -41,16 +42,19 @@ const (
 type DataproxyServiceClient interface {
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(ctx context.Context, in *pbdataproxymodels.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(ctx context.Context, in *pbdataproxymodels.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulksResponse, error)
-	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error)
-	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Bulks
+	// Retrieves the list of bulks.
+	ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ArrayOfBulk, error)
+	// @group: Bulks
+	// Retrieves the bulk info and status.
+	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdataproxymodels.Bulk, error)
+	// @group: Bulks
+	// Retrieves the job status.
+	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdataproxymodels.BulkJob, error)
 	// Cancels the bulk of jobs.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Cancels the job(s) identified by the job identifier(s).
-	CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CancelJobs(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type dataproxyServiceClient struct {
@@ -71,19 +75,19 @@ func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *pbdataproxy
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetBulks(ctx context.Context, in *pbdataproxymodels.GetBulksReuqest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulksResponse, error) {
+func (c *dataproxyServiceClient) ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ArrayOfBulk, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxymodels.GetBulksResponse)
-	err := c.cc.Invoke(ctx, DataproxyService_GetBulks_FullMethodName, in, out, cOpts...)
+	out := new(pbdataproxymodels.ArrayOfBulk)
+	err := c.cc.Invoke(ctx, DataproxyService_ListBulks_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *pbdataproxymodels.GetBulkRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetBulkResponse, error) {
+func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdataproxymodels.Bulk, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxymodels.GetBulkResponse)
+	out := new(pbdataproxymodels.Bulk)
 	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -91,10 +95,10 @@ func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *pbdataproxymod
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetJobStatus(ctx context.Context, in *pbdataproxymodels.GetJobStatusRequest, opts ...grpc.CallOption) (*pbdataproxymodels.GetJobStatusResponse, error) {
+func (c *dataproxyServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdataproxymodels.BulkJob, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxymodels.GetJobStatusResponse)
-	err := c.cc.Invoke(ctx, DataproxyService_GetJobStatus_FullMethodName, in, out, cOpts...)
+	out := new(pbdataproxymodels.BulkJob)
+	err := c.cc.Invoke(ctx, DataproxyService_GetBulkJob_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -111,7 +115,7 @@ func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CancelJobs(ctx context.Context, in *pbtaskmastermodels.CancelJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) CancelJobs(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CancelJobs_FullMethodName, in, out, cOpts...)
@@ -129,16 +133,19 @@ func (c *dataproxyServiceClient) CancelJobs(ctx context.Context, in *pbtaskmaste
 type DataproxyServiceServer interface {
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error)
-	// The method called by the RestApi to retrieve stored bulks.
-	GetBulks(context.Context, *pbdataproxymodels.GetBulksReuqest) (*pbdataproxymodels.GetBulksResponse, error)
-	// The method called by the RestApi to retrieve single bulk.
-	GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error)
-	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error)
+	// @group: Bulks
+	// Retrieves the list of bulks.
+	ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ArrayOfBulk, error)
+	// @group: Bulks
+	// Retrieves the bulk info and status.
+	GetBulk(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.Bulk, error)
+	// @group: Bulks
+	// Retrieves the job status.
+	GetBulkJob(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.BulkJob, error)
 	// Cancels the bulk of jobs.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// Cancels the job(s) identified by the job identifier(s).
-	CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error)
+	CancelJobs(context.Context, *structpb.ListValue) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -152,19 +159,19 @@ type UnimplementedDataproxyServiceServer struct{}
 func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetBulks(context.Context, *pbdataproxymodels.GetBulksReuqest) (*pbdataproxymodels.GetBulksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBulks not implemented")
+func (UnimplementedDataproxyServiceServer) ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ArrayOfBulk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBulks not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *pbdataproxymodels.GetBulkRequest) (*pbdataproxymodels.GetBulkResponse, error) {
+func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.Bulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetJobStatus(context.Context, *pbdataproxymodels.GetJobStatusRequest) (*pbdataproxymodels.GetJobStatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetJobStatus not implemented")
+func (UnimplementedDataproxyServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.BulkJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
 func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CancelJobs(context.Context, *pbtaskmastermodels.CancelJobsRequest) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) CancelJobs(context.Context, *structpb.ListValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
@@ -206,26 +213,26 @@ func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxymodels.GetBulksReuqest)
+func _DataproxyService_ListBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(models.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataproxyServiceServer).GetBulks(ctx, in)
+		return srv.(DataproxyServiceServer).ListBulks(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataproxyService_GetBulks_FullMethodName,
+		FullMethod: DataproxyService_ListBulks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetBulks(ctx, req.(*pbdataproxymodels.GetBulksReuqest))
+		return srv.(DataproxyServiceServer).ListBulks(ctx, req.(*models.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxymodels.GetBulkRequest)
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -237,25 +244,25 @@ func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: DataproxyService_GetBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*pbdataproxymodels.GetBulkRequest))
+		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetJobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbdataproxymodels.GetJobStatusRequest)
+func _DataproxyService_GetBulkJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataproxyServiceServer).GetJobStatus(ctx, in)
+		return srv.(DataproxyServiceServer).GetBulkJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataproxyService_GetJobStatus_FullMethodName,
+		FullMethod: DataproxyService_GetBulkJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetJobStatus(ctx, req.(*pbdataproxymodels.GetJobStatusRequest))
+		return srv.(DataproxyServiceServer).GetBulkJob(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -279,7 +286,7 @@ func _DataproxyService_CancelBulk_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _DataproxyService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pbtaskmastermodels.CancelJobsRequest)
+	in := new(structpb.ListValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -291,7 +298,7 @@ func _DataproxyService_CancelJobs_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: DataproxyService_CancelJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).CancelJobs(ctx, req.(*pbtaskmastermodels.CancelJobsRequest))
+		return srv.(DataproxyServiceServer).CancelJobs(ctx, req.(*structpb.ListValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -308,16 +315,16 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataproxyService_CreateBulk_Handler,
 		},
 		{
-			MethodName: "GetBulks",
-			Handler:    _DataproxyService_GetBulks_Handler,
+			MethodName: "ListBulks",
+			Handler:    _DataproxyService_ListBulks_Handler,
 		},
 		{
 			MethodName: "GetBulk",
 			Handler:    _DataproxyService_GetBulk_Handler,
 		},
 		{
-			MethodName: "GetJobStatus",
-			Handler:    _DataproxyService_GetJobStatus_Handler,
+			MethodName: "GetBulkJob",
+			Handler:    _DataproxyService_GetBulkJob_Handler,
 		},
 		{
 			MethodName: "CancelBulk",

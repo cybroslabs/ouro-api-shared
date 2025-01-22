@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "pbdriver-models.proto";
 import "pbdeviceregistry-models.proto";
+import "models.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
@@ -16,13 +17,25 @@ service DeviceRegistryService {
 
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
     rpc CreateCommunicationUnit(CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-    rpc GetCommunicationUnits(GetCommunicationUnitsRequest) returns (GetCommunicationUnitsResponse);
+    rpc ListCommunicationUnit(models.ListSelector) returns (ArrayOfCommunicationUnitSpec);
+    // @group: Devices
+    // @tag: communicationunit
+    // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+    rpc GetCommunicationUnit(google.protobuf.StringValue) returns (CommunicationUnitSpec);
 
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(CreateDeviceRequest) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-    rpc GetDevices(GetDevicesRequest) returns (GetDevicesResponse);
+    rpc ListDevices(models.ListSelector) returns (ArrayOfDevice);
+    // @group: Devices
+    // @tag: device
+    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+    rpc GetDevice(google.protobuf.StringValue) returns (Device);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
