@@ -4,7 +4,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: services/taskmaster.proto
+// source: services/taskmaster/taskmaster.proto
 
 package taskmaster
 
@@ -491,5 +491,5 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "services/taskmaster.proto",
+	Metadata: "services/taskmaster/taskmaster.proto",
 }

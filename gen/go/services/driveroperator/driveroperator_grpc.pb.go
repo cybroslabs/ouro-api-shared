@@ -4,7 +4,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: services/driveroperator.proto
+// source: services/driveroperator/driveroperator.proto
 
 package driveroperator
 
@@ -332,5 +332,5 @@ var DriverOperatorService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "services/driveroperator.proto",
+	Metadata: "services/driveroperator/driveroperator.proto",
 }

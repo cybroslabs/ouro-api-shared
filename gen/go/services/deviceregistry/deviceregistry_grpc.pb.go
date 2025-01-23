@@ -4,7 +4,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: services/deviceregistry.proto
+// source: services/deviceregistry/deviceregistry.proto
 
 package deviceregistry
 
@@ -989,5 +989,5 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "services/deviceregistry.proto",
+	Metadata: "services/deviceregistry/deviceregistry.proto",
 }
