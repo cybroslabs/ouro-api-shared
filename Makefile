@@ -9,85 +9,54 @@ setup:
 gen-go:
 	npm i
 
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbdeviceregistrymodels \
-		--go-grpc_out=./pbdeviceregistrymodels \
-		--go-grpc_opt=paths=source_relative \
-		pbdeviceregistry-models.proto
+	(rm -rf ./gen/go/* && cd protobuf && for f in `find . -name '*.proto'`; do \
+		export dn=`dirname $$f`; \
+		protoc \
+			--go_opt=default_api_level=API_OPAQUE \
+			--go_opt=paths=source_relative \
+			--go-grpc_opt=paths=source_relative \
+			$$f; \
+	done)
 
 	cd protobuf && protoc \
 		--go_opt=default_api_level=API_OPAQUE \
 		--go_opt=paths=source_relative \
-		--go_out=./pbdrivermodels \
-		--go-grpc_out=./pbdrivermodels \
+		--go_out=../gen/go/services/deviceregistry \
+		--go-grpc_out=../gen/go/services/deviceregistry \
 		--go-grpc_opt=paths=source_relative \
-		pbdriver-models.proto
+		services/deviceregistry.proto
 
 	cd protobuf && protoc \
 		--go_opt=default_api_level=API_OPAQUE \
 		--go_opt=paths=source_relative \
-		--go_out=./pbtaskmastermodels \
-		--go-grpc_out=./pbtaskmastermodels \
+		--go_out=../gen/go/services/driver \
+		--go-grpc_out=../gen/go/services/driver \
 		--go-grpc_opt=paths=source_relative \
-		pbtaskmaster-models.proto
+		services/driver.proto
 
 	cd protobuf && protoc \
 		--go_opt=default_api_level=API_OPAQUE \
 		--go_opt=paths=source_relative \
-		--go_out=./pbdataproxymodels \
-		--go-grpc_out=./pbdataproxymodels \
+		--go_out=../gen/go/services/taskmaster \
+		--go-grpc_out=../gen/go/services/taskmaster \
 		--go-grpc_opt=paths=source_relative \
-		pbdataproxy-models.proto
+		services/taskmaster.proto
 
 	cd protobuf && protoc \
 		--go_opt=default_api_level=API_OPAQUE \
 		--go_opt=paths=source_relative \
-		--go_out=./pbdriveroperatormodels \
-		--go-grpc_out=./pbdriveroperatormodels \
+		--go_out=../gen/go/services/dataproxy \
+		--go-grpc_out=../gen/go/services/dataproxy \
 		--go-grpc_opt=paths=source_relative \
-		pbdriveroperator-models.proto
+		services/dataproxy.proto
 
 	cd protobuf && protoc \
 		--go_opt=default_api_level=API_OPAQUE \
 		--go_opt=paths=source_relative \
-		--go_out=./pbdeviceregistry \
-		--go-grpc_out=./pbdeviceregistry \
+		--go_out=../gen/go/services/driveroperator \
+		--go-grpc_out=../gen/go/services/driveroperator \
 		--go-grpc_opt=paths=source_relative \
-		pbdeviceregistry.proto
-
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbdriver \
-		--go-grpc_out=./pbdriver \
-		--go-grpc_opt=paths=source_relative \
-		pbdriver.proto
-
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbtaskmaster \
-		--go-grpc_out=./pbtaskmaster \
-		--go-grpc_opt=paths=source_relative \
-		pbtaskmaster.proto
-
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbdataproxy \
-		--go-grpc_out=./pbdataproxy \
-		--go-grpc_opt=paths=source_relative \
-		pbdataproxy.proto
-
-	cd protobuf && protoc \
-		--go_opt=default_api_level=API_OPAQUE \
-		--go_opt=paths=source_relative \
-		--go_out=./pbdriveroperator \
-		--go-grpc_out=./pbdriveroperator \
-		--go-grpc_opt=paths=source_relative \
-		pbdriveroperator.proto
+		services/driveroperator.proto
 
 	cd protobuf && buf generate
 

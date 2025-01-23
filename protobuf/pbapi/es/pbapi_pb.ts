@@ -6,15 +6,15 @@ import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegen
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { EmptySchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_empty, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
-import type { CancelJobsRequestSchema, JobDevice as JobDevice$1, SystemConfigSchema } from "./pbtaskmaster-models_pb";
+import type { CancelJobsRequestSchema, JobDevice, SystemConfigSchema } from "./pbtaskmaster-models_pb";
 import { file_pbtaskmaster_models } from "./pbtaskmaster-models_pb";
-import type { ArrayOfConnectionInfoSchema, DriverTemplatesSchema, JobAction, JobSettings } from "./pbdriver-models_pb";
+import type { DriverTemplatesSchema, JobAction, JobSettings, ListOfConnectionInfoSchema } from "./pbdriver-models_pb";
 import { file_pbdriver_models } from "./pbdriver-models_pb";
-import type { ArrayOfBulkSchema, BulkJobSchema, BulkSchema } from "./pbdataproxy-models_pb";
+import type { BulkJobSchema, BulkSchema, ListOfBulkSchema } from "./pbdataproxy-models_pb";
 import { file_pbdataproxy_models } from "./pbdataproxy-models_pb";
-import type { GetDriversResponseSchema } from "./pbdriveroperator-models_pb";
+import type { ListOfDriverInfoSchema } from "./pbdriveroperator-models_pb";
 import { file_pbdriveroperator_models } from "./pbdriveroperator-models_pb";
-import type { AddDevicesToGroupRequestSchema, ArrayOfCommunicationUnitSpecSchema, CommunicationUnitSpecSchema, CreateCommunicationUnitRequestSchema, CreateDeviceGroupRequestSchema, CreateDeviceRequestSchema, DeviceSpecSchema, GetDeviceGroupResponseSchema, GetDeviceGroupsResponseSchema, GetModemPoolResponseSchema, GetModemPoolsResponseSchema, RemoveDevicesFromGroupRequestSchema, SetDeviceCommunicationUnitsRequestSchema, SetModemPoolRequestSchema, SetModemRequestSchema } from "./pbdeviceregistry-models_pb";
+import type { AddDevicesToGroupRequestSchema, CommunicationUnitSpecSchema, CreateCommunicationUnitRequestSchema, CreateDeviceGroupRequestSchema, CreateDeviceRequestSchema, DeviceSpecSchema, GetDeviceGroupResponseSchema, GetDeviceGroupsResponseSchema, GetModemPoolResponseSchema, GetModemPoolsResponseSchema, ListOfCommunicationUnitSpecSchema, RemoveDevicesFromGroupRequestSchema, SetDeviceCommunicationUnitsRequestSchema, SetModemPoolRequestSchema, SetModemRequestSchema } from "./pbdeviceregistry-models_pb";
 import { file_pbdeviceregistry_models } from "./pbdeviceregistry-models_pb";
 import type { ListSelectorSchema } from "./models_pb";
 import { file_models } from "./models_pb";
@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pbapi.proto.
  */
 export const file_pbapi: GenFile = /*@__PURE__*/
-  fileDesc("CgtwYmFwaS5wcm90bxIVaW8uY2xicy5vcGVuaGVzLnBiYXBpIt8CChdQdWJsaWNDcmVhdGVCdWxrUmVxdWVzdBIKCgJpZBgBIAEoCRIWCg5jb3JyZWxhdGlvbl9pZBgCIAEoCRITCgtkcml2ZXJfdHlwZRgDIAEoCRI3CgdkZXZpY2VzGAQgASgLMiQuaW8uY2xicy5vcGVuaGVzLnBiYXBpLkpvYkRldmljZUxpc3RIABJECg5jdXN0b21fZGV2aWNlcxgFIAEoCzIqLmlvLmNsYnMub3Blbmhlcy5wYmFwaS5Kb2JDdXN0b21EZXZpY2VMaXN0SAASNwoIc2V0dGluZ3MYBiABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iU2V0dGluZ3MSNAoHYWN0aW9ucxgHIAMoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JBY3Rpb24SEwoLd2ViaG9va191cmwYCCABKAlCCAoGZGV2aWNlIkwKE0pvYkN1c3RvbURldmljZUxpc3QSNQoEbGlzdBgFIAMoCzInLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuSm9iRGV2aWNlIj8KDUpvYkRldmljZUxpc3QSLgoEbGlzdBgFIAMoCzIgLmlvLmNsYnMub3Blbmhlcy5wYmFwaS5Kb2JEZXZpY2UiKgoJSm9iRGV2aWNlEgoKAmlkGAEgASgJEhEKCWRldmljZV9pZBgCIAEoCTLPFwoKQXBpU2VydmljZRJUCgpDcmVhdGVCdWxrEi4uaW8uY2xicy5vcGVuaGVzLnBiYXBpLlB1YmxpY0NyZWF0ZUJ1bGtSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5ElsKCUxpc3RCdWxrcxIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGiguaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkFycmF5T2ZCdWxrEkoKB0dldEJ1bGsSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaIS5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsaxJQCgpHZXRCdWxrSm9iEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGiQuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtKb2ISQgoKQ2FuY2VsQnVsaxIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJVCgpDYW5jZWxKb2JzEi8uaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5DYW5jZWxKb2JzUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJpCgtMaXN0RHJpdmVycxIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGjQuaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyb3BlcmF0b3IuR2V0RHJpdmVyc1Jlc3BvbnNlEl0KEkdldERyaXZlclRlbXBsYXRlcxIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRopLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Ecml2ZXJUZW1wbGF0ZXMScwoXQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXQSQC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSfQoVTGlzdENvbW11bmljYXRpb25Vbml0EiQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5MaXN0U2VsZWN0b3IaPi5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5BcnJheU9mQ29tbXVuaWNhdGlvblVuaXRTcGVjEm0KFEdldENvbW11bmljYXRpb25Vbml0EhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGjcuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ29tbXVuaWNhdGlvblVuaXRTcGVjEl0KDENyZWF0ZURldmljZRI1LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkNyZWF0ZURldmljZVJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSYQoLTGlzdERldmljZXMSJC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLkxpc3RTZWxlY3RvchosLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMSVwoJR2V0RGV2aWNlEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGiwuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlU3BlYxJ7ChtTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHMSRC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5TZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Em0KHEdldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHMSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaLy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXJyYXlPZkNvbm5lY3Rpb25JbmZvEmcKEUNyZWF0ZURldmljZUdyb3VwEjouaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ3JlYXRlRGV2aWNlR3JvdXBSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EnMKEExpc3REZXZpY2VHcm91cHMSJC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLkxpc3RTZWxlY3Rvcho5LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkdldERldmljZUdyb3Vwc1Jlc3BvbnNlEmgKDkdldERldmljZUdyb3VwEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGjguaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuR2V0RGV2aWNlR3JvdXBSZXNwb25zZRJnChFBZGREZXZpY2VzVG9Hcm91cBI6LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkFkZERldmljZXNUb0dyb3VwUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJxChZSZW1vdmVEZXZpY2VzRnJvbUdyb3VwEj8uaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSbwoOTGlzdE1vZGVtUG9vbHMSJC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLkxpc3RTZWxlY3Rvcho3LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkdldE1vZGVtUG9vbHNSZXNwb25zZRJkCgxHZXRNb2RlbVBvb2wSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaNi5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXRNb2RlbVBvb2xSZXNwb25zZRJgCg9DcmVhdGVNb2RlbVBvb2wSNS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5TZXRNb2RlbVBvb2xSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EmAKD1VwZGF0ZU1vZGVtUG9vbBI1LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LlNldE1vZGVtUG9vbFJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSRwoPRGVsZXRlTW9kZW1Qb29sEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5ElgKC0NyZWF0ZU1vZGVtEjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuU2V0TW9kZW1SZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5ElgKC1VwZGF0ZU1vZGVtEjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuU2V0TW9kZW1SZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EkMKC0RlbGV0ZU1vZGVtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ek8KCUdldENvbmZpZxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoqLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuU3lzdGVtQ29uZmlnEk8KCVNldENvbmZpZxIqLmlvLmNsYnMub3Blbmhlcy5wYnRhc2ttYXN0ZXIuU3lzdGVtQ29uZmlnGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5QjFaL2dpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL3Byb3RvYnVmL3BiYXBpYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_google_protobuf_wrappers, file_pbtaskmaster_models, file_pbdriver_models, file_pbdataproxy_models, file_pbdriveroperator_models, file_pbdeviceregistry_models, file_models]);
+  fileDesc("CgtwYmFwaS5wcm90bxIVaW8uY2xicy5vcGVuaGVzLnBiYXBpIt8CChdQdWJsaWNDcmVhdGVCdWxrUmVxdWVzdBIKCgJpZBgBIAEoCRIWCg5jb3JyZWxhdGlvbl9pZBgCIAEoCRITCgtkcml2ZXJfdHlwZRgDIAEoCRI7CgdkZXZpY2VzGAQgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiYXBpLkxpc3RPZkpvYkRldmljZUlkSAASQAoOY3VzdG9tX2RldmljZXMYBSABKAsyJi5pby5jbGJzLm9wZW5oZXMucGJhcGkuTGlzdE9mSm9iRGV2aWNlSAASNwoIc2V0dGluZ3MYBiABKAsyJS5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuSm9iU2V0dGluZ3MSNAoHYWN0aW9ucxgHIAMoCzIjLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5Kb2JBY3Rpb24SEwoLd2ViaG9va191cmwYCCABKAlCCAoGZGV2aWNlIkgKD0xpc3RPZkpvYkRldmljZRI1CgRsaXN0GAUgAygLMicuaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5Kb2JEZXZpY2UiRQoRTGlzdE9mSm9iRGV2aWNlSWQSMAoEbGlzdBgFIAMoCzIiLmlvLmNsYnMub3Blbmhlcy5wYmFwaS5Kb2JEZXZpY2VJZCIsCgtKb2JEZXZpY2VJZBIKCgJpZBgBIAEoCRIRCglkZXZpY2VfaWQYAiABKAkyyhcKCkFwaVNlcnZpY2USVAoKQ3JlYXRlQnVsaxIuLmlvLmNsYnMub3Blbmhlcy5wYmFwaS5QdWJsaWNDcmVhdGVCdWxrUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJaCglMaXN0QnVsa3MSJC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLkxpc3RTZWxlY3RvchonLmlvLmNsYnMub3Blbmhlcy5wYmRhdGFwcm94eS5MaXN0T2ZCdWxrEkoKB0dldEJ1bGsSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaIS5pby5jbGJzLm9wZW5oZXMucGJkYXRhcHJveHkuQnVsaxJQCgpHZXRCdWxrSm9iEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGiQuaW8uY2xicy5vcGVuaGVzLnBiZGF0YXByb3h5LkJ1bGtKb2ISQgoKQ2FuY2VsQnVsaxIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJVCgpDYW5jZWxKb2JzEi8uaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5DYW5jZWxKb2JzUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJnCgtMaXN0RHJpdmVycxIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGjIuaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyb3BlcmF0b3IuTGlzdE9mRHJpdmVySW5mbxJdChJHZXREcml2ZXJUZW1wbGF0ZXMSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaKS5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuRHJpdmVyVGVtcGxhdGVzEnMKF0NyZWF0ZUNvbW11bmljYXRpb25Vbml0EkAuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXRSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EnwKFUxpc3RDb21tdW5pY2F0aW9uVW5pdBIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGj0uaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuTGlzdE9mQ29tbXVuaWNhdGlvblVuaXRTcGVjEm0KFEdldENvbW11bmljYXRpb25Vbml0EhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGjcuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ29tbXVuaWNhdGlvblVuaXRTcGVjEl0KDENyZWF0ZURldmljZRI1LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkNyZWF0ZURldmljZVJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSYQoLTGlzdERldmljZXMSJC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLkxpc3RTZWxlY3RvchosLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMSVwoJR2V0RGV2aWNlEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGiwuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlU3BlYxJ7ChtTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHMSRC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5TZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EmwKHEdldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHMSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaLi5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuTGlzdE9mQ29ubmVjdGlvbkluZm8SZwoRQ3JlYXRlRGV2aWNlR3JvdXASOi5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5DcmVhdGVEZXZpY2VHcm91cFJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkScwoQTGlzdERldmljZUdyb3VwcxIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuR2V0RGV2aWNlR3JvdXBzUmVzcG9uc2USaAoOR2V0RGV2aWNlR3JvdXASHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaOC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXREZXZpY2VHcm91cFJlc3BvbnNlEmcKEUFkZERldmljZXNUb0dyb3VwEjouaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQWRkRGV2aWNlc1RvR3JvdXBSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EnEKFlJlbW92ZURldmljZXNGcm9tR3JvdXASPy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5SZW1vdmVEZXZpY2VzRnJvbUdyb3VwUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJvCg5MaXN0TW9kZW1Qb29scxIkLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuTGlzdFNlbGVjdG9yGjcuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuR2V0TW9kZW1Qb29sc1Jlc3BvbnNlEmQKDEdldE1vZGVtUG9vbBIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRo2LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkdldE1vZGVtUG9vbFJlc3BvbnNlEmAKD0NyZWF0ZU1vZGVtUG9vbBI1LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LlNldE1vZGVtUG9vbFJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSYAoPVXBkYXRlTW9kZW1Qb29sEjUuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuU2V0TW9kZW1Qb29sUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJHCg9EZWxldGVNb2RlbVBvb2wSHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSWAoLQ3JlYXRlTW9kZW0SMS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5TZXRNb2RlbVJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSWAoLVXBkYXRlTW9kZW0SMS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5TZXRNb2RlbVJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSQwoLRGVsZXRlTW9kZW0SHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSTwoJR2V0Q29uZmlnEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GiouaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5TeXN0ZW1Db25maWcSTwoJU2V0Q29uZmlnEiouaW8uY2xicy5vcGVuaGVzLnBidGFza21hc3Rlci5TeXN0ZW1Db25maWcaFi5nb29nbGUucHJvdG9idWYuRW1wdHlCMVovZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvcHJvdG9idWYvcGJhcGliCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_google_protobuf_wrappers, file_pbtaskmaster_models, file_pbdriver_models, file_pbdataproxy_models, file_pbdriveroperator_models, file_pbdeviceregistry_models, file_models]);
 
 /**
  * @generated from message io.clbs.openhes.pbapi.PublicCreateBulkRequest
@@ -60,17 +60,17 @@ export type PublicCreateBulkRequest = Message<"io.clbs.openhes.pbapi.PublicCreat
     /**
      * The list of devices in the bulk.
      *
-     * @generated from field: io.clbs.openhes.pbapi.JobDeviceList devices = 4;
+     * @generated from field: io.clbs.openhes.pbapi.ListOfJobDeviceId devices = 4;
      */
-    value: JobDeviceList;
+    value: ListOfJobDeviceId;
     case: "devices";
   } | {
     /**
      * The list of custom devices in the bulk.
      *
-     * @generated from field: io.clbs.openhes.pbapi.JobCustomDeviceList custom_devices = 5;
+     * @generated from field: io.clbs.openhes.pbapi.ListOfJobDevice custom_devices = 5;
      */
-    value: JobCustomDeviceList;
+    value: ListOfJobDevice;
     case: "customDevices";
   } | { case: undefined; value?: undefined };
 
@@ -104,47 +104,47 @@ export const PublicCreateBulkRequestSchema: GenMessage<PublicCreateBulkRequest> 
   messageDesc(file_pbapi, 0);
 
 /**
- * @generated from message io.clbs.openhes.pbapi.JobCustomDeviceList
+ * @generated from message io.clbs.openhes.pbapi.ListOfJobDevice
  */
-export type JobCustomDeviceList = Message<"io.clbs.openhes.pbapi.JobCustomDeviceList"> & {
+export type ListOfJobDevice = Message<"io.clbs.openhes.pbapi.ListOfJobDevice"> & {
   /**
    * The list of devices in the bulk.
    *
    * @generated from field: repeated io.clbs.openhes.pbtaskmaster.JobDevice list = 5;
    */
-  list: JobDevice$1[];
-};
-
-/**
- * Describes the message io.clbs.openhes.pbapi.JobCustomDeviceList.
- * Use `create(JobCustomDeviceListSchema)` to create a new message.
- */
-export const JobCustomDeviceListSchema: GenMessage<JobCustomDeviceList> = /*@__PURE__*/
-  messageDesc(file_pbapi, 1);
-
-/**
- * @generated from message io.clbs.openhes.pbapi.JobDeviceList
- */
-export type JobDeviceList = Message<"io.clbs.openhes.pbapi.JobDeviceList"> & {
-  /**
-   * The list of devices in the bulk.
-   *
-   * @generated from field: repeated io.clbs.openhes.pbapi.JobDevice list = 5;
-   */
   list: JobDevice[];
 };
 
 /**
- * Describes the message io.clbs.openhes.pbapi.JobDeviceList.
- * Use `create(JobDeviceListSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbapi.ListOfJobDevice.
+ * Use `create(ListOfJobDeviceSchema)` to create a new message.
  */
-export const JobDeviceListSchema: GenMessage<JobDeviceList> = /*@__PURE__*/
+export const ListOfJobDeviceSchema: GenMessage<ListOfJobDevice> = /*@__PURE__*/
+  messageDesc(file_pbapi, 1);
+
+/**
+ * @generated from message io.clbs.openhes.pbapi.ListOfJobDeviceId
+ */
+export type ListOfJobDeviceId = Message<"io.clbs.openhes.pbapi.ListOfJobDeviceId"> & {
+  /**
+   * The list of devices in the bulk.
+   *
+   * @generated from field: repeated io.clbs.openhes.pbapi.JobDeviceId list = 5;
+   */
+  list: JobDeviceId[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.pbapi.ListOfJobDeviceId.
+ * Use `create(ListOfJobDeviceIdSchema)` to create a new message.
+ */
+export const ListOfJobDeviceIdSchema: GenMessage<ListOfJobDeviceId> = /*@__PURE__*/
   messageDesc(file_pbapi, 2);
 
 /**
- * @generated from message io.clbs.openhes.pbapi.JobDevice
+ * @generated from message io.clbs.openhes.pbapi.JobDeviceId
  */
-export type JobDevice = Message<"io.clbs.openhes.pbapi.JobDevice"> & {
+export type JobDeviceId = Message<"io.clbs.openhes.pbapi.JobDeviceId"> & {
   /**
    * The device's job identifier within the parent bulk.
    *
@@ -161,10 +161,10 @@ export type JobDevice = Message<"io.clbs.openhes.pbapi.JobDevice"> & {
 };
 
 /**
- * Describes the message io.clbs.openhes.pbapi.JobDevice.
- * Use `create(JobDeviceSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbapi.JobDeviceId.
+ * Use `create(JobDeviceIdSchema)` to create a new message.
  */
-export const JobDeviceSchema: GenMessage<JobDevice> = /*@__PURE__*/
+export const JobDeviceIdSchema: GenMessage<JobDeviceId> = /*@__PURE__*/
   messageDesc(file_pbapi, 3);
 
 /**
@@ -195,7 +195,7 @@ export const ApiService: GenService<{
   listBulks: {
     methodKind: "unary";
     input: typeof ListSelectorSchema;
-    output: typeof ArrayOfBulkSchema;
+    output: typeof ListOfBulkSchema;
   },
   /**
    * @group: Bulks
@@ -250,7 +250,7 @@ export const ApiService: GenService<{
   listDrivers: {
     methodKind: "unary";
     input: typeof ListSelectorSchema;
-    output: typeof GetDriversResponseSchema;
+    output: typeof ListOfDriverInfoSchema;
   },
   /**
    * @group: Driver Info
@@ -285,7 +285,7 @@ export const ApiService: GenService<{
   listCommunicationUnit: {
     methodKind: "unary";
     input: typeof ListSelectorSchema;
-    output: typeof ArrayOfCommunicationUnitSpecSchema;
+    output: typeof ListOfCommunicationUnitSpecSchema;
   },
   /**
    * @group: Devices
@@ -357,7 +357,7 @@ export const ApiService: GenService<{
   getDevicesCommunicationUnits: {
     methodKind: "unary";
     input: typeof StringValueSchema;
-    output: typeof ArrayOfConnectionInfoSchema;
+    output: typeof ListOfConnectionInfoSchema;
   },
   /**
    * @group: Devices

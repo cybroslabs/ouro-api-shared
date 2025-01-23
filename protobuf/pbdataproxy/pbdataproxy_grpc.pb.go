@@ -44,7 +44,7 @@ type DataproxyServiceClient interface {
 	CreateBulk(ctx context.Context, in *pbdataproxymodels.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
-	ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ArrayOfBulk, error)
+	ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ListOfBulk, error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*pbdataproxymodels.Bulk, error)
@@ -75,9 +75,9 @@ func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *pbdataproxy
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ArrayOfBulk, error) {
+func (c *dataproxyServiceClient) ListBulks(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdataproxymodels.ListOfBulk, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdataproxymodels.ArrayOfBulk)
+	out := new(pbdataproxymodels.ListOfBulk)
 	err := c.cc.Invoke(ctx, DataproxyService_ListBulks_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -135,7 +135,7 @@ type DataproxyServiceServer interface {
 	CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
-	ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ArrayOfBulk, error)
+	ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ListOfBulk, error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.Bulk, error)
@@ -159,7 +159,7 @@ type UnimplementedDataproxyServiceServer struct{}
 func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *pbdataproxymodels.CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ArrayOfBulk, error) {
+func (UnimplementedDataproxyServiceServer) ListBulks(context.Context, *models.ListSelector) (*pbdataproxymodels.ListOfBulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBulks not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*pbdataproxymodels.Bulk, error) {

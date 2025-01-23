@@ -63,7 +63,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error)
+	ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ListOfCommunicationUnitSpec, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -73,7 +73,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfDevice, error)
+	ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ListOfDevice, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -140,9 +140,9 @@ func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Contex
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error) {
+func (c *deviceRegistryServiceClient) ListCommunicationUnit(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ListOfCommunicationUnitSpec, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec)
+	out := new(pbdeviceregistrymodels.ListOfCommunicationUnitSpec)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -170,9 +170,9 @@ func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *pbde
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ArrayOfDevice, error) {
+func (c *deviceRegistryServiceClient) ListDevices(ctx context.Context, in *models.ListSelector, opts ...grpc.CallOption) (*pbdeviceregistrymodels.ListOfDevice, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(pbdeviceregistrymodels.ArrayOfDevice)
+	out := new(pbdeviceregistrymodels.ListOfDevice)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDevices_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -353,7 +353,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error)
+	ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ListOfCommunicationUnitSpec, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -363,7 +363,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-	ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfDevice, error)
+	ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ListOfDevice, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -416,7 +416,7 @@ func (UnimplementedDeviceRegistryServiceServer) SetDriverTemplates(context.Conte
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *pbdeviceregistrymodels.CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfCommunicationUnitSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnit(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ListOfCommunicationUnitSpec, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.CommunicationUnitSpec, error) {
@@ -425,7 +425,7 @@ func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Con
 func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *pbdeviceregistrymodels.CreateDeviceRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ArrayOfDevice, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *models.ListSelector) (*pbdeviceregistrymodels.ListOfDevice, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDevices not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrapperspb.StringValue) (*pbdeviceregistrymodels.Device, error) {

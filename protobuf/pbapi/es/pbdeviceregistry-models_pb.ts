@@ -5,15 +5,17 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_protobuf_empty, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
-import type { ApplicationProtocol, ArrayOfConnectionInfo, AttributeValue, ConnectionInfo, ModemInfo } from "./pbdriver-models_pb";
+import type { ApplicationProtocol, AttributeValue, ConnectionInfo, ListOfConnectionInfo, ModemInfo } from "./pbdriver-models_pb";
 import { file_pbdriver_models } from "./pbdriver-models_pb";
+import type { MetadataFields } from "./models_pb";
+import { file_models } from "./models_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file pbdeviceregistry-models.proto.
  */
 export const file_pbdeviceregistry_models: GenFile = /*@__PURE__*/
-  fileDesc("Ch1wYmRldmljZXJlZ2lzdHJ5LW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkiZwoeQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXRSZXF1ZXN0EkUKBHNwZWMYASABKAsyNy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Db21tdW5pY2F0aW9uVW5pdFNwZWMiTQocR2V0Q29tbXVuaWNhdGlvblVuaXRzUmVxdWVzdBIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJImUKHEFycmF5T2ZDb21tdW5pY2F0aW9uVW5pdFNwZWMSRQoEc3BlYxgBIAMoCzI3LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkNvbW11bmljYXRpb25Vbml0U3BlYyKJAQoVQ29tbXVuaWNhdGlvblVuaXRTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSQQoPY29ubmVjdGlvbl9pbmZvGAQgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkNvbm5lY3Rpb25JbmZvIlEKE0NyZWF0ZURldmljZVJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiQgoRR2V0RGV2aWNlc1JlcXVlc3QSCgoCaWQYASABKAkSEwoLZXh0ZXJuYWxfaWQYAiABKAkSDAoEbmFtZRgDIAEoCSJECgZEZXZpY2USOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiSAoNQXJyYXlPZkRldmljZRI3CgVpdGVtcxgBIAMoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZSLYAgoKRGV2aWNlU3BlYxIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJElAKCmF0dHJpYnV0ZXMYBCADKAsyPC5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VTcGVjLkF0dHJpYnV0ZXNFbnRyeRJaChdjb21tdW5pY2F0aW9uX3VuaXRfbGluaxgFIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZUNvbW11bmljYXRpb25Vbml0EhAKCHRpbWV6b25lGAYgASgJGlsKD0F0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSNwoFdmFsdWUYAiABKAsyKC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXR0cmlidXRlVmFsdWU6AjgBIlMKD0RldmljZUdyb3VwU3BlYxIKCgJpZBgBIAEoCRITCgtleHRlcm5hbF9pZBgCIAEoCRIMCgRuYW1lGAMgASgJEhEKCWRldmljZV9pZBgEIAMoCSJbChhDcmVhdGVEZXZpY2VHcm91cFJlcXVlc3QSPwoEc3BlYxgBIAEoCzIxLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZUdyb3VwU3BlYyLaAQoXR2V0RGV2aWNlR3JvdXBzUmVzcG9uc2USVQoGZ3JvdXBzGAEgAygLMkUuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuR2V0RGV2aWNlR3JvdXBzUmVzcG9uc2UuR3JvdXBzRW50cnkaaAoLR3JvdXBzRW50cnkSCwoDa2V5GAEgASgJEkgKBXZhbHVlGAIgASgLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBPdmVydmlld1NwZWM6AjgBIkgKF0RldmljZUdyb3VwT3ZlcnZpZXdTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkiWQoWR2V0RGV2aWNlR3JvdXBSZXNwb25zZRI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBTcGVjIj8KGEFkZERldmljZXNUb0dyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkiRAodUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJIo8BCiJTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAEoCRJWChNjb21tdW5pY2F0aW9uX3VuaXRzGAIgAygLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQifQoXRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQSHQoVY29tbXVuaWNhdGlvbl91bml0X2lkGAEgASgJEkMKDGFwcF9wcm90b2NvbBgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BcHBsaWNhdGlvblByb3RvY29sIjgKI0dldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAMoCSLtAQokR2V0RGV2aWNlc0NvbW11bmljYXRpb25Vbml0c1Jlc3BvbnNlEmQKB2RldmljZXMYASADKAsyUy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXREZXZpY2VzQ29tbXVuaWNhdGlvblVuaXRzUmVzcG9uc2UuRGV2aWNlc0VudHJ5Gl8KDERldmljZXNFbnRyeRILCgNrZXkYASABKAkSPgoFdmFsdWUYAiABKAsyLy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuQXJyYXlPZkNvbm5lY3Rpb25JbmZvOgI4ASIuCg1Nb2RlbVBvb2xTcGVjEg8KB3Bvb2xfaWQYASABKAkSDAoEbmFtZRgCIAEoCSJXChVHZXRNb2RlbVBvb2xzUmVzcG9uc2USPgoFcG9vbHMYASADKAsyLy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Nb2RlbVBvb2xTcGVjIiYKE0dldE1vZGVtUG9vbFJlcXVlc3QSDwoHcG9vbF9pZBgBIAEoCSJZChRHZXRNb2RlbVBvb2xSZXNwb25zZRIzCgZtb2RlbXMYASADKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuTW9kZW1JbmZvEgwKBG5hbWUYAiABKAkiNAoTU2V0TW9kZW1Qb29sUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEgwKBG5hbWUYAiABKAkiVgoPU2V0TW9kZW1SZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkSMgoFbW9kZW0YAiABKAsyIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuTW9kZW1JbmZvQkJaQGdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL3Byb3RvYnVmL3BiZGV2aWNlcmVnaXN0cnltb2RlbHNiCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models]);
+  fileDesc("Ch1wYmRldmljZXJlZ2lzdHJ5LW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkiZwoeQ3JlYXRlQ29tbXVuaWNhdGlvblVuaXRSZXF1ZXN0EkUKBHNwZWMYASABKAsyNy5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5Db21tdW5pY2F0aW9uVW5pdFNwZWMiZQobTGlzdE9mQ29tbXVuaWNhdGlvblVuaXRTcGVjEkYKBWl0ZW1zGAEgAygLMjcuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ29tbXVuaWNhdGlvblVuaXRTcGVjIpQBChFDb21tdW5pY2F0aW9uVW5pdBJFCgRzcGVjGAEgASgLMjcuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuQ29tbXVuaWNhdGlvblVuaXRTcGVjEjgKCG1ldGFkYXRhGAIgASgLMiYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5NZXRhZGF0YUZpZWxkcyKJAQoVQ29tbXVuaWNhdGlvblVuaXRTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSQQoPY29ubmVjdGlvbl9pbmZvGAQgASgLMiguaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkNvbm5lY3Rpb25JbmZvIlEKE0NyZWF0ZURldmljZVJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiQgoRR2V0RGV2aWNlc1JlcXVlc3QSCgoCaWQYASABKAkSEwoLZXh0ZXJuYWxfaWQYAiABKAkSDAoEbmFtZRgDIAEoCSJECgZEZXZpY2USOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMiRwoMTGlzdE9mRGV2aWNlEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlItgCCgpEZXZpY2VTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSUAoKYXR0cmlidXRlcxgEIAMoCzI8LmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkRldmljZVNwZWMuQXR0cmlidXRlc0VudHJ5EloKF2NvbW11bmljYXRpb25fdW5pdF9saW5rGAUgAygLMjkuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQSEAoIdGltZXpvbmUYBiABKAkaWwoPQXR0cmlidXRlc0VudHJ5EgsKA2tleRgBIAEoCRI3CgV2YWx1ZRgCIAEoCzIoLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5BdHRyaWJ1dGVWYWx1ZToCOAEiUwoPRGV2aWNlR3JvdXBTcGVjEgoKAmlkGAEgASgJEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSEQoJZGV2aWNlX2lkGAQgAygJIlsKGENyZWF0ZURldmljZUdyb3VwUmVxdWVzdBI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuRGV2aWNlR3JvdXBTcGVjItoBChdHZXREZXZpY2VHcm91cHNSZXNwb25zZRJVCgZncm91cHMYASADKAsyRS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5HZXREZXZpY2VHcm91cHNSZXNwb25zZS5Hcm91cHNFbnRyeRpoCgtHcm91cHNFbnRyeRILCgNrZXkYASABKAkSSAoFdmFsdWUYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VHcm91cE92ZXJ2aWV3U3BlYzoCOAEiSAoXRGV2aWNlR3JvdXBPdmVydmlld1NwZWMSCgoCaWQYASABKAkSEwoLZXh0ZXJuYWxfaWQYAiABKAkSDAoEbmFtZRgDIAEoCSJZChZHZXREZXZpY2VHcm91cFJlc3BvbnNlEj8KBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VHcm91cFNwZWMiPwoYQWRkRGV2aWNlc1RvR3JvdXBSZXF1ZXN0EhAKCGdyb3VwX2lkGAEgASgJEhEKCWRldmljZV9pZBgCIAMoCSJECh1SZW1vdmVEZXZpY2VzRnJvbUdyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkijwEKIlNldERldmljZUNvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgASgJElYKE2NvbW11bmljYXRpb25fdW5pdHMYAiADKAsyOS5pby5jbGJzLm9wZW5oZXMucGJkZXZpY2VyZWdpc3RyeS5EZXZpY2VDb21tdW5pY2F0aW9uVW5pdCJ9ChdEZXZpY2VDb21tdW5pY2F0aW9uVW5pdBIdChVjb21tdW5pY2F0aW9uX3VuaXRfaWQYASABKAkSQwoMYXBwX3Byb3RvY29sGAIgASgOMi0uaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLkFwcGxpY2F0aW9uUHJvdG9jb2wiOAojR2V0RGV2aWNlc0NvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgAygJIuwBCiRHZXREZXZpY2VzQ29tbXVuaWNhdGlvblVuaXRzUmVzcG9uc2USZAoHZGV2aWNlcxgBIAMoCzJTLmlvLmNsYnMub3Blbmhlcy5wYmRldmljZXJlZ2lzdHJ5LkdldERldmljZXNDb21tdW5pY2F0aW9uVW5pdHNSZXNwb25zZS5EZXZpY2VzRW50cnkaXgoMRGV2aWNlc0VudHJ5EgsKA2tleRgBIAEoCRI9CgV2YWx1ZRgCIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlci5MaXN0T2ZDb25uZWN0aW9uSW5mbzoCOAEiLgoNTW9kZW1Qb29sU3BlYxIPCgdwb29sX2lkGAEgASgJEgwKBG5hbWUYAiABKAkiVwoVR2V0TW9kZW1Qb29sc1Jlc3BvbnNlEj4KBXBvb2xzGAEgAygLMi8uaW8uY2xicy5vcGVuaGVzLnBiZGV2aWNlcmVnaXN0cnkuTW9kZW1Qb29sU3BlYyImChNHZXRNb2RlbVBvb2xSZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkiWQoUR2V0TW9kZW1Qb29sUmVzcG9uc2USMwoGbW9kZW1zGAEgAygLMiMuaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLk1vZGVtSW5mbxIMCgRuYW1lGAIgASgJIjQKE1NldE1vZGVtUG9vbFJlcXVlc3QSDwoHcG9vbF9pZBgBIAEoCRIMCgRuYW1lGAIgASgJIlYKD1NldE1vZGVtUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEjIKBW1vZGVtGAIgASgLMiMuaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyLk1vZGVtSW5mb0JCWkBnaXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9wcm90b2J1Zi9wYmRldmljZXJlZ2lzdHJ5bW9kZWxzYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models, file_models]);
 
 /**
  * RestApi -> DriverRegistry - The communication unit specification.
@@ -37,59 +39,50 @@ export const CreateCommunicationUnitRequestSchema: GenMessage<CreateCommunicatio
   messageDesc(file_pbdeviceregistry_models, 0);
 
 /**
- * RestApi -> DriverRegistry - the request message to get the information about the communication unit.
- *
- * @generated from message io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest
- */
-export type GetCommunicationUnitsRequest = Message<"io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest"> & {
-  /**
-   * The UUID of the communication unit.
-   *
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * The external identifier of the communication unit.
-   *
-   * @generated from field: string external_id = 2;
-   */
-  externalId: string;
-
-  /**
-   * The name of the communication unit.
-   *
-   * @generated from field: string name = 3;
-   */
-  name: string;
-};
-
-/**
- * Describes the message io.clbs.openhes.pbdeviceregistry.GetCommunicationUnitsRequest.
- * Use `create(GetCommunicationUnitsRequestSchema)` to create a new message.
- */
-export const GetCommunicationUnitsRequestSchema: GenMessage<GetCommunicationUnitsRequest> = /*@__PURE__*/
-  messageDesc(file_pbdeviceregistry_models, 1);
-
-/**
  * DriverRegistry -> RestApi - the message holds the information about the communication unit.
  *
- * @generated from message io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec
+ * @generated from message io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec
  */
-export type ArrayOfCommunicationUnitSpec = Message<"io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec"> & {
+export type ListOfCommunicationUnitSpec = Message<"io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec"> & {
   /**
    * The communication unit specification.
    *
-   * @generated from field: repeated io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec spec = 1;
+   * @generated from field: repeated io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec items = 1;
    */
-  spec: CommunicationUnitSpec[];
+  items: CommunicationUnitSpec[];
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec.
- * Use `create(ArrayOfCommunicationUnitSpecSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec.
+ * Use `create(ListOfCommunicationUnitSpecSchema)` to create a new message.
  */
-export const ArrayOfCommunicationUnitSpecSchema: GenMessage<ArrayOfCommunicationUnitSpec> = /*@__PURE__*/
+export const ListOfCommunicationUnitSpecSchema: GenMessage<ListOfCommunicationUnitSpec> = /*@__PURE__*/
+  messageDesc(file_pbdeviceregistry_models, 1);
+
+/**
+ * @generated from message io.clbs.openhes.pbdeviceregistry.CommunicationUnit
+ */
+export type CommunicationUnit = Message<"io.clbs.openhes.pbdeviceregistry.CommunicationUnit"> & {
+  /**
+   * The communication unit specification.
+   *
+   * @generated from field: io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec spec = 1;
+   */
+  spec?: CommunicationUnitSpec;
+
+  /**
+   * The metadata fields.
+   *
+   * @generated from field: io.clbs.openhes.models.MetadataFields metadata = 2;
+   */
+  metadata?: MetadataFields;
+};
+
+/**
+ * Describes the message io.clbs.openhes.pbdeviceregistry.CommunicationUnit.
+ * Use `create(CommunicationUnitSchema)` to create a new message.
+ */
+export const CommunicationUnitSchema: GenMessage<CommunicationUnit> = /*@__PURE__*/
   messageDesc(file_pbdeviceregistry_models, 2);
 
 /**
@@ -212,9 +205,9 @@ export const DeviceSchema: GenMessage<Device> = /*@__PURE__*/
   messageDesc(file_pbdeviceregistry_models, 6);
 
 /**
- * @generated from message io.clbs.openhes.pbdeviceregistry.ArrayOfDevice
+ * @generated from message io.clbs.openhes.pbdeviceregistry.ListOfDevice
  */
-export type ArrayOfDevice = Message<"io.clbs.openhes.pbdeviceregistry.ArrayOfDevice"> & {
+export type ListOfDevice = Message<"io.clbs.openhes.pbdeviceregistry.ListOfDevice"> & {
   /**
    * The list of devices.
    *
@@ -224,10 +217,10 @@ export type ArrayOfDevice = Message<"io.clbs.openhes.pbdeviceregistry.ArrayOfDev
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdeviceregistry.ArrayOfDevice.
- * Use `create(ArrayOfDeviceSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdeviceregistry.ListOfDevice.
+ * Use `create(ListOfDeviceSchema)` to create a new message.
  */
-export const ArrayOfDeviceSchema: GenMessage<ArrayOfDevice> = /*@__PURE__*/
+export const ListOfDeviceSchema: GenMessage<ListOfDevice> = /*@__PURE__*/
   messageDesc(file_pbdeviceregistry_models, 7);
 
 /**
@@ -564,9 +557,9 @@ export type GetDevicesCommunicationUnitsResponse = Message<"io.clbs.openhes.pbde
   /**
    * The list of devices with their communication units.
    *
-   * @generated from field: map<string, io.clbs.openhes.pbdriver.ArrayOfConnectionInfo> devices = 1;
+   * @generated from field: map<string, io.clbs.openhes.pbdriver.ListOfConnectionInfo> devices = 1;
    */
-  devices: { [key: string]: ArrayOfConnectionInfo };
+  devices: { [key: string]: ListOfConnectionInfo };
 };
 
 /**

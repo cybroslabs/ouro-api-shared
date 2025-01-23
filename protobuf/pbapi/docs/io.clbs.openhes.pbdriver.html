@@ -240,15 +240,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ArrayOfConnectionInfo</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.pbdriver.AttributeDefinition">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>AttributeDefinition</code> 
@@ -411,6 +402,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.pbdriver.ListOfConnectionInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfConnectionInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.pbdriver.MeasuredValue">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>MeasuredValue</code> 
@@ -495,13 +495,6 @@
         <a href="#enum-io.clbs.openhes.pbdriver.DataLinkProtocol">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>DataLinkProtocol</code> 
-        </a>
-      </p>
-    
-      <p>
-        <a href="#enum-io.clbs.openhes.pbdriver.ErrorCode">
-          <span class="tag" style="min-width: 6em">Enum</span>
-          <code>ErrorCode</code> 
         </a>
       </p>
     
@@ -1428,59 +1421,6 @@
         </code>
       </td>
       <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">
-  <span>
-    <a href="#message-io.clbs.openhes.pbdriver.ArrayOfConnectionInfo" title="io.clbs.openhes.pbdriver.ArrayOfConnectionInfo">message ArrayOfConnectionInfo</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Addon for DB</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        items
-      </td>
-      <td>
-        <code title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DeviceConnectionInfo"><span title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">io.clbs.openhes.pbdriver.DeviceConnectionInfo</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"></td>
       
     </tr>
     
@@ -3448,6 +3388,59 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.ListOfConnectionInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdriver.ListOfConnectionInfo" title="io.clbs.openhes.pbdriver.ListOfConnectionInfo">message ListOfConnectionInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Addon for DB</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdriver.html#message-io.clbs.openhes.pbdriver.DeviceConnectionInfo"><span title="io.clbs.openhes.pbdriver.DeviceConnectionInfo">io.clbs.openhes.pbdriver.DeviceConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdriver.MeasuredValue">
   <span>
     <a href="#message-io.clbs.openhes.pbdriver.MeasuredValue" title="io.clbs.openhes.pbdriver.MeasuredValue">message MeasuredValue</a>
@@ -4471,42 +4464,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <td><code>LINKPROTO_NOT_APPLICABLE</code></td>
       <td>99</td>
       <td class="content"><p>The data link protocol is not applicable. It's useful for listening communication type.</p></td>
-    </tr>
-    
-  </tbody>
-</table> 
-    </div>
-    
-    <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.pbdriver.ErrorCode">
-  <a href="#enum-io.clbs.openhes.pbdriver.ErrorCode" title="io.clbs.openhes.pbdriver.ErrorCode">enum ErrorCode</a>
-  
-</h4>
-
-<div class="block content">
-  <p><p>Error codes</p></p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td><code>ERROR_CODE_OK</code></td>
-      <td>0</td>
-      <td class="content"><p>No error</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ERROR_CODE_ERROR</code></td>
-      <td>4</td>
-      <td class="content"><p>Generic error</p></td>
     </tr>
     
   </tbody>

@@ -1,0 +1,120 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.common;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+
+// The listing selector.
+message ListSelector {
+    uint32 page_size                        = 1;  // The number of items per page.
+    uint32 offset                           = 2;  // The offset of the first item to return, zero based.
+    repeated ListSelectorSortBy sort_by     = 3;  // The sorting criteria.
+    repeated ListSelectorFilterBy filter_by = 4;  // The filtering criteria.
+
+    // FIXME: This needs to be designed properly.
+    repeated string fields = 5;  // The list of additional fields to be returned.
+}
+
+// The sorting criteria.
+message ListSelectorSortBy {
+    string field_id = 1;                    // Field id.
+    bool desc       = 2 [default = false];  // Set to true to sort in descending order.
+}
+
+// The filter operator.
+enum FilterOperator {
+    EQUAL                 = 0;   // Single operand operator for text, integer, number, boolean fields.
+    NOT_EQUAL             = 1;   // Single operand operator for text, integer, number, boolean fields.
+    GREATER_THAN          = 2;   // Single operand operator for integer, number fields.
+    GREATER_THAN_OR_EQUAL = 3;   // Single operand operator for integer, number  fields.
+    LESS_THAN             = 4;   // Single operand operator for integer, number fields.
+    LESS_THAN_OR_EQUAL    = 5;   // Single operand operator for integer, number fields.
+    CONTAINS              = 6;   // Single operand operator for text fields.
+    NOT_CONTAINS          = 7;   // Single operand operator for text fields.
+    STARTS_WITH           = 8;   // Single operand operator for text fields.
+    ENDS_WITH             = 9;   // Single operand operator for text fields.
+    IN                    = 10;  // Multiple operand operator for text, integer, number, boolean fields.
+    NOT_IN                = 11;  // Multiple operand operator for text, integer, number, boolean fields.
+    BETWEEN               = 12;  // Two operand operator for integer, number fields.
+    IS_NULL               = 13;  // No operand operator.
+    IS_NOT_NULL           = 14;  // No operand operator.
+}
+
+// The filtering criteria.
+//
+// Depending on the operator, the 'text', 'integer', 'number', 'boolean' or 'date' field should be used.
+// - No value must be set for operators: 'IS_NULL', 'IS_NOT_NULL'.
+// - One value must be set for single operand operators: 'EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'CONTAINS', 'NOT_CONTAINS', 'STARTS_WITH', 'ENDS_WITH'.
+// - Two values must be set for two operand operators: 'BETWEEN'.
+// - Any number of values can be set for generic operators: 'IN', 'NOT_IN'.
+//
+// Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+message ListSelectorFilterBy {
+    string field_id = 1;                          // Field id.
+    FilterOperator operator = 2;                  // The filter operator.
+    repeated string text                    = 3;  // The text-typed value(s) used for filtering.
+    repeated sint64 integer                 = 4;  // The integer-typed value(s) used for filtering.
+    repeated double number                  = 5;  // The number-typed value(s) used for filtering.
+    repeated bool boolean                   = 6;  // The boolean-typed value(s) used for filtering.
+    repeated google.protobuf.Timestamp date = 7;  // The date-typed value(s) used for filtering.
+}
+
+// Data descriptor for listing methods.
+message ListDescriptor {
+    repeated FieldDescriptor fields = 1;  // The list of fields.
+}
+
+// Enum representing the field data type.
+enum FieldDataType {
+    TEXT      = 0;  // The text data type.
+    INTEGER   = 1;  // The integer data type.
+    NUMBER    = 2;  // The number data type.
+    BOOLEAN   = 3;  // The boolean data type.
+    TIMESTAMP = 4;  // The timestamp data type.
+}
+
+// Enum representing the field display format.
+enum FieldDisplayFormat {
+    DEFAULT   = 0;  // The default display format.
+    DURATION  = 1;  // The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
+    INTERVAL  = 2;  // The interval display format.
+    DATE      = 3;  // The date display format with local timezone. Data type must be timestamp or string.
+    UTC_DATE  = 4;  // The date display format with in UTC timezone. Data type must be timestamp or string.
+    MONTH     = 5;  // The month display format.
+    DAYOFWEEK = 6;  // The day of week display format.
+    TIMEOFDAY = 7;  // The time of day display format.
+    MONEY     = 8;  // The money display format.
+}
+
+// The field descriptor.
+message FieldDescriptor {
+    string field_id            = 1;   // Unique identifier for the field
+    string label               = 2;   // Label displayed for the field
+    string group_id            = 6;   // Group (section) identifier for the field
+    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, number)
+    FieldDisplayFormat format  = 4;   // Display format (e.g., 1h 30m)
+    string unit                = 5;   // Unit to display (e.g., kWh, USD)
+    int32 precision            = 8;   // Decimal precision for numbers
+    string tooltip             = 9;   // Tooltip or hint text
+    bool required              = 11;  // Whether the field is mandatory
+    bool editable              = 12;  // Whether the field is editable
+    bool visible               = 13;  // Whether the field is visible
+    bool multi_value           = 14;  // Whether the field can have multiple values
+    FieldValidation validation = 15;  // Validation rules for the field
+}
+
+// Validation rules for the field.
+message FieldValidation {
+    string re                                = 1;  // Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
+    int32 min_length                         = 2;  // The minimum length. It's used for string fields only.
+    int32 max_length                         = 3;  // The maximum length. It's used for string fields only.
+    sint64 min_integer                       = 4;  // The minimum value. It's used for integer fields only.
+    sint64 max_integer                       = 5;  // The maximum value. It's used for integer fields only.
+    double min_number                        = 6;  // The minimum value. It's used for number fields only.
+    double max_number                        = 7;  // The maximum value. It's used for number fields only.
+    map<string, google.protobuf.Any> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+}

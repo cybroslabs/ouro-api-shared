@@ -69,15 +69,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.pbdataproxy.ArrayOfBulk">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ArrayOfBulk</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.pbdataproxy.Bulk">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>Bulk</code> 
@@ -96,15 +87,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.pbdataproxy.BulkJobStatus">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>BulkJobStatus</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.pbdataproxy.BulkSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>BulkSpec</code> 
@@ -117,6 +99,15 @@
         <a href="#message-io.clbs.openhes.pbdataproxy.BulkStatus">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>BulkStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdataproxy.ListOfBulk">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfBulk</code> 
         </a>
       </p>
       
@@ -144,59 +135,6 @@
       Messages
     </h3>
 
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdataproxy.ArrayOfBulk">
-  <span>
-    <a href="#message-io.clbs.openhes.pbdataproxy.ArrayOfBulk" title="io.clbs.openhes.pbdataproxy.ArrayOfBulk">message ArrayOfBulk</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>DataProxy -&gt; RestApi - the message holds list of bulks.</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        items
-      </td>
-      <td>
-        <code title="io.clbs.openhes.pbdataproxy.Bulk">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.Bulk"><span title="io.clbs.openhes.pbdataproxy.Bulk">io.clbs.openhes.pbdataproxy.Bulk</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The list of bulks.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
     
       
       <div class="block">
@@ -258,6 +196,22 @@
       
     </tr>
     
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.html#message-io.clbs.openhes.models.MetadataFields"><span title="io.clbs.openhes.models.MetadataFields">io.clbs.openhes.models.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -272,57 +226,6 @@
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdataproxy.BulkJob">
   <span>
     <a href="#message-io.clbs.openhes.pbdataproxy.BulkJob" title="io.clbs.openhes.pbdataproxy.BulkJob">message BulkJob</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>DataProxy -&gt; RestApi - the message holds the job status.</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        status
-      </td>
-      <td>
-        <code title="io.clbs.openhes.pbtaskmaster.JobStatus">
-          
-          <a href="io.clbs.openhes.pbtaskmaster.html#message-io.clbs.openhes.pbtaskmaster.JobStatus"><span title="io.clbs.openhes.pbtaskmaster.JobStatus">io.clbs.openhes.pbtaskmaster.JobStatus</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The status of the job</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdataproxy.BulkJobStatus">
-  <span>
-    <a href="#message-io.clbs.openhes.pbdataproxy.BulkJobStatus" title="io.clbs.openhes.pbdataproxy.BulkJobStatus">message BulkJobStatus</a>
   
   </span>
   
@@ -609,15 +512,68 @@
         jobs
       </td>
       <td>
-        <code title="io.clbs.openhes.pbdataproxy.BulkJobStatus">
+        <code title="io.clbs.openhes.pbdataproxy.BulkJob">
           
             repeated
           
-          <a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.BulkJobStatus"><span title="io.clbs.openhes.pbdataproxy.BulkJobStatus">io.clbs.openhes.pbdataproxy.BulkJobStatus</span>
+          <a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.BulkJob"><span title="io.clbs.openhes.pbdataproxy.BulkJob">io.clbs.openhes.pbdataproxy.BulkJob</span>
     </a>
         </code>
       </td>
       <td class="content"><p>The list of job statuses.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdataproxy.ListOfBulk">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdataproxy.ListOfBulk" title="io.clbs.openhes.pbdataproxy.ListOfBulk">message ListOfBulk</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DataProxy -&gt; RestApi - the message holds list of bulks.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdataproxy.Bulk">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdataproxy.html#message-io.clbs.openhes.pbdataproxy.Bulk"><span title="io.clbs.openhes.pbdataproxy.Bulk">io.clbs.openhes.pbdataproxy.Bulk</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of bulks.</p></td>
       
     </tr>
     

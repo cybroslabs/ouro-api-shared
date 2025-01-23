@@ -78,15 +78,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ArrayOfCommunicationUnitSpec</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CommunicationUnitSpec</code> 
@@ -189,6 +180,15 @@
         <a href="#message-io.clbs.openhes.pbdeviceregistry.GetModemPoolsResponse">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>GetModemPoolsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfCommunicationUnitSpec</code> 
         </a>
       </p>
       
@@ -312,59 +312,6 @@
         </code>
       </td>
       <td class="content"><p>The unique identifier of the device.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec">
-  <span>
-    <a href="#message-io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec" title="io.clbs.openhes.pbdeviceregistry.ArrayOfCommunicationUnitSpec">message ArrayOfCommunicationUnitSpec</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>DriverRegistry -&gt; RestApi - the message holds the information about the communication unit.</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        spec
-      </td>
-      <td>
-        <code title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec"><span title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The communication unit specification.</p></td>
       
     </tr>
     
@@ -1207,6 +1154,59 @@
         </code>
       </td>
       <td class="content"><p>The list of modem pools.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec" title="io.clbs.openhes.pbdeviceregistry.ListOfCommunicationUnitSpec">message ListOfCommunicationUnitSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DriverRegistry -&gt; RestApi - the message holds the information about the communication unit.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.pbdeviceregistry.html#message-io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec"><span title="io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec">io.clbs.openhes.pbdeviceregistry.CommunicationUnitSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
       
     </tr>
     

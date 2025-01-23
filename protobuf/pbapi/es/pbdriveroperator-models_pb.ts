@@ -5,7 +5,6 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_protobuf_empty, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
-import type { ErrorCode } from "./pbdriver-models_pb";
 import { file_pbdriver_models } from "./pbdriver-models_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -13,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pbdriveroperator-models.proto.
  */
 export const file_pbdriveroperator_models: GenFile = /*@__PURE__*/
-  fileDesc("Ch1wYmRyaXZlcm9wZXJhdG9yLW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyb3BlcmF0b3IiVQoVU2V0RHJpdmVyU2NhbGVSZXF1ZXN0EhUKDXRhc2ttYXN0ZXJfaWQYASABKAkSEwoLZHJpdmVyX3R5cGUYAiABKAkSEAoIcmVwbGljYXMYAyABKA0iQwoVR2V0RHJpdmVyU2NhbGVSZXF1ZXN0EhUKDXRhc2ttYXN0ZXJfaWQYASABKAkSEwoLZHJpdmVyX3R5cGUYAiABKAkiXgoTU3RhcnRVcGdyYWRlUmVxdWVzdBITCgtkcml2ZXJfdHlwZRgBIAEoCRIWCg5kcml2ZXJfdmVyc2lvbhgCIAEoCRIaChJkZXZpY2VyZWdpc3RyeV91cmwYAyABKAkiMAoZR2V0RHJpdmVyVGVtcGxhdGVzUmVxdWVzdBITCgtkcml2ZXJfdHlwZRgBIAEoCSIyCgpEcml2ZXJJbmZvEhMKC2RyaXZlcl90eXBlGAEgASgJEg8KB3ZlcnNpb24YAiABKAkiiAEKEkdldERyaXZlcnNSZXNwb25zZRIzCgZyZXN1bHQYASABKA4yIy5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXIuRXJyb3JDb2RlEj0KB2RyaXZlcnMYAiADKAsyLC5pby5jbGJzLm9wZW5oZXMucGJkcml2ZXJvcGVyYXRvci5Ecml2ZXJJbmZvQkJaQGdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL3Byb3RvYnVmL3BiZHJpdmVyb3BlcmF0b3Jtb2RlbHNiCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models]);
+  fileDesc("Ch1wYmRyaXZlcm9wZXJhdG9yLW1vZGVscy5wcm90bxIgaW8uY2xicy5vcGVuaGVzLnBiZHJpdmVyb3BlcmF0b3IiVQoVU2V0RHJpdmVyU2NhbGVSZXF1ZXN0EhUKDXRhc2ttYXN0ZXJfaWQYASABKAkSEwoLZHJpdmVyX3R5cGUYAiABKAkSEAoIcmVwbGljYXMYAyABKA0iQwoVR2V0RHJpdmVyU2NhbGVSZXF1ZXN0EhUKDXRhc2ttYXN0ZXJfaWQYASABKAkSEwoLZHJpdmVyX3R5cGUYAiABKAkiXgoTU3RhcnRVcGdyYWRlUmVxdWVzdBITCgtkcml2ZXJfdHlwZRgBIAEoCRIWCg5kcml2ZXJfdmVyc2lvbhgCIAEoCRIaChJkZXZpY2VyZWdpc3RyeV91cmwYAyABKAkiMAoZR2V0RHJpdmVyVGVtcGxhdGVzUmVxdWVzdBITCgtkcml2ZXJfdHlwZRgBIAEoCSIyCgpEcml2ZXJJbmZvEhMKC2RyaXZlcl90eXBlGAEgASgJEg8KB3ZlcnNpb24YAiABKAkiTwoQTGlzdE9mRHJpdmVySW5mbxI7CgVpdGVtcxgCIAMoCzIsLmlvLmNsYnMub3Blbmhlcy5wYmRyaXZlcm9wZXJhdG9yLkRyaXZlckluZm9CQlpAZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvcHJvdG9idWYvcGJkcml2ZXJvcGVyYXRvcm1vZGVsc2IIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_wrappers, file_pbdriver_models]);
 
 /**
  * Taskmaster -> Driver Operator driver-scale change request message
@@ -163,28 +162,21 @@ export const DriverInfoSchema: GenMessage<DriverInfo> = /*@__PURE__*/
 /**
  * Taskmaster -> API get drivers response message
  *
- * @generated from message io.clbs.openhes.pbdriveroperator.GetDriversResponse
+ * @generated from message io.clbs.openhes.pbdriveroperator.ListOfDriverInfo
  */
-export type GetDriversResponse = Message<"io.clbs.openhes.pbdriveroperator.GetDriversResponse"> & {
-  /**
-   * The result of the operation.
-   *
-   * @generated from field: io.clbs.openhes.pbdriver.ErrorCode result = 1;
-   */
-  result: ErrorCode;
-
+export type ListOfDriverInfo = Message<"io.clbs.openhes.pbdriveroperator.ListOfDriverInfo"> & {
   /**
    * The list of drivers.
    *
-   * @generated from field: repeated io.clbs.openhes.pbdriveroperator.DriverInfo drivers = 2;
+   * @generated from field: repeated io.clbs.openhes.pbdriveroperator.DriverInfo items = 2;
    */
-  drivers: DriverInfo[];
+  items: DriverInfo[];
 };
 
 /**
- * Describes the message io.clbs.openhes.pbdriveroperator.GetDriversResponse.
- * Use `create(GetDriversResponseSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.pbdriveroperator.ListOfDriverInfo.
+ * Use `create(ListOfDriverInfoSchema)` to create a new message.
  */
-export const GetDriversResponseSchema: GenMessage<GetDriversResponse> = /*@__PURE__*/
+export const ListOfDriverInfoSchema: GenMessage<ListOfDriverInfo> = /*@__PURE__*/
   messageDesc(file_pbdriveroperator_models, 5);
 
