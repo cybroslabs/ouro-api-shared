@@ -1,17 +1,9 @@
 version: v2
 plugins:
-  - remote: buf.build/connectrpc/go # local: protoc-gen-connect-go
-    out: pbapi
-    opt: paths=source_relative
-  - remote: buf.build/protocolbuffers/go
-    out: pbapi
-    opt:
-      - paths=source_relative
-      - default_api_level=API_OPAQUE
   - local: protoc-gen-graphql-schema
     out: pbapi2
     opt:
       - paths=source_relative
 inputs:
-  - proto_file: pbapi.proto
+  - proto_file: services/api/api.proto
     include_package_files: true
