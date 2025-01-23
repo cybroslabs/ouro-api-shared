@@ -1,11 +1,14 @@
 version: v2
 plugins:
+  - local: protoc-gen-connect-go
+    out: ../gen/go
+    opt: paths=source_relative
   - local: protoc-gen-es
-    out: pbapi/es
+    out: ../gen/ts
     # Also generate any imported dependencies
     include_imports: true
     # Add more plugin options here
     opt: target=ts
 inputs:
-  - proto_file: pbapi.proto
+  - proto_file: services/api/api.proto
     include_package_files: true

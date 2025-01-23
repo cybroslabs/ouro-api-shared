@@ -11,19 +11,12 @@ gen-go:
 
 	(rm -rf ./gen/go/* && cd proto && for f in `find . -name '*.proto'`; do \
 		export dn=`dirname $$f`; \
-		protoc \
-			--go_opt=default_api_level=API_OPAQUE \
-			--go_opt=paths=source_relative \
-			--go_out=../gen/go \
-			--go-grpc_out=../gen/go \
-			--go-grpc_opt=paths=source_relative \
-			$$f; \
+		buf generate --template buf.gen.grpc.yaml --path $$f; \
 	done)
 
-	cd proto && buf generate
-
-	cd proto && buf build -o pbapi/pbapi.binpb
-	cd proto && npx buf generate --template buf.gen.npx.yaml
+	cd proto && npx buf generate --template buf.gen.api.yaml
+	cd proto && npx buf generate --template buf.gen.grpc.yaml
+	cd proto && buf build -o pbapi.binpb
 
 	./src/mdgen/main.py
 
