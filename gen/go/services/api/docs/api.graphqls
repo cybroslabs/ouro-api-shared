@@ -1,0 +1,1181 @@
+# Code generated, DO NOT EDIT.
+
+# Result codes related to job actions
+enum ActionResultCode {
+  # The action has been completed successfully.
+  ERROR_CODE_ACTION_OK
+  # The action is not supported by the driver (or device).
+  ERROR_CODE_ACTION_UNSUPPORTED
+  # The action is pending.
+  ERROR_CODE_ACTION_PENDING
+  # The action failed.
+  ERROR_CODE_ACTION_ERROR
+}
+
+# Action types
+enum ActionType {
+  # Get billing value, for example instantaneous values. The action covers specific register.
+  ACTION_TYPE_GET_REGISTER
+  # Get periodical profile, for example load-profile. The action covers specific profile column.
+  ACTION_TYPE_GET_PERIODICAL_PROFILE
+  # Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.
+  ACTION_TYPE_GET_IRREGULAR_PROFILE
+  # Get event log. The action covers specific event log.
+  ACTION_TYPE_GET_EVENTS
+  # Get clock. The action returns time in UTC.
+  ACTION_TYPE_GET_CLOCK
+  # Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+  ACTION_TYPE_SYNC_CLOCK
+  # Get relay state. The action covers single relay.
+  ACTION_TYPE_GET_RELAY_STATE
+  # Set relay state. The action covers single relay.
+  ACTION_TYPE_SET_RELAY_STATE
+  # Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
+  ACTION_TYPE_GET_DISCONNECTOR_STATE
+  # Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.
+  ACTION_TYPE_SET_DISCONNECTOR_STATE
+  # Get time-of-use table.
+  ACTION_TYPE_GET_TOU
+  # Set time-of-use table.
+  ACTION_TYPE_SET_TOU
+  # Get limiter settings. The action covers single limiter.
+  ACTION_TYPE_GET_LIMITER
+  # Set limiter settings. The action covers single limiter.
+  ACTION_TYPE_SET_LIMITER
+  # Reseet billing period.
+  ACTION_TYPE_RESET_BILLING_PERIOD
+  # Start firmware update. The action updates starts FW upgrade procedure.
+  ACTION_TYPE_FW_UPDATE
+}
+
+# Application protocols
+enum ApplicationProtocol {
+  # The IEC 62056-21 (IEC-61107, VDEW) protocol.
+  APPPROTO_IEC_62056_21
+  # The DLMS short-name protocol.
+  APPPROTO_DLMS_SN
+  # The DLMS logical-name protocol.
+  APPPROTO_DLMS_LN
+  # The SCTM protocol.
+  APPPROTO_SCTM
+  # The LIS200 protocol.
+  APPPROTO_LIS200
+  # The ANSI C12 protocol.
+  APPPROTO_ANSI_C12
+  # The MQTT protocol.
+  APPPROTO_MQTT
+}
+
+# Attribute types
+enum AttributeType {
+  # Integer attribute type
+  ATTRIBUTE_TYPE_INT
+  # String attribute type
+  ATTRIBUTE_TYPE_STRING
+  # Double attribute type
+  ATTRIBUTE_TYPE_DOUBLE
+  # Binary attribute type
+  ATTRIBUTE_TYPE_BINARY
+  # Date/time attribute type, stored as integer (UNIX timestamp)
+  ATTRIBUTE_TYPE_TIMESTAMP
+  # Date/time attribute type, stored as string in ISO-8601
+  ATTRIBUTE_TYPE_TIMESTAMP_TZ
+  # Bool attribute type
+  ATTRIBUTE_TYPE_BOOL
+}
+
+# Bulk statuses
+enum BulkStatusCode {
+  # The job is waiting in the queue
+  BULK_STATUS_QUEUED
+  # The job is running
+  BULK_STATUS_RUNNING
+  # The job is completed
+  BULK_STATUS_COMPLETED
+  # The job is cancelled
+  BULK_STATUS_CANCELLED
+  # The job has expired
+  BULK_STATUS_EXPIRED
+}
+
+# Connection types
+enum CommunicationType {
+  # The communication is done via direct TCP/IP.
+  COMMUNICATION_TYPE_TCPIP
+  # The communication is done via phone line (modem).
+  COMMUNICATION_TYPE_MODEM_POOL
+  # The communication is done via direct serial line.
+  COMMUNICATION_TYPE_SERIAL_LINE_DIRECT
+  # The communication is done via controller-serial line (Moxa).
+  COMMUNICATION_TYPE_SERIAL_LINE_MOXA
+  # The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).
+  COMMUNICATION_TYPE_LISTENING
+}
+
+# Data link protocols
+enum DataLinkProtocol {
+  # The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+  LINKPROTO_IEC_62056_21
+  # The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+  LINKPROTO_HDLC
+  # The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+  LINKPROTO_COSEM_WRAPPER
+  # The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+  LINKPROTO_MODBUS
+  # The M-Bus protocol. It shall be used for M-Bus application protocol.
+  LINKPROTO_MBUS
+  # The data link protocol is not applicable. It's useful for listening communication type.
+  LINKPROTO_NOT_APPLICABLE
+}
+
+# Error codes related to jobs
+enum JobErrorCode {
+  # The job has been completed successfully.
+  JOB_ERROR_CODE_NONE
+  # There is no free slot in the driver to handle the job; the job shall be send again later.
+  JOB_ERROR_CODE_BUSY
+  # The job failed, the retry will be attempted.
+  JOB_ERROR_CODE_ERROR
+  # This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
+  JOB_ERROR_CODE_ALREADY_EXISTS
+  # The job failed, the retry will NOT be attempted.
+  JOB_ERROR_CODE_FATAL
+}
+
+# Job priorities
+enum JobPriority {
+  # The lowest priority
+  JOB_PRIORITY_0
+  # The priority 1
+  JOB_PRIORITY_1
+  # The priority 2
+  JOB_PRIORITY_2
+  # The priority 3
+  JOB_PRIORITY_3
+  # The priority 4
+  JOB_PRIORITY_4
+  # The priority 5
+  JOB_PRIORITY_5
+  # The priority 6
+  JOB_PRIORITY_6
+  # The priority 7
+  JOB_PRIORITY_7
+  # The highest priority
+  JOB_PRIORITY_8
+}
+
+# Job statuses
+enum JobStatusCode {
+  # The job is waiting in the queue
+  JOB_STATUS_QUEUED
+  # The job is running
+  JOB_STATUS_RUNNING
+  # The job is completed
+  JOB_STATUS_COMPLETED
+  # The job is failed
+  JOB_STATUS_FAILED
+  # The job is cancelled
+  JOB_STATUS_CANCELLED
+  # The job has expired
+  JOB_STATUS_EXPIRED
+}
+
+# The filter operator.
+enum FilterOperator {
+  # Single operand operator for text, integer, number, boolean fields.
+  EQUAL
+  # Single operand operator for text, integer, number, boolean fields.
+  NOT_EQUAL
+  # Single operand operator for integer, number fields.
+  GREATER_THAN
+  # Single operand operator for integer, number  fields.
+  GREATER_THAN_OR_EQUAL
+  # Single operand operator for integer, number fields.
+  LESS_THAN
+  # Single operand operator for integer, number fields.
+  LESS_THAN_OR_EQUAL
+  # Single operand operator for text fields.
+  CONTAINS
+  # Single operand operator for text fields.
+  NOT_CONTAINS
+  # Single operand operator for text fields.
+  STARTS_WITH
+  # Single operand operator for text fields.
+  ENDS_WITH
+  # Multiple operand operator for text, integer, number, boolean fields.
+  IN
+  # Multiple operand operator for text, integer, number, boolean fields.
+  NOT_IN
+  # Two operand operator for integer, number fields.
+  BETWEEN
+  # No operand operator.
+  IS_NULL
+  # No operand operator.
+  IS_NOT_NULL
+}
+
+# `Any` contains an arbitrary serialized protocol buffer message along with a
+#  URL that describes the type of the serialized message.
+#
+#  Protobuf library provides support to pack/unpack Any values in the form
+#  of utility functions or additional generated methods of the Any type.
+#
+#  Example 1: Pack and unpack a message in C++.
+#
+#      Foo foo = ...;
+#      Any any;
+#      any.PackFrom(foo);
+#      ...
+#      if (any.UnpackTo(&foo)) {
+#        ...
+#      }
+#
+#  Example 2: Pack and unpack a message in Java.
+#
+#      Foo foo = ...;
+#      Any any = Any.pack(foo);
+#      ...
+#      if (any.is(Foo.class)) {
+#        foo = any.unpack(Foo.class);
+#      }
+#      // or ...
+#      if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+#        foo = any.unpack(Foo.getDefaultInstance());
+#      }
+#
+#   Example 3: Pack and unpack a message in Python.
+#
+#      foo = Foo(...)
+#      any = Any()
+#      any.Pack(foo)
+#      ...
+#      if any.Is(Foo.DESCRIPTOR):
+#        any.Unpack(foo)
+#        ...
+#
+#   Example 4: Pack and unpack a message in Go
+#
+#       foo := &pb.Foo{...}
+#       any, err := anypb.New(foo)
+#       if err != nil {
+#         ...
+#       }
+#       ...
+#       foo := &pb.Foo{}
+#       if err := any.UnmarshalTo(foo); err != nil {
+#         ...
+#       }
+#
+#  The pack methods provided by protobuf library will by default use
+#  'type.googleapis.com/full.type.name' as the type URL and the unpack
+#  methods only use the fully qualified type name after the last '/'
+#  in the type URL, for example "foo.bar.com/x/y.z" will yield type
+#  name "y.z".
+#
+#  JSON
+#  ====
+#  The JSON representation of an `Any` value uses the regular
+#  representation of the deserialized, embedded message, with an
+#  additional field `@type` which contains the type URL. Example:
+#
+#      package google.profile;
+#      message Person {
+#        string first_name = 1;
+#        string last_name = 2;
+#      }
+#
+#      {
+#        "@type": "type.googleapis.com/google.profile.Person",
+#        "firstName": <string>,
+#        "lastName": <string>
+#      }
+#
+#  If the embedded message type is well-known and has a custom JSON
+#  representation, that representation will be embedded adding a field
+#  `value` which holds the custom JSON in addition to the `@type`
+#  field. Example (for message [google.protobuf.Duration][]):
+#
+#      {
+#        "@type": "type.googleapis.com/google.protobuf.Duration",
+#        "value": "1.212s"
+#      }
+type Any {
+  # A URL/resource name that uniquely identifies the type of the serialized
+  #  protocol buffer message. This string must contain at least
+  #  one "/" character. The last segment of the URL's path must represent
+  #  the fully qualified name of the type (as in
+  #  `path/google.protobuf.Duration`). The name should be in a canonical form
+  #  (e.g., leading "." is not accepted).
+  #
+  #  In practice, teams usually precompile into the binary all types that they
+  #  expect it to use in the context of Any. However, for URLs which use the
+  #  scheme `http`, `https`, or no scheme, one can optionally set up a type
+  #  server that maps type URLs to message definitions as follows:
+  #
+  #  * If no scheme is provided, `https` is assumed.
+  #  * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+  #    value in binary format, or produce an error.
+  #  * Applications are allowed to cache lookup results based on the
+  #    URL, or have them precompiled into a binary to avoid any
+  #    lookup. Therefore, binary compatibility needs to be preserved
+  #    on changes to types. (Use versioned type names to manage
+  #    breaking changes.)
+  #
+  #  Note: this functionality is not currently available in the official
+  #  protobuf release, and it is not used for type URLs beginning with
+  #  type.googleapis.com. As of May 2023, there are no widely used type server
+  #  implementations and no plans to implement one.
+  #
+  #  Schemes other than `http`, `https` (or the empty scheme) might be
+  #  used with implementation specific semantics.
+  type_url: String
+  # Must be a valid serialized protocol buffer of the above specified type.
+  value: String
+}
+
+# A generic empty message that you can re-use to avoid defining duplicated
+#  empty messages in your APIs. A typical example is to use it as the request
+#  or the response type of an API method. For instance:
+#
+#      service Foo {
+#        rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+#      }
+type Empty {
+  _empty: Boolean
+}
+
+# Wrapper message for `string`.
+#
+#  The JSON representation for `StringValue` is JSON string.
+type StringValue {
+  # The string value.
+  value: String
+}
+
+# Sub-message containing access level definition
+type AccessLevelTemplate {
+  # The access level identifier, such as "1", "G", "16" or similar.
+  id: String
+  # The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".
+  name: String
+}
+
+# Sub-message containing action-based variant of data values
+type ActionData {
+  # No data
+  nodata: Empty
+  # Register values
+  billings: BillingValues
+  # Profile values
+  profile: ProfileValues
+}
+
+# Sub-message containing firmware update action specification
+type ActionFwUpdate {
+  _empty: Boolean
+}
+
+# Sub-message containing get clock action specification
+type ActionGetClock {
+  _empty: Boolean
+}
+
+# Sub-message containing get disconnector state action specification
+type ActionGetDisconnectorState {
+  _empty: Boolean
+}
+
+# Sub-message containing get events action specification
+type ActionGetEvents {
+  # The start timestamp of the profile.
+  from: Timestamp
+  # The end timestamp of the profile.
+  to: Timestamp
+}
+
+# Sub-message containing get irregular profile action specification
+type ActionGetIrregularProfile {
+  # The start timestamp of the profile.
+  from: Timestamp
+  # The end timestamp of the profile.
+  to: Timestamp
+}
+
+# Sub-message containing get limiter action specification
+type ActionGetLimiter {
+  _empty: Boolean
+}
+
+# Sub-message containing get periodical profile action specification
+type ActionGetPeriodicalProfile {
+  # The start timestamp of the profile.
+  from: Timestamp
+  # The end timestamp of the profile.
+  to: Timestamp
+}
+
+# Sub-message containing get register action specification
+type ActionGetRegister {
+  _empty: Boolean
+}
+
+# Sub-message containing get relay state action specification
+type ActionGetRelayState {
+  _empty: Boolean
+}
+
+# Sub-message containing get tou action specification
+type ActionGetTou {
+  _empty: Boolean
+}
+
+# Sub-message containing reset billing period action specification
+type ActionResetBillingPeriod {
+  _empty: Boolean
+}
+
+# Sub-message containing action result for a single action.
+type ActionResult {
+  # The action identifier.
+  action_id: String
+  # The status of the action.
+  status: ActionResultCode
+  # The action result data.
+  data: ActionData
+}
+
+# Sub-message containing set disconnector state action specification
+type ActionSetDisconnectorState {
+  _empty: Boolean
+}
+
+# Sub-message containing set limiter action specification
+type ActionSetLimiter {
+  _empty: Boolean
+}
+
+# Sub-message containing set relay state action specification
+type ActionSetRelayState {
+  _empty: Boolean
+}
+
+# Sub-message containing set tou action specification
+type ActionSetTou {
+  _empty: Boolean
+}
+
+# Sub-message containing sync clock action specification
+type ActionSyncClock {
+  _empty: Boolean
+}
+
+# RestApi -> DriverRegistry - the request message to add a new device to the device group.
+type AddDevicesToGroupRequest {
+  # The unique identifier of the device group.
+  group_id: String
+  # The unique identifier of the device.
+  device_id: [String]
+}
+
+# Sub-message containing destription for one application protocol, e.g. DLMS_SN.
+type ApplicationProtocolTemplate {
+  # Unique identifier of the application protocol.
+  id: String
+  # The application protocol.
+  protocol: ApplicationProtocol
+  # The list of attribute definitions for the protocol.
+  attributes: [AttributeDefinition]
+}
+
+# Sub-message containing attribute definition
+type AttributeDefinition {
+  # The name of the attribute.
+  name: String
+  # The description of the attribute.
+  description: String
+  # The type of the attribute.
+  type: AttributeType
+  # The attribute is mandatory or not.
+  mandatory: Boolean
+  # The default value of the attribute.
+  default_value: AttributeValue
+  # Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.
+  options: [_mapstring]
+}
+
+# Sub-message containing single attribute value specification
+type AttributeValue {
+  # The string-typed value.
+  str_value: String
+  # The integer-typed value.
+  int_value: Int64
+  # The double-typed value.
+  double_value: Float
+  # The binary-typed value.
+  binary_value: String
+  # The boolean-typed value.
+  bool_value: Boolean
+}
+
+# Sub-message containing billing-typed value
+type BillingValue {
+  # The timestamp of the value.
+  timestamp: Timestamp
+  # The unit of the value.
+  unit: String
+  # The value.
+  value: MeasuredValue
+}
+
+# Sub-message containing billing-typed values
+type BillingValues {
+  # The list of register values.
+  values: [BillingValue]
+}
+
+# DataProxy -> RestApi - the message holds the bulk info and it's status.
+type Bulk {
+  # The bulk-job spec.
+  spec: BulkSpec
+  # The bulk-job status/data.
+  status: BulkStatus
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type BulkJob {
+  # The job identifier.
+  job_id: String
+  # The job status.
+  status: JobStatus
+}
+
+# Sub-message - holds the bulk job specification.
+type BulkSpec {
+  # The bulk identifier.
+  bulk_id: String
+  # The correlation identifier, e.g. to define relation to non-homogenous group.
+  correlation_id: String
+  # The device (driver) type.
+  driver_type: String
+  # The list of devices in the bulk.
+  devices: [JobDevice]
+  # The bulk-shared job settings.
+  settings: JobSettings
+  # The list actions to be executed.
+  job_actions: [JobAction]
+  # The webhook URL to call when the bulk is completed.
+  webhook_url: String
+  # The user identifier.
+  user_id: String
+}
+
+# Sub-message - holds the bulk job status.
+type BulkStatus {
+  # The job status.
+  status: BulkStatusCode
+  # The list of job statuses.
+  jobs: [BulkJob]
+}
+
+# API -> Taskmaster cancel job request message
+type CancelJobsRequest {
+  # The job identifier.
+  job_id: [String]
+}
+
+# Sub-message containing destription for one communication type, e.g. TCP/IP.
+type CommunicationTemplate {
+  # The type of the communication.
+  type: CommunicationType
+  # The list of data link protocols and their app protocols supported by the driver.
+  datalinks: [DataLinkTemplate]
+}
+
+# Sub-message - the communication unit specification.
+type CommunicationUnitSpec {
+  # The UUID of the communication unit.
+  id: String
+  # The external identifier of the communication unit.
+  external_id: String
+  # The name of the communication unit.
+  name: String
+  # The connection info.
+  connection_info: ConnectionInfo
+}
+
+# Sub-message containing connection info
+type ConnectionInfo {
+  # The TCP connection type.
+  tcpip: ConnectionTypeDirectTcpIp
+  # The phone connection type.
+  modem_pool: ConnectionTypeModemPool
+  # The serial over IP connection type.
+  serial_over_ip: ConnectionTypeControlledSerial
+  # The data link protocol.
+  link_protocol: DataLinkProtocol
+  # The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
+  custom_grouping_id: String
+}
+
+# Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+type ConnectionTypeControlledSerial {
+  # The simple direct serial connection type.
+  direct: ConnectionTypeSerialDirect
+  # The Moxa connection type.
+  moxa: ConnectionTypeSerialMoxa
+}
+
+# Sub-message containing connection info for TCP connection type
+type ConnectionTypeDirectTcpIp {
+  # The host name or IP address of the device to connect to.
+  host: String
+  # The TCP port number of the device to connect to.
+  port: Int
+  # The timeout in miliseconds for the connection.
+  timeout: Int
+}
+
+# Sub-message containing connection info for phone line (modem) connection type
+type ConnectionTypeModemPool {
+  # The phone number of the device to connect to.
+  number: String
+  # The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
+  pool_id: String
+  # The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
+  modem: ModemInfo
+}
+
+type ConnectionTypeSerialDirect {
+  # The host name or IP address of the device to connect to.
+  host: String
+  # The TCP port number of the device to connect to.
+  port: Int
+}
+
+# Sub-message containing connection info for controlled-serial line (Moxa) connection type
+type ConnectionTypeSerialMoxa {
+  # The host name or IP address of the device to connect to.
+  host: String
+  # The TCP port number of the device to connect to - data port.
+  dataPort: Int
+  # The TCP port number of the device to connect to - command port.
+  commandPort: Int
+}
+
+# RestApi -> DataProxy
+type CreateBulkRequest {
+  # The bulk-job spec.
+  spec: BulkSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+# RestApi -> DriverRegistry - The communication unit specification.
+type CreateCommunicationUnitRequest {
+  # The communication unit specification.
+  spec: CommunicationUnitSpec
+}
+
+# RestApi -> DriverRegistry - the request message to get the information about the device group.
+type CreateDeviceGroupRequest {
+  # The device group specification.
+  spec: DeviceGroupSpec
+}
+
+# RestApi -> DriverRegistry - the request message to create a new device.
+type CreateDeviceRequest {
+  # The device specification.
+  spec: DeviceSpec
+}
+
+# Sub-message containing destription for one data link protocol, e.g. HDLC.
+type DataLinkTemplate {
+  # The data link protocol.
+  link_protocol: DataLinkProtocol
+  # The list of application protocol identifiers supported by the driver.
+  app_protocol_refs: [ApplicationProtocol]
+  # The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
+  attributes: [AttributeDefinition]
+}
+
+type DeviceCommunicationUnit {
+  # The unique identifier of the communication unit.
+  communication_unit_id: String
+  # The application protocol to be used for the communication over the communication unit.
+  app_protocol: ApplicationProtocol
+}
+
+# Addon
+type DeviceConnectionInfo {
+  # The unique identifier of the communication unit.
+  communication_unit: ConnectionInfo
+  # The application protocol to be used for the communication over the communication unit.
+  app_protocol: ApplicationProtocol
+  # The device attributes. For example HDLC address, password and other driver-specific attributes.
+  device_attributes: [_mapAttributeValue]
+}
+
+type DeviceGroupOverviewSpec {
+  # The UUID of the device group.
+  id: String
+  # The external identifier of the communication unit.
+  external_id: String
+  # The name of the device group.
+  name: String
+}
+
+# Sub-message that represents the device group.
+type DeviceGroupSpec {
+  # The UUID of the device group.
+  id: String
+  # The external identifier of the communication unit.
+  external_id: String
+  # The name of the device group.
+  name: String
+  # The list of device identifiers that are part of the group.
+  device_id: [String]
+}
+
+# Sub-message - the device specification.
+type DeviceSpec {
+  # The UUID of the device.
+  id: String
+  # The external identifier of the device.
+  external_id: String
+  # The name of the device.
+  name: String
+  # The template of the action attributes. It is represented as a list of attribute definitions.
+  attributes: [_mapAttributeValue]
+  # The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
+  communication_unit_link: [DeviceCommunicationUnit]
+  # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+  timezone: String
+}
+
+# Sub-message containing driver info
+type DriverInfo {
+  # The driver unique identifier.
+  driver_type: String
+  # The version of the driver.
+  version: String
+}
+
+# Sub-message in driver negotiation request
+type DriverTemplates {
+  # The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
+  communication_templates: [CommunicationTemplate]
+  # The templates of the application protocols supported by the driver.
+  app_protocols: [ApplicationProtocolTemplate]
+  # The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.
+  action_attributes: [JobActionAttributes]
+  # The templates of the access levels supported by the driver.
+  access_templates: [AccessLevelTemplate]
+  # The templates of the job actions constraints.
+  action_constraints: JobActionContraints
+}
+
+# DriverRegistry -> RestApi - the message holds the information about the device group.
+type GetDeviceGroupResponse {
+  # The device group specification.
+  spec: DeviceGroupSpec
+}
+
+# DriverRegistry -> RestApi - the message holds the information about the device group.
+type GetDeviceGroupsResponse {
+  # The list of device groups.
+  groups: [_mapDeviceGroupOverviewSpec]
+}
+
+# DriverRegistry -> RestApi - the message holds the information about the modem pool.
+type GetModemPoolResponse {
+  # The modems registered within the pool.
+  modems: [ModemInfo]
+  # The name of the modem pool.
+  name: String
+}
+
+# RestApi -> DriverRegistry - the request message to get the modem pools.
+type GetModemPoolsResponse {
+  # The list of modem pools.
+  pools: [ModemPoolSpec]
+}
+
+# Sub-message containing job action specification
+type JobAction {
+  # The action identifier.
+  action_id: String
+  # The action attributes.
+  attributes: [_mapAttributeValue]
+  # The get register action specification.
+  get_register: ActionGetRegister
+  # The get periodical profile action specification.
+  get_periodical_profile: ActionGetPeriodicalProfile
+  # The get irregular profile action specification.
+  get_irregular_profile: ActionGetIrregularProfile
+  # The get events action specification.
+  get_events: ActionGetEvents
+  # The get clock action specification.
+  get_clock: ActionGetClock
+  # The sync clock action specification.
+  sync_clock: ActionSyncClock
+  # The get relay state action specification.
+  get_relay_state: ActionGetRelayState
+  # The set relay state action specification.
+  set_relay_state: ActionSetRelayState
+  # The get disconnector state action specification.
+  get_disconnector_state: ActionGetDisconnectorState
+  # The set disconnector state action specification.
+  set_disconnector_state: ActionSetDisconnectorState
+  # The get tou action specification.
+  get_tou: ActionGetTou
+  # The set tou action specification.
+  set_tou: ActionSetTou
+  # The get limiter action specification.
+  get_limiter: ActionGetLimiter
+  # The set limiter action specification.
+  set_limiter: ActionSetLimiter
+  # The reset billing period action specification.
+  reset_billing_period: ActionResetBillingPeriod
+  # The firmware update action specification.
+  fw_update: ActionFwUpdate
+}
+
+# Sub-message containing job action attributes
+type JobActionAttributes {
+  # The type of action for which this instance of the template is defined.
+  type: ActionType
+  # The template of the action attributes. It is represented as a list of attribute definitions.
+  attributes: [AttributeDefinition]
+}
+
+# Sub-message containing constraints for job actions.
+type JobActionContraints {
+  # Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+  #  Action: ACTION_TYPE_GET_REGISTER
+  get_register_type_name: [_mapstring]
+  # Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+  #  See JobActionAttributes for the attribute definitions.
+  #  Action: ACTION_TYPE_GET_REGISTER
+  get_register_type_attributes: [_mapStringList]
+}
+
+# Sub-message representing a single job-device info.
+type JobDevice {
+  # The device (job) identifier.
+  id: String
+  # The device identifier. If set then all below is loaded from the device registry.
+  device_id: String
+  # The external identifier.
+  external_id: String
+  # The connection attributes to the device.
+  device_attributes: [_mapAttributeValue]
+  # The conenction (device) parameters.
+  connection_info: [ConnectionInfo]
+  # The application protocol.
+  app_protocol: ApplicationProtocol
+  # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+  timezone: String
+}
+
+# Sub-message containing job parameters
+type JobSettings {
+  # Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
+  max_duration: Int64
+  # Priority of the job.
+  priority: JobPriority
+  # Maximum number of attempts, 1 is the minimum.
+  attempts: [Int]
+  # Delay in miliseconds between two attempts.
+  retry_delay: Int64
+  # Number of miliseconds to wait before starting the job.
+  defer_start: BigInt
+  # The timestamp when the job expires.
+  expires_at: Timestamp
+}
+
+# Sub-message containing job status info
+type JobStatus {
+  # The status of the job.
+  status: JobStatusCode
+  # The error code of the job.
+  code: JobErrorCode
+  # The result data for all job actions.
+  results: [ActionResult]
+  # The creation timestamp of the job.
+  created_at: Timestamp
+  # The start timestamp of the job.
+  started_at: Timestamp
+  # The finish timestamp of the job.
+  finished_at: Timestamp
+  # The number of attempts already done.
+  attempts_done: Int
+}
+
+# DataProxy -> RestApi - the message holds list of bulks.
+type ListOfBulk {
+  # The list of bulks.
+  items: [Bulk]
+}
+
+# DriverRegistry -> RestApi - the message holds the information about the communication unit.
+type ListOfCommunicationUnitSpec {
+  # The communication unit specification.
+  items: [CommunicationUnitSpec]
+}
+
+# Addon for DB
+type ListOfConnectionInfo {
+  items: [DeviceConnectionInfo]
+}
+
+# Taskmaster -> API get drivers response message
+type ListOfDriverInfo {
+  # The list of drivers.
+  items: [DriverInfo]
+}
+
+# Sub-message containing measured value
+type MeasuredValue {
+  # The status of the value.
+  status: Int64
+  # The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
+  exponent: Int
+  # The double-typed value.
+  double_value: Float
+  # The integer-typed value.
+  int_value: Int64
+  # The string-typed value.
+  str_value: String
+  # The timestamp-typed value.
+  timestamp_value: Timestamp
+  # The timestamp with timezone-typed value, stored as string in ISO-8601.
+  timestamp_tz_value: String
+  # The boolean-typed value.
+  bool_value: Boolean
+}
+
+# Sub-message containing modem connection info
+type ModemInfo {
+  # The modem identifier. It is automatically generated during creation.
+  id: String
+  # The name of the modem.
+  name: String
+  # The modem initialization command.
+  at_init: String
+  # The modem test command.
+  at_test: String
+  # The modem configuration command.
+  at_config: String
+  # The modem dial command.
+  at_dial: String
+  # The modem hangup command.
+  at_hangup: String
+  # The modem escape command.
+  at_escape: String
+  # The modem DSR command.
+  at_dsr: Boolean
+  # The modem connection timeout.
+  connect_timeout: Int
+  # The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+  tcpip: ConnectionTypeDirectTcpIp
+}
+
+# Sub-message that represents the modem pool.
+type ModemPoolSpec {
+  # The modem pool identifier.
+  pool_id: String
+  # The name of the modem pool.
+  name: String
+}
+
+# Sub-message containing a single profile block
+type ProfileBlok {
+  # The start timestamp of the block.
+  start_timestamp: Timestamp
+  # The list of profile values. Values are ordered by timestamp.
+  values: [MeasuredValue]
+}
+
+# Sub-message containing profile-typed values
+type ProfileValues {
+  # The period of the profile values.
+  period: Int
+  # The unit of the profile values.
+  unit: String
+  # The list of continuous profile blocks.
+  blocks: [ProfileBlok]
+}
+
+# RestApi -> DriverRegistry - the request message to remove a device from the device group.
+type RemoveDevicesFromGroupRequest {
+  # The unique identifier of the device group.
+  group_id: String
+  # The unique identifier of the device.
+  device_id: [String]
+}
+
+# RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
+type SetDeviceCommunicationUnitsRequest {
+  # The unique identifier of the device.
+  device_id: String
+  # The list of linked communication units.
+  communication_units: [DeviceCommunicationUnit]
+}
+
+type SetModemPoolRequest {
+  # The modem pool identifier. It must be unique within the system.
+  pool_id: String
+  # The name of the modem pool to be created. It must be unique within the system.
+  name: String
+}
+
+type SetModemRequest {
+  # The modem pool identifier, required for update operation.
+  pool_id: String
+  # The modem specification.
+  modem: ModemInfo
+}
+
+# Defines a mesasge as a list of strings.
+type StringList {
+  # The list of strings.
+  items: [String]
+}
+
+# API <-> Taskmaster request/response for system configuration
+type SystemConfig {
+  # The maximum number of replicas for the driver.
+  #     0 represents no active replicas will run, effectively disabling acquisition
+  #    >0 represents the maximum number of replicas per driver
+  max_replicas: Int
+  # The maximum number of cascade devices for the driver. Minimum is 1.
+  max_cascade_device_count: Int
+  # The maximum number of slots per driver
+  #    -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+  #     0 represents no active slots will run, effectively disabling acquisition
+  #    >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+  max_slots_per_driver: Int
+}
+
+# The listing selector.
+type ListSelector {
+  # The number of items per page.
+  page_size: Int
+  # The offset of the first item to return, zero based.
+  offset: Int
+  # The sorting criteria.
+  sort_by: [ListSelectorSortBy]
+  # The filtering criteria.
+  filter_by: [ListSelectorFilterBy]
+  # FIXME: This needs to be designed properly.
+  #
+  # The list of additional fields to be returned.
+  fields: [String]
+}
+
+# The filtering criteria.
+#
+#  Depending on the operator, the 'text', 'integer', 'number', 'boolean' or 'date' field should be used.
+#  - No value must be set for operators: 'IS_NULL', 'IS_NOT_NULL'.
+#  - One value must be set for single operand operators: 'EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'CONTAINS', 'NOT_CONTAINS', 'STARTS_WITH', 'ENDS_WITH'.
+#  - Two values must be set for two operand operators: 'BETWEEN'.
+#  - Any number of values can be set for generic operators: 'IN', 'NOT_IN'.
+#
+#  Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+type ListSelectorFilterBy {
+  # Field id.
+  field_id: String
+  # The filter operator.
+  operator: FilterOperator
+  # The text-typed value(s) used for filtering.
+  text: [String]
+  # The integer-typed value(s) used for filtering.
+  integer: [sint64]
+  # The number-typed value(s) used for filtering.
+  number: [Float]
+  # The boolean-typed value(s) used for filtering.
+  boolean: [Boolean]
+  # The date-typed value(s) used for filtering.
+  date: [Timestamp]
+}
+
+# The sorting criteria.
+type ListSelectorSortBy {
+  # Field id.
+  field_id: String
+  # Set to true to sort in descending order.
+  desc: Boolean
+}
+
+# The metadata fields managed by user and system.
+type MetadataFields {
+  # The additional fields managed by user.
+  fields: [_mapAny]
+  # The additional fields managed by system.
+  managed_fields: [_mapAny]
+}
+
+type _mapstring {
+  key: String!
+  value: String
+}
+
+type _mapAttributeValue {
+  key: String!
+  value: AttributeValue
+}
+
+type _mapDeviceGroupOverviewSpec {
+  key: String!
+  value: DeviceGroupOverviewSpec
+}
+
+type _mapStringList {
+  key: String!
+  value: StringList
+}
+
+type _mapAny {
+  key: String!
+  value: Any
+}
+
+type Query {
+  createBulk: Empty
+  listBulks: ListOfBulk
+  getBulk: Bulk
+  getBulkJob: BulkJob
+  cancelBulk: Empty
+  cancelJobs: Empty
+  getConfig: SystemConfig
+  setConfig: Empty
+  createCommunicationUnit: Empty
+  listCommunicationUnit: ListOfCommunicationUnitSpec
+  getCommunicationUnit: CommunicationUnitSpec
+  createDevice: Empty
+  listDevices: DeviceSpec
+  getDevice: DeviceSpec
+  setDeviceCommunicationUnits: Empty
+  getDevicesCommunicationUnits: ListOfConnectionInfo
+  createDeviceGroup: Empty
+  listDeviceGroups: GetDeviceGroupsResponse
+  getDeviceGroup: GetDeviceGroupResponse
+  addDevicesToGroup: Empty
+  removeDevicesFromGroup: Empty
+  listModemPools: GetModemPoolsResponse
+  getModemPool: GetModemPoolResponse
+  createModemPool: Empty
+  updateModemPool: Empty
+  deleteModemPool: Empty
+  createModem: Empty
+  updateModem: Empty
+  deleteModem: Empty
+  listDrivers: ListOfDriverInfo
+  getDriverTemplates: DriverTemplates
+}
+
+scalar Timestamp
+scalar BigInt
+scalar Int64
+scalar UUID

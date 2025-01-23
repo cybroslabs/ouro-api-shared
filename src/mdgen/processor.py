@@ -9,6 +9,8 @@ re_hint = re.compile(r"@([a-z]+): (.*)")
 re_spaces = re.compile(r"\s+")
 re_type_map = re.compile(r"map<string,\s*([^\s]+)\s*>")
 
+MAIN_PACKAGE = "io.clbs.openhes.services.api"
+
 
 def filter_used(
     packages_map, base_messages: Dict[str, str], base_enums: Dict[str, str]
@@ -58,7 +60,7 @@ def run(
     )
 
     package_map: Dict[str, Package] = {p.name: p for p in sable_context.packages}
-    main_package = package_map["io.clbs.openhes.pbapi"]
+    main_package = package_map[MAIN_PACKAGE]
 
     # Go though non-hidden packages and gather all the used messages and enums
     used_messages = {

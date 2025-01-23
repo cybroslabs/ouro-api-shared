@@ -13,7 +13,7 @@ import gen_graphql
 if __name__ == "__main__":
     sable_config = SableConfig("mdgen.toml")
     sable_config.input_descriptor_file = os.path.join(
-        "protobuf", "pbapi", "pbapi.binpb"
+        "gen", "go", "services", "api", "api.binpb"
     )
     sable_context = parse_proto_descriptor(sable_config)
 

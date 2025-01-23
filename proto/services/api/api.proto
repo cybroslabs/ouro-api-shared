@@ -8,13 +8,6 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "acquisition/job.proto";
 import "common/fields.proto";
-// import "google/protobuf/timestamp.proto";
-// import "pbtaskmaster-common.proto";
-// import "pbdriver-common.proto";
-// import "pbdataproxy-common.proto";
-// import "pbdriveroperator-common.proto";
-// import "pbdeviceregistry-common.proto";
-// import "acquisition/job.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
