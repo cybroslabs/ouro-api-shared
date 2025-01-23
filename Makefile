@@ -9,7 +9,7 @@ setup:
 gen-go:
 	npm i
 
-	(rm -rf ./gen/go/* && cd protobuf && for f in `find . -name '*.proto'`; do \
+	(rm -rf ./gen/go/* && cd proto && for f in `find . -name '*.proto'`; do \
 		export dn=`dirname $$f`; \
 		protoc \
 			--go_opt=default_api_level=API_OPAQUE \
@@ -20,14 +20,14 @@ gen-go:
 			$$f; \
 	done)
 
-	cd protobuf && buf generate
+	cd proto && buf generate
 
-	cd protobuf && buf build -o pbapi/pbapi.binpb
-	cd protobuf && npx buf generate --template buf.gen.npx.yaml
+	cd proto && buf build -o pbapi/pbapi.binpb
+	cd proto && npx buf generate --template buf.gen.npx.yaml
 
 	./src/mdgen/main.py
 
 .PHONY: more
 more:
-	cd protobuf && npx buf generate --template buf.gen.graphql.yaml
+	cd proto && npx buf generate --template buf.gen.graphql.yaml
 	go run github.com/99designs/gqlgen generate

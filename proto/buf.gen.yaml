@@ -1,7 +1,7 @@
 version: v2
 plugins:
   - remote: buf.build/connectrpc/go # local: protoc-gen-connect-go
-    out: pbapi
+    out: ../gen/go
     opt: paths=source_relative
   - remote: buf.build/protocolbuffers/go
     out: pbapi
@@ -13,5 +13,5 @@ plugins:
     opt:
       - paths=source_relative
 inputs:
-  - proto_file: pbapi.proto
+  - proto_file: services/api/api.proto
     include_package_files: true
