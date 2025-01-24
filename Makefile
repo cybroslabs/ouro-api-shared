@@ -12,7 +12,10 @@ setup:
 gen-go:
 	npm i
 
-	(rm -rf ./gen/go/* && cd proto && for f in `find . -name '*.proto'`; do \
+	find ./gen/go -type f ! -name "docs.go" -delete
+	find ./gen/go -type d -empty -delete
+
+	(cd proto && for f in `find . -name '*.proto'`; do \
 		export dn=`dirname $$f`; \
 		buf generate --template buf.gen.grpc.yaml --path $$f; \
 	done)
