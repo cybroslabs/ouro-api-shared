@@ -7,6 +7,7 @@ option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/metadata.proto";
+import "common/types.proto";
 
 // Job priorities
 enum JobPriority {
@@ -609,11 +610,7 @@ enum JobErrorCode {
     JOB_ERROR_CODE_FATAL = 9;
 }
 
-// Defines a mesasge as a list of strings.
-message StringList {
-    // The list of strings.
-    repeated string items = 1;
-}
+
 
 // Sub-message containing constraints for job actions.
 message JobActionContraints {
@@ -623,7 +620,7 @@ message JobActionContraints {
     // Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
     // See JobActionAttributes for the attribute definitions.
     // Action: ACTION_TYPE_GET_REGISTER
-    map<string, StringList> get_register_type_attributes = 2;
+    map<string, common.ListOfString> get_register_type_attributes = 2;
 }
 
 
@@ -770,9 +767,7 @@ message GetDevicesRequest {
 }
 
 
-message ListOfDevice {
-    repeated Device items = 1;  // The list of devices.
-}
+
 
 // Sub-message - the device specification.
 message DeviceSpec {
@@ -784,18 +779,7 @@ message DeviceSpec {
     string timezone                                          = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
-// Sub-message that represents the device group.
-message DeviceGroupSpec {
-    string id                 = 1;  // The UUID of the device group.
-    string external_id        = 2;  // The external identifier of the communication unit.
-    string name               = 3;  // The name of the device group.
-    repeated string device_id = 4;  // The list of device identifiers that are part of the group.
-}
 
-// RestApi -> DriverRegistry - the request message to get the information about the device group.
-message CreateDeviceGroupRequest {
-    DeviceGroupSpec spec = 1;  // The device group specification.
-}
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
 message GetDeviceGroupsResponse {
@@ -806,11 +790,6 @@ message DeviceGroupOverviewSpec {
     string id          = 1;  // The UUID of the device group.
     string external_id = 2;  // The external identifier of the communication unit.
     string name        = 3;  // The name of the device group.
-}
-
-// DriverRegistry -> RestApi - the message holds the information about the device group.
-message GetDeviceGroupResponse {
-    DeviceGroupSpec spec = 1;  // The device group specification.
 }
 
 // RestApi -> DriverRegistry - the request message to add a new device to the device group.

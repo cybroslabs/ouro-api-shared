@@ -1,0 +1,15 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.common;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
+
+// The list of UUID identifiers.
+message ListOfId {
+    repeated string id = 1;
+}
+
+// The list of string items.
+message ListOfString {
+    repeated string items = 1;
+}

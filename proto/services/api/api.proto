@@ -51,7 +51,7 @@ service ApiService {
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-    rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnitSpec);
+    rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
 
     // @group: Devices
     // @tag: device
@@ -60,11 +60,11 @@ service ApiService {
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-    rpc ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.DeviceSpec);
+    rpc ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
-    rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceSpec);
+    rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to replace ordered set of linked communication units.
@@ -81,13 +81,13 @@ service ApiService {
     // @group: Devices
     // @tag: devicegroup
     // The method returns a list of device groups.
-    rpc ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.GetDeviceGroupsResponse);
+    rpc ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
     // @group: Devices
     // @tag: devicegroup
     // The method returns single device group.
     // @param The device group identifier.
     // @return The device group specification.
-    rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetDeviceGroupResponse);
+    rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
     // @group: Devices
     // @tag: devicegroup
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
