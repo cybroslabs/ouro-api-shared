@@ -1,6 +1,6 @@
 module-title = "OpenHES API"
-input-descriptor-file = "gen/go/services/api/api.pb"
-output-dir = "gen/go/services/api/docs"
+input-descriptor-file = "gen/go/services/svcapi/api.pb"
+output-dir = "gen/go/services/svcapi/docs"
 hidden-packages = ["google.protobuf"]
 footer-content = "© 2025 cybros labs"
 main-page-content-file = "docs-index.md"

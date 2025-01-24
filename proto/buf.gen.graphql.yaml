@@ -5,5 +5,5 @@ plugins:
     opt:
       - paths=source_relative
 inputs:
-  - proto_file: services/api/api.proto
+  - proto_file: services/svcapi/api.proto
     include_package_files: true

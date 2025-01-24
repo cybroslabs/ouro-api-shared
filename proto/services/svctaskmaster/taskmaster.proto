@@ -1,0 +1,35 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.services.svctaskmaster;
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svctaskmaster";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "acquisition/main.proto";
+import "acquisition/internal.proto";
+import "common/types.proto";
+import "system/main.proto";
+
+// The Taskmaster service definition.
+// Those are the gRPC services that the Taskmaster provides for other components.
+service TaskmasterService {
+    rpc QueueJobs(io.clbs.openhes.models.acquisition.QueueJobsRequest) returns (google.protobuf.Empty);
+    // The method called by the RestApi to get the job status. The parameter contains the job identifier.
+    rpc GetJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetJobResponse);
+    // The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
+    rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
+    // The method called by the RestApi to cancel the job.
+    rpc CancelJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
+
+    // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
+    rpc SetDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
+    // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
+    rpc SetCache(io.clbs.openhes.models.acquisition.SetCacheRequest) returns (google.protobuf.Empty);
+    // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+    rpc GetCache(io.clbs.openhes.models.acquisition.GetCacheRequest) returns (io.clbs.openhes.models.acquisition.GetCacheResponse);
+
+    // The method called by the RestApi to get the system configuration.
+    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
+    // The method called by the RestApi to set the system configuration.
+    rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
+}

@@ -9,7 +9,7 @@ re_hint = re.compile(r"@([a-z]+): (.*)")
 re_spaces = re.compile(r"\s+")
 re_type_map = re.compile(r"map<string,\s*([^\s]+)\s*>")
 
-MAIN_PACKAGE = "io.clbs.openhes.services.api"
+MAIN_PACKAGE = "io.clbs.openhes.services.svcapi"
 
 
 def filter_used(

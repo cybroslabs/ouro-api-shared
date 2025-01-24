@@ -1,0 +1,18 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.services.svcdriver;
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcdriver";
+
+import "google/protobuf/empty.proto";
+import "acquisition/internal.proto";
+import "acquisition/main.proto";
+import "common/types.proto";
+
+// The driver service definition.
+// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
+service DriverService {
+    // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+    rpc StartJob(io.clbs.openhes.models.acquisition.StartJobsRequest) returns (stream io.clbs.openhes.models.acquisition.ProgressUpdate);
+    // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
+    rpc CancelJob(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
+}

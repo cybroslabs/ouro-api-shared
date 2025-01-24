@@ -10,5 +10,5 @@ plugins:
     # Add more plugin options here
     opt: target=ts
 inputs:
-  - proto_file: services/api/api.proto
+  - proto_file: services/svcapi/api.proto
     include_package_files: true
