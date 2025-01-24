@@ -1139,7 +1139,7 @@ type Query {
   getConfig: SystemConfig
   setConfig: Empty
   createCommunicationUnit: StringValue
-  listCommunicationUnit: ListOfCommunicationUnit
+  listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
   createDevice: StringValue
   listDevices: ListOfDevice

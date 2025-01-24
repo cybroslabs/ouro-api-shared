@@ -521,7 +521,7 @@ type ComplexityRoot struct {
 		GetDriver                    func(childComplexity int) int
 		GetModemPool                 func(childComplexity int) int
 		ListBulks                    func(childComplexity int) int
-		ListCommunicationUnit        func(childComplexity int) int
+		ListCommunicationUnits       func(childComplexity int) int
 		ListDeviceGroups             func(childComplexity int) int
 		ListDevices                  func(childComplexity int) int
 		ListDrivers                  func(childComplexity int) int
@@ -591,7 +591,7 @@ type QueryResolver interface {
 	GetConfig(ctx context.Context) (*model.SystemConfig, error)
 	SetConfig(ctx context.Context) (*model.Empty, error)
 	CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error)
-	ListCommunicationUnit(ctx context.Context) (*model.ListOfCommunicationUnit, error)
+	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
@@ -2335,12 +2335,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListBulks(childComplexity), true
 
-	case "Query.listCommunicationUnit":
-		if e.complexity.Query.ListCommunicationUnit == nil {
+	case "Query.listCommunicationUnits":
+		if e.complexity.Query.ListCommunicationUnits == nil {
 			break
 		}
 
-		return e.complexity.Query.ListCommunicationUnit(childComplexity), true
+		return e.complexity.Query.ListCommunicationUnits(childComplexity), true
 
 	case "Query.listDeviceGroups":
 		if e.complexity.Query.ListDeviceGroups == nil {
@@ -12995,8 +12995,8 @@ func (ec *executionContext) fieldContext_Query_createCommunicationUnit(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_listCommunicationUnit(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_listCommunicationUnit(ctx, field)
+func (ec *executionContext) _Query_listCommunicationUnits(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listCommunicationUnits(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13009,7 +13009,7 @@ func (ec *executionContext) _Query_listCommunicationUnit(ctx context.Context, fi
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().ListCommunicationUnit(rctx)
+		return ec.resolvers.Query().ListCommunicationUnits(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -13023,7 +13023,7 @@ func (ec *executionContext) _Query_listCommunicationUnit(ctx context.Context, fi
 	return ec.marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_listCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_listCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -19972,7 +19972,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "listCommunicationUnit":
+		case "listCommunicationUnits":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -19981,7 +19981,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_listCommunicationUnit(ctx, field)
+				res = ec._Query_listCommunicationUnits(ctx, field)
 				return res
 			}
 

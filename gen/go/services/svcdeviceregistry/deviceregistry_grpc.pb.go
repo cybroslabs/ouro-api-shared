@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceRegistryService_SetDriverTemplates_FullMethodName          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverTemplates"
 	DeviceRegistryService_CreateCommunicationUnit_FullMethodName     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
-	DeviceRegistryService_ListCommunicationUnit_FullMethodName       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnit"
+	DeviceRegistryService_ListCommunicationUnits_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
 	DeviceRegistryService_CreateDevice_FullMethodName                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
 	DeviceRegistryService_ListDevices_FullMethodName                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
@@ -60,7 +60,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	ListCommunicationUnit(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
+	ListCommunicationUnits(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -137,10 +137,10 @@ func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Contex
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListCommunicationUnit(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
+func (c *deviceRegistryServiceClient) ListCommunicationUnits(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfCommunicationUnit)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnit_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnits_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -350,7 +350,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	ListCommunicationUnit(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error)
+	ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -413,8 +413,8 @@ func (UnimplementedDeviceRegistryServiceServer) SetDriverTemplates(context.Conte
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnit(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnit not implemented")
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnits not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnitSpec, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
@@ -530,20 +530,20 @@ func _DeviceRegistryService_CreateCommunicationUnit_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_ListCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceRegistryService_ListCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnit(ctx, in)
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnits(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_ListCommunicationUnit_FullMethodName,
+		FullMethod: DeviceRegistryService_ListCommunicationUnits_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnit(ctx, req.(*common.ListSelector))
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnits(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -906,8 +906,8 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_CreateCommunicationUnit_Handler,
 		},
 		{
-			MethodName: "ListCommunicationUnit",
-			Handler:    _DeviceRegistryService_ListCommunicationUnit_Handler,
+			MethodName: "ListCommunicationUnits",
+			Handler:    _DeviceRegistryService_ListCommunicationUnits_Handler,
 		},
 		{
 			MethodName: "GetCommunicationUnit",
