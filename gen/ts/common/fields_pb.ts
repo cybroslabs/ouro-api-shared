@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlItMBChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEgwKBHRleHQYAyADKAkSDwoHaW50ZWdlchgEIAMoEhIOCgZudW1iZXIYBSADKAESDwoHYm9vbGVhbhgGIAMoCBIoCgRkYXRlGAcgAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJQCg5MaXN0RGVzY3JpcHRvchI+CgZmaWVsZHMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiiAMKD0ZpZWxkRGVzY3JpcHRvchIQCghmaWVsZF9pZBgBIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSQgoKdmFsaWRhdGlvbhgPIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbiKrAgoPRmllbGRWYWxpZGF0aW9uEgoKAnJlGAEgASgJEhIKCm1pbl9sZW5ndGgYAiABKAUSEgoKbWF4X2xlbmd0aBgDIAEoBRITCgttaW5faW50ZWdlchgEIAEoEhITCgttYXhfaW50ZWdlchgFIAEoEhISCgptaW5fbnVtYmVyGAYgASgBEhIKCm1heF9udW1iZXIYByABKAESTAoHb3B0aW9ucxgIIAMoCzI7LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbi5PcHRpb25zRW50cnkaRAoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRIjCgV2YWx1ZRgCIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5Bbnk6AjgBKv0BCg5GaWx0ZXJPcGVyYXRvchIJCgVFUVVBTBAAEg0KCU5PVF9FUVVBTBABEhAKDEdSRUFURVJfVEhBThACEhkKFUdSRUFURVJfVEhBTl9PUl9FUVVBTBADEg0KCUxFU1NfVEhBThAEEhYKEkxFU1NfVEhBTl9PUl9FUVVBTBAFEgwKCENPTlRBSU5TEAYSEAoMTk9UX0NPTlRBSU5TEAcSDwoLU1RBUlRTX1dJVEgQCBINCglFTkRTX1dJVEgQCRIGCgJJThAKEgoKBk5PVF9JThALEgsKB0JFVFdFRU4QDBILCgdJU19OVUxMEA0SDwoLSVNfTk9UX05VTEwQDipOCg1GaWVsZERhdGFUeXBlEggKBFRFWFQQABILCgdJTlRFR0VSEAESCgoGTlVNQkVSEAISCwoHQk9PTEVBThADEg0KCVRJTUVTVEFNUBAEKokBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEgwKCERVUkFUSU9OEAESDAoISU5URVJWQUwQAhIICgREQVRFEAMSDAoIVVRDX0RBVEUQBBIJCgVNT05USBAFEg0KCURBWU9GV0VFSxAGEg0KCVRJTUVPRkRBWRAHEgkKBU1PTkVZEAhCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_any, file_google_protobuf_timestamp]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlItMBChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEgwKBHRleHQYAyADKAkSDwoHaW50ZWdlchgEIAMoEhIOCgZudW1iZXIYBSADKAESDwoHYm9vbGVhbhgGIAMoCBIoCgRkYXRlGAcgAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJQCg5MaXN0RGVzY3JpcHRvchI+CgZmaWVsZHMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiygMKD0ZpZWxkRGVzY3JpcHRvchIQCghmaWVsZF9pZBgBIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSQgoKdmFsaWRhdGlvbhgPIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbhJACg1kZWZhdWx0X3ZhbHVlGBAgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZSKiAgoVRmllbGRTaW1wbGVEZXNjcmlwdG9yEhAKCGZpZWxkX2lkGAEgASgJEg0KBWxhYmVsGAIgASgJEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDwoHdG9vbHRpcBgJIAEoCRIQCghyZXF1aXJlZBgLIAEoCBJCCgp2YWxpZGF0aW9uGA8gASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYECABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIqsCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRpECgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEiMKBXZhbHVlGAIgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueToCOAEiuwEKCkZpZWxkVmFsdWUSFAoKdGV4dF92YWx1ZRgBIAEoCUgAEhcKDWludGVnZXJfdmFsdWUYAiABKANIABIWCgxkb3VibGVfdmFsdWUYAyABKAFIABIWCgxiaW5hcnlfdmFsdWUYBCABKAxIABIUCgpib29sX3ZhbHVlGAUgASgISAASMAoKZGF0ZV92YWx1ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAEIGCgRraW5kKv0BCg5GaWx0ZXJPcGVyYXRvchIJCgVFUVVBTBAAEg0KCU5PVF9FUVVBTBABEhAKDEdSRUFURVJfVEhBThACEhkKFUdSRUFURVJfVEhBTl9PUl9FUVVBTBADEg0KCUxFU1NfVEhBThAEEhYKEkxFU1NfVEhBTl9PUl9FUVVBTBAFEgwKCENPTlRBSU5TEAYSEAoMTk9UX0NPTlRBSU5TEAcSDwoLU1RBUlRTX1dJVEgQCBINCglFTkRTX1dJVEgQCRIGCgJJThAKEgoKBk5PVF9JThALEgsKB0JFVFdFRU4QDBILCgdJU19OVUxMEA0SDwoLSVNfTk9UX05VTEwQDipaCg1GaWVsZERhdGFUeXBlEggKBFRFWFQQABILCgdJTlRFR0VSEAESCgoGRE9VQkxFEAISCwoHQk9PTEVBThADEg0KCVRJTUVTVEFNUBAEEgoKBkJJTkFSWRAFKokBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEgwKCERVUkFUSU9OEAESDAoISU5URVJWQUwQAhIICgREQVRFEAMSDAoIVVRDX0RBVEUQBBIJCgVNT05USBAFEg0KCURBWU9GV0VFSxAGEg0KCVRJTUVPRkRBWRAHEgkKBU1PTkVZEAhCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_any, file_google_protobuf_timestamp]);
 
 /**
  * The listing selector.
@@ -213,7 +213,7 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
   groupId: string;
 
   /**
-   * Data type of the field (e.g., text, number)
+   * Data type of the field (e.g., text, double)
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -234,7 +234,7 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
   unit: string;
 
   /**
-   * Decimal precision for numbers
+   * Decimal precision for double numbers
    *
    * @generated from field: int32 precision = 8;
    */
@@ -281,6 +281,13 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
    * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 15;
    */
   validation?: FieldValidation;
+
+  /**
+   * The default value of the attribute, it does not support multi-value fields
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 16;
+   */
+  defaultValue?: FieldValue;
 };
 
 /**
@@ -289,6 +296,69 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
  */
 export const FieldDescriptorSchema: GenMessage<FieldDescriptor> = /*@__PURE__*/
   messageDesc(file_common_fields, 4);
+
+/**
+ * The field descriptor for simplified cases (e.g., for in-driver definitions).
+ *
+ * @generated from message io.clbs.openhes.models.common.FieldSimpleDescriptor
+ */
+export type FieldSimpleDescriptor = Message<"io.clbs.openhes.models.common.FieldSimpleDescriptor"> & {
+  /**
+   * Unique identifier for the field
+   *
+   * @generated from field: string field_id = 1;
+   */
+  fieldId: string;
+
+  /**
+   * Label displayed for the field
+   *
+   * @generated from field: string label = 2;
+   */
+  label: string;
+
+  /**
+   * Data type of the field (e.g., text, double)
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
+   */
+  dataType: FieldDataType;
+
+  /**
+   * Tooltip or hint text
+   *
+   * @generated from field: string tooltip = 9;
+   */
+  tooltip: string;
+
+  /**
+   * Whether the field is mandatory
+   *
+   * @generated from field: bool required = 11;
+   */
+  required: boolean;
+
+  /**
+   * Validation rules for the field
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 15;
+   */
+  validation?: FieldValidation;
+
+  /**
+   * The default value of the attribute, it does not support multi-value fields
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 16;
+   */
+  defaultValue?: FieldValue;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.FieldSimpleDescriptor.
+ * Use `create(FieldSimpleDescriptorSchema)` to create a new message.
+ */
+export const FieldSimpleDescriptorSchema: GenMessage<FieldSimpleDescriptor> = /*@__PURE__*/
+  messageDesc(file_common_fields, 5);
 
 /**
  * Validation rules for the field.
@@ -358,7 +428,72 @@ export type FieldValidation = Message<"io.clbs.openhes.models.common.FieldValida
  * Use `create(FieldValidationSchema)` to create a new message.
  */
 export const FieldValidationSchema: GenMessage<FieldValidation> = /*@__PURE__*/
-  messageDesc(file_common_fields, 5);
+  messageDesc(file_common_fields, 6);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.FieldValue
+ */
+export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
+  /**
+   * @generated from oneof io.clbs.openhes.models.common.FieldValue.kind
+   */
+  kind: {
+    /**
+     * Represents a string-typed value.
+     *
+     * @generated from field: string text_value = 1;
+     */
+    value: string;
+    case: "textValue";
+  } | {
+    /**
+     * Represents a integer-typed value.
+     *
+     * @generated from field: int64 integer_value = 2;
+     */
+    value: bigint;
+    case: "integerValue";
+  } | {
+    /**
+     * Represents a double-typed value.
+     *
+     * @generated from field: double double_value = 3;
+     */
+    value: number;
+    case: "doubleValue";
+  } | {
+    /**
+     * Represents a binary-typed value.
+     *
+     * @generated from field: bytes binary_value = 4;
+     */
+    value: Uint8Array;
+    case: "binaryValue";
+  } | {
+    /**
+     * Represents a boolean-typed value.
+     *
+     * @generated from field: bool bool_value = 5;
+     */
+    value: boolean;
+    case: "boolValue";
+  } | {
+    /**
+     * Represents a date-typed value.
+     *
+     * @generated from field: google.protobuf.Timestamp date_value = 6;
+     */
+    value: Timestamp;
+    case: "dateValue";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.FieldValue.
+ * Use `create(FieldValueSchema)` to create a new message.
+ */
+export const FieldValueSchema: GenMessage<FieldValue> = /*@__PURE__*/
+  messageDesc(file_common_fields, 7);
 
 /**
  * The filter operator.
@@ -499,11 +634,11 @@ export enum FieldDataType {
   INTEGER = 1,
 
   /**
-   * The number data type.
+   * The double data type.
    *
-   * @generated from enum value: NUMBER = 2;
+   * @generated from enum value: DOUBLE = 2;
    */
-  NUMBER = 2,
+  DOUBLE = 2,
 
   /**
    * The boolean data type.
@@ -518,6 +653,13 @@ export enum FieldDataType {
    * @generated from enum value: TIMESTAMP = 4;
    */
   TIMESTAMP = 4,
+
+  /**
+   * The binary data type.
+   *
+   * @generated from enum value: BINARY = 5;
+   */
+  BINARY = 5,
 }
 
 /**

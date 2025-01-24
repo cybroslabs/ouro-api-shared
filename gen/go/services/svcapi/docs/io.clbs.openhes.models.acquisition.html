@@ -258,24 +258,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.AttributeDefinition">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>AttributeDefinition</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.AttributeValue">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>AttributeValue</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.BillingValue">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>BillingValue</code> 
@@ -780,13 +762,6 @@
         <a href="#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>ApplicationProtocol</code> 
-        </a>
-      </p>
-    
-      <p>
-        <a href="#enum-io.clbs.openhes.models.acquisition.AttributeType">
-          <span class="tag" style="min-width: 6em">Enum</span>
-          <code>AttributeType</code> 
         </a>
       </p>
     
@@ -1881,11 +1856,11 @@
         attributes
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+        <code title="io.clbs.openhes.models.common.FieldSimpleDescriptor">
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldSimpleDescriptor"><span title="io.clbs.openhes.models.common.FieldSimpleDescriptor">io.clbs.openhes.models.common.FieldSimpleDescriptor</span>
     </a>
         </code>
       </td>
@@ -1893,274 +1868,6 @@
       
     </tr>
     
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AttributeDefinition">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.AttributeDefinition" title="io.clbs.openhes.models.acquisition.AttributeDefinition">message AttributeDefinition</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing attribute definition</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        name
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The name of the attribute.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        description
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The description of the attribute.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        type
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.AttributeType">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.AttributeType"><span title="io.clbs.openhes.models.acquisition.AttributeType">io.clbs.openhes.models.acquisition.AttributeType</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The type of the attribute.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>4</td>
-      <td>
-        mandatory
-      </td>
-      <td>
-        <code title="bool">
-          
-          <span>bool</span>
-        </code>
-      </td>
-      <td class="content"><p>The attribute is mandatory or not.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        default_value
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.AttributeValue">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeValue"><span title="io.clbs.openhes.models.acquisition.AttributeValue">io.clbs.openhes.models.acquisition.AttributeValue</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The default value of the attribute.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>6</td>
-      <td>
-        options
-      </td>
-      <td>
-        <code title="map&lt;string, string&gt;">
-          
-          <span>map&lt;string, string&gt;</span>
-        </code>
-      </td>
-      <td class="content"><p>Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AttributeValue">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.AttributeValue" title="io.clbs.openhes.models.acquisition.AttributeValue">message AttributeValue</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing single attribute value specification</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    
-      
-        
-          <tr class="nohover"><td style="border: 0px"></td></tr>
-          <tr class="nohover">
-            <td class="oneof-heading" colspan="4">
-              <div class="oneof-heading">
-                <strong>oneof value</strong>
-              </div>
-            </td>
-          </tr>
-        
-
-        <tr>
-          <td>
-            1
-          </td>
-          <td>
-            str_value
-          </td>
-          <td>
-            <code title="string">
-              
-              <span>string</span>
-            </code>
-          </td>
-          <td class="content"><p>The string-typed value.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            2
-          </td>
-          <td>
-            int_value
-          </td>
-          <td>
-            <code title="int64">
-              
-              <span>int64</span>
-            </code>
-          </td>
-          <td class="content"><p>The integer-typed value.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            3
-          </td>
-          <td>
-            double_value
-          </td>
-          <td>
-            <code title="double">
-              
-              <span>double</span>
-            </code>
-          </td>
-          <td class="content"><p>The double-typed value.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            4
-          </td>
-          <td>
-            binary_value
-          </td>
-          <td>
-            <code title="bytes">
-              
-              <span>bytes</span>
-            </code>
-          </td>
-          <td class="content"><p>The binary-typed value.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            5
-          </td>
-          <td>
-            bool_value
-          </td>
-          <td>
-            <code title="bool">
-              
-              <span>bool</span>
-            </code>
-          </td>
-          <td class="content"><p>The boolean-typed value.</p></td>
-          
-        </tr>
-      
     
   </tbody>
 </table>
@@ -3768,11 +3475,11 @@
         attributes
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+        <code title="io.clbs.openhes.models.common.FieldSimpleDescriptor">
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldSimpleDescriptor"><span title="io.clbs.openhes.models.common.FieldSimpleDescriptor">io.clbs.openhes.models.common.FieldSimpleDescriptor</span>
     </a>
         </code>
       </td>
@@ -4148,9 +3855,9 @@
         attributes
       </td>
       <td>
-        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
           
-          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
       <td class="content"><p>The template of the action attributes. It is represented as a list of attribute definitions.</p></td>
@@ -4580,9 +4287,9 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
         attributes
       </td>
       <td>
-        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
           
-          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
       <td class="content"><p>The action attributes.</p></td>
@@ -4977,11 +4684,11 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
         attributes
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+        <code title="io.clbs.openhes.models.common.FieldSimpleDescriptor">
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldSimpleDescriptor"><span title="io.clbs.openhes.models.common.FieldSimpleDescriptor">io.clbs.openhes.models.common.FieldSimpleDescriptor</span>
     </a>
         </code>
       </td>
@@ -5143,9 +4850,9 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         device_attributes
       </td>
       <td>
-        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
           
-          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
       <td class="content"><p>The connection attributes to the device.</p></td>
@@ -7218,72 +6925,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <td><code>APPPROTO_MQTT</code></td>
       <td>6</td>
       <td class="content"><p>The MQTT protocol.</p></td>
-    </tr>
-    
-  </tbody>
-</table> 
-    </div>
-    
-    <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.AttributeType">
-  <a href="#enum-io.clbs.openhes.models.acquisition.AttributeType" title="io.clbs.openhes.models.acquisition.AttributeType">enum AttributeType</a>
-  
-</h4>
-
-<div class="block content">
-  <p><p>Attribute types</p></p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_INT</code></td>
-      <td>0</td>
-      <td class="content"><p>Integer attribute type</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_STRING</code></td>
-      <td>1</td>
-      <td class="content"><p>String attribute type</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_DOUBLE</code></td>
-      <td>2</td>
-      <td class="content"><p>Double attribute type</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_BINARY</code></td>
-      <td>3</td>
-      <td class="content"><p>Binary attribute type</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_TIMESTAMP</code></td>
-      <td>4</td>
-      <td class="content"><p>Date/time attribute type, stored as integer (UNIX timestamp)</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_TIMESTAMP_TZ</code></td>
-      <td>5</td>
-      <td class="content"><p>Date/time attribute type, stored as string in ISO-8601</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ATTRIBUTE_TYPE_BOOL</code></td>
-      <td>6</td>
-      <td class="content"><p>Bool attribute type</p></td>
     </tr>
     
   </tbody>

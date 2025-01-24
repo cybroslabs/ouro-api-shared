@@ -5,7 +5,9 @@ package io.clbs.openhes.models.acquisition;
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "common/fields.proto";
 import "common/metadata.proto";
 import "common/types.proto";
 
@@ -43,8 +45,8 @@ message JobSettings {
 
 // Sub-message containing job action specification
 message JobAction {
-    string action_id                       = 1;  // The action identifier.
-    map<string, AttributeValue> attributes = 2;  // The action attributes.
+    string action_id                          = 1;  // The action identifier.
+    map<string, common.FieldValue> attributes = 2;  // The action attributes.
     oneof action {
         ActionGetRegister get_register                    = 3;   // The get register action specification.
         ActionGetPeriodicalProfile get_periodical_profile = 4;   // The get periodical profile action specification.
@@ -82,13 +84,13 @@ message JobDeviceId {
 
 // Sub-message representing a single job-device info.
 message JobDevice {
-    string job_id                                 = 1;  // The device's job identifier within the parent bulk.
-    string device_id                              = 2;  // The device identifier. If set then all below is loaded from the device registry.
-    string external_id                            = 3;  // The external identifier.
-    map<string, AttributeValue> device_attributes = 4;  // The connection attributes to the device.
-    repeated ConnectionInfo connection_info       = 5;  // The conenction (device) parameters.
-    ApplicationProtocol app_protocol              = 6;  // The application protocol.
-    string timezone                               = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string job_id                                    = 1;  // The device's job identifier within the parent bulk.
+    string device_id                                 = 2;  // The device identifier. If set then all below is loaded from the device registry.
+    string external_id                               = 3;  // The external identifier.
+    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes to the device.
+    repeated ConnectionInfo connection_info          = 5;  // The conenction (device) parameters.
+    ApplicationProtocol app_protocol                 = 6;  // The application protocol.
+    string timezone                                  = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Sub-message containing modem connection info
@@ -286,7 +288,7 @@ message ApplicationProtocolTemplate {
     // The application protocol.
     ApplicationProtocol protocol = 2;
     // The list of attribute definitions for the protocol.
-    repeated AttributeDefinition attributes = 3;
+    repeated common.FieldSimpleDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
@@ -296,7 +298,7 @@ message DataLinkTemplate {
     // The list of application protocol identifiers supported by the driver.
     repeated ApplicationProtocol app_protocol_refs = 2;
     // The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
-    repeated AttributeDefinition attributes = 3;
+    repeated common.FieldSimpleDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.
@@ -390,22 +392,12 @@ message MeasuredValue {
     }
 }
 
-// Sub-message containing attribute definition
-message AttributeDefinition {
-    string name                  = 1;  // The name of the attribute.
-    string description           = 2;  // The description of the attribute.
-    AttributeType type           = 3;  // The type of the attribute.
-    bool mandatory               = 4;  // The attribute is mandatory or not.
-    AttributeValue default_value = 5;  // The default value of the attribute.
-    map<string, string> options  = 6;  // Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.
-}
-
 // Sub-message containing job action attributes
 message JobActionAttributes {
     // The type of action for which this instance of the template is defined.
     ActionType type = 1;
     // The template of the action attributes. It is represented as a list of attribute definitions.
-    repeated AttributeDefinition attributes = 2;
+    repeated common.FieldSimpleDescriptor attributes = 2;
 }
 
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
@@ -416,24 +408,6 @@ message ConnectionTypeControlledSerial {
         ConnectionTypeSerialMoxa moxa     = 2;  // The Moxa connection type.
         // TBA: Add Advanctech and other IP-to-serial converters.
     }
-}
-
-// Attribute types
-enum AttributeType {
-    // Integer attribute type
-    ATTRIBUTE_TYPE_INT = 0;
-    // String attribute type
-    ATTRIBUTE_TYPE_STRING = 1;
-    // Double attribute type
-    ATTRIBUTE_TYPE_DOUBLE = 2;
-    // Binary attribute type
-    ATTRIBUTE_TYPE_BINARY = 3;
-    // Date/time attribute type, stored as integer (UNIX timestamp)
-    ATTRIBUTE_TYPE_TIMESTAMP = 4;
-    // Date/time attribute type, stored as string in ISO-8601
-    ATTRIBUTE_TYPE_TIMESTAMP_TZ = 5;
-    // Bool attribute type
-    ATTRIBUTE_TYPE_BOOL = 6;
 }
 
 // Action types
@@ -549,17 +523,6 @@ message ActionResetBillingPeriod {
 message ActionFwUpdate {
 }
 
-// Sub-message containing single attribute value specification
-message AttributeValue {
-    oneof value {
-        string str_value    = 1;  // The string-typed value.
-        int64 int_value     = 2;  // The integer-typed value.
-        double double_value = 3;  // The double-typed value.
-        bytes binary_value  = 4;  // The binary-typed value.
-        bool bool_value     = 5;  // The boolean-typed value.
-    }
-}
-
 // Result codes related to job actions
 enum ActionResultCode {
     // The action has been completed successfully.
@@ -629,12 +592,12 @@ message JobStatus {
 
 // Sub-message containing job start request for single device
 message StartJobData {
-    map<string, AttributeValue> device_attributes = 1;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
-    string job_id                                 = 2;  // The job identifier.
-    JobSettings job_settings                      = 3;  // The job parameters.
-    repeated JobAction job_actions                = 4;  // The list actions to be executed.
-    ApplicationProtocol app_protocol              = 5;  // The application protocol.
-    string timezone                               = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    map<string, common.FieldValue> device_attributes = 1;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
+    string job_id                                    = 2;  // The job identifier.
+    JobSettings job_settings                         = 3;  // The job parameters.
+    repeated JobAction job_actions                   = 4;  // The list actions to be executed.
+    ApplicationProtocol app_protocol                 = 5;  // The application protocol.
+    string timezone                                  = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Taskmaster -> Driver cancel job request message
@@ -644,9 +607,9 @@ message CancelJobRequest {
 
 // Addon
 message DeviceConnectionInfo {
-    ConnectionInfo communication_unit             = 1;  // The unique identifier of the communication unit.
-    ApplicationProtocol app_protocol              = 2;  // The application protocol to be used for the communication over the communication unit.
-    map<string, AttributeValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
+    ConnectionInfo communication_unit                = 1;  // The unique identifier of the communication unit.
+    ApplicationProtocol app_protocol                 = 2;  // The application protocol to be used for the communication over the communication unit.
+    map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
 }
 
 // Addon for DB
@@ -699,7 +662,7 @@ message DeviceSpec {
     string id                                                = 1;  // The UUID of the device.
     string external_id                                       = 2;  // The external identifier of the device.
     string name                                              = 3;  // The name of the device.
-    map<string, AttributeValue> attributes                   = 4;  // The template of the action attributes. It is represented as a list of attribute definitions.
+    map<string, common.FieldValue> attributes                = 4;  // The template of the action attributes. It is represented as a list of attribute definitions.
     repeated DeviceCommunicationUnit communication_unit_link = 5;  // The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
     string timezone                                          = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }

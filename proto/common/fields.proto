@@ -7,7 +7,6 @@ option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
-
 // The listing selector.
 message ListSelector {
     uint32 page_size                        = 1;  // The number of items per page.
@@ -72,9 +71,10 @@ message ListDescriptor {
 enum FieldDataType {
     TEXT      = 0;  // The text data type.
     INTEGER   = 1;  // The integer data type.
-    NUMBER    = 2;  // The number data type.
+    DOUBLE    = 2;  // The double data type.
     BOOLEAN   = 3;  // The boolean data type.
     TIMESTAMP = 4;  // The timestamp data type.
+    BINARY    = 5;  // The binary data type.
 }
 
 // Enum representing the field display format.
@@ -95,16 +95,28 @@ message FieldDescriptor {
     string field_id            = 1;   // Unique identifier for the field
     string label               = 2;   // Label displayed for the field
     string group_id            = 6;   // Group (section) identifier for the field
-    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, number)
+    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, double)
     FieldDisplayFormat format  = 4;   // Display format (e.g., 1h 30m)
     string unit                = 5;   // Unit to display (e.g., kWh, USD)
-    int32 precision            = 8;   // Decimal precision for numbers
+    int32 precision            = 8;   // Decimal precision for double numbers
     string tooltip             = 9;   // Tooltip or hint text
     bool required              = 11;  // Whether the field is mandatory
     bool editable              = 12;  // Whether the field is editable
     bool visible               = 13;  // Whether the field is visible
     bool multi_value           = 14;  // Whether the field can have multiple values
     FieldValidation validation = 15;  // Validation rules for the field
+    FieldValue default_value   = 16;  // The default value of the attribute, it does not support multi-value fields
+}
+
+// The field descriptor for simplified cases (e.g., for in-driver definitions).
+message FieldSimpleDescriptor {
+    string field_id            = 1;   // Unique identifier for the field
+    string label               = 2;   // Label displayed for the field
+    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, double)
+    string tooltip             = 9;   // Tooltip or hint text
+    bool required              = 11;  // Whether the field is mandatory
+    FieldValidation validation = 15;  // Validation rules for the field
+    FieldValue default_value   = 16;  // The default value of the attribute, it does not support multi-value fields
 }
 
 // Validation rules for the field.
@@ -117,4 +129,17 @@ message FieldValidation {
     double min_number                        = 6;  // The minimum value. It's used for number fields only.
     double max_number                        = 7;  // The maximum value. It's used for number fields only.
     map<string, google.protobuf.Any> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+}
+
+
+
+message FieldValue {
+    oneof kind {
+        string text_value                    = 1;  // Represents a string-typed value.
+        int64 integer_value                  = 2;  // Represents a integer-typed value.
+        double double_value                  = 3;  // Represents a double-typed value.
+        bytes binary_value                   = 4;  // Represents a binary-typed value.
+        bool bool_value                      = 5;  // Represents a boolean-typed value.
+        google.protobuf.Timestamp date_value = 6;  // Represents a date-typed value.
+    }
 }

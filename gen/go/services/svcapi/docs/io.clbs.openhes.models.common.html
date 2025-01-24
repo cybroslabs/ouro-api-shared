@@ -69,6 +69,33 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.common.FieldSimpleDescriptor">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FieldSimpleDescriptor</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.FieldValidation">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FieldValidation</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.FieldValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FieldValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.common.ListOfString">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfString</code> 
@@ -115,6 +142,13 @@
 
     
       <p>
+        <a href="#enum-io.clbs.openhes.models.common.FieldDataType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>FieldDataType</code> 
+        </a>
+      </p>
+    
+      <p>
         <a href="#enum-io.clbs.openhes.models.common.FilterOperator">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>FilterOperator</code> 
@@ -135,6 +169,464 @@
       Messages
     </h3>
 
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldSimpleDescriptor">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.FieldSimpleDescriptor" title="io.clbs.openhes.models.common.FieldSimpleDescriptor">message FieldSimpleDescriptor</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The field descriptor for simplified cases (e.g., for in-driver definitions).</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        field_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the field</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        label
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Label displayed for the field</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        data_type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDataType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDataType"><span title="io.clbs.openhes.models.common.FieldDataType">io.clbs.openhes.models.common.FieldDataType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Data type of the field (e.g., text, double)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        tooltip
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Tooltip or hint text</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>11</td>
+      <td>
+        required
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field is mandatory</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>15</td>
+      <td>
+        validation
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldValidation">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldValidation"><span title="io.clbs.openhes.models.common.FieldValidation">io.clbs.openhes.models.common.FieldValidation</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Validation rules for the field</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>16</td>
+      <td>
+        default_value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldValue">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldValue"><span title="io.clbs.openhes.models.common.FieldValue">io.clbs.openhes.models.common.FieldValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The default value of the attribute, it does not support multi-value fields</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldValidation">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.FieldValidation" title="io.clbs.openhes.models.common.FieldValidation">message FieldValidation</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Validation rules for the field.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        re
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        min_length
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The minimum length. It's used for string fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        max_length
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The maximum length. It's used for string fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        min_integer
+      </td>
+      <td>
+        <code title="sint64">
+          
+          <span>sint64</span>
+        </code>
+      </td>
+      <td class="content"><p>The minimum value. It's used for integer fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        max_integer
+      </td>
+      <td>
+        <code title="sint64">
+          
+          <span>sint64</span>
+        </code>
+      </td>
+      <td class="content"><p>The maximum value. It's used for integer fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        min_number
+      </td>
+      <td>
+        <code title="double">
+          
+          <span>double</span>
+        </code>
+      </td>
+      <td class="content"><p>The minimum value. It's used for number fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        max_number
+      </td>
+      <td>
+        <code title="double">
+          
+          <span>double</span>
+        </code>
+      </td>
+      <td class="content"><p>The maximum value. It's used for number fields only.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        options
+      </td>
+      <td>
+        <code title="map&lt;string, google.protobuf.Any&gt;">
+          
+          <span>map&lt;string, google.protobuf.Any&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.FieldValue" title="io.clbs.openhes.models.common.FieldValue">message FieldValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof kind</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            text_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a string-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            integer_value
+          </td>
+          <td>
+            <code title="int64">
+              
+              <span>int64</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a integer-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            double_value
+          </td>
+          <td>
+            <code title="double">
+              
+              <span>double</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a double-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            binary_value
+          </td>
+          <td>
+            <code title="bytes">
+              
+              <span>bytes</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a binary-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            bool_value
+          </td>
+          <td>
+            <code title="bool">
+              
+              <span>bool</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a boolean-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            6
+          </td>
+          <td>
+            date_value
+          </td>
+          <td>
+            <code title="google.protobuf.Timestamp">
+              
+              <span>google.protobuf.Timestamp</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a date-typed value.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
     
       
       <div class="block">
@@ -639,6 +1131,66 @@
       Enums
     </h3>
 
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.common.FieldDataType">
+  <a href="#enum-io.clbs.openhes.models.common.FieldDataType" title="io.clbs.openhes.models.common.FieldDataType">enum FieldDataType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Enum representing the field data type.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>TEXT</code></td>
+      <td>0</td>
+      <td class="content"><p>The text data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>INTEGER</code></td>
+      <td>1</td>
+      <td class="content"><p>The integer data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DOUBLE</code></td>
+      <td>2</td>
+      <td class="content"><p>The double data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BOOLEAN</code></td>
+      <td>3</td>
+      <td class="content"><p>The boolean data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TIMESTAMP</code></td>
+      <td>4</td>
+      <td class="content"><p>The timestamp data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BINARY</code></td>
+      <td>5</td>
+      <td class="content"><p>The binary data type.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
     
     <div class="block">
       <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.common.FilterOperator">

@@ -105,26 +105,9 @@ type Any struct {
 }
 
 type ApplicationProtocolTemplate struct {
-	ID         *string                `json:"id,omitempty"`
-	Protocol   *ApplicationProtocol   `json:"protocol,omitempty"`
-	Attributes []*AttributeDefinition `json:"attributes,omitempty"`
-}
-
-type AttributeDefinition struct {
-	Name         *string         `json:"name,omitempty"`
-	Description  *string         `json:"description,omitempty"`
-	Type         *AttributeType  `json:"type,omitempty"`
-	Mandatory    *bool           `json:"mandatory,omitempty"`
-	DefaultValue *AttributeValue `json:"default_value,omitempty"`
-	Options      []*Mapstring    `json:"options,omitempty"`
-}
-
-type AttributeValue struct {
-	StrValue    *string  `json:"str_value,omitempty"`
-	IntValue    *int64   `json:"int_value,omitempty"`
-	DoubleValue *float64 `json:"double_value,omitempty"`
-	BinaryValue *string  `json:"binary_value,omitempty"`
-	BoolValue   *bool    `json:"bool_value,omitempty"`
+	ID         *string                  `json:"id,omitempty"`
+	Protocol   *ApplicationProtocol     `json:"protocol,omitempty"`
+	Attributes []*FieldSimpleDescriptor `json:"attributes,omitempty"`
 }
 
 type BillingValue struct {
@@ -236,9 +219,9 @@ type CreateDeviceRequest struct {
 }
 
 type DataLinkTemplate struct {
-	LinkProtocol    *DataLinkProtocol      `json:"link_protocol,omitempty"`
-	AppProtocolRefs []*ApplicationProtocol `json:"app_protocol_refs,omitempty"`
-	Attributes      []*AttributeDefinition `json:"attributes,omitempty"`
+	LinkProtocol    *DataLinkProtocol        `json:"link_protocol,omitempty"`
+	AppProtocolRefs []*ApplicationProtocol   `json:"app_protocol_refs,omitempty"`
+	Attributes      []*FieldSimpleDescriptor `json:"attributes,omitempty"`
 }
 
 type Device struct {
@@ -266,7 +249,7 @@ type DeviceSpec struct {
 	ID                    *string                    `json:"id,omitempty"`
 	ExternalID            *string                    `json:"external_id,omitempty"`
 	Name                  *string                    `json:"name,omitempty"`
-	Attributes            []*MapAttributeValue       `json:"attributes,omitempty"`
+	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
 	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communication_unit_link,omitempty"`
 	Timezone              *string                    `json:"timezone,omitempty"`
 }
@@ -298,9 +281,39 @@ type Empty struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
+type FieldSimpleDescriptor struct {
+	FieldID      *string          `json:"field_id,omitempty"`
+	Label        *string          `json:"label,omitempty"`
+	DataType     *FieldDataType   `json:"data_type,omitempty"`
+	Tooltip      *string          `json:"tooltip,omitempty"`
+	Required     *bool            `json:"required,omitempty"`
+	Validation   *FieldValidation `json:"validation,omitempty"`
+	DefaultValue *FieldValue      `json:"default_value,omitempty"`
+}
+
+type FieldValidation struct {
+	Re         *string   `json:"re,omitempty"`
+	MinLength  *int32    `json:"min_length,omitempty"`
+	MaxLength  *int32    `json:"max_length,omitempty"`
+	MinInteger *int64    `json:"min_integer,omitempty"`
+	MaxInteger *int64    `json:"max_integer,omitempty"`
+	MinNumber  *float64  `json:"min_number,omitempty"`
+	MaxNumber  *float64  `json:"max_number,omitempty"`
+	Options    []*MapAny `json:"options,omitempty"`
+}
+
+type FieldValue struct {
+	TextValue    *string  `json:"text_value,omitempty"`
+	IntegerValue *int64   `json:"integer_value,omitempty"`
+	DoubleValue  *float64 `json:"double_value,omitempty"`
+	BinaryValue  *string  `json:"binary_value,omitempty"`
+	BoolValue    *bool    `json:"bool_value,omitempty"`
+	DateValue    *string  `json:"date_value,omitempty"`
+}
+
 type JobAction struct {
 	ActionID             *string                     `json:"action_id,omitempty"`
-	Attributes           []*MapAttributeValue        `json:"attributes,omitempty"`
+	Attributes           []*MapFieldValue            `json:"attributes,omitempty"`
 	GetRegister          *ActionGetRegister          `json:"get_register,omitempty"`
 	GetPeriodicalProfile *ActionGetPeriodicalProfile `json:"get_periodical_profile,omitempty"`
 	GetIrregularProfile  *ActionGetIrregularProfile  `json:"get_irregular_profile,omitempty"`
@@ -320,8 +333,8 @@ type JobAction struct {
 }
 
 type JobActionAttributes struct {
-	Type       *ActionType            `json:"type,omitempty"`
-	Attributes []*AttributeDefinition `json:"attributes,omitempty"`
+	Type       *ActionType              `json:"type,omitempty"`
+	Attributes []*FieldSimpleDescriptor `json:"attributes,omitempty"`
 }
 
 type JobActionContraints struct {
@@ -333,7 +346,7 @@ type JobDevice struct {
 	JobID            *string              `json:"job_id,omitempty"`
 	DeviceID         *string              `json:"device_id,omitempty"`
 	ExternalID       *string              `json:"external_id,omitempty"`
-	DeviceAttributes []*MapAttributeValue `json:"device_attributes,omitempty"`
+	DeviceAttributes []*MapFieldValue     `json:"device_attributes,omitempty"`
 	ConnectionInfo   []*ConnectionInfo    `json:"connection_info,omitempty"`
 	AppProtocol      *ApplicationProtocol `json:"app_protocol,omitempty"`
 	Timezone         *string              `json:"timezone,omitempty"`
@@ -517,9 +530,9 @@ type MapAny struct {
 	Value *Any   `json:"value,omitempty"`
 }
 
-type MapAttributeValue struct {
-	Key   string          `json:"key"`
-	Value *AttributeValue `json:"value,omitempty"`
+type MapFieldValue struct {
+	Key   string      `json:"key"`
+	Value *FieldValue `json:"value,omitempty"`
 }
 
 type MapListOfString struct {
@@ -697,57 +710,6 @@ func (e ApplicationProtocol) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
-type AttributeType string
-
-const (
-	AttributeTypeAttributeTypeInt         AttributeType = "ATTRIBUTE_TYPE_INT"
-	AttributeTypeAttributeTypeString      AttributeType = "ATTRIBUTE_TYPE_STRING"
-	AttributeTypeAttributeTypeDouble      AttributeType = "ATTRIBUTE_TYPE_DOUBLE"
-	AttributeTypeAttributeTypeBinary      AttributeType = "ATTRIBUTE_TYPE_BINARY"
-	AttributeTypeAttributeTypeTimestamp   AttributeType = "ATTRIBUTE_TYPE_TIMESTAMP"
-	AttributeTypeAttributeTypeTimestampTz AttributeType = "ATTRIBUTE_TYPE_TIMESTAMP_TZ"
-	AttributeTypeAttributeTypeBool        AttributeType = "ATTRIBUTE_TYPE_BOOL"
-)
-
-var AllAttributeType = []AttributeType{
-	AttributeTypeAttributeTypeInt,
-	AttributeTypeAttributeTypeString,
-	AttributeTypeAttributeTypeDouble,
-	AttributeTypeAttributeTypeBinary,
-	AttributeTypeAttributeTypeTimestamp,
-	AttributeTypeAttributeTypeTimestampTz,
-	AttributeTypeAttributeTypeBool,
-}
-
-func (e AttributeType) IsValid() bool {
-	switch e {
-	case AttributeTypeAttributeTypeInt, AttributeTypeAttributeTypeString, AttributeTypeAttributeTypeDouble, AttributeTypeAttributeTypeBinary, AttributeTypeAttributeTypeTimestamp, AttributeTypeAttributeTypeTimestampTz, AttributeTypeAttributeTypeBool:
-		return true
-	}
-	return false
-}
-
-func (e AttributeType) String() string {
-	return string(e)
-}
-
-func (e *AttributeType) UnmarshalGQL(v any) error {
-	str, ok := v.(string)
-	if !ok {
-		return fmt.Errorf("enums must be strings")
-	}
-
-	*e = AttributeType(str)
-	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid AttributeType", str)
-	}
-	return nil
-}
-
-func (e AttributeType) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
-}
-
 type BulkStatusCode string
 
 const (
@@ -888,6 +850,55 @@ func (e *DataLinkProtocol) UnmarshalGQL(v any) error {
 }
 
 func (e DataLinkProtocol) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+type FieldDataType string
+
+const (
+	FieldDataTypeText      FieldDataType = "TEXT"
+	FieldDataTypeInteger   FieldDataType = "INTEGER"
+	FieldDataTypeDouble    FieldDataType = "DOUBLE"
+	FieldDataTypeBoolean   FieldDataType = "BOOLEAN"
+	FieldDataTypeTimestamp FieldDataType = "TIMESTAMP"
+	FieldDataTypeBinary    FieldDataType = "BINARY"
+)
+
+var AllFieldDataType = []FieldDataType{
+	FieldDataTypeText,
+	FieldDataTypeInteger,
+	FieldDataTypeDouble,
+	FieldDataTypeBoolean,
+	FieldDataTypeTimestamp,
+	FieldDataTypeBinary,
+}
+
+func (e FieldDataType) IsValid() bool {
+	switch e {
+	case FieldDataTypeText, FieldDataTypeInteger, FieldDataTypeDouble, FieldDataTypeBoolean, FieldDataTypeTimestamp, FieldDataTypeBinary:
+		return true
+	}
+	return false
+}
+
+func (e FieldDataType) String() string {
+	return string(e)
+}
+
+func (e *FieldDataType) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = FieldDataType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid FieldDataType", str)
+	}
+	return nil
+}
+
+func (e FieldDataType) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 

@@ -7,12 +7,13 @@ option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "acquisition/shared.proto";
+import "common/fields.proto";
 
 // Driver <-> Taskmaster driver data caching
 
 message SetCacheRequest {
-    string key                       = 1;  // The key of the cache entry. The key is unique within the driver type.
-    acquisition.AttributeValue value = 2;  // The value of the cache entry.
+    string key              = 1;  // The key of the cache entry. The key is unique within the driver type.
+    common.FieldValue value = 2;  // The value of the cache entry.
 }
 
 message GetCacheRequest {
@@ -20,7 +21,7 @@ message GetCacheRequest {
 }
 
 message GetCacheResponse {
-    acquisition.AttributeValue value = 2;  // The value of the cache entry.
+    common.FieldValue value = 2;  // The value of the cache entry.
 }
 
 message StartJobsRequest {
@@ -36,7 +37,6 @@ message ProgressUpdate {
         ActionProgressUpdate action = 2;  // The action progress update data. It shall be called for each action in the job.
     }
 }
-
 
 // Driver <-> DriverOperator info synchronization
 
