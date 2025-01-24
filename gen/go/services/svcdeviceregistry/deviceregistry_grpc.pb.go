@@ -92,7 +92,7 @@ type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(ctx context.Context, in *acquisition.RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method to get list of the modem pools.
-	ListModemPools(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error)
+	ListModemPools(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
 	GetModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ModemPool, error)
 	// The method to create a new modem pool.
@@ -257,7 +257,7 @@ func (c *deviceRegistryServiceClient) RemoveDevicesFromGroup(ctx context.Context
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListModemPools(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error) {
+func (c *deviceRegistryServiceClient) ListModemPools(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfModemPool)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListModemPools_FullMethodName, in, out, cOpts...)
@@ -382,7 +382,7 @@ type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	// The method to get list of the modem pools.
-	ListModemPools(context.Context, *emptypb.Empty) (*acquisition.ListOfModemPool, error)
+	ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
 	GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error)
 	// The method to create a new modem pool.
@@ -449,7 +449,7 @@ func (UnimplementedDeviceRegistryServiceServer) AddDevicesToGroup(context.Contex
 func (UnimplementedDeviceRegistryServiceServer) RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDevicesFromGroup not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListModemPools(context.Context, *emptypb.Empty) (*acquisition.ListOfModemPool, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModemPools not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error) {
@@ -747,7 +747,7 @@ func _DeviceRegistryService_RemoveDevicesFromGroup_Handler(srv interface{}, ctx 
 }
 
 func _DeviceRegistryService_ListModemPools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -759,7 +759,7 @@ func _DeviceRegistryService_ListModemPools_Handler(srv interface{}, ctx context.
 		FullMethod: DeviceRegistryService_ListModemPools_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListModemPools(ctx, req.(*emptypb.Empty))
+		return srv.(DeviceRegistryServiceServer).ListModemPools(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
