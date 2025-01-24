@@ -4,8 +4,9 @@ package io.clbs.openhes.services.driver;
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/driver";
 
 import "google/protobuf/empty.proto";
+import "acquisition/internal.proto";
 import "acquisition/main.proto";
-import "acquisition/common.proto";
+import "common/types.proto";
 
 // The driver service definition.
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.

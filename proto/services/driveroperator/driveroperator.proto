@@ -6,17 +6,18 @@ option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/driveroper
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
+import "acquisition/internal.proto";
 import "acquisition/main.proto";
 
 // The Driver Operator service definition.
 // Those are the gRPC services that the Driver Operator provides for other components.
 service DriverOperatorService {
     // The method called by the RestApi to get the list of drivers.
-    rpc GetDrivers(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfDriverInfo);
+    rpc ListDrivers(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
     // The method called by the Driver to set the driver templates. The parameter contains the driver templates.
-    rpc SetDriverTemplates(io.clbs.openhes.models.acquisition.NegotiateRequest) returns (google.protobuf.Empty);
+    rpc SetDriver(io.clbs.openhes.models.acquisition.Driver) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
-    rpc GetDriverTemplates(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DriverTemplates);
+    rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
     // The method called by the Taskmaster to set the driver scale.
     rpc SetDriverScale(io.clbs.openhes.models.acquisition.SetDriverScaleRequest) returns (google.protobuf.Empty);

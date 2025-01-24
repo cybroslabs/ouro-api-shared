@@ -10,15 +10,61 @@ import "acquisition/shared.proto";
 
 // Driver <-> Taskmaster driver data caching
 
-message CacheSetRequest {
+message SetCacheRequest {
     string key                       = 1;  // The key of the cache entry. The key is unique within the driver type.
     acquisition.AttributeValue value = 2;  // The value of the cache entry.
 }
 
-message CacheGetRequest {
+message GetCacheRequest {
     string key = 1;  // The key of the cache entry. The key is unique within the driver type.
 }
 
-message CacheGetResponse {
+message GetCacheResponse {
     acquisition.AttributeValue value = 2;  // The value of the cache entry.
+}
+
+message StartJobsRequest {
+    ConnectionInfo connection_info = 2;  // The connection info for the job.
+    repeated StartJobData jobs     = 1;  // The list of jobs to be started with the same connection info.
+}
+
+// Driver -> Taskmaster job/action progress update message
+message ProgressUpdate {
+    // The oneof field containing the progress update data - either for job or for action.
+    oneof progress {
+        JobProgressUpdate job       = 1;  // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
+        ActionProgressUpdate action = 2;  // The action progress update data. It shall be called for each action in the job.
+    }
+}
+
+
+// Driver <-> DriverOperator info synchronization
+
+message StartUpgradeRequest {
+    string driver_type        = 1;  // The driver unique identifier.
+    string driver_version     = 2;  // The driver version to be started. It must be a valid version of the driver and should be exactly +1 against the version of the data to be upgraded; or the major version can be +1 if current data version is the latest possible minor version.
+    string deviceregistry_url = 3;  // The URL of the DeviceRegistry service the driver shall connect to.
+}
+
+// DataProxy <-> Taskmaster communication
+
+message QueueJobsRequest {
+    repeated JobSpec spec = 1;  // The list of jobs to be queued.
+}
+
+message GetJobResponse {
+    JobStatus status = 1;  // The status of the job
+}
+
+// DriverOperator <-> Taskmaster communication
+
+message SetDriverScaleRequest {
+    string taskmaster_id = 1;  // The Taskmaster identifier. It is statefulset so value must be either full pod name or suffix integer of the pod name. For example: taskmaster-0 or 0.
+    string driver_type   = 2;  // The driver unique identifier.
+    uint32 replicas      = 3;  // The number of replicas to scale to.
+}
+
+message GetDriverScaleRequest {
+    string taskmaster_id = 1;  // The Taskmaster identifier. It is statefulset so value must be either full pod name or suffix integer of the pod name. For example: taskmaster-0 or 0.
+    string driver_type   = 2;  // The driver unique identifier.
 }

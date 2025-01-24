@@ -469,7 +469,6 @@ type ActionSyncClock {
   _empty: Boolean
 }
 
-# RestApi -> DriverRegistry - the request message to add a new device to the device group.
 type AddDevicesToGroupRequest {
   # The unique identifier of the device group.
   group_id: String
@@ -533,7 +532,6 @@ type BillingValues {
   values: [BillingValue]
 }
 
-# DataProxy -> RestApi - the message holds the bulk info and it's status.
 type Bulk {
   # The bulk-job spec.
   spec: BulkSpec
@@ -550,7 +548,6 @@ type BulkJob {
   status: JobStatus
 }
 
-# Sub-message - holds the bulk job specification.
 type BulkSpec {
   # The bulk identifier.
   bulk_id: String
@@ -570,18 +567,11 @@ type BulkSpec {
   user_id: String
 }
 
-# Sub-message - holds the bulk job status.
 type BulkStatus {
   # The job status.
   status: BulkStatusCode
   # The list of job statuses.
   jobs: [BulkJob]
-}
-
-# API -> Taskmaster cancel job request message
-type CancelJobsRequest {
-  # The job identifier.
-  job_id: [String]
 }
 
 # Sub-message containing destription for one communication type, e.g. TCP/IP.
@@ -592,7 +582,13 @@ type CommunicationTemplate {
   datalinks: [DataLinkTemplate]
 }
 
-# Sub-message - the communication unit specification.
+type CommunicationUnit {
+  # The communication unit specification.
+  spec: CommunicationUnitSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type CommunicationUnitSpec {
   # The UUID of the communication unit.
   id: String
@@ -663,7 +659,6 @@ type ConnectionTypeSerialMoxa {
   commandPort: Int
 }
 
-# RestApi -> DataProxy
 type CreateBulkRequest {
   # The bulk-job spec.
   spec: BulkSpec
@@ -671,19 +666,16 @@ type CreateBulkRequest {
   metadata: MetadataFields
 }
 
-# RestApi -> DriverRegistry - The communication unit specification.
 type CreateCommunicationUnitRequest {
   # The communication unit specification.
   spec: CommunicationUnitSpec
 }
 
-# RestApi -> DriverRegistry - the request message to get the information about the device group.
 type CreateDeviceGroupRequest {
   # The device group specification.
   spec: DeviceGroupSpec
 }
 
-# RestApi -> DriverRegistry - the request message to create a new device.
 type CreateDeviceRequest {
   # The device specification.
   spec: DeviceSpec
@@ -699,6 +691,13 @@ type DataLinkTemplate {
   attributes: [AttributeDefinition]
 }
 
+type Device {
+  # The device specification.
+  spec: DeviceSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type DeviceCommunicationUnit {
   # The unique identifier of the communication unit.
   communication_unit_id: String
@@ -706,26 +705,13 @@ type DeviceCommunicationUnit {
   app_protocol: ApplicationProtocol
 }
 
-# Addon
-type DeviceConnectionInfo {
-  # The unique identifier of the communication unit.
-  communication_unit: ConnectionInfo
-  # The application protocol to be used for the communication over the communication unit.
-  app_protocol: ApplicationProtocol
-  # The device attributes. For example HDLC address, password and other driver-specific attributes.
-  device_attributes: [_mapAttributeValue]
+type DeviceGroup {
+  # The device group specification.
+  spec: DeviceGroupSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
-type DeviceGroupOverviewSpec {
-  # The UUID of the device group.
-  id: String
-  # The external identifier of the communication unit.
-  external_id: String
-  # The name of the device group.
-  name: String
-}
-
-# Sub-message that represents the device group.
 type DeviceGroupSpec {
   # The UUID of the device group.
   id: String
@@ -753,12 +739,33 @@ type DeviceSpec {
   timezone: String
 }
 
-# Sub-message containing driver info
-type DriverInfo {
-  # The driver unique identifier.
-  driver_type: String
-  # The version of the driver.
+type Driver {
+  # The driver specification.
+  spec: DriverSpec
+}
+
+type DriverSpec {
+  # The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
   version: String
+  # The port the driver's gRPC will listen on.
+  listening_port: Int
+  # The technical/internal ID of the driver.
+  driver_type: String
+  # The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+  max_concurrent_jobs: Int
+  # The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
+  #  The value 0 means that the driver can handle any number of cascading jobs.
+  max_cascade_depth: Int
+  # The typical memory usage of the driver in MB.
+  typical_mem_usage: Int
+  # The connection and action templates.
+  templates: DriverTemplates
+  # The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+  #  It must respect upper/lower characters.
+  #  The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+  #
+  #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+  display_name: String
 }
 
 # Sub-message in driver negotiation request
@@ -773,32 +780,6 @@ type DriverTemplates {
   access_templates: [AccessLevelTemplate]
   # The templates of the job actions constraints.
   action_constraints: JobActionContraints
-}
-
-# DriverRegistry -> RestApi - the message holds the information about the device group.
-type GetDeviceGroupResponse {
-  # The device group specification.
-  spec: DeviceGroupSpec
-}
-
-# DriverRegistry -> RestApi - the message holds the information about the device group.
-type GetDeviceGroupsResponse {
-  # The list of device groups.
-  groups: [_mapDeviceGroupOverviewSpec]
-}
-
-# DriverRegistry -> RestApi - the message holds the information about the modem pool.
-type GetModemPoolResponse {
-  # The modems registered within the pool.
-  modems: [ModemInfo]
-  # The name of the modem pool.
-  name: String
-}
-
-# RestApi -> DriverRegistry - the request message to get the modem pools.
-type GetModemPoolsResponse {
-  # The list of modem pools.
-  pools: [ModemPoolSpec]
 }
 
 # Sub-message containing job action specification
@@ -857,7 +838,7 @@ type JobActionContraints {
   # Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
   #  See JobActionAttributes for the attribute definitions.
   #  Action: ACTION_TYPE_GET_REGISTER
-  get_register_type_attributes: [_mapStringList]
+  get_register_type_attributes: [_mapListOfString]
 }
 
 # Sub-message representing a single job-device info.
@@ -912,27 +893,34 @@ type JobStatus {
   attempts_done: Int
 }
 
-# DataProxy -> RestApi - the message holds list of bulks.
 type ListOfBulk {
   # The list of bulks.
   items: [Bulk]
 }
 
-# DriverRegistry -> RestApi - the message holds the information about the communication unit.
-type ListOfCommunicationUnitSpec {
+type ListOfCommunicationUnit {
   # The communication unit specification.
-  items: [CommunicationUnitSpec]
+  items: [CommunicationUnit]
 }
 
-# Addon for DB
-type ListOfConnectionInfo {
-  items: [DeviceConnectionInfo]
+type ListOfDevice {
+  # The list of devices.
+  items: [Device]
 }
 
-# Taskmaster -> API get drivers response message
-type ListOfDriverInfo {
+type ListOfDeviceGroup {
+  # The list of device groups.
+  items: [DeviceGroup]
+}
+
+type ListOfDriver {
   # The list of drivers.
-  items: [DriverInfo]
+  items: [Driver]
+}
+
+type ListOfModemPool {
+  # The list of modem pools.
+  pools: [ModemPoolSpec]
 }
 
 # Sub-message containing measured value
@@ -981,7 +969,13 @@ type ModemInfo {
   tcpip: ConnectionTypeDirectTcpIp
 }
 
-# Sub-message that represents the modem pool.
+type ModemPool {
+  # The modem pool specification.
+  spec: ModemPoolSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type ModemPoolSpec {
   # The modem pool identifier.
   pool_id: String
@@ -1007,7 +1001,6 @@ type ProfileValues {
   blocks: [ProfileBlok]
 }
 
-# RestApi -> DriverRegistry - the request message to remove a device from the device group.
 type RemoveDevicesFromGroupRequest {
   # The unique identifier of the device group.
   group_id: String
@@ -1015,7 +1008,6 @@ type RemoveDevicesFromGroupRequest {
   device_id: [String]
 }
 
-# RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
 type SetDeviceCommunicationUnitsRequest {
   # The unique identifier of the device.
   device_id: String
@@ -1024,10 +1016,8 @@ type SetDeviceCommunicationUnitsRequest {
 }
 
 type SetModemPoolRequest {
-  # The modem pool identifier. It must be unique within the system.
-  pool_id: String
-  # The name of the modem pool to be created. It must be unique within the system.
-  name: String
+  # The modem pool specification.
+  spec: ModemPoolSpec
 }
 
 type SetModemRequest {
@@ -1037,25 +1027,9 @@ type SetModemRequest {
   modem: ModemInfo
 }
 
-# Defines a mesasge as a list of strings.
-type StringList {
-  # The list of strings.
+# The list of string items.
+type ListOfString {
   items: [String]
-}
-
-# API <-> Taskmaster request/response for system configuration
-type SystemConfig {
-  # The maximum number of replicas for the driver.
-  #     0 represents no active replicas will run, effectively disabling acquisition
-  #    >0 represents the maximum number of replicas per driver
-  max_replicas: Int
-  # The maximum number of cascade devices for the driver. Minimum is 1.
-  max_cascade_device_count: Int
-  # The maximum number of slots per driver
-  #    -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-  #     0 represents no active slots will run, effectively disabling acquisition
-  #    >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
-  max_slots_per_driver: Int
 }
 
 # The listing selector.
@@ -1116,6 +1090,20 @@ type MetadataFields {
   managed_fields: [_mapAny]
 }
 
+type SystemConfig {
+  # The maximum number of replicas for the driver.
+  #     0 represents no active replicas will run, effectively disabling acquisition
+  #    >0 represents the maximum number of replicas per driver
+  max_replicas: Int
+  # The maximum number of cascade devices for the driver. Minimum is 1.
+  max_cascade_device_count: Int
+  # The maximum number of slots per driver
+  #    -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+  #     0 represents no active slots will run, effectively disabling acquisition
+  #    >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+  max_slots_per_driver: Int
+}
+
 type _mapstring {
   key: String!
   value: String
@@ -1126,14 +1114,9 @@ type _mapAttributeValue {
   value: AttributeValue
 }
 
-type _mapDeviceGroupOverviewSpec {
+type _mapListOfString {
   key: String!
-  value: DeviceGroupOverviewSpec
-}
-
-type _mapStringList {
-  key: String!
-  value: StringList
+  value: ListOfString
 }
 
 type _mapAny {
@@ -1145,34 +1128,32 @@ type Query {
   createBulk: Empty
   listBulks: ListOfBulk
   getBulk: Bulk
-  getBulkJob: BulkJob
   cancelBulk: Empty
-  cancelJobs: Empty
   getConfig: SystemConfig
   setConfig: Empty
   createCommunicationUnit: Empty
-  listCommunicationUnit: ListOfCommunicationUnitSpec
-  getCommunicationUnit: CommunicationUnitSpec
+  listCommunicationUnit: ListOfCommunicationUnit
+  getCommunicationUnit: CommunicationUnit
   createDevice: Empty
-  listDevices: DeviceSpec
-  getDevice: DeviceSpec
+  listDevices: ListOfDevice
+  getDevice: Device
   setDeviceCommunicationUnits: Empty
-  getDevicesCommunicationUnits: ListOfConnectionInfo
+  getDevicesCommunicationUnits: ListOfCommunicationUnit
   createDeviceGroup: Empty
-  listDeviceGroups: GetDeviceGroupsResponse
-  getDeviceGroup: GetDeviceGroupResponse
+  listDeviceGroups: ListOfDeviceGroup
+  getDeviceGroup: DeviceGroup
   addDevicesToGroup: Empty
   removeDevicesFromGroup: Empty
-  listModemPools: GetModemPoolsResponse
-  getModemPool: GetModemPoolResponse
+  listModemPools: ListOfModemPool
+  getModemPool: ModemPool
   createModemPool: Empty
   updateModemPool: Empty
   deleteModemPool: Empty
   createModem: Empty
   updateModem: Empty
   deleteModem: Empty
-  listDrivers: ListOfDriverInfo
-  getDriverTemplates: DriverTemplates
+  listDrivers: ListOfDriver
+  getDriver: Driver
 }
 
 scalar Timestamp

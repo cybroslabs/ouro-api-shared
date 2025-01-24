@@ -81,7 +81,6 @@ message CreateBulkRequest2 {
 
 // Sub-message - holds the bulk job specification.
 
-
 message ListOfJobDevice {
     repeated JobDevice list = 5;  // The list of devices in the bulk.
 }
@@ -340,15 +339,6 @@ message DriverTemplates {
     repeated AccessLevelTemplate access_templates = 4;
     // The templates of the job actions constraints.
     JobActionContraints action_constraints = 5;
-}
-
-// Driver -> Taskmaster job/action progress update message
-message ProgressUpdate {
-    // The oneof field containing the progress update data - either for job or for action.
-    oneof progress {
-        JobProgressUpdate job       = 1;  // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
-        ActionProgressUpdate action = 2;  // The action progress update data. It shall be called for each action in the job.
-    }
 }
 
 // Sub-message containing action progress update
@@ -610,8 +600,6 @@ enum JobErrorCode {
     JOB_ERROR_CODE_FATAL = 9;
 }
 
-
-
 // Sub-message containing constraints for job actions.
 message JobActionContraints {
     // Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
@@ -622,8 +610,6 @@ message JobActionContraints {
     // Action: ACTION_TYPE_GET_REGISTER
     map<string, common.ListOfString> get_register_type_attributes = 2;
 }
-
-
 
 // Bulk statuses
 enum BulkStatusCode {
@@ -638,8 +624,6 @@ enum BulkStatusCode {
     // The job has expired
     BULK_STATUS_EXPIRED = 4;
 }
-
-
 
 message BulkJob {
     string job_id    = 1;  // The job identifier.
@@ -657,14 +641,6 @@ message JobStatus {
     int32 attempts_done                   = 7;  // The number of attempts already done.
 }
 
-
-
-// Taskmaster -> Driver start job request message
-message StartJobsRequest {
-    ConnectionInfo connection_info = 2;  // The connection info for the job.
-    repeated StartJobData jobs     = 1;  // The list of jobs to be started with the same connection info.
-}
-
 // Sub-message containing job start request for single device
 message StartJobData {
     map<string, AttributeValue> device_attributes = 1;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
@@ -678,31 +654,6 @@ message StartJobData {
 // Taskmaster -> Driver cancel job request message
 message CancelJobRequest {
     string job_id = 1;  // The job identifier.
-}
-
-// Driver -> Taskmaster negotiate/health-check request message
-message NegotiateRequest {
-    // The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
-    string version = 1;
-    // The port the driver's gRPC will listen on.
-    uint32 listening_port = 2;
-    // The technical/internal ID of the driver.
-    string driver_type = 3;
-    // The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
-    int32 max_concurrent_jobs = 4;
-    // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-    // The value 0 means that the driver can handle any number of cascading jobs.
-    uint32 max_cascade_depth = 5;
-    // The typical memory usage of the driver in MB.
-    int32 typical_mem_usage = 6;
-    // The connection and action templates.
-    DriverTemplates templates = 7;
-    // The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-    // It must respect upper/lower characters.
-    // The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-    //
-    // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-    string display_name = 8;
 }
 
 // Addon
@@ -745,19 +696,10 @@ message ActionResult {
     ActionData data         = 3;  // The action result data.
 }
 
-
-
 // Taskmaster -> Dataproxy job/action progress update message
 message JobEventData {
     bytes job_id = 1;  // The job identifier.
 }
-
-
-
-
-
-
-
 
 // RestApi -> DriverRegistry - the request message to get the information about the device.
 message GetDevicesRequest {
@@ -765,9 +707,6 @@ message GetDevicesRequest {
     string external_id = 2;  // The external identifier of the device.
     string name        = 3;  // The name of the device.
 }
-
-
-
 
 // Sub-message - the device specification.
 message DeviceSpec {
@@ -778,8 +717,6 @@ message DeviceSpec {
     repeated DeviceCommunicationUnit communication_unit_link = 5;  // The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
     string timezone                                          = 6;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
-
-
 
 // DriverRegistry -> RestApi - the message holds the information about the device group.
 message GetDeviceGroupsResponse {
@@ -792,90 +729,15 @@ message DeviceGroupOverviewSpec {
     string name        = 3;  // The name of the device group.
 }
 
-// RestApi -> DriverRegistry - the request message to add a new device to the device group.
-message AddDevicesToGroupRequest {
-    string group_id           = 1;  // The unique identifier of the device group.
-    repeated string device_id = 2;  // The unique identifier of the device.
-}
-
-// RestApi -> DriverRegistry - the request message to remove a device from the device group.
-message RemoveDevicesFromGroupRequest {
-    string group_id           = 1;  // The unique identifier of the device group.
-    repeated string device_id = 2;  // The unique identifier of the device.
-}
-
-// RestApi -> DriverRegistry - the request message to add a new device to the communication unit.
-message SetDeviceCommunicationUnitsRequest {
-    string device_id                                     = 1;  // The unique identifier of the device.
-    repeated DeviceCommunicationUnit communication_units = 2;  // The list of linked communication units.
-}
-
 message DeviceCommunicationUnit {
     string communication_unit_id     = 1;  // The unique identifier of the communication unit.
     ApplicationProtocol app_protocol = 2;  // The application protocol to be used for the communication over the communication unit.
-}
-
-// RestApi -> DriverRegistry - the request message to get
-message GetDevicesCommunicationUnitsRequest {
-    repeated string device_id = 1;  // The unique identifier of the device.
-}
-
-// DriverRegistry -> RestApi - the message holds the information about the communication units linked to the device.
-message GetDevicesCommunicationUnitsResponse {
-    map<string, ListOfConnectionInfo> devices = 1;  // The list of devices with their communication units.
-}
-
-// Sub-message that represents the modem pool.
-message ModemPoolSpec {
-    string pool_id = 1;  // The modem pool identifier.
-    string name    = 2;  // The name of the modem pool.
-}
-
-
-
-// RestApi -> DriverRegistry - the request message to get the modem pool info.
-message GetModemPoolRequest {
-    string pool_id = 1;  // The modem pool identifier.
 }
 
 // DriverRegistry -> RestApi - the message holds the information about the modem pool.
 message GetModemPoolResponse {
     repeated ModemInfo modems = 1;  // The modems registered within the pool.
     string name               = 2;  // The name of the modem pool.
-}
-
-message SetModemPoolRequest {
-    string pool_id = 1;  // The modem pool identifier. It must be unique within the system.
-    string name    = 2;  // The name of the modem pool to be created. It must be unique within the system.
-}
-
-message SetModemRequest {
-    string pool_id  = 1;  // The modem pool identifier, required for update operation.
-    ModemInfo modem = 2;  // The modem specification.
-}
-
-// Taskmaster -> Dataproxy event message
-message StreamEventsData {
-    oneof data {
-        StreamEventsDataJobFinished job_done = 1;
-    }
-}
-
-// Sub-message - job-finished event data
-message StreamEventsDataJobFinished {
-    string job_id = 1;
-}
-
-
-
-// API -> Taskmaster cancel job request message
-message CancelJobsRequest {
-    repeated string job_id = 1;  // The job identifier.
-}
-
-// API -> Taskmaster queue jobs request message
-message QueueJobsRequest {
-    repeated JobSpec spec = 1;  // The list of jobs to be queued.
 }
 
 // Sub-message - job specification
@@ -886,39 +748,10 @@ message JobSpec {
     repeated acquisition.JobAction job_actions = 5;  // The list actions to be executed.
 }
 
-// Dataproxy -> Taskmaster get job request message
-message GetJobRequest {
-    string job_id = 1;  // The job identifier.
-}
-
-// Taskmaster -> API get job response message
-message GetJobResponse {
-    JobStatus status = 1;  // The status of the job
-}
-
 // Message used to notify DP that the job is done, sent by Taskmaster
 message JobDoneNotification {
     JobSpec spec     = 1;  // The job specification.
     JobStatus status = 2;  // The status of the job
-}
-
-// Taskmaster -> Driver Operator driver-scale change request message
-message SetDriverScaleRequest {
-    string taskmaster_id = 1;  // The Taskmaster identifier. It is statefulset so value must be either full pod name or suffix integer of the pod name. For example: taskmaster-0 or 0.
-    string driver_type   = 2;  // The driver unique identifier.
-    uint32 replicas      = 3;  // The number of replicas to scale to.
-}
-
-// Taskmaster -> Driver Operator get driver-scale message
-message GetDriverScaleRequest {
-    string taskmaster_id = 1;  // The Taskmaster identifier. It is statefulset so value must be either full pod name or suffix integer of the pod name. For example: taskmaster-0 or 0.
-    string driver_type   = 2;  // The driver unique identifier.
-}
-
-message StartUpgradeRequest {
-    string driver_type        = 1;  // The driver unique identifier.
-    string driver_version     = 2;  // The driver version to be started. It must be a valid version of the driver and should be exactly +1 against the version of the data to be upgraded; or the major version can be +1 if current data version is the latest possible minor version.
-    string deviceregistry_url = 3;  // The URL of the DeviceRegistry service the driver shall connect to.
 }
 
 // API -> Taskmaster request to get driver templates
@@ -930,9 +763,4 @@ message GetDriverTemplatesRequest {
 message DriverInfo {
     string driver_type = 1;  // The driver unique identifier.
     string version     = 2;  // The version of the driver.
-}
-
-// Taskmaster -> API get drivers response message
-message ListOfDriverInfo {
-    repeated DriverInfo items = 2;  // The list of drivers.
 }

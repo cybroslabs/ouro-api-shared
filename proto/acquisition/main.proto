@@ -8,7 +8,6 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/metadata.proto";
 import "acquisition/shared.proto";
-import "acquisition/bulk.proto";
 
 // Communication Unit specification.
 
@@ -20,10 +19,9 @@ message ListOfCommunicationUnit {
     repeated CommunicationUnit items = 1;  // The communication unit specification.
 }
 
-
 message CommunicationUnit {
-    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
-    reserved 2; // reserved for status
+    CommunicationUnitSpec spec = 1;      // The communication unit specification.
+    reserved 2;                          // reserved for status
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
@@ -45,8 +43,8 @@ message ListOfDevice {
 }
 
 message Device {
-    DeviceSpec spec = 1;  // The device specification.
-    reserved 2; // reserved for status
+    DeviceSpec spec = 1;                 // The device specification.
+    reserved 2;                          // reserved for status
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
@@ -61,8 +59,8 @@ message ListOfDeviceGroup {
 }
 
 message DeviceGroup {
-    DeviceGroupSpec spec = 1;  // The device group specification.
-    reserved 2; // reserved for status
+    DeviceGroupSpec spec = 1;            // The device group specification.
+    reserved 2;                          // reserved for status
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
@@ -72,6 +70,26 @@ message DeviceGroupSpec {
     string name               = 3;  // The name of the device group.
     repeated string device_id = 4;  // The list of device identifiers that are part of the group.
 }
+
+// Device#CU specification.
+
+message SetDeviceCommunicationUnitsRequest {
+    string device_id                                     = 1;  // The unique identifier of the device.
+    repeated DeviceCommunicationUnit communication_units = 2;  // The list of linked communication units.
+}
+
+// Device#Group specification.
+
+message AddDevicesToGroupRequest {
+    string group_id           = 1;  // The unique identifier of the device group.
+    repeated string device_id = 2;  // The unique identifier of the device.
+}
+
+message RemoveDevicesFromGroupRequest {
+    string group_id           = 1;  // The unique identifier of the device group.
+    repeated string device_id = 2;  // The unique identifier of the device.
+}
+
 
 // Bulk specification.
 
@@ -108,6 +126,70 @@ message BulkStatus {
 
 // Modem Pool specification.
 
+message SetModemPoolRequest {
+    ModemPoolSpec spec = 1;  // The modem pool specification.
+}
+
 message ListOfModemPool {
     repeated ModemPoolSpec pools = 1;  // The list of modem pools.
+}
+
+message ModemPoolSpec {
+    string pool_id = 1;  // The modem pool identifier.
+    string name    = 2;  // The name of the modem pool.
+}
+
+message ModemPool {
+    ModemPoolSpec spec = 1;  // The modem pool specification.
+    reserved 2;              // reserved for status
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+// Modem specification.
+
+message SetModemRequest {
+    string pool_id  = 1;  // The modem pool identifier, required for update operation.
+    ModemInfo modem = 2;  // The modem specification.
+}
+
+// Driver specification.
+
+message SetDriver {
+    DriverSpec spec = 1;  // The driver specification.
+    reserved 2;           // reserved for status
+    reserved 3;           // reserved for metadata
+}
+
+message ListOfDriver {
+    repeated Driver items = 2;  // The list of drivers.
+}
+
+message Driver {
+    DriverSpec spec = 1;  // The driver specification.
+    reserved 2;           // reserved for status
+    reserved 3;           // reserved for metadata
+}
+
+message DriverSpec {
+    // The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+    string version = 1;
+    // The port the driver's gRPC will listen on.
+    uint32 listening_port = 2;
+    // The technical/internal ID of the driver.
+    string driver_type = 3;
+    // The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+    int32 max_concurrent_jobs = 4;
+    // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
+    // The value 0 means that the driver can handle any number of cascading jobs.
+    uint32 max_cascade_depth = 5;
+    // The typical memory usage of the driver in MB.
+    int32 typical_mem_usage = 6;
+    // The connection and action templates.
+    DriverTemplates templates = 7;
+    // The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+    // It must respect upper/lower characters.
+    // The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+    //
+    // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+    string display_name = 8;
 }
