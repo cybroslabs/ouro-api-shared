@@ -223,15 +223,18 @@ type CreateBulkRequest struct {
 }
 
 type CreateCommunicationUnitRequest struct {
-	Spec *CommunicationUnitSpec `json:"spec,omitempty"`
+	Spec     *CommunicationUnitSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
 type CreateDeviceGroupRequest struct {
-	Spec *DeviceGroupSpec `json:"spec,omitempty"`
+	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields  `json:"metadata,omitempty"`
 }
 
 type CreateDeviceRequest struct {
-	Spec *DeviceSpec `json:"spec,omitempty"`
+	Spec     *DeviceSpec     `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
 type DataLinkTemplate struct {

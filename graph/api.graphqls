@@ -669,16 +669,22 @@ type CreateBulkRequest {
 type CreateCommunicationUnitRequest {
   # The communication unit specification.
   spec: CommunicationUnitSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 type CreateDeviceGroupRequest {
   # The device group specification.
   spec: DeviceGroupSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 type CreateDeviceRequest {
   # The device specification.
   spec: DeviceSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 # Sub-message containing destription for one data link protocol, e.g. HDLC.

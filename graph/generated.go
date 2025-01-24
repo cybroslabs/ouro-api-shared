@@ -260,15 +260,18 @@ type ComplexityRoot struct {
 	}
 
 	CreateCommunicationUnitRequest struct {
-		Spec func(childComplexity int) int
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
 	}
 
 	CreateDeviceGroupRequest struct {
-		Spec func(childComplexity int) int
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
 	}
 
 	CreateDeviceRequest struct {
-		Spec func(childComplexity int) int
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
 	}
 
 	DataLinkTemplate struct {
@@ -1292,6 +1295,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CreateBulkRequest.Spec(childComplexity), true
 
+	case "CreateCommunicationUnitRequest.metadata":
+		if e.complexity.CreateCommunicationUnitRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CreateCommunicationUnitRequest.Metadata(childComplexity), true
+
 	case "CreateCommunicationUnitRequest.spec":
 		if e.complexity.CreateCommunicationUnitRequest.Spec == nil {
 			break
@@ -1299,12 +1309,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CreateCommunicationUnitRequest.Spec(childComplexity), true
 
+	case "CreateDeviceGroupRequest.metadata":
+		if e.complexity.CreateDeviceGroupRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CreateDeviceGroupRequest.Metadata(childComplexity), true
+
 	case "CreateDeviceGroupRequest.spec":
 		if e.complexity.CreateDeviceGroupRequest.Spec == nil {
 			break
 		}
 
 		return e.complexity.CreateDeviceGroupRequest.Spec(childComplexity), true
+
+	case "CreateDeviceRequest.metadata":
+		if e.complexity.CreateDeviceRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CreateDeviceRequest.Metadata(childComplexity), true
 
 	case "CreateDeviceRequest.spec":
 		if e.complexity.CreateDeviceRequest.Spec == nil {
@@ -6917,6 +6941,53 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_spec(_ c
 	return fc, nil
 }
 
+func (ec *executionContext) _CreateCommunicationUnitRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateCommunicationUnitRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateCommunicationUnitRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateCommunicationUnitRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managed_fields":
+				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _CreateDeviceGroupRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.CreateDeviceGroupRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_CreateDeviceGroupRequest_spec(ctx, field)
 	if err != nil {
@@ -6963,6 +7034,53 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context
 				return ec.fieldContext_DeviceGroupSpec_device_id(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateDeviceGroupRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateDeviceGroupRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateDeviceGroupRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateDeviceGroupRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managed_fields":
+				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
 	}
 	return fc, nil
@@ -7018,6 +7136,53 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 				return ec.fieldContext_DeviceSpec_timezone(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateDeviceRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateDeviceRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateDeviceRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateDeviceRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managed_fields":
+				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
 	}
 	return fc, nil
@@ -18531,6 +18696,8 @@ func (ec *executionContext) _CreateCommunicationUnitRequest(ctx context.Context,
 			out.Values[i] = graphql.MarshalString("CreateCommunicationUnitRequest")
 		case "spec":
 			out.Values[i] = ec._CreateCommunicationUnitRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CreateCommunicationUnitRequest_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18567,6 +18734,8 @@ func (ec *executionContext) _CreateDeviceGroupRequest(ctx context.Context, sel a
 			out.Values[i] = graphql.MarshalString("CreateDeviceGroupRequest")
 		case "spec":
 			out.Values[i] = ec._CreateDeviceGroupRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CreateDeviceGroupRequest_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18603,6 +18772,8 @@ func (ec *executionContext) _CreateDeviceRequest(ctx context.Context, sel ast.Se
 			out.Values[i] = graphql.MarshalString("CreateDeviceRequest")
 		case "spec":
 			out.Values[i] = ec._CreateDeviceRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CreateDeviceRequest_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

@@ -12,7 +12,8 @@ import "acquisition/shared.proto";
 // Communication Unit specification.
 
 message CreateCommunicationUnitRequest {
-    CommunicationUnitSpec spec = 1;  // The communication unit specification.
+    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfCommunicationUnit {
@@ -35,7 +36,8 @@ message CommunicationUnitSpec {
 // Device specification.
 
 message CreateDeviceRequest {
-    DeviceSpec spec = 1;  // The device specification.
+    DeviceSpec spec                = 1;  // The device specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfDevice {
@@ -51,7 +53,8 @@ message Device {
 // Device group specification.
 
 message CreateDeviceGroupRequest {
-    DeviceGroupSpec spec = 1;  // The device group specification.
+    DeviceGroupSpec spec           = 1;  // The device group specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfDeviceGroup {
@@ -94,7 +97,7 @@ message RemoveDevicesFromGroupRequest {
 
 message CreateBulkRequest {
     BulkSpec spec                  = 1;  // The bulk-job spec.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfBulk {
