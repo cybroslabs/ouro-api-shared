@@ -54,7 +54,7 @@ service DeviceRegistryService {
     rpc RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 
     // The method to get list of the modem pools.
-    rpc GetModemPools(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
+    rpc ListModemPools(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
     // The method to get the information about the modem pool. The method returns the modem pool information.
     rpc GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ModemPool);
     // The method to create a new modem pool.
