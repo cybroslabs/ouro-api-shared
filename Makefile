@@ -15,8 +15,8 @@ gen-go:
 	find ./gen/go -type f ! -name "docs.go" -delete
 	find ./gen/go -type d -empty -delete
 
-	cd proto && npx buf generate --template buf.gen.api.yaml
 	cd proto && npx buf generate --template buf.gen.grpc.yaml
+	cd proto && npx buf generate --template buf.gen.api.yaml
 	cd proto && buf build services/api/api.proto -o ../gen/go/services/api/api.binpb
 
 	./src/mdgen/main.py
