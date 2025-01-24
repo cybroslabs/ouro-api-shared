@@ -17,7 +17,7 @@ gen-go:
 
 	cd proto && npx buf generate --template buf.gen.grpc.yaml
 	cd proto && npx buf generate --template buf.gen.api.yaml
-	cd proto && buf build services/api/api.proto -o ../gen/go/services/api/api.binpb
+	cd proto && buf build -o ../gen/raw.binpb
 
 	./src/mdgen/main.py
 

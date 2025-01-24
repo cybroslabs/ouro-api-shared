@@ -1,5 +1,5 @@
 schema:
-  - protobuf/pbapi/docs/api.graphqls
+  - graph/api.graphqls
 
 # Where should the generated server code go?
 exec:

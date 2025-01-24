@@ -15,6 +15,7 @@ type_map = {
     "bool": "Boolean",
     #
     "int64": "Int64",
+    "sint64": "Int64",
     "double": "Float",
     "bytes": "String",
     "uint32": "Int",
@@ -49,13 +50,17 @@ def generate(
     visible_packages: List[Package],
     tagged_services: List[Tuple[Service, List[Tuple[str, List[Any]]]]],
 ):
-    if not os.path.exists(sable_config.output_dir):
-        os.makedirs(sable_config.output_dir)
+
+    # FIXME:
+    output_dir = "graph"
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     map_names = {}
     scalars = set()
 
-    with open(os.path.join(sable_config.output_dir, "api.graphqls"), "w") as fh:
+    with open(os.path.join(output_dir, "api.graphqls"), "w") as fh:
         fh.write("# Code generated, DO NOT EDIT.\n")
         fh.write("\n")
 

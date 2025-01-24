@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"io"
 	"strconv"
-
-	"github.com/google/uuid"
 )
 
 type AccessLevelTemplate struct {
@@ -99,14 +97,15 @@ type AddDevicesToGroupRequest struct {
 	DeviceID []*string `json:"device_id,omitempty"`
 }
 
+type Any struct {
+	TypeURL *string `json:"type_url,omitempty"`
+	Value   *string `json:"value,omitempty"`
+}
+
 type ApplicationProtocolTemplate struct {
 	ID         *string                `json:"id,omitempty"`
 	Protocol   *ApplicationProtocol   `json:"protocol,omitempty"`
 	Attributes []*AttributeDefinition `json:"attributes,omitempty"`
-}
-
-type ListOfConnectionInfo struct {
-	Items []*DeviceConnectionInfo `json:"items,omitempty"`
 }
 
 type AttributeDefinition struct {
@@ -136,7 +135,13 @@ type BillingValues struct {
 	Values []*BillingValue `json:"values,omitempty"`
 }
 
-type BulkJobStatus struct {
+type Bulk struct {
+	Spec     *BulkSpec       `json:"spec,omitempty"`
+	Status   *BulkStatus     `json:"status,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type BulkJob struct {
 	JobID  *string    `json:"job_id,omitempty"`
 	Status *JobStatus `json:"status,omitempty"`
 }
@@ -144,7 +149,6 @@ type BulkJobStatus struct {
 type BulkSpec struct {
 	BulkID        *string      `json:"bulk_id,omitempty"`
 	CorrelationID *string      `json:"correlation_id,omitempty"`
-	OrgID         *string      `json:"org_id,omitempty"`
 	DriverType    *string      `json:"driver_type,omitempty"`
 	Devices       []*JobDevice `json:"devices,omitempty"`
 	Settings      *JobSettings `json:"settings,omitempty"`
@@ -154,8 +158,8 @@ type BulkSpec struct {
 }
 
 type BulkStatus struct {
-	Status *BulkStatusCode  `json:"status,omitempty"`
-	Jobs   []*BulkJobStatus `json:"jobs,omitempty"`
+	Status *BulkStatusCode `json:"status,omitempty"`
+	Jobs   []*BulkJob      `json:"jobs,omitempty"`
 }
 
 type CancelJobsRequest struct {
@@ -208,6 +212,11 @@ type ConnectionTypeSerialMoxa struct {
 	Host        *string `json:"host,omitempty"`
 	DataPort    *int32  `json:"dataPort,omitempty"`
 	CommandPort *int32  `json:"commandPort,omitempty"`
+}
+
+type CreateBulkRequest struct {
+	Spec     *BulkSpec       `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
 type CreateCommunicationUnitRequest struct {
@@ -278,72 +287,12 @@ type Empty struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
-type GetBulkRequest struct {
-	BulkID *string `json:"bulk_id,omitempty"`
-}
-
-type GetBulkResponse struct {
-	Spec   *BulkSpec   `json:"spec,omitempty"`
-	Status *BulkStatus `json:"status,omitempty"`
-}
-
-type GetBulksResponse struct {
-	Bulks []*GetBulkResponse `json:"bulks,omitempty"`
-}
-
-type GetBulksReuqest struct {
-	Tfrom       *string `json:"tfrom,omitempty"`
-	Tto         *string `json:"tto,omitempty"`
-	IncludeData *bool   `json:"include_data,omitempty"`
-}
-
-type GetCommunicationUnitsRequest struct {
-	ID         *string `json:"id,omitempty"`
-	ExternalID *string `json:"external_id,omitempty"`
-	Name       *string `json:"name,omitempty"`
-}
-
-type GetCommunicationUnitsResponse struct {
-	Spec []*CommunicationUnitSpec `json:"spec,omitempty"`
-}
-
 type GetDeviceGroupResponse struct {
 	Spec *DeviceGroupSpec `json:"spec,omitempty"`
 }
 
 type GetDeviceGroupsResponse struct {
 	Groups []*MapDeviceGroupOverviewSpec `json:"groups,omitempty"`
-}
-
-type GetDevicesCommunicationUnitsRequest struct {
-	DeviceID []*string `json:"device_id,omitempty"`
-}
-
-type GetDevicesCommunicationUnitsResponse struct {
-	Devices []*MapListOfConnectionInfo `json:"devices,omitempty"`
-}
-
-type GetDevicesRequest struct {
-	ID         *string `json:"id,omitempty"`
-	ExternalID *string `json:"external_id,omitempty"`
-	Name       *string `json:"name,omitempty"`
-}
-
-type GetDevicesResponse struct {
-	Spec []*DeviceSpec `json:"spec,omitempty"`
-}
-
-type GetDriversResponse struct {
-	Result  *ErrorCode    `json:"result,omitempty"`
-	Drivers []*DriverInfo `json:"drivers,omitempty"`
-}
-
-type GetJobStatusRequest struct {
-	JobID *string `json:"job_id,omitempty"`
-}
-
-type GetJobStatusResponse struct {
-	Status *JobStatus `json:"status,omitempty"`
 }
 
 type GetModemPoolResponse struct {
@@ -386,20 +335,7 @@ type JobActionContraints struct {
 	GetRegisterTypeAttributes []*MapStringList `json:"get_register_type_attributes,omitempty"`
 }
 
-type JobCustomDeviceList struct {
-	List []*JobDevice `json:"list,omitempty"`
-}
-
 type JobDevice struct {
-	ID       *string `json:"id,omitempty"`
-	DeviceID *string `json:"device_id,omitempty"`
-}
-
-type JobDeviceList struct {
-	List []*JobDevice `json:"list,omitempty"`
-}
-
-type JobDevice1 struct {
 	ID               *string              `json:"id,omitempty"`
 	DeviceID         *string              `json:"device_id,omitempty"`
 	ExternalID       *string              `json:"external_id,omitempty"`
@@ -428,6 +364,45 @@ type JobStatus struct {
 	AttemptsDone *int32          `json:"attempts_done,omitempty"`
 }
 
+type ListOfBulk struct {
+	Items []*Bulk `json:"items,omitempty"`
+}
+
+type ListOfCommunicationUnitSpec struct {
+	Items []*CommunicationUnitSpec `json:"items,omitempty"`
+}
+
+type ListOfConnectionInfo struct {
+	Items []*DeviceConnectionInfo `json:"items,omitempty"`
+}
+
+type ListOfDriverInfo struct {
+	Items []*DriverInfo `json:"items,omitempty"`
+}
+
+type ListSelector struct {
+	PageSize *int32                  `json:"page_size,omitempty"`
+	Offset   *int32                  `json:"offset,omitempty"`
+	SortBy   []*ListSelectorSortBy   `json:"sort_by,omitempty"`
+	FilterBy []*ListSelectorFilterBy `json:"filter_by,omitempty"`
+	Fields   []*string               `json:"fields,omitempty"`
+}
+
+type ListSelectorFilterBy struct {
+	FieldID  *string         `json:"field_id,omitempty"`
+	Operator *FilterOperator `json:"operator,omitempty"`
+	Text     []*string       `json:"text,omitempty"`
+	Integer  []*int64        `json:"integer,omitempty"`
+	Number   []*float64      `json:"number,omitempty"`
+	Boolean  []*bool         `json:"boolean,omitempty"`
+	Date     []*string       `json:"date,omitempty"`
+}
+
+type ListSelectorSortBy struct {
+	FieldID *string `json:"field_id,omitempty"`
+	Desc    *bool   `json:"desc,omitempty"`
+}
+
 type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
@@ -437,6 +412,11 @@ type MeasuredValue struct {
 	TimestampValue   *string  `json:"timestamp_value,omitempty"`
 	TimestampTzValue *string  `json:"timestamp_tz_value,omitempty"`
 	BoolValue        *bool    `json:"bool_value,omitempty"`
+}
+
+type MetadataFields struct {
+	Fields        []*MapAny `json:"fields,omitempty"`
+	ManagedFields []*MapAny `json:"managed_fields,omitempty"`
 }
 
 type ModemInfo struct {
@@ -467,17 +447,6 @@ type ProfileValues struct {
 	Period *int32         `json:"period,omitempty"`
 	Unit   *string        `json:"unit,omitempty"`
 	Blocks []*ProfileBlok `json:"blocks,omitempty"`
-}
-
-type PublicCreateBulkRequest struct {
-	ID            *uuid.UUID           `json:"id,omitempty"`
-	CorrelationID *string              `json:"correlation_id,omitempty"`
-	DriverType    *string              `json:"driver_type,omitempty"`
-	Devices       *JobDeviceList       `json:"devices,omitempty"`
-	CustomDevices *JobCustomDeviceList `json:"custom_devices,omitempty"`
-	Settings      *JobSettings         `json:"settings,omitempty"`
-	Actions       []*JobAction         `json:"actions,omitempty"`
-	WebhookURL    *string              `json:"webhook_url,omitempty"`
 }
 
 type Query struct {
@@ -517,9 +486,9 @@ type SystemConfig struct {
 	MaxSlotsPerDriver     *int32 `json:"max_slots_per_driver,omitempty"`
 }
 
-type MapListOfConnectionInfo struct {
-	Key   string                 `json:"key"`
-	Value *ListOfConnectionInfo `json:"value,omitempty"`
+type MapAny struct {
+	Key   string `json:"key"`
+	Value *Any   `json:"value,omitempty"`
 }
 
 type MapAttributeValue struct {
@@ -901,44 +870,70 @@ func (e DataLinkProtocol) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
-type ErrorCode string
+type FilterOperator string
 
 const (
-	ErrorCodeErrorCodeOk    ErrorCode = "ERROR_CODE_OK"
-	ErrorCodeErrorCodeError ErrorCode = "ERROR_CODE_ERROR"
+	FilterOperatorEqual              FilterOperator = "EQUAL"
+	FilterOperatorNotEqual           FilterOperator = "NOT_EQUAL"
+	FilterOperatorGreaterThan        FilterOperator = "GREATER_THAN"
+	FilterOperatorGreaterThanOrEqual FilterOperator = "GREATER_THAN_OR_EQUAL"
+	FilterOperatorLessThan           FilterOperator = "LESS_THAN"
+	FilterOperatorLessThanOrEqual    FilterOperator = "LESS_THAN_OR_EQUAL"
+	FilterOperatorContains           FilterOperator = "CONTAINS"
+	FilterOperatorNotContains        FilterOperator = "NOT_CONTAINS"
+	FilterOperatorStartsWith         FilterOperator = "STARTS_WITH"
+	FilterOperatorEndsWith           FilterOperator = "ENDS_WITH"
+	FilterOperatorIn                 FilterOperator = "IN"
+	FilterOperatorNotIn              FilterOperator = "NOT_IN"
+	FilterOperatorBetween            FilterOperator = "BETWEEN"
+	FilterOperatorIsNull             FilterOperator = "IS_NULL"
+	FilterOperatorIsNotNull          FilterOperator = "IS_NOT_NULL"
 )
 
-var AllErrorCode = []ErrorCode{
-	ErrorCodeErrorCodeOk,
-	ErrorCodeErrorCodeError,
+var AllFilterOperator = []FilterOperator{
+	FilterOperatorEqual,
+	FilterOperatorNotEqual,
+	FilterOperatorGreaterThan,
+	FilterOperatorGreaterThanOrEqual,
+	FilterOperatorLessThan,
+	FilterOperatorLessThanOrEqual,
+	FilterOperatorContains,
+	FilterOperatorNotContains,
+	FilterOperatorStartsWith,
+	FilterOperatorEndsWith,
+	FilterOperatorIn,
+	FilterOperatorNotIn,
+	FilterOperatorBetween,
+	FilterOperatorIsNull,
+	FilterOperatorIsNotNull,
 }
 
-func (e ErrorCode) IsValid() bool {
+func (e FilterOperator) IsValid() bool {
 	switch e {
-	case ErrorCodeErrorCodeOk, ErrorCodeErrorCodeError:
+	case FilterOperatorEqual, FilterOperatorNotEqual, FilterOperatorGreaterThan, FilterOperatorGreaterThanOrEqual, FilterOperatorLessThan, FilterOperatorLessThanOrEqual, FilterOperatorContains, FilterOperatorNotContains, FilterOperatorStartsWith, FilterOperatorEndsWith, FilterOperatorIn, FilterOperatorNotIn, FilterOperatorBetween, FilterOperatorIsNull, FilterOperatorIsNotNull:
 		return true
 	}
 	return false
 }
 
-func (e ErrorCode) String() string {
+func (e FilterOperator) String() string {
 	return string(e)
 }
 
-func (e *ErrorCode) UnmarshalGQL(v any) error {
+func (e *FilterOperator) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
 	}
 
-	*e = ErrorCode(str)
+	*e = FilterOperator(str)
 	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid ErrorCode", str)
+		return fmt.Errorf("%s is not a valid FilterOperator", str)
 	}
 	return nil
 }
 
-func (e ErrorCode) MarshalGQL(w io.Writer) {
+func (e FilterOperator) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 

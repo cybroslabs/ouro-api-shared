@@ -1091,7 +1091,7 @@ type ListSelectorFilterBy {
   # The text-typed value(s) used for filtering.
   text: [String]
   # The integer-typed value(s) used for filtering.
-  integer: [sint64]
+  integer: [Int64]
   # The number-typed value(s) used for filtering.
   number: [Float]
   # The boolean-typed value(s) used for filtering.
