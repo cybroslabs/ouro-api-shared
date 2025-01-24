@@ -191,7 +191,6 @@ type ComplexityRoot struct {
 		CustomDevices func(childComplexity int) int
 		Devices       func(childComplexity int) int
 		DriverType    func(childComplexity int) int
-		ID            func(childComplexity int) int
 		Settings      func(childComplexity int) int
 		WebhookURL    func(childComplexity int) int
 	}
@@ -214,7 +213,6 @@ type ComplexityRoot struct {
 	CommunicationUnitSpec struct {
 		ConnectionInfo func(childComplexity int) int
 		ExternalID     func(childComplexity int) int
-		ID             func(childComplexity int) int
 		Name           func(childComplexity int) int
 	}
 
@@ -298,7 +296,6 @@ type ComplexityRoot struct {
 	DeviceGroupSpec struct {
 		DeviceID   func(childComplexity int) int
 		ExternalID func(childComplexity int) int
-		ID         func(childComplexity int) int
 		Name       func(childComplexity int) int
 	}
 
@@ -375,13 +372,13 @@ type ComplexityRoot struct {
 		DeviceAttributes func(childComplexity int) int
 		DeviceID         func(childComplexity int) int
 		ExternalID       func(childComplexity int) int
-		ID               func(childComplexity int) int
+		JobID            func(childComplexity int) int
 		Timezone         func(childComplexity int) int
 	}
 
 	JobDeviceId struct {
 		DeviceID func(childComplexity int) int
-		ID       func(childComplexity int) int
+		JobID    func(childComplexity int) int
 	}
 
 	JobSettings struct {
@@ -475,6 +472,8 @@ type ComplexityRoot struct {
 
 	MetadataFields struct {
 		Fields        func(childComplexity int) int
+		Generation    func(childComplexity int) int
+		ID            func(childComplexity int) int
 		ManagedFields func(childComplexity int) int
 	}
 
@@ -487,7 +486,7 @@ type ComplexityRoot struct {
 		AtInit         func(childComplexity int) int
 		AtTest         func(childComplexity int) int
 		ConnectTimeout func(childComplexity int) int
-		ID             func(childComplexity int) int
+		ModemID        func(childComplexity int) int
 		Name           func(childComplexity int) int
 		Tcpip          func(childComplexity int) int
 	}
@@ -1064,13 +1063,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.DriverType(childComplexity), true
 
-	case "BulkSpec.id":
-		if e.complexity.BulkSpec.ID == nil {
-			break
-		}
-
-		return e.complexity.BulkSpec.ID(childComplexity), true
-
 	case "BulkSpec.settings":
 		if e.complexity.BulkSpec.Settings == nil {
 			break
@@ -1140,13 +1132,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CommunicationUnitSpec.ExternalID(childComplexity), true
-
-	case "CommunicationUnitSpec.id":
-		if e.complexity.CommunicationUnitSpec.ID == nil {
-			break
-		}
-
-		return e.complexity.CommunicationUnitSpec.ID(childComplexity), true
 
 	case "CommunicationUnitSpec.name":
 		if e.complexity.CommunicationUnitSpec.Name == nil {
@@ -1413,13 +1398,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceGroupSpec.ExternalID(childComplexity), true
-
-	case "DeviceGroupSpec.id":
-		if e.complexity.DeviceGroupSpec.ID == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroupSpec.ID(childComplexity), true
 
 	case "DeviceGroupSpec.name":
 		if e.complexity.DeviceGroupSpec.Name == nil {
@@ -1764,12 +1742,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobDevice.ExternalID(childComplexity), true
 
-	case "JobDevice.id":
-		if e.complexity.JobDevice.ID == nil {
+	case "JobDevice.job_id":
+		if e.complexity.JobDevice.JobID == nil {
 			break
 		}
 
-		return e.complexity.JobDevice.ID(childComplexity), true
+		return e.complexity.JobDevice.JobID(childComplexity), true
 
 	case "JobDevice.timezone":
 		if e.complexity.JobDevice.Timezone == nil {
@@ -1785,12 +1763,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobDeviceId.DeviceID(childComplexity), true
 
-	case "JobDeviceId.id":
-		if e.complexity.JobDeviceId.ID == nil {
+	case "JobDeviceId.job_id":
+		if e.complexity.JobDeviceId.JobID == nil {
 			break
 		}
 
-		return e.complexity.JobDeviceId.ID(childComplexity), true
+		return e.complexity.JobDeviceId.JobID(childComplexity), true
 
 	case "JobSettings.attempts":
 		if e.complexity.JobSettings.Attempts == nil {
@@ -2107,6 +2085,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MetadataFields.Fields(childComplexity), true
 
+	case "MetadataFields.generation":
+		if e.complexity.MetadataFields.Generation == nil {
+			break
+		}
+
+		return e.complexity.MetadataFields.Generation(childComplexity), true
+
+	case "MetadataFields.id":
+		if e.complexity.MetadataFields.ID == nil {
+			break
+		}
+
+		return e.complexity.MetadataFields.ID(childComplexity), true
+
 	case "MetadataFields.managed_fields":
 		if e.complexity.MetadataFields.ManagedFields == nil {
 			break
@@ -2170,12 +2162,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemInfo.ConnectTimeout(childComplexity), true
 
-	case "ModemInfo.id":
-		if e.complexity.ModemInfo.ID == nil {
+	case "ModemInfo.modem_id":
+		if e.complexity.ModemInfo.ModemID == nil {
 			break
 		}
 
-		return e.complexity.ModemInfo.ID(childComplexity), true
+		return e.complexity.ModemInfo.ModemID(childComplexity), true
 
 	case "ModemInfo.name":
 		if e.complexity.ModemInfo.Name == nil {
@@ -4931,8 +4923,6 @@ func (ec *executionContext) fieldContext_Bulk_spec(_ context.Context, field grap
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_BulkSpec_id(ctx, field)
 			case "correlation_id":
 				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
 			case "driver_type":
@@ -5037,6 +5027,10 @@ func (ec *executionContext) fieldContext_Bulk_metadata(_ context.Context, field 
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -5146,47 +5140,6 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*uuid.UUID)
-	fc.Result = res
-	return ec.marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BulkSpec_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BulkSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type UUID does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _BulkSpec_correlation_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_BulkSpec_correlation_id(ctx, field)
 	if err != nil {
@@ -5210,9 +5163,9 @@ func (ec *executionContext) _BulkSpec_correlation_id(ctx context.Context, field 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*uuid.UUID)
 	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_correlation_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5222,7 +5175,7 @@ func (ec *executionContext) fieldContext_BulkSpec_correlation_id(_ context.Conte
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
+			return nil, errors.New("field of type UUID does not have child fields")
 		},
 	}
 	return fc, nil
@@ -5748,8 +5701,6 @@ func (ec *executionContext) fieldContext_CommunicationUnit_spec(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_CommunicationUnitSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
 			case "name":
@@ -5799,53 +5750,16 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _CommunicationUnitSpec_id(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitSpec_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_CommunicationUnitSpec_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "CommunicationUnitSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -6550,8 +6464,8 @@ func (ec *executionContext) fieldContext_ConnectionTypeModemPool_modem(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_ModemInfo_id(ctx, field)
+			case "modem_id":
+				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "at_init":
@@ -6820,8 +6734,6 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_spec(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_BulkSpec_id(ctx, field)
 			case "correlation_id":
 				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
 			case "driver_type":
@@ -6879,6 +6791,10 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_metadata(_ context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -6926,8 +6842,6 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_spec(_ c
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_CommunicationUnitSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
 			case "name":
@@ -6977,6 +6891,10 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_metadata
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -7024,8 +6942,6 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_DeviceGroupSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_DeviceGroupSpec_external_id(ctx, field)
 			case "name":
@@ -7075,6 +6991,10 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_metadata(_ con
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -7177,6 +7097,10 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -7416,6 +7340,10 @@ func (ec *executionContext) fieldContext_Device_metadata(_ context.Context, fiel
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -7545,8 +7473,6 @@ func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_DeviceGroupSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_DeviceGroupSpec_external_id(ctx, field)
 			case "name":
@@ -7596,53 +7522,16 @@ func (ec *executionContext) fieldContext_DeviceGroup_metadata(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceGroupSpec_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupSpec_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroupSpec_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroupSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -9710,8 +9599,8 @@ func (ec *executionContext) fieldContext_JobActionContraints_get_register_type_a
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_id(ctx, field)
+func (ec *executionContext) _JobDevice_job_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_job_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9724,7 +9613,7 @@ func (ec *executionContext) _JobDevice_id(ctx context.Context, field graphql.Col
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
+		return obj.JobID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -9738,7 +9627,7 @@ func (ec *executionContext) _JobDevice_id(ctx context.Context, field graphql.Col
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_job_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10015,8 +9904,8 @@ func (ec *executionContext) fieldContext_JobDevice_timezone(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDeviceId_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDeviceId_id(ctx, field)
+func (ec *executionContext) _JobDeviceId_job_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDeviceId_job_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10029,7 +9918,7 @@ func (ec *executionContext) _JobDeviceId_id(ctx context.Context, field graphql.C
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
+		return obj.JobID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -10043,7 +9932,7 @@ func (ec *executionContext) _JobDeviceId_id(ctx context.Context, field graphql.C
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDeviceId_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDeviceId_job_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDeviceId",
 		Field:      field,
@@ -10909,8 +10798,8 @@ func (ec *executionContext) fieldContext_ListOfJobDevice_list(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_JobDevice_id(ctx, field)
+			case "job_id":
+				return ec.fieldContext_JobDevice_job_id(ctx, field)
 			case "device_id":
 				return ec.fieldContext_JobDevice_device_id(ctx, field)
 			case "external_id":
@@ -10966,8 +10855,8 @@ func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_JobDeviceId_id(ctx, field)
+			case "job_id":
+				return ec.fieldContext_JobDeviceId_job_id(ctx, field)
 			case "device_id":
 				return ec.fieldContext_JobDeviceId_device_id(ctx, field)
 			}
@@ -11989,6 +11878,88 @@ func (ec *executionContext) fieldContext_MeasuredValue_bool_value(_ context.Cont
 	return fc, nil
 }
 
+func (ec *executionContext) _MetadataFields_id(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MetadataFields_id(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_MetadataFields_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "MetadataFields",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _MetadataFields_generation(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MetadataFields_generation(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Generation, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_MetadataFields_generation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "MetadataFields",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _MetadataFields_fields(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_MetadataFields_fields(ctx, field)
 	if err != nil {
@@ -12083,8 +12054,8 @@ func (ec *executionContext) fieldContext_MetadataFields_managed_fields(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_id(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_id(ctx, field)
+func (ec *executionContext) _ModemInfo_modem_id(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_modem_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12097,7 +12068,7 @@ func (ec *executionContext) _ModemInfo_id(ctx context.Context, field graphql.Col
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
+		return obj.ModemID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -12111,7 +12082,7 @@ func (ec *executionContext) _ModemInfo_id(ctx context.Context, field graphql.Col
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_modem_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12670,6 +12641,10 @@ func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, f
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
@@ -12799,8 +12774,8 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_ModemInfo_id(ctx, field)
+			case "modem_id":
+				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "at_init":
@@ -14803,8 +14778,8 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_ModemInfo_id(ctx, field)
+			case "modem_id":
+				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "at_init":
@@ -18210,8 +18185,6 @@ func (ec *executionContext) _BulkSpec(ctx context.Context, sel ast.SelectionSet,
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("BulkSpec")
-		case "id":
-			out.Values[i] = ec._BulkSpec_id(ctx, field, obj)
 		case "correlation_id":
 			out.Values[i] = ec._BulkSpec_correlation_id(ctx, field, obj)
 		case "driver_type":
@@ -18374,8 +18347,6 @@ func (ec *executionContext) _CommunicationUnitSpec(ctx context.Context, sel ast.
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("CommunicationUnitSpec")
-		case "id":
-			out.Values[i] = ec._CommunicationUnitSpec_id(ctx, field, obj)
 		case "external_id":
 			out.Values[i] = ec._CommunicationUnitSpec_external_id(ctx, field, obj)
 		case "name":
@@ -18962,8 +18933,6 @@ func (ec *executionContext) _DeviceGroupSpec(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceGroupSpec")
-		case "id":
-			out.Values[i] = ec._DeviceGroupSpec_id(ctx, field, obj)
 		case "external_id":
 			out.Values[i] = ec._DeviceGroupSpec_external_id(ctx, field, obj)
 		case "name":
@@ -19362,8 +19331,8 @@ func (ec *executionContext) _JobDevice(ctx context.Context, sel ast.SelectionSet
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobDevice")
-		case "id":
-			out.Values[i] = ec._JobDevice_id(ctx, field, obj)
+		case "job_id":
+			out.Values[i] = ec._JobDevice_job_id(ctx, field, obj)
 		case "device_id":
 			out.Values[i] = ec._JobDevice_device_id(ctx, field, obj)
 		case "external_id":
@@ -19410,8 +19379,8 @@ func (ec *executionContext) _JobDeviceId(ctx context.Context, sel ast.SelectionS
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobDeviceId")
-		case "id":
-			out.Values[i] = ec._JobDeviceId_id(ctx, field, obj)
+		case "job_id":
+			out.Values[i] = ec._JobDeviceId_job_id(ctx, field, obj)
 		case "device_id":
 			out.Values[i] = ec._JobDeviceId_device_id(ctx, field, obj)
 		default:
@@ -20046,6 +20015,10 @@ func (ec *executionContext) _MetadataFields(ctx context.Context, sel ast.Selecti
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("MetadataFields")
+		case "id":
+			out.Values[i] = ec._MetadataFields_id(ctx, field, obj)
+		case "generation":
+			out.Values[i] = ec._MetadataFields_generation(ctx, field, obj)
 		case "fields":
 			out.Values[i] = ec._MetadataFields_fields(ctx, field, obj)
 		case "managed_fields":
@@ -20084,8 +20057,8 @@ func (ec *executionContext) _ModemInfo(ctx context.Context, sel ast.SelectionSet
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ModemInfo")
-		case "id":
-			out.Values[i] = ec._ModemInfo_id(ctx, field, obj)
+		case "modem_id":
+			out.Values[i] = ec._ModemInfo_modem_id(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ModemInfo_name(ctx, field, obj)
 		case "at_init":

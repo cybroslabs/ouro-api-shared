@@ -149,8 +149,7 @@ type BulkJob struct {
 }
 
 type BulkSpec struct {
-	ID            *uuid.UUID         `json:"id,omitempty"`
-	CorrelationID *string            `json:"correlation_id,omitempty"`
+	CorrelationID *uuid.UUID         `json:"correlation_id,omitempty"`
 	DriverType    *string            `json:"driver_type,omitempty"`
 	Devices       *ListOfJobDeviceID `json:"devices,omitempty"`
 	CustomDevices *ListOfJobDevice   `json:"custom_devices,omitempty"`
@@ -175,7 +174,6 @@ type CommunicationUnit struct {
 }
 
 type CommunicationUnitSpec struct {
-	ID             *string         `json:"id,omitempty"`
 	ExternalID     *string         `json:"external_id,omitempty"`
 	Name           *string         `json:"name,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connection_info,omitempty"`
@@ -259,7 +257,6 @@ type DeviceGroup struct {
 }
 
 type DeviceGroupSpec struct {
-	ID         *string   `json:"id,omitempty"`
 	ExternalID *string   `json:"external_id,omitempty"`
 	Name       *string   `json:"name,omitempty"`
 	DeviceID   []*string `json:"device_id,omitempty"`
@@ -333,7 +330,7 @@ type JobActionContraints struct {
 }
 
 type JobDevice struct {
-	ID               *string              `json:"id,omitempty"`
+	JobID            *string              `json:"job_id,omitempty"`
 	DeviceID         *string              `json:"device_id,omitempty"`
 	ExternalID       *string              `json:"external_id,omitempty"`
 	DeviceAttributes []*MapAttributeValue `json:"device_attributes,omitempty"`
@@ -343,7 +340,7 @@ type JobDevice struct {
 }
 
 type JobDeviceID struct {
-	ID       *string `json:"id,omitempty"`
+	JobID    *string `json:"job_id,omitempty"`
 	DeviceID *string `json:"device_id,omitempty"`
 }
 
@@ -437,12 +434,14 @@ type MeasuredValue struct {
 }
 
 type MetadataFields struct {
+	ID            *string   `json:"id,omitempty"`
+	Generation    *int32    `json:"generation,omitempty"`
 	Fields        []*MapAny `json:"fields,omitempty"`
 	ManagedFields []*MapAny `json:"managed_fields,omitempty"`
 }
 
 type ModemInfo struct {
-	ID             *string                    `json:"id,omitempty"`
+	ModemID        *string                    `json:"modem_id,omitempty"`
 	Name           *string                    `json:"name,omitempty"`
 	AtInit         *string                    `json:"at_init,omitempty"`
 	AtTest         *string                    `json:"at_test,omitempty"`

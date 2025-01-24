@@ -65,8 +65,6 @@ message JobAction {
     }
 }
 
-
-
 // Sub-message - holds the bulk job specification.
 
 message ListOfJobDevice {
@@ -78,13 +76,13 @@ message ListOfJobDeviceId {
 }
 
 message JobDeviceId {
-    string id        = 1;  // The device's job identifier within the parent bulk.
+    string job_id    = 1;  // The device's job identifier within the parent bulk.
     string device_id = 2;  // The device identifier.
 }
 
 // Sub-message representing a single job-device info.
 message JobDevice {
-    string id                                     = 1;  // The device (job) identifier.
+    string job_id                                 = 1;  // The device's job identifier within the parent bulk.
     string device_id                              = 2;  // The device identifier. If set then all below is loaded from the device registry.
     string external_id                            = 3;  // The external identifier.
     map<string, AttributeValue> device_attributes = 4;  // The connection attributes to the device.
@@ -95,7 +93,7 @@ message JobDevice {
 
 // Sub-message containing modem connection info
 message ModemInfo {
-    string id              = 1;   // The modem identifier. It is automatically generated during creation.
+    string modem_id        = 1;   // The modem identifier. It is automatically generated during creation.
     string name            = 2;   // The name of the modem.
     string at_init         = 3;   // The modem initialization command.
     string at_test         = 4;   // The modem test command.

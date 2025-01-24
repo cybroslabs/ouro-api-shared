@@ -549,10 +549,8 @@ type BulkJob {
 }
 
 type BulkSpec {
-  # The bulk identifier.
-  id: UUID
   # The correlation identifier, e.g. to define relation to non-homogenous group.
-  correlation_id: String
+  correlation_id: UUID
   # The device (driver) type.
   driver_type: String
   # The list of devices in the bulk.
@@ -590,8 +588,6 @@ type CommunicationUnit {
 }
 
 type CommunicationUnitSpec {
-  # The UUID of the communication unit.
-  id: String
   # The external identifier of the communication unit.
   external_id: String
   # The name of the communication unit.
@@ -719,8 +715,6 @@ type DeviceGroup {
 }
 
 type DeviceGroupSpec {
-  # The UUID of the device group.
-  id: String
   # The external identifier of the communication unit.
   external_id: String
   # The name of the device group.
@@ -849,8 +843,8 @@ type JobActionContraints {
 
 # Sub-message representing a single job-device info.
 type JobDevice {
-  # The device (job) identifier.
-  id: String
+  # The device's job identifier within the parent bulk.
+  job_id: String
   # The device identifier. If set then all below is loaded from the device registry.
   device_id: String
   # The external identifier.
@@ -867,7 +861,7 @@ type JobDevice {
 
 type JobDeviceId {
   # The device's job identifier within the parent bulk.
-  id: String
+  job_id: String
   # The device identifier.
   device_id: String
 }
@@ -969,7 +963,7 @@ type MeasuredValue {
 # Sub-message containing modem connection info
 type ModemInfo {
   # The modem identifier. It is automatically generated during creation.
-  id: String
+  modem_id: String
   # The name of the modem.
   name: String
   # The modem initialization command.
@@ -1114,6 +1108,10 @@ type ListSelectorSortBy {
 
 # The metadata fields managed by user and system.
 type MetadataFields {
+  # The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+  id: String
+  # The generation of the resource.
+  generation: Int
   # The additional fields managed by user.
   fields: [_mapAny]
   # The additional fields managed by system.

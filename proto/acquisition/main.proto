@@ -27,7 +27,6 @@ message CommunicationUnit {
 }
 
 message CommunicationUnitSpec {
-    string id                      = 1;  // The UUID of the communication unit.
     string external_id             = 2;  // The external identifier of the communication unit.
     string name                    = 3;  // The name of the communication unit.
     ConnectionInfo connection_info = 4;  // The connection info.
@@ -68,7 +67,6 @@ message DeviceGroup {
 }
 
 message DeviceGroupSpec {
-    string id                 = 1;  // The UUID of the device group.
     string external_id        = 2;  // The external identifier of the communication unit.
     string name               = 3;  // The name of the device group.
     repeated string device_id = 4;  // The list of device identifiers that are part of the group.
@@ -112,7 +110,6 @@ message Bulk {
 
 message BulkSpec {
     // @gqltype: UUID
-    string id             = 1;  // The bulk identifier.
     string correlation_id = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
     string driver_type    = 3;  // The device (driver) type.
     oneof device {

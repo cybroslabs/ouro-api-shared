@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIsYCCg5NZXRhZGF0YUZpZWxkcxJJCgZmaWVsZHMYASADKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcy5GaWVsZHNFbnRyeRJYCg5tYW5hZ2VkX2ZpZWxkcxgCIAMoCzJALmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLk1hbmFnZWRGaWVsZHNFbnRyeRpDCgtGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSIwoFdmFsdWUYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55OgI4ARpKChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEiMKBXZhbHVlGAIgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueToCOAFCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_any]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIuYCCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5GkMKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRIjCgV2YWx1ZRgCIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5Bbnk6AjgBGkoKEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSIwoFdmFsdWUYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55OgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_any]);
 
 /**
  * The metadata fields managed by user and system.
@@ -21,16 +21,30 @@ export const file_common_metadata: GenFile = /*@__PURE__*/
  */
 export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFields"> & {
   /**
+   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   *
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * The generation of the resource.
+   *
+   * @generated from field: int32 generation = 2;
+   */
+  generation: number;
+
+  /**
    * The additional fields managed by user.
    *
-   * @generated from field: map<string, google.protobuf.Any> fields = 1;
+   * @generated from field: map<string, google.protobuf.Any> fields = 3;
    */
   fields: { [key: string]: Any };
 
   /**
    * The additional fields managed by system.
    *
-   * @generated from field: map<string, google.protobuf.Any> managed_fields = 2;
+   * @generated from field: map<string, google.protobuf.Any> managed_fields = 4;
    */
   managedFields: { [key: string]: Any };
 };

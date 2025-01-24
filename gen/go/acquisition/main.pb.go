@@ -269,7 +269,6 @@ func (b0 CommunicationUnit_builder) Build() *CommunicationUnit {
 
 type CommunicationUnitSpec struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id             *string                `protobuf:"bytes,1,opt,name=id"`
 	xxx_hidden_ExternalId     *string                `protobuf:"bytes,2,opt,name=external_id,json=externalId"`
 	xxx_hidden_Name           *string                `protobuf:"bytes,3,opt,name=name"`
 	xxx_hidden_ConnectionInfo *ConnectionInfo        `protobuf:"bytes,4,opt,name=connection_info,json=connectionInfo"`
@@ -304,16 +303,6 @@ func (x *CommunicationUnitSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *CommunicationUnitSpec) GetId() string {
-	if x != nil {
-		if x.xxx_hidden_Id != nil {
-			return *x.xxx_hidden_Id
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *CommunicationUnitSpec) GetExternalId() string {
 	if x != nil {
 		if x.xxx_hidden_ExternalId != nil {
@@ -341,44 +330,32 @@ func (x *CommunicationUnitSpec) GetConnectionInfo() *ConnectionInfo {
 	return nil
 }
 
-func (x *CommunicationUnitSpec) SetId(v string) {
-	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
-}
-
 func (x *CommunicationUnitSpec) SetExternalId(v string) {
 	x.xxx_hidden_ExternalId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *CommunicationUnitSpec) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *CommunicationUnitSpec) SetConnectionInfo(v *ConnectionInfo) {
 	x.xxx_hidden_ConnectionInfo = v
 }
 
-func (x *CommunicationUnitSpec) HasId() bool {
+func (x *CommunicationUnitSpec) HasExternalId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *CommunicationUnitSpec) HasExternalId() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
 func (x *CommunicationUnitSpec) HasName() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *CommunicationUnitSpec) HasConnectionInfo() bool {
@@ -388,18 +365,13 @@ func (x *CommunicationUnitSpec) HasConnectionInfo() bool {
 	return x.xxx_hidden_ConnectionInfo != nil
 }
 
-func (x *CommunicationUnitSpec) ClearId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Id = nil
-}
-
 func (x *CommunicationUnitSpec) ClearExternalId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_ExternalId = nil
 }
 
 func (x *CommunicationUnitSpec) ClearName() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Name = nil
 }
 
@@ -410,7 +382,6 @@ func (x *CommunicationUnitSpec) ClearConnectionInfo() {
 type CommunicationUnitSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id             *string
 	ExternalId     *string
 	Name           *string
 	ConnectionInfo *ConnectionInfo
@@ -420,16 +391,12 @@ func (b0 CommunicationUnitSpec_builder) Build() *CommunicationUnitSpec {
 	m0 := &CommunicationUnitSpec{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
-		x.xxx_hidden_Id = b.Id
-	}
 	if b.ExternalId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_ExternalId = b.ExternalId
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Name = b.Name
 	}
 	x.xxx_hidden_ConnectionInfo = b.ConnectionInfo
@@ -928,7 +895,6 @@ func (b0 DeviceGroup_builder) Build() *DeviceGroup {
 
 type DeviceGroupSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
 	xxx_hidden_ExternalId  *string                `protobuf:"bytes,2,opt,name=external_id,json=externalId"`
 	xxx_hidden_Name        *string                `protobuf:"bytes,3,opt,name=name"`
 	xxx_hidden_DeviceId    []string               `protobuf:"bytes,4,rep,name=device_id,json=deviceId"`
@@ -963,16 +929,6 @@ func (x *DeviceGroupSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DeviceGroupSpec) GetId() string {
-	if x != nil {
-		if x.xxx_hidden_Id != nil {
-			return *x.xxx_hidden_Id
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *DeviceGroupSpec) GetExternalId() string {
 	if x != nil {
 		if x.xxx_hidden_ExternalId != nil {
@@ -1000,65 +956,47 @@ func (x *DeviceGroupSpec) GetDeviceId() []string {
 	return nil
 }
 
-func (x *DeviceGroupSpec) SetId(v string) {
-	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
-}
-
 func (x *DeviceGroupSpec) SetExternalId(v string) {
 	x.xxx_hidden_ExternalId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *DeviceGroupSpec) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *DeviceGroupSpec) SetDeviceId(v []string) {
 	x.xxx_hidden_DeviceId = v
 }
 
-func (x *DeviceGroupSpec) HasId() bool {
+func (x *DeviceGroupSpec) HasExternalId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *DeviceGroupSpec) HasExternalId() bool {
+func (x *DeviceGroupSpec) HasName() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DeviceGroupSpec) HasName() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *DeviceGroupSpec) ClearId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Id = nil
-}
-
 func (x *DeviceGroupSpec) ClearExternalId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_ExternalId = nil
 }
 
 func (x *DeviceGroupSpec) ClearName() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Name = nil
 }
 
 type DeviceGroupSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id         *string
 	ExternalId *string
 	Name       *string
 	DeviceId   []string
@@ -1068,16 +1006,12 @@ func (b0 DeviceGroupSpec_builder) Build() *DeviceGroupSpec {
 	m0 := &DeviceGroupSpec{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
-		x.xxx_hidden_Id = b.Id
-	}
 	if b.ExternalId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_ExternalId = b.ExternalId
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Name = b.Name
 	}
 	x.xxx_hidden_DeviceId = b.DeviceId
@@ -1634,7 +1568,6 @@ func (b0 Bulk_builder) Build() *Bulk {
 
 type BulkSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id            *string                `protobuf:"bytes,1,opt,name=id"`
 	xxx_hidden_CorrelationId *string                `protobuf:"bytes,2,opt,name=correlation_id,json=correlationId"`
 	xxx_hidden_DriverType    *string                `protobuf:"bytes,3,opt,name=driver_type,json=driverType"`
 	xxx_hidden_Device        isBulkSpec_Device      `protobuf_oneof:"device"`
@@ -1670,16 +1603,6 @@ func (x *BulkSpec) ProtoReflect() protoreflect.Message {
 		return ms
 	}
 	return mi.MessageOf(x)
-}
-
-func (x *BulkSpec) GetId() string {
-	if x != nil {
-		if x.xxx_hidden_Id != nil {
-			return *x.xxx_hidden_Id
-		}
-		return ""
-	}
-	return ""
 }
 
 func (x *BulkSpec) GetCorrelationId() string {
@@ -1746,19 +1669,14 @@ func (x *BulkSpec) GetWebhookUrl() string {
 	return ""
 }
 
-func (x *BulkSpec) SetId(v string) {
-	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 7)
-}
-
 func (x *BulkSpec) SetCorrelationId(v string) {
 	x.xxx_hidden_CorrelationId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
 }
 
 func (x *BulkSpec) SetDriverType(v string) {
 	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
 }
 
 func (x *BulkSpec) SetDevices(v *ListOfJobDeviceId) {
@@ -1787,28 +1705,21 @@ func (x *BulkSpec) SetActions(v []*JobAction) {
 
 func (x *BulkSpec) SetWebhookUrl(v string) {
 	x.xxx_hidden_WebhookUrl = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 7)
-}
-
-func (x *BulkSpec) HasId() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *BulkSpec) HasCorrelationId() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *BulkSpec) HasDriverType() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *BulkSpec) HasDevice() bool {
@@ -1845,21 +1756,16 @@ func (x *BulkSpec) HasWebhookUrl() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
-}
-
-func (x *BulkSpec) ClearId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Id = nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *BulkSpec) ClearCorrelationId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_CorrelationId = nil
 }
 
 func (x *BulkSpec) ClearDriverType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_DriverType = nil
 }
 
@@ -1884,7 +1790,7 @@ func (x *BulkSpec) ClearSettings() {
 }
 
 func (x *BulkSpec) ClearWebhookUrl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_WebhookUrl = nil
 }
 
@@ -1910,7 +1816,6 @@ type BulkSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// @gqltype: UUID
-	Id            *string
 	CorrelationId *string
 	DriverType    *string
 	// Fields of oneof xxx_hidden_Device:
@@ -1926,16 +1831,12 @@ func (b0 BulkSpec_builder) Build() *BulkSpec {
 	m0 := &BulkSpec{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 7)
-		x.xxx_hidden_Id = b.Id
-	}
 	if b.CorrelationId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
 		x.xxx_hidden_CorrelationId = b.CorrelationId
 	}
 	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
 		x.xxx_hidden_DriverType = b.DriverType
 	}
 	if b.Devices != nil {
@@ -1947,7 +1848,7 @@ func (b0 BulkSpec_builder) Build() *BulkSpec {
 	x.xxx_hidden_Settings = b.Settings
 	x.xxx_hidden_Actions = &b.Actions
 	if b.WebhookUrl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
 		x.xxx_hidden_WebhookUrl = b.WebhookUrl
 	}
 	return m0
@@ -3130,9 +3031,8 @@ var file_acquisition_main_proto_rawDesc = []byte{
 	0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73,
 	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
 	0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x22, 0xb9, 0x01, 0x0a, 0x15, 0x43, 0x6f, 0x6d, 0x6d, 0x75,
+	0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x22, 0xa9, 0x01, 0x0a, 0x15, 0x43, 0x6f, 0x6d, 0x6d, 0x75,
 	0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74, 0x53, 0x70, 0x65, 0x63,
-	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
 	0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f, 0x69, 0x64, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x49,
 	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -3195,9 +3095,8 @@ var file_acquisition_main_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x63, 0x6f, 0x6d,
 	0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x46, 0x69, 0x65, 0x6c,
 	0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x4a, 0x04, 0x08, 0x02,
-	0x10, 0x03, 0x22, 0x73, 0x0a, 0x0f, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75,
-	0x70, 0x53, 0x70, 0x65, 0x63, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61,
+	0x10, 0x03, 0x22, 0x63, 0x0a, 0x0f, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x53, 0x70, 0x65, 0x63, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61,
 	0x6c, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x74, 0x65,
 	0x72, 0x6e, 0x61, 0x6c, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x65,
@@ -3253,9 +3152,8 @@ var file_acquisition_main_proto_rawDesc = []byte{
 	0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d,
 	0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74,
 	0x61, 0x64, 0x61, 0x74, 0x61, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0xd4, 0x03, 0x0a, 0x08, 0x42, 0x75, 0x6c, 0x6b, 0x53, 0x70,
-	0x65, 0x63, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x12, 0x25, 0x0a, 0x0e, 0x63, 0x6f, 0x72, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0xc4, 0x03, 0x0a, 0x08, 0x42, 0x75, 0x6c, 0x6b, 0x53, 0x70,
+	0x65, 0x63, 0x12, 0x25, 0x0a, 0x0e, 0x63, 0x6f, 0x72, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
 	0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x63, 0x6f, 0x72, 0x72,
 	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x72, 0x69,
 	0x76, 0x65, 0x72, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
