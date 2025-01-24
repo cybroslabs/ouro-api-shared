@@ -12,7 +12,9 @@ setup:
 gen-go:
 	npm i
 
-	find ./gen/go -type f ! -name "docs.go" -delete
+	rm -rf ./gen/ts
+	find ./gen/go -type f -name "*.pb.go" -delete
+	find ./gen/go -type d -name "docs" -delete
 	find ./gen/go -type d -empty -delete
 
 	cd proto && npx buf generate --template buf.gen.grpc.yaml
