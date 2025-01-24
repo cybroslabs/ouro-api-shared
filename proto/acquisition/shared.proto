@@ -831,10 +831,7 @@ message ModemPoolSpec {
     string name    = 2;  // The name of the modem pool.
 }
 
-// RestApi -> DriverRegistry - the request message to get the modem pools.
-message GetModemPoolsResponse {
-    repeated ModemPoolSpec pools = 1;  // The list of modem pools.
-}
+
 
 // RestApi -> DriverRegistry - the request message to get the modem pool info.
 message GetModemPoolRequest {
@@ -870,11 +867,6 @@ message StreamEventsDataJobFinished {
 }
 
 
-
-// Taskmaster -> Driver cache get response message
-message CacheGetResponse {
-    acquisition.AttributeValue value = 2;  // The value of the cache entry.
-}
 
 // API -> Taskmaster cancel job request message
 message CancelJobsRequest {

@@ -8,13 +8,17 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "acquisition/shared.proto";
 
-// Driver -> Taskmaster cache set request message
+// Driver <-> Taskmaster driver data caching
+
 message CacheSetRequest {
     string key                       = 1;  // The key of the cache entry. The key is unique within the driver type.
     acquisition.AttributeValue value = 2;  // The value of the cache entry.
 }
 
-// Driver -> Taskmaster cache get request message
 message CacheGetRequest {
     string key = 1;  // The key of the cache entry. The key is unique within the driver type.
+}
+
+message CacheGetResponse {
+    acquisition.AttributeValue value = 2;  // The value of the cache entry.
 }

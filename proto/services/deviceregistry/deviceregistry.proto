@@ -15,7 +15,7 @@ service DeviceRegistryService {
     rpc SetDriverTemplates(io.clbs.openhes.models.acquisition.NegotiateRequest) returns (google.protobuf.Empty);
 
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
+    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -26,7 +26,7 @@ service DeviceRegistryService {
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnitSpec);
 
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
-    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.Empty);
+    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -41,7 +41,7 @@ service DeviceRegistryService {
     rpc GetDevicesCommunicationUnits(io.clbs.openhes.models.acquisition.GetDevicesCommunicationUnitsRequest) returns (io.clbs.openhes.models.acquisition.GetDevicesCommunicationUnitsResponse);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.Empty);
+    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
     // The method returns a list of device groups.
     rpc GetDeviceGroups(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.GetDeviceGroupsResponse);
     // The method returns single device group.
@@ -54,17 +54,17 @@ service DeviceRegistryService {
     rpc RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
 
     // The method to get list of the modem pools.
-    rpc GetModemPools(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.GetModemPoolsResponse);
+    rpc GetModemPools(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
     // The method to get the information about the modem pool. The method returns the modem pool information.
     rpc GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetModemPoolResponse);
     // The method to create a new modem pool.
-    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
+    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue);
     // The method to update the modem pool.
     rpc UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
     // The method to delete the modem pool.
     rpc DeleteModemPool(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // The method to create a new modem within the pool.
-    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
+    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue);
     // The method to update the modem within the pool.
     rpc UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
     // The method to delete the modem within the pool.

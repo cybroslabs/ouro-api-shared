@@ -106,3 +106,8 @@ message BulkStatus {
     repeated BulkJob jobs = 2;  // The list of job statuses.
 }
 
+// Modem Pool specification.
+
+message ListOfModemPool {
+    repeated ModemPoolSpec pools = 1;  // The list of modem pools.
+}

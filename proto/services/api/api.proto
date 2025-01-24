@@ -100,7 +100,7 @@ service ApiService {
     // @group: Devices
     // @tag: modempool
     // The method to get list of the modem pools.
-    rpc ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.GetModemPoolsResponse);
+    rpc ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
     // @group: Devices
     // @tag: modempool
     // The method to get the information about the modem pool. The method returns the modem pool information.
