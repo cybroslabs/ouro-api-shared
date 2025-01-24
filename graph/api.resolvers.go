@@ -12,7 +12,7 @@ import (
 )
 
 // CreateBulk is the resolver for the createBulk field.
-func (r *queryResolver) CreateBulk(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateBulk(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateBulk - createBulk"))
 }
 
@@ -26,19 +26,9 @@ func (r *queryResolver) GetBulk(ctx context.Context) (*model.Bulk, error) {
 	panic(fmt.Errorf("not implemented: GetBulk - getBulk"))
 }
 
-// GetBulkJob is the resolver for the getBulkJob field.
-func (r *queryResolver) GetBulkJob(ctx context.Context) (*model.BulkJob, error) {
-	panic(fmt.Errorf("not implemented: GetBulkJob - getBulkJob"))
-}
-
 // CancelBulk is the resolver for the cancelBulk field.
 func (r *queryResolver) CancelBulk(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: CancelBulk - cancelBulk"))
-}
-
-// CancelJobs is the resolver for the cancelJobs field.
-func (r *queryResolver) CancelJobs(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: CancelJobs - cancelJobs"))
 }
 
 // GetConfig is the resolver for the getConfig field.
@@ -52,32 +42,32 @@ func (r *queryResolver) SetConfig(ctx context.Context) (*model.Empty, error) {
 }
 
 // CreateCommunicationUnit is the resolver for the createCommunicationUnit field.
-func (r *queryResolver) CreateCommunicationUnit(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateCommunicationUnit - createCommunicationUnit"))
 }
 
 // ListCommunicationUnit is the resolver for the listCommunicationUnit field.
-func (r *queryResolver) ListCommunicationUnit(ctx context.Context) (*model.ListOfCommunicationUnitSpec, error) {
+func (r *queryResolver) ListCommunicationUnit(ctx context.Context) (*model.ListOfCommunicationUnit, error) {
 	panic(fmt.Errorf("not implemented: ListCommunicationUnit - listCommunicationUnit"))
 }
 
 // GetCommunicationUnit is the resolver for the getCommunicationUnit field.
-func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnitSpec, error) {
+func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error) {
 	panic(fmt.Errorf("not implemented: GetCommunicationUnit - getCommunicationUnit"))
 }
 
 // CreateDevice is the resolver for the createDevice field.
-func (r *queryResolver) CreateDevice(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateDevice(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDevice - createDevice"))
 }
 
 // ListDevices is the resolver for the listDevices field.
-func (r *queryResolver) ListDevices(ctx context.Context) (*model.DeviceSpec, error) {
+func (r *queryResolver) ListDevices(ctx context.Context) (*model.ListOfDevice, error) {
 	panic(fmt.Errorf("not implemented: ListDevices - listDevices"))
 }
 
 // GetDevice is the resolver for the getDevice field.
-func (r *queryResolver) GetDevice(ctx context.Context) (*model.DeviceSpec, error) {
+func (r *queryResolver) GetDevice(ctx context.Context) (*model.Device, error) {
 	panic(fmt.Errorf("not implemented: GetDevice - getDevice"))
 }
 
@@ -87,22 +77,22 @@ func (r *queryResolver) SetDeviceCommunicationUnits(ctx context.Context) (*model
 }
 
 // GetDevicesCommunicationUnits is the resolver for the getDevicesCommunicationUnits field.
-func (r *queryResolver) GetDevicesCommunicationUnits(ctx context.Context) (*model.ListOfConnectionInfo, error) {
+func (r *queryResolver) GetDevicesCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error) {
 	panic(fmt.Errorf("not implemented: GetDevicesCommunicationUnits - getDevicesCommunicationUnits"))
 }
 
 // CreateDeviceGroup is the resolver for the createDeviceGroup field.
-func (r *queryResolver) CreateDeviceGroup(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateDeviceGroup(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDeviceGroup - createDeviceGroup"))
 }
 
 // ListDeviceGroups is the resolver for the listDeviceGroups field.
-func (r *queryResolver) ListDeviceGroups(ctx context.Context) (*model.GetDeviceGroupsResponse, error) {
+func (r *queryResolver) ListDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error) {
 	panic(fmt.Errorf("not implemented: ListDeviceGroups - listDeviceGroups"))
 }
 
 // GetDeviceGroup is the resolver for the getDeviceGroup field.
-func (r *queryResolver) GetDeviceGroup(ctx context.Context) (*model.GetDeviceGroupResponse, error) {
+func (r *queryResolver) GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error) {
 	panic(fmt.Errorf("not implemented: GetDeviceGroup - getDeviceGroup"))
 }
 
@@ -117,17 +107,17 @@ func (r *queryResolver) RemoveDevicesFromGroup(ctx context.Context) (*model.Empt
 }
 
 // ListModemPools is the resolver for the listModemPools field.
-func (r *queryResolver) ListModemPools(ctx context.Context) (*model.GetModemPoolsResponse, error) {
+func (r *queryResolver) ListModemPools(ctx context.Context) (*model.ListOfModemPool, error) {
 	panic(fmt.Errorf("not implemented: ListModemPools - listModemPools"))
 }
 
 // GetModemPool is the resolver for the getModemPool field.
-func (r *queryResolver) GetModemPool(ctx context.Context) (*model.GetModemPoolResponse, error) {
+func (r *queryResolver) GetModemPool(ctx context.Context) (*model.ModemPool, error) {
 	panic(fmt.Errorf("not implemented: GetModemPool - getModemPool"))
 }
 
 // CreateModemPool is the resolver for the createModemPool field.
-func (r *queryResolver) CreateModemPool(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateModemPool(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateModemPool - createModemPool"))
 }
 
@@ -142,7 +132,7 @@ func (r *queryResolver) DeleteModemPool(ctx context.Context) (*model.Empty, erro
 }
 
 // CreateModem is the resolver for the createModem field.
-func (r *queryResolver) CreateModem(ctx context.Context) (*model.Empty, error) {
+func (r *queryResolver) CreateModem(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateModem - createModem"))
 }
 
@@ -157,16 +147,34 @@ func (r *queryResolver) DeleteModem(ctx context.Context) (*model.Empty, error) {
 }
 
 // ListDrivers is the resolver for the listDrivers field.
-func (r *queryResolver) ListDrivers(ctx context.Context) (*model.ListOfDriverInfo, error) {
+func (r *queryResolver) ListDrivers(ctx context.Context) (*model.ListOfDriver, error) {
 	panic(fmt.Errorf("not implemented: ListDrivers - listDrivers"))
 }
 
-// GetDriverTemplates is the resolver for the getDriverTemplates field.
-func (r *queryResolver) GetDriverTemplates(ctx context.Context) (*model.DriverTemplates, error) {
-	panic(fmt.Errorf("not implemented: GetDriverTemplates - getDriverTemplates"))
+// GetDriver is the resolver for the getDriver field.
+func (r *queryResolver) GetDriver(ctx context.Context) (*model.Driver, error) {
+	panic(fmt.Errorf("not implemented: GetDriver - getDriver"))
 }
 
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }
+
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//    it when you're done.
+//  - You have helper methods in this file. Move them out to keep these resolver files clean.
+/*
+	func (r *queryResolver) GetBulkJob(ctx context.Context) (*model.BulkJob, error) {
+	panic(fmt.Errorf("not implemented: GetBulkJob - getBulkJob"))
+}
+func (r *queryResolver) CancelJobs(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: CancelJobs - cancelJobs"))
+}
+func (r *queryResolver) GetDriverTemplates(ctx context.Context) (*model.DriverTemplates, error) {
+	panic(fmt.Errorf("not implemented: GetDriverTemplates - getDriverTemplates"))
+}
+*/

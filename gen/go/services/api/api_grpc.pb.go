@@ -65,7 +65,7 @@ type ApiServiceClient interface {
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
@@ -84,7 +84,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -96,7 +96,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -116,7 +116,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns a list of device groups.
@@ -146,7 +146,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: modempool
 	// The method to create a new modem pool.
-	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to update the modem pool.
@@ -158,14 +158,14 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: modem
 	// The method to create a new modem within the pool.
-	CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modem
 	// The method to update the modem within the pool.
 	UpdateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to delete the modem within the pool.
+	// The method to delete the modem.
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
 	// The method to get the system configuration.
@@ -183,9 +183,9 @@ func NewApiServiceClient(cc grpc.ClientConnInterface) ApiServiceClient {
 	return &apiServiceClient{cc}
 }
 
-func (c *apiServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -243,9 +243,9 @@ func (c *apiServiceClient) GetDriver(ctx context.Context, in *wrapperspb.StringV
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -273,9 +273,9 @@ func (c *apiServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapper
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateDevice_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -323,9 +323,9 @@ func (c *apiServiceClient) GetDevicesCommunicationUnits(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateDeviceGroup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -393,9 +393,9 @@ func (c *apiServiceClient) GetModemPool(ctx context.Context, in *wrapperspb.Stri
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateModemPool_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -423,9 +423,9 @@ func (c *apiServiceClient) DeleteModemPool(ctx context.Context, in *wrapperspb.S
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateModem_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -483,7 +483,7 @@ type ApiServiceServer interface {
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk of jobs.
-	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error)
+	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
@@ -502,7 +502,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*emptypb.Empty, error)
+	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -514,7 +514,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
-	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*emptypb.Empty, error)
+	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -534,7 +534,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*emptypb.Empty, error)
+	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method returns a list of device groups.
@@ -564,7 +564,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: modempool
 	// The method to create a new modem pool.
-	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error)
+	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to update the modem pool.
@@ -576,14 +576,14 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: modem
 	// The method to create a new modem within the pool.
-	CreateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
+	CreateModem(context.Context, *acquisition.SetModemRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modem
 	// The method to update the modem within the pool.
 	UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to delete the modem within the pool.
+	// The method to delete the modem.
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Configuration
 	// The method to get the system configuration.
@@ -601,7 +601,7 @@ type ApiServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedApiServiceServer struct{}
 
-func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
 func (UnimplementedApiServiceServer) ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error) {
@@ -619,7 +619,7 @@ func (UnimplementedApiServiceServer) ListDrivers(context.Context, *common.ListSe
 func (UnimplementedApiServiceServer) GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriver not implemented")
 }
-func (UnimplementedApiServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
 func (UnimplementedApiServiceServer) ListCommunicationUnit(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
@@ -628,7 +628,7 @@ func (UnimplementedApiServiceServer) ListCommunicationUnit(context.Context, *com
 func (UnimplementedApiServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
-func (UnimplementedApiServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
 func (UnimplementedApiServiceServer) ListDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error) {
@@ -643,7 +643,7 @@ func (UnimplementedApiServiceServer) SetDeviceCommunicationUnits(context.Context
 func (UnimplementedApiServiceServer) GetDevicesCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevicesCommunicationUnits not implemented")
 }
-func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
 }
 func (UnimplementedApiServiceServer) ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error) {
@@ -664,7 +664,7 @@ func (UnimplementedApiServiceServer) ListModemPools(context.Context, *common.Lis
 func (UnimplementedApiServiceServer) GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModemPool not implemented")
 }
-func (UnimplementedApiServiceServer) CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModemPool not implemented")
 }
 func (UnimplementedApiServiceServer) UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error) {
@@ -673,7 +673,7 @@ func (UnimplementedApiServiceServer) UpdateModemPool(context.Context, *acquisiti
 func (UnimplementedApiServiceServer) DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModemPool not implemented")
 }
-func (UnimplementedApiServiceServer) CreateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) CreateModem(context.Context, *acquisition.SetModemRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModem not implemented")
 }
 func (UnimplementedApiServiceServer) UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error) {

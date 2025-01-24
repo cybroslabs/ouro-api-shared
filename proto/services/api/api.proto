@@ -17,7 +17,7 @@ service ApiService {
     // @tag: acquisition
     // @tag: action
     // Starts a new bulk of jobs.
-    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.Empty);
+    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
     // @group: Bulks
     // Retrieves the list of bulks.
     rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);
@@ -45,7 +45,7 @@ service ApiService {
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
-    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
+    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -58,7 +58,7 @@ service ApiService {
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
-    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.Empty);
+    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -79,7 +79,7 @@ service ApiService {
     // @group: Devices
     // @tag: devicegroup
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
-    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.Empty);
+    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: devicegroup
     // The method returns a list of device groups.
@@ -110,7 +110,7 @@ service ApiService {
     // @group: Devices
     // @tag: modempool
     // The method to create a new modem pool.
-    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
+    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: modempool
     // The method to update the modem pool.
@@ -122,14 +122,14 @@ service ApiService {
     // @group: Devices
     // @tag: modem
     // The method to create a new modem within the pool.
-    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
+    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: modem
     // The method to update the modem within the pool.
     rpc UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: modem
-    // The method to delete the modem within the pool.
+    // The method to delete the modem.
     rpc DeleteModem(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: Configuration

@@ -36,7 +36,7 @@ const (
 // The Dataproxy related service definition.
 type DataproxyServiceClient interface {
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
@@ -55,9 +55,9 @@ func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClie
 	return &dataproxyServiceClient{cc}
 }
 
-func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.
 // The Dataproxy related service definition.
 type DataproxyServiceServer interface {
 	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error)
+	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
@@ -121,7 +121,7 @@ type DataproxyServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataproxyServiceServer struct{}
 
-func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error) {

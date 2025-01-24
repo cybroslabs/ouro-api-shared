@@ -14,7 +14,7 @@ import "common/fields.proto";
 // The Dataproxy related service definition.
 service DataproxyService {
     // The method called by the RestApi to start a new bulk of jobs.
-    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.Empty);
+    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
     // @group: Bulks
     // Retrieves the list of bulks.
     rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);

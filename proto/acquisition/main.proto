@@ -90,7 +90,6 @@ message RemoveDevicesFromGroupRequest {
     repeated string device_id = 2;  // The unique identifier of the device.
 }
 
-
 // Bulk specification.
 
 message CreateBulkRequest {
@@ -139,9 +138,13 @@ message ModemPoolSpec {
     string name    = 2;  // The name of the modem pool.
 }
 
+message ModemPoolStatus {
+    repeated ModemInfo modems = 1;  // The list of modems in the pool.
+}
+
 message ModemPool {
-    ModemPoolSpec spec = 1;  // The modem pool specification.
-    reserved 2;              // reserved for status
+    ModemPoolSpec spec             = 1;  // The modem pool specification.
+    ModemPoolStatus status         = 2;  // The modem pool status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 

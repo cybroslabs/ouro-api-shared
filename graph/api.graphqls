@@ -972,6 +972,8 @@ type ModemInfo {
 type ModemPool {
   # The modem pool specification.
   spec: ModemPoolSpec
+  # The modem pool status.
+  status: ModemPoolStatus
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -981,6 +983,11 @@ type ModemPoolSpec {
   pool_id: String
   # The name of the modem pool.
   name: String
+}
+
+type ModemPoolStatus {
+  # The list of modems in the pool.
+  modems: [ModemInfo]
 }
 
 # Sub-message containing a single profile block
@@ -1125,31 +1132,31 @@ type _mapAny {
 }
 
 type Query {
-  createBulk: Empty
+  createBulk: StringValue
   listBulks: ListOfBulk
   getBulk: Bulk
   cancelBulk: Empty
   getConfig: SystemConfig
   setConfig: Empty
-  createCommunicationUnit: Empty
+  createCommunicationUnit: StringValue
   listCommunicationUnit: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
-  createDevice: Empty
+  createDevice: StringValue
   listDevices: ListOfDevice
   getDevice: Device
   setDeviceCommunicationUnits: Empty
   getDevicesCommunicationUnits: ListOfCommunicationUnit
-  createDeviceGroup: Empty
+  createDeviceGroup: StringValue
   listDeviceGroups: ListOfDeviceGroup
   getDeviceGroup: DeviceGroup
   addDevicesToGroup: Empty
   removeDevicesFromGroup: Empty
   listModemPools: ListOfModemPool
   getModemPool: ModemPool
-  createModemPool: Empty
+  createModemPool: StringValue
   updateModemPool: Empty
   deleteModemPool: Empty
-  createModem: Empty
+  createModem: StringValue
   updateModem: Empty
   deleteModem: Empty
   listDrivers: ListOfDriver

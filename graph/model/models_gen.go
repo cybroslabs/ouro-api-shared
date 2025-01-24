@@ -162,13 +162,14 @@ type BulkStatus struct {
 	Jobs   []*BulkJob      `json:"jobs,omitempty"`
 }
 
-type CancelJobsRequest struct {
-	JobID []*string `json:"job_id,omitempty"`
-}
-
 type CommunicationTemplate struct {
 	Type      *CommunicationType  `json:"type,omitempty"`
 	Datalinks []*DataLinkTemplate `json:"datalinks,omitempty"`
+}
+
+type CommunicationUnit struct {
+	Spec     *CommunicationUnitSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
 type CommunicationUnitSpec struct {
@@ -237,21 +238,19 @@ type DataLinkTemplate struct {
 	Attributes      []*AttributeDefinition `json:"attributes,omitempty"`
 }
 
+type Device struct {
+	Spec     *DeviceSpec     `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
 type DeviceCommunicationUnit struct {
 	CommunicationUnitID *string              `json:"communication_unit_id,omitempty"`
 	AppProtocol         *ApplicationProtocol `json:"app_protocol,omitempty"`
 }
 
-type DeviceConnectionInfo struct {
-	CommunicationUnit *ConnectionInfo      `json:"communication_unit,omitempty"`
-	AppProtocol       *ApplicationProtocol `json:"app_protocol,omitempty"`
-	DeviceAttributes  []*MapAttributeValue `json:"device_attributes,omitempty"`
-}
-
-type DeviceGroupOverviewSpec struct {
-	ID         *string `json:"id,omitempty"`
-	ExternalID *string `json:"external_id,omitempty"`
-	Name       *string `json:"name,omitempty"`
+type DeviceGroup struct {
+	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields  `json:"metadata,omitempty"`
 }
 
 type DeviceGroupSpec struct {
@@ -270,9 +269,19 @@ type DeviceSpec struct {
 	Timezone              *string                    `json:"timezone,omitempty"`
 }
 
-type DriverInfo struct {
-	DriverType *string `json:"driver_type,omitempty"`
-	Version    *string `json:"version,omitempty"`
+type Driver struct {
+	Spec *DriverSpec `json:"spec,omitempty"`
+}
+
+type DriverSpec struct {
+	Version           *string          `json:"version,omitempty"`
+	ListeningPort     *int32           `json:"listening_port,omitempty"`
+	DriverType        *string          `json:"driver_type,omitempty"`
+	MaxConcurrentJobs *int32           `json:"max_concurrent_jobs,omitempty"`
+	MaxCascadeDepth   *int32           `json:"max_cascade_depth,omitempty"`
+	TypicalMemUsage   *int32           `json:"typical_mem_usage,omitempty"`
+	Templates         *DriverTemplates `json:"templates,omitempty"`
+	DisplayName       *string          `json:"display_name,omitempty"`
 }
 
 type DriverTemplates struct {
@@ -285,23 +294,6 @@ type DriverTemplates struct {
 
 type Empty struct {
 	Empty *bool `json:"_empty,omitempty"`
-}
-
-type GetDeviceGroupResponse struct {
-	Spec *DeviceGroupSpec `json:"spec,omitempty"`
-}
-
-type GetDeviceGroupsResponse struct {
-	Groups []*MapDeviceGroupOverviewSpec `json:"groups,omitempty"`
-}
-
-type GetModemPoolResponse struct {
-	Modems []*ModemInfo `json:"modems,omitempty"`
-	Name   *string      `json:"name,omitempty"`
-}
-
-type GetModemPoolsResponse struct {
-	Pools []*ModemPoolSpec `json:"pools,omitempty"`
 }
 
 type JobAction struct {
@@ -331,8 +323,8 @@ type JobActionAttributes struct {
 }
 
 type JobActionContraints struct {
-	GetRegisterTypeName       []*Mapstring     `json:"get_register_type_name,omitempty"`
-	GetRegisterTypeAttributes []*MapStringList `json:"get_register_type_attributes,omitempty"`
+	GetRegisterTypeName       []*Mapstring       `json:"get_register_type_name,omitempty"`
+	GetRegisterTypeAttributes []*MapListOfString `json:"get_register_type_attributes,omitempty"`
 }
 
 type JobDevice struct {
@@ -368,16 +360,28 @@ type ListOfBulk struct {
 	Items []*Bulk `json:"items,omitempty"`
 }
 
-type ListOfCommunicationUnitSpec struct {
-	Items []*CommunicationUnitSpec `json:"items,omitempty"`
+type ListOfCommunicationUnit struct {
+	Items []*CommunicationUnit `json:"items,omitempty"`
 }
 
-type ListOfConnectionInfo struct {
-	Items []*DeviceConnectionInfo `json:"items,omitempty"`
+type ListOfDevice struct {
+	Items []*Device `json:"items,omitempty"`
 }
 
-type ListOfDriverInfo struct {
-	Items []*DriverInfo `json:"items,omitempty"`
+type ListOfDeviceGroup struct {
+	Items []*DeviceGroup `json:"items,omitempty"`
+}
+
+type ListOfDriver struct {
+	Items []*Driver `json:"items,omitempty"`
+}
+
+type ListOfModemPool struct {
+	Pools []*ModemPoolSpec `json:"pools,omitempty"`
+}
+
+type ListOfString struct {
+	Items []*string `json:"items,omitempty"`
 }
 
 type ListSelector struct {
@@ -433,9 +437,19 @@ type ModemInfo struct {
 	Tcpip          *ConnectionTypeDirectTCPIP `json:"tcpip,omitempty"`
 }
 
+type ModemPool struct {
+	Spec     *ModemPoolSpec   `json:"spec,omitempty"`
+	Status   *ModemPoolStatus `json:"status,omitempty"`
+	Metadata *MetadataFields  `json:"metadata,omitempty"`
+}
+
 type ModemPoolSpec struct {
 	PoolID *string `json:"pool_id,omitempty"`
 	Name   *string `json:"name,omitempty"`
+}
+
+type ModemPoolStatus struct {
+	Modems []*ModemInfo `json:"modems,omitempty"`
 }
 
 type ProfileBlok struct {
@@ -463,17 +477,12 @@ type SetDeviceCommunicationUnitsRequest struct {
 }
 
 type SetModemPoolRequest struct {
-	PoolID *string `json:"pool_id,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	Spec *ModemPoolSpec `json:"spec,omitempty"`
 }
 
 type SetModemRequest struct {
 	PoolID *string    `json:"pool_id,omitempty"`
 	Modem  *ModemInfo `json:"modem,omitempty"`
-}
-
-type StringList struct {
-	Items []*string `json:"items,omitempty"`
 }
 
 type StringValue struct {
@@ -496,14 +505,9 @@ type MapAttributeValue struct {
 	Value *AttributeValue `json:"value,omitempty"`
 }
 
-type MapDeviceGroupOverviewSpec struct {
-	Key   string                   `json:"key"`
-	Value *DeviceGroupOverviewSpec `json:"value,omitempty"`
-}
-
-type MapStringList struct {
-	Key   string      `json:"key"`
-	Value *StringList `json:"value,omitempty"`
+type MapListOfString struct {
+	Key   string        `json:"key"`
+	Value *ListOfString `json:"value,omitempty"`
 }
 
 type Mapstring struct {
