@@ -11,6 +11,7 @@ require (
 	connectrpc.com/connect v1.18.1
 	github.com/99designs/gqlgen v0.17.63
 	github.com/cerbos/cerbos-sdk-go v0.2.13
+	github.com/google/uuid v1.6.0
 	github.com/vektah/gqlparser/v2 v2.5.21
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.36.4
@@ -30,7 +31,6 @@ require (
 	github.com/goccy/go-json v0.10.4 // indirect
 	github.com/google/cel-go v0.22.1 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.2.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.0 // indirect
 	github.com/jdxcode/netrc v1.0.0 // indirect

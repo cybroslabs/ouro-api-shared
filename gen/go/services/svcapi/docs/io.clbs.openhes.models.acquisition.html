@@ -564,6 +564,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobDeviceId">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobDeviceId</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.JobSettings">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>JobSettings</code> 
@@ -621,6 +630,24 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDriver">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDriver</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfJobDevice">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfJobDevice</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfJobDeviceId">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfJobDeviceId</code> 
         </a>
       </p>
       
@@ -2455,7 +2482,7 @@
     <tr>
       <td>1</td>
       <td>
-        bulk_id
+        id
       </td>
       <td>
         <code title="string">
@@ -2463,7 +2490,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The bulk identifier.</p></td>
+      <td class="content"><p>@gqltype: UUID</p>
+<p>The bulk identifier.</p></td>
       
     </tr>
     
@@ -2483,7 +2511,7 @@
     </tr>
     
     <tr>
-      <td>4</td>
+      <td>3</td>
       <td>
         driver_type
       </td>
@@ -2494,24 +2522,6 @@
         </code>
       </td>
       <td class="content"><p>The device (driver) type.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        devices
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.JobDevice">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobDevice"><span title="io.clbs.openhes.models.acquisition.JobDevice">io.clbs.openhes.models.acquisition.JobDevice</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The list of devices in the bulk.</p></td>
       
     </tr>
     
@@ -2534,7 +2544,7 @@
     <tr>
       <td>7</td>
       <td>
-        job_actions
+        actions
       </td>
       <td>
         <code title="io.clbs.openhes.models.acquisition.JobAction">
@@ -2564,21 +2574,57 @@
       
     </tr>
     
-    <tr>
-      <td>9</td>
-      <td>
-        user_id
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The user identifier.</p></td>
-      
-    </tr>
     
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof device</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            devices
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ListOfJobDeviceId">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfJobDeviceId"><span title="io.clbs.openhes.models.acquisition.ListOfJobDeviceId">io.clbs.openhes.models.acquisition.ListOfJobDeviceId</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The list of devices in the bulk.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            custom_devices
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ListOfJobDevice">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfJobDevice"><span title="io.clbs.openhes.models.acquisition.ListOfJobDevice">io.clbs.openhes.models.acquisition.ListOfJobDevice</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The list of custom devices in the bulk.</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -5163,6 +5209,71 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobDeviceId">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobDeviceId" title="io.clbs.openhes.models.acquisition.JobDeviceId">message JobDeviceId</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device's job identifier within the parent bulk.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device identifier.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobSettings">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.JobSettings" title="io.clbs.openhes.models.acquisition.JobSettings">message JobSettings</a>
@@ -5687,6 +5798,112 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         </code>
       </td>
       <td class="content"><p>The list of drivers.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfJobDevice">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfJobDevice" title="io.clbs.openhes.models.acquisition.ListOfJobDevice">message ListOfJobDevice</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        list
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobDevice">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobDevice"><span title="io.clbs.openhes.models.acquisition.JobDevice">io.clbs.openhes.models.acquisition.JobDevice</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of devices in the bulk.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfJobDeviceId">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfJobDeviceId" title="io.clbs.openhes.models.acquisition.ListOfJobDeviceId">message ListOfJobDeviceId</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        list
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobDeviceId">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobDeviceId"><span title="io.clbs.openhes.models.acquisition.JobDeviceId">io.clbs.openhes.models.acquisition.JobDeviceId</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of devices in the bulk.</p></td>
       
     </tr>
     

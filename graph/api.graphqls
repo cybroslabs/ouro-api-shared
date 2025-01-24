@@ -550,21 +550,21 @@ type BulkJob {
 
 type BulkSpec {
   # The bulk identifier.
-  bulk_id: String
+  id: UUID
   # The correlation identifier, e.g. to define relation to non-homogenous group.
   correlation_id: String
   # The device (driver) type.
   driver_type: String
   # The list of devices in the bulk.
-  devices: [JobDevice]
+  devices: ListOfJobDeviceId
+  # The list of custom devices in the bulk.
+  custom_devices: ListOfJobDevice
   # The bulk-shared job settings.
   settings: JobSettings
   # The list actions to be executed.
-  job_actions: [JobAction]
+  actions: [JobAction]
   # The webhook URL to call when the bulk is completed.
   webhook_url: String
-  # The user identifier.
-  user_id: String
 }
 
 type BulkStatus {
@@ -859,6 +859,13 @@ type JobDevice {
   timezone: String
 }
 
+type JobDeviceId {
+  # The device's job identifier within the parent bulk.
+  id: String
+  # The device identifier.
+  device_id: String
+}
+
 # Sub-message containing job parameters
 type JobSettings {
   # Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
@@ -916,6 +923,16 @@ type ListOfDeviceGroup {
 type ListOfDriver {
   # The list of drivers.
   items: [Driver]
+}
+
+type ListOfJobDevice {
+  # The list of devices in the bulk.
+  list: [JobDevice]
+}
+
+type ListOfJobDeviceId {
+  # The list of devices in the bulk.
+  list: [JobDeviceId]
 }
 
 type ListOfModemPool {

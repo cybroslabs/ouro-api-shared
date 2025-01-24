@@ -65,19 +65,7 @@ message JobAction {
     }
 }
 
-message CreateBulkRequest2 {
-    // @gqltype: UUID
-    string id             = 1;  // The bulk identifier.
-    string correlation_id = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string driver_type    = 3;  // The device (driver) type.
-    oneof device {
-        ListOfJobDeviceId devices      = 4;  // The list of devices in the bulk.
-        ListOfJobDevice custom_devices = 5;  // The list of custom devices in the bulk.
-    }
-    JobSettings settings       = 6;  // The bulk-shared job settings.
-    repeated JobAction actions = 7;  // The list actions to be executed.
-    string webhook_url         = 8;  // The webhook URL to call when the bulk is completed.
-}
+
 
 // Sub-message - holds the bulk job specification.
 

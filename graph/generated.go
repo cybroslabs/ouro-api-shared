@@ -15,6 +15,7 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
 	"github.com/cybroslabs/hes-2-apis/graph/model"
+	"github.com/google/uuid"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -185,13 +186,13 @@ type ComplexityRoot struct {
 	}
 
 	BulkSpec struct {
-		BulkID        func(childComplexity int) int
+		Actions       func(childComplexity int) int
 		CorrelationID func(childComplexity int) int
+		CustomDevices func(childComplexity int) int
 		Devices       func(childComplexity int) int
 		DriverType    func(childComplexity int) int
-		JobActions    func(childComplexity int) int
+		ID            func(childComplexity int) int
 		Settings      func(childComplexity int) int
-		UserID        func(childComplexity int) int
 		WebhookURL    func(childComplexity int) int
 	}
 
@@ -375,6 +376,11 @@ type ComplexityRoot struct {
 		Timezone         func(childComplexity int) int
 	}
 
+	JobDeviceId struct {
+		DeviceID func(childComplexity int) int
+		ID       func(childComplexity int) int
+	}
+
 	JobSettings struct {
 		Attempts    func(childComplexity int) int
 		DeferStart  func(childComplexity int) int
@@ -412,6 +418,14 @@ type ComplexityRoot struct {
 
 	ListOfDriver struct {
 		Items func(childComplexity int) int
+	}
+
+	ListOfJobDevice struct {
+		List func(childComplexity int) int
+	}
+
+	ListOfJobDeviceId struct {
+		List func(childComplexity int) int
 	}
 
 	ListOfModemPool struct {
@@ -1012,12 +1026,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkJob.Status(childComplexity), true
 
-	case "BulkSpec.bulk_id":
-		if e.complexity.BulkSpec.BulkID == nil {
+	case "BulkSpec.actions":
+		if e.complexity.BulkSpec.Actions == nil {
 			break
 		}
 
-		return e.complexity.BulkSpec.BulkID(childComplexity), true
+		return e.complexity.BulkSpec.Actions(childComplexity), true
 
 	case "BulkSpec.correlation_id":
 		if e.complexity.BulkSpec.CorrelationID == nil {
@@ -1025,6 +1039,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.BulkSpec.CorrelationID(childComplexity), true
+
+	case "BulkSpec.custom_devices":
+		if e.complexity.BulkSpec.CustomDevices == nil {
+			break
+		}
+
+		return e.complexity.BulkSpec.CustomDevices(childComplexity), true
 
 	case "BulkSpec.devices":
 		if e.complexity.BulkSpec.Devices == nil {
@@ -1040,12 +1061,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.DriverType(childComplexity), true
 
-	case "BulkSpec.job_actions":
-		if e.complexity.BulkSpec.JobActions == nil {
+	case "BulkSpec.id":
+		if e.complexity.BulkSpec.ID == nil {
 			break
 		}
 
-		return e.complexity.BulkSpec.JobActions(childComplexity), true
+		return e.complexity.BulkSpec.ID(childComplexity), true
 
 	case "BulkSpec.settings":
 		if e.complexity.BulkSpec.Settings == nil {
@@ -1053,13 +1074,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.BulkSpec.Settings(childComplexity), true
-
-	case "BulkSpec.user_id":
-		if e.complexity.BulkSpec.UserID == nil {
-			break
-		}
-
-		return e.complexity.BulkSpec.UserID(childComplexity), true
 
 	case "BulkSpec.webhook_url":
 		if e.complexity.BulkSpec.WebhookURL == nil {
@@ -1740,6 +1754,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobDevice.Timezone(childComplexity), true
 
+	case "JobDeviceId.device_id":
+		if e.complexity.JobDeviceId.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.JobDeviceId.DeviceID(childComplexity), true
+
+	case "JobDeviceId.id":
+		if e.complexity.JobDeviceId.ID == nil {
+			break
+		}
+
+		return e.complexity.JobDeviceId.ID(childComplexity), true
+
 	case "JobSettings.attempts":
 		if e.complexity.JobSettings.Attempts == nil {
 			break
@@ -1865,6 +1893,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ListOfDriver.Items(childComplexity), true
+
+	case "ListOfJobDevice.list":
+		if e.complexity.ListOfJobDevice.List == nil {
+			break
+		}
+
+		return e.complexity.ListOfJobDevice.List(childComplexity), true
+
+	case "ListOfJobDeviceId.list":
+		if e.complexity.ListOfJobDeviceId.List == nil {
+			break
+		}
+
+		return e.complexity.ListOfJobDeviceId.List(childComplexity), true
 
 	case "ListOfModemPool.pools":
 		if e.complexity.ListOfModemPool.Pools == nil {
@@ -4865,22 +4907,22 @@ func (ec *executionContext) fieldContext_Bulk_spec(_ context.Context, field grap
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "bulk_id":
-				return ec.fieldContext_BulkSpec_bulk_id(ctx, field)
+			case "id":
+				return ec.fieldContext_BulkSpec_id(ctx, field)
 			case "correlation_id":
 				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
 			case "driver_type":
 				return ec.fieldContext_BulkSpec_driver_type(ctx, field)
 			case "devices":
 				return ec.fieldContext_BulkSpec_devices(ctx, field)
+			case "custom_devices":
+				return ec.fieldContext_BulkSpec_custom_devices(ctx, field)
 			case "settings":
 				return ec.fieldContext_BulkSpec_settings(ctx, field)
-			case "job_actions":
-				return ec.fieldContext_BulkSpec_job_actions(ctx, field)
+			case "actions":
+				return ec.fieldContext_BulkSpec_actions(ctx, field)
 			case "webhook_url":
 				return ec.fieldContext_BulkSpec_webhook_url(ctx, field)
-			case "user_id":
-				return ec.fieldContext_BulkSpec_user_id(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -5080,8 +5122,8 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_bulk_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_bulk_id(ctx, field)
+func (ec *executionContext) _BulkSpec_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5094,7 +5136,7 @@ func (ec *executionContext) _BulkSpec_bulk_id(ctx context.Context, field graphql
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.BulkID, nil
+		return obj.ID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5103,19 +5145,19 @@ func (ec *executionContext) _BulkSpec_bulk_id(ctx context.Context, field graphql
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*uuid.UUID)
 	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_bulk_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
+			return nil, errors.New("field of type UUID does not have child fields")
 		},
 	}
 	return fc, nil
@@ -5226,9 +5268,9 @@ func (ec *executionContext) _BulkSpec_devices(ctx context.Context, field graphql
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.JobDevice)
+	res := resTmp.(*model.ListOfJobDeviceID)
 	fc.Result = res
-	return ec.marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
+	return ec.marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDeviceID(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5239,22 +5281,55 @@ func (ec *executionContext) fieldContext_BulkSpec_devices(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_JobDevice_id(ctx, field)
-			case "device_id":
-				return ec.fieldContext_JobDevice_device_id(ctx, field)
-			case "external_id":
-				return ec.fieldContext_JobDevice_external_id(ctx, field)
-			case "device_attributes":
-				return ec.fieldContext_JobDevice_device_attributes(ctx, field)
-			case "connection_info":
-				return ec.fieldContext_JobDevice_connection_info(ctx, field)
-			case "app_protocol":
-				return ec.fieldContext_JobDevice_app_protocol(ctx, field)
-			case "timezone":
-				return ec.fieldContext_JobDevice_timezone(ctx, field)
+			case "list":
+				return ec.fieldContext_ListOfJobDeviceId_list(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type JobDevice", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ListOfJobDeviceId", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkSpec_custom_devices(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_custom_devices(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CustomDevices, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfJobDevice)
+	fc.Result = res
+	return ec.marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkSpec_custom_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "list":
+				return ec.fieldContext_ListOfJobDevice_list(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfJobDevice", field.Name)
 		},
 	}
 	return fc, nil
@@ -5315,8 +5390,8 @@ func (ec *executionContext) fieldContext_BulkSpec_settings(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_job_actions(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_job_actions(ctx, field)
+func (ec *executionContext) _BulkSpec_actions(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_actions(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5329,7 +5404,7 @@ func (ec *executionContext) _BulkSpec_job_actions(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.JobActions, nil
+		return obj.Actions, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5343,7 +5418,7 @@ func (ec *executionContext) _BulkSpec_job_actions(ctx context.Context, field gra
 	return ec.marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_job_actions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -5423,47 +5498,6 @@ func (ec *executionContext) _BulkSpec_webhook_url(ctx context.Context, field gra
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_webhook_url(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BulkSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _BulkSpec_user_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_user_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.UserID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BulkSpec_user_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -6762,22 +6796,22 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_spec(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "bulk_id":
-				return ec.fieldContext_BulkSpec_bulk_id(ctx, field)
+			case "id":
+				return ec.fieldContext_BulkSpec_id(ctx, field)
 			case "correlation_id":
 				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
 			case "driver_type":
 				return ec.fieldContext_BulkSpec_driver_type(ctx, field)
 			case "devices":
 				return ec.fieldContext_BulkSpec_devices(ctx, field)
+			case "custom_devices":
+				return ec.fieldContext_BulkSpec_custom_devices(ctx, field)
 			case "settings":
 				return ec.fieldContext_BulkSpec_settings(ctx, field)
-			case "job_actions":
-				return ec.fieldContext_BulkSpec_job_actions(ctx, field)
+			case "actions":
+				return ec.fieldContext_BulkSpec_actions(ctx, field)
 			case "webhook_url":
 				return ec.fieldContext_BulkSpec_webhook_url(ctx, field)
-			case "user_id":
-				return ec.fieldContext_BulkSpec_user_id(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -9816,6 +9850,88 @@ func (ec *executionContext) fieldContext_JobDevice_timezone(_ context.Context, f
 	return fc, nil
 }
 
+func (ec *executionContext) _JobDeviceId_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDeviceId_id(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobDeviceId_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobDeviceId",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobDeviceId_device_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDeviceId_device_id(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobDeviceId_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobDeviceId",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _JobSettings_max_duration(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_JobSettings_max_duration(ctx, field)
 	if err != nil {
@@ -10587,6 +10703,110 @@ func (ec *executionContext) fieldContext_ListOfDriver_items(_ context.Context, f
 				return ec.fieldContext_Driver_spec(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfJobDevice_list(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfJobDevice_list(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.List, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.JobDevice)
+	fc.Result = res
+	return ec.marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfJobDevice_list(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfJobDevice",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_JobDevice_id(ctx, field)
+			case "device_id":
+				return ec.fieldContext_JobDevice_device_id(ctx, field)
+			case "external_id":
+				return ec.fieldContext_JobDevice_external_id(ctx, field)
+			case "device_attributes":
+				return ec.fieldContext_JobDevice_device_attributes(ctx, field)
+			case "connection_info":
+				return ec.fieldContext_JobDevice_connection_info(ctx, field)
+			case "app_protocol":
+				return ec.fieldContext_JobDevice_app_protocol(ctx, field)
+			case "timezone":
+				return ec.fieldContext_JobDevice_timezone(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type JobDevice", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfJobDeviceId_list(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfJobDeviceId_list(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.List, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.JobDeviceID)
+	fc.Result = res
+	return ec.marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfJobDeviceId",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_JobDeviceId_id(ctx, field)
+			case "device_id":
+				return ec.fieldContext_JobDeviceId_device_id(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type JobDeviceId", field.Name)
 		},
 	}
 	return fc, nil
@@ -17825,22 +18045,22 @@ func (ec *executionContext) _BulkSpec(ctx context.Context, sel ast.SelectionSet,
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("BulkSpec")
-		case "bulk_id":
-			out.Values[i] = ec._BulkSpec_bulk_id(ctx, field, obj)
+		case "id":
+			out.Values[i] = ec._BulkSpec_id(ctx, field, obj)
 		case "correlation_id":
 			out.Values[i] = ec._BulkSpec_correlation_id(ctx, field, obj)
 		case "driver_type":
 			out.Values[i] = ec._BulkSpec_driver_type(ctx, field, obj)
 		case "devices":
 			out.Values[i] = ec._BulkSpec_devices(ctx, field, obj)
+		case "custom_devices":
+			out.Values[i] = ec._BulkSpec_custom_devices(ctx, field, obj)
 		case "settings":
 			out.Values[i] = ec._BulkSpec_settings(ctx, field, obj)
-		case "job_actions":
-			out.Values[i] = ec._BulkSpec_job_actions(ctx, field, obj)
+		case "actions":
+			out.Values[i] = ec._BulkSpec_actions(ctx, field, obj)
 		case "webhook_url":
 			out.Values[i] = ec._BulkSpec_webhook_url(ctx, field, obj)
-		case "user_id":
-			out.Values[i] = ec._BulkSpec_user_id(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19008,6 +19228,44 @@ func (ec *executionContext) _JobDevice(ctx context.Context, sel ast.SelectionSet
 	return out
 }
 
+var jobDeviceIdImplementors = []string{"JobDeviceId"}
+
+func (ec *executionContext) _JobDeviceId(ctx context.Context, sel ast.SelectionSet, obj *model.JobDeviceID) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, jobDeviceIdImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("JobDeviceId")
+		case "id":
+			out.Values[i] = ec._JobDeviceId_id(ctx, field, obj)
+		case "device_id":
+			out.Values[i] = ec._JobDeviceId_device_id(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var jobSettingsImplementors = []string{"JobSettings"}
 
 func (ec *executionContext) _JobSettings(ctx context.Context, sel ast.SelectionSet, obj *model.JobSettings) graphql.Marshaler {
@@ -19259,6 +19517,78 @@ func (ec *executionContext) _ListOfDriver(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("ListOfDriver")
 		case "items":
 			out.Values[i] = ec._ListOfDriver_items(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var listOfJobDeviceImplementors = []string{"ListOfJobDevice"}
+
+func (ec *executionContext) _ListOfJobDevice(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfJobDevice) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfJobDeviceImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfJobDevice")
+		case "list":
+			out.Values[i] = ec._ListOfJobDevice_list(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var listOfJobDeviceIdImplementors = []string{"ListOfJobDeviceId"}
+
+func (ec *executionContext) _ListOfJobDeviceId(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfJobDeviceID) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfJobDeviceIdImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfJobDeviceId")
+		case "list":
+			out.Values[i] = ec._ListOfJobDeviceId_list(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22929,6 +23259,54 @@ func (ec *executionContext) marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhes
 	return ec._JobDevice(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v []*model.JobDeviceID) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.JobDeviceID) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._JobDeviceId(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobErrorCode(ctx context.Context, v any) (*model.JobErrorCode, error) {
 	if v == nil {
 		return nil, nil
@@ -23024,6 +23402,20 @@ func (ec *executionContext) marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._ListOfDriver(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDevice) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfJobDevice(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDeviceID) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfJobDeviceId(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ListOfModemPool) graphql.Marshaler {
@@ -23463,6 +23855,22 @@ func (ec *executionContext) marshalOTimestamp2ᚖstring(ctx context.Context, sel
 		return graphql.Null
 	}
 	res := graphql.MarshalString(*v)
+	return res
+}
+
+func (ec *executionContext) unmarshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx context.Context, v any) (*uuid.UUID, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := graphql.UnmarshalUUID(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx context.Context, sel ast.SelectionSet, v *uuid.UUID) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	res := graphql.MarshalUUID(*v)
 	return res
 }
 

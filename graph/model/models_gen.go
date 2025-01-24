@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+
+	"github.com/google/uuid"
 )
 
 type AccessLevelTemplate struct {
@@ -147,14 +149,14 @@ type BulkJob struct {
 }
 
 type BulkSpec struct {
-	BulkID        *string      `json:"bulk_id,omitempty"`
-	CorrelationID *string      `json:"correlation_id,omitempty"`
-	DriverType    *string      `json:"driver_type,omitempty"`
-	Devices       []*JobDevice `json:"devices,omitempty"`
-	Settings      *JobSettings `json:"settings,omitempty"`
-	JobActions    []*JobAction `json:"job_actions,omitempty"`
-	WebhookURL    *string      `json:"webhook_url,omitempty"`
-	UserID        *string      `json:"user_id,omitempty"`
+	ID            *uuid.UUID         `json:"id,omitempty"`
+	CorrelationID *string            `json:"correlation_id,omitempty"`
+	DriverType    *string            `json:"driver_type,omitempty"`
+	Devices       *ListOfJobDeviceID `json:"devices,omitempty"`
+	CustomDevices *ListOfJobDevice   `json:"custom_devices,omitempty"`
+	Settings      *JobSettings       `json:"settings,omitempty"`
+	Actions       []*JobAction       `json:"actions,omitempty"`
+	WebhookURL    *string            `json:"webhook_url,omitempty"`
 }
 
 type BulkStatus struct {
@@ -337,6 +339,11 @@ type JobDevice struct {
 	Timezone         *string              `json:"timezone,omitempty"`
 }
 
+type JobDeviceID struct {
+	ID       *string `json:"id,omitempty"`
+	DeviceID *string `json:"device_id,omitempty"`
+}
+
 type JobSettings struct {
 	MaxDuration *int64       `json:"max_duration,omitempty"`
 	Priority    *JobPriority `json:"priority,omitempty"`
@@ -374,6 +381,14 @@ type ListOfDeviceGroup struct {
 
 type ListOfDriver struct {
 	Items []*Driver `json:"items,omitempty"`
+}
+
+type ListOfJobDevice struct {
+	List []*JobDevice `json:"list,omitempty"`
+}
+
+type ListOfJobDeviceID struct {
+	List []*JobDeviceID `json:"list,omitempty"`
 }
 
 type ListOfModemPool struct {
