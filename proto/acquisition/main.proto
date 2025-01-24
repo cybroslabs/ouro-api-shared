@@ -34,6 +34,18 @@ message CommunicationUnitSpec {
     ConnectionInfo connection_info = 4;  // The connection info.
 }
 
+// Device specification.
+
+message CreateDeviceRequest {
+    DeviceSpec spec = 1;  // The device specification.
+}
+
+message Device {
+    DeviceSpec spec = 1;  // The device specification.
+    reserved 2; // reserved for status
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
 // Bulk specification.
 
 message CreateBulkRequest {

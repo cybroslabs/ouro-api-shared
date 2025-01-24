@@ -762,11 +762,6 @@ message JobEventData {
 
 
 
-// RestApi -> DriverRegistry - the request message to create a new device.
-message CreateDeviceRequest {
-    DeviceSpec spec = 1;  // The device specification.
-}
-
 // RestApi -> DriverRegistry - the request message to get the information about the device.
 message GetDevicesRequest {
     string id          = 1;  // The UUID of the device.
@@ -774,11 +769,6 @@ message GetDevicesRequest {
     string name        = 3;  // The name of the device.
 }
 
-// DriverRegistry -> RestApi - the message holds the information about the device.
-message Device {
-    DeviceSpec spec = 1;  // The device specification.
-    // TODO: Add status
-}
 
 message ListOfDevice {
     repeated Device items = 1;  // The list of devices.
