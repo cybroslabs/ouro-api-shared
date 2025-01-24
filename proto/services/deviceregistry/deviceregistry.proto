@@ -6,7 +6,7 @@ option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/deviceregi
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
-import "acquisition/job.proto";
+import "acquisition/main.proto";
 import "common/fields.proto";
 
 // The Deviceregistry service definition.
@@ -19,7 +19,7 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-    rpc ListCommunicationUnit(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitSpec);
+    rpc ListCommunicationUnit(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.

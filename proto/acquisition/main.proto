@@ -1,0 +1,69 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.acquisition;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common/metadata.proto";
+import "acquisition/shared.proto";
+import "acquisition/bulk.proto";
+
+// Communication Unit specification.
+
+message CreateCommunicationUnitRequest {
+    CommunicationUnitSpec spec = 1;  // The communication unit specification.
+}
+
+message ListOfCommunicationUnit {
+    repeated CommunicationUnit items = 1;  // The communication unit specification.
+}
+
+
+message CommunicationUnit {
+    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
+    reserved 2; // reserved for status
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message CommunicationUnitSpec {
+    string id                      = 1;  // The UUID of the communication unit.
+    string external_id             = 2;  // The external identifier of the communication unit.
+    string name                    = 3;  // The name of the communication unit.
+    ConnectionInfo connection_info = 4;  // The connection info.
+}
+
+// Bulk specification.
+
+message CreateBulkRequest {
+    BulkSpec spec                  = 1;  // The bulk-job spec.
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message ListOfBulk {
+    repeated Bulk items = 1;  // The list of bulks.
+}
+
+message Bulk {
+    BulkSpec spec                  = 1;  // The bulk-job spec.
+    BulkStatus status              = 2;  // The bulk-job status/data.
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message BulkSpec {
+    string bulk_id                 = 1;  // The bulk identifier.
+    string correlation_id          = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string driver_type             = 4;  // The device (driver) type.
+    repeated JobDevice devices     = 5;  // The list of devices in the bulk.
+    JobSettings settings           = 6;  // The bulk-shared job settings.
+    repeated JobAction job_actions = 7;  // The list actions to be executed.
+    string webhook_url             = 8;  // The webhook URL to call when the bulk is completed.
+    string user_id                 = 9;  // The user identifier.
+}
+
+message BulkStatus {
+    BulkStatusCode status = 1;  // The job status.
+    repeated BulkJob jobs = 2;  // The list of job statuses.
+}
+

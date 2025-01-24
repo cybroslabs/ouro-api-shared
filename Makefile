@@ -1,5 +1,5 @@
 .PHONY: all
-all: setup gen-go
+all: gen-go
 
 .PHONY: setup
 setup:

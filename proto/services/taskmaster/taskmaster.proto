@@ -4,7 +4,9 @@ package io.clbs.openhes.services.taskmaster;
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/taskmaster";
 
 import "google/protobuf/empty.proto";
-import "acquisition/job.proto";
+import "acquisition/main.proto";
+import "acquisition/internal.proto";
+import "system/main.proto";
 
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
@@ -28,7 +30,7 @@ service TaskmasterService {
     rpc CacheGet(io.clbs.openhes.models.acquisition.CacheGetRequest) returns (io.clbs.openhes.models.acquisition.CacheGetResponse);
 
     // The method called by the RestApi to get the system configuration.
-    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.SystemConfig);
+    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
     // The method called by the RestApi to set the system configuration.
-    rpc SetConfig(io.clbs.openhes.models.acquisition.SystemConfig) returns (google.protobuf.Empty);
+    rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
 }
