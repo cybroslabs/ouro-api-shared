@@ -1,4 +1,4 @@
-package pbapi
+package api
 
 import (
 	"embed"
