@@ -1,0 +1,13 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.common;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
+
+import "google/protobuf/any.proto";
+
+// The metadata fields managed by user and system.
+message MetadataFields {
+    map<string, google.protobuf.Any> fields         = 1;  // The additional fields managed by user.
+    map<string, google.protobuf.Any> managed_fields = 2;  // The additional fields managed by system.
+}

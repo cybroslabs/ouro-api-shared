@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenHES API</title>
+    <link rel="stylesheet" href="static/mystyles.css" />
+    <script src="static/fontawesome.js"></script>
+    <script src="static/lunr.js"></script>
+    <script src="static/theme.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="level pt-6 mb-5 pb-2 bottom-border">
+        <div class="level-left">
+          <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
+            <a class="link is-info" href="index.html">
+              OpenHES API
+            </a>
+          </p>
+        </div>
+
+        <div class="level-right">
+          
+          <form action="search.html" class="mr-2 has-text-centered">
+            <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
+            <input type="submit" class="button is-primary mr-5" value="Search" />
+          </form>
+          
+
+          <p class="level-item has-text-centered is-size-5">
+            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
+              <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-content" class="container mb-6">
+  <p class="mb-2">
+    <a style="font-size: 0.9em" href="index.html">← Back to packages</a>
+  </p>
+  <h3 class="title is-3">
+    
+    Package <code>io.clbs.openhes.models.common</code>
+    
+  </h3>
+
+  <div class="block">
+    
+
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.ListOfString">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfString</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.ListSelector">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListSelector</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.ListSelectorFilterBy">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListSelectorFilterBy</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.ListSelectorSortBy">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListSelectorSortBy</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.MetadataFields">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>MetadataFields</code> 
+        </a>
+      </p>
+      
+    
+
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.common.FilterOperator">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>FilterOperator</code> 
+        </a>
+      </p>
+    
+  </div>
+
+  <div class="block">
+      
+  </div>
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Messages
+    </h3>
+
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListOfString">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListOfString" title="io.clbs.openhes.models.common.ListOfString">message ListOfString</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The list of string items.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListSelector">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListSelector" title="io.clbs.openhes.models.common.ListSelector">message ListSelector</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The listing selector.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        page_size
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The number of items per page.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        offset
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The offset of the first item to return, zero based.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        sort_by
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ListSelectorSortBy">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelectorSortBy"><span title="io.clbs.openhes.models.common.ListSelectorSortBy">io.clbs.openhes.models.common.ListSelectorSortBy</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The sorting criteria.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        filter_by
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ListSelectorFilterBy">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelectorFilterBy"><span title="io.clbs.openhes.models.common.ListSelectorFilterBy">io.clbs.openhes.models.common.ListSelectorFilterBy</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The filtering criteria.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        fields
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>FIXME: This needs to be designed properly.</p>
+<p>The list of additional fields to be returned.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListSelectorFilterBy">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListSelectorFilterBy" title="io.clbs.openhes.models.common.ListSelectorFilterBy">message ListSelectorFilterBy</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The filtering criteria.</p>
+<p>Depending on the operator, the 'text', 'integer', 'number', 'boolean' or 'date' field should be used.
+- No value must be set for operators: 'IS_NULL', 'IS_NOT_NULL'.
+- One value must be set for single operand operators: 'EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'CONTAINS', 'NOT_CONTAINS', 'STARTS_WITH', 'ENDS_WITH'.
+- Two values must be set for two operand operators: 'BETWEEN'.
+- Any number of values can be set for generic operators: 'IN', 'NOT_IN'.</p>
+<p>Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        field_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Field id.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        operator
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FilterOperator">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FilterOperator"><span title="io.clbs.openhes.models.common.FilterOperator">io.clbs.openhes.models.common.FilterOperator</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The filter operator.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        text
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The text-typed value(s) used for filtering.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        integer
+      </td>
+      <td>
+        <code title="sint64">
+          
+            repeated
+          
+          <span>sint64</span>
+        </code>
+      </td>
+      <td class="content"><p>The integer-typed value(s) used for filtering.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        number
+      </td>
+      <td>
+        <code title="double">
+          
+            repeated
+          
+          <span>double</span>
+        </code>
+      </td>
+      <td class="content"><p>The number-typed value(s) used for filtering.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        boolean
+      </td>
+      <td>
+        <code title="bool">
+          
+            repeated
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The boolean-typed value(s) used for filtering.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        date
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+            repeated
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The date-typed value(s) used for filtering.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListSelectorSortBy">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListSelectorSortBy" title="io.clbs.openhes.models.common.ListSelectorSortBy">message ListSelectorSortBy</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The sorting criteria.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+      <th>Default Value</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        field_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Field id.</p></td>
+      
+      <td></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        desc
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Set to true to sort in descending order.</p></td>
+      
+      <td>false</td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.MetadataFields">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.MetadataFields" title="io.clbs.openhes.models.common.MetadataFields">message MetadataFields</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>The metadata fields managed by user and system.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        fields
+      </td>
+      <td>
+        <code title="map&lt;string, google.protobuf.Any&gt;">
+          
+          <span>map&lt;string, google.protobuf.Any&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The additional fields managed by user.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        managed_fields
+      </td>
+      <td>
+        <code title="map&lt;string, google.protobuf.Any&gt;">
+          
+          <span>map&lt;string, google.protobuf.Any&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The additional fields managed by system.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.common.FilterOperator">
+  <a href="#enum-io.clbs.openhes.models.common.FilterOperator" title="io.clbs.openhes.models.common.FilterOperator">enum FilterOperator</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>The filter operator.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>EQUAL</code></td>
+      <td>0</td>
+      <td class="content"><p>Single operand operator for text, integer, number, boolean fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>NOT_EQUAL</code></td>
+      <td>1</td>
+      <td class="content"><p>Single operand operator for text, integer, number, boolean fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>GREATER_THAN</code></td>
+      <td>2</td>
+      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>GREATER_THAN_OR_EQUAL</code></td>
+      <td>3</td>
+      <td class="content"><p>Single operand operator for integer, number  fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LESS_THAN</code></td>
+      <td>4</td>
+      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LESS_THAN_OR_EQUAL</code></td>
+      <td>5</td>
+      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>CONTAINS</code></td>
+      <td>6</td>
+      <td class="content"><p>Single operand operator for text fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>NOT_CONTAINS</code></td>
+      <td>7</td>
+      <td class="content"><p>Single operand operator for text fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>STARTS_WITH</code></td>
+      <td>8</td>
+      <td class="content"><p>Single operand operator for text fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ENDS_WITH</code></td>
+      <td>9</td>
+      <td class="content"><p>Single operand operator for text fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>IN</code></td>
+      <td>10</td>
+      <td class="content"><p>Multiple operand operator for text, integer, number, boolean fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>NOT_IN</code></td>
+      <td>11</td>
+      <td class="content"><p>Multiple operand operator for text, integer, number, boolean fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BETWEEN</code></td>
+      <td>12</td>
+      <td class="content"><p>Two operand operator for integer, number fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>IS_NULL</code></td>
+      <td>13</td>
+      <td class="content"><p>No operand operator.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>IS_NOT_NULL</code></td>
+      <td>14</td>
+      <td class="content"><p>No operand operator.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+
+  
+
+</div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+          <p>© 2025 cybros labs</p>
+        
+        <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

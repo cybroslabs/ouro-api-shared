@@ -1,0 +1,9 @@
+version: v2
+plugins:
+  - local: protoc-gen-graphql-schema
+    out: ../graph
+    opt:
+      - paths=source_relative
+inputs:
+  - proto_file: services/api/api.proto
+    include_package_files: true

@@ -1,0 +1,7447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenHES API</title>
+    <link rel="stylesheet" href="static/mystyles.css" />
+    <script src="static/fontawesome.js"></script>
+    <script src="static/lunr.js"></script>
+    <script src="static/theme.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="level pt-6 mb-5 pb-2 bottom-border">
+        <div class="level-left">
+          <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
+            <a class="link is-info" href="index.html">
+              OpenHES API
+            </a>
+          </p>
+        </div>
+
+        <div class="level-right">
+          
+          <form action="search.html" class="mr-2 has-text-centered">
+            <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
+            <input type="submit" class="button is-primary mr-5" value="Search" />
+          </form>
+          
+
+          <p class="level-item has-text-centered is-size-5">
+            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
+              <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-content" class="container mb-6">
+  <p class="mb-2">
+    <a style="font-size: 0.9em" href="index.html">← Back to packages</a>
+  </p>
+  <h3 class="title is-3">
+    
+    Package <code>io.clbs.openhes.models.acquisition</code>
+    
+  </h3>
+
+  <div class="block">
+    
+
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AccessLevelTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AccessLevelTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionData">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionData</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionFwUpdate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionFwUpdate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetClock">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetClock</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetDisconnectorState">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetDisconnectorState</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetEvents">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetEvents</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetIrregularProfile</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetLimiter">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetLimiter</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetPeriodicalProfile</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRegister">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetRegister</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRelayState">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetRelayState</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetTou">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionGetTou</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionResetBillingPeriod</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionResult">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionResult</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionSetDisconnectorState</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionSetLimiter">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionSetLimiter</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionSetRelayState">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionSetRelayState</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionSetTou">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionSetTou</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionSyncClock">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ActionSyncClock</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AddDevicesToGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ApplicationProtocolTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AttributeDefinition">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AttributeDefinition</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AttributeValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AttributeValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.BillingValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BillingValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.BillingValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BillingValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.Bulk">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Bulk</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.BulkJob">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BulkJob</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.BulkSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BulkSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.BulkStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>BulkStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnit">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnitSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeControlledSerial</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeDirectTcpIp</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeModemPool">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeModemPool</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeSerialDirect</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeSerialMoxa</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateBulkRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateBulkRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateCommunicationUnitRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateDeviceGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateDeviceRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DataLinkTemplate">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DataLinkTemplate</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.Device">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Device</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceCommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceGroup">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceGroup</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceGroupSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceGroupSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.Driver">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Driver</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DriverSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DriverSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DriverTemplates">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DriverTemplates</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobAction">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobAction</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobActionAttributes">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobActionAttributes</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobActionContraints">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobActionContraints</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobDevice">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobDevice</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobSettings">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobSettings</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfBulk">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfBulk</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnit">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfCommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfDevice</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceGroup">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfDeviceGroup</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDriver">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfDriver</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfModemPool">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfModemPool</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.MeasuredValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>MeasuredValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ModemInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ModemInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ModemPool">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ModemPool</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ModemPoolSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ModemPoolSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ModemPoolStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ModemPoolStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ProfileBlok">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ProfileBlok</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ProfileValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ProfileValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RemoveDevicesFromGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetDeviceCommunicationUnitsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.SetModemPoolRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetModemPoolRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.SetModemRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetModemRequest</code> 
+        </a>
+      </p>
+      
+    
+
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.ActionResultCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ActionResultCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.ActionType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ActionType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ApplicationProtocol</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.AttributeType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>AttributeType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.BulkStatusCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>BulkStatusCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.CommunicationType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>CommunicationType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.DataLinkProtocol">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>DataLinkProtocol</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.JobErrorCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>JobErrorCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.JobPriority">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>JobPriority</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.JobStatusCode">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>JobStatusCode</code> 
+        </a>
+      </p>
+    
+  </div>
+
+  <div class="block">
+      
+  </div>
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Messages
+    </h3>
+
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AccessLevelTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AccessLevelTemplate" title="io.clbs.openhes.models.acquisition.AccessLevelTemplate">message AccessLevelTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing access level definition</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The access level identifier, such as "1", "G", "16" or similar.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionData">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionData" title="io.clbs.openhes.models.acquisition.ActionData">message ActionData</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing action-based variant of data values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof data</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            nodata
+          </td>
+          <td>
+            <code title="google.protobuf.Empty">
+              
+              <span>google.protobuf.Empty</span>
+            </code>
+          </td>
+          <td class="content"><p>No data</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            billings
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.BillingValues">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BillingValues"><span title="io.clbs.openhes.models.acquisition.BillingValues">io.clbs.openhes.models.acquisition.BillingValues</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>Register values</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            profile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ProfileValues">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ProfileValues"><span title="io.clbs.openhes.models.acquisition.ProfileValues">io.clbs.openhes.models.acquisition.ProfileValues</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>Profile values</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionFwUpdate">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionFwUpdate" title="io.clbs.openhes.models.acquisition.ActionFwUpdate">message ActionFwUpdate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing firmware update action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetClock">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetClock" title="io.clbs.openhes.models.acquisition.ActionGetClock">message ActionGetClock</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get clock action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetDisconnectorState">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetDisconnectorState" title="io.clbs.openhes.models.acquisition.ActionGetDisconnectorState">message ActionGetDisconnectorState</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get disconnector state action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetEvents">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetEvents" title="io.clbs.openhes.models.acquisition.ActionGetEvents">message ActionGetEvents</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get events action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        from
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        to
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The end timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetIrregularProfile" title="io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">message ActionGetIrregularProfile</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get irregular profile action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        from
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        to
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The end timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetLimiter">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetLimiter" title="io.clbs.openhes.models.acquisition.ActionGetLimiter">message ActionGetLimiter</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get limiter action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile" title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">message ActionGetPeriodicalProfile</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get periodical profile action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        from
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        to
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The end timestamp of the profile.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetRegister">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRegister" title="io.clbs.openhes.models.acquisition.ActionGetRegister">message ActionGetRegister</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get register action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetRelayState">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRelayState" title="io.clbs.openhes.models.acquisition.ActionGetRelayState">message ActionGetRelayState</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get relay state action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetTou">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetTou" title="io.clbs.openhes.models.acquisition.ActionGetTou">message ActionGetTou</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing get tou action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionResetBillingPeriod" title="io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">message ActionResetBillingPeriod</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing reset billing period action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionResult">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionResult" title="io.clbs.openhes.models.acquisition.ActionResult">message ActionResult</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing action result for a single action.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        action_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The action identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ActionResultCode">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ActionResultCode"><span title="io.clbs.openhes.models.acquisition.ActionResultCode">io.clbs.openhes.models.acquisition.ActionResultCode</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The status of the action.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        data
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ActionData">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionData"><span title="io.clbs.openhes.models.acquisition.ActionData">io.clbs.openhes.models.acquisition.ActionData</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The action result data.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionSetDisconnectorState" title="io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">message ActionSetDisconnectorState</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing set disconnector state action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionSetLimiter">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionSetLimiter" title="io.clbs.openhes.models.acquisition.ActionSetLimiter">message ActionSetLimiter</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing set limiter action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionSetRelayState">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionSetRelayState" title="io.clbs.openhes.models.acquisition.ActionSetRelayState">message ActionSetRelayState</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing set relay state action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionSetTou">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionSetTou" title="io.clbs.openhes.models.acquisition.ActionSetTou">message ActionSetTou</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing set tou action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionSyncClock">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionSyncClock" title="io.clbs.openhes.models.acquisition.ActionSyncClock">message ActionSyncClock</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing sync clock action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest" title="io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">message AddDevicesToGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        group_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate" title="io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">message ApplicationProtocolTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one application protocol, e.g. DLMS_SN.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier of the application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocol">io.clbs.openhes.models.acquisition.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AttributeDefinition">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AttributeDefinition" title="io.clbs.openhes.models.acquisition.AttributeDefinition">message AttributeDefinition</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing attribute definition</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        description
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The description of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AttributeType">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.AttributeType"><span title="io.clbs.openhes.models.acquisition.AttributeType">io.clbs.openhes.models.acquisition.AttributeType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        mandatory
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The attribute is mandatory or not.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        default_value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AttributeValue">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeValue"><span title="io.clbs.openhes.models.acquisition.AttributeValue">io.clbs.openhes.models.acquisition.AttributeValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The default value of the attribute.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        options
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Optional. The list of values (represented by keys) that can be set. The value is the human-readable description in English (translations are applies using i18 or similar framework outside of the templates). If no values is defined then any value is allowed.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AttributeValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AttributeValue" title="io.clbs.openhes.models.acquisition.AttributeValue">message AttributeValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing single attribute value specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof value</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            str_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The string-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            int_value
+          </td>
+          <td>
+            <code title="int64">
+              
+              <span>int64</span>
+            </code>
+          </td>
+          <td class="content"><p>The integer-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            double_value
+          </td>
+          <td>
+            <code title="double">
+              
+              <span>double</span>
+            </code>
+          </td>
+          <td class="content"><p>The double-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            binary_value
+          </td>
+          <td>
+            <code title="bytes">
+              
+              <span>bytes</span>
+            </code>
+          </td>
+          <td class="content"><p>The binary-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            bool_value
+          </td>
+          <td>
+            <code title="bool">
+              
+              <span>bool</span>
+            </code>
+          </td>
+          <td class="content"><p>The boolean-typed value.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BillingValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.BillingValue" title="io.clbs.openhes.models.acquisition.BillingValue">message BillingValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed value</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BillingValues">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.BillingValues" title="io.clbs.openhes.models.acquisition.BillingValues">message BillingValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BillingValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BillingValue"><span title="io.clbs.openhes.models.acquisition.BillingValue">io.clbs.openhes.models.acquisition.BillingValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of register values.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Bulk">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.Bulk" title="io.clbs.openhes.models.acquisition.Bulk">message Bulk</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkSpec"><span title="io.clbs.openhes.models.acquisition.BulkSpec">io.clbs.openhes.models.acquisition.BulkSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The bulk-job spec.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkStatus"><span title="io.clbs.openhes.models.acquisition.BulkStatus">io.clbs.openhes.models.acquisition.BulkStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The bulk-job status/data.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BulkJob">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.BulkJob" title="io.clbs.openhes.models.acquisition.BulkJob">message BulkJob</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        job_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The job identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobStatus"><span title="io.clbs.openhes.models.acquisition.JobStatus">io.clbs.openhes.models.acquisition.JobStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The job status.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BulkSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.BulkSpec" title="io.clbs.openhes.models.acquisition.BulkSpec">message BulkSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        bulk_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The bulk identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        correlation_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The correlation identifier, e.g. to define relation to non-homogenous group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        driver_type
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device (driver) type.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        devices
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobDevice">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobDevice"><span title="io.clbs.openhes.models.acquisition.JobDevice">io.clbs.openhes.models.acquisition.JobDevice</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of devices in the bulk.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        settings
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobSettings">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobSettings"><span title="io.clbs.openhes.models.acquisition.JobSettings">io.clbs.openhes.models.acquisition.JobSettings</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The bulk-shared job settings.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        job_actions
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobAction">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobAction"><span title="io.clbs.openhes.models.acquisition.JobAction">io.clbs.openhes.models.acquisition.JobAction</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list actions to be executed.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        webhook_url
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The webhook URL to call when the bulk is completed.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        user_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The user identifier.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BulkStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.BulkStatus" title="io.clbs.openhes.models.acquisition.BulkStatus">message BulkStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkStatusCode">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.BulkStatusCode"><span title="io.clbs.openhes.models.acquisition.BulkStatusCode">io.clbs.openhes.models.acquisition.BulkStatusCode</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The job status.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        jobs
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkJob">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of job statuses.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationTemplate" title="io.clbs.openhes.models.acquisition.CommunicationTemplate">message CommunicationTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one communication type, e.g. TCP/IP.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationType">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.CommunicationType"><span title="io.clbs.openhes.models.acquisition.CommunicationType">io.clbs.openhes.models.acquisition.CommunicationType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the communication.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        datalinks
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DataLinkTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DataLinkTemplate"><span title="io.clbs.openhes.models.acquisition.DataLinkTemplate">io.clbs.openhes.models.acquisition.DataLinkTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of data link protocols and their app protocols supported by the driver.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnit">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnit" title="io.clbs.openhes.models.acquisition.CommunicationUnit">message CommunicationUnit</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec"><span title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">io.clbs.openhes.models.acquisition.CommunicationUnitSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec" title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">message CommunicationUnitSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        connection_info
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ConnectionInfo">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionInfo"><span title="io.clbs.openhes.models.acquisition.ConnectionInfo">io.clbs.openhes.models.acquisition.ConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The connection info.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionInfo" title="io.clbs.openhes.models.acquisition.ConnectionInfo">message ConnectionInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        link_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DataLinkProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.DataLinkProtocol"><span title="io.clbs.openhes.models.acquisition.DataLinkProtocol">io.clbs.openhes.models.acquisition.DataLinkProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data link protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        custom_grouping_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof connection</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            tcpip
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The TCP connection type.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            modem_pool
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeModemPool">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeModemPool"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeModemPool">io.clbs.openhes.models.acquisition.ConnectionTypeModemPool</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The phone connection type.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            serial_over_ip
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The serial over IP connection type.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial" title="io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">message ConnectionTypeControlledSerial</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof converter</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            direct
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The simple direct serial connection type.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            moxa
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The Moxa connection type.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp" title="io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">message ConnectionTypeDirectTcpIp</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info for TCP connection type</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        host
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        port
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The TCP port number of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        timeout
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeModemPool">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeModemPool" title="io.clbs.openhes.models.acquisition.ConnectionTypeModemPool">message ConnectionTypeModemPool</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info for phone line (modem) connection type</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        number
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The phone number of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        modem
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemInfo">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemInfo"><span title="io.clbs.openhes.models.acquisition.ModemInfo">io.clbs.openhes.models.acquisition.ModemInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect" title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">message ConnectionTypeSerialDirect</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        host
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        port
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The TCP port number of the device to connect to.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa" title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">message ConnectionTypeSerialMoxa</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info for controlled-serial line (Moxa) connection type</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        host
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        dataPort
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The TCP port number of the device to connect to - data port.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        commandPort
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The TCP port number of the device to connect to - command port.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateBulkRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateBulkRequest" title="io.clbs.openhes.models.acquisition.CreateBulkRequest">message CreateBulkRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkSpec"><span title="io.clbs.openhes.models.acquisition.BulkSpec">io.clbs.openhes.models.acquisition.BulkSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The bulk-job spec.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest" title="io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest">message CreateCommunicationUnitRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec"><span title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">io.clbs.openhes.models.acquisition.CommunicationUnitSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest" title="io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest">message CreateDeviceGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceGroupSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceGroupSpec"><span title="io.clbs.openhes.models.acquisition.DeviceGroupSpec">io.clbs.openhes.models.acquisition.DeviceGroupSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device group specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateDeviceRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceRequest" title="io.clbs.openhes.models.acquisition.CreateDeviceRequest">message CreateDeviceRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceSpec"><span title="io.clbs.openhes.models.acquisition.DeviceSpec">io.clbs.openhes.models.acquisition.DeviceSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DataLinkTemplate">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DataLinkTemplate" title="io.clbs.openhes.models.acquisition.DataLinkTemplate">message DataLinkTemplate</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing destription for one data link protocol, e.g. HDLC.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        link_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DataLinkProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.DataLinkProtocol"><span title="io.clbs.openhes.models.acquisition.DataLinkProtocol">io.clbs.openhes.models.acquisition.DataLinkProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data link protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocol_refs
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocol">io.clbs.openhes.models.acquisition.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of application protocol identifiers supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Device">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.Device" title="io.clbs.openhes.models.acquisition.Device">message Device</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceSpec"><span title="io.clbs.openhes.models.acquisition.DeviceSpec">io.clbs.openhes.models.acquisition.DeviceSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit" title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">message DeviceCommunicationUnit</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communication_unit_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocol">io.clbs.openhes.models.acquisition.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol to be used for the communication over the communication unit.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceGroup">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceGroup" title="io.clbs.openhes.models.acquisition.DeviceGroup">message DeviceGroup</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceGroupSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceGroupSpec"><span title="io.clbs.openhes.models.acquisition.DeviceGroupSpec">io.clbs.openhes.models.acquisition.DeviceGroupSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device group specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceGroupSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceGroupSpec" title="io.clbs.openhes.models.acquisition.DeviceGroupSpec">message DeviceGroupSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of device identifiers that are part of the group.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceSpec" title="io.clbs.openhes.models.acquisition.DeviceSpec">message DeviceSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message - the device specification.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The UUID of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The template of the action attributes. It is represented as a list of attribute definitions.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        communication_unit_link
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit"><span title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">io.clbs.openhes.models.acquisition.DeviceCommunicationUnit</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        timezone
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Driver">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.Driver" title="io.clbs.openhes.models.acquisition.Driver">message Driver</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DriverSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DriverSpec"><span title="io.clbs.openhes.models.acquisition.DriverSpec">io.clbs.openhes.models.acquisition.DriverSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The driver specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DriverSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DriverSpec" title="io.clbs.openhes.models.acquisition.DriverSpec">message DriverSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        version
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        listening_port
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The port the driver's gRPC will listen on.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        driver_type
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The technical/internal ID of the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        max_concurrent_jobs
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        max_cascade_depth
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
+The value 0 means that the driver can handle any number of cascading jobs.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        typical_mem_usage
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The typical memory usage of the driver in MB.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        templates
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DriverTemplates">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DriverTemplates"><span title="io.clbs.openhes.models.acquisition.DriverTemplates">io.clbs.openhes.models.acquisition.DriverTemplates</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The connection and action templates.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        display_name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+It must respect upper/lower characters.
+The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.</p>
+<p>Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DriverTemplates">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DriverTemplates" title="io.clbs.openhes.models.acquisition.DriverTemplates">message DriverTemplates</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message in driver negotiation request</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communication_templates
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationTemplate"><span title="io.clbs.openhes.models.acquisition.CommunicationTemplate">io.clbs.openhes.models.acquisition.CommunicationTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        app_protocols
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the application protocols supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        action_attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobActionAttributes">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobActionAttributes"><span title="io.clbs.openhes.models.acquisition.JobActionAttributes">io.clbs.openhes.models.acquisition.JobActionAttributes</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        access_templates
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AccessLevelTemplate">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AccessLevelTemplate"><span title="io.clbs.openhes.models.acquisition.AccessLevelTemplate">io.clbs.openhes.models.acquisition.AccessLevelTemplate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the access levels supported by the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        action_constraints
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobActionContraints">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobActionContraints"><span title="io.clbs.openhes.models.acquisition.JobActionContraints">io.clbs.openhes.models.acquisition.JobActionContraints</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The templates of the job actions constraints.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobAction">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobAction" title="io.clbs.openhes.models.acquisition.JobAction">message JobAction</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job action specification</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        action_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The action identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The action attributes.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof action</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            get_register
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetRegister">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetRegister"><span title="io.clbs.openhes.models.acquisition.ActionGetRegister">io.clbs.openhes.models.acquisition.ActionGetRegister</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get register action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            get_periodical_profile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile"><span title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get periodical profile action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            get_irregular_profile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetIrregularProfile"><span title="io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">io.clbs.openhes.models.acquisition.ActionGetIrregularProfile</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get irregular profile action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            6
+          </td>
+          <td>
+            get_events
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetEvents">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetEvents"><span title="io.clbs.openhes.models.acquisition.ActionGetEvents">io.clbs.openhes.models.acquisition.ActionGetEvents</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get events action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            7
+          </td>
+          <td>
+            get_clock
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetClock">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetClock"><span title="io.clbs.openhes.models.acquisition.ActionGetClock">io.clbs.openhes.models.acquisition.ActionGetClock</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get clock action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            8
+          </td>
+          <td>
+            sync_clock
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSyncClock">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSyncClock"><span title="io.clbs.openhes.models.acquisition.ActionSyncClock">io.clbs.openhes.models.acquisition.ActionSyncClock</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The sync clock action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            9
+          </td>
+          <td>
+            get_relay_state
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetRelayState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetRelayState"><span title="io.clbs.openhes.models.acquisition.ActionGetRelayState">io.clbs.openhes.models.acquisition.ActionGetRelayState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get relay state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            set_relay_state
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetRelayState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetRelayState"><span title="io.clbs.openhes.models.acquisition.ActionSetRelayState">io.clbs.openhes.models.acquisition.ActionSetRelayState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set relay state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            11
+          </td>
+          <td>
+            get_disconnector_state
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetDisconnectorState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetDisconnectorState"><span title="io.clbs.openhes.models.acquisition.ActionGetDisconnectorState">io.clbs.openhes.models.acquisition.ActionGetDisconnectorState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get disconnector state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            12
+          </td>
+          <td>
+            set_disconnector_state
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetDisconnectorState"><span title="io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">io.clbs.openhes.models.acquisition.ActionSetDisconnectorState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set disconnector state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            13
+          </td>
+          <td>
+            get_tou
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetTou">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetTou"><span title="io.clbs.openhes.models.acquisition.ActionGetTou">io.clbs.openhes.models.acquisition.ActionGetTou</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get tou action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            14
+          </td>
+          <td>
+            set_tou
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetTou">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetTou"><span title="io.clbs.openhes.models.acquisition.ActionSetTou">io.clbs.openhes.models.acquisition.ActionSetTou</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set tou action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            15
+          </td>
+          <td>
+            get_limiter
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetLimiter">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetLimiter"><span title="io.clbs.openhes.models.acquisition.ActionGetLimiter">io.clbs.openhes.models.acquisition.ActionGetLimiter</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get limiter action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            16
+          </td>
+          <td>
+            set_limiter
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetLimiter">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetLimiter"><span title="io.clbs.openhes.models.acquisition.ActionSetLimiter">io.clbs.openhes.models.acquisition.ActionSetLimiter</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set limiter action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            17
+          </td>
+          <td>
+            reset_billing_period
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionResetBillingPeriod"><span title="io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">io.clbs.openhes.models.acquisition.ActionResetBillingPeriod</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The reset billing period action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            18
+          </td>
+          <td>
+            fw_update
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionFwUpdate">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFwUpdate"><span title="io.clbs.openhes.models.acquisition.ActionFwUpdate">io.clbs.openhes.models.acquisition.ActionFwUpdate</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The firmware update action specification.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobActionAttributes">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobActionAttributes" title="io.clbs.openhes.models.acquisition.JobActionAttributes">message JobActionAttributes</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job action attributes</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ActionType">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ActionType"><span title="io.clbs.openhes.models.acquisition.ActionType">io.clbs.openhes.models.acquisition.ActionType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of action for which this instance of the template is defined.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.AttributeDefinition">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.AttributeDefinition"><span title="io.clbs.openhes.models.acquisition.AttributeDefinition">io.clbs.openhes.models.acquisition.AttributeDefinition</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The template of the action attributes. It is represented as a list of attribute definitions.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobActionContraints">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobActionContraints" title="io.clbs.openhes.models.acquisition.JobActionContraints">message JobActionContraints</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing constraints for job actions.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        get_register_type_name
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Contains all the register types &amp; their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+Action: ACTION_TYPE_GET_REGISTER</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        get_register_type_attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.common.ListOfString&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.common.ListOfString&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>Contains all the register types &amp; their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+See JobActionAttributes for the attribute definitions.
+Action: ACTION_TYPE_GET_REGISTER</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobDevice">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobDevice" title="io.clbs.openhes.models.acquisition.JobDevice">message JobDevice</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message representing a single job-device info.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device (job) identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device identifier. If set then all below is loaded from the device registry.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        external_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The external identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        device_attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.acquisition.AttributeValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The connection attributes to the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        connection_info
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ConnectionInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionInfo"><span title="io.clbs.openhes.models.acquisition.ConnectionInfo">io.clbs.openhes.models.acquisition.ConnectionInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The conenction (device) parameters.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        app_protocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocol">io.clbs.openhes.models.acquisition.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        timezone
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobSettings">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobSettings" title="io.clbs.openhes.models.acquisition.JobSettings">message JobSettings</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job parameters</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        max_duration
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        priority
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobPriority">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.JobPriority"><span title="io.clbs.openhes.models.acquisition.JobPriority">io.clbs.openhes.models.acquisition.JobPriority</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Priority of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attempts
+      </td>
+      <td>
+        <code title="int32">
+          
+            repeated
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Maximum number of attempts, 1 is the minimum.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        retry_delay
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>Delay in miliseconds between two attempts.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        defer_start
+      </td>
+      <td>
+        <code title="uint64">
+          
+          <span>uint64</span>
+        </code>
+      </td>
+      <td class="content"><p>Number of miliseconds to wait before starting the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        expires_at
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp when the job expires.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobStatus" title="io.clbs.openhes.models.acquisition.JobStatus">message JobStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job status info</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobStatusCode">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.JobStatusCode"><span title="io.clbs.openhes.models.acquisition.JobStatusCode">io.clbs.openhes.models.acquisition.JobStatusCode</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The status of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        code
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobErrorCode">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.JobErrorCode"><span title="io.clbs.openhes.models.acquisition.JobErrorCode">io.clbs.openhes.models.acquisition.JobErrorCode</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The error code of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        results
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ActionResult">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionResult"><span title="io.clbs.openhes.models.acquisition.ActionResult">io.clbs.openhes.models.acquisition.ActionResult</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The result data for all job actions.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        created_at
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The creation timestamp of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        started_at
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        finished_at
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The finish timestamp of the job.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        attempts_done
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The number of attempts already done.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfBulk">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfBulk" title="io.clbs.openhes.models.acquisition.ListOfBulk">message ListOfBulk</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.Bulk">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.Bulk"><span title="io.clbs.openhes.models.acquisition.Bulk">io.clbs.openhes.models.acquisition.Bulk</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of bulks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnit">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnit" title="io.clbs.openhes.models.acquisition.ListOfCommunicationUnit">message ListOfCommunicationUnit</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnit">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnit"><span title="io.clbs.openhes.models.acquisition.CommunicationUnit">io.clbs.openhes.models.acquisition.CommunicationUnit</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDevice">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice" title="io.clbs.openhes.models.acquisition.ListOfDevice">message ListOfDevice</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.Device">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.Device"><span title="io.clbs.openhes.models.acquisition.Device">io.clbs.openhes.models.acquisition.Device</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of devices.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDeviceGroup">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceGroup" title="io.clbs.openhes.models.acquisition.ListOfDeviceGroup">message ListOfDeviceGroup</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceGroup">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceGroup"><span title="io.clbs.openhes.models.acquisition.DeviceGroup">io.clbs.openhes.models.acquisition.DeviceGroup</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of device groups.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDriver">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDriver" title="io.clbs.openhes.models.acquisition.ListOfDriver">message ListOfDriver</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.Driver">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.Driver"><span title="io.clbs.openhes.models.acquisition.Driver">io.clbs.openhes.models.acquisition.Driver</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of drivers.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfModemPool">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfModemPool" title="io.clbs.openhes.models.acquisition.ListOfModemPool">message ListOfModemPool</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pools
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemPoolSpec">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemPoolSpec"><span title="io.clbs.openhes.models.acquisition.ModemPoolSpec">io.clbs.openhes.models.acquisition.ModemPoolSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of modem pools.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.MeasuredValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.MeasuredValue" title="io.clbs.openhes.models.acquisition.MeasuredValue">message MeasuredValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing measured value</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The status of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        exponent
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof value</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            double_value
+          </td>
+          <td>
+            <code title="double">
+              
+              <span>double</span>
+            </code>
+          </td>
+          <td class="content"><p>The double-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            int_value
+          </td>
+          <td>
+            <code title="int64">
+              
+              <span>int64</span>
+            </code>
+          </td>
+          <td class="content"><p>The integer-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            str_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The string-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            6
+          </td>
+          <td>
+            timestamp_value
+          </td>
+          <td>
+            <code title="google.protobuf.Timestamp">
+              
+              <span>google.protobuf.Timestamp</span>
+            </code>
+          </td>
+          <td class="content"><p>The timestamp-typed value.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            7
+          </td>
+          <td>
+            timestamp_tz_value
+          </td>
+          <td>
+            <code title="string">
+              
+              <span>string</span>
+            </code>
+          </td>
+          <td class="content"><p>The timestamp with timezone-typed value, stored as string in ISO-8601.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            8
+          </td>
+          <td>
+            bool_value
+          </td>
+          <td>
+            <code title="bool">
+              
+              <span>bool</span>
+            </code>
+          </td>
+          <td class="content"><p>The boolean-typed value.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ModemInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ModemInfo" title="io.clbs.openhes.models.acquisition.ModemInfo">message ModemInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing modem connection info</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem identifier. It is automatically generated during creation.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the modem.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        at_init
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem initialization command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        at_test
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem test command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        at_config
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem configuration command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        at_dial
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem dial command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        at_hangup
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem hangup command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        at_escape
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem escape command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        at_dsr
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem DSR command.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>10</td>
+      <td>
+        connect_timeout
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem connection timeout.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof modem_connection</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            11
+          </td>
+          <td>
+            tcpip
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp">io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.</p></td>
+          
+        </tr>
+      
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ModemPool">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ModemPool" title="io.clbs.openhes.models.acquisition.ModemPool">message ModemPool</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemPoolSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemPoolSpec"><span title="io.clbs.openhes.models.acquisition.ModemPoolSpec">io.clbs.openhes.models.acquisition.ModemPoolSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemPoolStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemPoolStatus"><span title="io.clbs.openhes.models.acquisition.ModemPoolStatus">io.clbs.openhes.models.acquisition.ModemPoolStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool status.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ModemPoolSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ModemPoolSpec" title="io.clbs.openhes.models.acquisition.ModemPoolSpec">message ModemPoolSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The name of the modem pool.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ModemPoolStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ModemPoolStatus" title="io.clbs.openhes.models.acquisition.ModemPoolStatus">message ModemPoolStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        modems
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemInfo"><span title="io.clbs.openhes.models.acquisition.ModemInfo">io.clbs.openhes.models.acquisition.ModemInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of modems in the pool.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ProfileBlok">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ProfileBlok" title="io.clbs.openhes.models.acquisition.ProfileBlok">message ProfileBlok</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing a single profile block</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        start_timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the block.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of profile values. Values are ordered by timestamp.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ProfileValues">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ProfileValues" title="io.clbs.openhes.models.acquisition.ProfileValues">message ProfileValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing profile-typed values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        period
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The period of the profile values.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the profile values.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        blocks
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ProfileBlok">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ProfileBlok"><span title="io.clbs.openhes.models.acquisition.ProfileBlok">io.clbs.openhes.models.acquisition.ProfileBlok</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest" title="io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">message RemoveDevicesFromGroupRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        group_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest" title="io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest">message SetDeviceCommunicationUnitsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        device_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        communication_units
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit"><span title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">io.clbs.openhes.models.acquisition.DeviceCommunicationUnit</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of linked communication units.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.SetModemPoolRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.SetModemPoolRequest" title="io.clbs.openhes.models.acquisition.SetModemPoolRequest">message SetModemPoolRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemPoolSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemPoolSpec"><span title="io.clbs.openhes.models.acquisition.ModemPoolSpec">io.clbs.openhes.models.acquisition.ModemPoolSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.SetModemRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.SetModemRequest" title="io.clbs.openhes.models.acquisition.SetModemRequest">message SetModemRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        pool_id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem pool identifier, required for update operation.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        modem
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ModemInfo">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ModemInfo"><span title="io.clbs.openhes.models.acquisition.ModemInfo">io.clbs.openhes.models.acquisition.ModemInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The modem specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.ActionResultCode">
+  <a href="#enum-io.clbs.openhes.models.acquisition.ActionResultCode" title="io.clbs.openhes.models.acquisition.ActionResultCode">enum ActionResultCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Result codes related to job actions</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_OK</code></td>
+      <td>0</td>
+      <td class="content"><p>The action has been completed successfully.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_UNSUPPORTED</code></td>
+      <td>1</td>
+      <td class="content"><p>The action is not supported by the driver (or device).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_PENDING</code></td>
+      <td>3</td>
+      <td class="content"><p>The action is pending.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_ERROR</code></td>
+      <td>5</td>
+      <td class="content"><p>The action failed.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.ActionType">
+  <a href="#enum-io.clbs.openhes.models.acquisition.ActionType" title="io.clbs.openhes.models.acquisition.ActionType">enum ActionType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Action types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_REGISTER</code></td>
+      <td>0</td>
+      <td class="content"><p>Get billing value, for example instantaneous values. The action covers specific register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_PERIODICAL_PROFILE</code></td>
+      <td>1</td>
+      <td class="content"><p>Get periodical profile, for example load-profile. The action covers specific profile column.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_IRREGULAR_PROFILE</code></td>
+      <td>2</td>
+      <td class="content"><p>Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_EVENTS</code></td>
+      <td>3</td>
+      <td class="content"><p>Get event log. The action covers specific event log.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_CLOCK</code></td>
+      <td>10</td>
+      <td class="content"><p>Get clock. The action returns time in UTC.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SYNC_CLOCK</code></td>
+      <td>11</td>
+      <td class="content"><p>Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_RELAY_STATE</code></td>
+      <td>20</td>
+      <td class="content"><p>Get relay state. The action covers single relay.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_RELAY_STATE</code></td>
+      <td>21</td>
+      <td class="content"><p>Set relay state. The action covers single relay.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_DISCONNECTOR_STATE</code></td>
+      <td>22</td>
+      <td class="content"><p>Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_DISCONNECTOR_STATE</code></td>
+      <td>23</td>
+      <td class="content"><p>Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_TOU</code></td>
+      <td>24</td>
+      <td class="content"><p>Get time-of-use table.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_TOU</code></td>
+      <td>25</td>
+      <td class="content"><p>Set time-of-use table.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_LIMITER</code></td>
+      <td>26</td>
+      <td class="content"><p>Get limiter settings. The action covers single limiter.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_SET_LIMITER</code></td>
+      <td>27</td>
+      <td class="content"><p>Set limiter settings. The action covers single limiter.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_RESET_BILLING_PERIOD</code></td>
+      <td>40</td>
+      <td class="content"><p>Reseet billing period.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_FW_UPDATE</code></td>
+      <td>50</td>
+      <td class="content"><p>Start firmware update. The action updates starts FW upgrade procedure.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.ApplicationProtocol">
+  <a href="#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol" title="io.clbs.openhes.models.acquisition.ApplicationProtocol">enum ApplicationProtocol</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Application protocols</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>APPPROTO_IEC_62056_21</code></td>
+      <td>0</td>
+      <td class="content"><p>The IEC 62056-21 (IEC-61107, VDEW) protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_DLMS_SN</code></td>
+      <td>1</td>
+      <td class="content"><p>The DLMS short-name protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_DLMS_LN</code></td>
+      <td>2</td>
+      <td class="content"><p>The DLMS logical-name protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_SCTM</code></td>
+      <td>3</td>
+      <td class="content"><p>The SCTM protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_LIS200</code></td>
+      <td>4</td>
+      <td class="content"><p>The LIS200 protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_ANSI_C12</code></td>
+      <td>5</td>
+      <td class="content"><p>The ANSI C12 protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_MQTT</code></td>
+      <td>6</td>
+      <td class="content"><p>The MQTT protocol.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.AttributeType">
+  <a href="#enum-io.clbs.openhes.models.acquisition.AttributeType" title="io.clbs.openhes.models.acquisition.AttributeType">enum AttributeType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Attribute types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_INT</code></td>
+      <td>0</td>
+      <td class="content"><p>Integer attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_STRING</code></td>
+      <td>1</td>
+      <td class="content"><p>String attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_DOUBLE</code></td>
+      <td>2</td>
+      <td class="content"><p>Double attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_BINARY</code></td>
+      <td>3</td>
+      <td class="content"><p>Binary attribute type</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_TIMESTAMP</code></td>
+      <td>4</td>
+      <td class="content"><p>Date/time attribute type, stored as integer (UNIX timestamp)</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_TIMESTAMP_TZ</code></td>
+      <td>5</td>
+      <td class="content"><p>Date/time attribute type, stored as string in ISO-8601</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ATTRIBUTE_TYPE_BOOL</code></td>
+      <td>6</td>
+      <td class="content"><p>Bool attribute type</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.BulkStatusCode">
+  <a href="#enum-io.clbs.openhes.models.acquisition.BulkStatusCode" title="io.clbs.openhes.models.acquisition.BulkStatusCode">enum BulkStatusCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Bulk statuses</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>BULK_STATUS_QUEUED</code></td>
+      <td>0</td>
+      <td class="content"><p>The job is waiting in the queue</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_RUNNING</code></td>
+      <td>1</td>
+      <td class="content"><p>The job is running</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_COMPLETED</code></td>
+      <td>2</td>
+      <td class="content"><p>The job is completed</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_CANCELLED</code></td>
+      <td>3</td>
+      <td class="content"><p>The job is cancelled</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_EXPIRED</code></td>
+      <td>4</td>
+      <td class="content"><p>The job has expired</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.CommunicationType">
+  <a href="#enum-io.clbs.openhes.models.acquisition.CommunicationType" title="io.clbs.openhes.models.acquisition.CommunicationType">enum CommunicationType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Connection types</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_TCPIP</code></td>
+      <td>0</td>
+      <td class="content"><p>The communication is done via direct TCP/IP.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_MODEM_POOL</code></td>
+      <td>1</td>
+      <td class="content"><p>The communication is done via phone line (modem).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_SERIAL_LINE_DIRECT</code></td>
+      <td>2</td>
+      <td class="content"><p>The communication is done via direct serial line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_SERIAL_LINE_MOXA</code></td>
+      <td>3</td>
+      <td class="content"><p>The communication is done via controller-serial line (Moxa).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_LISTENING</code></td>
+      <td>99</td>
+      <td class="content"><p>The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.DataLinkProtocol">
+  <a href="#enum-io.clbs.openhes.models.acquisition.DataLinkProtocol" title="io.clbs.openhes.models.acquisition.DataLinkProtocol">enum DataLinkProtocol</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Data link protocols</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>LINKPROTO_IEC_62056_21</code></td>
+      <td>0</td>
+      <td class="content"><p>The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_HDLC</code></td>
+      <td>1</td>
+      <td class="content"><p>The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_COSEM_WRAPPER</code></td>
+      <td>2</td>
+      <td class="content"><p>The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_MODBUS</code></td>
+      <td>3</td>
+      <td class="content"><p>The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_MBUS</code></td>
+      <td>4</td>
+      <td class="content"><p>The M-Bus protocol. It shall be used for M-Bus application protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_NOT_APPLICABLE</code></td>
+      <td>99</td>
+      <td class="content"><p>The data link protocol is not applicable. It's useful for listening communication type.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.JobErrorCode">
+  <a href="#enum-io.clbs.openhes.models.acquisition.JobErrorCode" title="io.clbs.openhes.models.acquisition.JobErrorCode">enum JobErrorCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Error codes related to jobs</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_NONE</code></td>
+      <td>0</td>
+      <td class="content"><p>The job has been completed successfully.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_BUSY</code></td>
+      <td>1</td>
+      <td class="content"><p>There is no free slot in the driver to handle the job; the job shall be send again later.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_ERROR</code></td>
+      <td>5</td>
+      <td class="content"><p>The job failed, the retry will be attempted.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_ALREADY_EXISTS</code></td>
+      <td>8</td>
+      <td class="content"><p>This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_FATAL</code></td>
+      <td>9</td>
+      <td class="content"><p>The job failed, the retry will NOT be attempted.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.JobPriority">
+  <a href="#enum-io.clbs.openhes.models.acquisition.JobPriority" title="io.clbs.openhes.models.acquisition.JobPriority">enum JobPriority</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Job priorities</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_0</code></td>
+      <td>0</td>
+      <td class="content"><p>The lowest priority</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_1</code></td>
+      <td>1</td>
+      <td class="content"><p>The priority 1</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_2</code></td>
+      <td>2</td>
+      <td class="content"><p>The priority 2</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_3</code></td>
+      <td>3</td>
+      <td class="content"><p>The priority 3</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_4</code></td>
+      <td>4</td>
+      <td class="content"><p>The priority 4</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_5</code></td>
+      <td>5</td>
+      <td class="content"><p>The priority 5</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_6</code></td>
+      <td>6</td>
+      <td class="content"><p>The priority 6</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_7</code></td>
+      <td>7</td>
+      <td class="content"><p>The priority 7</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_8</code></td>
+      <td>8</td>
+      <td class="content"><p>The highest priority</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.JobStatusCode">
+  <a href="#enum-io.clbs.openhes.models.acquisition.JobStatusCode" title="io.clbs.openhes.models.acquisition.JobStatusCode">enum JobStatusCode</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Job statuses</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>JOB_STATUS_QUEUED</code></td>
+      <td>0</td>
+      <td class="content"><p>The job is waiting in the queue</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_RUNNING</code></td>
+      <td>1</td>
+      <td class="content"><p>The job is running</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_COMPLETED</code></td>
+      <td>2</td>
+      <td class="content"><p>The job is completed</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_FAILED</code></td>
+      <td>3</td>
+      <td class="content"><p>The job is failed</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_CANCELLED</code></td>
+      <td>4</td>
+      <td class="content"><p>The job is cancelled</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_EXPIRED</code></td>
+      <td>5</td>
+      <td class="content"><p>The job has expired</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+
+  
+
+</div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+          <p>© 2025 cybros labs</p>
+        
+        <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
