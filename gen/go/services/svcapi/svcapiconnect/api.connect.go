@@ -68,9 +68,9 @@ const (
 	// ApiServiceSetDeviceCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
 	// SetDeviceCommunicationUnits RPC.
 	ApiServiceSetDeviceCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
-	// ApiServiceGetDevicesCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
-	// GetDevicesCommunicationUnits RPC.
-	ApiServiceGetDevicesCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDevicesCommunicationUnits"
+	// ApiServiceGetDeviceCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceCommunicationUnits RPC.
+	ApiServiceGetDeviceCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
 	// ApiServiceCreateDeviceGroupProcedure is the fully-qualified name of the ApiService's
 	// CreateDeviceGroup RPC.
 	ApiServiceCreateDeviceGroupProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
@@ -165,7 +165,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
+	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -317,10 +317,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetDeviceCommunicationUnits")),
 			connect.WithClientOptions(opts...),
 		),
-		getDevicesCommunicationUnits: connect.NewClient[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit](
+		getDeviceCommunicationUnits: connect.NewClient[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit](
 			httpClient,
-			baseURL+ApiServiceGetDevicesCommunicationUnitsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetDevicesCommunicationUnits")),
+			baseURL+ApiServiceGetDeviceCommunicationUnitsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceCommunicationUnits")),
 			connect.WithClientOptions(opts...),
 		),
 		createDeviceGroup: connect.NewClient[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue](
@@ -418,35 +418,35 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
-	createBulk                   *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
-	listBulks                    *connect.Client[common.ListSelector, acquisition.ListOfBulk]
-	getBulk                      *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
-	cancelBulk                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	listDrivers                  *connect.Client[common.ListSelector, acquisition.ListOfDriver]
-	getDriver                    *connect.Client[wrapperspb.StringValue, acquisition.Driver]
-	createCommunicationUnit      *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
-	listCommunicationUnits       *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
-	getCommunicationUnit         *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
-	createDevice                 *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
-	listDevices                  *connect.Client[common.ListSelector, acquisition.ListOfDevice]
-	getDevice                    *connect.Client[wrapperspb.StringValue, acquisition.Device]
-	setDeviceCommunicationUnits  *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
-	getDevicesCommunicationUnits *connect.Client[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit]
-	createDeviceGroup            *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
-	listDeviceGroups             *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
-	getDeviceGroup               *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
-	addDevicesToGroup            *connect.Client[acquisition.AddDevicesToGroupRequest, emptypb.Empty]
-	removeDevicesFromGroup       *connect.Client[acquisition.RemoveDevicesFromGroupRequest, emptypb.Empty]
-	listModemPools               *connect.Client[common.ListSelector, acquisition.ListOfModemPool]
-	getModemPool                 *connect.Client[wrapperspb.StringValue, acquisition.ModemPool]
-	createModemPool              *connect.Client[acquisition.SetModemPoolRequest, wrapperspb.StringValue]
-	updateModemPool              *connect.Client[acquisition.SetModemPoolRequest, emptypb.Empty]
-	deleteModemPool              *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	createModem                  *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
-	updateModem                  *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
-	deleteModem                  *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getConfig                    *connect.Client[emptypb.Empty, system.SystemConfig]
-	setConfig                    *connect.Client[system.SystemConfig, emptypb.Empty]
+	createBulk                  *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
+	listBulks                   *connect.Client[common.ListSelector, acquisition.ListOfBulk]
+	getBulk                     *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
+	cancelBulk                  *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	listDrivers                 *connect.Client[common.ListSelector, acquisition.ListOfDriver]
+	getDriver                   *connect.Client[wrapperspb.StringValue, acquisition.Driver]
+	createCommunicationUnit     *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
+	listCommunicationUnits      *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
+	getCommunicationUnit        *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
+	createDevice                *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
+	listDevices                 *connect.Client[common.ListSelector, acquisition.ListOfDevice]
+	getDevice                   *connect.Client[wrapperspb.StringValue, acquisition.Device]
+	setDeviceCommunicationUnits *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
+	getDeviceCommunicationUnits *connect.Client[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit]
+	createDeviceGroup           *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
+	listDeviceGroups            *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
+	getDeviceGroup              *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
+	addDevicesToGroup           *connect.Client[acquisition.AddDevicesToGroupRequest, emptypb.Empty]
+	removeDevicesFromGroup      *connect.Client[acquisition.RemoveDevicesFromGroupRequest, emptypb.Empty]
+	listModemPools              *connect.Client[common.ListSelector, acquisition.ListOfModemPool]
+	getModemPool                *connect.Client[wrapperspb.StringValue, acquisition.ModemPool]
+	createModemPool             *connect.Client[acquisition.SetModemPoolRequest, wrapperspb.StringValue]
+	updateModemPool             *connect.Client[acquisition.SetModemPoolRequest, emptypb.Empty]
+	deleteModemPool             *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createModem                 *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
+	updateModem                 *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
+	deleteModem                 *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	getConfig                   *connect.Client[emptypb.Empty, system.SystemConfig]
+	setConfig                   *connect.Client[system.SystemConfig, emptypb.Empty]
 }
 
 // CreateBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateBulk.
@@ -515,10 +515,10 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, req 
 	return c.setDeviceCommunicationUnits.CallUnary(ctx, req)
 }
 
-// GetDevicesCommunicationUnits calls
-// io.clbs.openhes.services.svcapi.ApiService.GetDevicesCommunicationUnits.
-func (c *apiServiceClient) GetDevicesCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
-	return c.getDevicesCommunicationUnits.CallUnary(ctx, req)
+// GetDeviceCommunicationUnits calls
+// io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits.
+func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
+	return c.getDeviceCommunicationUnits.CallUnary(ctx, req)
 }
 
 // CreateDeviceGroup calls io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup.
@@ -649,7 +649,7 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
+	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -797,10 +797,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetDeviceCommunicationUnits")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetDevicesCommunicationUnitsHandler := connect.NewUnaryHandler(
-		ApiServiceGetDevicesCommunicationUnitsProcedure,
-		svc.GetDevicesCommunicationUnits,
-		connect.WithSchema(apiServiceMethods.ByName("GetDevicesCommunicationUnits")),
+	apiServiceGetDeviceCommunicationUnitsHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceCommunicationUnitsProcedure,
+		svc.GetDeviceCommunicationUnits,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceCommunicationUnits")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateDeviceGroupHandler := connect.NewUnaryHandler(
@@ -921,8 +921,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDeviceHandler.ServeHTTP(w, r)
 		case ApiServiceSetDeviceCommunicationUnitsProcedure:
 			apiServiceSetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
-		case ApiServiceGetDevicesCommunicationUnitsProcedure:
-			apiServiceGetDevicesCommunicationUnitsHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceCommunicationUnitsProcedure:
+			apiServiceGetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceGroupProcedure:
 			apiServiceCreateDeviceGroupHandler.ServeHTTP(w, r)
 		case ApiServiceListDeviceGroupsProcedure:
@@ -1014,8 +1014,8 @@ func (UnimplementedApiServiceHandler) SetDeviceCommunicationUnits(context.Contex
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDevicesCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDevicesCommunicationUnits is not implemented"))
+func (UnimplementedApiServiceHandler) GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error) {

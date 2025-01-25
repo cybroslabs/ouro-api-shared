@@ -1188,7 +1188,7 @@ type Query {
   listDevices: ListOfDevice
   getDevice: Device
   setDeviceCommunicationUnits: Empty
-  getDevicesCommunicationUnits: ListOfCommunicationUnit
+  getDeviceCommunicationUnits: ListOfCommunicationUnit
   createDeviceGroup: StringValue
   listDeviceGroups: ListOfDeviceGroup
   getDeviceGroup: DeviceGroup

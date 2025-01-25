@@ -24,35 +24,35 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ApiService_CreateBulk_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
-	ApiService_ListBulks_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
-	ApiService_GetBulk_FullMethodName                      = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
-	ApiService_CancelBulk_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	ApiService_ListDrivers_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
-	ApiService_GetDriver_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
-	ApiService_CreateCommunicationUnit_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
-	ApiService_ListCommunicationUnits_FullMethodName       = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
-	ApiService_GetCommunicationUnit_FullMethodName         = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
-	ApiService_CreateDevice_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
-	ApiService_ListDevices_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
-	ApiService_GetDevice_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
-	ApiService_SetDeviceCommunicationUnits_FullMethodName  = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
-	ApiService_GetDevicesCommunicationUnits_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/GetDevicesCommunicationUnits"
-	ApiService_CreateDeviceGroup_FullMethodName            = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
-	ApiService_ListDeviceGroups_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
-	ApiService_GetDeviceGroup_FullMethodName               = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
-	ApiService_AddDevicesToGroup_FullMethodName            = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
-	ApiService_RemoveDevicesFromGroup_FullMethodName       = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
-	ApiService_ListModemPools_FullMethodName               = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
-	ApiService_GetModemPool_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
-	ApiService_CreateModemPool_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
-	ApiService_UpdateModemPool_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
-	ApiService_DeleteModemPool_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
-	ApiService_CreateModem_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
-	ApiService_UpdateModem_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
-	ApiService_DeleteModem_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
-	ApiService_GetConfig_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
-	ApiService_SetConfig_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	ApiService_CreateBulk_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
+	ApiService_ListBulks_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
+	ApiService_GetBulk_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
+	ApiService_CancelBulk_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
+	ApiService_ListDrivers_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
+	ApiService_GetDriver_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
+	ApiService_CreateCommunicationUnit_FullMethodName     = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
+	ApiService_ListCommunicationUnits_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
+	ApiService_GetCommunicationUnit_FullMethodName        = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
+	ApiService_CreateDevice_FullMethodName                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
+	ApiService_ListDevices_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
+	ApiService_GetDevice_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
+	ApiService_SetDeviceCommunicationUnits_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
+	ApiService_GetDeviceCommunicationUnits_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
+	ApiService_CreateDeviceGroup_FullMethodName           = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
+	ApiService_ListDeviceGroups_FullMethodName            = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
+	ApiService_GetDeviceGroup_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
+	ApiService_AddDevicesToGroup_FullMethodName           = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
+	ApiService_RemoveDevicesFromGroup_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
+	ApiService_ListModemPools_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
+	ApiService_GetModemPool_FullMethodName                = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
+	ApiService_CreateModemPool_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
+	ApiService_UpdateModemPool_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
+	ApiService_DeleteModemPool_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
+	ApiService_CreateModem_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
+	ApiService_UpdateModem_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
+	ApiService_DeleteModem_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
+	ApiService_GetConfig_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
+	ApiService_SetConfig_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -112,7 +112,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -313,10 +313,10 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *apiServiceClient) GetDevicesCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
+func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfCommunicationUnit)
-	err := c.cc.Invoke(ctx, ApiService_GetDevicesCommunicationUnits_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceCommunicationUnits_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -530,7 +530,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDevicesCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -640,8 +640,8 @@ func (UnimplementedApiServiceServer) GetDevice(context.Context, *wrapperspb.Stri
 func (UnimplementedApiServiceServer) SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
 }
-func (UnimplementedApiServiceServer) GetDevicesCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDevicesCommunicationUnits not implemented")
+func (UnimplementedApiServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -943,20 +943,20 @@ func _ApiService_SetDeviceCommunicationUnits_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetDevicesCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_GetDeviceCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).GetDevicesCommunicationUnits(ctx, in)
+		return srv.(ApiServiceServer).GetDeviceCommunicationUnits(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_GetDevicesCommunicationUnits_FullMethodName,
+		FullMethod: ApiService_GetDeviceCommunicationUnits_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetDevicesCommunicationUnits(ctx, req.(*wrapperspb.StringValue))
+		return srv.(ApiServiceServer).GetDeviceCommunicationUnits(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1291,8 +1291,8 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_SetDeviceCommunicationUnits_Handler,
 		},
 		{
-			MethodName: "GetDevicesCommunicationUnits",
-			Handler:    _ApiService_GetDevicesCommunicationUnits_Handler,
+			MethodName: "GetDeviceCommunicationUnits",
+			Handler:    _ApiService_GetDeviceCommunicationUnits_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",

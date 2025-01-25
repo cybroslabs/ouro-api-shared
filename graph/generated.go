@@ -533,35 +533,35 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
-		AddDevicesToGroup            func(childComplexity int) int
-		CancelBulk                   func(childComplexity int) int
-		CreateBulk                   func(childComplexity int) int
-		CreateCommunicationUnit      func(childComplexity int) int
-		CreateDevice                 func(childComplexity int) int
-		CreateDeviceGroup            func(childComplexity int) int
-		CreateModem                  func(childComplexity int) int
-		CreateModemPool              func(childComplexity int) int
-		DeleteModem                  func(childComplexity int) int
-		DeleteModemPool              func(childComplexity int) int
-		GetBulk                      func(childComplexity int) int
-		GetCommunicationUnit         func(childComplexity int) int
-		GetConfig                    func(childComplexity int) int
-		GetDevice                    func(childComplexity int) int
-		GetDeviceGroup               func(childComplexity int) int
-		GetDevicesCommunicationUnits func(childComplexity int) int
-		GetDriver                    func(childComplexity int) int
-		GetModemPool                 func(childComplexity int) int
-		ListBulks                    func(childComplexity int) int
-		ListCommunicationUnits       func(childComplexity int) int
-		ListDeviceGroups             func(childComplexity int) int
-		ListDevices                  func(childComplexity int) int
-		ListDrivers                  func(childComplexity int) int
-		ListModemPools               func(childComplexity int) int
-		RemoveDevicesFromGroup       func(childComplexity int) int
-		SetConfig                    func(childComplexity int) int
-		SetDeviceCommunicationUnits  func(childComplexity int) int
-		UpdateModem                  func(childComplexity int) int
-		UpdateModemPool              func(childComplexity int) int
+		AddDevicesToGroup           func(childComplexity int) int
+		CancelBulk                  func(childComplexity int) int
+		CreateBulk                  func(childComplexity int) int
+		CreateCommunicationUnit     func(childComplexity int) int
+		CreateDevice                func(childComplexity int) int
+		CreateDeviceGroup           func(childComplexity int) int
+		CreateModem                 func(childComplexity int) int
+		CreateModemPool             func(childComplexity int) int
+		DeleteModem                 func(childComplexity int) int
+		DeleteModemPool             func(childComplexity int) int
+		GetBulk                     func(childComplexity int) int
+		GetCommunicationUnit        func(childComplexity int) int
+		GetConfig                   func(childComplexity int) int
+		GetDevice                   func(childComplexity int) int
+		GetDeviceCommunicationUnits func(childComplexity int) int
+		GetDeviceGroup              func(childComplexity int) int
+		GetDriver                   func(childComplexity int) int
+		GetModemPool                func(childComplexity int) int
+		ListBulks                   func(childComplexity int) int
+		ListCommunicationUnits      func(childComplexity int) int
+		ListDeviceGroups            func(childComplexity int) int
+		ListDevices                 func(childComplexity int) int
+		ListDrivers                 func(childComplexity int) int
+		ListModemPools              func(childComplexity int) int
+		RemoveDevicesFromGroup      func(childComplexity int) int
+		SetConfig                   func(childComplexity int) int
+		SetDeviceCommunicationUnits func(childComplexity int) int
+		UpdateModem                 func(childComplexity int) int
+		UpdateModemPool             func(childComplexity int) int
 	}
 
 	RemoveDevicesFromGroupRequest struct {
@@ -628,7 +628,7 @@ type QueryResolver interface {
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
-	GetDevicesCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
 	ListDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
 	GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error)
@@ -2436,19 +2436,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.GetDevice(childComplexity), true
 
+	case "Query.getDeviceCommunicationUnits":
+		if e.complexity.Query.GetDeviceCommunicationUnits == nil {
+			break
+		}
+
+		return e.complexity.Query.GetDeviceCommunicationUnits(childComplexity), true
+
 	case "Query.getDeviceGroup":
 		if e.complexity.Query.GetDeviceGroup == nil {
 			break
 		}
 
 		return e.complexity.Query.GetDeviceGroup(childComplexity), true
-
-	case "Query.getDevicesCommunicationUnits":
-		if e.complexity.Query.GetDevicesCommunicationUnits == nil {
-			break
-		}
-
-		return e.complexity.Query.GetDevicesCommunicationUnits(childComplexity), true
 
 	case "Query.getDriver":
 		if e.complexity.Query.GetDriver == nil {
@@ -14110,8 +14110,8 @@ func (ec *executionContext) fieldContext_Query_setDeviceCommunicationUnits(_ con
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_getDevicesCommunicationUnits(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_getDevicesCommunicationUnits(ctx, field)
+func (ec *executionContext) _Query_getDeviceCommunicationUnits(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getDeviceCommunicationUnits(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -14124,7 +14124,7 @@ func (ec *executionContext) _Query_getDevicesCommunicationUnits(ctx context.Cont
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().GetDevicesCommunicationUnits(rctx)
+		return ec.resolvers.Query().GetDeviceCommunicationUnits(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -14138,7 +14138,7 @@ func (ec *executionContext) _Query_getDevicesCommunicationUnits(ctx context.Cont
 	return ec.marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_getDevicesCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -21131,7 +21131,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "getDevicesCommunicationUnits":
+		case "getDeviceCommunicationUnits":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -21140,7 +21140,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_getDevicesCommunicationUnits(ctx, field)
+				res = ec._Query_getDeviceCommunicationUnits(ctx, field)
 				return res
 			}
 
