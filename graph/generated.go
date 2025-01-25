@@ -286,7 +286,6 @@ type ComplexityRoot struct {
 		Attributes            func(childComplexity int) int
 		CommunicationUnitLink func(childComplexity int) int
 		ExternalID            func(childComplexity int) int
-		ID                    func(childComplexity int) int
 		Name                  func(childComplexity int) int
 		Timezone              func(childComplexity int) int
 	}
@@ -488,6 +487,7 @@ type ComplexityRoot struct {
 		Generation    func(childComplexity int) int
 		ID            func(childComplexity int) int
 		ManagedFields func(childComplexity int) int
+		Name          func(childComplexity int) int
 	}
 
 	ModemInfo struct {
@@ -1363,13 +1363,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceSpec.ExternalID(childComplexity), true
 
-	case "DeviceSpec.id":
-		if e.complexity.DeviceSpec.ID == nil {
-			break
-		}
-
-		return e.complexity.DeviceSpec.ID(childComplexity), true
-
 	case "DeviceSpec.name":
 		if e.complexity.DeviceSpec.Name == nil {
 			break
@@ -2188,6 +2181,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.MetadataFields.ManagedFields(childComplexity), true
+
+	case "MetadataFields.name":
+		if e.complexity.MetadataFields.Name == nil {
+			break
+		}
+
+		return e.complexity.MetadataFields.Name(childComplexity), true
 
 	case "ModemInfo.at_config":
 		if e.complexity.ModemInfo.AtConfig == nil {
@@ -4651,6 +4651,8 @@ func (ec *executionContext) fieldContext_Bulk_metadata(_ context.Context, field 
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -5374,6 +5376,8 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -6415,6 +6419,8 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_metadata(_ context.Co
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -6515,6 +6521,8 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_metadata
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -6615,6 +6623,8 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_metadata(_ con
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -6658,8 +6668,6 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_DeviceSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
 			case "name":
@@ -6721,6 +6729,8 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -6903,8 +6913,6 @@ func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field gr
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_DeviceSpec_id(ctx, field)
 			case "external_id":
 				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
 			case "name":
@@ -6966,6 +6974,8 @@ func (ec *executionContext) fieldContext_Device_metadata(_ context.Context, fiel
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -7148,6 +7158,8 @@ func (ec *executionContext) fieldContext_DeviceGroup_metadata(_ context.Context,
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -7268,47 +7280,6 @@ func (ec *executionContext) _DeviceGroupSpec_device_id(ctx context.Context, fiel
 func (ec *executionContext) fieldContext_DeviceGroupSpec_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceGroupSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceSpec_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceSpec_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceSpec_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceSpec",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -12573,6 +12544,47 @@ func (ec *executionContext) fieldContext_MetadataFields_managed_fields(_ context
 	return fc, nil
 }
 
+func (ec *executionContext) _MetadataFields_name(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MetadataFields_name(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_MetadataFields_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "MetadataFields",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ModemInfo_modem_id(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ModemInfo_modem_id(ctx, field)
 	if err != nil {
@@ -13168,6 +13180,8 @@ func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, f
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
 			case "managed_fields":
 				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
@@ -19404,8 +19418,6 @@ func (ec *executionContext) _DeviceSpec(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceSpec")
-		case "id":
-			out.Values[i] = ec._DeviceSpec_id(ctx, field, obj)
 		case "external_id":
 			out.Values[i] = ec._DeviceSpec_external_id(ctx, field, obj)
 		case "name":
@@ -20598,6 +20610,8 @@ func (ec *executionContext) _MetadataFields(ctx context.Context, sel ast.Selecti
 			out.Values[i] = ec._MetadataFields_fields(ctx, field, obj)
 		case "managed_fields":
 			out.Values[i] = ec._MetadataFields_managed_fields(ctx, field, obj)
+		case "name":
+			out.Values[i] = ec._MetadataFields_name(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

@@ -659,7 +659,6 @@ message GetDevicesRequest {
 
 // Sub-message - the device specification.
 message DeviceSpec {
-    string id                                                = 1;  // The UUID of the device.
     string external_id                                       = 2;  // The external identifier of the device.
     string name                                              = 3;  // The name of the device.
     map<string, common.FieldValue> attributes                = 4;  // The template of the action attributes. It is represented as a list of attribute definitions.

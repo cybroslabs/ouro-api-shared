@@ -693,8 +693,6 @@ type DeviceGroupSpec {
 
 # Sub-message - the device specification.
 type DeviceSpec {
-  # The UUID of the device.
-  id: String
   # The external identifier of the device.
   external_id: String
   # The name of the device.
@@ -1137,6 +1135,8 @@ type MetadataFields {
   fields: [_mapAny]
   # The additional fields managed by system.
   managed_fields: [_mapAny]
+  # The name of the resource. It's mutable and typically set by user. Must be set.
+  name: String
 }
 
 type SystemConfig {

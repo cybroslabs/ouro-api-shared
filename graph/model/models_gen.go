@@ -246,7 +246,6 @@ type DeviceGroupSpec struct {
 }
 
 type DeviceSpec struct {
-	ID                    *string                    `json:"id,omitempty"`
 	ExternalID            *string                    `json:"external_id,omitempty"`
 	Name                  *string                    `json:"name,omitempty"`
 	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
@@ -451,6 +450,7 @@ type MetadataFields struct {
 	Generation    *int32    `json:"generation,omitempty"`
 	Fields        []*MapAny `json:"fields,omitempty"`
 	ManagedFields []*MapAny `json:"managed_fields,omitempty"`
+	Name          *string   `json:"name,omitempty"`
 }
 
 type ModemInfo struct {
