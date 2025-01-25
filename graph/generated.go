@@ -196,7 +196,6 @@ type ComplexityRoot struct {
 	CommunicationUnitSpec struct {
 		ConnectionInfo func(childComplexity int) int
 		ExternalID     func(childComplexity int) int
-		Name           func(childComplexity int) int
 	}
 
 	ConnectionInfo struct {
@@ -1071,13 +1070,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CommunicationUnitSpec.ExternalID(childComplexity), true
-
-	case "CommunicationUnitSpec.name":
-		if e.complexity.CommunicationUnitSpec.Name == nil {
-			break
-		}
-
-		return e.complexity.CommunicationUnitSpec.Name(childComplexity), true
 
 	case "ConnectionInfo.custom_grouping_id":
 		if e.complexity.ConnectionInfo.CustomGroupingID == nil {
@@ -5324,8 +5316,6 @@ func (ec *executionContext) fieldContext_CommunicationUnit_spec(_ context.Contex
 			switch field.Name {
 			case "external_id":
 				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
-			case "name":
-				return ec.fieldContext_CommunicationUnitSpec_name(ctx, field)
 			case "connection_info":
 				return ec.fieldContext_CommunicationUnitSpec_connection_info(ctx, field)
 			}
@@ -5417,47 +5407,6 @@ func (ec *executionContext) _CommunicationUnitSpec_external_id(ctx context.Conte
 }
 
 func (ec *executionContext) fieldContext_CommunicationUnitSpec_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "CommunicationUnitSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _CommunicationUnitSpec_name(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitSpec_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_CommunicationUnitSpec_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "CommunicationUnitSpec",
 		Field:      field,
@@ -6469,8 +6418,6 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_spec(_ c
 			switch field.Name {
 			case "external_id":
 				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
-			case "name":
-				return ec.fieldContext_CommunicationUnitSpec_name(ctx, field)
 			case "connection_info":
 				return ec.fieldContext_CommunicationUnitSpec_connection_info(ctx, field)
 			}
@@ -18797,8 +18744,6 @@ func (ec *executionContext) _CommunicationUnitSpec(ctx context.Context, sel ast.
 			out.Values[i] = graphql.MarshalString("CommunicationUnitSpec")
 		case "external_id":
 			out.Values[i] = ec._CommunicationUnitSpec_external_id(ctx, field, obj)
-		case "name":
-			out.Values[i] = ec._CommunicationUnitSpec_name(ctx, field, obj)
 		case "connection_info":
 			out.Values[i] = ec._CommunicationUnitSpec_connection_info(ctx, field, obj)
 		default:

@@ -558,8 +558,6 @@ type CommunicationUnit {
 type CommunicationUnitSpec {
   # The external identifier of the communication unit.
   external_id: String
-  # The name of the communication unit.
-  name: String
   # The connection info.
   connection_info: ConnectionInfo
 }

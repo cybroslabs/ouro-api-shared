@@ -27,9 +27,8 @@ message CommunicationUnit {
 }
 
 message CommunicationUnitSpec {
-    string external_id             = 2;  // The external identifier of the communication unit.
-    string name                    = 3;  // The name of the communication unit.
-    ConnectionInfo connection_info = 4;  // The connection info.
+    string external_id             = 1;  // The external identifier of the communication unit.
+    ConnectionInfo connection_info = 2;  // The connection info.
 }
 
 // Device specification.

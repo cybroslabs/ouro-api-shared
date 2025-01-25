@@ -158,7 +158,6 @@ type CommunicationUnit struct {
 
 type CommunicationUnitSpec struct {
 	ExternalID     *string         `json:"external_id,omitempty"`
-	Name           *string         `json:"name,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connection_info,omitempty"`
 }
 
