@@ -286,7 +286,6 @@ type ComplexityRoot struct {
 		Attributes            func(childComplexity int) int
 		CommunicationUnitLink func(childComplexity int) int
 		ExternalID            func(childComplexity int) int
-		Name                  func(childComplexity int) int
 		Timezone              func(childComplexity int) int
 	}
 
@@ -1362,13 +1361,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceSpec.ExternalID(childComplexity), true
-
-	case "DeviceSpec.name":
-		if e.complexity.DeviceSpec.Name == nil {
-			break
-		}
-
-		return e.complexity.DeviceSpec.Name(childComplexity), true
 
 	case "DeviceSpec.timezone":
 		if e.complexity.DeviceSpec.Timezone == nil {
@@ -6670,8 +6662,6 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 			switch field.Name {
 			case "external_id":
 				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
-			case "name":
-				return ec.fieldContext_DeviceSpec_name(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
 			case "communication_unit_link":
@@ -6915,8 +6905,6 @@ func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field gr
 			switch field.Name {
 			case "external_id":
 				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
-			case "name":
-				return ec.fieldContext_DeviceSpec_name(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
 			case "communication_unit_link":
@@ -7319,47 +7307,6 @@ func (ec *executionContext) _DeviceSpec_external_id(ctx context.Context, field g
 }
 
 func (ec *executionContext) fieldContext_DeviceSpec_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceSpec_name(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceSpec_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceSpec_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceSpec",
 		Field:      field,
@@ -19420,8 +19367,6 @@ func (ec *executionContext) _DeviceSpec(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = graphql.MarshalString("DeviceSpec")
 		case "external_id":
 			out.Values[i] = ec._DeviceSpec_external_id(ctx, field, obj)
-		case "name":
-			out.Values[i] = ec._DeviceSpec_name(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DeviceSpec_attributes(ctx, field, obj)
 		case "communication_unit_link":

@@ -247,7 +247,6 @@ type DeviceGroupSpec struct {
 
 type DeviceSpec struct {
 	ExternalID            *string                    `json:"external_id,omitempty"`
-	Name                  *string                    `json:"name,omitempty"`
 	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
 	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communication_unit_link,omitempty"`
 	Timezone              *string                    `json:"timezone,omitempty"`
