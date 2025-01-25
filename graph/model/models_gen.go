@@ -235,14 +235,18 @@ type DeviceCommunicationUnit struct {
 }
 
 type DeviceGroup struct {
-	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
-	Metadata *MetadataFields  `json:"metadata,omitempty"`
+	Spec     *DeviceGroupSpec   `json:"spec,omitempty"`
+	Status   *DeviceGroupStatus `json:"status,omitempty"`
+	Metadata *MetadataFields    `json:"metadata,omitempty"`
 }
 
 type DeviceGroupSpec struct {
-	ExternalID *string   `json:"external_id,omitempty"`
-	Name       *string   `json:"name,omitempty"`
-	DeviceID   []*string `json:"device_id,omitempty"`
+	ExternalID *string `json:"external_id,omitempty"`
+	Name       *string `json:"name,omitempty"`
+}
+
+type DeviceGroupStatus struct {
+	DeviceID []*string `json:"device_id,omitempty"`
 }
 
 type DeviceSpec struct {

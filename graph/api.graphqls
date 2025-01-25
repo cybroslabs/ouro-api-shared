@@ -678,6 +678,8 @@ type DeviceCommunicationUnit {
 type DeviceGroup {
   # The device group specification.
   spec: DeviceGroupSpec
+  # The device group status.
+  status: DeviceGroupStatus
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -687,6 +689,9 @@ type DeviceGroupSpec {
   external_id: String
   # The name of the device group.
   name: String
+}
+
+type DeviceGroupStatus {
   # The list of device identifiers that are part of the group.
   device_id: [String]
 }

@@ -61,14 +61,17 @@ message ListOfDeviceGroup {
 }
 
 message DeviceGroup {
-    DeviceGroupSpec spec = 1;            // The device group specification.
-    reserved 2;                          // reserved for status
+    DeviceGroupSpec spec           = 1;  // The device group specification.
+    DeviceGroupStatus status       = 2;  // The device group status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 message DeviceGroupSpec {
-    string external_id        = 2;  // The external identifier of the communication unit.
-    string name               = 3;  // The name of the device group.
+    string external_id = 2;  // The external identifier of the communication unit.
+    string name        = 3;  // The name of the device group.
+}
+
+message DeviceGroupStatus {
     repeated string device_id = 4;  // The list of device identifiers that are part of the group.
 }
 
