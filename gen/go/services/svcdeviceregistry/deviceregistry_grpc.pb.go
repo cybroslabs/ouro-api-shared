@@ -64,7 +64,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnitSpec, error)
+	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -147,9 +147,9 @@ func (c *deviceRegistryServiceClient) ListCommunicationUnits(ctx context.Context
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnitSpec, error) {
+func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.CommunicationUnitSpec)
+	out := new(acquisition.CommunicationUnit)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -354,7 +354,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
-	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnitSpec, error)
+	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -416,7 +416,7 @@ func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.
 func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnits not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnitSpec, error) {
+func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
