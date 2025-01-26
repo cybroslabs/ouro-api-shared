@@ -14,6 +14,7 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -78,7 +79,7 @@ type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -197,7 +198,7 @@ func (c *deviceRegistryServiceClient) SetDeviceCommunicationUnits(ctx context.Co
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
+func (c *deviceRegistryServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfCommunicationUnit)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName, in, out, cOpts...)
@@ -368,7 +369,7 @@ type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(context.Context, *structpb.ListValue) (*acquisition.ListOfCommunicationUnit, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -431,7 +432,7 @@ func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrap
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(context.Context, *structpb.ListValue) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
@@ -639,7 +640,7 @@ func _DeviceRegistryService_SetDeviceCommunicationUnits_Handler(srv interface{},
 }
 
 func _DeviceRegistryService_GetDeviceCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+	in := new(structpb.ListValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -651,7 +652,7 @@ func _DeviceRegistryService_GetDeviceCommunicationUnits_Handler(srv interface{},
 		FullMethod: DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetDeviceCommunicationUnits(ctx, req.(*wrapperspb.StringValue))
+		return srv.(DeviceRegistryServiceServer).GetDeviceCommunicationUnits(ctx, req.(*structpb.ListValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
