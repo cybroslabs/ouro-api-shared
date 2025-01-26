@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file acquisition/main.proto.
  */
 export const file_acquisition_main: GenFile = /*@__PURE__*/
-  fileDesc("ChZhY3F1aXNpdGlvbi9tYWluLnByb3RvEiJpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uIqoBCh5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QSRwoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjEj8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiXwoXTGlzdE9mQ29tbXVuaWNhdGlvblVuaXQSRAoFaXRlbXMYASADKAsyNS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkNvbW11bmljYXRpb25Vbml0IqMBChFDb21tdW5pY2F0aW9uVW5pdBJHCgRzcGVjGAEgASgLMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Db21tdW5pY2F0aW9uVW5pdFNwZWMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAIQAyJ5ChVDb21tdW5pY2F0aW9uVW5pdFNwZWMSEwoLZXh0ZXJuYWxfaWQYASABKAkSSwoPY29ubmVjdGlvbl9pbmZvGAIgASgLMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Db25uZWN0aW9uSW5mbyKUAQoTQ3JlYXRlRGV2aWNlUmVxdWVzdBI8CgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTcGVjEj8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiSQoMTGlzdE9mRGV2aWNlEjkKBWl0ZW1zGAEgAygLMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2UijQEKBkRldmljZRI8CgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTcGVjEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMingEKGENyZWF0ZURldmljZUdyb3VwUmVxdWVzdBJBCgRzcGVjGAEgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VHcm91cFNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJTChFMaXN0T2ZEZXZpY2VHcm91cBI+CgVpdGVtcxgBIAMoCzIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXAi2AEKC0RldmljZUdyb3VwEkEKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlYxJFCgZzdGF0dXMYAiABKAsyNS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiNAoPRGV2aWNlR3JvdXBTcGVjEhMKC2V4dGVybmFsX2lkGAIgASgJEgwKBG5hbWUYAyABKAkiJgoRRGV2aWNlR3JvdXBTdGF0dXMSEQoJZGV2aWNlX2lkGAQgAygJIpEBCiJTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAEoCRJYChNjb21tdW5pY2F0aW9uX3VuaXRzGAIgAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb21tdW5pY2F0aW9uVW5pdCI/ChhBZGREZXZpY2VzVG9Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJIkQKHVJlbW92ZURldmljZXNGcm9tR3JvdXBSZXF1ZXN0EhAKCGdyb3VwX2lkGAEgASgJEhEKCWRldmljZV9pZBgCIAMoCSKQAQoRQ3JlYXRlQnVsa1JlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQnVsa1NwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJFCgpMaXN0T2ZCdWxrEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrIsMBCgRCdWxrEjoKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTcGVjEj4KBnN0YXR1cxgCIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQnVsa1N0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIvICCghCdWxrU3BlYxIWCg5jb3JyZWxhdGlvbl9pZBgCIAEoCRITCgtkcml2ZXJfdHlwZRgDIAEoCRJICgdkZXZpY2VzGAQgASgLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5MaXN0T2ZKb2JEZXZpY2VJZEgAEk0KDmN1c3RvbV9kZXZpY2VzGAUgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5MaXN0T2ZKb2JEZXZpY2VIABJBCghzZXR0aW5ncxgGIAEoCzIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uSm9iU2V0dGluZ3MSPgoHYWN0aW9ucxgHIAMoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uSm9iQWN0aW9uEhMKC3dlYmhvb2tfdXJsGAggASgJQggKBmRldmljZSKLAQoKQnVsa1N0YXR1cxJCCgZzdGF0dXMYASABKA4yMi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTdGF0dXNDb2RlEjkKBGpvYnMYAiADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtKb2IiVgoTU2V0TW9kZW1Qb29sUmVxdWVzdBI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2xTcGVjIlMKD0xpc3RPZk1vZGVtUG9vbBJACgVwb29scxgBIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sU3BlYyIuCg1Nb2RlbVBvb2xTcGVjEg8KB3Bvb2xfaWQYASABKAkSDAoEbmFtZRgCIAEoCSJQCg9Nb2RlbVBvb2xTdGF0dXMSPQoGbW9kZW1zGAEgAygLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8i0gEKCU1vZGVtUG9vbBI/CgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2xTcGVjEkMKBnN0YXR1cxgCIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiYAoPU2V0TW9kZW1SZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkSPAoFbW9kZW0YAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtSW5mbyJVCglTZXREcml2ZXISPAoEc3BlYxgBIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyU3BlY0oECAIQA0oECAMQBCJJCgxMaXN0T2ZEcml2ZXISOQoFaXRlbXMYAiADKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlciJSCgZEcml2ZXISPAoEc3BlYxgBIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyU3BlY0oECAIQA0oECAMQBCL7AQoKRHJpdmVyU3BlYxIPCgd2ZXJzaW9uGAEgASgJEhYKDmxpc3RlbmluZ19wb3J0GAIgASgNEhMKC2RyaXZlcl90eXBlGAMgASgJEhsKE21heF9jb25jdXJyZW50X2pvYnMYBCABKAUSGQoRbWF4X2Nhc2NhZGVfZGVwdGgYBSABKA0SGQoRdHlwaWNhbF9tZW1fdXNhZ2UYBiABKAUSRgoJdGVtcGxhdGVzGAcgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJUZW1wbGF0ZXMSFAoMZGlzcGxheV9uYW1lGAggASgJQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9hY3F1aXNpdGlvbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_metadata, file_acquisition_shared]);
+  fileDesc("ChZhY3F1aXNpdGlvbi9tYWluLnByb3RvEiJpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uIrEBCh5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QSTgoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIl8KF0xpc3RPZkNvbW11bmljYXRpb25Vbml0EkQKBWl0ZW1zGAEgAygLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Db21tdW5pY2F0aW9uVW5pdCKqAQoRQ29tbXVuaWNhdGlvblVuaXQSTgoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIAhADInkKFUNvbW11bmljYXRpb25Vbml0U3BlYxITCgtleHRlcm5hbF9pZBgBIAEoCRJLCg9jb25uZWN0aW9uX2luZm8YAiABKAsyMi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkNvbm5lY3Rpb25JbmZvIpsBChNDcmVhdGVEZXZpY2VSZXF1ZXN0EkMKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZVNwZWNCBaoBAggDEj8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiSQoMTGlzdE9mRGV2aWNlEjkKBWl0ZW1zGAEgAygLMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2UilAEKBkRldmljZRJDCgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIAhADIqUBChhDcmVhdGVEZXZpY2VHcm91cFJlcXVlc3QSSAoEc3BlYxgBIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIlMKEUxpc3RPZkRldmljZUdyb3VwEj4KBWl0ZW1zGAEgAygLMi8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VHcm91cCLfAQoLRGV2aWNlR3JvdXASSAoEc3BlYxgBIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTcGVjQgWqAQIIAxJFCgZzdGF0dXMYAiABKAsyNS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiJgoPRGV2aWNlR3JvdXBTcGVjEhMKC2V4dGVybmFsX2lkGAIgASgJIiYKEURldmljZUdyb3VwU3RhdHVzEhEKCWRldmljZV9pZBgEIAMoCSKRAQoiU2V0RGV2aWNlQ29tbXVuaWNhdGlvblVuaXRzUmVxdWVzdBIRCglkZXZpY2VfaWQYASABKAkSWAoTY29tbXVuaWNhdGlvbl91bml0cxgCIAMoCzI7LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQiPwoYQWRkRGV2aWNlc1RvR3JvdXBSZXF1ZXN0EhAKCGdyb3VwX2lkGAEgASgJEhEKCWRldmljZV9pZBgCIAMoCSJECh1SZW1vdmVEZXZpY2VzRnJvbUdyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkilwEKEUNyZWF0ZUJ1bGtSZXF1ZXN0EkEKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIkUKCkxpc3RPZkJ1bGsSNwoFaXRlbXMYASADKAsyKC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGsiygEKBEJ1bGsSQQoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQnVsa1NwZWNCBaoBAggDEj4KBnN0YXR1cxgCIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQnVsa1N0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIvICCghCdWxrU3BlYxIWCg5jb3JyZWxhdGlvbl9pZBgCIAEoCRITCgtkcml2ZXJfdHlwZRgDIAEoCRJICgdkZXZpY2VzGAQgASgLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5MaXN0T2ZKb2JEZXZpY2VJZEgAEk0KDmN1c3RvbV9kZXZpY2VzGAUgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5MaXN0T2ZKb2JEZXZpY2VIABJBCghzZXR0aW5ncxgGIAEoCzIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uSm9iU2V0dGluZ3MSPgoHYWN0aW9ucxgHIAMoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uSm9iQWN0aW9uEhMKC3dlYmhvb2tfdXJsGAggASgJQggKBmRldmljZSKLAQoKQnVsa1N0YXR1cxJCCgZzdGF0dXMYASABKA4yMi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTdGF0dXNDb2RlEjkKBGpvYnMYAiADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtKb2IiXQoTU2V0TW9kZW1Qb29sUmVxdWVzdBJGCgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2xTcGVjQgWqAQIIAyJPCg9MaXN0T2ZNb2RlbVBvb2wSPAoFaXRlbXMYASADKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbCIPCg1Nb2RlbVBvb2xTcGVjIlAKD01vZGVtUG9vbFN0YXR1cxI9CgZtb2RlbXMYASADKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtSW5mbyLZAQoJTW9kZW1Qb29sEkYKBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFNwZWNCBaoBAggDEkMKBnN0YXR1cxgCIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiYAoPU2V0TW9kZW1SZXF1ZXN0Eg8KB3Bvb2xfaWQYASABKAkSPAoFbW9kZW0YAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtSW5mbyJcCglTZXREcml2ZXISQwoEc3BlYxgBIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyU3BlY0IFqgECCANKBAgCEANKBAgDEAQiSQoMTGlzdE9mRHJpdmVyEjkKBWl0ZW1zGAEgAygLMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXIiWQoGRHJpdmVyEkMKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclNwZWNCBaoBAggDSgQIAhADSgQIAxAEIvsBCgpEcml2ZXJTcGVjEg8KB3ZlcnNpb24YASABKAkSFgoObGlzdGVuaW5nX3BvcnQYAiABKA0SEwoLZHJpdmVyX3R5cGUYAyABKAkSGwoTbWF4X2NvbmN1cnJlbnRfam9icxgEIAEoBRIZChFtYXhfY2FzY2FkZV9kZXB0aBgFIAEoDRIZChF0eXBpY2FsX21lbV91c2FnZRgGIAEoBRJGCgl0ZW1wbGF0ZXMYByABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclRlbXBsYXRlcxIUCgxkaXNwbGF5X25hbWUYCCABKAlCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2FjcXVpc2l0aW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_metadata, file_acquisition_shared]);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
@@ -24,7 +24,7 @@ export type CreateCommunicationUnitRequest = Message<"io.clbs.openhes.models.acq
   /**
    * The communication unit specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.CommunicationUnitSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.CommunicationUnitSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: CommunicationUnitSpec;
 
@@ -69,7 +69,7 @@ export type CommunicationUnit = Message<"io.clbs.openhes.models.acquisition.Comm
   /**
    * The communication unit specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.CommunicationUnitSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.CommunicationUnitSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: CommunicationUnitSpec;
 
@@ -121,7 +121,7 @@ export type CreateDeviceRequest = Message<"io.clbs.openhes.models.acquisition.Cr
   /**
    * The device specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DeviceSpec;
 
@@ -166,7 +166,7 @@ export type Device = Message<"io.clbs.openhes.models.acquisition.Device"> & {
   /**
    * The device specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DeviceSpec;
 
@@ -192,7 +192,7 @@ export type CreateDeviceGroupRequest = Message<"io.clbs.openhes.models.acquisiti
   /**
    * The device group specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DeviceGroupSpec;
 
@@ -237,7 +237,7 @@ export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGrou
   /**
    * The device group specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DeviceGroupSpec;
 
@@ -273,13 +273,6 @@ export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.Device
    * @generated from field: string external_id = 2;
    */
   externalId: string;
-
-  /**
-   * The name of the device group.
-   *
-   * @generated from field: string name = 3;
-   */
-  name: string;
 };
 
 /**
@@ -393,7 +386,7 @@ export type CreateBulkRequest = Message<"io.clbs.openhes.models.acquisition.Crea
   /**
    * The bulk-job spec.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: BulkSpec;
 
@@ -438,7 +431,7 @@ export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
   /**
    * The bulk-job spec.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: BulkSpec;
 
@@ -567,7 +560,7 @@ export type SetModemPoolRequest = Message<"io.clbs.openhes.models.acquisition.Se
   /**
    * The modem pool specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.ModemPoolSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.ModemPoolSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: ModemPoolSpec;
 };
@@ -586,9 +579,9 @@ export type ListOfModemPool = Message<"io.clbs.openhes.models.acquisition.ListOf
   /**
    * The list of modem pools.
    *
-   * @generated from field: repeated io.clbs.openhes.models.acquisition.ModemPoolSpec pools = 1;
+   * @generated from field: repeated io.clbs.openhes.models.acquisition.ModemPool items = 1;
    */
-  pools: ModemPoolSpec[];
+  items: ModemPool[];
 };
 
 /**
@@ -602,19 +595,6 @@ export const ListOfModemPoolSchema: GenMessage<ListOfModemPool> = /*@__PURE__*/
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolSpec
  */
 export type ModemPoolSpec = Message<"io.clbs.openhes.models.acquisition.ModemPoolSpec"> & {
-  /**
-   * The modem pool identifier.
-   *
-   * @generated from field: string pool_id = 1;
-   */
-  poolId: string;
-
-  /**
-   * The name of the modem pool.
-   *
-   * @generated from field: string name = 2;
-   */
-  name: string;
 };
 
 /**
@@ -650,7 +630,7 @@ export type ModemPool = Message<"io.clbs.openhes.models.acquisition.ModemPool"> 
   /**
    * The modem pool specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.ModemPoolSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.ModemPoolSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: ModemPoolSpec;
 
@@ -709,7 +689,7 @@ export type SetDriver = Message<"io.clbs.openhes.models.acquisition.SetDriver"> 
   /**
    * The driver specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DriverSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DriverSpec;
 };
@@ -728,7 +708,7 @@ export type ListOfDriver = Message<"io.clbs.openhes.models.acquisition.ListOfDri
   /**
    * The list of drivers.
    *
-   * @generated from field: repeated io.clbs.openhes.models.acquisition.Driver items = 2;
+   * @generated from field: repeated io.clbs.openhes.models.acquisition.Driver items = 1;
    */
   items: Driver[];
 };
@@ -747,7 +727,7 @@ export type Driver = Message<"io.clbs.openhes.models.acquisition.Driver"> & {
   /**
    * The driver specification.
    *
-   * @generated from field: io.clbs.openhes.models.acquisition.DriverSpec spec = 1;
+   * @generated from field: io.clbs.openhes.models.acquisition.DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   spec?: DriverSpec;
 };

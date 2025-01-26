@@ -241,7 +241,6 @@ type DeviceGroup struct {
 
 type DeviceGroupSpec struct {
 	ExternalID *string `json:"externalId,omitempty"`
-	Name       *string `json:"name,omitempty"`
 }
 
 type DeviceGroupStatus struct {
@@ -406,7 +405,7 @@ type ListOfJobDeviceID struct {
 }
 
 type ListOfModemPool struct {
-	Pools []*ModemPoolSpec `json:"pools,omitempty"`
+	Items []*ModemPool `json:"items,omitempty"`
 }
 
 type ListOfString struct {
@@ -476,8 +475,7 @@ type ModemPool struct {
 }
 
 type ModemPoolSpec struct {
-	PoolID *string `json:"poolId,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	Empty *bool `json:"_empty,omitempty"`
 }
 
 type ModemPoolStatus struct {

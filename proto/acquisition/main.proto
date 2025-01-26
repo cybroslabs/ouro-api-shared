@@ -12,8 +12,8 @@ import "acquisition/shared.proto";
 // Communication Unit specification.
 
 message CreateCommunicationUnitRequest {
-    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
-    common.MetadataFields metadata = 2;  // The metadata fields.
+    CommunicationUnitSpec spec     = 1 [features.field_presence = LEGACY_REQUIRED];  // The communication unit specification.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
 }
 
 message ListOfCommunicationUnit {
@@ -21,9 +21,9 @@ message ListOfCommunicationUnit {
 }
 
 message CommunicationUnit {
-    CommunicationUnitSpec spec = 1;      // The communication unit specification.
-    reserved 2;                          // reserved for status
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    reserved 2;                                                                      // reserved for status
+    CommunicationUnitSpec spec     = 1 [features.field_presence = LEGACY_REQUIRED];  // The communication unit specification.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 message CommunicationUnitSpec {
@@ -34,8 +34,8 @@ message CommunicationUnitSpec {
 // Device specification.
 
 message CreateDeviceRequest {
-    DeviceSpec spec                = 1;  // The device specification.
-    common.MetadataFields metadata = 2;  // The metadata fields.
+    DeviceSpec spec                = 1 [features.field_presence = LEGACY_REQUIRED];  // The device specification.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
 }
 
 message ListOfDevice {
@@ -43,16 +43,16 @@ message ListOfDevice {
 }
 
 message Device {
-    DeviceSpec spec = 1;                 // The device specification.
-    reserved 2;                          // reserved for status
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    reserved 2;                                                                      // reserved for status
+    DeviceSpec spec                = 1 [features.field_presence = LEGACY_REQUIRED];  // The device specification.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 // Device group specification.
 
 message CreateDeviceGroupRequest {
-    DeviceGroupSpec spec           = 1;  // The device group specification.
-    common.MetadataFields metadata = 2;  // The metadata fields.
+    DeviceGroupSpec spec           = 1 [features.field_presence = LEGACY_REQUIRED];  // The device group specification.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
 }
 
 message ListOfDeviceGroup {
@@ -60,14 +60,13 @@ message ListOfDeviceGroup {
 }
 
 message DeviceGroup {
-    DeviceGroupSpec spec           = 1;  // The device group specification.
-    DeviceGroupStatus status       = 2;  // The device group status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    DeviceGroupSpec spec           = 1 [features.field_presence = LEGACY_REQUIRED];  // The device group specification.
+    DeviceGroupStatus status       = 2;                                              // The device group status.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 message DeviceGroupSpec {
     string external_id = 2;  // The external identifier of the communication unit.
-    string name        = 3;  // The name of the device group.
 }
 
 message DeviceGroupStatus {
@@ -96,8 +95,8 @@ message RemoveDevicesFromGroupRequest {
 // Bulk specification.
 
 message CreateBulkRequest {
-    BulkSpec spec                  = 1;  // The bulk-job spec.
-    common.MetadataFields metadata = 2;  // The metadata fields.
+    BulkSpec spec                  = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
 }
 
 message ListOfBulk {
@@ -105,9 +104,9 @@ message ListOfBulk {
 }
 
 message Bulk {
-    BulkSpec spec                  = 1;  // The bulk-job spec.
-    BulkStatus status              = 2;  // The bulk-job status/data.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    BulkSpec spec                  = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
+    BulkStatus status              = 2;                                              // The bulk-job status/data.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 message BulkSpec {
@@ -131,16 +130,14 @@ message BulkStatus {
 // Modem Pool specification.
 
 message SetModemPoolRequest {
-    ModemPoolSpec spec = 1;  // The modem pool specification.
+    ModemPoolSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
 }
 
 message ListOfModemPool {
-    repeated ModemPoolSpec pools = 1;  // The list of modem pools.
+    repeated ModemPool items = 1;  // The list of modem pools.
 }
 
 message ModemPoolSpec {
-    string pool_id = 1;  // The modem pool identifier.
-    string name    = 2;  // The name of the modem pool.
 }
 
 message ModemPoolStatus {
@@ -148,9 +145,9 @@ message ModemPoolStatus {
 }
 
 message ModemPool {
-    ModemPoolSpec spec             = 1;  // The modem pool specification.
-    ModemPoolStatus status         = 2;  // The modem pool status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    ModemPoolSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
+    ModemPoolStatus status         = 2;                                              // The modem pool status.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 // Modem specification.
@@ -163,19 +160,17 @@ message SetModemRequest {
 // Driver specification.
 
 message SetDriver {
-    DriverSpec spec = 1;  // The driver specification.
-    reserved 2;           // reserved for status
-    reserved 3;           // reserved for metadata
+    reserved 2, 3;                                                    // reserved for status, metadata
+    DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The driver specification.
 }
 
 message ListOfDriver {
-    repeated Driver items = 2;  // The list of drivers.
+    repeated Driver items = 1;  // The list of drivers.
 }
 
 message Driver {
-    DriverSpec spec = 1;  // The driver specification.
-    reserved 2;           // reserved for status
-    reserved 3;           // reserved for metadata
+    reserved 2, 3;                                                    // reserved for status, metadata
+    DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The driver specification.
 }
 
 message DriverSpec {

@@ -278,7 +278,6 @@ type ComplexityRoot struct {
 
 	DeviceGroupSpec struct {
 		ExternalID func(childComplexity int) int
-		Name       func(childComplexity int) int
 	}
 
 	DeviceGroupStatus struct {
@@ -443,7 +442,7 @@ type ComplexityRoot struct {
 	}
 
 	ListOfModemPool struct {
-		Pools func(childComplexity int) int
+		Items func(childComplexity int) int
 	}
 
 	ListOfString struct {
@@ -513,8 +512,7 @@ type ComplexityRoot struct {
 	}
 
 	ModemPoolSpec struct {
-		Name   func(childComplexity int) int
-		PoolID func(childComplexity int) int
+		Empty func(childComplexity int) int
 	}
 
 	ModemPoolStatus struct {
@@ -1330,13 +1328,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceGroupSpec.ExternalID(childComplexity), true
 
-	case "DeviceGroupSpec.name":
-		if e.complexity.DeviceGroupSpec.Name == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroupSpec.Name(childComplexity), true
-
 	case "DeviceGroupStatus.deviceId":
 		if e.complexity.DeviceGroupStatus.DeviceID == nil {
 			break
@@ -1981,12 +1972,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfJobDeviceId.List(childComplexity), true
 
-	case "ListOfModemPool.pools":
-		if e.complexity.ListOfModemPool.Pools == nil {
+	case "ListOfModemPool.items":
+		if e.complexity.ListOfModemPool.Items == nil {
 			break
 		}
 
-		return e.complexity.ListOfModemPool.Pools(childComplexity), true
+		return e.complexity.ListOfModemPool.Items(childComplexity), true
 
 	case "ListOfString.items":
 		if e.complexity.ListOfString.Items == nil {
@@ -2282,19 +2273,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemPool.Status(childComplexity), true
 
-	case "ModemPoolSpec.name":
-		if e.complexity.ModemPoolSpec.Name == nil {
+	case "ModemPoolSpec._empty":
+		if e.complexity.ModemPoolSpec.Empty == nil {
 			break
 		}
 
-		return e.complexity.ModemPoolSpec.Name(childComplexity), true
-
-	case "ModemPoolSpec.poolId":
-		if e.complexity.ModemPoolSpec.PoolID == nil {
-			break
-		}
-
-		return e.complexity.ModemPoolSpec.PoolID(childComplexity), true
+		return e.complexity.ModemPoolSpec.Empty(childComplexity), true
 
 	case "ModemPoolStatus.modems":
 		if e.complexity.ModemPoolStatus.Modems == nil {
@@ -6518,8 +6502,6 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context
 			switch field.Name {
 			case "externalId":
 				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
-			case "name":
-				return ec.fieldContext_DeviceGroupSpec_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupSpec", field.Name)
 		},
@@ -7047,8 +7029,6 @@ func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, fie
 			switch field.Name {
 			case "externalId":
 				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
-			case "name":
-				return ec.fieldContext_DeviceGroupSpec_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupSpec", field.Name)
 		},
@@ -7183,47 +7163,6 @@ func (ec *executionContext) _DeviceGroupSpec_externalId(ctx context.Context, fie
 }
 
 func (ec *executionContext) fieldContext_DeviceGroupSpec_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroupSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceGroupSpec_name(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupSpec_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroupSpec_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceGroupSpec",
 		Field:      field,
@@ -11304,8 +11243,8 @@ func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfModemPool_pools(ctx context.Context, field graphql.CollectedField, obj *model.ListOfModemPool) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfModemPool_pools(ctx, field)
+func (ec *executionContext) _ListOfModemPool_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfModemPool) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfModemPool_items(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11318,7 +11257,7 @@ func (ec *executionContext) _ListOfModemPool_pools(ctx context.Context, field gr
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Pools, nil
+		return obj.Items, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -11327,12 +11266,12 @@ func (ec *executionContext) _ListOfModemPool_pools(ctx context.Context, field gr
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.ModemPoolSpec)
+	res := resTmp.([]*model.ModemPool)
 	fc.Result = res
-	return ec.marshalOModemPoolSpec2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx, field.Selections, res)
+	return ec.marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListOfModemPool_pools(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListOfModemPool_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListOfModemPool",
 		Field:      field,
@@ -11340,12 +11279,14 @@ func (ec *executionContext) fieldContext_ListOfModemPool_pools(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "poolId":
-				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
-			case "name":
-				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
+			case "spec":
+				return ec.fieldContext_ModemPool_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_ModemPool_status(ctx, field)
+			case "metadata":
+				return ec.fieldContext_ModemPool_metadata(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ModemPoolSpec", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ModemPool", field.Name)
 		},
 	}
 	return fc, nil
@@ -13028,10 +12969,8 @@ func (ec *executionContext) fieldContext_ModemPool_spec(_ context.Context, field
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "poolId":
-				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
-			case "name":
-				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
+			case "_empty":
+				return ec.fieldContext_ModemPoolSpec__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemPoolSpec", field.Name)
 		},
@@ -13137,8 +13076,8 @@ func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemPoolSpec_poolId(ctx context.Context, field graphql.CollectedField, obj *model.ModemPoolSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
+func (ec *executionContext) _ModemPoolSpec__empty(ctx context.Context, field graphql.CollectedField, obj *model.ModemPoolSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemPoolSpec__empty(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13151,7 +13090,7 @@ func (ec *executionContext) _ModemPoolSpec_poolId(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.PoolID, nil
+		return obj.Empty, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -13160,60 +13099,19 @@ func (ec *executionContext) _ModemPoolSpec_poolId(ctx context.Context, field gra
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*bool)
 	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemPoolSpec_poolId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemPoolSpec__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemPoolSpec",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _ModemPoolSpec_name(ctx context.Context, field graphql.CollectedField, obj *model.ModemPoolSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemPoolSpec_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ModemPoolSpec_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ModemPoolSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
+			return nil, errors.New("field of type Boolean does not have child fields")
 		},
 	}
 	return fc, nil
@@ -14420,8 +14318,8 @@ func (ec *executionContext) fieldContext_Query_listModemPools(_ context.Context,
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "pools":
-				return ec.fieldContext_ListOfModemPool_pools(ctx, field)
+			case "items":
+				return ec.fieldContext_ListOfModemPool_items(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfModemPool", field.Name)
 		},
@@ -15173,10 +15071,8 @@ func (ec *executionContext) fieldContext_SetModemPoolRequest_spec(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "poolId":
-				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
-			case "name":
-				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
+			case "_empty":
+				return ec.fieldContext_ModemPoolSpec__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemPoolSpec", field.Name)
 		},
@@ -19330,8 +19226,6 @@ func (ec *executionContext) _DeviceGroupSpec(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("DeviceGroupSpec")
 		case "externalId":
 			out.Values[i] = ec._DeviceGroupSpec_externalId(ctx, field, obj)
-		case "name":
-			out.Values[i] = ec._DeviceGroupSpec_name(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20332,8 +20226,8 @@ func (ec *executionContext) _ListOfModemPool(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListOfModemPool")
-		case "pools":
-			out.Values[i] = ec._ListOfModemPool_pools(ctx, field, obj)
+		case "items":
+			out.Values[i] = ec._ListOfModemPool_items(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20724,10 +20618,8 @@ func (ec *executionContext) _ModemPoolSpec(ctx context.Context, sel ast.Selectio
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ModemPoolSpec")
-		case "poolId":
-			out.Values[i] = ec._ModemPoolSpec_poolId(ctx, field, obj)
-		case "name":
-			out.Values[i] = ec._ModemPoolSpec_name(ctx, field, obj)
+		case "_empty":
+			out.Values[i] = ec._ModemPoolSpec__empty(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24360,14 +24252,7 @@ func (ec *executionContext) marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋhes
 	return ec._ModemInfo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ModemPool) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ModemPool(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOModemPoolSpec2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx context.Context, sel ast.SelectionSet, v []*model.ModemPoolSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v []*model.ModemPool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -24394,7 +24279,7 @@ func (ec *executionContext) marshalOModemPoolSpec2ᚕᚖgithubᚗcomᚋcybroslab
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx, sel, v[i])
+			ret[i] = ec.marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -24406,6 +24291,13 @@ func (ec *executionContext) marshalOModemPoolSpec2ᚕᚖgithubᚗcomᚋcybroslab
 	wg.Wait()
 
 	return ret
+}
+
+func (ec *executionContext) marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ModemPool) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ModemPool(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx context.Context, sel ast.SelectionSet, v *model.ModemPoolSpec) graphql.Marshaler {

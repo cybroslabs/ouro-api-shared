@@ -685,8 +685,6 @@ type DeviceGroup {
 type DeviceGroupSpec {
   # The external identifier of the communication unit.
   externalId: String
-  # The name of the device group.
-  name: String
 }
 
 type DeviceGroupStatus {
@@ -904,7 +902,7 @@ type ListOfJobDeviceId {
 
 type ListOfModemPool {
   # The list of modem pools.
-  pools: [ModemPoolSpec]
+  items: [ModemPool]
 }
 
 # Sub-message containing measured value
@@ -963,10 +961,7 @@ type ModemPool {
 }
 
 type ModemPoolSpec {
-  # The modem pool identifier.
-  poolId: String
-  # The name of the modem pool.
-  name: String
+  _empty: Boolean
 }
 
 type ModemPoolStatus {
