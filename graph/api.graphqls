@@ -326,7 +326,7 @@ type Any {
   #
   #  Schemes other than `http`, `https` (or the empty scheme) might be
   #  used with implementation specific semantics.
-  type_url: String
+  typeUrl: String
   # Must be a valid serialized protocol buffer of the above specified type.
   value: String
 }
@@ -435,7 +435,7 @@ type ActionResetBillingPeriod {
 # Sub-message containing action result for a single action.
 type ActionResult {
   # The action identifier.
-  action_id: String
+  actionId: String
   # The status of the action.
   status: ActionResultCode
   # The action result data.
@@ -469,9 +469,9 @@ type ActionSyncClock {
 
 type AddDevicesToGroupRequest {
   # The unique identifier of the device group.
-  group_id: String
+  groupId: String
   # The unique identifier of the device.
-  device_id: [String]
+  deviceId: [String]
 }
 
 # Sub-message containing destription for one application protocol, e.g. DLMS_SN.
@@ -511,26 +511,26 @@ type Bulk {
 
 type BulkJob {
   # The job identifier.
-  job_id: String
+  jobId: String
   # The job status.
   status: JobStatus
 }
 
 type BulkSpec {
   # The correlation identifier, e.g. to define relation to non-homogenous group.
-  correlation_id: UUID
+  correlationId: UUID
   # The device (driver) type.
-  driver_type: String
+  driverType: String
   # The list of devices in the bulk.
   devices: ListOfJobDeviceId
   # The list of custom devices in the bulk.
-  custom_devices: ListOfJobDevice
+  customDevices: ListOfJobDevice
   # The bulk-shared job settings.
   settings: JobSettings
   # The list actions to be executed.
   actions: [JobAction]
   # The webhook URL to call when the bulk is completed.
-  webhook_url: String
+  webhookUrl: String
 }
 
 type BulkStatus {
@@ -557,9 +557,9 @@ type CommunicationUnit {
 
 type CommunicationUnitSpec {
   # The external identifier of the communication unit.
-  external_id: String
+  externalId: String
   # The connection info.
-  connection_info: ConnectionInfo
+  connectionInfo: ConnectionInfo
 }
 
 # Sub-message containing connection info
@@ -567,13 +567,13 @@ type ConnectionInfo {
   # The TCP connection type.
   tcpip: ConnectionTypeDirectTcpIp
   # The phone connection type.
-  modem_pool: ConnectionTypeModemPool
+  modemPool: ConnectionTypeModemPool
   # The serial over IP connection type.
-  serial_over_ip: ConnectionTypeControlledSerial
+  serialOverIp: ConnectionTypeControlledSerial
   # The data link protocol.
-  link_protocol: DataLinkProtocol
+  linkProtocol: DataLinkProtocol
   # The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
-  custom_grouping_id: String
+  customGroupingId: String
 }
 
 # Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
@@ -599,7 +599,7 @@ type ConnectionTypeModemPool {
   # The phone number of the device to connect to.
   number: String
   # The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
-  pool_id: String
+  poolId: String
   # The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
   modem: ModemInfo
 }
@@ -652,9 +652,9 @@ type CreateDeviceRequest {
 # Sub-message containing destription for one data link protocol, e.g. HDLC.
 type DataLinkTemplate {
   # The data link protocol.
-  link_protocol: DataLinkProtocol
+  linkProtocol: DataLinkProtocol
   # The list of application protocol identifiers supported by the driver.
-  app_protocol_refs: [ApplicationProtocol]
+  appProtocolRefs: [ApplicationProtocol]
   # The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
   attributes: [FieldSimpleDescriptor]
 }
@@ -668,9 +668,9 @@ type Device {
 
 type DeviceCommunicationUnit {
   # The unique identifier of the communication unit.
-  communication_unit_id: String
+  communicationUnitId: String
   # The application protocol to be used for the communication over the communication unit.
-  app_protocol: ApplicationProtocol
+  appProtocol: ApplicationProtocol
 }
 
 type DeviceGroup {
@@ -684,24 +684,24 @@ type DeviceGroup {
 
 type DeviceGroupSpec {
   # The external identifier of the communication unit.
-  external_id: String
+  externalId: String
   # The name of the device group.
   name: String
 }
 
 type DeviceGroupStatus {
   # The list of device identifiers that are part of the group.
-  device_id: [String]
+  deviceId: [String]
 }
 
 # Sub-message - the device specification.
 type DeviceSpec {
   # The external identifier of the device.
-  external_id: String
+  externalId: String
   # The template of the action attributes. It is represented as a list of attribute definitions.
   attributes: [_mapFieldValue]
   # The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
-  communication_unit_link: [DeviceCommunicationUnit]
+  communicationUnitLink: [DeviceCommunicationUnit]
   # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
   timezone: String
 }
@@ -715,16 +715,16 @@ type DriverSpec {
   # The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
   version: String
   # The port the driver's gRPC will listen on.
-  listening_port: Int
+  listeningPort: Int
   # The technical/internal ID of the driver.
-  driver_type: String
+  driverType: String
   # The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
-  max_concurrent_jobs: Int
+  maxConcurrentJobs: Int
   # The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
   #  The value 0 means that the driver can handle any number of cascading jobs.
-  max_cascade_depth: Int
+  maxCascadeDepth: Int
   # The typical memory usage of the driver in MB.
-  typical_mem_usage: Int
+  typicalMemUsage: Int
   # The connection and action templates.
   templates: DriverTemplates
   # The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
@@ -732,61 +732,61 @@ type DriverSpec {
   #  The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
   #
   #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-  display_name: String
+  displayName: String
 }
 
 # Sub-message in driver negotiation request
 type DriverTemplates {
   # The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
-  communication_templates: [CommunicationTemplate]
+  communicationTemplates: [CommunicationTemplate]
   # The templates of the application protocols supported by the driver.
-  app_protocols: [ApplicationProtocolTemplate]
+  appProtocols: [ApplicationProtocolTemplate]
   # The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.
-  action_attributes: [JobActionAttributes]
+  actionAttributes: [JobActionAttributes]
   # The templates of the access levels supported by the driver.
-  access_templates: [AccessLevelTemplate]
+  accessTemplates: [AccessLevelTemplate]
   # The templates of the job actions constraints.
-  action_constraints: JobActionContraints
+  actionConstraints: JobActionContraints
 }
 
 # Sub-message containing job action specification
 type JobAction {
   # The action identifier.
-  action_id: String
+  actionId: String
   # The action attributes.
   attributes: [_mapFieldValue]
   # The get register action specification.
-  get_register: ActionGetRegister
+  getRegister: ActionGetRegister
   # The get periodical profile action specification.
-  get_periodical_profile: ActionGetPeriodicalProfile
+  getPeriodicalProfile: ActionGetPeriodicalProfile
   # The get irregular profile action specification.
-  get_irregular_profile: ActionGetIrregularProfile
+  getIrregularProfile: ActionGetIrregularProfile
   # The get events action specification.
-  get_events: ActionGetEvents
+  getEvents: ActionGetEvents
   # The get clock action specification.
-  get_clock: ActionGetClock
+  getClock: ActionGetClock
   # The sync clock action specification.
-  sync_clock: ActionSyncClock
+  syncClock: ActionSyncClock
   # The get relay state action specification.
-  get_relay_state: ActionGetRelayState
+  getRelayState: ActionGetRelayState
   # The set relay state action specification.
-  set_relay_state: ActionSetRelayState
+  setRelayState: ActionSetRelayState
   # The get disconnector state action specification.
-  get_disconnector_state: ActionGetDisconnectorState
+  getDisconnectorState: ActionGetDisconnectorState
   # The set disconnector state action specification.
-  set_disconnector_state: ActionSetDisconnectorState
+  setDisconnectorState: ActionSetDisconnectorState
   # The get tou action specification.
-  get_tou: ActionGetTou
+  getTou: ActionGetTou
   # The set tou action specification.
-  set_tou: ActionSetTou
+  setTou: ActionSetTou
   # The get limiter action specification.
-  get_limiter: ActionGetLimiter
+  getLimiter: ActionGetLimiter
   # The set limiter action specification.
-  set_limiter: ActionSetLimiter
+  setLimiter: ActionSetLimiter
   # The reset billing period action specification.
-  reset_billing_period: ActionResetBillingPeriod
+  resetBillingPeriod: ActionResetBillingPeriod
   # The firmware update action specification.
-  fw_update: ActionFwUpdate
+  fwUpdate: ActionFwUpdate
 }
 
 # Sub-message containing job action attributes
@@ -801,52 +801,52 @@ type JobActionAttributes {
 type JobActionContraints {
   # Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
   #  Action: ACTION_TYPE_GET_REGISTER
-  get_register_type_name: [_mapstring]
+  getRegisterTypeName: [_mapstring]
   # Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
   #  See JobActionAttributes for the attribute definitions.
   #  Action: ACTION_TYPE_GET_REGISTER
-  get_register_type_attributes: [_mapListOfString]
+  getRegisterTypeAttributes: [_mapListOfString]
 }
 
 # Sub-message representing a single job-device info.
 type JobDevice {
   # The device's job identifier within the parent bulk.
-  job_id: String
+  jobId: String
   # The device identifier. If set then all below is loaded from the device registry.
-  device_id: String
+  deviceId: String
   # The external identifier.
-  external_id: String
+  externalId: String
   # The connection attributes to the device.
-  device_attributes: [_mapFieldValue]
+  deviceAttributes: [_mapFieldValue]
   # The conenction (device) parameters.
-  connection_info: [ConnectionInfo]
+  connectionInfo: [ConnectionInfo]
   # The application protocol.
-  app_protocol: ApplicationProtocol
+  appProtocol: ApplicationProtocol
   # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
   timezone: String
 }
 
 type JobDeviceId {
   # The device's job identifier within the parent bulk.
-  job_id: String
+  jobId: String
   # The device identifier.
-  device_id: String
+  deviceId: String
 }
 
 # Sub-message containing job parameters
 type JobSettings {
   # Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
-  max_duration: Int64
+  maxDuration: Int64
   # Priority of the job.
   priority: JobPriority
   # Maximum number of attempts, 1 is the minimum.
   attempts: [Int]
   # Delay in miliseconds between two attempts.
-  retry_delay: Int64
+  retryDelay: Int64
   # Number of miliseconds to wait before starting the job.
-  defer_start: BigInt
+  deferStart: BigInt
   # The timestamp when the job expires.
-  expires_at: Timestamp
+  expiresAt: Timestamp
 }
 
 # Sub-message containing job status info
@@ -858,13 +858,13 @@ type JobStatus {
   # The result data for all job actions.
   results: [ActionResult]
   # The creation timestamp of the job.
-  created_at: Timestamp
+  createdAt: Timestamp
   # The start timestamp of the job.
-  started_at: Timestamp
+  startedAt: Timestamp
   # The finish timestamp of the job.
-  finished_at: Timestamp
+  finishedAt: Timestamp
   # The number of attempts already done.
-  attempts_done: Int
+  attemptsDone: Int
 }
 
 type ListOfBulk {
@@ -914,41 +914,41 @@ type MeasuredValue {
   # The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
   exponent: Int
   # The double-typed value.
-  double_value: Float
+  doubleValue: Float
   # The integer-typed value.
-  int_value: Int64
+  intValue: Int64
   # The string-typed value.
-  str_value: String
+  strValue: String
   # The timestamp-typed value.
-  timestamp_value: Timestamp
+  timestampValue: Timestamp
   # The timestamp with timezone-typed value, stored as string in ISO-8601.
-  timestamp_tz_value: String
+  timestampTzValue: String
   # The boolean-typed value.
-  bool_value: Boolean
+  boolValue: Boolean
 }
 
 # Sub-message containing modem connection info
 type ModemInfo {
   # The modem identifier. It is automatically generated during creation.
-  modem_id: String
+  modemId: String
   # The name of the modem.
   name: String
   # The modem initialization command.
-  at_init: String
+  atInit: String
   # The modem test command.
-  at_test: String
+  atTest: String
   # The modem configuration command.
-  at_config: String
+  atConfig: String
   # The modem dial command.
-  at_dial: String
+  atDial: String
   # The modem hangup command.
-  at_hangup: String
+  atHangup: String
   # The modem escape command.
-  at_escape: String
+  atEscape: String
   # The modem DSR command.
-  at_dsr: Boolean
+  atDsr: Boolean
   # The modem connection timeout.
-  connect_timeout: Int
+  connectTimeout: Int
   # The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
   tcpip: ConnectionTypeDirectTcpIp
 }
@@ -964,7 +964,7 @@ type ModemPool {
 
 type ModemPoolSpec {
   # The modem pool identifier.
-  pool_id: String
+  poolId: String
   # The name of the modem pool.
   name: String
 }
@@ -977,7 +977,7 @@ type ModemPoolStatus {
 # Sub-message containing a single profile block
 type ProfileBlok {
   # The start timestamp of the block.
-  start_timestamp: Timestamp
+  startTimestamp: Timestamp
   # The list of profile values. Values are ordered by timestamp.
   values: [MeasuredValue]
 }
@@ -994,16 +994,16 @@ type ProfileValues {
 
 type RemoveDevicesFromGroupRequest {
   # The unique identifier of the device group.
-  group_id: String
+  groupId: String
   # The unique identifier of the device.
-  device_id: [String]
+  deviceId: [String]
 }
 
 type SetDeviceCommunicationUnitsRequest {
   # The unique identifier of the device.
-  device_id: String
+  deviceId: String
   # The list of linked communication units.
-  communication_units: [DeviceCommunicationUnit]
+  communicationUnits: [DeviceCommunicationUnit]
 }
 
 type SetModemPoolRequest {
@@ -1013,7 +1013,7 @@ type SetModemPoolRequest {
 
 type SetModemRequest {
   # The modem pool identifier, required for update operation.
-  pool_id: String
+  poolId: String
   # The modem specification.
   modem: ModemInfo
 }
@@ -1021,11 +1021,11 @@ type SetModemRequest {
 # The field descriptor for simplified cases (e.g., for in-driver definitions).
 type FieldSimpleDescriptor {
   # Unique identifier for the field
-  field_id: String
+  fieldId: String
   # Label displayed for the field
   label: String
   # Data type of the field (e.g., text, double)
-  data_type: FieldDataType
+  dataType: FieldDataType
   # Tooltip or hint text
   tooltip: String
   # Whether the field is mandatory
@@ -1033,7 +1033,7 @@ type FieldSimpleDescriptor {
   # Validation rules for the field
   validation: FieldValidation
   # The default value of the attribute, it does not support multi-value fields
-  default_value: FieldValue
+  defaultValue: FieldValue
 }
 
 # Validation rules for the field.
@@ -1041,34 +1041,34 @@ type FieldValidation {
   # Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
   re: String
   # The minimum length. It's used for string fields only.
-  min_length: Int
+  minLength: Int
   # The maximum length. It's used for string fields only.
-  max_length: Int
+  maxLength: Int
   # The minimum value. It's used for integer fields only.
-  min_integer: Int64
+  minInteger: Int64
   # The maximum value. It's used for integer fields only.
-  max_integer: Int64
+  maxInteger: Int64
   # The minimum value. It's used for number fields only.
-  min_number: Float
+  minNumber: Float
   # The maximum value. It's used for number fields only.
-  max_number: Float
+  maxNumber: Float
   # The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
   options: [_mapAny]
 }
 
 type FieldValue {
   # Represents a string-typed value.
-  text_value: String
+  textValue: String
   # Represents a integer-typed value.
-  integer_value: Int64
+  integerValue: Int64
   # Represents a double-typed value.
-  double_value: Float
+  doubleValue: Float
   # Represents a binary-typed value.
-  binary_value: String
+  binaryValue: String
   # Represents a boolean-typed value.
-  bool_value: Boolean
+  boolValue: Boolean
   # Represents a date-typed value.
-  date_value: Timestamp
+  dateValue: Timestamp
 }
 
 # The list of string items.
@@ -1079,13 +1079,13 @@ type ListOfString {
 # The listing selector.
 type ListSelector {
   # The number of items per page.
-  page_size: Int
+  pageSize: Int
   # The offset of the first item to return, zero based.
   offset: Int
   # The sorting criteria.
-  sort_by: [ListSelectorSortBy]
+  sortBy: [ListSelectorSortBy]
   # The filtering criteria.
-  filter_by: [ListSelectorFilterBy]
+  filterBy: [ListSelectorFilterBy]
   # FIXME: This needs to be designed properly.
   #
   # The list of additional fields to be returned.
@@ -1103,7 +1103,7 @@ type ListSelector {
 #  Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
 type ListSelectorFilterBy {
   # Field id.
-  field_id: String
+  fieldId: String
   # The filter operator.
   operator: FilterOperator
   # The text-typed value(s) used for filtering.
@@ -1121,7 +1121,7 @@ type ListSelectorFilterBy {
 # The sorting criteria.
 type ListSelectorSortBy {
   # Field id.
-  field_id: String
+  fieldId: String
   # Set to true to sort in descending order.
   desc: Boolean
 }
@@ -1135,7 +1135,7 @@ type MetadataFields {
   # The additional fields managed by user.
   fields: [_mapAny]
   # The additional fields managed by system.
-  managed_fields: [_mapAny]
+  managedFields: [_mapAny]
   # The name of the resource. It's mutable and typically set by user. Must be set.
   name: String
 }
@@ -1144,14 +1144,14 @@ type SystemConfig {
   # The maximum number of replicas for the driver.
   #     0 represents no active replicas will run, effectively disabling acquisition
   #    >0 represents the maximum number of replicas per driver
-  max_replicas: Int
+  maxReplicas: Int
   # The maximum number of cascade devices for the driver. Minimum is 1.
-  max_cascade_device_count: Int
+  maxCascadeDeviceCount: Int
   # The maximum number of slots per driver
   #    -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
   #     0 represents no active slots will run, effectively disabling acquisition
   #    >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
-  max_slots_per_driver: Int
+  maxSlotsPerDriver: Int
 }
 
 type _mapFieldValue {

@@ -69,7 +69,7 @@ type ActionResetBillingPeriod struct {
 }
 
 type ActionResult struct {
-	ActionID *string           `json:"action_id,omitempty"`
+	ActionID *string           `json:"actionId,omitempty"`
 	Status   *ActionResultCode `json:"status,omitempty"`
 	Data     *ActionData       `json:"data,omitempty"`
 }
@@ -95,12 +95,12 @@ type ActionSyncClock struct {
 }
 
 type AddDevicesToGroupRequest struct {
-	GroupID  *string   `json:"group_id,omitempty"`
-	DeviceID []*string `json:"device_id,omitempty"`
+	GroupID  *string   `json:"groupId,omitempty"`
+	DeviceID []*string `json:"deviceId,omitempty"`
 }
 
 type Any struct {
-	TypeURL *string `json:"type_url,omitempty"`
+	TypeURL *string `json:"typeUrl,omitempty"`
 	Value   *string `json:"value,omitempty"`
 }
 
@@ -127,18 +127,18 @@ type Bulk struct {
 }
 
 type BulkJob struct {
-	JobID  *string    `json:"job_id,omitempty"`
+	JobID  *string    `json:"jobId,omitempty"`
 	Status *JobStatus `json:"status,omitempty"`
 }
 
 type BulkSpec struct {
-	CorrelationID *uuid.UUID         `json:"correlation_id,omitempty"`
-	DriverType    *string            `json:"driver_type,omitempty"`
+	CorrelationID *uuid.UUID         `json:"correlationId,omitempty"`
+	DriverType    *string            `json:"driverType,omitempty"`
 	Devices       *ListOfJobDeviceID `json:"devices,omitempty"`
-	CustomDevices *ListOfJobDevice   `json:"custom_devices,omitempty"`
+	CustomDevices *ListOfJobDevice   `json:"customDevices,omitempty"`
 	Settings      *JobSettings       `json:"settings,omitempty"`
 	Actions       []*JobAction       `json:"actions,omitempty"`
-	WebhookURL    *string            `json:"webhook_url,omitempty"`
+	WebhookURL    *string            `json:"webhookUrl,omitempty"`
 }
 
 type BulkStatus struct {
@@ -157,16 +157,16 @@ type CommunicationUnit struct {
 }
 
 type CommunicationUnitSpec struct {
-	ExternalID     *string         `json:"external_id,omitempty"`
-	ConnectionInfo *ConnectionInfo `json:"connection_info,omitempty"`
+	ExternalID     *string         `json:"externalId,omitempty"`
+	ConnectionInfo *ConnectionInfo `json:"connectionInfo,omitempty"`
 }
 
 type ConnectionInfo struct {
 	Tcpip            *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
-	ModemPool        *ConnectionTypeModemPool        `json:"modem_pool,omitempty"`
-	SerialOverIP     *ConnectionTypeControlledSerial `json:"serial_over_ip,omitempty"`
-	LinkProtocol     *DataLinkProtocol               `json:"link_protocol,omitempty"`
-	CustomGroupingID *string                         `json:"custom_grouping_id,omitempty"`
+	ModemPool        *ConnectionTypeModemPool        `json:"modemPool,omitempty"`
+	SerialOverIP     *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
+	LinkProtocol     *DataLinkProtocol               `json:"linkProtocol,omitempty"`
+	CustomGroupingID *string                         `json:"customGroupingId,omitempty"`
 }
 
 type ConnectionTypeControlledSerial struct {
@@ -182,7 +182,7 @@ type ConnectionTypeDirectTCPIP struct {
 
 type ConnectionTypeModemPool struct {
 	Number *string    `json:"number,omitempty"`
-	PoolID *string    `json:"pool_id,omitempty"`
+	PoolID *string    `json:"poolId,omitempty"`
 	Modem  *ModemInfo `json:"modem,omitempty"`
 }
 
@@ -218,8 +218,8 @@ type CreateDeviceRequest struct {
 }
 
 type DataLinkTemplate struct {
-	LinkProtocol    *DataLinkProtocol        `json:"link_protocol,omitempty"`
-	AppProtocolRefs []*ApplicationProtocol   `json:"app_protocol_refs,omitempty"`
+	LinkProtocol    *DataLinkProtocol        `json:"linkProtocol,omitempty"`
+	AppProtocolRefs []*ApplicationProtocol   `json:"appProtocolRefs,omitempty"`
 	Attributes      []*FieldSimpleDescriptor `json:"attributes,omitempty"`
 }
 
@@ -229,8 +229,8 @@ type Device struct {
 }
 
 type DeviceCommunicationUnit struct {
-	CommunicationUnitID *string              `json:"communication_unit_id,omitempty"`
-	AppProtocol         *ApplicationProtocol `json:"app_protocol,omitempty"`
+	CommunicationUnitID *string              `json:"communicationUnitId,omitempty"`
+	AppProtocol         *ApplicationProtocol `json:"appProtocol,omitempty"`
 }
 
 type DeviceGroup struct {
@@ -240,18 +240,18 @@ type DeviceGroup struct {
 }
 
 type DeviceGroupSpec struct {
-	ExternalID *string `json:"external_id,omitempty"`
+	ExternalID *string `json:"externalId,omitempty"`
 	Name       *string `json:"name,omitempty"`
 }
 
 type DeviceGroupStatus struct {
-	DeviceID []*string `json:"device_id,omitempty"`
+	DeviceID []*string `json:"deviceId,omitempty"`
 }
 
 type DeviceSpec struct {
-	ExternalID            *string                    `json:"external_id,omitempty"`
+	ExternalID            *string                    `json:"externalId,omitempty"`
 	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
-	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communication_unit_link,omitempty"`
+	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communicationUnitLink,omitempty"`
 	Timezone              *string                    `json:"timezone,omitempty"`
 }
 
@@ -261,21 +261,21 @@ type Driver struct {
 
 type DriverSpec struct {
 	Version           *string          `json:"version,omitempty"`
-	ListeningPort     *int32           `json:"listening_port,omitempty"`
-	DriverType        *string          `json:"driver_type,omitempty"`
-	MaxConcurrentJobs *int32           `json:"max_concurrent_jobs,omitempty"`
-	MaxCascadeDepth   *int32           `json:"max_cascade_depth,omitempty"`
-	TypicalMemUsage   *int32           `json:"typical_mem_usage,omitempty"`
+	ListeningPort     *int32           `json:"listeningPort,omitempty"`
+	DriverType        *string          `json:"driverType,omitempty"`
+	MaxConcurrentJobs *int32           `json:"maxConcurrentJobs,omitempty"`
+	MaxCascadeDepth   *int32           `json:"maxCascadeDepth,omitempty"`
+	TypicalMemUsage   *int32           `json:"typicalMemUsage,omitempty"`
 	Templates         *DriverTemplates `json:"templates,omitempty"`
-	DisplayName       *string          `json:"display_name,omitempty"`
+	DisplayName       *string          `json:"displayName,omitempty"`
 }
 
 type DriverTemplates struct {
-	CommunicationTemplates []*CommunicationTemplate       `json:"communication_templates,omitempty"`
-	AppProtocols           []*ApplicationProtocolTemplate `json:"app_protocols,omitempty"`
-	ActionAttributes       []*JobActionAttributes         `json:"action_attributes,omitempty"`
-	AccessTemplates        []*AccessLevelTemplate         `json:"access_templates,omitempty"`
-	ActionConstraints      *JobActionContraints           `json:"action_constraints,omitempty"`
+	CommunicationTemplates []*CommunicationTemplate       `json:"communicationTemplates,omitempty"`
+	AppProtocols           []*ApplicationProtocolTemplate `json:"appProtocols,omitempty"`
+	ActionAttributes       []*JobActionAttributes         `json:"actionAttributes,omitempty"`
+	AccessTemplates        []*AccessLevelTemplate         `json:"accessTemplates,omitempty"`
+	ActionConstraints      *JobActionContraints           `json:"actionConstraints,omitempty"`
 }
 
 type Empty struct {
@@ -283,54 +283,54 @@ type Empty struct {
 }
 
 type FieldSimpleDescriptor struct {
-	FieldID      *string          `json:"field_id,omitempty"`
+	FieldID      *string          `json:"fieldId,omitempty"`
 	Label        *string          `json:"label,omitempty"`
-	DataType     *FieldDataType   `json:"data_type,omitempty"`
+	DataType     *FieldDataType   `json:"dataType,omitempty"`
 	Tooltip      *string          `json:"tooltip,omitempty"`
 	Required     *bool            `json:"required,omitempty"`
 	Validation   *FieldValidation `json:"validation,omitempty"`
-	DefaultValue *FieldValue      `json:"default_value,omitempty"`
+	DefaultValue *FieldValue      `json:"defaultValue,omitempty"`
 }
 
 type FieldValidation struct {
 	Re         *string   `json:"re,omitempty"`
-	MinLength  *int32    `json:"min_length,omitempty"`
-	MaxLength  *int32    `json:"max_length,omitempty"`
-	MinInteger *int64    `json:"min_integer,omitempty"`
-	MaxInteger *int64    `json:"max_integer,omitempty"`
-	MinNumber  *float64  `json:"min_number,omitempty"`
-	MaxNumber  *float64  `json:"max_number,omitempty"`
+	MinLength  *int32    `json:"minLength,omitempty"`
+	MaxLength  *int32    `json:"maxLength,omitempty"`
+	MinInteger *int64    `json:"minInteger,omitempty"`
+	MaxInteger *int64    `json:"maxInteger,omitempty"`
+	MinNumber  *float64  `json:"minNumber,omitempty"`
+	MaxNumber  *float64  `json:"maxNumber,omitempty"`
 	Options    []*MapAny `json:"options,omitempty"`
 }
 
 type FieldValue struct {
-	TextValue    *string  `json:"text_value,omitempty"`
-	IntegerValue *int64   `json:"integer_value,omitempty"`
-	DoubleValue  *float64 `json:"double_value,omitempty"`
-	BinaryValue  *string  `json:"binary_value,omitempty"`
-	BoolValue    *bool    `json:"bool_value,omitempty"`
-	DateValue    *string  `json:"date_value,omitempty"`
+	TextValue    *string  `json:"textValue,omitempty"`
+	IntegerValue *int64   `json:"integerValue,omitempty"`
+	DoubleValue  *float64 `json:"doubleValue,omitempty"`
+	BinaryValue  *string  `json:"binaryValue,omitempty"`
+	BoolValue    *bool    `json:"boolValue,omitempty"`
+	DateValue    *string  `json:"dateValue,omitempty"`
 }
 
 type JobAction struct {
-	ActionID             *string                     `json:"action_id,omitempty"`
+	ActionID             *string                     `json:"actionId,omitempty"`
 	Attributes           []*MapFieldValue            `json:"attributes,omitempty"`
-	GetRegister          *ActionGetRegister          `json:"get_register,omitempty"`
-	GetPeriodicalProfile *ActionGetPeriodicalProfile `json:"get_periodical_profile,omitempty"`
-	GetIrregularProfile  *ActionGetIrregularProfile  `json:"get_irregular_profile,omitempty"`
-	GetEvents            *ActionGetEvents            `json:"get_events,omitempty"`
-	GetClock             *ActionGetClock             `json:"get_clock,omitempty"`
-	SyncClock            *ActionSyncClock            `json:"sync_clock,omitempty"`
-	GetRelayState        *ActionGetRelayState        `json:"get_relay_state,omitempty"`
-	SetRelayState        *ActionSetRelayState        `json:"set_relay_state,omitempty"`
-	GetDisconnectorState *ActionGetDisconnectorState `json:"get_disconnector_state,omitempty"`
-	SetDisconnectorState *ActionSetDisconnectorState `json:"set_disconnector_state,omitempty"`
-	GetTou               *ActionGetTou               `json:"get_tou,omitempty"`
-	SetTou               *ActionSetTou               `json:"set_tou,omitempty"`
-	GetLimiter           *ActionGetLimiter           `json:"get_limiter,omitempty"`
-	SetLimiter           *ActionSetLimiter           `json:"set_limiter,omitempty"`
-	ResetBillingPeriod   *ActionResetBillingPeriod   `json:"reset_billing_period,omitempty"`
-	FwUpdate             *ActionFwUpdate             `json:"fw_update,omitempty"`
+	GetRegister          *ActionGetRegister          `json:"getRegister,omitempty"`
+	GetPeriodicalProfile *ActionGetPeriodicalProfile `json:"getPeriodicalProfile,omitempty"`
+	GetIrregularProfile  *ActionGetIrregularProfile  `json:"getIrregularProfile,omitempty"`
+	GetEvents            *ActionGetEvents            `json:"getEvents,omitempty"`
+	GetClock             *ActionGetClock             `json:"getClock,omitempty"`
+	SyncClock            *ActionSyncClock            `json:"syncClock,omitempty"`
+	GetRelayState        *ActionGetRelayState        `json:"getRelayState,omitempty"`
+	SetRelayState        *ActionSetRelayState        `json:"setRelayState,omitempty"`
+	GetDisconnectorState *ActionGetDisconnectorState `json:"getDisconnectorState,omitempty"`
+	SetDisconnectorState *ActionSetDisconnectorState `json:"setDisconnectorState,omitempty"`
+	GetTou               *ActionGetTou               `json:"getTou,omitempty"`
+	SetTou               *ActionSetTou               `json:"setTou,omitempty"`
+	GetLimiter           *ActionGetLimiter           `json:"getLimiter,omitempty"`
+	SetLimiter           *ActionSetLimiter           `json:"setLimiter,omitempty"`
+	ResetBillingPeriod   *ActionResetBillingPeriod   `json:"resetBillingPeriod,omitempty"`
+	FwUpdate             *ActionFwUpdate             `json:"fwUpdate,omitempty"`
 }
 
 type JobActionAttributes struct {
@@ -339,42 +339,42 @@ type JobActionAttributes struct {
 }
 
 type JobActionContraints struct {
-	GetRegisterTypeName       []*Mapstring       `json:"get_register_type_name,omitempty"`
-	GetRegisterTypeAttributes []*MapListOfString `json:"get_register_type_attributes,omitempty"`
+	GetRegisterTypeName       []*Mapstring       `json:"getRegisterTypeName,omitempty"`
+	GetRegisterTypeAttributes []*MapListOfString `json:"getRegisterTypeAttributes,omitempty"`
 }
 
 type JobDevice struct {
-	JobID            *string              `json:"job_id,omitempty"`
-	DeviceID         *string              `json:"device_id,omitempty"`
-	ExternalID       *string              `json:"external_id,omitempty"`
-	DeviceAttributes []*MapFieldValue     `json:"device_attributes,omitempty"`
-	ConnectionInfo   []*ConnectionInfo    `json:"connection_info,omitempty"`
-	AppProtocol      *ApplicationProtocol `json:"app_protocol,omitempty"`
+	JobID            *string              `json:"jobId,omitempty"`
+	DeviceID         *string              `json:"deviceId,omitempty"`
+	ExternalID       *string              `json:"externalId,omitempty"`
+	DeviceAttributes []*MapFieldValue     `json:"deviceAttributes,omitempty"`
+	ConnectionInfo   []*ConnectionInfo    `json:"connectionInfo,omitempty"`
+	AppProtocol      *ApplicationProtocol `json:"appProtocol,omitempty"`
 	Timezone         *string              `json:"timezone,omitempty"`
 }
 
 type JobDeviceID struct {
-	JobID    *string `json:"job_id,omitempty"`
-	DeviceID *string `json:"device_id,omitempty"`
+	JobID    *string `json:"jobId,omitempty"`
+	DeviceID *string `json:"deviceId,omitempty"`
 }
 
 type JobSettings struct {
-	MaxDuration *int64       `json:"max_duration,omitempty"`
+	MaxDuration *int64       `json:"maxDuration,omitempty"`
 	Priority    *JobPriority `json:"priority,omitempty"`
 	Attempts    []*int32     `json:"attempts,omitempty"`
-	RetryDelay  *int64       `json:"retry_delay,omitempty"`
-	DeferStart  *string      `json:"defer_start,omitempty"`
-	ExpiresAt   *string      `json:"expires_at,omitempty"`
+	RetryDelay  *int64       `json:"retryDelay,omitempty"`
+	DeferStart  *string      `json:"deferStart,omitempty"`
+	ExpiresAt   *string      `json:"expiresAt,omitempty"`
 }
 
 type JobStatus struct {
 	Status       *JobStatusCode  `json:"status,omitempty"`
 	Code         *JobErrorCode   `json:"code,omitempty"`
 	Results      []*ActionResult `json:"results,omitempty"`
-	CreatedAt    *string         `json:"created_at,omitempty"`
-	StartedAt    *string         `json:"started_at,omitempty"`
-	FinishedAt   *string         `json:"finished_at,omitempty"`
-	AttemptsDone *int32          `json:"attempts_done,omitempty"`
+	CreatedAt    *string         `json:"createdAt,omitempty"`
+	StartedAt    *string         `json:"startedAt,omitempty"`
+	FinishedAt   *string         `json:"finishedAt,omitempty"`
+	AttemptsDone *int32          `json:"attemptsDone,omitempty"`
 }
 
 type ListOfBulk struct {
@@ -414,15 +414,15 @@ type ListOfString struct {
 }
 
 type ListSelector struct {
-	PageSize *int32                  `json:"page_size,omitempty"`
+	PageSize *int32                  `json:"pageSize,omitempty"`
 	Offset   *int32                  `json:"offset,omitempty"`
-	SortBy   []*ListSelectorSortBy   `json:"sort_by,omitempty"`
-	FilterBy []*ListSelectorFilterBy `json:"filter_by,omitempty"`
+	SortBy   []*ListSelectorSortBy   `json:"sortBy,omitempty"`
+	FilterBy []*ListSelectorFilterBy `json:"filterBy,omitempty"`
 	Fields   []*string               `json:"fields,omitempty"`
 }
 
 type ListSelectorFilterBy struct {
-	FieldID  *string         `json:"field_id,omitempty"`
+	FieldID  *string         `json:"fieldId,omitempty"`
 	Operator *FilterOperator `json:"operator,omitempty"`
 	Text     []*string       `json:"text,omitempty"`
 	Integer  []*int64        `json:"integer,omitempty"`
@@ -432,40 +432,40 @@ type ListSelectorFilterBy struct {
 }
 
 type ListSelectorSortBy struct {
-	FieldID *string `json:"field_id,omitempty"`
+	FieldID *string `json:"fieldId,omitempty"`
 	Desc    *bool   `json:"desc,omitempty"`
 }
 
 type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
-	DoubleValue      *float64 `json:"double_value,omitempty"`
-	IntValue         *int64   `json:"int_value,omitempty"`
-	StrValue         *string  `json:"str_value,omitempty"`
-	TimestampValue   *string  `json:"timestamp_value,omitempty"`
-	TimestampTzValue *string  `json:"timestamp_tz_value,omitempty"`
-	BoolValue        *bool    `json:"bool_value,omitempty"`
+	DoubleValue      *float64 `json:"doubleValue,omitempty"`
+	IntValue         *int64   `json:"intValue,omitempty"`
+	StrValue         *string  `json:"strValue,omitempty"`
+	TimestampValue   *string  `json:"timestampValue,omitempty"`
+	TimestampTzValue *string  `json:"timestampTzValue,omitempty"`
+	BoolValue        *bool    `json:"boolValue,omitempty"`
 }
 
 type MetadataFields struct {
 	ID            *string   `json:"id,omitempty"`
 	Generation    *int32    `json:"generation,omitempty"`
 	Fields        []*MapAny `json:"fields,omitempty"`
-	ManagedFields []*MapAny `json:"managed_fields,omitempty"`
+	ManagedFields []*MapAny `json:"managedFields,omitempty"`
 	Name          *string   `json:"name,omitempty"`
 }
 
 type ModemInfo struct {
-	ModemID        *string                    `json:"modem_id,omitempty"`
+	ModemID        *string                    `json:"modemId,omitempty"`
 	Name           *string                    `json:"name,omitempty"`
-	AtInit         *string                    `json:"at_init,omitempty"`
-	AtTest         *string                    `json:"at_test,omitempty"`
-	AtConfig       *string                    `json:"at_config,omitempty"`
-	AtDial         *string                    `json:"at_dial,omitempty"`
-	AtHangup       *string                    `json:"at_hangup,omitempty"`
-	AtEscape       *string                    `json:"at_escape,omitempty"`
-	AtDsr          *bool                      `json:"at_dsr,omitempty"`
-	ConnectTimeout *int32                     `json:"connect_timeout,omitempty"`
+	AtInit         *string                    `json:"atInit,omitempty"`
+	AtTest         *string                    `json:"atTest,omitempty"`
+	AtConfig       *string                    `json:"atConfig,omitempty"`
+	AtDial         *string                    `json:"atDial,omitempty"`
+	AtHangup       *string                    `json:"atHangup,omitempty"`
+	AtEscape       *string                    `json:"atEscape,omitempty"`
+	AtDsr          *bool                      `json:"atDsr,omitempty"`
+	ConnectTimeout *int32                     `json:"connectTimeout,omitempty"`
 	Tcpip          *ConnectionTypeDirectTCPIP `json:"tcpip,omitempty"`
 }
 
@@ -476,7 +476,7 @@ type ModemPool struct {
 }
 
 type ModemPoolSpec struct {
-	PoolID *string `json:"pool_id,omitempty"`
+	PoolID *string `json:"poolId,omitempty"`
 	Name   *string `json:"name,omitempty"`
 }
 
@@ -485,7 +485,7 @@ type ModemPoolStatus struct {
 }
 
 type ProfileBlok struct {
-	StartTimestamp *string          `json:"start_timestamp,omitempty"`
+	StartTimestamp *string          `json:"startTimestamp,omitempty"`
 	Values         []*MeasuredValue `json:"values,omitempty"`
 }
 
@@ -499,13 +499,13 @@ type Query struct {
 }
 
 type RemoveDevicesFromGroupRequest struct {
-	GroupID  *string   `json:"group_id,omitempty"`
-	DeviceID []*string `json:"device_id,omitempty"`
+	GroupID  *string   `json:"groupId,omitempty"`
+	DeviceID []*string `json:"deviceId,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {
-	DeviceID           *string                    `json:"device_id,omitempty"`
-	CommunicationUnits []*DeviceCommunicationUnit `json:"communication_units,omitempty"`
+	DeviceID           *string                    `json:"deviceId,omitempty"`
+	CommunicationUnits []*DeviceCommunicationUnit `json:"communicationUnits,omitempty"`
 }
 
 type SetModemPoolRequest struct {
@@ -513,7 +513,7 @@ type SetModemPoolRequest struct {
 }
 
 type SetModemRequest struct {
-	PoolID *string    `json:"pool_id,omitempty"`
+	PoolID *string    `json:"poolId,omitempty"`
 	Modem  *ModemInfo `json:"modem,omitempty"`
 }
 
@@ -522,9 +522,9 @@ type StringValue struct {
 }
 
 type SystemConfig struct {
-	MaxReplicas           *int32 `json:"max_replicas,omitempty"`
-	MaxCascadeDeviceCount *int32 `json:"max_cascade_device_count,omitempty"`
-	MaxSlotsPerDriver     *int32 `json:"max_slots_per_driver,omitempty"`
+	MaxReplicas           *int32 `json:"maxReplicas,omitempty"`
+	MaxCascadeDeviceCount *int32 `json:"maxCascadeDeviceCount,omitempty"`
+	MaxSlotsPerDriver     *int32 `json:"maxSlotsPerDriver,omitempty"`
 }
 
 type MapAny struct {

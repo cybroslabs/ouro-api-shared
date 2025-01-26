@@ -199,7 +199,7 @@ def parse_field(
     field: FieldDescriptorProto, containing_message: DescriptorProto, ctx: ParseContext
 ):
     mf = MessageField()
-    mf.name = field.name
+    mf.name = field.json_name
 
     mf.number = field.number
     mf.label = to_label_name(field.label, field.proto3_optional)

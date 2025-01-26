@@ -798,7 +798,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionResetBillingPeriod.Empty(childComplexity), true
 
-	case "ActionResult.action_id":
+	case "ActionResult.actionId":
 		if e.complexity.ActionResult.ActionID == nil {
 			break
 		}
@@ -854,21 +854,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionSyncClock.Empty(childComplexity), true
 
-	case "AddDevicesToGroupRequest.device_id":
+	case "AddDevicesToGroupRequest.deviceId":
 		if e.complexity.AddDevicesToGroupRequest.DeviceID == nil {
 			break
 		}
 
 		return e.complexity.AddDevicesToGroupRequest.DeviceID(childComplexity), true
 
-	case "AddDevicesToGroupRequest.group_id":
+	case "AddDevicesToGroupRequest.groupId":
 		if e.complexity.AddDevicesToGroupRequest.GroupID == nil {
 			break
 		}
 
 		return e.complexity.AddDevicesToGroupRequest.GroupID(childComplexity), true
 
-	case "Any.type_url":
+	case "Any.typeUrl":
 		if e.complexity.Any.TypeURL == nil {
 			break
 		}
@@ -952,7 +952,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Bulk.Status(childComplexity), true
 
-	case "BulkJob.job_id":
+	case "BulkJob.jobId":
 		if e.complexity.BulkJob.JobID == nil {
 			break
 		}
@@ -973,14 +973,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.Actions(childComplexity), true
 
-	case "BulkSpec.correlation_id":
+	case "BulkSpec.correlationId":
 		if e.complexity.BulkSpec.CorrelationID == nil {
 			break
 		}
 
 		return e.complexity.BulkSpec.CorrelationID(childComplexity), true
 
-	case "BulkSpec.custom_devices":
+	case "BulkSpec.customDevices":
 		if e.complexity.BulkSpec.CustomDevices == nil {
 			break
 		}
@@ -994,7 +994,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.Devices(childComplexity), true
 
-	case "BulkSpec.driver_type":
+	case "BulkSpec.driverType":
 		if e.complexity.BulkSpec.DriverType == nil {
 			break
 		}
@@ -1008,7 +1008,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.Settings(childComplexity), true
 
-	case "BulkSpec.webhook_url":
+	case "BulkSpec.webhookUrl":
 		if e.complexity.BulkSpec.WebhookURL == nil {
 			break
 		}
@@ -1057,42 +1057,42 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CommunicationUnit.Spec(childComplexity), true
 
-	case "CommunicationUnitSpec.connection_info":
+	case "CommunicationUnitSpec.connectionInfo":
 		if e.complexity.CommunicationUnitSpec.ConnectionInfo == nil {
 			break
 		}
 
 		return e.complexity.CommunicationUnitSpec.ConnectionInfo(childComplexity), true
 
-	case "CommunicationUnitSpec.external_id":
+	case "CommunicationUnitSpec.externalId":
 		if e.complexity.CommunicationUnitSpec.ExternalID == nil {
 			break
 		}
 
 		return e.complexity.CommunicationUnitSpec.ExternalID(childComplexity), true
 
-	case "ConnectionInfo.custom_grouping_id":
+	case "ConnectionInfo.customGroupingId":
 		if e.complexity.ConnectionInfo.CustomGroupingID == nil {
 			break
 		}
 
 		return e.complexity.ConnectionInfo.CustomGroupingID(childComplexity), true
 
-	case "ConnectionInfo.link_protocol":
+	case "ConnectionInfo.linkProtocol":
 		if e.complexity.ConnectionInfo.LinkProtocol == nil {
 			break
 		}
 
 		return e.complexity.ConnectionInfo.LinkProtocol(childComplexity), true
 
-	case "ConnectionInfo.modem_pool":
+	case "ConnectionInfo.modemPool":
 		if e.complexity.ConnectionInfo.ModemPool == nil {
 			break
 		}
 
 		return e.complexity.ConnectionInfo.ModemPool(childComplexity), true
 
-	case "ConnectionInfo.serial_over_ip":
+	case "ConnectionInfo.serialOverIp":
 		if e.complexity.ConnectionInfo.SerialOverIP == nil {
 			break
 		}
@@ -1155,7 +1155,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConnectionTypeModemPool.Number(childComplexity), true
 
-	case "ConnectionTypeModemPool.pool_id":
+	case "ConnectionTypeModemPool.poolId":
 		if e.complexity.ConnectionTypeModemPool.PoolID == nil {
 			break
 		}
@@ -1253,7 +1253,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CreateDeviceRequest.Spec(childComplexity), true
 
-	case "DataLinkTemplate.app_protocol_refs":
+	case "DataLinkTemplate.appProtocolRefs":
 		if e.complexity.DataLinkTemplate.AppProtocolRefs == nil {
 			break
 		}
@@ -1267,7 +1267,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DataLinkTemplate.Attributes(childComplexity), true
 
-	case "DataLinkTemplate.link_protocol":
+	case "DataLinkTemplate.linkProtocol":
 		if e.complexity.DataLinkTemplate.LinkProtocol == nil {
 			break
 		}
@@ -1288,14 +1288,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Device.Spec(childComplexity), true
 
-	case "DeviceCommunicationUnit.app_protocol":
+	case "DeviceCommunicationUnit.appProtocol":
 		if e.complexity.DeviceCommunicationUnit.AppProtocol == nil {
 			break
 		}
 
 		return e.complexity.DeviceCommunicationUnit.AppProtocol(childComplexity), true
 
-	case "DeviceCommunicationUnit.communication_unit_id":
+	case "DeviceCommunicationUnit.communicationUnitId":
 		if e.complexity.DeviceCommunicationUnit.CommunicationUnitID == nil {
 			break
 		}
@@ -1323,7 +1323,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceGroup.Status(childComplexity), true
 
-	case "DeviceGroupSpec.external_id":
+	case "DeviceGroupSpec.externalId":
 		if e.complexity.DeviceGroupSpec.ExternalID == nil {
 			break
 		}
@@ -1337,7 +1337,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceGroupSpec.Name(childComplexity), true
 
-	case "DeviceGroupStatus.device_id":
+	case "DeviceGroupStatus.deviceId":
 		if e.complexity.DeviceGroupStatus.DeviceID == nil {
 			break
 		}
@@ -1351,14 +1351,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceSpec.Attributes(childComplexity), true
 
-	case "DeviceSpec.communication_unit_link":
+	case "DeviceSpec.communicationUnitLink":
 		if e.complexity.DeviceSpec.CommunicationUnitLink == nil {
 			break
 		}
 
 		return e.complexity.DeviceSpec.CommunicationUnitLink(childComplexity), true
 
-	case "DeviceSpec.external_id":
+	case "DeviceSpec.externalId":
 		if e.complexity.DeviceSpec.ExternalID == nil {
 			break
 		}
@@ -1379,35 +1379,35 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Driver.Spec(childComplexity), true
 
-	case "DriverSpec.display_name":
+	case "DriverSpec.displayName":
 		if e.complexity.DriverSpec.DisplayName == nil {
 			break
 		}
 
 		return e.complexity.DriverSpec.DisplayName(childComplexity), true
 
-	case "DriverSpec.driver_type":
+	case "DriverSpec.driverType":
 		if e.complexity.DriverSpec.DriverType == nil {
 			break
 		}
 
 		return e.complexity.DriverSpec.DriverType(childComplexity), true
 
-	case "DriverSpec.listening_port":
+	case "DriverSpec.listeningPort":
 		if e.complexity.DriverSpec.ListeningPort == nil {
 			break
 		}
 
 		return e.complexity.DriverSpec.ListeningPort(childComplexity), true
 
-	case "DriverSpec.max_cascade_depth":
+	case "DriverSpec.maxCascadeDepth":
 		if e.complexity.DriverSpec.MaxCascadeDepth == nil {
 			break
 		}
 
 		return e.complexity.DriverSpec.MaxCascadeDepth(childComplexity), true
 
-	case "DriverSpec.max_concurrent_jobs":
+	case "DriverSpec.maxConcurrentJobs":
 		if e.complexity.DriverSpec.MaxConcurrentJobs == nil {
 			break
 		}
@@ -1421,7 +1421,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DriverSpec.Templates(childComplexity), true
 
-	case "DriverSpec.typical_mem_usage":
+	case "DriverSpec.typicalMemUsage":
 		if e.complexity.DriverSpec.TypicalMemUsage == nil {
 			break
 		}
@@ -1435,35 +1435,35 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DriverSpec.Version(childComplexity), true
 
-	case "DriverTemplates.access_templates":
+	case "DriverTemplates.accessTemplates":
 		if e.complexity.DriverTemplates.AccessTemplates == nil {
 			break
 		}
 
 		return e.complexity.DriverTemplates.AccessTemplates(childComplexity), true
 
-	case "DriverTemplates.action_attributes":
+	case "DriverTemplates.actionAttributes":
 		if e.complexity.DriverTemplates.ActionAttributes == nil {
 			break
 		}
 
 		return e.complexity.DriverTemplates.ActionAttributes(childComplexity), true
 
-	case "DriverTemplates.action_constraints":
+	case "DriverTemplates.actionConstraints":
 		if e.complexity.DriverTemplates.ActionConstraints == nil {
 			break
 		}
 
 		return e.complexity.DriverTemplates.ActionConstraints(childComplexity), true
 
-	case "DriverTemplates.app_protocols":
+	case "DriverTemplates.appProtocols":
 		if e.complexity.DriverTemplates.AppProtocols == nil {
 			break
 		}
 
 		return e.complexity.DriverTemplates.AppProtocols(childComplexity), true
 
-	case "DriverTemplates.communication_templates":
+	case "DriverTemplates.communicationTemplates":
 		if e.complexity.DriverTemplates.CommunicationTemplates == nil {
 			break
 		}
@@ -1477,21 +1477,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Empty.Empty(childComplexity), true
 
-	case "FieldSimpleDescriptor.data_type":
+	case "FieldSimpleDescriptor.dataType":
 		if e.complexity.FieldSimpleDescriptor.DataType == nil {
 			break
 		}
 
 		return e.complexity.FieldSimpleDescriptor.DataType(childComplexity), true
 
-	case "FieldSimpleDescriptor.default_value":
+	case "FieldSimpleDescriptor.defaultValue":
 		if e.complexity.FieldSimpleDescriptor.DefaultValue == nil {
 			break
 		}
 
 		return e.complexity.FieldSimpleDescriptor.DefaultValue(childComplexity), true
 
-	case "FieldSimpleDescriptor.field_id":
+	case "FieldSimpleDescriptor.fieldId":
 		if e.complexity.FieldSimpleDescriptor.FieldID == nil {
 			break
 		}
@@ -1526,42 +1526,42 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.FieldSimpleDescriptor.Validation(childComplexity), true
 
-	case "FieldValidation.max_integer":
+	case "FieldValidation.maxInteger":
 		if e.complexity.FieldValidation.MaxInteger == nil {
 			break
 		}
 
 		return e.complexity.FieldValidation.MaxInteger(childComplexity), true
 
-	case "FieldValidation.max_length":
+	case "FieldValidation.maxLength":
 		if e.complexity.FieldValidation.MaxLength == nil {
 			break
 		}
 
 		return e.complexity.FieldValidation.MaxLength(childComplexity), true
 
-	case "FieldValidation.max_number":
+	case "FieldValidation.maxNumber":
 		if e.complexity.FieldValidation.MaxNumber == nil {
 			break
 		}
 
 		return e.complexity.FieldValidation.MaxNumber(childComplexity), true
 
-	case "FieldValidation.min_integer":
+	case "FieldValidation.minInteger":
 		if e.complexity.FieldValidation.MinInteger == nil {
 			break
 		}
 
 		return e.complexity.FieldValidation.MinInteger(childComplexity), true
 
-	case "FieldValidation.min_length":
+	case "FieldValidation.minLength":
 		if e.complexity.FieldValidation.MinLength == nil {
 			break
 		}
 
 		return e.complexity.FieldValidation.MinLength(childComplexity), true
 
-	case "FieldValidation.min_number":
+	case "FieldValidation.minNumber":
 		if e.complexity.FieldValidation.MinNumber == nil {
 			break
 		}
@@ -1582,49 +1582,49 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.FieldValidation.Re(childComplexity), true
 
-	case "FieldValue.binary_value":
+	case "FieldValue.binaryValue":
 		if e.complexity.FieldValue.BinaryValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.BinaryValue(childComplexity), true
 
-	case "FieldValue.bool_value":
+	case "FieldValue.boolValue":
 		if e.complexity.FieldValue.BoolValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.BoolValue(childComplexity), true
 
-	case "FieldValue.date_value":
+	case "FieldValue.dateValue":
 		if e.complexity.FieldValue.DateValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.DateValue(childComplexity), true
 
-	case "FieldValue.double_value":
+	case "FieldValue.doubleValue":
 		if e.complexity.FieldValue.DoubleValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.DoubleValue(childComplexity), true
 
-	case "FieldValue.integer_value":
+	case "FieldValue.integerValue":
 		if e.complexity.FieldValue.IntegerValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.IntegerValue(childComplexity), true
 
-	case "FieldValue.text_value":
+	case "FieldValue.textValue":
 		if e.complexity.FieldValue.TextValue == nil {
 			break
 		}
 
 		return e.complexity.FieldValue.TextValue(childComplexity), true
 
-	case "JobAction.action_id":
+	case "JobAction.actionId":
 		if e.complexity.JobAction.ActionID == nil {
 			break
 		}
@@ -1638,112 +1638,112 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobAction.Attributes(childComplexity), true
 
-	case "JobAction.fw_update":
+	case "JobAction.fwUpdate":
 		if e.complexity.JobAction.FwUpdate == nil {
 			break
 		}
 
 		return e.complexity.JobAction.FwUpdate(childComplexity), true
 
-	case "JobAction.get_clock":
+	case "JobAction.getClock":
 		if e.complexity.JobAction.GetClock == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetClock(childComplexity), true
 
-	case "JobAction.get_disconnector_state":
+	case "JobAction.getDisconnectorState":
 		if e.complexity.JobAction.GetDisconnectorState == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetDisconnectorState(childComplexity), true
 
-	case "JobAction.get_events":
+	case "JobAction.getEvents":
 		if e.complexity.JobAction.GetEvents == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetEvents(childComplexity), true
 
-	case "JobAction.get_irregular_profile":
+	case "JobAction.getIrregularProfile":
 		if e.complexity.JobAction.GetIrregularProfile == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetIrregularProfile(childComplexity), true
 
-	case "JobAction.get_limiter":
+	case "JobAction.getLimiter":
 		if e.complexity.JobAction.GetLimiter == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetLimiter(childComplexity), true
 
-	case "JobAction.get_periodical_profile":
+	case "JobAction.getPeriodicalProfile":
 		if e.complexity.JobAction.GetPeriodicalProfile == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetPeriodicalProfile(childComplexity), true
 
-	case "JobAction.get_register":
+	case "JobAction.getRegister":
 		if e.complexity.JobAction.GetRegister == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetRegister(childComplexity), true
 
-	case "JobAction.get_relay_state":
+	case "JobAction.getRelayState":
 		if e.complexity.JobAction.GetRelayState == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetRelayState(childComplexity), true
 
-	case "JobAction.get_tou":
+	case "JobAction.getTou":
 		if e.complexity.JobAction.GetTou == nil {
 			break
 		}
 
 		return e.complexity.JobAction.GetTou(childComplexity), true
 
-	case "JobAction.reset_billing_period":
+	case "JobAction.resetBillingPeriod":
 		if e.complexity.JobAction.ResetBillingPeriod == nil {
 			break
 		}
 
 		return e.complexity.JobAction.ResetBillingPeriod(childComplexity), true
 
-	case "JobAction.set_disconnector_state":
+	case "JobAction.setDisconnectorState":
 		if e.complexity.JobAction.SetDisconnectorState == nil {
 			break
 		}
 
 		return e.complexity.JobAction.SetDisconnectorState(childComplexity), true
 
-	case "JobAction.set_limiter":
+	case "JobAction.setLimiter":
 		if e.complexity.JobAction.SetLimiter == nil {
 			break
 		}
 
 		return e.complexity.JobAction.SetLimiter(childComplexity), true
 
-	case "JobAction.set_relay_state":
+	case "JobAction.setRelayState":
 		if e.complexity.JobAction.SetRelayState == nil {
 			break
 		}
 
 		return e.complexity.JobAction.SetRelayState(childComplexity), true
 
-	case "JobAction.set_tou":
+	case "JobAction.setTou":
 		if e.complexity.JobAction.SetTou == nil {
 			break
 		}
 
 		return e.complexity.JobAction.SetTou(childComplexity), true
 
-	case "JobAction.sync_clock":
+	case "JobAction.syncClock":
 		if e.complexity.JobAction.SyncClock == nil {
 			break
 		}
@@ -1764,56 +1764,56 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobActionAttributes.Type(childComplexity), true
 
-	case "JobActionContraints.get_register_type_attributes":
+	case "JobActionContraints.getRegisterTypeAttributes":
 		if e.complexity.JobActionContraints.GetRegisterTypeAttributes == nil {
 			break
 		}
 
 		return e.complexity.JobActionContraints.GetRegisterTypeAttributes(childComplexity), true
 
-	case "JobActionContraints.get_register_type_name":
+	case "JobActionContraints.getRegisterTypeName":
 		if e.complexity.JobActionContraints.GetRegisterTypeName == nil {
 			break
 		}
 
 		return e.complexity.JobActionContraints.GetRegisterTypeName(childComplexity), true
 
-	case "JobDevice.app_protocol":
+	case "JobDevice.appProtocol":
 		if e.complexity.JobDevice.AppProtocol == nil {
 			break
 		}
 
 		return e.complexity.JobDevice.AppProtocol(childComplexity), true
 
-	case "JobDevice.connection_info":
+	case "JobDevice.connectionInfo":
 		if e.complexity.JobDevice.ConnectionInfo == nil {
 			break
 		}
 
 		return e.complexity.JobDevice.ConnectionInfo(childComplexity), true
 
-	case "JobDevice.device_attributes":
+	case "JobDevice.deviceAttributes":
 		if e.complexity.JobDevice.DeviceAttributes == nil {
 			break
 		}
 
 		return e.complexity.JobDevice.DeviceAttributes(childComplexity), true
 
-	case "JobDevice.device_id":
+	case "JobDevice.deviceId":
 		if e.complexity.JobDevice.DeviceID == nil {
 			break
 		}
 
 		return e.complexity.JobDevice.DeviceID(childComplexity), true
 
-	case "JobDevice.external_id":
+	case "JobDevice.externalId":
 		if e.complexity.JobDevice.ExternalID == nil {
 			break
 		}
 
 		return e.complexity.JobDevice.ExternalID(childComplexity), true
 
-	case "JobDevice.job_id":
+	case "JobDevice.jobId":
 		if e.complexity.JobDevice.JobID == nil {
 			break
 		}
@@ -1827,14 +1827,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobDevice.Timezone(childComplexity), true
 
-	case "JobDeviceId.device_id":
+	case "JobDeviceId.deviceId":
 		if e.complexity.JobDeviceId.DeviceID == nil {
 			break
 		}
 
 		return e.complexity.JobDeviceId.DeviceID(childComplexity), true
 
-	case "JobDeviceId.job_id":
+	case "JobDeviceId.jobId":
 		if e.complexity.JobDeviceId.JobID == nil {
 			break
 		}
@@ -1848,21 +1848,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobSettings.Attempts(childComplexity), true
 
-	case "JobSettings.defer_start":
+	case "JobSettings.deferStart":
 		if e.complexity.JobSettings.DeferStart == nil {
 			break
 		}
 
 		return e.complexity.JobSettings.DeferStart(childComplexity), true
 
-	case "JobSettings.expires_at":
+	case "JobSettings.expiresAt":
 		if e.complexity.JobSettings.ExpiresAt == nil {
 			break
 		}
 
 		return e.complexity.JobSettings.ExpiresAt(childComplexity), true
 
-	case "JobSettings.max_duration":
+	case "JobSettings.maxDuration":
 		if e.complexity.JobSettings.MaxDuration == nil {
 			break
 		}
@@ -1876,14 +1876,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobSettings.Priority(childComplexity), true
 
-	case "JobSettings.retry_delay":
+	case "JobSettings.retryDelay":
 		if e.complexity.JobSettings.RetryDelay == nil {
 			break
 		}
 
 		return e.complexity.JobSettings.RetryDelay(childComplexity), true
 
-	case "JobStatus.attempts_done":
+	case "JobStatus.attemptsDone":
 		if e.complexity.JobStatus.AttemptsDone == nil {
 			break
 		}
@@ -1897,14 +1897,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobStatus.Code(childComplexity), true
 
-	case "JobStatus.created_at":
+	case "JobStatus.createdAt":
 		if e.complexity.JobStatus.CreatedAt == nil {
 			break
 		}
 
 		return e.complexity.JobStatus.CreatedAt(childComplexity), true
 
-	case "JobStatus.finished_at":
+	case "JobStatus.finishedAt":
 		if e.complexity.JobStatus.FinishedAt == nil {
 			break
 		}
@@ -1918,7 +1918,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobStatus.Results(childComplexity), true
 
-	case "JobStatus.started_at":
+	case "JobStatus.startedAt":
 		if e.complexity.JobStatus.StartedAt == nil {
 			break
 		}
@@ -2002,7 +2002,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListSelector.Fields(childComplexity), true
 
-	case "ListSelector.filter_by":
+	case "ListSelector.filterBy":
 		if e.complexity.ListSelector.FilterBy == nil {
 			break
 		}
@@ -2016,14 +2016,14 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListSelector.Offset(childComplexity), true
 
-	case "ListSelector.page_size":
+	case "ListSelector.pageSize":
 		if e.complexity.ListSelector.PageSize == nil {
 			break
 		}
 
 		return e.complexity.ListSelector.PageSize(childComplexity), true
 
-	case "ListSelector.sort_by":
+	case "ListSelector.sortBy":
 		if e.complexity.ListSelector.SortBy == nil {
 			break
 		}
@@ -2044,7 +2044,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListSelectorFilterBy.Date(childComplexity), true
 
-	case "ListSelectorFilterBy.field_id":
+	case "ListSelectorFilterBy.fieldId":
 		if e.complexity.ListSelectorFilterBy.FieldID == nil {
 			break
 		}
@@ -2086,21 +2086,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListSelectorSortBy.Desc(childComplexity), true
 
-	case "ListSelectorSortBy.field_id":
+	case "ListSelectorSortBy.fieldId":
 		if e.complexity.ListSelectorSortBy.FieldID == nil {
 			break
 		}
 
 		return e.complexity.ListSelectorSortBy.FieldID(childComplexity), true
 
-	case "MeasuredValue.bool_value":
+	case "MeasuredValue.boolValue":
 		if e.complexity.MeasuredValue.BoolValue == nil {
 			break
 		}
 
 		return e.complexity.MeasuredValue.BoolValue(childComplexity), true
 
-	case "MeasuredValue.double_value":
+	case "MeasuredValue.doubleValue":
 		if e.complexity.MeasuredValue.DoubleValue == nil {
 			break
 		}
@@ -2114,7 +2114,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MeasuredValue.Exponent(childComplexity), true
 
-	case "MeasuredValue.int_value":
+	case "MeasuredValue.intValue":
 		if e.complexity.MeasuredValue.IntValue == nil {
 			break
 		}
@@ -2128,21 +2128,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MeasuredValue.Status(childComplexity), true
 
-	case "MeasuredValue.str_value":
+	case "MeasuredValue.strValue":
 		if e.complexity.MeasuredValue.StrValue == nil {
 			break
 		}
 
 		return e.complexity.MeasuredValue.StrValue(childComplexity), true
 
-	case "MeasuredValue.timestamp_tz_value":
+	case "MeasuredValue.timestampTzValue":
 		if e.complexity.MeasuredValue.TimestampTzValue == nil {
 			break
 		}
 
 		return e.complexity.MeasuredValue.TimestampTzValue(childComplexity), true
 
-	case "MeasuredValue.timestamp_value":
+	case "MeasuredValue.timestampValue":
 		if e.complexity.MeasuredValue.TimestampValue == nil {
 			break
 		}
@@ -2170,7 +2170,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MetadataFields.ID(childComplexity), true
 
-	case "MetadataFields.managed_fields":
+	case "MetadataFields.managedFields":
 		if e.complexity.MetadataFields.ManagedFields == nil {
 			break
 		}
@@ -2184,63 +2184,63 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MetadataFields.Name(childComplexity), true
 
-	case "ModemInfo.at_config":
+	case "ModemInfo.atConfig":
 		if e.complexity.ModemInfo.AtConfig == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtConfig(childComplexity), true
 
-	case "ModemInfo.at_dial":
+	case "ModemInfo.atDial":
 		if e.complexity.ModemInfo.AtDial == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtDial(childComplexity), true
 
-	case "ModemInfo.at_dsr":
+	case "ModemInfo.atDsr":
 		if e.complexity.ModemInfo.AtDsr == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtDsr(childComplexity), true
 
-	case "ModemInfo.at_escape":
+	case "ModemInfo.atEscape":
 		if e.complexity.ModemInfo.AtEscape == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtEscape(childComplexity), true
 
-	case "ModemInfo.at_hangup":
+	case "ModemInfo.atHangup":
 		if e.complexity.ModemInfo.AtHangup == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtHangup(childComplexity), true
 
-	case "ModemInfo.at_init":
+	case "ModemInfo.atInit":
 		if e.complexity.ModemInfo.AtInit == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtInit(childComplexity), true
 
-	case "ModemInfo.at_test":
+	case "ModemInfo.atTest":
 		if e.complexity.ModemInfo.AtTest == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtTest(childComplexity), true
 
-	case "ModemInfo.connect_timeout":
+	case "ModemInfo.connectTimeout":
 		if e.complexity.ModemInfo.ConnectTimeout == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.ConnectTimeout(childComplexity), true
 
-	case "ModemInfo.modem_id":
+	case "ModemInfo.modemId":
 		if e.complexity.ModemInfo.ModemID == nil {
 			break
 		}
@@ -2289,7 +2289,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemPoolSpec.Name(childComplexity), true
 
-	case "ModemPoolSpec.pool_id":
+	case "ModemPoolSpec.poolId":
 		if e.complexity.ModemPoolSpec.PoolID == nil {
 			break
 		}
@@ -2303,7 +2303,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemPoolStatus.Modems(childComplexity), true
 
-	case "ProfileBlok.start_timestamp":
+	case "ProfileBlok.startTimestamp":
 		if e.complexity.ProfileBlok.StartTimestamp == nil {
 			break
 		}
@@ -2541,28 +2541,28 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.UpdateModemPool(childComplexity), true
 
-	case "RemoveDevicesFromGroupRequest.device_id":
+	case "RemoveDevicesFromGroupRequest.deviceId":
 		if e.complexity.RemoveDevicesFromGroupRequest.DeviceID == nil {
 			break
 		}
 
 		return e.complexity.RemoveDevicesFromGroupRequest.DeviceID(childComplexity), true
 
-	case "RemoveDevicesFromGroupRequest.group_id":
+	case "RemoveDevicesFromGroupRequest.groupId":
 		if e.complexity.RemoveDevicesFromGroupRequest.GroupID == nil {
 			break
 		}
 
 		return e.complexity.RemoveDevicesFromGroupRequest.GroupID(childComplexity), true
 
-	case "SetDeviceCommunicationUnitsRequest.communication_units":
+	case "SetDeviceCommunicationUnitsRequest.communicationUnits":
 		if e.complexity.SetDeviceCommunicationUnitsRequest.CommunicationUnits == nil {
 			break
 		}
 
 		return e.complexity.SetDeviceCommunicationUnitsRequest.CommunicationUnits(childComplexity), true
 
-	case "SetDeviceCommunicationUnitsRequest.device_id":
+	case "SetDeviceCommunicationUnitsRequest.deviceId":
 		if e.complexity.SetDeviceCommunicationUnitsRequest.DeviceID == nil {
 			break
 		}
@@ -2583,7 +2583,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.SetModemRequest.Modem(childComplexity), true
 
-	case "SetModemRequest.pool_id":
+	case "SetModemRequest.poolId":
 		if e.complexity.SetModemRequest.PoolID == nil {
 			break
 		}
@@ -2597,21 +2597,21 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.StringValue.Value(childComplexity), true
 
-	case "SystemConfig.max_cascade_device_count":
+	case "SystemConfig.maxCascadeDeviceCount":
 		if e.complexity.SystemConfig.MaxCascadeDeviceCount == nil {
 			break
 		}
 
 		return e.complexity.SystemConfig.MaxCascadeDeviceCount(childComplexity), true
 
-	case "SystemConfig.max_replicas":
+	case "SystemConfig.maxReplicas":
 		if e.complexity.SystemConfig.MaxReplicas == nil {
 			break
 		}
 
 		return e.complexity.SystemConfig.MaxReplicas(childComplexity), true
 
-	case "SystemConfig.max_slots_per_driver":
+	case "SystemConfig.maxSlotsPerDriver":
 		if e.complexity.SystemConfig.MaxSlotsPerDriver == nil {
 			break
 		}
@@ -3669,8 +3669,8 @@ func (ec *executionContext) fieldContext_ActionResetBillingPeriod__empty(_ conte
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionResult_action_id(ctx context.Context, field graphql.CollectedField, obj *model.ActionResult) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionResult_action_id(ctx, field)
+func (ec *executionContext) _ActionResult_actionId(ctx context.Context, field graphql.CollectedField, obj *model.ActionResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionResult_actionId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -3697,7 +3697,7 @@ func (ec *executionContext) _ActionResult_action_id(ctx context.Context, field g
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ActionResult_action_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ActionResult_actionId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionResult",
 		Field:      field,
@@ -4005,8 +4005,8 @@ func (ec *executionContext) fieldContext_ActionSyncClock__empty(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _AddDevicesToGroupRequest_group_id(ctx context.Context, field graphql.CollectedField, obj *model.AddDevicesToGroupRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_AddDevicesToGroupRequest_group_id(ctx, field)
+func (ec *executionContext) _AddDevicesToGroupRequest_groupId(ctx context.Context, field graphql.CollectedField, obj *model.AddDevicesToGroupRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddDevicesToGroupRequest_groupId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4033,7 +4033,7 @@ func (ec *executionContext) _AddDevicesToGroupRequest_group_id(ctx context.Conte
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_group_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "AddDevicesToGroupRequest",
 		Field:      field,
@@ -4046,8 +4046,8 @@ func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_group_id(_ con
 	return fc, nil
 }
 
-func (ec *executionContext) _AddDevicesToGroupRequest_device_id(ctx context.Context, field graphql.CollectedField, obj *model.AddDevicesToGroupRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_AddDevicesToGroupRequest_device_id(ctx, field)
+func (ec *executionContext) _AddDevicesToGroupRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.AddDevicesToGroupRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddDevicesToGroupRequest_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4074,7 +4074,7 @@ func (ec *executionContext) _AddDevicesToGroupRequest_device_id(ctx context.Cont
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "AddDevicesToGroupRequest",
 		Field:      field,
@@ -4087,8 +4087,8 @@ func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_device_id(_ co
 	return fc, nil
 }
 
-func (ec *executionContext) _Any_type_url(ctx context.Context, field graphql.CollectedField, obj *model.Any) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Any_type_url(ctx, field)
+func (ec *executionContext) _Any_typeUrl(ctx context.Context, field graphql.CollectedField, obj *model.Any) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Any_typeUrl(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4115,7 +4115,7 @@ func (ec *executionContext) _Any_type_url(ctx context.Context, field graphql.Col
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Any_type_url(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Any_typeUrl(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Any",
 		Field:      field,
@@ -4287,20 +4287,20 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "field_id":
-				return ec.fieldContext_FieldSimpleDescriptor_field_id(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
-			case "data_type":
-				return ec.fieldContext_FieldSimpleDescriptor_data_type(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
 			case "tooltip":
 				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
 			case "required":
 				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
 			case "validation":
 				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
-			case "default_value":
-				return ec.fieldContext_FieldSimpleDescriptor_default_value(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
 		},
@@ -4430,18 +4430,18 @@ func (ec *executionContext) fieldContext_BillingValue_value(_ context.Context, f
 				return ec.fieldContext_MeasuredValue_status(ctx, field)
 			case "exponent":
 				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
-			case "double_value":
-				return ec.fieldContext_MeasuredValue_double_value(ctx, field)
-			case "int_value":
-				return ec.fieldContext_MeasuredValue_int_value(ctx, field)
-			case "str_value":
-				return ec.fieldContext_MeasuredValue_str_value(ctx, field)
-			case "timestamp_value":
-				return ec.fieldContext_MeasuredValue_timestamp_value(ctx, field)
-			case "timestamp_tz_value":
-				return ec.fieldContext_MeasuredValue_timestamp_tz_value(ctx, field)
-			case "bool_value":
-				return ec.fieldContext_MeasuredValue_bool_value(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
+			case "intValue":
+				return ec.fieldContext_MeasuredValue_intValue(ctx, field)
+			case "strValue":
+				return ec.fieldContext_MeasuredValue_strValue(ctx, field)
+			case "timestampValue":
+				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
+			case "timestampTzValue":
+				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
@@ -4534,20 +4534,20 @@ func (ec *executionContext) fieldContext_Bulk_spec(_ context.Context, field grap
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "correlation_id":
-				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
-			case "driver_type":
-				return ec.fieldContext_BulkSpec_driver_type(ctx, field)
+			case "correlationId":
+				return ec.fieldContext_BulkSpec_correlationId(ctx, field)
+			case "driverType":
+				return ec.fieldContext_BulkSpec_driverType(ctx, field)
 			case "devices":
 				return ec.fieldContext_BulkSpec_devices(ctx, field)
-			case "custom_devices":
-				return ec.fieldContext_BulkSpec_custom_devices(ctx, field)
+			case "customDevices":
+				return ec.fieldContext_BulkSpec_customDevices(ctx, field)
 			case "settings":
 				return ec.fieldContext_BulkSpec_settings(ctx, field)
 			case "actions":
 				return ec.fieldContext_BulkSpec_actions(ctx, field)
-			case "webhook_url":
-				return ec.fieldContext_BulkSpec_webhook_url(ctx, field)
+			case "webhookUrl":
+				return ec.fieldContext_BulkSpec_webhookUrl(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -4644,8 +4644,8 @@ func (ec *executionContext) fieldContext_Bulk_metadata(_ context.Context, field 
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -4655,8 +4655,8 @@ func (ec *executionContext) fieldContext_Bulk_metadata(_ context.Context, field 
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkJob_job_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkJob) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkJob_job_id(ctx, field)
+func (ec *executionContext) _BulkJob_jobId(ctx context.Context, field graphql.CollectedField, obj *model.BulkJob) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkJob_jobId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4683,7 +4683,7 @@ func (ec *executionContext) _BulkJob_job_id(ctx context.Context, field graphql.C
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkJob_job_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkJob_jobId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkJob",
 		Field:      field,
@@ -4738,14 +4738,14 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 				return ec.fieldContext_JobStatus_code(ctx, field)
 			case "results":
 				return ec.fieldContext_JobStatus_results(ctx, field)
-			case "created_at":
-				return ec.fieldContext_JobStatus_created_at(ctx, field)
-			case "started_at":
-				return ec.fieldContext_JobStatus_started_at(ctx, field)
-			case "finished_at":
-				return ec.fieldContext_JobStatus_finished_at(ctx, field)
-			case "attempts_done":
-				return ec.fieldContext_JobStatus_attempts_done(ctx, field)
+			case "createdAt":
+				return ec.fieldContext_JobStatus_createdAt(ctx, field)
+			case "startedAt":
+				return ec.fieldContext_JobStatus_startedAt(ctx, field)
+			case "finishedAt":
+				return ec.fieldContext_JobStatus_finishedAt(ctx, field)
+			case "attemptsDone":
+				return ec.fieldContext_JobStatus_attemptsDone(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobStatus", field.Name)
 		},
@@ -4753,8 +4753,8 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_correlation_id(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_correlation_id(ctx, field)
+func (ec *executionContext) _BulkSpec_correlationId(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_correlationId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4781,7 +4781,7 @@ func (ec *executionContext) _BulkSpec_correlation_id(ctx context.Context, field 
 	return ec.marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_correlation_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_correlationId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -4794,8 +4794,8 @@ func (ec *executionContext) fieldContext_BulkSpec_correlation_id(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_driver_type(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_driver_type(ctx, field)
+func (ec *executionContext) _BulkSpec_driverType(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_driverType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4822,7 +4822,7 @@ func (ec *executionContext) _BulkSpec_driver_type(ctx context.Context, field gra
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_driver_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -4880,8 +4880,8 @@ func (ec *executionContext) fieldContext_BulkSpec_devices(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_custom_devices(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_custom_devices(ctx, field)
+func (ec *executionContext) _BulkSpec_customDevices(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_customDevices(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4908,7 +4908,7 @@ func (ec *executionContext) _BulkSpec_custom_devices(ctx context.Context, field 
 	return ec.marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_custom_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_customDevices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -4961,18 +4961,18 @@ func (ec *executionContext) fieldContext_BulkSpec_settings(_ context.Context, fi
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "max_duration":
-				return ec.fieldContext_JobSettings_max_duration(ctx, field)
+			case "maxDuration":
+				return ec.fieldContext_JobSettings_maxDuration(ctx, field)
 			case "priority":
 				return ec.fieldContext_JobSettings_priority(ctx, field)
 			case "attempts":
 				return ec.fieldContext_JobSettings_attempts(ctx, field)
-			case "retry_delay":
-				return ec.fieldContext_JobSettings_retry_delay(ctx, field)
-			case "defer_start":
-				return ec.fieldContext_JobSettings_defer_start(ctx, field)
-			case "expires_at":
-				return ec.fieldContext_JobSettings_expires_at(ctx, field)
+			case "retryDelay":
+				return ec.fieldContext_JobSettings_retryDelay(ctx, field)
+			case "deferStart":
+				return ec.fieldContext_JobSettings_deferStart(ctx, field)
+			case "expiresAt":
+				return ec.fieldContext_JobSettings_expiresAt(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobSettings", field.Name)
 		},
@@ -5016,42 +5016,42 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "action_id":
-				return ec.fieldContext_JobAction_action_id(ctx, field)
+			case "actionId":
+				return ec.fieldContext_JobAction_actionId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_JobAction_attributes(ctx, field)
-			case "get_register":
-				return ec.fieldContext_JobAction_get_register(ctx, field)
-			case "get_periodical_profile":
-				return ec.fieldContext_JobAction_get_periodical_profile(ctx, field)
-			case "get_irregular_profile":
-				return ec.fieldContext_JobAction_get_irregular_profile(ctx, field)
-			case "get_events":
-				return ec.fieldContext_JobAction_get_events(ctx, field)
-			case "get_clock":
-				return ec.fieldContext_JobAction_get_clock(ctx, field)
-			case "sync_clock":
-				return ec.fieldContext_JobAction_sync_clock(ctx, field)
-			case "get_relay_state":
-				return ec.fieldContext_JobAction_get_relay_state(ctx, field)
-			case "set_relay_state":
-				return ec.fieldContext_JobAction_set_relay_state(ctx, field)
-			case "get_disconnector_state":
-				return ec.fieldContext_JobAction_get_disconnector_state(ctx, field)
-			case "set_disconnector_state":
-				return ec.fieldContext_JobAction_set_disconnector_state(ctx, field)
-			case "get_tou":
-				return ec.fieldContext_JobAction_get_tou(ctx, field)
-			case "set_tou":
-				return ec.fieldContext_JobAction_set_tou(ctx, field)
-			case "get_limiter":
-				return ec.fieldContext_JobAction_get_limiter(ctx, field)
-			case "set_limiter":
-				return ec.fieldContext_JobAction_set_limiter(ctx, field)
-			case "reset_billing_period":
-				return ec.fieldContext_JobAction_reset_billing_period(ctx, field)
-			case "fw_update":
-				return ec.fieldContext_JobAction_fw_update(ctx, field)
+			case "getRegister":
+				return ec.fieldContext_JobAction_getRegister(ctx, field)
+			case "getPeriodicalProfile":
+				return ec.fieldContext_JobAction_getPeriodicalProfile(ctx, field)
+			case "getIrregularProfile":
+				return ec.fieldContext_JobAction_getIrregularProfile(ctx, field)
+			case "getEvents":
+				return ec.fieldContext_JobAction_getEvents(ctx, field)
+			case "getClock":
+				return ec.fieldContext_JobAction_getClock(ctx, field)
+			case "syncClock":
+				return ec.fieldContext_JobAction_syncClock(ctx, field)
+			case "getRelayState":
+				return ec.fieldContext_JobAction_getRelayState(ctx, field)
+			case "setRelayState":
+				return ec.fieldContext_JobAction_setRelayState(ctx, field)
+			case "getDisconnectorState":
+				return ec.fieldContext_JobAction_getDisconnectorState(ctx, field)
+			case "setDisconnectorState":
+				return ec.fieldContext_JobAction_setDisconnectorState(ctx, field)
+			case "getTou":
+				return ec.fieldContext_JobAction_getTou(ctx, field)
+			case "setTou":
+				return ec.fieldContext_JobAction_setTou(ctx, field)
+			case "getLimiter":
+				return ec.fieldContext_JobAction_getLimiter(ctx, field)
+			case "setLimiter":
+				return ec.fieldContext_JobAction_setLimiter(ctx, field)
+			case "resetBillingPeriod":
+				return ec.fieldContext_JobAction_resetBillingPeriod(ctx, field)
+			case "fwUpdate":
+				return ec.fieldContext_JobAction_fwUpdate(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobAction", field.Name)
 		},
@@ -5059,8 +5059,8 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkSpec_webhook_url(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkSpec_webhook_url(ctx, field)
+func (ec *executionContext) _BulkSpec_webhookUrl(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_webhookUrl(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5087,7 +5087,7 @@ func (ec *executionContext) _BulkSpec_webhook_url(ctx context.Context, field gra
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkSpec_webhook_url(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkSpec_webhookUrl(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -5177,8 +5177,8 @@ func (ec *executionContext) fieldContext_BulkStatus_jobs(_ context.Context, fiel
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "job_id":
-				return ec.fieldContext_BulkJob_job_id(ctx, field)
+			case "jobId":
+				return ec.fieldContext_BulkJob_jobId(ctx, field)
 			case "status":
 				return ec.fieldContext_BulkJob_status(ctx, field)
 			}
@@ -5265,10 +5265,10 @@ func (ec *executionContext) fieldContext_CommunicationTemplate_datalinks(_ conte
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "link_protocol":
-				return ec.fieldContext_DataLinkTemplate_link_protocol(ctx, field)
-			case "app_protocol_refs":
-				return ec.fieldContext_DataLinkTemplate_app_protocol_refs(ctx, field)
+			case "linkProtocol":
+				return ec.fieldContext_DataLinkTemplate_linkProtocol(ctx, field)
+			case "appProtocolRefs":
+				return ec.fieldContext_DataLinkTemplate_appProtocolRefs(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DataLinkTemplate_attributes(ctx, field)
 			}
@@ -5314,10 +5314,10 @@ func (ec *executionContext) fieldContext_CommunicationUnit_spec(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
-			case "connection_info":
-				return ec.fieldContext_CommunicationUnitSpec_connection_info(ctx, field)
+			case "externalId":
+				return ec.fieldContext_CommunicationUnitSpec_externalId(ctx, field)
+			case "connectionInfo":
+				return ec.fieldContext_CommunicationUnitSpec_connectionInfo(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnitSpec", field.Name)
 		},
@@ -5367,8 +5367,8 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -5378,8 +5378,8 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _CommunicationUnitSpec_external_id(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
+func (ec *executionContext) _CommunicationUnitSpec_externalId(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitSpec_externalId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5406,7 +5406,7 @@ func (ec *executionContext) _CommunicationUnitSpec_external_id(ctx context.Conte
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_CommunicationUnitSpec_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_CommunicationUnitSpec_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "CommunicationUnitSpec",
 		Field:      field,
@@ -5419,8 +5419,8 @@ func (ec *executionContext) fieldContext_CommunicationUnitSpec_external_id(_ con
 	return fc, nil
 }
 
-func (ec *executionContext) _CommunicationUnitSpec_connection_info(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitSpec_connection_info(ctx, field)
+func (ec *executionContext) _CommunicationUnitSpec_connectionInfo(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitSpec_connectionInfo(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5447,7 +5447,7 @@ func (ec *executionContext) _CommunicationUnitSpec_connection_info(ctx context.C
 	return ec.marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_CommunicationUnitSpec_connection_info(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_CommunicationUnitSpec_connectionInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "CommunicationUnitSpec",
 		Field:      field,
@@ -5457,14 +5457,14 @@ func (ec *executionContext) fieldContext_CommunicationUnitSpec_connection_info(_
 			switch field.Name {
 			case "tcpip":
 				return ec.fieldContext_ConnectionInfo_tcpip(ctx, field)
-			case "modem_pool":
-				return ec.fieldContext_ConnectionInfo_modem_pool(ctx, field)
-			case "serial_over_ip":
-				return ec.fieldContext_ConnectionInfo_serial_over_ip(ctx, field)
-			case "link_protocol":
-				return ec.fieldContext_ConnectionInfo_link_protocol(ctx, field)
-			case "custom_grouping_id":
-				return ec.fieldContext_ConnectionInfo_custom_grouping_id(ctx, field)
+			case "modemPool":
+				return ec.fieldContext_ConnectionInfo_modemPool(ctx, field)
+			case "serialOverIp":
+				return ec.fieldContext_ConnectionInfo_serialOverIp(ctx, field)
+			case "linkProtocol":
+				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
+			case "customGroupingId":
+				return ec.fieldContext_ConnectionInfo_customGroupingId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -5521,8 +5521,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_tcpip(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionInfo_modem_pool(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionInfo_modem_pool(ctx, field)
+func (ec *executionContext) _ConnectionInfo_modemPool(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_modemPool(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5549,7 +5549,7 @@ func (ec *executionContext) _ConnectionInfo_modem_pool(ctx context.Context, fiel
 	return ec.marshalOConnectionTypeModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeModemPool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionInfo_modem_pool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionInfo_modemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionInfo",
 		Field:      field,
@@ -5559,8 +5559,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_modem_pool(_ context.Con
 			switch field.Name {
 			case "number":
 				return ec.fieldContext_ConnectionTypeModemPool_number(ctx, field)
-			case "pool_id":
-				return ec.fieldContext_ConnectionTypeModemPool_pool_id(ctx, field)
+			case "poolId":
+				return ec.fieldContext_ConnectionTypeModemPool_poolId(ctx, field)
 			case "modem":
 				return ec.fieldContext_ConnectionTypeModemPool_modem(ctx, field)
 			}
@@ -5570,8 +5570,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_modem_pool(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionInfo_serial_over_ip(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionInfo_serial_over_ip(ctx, field)
+func (ec *executionContext) _ConnectionInfo_serialOverIp(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_serialOverIp(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5598,7 +5598,7 @@ func (ec *executionContext) _ConnectionInfo_serial_over_ip(ctx context.Context, 
 	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionInfo_serial_over_ip(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionInfo_serialOverIp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionInfo",
 		Field:      field,
@@ -5617,8 +5617,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_serial_over_ip(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionInfo_link_protocol(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionInfo_link_protocol(ctx, field)
+func (ec *executionContext) _ConnectionInfo_linkProtocol(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5645,7 +5645,7 @@ func (ec *executionContext) _ConnectionInfo_link_protocol(ctx context.Context, f
 	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionInfo_link_protocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionInfo_linkProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionInfo",
 		Field:      field,
@@ -5658,8 +5658,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_link_protocol(_ context.
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionInfo_custom_grouping_id(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionInfo_custom_grouping_id(ctx, field)
+func (ec *executionContext) _ConnectionInfo_customGroupingId(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_customGroupingId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5686,7 +5686,7 @@ func (ec *executionContext) _ConnectionInfo_custom_grouping_id(ctx context.Conte
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionInfo_custom_grouping_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionInfo_customGroupingId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionInfo",
 		Field:      field,
@@ -5959,8 +5959,8 @@ func (ec *executionContext) fieldContext_ConnectionTypeModemPool_number(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionTypeModemPool_pool_id(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeModemPool) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionTypeModemPool_pool_id(ctx, field)
+func (ec *executionContext) _ConnectionTypeModemPool_poolId(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeModemPool) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeModemPool_poolId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5987,7 +5987,7 @@ func (ec *executionContext) _ConnectionTypeModemPool_pool_id(ctx context.Context
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionTypeModemPool_pool_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionTypeModemPool_poolId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionTypeModemPool",
 		Field:      field,
@@ -6036,26 +6036,26 @@ func (ec *executionContext) fieldContext_ConnectionTypeModemPool_modem(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "modem_id":
-				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
+			case "modemId":
+				return ec.fieldContext_ModemInfo_modemId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
-			case "at_init":
-				return ec.fieldContext_ModemInfo_at_init(ctx, field)
-			case "at_test":
-				return ec.fieldContext_ModemInfo_at_test(ctx, field)
-			case "at_config":
-				return ec.fieldContext_ModemInfo_at_config(ctx, field)
-			case "at_dial":
-				return ec.fieldContext_ModemInfo_at_dial(ctx, field)
-			case "at_hangup":
-				return ec.fieldContext_ModemInfo_at_hangup(ctx, field)
-			case "at_escape":
-				return ec.fieldContext_ModemInfo_at_escape(ctx, field)
-			case "at_dsr":
-				return ec.fieldContext_ModemInfo_at_dsr(ctx, field)
-			case "connect_timeout":
-				return ec.fieldContext_ModemInfo_connect_timeout(ctx, field)
+			case "atInit":
+				return ec.fieldContext_ModemInfo_atInit(ctx, field)
+			case "atTest":
+				return ec.fieldContext_ModemInfo_atTest(ctx, field)
+			case "atConfig":
+				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
+			case "atDial":
+				return ec.fieldContext_ModemInfo_atDial(ctx, field)
+			case "atHangup":
+				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
+			case "atEscape":
+				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
+			case "atDsr":
+				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
+			case "connectTimeout":
+				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			}
@@ -6306,20 +6306,20 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_spec(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "correlation_id":
-				return ec.fieldContext_BulkSpec_correlation_id(ctx, field)
-			case "driver_type":
-				return ec.fieldContext_BulkSpec_driver_type(ctx, field)
+			case "correlationId":
+				return ec.fieldContext_BulkSpec_correlationId(ctx, field)
+			case "driverType":
+				return ec.fieldContext_BulkSpec_driverType(ctx, field)
 			case "devices":
 				return ec.fieldContext_BulkSpec_devices(ctx, field)
-			case "custom_devices":
-				return ec.fieldContext_BulkSpec_custom_devices(ctx, field)
+			case "customDevices":
+				return ec.fieldContext_BulkSpec_customDevices(ctx, field)
 			case "settings":
 				return ec.fieldContext_BulkSpec_settings(ctx, field)
 			case "actions":
 				return ec.fieldContext_BulkSpec_actions(ctx, field)
-			case "webhook_url":
-				return ec.fieldContext_BulkSpec_webhook_url(ctx, field)
+			case "webhookUrl":
+				return ec.fieldContext_BulkSpec_webhookUrl(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -6369,8 +6369,8 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_metadata(_ context.Co
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -6416,10 +6416,10 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_spec(_ c
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_CommunicationUnitSpec_external_id(ctx, field)
-			case "connection_info":
-				return ec.fieldContext_CommunicationUnitSpec_connection_info(ctx, field)
+			case "externalId":
+				return ec.fieldContext_CommunicationUnitSpec_externalId(ctx, field)
+			case "connectionInfo":
+				return ec.fieldContext_CommunicationUnitSpec_connectionInfo(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnitSpec", field.Name)
 		},
@@ -6469,8 +6469,8 @@ func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_metadata
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -6516,8 +6516,8 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_DeviceGroupSpec_external_id(ctx, field)
+			case "externalId":
+				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
 			case "name":
 				return ec.fieldContext_DeviceGroupSpec_name(ctx, field)
 			}
@@ -6569,8 +6569,8 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_metadata(_ con
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -6616,12 +6616,12 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
+			case "externalId":
+				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
-			case "communication_unit_link":
-				return ec.fieldContext_DeviceSpec_communication_unit_link(ctx, field)
+			case "communicationUnitLink":
+				return ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 			case "timezone":
 				return ec.fieldContext_DeviceSpec_timezone(ctx, field)
 			}
@@ -6673,8 +6673,8 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -6684,8 +6684,8 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.
 	return fc, nil
 }
 
-func (ec *executionContext) _DataLinkTemplate_link_protocol(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DataLinkTemplate_link_protocol(ctx, field)
+func (ec *executionContext) _DataLinkTemplate_linkProtocol(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DataLinkTemplate_linkProtocol(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6712,7 +6712,7 @@ func (ec *executionContext) _DataLinkTemplate_link_protocol(ctx context.Context,
 	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DataLinkTemplate_link_protocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DataLinkTemplate_linkProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DataLinkTemplate",
 		Field:      field,
@@ -6725,8 +6725,8 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_link_protocol(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _DataLinkTemplate_app_protocol_refs(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DataLinkTemplate_app_protocol_refs(ctx, field)
+func (ec *executionContext) _DataLinkTemplate_appProtocolRefs(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DataLinkTemplate_appProtocolRefs(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6753,7 +6753,7 @@ func (ec *executionContext) _DataLinkTemplate_app_protocol_refs(ctx context.Cont
 	return ec.marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DataLinkTemplate_app_protocol_refs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DataLinkTemplate_appProtocolRefs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DataLinkTemplate",
 		Field:      field,
@@ -6802,20 +6802,20 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "field_id":
-				return ec.fieldContext_FieldSimpleDescriptor_field_id(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
-			case "data_type":
-				return ec.fieldContext_FieldSimpleDescriptor_data_type(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
 			case "tooltip":
 				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
 			case "required":
 				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
 			case "validation":
 				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
-			case "default_value":
-				return ec.fieldContext_FieldSimpleDescriptor_default_value(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
 		},
@@ -6859,12 +6859,12 @@ func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field gr
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_DeviceSpec_external_id(ctx, field)
+			case "externalId":
+				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
-			case "communication_unit_link":
-				return ec.fieldContext_DeviceSpec_communication_unit_link(ctx, field)
+			case "communicationUnitLink":
+				return ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 			case "timezone":
 				return ec.fieldContext_DeviceSpec_timezone(ctx, field)
 			}
@@ -6916,8 +6916,8 @@ func (ec *executionContext) fieldContext_Device_metadata(_ context.Context, fiel
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -6927,8 +6927,8 @@ func (ec *executionContext) fieldContext_Device_metadata(_ context.Context, fiel
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceCommunicationUnit_communication_unit_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnit) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceCommunicationUnit_communication_unit_id(ctx, field)
+func (ec *executionContext) _DeviceCommunicationUnit_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6955,7 +6955,7 @@ func (ec *executionContext) _DeviceCommunicationUnit_communication_unit_id(ctx c
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceCommunicationUnit_communication_unit_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceCommunicationUnit_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceCommunicationUnit",
 		Field:      field,
@@ -6968,8 +6968,8 @@ func (ec *executionContext) fieldContext_DeviceCommunicationUnit_communication_u
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceCommunicationUnit_app_protocol(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnit) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceCommunicationUnit_app_protocol(ctx, field)
+func (ec *executionContext) _DeviceCommunicationUnit_appProtocol(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6996,7 +6996,7 @@ func (ec *executionContext) _DeviceCommunicationUnit_app_protocol(ctx context.Co
 	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceCommunicationUnit_app_protocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceCommunicationUnit_appProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceCommunicationUnit",
 		Field:      field,
@@ -7045,8 +7045,8 @@ func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "external_id":
-				return ec.fieldContext_DeviceGroupSpec_external_id(ctx, field)
+			case "externalId":
+				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
 			case "name":
 				return ec.fieldContext_DeviceGroupSpec_name(ctx, field)
 			}
@@ -7092,8 +7092,8 @@ func (ec *executionContext) fieldContext_DeviceGroup_status(_ context.Context, f
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "device_id":
-				return ec.fieldContext_DeviceGroupStatus_device_id(ctx, field)
+			case "deviceId":
+				return ec.fieldContext_DeviceGroupStatus_deviceId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupStatus", field.Name)
 		},
@@ -7143,8 +7143,8 @@ func (ec *executionContext) fieldContext_DeviceGroup_metadata(_ context.Context,
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -7154,8 +7154,8 @@ func (ec *executionContext) fieldContext_DeviceGroup_metadata(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceGroupSpec_external_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupSpec_external_id(ctx, field)
+func (ec *executionContext) _DeviceGroupSpec_externalId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7182,7 +7182,7 @@ func (ec *executionContext) _DeviceGroupSpec_external_id(ctx context.Context, fi
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceGroupSpec_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceGroupSpec_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceGroupSpec",
 		Field:      field,
@@ -7236,8 +7236,8 @@ func (ec *executionContext) fieldContext_DeviceGroupSpec_name(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceGroupStatus_device_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupStatus_device_id(ctx, field)
+func (ec *executionContext) _DeviceGroupStatus_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceGroupStatus_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7264,7 +7264,7 @@ func (ec *executionContext) _DeviceGroupStatus_device_id(ctx context.Context, fi
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceGroupStatus_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceGroupStatus_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceGroupStatus",
 		Field:      field,
@@ -7277,8 +7277,8 @@ func (ec *executionContext) fieldContext_DeviceGroupStatus_device_id(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceSpec_external_id(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceSpec_external_id(ctx, field)
+func (ec *executionContext) _DeviceSpec_externalId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceSpec_externalId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7305,7 +7305,7 @@ func (ec *executionContext) _DeviceSpec_external_id(ctx context.Context, field g
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceSpec_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceSpec_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceSpec",
 		Field:      field,
@@ -7365,8 +7365,8 @@ func (ec *executionContext) fieldContext_DeviceSpec_attributes(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceSpec_communication_unit_link(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceSpec_communication_unit_link(ctx, field)
+func (ec *executionContext) _DeviceSpec_communicationUnitLink(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7393,7 +7393,7 @@ func (ec *executionContext) _DeviceSpec_communication_unit_link(ctx context.Cont
 	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceSpec_communication_unit_link(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceSpec_communicationUnitLink(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceSpec",
 		Field:      field,
@@ -7401,10 +7401,10 @@ func (ec *executionContext) fieldContext_DeviceSpec_communication_unit_link(_ co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "communication_unit_id":
-				return ec.fieldContext_DeviceCommunicationUnit_communication_unit_id(ctx, field)
-			case "app_protocol":
-				return ec.fieldContext_DeviceCommunicationUnit_app_protocol(ctx, field)
+			case "communicationUnitId":
+				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
+			case "appProtocol":
+				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
 		},
@@ -7491,20 +7491,20 @@ func (ec *executionContext) fieldContext_Driver_spec(_ context.Context, field gr
 			switch field.Name {
 			case "version":
 				return ec.fieldContext_DriverSpec_version(ctx, field)
-			case "listening_port":
-				return ec.fieldContext_DriverSpec_listening_port(ctx, field)
-			case "driver_type":
-				return ec.fieldContext_DriverSpec_driver_type(ctx, field)
-			case "max_concurrent_jobs":
-				return ec.fieldContext_DriverSpec_max_concurrent_jobs(ctx, field)
-			case "max_cascade_depth":
-				return ec.fieldContext_DriverSpec_max_cascade_depth(ctx, field)
-			case "typical_mem_usage":
-				return ec.fieldContext_DriverSpec_typical_mem_usage(ctx, field)
+			case "listeningPort":
+				return ec.fieldContext_DriverSpec_listeningPort(ctx, field)
+			case "driverType":
+				return ec.fieldContext_DriverSpec_driverType(ctx, field)
+			case "maxConcurrentJobs":
+				return ec.fieldContext_DriverSpec_maxConcurrentJobs(ctx, field)
+			case "maxCascadeDepth":
+				return ec.fieldContext_DriverSpec_maxCascadeDepth(ctx, field)
+			case "typicalMemUsage":
+				return ec.fieldContext_DriverSpec_typicalMemUsage(ctx, field)
 			case "templates":
 				return ec.fieldContext_DriverSpec_templates(ctx, field)
-			case "display_name":
-				return ec.fieldContext_DriverSpec_display_name(ctx, field)
+			case "displayName":
+				return ec.fieldContext_DriverSpec_displayName(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DriverSpec", field.Name)
 		},
@@ -7553,8 +7553,8 @@ func (ec *executionContext) fieldContext_DriverSpec_version(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_listening_port(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_listening_port(ctx, field)
+func (ec *executionContext) _DriverSpec_listeningPort(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_listeningPort(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7581,7 +7581,7 @@ func (ec *executionContext) _DriverSpec_listening_port(ctx context.Context, fiel
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_listening_port(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_listeningPort(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7594,8 +7594,8 @@ func (ec *executionContext) fieldContext_DriverSpec_listening_port(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_driver_type(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_driver_type(ctx, field)
+func (ec *executionContext) _DriverSpec_driverType(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_driverType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7622,7 +7622,7 @@ func (ec *executionContext) _DriverSpec_driver_type(ctx context.Context, field g
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_driver_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7635,8 +7635,8 @@ func (ec *executionContext) fieldContext_DriverSpec_driver_type(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_max_concurrent_jobs(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_max_concurrent_jobs(ctx, field)
+func (ec *executionContext) _DriverSpec_maxConcurrentJobs(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_maxConcurrentJobs(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7663,7 +7663,7 @@ func (ec *executionContext) _DriverSpec_max_concurrent_jobs(ctx context.Context,
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_max_concurrent_jobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_maxConcurrentJobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7676,8 +7676,8 @@ func (ec *executionContext) fieldContext_DriverSpec_max_concurrent_jobs(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_max_cascade_depth(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_max_cascade_depth(ctx, field)
+func (ec *executionContext) _DriverSpec_maxCascadeDepth(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_maxCascadeDepth(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7704,7 +7704,7 @@ func (ec *executionContext) _DriverSpec_max_cascade_depth(ctx context.Context, f
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_max_cascade_depth(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_maxCascadeDepth(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7717,8 +7717,8 @@ func (ec *executionContext) fieldContext_DriverSpec_max_cascade_depth(_ context.
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_typical_mem_usage(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_typical_mem_usage(ctx, field)
+func (ec *executionContext) _DriverSpec_typicalMemUsage(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_typicalMemUsage(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7745,7 +7745,7 @@ func (ec *executionContext) _DriverSpec_typical_mem_usage(ctx context.Context, f
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_typical_mem_usage(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_typicalMemUsage(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7794,16 +7794,16 @@ func (ec *executionContext) fieldContext_DriverSpec_templates(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "communication_templates":
-				return ec.fieldContext_DriverTemplates_communication_templates(ctx, field)
-			case "app_protocols":
-				return ec.fieldContext_DriverTemplates_app_protocols(ctx, field)
-			case "action_attributes":
-				return ec.fieldContext_DriverTemplates_action_attributes(ctx, field)
-			case "access_templates":
-				return ec.fieldContext_DriverTemplates_access_templates(ctx, field)
-			case "action_constraints":
-				return ec.fieldContext_DriverTemplates_action_constraints(ctx, field)
+			case "communicationTemplates":
+				return ec.fieldContext_DriverTemplates_communicationTemplates(ctx, field)
+			case "appProtocols":
+				return ec.fieldContext_DriverTemplates_appProtocols(ctx, field)
+			case "actionAttributes":
+				return ec.fieldContext_DriverTemplates_actionAttributes(ctx, field)
+			case "accessTemplates":
+				return ec.fieldContext_DriverTemplates_accessTemplates(ctx, field)
+			case "actionConstraints":
+				return ec.fieldContext_DriverTemplates_actionConstraints(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DriverTemplates", field.Name)
 		},
@@ -7811,8 +7811,8 @@ func (ec *executionContext) fieldContext_DriverSpec_templates(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverSpec_display_name(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverSpec_display_name(ctx, field)
+func (ec *executionContext) _DriverSpec_displayName(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverSpec_displayName(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7839,7 +7839,7 @@ func (ec *executionContext) _DriverSpec_display_name(ctx context.Context, field 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverSpec_display_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverSpec_displayName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverSpec",
 		Field:      field,
@@ -7852,8 +7852,8 @@ func (ec *executionContext) fieldContext_DriverSpec_display_name(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverTemplates_communication_templates(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverTemplates_communication_templates(ctx, field)
+func (ec *executionContext) _DriverTemplates_communicationTemplates(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_communicationTemplates(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7880,7 +7880,7 @@ func (ec *executionContext) _DriverTemplates_communication_templates(ctx context
 	return ec.marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverTemplates_communication_templates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverTemplates_communicationTemplates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverTemplates",
 		Field:      field,
@@ -7899,8 +7899,8 @@ func (ec *executionContext) fieldContext_DriverTemplates_communication_templates
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverTemplates_app_protocols(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverTemplates_app_protocols(ctx, field)
+func (ec *executionContext) _DriverTemplates_appProtocols(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_appProtocols(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7927,7 +7927,7 @@ func (ec *executionContext) _DriverTemplates_app_protocols(ctx context.Context, 
 	return ec.marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverTemplates_app_protocols(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverTemplates_appProtocols(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverTemplates",
 		Field:      field,
@@ -7948,8 +7948,8 @@ func (ec *executionContext) fieldContext_DriverTemplates_app_protocols(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverTemplates_action_attributes(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverTemplates_action_attributes(ctx, field)
+func (ec *executionContext) _DriverTemplates_actionAttributes(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_actionAttributes(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7976,7 +7976,7 @@ func (ec *executionContext) _DriverTemplates_action_attributes(ctx context.Conte
 	return ec.marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionAttributes(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverTemplates_action_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverTemplates_actionAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverTemplates",
 		Field:      field,
@@ -7995,8 +7995,8 @@ func (ec *executionContext) fieldContext_DriverTemplates_action_attributes(_ con
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverTemplates_access_templates(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverTemplates_access_templates(ctx, field)
+func (ec *executionContext) _DriverTemplates_accessTemplates(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_accessTemplates(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8023,7 +8023,7 @@ func (ec *executionContext) _DriverTemplates_access_templates(ctx context.Contex
 	return ec.marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAccessLevelTemplate(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverTemplates_access_templates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverTemplates_accessTemplates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverTemplates",
 		Field:      field,
@@ -8042,8 +8042,8 @@ func (ec *executionContext) fieldContext_DriverTemplates_access_templates(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _DriverTemplates_action_constraints(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DriverTemplates_action_constraints(ctx, field)
+func (ec *executionContext) _DriverTemplates_actionConstraints(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_actionConstraints(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8070,7 +8070,7 @@ func (ec *executionContext) _DriverTemplates_action_constraints(ctx context.Cont
 	return ec.marshalOJobActionContraints2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionContraints(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DriverTemplates_action_constraints(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DriverTemplates_actionConstraints(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DriverTemplates",
 		Field:      field,
@@ -8078,10 +8078,10 @@ func (ec *executionContext) fieldContext_DriverTemplates_action_constraints(_ co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "get_register_type_name":
-				return ec.fieldContext_JobActionContraints_get_register_type_name(ctx, field)
-			case "get_register_type_attributes":
-				return ec.fieldContext_JobActionContraints_get_register_type_attributes(ctx, field)
+			case "getRegisterTypeName":
+				return ec.fieldContext_JobActionContraints_getRegisterTypeName(ctx, field)
+			case "getRegisterTypeAttributes":
+				return ec.fieldContext_JobActionContraints_getRegisterTypeAttributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobActionContraints", field.Name)
 		},
@@ -8130,8 +8130,8 @@ func (ec *executionContext) fieldContext_Empty__empty(_ context.Context, field g
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_field_id(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_field_id(ctx, field)
+func (ec *executionContext) _FieldSimpleDescriptor_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8158,7 +8158,7 @@ func (ec *executionContext) _FieldSimpleDescriptor_field_id(ctx context.Context,
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_field_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldSimpleDescriptor_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldSimpleDescriptor",
 		Field:      field,
@@ -8212,8 +8212,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_label(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_data_type(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_data_type(ctx, field)
+func (ec *executionContext) _FieldSimpleDescriptor_dataType(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8240,7 +8240,7 @@ func (ec *executionContext) _FieldSimpleDescriptor_data_type(ctx context.Context
 	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_data_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldSimpleDescriptor_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldSimpleDescriptor",
 		Field:      field,
@@ -8373,18 +8373,18 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_validation(_ cont
 			switch field.Name {
 			case "re":
 				return ec.fieldContext_FieldValidation_re(ctx, field)
-			case "min_length":
-				return ec.fieldContext_FieldValidation_min_length(ctx, field)
-			case "max_length":
-				return ec.fieldContext_FieldValidation_max_length(ctx, field)
-			case "min_integer":
-				return ec.fieldContext_FieldValidation_min_integer(ctx, field)
-			case "max_integer":
-				return ec.fieldContext_FieldValidation_max_integer(ctx, field)
-			case "min_number":
-				return ec.fieldContext_FieldValidation_min_number(ctx, field)
-			case "max_number":
-				return ec.fieldContext_FieldValidation_max_number(ctx, field)
+			case "minLength":
+				return ec.fieldContext_FieldValidation_minLength(ctx, field)
+			case "maxLength":
+				return ec.fieldContext_FieldValidation_maxLength(ctx, field)
+			case "minInteger":
+				return ec.fieldContext_FieldValidation_minInteger(ctx, field)
+			case "maxInteger":
+				return ec.fieldContext_FieldValidation_maxInteger(ctx, field)
+			case "minNumber":
+				return ec.fieldContext_FieldValidation_minNumber(ctx, field)
+			case "maxNumber":
+				return ec.fieldContext_FieldValidation_maxNumber(ctx, field)
 			case "options":
 				return ec.fieldContext_FieldValidation_options(ctx, field)
 			}
@@ -8394,8 +8394,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_validation(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_default_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_default_value(ctx, field)
+func (ec *executionContext) _FieldSimpleDescriptor_defaultValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8422,7 +8422,7 @@ func (ec *executionContext) _FieldSimpleDescriptor_default_value(ctx context.Con
 	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_default_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldSimpleDescriptor_defaultValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldSimpleDescriptor",
 		Field:      field,
@@ -8430,18 +8430,18 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_default_value(_ c
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "text_value":
-				return ec.fieldContext_FieldValue_text_value(ctx, field)
-			case "integer_value":
-				return ec.fieldContext_FieldValue_integer_value(ctx, field)
-			case "double_value":
-				return ec.fieldContext_FieldValue_double_value(ctx, field)
-			case "binary_value":
-				return ec.fieldContext_FieldValue_binary_value(ctx, field)
-			case "bool_value":
-				return ec.fieldContext_FieldValue_bool_value(ctx, field)
-			case "date_value":
-				return ec.fieldContext_FieldValue_date_value(ctx, field)
+			case "textValue":
+				return ec.fieldContext_FieldValue_textValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_FieldValue_integerValue(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_FieldValue_doubleValue(ctx, field)
+			case "binaryValue":
+				return ec.fieldContext_FieldValue_binaryValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_FieldValue_boolValue(ctx, field)
+			case "dateValue":
+				return ec.fieldContext_FieldValue_dateValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
 		},
@@ -8490,8 +8490,8 @@ func (ec *executionContext) fieldContext_FieldValidation_re(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_min_length(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_min_length(ctx, field)
+func (ec *executionContext) _FieldValidation_minLength(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_minLength(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8518,7 +8518,7 @@ func (ec *executionContext) _FieldValidation_min_length(ctx context.Context, fie
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_min_length(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_minLength(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8531,8 +8531,8 @@ func (ec *executionContext) fieldContext_FieldValidation_min_length(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_max_length(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_max_length(ctx, field)
+func (ec *executionContext) _FieldValidation_maxLength(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_maxLength(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8559,7 +8559,7 @@ func (ec *executionContext) _FieldValidation_max_length(ctx context.Context, fie
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_max_length(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_maxLength(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8572,8 +8572,8 @@ func (ec *executionContext) fieldContext_FieldValidation_max_length(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_min_integer(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_min_integer(ctx, field)
+func (ec *executionContext) _FieldValidation_minInteger(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_minInteger(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8600,7 +8600,7 @@ func (ec *executionContext) _FieldValidation_min_integer(ctx context.Context, fi
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_min_integer(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_minInteger(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8613,8 +8613,8 @@ func (ec *executionContext) fieldContext_FieldValidation_min_integer(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_max_integer(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_max_integer(ctx, field)
+func (ec *executionContext) _FieldValidation_maxInteger(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_maxInteger(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8641,7 +8641,7 @@ func (ec *executionContext) _FieldValidation_max_integer(ctx context.Context, fi
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_max_integer(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_maxInteger(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8654,8 +8654,8 @@ func (ec *executionContext) fieldContext_FieldValidation_max_integer(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_min_number(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_min_number(ctx, field)
+func (ec *executionContext) _FieldValidation_minNumber(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_minNumber(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8682,7 +8682,7 @@ func (ec *executionContext) _FieldValidation_min_number(ctx context.Context, fie
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_min_number(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_minNumber(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8695,8 +8695,8 @@ func (ec *executionContext) fieldContext_FieldValidation_min_number(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValidation_max_number(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValidation_max_number(ctx, field)
+func (ec *executionContext) _FieldValidation_maxNumber(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_maxNumber(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8723,7 +8723,7 @@ func (ec *executionContext) _FieldValidation_max_number(ctx context.Context, fie
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValidation_max_number(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValidation_maxNumber(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValidation",
 		Field:      field,
@@ -8783,8 +8783,8 @@ func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_text_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_text_value(ctx, field)
+func (ec *executionContext) _FieldValue_textValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_textValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8811,7 +8811,7 @@ func (ec *executionContext) _FieldValue_text_value(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_text_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_textValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -8824,8 +8824,8 @@ func (ec *executionContext) fieldContext_FieldValue_text_value(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_integer_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_integer_value(ctx, field)
+func (ec *executionContext) _FieldValue_integerValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_integerValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8852,7 +8852,7 @@ func (ec *executionContext) _FieldValue_integer_value(ctx context.Context, field
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_integer_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_integerValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -8865,8 +8865,8 @@ func (ec *executionContext) fieldContext_FieldValue_integer_value(_ context.Cont
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_double_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_double_value(ctx, field)
+func (ec *executionContext) _FieldValue_doubleValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_doubleValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8893,7 +8893,7 @@ func (ec *executionContext) _FieldValue_double_value(ctx context.Context, field 
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_double_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_doubleValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -8906,8 +8906,8 @@ func (ec *executionContext) fieldContext_FieldValue_double_value(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_binary_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_binary_value(ctx, field)
+func (ec *executionContext) _FieldValue_binaryValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_binaryValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8934,7 +8934,7 @@ func (ec *executionContext) _FieldValue_binary_value(ctx context.Context, field 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_binary_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_binaryValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -8947,8 +8947,8 @@ func (ec *executionContext) fieldContext_FieldValue_binary_value(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_bool_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_bool_value(ctx, field)
+func (ec *executionContext) _FieldValue_boolValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_boolValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8975,7 +8975,7 @@ func (ec *executionContext) _FieldValue_bool_value(ctx context.Context, field gr
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_bool_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_boolValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -8988,8 +8988,8 @@ func (ec *executionContext) fieldContext_FieldValue_bool_value(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_date_value(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_date_value(ctx, field)
+func (ec *executionContext) _FieldValue_dateValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_dateValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9016,7 +9016,7 @@ func (ec *executionContext) _FieldValue_date_value(ctx context.Context, field gr
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_date_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_dateValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -9029,8 +9029,8 @@ func (ec *executionContext) fieldContext_FieldValue_date_value(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_action_id(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_action_id(ctx, field)
+func (ec *executionContext) _JobAction_actionId(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_actionId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9057,7 +9057,7 @@ func (ec *executionContext) _JobAction_action_id(ctx context.Context, field grap
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_action_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_actionId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9117,8 +9117,8 @@ func (ec *executionContext) fieldContext_JobAction_attributes(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_register(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_register(ctx, field)
+func (ec *executionContext) _JobAction_getRegister(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getRegister(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9145,7 +9145,7 @@ func (ec *executionContext) _JobAction_get_register(ctx context.Context, field g
 	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_register(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9162,8 +9162,8 @@ func (ec *executionContext) fieldContext_JobAction_get_register(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_periodical_profile(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_periodical_profile(ctx, field)
+func (ec *executionContext) _JobAction_getPeriodicalProfile(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getPeriodicalProfile(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9190,7 +9190,7 @@ func (ec *executionContext) _JobAction_get_periodical_profile(ctx context.Contex
 	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_periodical_profile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getPeriodicalProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9209,8 +9209,8 @@ func (ec *executionContext) fieldContext_JobAction_get_periodical_profile(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_irregular_profile(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_irregular_profile(ctx, field)
+func (ec *executionContext) _JobAction_getIrregularProfile(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getIrregularProfile(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9237,7 +9237,7 @@ func (ec *executionContext) _JobAction_get_irregular_profile(ctx context.Context
 	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_irregular_profile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getIrregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9256,8 +9256,8 @@ func (ec *executionContext) fieldContext_JobAction_get_irregular_profile(_ conte
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_events(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_events(ctx, field)
+func (ec *executionContext) _JobAction_getEvents(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getEvents(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9284,7 +9284,7 @@ func (ec *executionContext) _JobAction_get_events(ctx context.Context, field gra
 	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_events(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9303,8 +9303,8 @@ func (ec *executionContext) fieldContext_JobAction_get_events(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_clock(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_clock(ctx, field)
+func (ec *executionContext) _JobAction_getClock(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getClock(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9331,7 +9331,7 @@ func (ec *executionContext) _JobAction_get_clock(ctx context.Context, field grap
 	return ec.marshalOActionGetClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetClock(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_clock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getClock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9348,8 +9348,8 @@ func (ec *executionContext) fieldContext_JobAction_get_clock(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_sync_clock(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_sync_clock(ctx, field)
+func (ec *executionContext) _JobAction_syncClock(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_syncClock(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9376,7 +9376,7 @@ func (ec *executionContext) _JobAction_sync_clock(ctx context.Context, field gra
 	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_sync_clock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_syncClock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9393,8 +9393,8 @@ func (ec *executionContext) fieldContext_JobAction_sync_clock(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_relay_state(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_relay_state(ctx, field)
+func (ec *executionContext) _JobAction_getRelayState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getRelayState(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9421,7 +9421,7 @@ func (ec *executionContext) _JobAction_get_relay_state(ctx context.Context, fiel
 	return ec.marshalOActionGetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRelayState(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_relay_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9438,8 +9438,8 @@ func (ec *executionContext) fieldContext_JobAction_get_relay_state(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_set_relay_state(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_set_relay_state(ctx, field)
+func (ec *executionContext) _JobAction_setRelayState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_setRelayState(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9466,7 +9466,7 @@ func (ec *executionContext) _JobAction_set_relay_state(ctx context.Context, fiel
 	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_set_relay_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_setRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9483,8 +9483,8 @@ func (ec *executionContext) fieldContext_JobAction_set_relay_state(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_disconnector_state(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_disconnector_state(ctx, field)
+func (ec *executionContext) _JobAction_getDisconnectorState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getDisconnectorState(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9511,7 +9511,7 @@ func (ec *executionContext) _JobAction_get_disconnector_state(ctx context.Contex
 	return ec.marshalOActionGetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDisconnectorState(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_disconnector_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9528,8 +9528,8 @@ func (ec *executionContext) fieldContext_JobAction_get_disconnector_state(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_set_disconnector_state(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_set_disconnector_state(ctx, field)
+func (ec *executionContext) _JobAction_setDisconnectorState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_setDisconnectorState(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9556,7 +9556,7 @@ func (ec *executionContext) _JobAction_set_disconnector_state(ctx context.Contex
 	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_set_disconnector_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_setDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9573,8 +9573,8 @@ func (ec *executionContext) fieldContext_JobAction_set_disconnector_state(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_tou(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_tou(ctx, field)
+func (ec *executionContext) _JobAction_getTou(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getTou(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9601,7 +9601,7 @@ func (ec *executionContext) _JobAction_get_tou(ctx context.Context, field graphq
 	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_tou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9618,8 +9618,8 @@ func (ec *executionContext) fieldContext_JobAction_get_tou(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_set_tou(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_set_tou(ctx, field)
+func (ec *executionContext) _JobAction_setTou(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_setTou(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9646,7 +9646,7 @@ func (ec *executionContext) _JobAction_set_tou(ctx context.Context, field graphq
 	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_set_tou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_setTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9663,8 +9663,8 @@ func (ec *executionContext) fieldContext_JobAction_set_tou(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_get_limiter(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_get_limiter(ctx, field)
+func (ec *executionContext) _JobAction_getLimiter(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_getLimiter(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9691,7 +9691,7 @@ func (ec *executionContext) _JobAction_get_limiter(ctx context.Context, field gr
 	return ec.marshalOActionGetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetLimiter(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_get_limiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_getLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9708,8 +9708,8 @@ func (ec *executionContext) fieldContext_JobAction_get_limiter(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_set_limiter(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_set_limiter(ctx, field)
+func (ec *executionContext) _JobAction_setLimiter(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_setLimiter(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9736,7 +9736,7 @@ func (ec *executionContext) _JobAction_set_limiter(ctx context.Context, field gr
 	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_set_limiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_setLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9753,8 +9753,8 @@ func (ec *executionContext) fieldContext_JobAction_set_limiter(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_reset_billing_period(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_reset_billing_period(ctx, field)
+func (ec *executionContext) _JobAction_resetBillingPeriod(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_resetBillingPeriod(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9781,7 +9781,7 @@ func (ec *executionContext) _JobAction_reset_billing_period(ctx context.Context,
 	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_reset_billing_period(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_resetBillingPeriod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9798,8 +9798,8 @@ func (ec *executionContext) fieldContext_JobAction_reset_billing_period(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _JobAction_fw_update(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_fw_update(ctx, field)
+func (ec *executionContext) _JobAction_fwUpdate(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobAction_fwUpdate(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9826,7 +9826,7 @@ func (ec *executionContext) _JobAction_fw_update(ctx context.Context, field grap
 	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobAction_fw_update(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobAction_fwUpdate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobAction",
 		Field:      field,
@@ -9920,20 +9920,20 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "field_id":
-				return ec.fieldContext_FieldSimpleDescriptor_field_id(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
-			case "data_type":
-				return ec.fieldContext_FieldSimpleDescriptor_data_type(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
 			case "tooltip":
 				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
 			case "required":
 				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
 			case "validation":
 				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
-			case "default_value":
-				return ec.fieldContext_FieldSimpleDescriptor_default_value(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
 		},
@@ -9941,8 +9941,8 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _JobActionContraints_get_register_type_name(ctx context.Context, field graphql.CollectedField, obj *model.JobActionContraints) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobActionContraints_get_register_type_name(ctx, field)
+func (ec *executionContext) _JobActionContraints_getRegisterTypeName(ctx context.Context, field graphql.CollectedField, obj *model.JobActionContraints) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionContraints_getRegisterTypeName(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9969,7 +9969,7 @@ func (ec *executionContext) _JobActionContraints_get_register_type_name(ctx cont
 	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobActionContraints_get_register_type_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobActionContraints_getRegisterTypeName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobActionContraints",
 		Field:      field,
@@ -9988,8 +9988,8 @@ func (ec *executionContext) fieldContext_JobActionContraints_get_register_type_n
 	return fc, nil
 }
 
-func (ec *executionContext) _JobActionContraints_get_register_type_attributes(ctx context.Context, field graphql.CollectedField, obj *model.JobActionContraints) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobActionContraints_get_register_type_attributes(ctx, field)
+func (ec *executionContext) _JobActionContraints_getRegisterTypeAttributes(ctx context.Context, field graphql.CollectedField, obj *model.JobActionContraints) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionContraints_getRegisterTypeAttributes(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10016,7 +10016,7 @@ func (ec *executionContext) _JobActionContraints_get_register_type_attributes(ct
 	return ec.marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapListOfString(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobActionContraints_get_register_type_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobActionContraints_getRegisterTypeAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobActionContraints",
 		Field:      field,
@@ -10035,8 +10035,8 @@ func (ec *executionContext) fieldContext_JobActionContraints_get_register_type_a
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_job_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_job_id(ctx, field)
+func (ec *executionContext) _JobDevice_jobId(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_jobId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10063,7 +10063,7 @@ func (ec *executionContext) _JobDevice_job_id(ctx context.Context, field graphql
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_job_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_jobId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10076,8 +10076,8 @@ func (ec *executionContext) fieldContext_JobDevice_job_id(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_device_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_device_id(ctx, field)
+func (ec *executionContext) _JobDevice_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10104,7 +10104,7 @@ func (ec *executionContext) _JobDevice_device_id(ctx context.Context, field grap
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10117,8 +10117,8 @@ func (ec *executionContext) fieldContext_JobDevice_device_id(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_external_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_external_id(ctx, field)
+func (ec *executionContext) _JobDevice_externalId(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_externalId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10145,7 +10145,7 @@ func (ec *executionContext) _JobDevice_external_id(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_external_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10158,8 +10158,8 @@ func (ec *executionContext) fieldContext_JobDevice_external_id(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_device_attributes(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_device_attributes(ctx, field)
+func (ec *executionContext) _JobDevice_deviceAttributes(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_deviceAttributes(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10186,7 +10186,7 @@ func (ec *executionContext) _JobDevice_device_attributes(ctx context.Context, fi
 	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_device_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_deviceAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10205,8 +10205,8 @@ func (ec *executionContext) fieldContext_JobDevice_device_attributes(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_connection_info(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_connection_info(ctx, field)
+func (ec *executionContext) _JobDevice_connectionInfo(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_connectionInfo(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10233,7 +10233,7 @@ func (ec *executionContext) _JobDevice_connection_info(ctx context.Context, fiel
 	return ec.marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_connection_info(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_connectionInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10243,14 +10243,14 @@ func (ec *executionContext) fieldContext_JobDevice_connection_info(_ context.Con
 			switch field.Name {
 			case "tcpip":
 				return ec.fieldContext_ConnectionInfo_tcpip(ctx, field)
-			case "modem_pool":
-				return ec.fieldContext_ConnectionInfo_modem_pool(ctx, field)
-			case "serial_over_ip":
-				return ec.fieldContext_ConnectionInfo_serial_over_ip(ctx, field)
-			case "link_protocol":
-				return ec.fieldContext_ConnectionInfo_link_protocol(ctx, field)
-			case "custom_grouping_id":
-				return ec.fieldContext_ConnectionInfo_custom_grouping_id(ctx, field)
+			case "modemPool":
+				return ec.fieldContext_ConnectionInfo_modemPool(ctx, field)
+			case "serialOverIp":
+				return ec.fieldContext_ConnectionInfo_serialOverIp(ctx, field)
+			case "linkProtocol":
+				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
+			case "customGroupingId":
+				return ec.fieldContext_ConnectionInfo_customGroupingId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -10258,8 +10258,8 @@ func (ec *executionContext) fieldContext_JobDevice_connection_info(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDevice_app_protocol(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDevice_app_protocol(ctx, field)
+func (ec *executionContext) _JobDevice_appProtocol(ctx context.Context, field graphql.CollectedField, obj *model.JobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDevice_appProtocol(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10286,7 +10286,7 @@ func (ec *executionContext) _JobDevice_app_protocol(ctx context.Context, field g
 	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDevice_app_protocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDevice_appProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDevice",
 		Field:      field,
@@ -10340,8 +10340,8 @@ func (ec *executionContext) fieldContext_JobDevice_timezone(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDeviceId_job_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDeviceId_job_id(ctx, field)
+func (ec *executionContext) _JobDeviceId_jobId(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDeviceId_jobId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10368,7 +10368,7 @@ func (ec *executionContext) _JobDeviceId_job_id(ctx context.Context, field graph
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDeviceId_job_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDeviceId_jobId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDeviceId",
 		Field:      field,
@@ -10381,8 +10381,8 @@ func (ec *executionContext) fieldContext_JobDeviceId_job_id(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _JobDeviceId_device_id(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobDeviceId_device_id(ctx, field)
+func (ec *executionContext) _JobDeviceId_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.JobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobDeviceId_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10409,7 +10409,7 @@ func (ec *executionContext) _JobDeviceId_device_id(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobDeviceId_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobDeviceId_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobDeviceId",
 		Field:      field,
@@ -10422,8 +10422,8 @@ func (ec *executionContext) fieldContext_JobDeviceId_device_id(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobSettings_max_duration(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobSettings_max_duration(ctx, field)
+func (ec *executionContext) _JobSettings_maxDuration(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobSettings_maxDuration(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10450,7 +10450,7 @@ func (ec *executionContext) _JobSettings_max_duration(ctx context.Context, field
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobSettings_max_duration(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobSettings_maxDuration(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobSettings",
 		Field:      field,
@@ -10545,8 +10545,8 @@ func (ec *executionContext) fieldContext_JobSettings_attempts(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobSettings_retry_delay(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobSettings_retry_delay(ctx, field)
+func (ec *executionContext) _JobSettings_retryDelay(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobSettings_retryDelay(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10573,7 +10573,7 @@ func (ec *executionContext) _JobSettings_retry_delay(ctx context.Context, field 
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobSettings_retry_delay(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobSettings_retryDelay(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobSettings",
 		Field:      field,
@@ -10586,8 +10586,8 @@ func (ec *executionContext) fieldContext_JobSettings_retry_delay(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _JobSettings_defer_start(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobSettings_defer_start(ctx, field)
+func (ec *executionContext) _JobSettings_deferStart(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobSettings_deferStart(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10614,7 +10614,7 @@ func (ec *executionContext) _JobSettings_defer_start(ctx context.Context, field 
 	return ec.marshalOBigInt2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobSettings_defer_start(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobSettings_deferStart(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobSettings",
 		Field:      field,
@@ -10627,8 +10627,8 @@ func (ec *executionContext) fieldContext_JobSettings_defer_start(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _JobSettings_expires_at(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobSettings_expires_at(ctx, field)
+func (ec *executionContext) _JobSettings_expiresAt(ctx context.Context, field graphql.CollectedField, obj *model.JobSettings) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobSettings_expiresAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10655,7 +10655,7 @@ func (ec *executionContext) _JobSettings_expires_at(ctx context.Context, field g
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobSettings_expires_at(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobSettings_expiresAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobSettings",
 		Field:      field,
@@ -10786,8 +10786,8 @@ func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, fi
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "action_id":
-				return ec.fieldContext_ActionResult_action_id(ctx, field)
+			case "actionId":
+				return ec.fieldContext_ActionResult_actionId(ctx, field)
 			case "status":
 				return ec.fieldContext_ActionResult_status(ctx, field)
 			case "data":
@@ -10799,8 +10799,8 @@ func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _JobStatus_created_at(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobStatus_created_at(ctx, field)
+func (ec *executionContext) _JobStatus_createdAt(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobStatus_createdAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10827,7 +10827,7 @@ func (ec *executionContext) _JobStatus_created_at(ctx context.Context, field gra
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobStatus_created_at(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobStatus_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobStatus",
 		Field:      field,
@@ -10840,8 +10840,8 @@ func (ec *executionContext) fieldContext_JobStatus_created_at(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobStatus_started_at(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobStatus_started_at(ctx, field)
+func (ec *executionContext) _JobStatus_startedAt(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobStatus_startedAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10868,7 +10868,7 @@ func (ec *executionContext) _JobStatus_started_at(ctx context.Context, field gra
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobStatus_started_at(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobStatus_startedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobStatus",
 		Field:      field,
@@ -10881,8 +10881,8 @@ func (ec *executionContext) fieldContext_JobStatus_started_at(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _JobStatus_finished_at(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobStatus_finished_at(ctx, field)
+func (ec *executionContext) _JobStatus_finishedAt(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobStatus_finishedAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10909,7 +10909,7 @@ func (ec *executionContext) _JobStatus_finished_at(ctx context.Context, field gr
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobStatus_finished_at(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobStatus_finishedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobStatus",
 		Field:      field,
@@ -10922,8 +10922,8 @@ func (ec *executionContext) fieldContext_JobStatus_finished_at(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _JobStatus_attempts_done(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobStatus_attempts_done(ctx, field)
+func (ec *executionContext) _JobStatus_attemptsDone(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobStatus_attemptsDone(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -10950,7 +10950,7 @@ func (ec *executionContext) _JobStatus_attempts_done(ctx context.Context, field 
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_JobStatus_attempts_done(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_JobStatus_attemptsDone(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "JobStatus",
 		Field:      field,
@@ -11236,18 +11236,18 @@ func (ec *executionContext) fieldContext_ListOfJobDevice_list(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "job_id":
-				return ec.fieldContext_JobDevice_job_id(ctx, field)
-			case "device_id":
-				return ec.fieldContext_JobDevice_device_id(ctx, field)
-			case "external_id":
-				return ec.fieldContext_JobDevice_external_id(ctx, field)
-			case "device_attributes":
-				return ec.fieldContext_JobDevice_device_attributes(ctx, field)
-			case "connection_info":
-				return ec.fieldContext_JobDevice_connection_info(ctx, field)
-			case "app_protocol":
-				return ec.fieldContext_JobDevice_app_protocol(ctx, field)
+			case "jobId":
+				return ec.fieldContext_JobDevice_jobId(ctx, field)
+			case "deviceId":
+				return ec.fieldContext_JobDevice_deviceId(ctx, field)
+			case "externalId":
+				return ec.fieldContext_JobDevice_externalId(ctx, field)
+			case "deviceAttributes":
+				return ec.fieldContext_JobDevice_deviceAttributes(ctx, field)
+			case "connectionInfo":
+				return ec.fieldContext_JobDevice_connectionInfo(ctx, field)
+			case "appProtocol":
+				return ec.fieldContext_JobDevice_appProtocol(ctx, field)
 			case "timezone":
 				return ec.fieldContext_JobDevice_timezone(ctx, field)
 			}
@@ -11293,10 +11293,10 @@ func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "job_id":
-				return ec.fieldContext_JobDeviceId_job_id(ctx, field)
-			case "device_id":
-				return ec.fieldContext_JobDeviceId_device_id(ctx, field)
+			case "jobId":
+				return ec.fieldContext_JobDeviceId_jobId(ctx, field)
+			case "deviceId":
+				return ec.fieldContext_JobDeviceId_deviceId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobDeviceId", field.Name)
 		},
@@ -11340,8 +11340,8 @@ func (ec *executionContext) fieldContext_ListOfModemPool_pools(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "pool_id":
-				return ec.fieldContext_ModemPoolSpec_pool_id(ctx, field)
+			case "poolId":
+				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
 			}
@@ -11392,8 +11392,8 @@ func (ec *executionContext) fieldContext_ListOfString_items(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelector_page_size(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelector_page_size(ctx, field)
+func (ec *executionContext) _ListSelector_pageSize(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelector_pageSize(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11420,7 +11420,7 @@ func (ec *executionContext) _ListSelector_page_size(ctx context.Context, field g
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelector_page_size(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelector_pageSize(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelector",
 		Field:      field,
@@ -11474,8 +11474,8 @@ func (ec *executionContext) fieldContext_ListSelector_offset(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelector_sort_by(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelector_sort_by(ctx, field)
+func (ec *executionContext) _ListSelector_sortBy(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelector_sortBy(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11502,7 +11502,7 @@ func (ec *executionContext) _ListSelector_sort_by(ctx context.Context, field gra
 	return ec.marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorSortBy(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelector_sort_by(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelector_sortBy(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelector",
 		Field:      field,
@@ -11510,8 +11510,8 @@ func (ec *executionContext) fieldContext_ListSelector_sort_by(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "field_id":
-				return ec.fieldContext_ListSelectorSortBy_field_id(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_ListSelectorSortBy_fieldId(ctx, field)
 			case "desc":
 				return ec.fieldContext_ListSelectorSortBy_desc(ctx, field)
 			}
@@ -11521,8 +11521,8 @@ func (ec *executionContext) fieldContext_ListSelector_sort_by(_ context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelector_filter_by(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelector_filter_by(ctx, field)
+func (ec *executionContext) _ListSelector_filterBy(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelector_filterBy(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11549,7 +11549,7 @@ func (ec *executionContext) _ListSelector_filter_by(ctx context.Context, field g
 	return ec.marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelector_filter_by(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelector_filterBy(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelector",
 		Field:      field,
@@ -11557,8 +11557,8 @@ func (ec *executionContext) fieldContext_ListSelector_filter_by(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "field_id":
-				return ec.fieldContext_ListSelectorFilterBy_field_id(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_ListSelectorFilterBy_fieldId(ctx, field)
 			case "operator":
 				return ec.fieldContext_ListSelectorFilterBy_operator(ctx, field)
 			case "text":
@@ -11619,8 +11619,8 @@ func (ec *executionContext) fieldContext_ListSelector_fields(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelectorFilterBy_field_id(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorFilterBy) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelectorFilterBy_field_id(ctx, field)
+func (ec *executionContext) _ListSelectorFilterBy_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorFilterBy) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelectorFilterBy_fieldId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11647,7 +11647,7 @@ func (ec *executionContext) _ListSelectorFilterBy_field_id(ctx context.Context, 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelectorFilterBy_field_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelectorFilterBy_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelectorFilterBy",
 		Field:      field,
@@ -11906,8 +11906,8 @@ func (ec *executionContext) fieldContext_ListSelectorFilterBy_date(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelectorSortBy_field_id(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorSortBy) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelectorSortBy_field_id(ctx, field)
+func (ec *executionContext) _ListSelectorSortBy_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorSortBy) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelectorSortBy_fieldId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -11934,7 +11934,7 @@ func (ec *executionContext) _ListSelectorSortBy_field_id(ctx context.Context, fi
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelectorSortBy_field_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelectorSortBy_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelectorSortBy",
 		Field:      field,
@@ -12070,8 +12070,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_exponent(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_double_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_double_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_doubleValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12098,7 +12098,7 @@ func (ec *executionContext) _MeasuredValue_double_value(ctx context.Context, fie
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_double_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_doubleValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12111,8 +12111,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_double_value(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_int_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_int_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_intValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_intValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12139,7 +12139,7 @@ func (ec *executionContext) _MeasuredValue_int_value(ctx context.Context, field 
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_int_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_intValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12152,8 +12152,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_int_value(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_str_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_str_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_strValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_strValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12180,7 +12180,7 @@ func (ec *executionContext) _MeasuredValue_str_value(ctx context.Context, field 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_str_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_strValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12193,8 +12193,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_str_value(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_timestamp_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_timestamp_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_timestampValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12221,7 +12221,7 @@ func (ec *executionContext) _MeasuredValue_timestamp_value(ctx context.Context, 
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_timestamp_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_timestampValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12234,8 +12234,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_timestamp_value(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_timestamp_tz_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_timestamp_tz_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_timestampTzValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12262,7 +12262,7 @@ func (ec *executionContext) _MeasuredValue_timestamp_tz_value(ctx context.Contex
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_timestamp_tz_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_timestampTzValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12275,8 +12275,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_timestamp_tz_value(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_bool_value(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_bool_value(ctx, field)
+func (ec *executionContext) _MeasuredValue_boolValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_boolValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12303,7 +12303,7 @@ func (ec *executionContext) _MeasuredValue_bool_value(ctx context.Context, field
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_bool_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_boolValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12445,8 +12445,8 @@ func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _MetadataFields_managed_fields(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+func (ec *executionContext) _MetadataFields_managedFields(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MetadataFields_managedFields(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12473,7 +12473,7 @@ func (ec *executionContext) _MetadataFields_managed_fields(ctx context.Context, 
 	return ec.marshalO_mapAny2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MetadataFields_managed_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MetadataFields",
 		Field:      field,
@@ -12533,8 +12533,8 @@ func (ec *executionContext) fieldContext_MetadataFields_name(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_modem_id(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_modem_id(ctx, field)
+func (ec *executionContext) _ModemInfo_modemId(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_modemId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12561,7 +12561,7 @@ func (ec *executionContext) _ModemInfo_modem_id(ctx context.Context, field graph
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_modem_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_modemId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12615,8 +12615,8 @@ func (ec *executionContext) fieldContext_ModemInfo_name(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_init(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_init(ctx, field)
+func (ec *executionContext) _ModemInfo_atInit(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atInit(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12643,7 +12643,7 @@ func (ec *executionContext) _ModemInfo_at_init(ctx context.Context, field graphq
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_init(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atInit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12656,8 +12656,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_init(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_test(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_test(ctx, field)
+func (ec *executionContext) _ModemInfo_atTest(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atTest(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12684,7 +12684,7 @@ func (ec *executionContext) _ModemInfo_at_test(ctx context.Context, field graphq
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_test(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atTest(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12697,8 +12697,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_test(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_config(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_config(ctx, field)
+func (ec *executionContext) _ModemInfo_atConfig(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atConfig(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12725,7 +12725,7 @@ func (ec *executionContext) _ModemInfo_at_config(ctx context.Context, field grap
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_config(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12738,8 +12738,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_config(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_dial(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_dial(ctx, field)
+func (ec *executionContext) _ModemInfo_atDial(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atDial(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12766,7 +12766,7 @@ func (ec *executionContext) _ModemInfo_at_dial(ctx context.Context, field graphq
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_dial(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atDial(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12779,8 +12779,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_dial(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_hangup(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_hangup(ctx, field)
+func (ec *executionContext) _ModemInfo_atHangup(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atHangup(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12807,7 +12807,7 @@ func (ec *executionContext) _ModemInfo_at_hangup(ctx context.Context, field grap
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_hangup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atHangup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12820,8 +12820,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_hangup(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_escape(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_escape(ctx, field)
+func (ec *executionContext) _ModemInfo_atEscape(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atEscape(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12848,7 +12848,7 @@ func (ec *executionContext) _ModemInfo_at_escape(ctx context.Context, field grap
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_escape(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atEscape(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12861,8 +12861,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_escape(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_at_dsr(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_at_dsr(ctx, field)
+func (ec *executionContext) _ModemInfo_atDsr(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_atDsr(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12889,7 +12889,7 @@ func (ec *executionContext) _ModemInfo_at_dsr(ctx context.Context, field graphql
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_at_dsr(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_atDsr(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -12902,8 +12902,8 @@ func (ec *executionContext) fieldContext_ModemInfo_at_dsr(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_connect_timeout(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_connect_timeout(ctx, field)
+func (ec *executionContext) _ModemInfo_connectTimeout(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12930,7 +12930,7 @@ func (ec *executionContext) _ModemInfo_connect_timeout(ctx context.Context, fiel
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemInfo_connect_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemInfo_connectTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -13028,8 +13028,8 @@ func (ec *executionContext) fieldContext_ModemPool_spec(_ context.Context, field
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "pool_id":
-				return ec.fieldContext_ModemPoolSpec_pool_id(ctx, field)
+			case "poolId":
+				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
 			}
@@ -13126,8 +13126,8 @@ func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, f
 				return ec.fieldContext_MetadataFields_generation(ctx, field)
 			case "fields":
 				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managed_fields":
-				return ec.fieldContext_MetadataFields_managed_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
 			case "name":
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
@@ -13137,8 +13137,8 @@ func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemPoolSpec_pool_id(ctx context.Context, field graphql.CollectedField, obj *model.ModemPoolSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemPoolSpec_pool_id(ctx, field)
+func (ec *executionContext) _ModemPoolSpec_poolId(ctx context.Context, field graphql.CollectedField, obj *model.ModemPoolSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13165,7 +13165,7 @@ func (ec *executionContext) _ModemPoolSpec_pool_id(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ModemPoolSpec_pool_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ModemPoolSpec_poolId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemPoolSpec",
 		Field:      field,
@@ -13255,26 +13255,26 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "modem_id":
-				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
+			case "modemId":
+				return ec.fieldContext_ModemInfo_modemId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
-			case "at_init":
-				return ec.fieldContext_ModemInfo_at_init(ctx, field)
-			case "at_test":
-				return ec.fieldContext_ModemInfo_at_test(ctx, field)
-			case "at_config":
-				return ec.fieldContext_ModemInfo_at_config(ctx, field)
-			case "at_dial":
-				return ec.fieldContext_ModemInfo_at_dial(ctx, field)
-			case "at_hangup":
-				return ec.fieldContext_ModemInfo_at_hangup(ctx, field)
-			case "at_escape":
-				return ec.fieldContext_ModemInfo_at_escape(ctx, field)
-			case "at_dsr":
-				return ec.fieldContext_ModemInfo_at_dsr(ctx, field)
-			case "connect_timeout":
-				return ec.fieldContext_ModemInfo_connect_timeout(ctx, field)
+			case "atInit":
+				return ec.fieldContext_ModemInfo_atInit(ctx, field)
+			case "atTest":
+				return ec.fieldContext_ModemInfo_atTest(ctx, field)
+			case "atConfig":
+				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
+			case "atDial":
+				return ec.fieldContext_ModemInfo_atDial(ctx, field)
+			case "atHangup":
+				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
+			case "atEscape":
+				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
+			case "atDsr":
+				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
+			case "connectTimeout":
+				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			}
@@ -13284,8 +13284,8 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _ProfileBlok_start_timestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlok) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ProfileBlok_start_timestamp(ctx, field)
+func (ec *executionContext) _ProfileBlok_startTimestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlok) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProfileBlok_startTimestamp(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13312,7 +13312,7 @@ func (ec *executionContext) _ProfileBlok_start_timestamp(ctx context.Context, fi
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ProfileBlok_start_timestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ProfileBlok_startTimestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ProfileBlok",
 		Field:      field,
@@ -13365,18 +13365,18 @@ func (ec *executionContext) fieldContext_ProfileBlok_values(_ context.Context, f
 				return ec.fieldContext_MeasuredValue_status(ctx, field)
 			case "exponent":
 				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
-			case "double_value":
-				return ec.fieldContext_MeasuredValue_double_value(ctx, field)
-			case "int_value":
-				return ec.fieldContext_MeasuredValue_int_value(ctx, field)
-			case "str_value":
-				return ec.fieldContext_MeasuredValue_str_value(ctx, field)
-			case "timestamp_value":
-				return ec.fieldContext_MeasuredValue_timestamp_value(ctx, field)
-			case "timestamp_tz_value":
-				return ec.fieldContext_MeasuredValue_timestamp_tz_value(ctx, field)
-			case "bool_value":
-				return ec.fieldContext_MeasuredValue_bool_value(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
+			case "intValue":
+				return ec.fieldContext_MeasuredValue_intValue(ctx, field)
+			case "strValue":
+				return ec.fieldContext_MeasuredValue_strValue(ctx, field)
+			case "timestampValue":
+				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
+			case "timestampTzValue":
+				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
@@ -13502,8 +13502,8 @@ func (ec *executionContext) fieldContext_ProfileValues_blocks(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "start_timestamp":
-				return ec.fieldContext_ProfileBlok_start_timestamp(ctx, field)
+			case "startTimestamp":
+				return ec.fieldContext_ProfileBlok_startTimestamp(ctx, field)
 			case "values":
 				return ec.fieldContext_ProfileBlok_values(ctx, field)
 			}
@@ -13733,12 +13733,12 @@ func (ec *executionContext) fieldContext_Query_getConfig(_ context.Context, fiel
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "max_replicas":
-				return ec.fieldContext_SystemConfig_max_replicas(ctx, field)
-			case "max_cascade_device_count":
-				return ec.fieldContext_SystemConfig_max_cascade_device_count(ctx, field)
-			case "max_slots_per_driver":
-				return ec.fieldContext_SystemConfig_max_slots_per_driver(ctx, field)
+			case "maxReplicas":
+				return ec.fieldContext_SystemConfig_maxReplicas(ctx, field)
+			case "maxCascadeDeviceCount":
+				return ec.fieldContext_SystemConfig_maxCascadeDeviceCount(ctx, field)
+			case "maxSlotsPerDriver":
+				return ec.fieldContext_SystemConfig_maxSlotsPerDriver(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type SystemConfig", field.Name)
 		},
@@ -14967,8 +14967,8 @@ func (ec *executionContext) fieldContext_Query___schema(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _RemoveDevicesFromGroupRequest_group_id(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDevicesFromGroupRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_RemoveDevicesFromGroupRequest_group_id(ctx, field)
+func (ec *executionContext) _RemoveDevicesFromGroupRequest_groupId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDevicesFromGroupRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveDevicesFromGroupRequest_groupId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -14995,7 +14995,7 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest_group_id(ctx context.
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_group_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "RemoveDevicesFromGroupRequest",
 		Field:      field,
@@ -15008,8 +15008,8 @@ func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_group_id(
 	return fc, nil
 }
 
-func (ec *executionContext) _RemoveDevicesFromGroupRequest_device_id(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDevicesFromGroupRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_RemoveDevicesFromGroupRequest_device_id(ctx, field)
+func (ec *executionContext) _RemoveDevicesFromGroupRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDevicesFromGroupRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveDevicesFromGroupRequest_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15036,7 +15036,7 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest_device_id(ctx context
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "RemoveDevicesFromGroupRequest",
 		Field:      field,
@@ -15049,8 +15049,8 @@ func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_device_id
 	return fc, nil
 }
 
-func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_device_id(ctx context.Context, field graphql.CollectedField, obj *model.SetDeviceCommunicationUnitsRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SetDeviceCommunicationUnitsRequest_device_id(ctx, field)
+func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.SetDeviceCommunicationUnitsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetDeviceCommunicationUnitsRequest_deviceId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15077,7 +15077,7 @@ func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_device_id(ctx co
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_device_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SetDeviceCommunicationUnitsRequest",
 		Field:      field,
@@ -15090,8 +15090,8 @@ func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_devi
 	return fc, nil
 }
 
-func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_communication_units(ctx context.Context, field graphql.CollectedField, obj *model.SetDeviceCommunicationUnitsRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SetDeviceCommunicationUnitsRequest_communication_units(ctx, field)
+func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_communicationUnits(ctx context.Context, field graphql.CollectedField, obj *model.SetDeviceCommunicationUnitsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetDeviceCommunicationUnitsRequest_communicationUnits(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15118,7 +15118,7 @@ func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_communication_un
 	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_communication_units(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_communicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SetDeviceCommunicationUnitsRequest",
 		Field:      field,
@@ -15126,10 +15126,10 @@ func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_comm
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "communication_unit_id":
-				return ec.fieldContext_DeviceCommunicationUnit_communication_unit_id(ctx, field)
-			case "app_protocol":
-				return ec.fieldContext_DeviceCommunicationUnit_app_protocol(ctx, field)
+			case "communicationUnitId":
+				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
+			case "appProtocol":
+				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
 		},
@@ -15173,8 +15173,8 @@ func (ec *executionContext) fieldContext_SetModemPoolRequest_spec(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "pool_id":
-				return ec.fieldContext_ModemPoolSpec_pool_id(ctx, field)
+			case "poolId":
+				return ec.fieldContext_ModemPoolSpec_poolId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemPoolSpec_name(ctx, field)
 			}
@@ -15184,8 +15184,8 @@ func (ec *executionContext) fieldContext_SetModemPoolRequest_spec(_ context.Cont
 	return fc, nil
 }
 
-func (ec *executionContext) _SetModemRequest_pool_id(ctx context.Context, field graphql.CollectedField, obj *model.SetModemRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SetModemRequest_pool_id(ctx, field)
+func (ec *executionContext) _SetModemRequest_poolId(ctx context.Context, field graphql.CollectedField, obj *model.SetModemRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetModemRequest_poolId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15212,7 +15212,7 @@ func (ec *executionContext) _SetModemRequest_pool_id(ctx context.Context, field 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SetModemRequest_pool_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SetModemRequest_poolId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SetModemRequest",
 		Field:      field,
@@ -15261,26 +15261,26 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "modem_id":
-				return ec.fieldContext_ModemInfo_modem_id(ctx, field)
+			case "modemId":
+				return ec.fieldContext_ModemInfo_modemId(ctx, field)
 			case "name":
 				return ec.fieldContext_ModemInfo_name(ctx, field)
-			case "at_init":
-				return ec.fieldContext_ModemInfo_at_init(ctx, field)
-			case "at_test":
-				return ec.fieldContext_ModemInfo_at_test(ctx, field)
-			case "at_config":
-				return ec.fieldContext_ModemInfo_at_config(ctx, field)
-			case "at_dial":
-				return ec.fieldContext_ModemInfo_at_dial(ctx, field)
-			case "at_hangup":
-				return ec.fieldContext_ModemInfo_at_hangup(ctx, field)
-			case "at_escape":
-				return ec.fieldContext_ModemInfo_at_escape(ctx, field)
-			case "at_dsr":
-				return ec.fieldContext_ModemInfo_at_dsr(ctx, field)
-			case "connect_timeout":
-				return ec.fieldContext_ModemInfo_connect_timeout(ctx, field)
+			case "atInit":
+				return ec.fieldContext_ModemInfo_atInit(ctx, field)
+			case "atTest":
+				return ec.fieldContext_ModemInfo_atTest(ctx, field)
+			case "atConfig":
+				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
+			case "atDial":
+				return ec.fieldContext_ModemInfo_atDial(ctx, field)
+			case "atHangup":
+				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
+			case "atEscape":
+				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
+			case "atDsr":
+				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
+			case "connectTimeout":
+				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			}
@@ -15331,8 +15331,8 @@ func (ec *executionContext) fieldContext_StringValue_value(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _SystemConfig_max_replicas(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SystemConfig_max_replicas(ctx, field)
+func (ec *executionContext) _SystemConfig_maxReplicas(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SystemConfig_maxReplicas(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15359,7 +15359,7 @@ func (ec *executionContext) _SystemConfig_max_replicas(ctx context.Context, fiel
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SystemConfig_max_replicas(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SystemConfig_maxReplicas(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SystemConfig",
 		Field:      field,
@@ -15372,8 +15372,8 @@ func (ec *executionContext) fieldContext_SystemConfig_max_replicas(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _SystemConfig_max_cascade_device_count(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SystemConfig_max_cascade_device_count(ctx, field)
+func (ec *executionContext) _SystemConfig_maxCascadeDeviceCount(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SystemConfig_maxCascadeDeviceCount(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15400,7 +15400,7 @@ func (ec *executionContext) _SystemConfig_max_cascade_device_count(ctx context.C
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SystemConfig_max_cascade_device_count(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SystemConfig_maxCascadeDeviceCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SystemConfig",
 		Field:      field,
@@ -15413,8 +15413,8 @@ func (ec *executionContext) fieldContext_SystemConfig_max_cascade_device_count(_
 	return fc, nil
 }
 
-func (ec *executionContext) _SystemConfig_max_slots_per_driver(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SystemConfig_max_slots_per_driver(ctx, field)
+func (ec *executionContext) _SystemConfig_maxSlotsPerDriver(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SystemConfig_maxSlotsPerDriver(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15441,7 +15441,7 @@ func (ec *executionContext) _SystemConfig_max_slots_per_driver(ctx context.Conte
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SystemConfig_max_slots_per_driver(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SystemConfig_maxSlotsPerDriver(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SystemConfig",
 		Field:      field,
@@ -17303,8 +17303,8 @@ func (ec *executionContext) fieldContext__mapAny_value(_ context.Context, field 
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "type_url":
-				return ec.fieldContext_Any_type_url(ctx, field)
+			case "typeUrl":
+				return ec.fieldContext_Any_typeUrl(ctx, field)
 			case "value":
 				return ec.fieldContext_Any_value(ctx, field)
 			}
@@ -17394,18 +17394,18 @@ func (ec *executionContext) fieldContext__mapFieldValue_value(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "text_value":
-				return ec.fieldContext_FieldValue_text_value(ctx, field)
-			case "integer_value":
-				return ec.fieldContext_FieldValue_integer_value(ctx, field)
-			case "double_value":
-				return ec.fieldContext_FieldValue_double_value(ctx, field)
-			case "binary_value":
-				return ec.fieldContext_FieldValue_binary_value(ctx, field)
-			case "bool_value":
-				return ec.fieldContext_FieldValue_bool_value(ctx, field)
-			case "date_value":
-				return ec.fieldContext_FieldValue_date_value(ctx, field)
+			case "textValue":
+				return ec.fieldContext_FieldValue_textValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_FieldValue_integerValue(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_FieldValue_doubleValue(ctx, field)
+			case "binaryValue":
+				return ec.fieldContext_FieldValue_binaryValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_FieldValue_boolValue(ctx, field)
+			case "dateValue":
+				return ec.fieldContext_FieldValue_dateValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
 		},
@@ -18090,8 +18090,8 @@ func (ec *executionContext) _ActionResult(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ActionResult")
-		case "action_id":
-			out.Values[i] = ec._ActionResult_action_id(ctx, field, obj)
+		case "actionId":
+			out.Values[i] = ec._ActionResult_actionId(ctx, field, obj)
 		case "status":
 			out.Values[i] = ec._ActionResult_status(ctx, field, obj)
 		case "data":
@@ -18310,10 +18310,10 @@ func (ec *executionContext) _AddDevicesToGroupRequest(ctx context.Context, sel a
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("AddDevicesToGroupRequest")
-		case "group_id":
-			out.Values[i] = ec._AddDevicesToGroupRequest_group_id(ctx, field, obj)
-		case "device_id":
-			out.Values[i] = ec._AddDevicesToGroupRequest_device_id(ctx, field, obj)
+		case "groupId":
+			out.Values[i] = ec._AddDevicesToGroupRequest_groupId(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._AddDevicesToGroupRequest_deviceId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18348,8 +18348,8 @@ func (ec *executionContext) _Any(ctx context.Context, sel ast.SelectionSet, obj 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Any")
-		case "type_url":
-			out.Values[i] = ec._Any_type_url(ctx, field, obj)
+		case "typeUrl":
+			out.Values[i] = ec._Any_typeUrl(ctx, field, obj)
 		case "value":
 			out.Values[i] = ec._Any_value(ctx, field, obj)
 		default:
@@ -18542,8 +18542,8 @@ func (ec *executionContext) _BulkJob(ctx context.Context, sel ast.SelectionSet, 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("BulkJob")
-		case "job_id":
-			out.Values[i] = ec._BulkJob_job_id(ctx, field, obj)
+		case "jobId":
+			out.Values[i] = ec._BulkJob_jobId(ctx, field, obj)
 		case "status":
 			out.Values[i] = ec._BulkJob_status(ctx, field, obj)
 		default:
@@ -18580,20 +18580,20 @@ func (ec *executionContext) _BulkSpec(ctx context.Context, sel ast.SelectionSet,
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("BulkSpec")
-		case "correlation_id":
-			out.Values[i] = ec._BulkSpec_correlation_id(ctx, field, obj)
-		case "driver_type":
-			out.Values[i] = ec._BulkSpec_driver_type(ctx, field, obj)
+		case "correlationId":
+			out.Values[i] = ec._BulkSpec_correlationId(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._BulkSpec_driverType(ctx, field, obj)
 		case "devices":
 			out.Values[i] = ec._BulkSpec_devices(ctx, field, obj)
-		case "custom_devices":
-			out.Values[i] = ec._BulkSpec_custom_devices(ctx, field, obj)
+		case "customDevices":
+			out.Values[i] = ec._BulkSpec_customDevices(ctx, field, obj)
 		case "settings":
 			out.Values[i] = ec._BulkSpec_settings(ctx, field, obj)
 		case "actions":
 			out.Values[i] = ec._BulkSpec_actions(ctx, field, obj)
-		case "webhook_url":
-			out.Values[i] = ec._BulkSpec_webhook_url(ctx, field, obj)
+		case "webhookUrl":
+			out.Values[i] = ec._BulkSpec_webhookUrl(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18742,10 +18742,10 @@ func (ec *executionContext) _CommunicationUnitSpec(ctx context.Context, sel ast.
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("CommunicationUnitSpec")
-		case "external_id":
-			out.Values[i] = ec._CommunicationUnitSpec_external_id(ctx, field, obj)
-		case "connection_info":
-			out.Values[i] = ec._CommunicationUnitSpec_connection_info(ctx, field, obj)
+		case "externalId":
+			out.Values[i] = ec._CommunicationUnitSpec_externalId(ctx, field, obj)
+		case "connectionInfo":
+			out.Values[i] = ec._CommunicationUnitSpec_connectionInfo(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18782,14 +18782,14 @@ func (ec *executionContext) _ConnectionInfo(ctx context.Context, sel ast.Selecti
 			out.Values[i] = graphql.MarshalString("ConnectionInfo")
 		case "tcpip":
 			out.Values[i] = ec._ConnectionInfo_tcpip(ctx, field, obj)
-		case "modem_pool":
-			out.Values[i] = ec._ConnectionInfo_modem_pool(ctx, field, obj)
-		case "serial_over_ip":
-			out.Values[i] = ec._ConnectionInfo_serial_over_ip(ctx, field, obj)
-		case "link_protocol":
-			out.Values[i] = ec._ConnectionInfo_link_protocol(ctx, field, obj)
-		case "custom_grouping_id":
-			out.Values[i] = ec._ConnectionInfo_custom_grouping_id(ctx, field, obj)
+		case "modemPool":
+			out.Values[i] = ec._ConnectionInfo_modemPool(ctx, field, obj)
+		case "serialOverIp":
+			out.Values[i] = ec._ConnectionInfo_serialOverIp(ctx, field, obj)
+		case "linkProtocol":
+			out.Values[i] = ec._ConnectionInfo_linkProtocol(ctx, field, obj)
+		case "customGroupingId":
+			out.Values[i] = ec._ConnectionInfo_customGroupingId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18904,8 +18904,8 @@ func (ec *executionContext) _ConnectionTypeModemPool(ctx context.Context, sel as
 			out.Values[i] = graphql.MarshalString("ConnectionTypeModemPool")
 		case "number":
 			out.Values[i] = ec._ConnectionTypeModemPool_number(ctx, field, obj)
-		case "pool_id":
-			out.Values[i] = ec._ConnectionTypeModemPool_pool_id(ctx, field, obj)
+		case "poolId":
+			out.Values[i] = ec._ConnectionTypeModemPool_poolId(ctx, field, obj)
 		case "modem":
 			out.Values[i] = ec._ConnectionTypeModemPool_modem(ctx, field, obj)
 		default:
@@ -19172,10 +19172,10 @@ func (ec *executionContext) _DataLinkTemplate(ctx context.Context, sel ast.Selec
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DataLinkTemplate")
-		case "link_protocol":
-			out.Values[i] = ec._DataLinkTemplate_link_protocol(ctx, field, obj)
-		case "app_protocol_refs":
-			out.Values[i] = ec._DataLinkTemplate_app_protocol_refs(ctx, field, obj)
+		case "linkProtocol":
+			out.Values[i] = ec._DataLinkTemplate_linkProtocol(ctx, field, obj)
+		case "appProtocolRefs":
+			out.Values[i] = ec._DataLinkTemplate_appProtocolRefs(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DataLinkTemplate_attributes(ctx, field, obj)
 		default:
@@ -19250,10 +19250,10 @@ func (ec *executionContext) _DeviceCommunicationUnit(ctx context.Context, sel as
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceCommunicationUnit")
-		case "communication_unit_id":
-			out.Values[i] = ec._DeviceCommunicationUnit_communication_unit_id(ctx, field, obj)
-		case "app_protocol":
-			out.Values[i] = ec._DeviceCommunicationUnit_app_protocol(ctx, field, obj)
+		case "communicationUnitId":
+			out.Values[i] = ec._DeviceCommunicationUnit_communicationUnitId(ctx, field, obj)
+		case "appProtocol":
+			out.Values[i] = ec._DeviceCommunicationUnit_appProtocol(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19328,8 +19328,8 @@ func (ec *executionContext) _DeviceGroupSpec(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceGroupSpec")
-		case "external_id":
-			out.Values[i] = ec._DeviceGroupSpec_external_id(ctx, field, obj)
+		case "externalId":
+			out.Values[i] = ec._DeviceGroupSpec_externalId(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._DeviceGroupSpec_name(ctx, field, obj)
 		default:
@@ -19366,8 +19366,8 @@ func (ec *executionContext) _DeviceGroupStatus(ctx context.Context, sel ast.Sele
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceGroupStatus")
-		case "device_id":
-			out.Values[i] = ec._DeviceGroupStatus_device_id(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._DeviceGroupStatus_deviceId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19402,12 +19402,12 @@ func (ec *executionContext) _DeviceSpec(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceSpec")
-		case "external_id":
-			out.Values[i] = ec._DeviceSpec_external_id(ctx, field, obj)
+		case "externalId":
+			out.Values[i] = ec._DeviceSpec_externalId(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DeviceSpec_attributes(ctx, field, obj)
-		case "communication_unit_link":
-			out.Values[i] = ec._DeviceSpec_communication_unit_link(ctx, field, obj)
+		case "communicationUnitLink":
+			out.Values[i] = ec._DeviceSpec_communicationUnitLink(ctx, field, obj)
 		case "timezone":
 			out.Values[i] = ec._DeviceSpec_timezone(ctx, field, obj)
 		default:
@@ -19482,20 +19482,20 @@ func (ec *executionContext) _DriverSpec(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = graphql.MarshalString("DriverSpec")
 		case "version":
 			out.Values[i] = ec._DriverSpec_version(ctx, field, obj)
-		case "listening_port":
-			out.Values[i] = ec._DriverSpec_listening_port(ctx, field, obj)
-		case "driver_type":
-			out.Values[i] = ec._DriverSpec_driver_type(ctx, field, obj)
-		case "max_concurrent_jobs":
-			out.Values[i] = ec._DriverSpec_max_concurrent_jobs(ctx, field, obj)
-		case "max_cascade_depth":
-			out.Values[i] = ec._DriverSpec_max_cascade_depth(ctx, field, obj)
-		case "typical_mem_usage":
-			out.Values[i] = ec._DriverSpec_typical_mem_usage(ctx, field, obj)
+		case "listeningPort":
+			out.Values[i] = ec._DriverSpec_listeningPort(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._DriverSpec_driverType(ctx, field, obj)
+		case "maxConcurrentJobs":
+			out.Values[i] = ec._DriverSpec_maxConcurrentJobs(ctx, field, obj)
+		case "maxCascadeDepth":
+			out.Values[i] = ec._DriverSpec_maxCascadeDepth(ctx, field, obj)
+		case "typicalMemUsage":
+			out.Values[i] = ec._DriverSpec_typicalMemUsage(ctx, field, obj)
 		case "templates":
 			out.Values[i] = ec._DriverSpec_templates(ctx, field, obj)
-		case "display_name":
-			out.Values[i] = ec._DriverSpec_display_name(ctx, field, obj)
+		case "displayName":
+			out.Values[i] = ec._DriverSpec_displayName(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19530,16 +19530,16 @@ func (ec *executionContext) _DriverTemplates(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DriverTemplates")
-		case "communication_templates":
-			out.Values[i] = ec._DriverTemplates_communication_templates(ctx, field, obj)
-		case "app_protocols":
-			out.Values[i] = ec._DriverTemplates_app_protocols(ctx, field, obj)
-		case "action_attributes":
-			out.Values[i] = ec._DriverTemplates_action_attributes(ctx, field, obj)
-		case "access_templates":
-			out.Values[i] = ec._DriverTemplates_access_templates(ctx, field, obj)
-		case "action_constraints":
-			out.Values[i] = ec._DriverTemplates_action_constraints(ctx, field, obj)
+		case "communicationTemplates":
+			out.Values[i] = ec._DriverTemplates_communicationTemplates(ctx, field, obj)
+		case "appProtocols":
+			out.Values[i] = ec._DriverTemplates_appProtocols(ctx, field, obj)
+		case "actionAttributes":
+			out.Values[i] = ec._DriverTemplates_actionAttributes(ctx, field, obj)
+		case "accessTemplates":
+			out.Values[i] = ec._DriverTemplates_accessTemplates(ctx, field, obj)
+		case "actionConstraints":
+			out.Values[i] = ec._DriverTemplates_actionConstraints(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19610,20 +19610,20 @@ func (ec *executionContext) _FieldSimpleDescriptor(ctx context.Context, sel ast.
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("FieldSimpleDescriptor")
-		case "field_id":
-			out.Values[i] = ec._FieldSimpleDescriptor_field_id(ctx, field, obj)
+		case "fieldId":
+			out.Values[i] = ec._FieldSimpleDescriptor_fieldId(ctx, field, obj)
 		case "label":
 			out.Values[i] = ec._FieldSimpleDescriptor_label(ctx, field, obj)
-		case "data_type":
-			out.Values[i] = ec._FieldSimpleDescriptor_data_type(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._FieldSimpleDescriptor_dataType(ctx, field, obj)
 		case "tooltip":
 			out.Values[i] = ec._FieldSimpleDescriptor_tooltip(ctx, field, obj)
 		case "required":
 			out.Values[i] = ec._FieldSimpleDescriptor_required(ctx, field, obj)
 		case "validation":
 			out.Values[i] = ec._FieldSimpleDescriptor_validation(ctx, field, obj)
-		case "default_value":
-			out.Values[i] = ec._FieldSimpleDescriptor_default_value(ctx, field, obj)
+		case "defaultValue":
+			out.Values[i] = ec._FieldSimpleDescriptor_defaultValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19660,18 +19660,18 @@ func (ec *executionContext) _FieldValidation(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("FieldValidation")
 		case "re":
 			out.Values[i] = ec._FieldValidation_re(ctx, field, obj)
-		case "min_length":
-			out.Values[i] = ec._FieldValidation_min_length(ctx, field, obj)
-		case "max_length":
-			out.Values[i] = ec._FieldValidation_max_length(ctx, field, obj)
-		case "min_integer":
-			out.Values[i] = ec._FieldValidation_min_integer(ctx, field, obj)
-		case "max_integer":
-			out.Values[i] = ec._FieldValidation_max_integer(ctx, field, obj)
-		case "min_number":
-			out.Values[i] = ec._FieldValidation_min_number(ctx, field, obj)
-		case "max_number":
-			out.Values[i] = ec._FieldValidation_max_number(ctx, field, obj)
+		case "minLength":
+			out.Values[i] = ec._FieldValidation_minLength(ctx, field, obj)
+		case "maxLength":
+			out.Values[i] = ec._FieldValidation_maxLength(ctx, field, obj)
+		case "minInteger":
+			out.Values[i] = ec._FieldValidation_minInteger(ctx, field, obj)
+		case "maxInteger":
+			out.Values[i] = ec._FieldValidation_maxInteger(ctx, field, obj)
+		case "minNumber":
+			out.Values[i] = ec._FieldValidation_minNumber(ctx, field, obj)
+		case "maxNumber":
+			out.Values[i] = ec._FieldValidation_maxNumber(ctx, field, obj)
 		case "options":
 			out.Values[i] = ec._FieldValidation_options(ctx, field, obj)
 		default:
@@ -19708,18 +19708,18 @@ func (ec *executionContext) _FieldValue(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("FieldValue")
-		case "text_value":
-			out.Values[i] = ec._FieldValue_text_value(ctx, field, obj)
-		case "integer_value":
-			out.Values[i] = ec._FieldValue_integer_value(ctx, field, obj)
-		case "double_value":
-			out.Values[i] = ec._FieldValue_double_value(ctx, field, obj)
-		case "binary_value":
-			out.Values[i] = ec._FieldValue_binary_value(ctx, field, obj)
-		case "bool_value":
-			out.Values[i] = ec._FieldValue_bool_value(ctx, field, obj)
-		case "date_value":
-			out.Values[i] = ec._FieldValue_date_value(ctx, field, obj)
+		case "textValue":
+			out.Values[i] = ec._FieldValue_textValue(ctx, field, obj)
+		case "integerValue":
+			out.Values[i] = ec._FieldValue_integerValue(ctx, field, obj)
+		case "doubleValue":
+			out.Values[i] = ec._FieldValue_doubleValue(ctx, field, obj)
+		case "binaryValue":
+			out.Values[i] = ec._FieldValue_binaryValue(ctx, field, obj)
+		case "boolValue":
+			out.Values[i] = ec._FieldValue_boolValue(ctx, field, obj)
+		case "dateValue":
+			out.Values[i] = ec._FieldValue_dateValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19754,42 +19754,42 @@ func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobAction")
-		case "action_id":
-			out.Values[i] = ec._JobAction_action_id(ctx, field, obj)
+		case "actionId":
+			out.Values[i] = ec._JobAction_actionId(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._JobAction_attributes(ctx, field, obj)
-		case "get_register":
-			out.Values[i] = ec._JobAction_get_register(ctx, field, obj)
-		case "get_periodical_profile":
-			out.Values[i] = ec._JobAction_get_periodical_profile(ctx, field, obj)
-		case "get_irregular_profile":
-			out.Values[i] = ec._JobAction_get_irregular_profile(ctx, field, obj)
-		case "get_events":
-			out.Values[i] = ec._JobAction_get_events(ctx, field, obj)
-		case "get_clock":
-			out.Values[i] = ec._JobAction_get_clock(ctx, field, obj)
-		case "sync_clock":
-			out.Values[i] = ec._JobAction_sync_clock(ctx, field, obj)
-		case "get_relay_state":
-			out.Values[i] = ec._JobAction_get_relay_state(ctx, field, obj)
-		case "set_relay_state":
-			out.Values[i] = ec._JobAction_set_relay_state(ctx, field, obj)
-		case "get_disconnector_state":
-			out.Values[i] = ec._JobAction_get_disconnector_state(ctx, field, obj)
-		case "set_disconnector_state":
-			out.Values[i] = ec._JobAction_set_disconnector_state(ctx, field, obj)
-		case "get_tou":
-			out.Values[i] = ec._JobAction_get_tou(ctx, field, obj)
-		case "set_tou":
-			out.Values[i] = ec._JobAction_set_tou(ctx, field, obj)
-		case "get_limiter":
-			out.Values[i] = ec._JobAction_get_limiter(ctx, field, obj)
-		case "set_limiter":
-			out.Values[i] = ec._JobAction_set_limiter(ctx, field, obj)
-		case "reset_billing_period":
-			out.Values[i] = ec._JobAction_reset_billing_period(ctx, field, obj)
-		case "fw_update":
-			out.Values[i] = ec._JobAction_fw_update(ctx, field, obj)
+		case "getRegister":
+			out.Values[i] = ec._JobAction_getRegister(ctx, field, obj)
+		case "getPeriodicalProfile":
+			out.Values[i] = ec._JobAction_getPeriodicalProfile(ctx, field, obj)
+		case "getIrregularProfile":
+			out.Values[i] = ec._JobAction_getIrregularProfile(ctx, field, obj)
+		case "getEvents":
+			out.Values[i] = ec._JobAction_getEvents(ctx, field, obj)
+		case "getClock":
+			out.Values[i] = ec._JobAction_getClock(ctx, field, obj)
+		case "syncClock":
+			out.Values[i] = ec._JobAction_syncClock(ctx, field, obj)
+		case "getRelayState":
+			out.Values[i] = ec._JobAction_getRelayState(ctx, field, obj)
+		case "setRelayState":
+			out.Values[i] = ec._JobAction_setRelayState(ctx, field, obj)
+		case "getDisconnectorState":
+			out.Values[i] = ec._JobAction_getDisconnectorState(ctx, field, obj)
+		case "setDisconnectorState":
+			out.Values[i] = ec._JobAction_setDisconnectorState(ctx, field, obj)
+		case "getTou":
+			out.Values[i] = ec._JobAction_getTou(ctx, field, obj)
+		case "setTou":
+			out.Values[i] = ec._JobAction_setTou(ctx, field, obj)
+		case "getLimiter":
+			out.Values[i] = ec._JobAction_getLimiter(ctx, field, obj)
+		case "setLimiter":
+			out.Values[i] = ec._JobAction_setLimiter(ctx, field, obj)
+		case "resetBillingPeriod":
+			out.Values[i] = ec._JobAction_resetBillingPeriod(ctx, field, obj)
+		case "fwUpdate":
+			out.Values[i] = ec._JobAction_fwUpdate(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19862,10 +19862,10 @@ func (ec *executionContext) _JobActionContraints(ctx context.Context, sel ast.Se
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobActionContraints")
-		case "get_register_type_name":
-			out.Values[i] = ec._JobActionContraints_get_register_type_name(ctx, field, obj)
-		case "get_register_type_attributes":
-			out.Values[i] = ec._JobActionContraints_get_register_type_attributes(ctx, field, obj)
+		case "getRegisterTypeName":
+			out.Values[i] = ec._JobActionContraints_getRegisterTypeName(ctx, field, obj)
+		case "getRegisterTypeAttributes":
+			out.Values[i] = ec._JobActionContraints_getRegisterTypeAttributes(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19900,18 +19900,18 @@ func (ec *executionContext) _JobDevice(ctx context.Context, sel ast.SelectionSet
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobDevice")
-		case "job_id":
-			out.Values[i] = ec._JobDevice_job_id(ctx, field, obj)
-		case "device_id":
-			out.Values[i] = ec._JobDevice_device_id(ctx, field, obj)
-		case "external_id":
-			out.Values[i] = ec._JobDevice_external_id(ctx, field, obj)
-		case "device_attributes":
-			out.Values[i] = ec._JobDevice_device_attributes(ctx, field, obj)
-		case "connection_info":
-			out.Values[i] = ec._JobDevice_connection_info(ctx, field, obj)
-		case "app_protocol":
-			out.Values[i] = ec._JobDevice_app_protocol(ctx, field, obj)
+		case "jobId":
+			out.Values[i] = ec._JobDevice_jobId(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._JobDevice_deviceId(ctx, field, obj)
+		case "externalId":
+			out.Values[i] = ec._JobDevice_externalId(ctx, field, obj)
+		case "deviceAttributes":
+			out.Values[i] = ec._JobDevice_deviceAttributes(ctx, field, obj)
+		case "connectionInfo":
+			out.Values[i] = ec._JobDevice_connectionInfo(ctx, field, obj)
+		case "appProtocol":
+			out.Values[i] = ec._JobDevice_appProtocol(ctx, field, obj)
 		case "timezone":
 			out.Values[i] = ec._JobDevice_timezone(ctx, field, obj)
 		default:
@@ -19948,10 +19948,10 @@ func (ec *executionContext) _JobDeviceId(ctx context.Context, sel ast.SelectionS
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobDeviceId")
-		case "job_id":
-			out.Values[i] = ec._JobDeviceId_job_id(ctx, field, obj)
-		case "device_id":
-			out.Values[i] = ec._JobDeviceId_device_id(ctx, field, obj)
+		case "jobId":
+			out.Values[i] = ec._JobDeviceId_jobId(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._JobDeviceId_deviceId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19986,18 +19986,18 @@ func (ec *executionContext) _JobSettings(ctx context.Context, sel ast.SelectionS
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("JobSettings")
-		case "max_duration":
-			out.Values[i] = ec._JobSettings_max_duration(ctx, field, obj)
+		case "maxDuration":
+			out.Values[i] = ec._JobSettings_maxDuration(ctx, field, obj)
 		case "priority":
 			out.Values[i] = ec._JobSettings_priority(ctx, field, obj)
 		case "attempts":
 			out.Values[i] = ec._JobSettings_attempts(ctx, field, obj)
-		case "retry_delay":
-			out.Values[i] = ec._JobSettings_retry_delay(ctx, field, obj)
-		case "defer_start":
-			out.Values[i] = ec._JobSettings_defer_start(ctx, field, obj)
-		case "expires_at":
-			out.Values[i] = ec._JobSettings_expires_at(ctx, field, obj)
+		case "retryDelay":
+			out.Values[i] = ec._JobSettings_retryDelay(ctx, field, obj)
+		case "deferStart":
+			out.Values[i] = ec._JobSettings_deferStart(ctx, field, obj)
+		case "expiresAt":
+			out.Values[i] = ec._JobSettings_expiresAt(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20038,14 +20038,14 @@ func (ec *executionContext) _JobStatus(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobStatus_code(ctx, field, obj)
 		case "results":
 			out.Values[i] = ec._JobStatus_results(ctx, field, obj)
-		case "created_at":
-			out.Values[i] = ec._JobStatus_created_at(ctx, field, obj)
-		case "started_at":
-			out.Values[i] = ec._JobStatus_started_at(ctx, field, obj)
-		case "finished_at":
-			out.Values[i] = ec._JobStatus_finished_at(ctx, field, obj)
-		case "attempts_done":
-			out.Values[i] = ec._JobStatus_attempts_done(ctx, field, obj)
+		case "createdAt":
+			out.Values[i] = ec._JobStatus_createdAt(ctx, field, obj)
+		case "startedAt":
+			out.Values[i] = ec._JobStatus_startedAt(ctx, field, obj)
+		case "finishedAt":
+			out.Values[i] = ec._JobStatus_finishedAt(ctx, field, obj)
+		case "attemptsDone":
+			out.Values[i] = ec._JobStatus_attemptsDone(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20404,14 +20404,14 @@ func (ec *executionContext) _ListSelector(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListSelector")
-		case "page_size":
-			out.Values[i] = ec._ListSelector_page_size(ctx, field, obj)
+		case "pageSize":
+			out.Values[i] = ec._ListSelector_pageSize(ctx, field, obj)
 		case "offset":
 			out.Values[i] = ec._ListSelector_offset(ctx, field, obj)
-		case "sort_by":
-			out.Values[i] = ec._ListSelector_sort_by(ctx, field, obj)
-		case "filter_by":
-			out.Values[i] = ec._ListSelector_filter_by(ctx, field, obj)
+		case "sortBy":
+			out.Values[i] = ec._ListSelector_sortBy(ctx, field, obj)
+		case "filterBy":
+			out.Values[i] = ec._ListSelector_filterBy(ctx, field, obj)
 		case "fields":
 			out.Values[i] = ec._ListSelector_fields(ctx, field, obj)
 		default:
@@ -20448,8 +20448,8 @@ func (ec *executionContext) _ListSelectorFilterBy(ctx context.Context, sel ast.S
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListSelectorFilterBy")
-		case "field_id":
-			out.Values[i] = ec._ListSelectorFilterBy_field_id(ctx, field, obj)
+		case "fieldId":
+			out.Values[i] = ec._ListSelectorFilterBy_fieldId(ctx, field, obj)
 		case "operator":
 			out.Values[i] = ec._ListSelectorFilterBy_operator(ctx, field, obj)
 		case "text":
@@ -20496,8 +20496,8 @@ func (ec *executionContext) _ListSelectorSortBy(ctx context.Context, sel ast.Sel
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListSelectorSortBy")
-		case "field_id":
-			out.Values[i] = ec._ListSelectorSortBy_field_id(ctx, field, obj)
+		case "fieldId":
+			out.Values[i] = ec._ListSelectorSortBy_fieldId(ctx, field, obj)
 		case "desc":
 			out.Values[i] = ec._ListSelectorSortBy_desc(ctx, field, obj)
 		default:
@@ -20538,18 +20538,18 @@ func (ec *executionContext) _MeasuredValue(ctx context.Context, sel ast.Selectio
 			out.Values[i] = ec._MeasuredValue_status(ctx, field, obj)
 		case "exponent":
 			out.Values[i] = ec._MeasuredValue_exponent(ctx, field, obj)
-		case "double_value":
-			out.Values[i] = ec._MeasuredValue_double_value(ctx, field, obj)
-		case "int_value":
-			out.Values[i] = ec._MeasuredValue_int_value(ctx, field, obj)
-		case "str_value":
-			out.Values[i] = ec._MeasuredValue_str_value(ctx, field, obj)
-		case "timestamp_value":
-			out.Values[i] = ec._MeasuredValue_timestamp_value(ctx, field, obj)
-		case "timestamp_tz_value":
-			out.Values[i] = ec._MeasuredValue_timestamp_tz_value(ctx, field, obj)
-		case "bool_value":
-			out.Values[i] = ec._MeasuredValue_bool_value(ctx, field, obj)
+		case "doubleValue":
+			out.Values[i] = ec._MeasuredValue_doubleValue(ctx, field, obj)
+		case "intValue":
+			out.Values[i] = ec._MeasuredValue_intValue(ctx, field, obj)
+		case "strValue":
+			out.Values[i] = ec._MeasuredValue_strValue(ctx, field, obj)
+		case "timestampValue":
+			out.Values[i] = ec._MeasuredValue_timestampValue(ctx, field, obj)
+		case "timestampTzValue":
+			out.Values[i] = ec._MeasuredValue_timestampTzValue(ctx, field, obj)
+		case "boolValue":
+			out.Values[i] = ec._MeasuredValue_boolValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20590,8 +20590,8 @@ func (ec *executionContext) _MetadataFields(ctx context.Context, sel ast.Selecti
 			out.Values[i] = ec._MetadataFields_generation(ctx, field, obj)
 		case "fields":
 			out.Values[i] = ec._MetadataFields_fields(ctx, field, obj)
-		case "managed_fields":
-			out.Values[i] = ec._MetadataFields_managed_fields(ctx, field, obj)
+		case "managedFields":
+			out.Values[i] = ec._MetadataFields_managedFields(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._MetadataFields_name(ctx, field, obj)
 		default:
@@ -20628,26 +20628,26 @@ func (ec *executionContext) _ModemInfo(ctx context.Context, sel ast.SelectionSet
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ModemInfo")
-		case "modem_id":
-			out.Values[i] = ec._ModemInfo_modem_id(ctx, field, obj)
+		case "modemId":
+			out.Values[i] = ec._ModemInfo_modemId(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ModemInfo_name(ctx, field, obj)
-		case "at_init":
-			out.Values[i] = ec._ModemInfo_at_init(ctx, field, obj)
-		case "at_test":
-			out.Values[i] = ec._ModemInfo_at_test(ctx, field, obj)
-		case "at_config":
-			out.Values[i] = ec._ModemInfo_at_config(ctx, field, obj)
-		case "at_dial":
-			out.Values[i] = ec._ModemInfo_at_dial(ctx, field, obj)
-		case "at_hangup":
-			out.Values[i] = ec._ModemInfo_at_hangup(ctx, field, obj)
-		case "at_escape":
-			out.Values[i] = ec._ModemInfo_at_escape(ctx, field, obj)
-		case "at_dsr":
-			out.Values[i] = ec._ModemInfo_at_dsr(ctx, field, obj)
-		case "connect_timeout":
-			out.Values[i] = ec._ModemInfo_connect_timeout(ctx, field, obj)
+		case "atInit":
+			out.Values[i] = ec._ModemInfo_atInit(ctx, field, obj)
+		case "atTest":
+			out.Values[i] = ec._ModemInfo_atTest(ctx, field, obj)
+		case "atConfig":
+			out.Values[i] = ec._ModemInfo_atConfig(ctx, field, obj)
+		case "atDial":
+			out.Values[i] = ec._ModemInfo_atDial(ctx, field, obj)
+		case "atHangup":
+			out.Values[i] = ec._ModemInfo_atHangup(ctx, field, obj)
+		case "atEscape":
+			out.Values[i] = ec._ModemInfo_atEscape(ctx, field, obj)
+		case "atDsr":
+			out.Values[i] = ec._ModemInfo_atDsr(ctx, field, obj)
+		case "connectTimeout":
+			out.Values[i] = ec._ModemInfo_connectTimeout(ctx, field, obj)
 		case "tcpip":
 			out.Values[i] = ec._ModemInfo_tcpip(ctx, field, obj)
 		default:
@@ -20724,8 +20724,8 @@ func (ec *executionContext) _ModemPoolSpec(ctx context.Context, sel ast.Selectio
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ModemPoolSpec")
-		case "pool_id":
-			out.Values[i] = ec._ModemPoolSpec_pool_id(ctx, field, obj)
+		case "poolId":
+			out.Values[i] = ec._ModemPoolSpec_poolId(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ModemPoolSpec_name(ctx, field, obj)
 		default:
@@ -20798,8 +20798,8 @@ func (ec *executionContext) _ProfileBlok(ctx context.Context, sel ast.SelectionS
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ProfileBlok")
-		case "start_timestamp":
-			out.Values[i] = ec._ProfileBlok_start_timestamp(ctx, field, obj)
+		case "startTimestamp":
+			out.Values[i] = ec._ProfileBlok_startTimestamp(ctx, field, obj)
 		case "values":
 			out.Values[i] = ec._ProfileBlok_values(ctx, field, obj)
 		default:
@@ -21477,10 +21477,10 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest(ctx context.Context, 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("RemoveDevicesFromGroupRequest")
-		case "group_id":
-			out.Values[i] = ec._RemoveDevicesFromGroupRequest_group_id(ctx, field, obj)
-		case "device_id":
-			out.Values[i] = ec._RemoveDevicesFromGroupRequest_device_id(ctx, field, obj)
+		case "groupId":
+			out.Values[i] = ec._RemoveDevicesFromGroupRequest_groupId(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._RemoveDevicesFromGroupRequest_deviceId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -21515,10 +21515,10 @@ func (ec *executionContext) _SetDeviceCommunicationUnitsRequest(ctx context.Cont
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("SetDeviceCommunicationUnitsRequest")
-		case "device_id":
-			out.Values[i] = ec._SetDeviceCommunicationUnitsRequest_device_id(ctx, field, obj)
-		case "communication_units":
-			out.Values[i] = ec._SetDeviceCommunicationUnitsRequest_communication_units(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._SetDeviceCommunicationUnitsRequest_deviceId(ctx, field, obj)
+		case "communicationUnits":
+			out.Values[i] = ec._SetDeviceCommunicationUnitsRequest_communicationUnits(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -21589,8 +21589,8 @@ func (ec *executionContext) _SetModemRequest(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("SetModemRequest")
-		case "pool_id":
-			out.Values[i] = ec._SetModemRequest_pool_id(ctx, field, obj)
+		case "poolId":
+			out.Values[i] = ec._SetModemRequest_poolId(ctx, field, obj)
 		case "modem":
 			out.Values[i] = ec._SetModemRequest_modem(ctx, field, obj)
 		default:
@@ -21663,12 +21663,12 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("SystemConfig")
-		case "max_replicas":
-			out.Values[i] = ec._SystemConfig_max_replicas(ctx, field, obj)
-		case "max_cascade_device_count":
-			out.Values[i] = ec._SystemConfig_max_cascade_device_count(ctx, field, obj)
-		case "max_slots_per_driver":
-			out.Values[i] = ec._SystemConfig_max_slots_per_driver(ctx, field, obj)
+		case "maxReplicas":
+			out.Values[i] = ec._SystemConfig_maxReplicas(ctx, field, obj)
+		case "maxCascadeDeviceCount":
+			out.Values[i] = ec._SystemConfig_maxCascadeDeviceCount(ctx, field, obj)
+		case "maxSlotsPerDriver":
+			out.Values[i] = ec._SystemConfig_maxSlotsPerDriver(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
