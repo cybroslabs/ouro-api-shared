@@ -336,7 +336,7 @@ export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> 
   deviceAttributes: { [key: string]: FieldValue };
 
   /**
-   * The conenction (device) parameters.
+   * The connection (device) parameters.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.ConnectionInfo connection_info = 5;
    */

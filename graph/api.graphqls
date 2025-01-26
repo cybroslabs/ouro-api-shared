@@ -816,7 +816,7 @@ type JobDevice {
   externalId: String
   # The connection attributes to the device.
   deviceAttributes: [_mapFieldValue]
-  # The conenction (device) parameters.
+  # The connection (device) parameters.
   connectionInfo: [ConnectionInfo]
   # The application protocol.
   appProtocol: ApplicationProtocol

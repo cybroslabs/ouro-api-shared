@@ -88,7 +88,7 @@ message JobDevice {
     string device_id                                 = 2;  // The device identifier. If set then all below is loaded from the device registry.
     string external_id                               = 3;  // The external identifier.
     map<string, common.FieldValue> device_attributes = 4;  // The connection attributes to the device.
-    repeated ConnectionInfo connection_info          = 5;  // The conenction (device) parameters.
+    repeated ConnectionInfo connection_info          = 5;  // The connection (device) parameters.
     ApplicationProtocol app_protocol                 = 6;  // The application protocol.
     string timezone                                  = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }

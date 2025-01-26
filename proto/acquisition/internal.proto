@@ -70,9 +70,5 @@ message GetDriverScaleRequest {
 }
 
 message GetDeviceCommunicationUnitsResponse {
-    map<string, GetDeviceCommunicationUnitsValue> devices = 1;  // The communication units definitions linked to the device(s).
-}
-
-message GetDeviceCommunicationUnitsValue {
-    repeated CommunicationUnit items = 1;  // The communication unit specification.
+    map<string, JobDevice> devices = 1;  // The communication units definitions linked to the device(s).
 }
