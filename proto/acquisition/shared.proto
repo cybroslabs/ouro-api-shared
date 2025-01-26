@@ -682,3 +682,14 @@ message DriverInfo {
     string driver_type = 1;  // The driver unique identifier.
     string version     = 2;  // The version of the driver.
 }
+
+message CommunicationUnit {
+    reserved 2;                                                                      // reserved for status
+    CommunicationUnitSpec spec     = 1 [features.field_presence = LEGACY_REQUIRED];  // The communication unit specification.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
+}
+
+message CommunicationUnitSpec {
+    string external_id             = 1;  // The external identifier of the communication unit.
+    ConnectionInfo connection_info = 2;  // The connection info.
+}

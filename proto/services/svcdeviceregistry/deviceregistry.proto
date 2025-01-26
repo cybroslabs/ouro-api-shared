@@ -8,6 +8,8 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 import "acquisition/main.proto";
+import "acquisition/internal.proto";
+import "acquisition/shared.proto";
 import "common/fields.proto";
 
 // The Deviceregistry service definition.
@@ -39,7 +41,7 @@ service DeviceRegistryService {
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
-    rpc GetDeviceCommunicationUnits(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
+    rpc GetDeviceCommunicationUnits(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);

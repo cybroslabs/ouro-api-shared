@@ -9,6 +9,7 @@ import "google/protobuf/wrappers.proto";
 import "common/fields.proto";
 import "common/types.proto";
 import "acquisition/main.proto";
+import "acquisition/shared.proto";
 import "system/main.proto";
 
 // The Dataproxy related service definition.

@@ -20,17 +20,6 @@ message ListOfCommunicationUnit {
     repeated CommunicationUnit items = 1;  // The communication unit specification.
 }
 
-message CommunicationUnit {
-    reserved 2;                                                                      // reserved for status
-    CommunicationUnitSpec spec     = 1 [features.field_presence = LEGACY_REQUIRED];  // The communication unit specification.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
-}
-
-message CommunicationUnitSpec {
-    string external_id             = 1;  // The external identifier of the communication unit.
-    ConnectionInfo connection_info = 2;  // The connection info.
-}
-
 // Device specification.
 
 message CreateDeviceRequest {

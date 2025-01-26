@@ -1052,6 +1052,122 @@ func (b0 GetDriverScaleRequest_builder) Build() *GetDriverScaleRequest {
 	return m0
 }
 
+type GetDeviceCommunicationUnitsResponse struct {
+	state              protoimpl.MessageState                       `protogen:"opaque.v1"`
+	xxx_hidden_Devices map[string]*GetDeviceCommunicationUnitsValue `protobuf:"bytes,1,rep,name=devices" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *GetDeviceCommunicationUnitsResponse) Reset() {
+	*x = GetDeviceCommunicationUnitsResponse{}
+	mi := &file_acquisition_internal_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDeviceCommunicationUnitsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDeviceCommunicationUnitsResponse) ProtoMessage() {}
+
+func (x *GetDeviceCommunicationUnitsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetDeviceCommunicationUnitsResponse) GetDevices() map[string]*GetDeviceCommunicationUnitsValue {
+	if x != nil {
+		return x.xxx_hidden_Devices
+	}
+	return nil
+}
+
+func (x *GetDeviceCommunicationUnitsResponse) SetDevices(v map[string]*GetDeviceCommunicationUnitsValue) {
+	x.xxx_hidden_Devices = v
+}
+
+type GetDeviceCommunicationUnitsResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Devices map[string]*GetDeviceCommunicationUnitsValue
+}
+
+func (b0 GetDeviceCommunicationUnitsResponse_builder) Build() *GetDeviceCommunicationUnitsResponse {
+	m0 := &GetDeviceCommunicationUnitsResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Devices = b.Devices
+	return m0
+}
+
+type GetDeviceCommunicationUnitsValue struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items *[]*CommunicationUnit  `protobuf:"bytes,1,rep,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetDeviceCommunicationUnitsValue) Reset() {
+	*x = GetDeviceCommunicationUnitsValue{}
+	mi := &file_acquisition_internal_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDeviceCommunicationUnitsValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDeviceCommunicationUnitsValue) ProtoMessage() {}
+
+func (x *GetDeviceCommunicationUnitsValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetDeviceCommunicationUnitsValue) GetItems() []*CommunicationUnit {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *GetDeviceCommunicationUnitsValue) SetItems(v []*CommunicationUnit) {
+	x.xxx_hidden_Items = &v
+}
+
+type GetDeviceCommunicationUnitsValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items []*CommunicationUnit
+}
+
+func (b0 GetDeviceCommunicationUnitsValue_builder) Build() *GetDeviceCommunicationUnitsValue {
+	m0 := &GetDeviceCommunicationUnitsValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
 var File_acquisition_internal_proto protoreflect.FileDescriptor
 
 var file_acquisition_internal_proto_rawDesc = []byte{
@@ -1136,47 +1252,79 @@ var file_acquisition_internal_proto_rawDesc = []byte{
 	0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x74, 0x61, 0x73,
 	0x6b, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x72, 0x69,
 	0x76, 0x65, 0x72, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
-	0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c,
-	0x61, 0x62, 0x73, 0x2f, 0x68, 0x65, 0x73, 0x2d, 0x32, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x67,
-	0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f,
-	0x6e, 0x62, 0x08, 0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
+	0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x22, 0x98, 0x02, 0x0a, 0x23, 0x47,
+	0x65, 0x74, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x6e, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x54, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70,
+	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63, 0x71,
+	0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55,
+	0x6e, 0x69, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x44, 0x65, 0x76,
+	0x69, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x07, 0x64, 0x65, 0x76, 0x69, 0x63,
+	0x65, 0x73, 0x1a, 0x80, 0x01, 0x0a, 0x0c, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x45, 0x6e,
+	0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x5a, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x44, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f,
+	0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63,
+	0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x65, 0x76,
+	0x69, 0x63, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x55, 0x6e, 0x69, 0x74, 0x73, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x6f, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55,
+	0x6e, 0x69, 0x74, 0x73, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x4b, 0x0a, 0x05, 0x69, 0x74, 0x65,
+	0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x35, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c,
+	0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x73, 0x2e, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x43, 0x6f,
+	0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74, 0x52,
+	0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f,
+	0x68, 0x65, 0x73, 0x2d, 0x32, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67,
+	0x6f, 0x2f, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x08, 0x65,
+	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
 }
 
-var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_acquisition_internal_proto_goTypes = []any{
-	(*SetCacheRequest)(nil),       // 0: io.clbs.openhes.models.acquisition.SetCacheRequest
-	(*GetCacheRequest)(nil),       // 1: io.clbs.openhes.models.acquisition.GetCacheRequest
-	(*GetCacheResponse)(nil),      // 2: io.clbs.openhes.models.acquisition.GetCacheResponse
-	(*StartJobsRequest)(nil),      // 3: io.clbs.openhes.models.acquisition.StartJobsRequest
-	(*ProgressUpdate)(nil),        // 4: io.clbs.openhes.models.acquisition.ProgressUpdate
-	(*StartUpgradeRequest)(nil),   // 5: io.clbs.openhes.models.acquisition.StartUpgradeRequest
-	(*QueueJobsRequest)(nil),      // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest
-	(*GetJobResponse)(nil),        // 7: io.clbs.openhes.models.acquisition.GetJobResponse
-	(*SetDriverScaleRequest)(nil), // 8: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
-	(*GetDriverScaleRequest)(nil), // 9: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
-	(*common.FieldValue)(nil),     // 10: io.clbs.openhes.models.common.FieldValue
-	(*ConnectionInfo)(nil),        // 11: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*StartJobData)(nil),          // 12: io.clbs.openhes.models.acquisition.StartJobData
-	(*JobProgressUpdate)(nil),     // 13: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionProgressUpdate)(nil),  // 14: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobSpec)(nil),               // 15: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobStatus)(nil),             // 16: io.clbs.openhes.models.acquisition.JobStatus
+	(*SetCacheRequest)(nil),                     // 0: io.clbs.openhes.models.acquisition.SetCacheRequest
+	(*GetCacheRequest)(nil),                     // 1: io.clbs.openhes.models.acquisition.GetCacheRequest
+	(*GetCacheResponse)(nil),                    // 2: io.clbs.openhes.models.acquisition.GetCacheResponse
+	(*StartJobsRequest)(nil),                    // 3: io.clbs.openhes.models.acquisition.StartJobsRequest
+	(*ProgressUpdate)(nil),                      // 4: io.clbs.openhes.models.acquisition.ProgressUpdate
+	(*StartUpgradeRequest)(nil),                 // 5: io.clbs.openhes.models.acquisition.StartUpgradeRequest
+	(*QueueJobsRequest)(nil),                    // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest
+	(*GetJobResponse)(nil),                      // 7: io.clbs.openhes.models.acquisition.GetJobResponse
+	(*SetDriverScaleRequest)(nil),               // 8: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
+	(*GetDriverScaleRequest)(nil),               // 9: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
+	(*GetDeviceCommunicationUnitsResponse)(nil), // 10: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse
+	(*GetDeviceCommunicationUnitsValue)(nil),    // 11: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsValue
+	nil,                                         // 12: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse.DevicesEntry
+	(*common.FieldValue)(nil),                   // 13: io.clbs.openhes.models.common.FieldValue
+	(*ConnectionInfo)(nil),                      // 14: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*StartJobData)(nil),                        // 15: io.clbs.openhes.models.acquisition.StartJobData
+	(*JobProgressUpdate)(nil),                   // 16: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionProgressUpdate)(nil),                // 17: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobSpec)(nil),                             // 18: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobStatus)(nil),                           // 19: io.clbs.openhes.models.acquisition.JobStatus
+	(*CommunicationUnit)(nil),                   // 20: io.clbs.openhes.models.acquisition.CommunicationUnit
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
-	10, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	10, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	11, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	12, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
-	13, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
-	14, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	15, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	16, // 7: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	8,  // [8:8] is the sub-list for method output_type
-	8,  // [8:8] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	13, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	13, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	14, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	15, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
+	16, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
+	17, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	18, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	19, // 7: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	12, // 8: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse.devices:type_name -> io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse.DevicesEntry
+	20, // 9: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsValue.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	11, // 10: io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsValue
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }
@@ -1195,7 +1343,7 @@ func file_acquisition_internal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_acquisition_internal_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
