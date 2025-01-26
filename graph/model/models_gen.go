@@ -388,6 +388,10 @@ type ListOfDevice struct {
 	Items []*Device `json:"items,omitempty"`
 }
 
+type ListOfDeviceCommunicationUnit struct {
+	CommunicationUnits []*DeviceCommunicationUnit `json:"communicationUnits,omitempty"`
+}
+
 type ListOfDeviceGroup struct {
 	Items []*DeviceGroup `json:"items,omitempty"`
 }

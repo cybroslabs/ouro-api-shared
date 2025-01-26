@@ -112,7 +112,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -313,9 +313,9 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
+func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.ListOfCommunicationUnit)
+	out := new(acquisition.ListOfDeviceCommunicationUnit)
 	err := c.cc.Invoke(ctx, ApiService_GetDeviceCommunicationUnits_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -530,7 +530,7 @@ type ApiServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -640,7 +640,7 @@ func (UnimplementedApiServiceServer) GetDevice(context.Context, *wrapperspb.Stri
 func (UnimplementedApiServiceServer) SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
 }
-func (UnimplementedApiServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
+func (UnimplementedApiServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {

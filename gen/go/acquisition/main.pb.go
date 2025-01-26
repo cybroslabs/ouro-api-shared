@@ -918,6 +918,65 @@ func (b0 SetDeviceCommunicationUnitsRequest_builder) Build() *SetDeviceCommunica
 	return m0
 }
 
+type ListOfDeviceCommunicationUnit struct {
+	state                         protoimpl.MessageState      `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnits *[]*DeviceCommunicationUnit `protobuf:"bytes,1,rep,name=communication_units,json=communicationUnits"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
+}
+
+func (x *ListOfDeviceCommunicationUnit) Reset() {
+	*x = ListOfDeviceCommunicationUnit{}
+	mi := &file_acquisition_main_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfDeviceCommunicationUnit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfDeviceCommunicationUnit) ProtoMessage() {}
+
+func (x *ListOfDeviceCommunicationUnit) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfDeviceCommunicationUnit) GetCommunicationUnits() []*DeviceCommunicationUnit {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnits != nil {
+			return *x.xxx_hidden_CommunicationUnits
+		}
+	}
+	return nil
+}
+
+func (x *ListOfDeviceCommunicationUnit) SetCommunicationUnits(v []*DeviceCommunicationUnit) {
+	x.xxx_hidden_CommunicationUnits = &v
+}
+
+type ListOfDeviceCommunicationUnit_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	CommunicationUnits []*DeviceCommunicationUnit
+}
+
+func (b0 ListOfDeviceCommunicationUnit_builder) Build() *ListOfDeviceCommunicationUnit {
+	m0 := &ListOfDeviceCommunicationUnit{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_CommunicationUnits = &b.CommunicationUnits
+	return m0
+}
+
 type AddDevicesToGroupRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_GroupId     *string                `protobuf:"bytes,1,opt,name=group_id,json=groupId"`
@@ -930,7 +989,7 @@ type AddDevicesToGroupRequest struct {
 
 func (x *AddDevicesToGroupRequest) Reset() {
 	*x = AddDevicesToGroupRequest{}
-	mi := &file_acquisition_main_proto_msgTypes[11]
+	mi := &file_acquisition_main_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -942,7 +1001,7 @@ func (x *AddDevicesToGroupRequest) String() string {
 func (*AddDevicesToGroupRequest) ProtoMessage() {}
 
 func (x *AddDevicesToGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[11]
+	mi := &file_acquisition_main_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1022,7 +1081,7 @@ type RemoveDevicesFromGroupRequest struct {
 
 func (x *RemoveDevicesFromGroupRequest) Reset() {
 	*x = RemoveDevicesFromGroupRequest{}
-	mi := &file_acquisition_main_proto_msgTypes[12]
+	mi := &file_acquisition_main_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1034,7 +1093,7 @@ func (x *RemoveDevicesFromGroupRequest) String() string {
 func (*RemoveDevicesFromGroupRequest) ProtoMessage() {}
 
 func (x *RemoveDevicesFromGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[12]
+	mi := &file_acquisition_main_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1112,7 +1171,7 @@ type CreateBulkRequest struct {
 
 func (x *CreateBulkRequest) Reset() {
 	*x = CreateBulkRequest{}
-	mi := &file_acquisition_main_proto_msgTypes[13]
+	mi := &file_acquisition_main_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1124,7 +1183,7 @@ func (x *CreateBulkRequest) String() string {
 func (*CreateBulkRequest) ProtoMessage() {}
 
 func (x *CreateBulkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[13]
+	mi := &file_acquisition_main_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1204,7 +1263,7 @@ type ListOfBulk struct {
 
 func (x *ListOfBulk) Reset() {
 	*x = ListOfBulk{}
-	mi := &file_acquisition_main_proto_msgTypes[14]
+	mi := &file_acquisition_main_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1216,7 +1275,7 @@ func (x *ListOfBulk) String() string {
 func (*ListOfBulk) ProtoMessage() {}
 
 func (x *ListOfBulk) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[14]
+	mi := &file_acquisition_main_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1265,7 +1324,7 @@ type Bulk struct {
 
 func (x *Bulk) Reset() {
 	*x = Bulk{}
-	mi := &file_acquisition_main_proto_msgTypes[15]
+	mi := &file_acquisition_main_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1277,7 +1336,7 @@ func (x *Bulk) String() string {
 func (*Bulk) ProtoMessage() {}
 
 func (x *Bulk) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[15]
+	mi := &file_acquisition_main_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1388,7 +1447,7 @@ type BulkSpec struct {
 
 func (x *BulkSpec) Reset() {
 	*x = BulkSpec{}
-	mi := &file_acquisition_main_proto_msgTypes[16]
+	mi := &file_acquisition_main_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1400,7 +1459,7 @@ func (x *BulkSpec) String() string {
 func (*BulkSpec) ProtoMessage() {}
 
 func (x *BulkSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[16]
+	mi := &file_acquisition_main_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1663,7 +1722,7 @@ func (b0 BulkSpec_builder) Build() *BulkSpec {
 type case_BulkSpec_Device protoreflect.FieldNumber
 
 func (x case_BulkSpec_Device) String() string {
-	md := file_acquisition_main_proto_msgTypes[16].Descriptor()
+	md := file_acquisition_main_proto_msgTypes[17].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -1698,7 +1757,7 @@ type BulkStatus struct {
 
 func (x *BulkStatus) Reset() {
 	*x = BulkStatus{}
-	mi := &file_acquisition_main_proto_msgTypes[17]
+	mi := &file_acquisition_main_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1710,7 +1769,7 @@ func (x *BulkStatus) String() string {
 func (*BulkStatus) ProtoMessage() {}
 
 func (x *BulkStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[17]
+	mi := &file_acquisition_main_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1789,7 +1848,7 @@ type SetModemPoolRequest struct {
 
 func (x *SetModemPoolRequest) Reset() {
 	*x = SetModemPoolRequest{}
-	mi := &file_acquisition_main_proto_msgTypes[18]
+	mi := &file_acquisition_main_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1801,7 +1860,7 @@ func (x *SetModemPoolRequest) String() string {
 func (*SetModemPoolRequest) ProtoMessage() {}
 
 func (x *SetModemPoolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[18]
+	mi := &file_acquisition_main_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1881,7 +1940,7 @@ type ListOfModemPool struct {
 
 func (x *ListOfModemPool) Reset() {
 	*x = ListOfModemPool{}
-	mi := &file_acquisition_main_proto_msgTypes[19]
+	mi := &file_acquisition_main_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1893,7 +1952,7 @@ func (x *ListOfModemPool) String() string {
 func (*ListOfModemPool) ProtoMessage() {}
 
 func (x *ListOfModemPool) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[19]
+	mi := &file_acquisition_main_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1939,7 +1998,7 @@ type ModemPoolSpec struct {
 
 func (x *ModemPoolSpec) Reset() {
 	*x = ModemPoolSpec{}
-	mi := &file_acquisition_main_proto_msgTypes[20]
+	mi := &file_acquisition_main_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1951,7 +2010,7 @@ func (x *ModemPoolSpec) String() string {
 func (*ModemPoolSpec) ProtoMessage() {}
 
 func (x *ModemPoolSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[20]
+	mi := &file_acquisition_main_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1983,7 +2042,7 @@ type ModemPoolStatus struct {
 
 func (x *ModemPoolStatus) Reset() {
 	*x = ModemPoolStatus{}
-	mi := &file_acquisition_main_proto_msgTypes[21]
+	mi := &file_acquisition_main_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1995,7 +2054,7 @@ func (x *ModemPoolStatus) String() string {
 func (*ModemPoolStatus) ProtoMessage() {}
 
 func (x *ModemPoolStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[21]
+	mi := &file_acquisition_main_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2044,7 +2103,7 @@ type ModemPool struct {
 
 func (x *ModemPool) Reset() {
 	*x = ModemPool{}
-	mi := &file_acquisition_main_proto_msgTypes[22]
+	mi := &file_acquisition_main_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2056,7 +2115,7 @@ func (x *ModemPool) String() string {
 func (*ModemPool) ProtoMessage() {}
 
 func (x *ModemPool) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[22]
+	mi := &file_acquisition_main_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2163,7 +2222,7 @@ type SetModemRequest struct {
 
 func (x *SetModemRequest) Reset() {
 	*x = SetModemRequest{}
-	mi := &file_acquisition_main_proto_msgTypes[23]
+	mi := &file_acquisition_main_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2175,7 +2234,7 @@ func (x *SetModemRequest) String() string {
 func (*SetModemRequest) ProtoMessage() {}
 
 func (x *SetModemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[23]
+	mi := &file_acquisition_main_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2263,7 +2322,7 @@ type SetDriver struct {
 
 func (x *SetDriver) Reset() {
 	*x = SetDriver{}
-	mi := &file_acquisition_main_proto_msgTypes[24]
+	mi := &file_acquisition_main_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2275,7 +2334,7 @@ func (x *SetDriver) String() string {
 func (*SetDriver) ProtoMessage() {}
 
 func (x *SetDriver) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[24]
+	mi := &file_acquisition_main_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2331,7 +2390,7 @@ type ListOfDriver struct {
 
 func (x *ListOfDriver) Reset() {
 	*x = ListOfDriver{}
-	mi := &file_acquisition_main_proto_msgTypes[25]
+	mi := &file_acquisition_main_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2343,7 +2402,7 @@ func (x *ListOfDriver) String() string {
 func (*ListOfDriver) ProtoMessage() {}
 
 func (x *ListOfDriver) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[25]
+	mi := &file_acquisition_main_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2390,7 +2449,7 @@ type Driver struct {
 
 func (x *Driver) Reset() {
 	*x = Driver{}
-	mi := &file_acquisition_main_proto_msgTypes[26]
+	mi := &file_acquisition_main_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2402,7 +2461,7 @@ func (x *Driver) String() string {
 func (*Driver) ProtoMessage() {}
 
 func (x *Driver) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[26]
+	mi := &file_acquisition_main_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2467,7 +2526,7 @@ type DriverSpec struct {
 
 func (x *DriverSpec) Reset() {
 	*x = DriverSpec{}
-	mi := &file_acquisition_main_proto_msgTypes[27]
+	mi := &file_acquisition_main_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2479,7 +2538,7 @@ func (x *DriverSpec) String() string {
 func (*DriverSpec) ProtoMessage() {}
 
 func (x *DriverSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[27]
+	mi := &file_acquisition_main_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2860,6 +2919,15 @@ var file_acquisition_main_proto_rawDesc = []byte{
 	0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43,
 	0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74,
 	0x52, 0x12, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55,
+	0x6e, 0x69, 0x74, 0x73, 0x22, 0x8d, 0x01, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x66, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74, 0x12, 0x6c, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x75, 0x6e, 0x69, 0x74, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x3b, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70,
+	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63, 0x71,
+	0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43,
+	0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x6e, 0x69, 0x74,
+	0x52, 0x12, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55,
 	0x6e, 0x69, 0x74, 0x73, 0x22, 0x52, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x44, 0x65, 0x76, 0x69, 0x63,
 	0x65, 0x73, 0x54, 0x6f, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x19, 0x0a, 0x08, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
@@ -3032,7 +3100,7 @@ var file_acquisition_main_proto_rawDesc = []byte{
 	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
 }
 
-var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_acquisition_main_proto_goTypes = []any{
 	(*CreateCommunicationUnitRequest)(nil),     // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
 	(*ListOfCommunicationUnit)(nil),            // 1: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
@@ -3045,82 +3113,84 @@ var file_acquisition_main_proto_goTypes = []any{
 	(*DeviceGroupSpec)(nil),                    // 8: io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	(*DeviceGroupStatus)(nil),                  // 9: io.clbs.openhes.models.acquisition.DeviceGroupStatus
 	(*SetDeviceCommunicationUnitsRequest)(nil), // 10: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
-	(*AddDevicesToGroupRequest)(nil),           // 11: io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
-	(*RemoveDevicesFromGroupRequest)(nil),      // 12: io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
-	(*CreateBulkRequest)(nil),                  // 13: io.clbs.openhes.models.acquisition.CreateBulkRequest
-	(*ListOfBulk)(nil),                         // 14: io.clbs.openhes.models.acquisition.ListOfBulk
-	(*Bulk)(nil),                               // 15: io.clbs.openhes.models.acquisition.Bulk
-	(*BulkSpec)(nil),                           // 16: io.clbs.openhes.models.acquisition.BulkSpec
-	(*BulkStatus)(nil),                         // 17: io.clbs.openhes.models.acquisition.BulkStatus
-	(*SetModemPoolRequest)(nil),                // 18: io.clbs.openhes.models.acquisition.SetModemPoolRequest
-	(*ListOfModemPool)(nil),                    // 19: io.clbs.openhes.models.acquisition.ListOfModemPool
-	(*ModemPoolSpec)(nil),                      // 20: io.clbs.openhes.models.acquisition.ModemPoolSpec
-	(*ModemPoolStatus)(nil),                    // 21: io.clbs.openhes.models.acquisition.ModemPoolStatus
-	(*ModemPool)(nil),                          // 22: io.clbs.openhes.models.acquisition.ModemPool
-	(*SetModemRequest)(nil),                    // 23: io.clbs.openhes.models.acquisition.SetModemRequest
-	(*SetDriver)(nil),                          // 24: io.clbs.openhes.models.acquisition.SetDriver
-	(*ListOfDriver)(nil),                       // 25: io.clbs.openhes.models.acquisition.ListOfDriver
-	(*Driver)(nil),                             // 26: io.clbs.openhes.models.acquisition.Driver
-	(*DriverSpec)(nil),                         // 27: io.clbs.openhes.models.acquisition.DriverSpec
-	(*CommunicationUnitSpec)(nil),              // 28: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*common.MetadataFields)(nil),              // 29: io.clbs.openhes.models.common.MetadataFields
-	(*CommunicationUnit)(nil),                  // 30: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*DeviceSpec)(nil),                         // 31: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceCommunicationUnit)(nil),            // 32: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*ListOfJobDeviceId)(nil),                  // 33: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	(*ListOfJobDevice)(nil),                    // 34: io.clbs.openhes.models.acquisition.ListOfJobDevice
-	(*JobSettings)(nil),                        // 35: io.clbs.openhes.models.acquisition.JobSettings
-	(*JobAction)(nil),                          // 36: io.clbs.openhes.models.acquisition.JobAction
-	(BulkStatusCode)(0),                        // 37: io.clbs.openhes.models.acquisition.BulkStatusCode
-	(*BulkJob)(nil),                            // 38: io.clbs.openhes.models.acquisition.BulkJob
-	(*ModemInfo)(nil),                          // 39: io.clbs.openhes.models.acquisition.ModemInfo
-	(*DriverTemplates)(nil),                    // 40: io.clbs.openhes.models.acquisition.DriverTemplates
+	(*ListOfDeviceCommunicationUnit)(nil),      // 11: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
+	(*AddDevicesToGroupRequest)(nil),           // 12: io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
+	(*RemoveDevicesFromGroupRequest)(nil),      // 13: io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
+	(*CreateBulkRequest)(nil),                  // 14: io.clbs.openhes.models.acquisition.CreateBulkRequest
+	(*ListOfBulk)(nil),                         // 15: io.clbs.openhes.models.acquisition.ListOfBulk
+	(*Bulk)(nil),                               // 16: io.clbs.openhes.models.acquisition.Bulk
+	(*BulkSpec)(nil),                           // 17: io.clbs.openhes.models.acquisition.BulkSpec
+	(*BulkStatus)(nil),                         // 18: io.clbs.openhes.models.acquisition.BulkStatus
+	(*SetModemPoolRequest)(nil),                // 19: io.clbs.openhes.models.acquisition.SetModemPoolRequest
+	(*ListOfModemPool)(nil),                    // 20: io.clbs.openhes.models.acquisition.ListOfModemPool
+	(*ModemPoolSpec)(nil),                      // 21: io.clbs.openhes.models.acquisition.ModemPoolSpec
+	(*ModemPoolStatus)(nil),                    // 22: io.clbs.openhes.models.acquisition.ModemPoolStatus
+	(*ModemPool)(nil),                          // 23: io.clbs.openhes.models.acquisition.ModemPool
+	(*SetModemRequest)(nil),                    // 24: io.clbs.openhes.models.acquisition.SetModemRequest
+	(*SetDriver)(nil),                          // 25: io.clbs.openhes.models.acquisition.SetDriver
+	(*ListOfDriver)(nil),                       // 26: io.clbs.openhes.models.acquisition.ListOfDriver
+	(*Driver)(nil),                             // 27: io.clbs.openhes.models.acquisition.Driver
+	(*DriverSpec)(nil),                         // 28: io.clbs.openhes.models.acquisition.DriverSpec
+	(*CommunicationUnitSpec)(nil),              // 29: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*common.MetadataFields)(nil),              // 30: io.clbs.openhes.models.common.MetadataFields
+	(*CommunicationUnit)(nil),                  // 31: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*DeviceSpec)(nil),                         // 32: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceCommunicationUnit)(nil),            // 33: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*ListOfJobDeviceId)(nil),                  // 34: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	(*ListOfJobDevice)(nil),                    // 35: io.clbs.openhes.models.acquisition.ListOfJobDevice
+	(*JobSettings)(nil),                        // 36: io.clbs.openhes.models.acquisition.JobSettings
+	(*JobAction)(nil),                          // 37: io.clbs.openhes.models.acquisition.JobAction
+	(BulkStatusCode)(0),                        // 38: io.clbs.openhes.models.acquisition.BulkStatusCode
+	(*BulkJob)(nil),                            // 39: io.clbs.openhes.models.acquisition.BulkJob
+	(*ModemInfo)(nil),                          // 40: io.clbs.openhes.models.acquisition.ModemInfo
+	(*DriverTemplates)(nil),                    // 41: io.clbs.openhes.models.acquisition.DriverTemplates
 }
 var file_acquisition_main_proto_depIdxs = []int32{
-	28, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	29, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	30, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	31, // 3: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	29, // 4: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	29, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	30, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	31, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	32, // 3: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	30, // 4: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	4,  // 5: io.clbs.openhes.models.acquisition.ListOfDevice.items:type_name -> io.clbs.openhes.models.acquisition.Device
-	31, // 6: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	29, // 7: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	32, // 6: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	30, // 7: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	8,  // 8: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	29, // 9: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	30, // 9: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	7,  // 10: io.clbs.openhes.models.acquisition.ListOfDeviceGroup.items:type_name -> io.clbs.openhes.models.acquisition.DeviceGroup
 	8,  // 11: io.clbs.openhes.models.acquisition.DeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	9,  // 12: io.clbs.openhes.models.acquisition.DeviceGroup.status:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatus
-	29, // 13: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	32, // 14: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	16, // 15: io.clbs.openhes.models.acquisition.CreateBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
-	29, // 16: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	15, // 17: io.clbs.openhes.models.acquisition.ListOfBulk.items:type_name -> io.clbs.openhes.models.acquisition.Bulk
-	16, // 18: io.clbs.openhes.models.acquisition.Bulk.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
-	17, // 19: io.clbs.openhes.models.acquisition.Bulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	29, // 20: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	33, // 21: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	34, // 22: io.clbs.openhes.models.acquisition.BulkSpec.custom_devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
-	35, // 23: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	36, // 24: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	37, // 25: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
-	38, // 26: io.clbs.openhes.models.acquisition.BulkStatus.jobs:type_name -> io.clbs.openhes.models.acquisition.BulkJob
-	20, // 27: io.clbs.openhes.models.acquisition.SetModemPoolRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
-	29, // 28: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	22, // 29: io.clbs.openhes.models.acquisition.ListOfModemPool.items:type_name -> io.clbs.openhes.models.acquisition.ModemPool
-	39, // 30: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	20, // 31: io.clbs.openhes.models.acquisition.ModemPool.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
-	21, // 32: io.clbs.openhes.models.acquisition.ModemPool.status:type_name -> io.clbs.openhes.models.acquisition.ModemPoolStatus
-	29, // 33: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	39, // 34: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	27, // 35: io.clbs.openhes.models.acquisition.SetDriver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
-	26, // 36: io.clbs.openhes.models.acquisition.ListOfDriver.items:type_name -> io.clbs.openhes.models.acquisition.Driver
-	27, // 37: io.clbs.openhes.models.acquisition.Driver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
-	40, // 38: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
-	39, // [39:39] is the sub-list for method output_type
-	39, // [39:39] is the sub-list for method input_type
-	39, // [39:39] is the sub-list for extension type_name
-	39, // [39:39] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	30, // 13: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	33, // 14: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	33, // 15: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	17, // 16: io.clbs.openhes.models.acquisition.CreateBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
+	30, // 17: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	16, // 18: io.clbs.openhes.models.acquisition.ListOfBulk.items:type_name -> io.clbs.openhes.models.acquisition.Bulk
+	17, // 19: io.clbs.openhes.models.acquisition.Bulk.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
+	18, // 20: io.clbs.openhes.models.acquisition.Bulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
+	30, // 21: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	34, // 22: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	35, // 23: io.clbs.openhes.models.acquisition.BulkSpec.custom_devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
+	36, // 24: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	37, // 25: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	38, // 26: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
+	39, // 27: io.clbs.openhes.models.acquisition.BulkStatus.jobs:type_name -> io.clbs.openhes.models.acquisition.BulkJob
+	21, // 28: io.clbs.openhes.models.acquisition.SetModemPoolRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
+	30, // 29: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	23, // 30: io.clbs.openhes.models.acquisition.ListOfModemPool.items:type_name -> io.clbs.openhes.models.acquisition.ModemPool
+	40, // 31: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	21, // 32: io.clbs.openhes.models.acquisition.ModemPool.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
+	22, // 33: io.clbs.openhes.models.acquisition.ModemPool.status:type_name -> io.clbs.openhes.models.acquisition.ModemPoolStatus
+	30, // 34: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	40, // 35: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	28, // 36: io.clbs.openhes.models.acquisition.SetDriver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
+	27, // 37: io.clbs.openhes.models.acquisition.ListOfDriver.items:type_name -> io.clbs.openhes.models.acquisition.Driver
+	28, // 38: io.clbs.openhes.models.acquisition.Driver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
+	41, // 39: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
+	40, // [40:40] is the sub-list for method output_type
+	40, // [40:40] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_main_proto_init() }
@@ -3129,7 +3199,7 @@ func file_acquisition_main_proto_init() {
 		return
 	}
 	file_acquisition_shared_proto_init()
-	file_acquisition_main_proto_msgTypes[16].OneofWrappers = []any{
+	file_acquisition_main_proto_msgTypes[17].OneofWrappers = []any{
 		(*bulkSpec_Devices)(nil),
 		(*bulkSpec_CustomDevices)(nil),
 	}
@@ -3139,7 +3209,7 @@ func file_acquisition_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_acquisition_main_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   28,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

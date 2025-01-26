@@ -69,6 +69,10 @@ message SetDeviceCommunicationUnitsRequest {
     repeated DeviceCommunicationUnit communication_units = 2;  // The list of linked communication units.
 }
 
+message ListOfDeviceCommunicationUnit {
+    repeated DeviceCommunicationUnit communication_units = 1;  // The list of linked communication units.
+}
+
 // Device#Group specification.
 
 message AddDevicesToGroupRequest {

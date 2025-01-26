@@ -880,6 +880,11 @@ type ListOfDevice {
   items: [Device]
 }
 
+type ListOfDeviceCommunicationUnit {
+  # The list of linked communication units.
+  communicationUnits: [DeviceCommunicationUnit]
+}
+
 type ListOfDeviceGroup {
   # The list of device groups.
   items: [DeviceGroup]
@@ -1185,7 +1190,7 @@ type Query {
   listDevices: ListOfDevice
   getDevice: Device
   setDeviceCommunicationUnits: Empty
-  getDeviceCommunicationUnits: ListOfCommunicationUnit
+  getDeviceCommunicationUnits: ListOfDeviceCommunicationUnit
   createDeviceGroup: StringValue
   listDeviceGroups: ListOfDeviceGroup
   getDeviceGroup: DeviceGroup

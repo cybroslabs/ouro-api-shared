@@ -425,6 +425,10 @@ type ComplexityRoot struct {
 		Items func(childComplexity int) int
 	}
 
+	ListOfDeviceCommunicationUnit struct {
+		CommunicationUnits func(childComplexity int) int
+	}
+
 	ListOfDeviceGroup struct {
 		Items func(childComplexity int) int
 	}
@@ -627,7 +631,7 @@ type QueryResolver interface {
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
-	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
+	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfDeviceCommunicationUnit, error)
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
 	ListDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
 	GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error)
@@ -1944,6 +1948,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ListOfDevice.Items(childComplexity), true
+
+	case "ListOfDeviceCommunicationUnit.communicationUnits":
+		if e.complexity.ListOfDeviceCommunicationUnit.CommunicationUnits == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceCommunicationUnit.CommunicationUnits(childComplexity), true
 
 	case "ListOfDeviceGroup.items":
 		if e.complexity.ListOfDeviceGroup.Items == nil {
@@ -11053,6 +11064,53 @@ func (ec *executionContext) fieldContext_ListOfDevice_items(_ context.Context, f
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfDeviceCommunicationUnit_communicationUnits(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommunicationUnits, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.DeviceCommunicationUnit)
+	fc.Result = res
+	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceCommunicationUnit",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "communicationUnitId":
+				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
+			case "appProtocol":
+				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfDeviceGroup_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceGroup) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfDeviceGroup_items(ctx, field)
 	if err != nil {
@@ -14039,9 +14097,9 @@ func (ec *executionContext) _Query_getDeviceCommunicationUnits(ctx context.Conte
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ListOfCommunicationUnit)
+	res := resTmp.(*model.ListOfDeviceCommunicationUnit)
 	fc.Result = res
-	return ec.marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14052,10 +14110,10 @@ func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ con
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "items":
-				return ec.fieldContext_ListOfCommunicationUnit_items(ctx, field)
+			case "communicationUnits":
+				return ec.fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnit", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceCommunicationUnit", field.Name)
 		},
 	}
 	return fc, nil
@@ -20132,6 +20190,42 @@ func (ec *executionContext) _ListOfDevice(ctx context.Context, sel ast.Selection
 	return out
 }
 
+var listOfDeviceCommunicationUnitImplementors = []string{"ListOfDeviceCommunicationUnit"}
+
+func (ec *executionContext) _ListOfDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfDeviceCommunicationUnit) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfDeviceCommunicationUnitImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfDeviceCommunicationUnit")
+		case "communicationUnits":
+			out.Values[i] = ec._ListOfDeviceCommunicationUnit_communicationUnits(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listOfDeviceGroupImplementors = []string{"ListOfDeviceGroup"}
 
 func (ec *executionContext) _ListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfDeviceGroup) graphql.Marshaler {
@@ -24072,6 +24166,13 @@ func (ec *executionContext) marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._ListOfDevice(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceCommunicationUnit) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfDeviceCommunicationUnit(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceGroup) graphql.Marshaler {

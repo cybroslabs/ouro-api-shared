@@ -165,7 +165,7 @@ type ApiServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
+	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -317,7 +317,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetDeviceCommunicationUnits")),
 			connect.WithClientOptions(opts...),
 		),
-		getDeviceCommunicationUnits: connect.NewClient[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit](
+		getDeviceCommunicationUnits: connect.NewClient[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit](
 			httpClient,
 			baseURL+ApiServiceGetDeviceCommunicationUnitsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceCommunicationUnits")),
@@ -431,7 +431,7 @@ type apiServiceClient struct {
 	listDevices                 *connect.Client[common.ListSelector, acquisition.ListOfDevice]
 	getDevice                   *connect.Client[wrapperspb.StringValue, acquisition.Device]
 	setDeviceCommunicationUnits *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
-	getDeviceCommunicationUnits *connect.Client[wrapperspb.StringValue, acquisition.ListOfCommunicationUnit]
+	getDeviceCommunicationUnits *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
 	createDeviceGroup           *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
 	listDeviceGroups            *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
 	getDeviceGroup              *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
@@ -517,7 +517,7 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, req 
 
 // GetDeviceCommunicationUnits calls
 // io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits.
-func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
+func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error) {
 	return c.getDeviceCommunicationUnits.CallUnary(ctx, req)
 }
 
@@ -649,7 +649,7 @@ type ApiServiceHandler interface {
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error)
+	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -1014,7 +1014,7 @@ func (UnimplementedApiServiceHandler) SetDeviceCommunicationUnits(context.Contex
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {
+func (UnimplementedApiServiceHandler) GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits is not implemented"))
 }
 

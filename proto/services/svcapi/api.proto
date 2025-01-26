@@ -75,7 +75,7 @@ service ApiService {
     // @group: Devices
     // @tag: device
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
-    rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
+    rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
 
     // @group: Devices
     // @tag: devicegroup
