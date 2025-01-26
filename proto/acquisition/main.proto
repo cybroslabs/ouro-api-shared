@@ -130,7 +130,9 @@ message BulkStatus {
 // Modem Pool specification.
 
 message SetModemPoolRequest {
-    ModemPoolSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
+    reserved 2;                                                                      // reserved for status
+    ModemPoolSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 message ListOfModemPool {

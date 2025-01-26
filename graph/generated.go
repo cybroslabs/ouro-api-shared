@@ -573,7 +573,8 @@ type ComplexityRoot struct {
 	}
 
 	SetModemPoolRequest struct {
-		Spec func(childComplexity int) int
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
 	}
 
 	SetModemRequest struct {
@@ -2552,6 +2553,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.SetDeviceCommunicationUnitsRequest.DeviceID(childComplexity), true
+
+	case "SetModemPoolRequest.metadata":
+		if e.complexity.SetModemPoolRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.SetModemPoolRequest.Metadata(childComplexity), true
 
 	case "SetModemPoolRequest.spec":
 		if e.complexity.SetModemPoolRequest.Spec == nil {
@@ -15080,6 +15088,59 @@ func (ec *executionContext) fieldContext_SetModemPoolRequest_spec(_ context.Cont
 	return fc, nil
 }
 
+func (ec *executionContext) _SetModemPoolRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.SetModemPoolRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetModemPoolRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetModemPoolRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetModemPoolRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _SetModemRequest_poolId(ctx context.Context, field graphql.CollectedField, obj *model.SetModemRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_SetModemRequest_poolId(ctx, field)
 	if err != nil {
@@ -21447,6 +21508,8 @@ func (ec *executionContext) _SetModemPoolRequest(ctx context.Context, sel ast.Se
 			out.Values[i] = graphql.MarshalString("SetModemPoolRequest")
 		case "spec":
 			out.Values[i] = ec._SetModemPoolRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._SetModemPoolRequest_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

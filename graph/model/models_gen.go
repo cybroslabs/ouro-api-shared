@@ -507,7 +507,8 @@ type SetDeviceCommunicationUnitsRequest struct {
 }
 
 type SetModemPoolRequest struct {
-	Spec *ModemPoolSpec `json:"spec,omitempty"`
+	Spec     *ModemPoolSpec  `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
 type SetModemRequest struct {

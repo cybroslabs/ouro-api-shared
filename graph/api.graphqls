@@ -1004,6 +1004,8 @@ type SetDeviceCommunicationUnitsRequest {
 type SetModemPoolRequest {
   # The modem pool specification.
   spec: ModemPoolSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 type SetModemRequest {
