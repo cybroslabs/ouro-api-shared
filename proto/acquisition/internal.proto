@@ -69,6 +69,6 @@ message GetDriverScaleRequest {
     string driver_type   = 2;  // The driver unique identifier.
 }
 
-message GetDeviceCommunicationUnitsResponse {
+message MapDeviceConnectionInfo {
     map<string, ListOfConnectionInfo> devices = 1;  // The communication units definitions linked to the device(s).
 }

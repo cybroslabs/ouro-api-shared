@@ -41,7 +41,9 @@ service DeviceRegistryService {
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
-    rpc GetDeviceCommunicationUnits(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.GetDeviceCommunicationUnitsResponse);
+    rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
+    // The method called by the DataProxy to resolve connection info for given device(s).
+    rpc GetDeviceConnectionInfo(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);

@@ -33,6 +33,7 @@ const (
 	DeviceRegistryService_GetDevice_FullMethodName                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
+	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
 	DeviceRegistryService_ListDeviceGroups_FullMethodName            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
 	DeviceRegistryService_GetDeviceGroup_FullMethodName              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
@@ -79,7 +80,9 @@ type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.GetDeviceCommunicationUnitsResponse, error)
+	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
+	// The method called by the DataProxy to resolve connection info for given device(s).
+	GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -198,10 +201,20 @@ func (c *deviceRegistryServiceClient) SetDeviceCommunicationUnits(ctx context.Co
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.GetDeviceCommunicationUnitsResponse, error) {
+func (c *deviceRegistryServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.GetDeviceCommunicationUnitsResponse)
+	out := new(acquisition.ListOfCommunicationUnit)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.MapDeviceConnectionInfo)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -369,7 +382,9 @@ type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
-	GetDeviceCommunicationUnits(context.Context, *structpb.ListValue) (*acquisition.GetDeviceCommunicationUnitsResponse, error)
+	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error)
+	// The method called by the DataProxy to resolve connection info for given device(s).
+	GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -432,8 +447,11 @@ func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrap
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(context.Context, *structpb.ListValue) (*acquisition.GetDeviceCommunicationUnitsResponse, error) {
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceConnectionInfo not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -640,7 +658,7 @@ func _DeviceRegistryService_SetDeviceCommunicationUnits_Handler(srv interface{},
 }
 
 func _DeviceRegistryService_GetDeviceCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(structpb.ListValue)
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -652,7 +670,25 @@ func _DeviceRegistryService_GetDeviceCommunicationUnits_Handler(srv interface{},
 		FullMethod: DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetDeviceCommunicationUnits(ctx, req.(*structpb.ListValue))
+		return srv.(DeviceRegistryServiceServer).GetDeviceCommunicationUnits(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDeviceConnectionInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(structpb.ListValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDeviceConnectionInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDeviceConnectionInfo(ctx, req.(*structpb.ListValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -933,6 +969,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceCommunicationUnits",
 			Handler:    _DeviceRegistryService_GetDeviceCommunicationUnits_Handler,
+		},
+		{
+			MethodName: "GetDeviceConnectionInfo",
+			Handler:    _DeviceRegistryService_GetDeviceConnectionInfo_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",
