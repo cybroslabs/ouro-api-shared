@@ -131,11 +131,9 @@ message FieldValidation {
     map<string, google.protobuf.Any> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
 }
 
-
-
 message FieldValue {
     oneof kind {
-        string text_value                    = 1;  // Represents a string-typed value.
+        string string_value                  = 1;  // Represents a string-typed value.
         int64 integer_value                  = 2;  // Represents a integer-typed value.
         double double_value                  = 3;  // Represents a double-typed value.
         bytes binary_value                   = 4;  // Represents a binary-typed value.

@@ -303,7 +303,7 @@ type FieldValidation struct {
 }
 
 type FieldValue struct {
-	TextValue    *string  `json:"textValue,omitempty"`
+	StringValue  *string  `json:"stringValue,omitempty"`
 	IntegerValue *int64   `json:"integerValue,omitempty"`
 	DoubleValue  *float64 `json:"doubleValue,omitempty"`
 	BinaryValue  *string  `json:"binaryValue,omitempty"`
@@ -443,8 +443,8 @@ type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
 	DoubleValue      *float64 `json:"doubleValue,omitempty"`
-	IntValue         *int64   `json:"intValue,omitempty"`
-	StrValue         *string  `json:"strValue,omitempty"`
+	IntegerValue     *int64   `json:"integerValue,omitempty"`
+	StringValue      *string  `json:"stringValue,omitempty"`
 	TimestampValue   *string  `json:"timestampValue,omitempty"`
 	TimestampTzValue *string  `json:"timestampTzValue,omitempty"`
 	BoolValue        *bool    `json:"boolValue,omitempty"`

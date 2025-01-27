@@ -345,7 +345,7 @@ type ComplexityRoot struct {
 		DateValue    func(childComplexity int) int
 		DoubleValue  func(childComplexity int) int
 		IntegerValue func(childComplexity int) int
-		TextValue    func(childComplexity int) int
+		StringValue  func(childComplexity int) int
 	}
 
 	JobAction struct {
@@ -480,9 +480,9 @@ type ComplexityRoot struct {
 		BoolValue        func(childComplexity int) int
 		DoubleValue      func(childComplexity int) int
 		Exponent         func(childComplexity int) int
-		IntValue         func(childComplexity int) int
+		IntegerValue     func(childComplexity int) int
 		Status           func(childComplexity int) int
-		StrValue         func(childComplexity int) int
+		StringValue      func(childComplexity int) int
 		TimestampTzValue func(childComplexity int) int
 		TimestampValue   func(childComplexity int) int
 	}
@@ -1613,12 +1613,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.FieldValue.IntegerValue(childComplexity), true
 
-	case "FieldValue.textValue":
-		if e.complexity.FieldValue.TextValue == nil {
+	case "FieldValue.stringValue":
+		if e.complexity.FieldValue.StringValue == nil {
 			break
 		}
 
-		return e.complexity.FieldValue.TextValue(childComplexity), true
+		return e.complexity.FieldValue.StringValue(childComplexity), true
 
 	case "JobAction.actionId":
 		if e.complexity.JobAction.ActionID == nil {
@@ -2117,12 +2117,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MeasuredValue.Exponent(childComplexity), true
 
-	case "MeasuredValue.intValue":
-		if e.complexity.MeasuredValue.IntValue == nil {
+	case "MeasuredValue.integerValue":
+		if e.complexity.MeasuredValue.IntegerValue == nil {
 			break
 		}
 
-		return e.complexity.MeasuredValue.IntValue(childComplexity), true
+		return e.complexity.MeasuredValue.IntegerValue(childComplexity), true
 
 	case "MeasuredValue.status":
 		if e.complexity.MeasuredValue.Status == nil {
@@ -2131,12 +2131,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MeasuredValue.Status(childComplexity), true
 
-	case "MeasuredValue.strValue":
-		if e.complexity.MeasuredValue.StrValue == nil {
+	case "MeasuredValue.stringValue":
+		if e.complexity.MeasuredValue.StringValue == nil {
 			break
 		}
 
-		return e.complexity.MeasuredValue.StrValue(childComplexity), true
+		return e.complexity.MeasuredValue.StringValue(childComplexity), true
 
 	case "MeasuredValue.timestampTzValue":
 		if e.complexity.MeasuredValue.TimestampTzValue == nil {
@@ -4435,10 +4435,10 @@ func (ec *executionContext) fieldContext_BillingValue_value(_ context.Context, f
 				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
 			case "doubleValue":
 				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
-			case "intValue":
-				return ec.fieldContext_MeasuredValue_intValue(ctx, field)
-			case "strValue":
-				return ec.fieldContext_MeasuredValue_strValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
 			case "timestampValue":
 				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
 			case "timestampTzValue":
@@ -8388,8 +8388,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_defaultValue(_ co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "textValue":
-				return ec.fieldContext_FieldValue_textValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_FieldValue_stringValue(ctx, field)
 			case "integerValue":
 				return ec.fieldContext_FieldValue_integerValue(ctx, field)
 			case "doubleValue":
@@ -8741,8 +8741,8 @@ func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldValue_textValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldValue_textValue(ctx, field)
+func (ec *executionContext) _FieldValue_stringValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_stringValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8755,7 +8755,7 @@ func (ec *executionContext) _FieldValue_textValue(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.TextValue, nil
+		return obj.StringValue, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -8769,7 +8769,7 @@ func (ec *executionContext) _FieldValue_textValue(ctx context.Context, field gra
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldValue_textValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldValue_stringValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldValue",
 		Field:      field,
@@ -12118,8 +12118,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_doubleValue(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_intValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_intValue(ctx, field)
+func (ec *executionContext) _MeasuredValue_integerValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_integerValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12132,7 +12132,7 @@ func (ec *executionContext) _MeasuredValue_intValue(ctx context.Context, field g
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.IntValue, nil
+		return obj.IntegerValue, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -12146,7 +12146,7 @@ func (ec *executionContext) _MeasuredValue_intValue(ctx context.Context, field g
 	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_intValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_integerValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -12159,8 +12159,8 @@ func (ec *executionContext) fieldContext_MeasuredValue_intValue(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _MeasuredValue_strValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeasuredValue_strValue(ctx, field)
+func (ec *executionContext) _MeasuredValue_stringValue(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_stringValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -12173,7 +12173,7 @@ func (ec *executionContext) _MeasuredValue_strValue(ctx context.Context, field g
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.StrValue, nil
+		return obj.StringValue, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -12187,7 +12187,7 @@ func (ec *executionContext) _MeasuredValue_strValue(ctx context.Context, field g
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeasuredValue_strValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeasuredValue_stringValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeasuredValue",
 		Field:      field,
@@ -13331,10 +13331,10 @@ func (ec *executionContext) fieldContext_ProfileBlok_values(_ context.Context, f
 				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
 			case "doubleValue":
 				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
-			case "intValue":
-				return ec.fieldContext_MeasuredValue_intValue(ctx, field)
-			case "strValue":
-				return ec.fieldContext_MeasuredValue_strValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
 			case "timestampValue":
 				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
 			case "timestampTzValue":
@@ -17409,8 +17409,8 @@ func (ec *executionContext) fieldContext__mapFieldValue_value(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "textValue":
-				return ec.fieldContext_FieldValue_textValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_FieldValue_stringValue(ctx, field)
 			case "integerValue":
 				return ec.fieldContext_FieldValue_integerValue(ctx, field)
 			case "doubleValue":
@@ -19721,8 +19721,8 @@ func (ec *executionContext) _FieldValue(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("FieldValue")
-		case "textValue":
-			out.Values[i] = ec._FieldValue_textValue(ctx, field, obj)
+		case "stringValue":
+			out.Values[i] = ec._FieldValue_stringValue(ctx, field, obj)
 		case "integerValue":
 			out.Values[i] = ec._FieldValue_integerValue(ctx, field, obj)
 		case "doubleValue":
@@ -20589,10 +20589,10 @@ func (ec *executionContext) _MeasuredValue(ctx context.Context, sel ast.Selectio
 			out.Values[i] = ec._MeasuredValue_exponent(ctx, field, obj)
 		case "doubleValue":
 			out.Values[i] = ec._MeasuredValue_doubleValue(ctx, field, obj)
-		case "intValue":
-			out.Values[i] = ec._MeasuredValue_intValue(ctx, field, obj)
-		case "strValue":
-			out.Values[i] = ec._MeasuredValue_strValue(ctx, field, obj)
+		case "integerValue":
+			out.Values[i] = ec._MeasuredValue_integerValue(ctx, field, obj)
+		case "stringValue":
+			out.Values[i] = ec._MeasuredValue_stringValue(ctx, field, obj)
 		case "timestampValue":
 			out.Values[i] = ec._MeasuredValue_timestampValue(ctx, field, obj)
 		case "timestampTzValue":

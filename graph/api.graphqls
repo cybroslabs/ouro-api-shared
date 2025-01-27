@@ -919,9 +919,9 @@ type MeasuredValue {
   # The double-typed value.
   doubleValue: Float
   # The integer-typed value.
-  intValue: Int64
+  integerValue: Int64
   # The string-typed value.
-  strValue: String
+  stringValue: String
   # The timestamp-typed value.
   timestampValue: Timestamp
   # The timestamp with timezone-typed value, stored as string in ISO-8601.
@@ -1060,7 +1060,7 @@ type FieldValidation {
 
 type FieldValue {
   # Represents a string-typed value.
-  textValue: String
+  stringValue: String
   # Represents a integer-typed value.
   integerValue: Int64
   # Represents a double-typed value.
