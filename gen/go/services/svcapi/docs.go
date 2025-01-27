@@ -4,5 +4,5 @@ import (
 	"embed"
 )
 
-//go:embed docs/*
+//go:embed docs/* raw.binpb
 var Content embed.FS

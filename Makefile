@@ -17,9 +17,10 @@ gen-go:
 	find ./gen/go -type d -name "docs" -delete
 	find ./gen/go -type d -empty -delete
 
+	cd proto && buf dep update
 	cd proto && npx buf generate --template buf.gen.grpc.yaml
 	cd proto && npx buf generate --template buf.gen.api.yaml
-	cd proto && buf build -o ../gen/raw.binpb
+	cd proto && buf build -o ../gen/go/services/svcapi/raw.binpb
 
 	./src/mdgen/main.py
 
