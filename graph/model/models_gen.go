@@ -99,11 +99,6 @@ type AddDevicesToGroupRequest struct {
 	DeviceID []*string `json:"deviceId,omitempty"`
 }
 
-type Any struct {
-	TypeURL *string `json:"typeUrl,omitempty"`
-	Value   *string `json:"value,omitempty"`
-}
-
 type ApplicationProtocolTemplate struct {
 	ID         *string              `json:"id,omitempty"`
 	Protocol   *ApplicationProtocol `json:"protocol,omitempty"`
@@ -300,14 +295,14 @@ type FieldDescriptor struct {
 }
 
 type FieldValidation struct {
-	Re         *string   `json:"re,omitempty"`
-	MinLength  *int32    `json:"minLength,omitempty"`
-	MaxLength  *int32    `json:"maxLength,omitempty"`
-	MinInteger *int64    `json:"minInteger,omitempty"`
-	MaxInteger *int64    `json:"maxInteger,omitempty"`
-	MinNumber  *float64  `json:"minNumber,omitempty"`
-	MaxNumber  *float64  `json:"maxNumber,omitempty"`
-	Options    []*MapAny `json:"options,omitempty"`
+	Re         *string      `json:"re,omitempty"`
+	MinLength  *int32       `json:"minLength,omitempty"`
+	MaxLength  *int32       `json:"maxLength,omitempty"`
+	MinInteger *int64       `json:"minInteger,omitempty"`
+	MaxInteger *int64       `json:"maxInteger,omitempty"`
+	MinNumber  *float64     `json:"minNumber,omitempty"`
+	MaxNumber  *float64     `json:"maxNumber,omitempty"`
+	Options    []*Mapstring `json:"options,omitempty"`
 }
 
 type FieldValue struct {
@@ -459,11 +454,11 @@ type MeasuredValue struct {
 }
 
 type MetadataFields struct {
-	ID            *string   `json:"id,omitempty"`
-	Generation    *int32    `json:"generation,omitempty"`
-	Fields        []*MapAny `json:"fields,omitempty"`
-	ManagedFields []*MapAny `json:"managedFields,omitempty"`
-	Name          *string   `json:"name,omitempty"`
+	ID            *string          `json:"id,omitempty"`
+	Generation    *int32           `json:"generation,omitempty"`
+	Fields        []*MapFieldValue `json:"fields,omitempty"`
+	ManagedFields []*MapFieldValue `json:"managedFields,omitempty"`
+	Name          *string          `json:"name,omitempty"`
 }
 
 type ModemInfo struct {
@@ -536,11 +531,6 @@ type SystemConfig struct {
 	MaxReplicas           *int32 `json:"maxReplicas,omitempty"`
 	MaxCascadeDeviceCount *int32 `json:"maxCascadeDeviceCount,omitempty"`
 	MaxSlotsPerDriver     *int32 `json:"maxSlotsPerDriver,omitempty"`
-}
-
-type MapAny struct {
-	Key   string `json:"key"`
-	Value *Any   `json:"value,omitempty"`
 }
 
 type MapFieldValue struct {

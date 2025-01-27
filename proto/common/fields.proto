@@ -4,7 +4,6 @@ package io.clbs.openhes.models.common;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
 
-import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 // The listing selector.
@@ -113,14 +112,14 @@ message FieldDescriptor {
 
 // Validation rules for the field.
 message FieldValidation {
-    string re                                = 1;  // Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
-    int32 min_length                         = 2;  // The minimum length. It's used for string fields only.
-    int32 max_length                         = 3;  // The maximum length. It's used for string fields only.
-    sint64 min_integer                       = 4;  // The minimum value. It's used for integer fields only.
-    sint64 max_integer                       = 5;  // The maximum value. It's used for integer fields only.
-    double min_number                        = 6;  // The minimum value. It's used for number fields only.
-    double max_number                        = 7;  // The maximum value. It's used for number fields only.
-    map<string, google.protobuf.Any> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+    string re                   = 1;  // Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
+    int32 min_length            = 2;  // The minimum length. It's used for string fields only.
+    int32 max_length            = 3;  // The maximum length. It's used for string fields only.
+    sint64 min_integer          = 4;  // The minimum value. It's used for integer fields only.
+    sint64 max_integer          = 5;  // The maximum value. It's used for integer fields only.
+    double min_number           = 6;  // The minimum value. It's used for number fields only.
+    double max_number           = 7;  // The maximum value. It's used for number fields only.
+    map<string, string> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
 }
 
 message FieldValue {

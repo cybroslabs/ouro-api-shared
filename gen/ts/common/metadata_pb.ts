@@ -4,15 +4,15 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
+import type { FieldValue } from "./fields_pb";
+import { file_common_fields } from "./fields_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIvsCCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EhMKBG5hbWUYBSABKAlCBaoBAggDGkMKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRIjCgV2YWx1ZRgCIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5Bbnk6AjgBGkoKEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSIwoFdmFsdWUYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55OgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_any]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIqUDCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EhMKBG5hbWUYBSABKAlCBaoBAggDGlgKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBGl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields]);
 
 /**
  * The metadata fields managed by user and system.
@@ -37,16 +37,16 @@ export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFiel
   /**
    * The additional fields managed by user.
    *
-   * @generated from field: map<string, google.protobuf.Any> fields = 3;
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 3;
    */
-  fields: { [key: string]: Any };
+  fields: { [key: string]: FieldValue };
 
   /**
    * The additional fields managed by system.
    *
-   * @generated from field: map<string, google.protobuf.Any> managed_fields = 4;
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
    */
-  managedFields: { [key: string]: Any };
+  managedFields: { [key: string]: FieldValue };
 
   /**
    * The name of the resource. It's mutable and typically set by user. Must be set.

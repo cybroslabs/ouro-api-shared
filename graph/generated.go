@@ -136,11 +136,6 @@ type ComplexityRoot struct {
 		GroupID  func(childComplexity int) int
 	}
 
-	Any struct {
-		TypeURL func(childComplexity int) int
-		Value   func(childComplexity int) int
-	}
-
 	ApplicationProtocolTemplate struct {
 		Attributes func(childComplexity int) int
 		ID         func(childComplexity int) int
@@ -604,11 +599,6 @@ type ComplexityRoot struct {
 		MaxSlotsPerDriver     func(childComplexity int) int
 	}
 
-	_mapAny struct {
-		Key   func(childComplexity int) int
-		Value func(childComplexity int) int
-	}
-
 	_mapFieldValue struct {
 		Key   func(childComplexity int) int
 		Value func(childComplexity int) int
@@ -878,20 +868,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.AddDevicesToGroupRequest.GroupID(childComplexity), true
-
-	case "Any.typeUrl":
-		if e.complexity.Any.TypeURL == nil {
-			break
-		}
-
-		return e.complexity.Any.TypeURL(childComplexity), true
-
-	case "Any.value":
-		if e.complexity.Any.Value == nil {
-			break
-		}
-
-		return e.complexity.Any.Value(childComplexity), true
 
 	case "ApplicationProtocolTemplate.attributes":
 		if e.complexity.ApplicationProtocolTemplate.Attributes == nil {
@@ -2685,20 +2661,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.SystemConfig.MaxSlotsPerDriver(childComplexity), true
 
-	case "_mapAny.key":
-		if e.complexity._mapAny.Key == nil {
-			break
-		}
-
-		return e.complexity._mapAny.Key(childComplexity), true
-
-	case "_mapAny.value":
-		if e.complexity._mapAny.Value == nil {
-			break
-		}
-
-		return e.complexity._mapAny.Value(childComplexity), true
-
 	case "_mapFieldValue.key":
 		if e.complexity._mapFieldValue.Key == nil {
 			break
@@ -4144,88 +4106,6 @@ func (ec *executionContext) _AddDevicesToGroupRequest_deviceId(ctx context.Conte
 func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "AddDevicesToGroupRequest",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Any_typeUrl(ctx context.Context, field graphql.CollectedField, obj *model.Any) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Any_typeUrl(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TypeURL, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Any_typeUrl(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Any",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Any_value(ctx context.Context, field graphql.CollectedField, obj *model.Any) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Any_value(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Any_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Any",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -9141,9 +9021,9 @@ func (ec *executionContext) _FieldValidation_options(ctx context.Context, field 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MapAny)
+	res := resTmp.([]*model.Mapstring)
 	fc.Result = res
-	return ec.marshalO_mapAny2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx, field.Selections, res)
+	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9155,11 +9035,11 @@ func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Conte
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "key":
-				return ec.fieldContext__mapAny_key(ctx, field)
+				return ec.fieldContext__mapstring_key(ctx, field)
 			case "value":
-				return ec.fieldContext__mapAny_value(ctx, field)
+				return ec.fieldContext__mapstring_value(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapAny", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type _mapstring", field.Name)
 		},
 	}
 	return fc, nil
@@ -12868,9 +12748,9 @@ func (ec *executionContext) _MetadataFields_fields(ctx context.Context, field gr
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MapAny)
+	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapAny2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12882,11 +12762,11 @@ func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "key":
-				return ec.fieldContext__mapAny_key(ctx, field)
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
 			case "value":
-				return ec.fieldContext__mapAny_value(ctx, field)
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapAny", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -12915,9 +12795,9 @@ func (ec *executionContext) _MetadataFields_managedFields(ctx context.Context, f
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MapAny)
+	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapAny2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12929,11 +12809,11 @@ func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "key":
-				return ec.fieldContext__mapAny_key(ctx, field)
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
 			case "value":
-				return ec.fieldContext__mapAny_value(ctx, field)
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapAny", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -17678,97 +17558,6 @@ func (ec *executionContext) fieldContext___Type_specifiedByURL(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) __mapAny_key(ctx context.Context, field graphql.CollectedField, obj *model.MapAny) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapAny_key(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Key, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapAny_key(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapAny",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) __mapAny_value(ctx context.Context, field graphql.CollectedField, obj *model.MapAny) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapAny_value(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.Any)
-	fc.Result = res
-	return ec.marshalOAny2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAny(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapAny_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapAny",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "typeUrl":
-				return ec.fieldContext_Any_typeUrl(ctx, field)
-			case "value":
-				return ec.fieldContext_Any_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Any", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) __mapFieldValue_key(ctx context.Context, field graphql.CollectedField, obj *model.MapFieldValue) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext__mapFieldValue_key(ctx, field)
 	if err != nil {
@@ -18769,44 +18558,6 @@ func (ec *executionContext) _AddDevicesToGroupRequest(ctx context.Context, sel a
 			out.Values[i] = ec._AddDevicesToGroupRequest_groupId(ctx, field, obj)
 		case "deviceId":
 			out.Values[i] = ec._AddDevicesToGroupRequest_deviceId(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var anyImplementors = []string{"Any"}
-
-func (ec *executionContext) _Any(ctx context.Context, sel ast.SelectionSet, obj *model.Any) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, anyImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("Any")
-		case "typeUrl":
-			out.Values[i] = ec._Any_typeUrl(ctx, field, obj)
-		case "value":
-			out.Values[i] = ec._Any_value(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22519,47 +22270,6 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 	return out
 }
 
-var _mapAnyImplementors = []string{"_mapAny"}
-
-func (ec *executionContext) __mapAny(ctx context.Context, sel ast.SelectionSet, obj *model.MapAny) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, _mapAnyImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("_mapAny")
-		case "key":
-			out.Values[i] = ec.__mapAny_key(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "value":
-			out.Values[i] = ec.__mapAny_value(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var _mapFieldValueImplementors = []string{"_mapFieldValue"}
 
 func (ec *executionContext) __mapFieldValue(ctx context.Context, sel ast.SelectionSet, obj *model.MapFieldValue) graphql.Marshaler {
@@ -23215,13 +22925,6 @@ func (ec *executionContext) marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhe
 		return graphql.Null
 	}
 	return v
-}
-
-func (ec *executionContext) marshalOAny2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAny(ctx context.Context, sel ast.SelectionSet, v *model.Any) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Any(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) ([]*model.ApplicationProtocol, error) {
@@ -25331,54 +25034,6 @@ func (ec *executionContext) marshalO__Type2ᚖgithubᚗcomᚋ99designsᚋgqlgen�
 		return graphql.Null
 	}
 	return ec.___Type(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalO_mapAny2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx context.Context, sel ast.SelectionSet, v []*model.MapAny) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalO_mapAny2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalO_mapAny2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapAny(ctx context.Context, sel ast.SelectionSet, v *model.MapAny) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec.__mapAny(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v []*model.MapFieldValue) graphql.Marshaler {
