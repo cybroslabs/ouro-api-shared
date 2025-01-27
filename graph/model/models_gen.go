@@ -105,9 +105,9 @@ type Any struct {
 }
 
 type ApplicationProtocolTemplate struct {
-	ID         *string                  `json:"id,omitempty"`
-	Protocol   *ApplicationProtocol     `json:"protocol,omitempty"`
-	Attributes []*FieldSimpleDescriptor `json:"attributes,omitempty"`
+	ID         *string              `json:"id,omitempty"`
+	Protocol   *ApplicationProtocol `json:"protocol,omitempty"`
+	Attributes []*FieldDescriptor   `json:"attributes,omitempty"`
 }
 
 type BillingValue struct {
@@ -218,9 +218,9 @@ type CreateDeviceRequest struct {
 }
 
 type DataLinkTemplate struct {
-	LinkProtocol    *DataLinkProtocol        `json:"linkProtocol,omitempty"`
-	AppProtocolRefs []*ApplicationProtocol   `json:"appProtocolRefs,omitempty"`
-	Attributes      []*FieldSimpleDescriptor `json:"attributes,omitempty"`
+	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
+	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
+	Attributes      []*FieldDescriptor     `json:"attributes,omitempty"`
 }
 
 type Device struct {
@@ -281,14 +281,22 @@ type Empty struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
-type FieldSimpleDescriptor struct {
-	FieldID      *string          `json:"fieldId,omitempty"`
-	Label        *string          `json:"label,omitempty"`
-	DataType     *FieldDataType   `json:"dataType,omitempty"`
-	Tooltip      *string          `json:"tooltip,omitempty"`
-	Required     *bool            `json:"required,omitempty"`
-	Validation   *FieldValidation `json:"validation,omitempty"`
-	DefaultValue *FieldValue      `json:"defaultValue,omitempty"`
+type FieldDescriptor struct {
+	FieldID      *string             `json:"fieldId,omitempty"`
+	Label        *string             `json:"label,omitempty"`
+	DataType     *FieldDataType      `json:"dataType,omitempty"`
+	Format       *FieldDisplayFormat `json:"format,omitempty"`
+	Unit         *string             `json:"unit,omitempty"`
+	GroupID      *string             `json:"groupId,omitempty"`
+	Precision    *int32              `json:"precision,omitempty"`
+	Tooltip      *string             `json:"tooltip,omitempty"`
+	Required     *bool               `json:"required,omitempty"`
+	Editable     *bool               `json:"editable,omitempty"`
+	Visible      *bool               `json:"visible,omitempty"`
+	MultiValue   *bool               `json:"multiValue,omitempty"`
+	Secured      *bool               `json:"secured,omitempty"`
+	Validation   *FieldValidation    `json:"validation,omitempty"`
+	DefaultValue *FieldValue         `json:"defaultValue,omitempty"`
 }
 
 type FieldValidation struct {
@@ -333,8 +341,8 @@ type JobAction struct {
 }
 
 type JobActionAttributes struct {
-	Type       *ActionType              `json:"type,omitempty"`
-	Attributes []*FieldSimpleDescriptor `json:"attributes,omitempty"`
+	Type       *ActionType        `json:"type,omitempty"`
+	Attributes []*FieldDescriptor `json:"attributes,omitempty"`
 }
 
 type JobActionContraints struct {
@@ -904,6 +912,65 @@ func (e *FieldDataType) UnmarshalGQL(v any) error {
 }
 
 func (e FieldDataType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+type FieldDisplayFormat string
+
+const (
+	FieldDisplayFormatDefault   FieldDisplayFormat = "DEFAULT"
+	FieldDisplayFormatDuration  FieldDisplayFormat = "DURATION"
+	FieldDisplayFormatInterval  FieldDisplayFormat = "INTERVAL"
+	FieldDisplayFormatDate      FieldDisplayFormat = "DATE"
+	FieldDisplayFormatUtcDate   FieldDisplayFormat = "UTC_DATE"
+	FieldDisplayFormatMonth     FieldDisplayFormat = "MONTH"
+	FieldDisplayFormatDayofweek FieldDisplayFormat = "DAYOFWEEK"
+	FieldDisplayFormatTimeofday FieldDisplayFormat = "TIMEOFDAY"
+	FieldDisplayFormatMoney     FieldDisplayFormat = "MONEY"
+	FieldDisplayFormatPassword  FieldDisplayFormat = "PASSWORD"
+	FieldDisplayFormatMultiline FieldDisplayFormat = "MULTILINE"
+)
+
+var AllFieldDisplayFormat = []FieldDisplayFormat{
+	FieldDisplayFormatDefault,
+	FieldDisplayFormatDuration,
+	FieldDisplayFormatInterval,
+	FieldDisplayFormatDate,
+	FieldDisplayFormatUtcDate,
+	FieldDisplayFormatMonth,
+	FieldDisplayFormatDayofweek,
+	FieldDisplayFormatTimeofday,
+	FieldDisplayFormatMoney,
+	FieldDisplayFormatPassword,
+	FieldDisplayFormatMultiline,
+}
+
+func (e FieldDisplayFormat) IsValid() bool {
+	switch e {
+	case FieldDisplayFormatDefault, FieldDisplayFormatDuration, FieldDisplayFormatInterval, FieldDisplayFormatDate, FieldDisplayFormatUtcDate, FieldDisplayFormatMonth, FieldDisplayFormatDayofweek, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
+		return true
+	}
+	return false
+}
+
+func (e FieldDisplayFormat) String() string {
+	return string(e)
+}
+
+func (e *FieldDisplayFormat) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = FieldDisplayFormat(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid FieldDisplayFormat", str)
+	}
+	return nil
+}
+
+func (e FieldDisplayFormat) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 

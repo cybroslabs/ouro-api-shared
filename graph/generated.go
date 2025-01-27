@@ -318,14 +318,22 @@ type ComplexityRoot struct {
 		Empty func(childComplexity int) int
 	}
 
-	FieldSimpleDescriptor struct {
+	FieldDescriptor struct {
 		DataType     func(childComplexity int) int
 		DefaultValue func(childComplexity int) int
+		Editable     func(childComplexity int) int
 		FieldID      func(childComplexity int) int
+		Format       func(childComplexity int) int
+		GroupID      func(childComplexity int) int
 		Label        func(childComplexity int) int
+		MultiValue   func(childComplexity int) int
+		Precision    func(childComplexity int) int
 		Required     func(childComplexity int) int
+		Secured      func(childComplexity int) int
 		Tooltip      func(childComplexity int) int
+		Unit         func(childComplexity int) int
 		Validation   func(childComplexity int) int
+		Visible      func(childComplexity int) int
 	}
 
 	FieldValidation struct {
@@ -1473,54 +1481,110 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Empty.Empty(childComplexity), true
 
-	case "FieldSimpleDescriptor.dataType":
-		if e.complexity.FieldSimpleDescriptor.DataType == nil {
+	case "FieldDescriptor.dataType":
+		if e.complexity.FieldDescriptor.DataType == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.DataType(childComplexity), true
+		return e.complexity.FieldDescriptor.DataType(childComplexity), true
 
-	case "FieldSimpleDescriptor.defaultValue":
-		if e.complexity.FieldSimpleDescriptor.DefaultValue == nil {
+	case "FieldDescriptor.defaultValue":
+		if e.complexity.FieldDescriptor.DefaultValue == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.DefaultValue(childComplexity), true
+		return e.complexity.FieldDescriptor.DefaultValue(childComplexity), true
 
-	case "FieldSimpleDescriptor.fieldId":
-		if e.complexity.FieldSimpleDescriptor.FieldID == nil {
+	case "FieldDescriptor.editable":
+		if e.complexity.FieldDescriptor.Editable == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.FieldID(childComplexity), true
+		return e.complexity.FieldDescriptor.Editable(childComplexity), true
 
-	case "FieldSimpleDescriptor.label":
-		if e.complexity.FieldSimpleDescriptor.Label == nil {
+	case "FieldDescriptor.fieldId":
+		if e.complexity.FieldDescriptor.FieldID == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.Label(childComplexity), true
+		return e.complexity.FieldDescriptor.FieldID(childComplexity), true
 
-	case "FieldSimpleDescriptor.required":
-		if e.complexity.FieldSimpleDescriptor.Required == nil {
+	case "FieldDescriptor.format":
+		if e.complexity.FieldDescriptor.Format == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.Required(childComplexity), true
+		return e.complexity.FieldDescriptor.Format(childComplexity), true
 
-	case "FieldSimpleDescriptor.tooltip":
-		if e.complexity.FieldSimpleDescriptor.Tooltip == nil {
+	case "FieldDescriptor.groupId":
+		if e.complexity.FieldDescriptor.GroupID == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.Tooltip(childComplexity), true
+		return e.complexity.FieldDescriptor.GroupID(childComplexity), true
 
-	case "FieldSimpleDescriptor.validation":
-		if e.complexity.FieldSimpleDescriptor.Validation == nil {
+	case "FieldDescriptor.label":
+		if e.complexity.FieldDescriptor.Label == nil {
 			break
 		}
 
-		return e.complexity.FieldSimpleDescriptor.Validation(childComplexity), true
+		return e.complexity.FieldDescriptor.Label(childComplexity), true
+
+	case "FieldDescriptor.multiValue":
+		if e.complexity.FieldDescriptor.MultiValue == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.MultiValue(childComplexity), true
+
+	case "FieldDescriptor.precision":
+		if e.complexity.FieldDescriptor.Precision == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Precision(childComplexity), true
+
+	case "FieldDescriptor.required":
+		if e.complexity.FieldDescriptor.Required == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Required(childComplexity), true
+
+	case "FieldDescriptor.secured":
+		if e.complexity.FieldDescriptor.Secured == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Secured(childComplexity), true
+
+	case "FieldDescriptor.tooltip":
+		if e.complexity.FieldDescriptor.Tooltip == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Tooltip(childComplexity), true
+
+	case "FieldDescriptor.unit":
+		if e.complexity.FieldDescriptor.Unit == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Unit(childComplexity), true
+
+	case "FieldDescriptor.validation":
+		if e.complexity.FieldDescriptor.Validation == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Validation(childComplexity), true
+
+	case "FieldDescriptor.visible":
+		if e.complexity.FieldDescriptor.Visible == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Visible(childComplexity), true
 
 	case "FieldValidation.maxInteger":
 		if e.complexity.FieldValidation.MaxInteger == nil {
@@ -4277,9 +4341,9 @@ func (ec *executionContext) _ApplicationProtocolTemplate_attributes(ctx context.
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.FieldSimpleDescriptor)
+	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4291,21 +4355,37 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "fieldId":
-				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "label":
-				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
 			case "dataType":
-				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
-				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
 			case "required":
-				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
 			case "validation":
-				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
-				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -6790,9 +6870,9 @@ func (ec *executionContext) _DataLinkTemplate_attributes(ctx context.Context, fi
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.FieldSimpleDescriptor)
+	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6804,21 +6884,37 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "fieldId":
-				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "label":
-				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
 			case "dataType":
-				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
-				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
 			case "required":
-				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
 			case "validation":
-				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
-				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -8088,8 +8184,8 @@ func (ec *executionContext) fieldContext_Empty__empty(_ context.Context, field g
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
+func (ec *executionContext) _FieldDescriptor_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8116,9 +8212,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_fieldId(ctx context.Context, 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8129,8 +8225,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_fieldId(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_label(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
+func (ec *executionContext) _FieldDescriptor_label(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_label(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8157,9 +8253,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_label(ctx context.Context, fi
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_label(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_label(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8170,8 +8266,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_label(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_dataType(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
+func (ec *executionContext) _FieldDescriptor_dataType(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8198,9 +8294,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_dataType(ctx context.Context,
 	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8211,8 +8307,172 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_dataType(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_tooltip(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
+func (ec *executionContext) _FieldDescriptor_format(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_format(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Format, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDisplayFormat)
+	fc.Result = res
+	return ec.marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_format(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDisplayFormat does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_unit(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_unit(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Unit, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_groupId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GroupID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_precision(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_precision(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Precision, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_precision(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_tooltip(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8239,9 +8499,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_tooltip(ctx context.Context, 
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_tooltip(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_tooltip(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8252,8 +8512,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_tooltip(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_required(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
+func (ec *executionContext) _FieldDescriptor_required(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_required(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8280,9 +8540,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_required(ctx context.Context,
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_required(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_required(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8293,8 +8553,172 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_required(_ contex
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_validation(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
+func (ec *executionContext) _FieldDescriptor_editable(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_editable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Editable, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_editable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_visible(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_visible(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Visible, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_visible(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_multiValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.MultiValue, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_multiValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_secured(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_secured(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Secured, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_secured(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_validation(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_validation(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8321,9 +8745,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_validation(ctx context.Contex
 	return ec.marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValidation(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_validation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_validation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -8352,8 +8776,8 @@ func (ec *executionContext) fieldContext_FieldSimpleDescriptor_validation(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldSimpleDescriptor_defaultValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldSimpleDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
+func (ec *executionContext) _FieldDescriptor_defaultValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8380,9 +8804,9 @@ func (ec *executionContext) _FieldSimpleDescriptor_defaultValue(ctx context.Cont
 	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldSimpleDescriptor_defaultValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "FieldSimpleDescriptor",
+		Object:     "FieldDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -9865,9 +10289,9 @@ func (ec *executionContext) _JobActionAttributes_attributes(ctx context.Context,
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.FieldSimpleDescriptor)
+	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9879,21 +10303,37 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "fieldId":
-				return ec.fieldContext_FieldSimpleDescriptor_fieldId(ctx, field)
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "label":
-				return ec.fieldContext_FieldSimpleDescriptor_label(ctx, field)
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
 			case "dataType":
-				return ec.fieldContext_FieldSimpleDescriptor_dataType(ctx, field)
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
-				return ec.fieldContext_FieldSimpleDescriptor_tooltip(ctx, field)
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
 			case "required":
-				return ec.fieldContext_FieldSimpleDescriptor_required(ctx, field)
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
 			case "validation":
-				return ec.fieldContext_FieldSimpleDescriptor_validation(ctx, field)
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
-				return ec.fieldContext_FieldSimpleDescriptor_defaultValue(ctx, field)
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type FieldSimpleDescriptor", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -19612,31 +20052,47 @@ func (ec *executionContext) _Empty(ctx context.Context, sel ast.SelectionSet, ob
 	return out
 }
 
-var fieldSimpleDescriptorImplementors = []string{"FieldSimpleDescriptor"}
+var fieldDescriptorImplementors = []string{"FieldDescriptor"}
 
-func (ec *executionContext) _FieldSimpleDescriptor(ctx context.Context, sel ast.SelectionSet, obj *model.FieldSimpleDescriptor) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, fieldSimpleDescriptorImplementors)
+func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.SelectionSet, obj *model.FieldDescriptor) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, fieldDescriptorImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("FieldSimpleDescriptor")
+			out.Values[i] = graphql.MarshalString("FieldDescriptor")
 		case "fieldId":
-			out.Values[i] = ec._FieldSimpleDescriptor_fieldId(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_fieldId(ctx, field, obj)
 		case "label":
-			out.Values[i] = ec._FieldSimpleDescriptor_label(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_label(ctx, field, obj)
 		case "dataType":
-			out.Values[i] = ec._FieldSimpleDescriptor_dataType(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_dataType(ctx, field, obj)
+		case "format":
+			out.Values[i] = ec._FieldDescriptor_format(ctx, field, obj)
+		case "unit":
+			out.Values[i] = ec._FieldDescriptor_unit(ctx, field, obj)
+		case "groupId":
+			out.Values[i] = ec._FieldDescriptor_groupId(ctx, field, obj)
+		case "precision":
+			out.Values[i] = ec._FieldDescriptor_precision(ctx, field, obj)
 		case "tooltip":
-			out.Values[i] = ec._FieldSimpleDescriptor_tooltip(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_tooltip(ctx, field, obj)
 		case "required":
-			out.Values[i] = ec._FieldSimpleDescriptor_required(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_required(ctx, field, obj)
+		case "editable":
+			out.Values[i] = ec._FieldDescriptor_editable(ctx, field, obj)
+		case "visible":
+			out.Values[i] = ec._FieldDescriptor_visible(ctx, field, obj)
+		case "multiValue":
+			out.Values[i] = ec._FieldDescriptor_multiValue(ctx, field, obj)
+		case "secured":
+			out.Values[i] = ec._FieldDescriptor_secured(ctx, field, obj)
 		case "validation":
-			out.Values[i] = ec._FieldSimpleDescriptor_validation(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_validation(ctx, field, obj)
 		case "defaultValue":
-			out.Values[i] = ec._FieldSimpleDescriptor_defaultValue(ctx, field, obj)
+			out.Values[i] = ec._FieldDescriptor_defaultValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23664,7 +24120,7 @@ func (ec *executionContext) marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabs�
 	return v
 }
 
-func (ec *executionContext) marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.FieldSimpleDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.FieldDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -23691,7 +24147,7 @@ func (ec *executionContext) marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOFieldSimpleDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx, sel, v[i])
+			ret[i] = ec.marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -23705,11 +24161,27 @@ func (ec *executionContext) marshalOFieldSimpleDescriptor2ᚕᚖgithubᚗcomᚋc
 	return ret
 }
 
-func (ec *executionContext) marshalOFieldSimpleDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldSimpleDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.FieldSimpleDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.FieldDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec._FieldSimpleDescriptor(ctx, sel, v)
+	return ec._FieldDescriptor(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, v any) (*model.FieldDisplayFormat, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.FieldDisplayFormat)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, sel ast.SelectionSet, v *model.FieldDisplayFormat) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValidation(ctx context.Context, sel ast.SelectionSet, v *model.FieldValidation) graphql.Marshaler {

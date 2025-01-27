@@ -79,15 +79,17 @@ enum FieldDataType {
 
 // Enum representing the field display format.
 enum FieldDisplayFormat {
-    DEFAULT   = 0;  // The default display format.
-    DURATION  = 1;  // The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
-    INTERVAL  = 2;  // The interval display format.
-    DATE      = 3;  // The date display format with local timezone. Data type must be timestamp or string.
-    UTC_DATE  = 4;  // The date display format with in UTC timezone. Data type must be timestamp or string.
-    MONTH     = 5;  // The month display format.
-    DAYOFWEEK = 6;  // The day of week display format.
-    TIMEOFDAY = 7;  // The time of day display format.
-    MONEY     = 8;  // The money display format.
+    DEFAULT   = 0;   // The default display format.
+    DURATION  = 1;   // The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
+    INTERVAL  = 2;   // The interval display format.
+    DATE      = 3;   // The date display format with local timezone. Data type must be timestamp or string.
+    UTC_DATE  = 4;   // The date display format with in UTC timezone. Data type must be timestamp or string.
+    MONTH     = 5;   // The month display format.
+    DAYOFWEEK = 6;   // The day of week display format.
+    TIMEOFDAY = 7;   // The time of day display format.
+    MONEY     = 8;   // The money display format.
+    PASSWORD  = 9;   // The password display format, e.g., ********.
+    MULTILINE = 10;  // The multiline-string display format.
 }
 
 // The field descriptor.
@@ -104,19 +106,9 @@ message FieldDescriptor {
     bool editable              = 12;  // Whether the field is editable
     bool visible               = 13;  // Whether the field is visible
     bool multi_value           = 14;  // Whether the field can have multiple values
-    FieldValidation validation = 15;  // Validation rules for the field
-    FieldValue default_value   = 16;  // The default value of the attribute, it does not support multi-value fields
-}
-
-// The field descriptor for simplified cases (e.g., for in-driver definitions).
-message FieldSimpleDescriptor {
-    string field_id            = 1;   // Unique identifier for the field
-    string label               = 2;   // Label displayed for the field
-    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, double)
-    string tooltip             = 9;   // Tooltip or hint text
-    bool required              = 11;  // Whether the field is mandatory
-    FieldValidation validation = 15;  // Validation rules for the field
-    FieldValue default_value   = 16;  // The default value of the attribute, it does not support multi-value fields
+    bool secured               = 15;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+    FieldValidation validation = 16;  // Validation rules for the field
+    FieldValue default_value   = 17;  // The default value of the attribute, it does not support multi-value fields
 }
 
 // Validation rules for the field.

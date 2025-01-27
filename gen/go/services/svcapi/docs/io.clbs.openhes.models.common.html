@@ -69,9 +69,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.common.FieldSimpleDescriptor">
+        <a href="#message-io.clbs.openhes.models.common.FieldDescriptor">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>FieldSimpleDescriptor</code> 
+          <code>FieldDescriptor</code> 
         </a>
       </p>
       
@@ -149,6 +149,13 @@
       </p>
     
       <p>
+        <a href="#enum-io.clbs.openhes.models.common.FieldDisplayFormat">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>FieldDisplayFormat</code> 
+        </a>
+      </p>
+    
+      <p>
         <a href="#enum-io.clbs.openhes.models.common.FilterOperator">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>FilterOperator</code> 
@@ -174,16 +181,16 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldSimpleDescriptor">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldDescriptor">
   <span>
-    <a href="#message-io.clbs.openhes.models.common.FieldSimpleDescriptor" title="io.clbs.openhes.models.common.FieldSimpleDescriptor">message FieldSimpleDescriptor</a>
+    <a href="#message-io.clbs.openhes.models.common.FieldDescriptor" title="io.clbs.openhes.models.common.FieldDescriptor">message FieldDescriptor</a>
   
   </span>
   
 </h4>
 
 <div class="block content">
-  <p>The field descriptor for simplified cases (e.g., for in-driver definitions).</p>
+  <p>The field descriptor.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -245,6 +252,67 @@
     </tr>
     
     <tr>
+      <td>4</td>
+      <td>
+        format
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDisplayFormat">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDisplayFormat"><span title="io.clbs.openhes.models.common.FieldDisplayFormat">io.clbs.openhes.models.common.FieldDisplayFormat</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Display format (e.g., 1h 30m)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unit to display (e.g., kWh, USD)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        groupId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Group (section) identifier for the field</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        precision
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Decimal precision for double numbers</p></td>
+      
+    </tr>
+    
+    <tr>
       <td>9</td>
       <td>
         tooltip
@@ -275,7 +343,67 @@
     </tr>
     
     <tr>
+      <td>12</td>
+      <td>
+        editable
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field is editable</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>13</td>
+      <td>
+        visible
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field is visible</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>14</td>
+      <td>
+        multiValue
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field can have multiple values</p></td>
+      
+    </tr>
+    
+    <tr>
       <td>15</td>
+      <td>
+        secured
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>16</td>
       <td>
         validation
       </td>
@@ -291,7 +419,7 @@
     </tr>
     
     <tr>
-      <td>16</td>
+      <td>17</td>
       <td>
         defaultValue
       </td>
@@ -1201,6 +1329,96 @@
       <td><code>BINARY</code></td>
       <td>5</td>
       <td class="content"><p>The binary data type.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.common.FieldDisplayFormat">
+  <a href="#enum-io.clbs.openhes.models.common.FieldDisplayFormat" title="io.clbs.openhes.models.common.FieldDisplayFormat">enum FieldDisplayFormat</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Enum representing the field display format.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>DEFAULT</code></td>
+      <td>0</td>
+      <td class="content"><p>The default display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DURATION</code></td>
+      <td>1</td>
+      <td class="content"><p>The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>INTERVAL</code></td>
+      <td>2</td>
+      <td class="content"><p>The interval display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DATE</code></td>
+      <td>3</td>
+      <td class="content"><p>The date display format with local timezone. Data type must be timestamp or string.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>UTC_DATE</code></td>
+      <td>4</td>
+      <td class="content"><p>The date display format with in UTC timezone. Data type must be timestamp or string.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>MONTH</code></td>
+      <td>5</td>
+      <td class="content"><p>The month display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DAYOFWEEK</code></td>
+      <td>6</td>
+      <td class="content"><p>The day of week display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TIMEOFDAY</code></td>
+      <td>7</td>
+      <td class="content"><p>The time of day display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>MONEY</code></td>
+      <td>8</td>
+      <td class="content"><p>The money display format.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PASSWORD</code></td>
+      <td>9</td>
+      <td class="content"><p>The password display format, e.g., <strong><em>*</em></strong>*.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>MULTILINE</code></td>
+      <td>10</td>
+      <td class="content"><p>The multiline-string display format.</p></td>
     </tr>
     
   </tbody>

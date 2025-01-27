@@ -178,6 +178,32 @@ enum FieldDataType {
   BINARY
 }
 
+# Enum representing the field display format.
+enum FieldDisplayFormat {
+  # The default display format.
+  DEFAULT
+  # The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
+  DURATION
+  # The interval display format.
+  INTERVAL
+  # The date display format with local timezone. Data type must be timestamp or string.
+  DATE
+  # The date display format with in UTC timezone. Data type must be timestamp or string.
+  UTC_DATE
+  # The month display format.
+  MONTH
+  # The day of week display format.
+  DAYOFWEEK
+  # The time of day display format.
+  TIMEOFDAY
+  # The money display format.
+  MONEY
+  # The password display format, e.g., ********.
+  PASSWORD
+  # The multiline-string display format.
+  MULTILINE
+}
+
 # The filter operator.
 enum FilterOperator {
   # Single operand operator for text, integer, number, boolean fields.
@@ -481,7 +507,7 @@ type ApplicationProtocolTemplate {
   # The application protocol.
   protocol: ApplicationProtocol
   # The list of attribute definitions for the protocol.
-  attributes: [FieldSimpleDescriptor]
+  attributes: [FieldDescriptor]
 }
 
 # Sub-message containing billing-typed value
@@ -656,7 +682,7 @@ type DataLinkTemplate {
   # The list of application protocol identifiers supported by the driver.
   appProtocolRefs: [ApplicationProtocol]
   # The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
-  attributes: [FieldSimpleDescriptor]
+  attributes: [FieldDescriptor]
 }
 
 type Device {
@@ -792,7 +818,7 @@ type JobActionAttributes {
   # The type of action for which this instance of the template is defined.
   type: ActionType
   # The template of the action attributes. It is represented as a list of attribute definitions.
-  attributes: [FieldSimpleDescriptor]
+  attributes: [FieldDescriptor]
 }
 
 # Sub-message containing constraints for job actions.
@@ -1020,18 +1046,34 @@ type SetModemRequest {
   modem: ModemInfo
 }
 
-# The field descriptor for simplified cases (e.g., for in-driver definitions).
-type FieldSimpleDescriptor {
+# The field descriptor.
+type FieldDescriptor {
   # Unique identifier for the field
   fieldId: String
   # Label displayed for the field
   label: String
   # Data type of the field (e.g., text, double)
   dataType: FieldDataType
+  # Display format (e.g., 1h 30m)
+  format: FieldDisplayFormat
+  # Unit to display (e.g., kWh, USD)
+  unit: String
+  # Group (section) identifier for the field
+  groupId: String
+  # Decimal precision for double numbers
+  precision: Int
   # Tooltip or hint text
   tooltip: String
   # Whether the field is mandatory
   required: Boolean
+  # Whether the field is editable
+  editable: Boolean
+  # Whether the field is visible
+  visible: Boolean
+  # Whether the field can have multiple values
+  multiValue: Boolean
+  # Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+  secured: Boolean
   # Validation rules for the field
   validation: FieldValidation
   # The default value of the attribute, it does not support multi-value fields

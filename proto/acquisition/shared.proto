@@ -288,7 +288,7 @@ message ApplicationProtocolTemplate {
     // The application protocol.
     ApplicationProtocol protocol = 2;
     // The list of attribute definitions for the protocol.
-    repeated common.FieldSimpleDescriptor attributes = 3;
+    repeated common.FieldDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
@@ -298,7 +298,7 @@ message DataLinkTemplate {
     // The list of application protocol identifiers supported by the driver.
     repeated ApplicationProtocol app_protocol_refs = 2;
     // The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
-    repeated common.FieldSimpleDescriptor attributes = 3;
+    repeated common.FieldDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.
@@ -397,7 +397,7 @@ message JobActionAttributes {
     // The type of action for which this instance of the template is defined.
     ActionType type = 1;
     // The template of the action attributes. It is represented as a list of attribute definitions.
-    repeated common.FieldSimpleDescriptor attributes = 2;
+    repeated common.FieldDescriptor attributes = 2;
 }
 
 // Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type

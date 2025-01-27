@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlItMBChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEgwKBHRleHQYAyADKAkSDwoHaW50ZWdlchgEIAMoEhIOCgZudW1iZXIYBSADKAESDwoHYm9vbGVhbhgGIAMoCBIoCgRkYXRlGAcgAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJQCg5MaXN0RGVzY3JpcHRvchI+CgZmaWVsZHMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiygMKD0ZpZWxkRGVzY3JpcHRvchIQCghmaWVsZF9pZBgBIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSQgoKdmFsaWRhdGlvbhgPIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbhJACg1kZWZhdWx0X3ZhbHVlGBAgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZSKiAgoVRmllbGRTaW1wbGVEZXNjcmlwdG9yEhAKCGZpZWxkX2lkGAEgASgJEg0KBWxhYmVsGAIgASgJEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDwoHdG9vbHRpcBgJIAEoCRIQCghyZXF1aXJlZBgLIAEoCBJCCgp2YWxpZGF0aW9uGA8gASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYECABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIqsCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRpECgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEiMKBXZhbHVlGAIgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueToCOAEivQEKCkZpZWxkVmFsdWUSFgoMc3RyaW5nX3ZhbHVlGAEgASgJSAASFwoNaW50ZWdlcl92YWx1ZRgCIAEoA0gAEhYKDGRvdWJsZV92YWx1ZRgDIAEoAUgAEhYKDGJpbmFyeV92YWx1ZRgEIAEoDEgAEhQKCmJvb2xfdmFsdWUYBSABKAhIABIwCgpkYXRlX3ZhbHVlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAQgYKBGtpbmQq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKloKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhILCgdCT09MRUFOEAMSDQoJVElNRVNUQU1QEAQSCgoGQklOQVJZEAUqiQEKEkZpZWxkRGlzcGxheUZvcm1hdBILCgdERUZBVUxUEAASDAoIRFVSQVRJT04QARIMCghJTlRFUlZBTBACEggKBERBVEUQAxIMCghVVENfREFURRAEEgkKBU1PTlRIEAUSDQoJREFZT0ZXRUVLEAYSDQoJVElNRU9GREFZEAcSCQoFTU9ORVkQCEIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_any, file_google_protobuf_timestamp]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlItMBChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEgwKBHRleHQYAyADKAkSDwoHaW50ZWdlchgEIAMoEhIOCgZudW1iZXIYBSADKAESDwoHYm9vbGVhbhgGIAMoCBIoCgRkYXRlGAcgAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJQCg5MaXN0RGVzY3JpcHRvchI+CgZmaWVsZHMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3Ii2wMKD0ZpZWxkRGVzY3JpcHRvchIQCghmaWVsZF9pZBgBIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIqsCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRpECgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEiMKBXZhbHVlGAIgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueToCOAEivQEKCkZpZWxkVmFsdWUSFgoMc3RyaW5nX3ZhbHVlGAEgASgJSAASFwoNaW50ZWdlcl92YWx1ZRgCIAEoA0gAEhYKDGRvdWJsZV92YWx1ZRgDIAEoAUgAEhYKDGJpbmFyeV92YWx1ZRgEIAEoDEgAEhQKCmJvb2xfdmFsdWUYBSABKAhIABIwCgpkYXRlX3ZhbHVlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAQgYKBGtpbmQq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKloKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhILCgdCT09MRUFOEAMSDQoJVElNRVNUQU1QEAQSCgoGQklOQVJZEAUqpgEKEkZpZWxkRGlzcGxheUZvcm1hdBILCgdERUZBVUxUEAASDAoIRFVSQVRJT04QARIMCghJTlRFUlZBTBACEggKBERBVEUQAxIMCghVVENfREFURRAEEgkKBU1PTlRIEAUSDQoJREFZT0ZXRUVLEAYSDQoJVElNRU9GREFZEAcSCQoFTU9ORVkQCBIMCghQQVNTV09SRBAJEg0KCU1VTFRJTElORRAKQjBaLmdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_google_protobuf_any, file_google_protobuf_timestamp]);
 
 /**
  * The listing selector.
@@ -276,16 +276,23 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
   multiValue: boolean;
 
   /**
+   * Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+   *
+   * @generated from field: bool secured = 15;
+   */
+  secured: boolean;
+
+  /**
    * Validation rules for the field
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 15;
+   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 16;
    */
   validation?: FieldValidation;
 
   /**
    * The default value of the attribute, it does not support multi-value fields
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 16;
+   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 17;
    */
   defaultValue?: FieldValue;
 };
@@ -296,69 +303,6 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
  */
 export const FieldDescriptorSchema: GenMessage<FieldDescriptor> = /*@__PURE__*/
   messageDesc(file_common_fields, 4);
-
-/**
- * The field descriptor for simplified cases (e.g., for in-driver definitions).
- *
- * @generated from message io.clbs.openhes.models.common.FieldSimpleDescriptor
- */
-export type FieldSimpleDescriptor = Message<"io.clbs.openhes.models.common.FieldSimpleDescriptor"> & {
-  /**
-   * Unique identifier for the field
-   *
-   * @generated from field: string field_id = 1;
-   */
-  fieldId: string;
-
-  /**
-   * Label displayed for the field
-   *
-   * @generated from field: string label = 2;
-   */
-  label: string;
-
-  /**
-   * Data type of the field (e.g., text, double)
-   *
-   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
-   */
-  dataType: FieldDataType;
-
-  /**
-   * Tooltip or hint text
-   *
-   * @generated from field: string tooltip = 9;
-   */
-  tooltip: string;
-
-  /**
-   * Whether the field is mandatory
-   *
-   * @generated from field: bool required = 11;
-   */
-  required: boolean;
-
-  /**
-   * Validation rules for the field
-   *
-   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 15;
-   */
-  validation?: FieldValidation;
-
-  /**
-   * The default value of the attribute, it does not support multi-value fields
-   *
-   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 16;
-   */
-  defaultValue?: FieldValue;
-};
-
-/**
- * Describes the message io.clbs.openhes.models.common.FieldSimpleDescriptor.
- * Use `create(FieldSimpleDescriptorSchema)` to create a new message.
- */
-export const FieldSimpleDescriptorSchema: GenMessage<FieldSimpleDescriptor> = /*@__PURE__*/
-  messageDesc(file_common_fields, 5);
 
 /**
  * Validation rules for the field.
@@ -428,7 +372,7 @@ export type FieldValidation = Message<"io.clbs.openhes.models.common.FieldValida
  * Use `create(FieldValidationSchema)` to create a new message.
  */
 export const FieldValidationSchema: GenMessage<FieldValidation> = /*@__PURE__*/
-  messageDesc(file_common_fields, 6);
+  messageDesc(file_common_fields, 5);
 
 /**
  * @generated from message io.clbs.openhes.models.common.FieldValue
@@ -493,7 +437,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
  * Use `create(FieldValueSchema)` to create a new message.
  */
 export const FieldValueSchema: GenMessage<FieldValue> = /*@__PURE__*/
-  messageDesc(file_common_fields, 7);
+  messageDesc(file_common_fields, 6);
 
 /**
  * The filter operator.
@@ -736,6 +680,20 @@ export enum FieldDisplayFormat {
    * @generated from enum value: MONEY = 8;
    */
   MONEY = 8,
+
+  /**
+   * The password display format, e.g., ********.
+   *
+   * @generated from enum value: PASSWORD = 9;
+   */
+  PASSWORD = 9,
+
+  /**
+   * The multiline-string display format.
+   *
+   * @generated from enum value: MULTILINE = 10;
+   */
+  MULTILINE = 10,
 }
 
 /**
