@@ -44,7 +44,7 @@ func DecodeDriverDescriptor(data io.ReadCloser) (*Driver, string, error) {
 	var descriptor *Driver
 	descriptor, err = DecodeDriverDescriptorFromString(descriptor_holder.Descriptor)
 	if err != nil {
-		return nil, "", err
+		return nil, descriptor_holder.Descriptor, err
 	}
 
 	return descriptor, descriptor_holder.Descriptor, nil
