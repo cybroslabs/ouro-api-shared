@@ -7,7 +7,7 @@ func (x *MetadataFields) Create() error {
 	if x == nil {
 		return nil
 	}
-	if len(x.GetManagedFields().GetFields()) > 0 {
+	if len(x.GetManagedFields()) > 0 {
 		return ErrManagedFieldsMustBeEmpty
 	}
 	new_id, err := uuid.NewV7()

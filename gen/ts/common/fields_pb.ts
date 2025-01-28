@@ -391,7 +391,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "stringValue";
   } | {
     /**
-     * Represents a integer-typed value.
+     * Represents a 64-bit integer-typed value.
      *
      * @generated from field: int64 integer_value = 2;
      */
@@ -399,7 +399,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "integerValue";
   } | {
     /**
-     * Represents a double-typed value.
+     * Represents a 64-bit double-typed value.
      *
      * @generated from field: double double_value = 3;
      */

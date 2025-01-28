@@ -442,10 +442,6 @@ type ListSelectorSortBy struct {
 	Desc    *bool   `json:"desc,omitempty"`
 }
 
-type ListValue struct {
-	Values []*Value `json:"values,omitempty"`
-}
-
 type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
@@ -458,11 +454,11 @@ type MeasuredValue struct {
 }
 
 type MetadataFields struct {
-	ID            *string `json:"id,omitempty"`
-	Generation    *int32  `json:"generation,omitempty"`
-	Fields        *Struct `json:"fields,omitempty"`
-	ManagedFields *Struct `json:"managedFields,omitempty"`
-	Name          *string `json:"name,omitempty"`
+	ID            *string          `json:"id,omitempty"`
+	Generation    *int32           `json:"generation,omitempty"`
+	Fields        []*MapFieldValue `json:"fields,omitempty"`
+	ManagedFields []*MapFieldValue `json:"managedFields,omitempty"`
+	Name          *string          `json:"name,omitempty"`
 }
 
 type ModemInfo struct {
@@ -531,23 +527,10 @@ type StringValue struct {
 	Value *string `json:"value,omitempty"`
 }
 
-type Struct struct {
-	Fields []*MapValue `json:"fields,omitempty"`
-}
-
 type SystemConfig struct {
 	MaxReplicas           *int32 `json:"maxReplicas,omitempty"`
 	MaxCascadeDeviceCount *int32 `json:"maxCascadeDeviceCount,omitempty"`
 	MaxSlotsPerDriver     *int32 `json:"maxSlotsPerDriver,omitempty"`
-}
-
-type Value struct {
-	NullValue   *NullValue `json:"nullValue,omitempty"`
-	NumberValue *float64   `json:"numberValue,omitempty"`
-	StringValue *string    `json:"stringValue,omitempty"`
-	BoolValue   *bool      `json:"boolValue,omitempty"`
-	StructValue *Struct    `json:"structValue,omitempty"`
-	ListValue   *ListValue `json:"listValue,omitempty"`
 }
 
 type MapFieldValue struct {
@@ -558,11 +541,6 @@ type MapFieldValue struct {
 type MapListOfString struct {
 	Key   string        `json:"key"`
 	Value *ListOfString `json:"value,omitempty"`
-}
-
-type MapValue struct {
-	Key   string `json:"key"`
-	Value *Value `json:"value,omitempty"`
 }
 
 type Mapstring struct {
@@ -1201,44 +1179,5 @@ func (e *JobStatusCode) UnmarshalGQL(v any) error {
 }
 
 func (e JobStatusCode) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
-}
-
-type NullValue string
-
-const (
-	NullValueNullValue NullValue = "NULL_VALUE"
-)
-
-var AllNullValue = []NullValue{
-	NullValueNullValue,
-}
-
-func (e NullValue) IsValid() bool {
-	switch e {
-	case NullValueNullValue:
-		return true
-	}
-	return false
-}
-
-func (e NullValue) String() string {
-	return string(e)
-}
-
-func (e *NullValue) UnmarshalGQL(v any) error {
-	str, ok := v.(string)
-	if !ok {
-		return fmt.Errorf("enums must be strings")
-	}
-
-	*e = NullValue(str)
-	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid NullValue", str)
-	}
-	return nil
-}
-
-func (e NullValue) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }

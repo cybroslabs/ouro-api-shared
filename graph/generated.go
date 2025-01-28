@@ -479,10 +479,6 @@ type ComplexityRoot struct {
 		FieldID func(childComplexity int) int
 	}
 
-	ListValue struct {
-		Values func(childComplexity int) int
-	}
-
 	MeasuredValue struct {
 		BoolValue        func(childComplexity int) int
 		DoubleValue      func(childComplexity int) int
@@ -597,23 +593,10 @@ type ComplexityRoot struct {
 		Value func(childComplexity int) int
 	}
 
-	Struct struct {
-		Fields func(childComplexity int) int
-	}
-
 	SystemConfig struct {
 		MaxCascadeDeviceCount func(childComplexity int) int
 		MaxReplicas           func(childComplexity int) int
 		MaxSlotsPerDriver     func(childComplexity int) int
-	}
-
-	Value struct {
-		BoolValue   func(childComplexity int) int
-		ListValue   func(childComplexity int) int
-		NullValue   func(childComplexity int) int
-		NumberValue func(childComplexity int) int
-		StringValue func(childComplexity int) int
-		StructValue func(childComplexity int) int
 	}
 
 	_mapFieldValue struct {
@@ -622,11 +605,6 @@ type ComplexityRoot struct {
 	}
 
 	_mapListOfString struct {
-		Key   func(childComplexity int) int
-		Value func(childComplexity int) int
-	}
-
-	_mapValue struct {
 		Key   func(childComplexity int) int
 		Value func(childComplexity int) int
 	}
@@ -2158,13 +2136,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListSelectorSortBy.FieldID(childComplexity), true
 
-	case "ListValue.values":
-		if e.complexity.ListValue.Values == nil {
-			break
-		}
-
-		return e.complexity.ListValue.Values(childComplexity), true
-
 	case "MeasuredValue.boolValue":
 		if e.complexity.MeasuredValue.BoolValue == nil {
 			break
@@ -2669,13 +2640,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.StringValue.Value(childComplexity), true
 
-	case "Struct.fields":
-		if e.complexity.Struct.Fields == nil {
-			break
-		}
-
-		return e.complexity.Struct.Fields(childComplexity), true
-
 	case "SystemConfig.maxCascadeDeviceCount":
 		if e.complexity.SystemConfig.MaxCascadeDeviceCount == nil {
 			break
@@ -2696,48 +2660,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.SystemConfig.MaxSlotsPerDriver(childComplexity), true
-
-	case "Value.boolValue":
-		if e.complexity.Value.BoolValue == nil {
-			break
-		}
-
-		return e.complexity.Value.BoolValue(childComplexity), true
-
-	case "Value.listValue":
-		if e.complexity.Value.ListValue == nil {
-			break
-		}
-
-		return e.complexity.Value.ListValue(childComplexity), true
-
-	case "Value.nullValue":
-		if e.complexity.Value.NullValue == nil {
-			break
-		}
-
-		return e.complexity.Value.NullValue(childComplexity), true
-
-	case "Value.numberValue":
-		if e.complexity.Value.NumberValue == nil {
-			break
-		}
-
-		return e.complexity.Value.NumberValue(childComplexity), true
-
-	case "Value.stringValue":
-		if e.complexity.Value.StringValue == nil {
-			break
-		}
-
-		return e.complexity.Value.StringValue(childComplexity), true
-
-	case "Value.structValue":
-		if e.complexity.Value.StructValue == nil {
-			break
-		}
-
-		return e.complexity.Value.StructValue(childComplexity), true
 
 	case "_mapFieldValue.key":
 		if e.complexity._mapFieldValue.Key == nil {
@@ -2766,20 +2688,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity._mapListOfString.Value(childComplexity), true
-
-	case "_mapValue.key":
-		if e.complexity._mapValue.Key == nil {
-			break
-		}
-
-		return e.complexity._mapValue.Key(childComplexity), true
-
-	case "_mapValue.value":
-		if e.complexity._mapValue.Value == nil {
-			break
-		}
-
-		return e.complexity._mapValue.Value(childComplexity), true
 
 	case "_mapstring.key":
 		if e.complexity._mapstring.Key == nil {
@@ -12407,61 +12315,6 @@ func (ec *executionContext) fieldContext_ListSelectorSortBy_desc(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _ListValue_values(ctx context.Context, field graphql.CollectedField, obj *model.ListValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListValue_values(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Values, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.Value)
-	fc.Result = res
-	return ec.marshalOValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ListValue_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ListValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "nullValue":
-				return ec.fieldContext_Value_nullValue(ctx, field)
-			case "numberValue":
-				return ec.fieldContext_Value_numberValue(ctx, field)
-			case "stringValue":
-				return ec.fieldContext_Value_stringValue(ctx, field)
-			case "boolValue":
-				return ec.fieldContext_Value_boolValue(ctx, field)
-			case "structValue":
-				return ec.fieldContext_Value_structValue(ctx, field)
-			case "listValue":
-				return ec.fieldContext_Value_listValue(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Value", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _MeasuredValue_status(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_MeasuredValue_status(ctx, field)
 	if err != nil {
@@ -12895,9 +12748,9 @@ func (ec *executionContext) _MetadataFields_fields(ctx context.Context, field gr
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.Struct)
+	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12908,10 +12761,12 @@ func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "fields":
-				return ec.fieldContext_Struct_fields(ctx, field)
+			case "key":
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -12940,9 +12795,9 @@ func (ec *executionContext) _MetadataFields_managedFields(ctx context.Context, f
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.Struct)
+	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12953,10 +12808,12 @@ func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "fields":
-				return ec.fieldContext_Struct_fields(ctx, field)
+			case "key":
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -15809,53 +15666,6 @@ func (ec *executionContext) fieldContext_StringValue_value(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _Struct_fields(ctx context.Context, field graphql.CollectedField, obj *model.Struct) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Struct_fields(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Fields, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.MapValue)
-	fc.Result = res
-	return ec.marshalO_mapValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Struct_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Struct",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "key":
-				return ec.fieldContext__mapValue_key(ctx, field)
-			case "value":
-				return ec.fieldContext__mapValue_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _SystemConfig_maxReplicas(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_SystemConfig_maxReplicas(ctx, field)
 	if err != nil {
@@ -15974,260 +15784,6 @@ func (ec *executionContext) fieldContext_SystemConfig_maxSlotsPerDriver(_ contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Int does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_nullValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_nullValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.NullValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.NullValue)
-	fc.Result = res
-	return ec.marshalONullValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐNullValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_nullValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type NullValue does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_numberValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_numberValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.NumberValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_numberValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Float does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_stringValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_stringValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.StringValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_stringValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_boolValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_boolValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.BoolValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_boolValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_structValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_structValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.StructValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.Struct)
-	fc.Result = res
-	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_structValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "fields":
-				return ec.fieldContext_Struct_fields(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Value_listValue(ctx context.Context, field graphql.CollectedField, obj *model.Value) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Value_listValue(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ListValue, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.ListValue)
-	fc.Result = res
-	return ec.marshalOListValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Value_listValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Value",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "values":
-				return ec.fieldContext_ListValue_values(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type ListValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -18185,105 +17741,6 @@ func (ec *executionContext) fieldContext__mapListOfString_value(_ context.Contex
 				return ec.fieldContext_ListOfString_items(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfString", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) __mapValue_key(ctx context.Context, field graphql.CollectedField, obj *model.MapValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapValue_key(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Key, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapValue_key(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) __mapValue_value(ctx context.Context, field graphql.CollectedField, obj *model.MapValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapValue_value(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.Value)
-	fc.Result = res
-	return ec.marshalOValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "nullValue":
-				return ec.fieldContext_Value_nullValue(ctx, field)
-			case "numberValue":
-				return ec.fieldContext_Value_numberValue(ctx, field)
-			case "stringValue":
-				return ec.fieldContext_Value_stringValue(ctx, field)
-			case "boolValue":
-				return ec.fieldContext_Value_boolValue(ctx, field)
-			case "structValue":
-				return ec.fieldContext_Value_structValue(ctx, field)
-			case "listValue":
-				return ec.fieldContext_Value_listValue(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Value", field.Name)
 		},
 	}
 	return fc, nil
@@ -21322,42 +20779,6 @@ func (ec *executionContext) _ListSelectorSortBy(ctx context.Context, sel ast.Sel
 	return out
 }
 
-var listValueImplementors = []string{"ListValue"}
-
-func (ec *executionContext) _ListValue(ctx context.Context, sel ast.SelectionSet, obj *model.ListValue) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, listValueImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ListValue")
-		case "values":
-			out.Values[i] = ec._ListValue_values(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var measuredValueImplementors = []string{"MeasuredValue"}
 
 func (ec *executionContext) _MeasuredValue(ctx context.Context, sel ast.SelectionSet, obj *model.MeasuredValue) graphql.Marshaler {
@@ -22487,42 +21908,6 @@ func (ec *executionContext) _StringValue(ctx context.Context, sel ast.SelectionS
 	return out
 }
 
-var structImplementors = []string{"Struct"}
-
-func (ec *executionContext) _Struct(ctx context.Context, sel ast.SelectionSet, obj *model.Struct) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, structImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("Struct")
-		case "fields":
-			out.Values[i] = ec._Struct_fields(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var systemConfigImplementors = []string{"SystemConfig"}
 
 func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.SelectionSet, obj *model.SystemConfig) graphql.Marshaler {
@@ -22540,52 +21925,6 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._SystemConfig_maxCascadeDeviceCount(ctx, field, obj)
 		case "maxSlotsPerDriver":
 			out.Values[i] = ec._SystemConfig_maxSlotsPerDriver(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var valueImplementors = []string{"Value"}
-
-func (ec *executionContext) _Value(ctx context.Context, sel ast.SelectionSet, obj *model.Value) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, valueImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("Value")
-		case "nullValue":
-			out.Values[i] = ec._Value_nullValue(ctx, field, obj)
-		case "numberValue":
-			out.Values[i] = ec._Value_numberValue(ctx, field, obj)
-		case "stringValue":
-			out.Values[i] = ec._Value_stringValue(ctx, field, obj)
-		case "boolValue":
-			out.Values[i] = ec._Value_boolValue(ctx, field, obj)
-		case "structValue":
-			out.Values[i] = ec._Value_structValue(ctx, field, obj)
-		case "listValue":
-			out.Values[i] = ec._Value_listValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22990,47 +22329,6 @@ func (ec *executionContext) __mapListOfString(ctx context.Context, sel ast.Selec
 			}
 		case "value":
 			out.Values[i] = ec.__mapListOfString_value(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var _mapValueImplementors = []string{"_mapValue"}
-
-func (ec *executionContext) __mapValue(ctx context.Context, sel ast.SelectionSet, obj *model.MapValue) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, _mapValueImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("_mapValue")
-		case "key":
-			out.Values[i] = ec.__mapValue_key(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "value":
-			out.Values[i] = ec.__mapValue_value(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -25190,13 +24488,6 @@ func (ec *executionContext) marshalOListSelectorSortBy2ᚖgithubᚗcomᚋcybrosl
 	return ec._ListSelectorSortBy(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListValue(ctx context.Context, sel ast.SelectionSet, v *model.ListValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ListValue(ctx, sel, v)
-}
-
 func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v []*model.MeasuredValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -25362,22 +24653,6 @@ func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabs
 	return ec._ModemPoolStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalONullValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐNullValue(ctx context.Context, v any) (*model.NullValue, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var res = new(model.NullValue)
-	err := res.UnmarshalGQL(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalONullValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐNullValue(ctx context.Context, sel ast.SelectionSet, v *model.NullValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return v
-}
-
 func (ec *executionContext) marshalOProfileBlok2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlok(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlok) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -25488,13 +24763,6 @@ func (ec *executionContext) marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋh
 	return ec._StringValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx context.Context, sel ast.SelectionSet, v *model.Struct) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Struct(ctx, sel, v)
-}
-
 func (ec *executionContext) marshalOSystemConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSystemConfig(ctx context.Context, sel ast.SelectionSet, v *model.SystemConfig) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -25564,54 +24832,6 @@ func (ec *executionContext) marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(
 	}
 	res := graphql.MarshalUUID(*v)
 	return res
-}
-
-func (ec *executionContext) marshalOValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐValue(ctx context.Context, sel ast.SelectionSet, v []*model.Value) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐValue(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalOValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐValue(ctx context.Context, sel ast.SelectionSet, v *model.Value) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Value(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {
@@ -25910,54 +25130,6 @@ func (ec *executionContext) marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslab
 		return graphql.Null
 	}
 	return ec.__mapListOfString(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalO_mapValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapValue(ctx context.Context, sel ast.SelectionSet, v []*model.MapValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalO_mapValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapValue(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalO_mapValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapValue(ctx context.Context, sel ast.SelectionSet, v *model.MapValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec.__mapValue(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v []*model.Mapstring) graphql.Marshaler {

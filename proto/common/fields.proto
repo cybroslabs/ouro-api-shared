@@ -125,8 +125,8 @@ message FieldValidation {
 message FieldValue {
     oneof kind {
         string string_value                  = 1;  // Represents a string-typed value.
-        int64 integer_value                  = 2;  // Represents a integer-typed value.
-        double double_value                  = 3;  // Represents a double-typed value.
+        int64 integer_value                  = 2;  // Represents a 64-bit integer-typed value.
+        double double_value                  = 3;  // Represents a 64-bit double-typed value.
         bytes binary_value                   = 4;  // Represents a binary-typed value.
         bool bool_value                      = 5;  // Represents a boolean-typed value.
         google.protobuf.Timestamp date_value = 6;  // Represents a date-typed value.

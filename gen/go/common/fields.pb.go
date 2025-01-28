@@ -1820,11 +1820,11 @@ type fieldValue_StringValue struct {
 }
 
 type fieldValue_IntegerValue struct {
-	IntegerValue int64 `protobuf:"varint,2,opt,name=integer_value,json=integerValue,oneof"` // Represents a integer-typed value.
+	IntegerValue int64 `protobuf:"varint,2,opt,name=integer_value,json=integerValue,oneof"` // Represents a 64-bit integer-typed value.
 }
 
 type fieldValue_DoubleValue struct {
-	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,oneof"` // Represents a double-typed value.
+	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,oneof"` // Represents a 64-bit double-typed value.
 }
 
 type fieldValue_BinaryValue struct {

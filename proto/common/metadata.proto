@@ -11,7 +11,7 @@ import "common/fields.proto";
 message MetadataFields {
     string id                             = 1;                                              // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
     int32 generation                      = 2;                                              // The generation of the resource.
-    google.protobuf.Struct fields         = 3;                                              // The additional fields managed by user.
-    google.protobuf.Struct managed_fields = 4;                                              // The additional fields managed by system.
+    map<string, FieldValue> fields         = 3;                                              // The additional fields managed by user.
+    map<string, FieldValue> managed_fields = 4;                                              // The additional fields managed by system.
     string name                           = 5 [features.field_presence = LEGACY_REQUIRED];  // The name of the resource. It's mutable and typically set by user. Must be set.
 }
