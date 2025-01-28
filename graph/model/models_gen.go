@@ -134,6 +134,7 @@ type BulkSpec struct {
 	Settings      *JobSettings       `json:"settings,omitempty"`
 	Actions       []*JobAction       `json:"actions,omitempty"`
 	WebhookURL    *string            `json:"webhookUrl,omitempty"`
+	DeviceGroupID *string            `json:"deviceGroupId,omitempty"`
 }
 
 type BulkStatus struct {

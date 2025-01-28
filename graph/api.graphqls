@@ -438,6 +438,8 @@ type BulkSpec {
   actions: [JobAction]
   # The webhook URL to call when the bulk is completed.
   webhookUrl: String
+  # The device group identifier.
+  deviceGroupId: String
 }
 
 type BulkStatus {

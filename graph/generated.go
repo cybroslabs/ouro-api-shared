@@ -167,6 +167,7 @@ type ComplexityRoot struct {
 		Actions       func(childComplexity int) int
 		CorrelationID func(childComplexity int) int
 		CustomDevices func(childComplexity int) int
+		DeviceGroupID func(childComplexity int) int
 		Devices       func(childComplexity int) int
 		DriverType    func(childComplexity int) int
 		Settings      func(childComplexity int) int
@@ -973,6 +974,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.BulkSpec.CustomDevices(childComplexity), true
+
+	case "BulkSpec.deviceGroupId":
+		if e.complexity.BulkSpec.DeviceGroupID == nil {
+			break
+		}
+
+		return e.complexity.BulkSpec.DeviceGroupID(childComplexity), true
 
 	case "BulkSpec.devices":
 		if e.complexity.BulkSpec.Devices == nil {
@@ -4511,6 +4519,8 @@ func (ec *executionContext) fieldContext_Bulk_spec(_ context.Context, field grap
 				return ec.fieldContext_BulkSpec_actions(ctx, field)
 			case "webhookUrl":
 				return ec.fieldContext_BulkSpec_webhookUrl(ctx, field)
+			case "deviceGroupId":
+				return ec.fieldContext_BulkSpec_deviceGroupId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -5051,6 +5061,47 @@ func (ec *executionContext) _BulkSpec_webhookUrl(ctx context.Context, field grap
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_webhookUrl(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkSpec_deviceGroupId(ctx context.Context, field graphql.CollectedField, obj *model.BulkSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkSpec_deviceGroupId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceGroupID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkSpec_deviceGroupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkSpec",
 		Field:      field,
@@ -6283,6 +6334,8 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_spec(_ context.Contex
 				return ec.fieldContext_BulkSpec_actions(ctx, field)
 			case "webhookUrl":
 				return ec.fieldContext_BulkSpec_webhookUrl(ctx, field)
+			case "deviceGroupId":
+				return ec.fieldContext_BulkSpec_deviceGroupId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkSpec", field.Name)
 		},
@@ -18800,6 +18853,8 @@ func (ec *executionContext) _BulkSpec(ctx context.Context, sel ast.SelectionSet,
 			out.Values[i] = ec._BulkSpec_actions(ctx, field, obj)
 		case "webhookUrl":
 			out.Values[i] = ec._BulkSpec_webhookUrl(ctx, field, obj)
+		case "deviceGroupId":
+			out.Values[i] = ec._BulkSpec_deviceGroupId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

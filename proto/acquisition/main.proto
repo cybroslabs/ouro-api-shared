@@ -109,6 +109,7 @@ message BulkSpec {
     oneof device {
         ListOfJobDeviceId devices      = 4;  // The list of devices in the bulk.
         ListOfJobDevice custom_devices = 5;  // The list of custom devices in the bulk.
+        string device_group_id         = 9;  // The device group identifier.
     }
     JobSettings settings       = 6;  // The bulk-shared job settings.
     repeated JobAction actions = 7;  // The list actions to be executed.
