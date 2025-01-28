@@ -1109,9 +1109,9 @@ type MetadataFields {
   # The generation of the resource.
   generation: Int
   # The additional fields managed by user.
-  fields: [_mapFieldValue]
+  fields: Struct
   # The additional fields managed by system.
-  managedFields: [_mapValue]
+  managedFields: Struct
   # The name of the resource. It's mutable and typically set by user. Must be set.
   name: String
 }

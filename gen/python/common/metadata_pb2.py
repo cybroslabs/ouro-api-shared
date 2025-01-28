@@ -26,7 +26,7 @@ from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13\x63ommon/fields.proto\"\xd7\x03\n\x0eMetadataFields\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x02 \x01(\x05R\ngeneration\x12Q\n\x06\x66ields\x18\x03 \x03(\x0b\x32\x39.io.clbs.openhes.models.common.MetadataFields.FieldsEntryR\x06\x66ields\x12g\n\x0emanaged_fields\x18\x04 \x03(\x0b\x32@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x19\n\x04name\x18\x05 \x01(\tB\x05\xaa\x01\x02\x08\x03R\x04name\x1a\x64\n\x0b\x46ieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\x1aX\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12,\n\x05value\x18\x02 \x01(\x0b\x32\x16.google.protobuf.ValueR\x05value:\x02\x38\x01\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13\x63ommon/fields.proto\"\xcc\x01\n\x0eMetadataFields\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x02 \x01(\x05R\ngeneration\x12/\n\x06\x66ields\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructR\x06\x66ields\x12>\n\x0emanaged_fields\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructR\rmanagedFields\x12\x19\n\x04name\x18\x05 \x01(\tB\x05\xaa\x01\x02\x08\x03R\x04nameB0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,16 +34,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'common.metadata_pb2', _glob
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z.github.com/cybroslabs/hes-2-apis/gen/go/common'
-  _globals['_METADATAFIELDS_FIELDSENTRY']._loaded_options = None
-  _globals['_METADATAFIELDS_FIELDSENTRY']._serialized_options = b'8\001'
-  _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._loaded_options = None
-  _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._serialized_options = b'8\001'
   _globals['_METADATAFIELDS'].fields_by_name['name']._loaded_options = None
   _globals['_METADATAFIELDS'].fields_by_name['name']._serialized_options = b'\252\001\002\010\003'
   _globals['_METADATAFIELDS']._serialized_start=108
-  _globals['_METADATAFIELDS']._serialized_end=579
-  _globals['_METADATAFIELDS_FIELDSENTRY']._serialized_start=389
-  _globals['_METADATAFIELDS_FIELDSENTRY']._serialized_end=489
-  _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._serialized_start=491
-  _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._serialized_end=579
+  _globals['_METADATAFIELDS']._serialized_end=312
 # @@protoc_insertion_point(module_scope)

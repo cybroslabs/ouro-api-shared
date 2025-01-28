@@ -12895,9 +12895,9 @@ func (ec *executionContext) _MetadataFields_fields(ctx context.Context, field gr
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MapFieldValue)
+	res := resTmp.(*model.Struct)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12908,12 +12908,10 @@ func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "key":
-				return ec.fieldContext__mapFieldValue_key(ctx, field)
-			case "value":
-				return ec.fieldContext__mapFieldValue_value(ctx, field)
+			case "fields":
+				return ec.fieldContext_Struct_fields(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
 		},
 	}
 	return fc, nil
@@ -12942,9 +12940,9 @@ func (ec *executionContext) _MetadataFields_managedFields(ctx context.Context, f
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MapValue)
+	res := resTmp.(*model.Struct)
 	fc.Result = res
-	return ec.marshalO_mapValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapValue(ctx, field.Selections, res)
+	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12955,12 +12953,10 @@ func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "key":
-				return ec.fieldContext__mapValue_key(ctx, field)
-			case "value":
-				return ec.fieldContext__mapValue_value(ctx, field)
+			case "fields":
+				return ec.fieldContext_Struct_fields(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapValue", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
 		},
 	}
 	return fc, nil

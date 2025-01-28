@@ -458,11 +458,11 @@ type MeasuredValue struct {
 }
 
 type MetadataFields struct {
-	ID            *string          `json:"id,omitempty"`
-	Generation    *int32           `json:"generation,omitempty"`
-	Fields        []*MapFieldValue `json:"fields,omitempty"`
-	ManagedFields []*MapValue      `json:"managedFields,omitempty"`
-	Name          *string          `json:"name,omitempty"`
+	ID            *string `json:"id,omitempty"`
+	Generation    *int32  `json:"generation,omitempty"`
+	Fields        *Struct `json:"fields,omitempty"`
+	ManagedFields *Struct `json:"managedFields,omitempty"`
+	Name          *string `json:"name,omitempty"`
 }
 
 type ModemInfo struct {
