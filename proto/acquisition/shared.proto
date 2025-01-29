@@ -360,8 +360,13 @@ message ProfileValues {
 }
 
 message IrregularProfileValues {
-    string unit                   = 2;  // The unit of the profile values.
-    repeated MeasuredValue values = 3;  // The list of continuous profile blocks.
+    string unit                    = 1;  // The unit of the profile values.
+    repeated IrregularValue values = 2;  // The list of continuous profile blocks.
+}
+
+message IrregularValue {
+    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
+    MeasuredValue value                 = 2;  // The value.
 }
 
 // Sub-message containing a single profile block

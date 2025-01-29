@@ -318,8 +318,13 @@ type FieldValue struct {
 }
 
 type IrregularProfileValues struct {
-	Unit   *string          `json:"unit,omitempty"`
-	Values []*MeasuredValue `json:"values,omitempty"`
+	Unit   *string           `json:"unit,omitempty"`
+	Values []*IrregularValue `json:"values,omitempty"`
+}
+
+type IrregularValue struct {
+	Timestamp *string        `json:"timestamp,omitempty"`
+	Value     *MeasuredValue `json:"value,omitempty"`
 }
 
 type JobAction struct {

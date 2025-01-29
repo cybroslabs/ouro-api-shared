@@ -359,6 +359,11 @@ type ComplexityRoot struct {
 		Values func(childComplexity int) int
 	}
 
+	IrregularValue struct {
+		Timestamp func(childComplexity int) int
+		Value     func(childComplexity int) int
+	}
+
 	JobAction struct {
 		ActionID             func(childComplexity int) int
 		Attributes           func(childComplexity int) int
@@ -1742,6 +1747,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.IrregularProfileValues.Values(childComplexity), true
+
+	case "IrregularValue.timestamp":
+		if e.complexity.IrregularValue.Timestamp == nil {
+			break
+		}
+
+		return e.complexity.IrregularValue.Timestamp(childComplexity), true
+
+	case "IrregularValue.value":
+		if e.complexity.IrregularValue.Value == nil {
+			break
+		}
+
+		return e.complexity.IrregularValue.Value(childComplexity), true
 
 	case "JobAction.actionId":
 		if e.complexity.JobAction.ActionID == nil {
@@ -9817,14 +9836,102 @@ func (ec *executionContext) _IrregularProfileValues_values(ctx context.Context, 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.MeasuredValue)
+	res := resTmp.([]*model.IrregularValue)
 	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+	return ec.marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_IrregularProfileValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "IrregularProfileValues",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "timestamp":
+				return ec.fieldContext_IrregularValue_timestamp(ctx, field)
+			case "value":
+				return ec.fieldContext_IrregularValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type IrregularValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _IrregularValue_timestamp(ctx context.Context, field graphql.CollectedField, obj *model.IrregularValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_IrregularValue_timestamp(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timestamp, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_IrregularValue_timestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "IrregularValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _IrregularValue_value(ctx context.Context, field graphql.CollectedField, obj *model.IrregularValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_IrregularValue_value(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Value, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MeasuredValue)
+	fc.Result = res
+	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_IrregularValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "IrregularValue",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -20439,6 +20546,44 @@ func (ec *executionContext) _IrregularProfileValues(ctx context.Context, sel ast
 	return out
 }
 
+var irregularValueImplementors = []string{"IrregularValue"}
+
+func (ec *executionContext) _IrregularValue(ctx context.Context, sel ast.SelectionSet, obj *model.IrregularValue) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, irregularValueImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("IrregularValue")
+		case "timestamp":
+			out.Values[i] = ec._IrregularValue_timestamp(ctx, field, obj)
+		case "value":
+			out.Values[i] = ec._IrregularValue_value(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var jobActionImplementors = []string{"JobAction"}
 
 func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet, obj *model.JobAction) graphql.Marshaler {
@@ -24524,6 +24669,54 @@ func (ec *executionContext) marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcyb
 		return graphql.Null
 	}
 	return ec._IrregularProfileValues(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v []*model.IrregularValue) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v *model.IrregularValue) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._IrregularValue(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v []*model.JobAction) graphql.Marshaler {

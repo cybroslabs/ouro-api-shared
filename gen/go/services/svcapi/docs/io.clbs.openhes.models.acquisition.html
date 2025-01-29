@@ -510,6 +510,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.IrregularValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>IrregularValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.JobAction">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>JobAction</code> 
@@ -4389,7 +4398,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
   <tbody>
     
     <tr>
-      <td>2</td>
+      <td>1</td>
       <td>
         unit
       </td>
@@ -4404,20 +4413,86 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </tr>
     
     <tr>
-      <td>3</td>
+      <td>2</td>
       <td>
         values
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+        <code title="io.clbs.openhes.models.acquisition.IrregularValue">
           
             repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.IrregularValue"><span title="io.clbs.openhes.models.acquisition.IrregularValue">io.clbs.openhes.models.acquisition.IrregularValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.IrregularValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.IrregularValue" title="io.clbs.openhes.models.acquisition.IrregularValue">message IrregularValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
           
           <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      <td class="content"><p>The value.</p></td>
       
     </tr>
     

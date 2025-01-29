@@ -667,7 +667,14 @@ type IrregularProfileValues {
   # The unit of the profile values.
   unit: String
   # The list of continuous profile blocks.
-  values: [MeasuredValue]
+  values: [IrregularValue]
+}
+
+type IrregularValue {
+  # The timestamp of the value.
+  timestamp: Timestamp
+  # The value.
+  value: MeasuredValue
 }
 
 # Sub-message containing job action specification
