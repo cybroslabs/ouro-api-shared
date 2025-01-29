@@ -54,13 +54,11 @@ message JobAction {
         ActionGetEvents get_events                        = 6;   // The get events action specification.
         ActionGetDeviceInfo get_device_info               = 7;   // The get device info action specification.
         ActionSyncClock sync_clock                        = 8;   // The sync clock action specification.
-        ActionGetRelayState get_relay_state               = 9;   // The get relay state action specification.
         ActionSetRelayState set_relay_state               = 10;  // The set relay state action specification.
         ActionGetDisconnectorState get_disconnector_state = 11;  // The get disconnector state action specification.
         ActionSetDisconnectorState set_disconnector_state = 12;  // The set disconnector state action specification.
         ActionGetTou get_tou                              = 13;  // The get tou action specification.
         ActionSetTou set_tou                              = 14;  // The set tou action specification.
-        ActionGetLimiter get_limiter                      = 15;  // The get limiter action specification.
         ActionSetLimiter set_limiter                      = 16;  // The set limiter action specification.
         ActionResetBillingPeriod reset_billing_period     = 17;  // The reset billing period action specification.
         ActionFwUpdate fw_update                          = 18;  // The firmware update action specification.
@@ -347,10 +345,10 @@ message JobProgressUpdate {
 // Sub-message containing action-based variant of data values
 message ActionData {
     oneof data {
-        google.protobuf.Empty nodata    = 1;  // No data
-        BillingValues billings          = 2;  // Register values
-        ProfileValues profile           = 3;  // Profile values
-        BillingValues irregular_profile = 4;  // Irregular profile values
+        google.protobuf.Empty nodata             = 1;  // No data
+        BillingValues billings                   = 2;  // Register values
+        ProfileValues profile                    = 3;  // Profile values
+        IrregularProfileValues irregular_profile = 4;  // Irregular (non-periodical) profile values, e.g. daily profile
     }
 }
 
@@ -359,6 +357,11 @@ message ProfileValues {
     int32 period                = 1;  // The period of the profile values.
     string unit                 = 2;  // The unit of the profile values.
     repeated ProfileBlok blocks = 3;  // The list of continuous profile blocks.
+}
+
+message IrregularProfileValues {
+    string unit                   = 2;  // The unit of the profile values.
+    repeated MeasuredValue values = 3;  // The list of continuous profile blocks.
 }
 
 // Sub-message containing a single profile block
@@ -428,8 +431,6 @@ enum ActionType {
     // Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
     ACTION_TYPE_SYNC_CLOCK = 11;
 
-    // Get relay state. The action covers single relay.
-    ACTION_TYPE_GET_RELAY_STATE = 20;
     // Set relay state. The action covers single relay.
     ACTION_TYPE_SET_RELAY_STATE = 21;
 
@@ -443,8 +444,6 @@ enum ActionType {
     // Set time-of-use table.
     ACTION_TYPE_SET_TOU = 25;
 
-    // Get limiter settings. The action covers single limiter.
-    ACTION_TYPE_GET_LIMITER = 26;
     // Set limiter settings. The action covers single limiter.
     ACTION_TYPE_SET_LIMITER = 27;
 
@@ -486,14 +485,12 @@ message ActionGetDeviceInfo {
     double clock_delta                       = 5;  // The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
     string device_model                      = 6;  // The model of the device.
     uint32 error_register                    = 7;  // The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
+    repeated bool relay_states               = 8;  // The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.
+    bool connection_state                    = 9;  // The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
 }
 
 // Sub-message containing sync clock action specification
 message ActionSyncClock {
-}
-
-// Sub-message containing get relay state action specification
-message ActionGetRelayState {
 }
 
 // Sub-message containing set relay state action specification
@@ -514,10 +511,6 @@ message ActionGetTou {
 
 // Sub-message containing set tou action specification
 message ActionSetTou {
-}
-
-// Sub-message containing get limiter action specification
-message ActionGetLimiter {
 }
 
 // Sub-message containing set limiter action specification

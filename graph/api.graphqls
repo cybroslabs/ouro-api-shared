@@ -26,8 +26,6 @@ enum ActionType {
   ACTION_TYPE_GET_DEVICE_INFO
   # Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
   ACTION_TYPE_SYNC_CLOCK
-  # Get relay state. The action covers single relay.
-  ACTION_TYPE_GET_RELAY_STATE
   # Set relay state. The action covers single relay.
   ACTION_TYPE_SET_RELAY_STATE
   # Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
@@ -38,8 +36,6 @@ enum ActionType {
   ACTION_TYPE_GET_TOU
   # Set time-of-use table.
   ACTION_TYPE_SET_TOU
-  # Get limiter settings. The action covers single limiter.
-  ACTION_TYPE_GET_LIMITER
   # Set limiter settings. The action covers single limiter.
   ACTION_TYPE_SET_LIMITER
   # Reseet billing period.
@@ -273,8 +269,8 @@ type ActionData {
   billings: BillingValues
   # Profile values
   profile: ProfileValues
-  # Irregular profile values
-  irregularProfile: BillingValues
+  # Irregular (non-periodical) profile values, e.g. daily profile
+  irregularProfile: IrregularProfileValues
 }
 
 # Sub-message containing firmware update action specification
@@ -298,6 +294,10 @@ type ActionGetDeviceInfo {
   deviceModel: String
   # The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
   errorRegister: Int
+  # The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.
+  relayStates: [Boolean]
+  # The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
+  connectionState: Boolean
 }
 
 # Sub-message containing get disconnector state action specification
@@ -321,11 +321,6 @@ type ActionGetIrregularProfile {
   to: Timestamp
 }
 
-# Sub-message containing get limiter action specification
-type ActionGetLimiter {
-  _empty: Boolean
-}
-
 # Sub-message containing get periodical profile action specification
 type ActionGetPeriodicalProfile {
   # The start timestamp of the profile.
@@ -336,11 +331,6 @@ type ActionGetPeriodicalProfile {
 
 # Sub-message containing get register action specification
 type ActionGetRegister {
-  _empty: Boolean
-}
-
-# Sub-message containing get relay state action specification
-type ActionGetRelayState {
   _empty: Boolean
 }
 
@@ -673,6 +663,13 @@ type DriverTemplates {
   actionConstraints: JobActionContraints
 }
 
+type IrregularProfileValues {
+  # The unit of the profile values.
+  unit: String
+  # The list of continuous profile blocks.
+  values: [MeasuredValue]
+}
+
 # Sub-message containing job action specification
 type JobAction {
   # The action identifier.
@@ -691,8 +688,6 @@ type JobAction {
   getDeviceInfo: ActionGetDeviceInfo
   # The sync clock action specification.
   syncClock: ActionSyncClock
-  # The get relay state action specification.
-  getRelayState: ActionGetRelayState
   # The set relay state action specification.
   setRelayState: ActionSetRelayState
   # The get disconnector state action specification.
@@ -703,8 +698,6 @@ type JobAction {
   getTou: ActionGetTou
   # The set tou action specification.
   setTou: ActionSetTou
-  # The get limiter action specification.
-  getLimiter: ActionGetLimiter
   # The set limiter action specification.
   setLimiter: ActionSetLimiter
   # The reset billing period action specification.

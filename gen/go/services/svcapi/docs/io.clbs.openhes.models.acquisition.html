@@ -132,15 +132,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetLimiter">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ActionGetLimiter</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ActionGetPeriodicalProfile</code> 
@@ -153,15 +144,6 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRegister">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ActionGetRegister</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRelayState">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ActionGetRelayState</code> 
         </a>
       </p>
       
@@ -513,6 +495,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.DriverTemplates">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DriverTemplates</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.IrregularProfileValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>IrregularProfileValues</code> 
         </a>
       </p>
       
@@ -1013,13 +1004,13 @@
             irregularProfile
           </td>
           <td>
-            <code title="io.clbs.openhes.models.acquisition.BillingValues">
+            <code title="io.clbs.openhes.models.acquisition.IrregularProfileValues">
               
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BillingValues"><span title="io.clbs.openhes.models.acquisition.BillingValues">io.clbs.openhes.models.acquisition.BillingValues</span>
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.IrregularProfileValues"><span title="io.clbs.openhes.models.acquisition.IrregularProfileValues">io.clbs.openhes.models.acquisition.IrregularProfileValues</span>
     </a>
             </code>
           </td>
-          <td class="content"><p>Irregular profile values</p></td>
+          <td class="content"><p>Irregular (non-periodical) profile values, e.g. daily profile</p></td>
           
         </tr>
       
@@ -1195,6 +1186,38 @@
         </code>
       </td>
       <td class="content"><p>The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        relayStates
+      </td>
+      <td>
+        <code title="bool">
+          
+            repeated
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        connectionState
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.</p></td>
       
     </tr>
     
@@ -1374,41 +1397,6 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetLimiter">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetLimiter" title="io.clbs.openhes.models.acquisition.ActionGetLimiter">message ActionGetLimiter</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing get limiter action specification</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile" title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">message ActionGetPeriodicalProfile</a>
@@ -1484,41 +1472,6 @@
 
 <div class="block content">
   <p>Sub-message containing get register action specification</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionGetRelayState">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ActionGetRelayState" title="io.clbs.openhes.models.acquisition.ActionGetRelayState">message ActionGetRelayState</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing get relay state action specification</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4411,6 +4364,74 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.IrregularProfileValues">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.IrregularProfileValues" title="io.clbs.openhes.models.acquisition.IrregularProfileValues">message IrregularProfileValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the profile values.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobAction">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.JobAction" title="io.clbs.openhes.models.acquisition.JobAction">message JobAction</a>
@@ -4600,26 +4621,6 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
 
         <tr>
           <td>
-            9
-          </td>
-          <td>
-            getRelayState
-          </td>
-          <td>
-            <code title="io.clbs.openhes.models.acquisition.ActionGetRelayState">
-              
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetRelayState"><span title="io.clbs.openhes.models.acquisition.ActionGetRelayState">io.clbs.openhes.models.acquisition.ActionGetRelayState</span>
-    </a>
-            </code>
-          </td>
-          <td class="content"><p>The get relay state action specification.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
             10
           </td>
           <td>
@@ -4713,26 +4714,6 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
             </code>
           </td>
           <td class="content"><p>The set tou action specification.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            15
-          </td>
-          <td>
-            getLimiter
-          </td>
-          <td>
-            <code title="io.clbs.openhes.models.acquisition.ActionGetLimiter">
-              
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetLimiter"><span title="io.clbs.openhes.models.acquisition.ActionGetLimiter">io.clbs.openhes.models.acquisition.ActionGetLimiter</span>
-    </a>
-            </code>
-          </td>
-          <td class="content"><p>The get limiter action specification.</p></td>
           
         </tr>
       
@@ -7010,12 +6991,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     </tr>
     
     <tr>
-      <td><code>ACTION_TYPE_GET_RELAY_STATE</code></td>
-      <td>20</td>
-      <td class="content"><p>Get relay state. The action covers single relay.</p></td>
-    </tr>
-    
-    <tr>
       <td><code>ACTION_TYPE_SET_RELAY_STATE</code></td>
       <td>21</td>
       <td class="content"><p>Set relay state. The action covers single relay.</p></td>
@@ -7043,12 +7018,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <td><code>ACTION_TYPE_SET_TOU</code></td>
       <td>25</td>
       <td class="content"><p>Set time-of-use table.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>ACTION_TYPE_GET_LIMITER</code></td>
-      <td>26</td>
-      <td class="content"><p>Get limiter settings. The action covers single limiter.</p></td>
     </tr>
     
     <tr>

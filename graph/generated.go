@@ -65,12 +65,14 @@ type ComplexityRoot struct {
 
 	ActionGetDeviceInfo struct {
 		ClockDelta               func(childComplexity int) int
+		ConnectionState          func(childComplexity int) int
 		DeviceModel              func(childComplexity int) int
 		DeviceSerialNumber       func(childComplexity int) int
 		ErrorRegister            func(childComplexity int) int
 		FirmwareVersion          func(childComplexity int) int
 		InfoTimestamp            func(childComplexity int) int
 		ManufacturerSerialNumber func(childComplexity int) int
+		RelayStates              func(childComplexity int) int
 	}
 
 	ActionGetDisconnectorState struct {
@@ -87,20 +89,12 @@ type ComplexityRoot struct {
 		To   func(childComplexity int) int
 	}
 
-	ActionGetLimiter struct {
-		Empty func(childComplexity int) int
-	}
-
 	ActionGetPeriodicalProfile struct {
 		From func(childComplexity int) int
 		To   func(childComplexity int) int
 	}
 
 	ActionGetRegister struct {
-		Empty func(childComplexity int) int
-	}
-
-	ActionGetRelayState struct {
 		Empty func(childComplexity int) int
 	}
 
@@ -360,6 +354,11 @@ type ComplexityRoot struct {
 		StringValue  func(childComplexity int) int
 	}
 
+	IrregularProfileValues struct {
+		Unit   func(childComplexity int) int
+		Values func(childComplexity int) int
+	}
+
 	JobAction struct {
 		ActionID             func(childComplexity int) int
 		Attributes           func(childComplexity int) int
@@ -368,10 +367,8 @@ type ComplexityRoot struct {
 		GetDisconnectorState func(childComplexity int) int
 		GetEvents            func(childComplexity int) int
 		GetIrregularProfile  func(childComplexity int) int
-		GetLimiter           func(childComplexity int) int
 		GetPeriodicalProfile func(childComplexity int) int
 		GetRegister          func(childComplexity int) int
-		GetRelayState        func(childComplexity int) int
 		GetTou               func(childComplexity int) int
 		ResetBillingPeriod   func(childComplexity int) int
 		SetDisconnectorState func(childComplexity int) int
@@ -731,6 +728,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionGetDeviceInfo.ClockDelta(childComplexity), true
 
+	case "ActionGetDeviceInfo.connectionState":
+		if e.complexity.ActionGetDeviceInfo.ConnectionState == nil {
+			break
+		}
+
+		return e.complexity.ActionGetDeviceInfo.ConnectionState(childComplexity), true
+
 	case "ActionGetDeviceInfo.deviceModel":
 		if e.complexity.ActionGetDeviceInfo.DeviceModel == nil {
 			break
@@ -773,6 +777,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionGetDeviceInfo.ManufacturerSerialNumber(childComplexity), true
 
+	case "ActionGetDeviceInfo.relayStates":
+		if e.complexity.ActionGetDeviceInfo.RelayStates == nil {
+			break
+		}
+
+		return e.complexity.ActionGetDeviceInfo.RelayStates(childComplexity), true
+
 	case "ActionGetDisconnectorState._empty":
 		if e.complexity.ActionGetDisconnectorState.Empty == nil {
 			break
@@ -808,13 +819,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionGetIrregularProfile.To(childComplexity), true
 
-	case "ActionGetLimiter._empty":
-		if e.complexity.ActionGetLimiter.Empty == nil {
-			break
-		}
-
-		return e.complexity.ActionGetLimiter.Empty(childComplexity), true
-
 	case "ActionGetPeriodicalProfile.from":
 		if e.complexity.ActionGetPeriodicalProfile.From == nil {
 			break
@@ -835,13 +839,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ActionGetRegister.Empty(childComplexity), true
-
-	case "ActionGetRelayState._empty":
-		if e.complexity.ActionGetRelayState.Empty == nil {
-			break
-		}
-
-		return e.complexity.ActionGetRelayState.Empty(childComplexity), true
 
 	case "ActionGetTou._empty":
 		if e.complexity.ActionGetTou.Empty == nil {
@@ -1732,6 +1729,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.FieldValue.StringValue(childComplexity), true
 
+	case "IrregularProfileValues.unit":
+		if e.complexity.IrregularProfileValues.Unit == nil {
+			break
+		}
+
+		return e.complexity.IrregularProfileValues.Unit(childComplexity), true
+
+	case "IrregularProfileValues.values":
+		if e.complexity.IrregularProfileValues.Values == nil {
+			break
+		}
+
+		return e.complexity.IrregularProfileValues.Values(childComplexity), true
+
 	case "JobAction.actionId":
 		if e.complexity.JobAction.ActionID == nil {
 			break
@@ -1781,13 +1792,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.JobAction.GetIrregularProfile(childComplexity), true
 
-	case "JobAction.getLimiter":
-		if e.complexity.JobAction.GetLimiter == nil {
-			break
-		}
-
-		return e.complexity.JobAction.GetLimiter(childComplexity), true
-
 	case "JobAction.getPeriodicalProfile":
 		if e.complexity.JobAction.GetPeriodicalProfile == nil {
 			break
@@ -1801,13 +1805,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobAction.GetRegister(childComplexity), true
-
-	case "JobAction.getRelayState":
-		if e.complexity.JobAction.GetRelayState == nil {
-			break
-		}
-
-		return e.complexity.JobAction.GetRelayState(childComplexity), true
 
 	case "JobAction.getTou":
 		if e.complexity.JobAction.GetTou == nil {
@@ -3219,9 +3216,9 @@ func (ec *executionContext) _ActionData_irregularProfile(ctx context.Context, fi
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.BillingValues)
+	res := resTmp.(*model.IrregularProfileValues)
 	fc.Result = res
-	return ec.marshalOBillingValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValues(ctx, field.Selections, res)
+	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_irregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3232,10 +3229,12 @@ func (ec *executionContext) fieldContext_ActionData_irregularProfile(_ context.C
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "unit":
+				return ec.fieldContext_IrregularProfileValues_unit(ctx, field)
 			case "values":
-				return ec.fieldContext_BillingValues_values(ctx, field)
+				return ec.fieldContext_IrregularProfileValues_values(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type BillingValues", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type IrregularProfileValues", field.Name)
 		},
 	}
 	return fc, nil
@@ -3569,6 +3568,88 @@ func (ec *executionContext) fieldContext_ActionGetDeviceInfo_errorRegister(_ con
 	return fc, nil
 }
 
+func (ec *executionContext) _ActionGetDeviceInfo_relayStates(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetDeviceInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetDeviceInfo_relayStates(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RelayStates, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚕᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionGetDeviceInfo_relayStates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionGetDeviceInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionGetDeviceInfo_connectionState(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetDeviceInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetDeviceInfo_connectionState(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ConnectionState, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionGetDeviceInfo_connectionState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionGetDeviceInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ActionGetDisconnectorState__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetDisconnectorState) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ActionGetDisconnectorState__empty(ctx, field)
 	if err != nil {
@@ -3774,47 +3855,6 @@ func (ec *executionContext) fieldContext_ActionGetIrregularProfile_to(_ context.
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionGetLimiter__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetLimiter) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionGetLimiter__empty(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ActionGetLimiter__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ActionGetLimiter",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ActionGetPeriodicalProfile_from(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetPeriodicalProfile) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ActionGetPeriodicalProfile_from(ctx, field)
 	if err != nil {
@@ -3928,47 +3968,6 @@ func (ec *executionContext) _ActionGetRegister__empty(ctx context.Context, field
 func (ec *executionContext) fieldContext_ActionGetRegister__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionGetRegister",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _ActionGetRelayState__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetRelayState) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionGetRelayState__empty(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ActionGetRelayState__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ActionGetRelayState",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -5362,8 +5361,6 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 				return ec.fieldContext_JobAction_getDeviceInfo(ctx, field)
 			case "syncClock":
 				return ec.fieldContext_JobAction_syncClock(ctx, field)
-			case "getRelayState":
-				return ec.fieldContext_JobAction_getRelayState(ctx, field)
 			case "setRelayState":
 				return ec.fieldContext_JobAction_setRelayState(ctx, field)
 			case "getDisconnectorState":
@@ -5374,8 +5371,6 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 				return ec.fieldContext_JobAction_getTou(ctx, field)
 			case "setTou":
 				return ec.fieldContext_JobAction_setTou(ctx, field)
-			case "getLimiter":
-				return ec.fieldContext_JobAction_getLimiter(ctx, field)
 			case "setLimiter":
 				return ec.fieldContext_JobAction_setLimiter(ctx, field)
 			case "resetBillingPeriod":
@@ -9758,6 +9753,106 @@ func (ec *executionContext) fieldContext_FieldValue_dateValue(_ context.Context,
 	return fc, nil
 }
 
+func (ec *executionContext) _IrregularProfileValues_unit(ctx context.Context, field graphql.CollectedField, obj *model.IrregularProfileValues) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_IrregularProfileValues_unit(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Unit, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_IrregularProfileValues_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "IrregularProfileValues",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _IrregularProfileValues_values(ctx context.Context, field graphql.CollectedField, obj *model.IrregularProfileValues) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_IrregularProfileValues_values(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Values, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MeasuredValue)
+	fc.Result = res
+	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_IrregularProfileValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "IrregularProfileValues",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_MeasuredValue_status(ctx, field)
+			case "exponent":
+				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
+			case "timestampValue":
+				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
+			case "timestampTzValue":
+				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _JobAction_actionId(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_JobAction_actionId(ctx, field)
 	if err != nil {
@@ -10082,6 +10177,10 @@ func (ec *executionContext) fieldContext_JobAction_getDeviceInfo(_ context.Conte
 				return ec.fieldContext_ActionGetDeviceInfo_deviceModel(ctx, field)
 			case "errorRegister":
 				return ec.fieldContext_ActionGetDeviceInfo_errorRegister(ctx, field)
+			case "relayStates":
+				return ec.fieldContext_ActionGetDeviceInfo_relayStates(ctx, field)
+			case "connectionState":
+				return ec.fieldContext_ActionGetDeviceInfo_connectionState(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetDeviceInfo", field.Name)
 		},
@@ -10129,51 +10228,6 @@ func (ec *executionContext) fieldContext_JobAction_syncClock(_ context.Context, 
 				return ec.fieldContext_ActionSyncClock__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionSyncClock", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _JobAction_getRelayState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_getRelayState(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.GetRelayState, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.ActionGetRelayState)
-	fc.Result = res
-	return ec.marshalOActionGetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRelayState(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_JobAction_getRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "JobAction",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetRelayState__empty(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type ActionGetRelayState", field.Name)
 		},
 	}
 	return fc, nil
@@ -10399,51 +10453,6 @@ func (ec *executionContext) fieldContext_JobAction_setTou(_ context.Context, fie
 				return ec.fieldContext_ActionSetTou__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionSetTou", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _JobAction_getLimiter(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_getLimiter(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.GetLimiter, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.ActionGetLimiter)
-	fc.Result = res
-	return ec.marshalOActionGetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetLimiter(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_JobAction_getLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "JobAction",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetLimiter__empty(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type ActionGetLimiter", field.Name)
 		},
 	}
 	return fc, nil
@@ -18463,6 +18472,10 @@ func (ec *executionContext) _ActionGetDeviceInfo(ctx context.Context, sel ast.Se
 			out.Values[i] = ec._ActionGetDeviceInfo_deviceModel(ctx, field, obj)
 		case "errorRegister":
 			out.Values[i] = ec._ActionGetDeviceInfo_errorRegister(ctx, field, obj)
+		case "relayStates":
+			out.Values[i] = ec._ActionGetDeviceInfo_relayStates(ctx, field, obj)
+		case "connectionState":
+			out.Values[i] = ec._ActionGetDeviceInfo_connectionState(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -18598,42 +18611,6 @@ func (ec *executionContext) _ActionGetIrregularProfile(ctx context.Context, sel 
 	return out
 }
 
-var actionGetLimiterImplementors = []string{"ActionGetLimiter"}
-
-func (ec *executionContext) _ActionGetLimiter(ctx context.Context, sel ast.SelectionSet, obj *model.ActionGetLimiter) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, actionGetLimiterImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ActionGetLimiter")
-		case "_empty":
-			out.Values[i] = ec._ActionGetLimiter__empty(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var actionGetPeriodicalProfileImplementors = []string{"ActionGetPeriodicalProfile"}
 
 func (ec *executionContext) _ActionGetPeriodicalProfile(ctx context.Context, sel ast.SelectionSet, obj *model.ActionGetPeriodicalProfile) graphql.Marshaler {
@@ -18685,42 +18662,6 @@ func (ec *executionContext) _ActionGetRegister(ctx context.Context, sel ast.Sele
 			out.Values[i] = graphql.MarshalString("ActionGetRegister")
 		case "_empty":
 			out.Values[i] = ec._ActionGetRegister__empty(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var actionGetRelayStateImplementors = []string{"ActionGetRelayState"}
-
-func (ec *executionContext) _ActionGetRelayState(ctx context.Context, sel ast.SelectionSet, obj *model.ActionGetRelayState) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, actionGetRelayStateImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ActionGetRelayState")
-		case "_empty":
-			out.Values[i] = ec._ActionGetRelayState__empty(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20460,6 +20401,44 @@ func (ec *executionContext) _FieldValue(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
+var irregularProfileValuesImplementors = []string{"IrregularProfileValues"}
+
+func (ec *executionContext) _IrregularProfileValues(ctx context.Context, sel ast.SelectionSet, obj *model.IrregularProfileValues) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, irregularProfileValuesImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("IrregularProfileValues")
+		case "unit":
+			out.Values[i] = ec._IrregularProfileValues_unit(ctx, field, obj)
+		case "values":
+			out.Values[i] = ec._IrregularProfileValues_values(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var jobActionImplementors = []string{"JobAction"}
 
 func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet, obj *model.JobAction) graphql.Marshaler {
@@ -20487,8 +20466,6 @@ func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobAction_getDeviceInfo(ctx, field, obj)
 		case "syncClock":
 			out.Values[i] = ec._JobAction_syncClock(ctx, field, obj)
-		case "getRelayState":
-			out.Values[i] = ec._JobAction_getRelayState(ctx, field, obj)
 		case "setRelayState":
 			out.Values[i] = ec._JobAction_setRelayState(ctx, field, obj)
 		case "getDisconnectorState":
@@ -20499,8 +20476,6 @@ func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobAction_getTou(ctx, field, obj)
 		case "setTou":
 			out.Values[i] = ec._JobAction_setTou(ctx, field, obj)
-		case "getLimiter":
-			out.Values[i] = ec._JobAction_getLimiter(ctx, field, obj)
 		case "setLimiter":
 			out.Values[i] = ec._JobAction_setLimiter(ctx, field, obj)
 		case "resetBillingPeriod":
@@ -23267,13 +23242,6 @@ func (ec *executionContext) marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋ
 	return ec._ActionGetIrregularProfile(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetLimiter(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetLimiter) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ActionGetLimiter(ctx, sel, v)
-}
-
 func (ec *executionContext) marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetPeriodicalProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -23286,13 +23254,6 @@ func (ec *executionContext) marshalOActionGetRegister2ᚖgithubᚗcomᚋcybrosla
 		return graphql.Null
 	}
 	return ec._ActionGetRegister(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOActionGetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRelayState(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetRelayState) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ActionGetRelayState(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetTou) graphql.Marshaler {
@@ -24556,6 +24517,13 @@ func (ec *executionContext) marshalOInt642ᚖint64(ctx context.Context, sel ast.
 	}
 	res := graphql.MarshalInt64(*v)
 	return res
+}
+
+func (ec *executionContext) marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.IrregularProfileValues) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._IrregularProfileValues(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v []*model.JobAction) graphql.Marshaler {

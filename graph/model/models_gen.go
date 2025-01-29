@@ -16,10 +16,10 @@ type AccessLevelTemplate struct {
 }
 
 type ActionData struct {
-	Nodata           *Empty         `json:"nodata,omitempty"`
-	Billings         *BillingValues `json:"billings,omitempty"`
-	Profile          *ProfileValues `json:"profile,omitempty"`
-	IrregularProfile *BillingValues `json:"irregularProfile,omitempty"`
+	Nodata           *Empty                  `json:"nodata,omitempty"`
+	Billings         *BillingValues          `json:"billings,omitempty"`
+	Profile          *ProfileValues          `json:"profile,omitempty"`
+	IrregularProfile *IrregularProfileValues `json:"irregularProfile,omitempty"`
 }
 
 type ActionFwUpdate struct {
@@ -34,6 +34,8 @@ type ActionGetDeviceInfo struct {
 	ClockDelta               *float64 `json:"clockDelta,omitempty"`
 	DeviceModel              *string  `json:"deviceModel,omitempty"`
 	ErrorRegister            *int32   `json:"errorRegister,omitempty"`
+	RelayStates              []*bool  `json:"relayStates,omitempty"`
+	ConnectionState          *bool    `json:"connectionState,omitempty"`
 }
 
 type ActionGetDisconnectorState struct {
@@ -50,20 +52,12 @@ type ActionGetIrregularProfile struct {
 	To   *string `json:"to,omitempty"`
 }
 
-type ActionGetLimiter struct {
-	Empty *bool `json:"_empty,omitempty"`
-}
-
 type ActionGetPeriodicalProfile struct {
 	From *string `json:"from,omitempty"`
 	To   *string `json:"to,omitempty"`
 }
 
 type ActionGetRegister struct {
-	Empty *bool `json:"_empty,omitempty"`
-}
-
-type ActionGetRelayState struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
@@ -323,6 +317,11 @@ type FieldValue struct {
 	DateValue    *string  `json:"dateValue,omitempty"`
 }
 
+type IrregularProfileValues struct {
+	Unit   *string          `json:"unit,omitempty"`
+	Values []*MeasuredValue `json:"values,omitempty"`
+}
+
 type JobAction struct {
 	ActionID             *string                     `json:"actionId,omitempty"`
 	Attributes           []*MapFieldValue            `json:"attributes,omitempty"`
@@ -332,13 +331,11 @@ type JobAction struct {
 	GetEvents            *ActionGetEvents            `json:"getEvents,omitempty"`
 	GetDeviceInfo        *ActionGetDeviceInfo        `json:"getDeviceInfo,omitempty"`
 	SyncClock            *ActionSyncClock            `json:"syncClock,omitempty"`
-	GetRelayState        *ActionGetRelayState        `json:"getRelayState,omitempty"`
 	SetRelayState        *ActionSetRelayState        `json:"setRelayState,omitempty"`
 	GetDisconnectorState *ActionGetDisconnectorState `json:"getDisconnectorState,omitempty"`
 	SetDisconnectorState *ActionSetDisconnectorState `json:"setDisconnectorState,omitempty"`
 	GetTou               *ActionGetTou               `json:"getTou,omitempty"`
 	SetTou               *ActionSetTou               `json:"setTou,omitempty"`
-	GetLimiter           *ActionGetLimiter           `json:"getLimiter,omitempty"`
 	SetLimiter           *ActionSetLimiter           `json:"setLimiter,omitempty"`
 	ResetBillingPeriod   *ActionResetBillingPeriod   `json:"resetBillingPeriod,omitempty"`
 	FwUpdate             *ActionFwUpdate             `json:"fwUpdate,omitempty"`
@@ -611,13 +608,11 @@ const (
 	ActionTypeActionTypeGetEvents            ActionType = "ACTION_TYPE_GET_EVENTS"
 	ActionTypeActionTypeGetDeviceInfo        ActionType = "ACTION_TYPE_GET_DEVICE_INFO"
 	ActionTypeActionTypeSyncClock            ActionType = "ACTION_TYPE_SYNC_CLOCK"
-	ActionTypeActionTypeGetRelayState        ActionType = "ACTION_TYPE_GET_RELAY_STATE"
 	ActionTypeActionTypeSetRelayState        ActionType = "ACTION_TYPE_SET_RELAY_STATE"
 	ActionTypeActionTypeGetDisconnectorState ActionType = "ACTION_TYPE_GET_DISCONNECTOR_STATE"
 	ActionTypeActionTypeSetDisconnectorState ActionType = "ACTION_TYPE_SET_DISCONNECTOR_STATE"
 	ActionTypeActionTypeGetTou               ActionType = "ACTION_TYPE_GET_TOU"
 	ActionTypeActionTypeSetTou               ActionType = "ACTION_TYPE_SET_TOU"
-	ActionTypeActionTypeGetLimiter           ActionType = "ACTION_TYPE_GET_LIMITER"
 	ActionTypeActionTypeSetLimiter           ActionType = "ACTION_TYPE_SET_LIMITER"
 	ActionTypeActionTypeResetBillingPeriod   ActionType = "ACTION_TYPE_RESET_BILLING_PERIOD"
 	ActionTypeActionTypeFwUpdate             ActionType = "ACTION_TYPE_FW_UPDATE"
@@ -630,13 +625,11 @@ var AllActionType = []ActionType{
 	ActionTypeActionTypeGetEvents,
 	ActionTypeActionTypeGetDeviceInfo,
 	ActionTypeActionTypeSyncClock,
-	ActionTypeActionTypeGetRelayState,
 	ActionTypeActionTypeSetRelayState,
 	ActionTypeActionTypeGetDisconnectorState,
 	ActionTypeActionTypeSetDisconnectorState,
 	ActionTypeActionTypeGetTou,
 	ActionTypeActionTypeSetTou,
-	ActionTypeActionTypeGetLimiter,
 	ActionTypeActionTypeSetLimiter,
 	ActionTypeActionTypeResetBillingPeriod,
 	ActionTypeActionTypeFwUpdate,
@@ -644,7 +637,7 @@ var AllActionType = []ActionType{
 
 func (e ActionType) IsValid() bool {
 	switch e {
-	case ActionTypeActionTypeGetRegister, ActionTypeActionTypeGetPeriodicalProfile, ActionTypeActionTypeGetIrregularProfile, ActionTypeActionTypeGetEvents, ActionTypeActionTypeGetDeviceInfo, ActionTypeActionTypeSyncClock, ActionTypeActionTypeGetRelayState, ActionTypeActionTypeSetRelayState, ActionTypeActionTypeGetDisconnectorState, ActionTypeActionTypeSetDisconnectorState, ActionTypeActionTypeGetTou, ActionTypeActionTypeSetTou, ActionTypeActionTypeGetLimiter, ActionTypeActionTypeSetLimiter, ActionTypeActionTypeResetBillingPeriod, ActionTypeActionTypeFwUpdate:
+	case ActionTypeActionTypeGetRegister, ActionTypeActionTypeGetPeriodicalProfile, ActionTypeActionTypeGetIrregularProfile, ActionTypeActionTypeGetEvents, ActionTypeActionTypeGetDeviceInfo, ActionTypeActionTypeSyncClock, ActionTypeActionTypeSetRelayState, ActionTypeActionTypeGetDisconnectorState, ActionTypeActionTypeSetDisconnectorState, ActionTypeActionTypeGetTou, ActionTypeActionTypeSetTou, ActionTypeActionTypeSetLimiter, ActionTypeActionTypeResetBillingPeriod, ActionTypeActionTypeFwUpdate:
 		return true
 	}
 	return false
