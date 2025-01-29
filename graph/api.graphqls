@@ -271,6 +271,8 @@ type ActionData {
   profile: ProfileValues
   # Irregular (non-periodical) profile values, e.g. daily profile
   irregularProfile: IrregularProfileValues
+  # Device info
+  deviceInfo: DeviceInfo
 }
 
 # Sub-message containing firmware update action specification
@@ -280,24 +282,7 @@ type ActionFwUpdate {
 
 # Sub-message containing get device info action specification
 type ActionGetDeviceInfo {
-  # The timestamp when the values were read.
-  infoTimestamp: Timestamp
-  # The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255
-  manufacturerSerialNumber: String
-  # The device serial number of the device.  Typical source: 0-0:96.1.0.255
-  deviceSerialNumber: String
-  # The firmware version identifier of the device. Typical source: 0-0:0.2.0.255
-  firmwareVersion: String
-  # The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
-  clockDelta: Float
-  # The model of the device.
-  deviceModel: String
-  # The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
-  errorRegister: Int
-  # The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.
-  relayStates: [Boolean]
-  # The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
-  connectionState: Boolean
+  _empty: Boolean
 }
 
 # Sub-message containing get disconnector state action specification
@@ -606,6 +591,27 @@ type DeviceGroupSpec {
 type DeviceGroupStatus {
   # The list of device identifiers that are part of the group.
   deviceId: [String]
+}
+
+type DeviceInfo {
+  # The timestamp when the values were read.
+  infoTimestamp: Timestamp
+  # The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255
+  manufacturerSerialNumber: String
+  # The device serial number of the device.  Typical source: 0-0:96.1.0.255
+  deviceSerialNumber: String
+  # The firmware version identifier of the device. Typical source: 0-0:0.2.0.255
+  firmwareVersion: String
+  # The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
+  clockDelta: Float
+  # The model of the device.
+  deviceModel: String
+  # The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
+  errorRegister: Int
+  # The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.
+  relayStates: [Boolean]
+  # The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
+  connectionState: Boolean
 }
 
 # Sub-message - the device specification.

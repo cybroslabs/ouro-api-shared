@@ -465,6 +465,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceSpec</code> 
@@ -1023,6 +1032,26 @@
           
         </tr>
       
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            deviceInfo
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.DeviceInfo">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceInfo"><span title="io.clbs.openhes.models.acquisition.DeviceInfo">io.clbs.openhes.models.acquisition.DeviceInfo</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>Device info</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -1092,143 +1121,6 @@
     </tr>
   </thead>
   <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        infoTimestamp
-      </td>
-      <td>
-        <code title="google.protobuf.Timestamp">
-          
-          <span>google.protobuf.Timestamp</span>
-        </code>
-      </td>
-      <td class="content"><p>The timestamp when the values were read.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        manufacturerSerialNumber
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        deviceSerialNumber
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The device serial number of the device.  Typical source: 0-0:96.1.0.255</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>4</td>
-      <td>
-        firmwareVersion
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The firmware version identifier of the device. Typical source: 0-0:0.2.0.255</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        clockDelta
-      </td>
-      <td>
-        <code title="double">
-          
-          <span>double</span>
-        </code>
-      </td>
-      <td class="content"><p>The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>6</td>
-      <td>
-        deviceModel
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The model of the device.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>7</td>
-      <td>
-        errorRegister
-      </td>
-      <td>
-        <code title="uint32">
-          
-          <span>uint32</span>
-        </code>
-      </td>
-      <td class="content"><p>The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>8</td>
-      <td>
-        relayStates
-      </td>
-      <td>
-        <code title="bool">
-          
-            repeated
-          
-          <span>bool</span>
-        </code>
-      </td>
-      <td class="content"><p>The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>9</td>
-      <td>
-        connectionState
-      </td>
-      <td>
-        <code title="bool">
-          
-          <span>bool</span>
-        </code>
-      </td>
-      <td class="content"><p>The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.</p></td>
-      
-    </tr>
     
     
   </tbody>
@@ -3927,6 +3819,178 @@
         </code>
       </td>
       <td class="content"><p>The list of device identifiers that are part of the group.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceInfo" title="io.clbs.openhes.models.acquisition.DeviceInfo">message DeviceInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        infoTimestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp when the values were read.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        manufacturerSerialNumber
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        deviceSerialNumber
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device serial number of the device.  Typical source: 0-0:96.1.0.255</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        firmwareVersion
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware version identifier of the device. Typical source: 0-0:0.2.0.255</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        clockDelta
+      </td>
+      <td>
+        <code title="double">
+          
+          <span>double</span>
+        </code>
+      </td>
+      <td class="content"><p>The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        deviceModel
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The model of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>7</td>
+      <td>
+        errorRegister
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        relayStates
+      </td>
+      <td>
+        <code title="bool">
+          
+            repeated
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        connectionState
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.</p></td>
       
     </tr>
     

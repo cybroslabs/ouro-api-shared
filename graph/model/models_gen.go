@@ -20,6 +20,7 @@ type ActionData struct {
 	Billings         *BillingValues          `json:"billings,omitempty"`
 	Profile          *ProfileValues          `json:"profile,omitempty"`
 	IrregularProfile *IrregularProfileValues `json:"irregularProfile,omitempty"`
+	DeviceInfo       *DeviceInfo             `json:"deviceInfo,omitempty"`
 }
 
 type ActionFwUpdate struct {
@@ -27,15 +28,7 @@ type ActionFwUpdate struct {
 }
 
 type ActionGetDeviceInfo struct {
-	InfoTimestamp            *string  `json:"infoTimestamp,omitempty"`
-	ManufacturerSerialNumber *string  `json:"manufacturerSerialNumber,omitempty"`
-	DeviceSerialNumber       *string  `json:"deviceSerialNumber,omitempty"`
-	FirmwareVersion          *string  `json:"firmwareVersion,omitempty"`
-	ClockDelta               *float64 `json:"clockDelta,omitempty"`
-	DeviceModel              *string  `json:"deviceModel,omitempty"`
-	ErrorRegister            *int32   `json:"errorRegister,omitempty"`
-	RelayStates              []*bool  `json:"relayStates,omitempty"`
-	ConnectionState          *bool    `json:"connectionState,omitempty"`
+	Empty *bool `json:"_empty,omitempty"`
 }
 
 type ActionGetDisconnectorState struct {
@@ -243,6 +236,18 @@ type DeviceGroupSpec struct {
 
 type DeviceGroupStatus struct {
 	DeviceID []*string `json:"deviceId,omitempty"`
+}
+
+type DeviceInfo struct {
+	InfoTimestamp            *string  `json:"infoTimestamp,omitempty"`
+	ManufacturerSerialNumber *string  `json:"manufacturerSerialNumber,omitempty"`
+	DeviceSerialNumber       *string  `json:"deviceSerialNumber,omitempty"`
+	FirmwareVersion          *string  `json:"firmwareVersion,omitempty"`
+	ClockDelta               *float64 `json:"clockDelta,omitempty"`
+	DeviceModel              *string  `json:"deviceModel,omitempty"`
+	ErrorRegister            *int32   `json:"errorRegister,omitempty"`
+	RelayStates              []*bool  `json:"relayStates,omitempty"`
+	ConnectionState          *bool    `json:"connectionState,omitempty"`
 }
 
 type DeviceSpec struct {
