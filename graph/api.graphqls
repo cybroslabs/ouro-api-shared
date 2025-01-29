@@ -22,8 +22,8 @@ enum ActionType {
   ACTION_TYPE_GET_IRREGULAR_PROFILE
   # Get event log. The action covers specific event log.
   ACTION_TYPE_GET_EVENTS
-  # Get clock. The action returns time in UTC.
-  ACTION_TYPE_GET_CLOCK
+  # Get device info. The action returns info data about remote device.
+  ACTION_TYPE_GET_DEVICE_INFO
   # Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
   ACTION_TYPE_SYNC_CLOCK
   # Get relay state. The action covers single relay.
@@ -273,6 +273,8 @@ type ActionData {
   billings: BillingValues
   # Profile values
   profile: ProfileValues
+  # Irregular profile values
+  irregularProfile: BillingValues
 }
 
 # Sub-message containing firmware update action specification
@@ -280,9 +282,22 @@ type ActionFwUpdate {
   _empty: Boolean
 }
 
-# Sub-message containing get clock action specification
-type ActionGetClock {
-  _empty: Boolean
+# Sub-message containing get device info action specification
+type ActionGetDeviceInfo {
+  # The timestamp when the values were read.
+  infoTimestamp: Timestamp
+  # The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255
+  manufacturerSerialNumber: String
+  # The device serial number of the device.  Typical source: 0-0:96.1.0.255
+  deviceSerialNumber: String
+  # The firmware version identifier of the device. Typical source: 0-0:0.2.0.255
+  firmwareVersion: String
+  # The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
+  clockDelta: Float
+  # The model of the device.
+  deviceModel: String
+  # The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
+  errorRegister: Int
 }
 
 # Sub-message containing get disconnector state action specification
@@ -672,8 +687,8 @@ type JobAction {
   getIrregularProfile: ActionGetIrregularProfile
   # The get events action specification.
   getEvents: ActionGetEvents
-  # The get clock action specification.
-  getClock: ActionGetClock
+  # The get device info action specification.
+  getDeviceInfo: ActionGetDeviceInfo
   # The sync clock action specification.
   syncClock: ActionSyncClock
   # The get relay state action specification.

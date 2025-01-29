@@ -52,7 +52,7 @@ message JobAction {
         ActionGetPeriodicalProfile get_periodical_profile = 4;   // The get periodical profile action specification.
         ActionGetIrregularProfile get_irregular_profile   = 5;   // The get irregular profile action specification.
         ActionGetEvents get_events                        = 6;   // The get events action specification.
-        ActionGetClock get_clock                          = 7;   // The get clock action specification.
+        ActionGetDeviceInfo get_device_info               = 7;   // The get device info action specification.
         ActionSyncClock sync_clock                        = 8;   // The sync clock action specification.
         ActionGetRelayState get_relay_state               = 9;   // The get relay state action specification.
         ActionSetRelayState set_relay_state               = 10;  // The set relay state action specification.
@@ -347,9 +347,10 @@ message JobProgressUpdate {
 // Sub-message containing action-based variant of data values
 message ActionData {
     oneof data {
-        google.protobuf.Empty nodata = 1;  // No data
-        BillingValues billings       = 2;  // Register values
-        ProfileValues profile        = 3;  // Profile values
+        google.protobuf.Empty nodata    = 1;  // No data
+        BillingValues billings          = 2;  // Register values
+        ProfileValues profile           = 3;  // Profile values
+        BillingValues irregular_profile = 4;  // Irregular profile values
     }
 }
 
@@ -421,8 +422,9 @@ enum ActionType {
     // Get event log. The action covers specific event log.
     ACTION_TYPE_GET_EVENTS = 3;
 
-    // Get clock. The action returns time in UTC.
-    ACTION_TYPE_GET_CLOCK = 10;
+    // Get device info. The action returns info data about remote device.
+    ACTION_TYPE_GET_DEVICE_INFO = 10;
+
     // Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
     ACTION_TYPE_SYNC_CLOCK = 11;
 
@@ -475,8 +477,15 @@ message ActionGetEvents {
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
 }
 
-// Sub-message containing get clock action specification
-message ActionGetClock {
+// Sub-message containing get device info action specification
+message ActionGetDeviceInfo {
+    google.protobuf.Timestamp info_timestamp = 1;  // The timestamp when the values were read.
+    string manufacturer_serial_number        = 2;  // The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255
+    string device_serial_number              = 3;  // The device serial number of the device.  Typical source: 0-0:96.1.0.255
+    string firmware_version                  = 4;  // The firmware version identifier of the device. Typical source: 0-0:0.2.0.255
+    double clock_delta                       = 5;  // The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
+    string device_model                      = 6;  // The model of the device.
+    uint32 error_register                    = 7;  // The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)
 }
 
 // Sub-message containing sync clock action specification

@@ -16,17 +16,24 @@ type AccessLevelTemplate struct {
 }
 
 type ActionData struct {
-	Nodata   *Empty         `json:"nodata,omitempty"`
-	Billings *BillingValues `json:"billings,omitempty"`
-	Profile  *ProfileValues `json:"profile,omitempty"`
+	Nodata           *Empty         `json:"nodata,omitempty"`
+	Billings         *BillingValues `json:"billings,omitempty"`
+	Profile          *ProfileValues `json:"profile,omitempty"`
+	IrregularProfile *BillingValues `json:"irregularProfile,omitempty"`
 }
 
 type ActionFwUpdate struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
-type ActionGetClock struct {
-	Empty *bool `json:"_empty,omitempty"`
+type ActionGetDeviceInfo struct {
+	InfoTimestamp            *string  `json:"infoTimestamp,omitempty"`
+	ManufacturerSerialNumber *string  `json:"manufacturerSerialNumber,omitempty"`
+	DeviceSerialNumber       *string  `json:"deviceSerialNumber,omitempty"`
+	FirmwareVersion          *string  `json:"firmwareVersion,omitempty"`
+	ClockDelta               *float64 `json:"clockDelta,omitempty"`
+	DeviceModel              *string  `json:"deviceModel,omitempty"`
+	ErrorRegister            *int32   `json:"errorRegister,omitempty"`
 }
 
 type ActionGetDisconnectorState struct {
@@ -323,7 +330,7 @@ type JobAction struct {
 	GetPeriodicalProfile *ActionGetPeriodicalProfile `json:"getPeriodicalProfile,omitempty"`
 	GetIrregularProfile  *ActionGetIrregularProfile  `json:"getIrregularProfile,omitempty"`
 	GetEvents            *ActionGetEvents            `json:"getEvents,omitempty"`
-	GetClock             *ActionGetClock             `json:"getClock,omitempty"`
+	GetDeviceInfo        *ActionGetDeviceInfo        `json:"getDeviceInfo,omitempty"`
 	SyncClock            *ActionSyncClock            `json:"syncClock,omitempty"`
 	GetRelayState        *ActionGetRelayState        `json:"getRelayState,omitempty"`
 	SetRelayState        *ActionSetRelayState        `json:"setRelayState,omitempty"`
@@ -602,7 +609,7 @@ const (
 	ActionTypeActionTypeGetPeriodicalProfile ActionType = "ACTION_TYPE_GET_PERIODICAL_PROFILE"
 	ActionTypeActionTypeGetIrregularProfile  ActionType = "ACTION_TYPE_GET_IRREGULAR_PROFILE"
 	ActionTypeActionTypeGetEvents            ActionType = "ACTION_TYPE_GET_EVENTS"
-	ActionTypeActionTypeGetClock             ActionType = "ACTION_TYPE_GET_CLOCK"
+	ActionTypeActionTypeGetDeviceInfo        ActionType = "ACTION_TYPE_GET_DEVICE_INFO"
 	ActionTypeActionTypeSyncClock            ActionType = "ACTION_TYPE_SYNC_CLOCK"
 	ActionTypeActionTypeGetRelayState        ActionType = "ACTION_TYPE_GET_RELAY_STATE"
 	ActionTypeActionTypeSetRelayState        ActionType = "ACTION_TYPE_SET_RELAY_STATE"
@@ -621,7 +628,7 @@ var AllActionType = []ActionType{
 	ActionTypeActionTypeGetPeriodicalProfile,
 	ActionTypeActionTypeGetIrregularProfile,
 	ActionTypeActionTypeGetEvents,
-	ActionTypeActionTypeGetClock,
+	ActionTypeActionTypeGetDeviceInfo,
 	ActionTypeActionTypeSyncClock,
 	ActionTypeActionTypeGetRelayState,
 	ActionTypeActionTypeSetRelayState,
@@ -637,7 +644,7 @@ var AllActionType = []ActionType{
 
 func (e ActionType) IsValid() bool {
 	switch e {
-	case ActionTypeActionTypeGetRegister, ActionTypeActionTypeGetPeriodicalProfile, ActionTypeActionTypeGetIrregularProfile, ActionTypeActionTypeGetEvents, ActionTypeActionTypeGetClock, ActionTypeActionTypeSyncClock, ActionTypeActionTypeGetRelayState, ActionTypeActionTypeSetRelayState, ActionTypeActionTypeGetDisconnectorState, ActionTypeActionTypeSetDisconnectorState, ActionTypeActionTypeGetTou, ActionTypeActionTypeSetTou, ActionTypeActionTypeGetLimiter, ActionTypeActionTypeSetLimiter, ActionTypeActionTypeResetBillingPeriod, ActionTypeActionTypeFwUpdate:
+	case ActionTypeActionTypeGetRegister, ActionTypeActionTypeGetPeriodicalProfile, ActionTypeActionTypeGetIrregularProfile, ActionTypeActionTypeGetEvents, ActionTypeActionTypeGetDeviceInfo, ActionTypeActionTypeSyncClock, ActionTypeActionTypeGetRelayState, ActionTypeActionTypeSetRelayState, ActionTypeActionTypeGetDisconnectorState, ActionTypeActionTypeSetDisconnectorState, ActionTypeActionTypeGetTou, ActionTypeActionTypeSetTou, ActionTypeActionTypeGetLimiter, ActionTypeActionTypeSetLimiter, ActionTypeActionTypeResetBillingPeriod, ActionTypeActionTypeFwUpdate:
 		return true
 	}
 	return false
