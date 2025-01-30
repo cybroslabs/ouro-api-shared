@@ -44,6 +44,8 @@ service DeviceRegistryService {
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
     // The method called by the DataProxy to resolve connection info for given device(s).
     rpc GetDeviceConnectionInfo(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
+    // Sets the device information.
+    rpc SetDeviceInfo(io.clbs.openhes.models.acquisition.SetDeviceInfoRequest) returns (google.protobuf.Empty);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);

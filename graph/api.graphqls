@@ -561,6 +561,8 @@ type DataLinkTemplate {
 type Device {
   # The device specification.
   spec: DeviceSpec
+  # The device status.
+  status: DeviceStatus
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -624,6 +626,11 @@ type DeviceSpec {
   communicationUnitLink: [DeviceCommunicationUnit]
   # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
   timezone: String
+}
+
+type DeviceStatus {
+  # The device info.
+  info: DeviceInfo
 }
 
 type Driver {
@@ -795,6 +802,8 @@ type JobStatus {
   finishedAt: Timestamp
   # The number of attempts already done.
   attemptsDone: Int
+  # The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
+  deviceInfo: DeviceInfo
 }
 
 type ListOfBulk {

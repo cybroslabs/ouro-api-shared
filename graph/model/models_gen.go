@@ -215,6 +215,7 @@ type DataLinkTemplate struct {
 
 type Device struct {
 	Spec     *DeviceSpec     `json:"spec,omitempty"`
+	Status   *DeviceStatus   `json:"status,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
@@ -255,6 +256,10 @@ type DeviceSpec struct {
 	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
 	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communicationUnitLink,omitempty"`
 	Timezone              *string                    `json:"timezone,omitempty"`
+}
+
+type DeviceStatus struct {
+	Info *DeviceInfo `json:"info,omitempty"`
 }
 
 type Driver struct {
@@ -393,6 +398,7 @@ type JobStatus struct {
 	StartedAt    *string         `json:"startedAt,omitempty"`
 	FinishedAt   *string         `json:"finishedAt,omitempty"`
 	AttemptsDone *int32          `json:"attemptsDone,omitempty"`
+	DeviceInfo   *DeviceInfo     `json:"deviceInfo,omitempty"`
 }
 
 type ListOfBulk struct {
