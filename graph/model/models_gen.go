@@ -31,10 +31,6 @@ type ActionGetDeviceInfo struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
-type ActionGetDisconnectorState struct {
-	Empty *bool `json:"_empty,omitempty"`
-}
-
 type ActionGetEvents struct {
 	From *string `json:"from,omitempty"`
 	To   *string `json:"to,omitempty"`
@@ -347,7 +343,6 @@ type JobAction struct {
 	GetDeviceInfo        *ActionGetDeviceInfo        `json:"getDeviceInfo,omitempty"`
 	SyncClock            *ActionSyncClock            `json:"syncClock,omitempty"`
 	SetRelayState        *ActionSetRelayState        `json:"setRelayState,omitempty"`
-	GetDisconnectorState *ActionGetDisconnectorState `json:"getDisconnectorState,omitempty"`
 	SetDisconnectorState *ActionSetDisconnectorState `json:"setDisconnectorState,omitempty"`
 	GetTou               *ActionGetTou               `json:"getTou,omitempty"`
 	SetTou               *ActionSetTou               `json:"setTou,omitempty"`

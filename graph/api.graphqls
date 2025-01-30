@@ -285,11 +285,6 @@ type ActionGetDeviceInfo {
   _empty: Boolean
 }
 
-# Sub-message containing get disconnector state action specification
-type ActionGetDisconnectorState {
-  _empty: Boolean
-}
-
 # Sub-message containing get events action specification
 type ActionGetEvents {
   # The start timestamp of the profile.
@@ -710,8 +705,6 @@ type JobAction {
   syncClock: ActionSyncClock
   # The set relay state action specification.
   setRelayState: ActionSetRelayState
-  # The get disconnector state action specification.
-  getDisconnectorState: ActionGetDisconnectorState
   # The set disconnector state action specification.
   setDisconnectorState: ActionSetDisconnectorState
   # The get tou action specification.

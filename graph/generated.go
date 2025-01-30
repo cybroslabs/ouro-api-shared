@@ -68,10 +68,6 @@ type ComplexityRoot struct {
 		Empty func(childComplexity int) int
 	}
 
-	ActionGetDisconnectorState struct {
-		Empty func(childComplexity int) int
-	}
-
 	ActionGetEvents struct {
 		From func(childComplexity int) int
 		To   func(childComplexity int) int
@@ -379,7 +375,6 @@ type ComplexityRoot struct {
 		Attributes           func(childComplexity int) int
 		FwUpdate             func(childComplexity int) int
 		GetDeviceInfo        func(childComplexity int) int
-		GetDisconnectorState func(childComplexity int) int
 		GetEvents            func(childComplexity int) int
 		GetIrregularProfile  func(childComplexity int) int
 		GetPeriodicalProfile func(childComplexity int) int
@@ -750,13 +745,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ActionGetDeviceInfo.Empty(childComplexity), true
-
-	case "ActionGetDisconnectorState._empty":
-		if e.complexity.ActionGetDisconnectorState.Empty == nil {
-			break
-		}
-
-		return e.complexity.ActionGetDisconnectorState.Empty(childComplexity), true
 
 	case "ActionGetEvents.from":
 		if e.complexity.ActionGetEvents.From == nil {
@@ -1828,13 +1816,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobAction.GetDeviceInfo(childComplexity), true
-
-	case "JobAction.getDisconnectorState":
-		if e.complexity.JobAction.GetDisconnectorState == nil {
-			break
-		}
-
-		return e.complexity.JobAction.GetDisconnectorState(childComplexity), true
 
 	case "JobAction.getEvents":
 		if e.complexity.JobAction.GetEvents == nil {
@@ -3438,47 +3419,6 @@ func (ec *executionContext) _ActionGetDeviceInfo__empty(ctx context.Context, fie
 func (ec *executionContext) fieldContext_ActionGetDeviceInfo__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionGetDeviceInfo",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _ActionGetDisconnectorState__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetDisconnectorState) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionGetDisconnectorState__empty(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ActionGetDisconnectorState__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ActionGetDisconnectorState",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -5165,8 +5105,6 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 				return ec.fieldContext_JobAction_syncClock(ctx, field)
 			case "setRelayState":
 				return ec.fieldContext_JobAction_setRelayState(ctx, field)
-			case "getDisconnectorState":
-				return ec.fieldContext_JobAction_getDisconnectorState(ctx, field)
 			case "setDisconnectorState":
 				return ec.fieldContext_JobAction_setDisconnectorState(ctx, field)
 			case "getTou":
@@ -10622,51 +10560,6 @@ func (ec *executionContext) fieldContext_JobAction_setRelayState(_ context.Conte
 				return ec.fieldContext_ActionSetRelayState__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionSetRelayState", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _JobAction_getDisconnectorState(ctx context.Context, field graphql.CollectedField, obj *model.JobAction) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobAction_getDisconnectorState(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.GetDisconnectorState, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.ActionGetDisconnectorState)
-	fc.Result = res
-	return ec.marshalOActionGetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDisconnectorState(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_JobAction_getDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "JobAction",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetDisconnectorState__empty(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type ActionGetDisconnectorState", field.Name)
 		},
 	}
 	return fc, nil
@@ -18899,42 +18792,6 @@ func (ec *executionContext) _ActionGetDeviceInfo(ctx context.Context, sel ast.Se
 	return out
 }
 
-var actionGetDisconnectorStateImplementors = []string{"ActionGetDisconnectorState"}
-
-func (ec *executionContext) _ActionGetDisconnectorState(ctx context.Context, sel ast.SelectionSet, obj *model.ActionGetDisconnectorState) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, actionGetDisconnectorStateImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ActionGetDisconnectorState")
-		case "_empty":
-			out.Values[i] = ec._ActionGetDisconnectorState__empty(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var actionGetEventsImplementors = []string{"ActionGetEvents"}
 
 func (ec *executionContext) _ActionGetEvents(ctx context.Context, sel ast.SelectionSet, obj *model.ActionGetEvents) graphql.Marshaler {
@@ -20996,8 +20853,6 @@ func (ec *executionContext) _JobAction(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobAction_syncClock(ctx, field, obj)
 		case "setRelayState":
 			out.Values[i] = ec._JobAction_setRelayState(ctx, field, obj)
-		case "getDisconnectorState":
-			out.Values[i] = ec._JobAction_getDisconnectorState(ctx, field, obj)
 		case "setDisconnectorState":
 			out.Values[i] = ec._JobAction_setDisconnectorState(ctx, field, obj)
 		case "getTou":
@@ -23749,13 +23604,6 @@ func (ec *executionContext) marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybros
 		return graphql.Null
 	}
 	return ec._ActionGetDeviceInfo(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOActionGetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDisconnectorState(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetDisconnectorState) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ActionGetDisconnectorState(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetEvents) graphql.Marshaler {

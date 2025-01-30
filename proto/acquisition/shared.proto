@@ -55,7 +55,6 @@ message JobAction {
         ActionGetDeviceInfo get_device_info               = 7;   // The get device info action specification.
         ActionSyncClock sync_clock                        = 8;   // The sync clock action specification.
         ActionSetRelayState set_relay_state               = 10;  // The set relay state action specification.
-        ActionGetDisconnectorState get_disconnector_state = 11;  // The get disconnector state action specification.
         ActionSetDisconnectorState set_disconnector_state = 12;  // The set disconnector state action specification.
         ActionGetTou get_tou                              = 13;  // The get tou action specification.
         ActionSetTou set_tou                              = 14;  // The set tou action specification.
@@ -504,10 +503,6 @@ message ActionSyncClock {
 
 // Sub-message containing set relay state action specification
 message ActionSetRelayState {
-}
-
-// Sub-message containing get disconnector state action specification
-message ActionGetDisconnectorState {
 }
 
 // Sub-message containing set disconnector state action specification
