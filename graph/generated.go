@@ -185,6 +185,7 @@ type ComplexityRoot struct {
 	}
 
 	ConnectionInfo struct {
+		Attributes       func(childComplexity int) int
 		CustomGroupingID func(childComplexity int) int
 		LinkProtocol     func(childComplexity int) int
 		ModemPool        func(childComplexity int) int
@@ -1074,6 +1075,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CommunicationUnitSpec.ExternalID(childComplexity), true
+
+	case "ConnectionInfo.attributes":
+		if e.complexity.ConnectionInfo.Attributes == nil {
+			break
+		}
+
+		return e.complexity.ConnectionInfo.Attributes(childComplexity), true
 
 	case "ConnectionInfo.customGroupingId":
 		if e.complexity.ConnectionInfo.CustomGroupingID == nil {
@@ -5571,6 +5579,8 @@ func (ec *executionContext) fieldContext_CommunicationUnitSpec_connectionInfo(_ 
 				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
 			case "customGroupingId":
 				return ec.fieldContext_ConnectionInfo_customGroupingId(ctx, field)
+			case "attributes":
+				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -5800,6 +5810,53 @@ func (ec *executionContext) fieldContext_ConnectionInfo_customGroupingId(_ conte
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionInfo_attributes(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_attributes(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Attributes, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MapFieldValue)
+	fc.Result = res
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionInfo_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "key":
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -11259,6 +11316,8 @@ func (ec *executionContext) fieldContext_JobDevice_connectionInfo(_ context.Cont
 				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
 			case "customGroupingId":
 				return ec.fieldContext_ConnectionInfo_customGroupingId(ctx, field)
+			case "attributes":
+				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -19689,6 +19748,8 @@ func (ec *executionContext) _ConnectionInfo(ctx context.Context, sel ast.Selecti
 			out.Values[i] = ec._ConnectionInfo_linkProtocol(ctx, field, obj)
 		case "customGroupingId":
 			out.Values[i] = ec._ConnectionInfo_customGroupingId(ctx, field, obj)
+		case "attributes":
+			out.Values[i] = ec._ConnectionInfo_attributes(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

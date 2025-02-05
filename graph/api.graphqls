@@ -468,6 +468,8 @@ type ConnectionInfo {
   linkProtocol: DataLinkProtocol
   # The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
   customGroupingId: String
+  # The connection attributes, see options in the DataLinkTemplate for given link_protocol.
+  attributes: [_mapFieldValue]
 }
 
 # Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type

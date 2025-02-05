@@ -153,6 +153,7 @@ type ConnectionInfo struct {
 	SerialOverIP     *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
 	LinkProtocol     *DataLinkProtocol               `json:"linkProtocol,omitempty"`
 	CustomGroupingID *string                         `json:"customGroupingId,omitempty"`
+	Attributes       []*MapFieldValue                `json:"attributes,omitempty"`
 }
 
 type ConnectionTypeControlledSerial struct {
