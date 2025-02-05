@@ -1074,6 +1074,8 @@ type ListSelectorFilterBy {
   fieldId: String
   # The filter operator.
   operator: FilterOperator
+  # The data type of the field.
+  dataType: FieldDataType
   # The text-typed value(s) used for filtering.
   text: [String]
   # The integer-typed value(s) used for filtering.

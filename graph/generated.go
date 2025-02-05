@@ -493,6 +493,7 @@ type ComplexityRoot struct {
 
 	ListSelectorFilterBy struct {
 		Boolean  func(childComplexity int) int
+		DataType func(childComplexity int) int
 		Date     func(childComplexity int) int
 		FieldID  func(childComplexity int) int
 		Integer  func(childComplexity int) int
@@ -2252,6 +2253,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ListSelectorFilterBy.Boolean(childComplexity), true
+
+	case "ListSelectorFilterBy.dataType":
+		if e.complexity.ListSelectorFilterBy.DataType == nil {
+			break
+		}
+
+		return e.complexity.ListSelectorFilterBy.DataType(childComplexity), true
 
 	case "ListSelectorFilterBy.date":
 		if e.complexity.ListSelectorFilterBy.Date == nil {
@@ -13041,6 +13049,8 @@ func (ec *executionContext) fieldContext_ListSelector_filterBy(_ context.Context
 				return ec.fieldContext_ListSelectorFilterBy_fieldId(ctx, field)
 			case "operator":
 				return ec.fieldContext_ListSelectorFilterBy_operator(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ListSelectorFilterBy_dataType(ctx, field)
 			case "text":
 				return ec.fieldContext_ListSelectorFilterBy_text(ctx, field)
 			case "integer":
@@ -13176,6 +13186,47 @@ func (ec *executionContext) fieldContext_ListSelectorFilterBy_operator(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type FilterOperator does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListSelectorFilterBy_dataType(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorFilterBy) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelectorFilterBy_dataType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDataType)
+	fc.Result = res
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListSelectorFilterBy_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListSelectorFilterBy",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDataType does not have child fields")
 		},
 	}
 	return fc, nil
@@ -21936,6 +21987,8 @@ func (ec *executionContext) _ListSelectorFilterBy(ctx context.Context, sel ast.S
 			out.Values[i] = ec._ListSelectorFilterBy_fieldId(ctx, field, obj)
 		case "operator":
 			out.Values[i] = ec._ListSelectorFilterBy_operator(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._ListSelectorFilterBy_dataType(ctx, field, obj)
 		case "text":
 			out.Values[i] = ec._ListSelectorFilterBy_text(ctx, field, obj)
 		case "integer":

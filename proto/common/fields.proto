@@ -54,11 +54,12 @@ enum FilterOperator {
 message ListSelectorFilterBy {
     string field_id = 1;                          // Field id.
     FilterOperator operator = 2;                  // The filter operator.
-    repeated string text                    = 3;  // The text-typed value(s) used for filtering.
-    repeated sint64 integer                 = 4;  // The integer-typed value(s) used for filtering.
-    repeated double number                  = 5;  // The number-typed value(s) used for filtering.
-    repeated bool boolean                   = 6;  // The boolean-typed value(s) used for filtering.
-    repeated google.protobuf.Timestamp date = 7;  // The date-typed value(s) used for filtering.
+    FieldDataType data_type                 = 3;  // The data type of the field.
+    repeated string text                    = 4;  // The text-typed value(s) used for filtering.
+    repeated sint64 integer                 = 5;  // The integer-typed value(s) used for filtering.
+    repeated double number                  = 6;  // The number-typed value(s) used for filtering.
+    repeated bool boolean                   = 7;  // The boolean-typed value(s) used for filtering.
+    repeated google.protobuf.Timestamp date = 8;  // The date-typed value(s) used for filtering.
 }
 
 // Data descriptor for listing methods.

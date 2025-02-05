@@ -457,6 +457,7 @@ type ListSelector struct {
 type ListSelectorFilterBy struct {
 	FieldID  *string         `json:"fieldId,omitempty"`
 	Operator *FilterOperator `json:"operator,omitempty"`
+	DataType *FieldDataType  `json:"dataType,omitempty"`
 	Text     []*string       `json:"text,omitempty"`
 	Integer  []*int64        `json:"integer,omitempty"`
 	Number   []*float64      `json:"number,omitempty"`
