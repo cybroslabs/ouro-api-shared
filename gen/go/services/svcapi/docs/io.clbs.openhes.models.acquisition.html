@@ -366,6 +366,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ConnectionTypeSerialRfc2217</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CreateBulkRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateBulkRequest</code> 
@@ -2807,6 +2816,26 @@
           
         </tr>
       
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            rfc2217
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217">io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The RFC 2217 connection type.</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -3033,6 +3062,21 @@
       
     </tr>
     
+    <tr>
+      <td>3</td>
+      <td>
+        timeout
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -3110,6 +3154,101 @@
         </code>
       </td>
       <td class="content"><p>The TCP port number of the device to connect to - command port.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        timeout
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217" title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217">message ConnectionTypeSerialRfc2217</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing connection info for controlled-serial line (RFC 2217) connection type</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        host
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        port
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The TCP port number of the device to connect to.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        timeout
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
       
     </tr>
     
@@ -6328,36 +6467,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     <tr>
       <td>4</td>
       <td>
-        atTest
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The modem test command.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        atConfig
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The modem configuration command.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>6</td>
-      <td>
         atDial
       </td>
       <td>
@@ -6371,7 +6480,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     </tr>
     
     <tr>
-      <td>7</td>
+      <td>5</td>
       <td>
         atHangup
       </td>
@@ -6386,7 +6495,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     </tr>
     
     <tr>
-      <td>8</td>
+      <td>6</td>
       <td>
         atEscape
       </td>
@@ -6401,22 +6510,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     </tr>
     
     <tr>
-      <td>9</td>
-      <td>
-        atDsr
-      </td>
-      <td>
-        <code title="bool">
-          
-          <span>bool</span>
-        </code>
-      </td>
-      <td class="content"><p>The modem DSR command.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>10</td>
+      <td>7</td>
       <td>
         connectTimeout
       </td>
@@ -6426,7 +6520,22 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The modem connection timeout.</p></td>
+      <td class="content"><p>The modem connect timeout.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>
+        commandTimeout
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The modem command timeout.</p></td>
       
     </tr>
     
@@ -6445,7 +6554,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
 
         <tr>
           <td>
-            11
+            9
           </td>
           <td>
             tcpip
@@ -6458,6 +6567,26 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
             </code>
           </td>
           <td class="content"><p>The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            serialOverIp
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial">io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.</p></td>
           
         </tr>
       

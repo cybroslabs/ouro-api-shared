@@ -157,8 +157,9 @@ type ConnectionInfo struct {
 }
 
 type ConnectionTypeControlledSerial struct {
-	Direct *ConnectionTypeSerialDirect `json:"direct,omitempty"`
-	Moxa   *ConnectionTypeSerialMoxa   `json:"moxa,omitempty"`
+	Direct  *ConnectionTypeSerialDirect  `json:"direct,omitempty"`
+	Moxa    *ConnectionTypeSerialMoxa    `json:"moxa,omitempty"`
+	Rfc2217 *ConnectionTypeSerialRfc2217 `json:"rfc2217,omitempty"`
 }
 
 type ConnectionTypeDirectTCPIP struct {
@@ -174,14 +175,22 @@ type ConnectionTypeModemPool struct {
 }
 
 type ConnectionTypeSerialDirect struct {
-	Host *string `json:"host,omitempty"`
-	Port *int32  `json:"port,omitempty"`
+	Host    *string `json:"host,omitempty"`
+	Port    *int32  `json:"port,omitempty"`
+	Timeout *int32  `json:"timeout,omitempty"`
 }
 
 type ConnectionTypeSerialMoxa struct {
 	Host        *string `json:"host,omitempty"`
 	DataPort    *int32  `json:"dataPort,omitempty"`
 	CommandPort *int32  `json:"commandPort,omitempty"`
+	Timeout     *int32  `json:"timeout,omitempty"`
+}
+
+type ConnectionTypeSerialRfc2217 struct {
+	Host    *string `json:"host,omitempty"`
+	Port    *int32  `json:"port,omitempty"`
+	Timeout *int32  `json:"timeout,omitempty"`
 }
 
 type CreateBulkRequest struct {
@@ -480,17 +489,16 @@ type MetadataFields struct {
 }
 
 type ModemInfo struct {
-	ModemID        *string                    `json:"modemId,omitempty"`
-	Name           *string                    `json:"name,omitempty"`
-	AtInit         *string                    `json:"atInit,omitempty"`
-	AtTest         *string                    `json:"atTest,omitempty"`
-	AtConfig       *string                    `json:"atConfig,omitempty"`
-	AtDial         *string                    `json:"atDial,omitempty"`
-	AtHangup       *string                    `json:"atHangup,omitempty"`
-	AtEscape       *string                    `json:"atEscape,omitempty"`
-	AtDsr          *bool                      `json:"atDsr,omitempty"`
-	ConnectTimeout *int32                     `json:"connectTimeout,omitempty"`
-	Tcpip          *ConnectionTypeDirectTCPIP `json:"tcpip,omitempty"`
+	ModemID        *string                         `json:"modemId,omitempty"`
+	Name           *string                         `json:"name,omitempty"`
+	AtInit         *string                         `json:"atInit,omitempty"`
+	AtDial         *string                         `json:"atDial,omitempty"`
+	AtHangup       *string                         `json:"atHangup,omitempty"`
+	AtEscape       *string                         `json:"atEscape,omitempty"`
+	ConnectTimeout *int32                          `json:"connectTimeout,omitempty"`
+	CommandTimeout *int32                          `json:"commandTimeout,omitempty"`
+	Tcpip          *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
+	SerialOverIP   *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
 }
 
 type ModemPool struct {

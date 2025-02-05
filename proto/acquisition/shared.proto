@@ -92,20 +92,18 @@ message JobDevice {
 
 // Sub-message containing modem connection info
 message ModemInfo {
-    string modem_id        = 1;   // The modem identifier. It is automatically generated during creation.
-    string name            = 2;   // The name of the modem.
-    string at_init         = 3;   // The modem initialization command.
-    string at_test         = 4;   // The modem test command.
-    string at_config       = 5;   // The modem configuration command.
-    string at_dial         = 6;   // The modem dial command.
-    string at_hangup       = 7;   // The modem hangup command.
-    string at_escape       = 8;   // The modem escape command.
-    bool at_dsr            = 9;   // The modem DSR command.
-    uint32 connect_timeout = 10;  // The modem connection timeout.
+    string modem_id        = 1;  // The modem identifier. It is automatically generated during creation.
+    string name            = 2;  // The name of the modem.
+    string at_init         = 3;  // The modem initialization command.
+    string at_dial         = 4;  // The modem dial command.
+    string at_hangup       = 5;  // The modem hangup command.
+    string at_escape       = 6;  // The modem escape command.
+    uint32 connect_timeout = 7;  // The modem connect timeout.
+    uint32 command_timeout = 8;  // The modem command timeout.
     // The modem connection description.
     oneof modem_connection {
-        ConnectionTypeDirectTcpIp tcpip = 11;  // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
-        // This is then reserved for future connection options.
+        ConnectionTypeDirectTcpIp tcpip               = 9;   // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+        ConnectionTypeControlledSerial serial_over_ip = 10;  // The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.
     }
 }
 
@@ -218,15 +216,24 @@ message ConnectionTypeModemPool {
 }
 
 message ConnectionTypeSerialDirect {
-    string host = 1;  // The host name or IP address of the device to connect to.
-    uint32 port = 2;  // The TCP port number of the device to connect to.
+    string host   = 1;  // The host name or IP address of the device to connect to.
+    uint32 port   = 2;  // The TCP port number of the device to connect to.
+    int32 timeout = 3;  // The timeout in miliseconds for the connection.
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
 message ConnectionTypeSerialMoxa {
-    string host        = 1;  // The host name or IP address of the device to connect to.
-    uint32 dataPort    = 2;  // The TCP port number of the device to connect to - data port.
-    uint32 commandPort = 3;  // The TCP port number of the device to connect to - command port.
+    string host         = 1;  // The host name or IP address of the device to connect to.
+    uint32 dataPort     = 2;  // The TCP port number of the device to connect to - data port.
+    uint32 command_port = 3;  // The TCP port number of the device to connect to - command port.
+    int32 timeout       = 4;  // The timeout in miliseconds for the connection.
+}
+
+// Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
+message ConnectionTypeSerialRfc2217 {
+    string host   = 1;  // The host name or IP address of the device to connect to.
+    uint32 port   = 2;  // The TCP port number of the device to connect to.
+    int32 timeout = 3;  // The timeout in miliseconds for the connection.
 }
 
 // Connection types
@@ -426,8 +433,9 @@ message JobActionAttributes {
 message ConnectionTypeControlledSerial {
     // IP-to-serial converter description.
     oneof converter {
-        ConnectionTypeSerialDirect direct = 1;  // The simple direct serial connection type.
-        ConnectionTypeSerialMoxa moxa     = 2;  // The Moxa connection type.
+        ConnectionTypeSerialDirect direct   = 1;  // The simple direct serial connection type.
+        ConnectionTypeSerialMoxa moxa       = 2;  // The Moxa connection type.
+        ConnectionTypeSerialRfc2217 rfc2217 = 3;  // The RFC 2217 connection type.
         // TBA: Add Advanctech and other IP-to-serial converters.
     }
 }

@@ -478,6 +478,8 @@ type ConnectionTypeControlledSerial {
   direct: ConnectionTypeSerialDirect
   # The Moxa connection type.
   moxa: ConnectionTypeSerialMoxa
+  # The RFC 2217 connection type.
+  rfc2217: ConnectionTypeSerialRfc2217
 }
 
 # Sub-message containing connection info for TCP connection type
@@ -505,6 +507,8 @@ type ConnectionTypeSerialDirect {
   host: String
   # The TCP port number of the device to connect to.
   port: Int
+  # The timeout in miliseconds for the connection.
+  timeout: Int
 }
 
 # Sub-message containing connection info for controlled-serial line (Moxa) connection type
@@ -515,6 +519,18 @@ type ConnectionTypeSerialMoxa {
   dataPort: Int
   # The TCP port number of the device to connect to - command port.
   commandPort: Int
+  # The timeout in miliseconds for the connection.
+  timeout: Int
+}
+
+# Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
+type ConnectionTypeSerialRfc2217 {
+  # The host name or IP address of the device to connect to.
+  host: String
+  # The TCP port number of the device to connect to.
+  port: Int
+  # The timeout in miliseconds for the connection.
+  timeout: Int
 }
 
 type CreateBulkRequest {
@@ -874,22 +890,20 @@ type ModemInfo {
   name: String
   # The modem initialization command.
   atInit: String
-  # The modem test command.
-  atTest: String
-  # The modem configuration command.
-  atConfig: String
   # The modem dial command.
   atDial: String
   # The modem hangup command.
   atHangup: String
   # The modem escape command.
   atEscape: String
-  # The modem DSR command.
-  atDsr: Boolean
-  # The modem connection timeout.
+  # The modem connect timeout.
   connectTimeout: Int
+  # The modem command timeout.
+  commandTimeout: Int
   # The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
   tcpip: ConnectionTypeDirectTcpIp
+  # The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.
+  serialOverIp: ConnectionTypeControlledSerial
 }
 
 type ModemPool {

@@ -194,8 +194,9 @@ type ComplexityRoot struct {
 	}
 
 	ConnectionTypeControlledSerial struct {
-		Direct func(childComplexity int) int
-		Moxa   func(childComplexity int) int
+		Direct  func(childComplexity int) int
+		Moxa    func(childComplexity int) int
+		Rfc2217 func(childComplexity int) int
 	}
 
 	ConnectionTypeDirectTcpIp struct {
@@ -211,14 +212,22 @@ type ComplexityRoot struct {
 	}
 
 	ConnectionTypeSerialDirect struct {
-		Host func(childComplexity int) int
-		Port func(childComplexity int) int
+		Host    func(childComplexity int) int
+		Port    func(childComplexity int) int
+		Timeout func(childComplexity int) int
 	}
 
 	ConnectionTypeSerialMoxa struct {
 		CommandPort func(childComplexity int) int
 		DataPort    func(childComplexity int) int
 		Host        func(childComplexity int) int
+		Timeout     func(childComplexity int) int
+	}
+
+	ConnectionTypeSerialRfc2217 struct {
+		Host    func(childComplexity int) int
+		Port    func(childComplexity int) int
+		Timeout func(childComplexity int) int
 	}
 
 	CreateBulkRequest struct {
@@ -517,16 +526,15 @@ type ComplexityRoot struct {
 	}
 
 	ModemInfo struct {
-		AtConfig       func(childComplexity int) int
 		AtDial         func(childComplexity int) int
-		AtDsr          func(childComplexity int) int
 		AtEscape       func(childComplexity int) int
 		AtHangup       func(childComplexity int) int
 		AtInit         func(childComplexity int) int
-		AtTest         func(childComplexity int) int
+		CommandTimeout func(childComplexity int) int
 		ConnectTimeout func(childComplexity int) int
 		ModemID        func(childComplexity int) int
 		Name           func(childComplexity int) int
+		SerialOverIP   func(childComplexity int) int
 		Tcpip          func(childComplexity int) int
 	}
 
@@ -1132,6 +1140,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConnectionTypeControlledSerial.Moxa(childComplexity), true
 
+	case "ConnectionTypeControlledSerial.rfc2217":
+		if e.complexity.ConnectionTypeControlledSerial.Rfc2217 == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeControlledSerial.Rfc2217(childComplexity), true
+
 	case "ConnectionTypeDirectTcpIp.host":
 		if e.complexity.ConnectionTypeDirectTcpIp.Host == nil {
 			break
@@ -1188,6 +1203,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConnectionTypeSerialDirect.Port(childComplexity), true
 
+	case "ConnectionTypeSerialDirect.timeout":
+		if e.complexity.ConnectionTypeSerialDirect.Timeout == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeSerialDirect.Timeout(childComplexity), true
+
 	case "ConnectionTypeSerialMoxa.commandPort":
 		if e.complexity.ConnectionTypeSerialMoxa.CommandPort == nil {
 			break
@@ -1208,6 +1230,34 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConnectionTypeSerialMoxa.Host(childComplexity), true
+
+	case "ConnectionTypeSerialMoxa.timeout":
+		if e.complexity.ConnectionTypeSerialMoxa.Timeout == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeSerialMoxa.Timeout(childComplexity), true
+
+	case "ConnectionTypeSerialRfc2217.host":
+		if e.complexity.ConnectionTypeSerialRfc2217.Host == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeSerialRfc2217.Host(childComplexity), true
+
+	case "ConnectionTypeSerialRfc2217.port":
+		if e.complexity.ConnectionTypeSerialRfc2217.Port == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeSerialRfc2217.Port(childComplexity), true
+
+	case "ConnectionTypeSerialRfc2217.timeout":
+		if e.complexity.ConnectionTypeSerialRfc2217.Timeout == nil {
+			break
+		}
+
+		return e.complexity.ConnectionTypeSerialRfc2217.Timeout(childComplexity), true
 
 	case "CreateBulkRequest.metadata":
 		if e.complexity.CreateBulkRequest.Metadata == nil {
@@ -2350,26 +2400,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MetadataFields.Name(childComplexity), true
 
-	case "ModemInfo.atConfig":
-		if e.complexity.ModemInfo.AtConfig == nil {
-			break
-		}
-
-		return e.complexity.ModemInfo.AtConfig(childComplexity), true
-
 	case "ModemInfo.atDial":
 		if e.complexity.ModemInfo.AtDial == nil {
 			break
 		}
 
 		return e.complexity.ModemInfo.AtDial(childComplexity), true
-
-	case "ModemInfo.atDsr":
-		if e.complexity.ModemInfo.AtDsr == nil {
-			break
-		}
-
-		return e.complexity.ModemInfo.AtDsr(childComplexity), true
 
 	case "ModemInfo.atEscape":
 		if e.complexity.ModemInfo.AtEscape == nil {
@@ -2392,12 +2428,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemInfo.AtInit(childComplexity), true
 
-	case "ModemInfo.atTest":
-		if e.complexity.ModemInfo.AtTest == nil {
+	case "ModemInfo.commandTimeout":
+		if e.complexity.ModemInfo.CommandTimeout == nil {
 			break
 		}
 
-		return e.complexity.ModemInfo.AtTest(childComplexity), true
+		return e.complexity.ModemInfo.CommandTimeout(childComplexity), true
 
 	case "ModemInfo.connectTimeout":
 		if e.complexity.ModemInfo.ConnectTimeout == nil {
@@ -2419,6 +2455,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ModemInfo.Name(childComplexity), true
+
+	case "ModemInfo.serialOverIp":
+		if e.complexity.ModemInfo.SerialOverIP == nil {
+			break
+		}
+
+		return e.complexity.ModemInfo.SerialOverIP(childComplexity), true
 
 	case "ModemInfo.tcpip":
 		if e.complexity.ModemInfo.Tcpip == nil {
@@ -5726,6 +5769,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_serialOverIp(_ context.C
 				return ec.fieldContext_ConnectionTypeControlledSerial_direct(ctx, field)
 			case "moxa":
 				return ec.fieldContext_ConnectionTypeControlledSerial_moxa(ctx, field)
+			case "rfc2217":
+				return ec.fieldContext_ConnectionTypeControlledSerial_rfc2217(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeControlledSerial", field.Name)
 		},
@@ -5902,6 +5947,8 @@ func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_direct(_
 				return ec.fieldContext_ConnectionTypeSerialDirect_host(ctx, field)
 			case "port":
 				return ec.fieldContext_ConnectionTypeSerialDirect_port(ctx, field)
+			case "timeout":
+				return ec.fieldContext_ConnectionTypeSerialDirect_timeout(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeSerialDirect", field.Name)
 		},
@@ -5951,8 +5998,59 @@ func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_moxa(_ c
 				return ec.fieldContext_ConnectionTypeSerialMoxa_dataPort(ctx, field)
 			case "commandPort":
 				return ec.fieldContext_ConnectionTypeSerialMoxa_commandPort(ctx, field)
+			case "timeout":
+				return ec.fieldContext_ConnectionTypeSerialMoxa_timeout(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeSerialMoxa", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeControlledSerial_rfc2217(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeControlledSerial) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeControlledSerial_rfc2217(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Rfc2217, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ConnectionTypeSerialRfc2217)
+	fc.Result = res
+	return ec.marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_rfc2217(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeControlledSerial",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "host":
+				return ec.fieldContext_ConnectionTypeSerialRfc2217_host(ctx, field)
+			case "port":
+				return ec.fieldContext_ConnectionTypeSerialRfc2217_port(ctx, field)
+			case "timeout":
+				return ec.fieldContext_ConnectionTypeSerialRfc2217_timeout(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeSerialRfc2217", field.Name)
 		},
 	}
 	return fc, nil
@@ -6205,22 +6303,20 @@ func (ec *executionContext) fieldContext_ConnectionTypeModemPool_modem(_ context
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "atInit":
 				return ec.fieldContext_ModemInfo_atInit(ctx, field)
-			case "atTest":
-				return ec.fieldContext_ModemInfo_atTest(ctx, field)
-			case "atConfig":
-				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
 			case "atDial":
 				return ec.fieldContext_ModemInfo_atDial(ctx, field)
 			case "atHangup":
 				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
 			case "atEscape":
 				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
-			case "atDsr":
-				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
 			case "connectTimeout":
 				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
+			case "commandTimeout":
+				return ec.fieldContext_ModemInfo_commandTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
+			case "serialOverIp":
+				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -6298,6 +6394,47 @@ func (ec *executionContext) _ConnectionTypeSerialDirect_port(ctx context.Context
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialDirect_port(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeSerialDirect",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeSerialDirect_timeout(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeSerialDirect) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeSerialDirect_timeout(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timeout, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeSerialDirect_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionTypeSerialDirect",
 		Field:      field,
@@ -6423,6 +6560,170 @@ func (ec *executionContext) _ConnectionTypeSerialMoxa_commandPort(ctx context.Co
 func (ec *executionContext) fieldContext_ConnectionTypeSerialMoxa_commandPort(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionTypeSerialMoxa",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeSerialMoxa_timeout(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeSerialMoxa) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeSerialMoxa_timeout(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timeout, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeSerialMoxa_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeSerialMoxa",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeSerialRfc2217_host(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeSerialRfc2217) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeSerialRfc2217_host(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Host, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_host(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeSerialRfc2217",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeSerialRfc2217_port(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeSerialRfc2217) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeSerialRfc2217_port(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Port, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_port(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeSerialRfc2217",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionTypeSerialRfc2217_timeout(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionTypeSerialRfc2217) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionTypeSerialRfc2217_timeout(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timeout, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionTypeSerialRfc2217",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -13835,88 +14136,6 @@ func (ec *executionContext) fieldContext_ModemInfo_atInit(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_atTest(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_atTest(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.AtTest, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ModemInfo_atTest(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ModemInfo",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _ModemInfo_atConfig(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_atConfig(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.AtConfig, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ModemInfo_atConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ModemInfo",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ModemInfo_atDial(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ModemInfo_atDial(ctx, field)
 	if err != nil {
@@ -14040,47 +14259,6 @@ func (ec *executionContext) fieldContext_ModemInfo_atEscape(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ModemInfo_atDsr(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ModemInfo_atDsr(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.AtDsr, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ModemInfo_atDsr(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ModemInfo",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ModemInfo_connectTimeout(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
 	if err != nil {
@@ -14110,6 +14288,47 @@ func (ec *executionContext) _ModemInfo_connectTimeout(ctx context.Context, field
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_connectTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ModemInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ModemInfo_commandTimeout(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_commandTimeout(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommandTimeout, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ModemInfo_commandTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ModemInfo",
 		Field:      field,
@@ -14166,6 +14385,55 @@ func (ec *executionContext) fieldContext_ModemInfo_tcpip(_ context.Context, fiel
 				return ec.fieldContext_ConnectionTypeDirectTcpIp_timeout(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeDirectTcpIp", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ModemInfo_serialOverIp(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SerialOverIP, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ConnectionTypeControlledSerial)
+	fc.Result = res
+	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ModemInfo_serialOverIp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ModemInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "direct":
+				return ec.fieldContext_ConnectionTypeControlledSerial_direct(ctx, field)
+			case "moxa":
+				return ec.fieldContext_ConnectionTypeControlledSerial_moxa(ctx, field)
+			case "rfc2217":
+				return ec.fieldContext_ConnectionTypeControlledSerial_rfc2217(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ConnectionTypeControlledSerial", field.Name)
 		},
 	}
 	return fc, nil
@@ -14397,22 +14665,20 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "atInit":
 				return ec.fieldContext_ModemInfo_atInit(ctx, field)
-			case "atTest":
-				return ec.fieldContext_ModemInfo_atTest(ctx, field)
-			case "atConfig":
-				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
 			case "atDial":
 				return ec.fieldContext_ModemInfo_atDial(ctx, field)
 			case "atHangup":
 				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
 			case "atEscape":
 				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
-			case "atDsr":
-				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
 			case "connectTimeout":
 				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
+			case "commandTimeout":
+				return ec.fieldContext_ModemInfo_commandTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
+			case "serialOverIp":
+				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -16456,22 +16722,20 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 				return ec.fieldContext_ModemInfo_name(ctx, field)
 			case "atInit":
 				return ec.fieldContext_ModemInfo_atInit(ctx, field)
-			case "atTest":
-				return ec.fieldContext_ModemInfo_atTest(ctx, field)
-			case "atConfig":
-				return ec.fieldContext_ModemInfo_atConfig(ctx, field)
 			case "atDial":
 				return ec.fieldContext_ModemInfo_atDial(ctx, field)
 			case "atHangup":
 				return ec.fieldContext_ModemInfo_atHangup(ctx, field)
 			case "atEscape":
 				return ec.fieldContext_ModemInfo_atEscape(ctx, field)
-			case "atDsr":
-				return ec.fieldContext_ModemInfo_atDsr(ctx, field)
 			case "connectTimeout":
 				return ec.fieldContext_ModemInfo_connectTimeout(ctx, field)
+			case "commandTimeout":
+				return ec.fieldContext_ModemInfo_commandTimeout(ctx, field)
 			case "tcpip":
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
+			case "serialOverIp":
+				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -19788,6 +20052,8 @@ func (ec *executionContext) _ConnectionTypeControlledSerial(ctx context.Context,
 			out.Values[i] = ec._ConnectionTypeControlledSerial_direct(ctx, field, obj)
 		case "moxa":
 			out.Values[i] = ec._ConnectionTypeControlledSerial_moxa(ctx, field, obj)
+		case "rfc2217":
+			out.Values[i] = ec._ConnectionTypeControlledSerial_rfc2217(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19906,6 +20172,8 @@ func (ec *executionContext) _ConnectionTypeSerialDirect(ctx context.Context, sel
 			out.Values[i] = ec._ConnectionTypeSerialDirect_host(ctx, field, obj)
 		case "port":
 			out.Values[i] = ec._ConnectionTypeSerialDirect_port(ctx, field, obj)
+		case "timeout":
+			out.Values[i] = ec._ConnectionTypeSerialDirect_timeout(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19946,6 +20214,48 @@ func (ec *executionContext) _ConnectionTypeSerialMoxa(ctx context.Context, sel a
 			out.Values[i] = ec._ConnectionTypeSerialMoxa_dataPort(ctx, field, obj)
 		case "commandPort":
 			out.Values[i] = ec._ConnectionTypeSerialMoxa_commandPort(ctx, field, obj)
+		case "timeout":
+			out.Values[i] = ec._ConnectionTypeSerialMoxa_timeout(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var connectionTypeSerialRfc2217Implementors = []string{"ConnectionTypeSerialRfc2217"}
+
+func (ec *executionContext) _ConnectionTypeSerialRfc2217(ctx context.Context, sel ast.SelectionSet, obj *model.ConnectionTypeSerialRfc2217) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, connectionTypeSerialRfc2217Implementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ConnectionTypeSerialRfc2217")
+		case "host":
+			out.Values[i] = ec._ConnectionTypeSerialRfc2217_host(ctx, field, obj)
+		case "port":
+			out.Values[i] = ec._ConnectionTypeSerialRfc2217_port(ctx, field, obj)
+		case "timeout":
+			out.Values[i] = ec._ConnectionTypeSerialRfc2217_timeout(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -21808,22 +22118,20 @@ func (ec *executionContext) _ModemInfo(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._ModemInfo_name(ctx, field, obj)
 		case "atInit":
 			out.Values[i] = ec._ModemInfo_atInit(ctx, field, obj)
-		case "atTest":
-			out.Values[i] = ec._ModemInfo_atTest(ctx, field, obj)
-		case "atConfig":
-			out.Values[i] = ec._ModemInfo_atConfig(ctx, field, obj)
 		case "atDial":
 			out.Values[i] = ec._ModemInfo_atDial(ctx, field, obj)
 		case "atHangup":
 			out.Values[i] = ec._ModemInfo_atHangup(ctx, field, obj)
 		case "atEscape":
 			out.Values[i] = ec._ModemInfo_atEscape(ctx, field, obj)
-		case "atDsr":
-			out.Values[i] = ec._ModemInfo_atDsr(ctx, field, obj)
 		case "connectTimeout":
 			out.Values[i] = ec._ModemInfo_connectTimeout(ctx, field, obj)
+		case "commandTimeout":
+			out.Values[i] = ec._ModemInfo_commandTimeout(ctx, field, obj)
 		case "tcpip":
 			out.Values[i] = ec._ModemInfo_tcpip(ctx, field, obj)
+		case "serialOverIp":
+			out.Values[i] = ec._ModemInfo_serialOverIp(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24404,6 +24712,13 @@ func (ec *executionContext) marshalOConnectionTypeSerialMoxa2ᚖgithubᚗcomᚋc
 		return graphql.Null
 	}
 	return ec._ConnectionTypeSerialMoxa(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialRfc2217) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ConnectionTypeSerialRfc2217(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, v any) (*model.DataLinkProtocol, error) {
