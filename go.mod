@@ -9,10 +9,10 @@ retract (
 
 require (
 	connectrpc.com/connect v1.18.1
-	github.com/99designs/gqlgen v0.17.63
+	github.com/99designs/gqlgen v0.17.64
 	github.com/cerbos/cerbos-sdk-go v0.2.13
 	github.com/google/uuid v1.6.0
-	github.com/vektah/gqlparser/v2 v2.5.21
+	github.com/vektah/gqlparser/v2 v2.5.22
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.36.4
 )
