@@ -195,7 +195,7 @@ message ConnectionInfo {
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
     DataLinkProtocol link_protocol            = 4;  // The data link protocol.
-    string custom_grouping_id                 = 5;  // The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
+    string bus_id                             = 5;  // The bus identifier. It represents a custom group ID to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
     map<string, common.FieldValue> attributes = 6;  // The connection attributes, see options in the DataLinkTemplate for given link_protocol.
 }
 
@@ -713,4 +713,14 @@ message CommunicationUnit {
 message CommunicationUnitSpec {
     string external_id             = 1;  // The external identifier of the communication unit.
     ConnectionInfo connection_info = 2;  // The connection info.
+}
+
+message CommunicationUnitBus {
+    reserved 1;
+    CommunicationUnitBusStatus status = 2;  // The communication unit status.
+    common.MetadataFields metadata    = 3;  // The metadata fields.
+}
+
+message CommunicationUnitBusStatus {
+    repeated string communication_unit_id = 1;  // The list of communication unit identifiers.
 }

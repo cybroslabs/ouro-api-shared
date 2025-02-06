@@ -21,6 +21,29 @@ message ListOfCommunicationUnit {
     repeated CommunicationUnit items = 1;  // The communication unit specification.
 }
 
+// Communication Unit Bus specification.
+
+message CreateCommunicationUnitBusRequest {
+    reserved 1;
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
+}
+
+message ListOfCommunicationUnitBus {
+    repeated CommunicationUnitBus items = 1;  // The list of communication unit buses.
+}
+
+// CommunicationUnit#Bus specification.
+
+message AddCommunicationUnitsToBusRequest {
+    string bus_id                         = 1;  // The unique identifier of the bus.
+    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+}
+
+message RemoveCommunicationUnitsFromBusRequest {
+    string bus_id                         = 1;  // The unique identifier of the bus.
+    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+}
+
 // Device specification.
 
 message CreateDeviceRequest {

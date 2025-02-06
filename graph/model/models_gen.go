@@ -84,6 +84,11 @@ type ActionSyncClock struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
+type AddCommunicationUnitsToBusRequest struct {
+	BusID               *string   `json:"busId,omitempty"`
+	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
+}
+
 type AddDevicesToGroupRequest struct {
 	GroupID  *string   `json:"groupId,omitempty"`
 	DeviceID []*string `json:"deviceId,omitempty"`
@@ -142,18 +147,27 @@ type CommunicationUnit struct {
 	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
+type CommunicationUnitBus struct {
+	Status   *CommunicationUnitBusStatus `json:"status,omitempty"`
+	Metadata *MetadataFields             `json:"metadata,omitempty"`
+}
+
+type CommunicationUnitBusStatus struct {
+	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
+}
+
 type CommunicationUnitSpec struct {
 	ExternalID     *string         `json:"externalId,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connectionInfo,omitempty"`
 }
 
 type ConnectionInfo struct {
-	Tcpip            *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
-	ModemPool        *ConnectionTypeModemPool        `json:"modemPool,omitempty"`
-	SerialOverIP     *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
-	LinkProtocol     *DataLinkProtocol               `json:"linkProtocol,omitempty"`
-	CustomGroupingID *string                         `json:"customGroupingId,omitempty"`
-	Attributes       []*MapFieldValue                `json:"attributes,omitempty"`
+	Tcpip        *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
+	ModemPool    *ConnectionTypeModemPool        `json:"modemPool,omitempty"`
+	SerialOverIP *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
+	LinkProtocol *DataLinkProtocol               `json:"linkProtocol,omitempty"`
+	BusID        *string                         `json:"busId,omitempty"`
+	Attributes   []*MapFieldValue                `json:"attributes,omitempty"`
 }
 
 type ConnectionTypeControlledSerial struct {
@@ -195,6 +209,10 @@ type ConnectionTypeSerialRfc2217 struct {
 
 type CreateBulkRequest struct {
 	Spec     *BulkSpec       `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type CreateCommunicationUnitBusRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
@@ -414,6 +432,10 @@ type ListOfCommunicationUnit struct {
 	Items []*CommunicationUnit `json:"items,omitempty"`
 }
 
+type ListOfCommunicationUnitBus struct {
+	Items []*CommunicationUnitBus `json:"items,omitempty"`
+}
+
 type ListOfDevice struct {
 	Items []*Device `json:"items,omitempty"`
 }
@@ -529,6 +551,11 @@ type ProfileValues struct {
 }
 
 type Query struct {
+}
+
+type RemoveCommunicationUnitsFromBusRequest struct {
+	BusID               *string   `json:"busId,omitempty"`
+	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
 }
 
 type RemoveDevicesFromGroupRequest struct {

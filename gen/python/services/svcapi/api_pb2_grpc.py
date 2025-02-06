@@ -65,6 +65,26 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.CommunicationUnit.FromString,
                 _registered_method=True)
+        self.CreateCommunicationUnitBus = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnitBus',
+                request_serializer=acquisition_dot_main__pb2.CreateCommunicationUnitBusRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListCommunicationUnitsBuses = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitsBuses',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfCommunicationUnitBus.FromString,
+                _registered_method=True)
+        self.AddCommunicationUnitsToBus = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToBus',
+                request_serializer=acquisition_dot_main__pb2.AddCommunicationUnitsToBusRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.RemoveCommunicationUnitsFromBus = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromBus',
+                request_serializer=acquisition_dot_main__pb2.RemoveCommunicationUnitsFromBusRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.CreateDevice = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateDevice',
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceRequest.SerializeToString,
@@ -250,6 +270,38 @@ class ApiServiceServicer(object):
         """@group: Devices
         @tag: communicationunit
         The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateCommunicationUnitBus(self, request, context):
+        """@group: Devices
+        @tag: communicationunitbus
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListCommunicationUnitsBuses(self, request, context):
+        """@group: Devices
+        @tag: communicationunitbus
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddCommunicationUnitsToBus(self, request, context):
+        """@group: Devices
+        @tag: communicationunitbus
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveCommunicationUnitsFromBus(self, request, context):
+        """@group: Devices
+        @tag: communicationunitbus
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -482,6 +534,26 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetCommunicationUnit,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
+            ),
+            'CreateCommunicationUnitBus': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateCommunicationUnitBus,
+                    request_deserializer=acquisition_dot_main__pb2.CreateCommunicationUnitBusRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListCommunicationUnitsBuses': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCommunicationUnitsBuses,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfCommunicationUnitBus.SerializeToString,
+            ),
+            'AddCommunicationUnitsToBus': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCommunicationUnitsToBus,
+                    request_deserializer=acquisition_dot_main__pb2.AddCommunicationUnitsToBusRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RemoveCommunicationUnitsFromBus': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveCommunicationUnitsFromBus,
+                    request_deserializer=acquisition_dot_main__pb2.RemoveCommunicationUnitsFromBusRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateDevice': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDevice,
@@ -828,6 +900,114 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_shared__pb2.CommunicationUnit.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateCommunicationUnitBus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnitBus',
+            acquisition_dot_main__pb2.CreateCommunicationUnitBusRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListCommunicationUnitsBuses(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitsBuses',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfCommunicationUnitBus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddCommunicationUnitsToBus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToBus',
+            acquisition_dot_main__pb2.AddCommunicationUnitsToBusRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RemoveCommunicationUnitsFromBus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromBus',
+            acquisition_dot_main__pb2.RemoveCommunicationUnitsFromBusRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

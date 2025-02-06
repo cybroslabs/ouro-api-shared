@@ -57,6 +57,19 @@ service ApiService {
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
 
     // @group: Devices
+    // @tag: communicationunitbus
+    rpc CreateCommunicationUnitBus(io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest) returns (google.protobuf.StringValue);
+    // @group: Devices
+    // @tag: communicationunitbus
+    rpc ListCommunicationUnitsBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus);
+    // @group: Devices
+    // @tag: communicationunitbus
+    rpc AddCommunicationUnitsToBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: communicationunitbus
+    rpc RemoveCommunicationUnitsFromBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest) returns (google.protobuf.Empty);
+
+    // @group: Devices
     // @tag: device
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);

@@ -359,6 +359,13 @@ type ActionSyncClock {
   _empty: Boolean
 }
 
+type AddCommunicationUnitsToBusRequest {
+  # The unique identifier of the bus.
+  busId: String
+  # The unique identifier of the communication unit.
+  communicationUnitId: [String]
+}
+
 type AddDevicesToGroupRequest {
   # The unique identifier of the device group.
   groupId: String
@@ -449,6 +456,18 @@ type CommunicationUnit {
   metadata: MetadataFields
 }
 
+type CommunicationUnitBus {
+  # The communication unit status.
+  status: CommunicationUnitBusStatus
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CommunicationUnitBusStatus {
+  # The list of communication unit identifiers.
+  communicationUnitId: [String]
+}
+
 type CommunicationUnitSpec {
   # The external identifier of the communication unit.
   externalId: String
@@ -466,8 +485,8 @@ type ConnectionInfo {
   serialOverIp: ConnectionTypeControlledSerial
   # The data link protocol.
   linkProtocol: DataLinkProtocol
-  # The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.
-  customGroupingId: String
+  # The bus identifier. It represents a custom group ID to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
+  busId: String
   # The connection attributes, see options in the DataLinkTemplate for given link_protocol.
   attributes: [_mapFieldValue]
 }
@@ -536,6 +555,11 @@ type ConnectionTypeSerialRfc2217 {
 type CreateBulkRequest {
   # The bulk-job spec.
   spec: BulkSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CreateCommunicationUnitBusRequest {
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -827,6 +851,11 @@ type ListOfCommunicationUnit {
   items: [CommunicationUnit]
 }
 
+type ListOfCommunicationUnitBus {
+  # The list of communication unit buses.
+  items: [CommunicationUnitBus]
+}
+
 type ListOfDevice {
   # The list of devices.
   items: [Device]
@@ -942,6 +971,13 @@ type ProfileValues {
   unit: String
   # The list of continuous profile blocks.
   blocks: [ProfileBlok]
+}
+
+type RemoveCommunicationUnitsFromBusRequest {
+  # The unique identifier of the bus.
+  busId: String
+  # The unique identifier of the communication unit.
+  communicationUnitId: [String]
 }
 
 type RemoveDevicesFromGroupRequest {
@@ -1151,6 +1187,10 @@ type Query {
   createCommunicationUnit: StringValue
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
+  createCommunicationUnitBus: StringValue
+  listCommunicationUnitsBuses: ListOfCommunicationUnitBus
+  addCommunicationUnitsToBus: Empty
+  removeCommunicationUnitsFromBus: Empty
   createDevice: StringValue
   listDevices: ListOfDevice
   getDevice: Device

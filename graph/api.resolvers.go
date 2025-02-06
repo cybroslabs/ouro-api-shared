@@ -56,6 +56,26 @@ func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.Commun
 	panic(fmt.Errorf("not implemented: GetCommunicationUnit - getCommunicationUnit"))
 }
 
+// CreateCommunicationUnitBus is the resolver for the createCommunicationUnitBus field.
+func (r *queryResolver) CreateCommunicationUnitBus(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateCommunicationUnitBus - createCommunicationUnitBus"))
+}
+
+// ListCommunicationUnitsBuses is the resolver for the listCommunicationUnitsBuses field.
+func (r *queryResolver) ListCommunicationUnitsBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationUnitsBuses - listCommunicationUnitsBuses"))
+}
+
+// AddCommunicationUnitsToBus is the resolver for the addCommunicationUnitsToBus field.
+func (r *queryResolver) AddCommunicationUnitsToBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddCommunicationUnitsToBus - addCommunicationUnitsToBus"))
+}
+
+// RemoveCommunicationUnitsFromBus is the resolver for the removeCommunicationUnitsFromBus field.
+func (r *queryResolver) RemoveCommunicationUnitsFromBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveCommunicationUnitsFromBus - removeCommunicationUnitsFromBus"))
+}
+
 // CreateDevice is the resolver for the createDevice field.
 func (r *queryResolver) CreateDevice(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDevice - createDevice"))

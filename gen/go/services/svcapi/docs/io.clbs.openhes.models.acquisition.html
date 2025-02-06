@@ -213,6 +213,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AddCommunicationUnitsToBusRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>AddDevicesToGroupRequest</code> 
@@ -303,6 +312,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitBus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnitBus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnitBusStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CommunicationUnitSpec</code> 
@@ -378,6 +405,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.CreateBulkRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateBulkRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateCommunicationUnitBusRequest</code> 
         </a>
       </p>
       
@@ -618,6 +654,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfCommunicationUnitBus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDevice</code> 
@@ -738,6 +783,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ProfileValues">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ProfileValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RemoveCommunicationUnitsFromBusRequest</code> 
         </a>
       </p>
       
@@ -1699,6 +1753,73 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest" title="io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest">message AddCommunicationUnitsToBusRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        busId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the bus.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        communicationUnitId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest" title="io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">message AddDevicesToGroupRequest</a>
@@ -2523,6 +2644,125 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnitBus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitBus" title="io.clbs.openhes.models.acquisition.CommunicationUnitBus">message CommunicationUnitBus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus"><span title="io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus">io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The communication unit status.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus" title="io.clbs.openhes.models.acquisition.CommunicationUnitBusStatus">message CommunicationUnitBusStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        communicationUnitId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of communication unit identifiers.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec" title="io.clbs.openhes.models.acquisition.CommunicationUnitSpec">message CommunicationUnitSpec</a>
@@ -2632,7 +2872,7 @@
     <tr>
       <td>5</td>
       <td>
-        customGroupingId
+        busId
       </td>
       <td>
         <code title="string">
@@ -2640,7 +2880,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The custom group ID to link jobs together. If not set then jobs are grouped by group-key defined based on the connection type.</p></td>
+      <td class="content"><p>The bus identifier. It represents a custom group ID to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.</p></td>
       
     </tr>
     
@@ -3302,6 +3542,57 @@
       <td class="content"><p>The bulk-job spec.</p></td>
       
     </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest" title="io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest">message CreateCommunicationUnitBusRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
     
     <tr>
       <td>2</td>
@@ -5834,6 +6125,59 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus" title="io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus">message ListOfCommunicationUnitBus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnitBus">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnitBus"><span title="io.clbs.openhes.models.acquisition.CommunicationUnitBus">io.clbs.openhes.models.acquisition.CommunicationUnitBus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of communication unit buses.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDevice">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice" title="io.clbs.openhes.models.acquisition.ListOfDevice">message ListOfDevice</a>
@@ -6924,6 +7268,73 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         </code>
       </td>
       <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest" title="io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest">message RemoveCommunicationUnitsFromBusRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        busId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the bus.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        communicationUnitId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
       
     </tr>
     
