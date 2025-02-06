@@ -94,17 +94,18 @@ message JobDevice {
 message ModemInfo {
     string modem_id        = 1;  // The modem identifier. It is automatically generated during creation.
     string name            = 2;  // The name of the modem.
-    string at_init         = 3;  // The modem initialization command.
-    string at_dial         = 4;  // The modem dial command.
-    string at_hangup       = 5;  // The modem hangup command.
-    string at_escape       = 6;  // The modem escape command.
-    uint32 connect_timeout = 7;  // The modem connect timeout.
-    uint32 command_timeout = 8;  // The modem command timeout.
+    string at_init         = 3;  // The modem initialization command, e.g. AT&FE0X3
+    string at_dial         = 4;  // The modem dial command, e.g. ATD.
+    string at_hangup       = 5;  // The modem hangup command, e.g. ATH.
+    string at_escape       = 6;  // The modem escape command, e.g. +++.
+    uint32 connect_timeout = 7;  // The modem connect timeout, if applicable given by the modem_connection field, in miliseconds.
+    uint32 command_timeout = 8;  // The modem command timeout, if applicable given by the modem_connection field, in miliseconds.
     // The modem connection description.
     oneof modem_connection {
         ConnectionTypeDirectTcpIp tcpip               = 9;   // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
         ConnectionTypeControlledSerial serial_over_ip = 10;  // The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.
     }
+    uint32 serial_baud_rate = 11;  // The serial baud rate, if applicable given by the modem_connection field.
 }
 
 // Parity types

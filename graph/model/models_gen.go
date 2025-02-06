@@ -500,6 +500,7 @@ type ModemInfo struct {
 	CommandTimeout *int32                          `json:"commandTimeout,omitempty"`
 	Tcpip          *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
 	SerialOverIP   *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
+	SerialBaudRate *int32                          `json:"serialBaudRate,omitempty"`
 }
 
 type ModemPool struct {

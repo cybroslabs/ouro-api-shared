@@ -535,6 +535,7 @@ type ComplexityRoot struct {
 		ConnectTimeout func(childComplexity int) int
 		ModemID        func(childComplexity int) int
 		Name           func(childComplexity int) int
+		SerialBaudRate func(childComplexity int) int
 		SerialOverIP   func(childComplexity int) int
 		Tcpip          func(childComplexity int) int
 	}
@@ -2463,6 +2464,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ModemInfo.Name(childComplexity), true
+
+	case "ModemInfo.serialBaudRate":
+		if e.complexity.ModemInfo.SerialBaudRate == nil {
+			break
+		}
+
+		return e.complexity.ModemInfo.SerialBaudRate(childComplexity), true
 
 	case "ModemInfo.serialOverIp":
 		if e.complexity.ModemInfo.SerialOverIP == nil {
@@ -6381,6 +6389,8 @@ func (ec *executionContext) fieldContext_ConnectionTypeModemPool_modem(_ context
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			case "serialOverIp":
 				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
+			case "serialBaudRate":
+				return ec.fieldContext_ModemInfo_serialBaudRate(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -14546,6 +14556,47 @@ func (ec *executionContext) fieldContext_ModemInfo_serialOverIp(_ context.Contex
 	return fc, nil
 }
 
+func (ec *executionContext) _ModemInfo_serialBaudRate(ctx context.Context, field graphql.CollectedField, obj *model.ModemInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ModemInfo_serialBaudRate(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SerialBaudRate, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ModemInfo_serialBaudRate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ModemInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ModemPool_spec(ctx context.Context, field graphql.CollectedField, obj *model.ModemPool) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ModemPool_spec(ctx, field)
 	if err != nil {
@@ -14786,6 +14837,8 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			case "serialOverIp":
 				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
+			case "serialBaudRate":
+				return ec.fieldContext_ModemInfo_serialBaudRate(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -16845,6 +16898,8 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 				return ec.fieldContext_ModemInfo_tcpip(ctx, field)
 			case "serialOverIp":
 				return ec.fieldContext_ModemInfo_serialOverIp(ctx, field)
+			case "serialBaudRate":
+				return ec.fieldContext_ModemInfo_serialBaudRate(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
 		},
@@ -22421,6 +22476,8 @@ func (ec *executionContext) _ModemInfo(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._ModemInfo_tcpip(ctx, field, obj)
 		case "serialOverIp":
 			out.Values[i] = ec._ModemInfo_serialOverIp(ctx, field, obj)
+		case "serialBaudRate":
+			out.Values[i] = ec._ModemInfo_serialBaudRate(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

@@ -888,22 +888,24 @@ type ModemInfo {
   modemId: String
   # The name of the modem.
   name: String
-  # The modem initialization command.
+  # The modem initialization command, e.g. AT&FE0X3
   atInit: String
-  # The modem dial command.
+  # The modem dial command, e.g. ATD.
   atDial: String
-  # The modem hangup command.
+  # The modem hangup command, e.g. ATH.
   atHangup: String
-  # The modem escape command.
+  # The modem escape command, e.g. +++.
   atEscape: String
-  # The modem connect timeout.
+  # The modem connect timeout, if applicable given by the modem_connection field, in miliseconds.
   connectTimeout: Int
-  # The modem command timeout.
+  # The modem command timeout, if applicable given by the modem_connection field, in miliseconds.
   commandTimeout: Int
   # The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
   tcpip: ConnectionTypeDirectTcpIp
   # The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.
   serialOverIp: ConnectionTypeControlledSerial
+  # The serial baud rate, if applicable given by the modem_connection field.
+  serialBaudRate: Int
 }
 
 type ModemPool {

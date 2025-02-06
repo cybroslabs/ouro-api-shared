@@ -6460,7 +6460,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem initialization command.</p></td>
+      <td class="content"><p>The modem initialization command, e.g. AT&amp;FE0X3</p></td>
       
     </tr>
     
@@ -6475,7 +6475,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem dial command.</p></td>
+      <td class="content"><p>The modem dial command, e.g. ATD.</p></td>
       
     </tr>
     
@@ -6490,7 +6490,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem hangup command.</p></td>
+      <td class="content"><p>The modem hangup command, e.g. ATH.</p></td>
       
     </tr>
     
@@ -6505,7 +6505,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem escape command.</p></td>
+      <td class="content"><p>The modem escape command, e.g. +++.</p></td>
       
     </tr>
     
@@ -6520,7 +6520,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The modem connect timeout.</p></td>
+      <td class="content"><p>The modem connect timeout, if applicable given by the modem_connection field, in miliseconds.</p></td>
       
     </tr>
     
@@ -6535,7 +6535,22 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The modem command timeout.</p></td>
+      <td class="content"><p>The modem command timeout, if applicable given by the modem_connection field, in miliseconds.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>11</td>
+      <td>
+        serialBaudRate
+      </td>
+      <td>
+        <code title="uint32">
+          
+          <span>uint32</span>
+        </code>
+      </td>
+      <td class="content"><p>The serial baud rate, if applicable given by the modem_connection field.</p></td>
       
     </tr>
     
