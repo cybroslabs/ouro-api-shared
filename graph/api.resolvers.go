@@ -61,9 +61,9 @@ func (r *queryResolver) CreateCommunicationUnitBus(ctx context.Context) (*model.
 	panic(fmt.Errorf("not implemented: CreateCommunicationUnitBus - createCommunicationUnitBus"))
 }
 
-// ListCommunicationUnitsBuses is the resolver for the listCommunicationUnitsBuses field.
-func (r *queryResolver) ListCommunicationUnitsBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
-	panic(fmt.Errorf("not implemented: ListCommunicationUnitsBuses - listCommunicationUnitsBuses"))
+// ListCommunicationUnitBuses is the resolver for the listCommunicationUnitBuses field.
+func (r *queryResolver) ListCommunicationUnitBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationUnitBuses - listCommunicationUnitBuses"))
 }
 
 // AddCommunicationUnitsToBus is the resolver for the addCommunicationUnitsToBus field.
@@ -180,3 +180,15 @@ func (r *queryResolver) GetDriver(ctx context.Context) (*model.Driver, error) {
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }
+
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//    it when you're done.
+//  - You have helper methods in this file. Move them out to keep these resolver files clean.
+/*
+	func (r *queryResolver) ListCommunicationUnitsBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationUnitsBuses - listCommunicationUnitsBuses"))
+}
+*/

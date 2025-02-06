@@ -1188,7 +1188,7 @@ type Query {
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
   createCommunicationUnitBus: StringValue
-  listCommunicationUnitsBuses: ListOfCommunicationUnitBus
+  listCommunicationUnitBuses: ListOfCommunicationUnitBus
   addCommunicationUnitsToBus: Empty
   removeCommunicationUnitsFromBus: Empty
   createDevice: StringValue

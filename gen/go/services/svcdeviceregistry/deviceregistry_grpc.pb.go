@@ -29,7 +29,7 @@ const (
 	DeviceRegistryService_ListCommunicationUnits_FullMethodName          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
 	DeviceRegistryService_CreateCommunicationUnitBus_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnitBus"
-	DeviceRegistryService_ListCommunicationUnitsBuses_FullMethodName     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitsBuses"
+	DeviceRegistryService_ListCommunicationUnitBuses_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitBuses"
 	DeviceRegistryService_AddCommunicationUnitsToBus_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToBus"
 	DeviceRegistryService_RemoveCommunicationUnitsFromBus_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromBus"
 	DeviceRegistryService_CreateDevice_FullMethodName                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
@@ -77,7 +77,7 @@ type DeviceRegistryServiceClient interface {
 	CreateCommunicationUnitBus(ctx context.Context, in *acquisition.CreateCommunicationUnitBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunitbus
-	ListCommunicationUnitsBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error)
+	ListCommunicationUnitBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error)
 	// @group: Devices
 	// @tag: communicationunitbus
 	AddCommunicationUnitsToBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -190,10 +190,10 @@ func (c *deviceRegistryServiceClient) CreateCommunicationUnitBus(ctx context.Con
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListCommunicationUnitsBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error) {
+func (c *deviceRegistryServiceClient) ListCommunicationUnitBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfCommunicationUnitBus)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitsBuses_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitBuses_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -443,7 +443,7 @@ type DeviceRegistryServiceServer interface {
 	CreateCommunicationUnitBus(context.Context, *acquisition.CreateCommunicationUnitBusRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunitbus
-	ListCommunicationUnitsBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error)
+	ListCommunicationUnitBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error)
 	// @group: Devices
 	// @tag: communicationunitbus
 	AddCommunicationUnitsToBus(context.Context, *acquisition.AddCommunicationUnitsToBusRequest) (*emptypb.Empty, error)
@@ -521,8 +521,8 @@ func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Con
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnitBus(context.Context, *acquisition.CreateCommunicationUnitBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnitBus not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitsBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsBuses not implemented")
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitBuses not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitsToBus(context.Context, *acquisition.AddCommunicationUnitsToBusRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitsToBus not implemented")
@@ -701,20 +701,20 @@ func _DeviceRegistryService_CreateCommunicationUnitBus_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_ListCommunicationUnitsBuses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceRegistryService_ListCommunicationUnitBuses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsBuses(ctx, in)
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitBuses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_ListCommunicationUnitsBuses_FullMethodName,
+		FullMethod: DeviceRegistryService_ListCommunicationUnitBuses_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsBuses(ctx, req.(*common.ListSelector))
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitBuses(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1143,8 +1143,8 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_CreateCommunicationUnitBus_Handler,
 		},
 		{
-			MethodName: "ListCommunicationUnitsBuses",
-			Handler:    _DeviceRegistryService_ListCommunicationUnitsBuses_Handler,
+			MethodName: "ListCommunicationUnitBuses",
+			Handler:    _DeviceRegistryService_ListCommunicationUnitBuses_Handler,
 		},
 		{
 			MethodName: "AddCommunicationUnitsToBus",

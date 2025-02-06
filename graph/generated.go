@@ -609,8 +609,8 @@ type ComplexityRoot struct {
 		GetDriver                       func(childComplexity int) int
 		GetModemPool                    func(childComplexity int) int
 		ListBulks                       func(childComplexity int) int
+		ListCommunicationUnitBuses      func(childComplexity int) int
 		ListCommunicationUnits          func(childComplexity int) int
-		ListCommunicationUnitsBuses     func(childComplexity int) int
 		ListDeviceGroups                func(childComplexity int) int
 		ListDevices                     func(childComplexity int) int
 		ListDrivers                     func(childComplexity int) int
@@ -685,7 +685,7 @@ type QueryResolver interface {
 	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
 	CreateCommunicationUnitBus(ctx context.Context) (*model.StringValue, error)
-	ListCommunicationUnitsBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error)
+	ListCommunicationUnitBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error)
 	AddCommunicationUnitsToBus(ctx context.Context) (*model.Empty, error)
 	RemoveCommunicationUnitsFromBus(ctx context.Context) (*model.Empty, error)
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
@@ -2787,19 +2787,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListBulks(childComplexity), true
 
+	case "Query.listCommunicationUnitBuses":
+		if e.complexity.Query.ListCommunicationUnitBuses == nil {
+			break
+		}
+
+		return e.complexity.Query.ListCommunicationUnitBuses(childComplexity), true
+
 	case "Query.listCommunicationUnits":
 		if e.complexity.Query.ListCommunicationUnits == nil {
 			break
 		}
 
 		return e.complexity.Query.ListCommunicationUnits(childComplexity), true
-
-	case "Query.listCommunicationUnitsBuses":
-		if e.complexity.Query.ListCommunicationUnitsBuses == nil {
-			break
-		}
-
-		return e.complexity.Query.ListCommunicationUnitsBuses(childComplexity), true
 
 	case "Query.listDeviceGroups":
 		if e.complexity.Query.ListDeviceGroups == nil {
@@ -15982,8 +15982,8 @@ func (ec *executionContext) fieldContext_Query_createCommunicationUnitBus(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_listCommunicationUnitsBuses(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_listCommunicationUnitsBuses(ctx, field)
+func (ec *executionContext) _Query_listCommunicationUnitBuses(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listCommunicationUnitBuses(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15996,7 +15996,7 @@ func (ec *executionContext) _Query_listCommunicationUnitsBuses(ctx context.Conte
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().ListCommunicationUnitsBuses(rctx)
+		return ec.resolvers.Query().ListCommunicationUnitBuses(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -16010,7 +16010,7 @@ func (ec *executionContext) _Query_listCommunicationUnitsBuses(ctx context.Conte
 	return ec.marshalOListOfCommunicationUnitBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnitBus(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_listCommunicationUnitsBuses(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_listCommunicationUnitBuses(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -23793,7 +23793,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "listCommunicationUnitsBuses":
+		case "listCommunicationUnitBuses":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -23802,7 +23802,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_listCommunicationUnitsBuses(ctx, field)
+				res = ec._Query_listCommunicationUnitBuses(ctx, field)
 				return res
 			}
 

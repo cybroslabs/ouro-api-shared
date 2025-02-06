@@ -62,9 +62,9 @@ const (
 	// ApiServiceCreateCommunicationUnitBusProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationUnitBus RPC.
 	ApiServiceCreateCommunicationUnitBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnitBus"
-	// ApiServiceListCommunicationUnitsBusesProcedure is the fully-qualified name of the ApiService's
-	// ListCommunicationUnitsBuses RPC.
-	ApiServiceListCommunicationUnitsBusesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitsBuses"
+	// ApiServiceListCommunicationUnitBusesProcedure is the fully-qualified name of the ApiService's
+	// ListCommunicationUnitBuses RPC.
+	ApiServiceListCommunicationUnitBusesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitBuses"
 	// ApiServiceAddCommunicationUnitsToBusProcedure is the fully-qualified name of the ApiService's
 	// AddCommunicationUnitsToBus RPC.
 	ApiServiceAddCommunicationUnitsToBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToBus"
@@ -163,7 +163,7 @@ type ApiServiceClient interface {
 	CreateCommunicationUnitBus(context.Context, *connect.Request[acquisition.CreateCommunicationUnitBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
 	// @tag: communicationunitbus
-	ListCommunicationUnitsBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error)
+	ListCommunicationUnitBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error)
 	// @group: Devices
 	// @tag: communicationunitbus
 	AddCommunicationUnitsToBus(context.Context, *connect.Request[acquisition.AddCommunicationUnitsToBusRequest]) (*connect.Response[emptypb.Empty], error)
@@ -323,10 +323,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnitBus")),
 			connect.WithClientOptions(opts...),
 		),
-		listCommunicationUnitsBuses: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnitBus](
+		listCommunicationUnitBuses: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnitBus](
 			httpClient,
-			baseURL+ApiServiceListCommunicationUnitsBusesProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitsBuses")),
+			baseURL+ApiServiceListCommunicationUnitBusesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitBuses")),
 			connect.WithClientOptions(opts...),
 		),
 		addCommunicationUnitsToBus: connect.NewClient[acquisition.AddCommunicationUnitsToBusRequest, emptypb.Empty](
@@ -476,7 +476,7 @@ type apiServiceClient struct {
 	listCommunicationUnits          *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
 	getCommunicationUnit            *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
 	createCommunicationUnitBus      *connect.Client[acquisition.CreateCommunicationUnitBusRequest, wrapperspb.StringValue]
-	listCommunicationUnitsBuses     *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnitBus]
+	listCommunicationUnitBuses      *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnitBus]
 	addCommunicationUnitsToBus      *connect.Client[acquisition.AddCommunicationUnitsToBusRequest, emptypb.Empty]
 	removeCommunicationUnitsFromBus *connect.Client[acquisition.RemoveCommunicationUnitsFromBusRequest, emptypb.Empty]
 	createDevice                    *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
@@ -552,10 +552,10 @@ func (c *apiServiceClient) CreateCommunicationUnitBus(ctx context.Context, req *
 	return c.createCommunicationUnitBus.CallUnary(ctx, req)
 }
 
-// ListCommunicationUnitsBuses calls
-// io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitsBuses.
-func (c *apiServiceClient) ListCommunicationUnitsBuses(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error) {
-	return c.listCommunicationUnitsBuses.CallUnary(ctx, req)
+// ListCommunicationUnitBuses calls
+// io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitBuses.
+func (c *apiServiceClient) ListCommunicationUnitBuses(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error) {
+	return c.listCommunicationUnitBuses.CallUnary(ctx, req)
 }
 
 // AddCommunicationUnitsToBus calls
@@ -711,7 +711,7 @@ type ApiServiceHandler interface {
 	CreateCommunicationUnitBus(context.Context, *connect.Request[acquisition.CreateCommunicationUnitBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
 	// @tag: communicationunitbus
-	ListCommunicationUnitsBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error)
+	ListCommunicationUnitBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error)
 	// @group: Devices
 	// @tag: communicationunitbus
 	AddCommunicationUnitsToBus(context.Context, *connect.Request[acquisition.AddCommunicationUnitsToBusRequest]) (*connect.Response[emptypb.Empty], error)
@@ -867,10 +867,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnitBus")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceListCommunicationUnitsBusesHandler := connect.NewUnaryHandler(
-		ApiServiceListCommunicationUnitsBusesProcedure,
-		svc.ListCommunicationUnitsBuses,
-		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitsBuses")),
+	apiServiceListCommunicationUnitBusesHandler := connect.NewUnaryHandler(
+		ApiServiceListCommunicationUnitBusesProcedure,
+		svc.ListCommunicationUnitBuses,
+		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitBuses")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceAddCommunicationUnitsToBusHandler := connect.NewUnaryHandler(
@@ -1027,8 +1027,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetCommunicationUnitHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationUnitBusProcedure:
 			apiServiceCreateCommunicationUnitBusHandler.ServeHTTP(w, r)
-		case ApiServiceListCommunicationUnitsBusesProcedure:
-			apiServiceListCommunicationUnitsBusesHandler.ServeHTTP(w, r)
+		case ApiServiceListCommunicationUnitBusesProcedure:
+			apiServiceListCommunicationUnitBusesHandler.ServeHTTP(w, r)
 		case ApiServiceAddCommunicationUnitsToBusProcedure:
 			apiServiceAddCommunicationUnitsToBusHandler.ServeHTTP(w, r)
 		case ApiServiceRemoveCommunicationUnitsFromBusProcedure:
@@ -1122,8 +1122,8 @@ func (UnimplementedApiServiceHandler) CreateCommunicationUnitBus(context.Context
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnitBus is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) ListCommunicationUnitsBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitsBuses is not implemented"))
+func (UnimplementedApiServiceHandler) ListCommunicationUnitBuses(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitBus], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitBuses is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) AddCommunicationUnitsToBus(context.Context, *connect.Request[acquisition.AddCommunicationUnitsToBusRequest]) (*connect.Response[emptypb.Empty], error) {

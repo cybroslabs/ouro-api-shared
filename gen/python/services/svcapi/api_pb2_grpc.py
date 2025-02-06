@@ -70,8 +70,8 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.CreateCommunicationUnitBusRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                 _registered_method=True)
-        self.ListCommunicationUnitsBuses = channel.unary_unary(
-                '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitsBuses',
+        self.ListCommunicationUnitBuses = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitBuses',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfCommunicationUnitBus.FromString,
                 _registered_method=True)
@@ -283,7 +283,7 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListCommunicationUnitsBuses(self, request, context):
+    def ListCommunicationUnitBuses(self, request, context):
         """@group: Devices
         @tag: communicationunitbus
         """
@@ -540,8 +540,8 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_main__pb2.CreateCommunicationUnitBusRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             ),
-            'ListCommunicationUnitsBuses': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListCommunicationUnitsBuses,
+            'ListCommunicationUnitBuses': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCommunicationUnitBuses,
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfCommunicationUnitBus.SerializeToString,
             ),
@@ -938,7 +938,7 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
-    def ListCommunicationUnitsBuses(request,
+    def ListCommunicationUnitBuses(request,
             target,
             options=(),
             channel_credentials=None,
@@ -951,7 +951,7 @@ class ApiService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitsBuses',
+            '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitBuses',
             common_dot_fields__pb2.ListSelector.SerializeToString,
             acquisition_dot_main__pb2.ListOfCommunicationUnitBus.FromString,
             options,
