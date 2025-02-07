@@ -21,6 +21,7 @@ type ActionData struct {
 	Profile          *ProfileValues          `json:"profile,omitempty"`
 	IrregularProfile *IrregularProfileValues `json:"irregularProfile,omitempty"`
 	DeviceInfo       *DeviceInfo             `json:"deviceInfo,omitempty"`
+	Events           *EventRecords           `json:"events,omitempty"`
 }
 
 type ActionFwUpdate struct {
@@ -264,15 +265,15 @@ type DeviceGroupStatus struct {
 }
 
 type DeviceInfo struct {
-	InfoTimestamp            *string  `json:"infoTimestamp,omitempty"`
-	ManufacturerSerialNumber *string  `json:"manufacturerSerialNumber,omitempty"`
-	DeviceSerialNumber       *string  `json:"deviceSerialNumber,omitempty"`
-	FirmwareVersion          *string  `json:"firmwareVersion,omitempty"`
-	ClockDelta               *float64 `json:"clockDelta,omitempty"`
-	DeviceModel              *string  `json:"deviceModel,omitempty"`
-	ErrorRegister            *int32   `json:"errorRegister,omitempty"`
-	RelayStates              []*bool  `json:"relayStates,omitempty"`
-	ConnectionState          *bool    `json:"connectionState,omitempty"`
+	InfoTimestamp            *string   `json:"infoTimestamp,omitempty"`
+	ManufacturerSerialNumber *string   `json:"manufacturerSerialNumber,omitempty"`
+	DeviceSerialNumber       *string   `json:"deviceSerialNumber,omitempty"`
+	FirmwareVersion          *string   `json:"firmwareVersion,omitempty"`
+	ClockDelta               *Duration `json:"clockDelta,omitempty"`
+	DeviceModel              *string   `json:"deviceModel,omitempty"`
+	ErrorRegister            *string   `json:"errorRegister,omitempty"`
+	RelayStates              []*bool   `json:"relayStates,omitempty"`
+	ConnectionState          *bool     `json:"connectionState,omitempty"`
 }
 
 type DeviceSpec struct {
@@ -309,8 +310,25 @@ type DriverTemplates struct {
 	ActionConstraints      *JobActionContraints           `json:"actionConstraints,omitempty"`
 }
 
+type Duration struct {
+	Seconds *int64 `json:"seconds,omitempty"`
+	Nanos   *int32 `json:"nanos,omitempty"`
+}
+
 type Empty struct {
 	Empty *bool `json:"_empty,omitempty"`
+}
+
+type EventRecord struct {
+	Timestamp   *string `json:"timestamp,omitempty"`
+	EventID     *int64  `json:"eventId,omitempty"`
+	EventCode   *int64  `json:"eventCode,omitempty"`
+	EventText   *string `json:"eventText,omitempty"`
+	EventSource *string `json:"eventSource,omitempty"`
+}
+
+type EventRecords struct {
+	Values []*EventRecord `json:"values,omitempty"`
 }
 
 type FieldDescriptor struct {
