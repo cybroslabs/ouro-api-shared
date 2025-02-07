@@ -24,39 +24,39 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ApiService_CreateBulk_FullMethodName                      = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
-	ApiService_ListBulks_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
-	ApiService_GetBulk_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
-	ApiService_CancelBulk_FullMethodName                      = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	ApiService_ListDrivers_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
-	ApiService_GetDriver_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
-	ApiService_CreateCommunicationUnit_FullMethodName         = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
-	ApiService_ListCommunicationUnits_FullMethodName          = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
-	ApiService_GetCommunicationUnit_FullMethodName            = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
-	ApiService_CreateCommunicationUnitBus_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnitBus"
-	ApiService_ListCommunicationUnitBuses_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitBuses"
-	ApiService_AddCommunicationUnitsToBus_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToBus"
-	ApiService_RemoveCommunicationUnitsFromBus_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromBus"
-	ApiService_CreateDevice_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
-	ApiService_ListDevices_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
-	ApiService_GetDevice_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
-	ApiService_SetDeviceCommunicationUnits_FullMethodName     = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
-	ApiService_GetDeviceCommunicationUnits_FullMethodName     = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
-	ApiService_CreateDeviceGroup_FullMethodName               = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
-	ApiService_ListDeviceGroups_FullMethodName                = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
-	ApiService_GetDeviceGroup_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
-	ApiService_AddDevicesToGroup_FullMethodName               = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
-	ApiService_RemoveDevicesFromGroup_FullMethodName          = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
-	ApiService_ListModemPools_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
-	ApiService_GetModemPool_FullMethodName                    = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
-	ApiService_CreateModemPool_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
-	ApiService_UpdateModemPool_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
-	ApiService_DeleteModemPool_FullMethodName                 = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
-	ApiService_CreateModem_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
-	ApiService_UpdateModem_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
-	ApiService_DeleteModem_FullMethodName                     = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
-	ApiService_GetConfig_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
-	ApiService_SetConfig_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	ApiService_CreateBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
+	ApiService_ListBulks_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
+	ApiService_GetBulk_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
+	ApiService_CancelBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
+	ApiService_ListDrivers_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
+	ApiService_GetDriver_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
+	ApiService_CreateCommunicationUnit_FullMethodName                      = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
+	ApiService_ListCommunicationUnits_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
+	ApiService_GetCommunicationUnit_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
+	ApiService_CreateCommunicationBus_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
+	ApiService_ListCommunicationBuses_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
+	ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToCommunicationBus"
+	ApiService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromCommunicationBus"
+	ApiService_CreateDevice_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
+	ApiService_ListDevices_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
+	ApiService_GetDevice_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
+	ApiService_SetDeviceCommunicationUnits_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
+	ApiService_GetDeviceCommunicationUnits_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
+	ApiService_CreateDeviceGroup_FullMethodName                            = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
+	ApiService_ListDeviceGroups_FullMethodName                             = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
+	ApiService_GetDeviceGroup_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
+	ApiService_AddDevicesToGroup_FullMethodName                            = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
+	ApiService_RemoveDevicesFromGroup_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
+	ApiService_ListModemPools_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
+	ApiService_GetModemPool_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
+	ApiService_CreateModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
+	ApiService_UpdateModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
+	ApiService_DeleteModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
+	ApiService_CreateModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
+	ApiService_UpdateModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
+	ApiService_DeleteModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
+	ApiService_GetConfig_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
+	ApiService_SetConfig_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -98,17 +98,17 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	CreateCommunicationUnitBus(ctx context.Context, in *acquisition.CreateCommunicationUnitBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @tag: communicationbus
+	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	ListCommunicationUnitBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error)
+	// @tag: communicationbus
+	ListCommunicationBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationBus, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	AddCommunicationUnitsToBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @tag: communicationbus
+	AddCommunicationUnitsToCommunicationBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	RemoveCommunicationUnitsFromBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @tag: communicationbus
+	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -289,40 +289,40 @@ func (c *apiServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapper
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateCommunicationUnitBus(ctx context.Context, in *acquisition.CreateCommunicationUnitBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *apiServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
-	err := c.cc.Invoke(ctx, ApiService_CreateCommunicationUnitBus_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_CreateCommunicationBus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) ListCommunicationUnitBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitBus, error) {
+func (c *apiServiceClient) ListCommunicationBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationBus, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.ListOfCommunicationUnitBus)
-	err := c.cc.Invoke(ctx, ApiService_ListCommunicationUnitBuses_FullMethodName, in, out, cOpts...)
+	out := new(acquisition.ListOfCommunicationBus)
+	err := c.cc.Invoke(ctx, ApiService_ListCommunicationBuses_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) AddCommunicationUnitsToBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiService_AddCommunicationUnitsToBus_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *apiServiceClient) RemoveCommunicationUnitsFromBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) AddCommunicationUnitsToCommunicationBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiService_RemoveCommunicationUnitsFromBus_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -568,17 +568,17 @@ type ApiServiceServer interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	CreateCommunicationUnitBus(context.Context, *acquisition.CreateCommunicationUnitBusRequest) (*wrapperspb.StringValue, error)
+	// @tag: communicationbus
+	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	ListCommunicationUnitBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error)
+	// @tag: communicationbus
+	ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	AddCommunicationUnitsToBus(context.Context, *acquisition.AddCommunicationUnitsToBusRequest) (*emptypb.Empty, error)
+	// @tag: communicationbus
+	AddCommunicationUnitsToCommunicationBus(context.Context, *acquisition.AddCommunicationUnitsToCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
-	// @tag: communicationunitbus
-	RemoveCommunicationUnitsFromBus(context.Context, *acquisition.RemoveCommunicationUnitsFromBusRequest) (*emptypb.Empty, error)
+	// @tag: communicationbus
+	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -696,17 +696,17 @@ func (UnimplementedApiServiceServer) ListCommunicationUnits(context.Context, *co
 func (UnimplementedApiServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
-func (UnimplementedApiServiceServer) CreateCommunicationUnitBus(context.Context, *acquisition.CreateCommunicationUnitBusRequest) (*wrapperspb.StringValue, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnitBus not implemented")
+func (UnimplementedApiServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
 }
-func (UnimplementedApiServiceServer) ListCommunicationUnitBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitBus, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitBuses not implemented")
+func (UnimplementedApiServiceServer) ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationBuses not implemented")
 }
-func (UnimplementedApiServiceServer) AddCommunicationUnitsToBus(context.Context, *acquisition.AddCommunicationUnitsToBusRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitsToBus not implemented")
+func (UnimplementedApiServiceServer) AddCommunicationUnitsToCommunicationBus(context.Context, *acquisition.AddCommunicationUnitsToCommunicationBusRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitsToCommunicationBus not implemented")
 }
-func (UnimplementedApiServiceServer) RemoveCommunicationUnitsFromBus(context.Context, *acquisition.RemoveCommunicationUnitsFromBusRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveCommunicationUnitsFromBus not implemented")
+func (UnimplementedApiServiceServer) RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveCommunicationUnitsFromCommunicationBus not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
@@ -951,74 +951,74 @@ func _ApiService_GetCommunicationUnit_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_CreateCommunicationUnitBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.CreateCommunicationUnitBusRequest)
+func _ApiService_CreateCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateCommunicationBusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).CreateCommunicationUnitBus(ctx, in)
+		return srv.(ApiServiceServer).CreateCommunicationBus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_CreateCommunicationUnitBus_FullMethodName,
+		FullMethod: ApiService_CreateCommunicationBus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CreateCommunicationUnitBus(ctx, req.(*acquisition.CreateCommunicationUnitBusRequest))
+		return srv.(ApiServiceServer).CreateCommunicationBus(ctx, req.(*acquisition.CreateCommunicationBusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_ListCommunicationUnitBuses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_ListCommunicationBuses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).ListCommunicationUnitBuses(ctx, in)
+		return srv.(ApiServiceServer).ListCommunicationBuses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_ListCommunicationUnitBuses_FullMethodName,
+		FullMethod: ApiService_ListCommunicationBuses_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).ListCommunicationUnitBuses(ctx, req.(*common.ListSelector))
+		return srv.(ApiServiceServer).ListCommunicationBuses(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_AddCommunicationUnitsToBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.AddCommunicationUnitsToBusRequest)
+func _ApiService_AddCommunicationUnitsToCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddCommunicationUnitsToCommunicationBusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).AddCommunicationUnitsToBus(ctx, in)
+		return srv.(ApiServiceServer).AddCommunicationUnitsToCommunicationBus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_AddCommunicationUnitsToBus_FullMethodName,
+		FullMethod: ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).AddCommunicationUnitsToBus(ctx, req.(*acquisition.AddCommunicationUnitsToBusRequest))
+		return srv.(ApiServiceServer).AddCommunicationUnitsToCommunicationBus(ctx, req.(*acquisition.AddCommunicationUnitsToCommunicationBusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_RemoveCommunicationUnitsFromBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.RemoveCommunicationUnitsFromBusRequest)
+func _ApiService_RemoveCommunicationUnitsFromCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).RemoveCommunicationUnitsFromBus(ctx, in)
+		return srv.(ApiServiceServer).RemoveCommunicationUnitsFromCommunicationBus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_RemoveCommunicationUnitsFromBus_FullMethodName,
+		FullMethod: ApiService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).RemoveCommunicationUnitsFromBus(ctx, req.(*acquisition.RemoveCommunicationUnitsFromBusRequest))
+		return srv.(ApiServiceServer).RemoveCommunicationUnitsFromCommunicationBus(ctx, req.(*acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1427,20 +1427,20 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_GetCommunicationUnit_Handler,
 		},
 		{
-			MethodName: "CreateCommunicationUnitBus",
-			Handler:    _ApiService_CreateCommunicationUnitBus_Handler,
+			MethodName: "CreateCommunicationBus",
+			Handler:    _ApiService_CreateCommunicationBus_Handler,
 		},
 		{
-			MethodName: "ListCommunicationUnitBuses",
-			Handler:    _ApiService_ListCommunicationUnitBuses_Handler,
+			MethodName: "ListCommunicationBuses",
+			Handler:    _ApiService_ListCommunicationBuses_Handler,
 		},
 		{
-			MethodName: "AddCommunicationUnitsToBus",
-			Handler:    _ApiService_AddCommunicationUnitsToBus_Handler,
+			MethodName: "AddCommunicationUnitsToCommunicationBus",
+			Handler:    _ApiService_AddCommunicationUnitsToCommunicationBus_Handler,
 		},
 		{
-			MethodName: "RemoveCommunicationUnitsFromBus",
-			Handler:    _ApiService_RemoveCommunicationUnitsFromBus_Handler,
+			MethodName: "RemoveCommunicationUnitsFromCommunicationBus",
+			Handler:    _ApiService_RemoveCommunicationUnitsFromCommunicationBus_Handler,
 		},
 		{
 			MethodName: "CreateDevice",

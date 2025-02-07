@@ -57,17 +57,17 @@ service ApiService {
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
 
     // @group: Devices
-    // @tag: communicationunitbus
-    rpc CreateCommunicationUnitBus(io.clbs.openhes.models.acquisition.CreateCommunicationUnitBusRequest) returns (google.protobuf.StringValue);
+    // @tag: communicationbus
+    rpc CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.StringValue);
     // @group: Devices
-    // @tag: communicationunitbus
-    rpc ListCommunicationUnitBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitBus);
+    // @tag: communicationbus
+    rpc ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus);
     // @group: Devices
-    // @tag: communicationunitbus
-    rpc AddCommunicationUnitsToBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToBusRequest) returns (google.protobuf.Empty);
+    // @tag: communicationbus
+    rpc AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest) returns (google.protobuf.Empty);
     // @group: Devices
-    // @tag: communicationunitbus
-    rpc RemoveCommunicationUnitsFromBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromBusRequest) returns (google.protobuf.Empty);
+    // @tag: communicationbus
+    rpc RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) returns (google.protobuf.Empty);
 
     // @group: Devices
     // @tag: device

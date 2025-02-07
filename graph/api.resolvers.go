@@ -56,24 +56,24 @@ func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.Commun
 	panic(fmt.Errorf("not implemented: GetCommunicationUnit - getCommunicationUnit"))
 }
 
-// CreateCommunicationUnitBus is the resolver for the createCommunicationUnitBus field.
-func (r *queryResolver) CreateCommunicationUnitBus(ctx context.Context) (*model.StringValue, error) {
-	panic(fmt.Errorf("not implemented: CreateCommunicationUnitBus - createCommunicationUnitBus"))
+// CreateCommunicationBus is the resolver for the createCommunicationBus field.
+func (r *queryResolver) CreateCommunicationBus(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateCommunicationBus - createCommunicationBus"))
 }
 
-// ListCommunicationUnitBuses is the resolver for the listCommunicationUnitBuses field.
-func (r *queryResolver) ListCommunicationUnitBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
-	panic(fmt.Errorf("not implemented: ListCommunicationUnitBuses - listCommunicationUnitBuses"))
+// ListCommunicationBuses is the resolver for the listCommunicationBuses field.
+func (r *queryResolver) ListCommunicationBuses(ctx context.Context) (*model.ListOfCommunicationBus, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationBuses - listCommunicationBuses"))
 }
 
-// AddCommunicationUnitsToBus is the resolver for the addCommunicationUnitsToBus field.
-func (r *queryResolver) AddCommunicationUnitsToBus(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: AddCommunicationUnitsToBus - addCommunicationUnitsToBus"))
+// AddCommunicationUnitsToCommunicationBus is the resolver for the addCommunicationUnitsToCommunicationBus field.
+func (r *queryResolver) AddCommunicationUnitsToCommunicationBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddCommunicationUnitsToCommunicationBus - addCommunicationUnitsToCommunicationBus"))
 }
 
-// RemoveCommunicationUnitsFromBus is the resolver for the removeCommunicationUnitsFromBus field.
-func (r *queryResolver) RemoveCommunicationUnitsFromBus(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: RemoveCommunicationUnitsFromBus - removeCommunicationUnitsFromBus"))
+// RemoveCommunicationUnitsFromCommunicationBus is the resolver for the removeCommunicationUnitsFromCommunicationBus field.
+func (r *queryResolver) RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveCommunicationUnitsFromCommunicationBus - removeCommunicationUnitsFromCommunicationBus"))
 }
 
 // CreateDevice is the resolver for the createDevice field.
@@ -188,7 +188,16 @@ type queryResolver struct{ *Resolver }
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
 /*
-	func (r *queryResolver) ListCommunicationUnitsBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
-	panic(fmt.Errorf("not implemented: ListCommunicationUnitsBuses - listCommunicationUnitsBuses"))
+	func (r *queryResolver) CreateCommunicationUnitBus(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateCommunicationUnitBus - createCommunicationUnitBus"))
+}
+func (r *queryResolver) ListCommunicationUnitBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationUnitBuses - listCommunicationUnitBuses"))
+}
+func (r *queryResolver) AddCommunicationUnitsToBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddCommunicationUnitsToBus - addCommunicationUnitsToBus"))
+}
+func (r *queryResolver) RemoveCommunicationUnitsFromBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveCommunicationUnitsFromBus - removeCommunicationUnitsFromBus"))
 }
 */

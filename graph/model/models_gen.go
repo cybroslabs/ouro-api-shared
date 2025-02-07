@@ -84,8 +84,8 @@ type ActionSyncClock struct {
 	Empty *bool `json:"_empty,omitempty"`
 }
 
-type AddCommunicationUnitsToBusRequest struct {
-	BusID               *string   `json:"busId,omitempty"`
+type AddCommunicationUnitsToCommunicationBusRequest struct {
+	CommunicationBusID  *string   `json:"communicationBusId,omitempty"`
 	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
 }
 
@@ -137,6 +137,15 @@ type BulkStatus struct {
 	Jobs   []*BulkJob      `json:"jobs,omitempty"`
 }
 
+type CommunicationBus struct {
+	Status   *CommunicationBusStatus `json:"status,omitempty"`
+	Metadata *MetadataFields         `json:"metadata,omitempty"`
+}
+
+type CommunicationBusStatus struct {
+	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
+}
+
 type CommunicationTemplate struct {
 	Type      *CommunicationType  `json:"type,omitempty"`
 	Datalinks []*DataLinkTemplate `json:"datalinks,omitempty"`
@@ -147,27 +156,18 @@ type CommunicationUnit struct {
 	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
-type CommunicationUnitBus struct {
-	Status   *CommunicationUnitBusStatus `json:"status,omitempty"`
-	Metadata *MetadataFields             `json:"metadata,omitempty"`
-}
-
-type CommunicationUnitBusStatus struct {
-	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
-}
-
 type CommunicationUnitSpec struct {
 	ExternalID     *string         `json:"externalId,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connectionInfo,omitempty"`
 }
 
 type ConnectionInfo struct {
-	Tcpip        *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
-	ModemPool    *ConnectionTypeModemPool        `json:"modemPool,omitempty"`
-	SerialOverIP *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
-	LinkProtocol *DataLinkProtocol               `json:"linkProtocol,omitempty"`
-	BusID        *string                         `json:"busId,omitempty"`
-	Attributes   []*MapFieldValue                `json:"attributes,omitempty"`
+	Tcpip              *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
+	ModemPool          *ConnectionTypeModemPool        `json:"modemPool,omitempty"`
+	SerialOverIP       *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
+	LinkProtocol       *DataLinkProtocol               `json:"linkProtocol,omitempty"`
+	CommunicationBusID *string                         `json:"communicationBusId,omitempty"`
+	Attributes         []*MapFieldValue                `json:"attributes,omitempty"`
 }
 
 type ConnectionTypeControlledSerial struct {
@@ -212,7 +212,7 @@ type CreateBulkRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
-type CreateCommunicationUnitBusRequest struct {
+type CreateCommunicationBusRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
@@ -428,12 +428,12 @@ type ListOfBulk struct {
 	Items []*Bulk `json:"items,omitempty"`
 }
 
-type ListOfCommunicationUnit struct {
-	Items []*CommunicationUnit `json:"items,omitempty"`
+type ListOfCommunicationBus struct {
+	Items []*CommunicationBus `json:"items,omitempty"`
 }
 
-type ListOfCommunicationUnitBus struct {
-	Items []*CommunicationUnitBus `json:"items,omitempty"`
+type ListOfCommunicationUnit struct {
+	Items []*CommunicationUnit `json:"items,omitempty"`
 }
 
 type ListOfDevice struct {
@@ -553,8 +553,8 @@ type ProfileValues struct {
 type Query struct {
 }
 
-type RemoveCommunicationUnitsFromBusRequest struct {
-	BusID               *string   `json:"busId,omitempty"`
+type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
+	CommunicationBusID  *string   `json:"communicationBusId,omitempty"`
 	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
 }
 

@@ -121,8 +121,8 @@ type ComplexityRoot struct {
 		Empty func(childComplexity int) int
 	}
 
-	AddCommunicationUnitsToBusRequest struct {
-		BusID               func(childComplexity int) int
+	AddCommunicationUnitsToCommunicationBusRequest struct {
+		CommunicationBusID  func(childComplexity int) int
 		CommunicationUnitID func(childComplexity int) int
 	}
 
@@ -174,6 +174,15 @@ type ComplexityRoot struct {
 		Status func(childComplexity int) int
 	}
 
+	CommunicationBus struct {
+		Metadata func(childComplexity int) int
+		Status   func(childComplexity int) int
+	}
+
+	CommunicationBusStatus struct {
+		CommunicationUnitID func(childComplexity int) int
+	}
+
 	CommunicationTemplate struct {
 		Datalinks func(childComplexity int) int
 		Type      func(childComplexity int) int
@@ -184,27 +193,18 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
-	CommunicationUnitBus struct {
-		Metadata func(childComplexity int) int
-		Status   func(childComplexity int) int
-	}
-
-	CommunicationUnitBusStatus struct {
-		CommunicationUnitID func(childComplexity int) int
-	}
-
 	CommunicationUnitSpec struct {
 		ConnectionInfo func(childComplexity int) int
 		ExternalID     func(childComplexity int) int
 	}
 
 	ConnectionInfo struct {
-		Attributes   func(childComplexity int) int
-		BusID        func(childComplexity int) int
-		LinkProtocol func(childComplexity int) int
-		ModemPool    func(childComplexity int) int
-		SerialOverIP func(childComplexity int) int
-		Tcpip        func(childComplexity int) int
+		Attributes         func(childComplexity int) int
+		CommunicationBusID func(childComplexity int) int
+		LinkProtocol       func(childComplexity int) int
+		ModemPool          func(childComplexity int) int
+		SerialOverIP       func(childComplexity int) int
+		Tcpip              func(childComplexity int) int
 	}
 
 	ConnectionTypeControlledSerial struct {
@@ -249,7 +249,7 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
-	CreateCommunicationUnitBusRequest struct {
+	CreateCommunicationBusRequest struct {
 		Metadata func(childComplexity int) int
 	}
 
@@ -465,11 +465,11 @@ type ComplexityRoot struct {
 		Items func(childComplexity int) int
 	}
 
-	ListOfCommunicationUnit struct {
+	ListOfCommunicationBus struct {
 		Items func(childComplexity int) int
 	}
 
-	ListOfCommunicationUnitBus struct {
+	ListOfCommunicationUnit struct {
 		Items func(childComplexity int) int
 	}
 
@@ -588,43 +588,43 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
-		AddCommunicationUnitsToBus      func(childComplexity int) int
-		AddDevicesToGroup               func(childComplexity int) int
-		CancelBulk                      func(childComplexity int) int
-		CreateBulk                      func(childComplexity int) int
-		CreateCommunicationUnit         func(childComplexity int) int
-		CreateCommunicationUnitBus      func(childComplexity int) int
-		CreateDevice                    func(childComplexity int) int
-		CreateDeviceGroup               func(childComplexity int) int
-		CreateModem                     func(childComplexity int) int
-		CreateModemPool                 func(childComplexity int) int
-		DeleteModem                     func(childComplexity int) int
-		DeleteModemPool                 func(childComplexity int) int
-		GetBulk                         func(childComplexity int) int
-		GetCommunicationUnit            func(childComplexity int) int
-		GetConfig                       func(childComplexity int) int
-		GetDevice                       func(childComplexity int) int
-		GetDeviceCommunicationUnits     func(childComplexity int) int
-		GetDeviceGroup                  func(childComplexity int) int
-		GetDriver                       func(childComplexity int) int
-		GetModemPool                    func(childComplexity int) int
-		ListBulks                       func(childComplexity int) int
-		ListCommunicationUnitBuses      func(childComplexity int) int
-		ListCommunicationUnits          func(childComplexity int) int
-		ListDeviceGroups                func(childComplexity int) int
-		ListDevices                     func(childComplexity int) int
-		ListDrivers                     func(childComplexity int) int
-		ListModemPools                  func(childComplexity int) int
-		RemoveCommunicationUnitsFromBus func(childComplexity int) int
-		RemoveDevicesFromGroup          func(childComplexity int) int
-		SetConfig                       func(childComplexity int) int
-		SetDeviceCommunicationUnits     func(childComplexity int) int
-		UpdateModem                     func(childComplexity int) int
-		UpdateModemPool                 func(childComplexity int) int
+		AddCommunicationUnitsToCommunicationBus      func(childComplexity int) int
+		AddDevicesToGroup                            func(childComplexity int) int
+		CancelBulk                                   func(childComplexity int) int
+		CreateBulk                                   func(childComplexity int) int
+		CreateCommunicationBus                       func(childComplexity int) int
+		CreateCommunicationUnit                      func(childComplexity int) int
+		CreateDevice                                 func(childComplexity int) int
+		CreateDeviceGroup                            func(childComplexity int) int
+		CreateModem                                  func(childComplexity int) int
+		CreateModemPool                              func(childComplexity int) int
+		DeleteModem                                  func(childComplexity int) int
+		DeleteModemPool                              func(childComplexity int) int
+		GetBulk                                      func(childComplexity int) int
+		GetCommunicationUnit                         func(childComplexity int) int
+		GetConfig                                    func(childComplexity int) int
+		GetDevice                                    func(childComplexity int) int
+		GetDeviceCommunicationUnits                  func(childComplexity int) int
+		GetDeviceGroup                               func(childComplexity int) int
+		GetDriver                                    func(childComplexity int) int
+		GetModemPool                                 func(childComplexity int) int
+		ListBulks                                    func(childComplexity int) int
+		ListCommunicationBuses                       func(childComplexity int) int
+		ListCommunicationUnits                       func(childComplexity int) int
+		ListDeviceGroups                             func(childComplexity int) int
+		ListDevices                                  func(childComplexity int) int
+		ListDrivers                                  func(childComplexity int) int
+		ListModemPools                               func(childComplexity int) int
+		RemoveCommunicationUnitsFromCommunicationBus func(childComplexity int) int
+		RemoveDevicesFromGroup                       func(childComplexity int) int
+		SetConfig                                    func(childComplexity int) int
+		SetDeviceCommunicationUnits                  func(childComplexity int) int
+		UpdateModem                                  func(childComplexity int) int
+		UpdateModemPool                              func(childComplexity int) int
 	}
 
-	RemoveCommunicationUnitsFromBusRequest struct {
-		BusID               func(childComplexity int) int
+	RemoveCommunicationUnitsFromCommunicationBusRequest struct {
+		CommunicationBusID  func(childComplexity int) int
 		CommunicationUnitID func(childComplexity int) int
 	}
 
@@ -684,10 +684,10 @@ type QueryResolver interface {
 	CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error)
 	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
-	CreateCommunicationUnitBus(ctx context.Context) (*model.StringValue, error)
-	ListCommunicationUnitBuses(ctx context.Context) (*model.ListOfCommunicationUnitBus, error)
-	AddCommunicationUnitsToBus(ctx context.Context) (*model.Empty, error)
-	RemoveCommunicationUnitsFromBus(ctx context.Context) (*model.Empty, error)
+	CreateCommunicationBus(ctx context.Context) (*model.StringValue, error)
+	ListCommunicationBuses(ctx context.Context) (*model.ListOfCommunicationBus, error)
+	AddCommunicationUnitsToCommunicationBus(ctx context.Context) (*model.Empty, error)
+	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context) (*model.Empty, error)
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
@@ -911,19 +911,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionSyncClock.Empty(childComplexity), true
 
-	case "AddCommunicationUnitsToBusRequest.busId":
-		if e.complexity.AddCommunicationUnitsToBusRequest.BusID == nil {
+	case "AddCommunicationUnitsToCommunicationBusRequest.communicationBusId":
+		if e.complexity.AddCommunicationUnitsToCommunicationBusRequest.CommunicationBusID == nil {
 			break
 		}
 
-		return e.complexity.AddCommunicationUnitsToBusRequest.BusID(childComplexity), true
+		return e.complexity.AddCommunicationUnitsToCommunicationBusRequest.CommunicationBusID(childComplexity), true
 
-	case "AddCommunicationUnitsToBusRequest.communicationUnitId":
-		if e.complexity.AddCommunicationUnitsToBusRequest.CommunicationUnitID == nil {
+	case "AddCommunicationUnitsToCommunicationBusRequest.communicationUnitId":
+		if e.complexity.AddCommunicationUnitsToCommunicationBusRequest.CommunicationUnitID == nil {
 			break
 		}
 
-		return e.complexity.AddCommunicationUnitsToBusRequest.CommunicationUnitID(childComplexity), true
+		return e.complexity.AddCommunicationUnitsToCommunicationBusRequest.CommunicationUnitID(childComplexity), true
 
 	case "AddDevicesToGroupRequest.deviceId":
 		if e.complexity.AddDevicesToGroupRequest.DeviceID == nil {
@@ -1093,6 +1093,27 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkStatus.Status(childComplexity), true
 
+	case "CommunicationBus.metadata":
+		if e.complexity.CommunicationBus.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CommunicationBus.Metadata(childComplexity), true
+
+	case "CommunicationBus.status":
+		if e.complexity.CommunicationBus.Status == nil {
+			break
+		}
+
+		return e.complexity.CommunicationBus.Status(childComplexity), true
+
+	case "CommunicationBusStatus.communicationUnitId":
+		if e.complexity.CommunicationBusStatus.CommunicationUnitID == nil {
+			break
+		}
+
+		return e.complexity.CommunicationBusStatus.CommunicationUnitID(childComplexity), true
+
 	case "CommunicationTemplate.datalinks":
 		if e.complexity.CommunicationTemplate.Datalinks == nil {
 			break
@@ -1121,27 +1142,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CommunicationUnit.Spec(childComplexity), true
 
-	case "CommunicationUnitBus.metadata":
-		if e.complexity.CommunicationUnitBus.Metadata == nil {
-			break
-		}
-
-		return e.complexity.CommunicationUnitBus.Metadata(childComplexity), true
-
-	case "CommunicationUnitBus.status":
-		if e.complexity.CommunicationUnitBus.Status == nil {
-			break
-		}
-
-		return e.complexity.CommunicationUnitBus.Status(childComplexity), true
-
-	case "CommunicationUnitBusStatus.communicationUnitId":
-		if e.complexity.CommunicationUnitBusStatus.CommunicationUnitID == nil {
-			break
-		}
-
-		return e.complexity.CommunicationUnitBusStatus.CommunicationUnitID(childComplexity), true
-
 	case "CommunicationUnitSpec.connectionInfo":
 		if e.complexity.CommunicationUnitSpec.ConnectionInfo == nil {
 			break
@@ -1163,12 +1163,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConnectionInfo.Attributes(childComplexity), true
 
-	case "ConnectionInfo.busId":
-		if e.complexity.ConnectionInfo.BusID == nil {
+	case "ConnectionInfo.communicationBusId":
+		if e.complexity.ConnectionInfo.CommunicationBusID == nil {
 			break
 		}
 
-		return e.complexity.ConnectionInfo.BusID(childComplexity), true
+		return e.complexity.ConnectionInfo.CommunicationBusID(childComplexity), true
 
 	case "ConnectionInfo.linkProtocol":
 		if e.complexity.ConnectionInfo.LinkProtocol == nil {
@@ -1345,12 +1345,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CreateBulkRequest.Spec(childComplexity), true
 
-	case "CreateCommunicationUnitBusRequest.metadata":
-		if e.complexity.CreateCommunicationUnitBusRequest.Metadata == nil {
+	case "CreateCommunicationBusRequest.metadata":
+		if e.complexity.CreateCommunicationBusRequest.Metadata == nil {
 			break
 		}
 
-		return e.complexity.CreateCommunicationUnitBusRequest.Metadata(childComplexity), true
+		return e.complexity.CreateCommunicationBusRequest.Metadata(childComplexity), true
 
 	case "CreateCommunicationUnitRequest.metadata":
 		if e.complexity.CreateCommunicationUnitRequest.Metadata == nil {
@@ -2227,19 +2227,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfBulk.Items(childComplexity), true
 
+	case "ListOfCommunicationBus.items":
+		if e.complexity.ListOfCommunicationBus.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfCommunicationBus.Items(childComplexity), true
+
 	case "ListOfCommunicationUnit.items":
 		if e.complexity.ListOfCommunicationUnit.Items == nil {
 			break
 		}
 
 		return e.complexity.ListOfCommunicationUnit.Items(childComplexity), true
-
-	case "ListOfCommunicationUnitBus.items":
-		if e.complexity.ListOfCommunicationUnitBus.Items == nil {
-			break
-		}
-
-		return e.complexity.ListOfCommunicationUnitBus.Items(childComplexity), true
 
 	case "ListOfDevice.items":
 		if e.complexity.ListOfDevice.Items == nil {
@@ -2640,12 +2640,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ProfileValues.Unit(childComplexity), true
 
-	case "Query.addCommunicationUnitsToBus":
-		if e.complexity.Query.AddCommunicationUnitsToBus == nil {
+	case "Query.addCommunicationUnitsToCommunicationBus":
+		if e.complexity.Query.AddCommunicationUnitsToCommunicationBus == nil {
 			break
 		}
 
-		return e.complexity.Query.AddCommunicationUnitsToBus(childComplexity), true
+		return e.complexity.Query.AddCommunicationUnitsToCommunicationBus(childComplexity), true
 
 	case "Query.addDevicesToGroup":
 		if e.complexity.Query.AddDevicesToGroup == nil {
@@ -2668,19 +2668,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.CreateBulk(childComplexity), true
 
+	case "Query.createCommunicationBus":
+		if e.complexity.Query.CreateCommunicationBus == nil {
+			break
+		}
+
+		return e.complexity.Query.CreateCommunicationBus(childComplexity), true
+
 	case "Query.createCommunicationUnit":
 		if e.complexity.Query.CreateCommunicationUnit == nil {
 			break
 		}
 
 		return e.complexity.Query.CreateCommunicationUnit(childComplexity), true
-
-	case "Query.createCommunicationUnitBus":
-		if e.complexity.Query.CreateCommunicationUnitBus == nil {
-			break
-		}
-
-		return e.complexity.Query.CreateCommunicationUnitBus(childComplexity), true
 
 	case "Query.createDevice":
 		if e.complexity.Query.CreateDevice == nil {
@@ -2787,12 +2787,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListBulks(childComplexity), true
 
-	case "Query.listCommunicationUnitBuses":
-		if e.complexity.Query.ListCommunicationUnitBuses == nil {
+	case "Query.listCommunicationBuses":
+		if e.complexity.Query.ListCommunicationBuses == nil {
 			break
 		}
 
-		return e.complexity.Query.ListCommunicationUnitBuses(childComplexity), true
+		return e.complexity.Query.ListCommunicationBuses(childComplexity), true
 
 	case "Query.listCommunicationUnits":
 		if e.complexity.Query.ListCommunicationUnits == nil {
@@ -2829,12 +2829,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListModemPools(childComplexity), true
 
-	case "Query.removeCommunicationUnitsFromBus":
-		if e.complexity.Query.RemoveCommunicationUnitsFromBus == nil {
+	case "Query.removeCommunicationUnitsFromCommunicationBus":
+		if e.complexity.Query.RemoveCommunicationUnitsFromCommunicationBus == nil {
 			break
 		}
 
-		return e.complexity.Query.RemoveCommunicationUnitsFromBus(childComplexity), true
+		return e.complexity.Query.RemoveCommunicationUnitsFromCommunicationBus(childComplexity), true
 
 	case "Query.removeDevicesFromGroup":
 		if e.complexity.Query.RemoveDevicesFromGroup == nil {
@@ -2871,19 +2871,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.UpdateModemPool(childComplexity), true
 
-	case "RemoveCommunicationUnitsFromBusRequest.busId":
-		if e.complexity.RemoveCommunicationUnitsFromBusRequest.BusID == nil {
+	case "RemoveCommunicationUnitsFromCommunicationBusRequest.communicationBusId":
+		if e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationBusID == nil {
 			break
 		}
 
-		return e.complexity.RemoveCommunicationUnitsFromBusRequest.BusID(childComplexity), true
+		return e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationBusID(childComplexity), true
 
-	case "RemoveCommunicationUnitsFromBusRequest.communicationUnitId":
-		if e.complexity.RemoveCommunicationUnitsFromBusRequest.CommunicationUnitID == nil {
+	case "RemoveCommunicationUnitsFromCommunicationBusRequest.communicationUnitId":
+		if e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationUnitID == nil {
 			break
 		}
 
-		return e.complexity.RemoveCommunicationUnitsFromBusRequest.CommunicationUnitID(childComplexity), true
+		return e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationUnitID(childComplexity), true
 
 	case "RemoveDevicesFromGroupRequest.deviceId":
 		if e.complexity.RemoveDevicesFromGroupRequest.DeviceID == nil {
@@ -4387,8 +4387,8 @@ func (ec *executionContext) fieldContext_ActionSyncClock__empty(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _AddCommunicationUnitsToBusRequest_busId(ctx context.Context, field graphql.CollectedField, obj *model.AddCommunicationUnitsToBusRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_AddCommunicationUnitsToBusRequest_busId(ctx, field)
+func (ec *executionContext) _AddCommunicationUnitsToCommunicationBusRequest_communicationBusId(ctx context.Context, field graphql.CollectedField, obj *model.AddCommunicationUnitsToCommunicationBusRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddCommunicationUnitsToCommunicationBusRequest_communicationBusId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4401,7 +4401,7 @@ func (ec *executionContext) _AddCommunicationUnitsToBusRequest_busId(ctx context
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.BusID, nil
+		return obj.CommunicationBusID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -4415,9 +4415,9 @@ func (ec *executionContext) _AddCommunicationUnitsToBusRequest_busId(ctx context
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_AddCommunicationUnitsToBusRequest_busId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_AddCommunicationUnitsToCommunicationBusRequest_communicationBusId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "AddCommunicationUnitsToBusRequest",
+		Object:     "AddCommunicationUnitsToCommunicationBusRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -4428,8 +4428,8 @@ func (ec *executionContext) fieldContext_AddCommunicationUnitsToBusRequest_busId
 	return fc, nil
 }
 
-func (ec *executionContext) _AddCommunicationUnitsToBusRequest_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.AddCommunicationUnitsToBusRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_AddCommunicationUnitsToBusRequest_communicationUnitId(ctx, field)
+func (ec *executionContext) _AddCommunicationUnitsToCommunicationBusRequest_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.AddCommunicationUnitsToCommunicationBusRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddCommunicationUnitsToCommunicationBusRequest_communicationUnitId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4456,9 +4456,9 @@ func (ec *executionContext) _AddCommunicationUnitsToBusRequest_communicationUnit
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_AddCommunicationUnitsToBusRequest_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_AddCommunicationUnitsToCommunicationBusRequest_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "AddCommunicationUnitsToBusRequest",
+		Object:     "AddCommunicationUnitsToCommunicationBusRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -5625,6 +5625,145 @@ func (ec *executionContext) fieldContext_BulkStatus_jobs(_ context.Context, fiel
 	return fc, nil
 }
 
+func (ec *executionContext) _CommunicationBus_status(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationBus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationBus_status(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Status, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.CommunicationBusStatus)
+	fc.Result = res
+	return ec.marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBusStatus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationBus_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationBus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "communicationUnitId":
+				return ec.fieldContext_CommunicationBusStatus_communicationUnitId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type CommunicationBusStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationBus_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationBus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationBus_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationBus_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationBus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationBusStatus_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationBusStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationBusStatus_communicationUnitId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommunicationUnitID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationBusStatus_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationBusStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _CommunicationTemplate_type(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationTemplate) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_CommunicationTemplate_type(ctx, field)
 	if err != nil {
@@ -5815,145 +5954,6 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _CommunicationUnitBus_status(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitBus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitBus_status(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Status, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.CommunicationUnitBusStatus)
-	fc.Result = res
-	return ec.marshalOCommunicationUnitBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBusStatus(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_CommunicationUnitBus_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "CommunicationUnitBus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "communicationUnitId":
-				return ec.fieldContext_CommunicationUnitBusStatus_communicationUnitId(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnitBusStatus", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _CommunicationUnitBus_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitBus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitBus_metadata(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Metadata, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.MetadataFields)
-	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_CommunicationUnitBus_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "CommunicationUnitBus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "id":
-				return ec.fieldContext_MetadataFields_id(ctx, field)
-			case "generation":
-				return ec.fieldContext_MetadataFields_generation(ctx, field)
-			case "fields":
-				return ec.fieldContext_MetadataFields_fields(ctx, field)
-			case "managedFields":
-				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
-			case "name":
-				return ec.fieldContext_MetadataFields_name(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _CommunicationUnitBusStatus_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitBusStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CommunicationUnitBusStatus_communicationUnitId(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.CommunicationUnitID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*string)
-	fc.Result = res
-	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_CommunicationUnitBusStatus_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "CommunicationUnitBusStatus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _CommunicationUnitSpec_externalId(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitSpec) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_CommunicationUnitSpec_externalId(ctx, field)
 	if err != nil {
@@ -6039,8 +6039,8 @@ func (ec *executionContext) fieldContext_CommunicationUnitSpec_connectionInfo(_ 
 				return ec.fieldContext_ConnectionInfo_serialOverIp(ctx, field)
 			case "linkProtocol":
 				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
-			case "busId":
-				return ec.fieldContext_ConnectionInfo_busId(ctx, field)
+			case "communicationBusId":
+				return ec.fieldContext_ConnectionInfo_communicationBusId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
 			}
@@ -6238,8 +6238,8 @@ func (ec *executionContext) fieldContext_ConnectionInfo_linkProtocol(_ context.C
 	return fc, nil
 }
 
-func (ec *executionContext) _ConnectionInfo_busId(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ConnectionInfo_busId(ctx, field)
+func (ec *executionContext) _ConnectionInfo_communicationBusId(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_communicationBusId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6252,7 +6252,7 @@ func (ec *executionContext) _ConnectionInfo_busId(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.BusID, nil
+		return obj.CommunicationBusID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6266,7 +6266,7 @@ func (ec *executionContext) _ConnectionInfo_busId(ctx context.Context, field gra
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ConnectionInfo_busId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ConnectionInfo_communicationBusId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ConnectionInfo",
 		Field:      field,
@@ -7267,8 +7267,8 @@ func (ec *executionContext) fieldContext_CreateBulkRequest_metadata(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _CreateCommunicationUnitBusRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateCommunicationUnitBusRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_CreateCommunicationUnitBusRequest_metadata(ctx, field)
+func (ec *executionContext) _CreateCommunicationBusRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateCommunicationBusRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateCommunicationBusRequest_metadata(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -7295,9 +7295,9 @@ func (ec *executionContext) _CreateCommunicationUnitBusRequest_metadata(ctx cont
 	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_CreateCommunicationUnitBusRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_CreateCommunicationBusRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "CreateCommunicationUnitBusRequest",
+		Object:     "CreateCommunicationBusRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -12089,8 +12089,8 @@ func (ec *executionContext) fieldContext_JobDevice_connectionInfo(_ context.Cont
 				return ec.fieldContext_ConnectionInfo_serialOverIp(ctx, field)
 			case "linkProtocol":
 				return ec.fieldContext_ConnectionInfo_linkProtocol(ctx, field)
-			case "busId":
-				return ec.fieldContext_ConnectionInfo_busId(ctx, field)
+			case "communicationBusId":
+				return ec.fieldContext_ConnectionInfo_communicationBusId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
 			}
@@ -12915,6 +12915,53 @@ func (ec *executionContext) fieldContext_ListOfBulk_items(_ context.Context, fie
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfCommunicationBus_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationBus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationBus_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.CommunicationBus)
+	fc.Result = res
+	return ec.marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfCommunicationBus_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfCommunicationBus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_CommunicationBus_status(ctx, field)
+			case "metadata":
+				return ec.fieldContext_CommunicationBus_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type CommunicationBus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfCommunicationUnit_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnit) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfCommunicationUnit_items(ctx, field)
 	if err != nil {
@@ -12957,53 +13004,6 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnit_items(_ context
 				return ec.fieldContext_CommunicationUnit_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnit", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _ListOfCommunicationUnitBus_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitBus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfCommunicationUnitBus_items(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Items, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.CommunicationUnitBus)
-	fc.Result = res
-	return ec.marshalOCommunicationUnitBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBus(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ListOfCommunicationUnitBus_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ListOfCommunicationUnitBus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "status":
-				return ec.fieldContext_CommunicationUnitBus_status(ctx, field)
-			case "metadata":
-				return ec.fieldContext_CommunicationUnitBus_metadata(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnitBus", field.Name)
 		},
 	}
 	return fc, nil
@@ -15937,8 +15937,8 @@ func (ec *executionContext) fieldContext_Query_getCommunicationUnit(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_createCommunicationUnitBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_createCommunicationUnitBus(ctx, field)
+func (ec *executionContext) _Query_createCommunicationBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createCommunicationBus(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15951,7 +15951,7 @@ func (ec *executionContext) _Query_createCommunicationUnitBus(ctx context.Contex
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().CreateCommunicationUnitBus(rctx)
+		return ec.resolvers.Query().CreateCommunicationBus(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -15965,7 +15965,7 @@ func (ec *executionContext) _Query_createCommunicationUnitBus(ctx context.Contex
 	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_createCommunicationUnitBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_createCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -15982,8 +15982,8 @@ func (ec *executionContext) fieldContext_Query_createCommunicationUnitBus(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_listCommunicationUnitBuses(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_listCommunicationUnitBuses(ctx, field)
+func (ec *executionContext) _Query_listCommunicationBuses(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listCommunicationBuses(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -15996,7 +15996,7 @@ func (ec *executionContext) _Query_listCommunicationUnitBuses(ctx context.Contex
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().ListCommunicationUnitBuses(rctx)
+		return ec.resolvers.Query().ListCommunicationBuses(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -16005,12 +16005,12 @@ func (ec *executionContext) _Query_listCommunicationUnitBuses(ctx context.Contex
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ListOfCommunicationUnitBus)
+	res := resTmp.(*model.ListOfCommunicationBus)
 	fc.Result = res
-	return ec.marshalOListOfCommunicationUnitBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnitBus(ctx, field.Selections, res)
+	return ec.marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationBus(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_listCommunicationUnitBuses(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_listCommunicationBuses(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -16019,16 +16019,16 @@ func (ec *executionContext) fieldContext_Query_listCommunicationUnitBuses(_ cont
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "items":
-				return ec.fieldContext_ListOfCommunicationUnitBus_items(ctx, field)
+				return ec.fieldContext_ListOfCommunicationBus_items(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnitBus", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationBus", field.Name)
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_addCommunicationUnitsToBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_addCommunicationUnitsToBus(ctx, field)
+func (ec *executionContext) _Query_addCommunicationUnitsToCommunicationBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_addCommunicationUnitsToCommunicationBus(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -16041,7 +16041,7 @@ func (ec *executionContext) _Query_addCommunicationUnitsToBus(ctx context.Contex
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().AddCommunicationUnitsToBus(rctx)
+		return ec.resolvers.Query().AddCommunicationUnitsToCommunicationBus(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -16055,7 +16055,7 @@ func (ec *executionContext) _Query_addCommunicationUnitsToBus(ctx context.Contex
 	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_addCommunicationUnitsToBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_addCommunicationUnitsToCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -16072,8 +16072,8 @@ func (ec *executionContext) fieldContext_Query_addCommunicationUnitsToBus(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_removeCommunicationUnitsFromBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_removeCommunicationUnitsFromBus(ctx, field)
+func (ec *executionContext) _Query_removeCommunicationUnitsFromCommunicationBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_removeCommunicationUnitsFromCommunicationBus(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -16086,7 +16086,7 @@ func (ec *executionContext) _Query_removeCommunicationUnitsFromBus(ctx context.C
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().RemoveCommunicationUnitsFromBus(rctx)
+		return ec.resolvers.Query().RemoveCommunicationUnitsFromCommunicationBus(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -16100,7 +16100,7 @@ func (ec *executionContext) _Query_removeCommunicationUnitsFromBus(ctx context.C
 	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_removeCommunicationUnitsFromBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_removeCommunicationUnitsFromCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -17160,8 +17160,8 @@ func (ec *executionContext) fieldContext_Query___schema(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest_busId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveCommunicationUnitsFromBusRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_RemoveCommunicationUnitsFromBusRequest_busId(ctx, field)
+func (ec *executionContext) _RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveCommunicationUnitsFromCommunicationBusRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -17174,7 +17174,7 @@ func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest_busId(ctx co
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.BusID, nil
+		return obj.CommunicationBusID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -17188,9 +17188,9 @@ func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest_busId(ctx co
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromBusRequest_busId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "RemoveCommunicationUnitsFromBusRequest",
+		Object:     "RemoveCommunicationUnitsFromCommunicationBusRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -17201,8 +17201,8 @@ func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromBusRequest_
 	return fc, nil
 }
 
-func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveCommunicationUnitsFromBusRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_RemoveCommunicationUnitsFromBusRequest_communicationUnitId(ctx, field)
+func (ec *executionContext) _RemoveCommunicationUnitsFromCommunicationBusRequest_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveCommunicationUnitsFromCommunicationBusRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveCommunicationUnitsFromCommunicationBusRequest_communicationUnitId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -17229,9 +17229,9 @@ func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest_communicatio
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromBusRequest_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromCommunicationBusRequest_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "RemoveCommunicationUnitsFromBusRequest",
+		Object:     "RemoveCommunicationUnitsFromCommunicationBusRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -20608,21 +20608,21 @@ func (ec *executionContext) _ActionSyncClock(ctx context.Context, sel ast.Select
 	return out
 }
 
-var addCommunicationUnitsToBusRequestImplementors = []string{"AddCommunicationUnitsToBusRequest"}
+var addCommunicationUnitsToCommunicationBusRequestImplementors = []string{"AddCommunicationUnitsToCommunicationBusRequest"}
 
-func (ec *executionContext) _AddCommunicationUnitsToBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.AddCommunicationUnitsToBusRequest) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, addCommunicationUnitsToBusRequestImplementors)
+func (ec *executionContext) _AddCommunicationUnitsToCommunicationBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.AddCommunicationUnitsToCommunicationBusRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, addCommunicationUnitsToCommunicationBusRequestImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("AddCommunicationUnitsToBusRequest")
-		case "busId":
-			out.Values[i] = ec._AddCommunicationUnitsToBusRequest_busId(ctx, field, obj)
+			out.Values[i] = graphql.MarshalString("AddCommunicationUnitsToCommunicationBusRequest")
+		case "communicationBusId":
+			out.Values[i] = ec._AddCommunicationUnitsToCommunicationBusRequest_communicationBusId(ctx, field, obj)
 		case "communicationUnitId":
-			out.Values[i] = ec._AddCommunicationUnitsToBusRequest_communicationUnitId(ctx, field, obj)
+			out.Values[i] = ec._AddCommunicationUnitsToCommunicationBusRequest_communicationUnitId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -20966,6 +20966,80 @@ func (ec *executionContext) _BulkStatus(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
+var communicationBusImplementors = []string{"CommunicationBus"}
+
+func (ec *executionContext) _CommunicationBus(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationBus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, communicationBusImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CommunicationBus")
+		case "status":
+			out.Values[i] = ec._CommunicationBus_status(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CommunicationBus_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var communicationBusStatusImplementors = []string{"CommunicationBusStatus"}
+
+func (ec *executionContext) _CommunicationBusStatus(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationBusStatus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, communicationBusStatusImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CommunicationBusStatus")
+		case "communicationUnitId":
+			out.Values[i] = ec._CommunicationBusStatus_communicationUnitId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var communicationTemplateImplementors = []string{"CommunicationTemplate"}
 
 func (ec *executionContext) _CommunicationTemplate(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationTemplate) graphql.Marshaler {
@@ -21019,80 +21093,6 @@ func (ec *executionContext) _CommunicationUnit(ctx context.Context, sel ast.Sele
 			out.Values[i] = ec._CommunicationUnit_spec(ctx, field, obj)
 		case "metadata":
 			out.Values[i] = ec._CommunicationUnit_metadata(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var communicationUnitBusImplementors = []string{"CommunicationUnitBus"}
-
-func (ec *executionContext) _CommunicationUnitBus(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationUnitBus) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, communicationUnitBusImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("CommunicationUnitBus")
-		case "status":
-			out.Values[i] = ec._CommunicationUnitBus_status(ctx, field, obj)
-		case "metadata":
-			out.Values[i] = ec._CommunicationUnitBus_metadata(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var communicationUnitBusStatusImplementors = []string{"CommunicationUnitBusStatus"}
-
-func (ec *executionContext) _CommunicationUnitBusStatus(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationUnitBusStatus) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, communicationUnitBusStatusImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("CommunicationUnitBusStatus")
-		case "communicationUnitId":
-			out.Values[i] = ec._CommunicationUnitBusStatus_communicationUnitId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -21173,8 +21173,8 @@ func (ec *executionContext) _ConnectionInfo(ctx context.Context, sel ast.Selecti
 			out.Values[i] = ec._ConnectionInfo_serialOverIp(ctx, field, obj)
 		case "linkProtocol":
 			out.Values[i] = ec._ConnectionInfo_linkProtocol(ctx, field, obj)
-		case "busId":
-			out.Values[i] = ec._ConnectionInfo_busId(ctx, field, obj)
+		case "communicationBusId":
+			out.Values[i] = ec._ConnectionInfo_communicationBusId(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._ConnectionInfo_attributes(ctx, field, obj)
 		default:
@@ -21480,19 +21480,19 @@ func (ec *executionContext) _CreateBulkRequest(ctx context.Context, sel ast.Sele
 	return out
 }
 
-var createCommunicationUnitBusRequestImplementors = []string{"CreateCommunicationUnitBusRequest"}
+var createCommunicationBusRequestImplementors = []string{"CreateCommunicationBusRequest"}
 
-func (ec *executionContext) _CreateCommunicationUnitBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateCommunicationUnitBusRequest) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, createCommunicationUnitBusRequestImplementors)
+func (ec *executionContext) _CreateCommunicationBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateCommunicationBusRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, createCommunicationBusRequestImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("CreateCommunicationUnitBusRequest")
+			out.Values[i] = graphql.MarshalString("CreateCommunicationBusRequest")
 		case "metadata":
-			out.Values[i] = ec._CreateCommunicationUnitBusRequest_metadata(ctx, field, obj)
+			out.Values[i] = ec._CreateCommunicationBusRequest_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22752,19 +22752,19 @@ func (ec *executionContext) _ListOfBulk(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
-var listOfCommunicationUnitImplementors = []string{"ListOfCommunicationUnit"}
+var listOfCommunicationBusImplementors = []string{"ListOfCommunicationBus"}
 
-func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnit) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitImplementors)
+func (ec *executionContext) _ListOfCommunicationBus(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationBus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationBusImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnit")
+			out.Values[i] = graphql.MarshalString("ListOfCommunicationBus")
 		case "items":
-			out.Values[i] = ec._ListOfCommunicationUnit_items(ctx, field, obj)
+			out.Values[i] = ec._ListOfCommunicationBus_items(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22788,19 +22788,19 @@ func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel as
 	return out
 }
 
-var listOfCommunicationUnitBusImplementors = []string{"ListOfCommunicationUnitBus"}
+var listOfCommunicationUnitImplementors = []string{"ListOfCommunicationUnit"}
 
-func (ec *executionContext) _ListOfCommunicationUnitBus(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnitBus) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitBusImplementors)
+func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnit) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnitBus")
+			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnit")
 		case "items":
-			out.Values[i] = ec._ListOfCommunicationUnitBus_items(ctx, field, obj)
+			out.Values[i] = ec._ListOfCommunicationUnit_items(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23774,7 +23774,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "createCommunicationUnitBus":
+		case "createCommunicationBus":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -23783,7 +23783,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_createCommunicationUnitBus(ctx, field)
+				res = ec._Query_createCommunicationBus(ctx, field)
 				return res
 			}
 
@@ -23793,7 +23793,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "listCommunicationUnitBuses":
+		case "listCommunicationBuses":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -23802,7 +23802,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_listCommunicationUnitBuses(ctx, field)
+				res = ec._Query_listCommunicationBuses(ctx, field)
 				return res
 			}
 
@@ -23812,7 +23812,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "addCommunicationUnitsToBus":
+		case "addCommunicationUnitsToCommunicationBus":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -23821,7 +23821,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_addCommunicationUnitsToBus(ctx, field)
+				res = ec._Query_addCommunicationUnitsToCommunicationBus(ctx, field)
 				return res
 			}
 
@@ -23831,7 +23831,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "removeCommunicationUnitsFromBus":
+		case "removeCommunicationUnitsFromCommunicationBus":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -23840,7 +23840,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_removeCommunicationUnitsFromBus(ctx, field)
+				res = ec._Query_removeCommunicationUnitsFromCommunicationBus(ctx, field)
 				return res
 			}
 
@@ -24261,21 +24261,21 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 	return out
 }
 
-var removeCommunicationUnitsFromBusRequestImplementors = []string{"RemoveCommunicationUnitsFromBusRequest"}
+var removeCommunicationUnitsFromCommunicationBusRequestImplementors = []string{"RemoveCommunicationUnitsFromCommunicationBusRequest"}
 
-func (ec *executionContext) _RemoveCommunicationUnitsFromBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.RemoveCommunicationUnitsFromBusRequest) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, removeCommunicationUnitsFromBusRequestImplementors)
+func (ec *executionContext) _RemoveCommunicationUnitsFromCommunicationBusRequest(ctx context.Context, sel ast.SelectionSet, obj *model.RemoveCommunicationUnitsFromCommunicationBusRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, removeCommunicationUnitsFromCommunicationBusRequestImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("RemoveCommunicationUnitsFromBusRequest")
-		case "busId":
-			out.Values[i] = ec._RemoveCommunicationUnitsFromBusRequest_busId(ctx, field, obj)
+			out.Values[i] = graphql.MarshalString("RemoveCommunicationUnitsFromCommunicationBusRequest")
+		case "communicationBusId":
+			out.Values[i] = ec._RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(ctx, field, obj)
 		case "communicationUnitId":
-			out.Values[i] = ec._RemoveCommunicationUnitsFromBusRequest_communicationUnitId(ctx, field, obj)
+			out.Values[i] = ec._RemoveCommunicationUnitsFromCommunicationBusRequest_communicationUnitId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -25874,6 +25874,61 @@ func (ec *executionContext) marshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabs�
 	return v
 }
 
+func (ec *executionContext) marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationBus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._CommunicationBus(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBusStatus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBusStatus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._CommunicationBusStatus(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -25984,61 +26039,6 @@ func (ec *executionContext) marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybrosla
 		return graphql.Null
 	}
 	return ec._CommunicationUnit(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOCommunicationUnitBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBus(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationUnitBus) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOCommunicationUnitBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBus(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalOCommunicationUnitBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitBus) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._CommunicationUnitBus(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOCommunicationUnitBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitBusStatus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitBusStatus) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._CommunicationUnitBusStatus(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitSpec) graphql.Marshaler {
@@ -27027,18 +27027,18 @@ func (ec *executionContext) marshalOListOfBulk2ᚖgithubᚗcomᚋcybroslabsᚋhe
 	return ec._ListOfBulk(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationBus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfCommunicationBus(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfCommunicationUnit(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOListOfCommunicationUnitBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnitBus(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnitBus) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ListOfCommunicationUnitBus(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDevice) graphql.Marshaler {
