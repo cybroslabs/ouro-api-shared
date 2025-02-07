@@ -644,6 +644,7 @@ message DeviceConnectionInfo {
     ConnectionInfo communication_unit                = 1;  // The unique identifier of the communication unit.
     ApplicationProtocol app_protocol                 = 2;  // The application protocol to be used for the communication over the communication unit.
     map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
+    string timezone                                  = 4;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
 }
 
 // Addon for DB
