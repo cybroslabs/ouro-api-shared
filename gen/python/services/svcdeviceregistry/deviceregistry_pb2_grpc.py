@@ -106,10 +106,10 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDeviceGroup.FromString,
                 _registered_method=True)
-        self.GetDeviceGroup = channel.unary_unary(
+        self.GetDeviceGroup = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.DeviceGroup.FromString,
+                response_deserializer=acquisition_dot_main__pb2.StreamDeviceGroup.FromString,
                 _registered_method=True)
         self.AddDevicesToGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDevicesToGroup',
@@ -465,10 +465,10 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDeviceGroup.SerializeToString,
             ),
-            'GetDeviceGroup': grpc.unary_unary_rpc_method_handler(
+            'GetDeviceGroup': grpc.unary_stream_rpc_method_handler(
                     servicer.GetDeviceGroup,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-                    response_serializer=acquisition_dot_main__pb2.DeviceGroup.SerializeToString,
+                    response_serializer=acquisition_dot_main__pb2.StreamDeviceGroup.SerializeToString,
             ),
             'AddDevicesToGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.AddDevicesToGroup,
@@ -1002,12 +1002,12 @@ class DeviceRegistryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
+        return grpc.experimental.unary_stream(
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-            acquisition_dot_main__pb2.DeviceGroup.FromString,
+            acquisition_dot_main__pb2.StreamDeviceGroup.FromString,
             options,
             channel_credentials,
             insecure,

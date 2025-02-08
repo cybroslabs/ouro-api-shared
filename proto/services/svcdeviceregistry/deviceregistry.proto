@@ -67,7 +67,7 @@ service DeviceRegistryService {
     // The method returns single device group.
     // @param The device group identifier.
     // @return The device group specification.
-    rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
+    rpc GetDeviceGroup(google.protobuf.StringValue) returns (stream io.clbs.openhes.models.acquisition.StreamDeviceGroup);
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
     rpc AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.

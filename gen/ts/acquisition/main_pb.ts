@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file acquisition/main.proto.
  */
 export const file_acquisition_main: GenFile = /*@__PURE__*/
-  fileDesc("ChZhY3F1aXNpdGlvbi9tYWluLnByb3RvEiJpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uIrEBCh5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QSTgoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIl8KF0xpc3RPZkNvbW11bmljYXRpb25Vbml0EkQKBWl0ZW1zGAEgAygLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Db21tdW5pY2F0aW9uVW5pdCJmCh1DcmVhdGVDb21tdW5pY2F0aW9uQnVzUmVxdWVzdBI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIARACIl0KFkxpc3RPZkNvbW11bmljYXRpb25CdXMSQwoFaXRlbXMYASADKAsyNC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkNvbW11bmljYXRpb25CdXMibQouQWRkQ29tbXVuaWNhdGlvblVuaXRzVG9Db21tdW5pY2F0aW9uQnVzUmVxdWVzdBIcChRjb21tdW5pY2F0aW9uX2J1c19pZBgBIAEoCRIdChVjb21tdW5pY2F0aW9uX3VuaXRfaWQYAiADKAkicgozUmVtb3ZlQ29tbXVuaWNhdGlvblVuaXRzRnJvbUNvbW11bmljYXRpb25CdXNSZXF1ZXN0EhwKFGNvbW11bmljYXRpb25fYnVzX2lkGAEgASgJEh0KFWNvbW11bmljYXRpb25fdW5pdF9pZBgCIAMoCSKbAQoTQ3JlYXRlRGV2aWNlUmVxdWVzdBJDCgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIkkKDExpc3RPZkRldmljZRI5CgVpdGVtcxgBIAMoCzIqLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlItABCgZEZXZpY2USQwoEc3BlYxgBIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlU3BlY0IFqgECCAMSQAoGc3RhdHVzGAIgASgLMjAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKlAQoYQ3JlYXRlRGV2aWNlR3JvdXBSZXF1ZXN0EkgKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlY0IFqgECCAMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJTChFMaXN0T2ZEZXZpY2VHcm91cBI+CgVpdGVtcxgBIAMoCzIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXAi3wEKC0RldmljZUdyb3VwEkgKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlY0IFqgECCAMSRQoGc3RhdHVzGAIgASgLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VHcm91cFN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImsKD0RldmljZUdyb3VwU3BlYxITCgtleHRlcm5hbF9pZBgBIAEoCRJDCg5keW5hbWljX2ZpbHRlchgCIAEoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvciImChFEZXZpY2VHcm91cFN0YXR1cxIRCglkZXZpY2VfaWQYBCADKAkikQEKIlNldERldmljZUNvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgASgJElgKE2NvbW11bmljYXRpb25fdW5pdHMYAiADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbW11bmljYXRpb25Vbml0InkKHUxpc3RPZkRldmljZUNvbW11bmljYXRpb25Vbml0ElgKE2NvbW11bmljYXRpb25fdW5pdHMYASADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbW11bmljYXRpb25Vbml0Ij8KGEFkZERldmljZXNUb0dyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkiRAodUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJIpcBChFDcmVhdGVCdWxrUmVxdWVzdBJBCgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3BlY0IFqgECCAMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJFCgpMaXN0T2ZCdWxrEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrIsoBCgRCdWxrEkEKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTcGVjQgWqAQIIAxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKNAwoIQnVsa1NwZWMSFgoOY29ycmVsYXRpb25faWQYAiABKAkSEwoLZHJpdmVyX3R5cGUYAyABKAkSSAoHZGV2aWNlcxgEIAEoCzI1LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTGlzdE9mSm9iRGV2aWNlSWRIABJNCg5jdXN0b21fZGV2aWNlcxgFIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTGlzdE9mSm9iRGV2aWNlSAASGQoPZGV2aWNlX2dyb3VwX2lkGAkgASgJSAASQQoIc2V0dGluZ3MYBiABKAsyLy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYlNldHRpbmdzEj4KB2FjdGlvbnMYByADKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYkFjdGlvbhITCgt3ZWJob29rX3VybBgIIAEoCUIICgZkZXZpY2UiiwEKCkJ1bGtTdGF0dXMSQgoGc3RhdHVzGAEgASgOMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3RhdHVzQ29kZRI5CgRqb2JzGAIgAygLMisuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrSm9iIqQBChNTZXRNb2RlbVBvb2xSZXF1ZXN0EkYKBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFNwZWNCBaoBAggDEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMiTwoPTGlzdE9mTW9kZW1Qb29sEjwKBWl0ZW1zGAEgAygLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2wiDwoNTW9kZW1Qb29sU3BlYyJQCg9Nb2RlbVBvb2xTdGF0dXMSPQoGbW9kZW1zGAEgAygLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8i2QEKCU1vZGVtUG9vbBJGCgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2xTcGVjQgWqAQIIAxJDCgZzdGF0dXMYAiABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImAKD1NldE1vZGVtUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEjwKBW1vZGVtGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8iXAoJU2V0RHJpdmVyEkMKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclNwZWNCBaoBAggDSgQIAhADSgQIAxAEIkkKDExpc3RPZkRyaXZlchI5CgVpdGVtcxgBIAMoCzIqLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyIlkKBkRyaXZlchJDCgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJTcGVjQgWqAQIIA0oECAIQA0oECAMQBCL7AQoKRHJpdmVyU3BlYxIPCgd2ZXJzaW9uGAEgASgJEhYKDmxpc3RlbmluZ19wb3J0GAIgASgNEhMKC2RyaXZlcl90eXBlGAMgASgJEhsKE21heF9jb25jdXJyZW50X2pvYnMYBCABKAUSGQoRbWF4X2Nhc2NhZGVfZGVwdGgYBSABKA0SGQoRdHlwaWNhbF9tZW1fdXNhZ2UYBiABKAUSRgoJdGVtcGxhdGVzGAcgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJUZW1wbGF0ZXMSFAoMZGlzcGxheV9uYW1lGAggASgJQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9hY3F1aXNpdGlvbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_metadata, file_common_fields, file_acquisition_shared]);
+  fileDesc("ChZhY3F1aXNpdGlvbi9tYWluLnByb3RvEiJpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uIrEBCh5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QSTgoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIl8KF0xpc3RPZkNvbW11bmljYXRpb25Vbml0EkQKBWl0ZW1zGAEgAygLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Db21tdW5pY2F0aW9uVW5pdCJmCh1DcmVhdGVDb21tdW5pY2F0aW9uQnVzUmVxdWVzdBI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIARACIl0KFkxpc3RPZkNvbW11bmljYXRpb25CdXMSQwoFaXRlbXMYASADKAsyNC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkNvbW11bmljYXRpb25CdXMibQouQWRkQ29tbXVuaWNhdGlvblVuaXRzVG9Db21tdW5pY2F0aW9uQnVzUmVxdWVzdBIcChRjb21tdW5pY2F0aW9uX2J1c19pZBgBIAEoCRIdChVjb21tdW5pY2F0aW9uX3VuaXRfaWQYAiADKAkicgozUmVtb3ZlQ29tbXVuaWNhdGlvblVuaXRzRnJvbUNvbW11bmljYXRpb25CdXNSZXF1ZXN0EhwKFGNvbW11bmljYXRpb25fYnVzX2lkGAEgASgJEh0KFWNvbW11bmljYXRpb25fdW5pdF9pZBgCIAMoCSKbAQoTQ3JlYXRlRGV2aWNlUmVxdWVzdBJDCgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTcGVjQgWqAQIIAxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIkkKDExpc3RPZkRldmljZRI5CgVpdGVtcxgBIAMoCzIqLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlItABCgZEZXZpY2USQwoEc3BlYxgBIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlU3BlY0IFqgECCAMSQAoGc3RhdHVzGAIgASgLMjAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKlAQoYQ3JlYXRlRGV2aWNlR3JvdXBSZXF1ZXN0EkgKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlY0IFqgECCAMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJTChFMaXN0T2ZEZXZpY2VHcm91cBI+CgVpdGVtcxgBIAMoCzIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXAi7QEKEVN0cmVhbURldmljZUdyb3VwEkMKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlY0gAEkcKBnN0YXR1cxgCIAEoCzI1LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTdGF0dXNIABJBCghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSABCBwoFcGFydHMi3wEKC0RldmljZUdyb3VwEkgKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlY0IFqgECCAMSRQoGc3RhdHVzGAIgASgLMjUuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VHcm91cFN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImsKD0RldmljZUdyb3VwU3BlYxITCgtleHRlcm5hbF9pZBgBIAEoCRJDCg5keW5hbWljX2ZpbHRlchgCIAEoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvciImChFEZXZpY2VHcm91cFN0YXR1cxIRCglkZXZpY2VfaWQYBCADKAkikQEKIlNldERldmljZUNvbW11bmljYXRpb25Vbml0c1JlcXVlc3QSEQoJZGV2aWNlX2lkGAEgASgJElgKE2NvbW11bmljYXRpb25fdW5pdHMYAiADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbW11bmljYXRpb25Vbml0InkKHUxpc3RPZkRldmljZUNvbW11bmljYXRpb25Vbml0ElgKE2NvbW11bmljYXRpb25fdW5pdHMYASADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbW11bmljYXRpb25Vbml0Ij8KGEFkZERldmljZXNUb0dyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkiRAodUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJIpcBChFDcmVhdGVCdWxrUmVxdWVzdBJBCgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3BlY0IFqgECCAMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJFCgpMaXN0T2ZCdWxrEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrIsoBCgRCdWxrEkEKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTcGVjQgWqAQIIAxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGtTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKNAwoIQnVsa1NwZWMSFgoOY29ycmVsYXRpb25faWQYAiABKAkSEwoLZHJpdmVyX3R5cGUYAyABKAkSSAoHZGV2aWNlcxgEIAEoCzI1LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTGlzdE9mSm9iRGV2aWNlSWRIABJNCg5jdXN0b21fZGV2aWNlcxgFIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTGlzdE9mSm9iRGV2aWNlSAASGQoPZGV2aWNlX2dyb3VwX2lkGAkgASgJSAASQQoIc2V0dGluZ3MYBiABKAsyLy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYlNldHRpbmdzEj4KB2FjdGlvbnMYByADKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYkFjdGlvbhITCgt3ZWJob29rX3VybBgIIAEoCUIICgZkZXZpY2UiiwEKCkJ1bGtTdGF0dXMSQgoGc3RhdHVzGAEgASgOMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3RhdHVzQ29kZRI5CgRqb2JzGAIgAygLMisuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrSm9iIqQBChNTZXRNb2RlbVBvb2xSZXF1ZXN0EkYKBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFNwZWNCBaoBAggDEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMiTwoPTGlzdE9mTW9kZW1Qb29sEjwKBWl0ZW1zGAEgAygLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2wiDwoNTW9kZW1Qb29sU3BlYyJQCg9Nb2RlbVBvb2xTdGF0dXMSPQoGbW9kZW1zGAEgAygLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8i2QEKCU1vZGVtUG9vbBJGCgRzcGVjGAEgASgLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbVBvb2xTcGVjQgWqAQIIAxJDCgZzdGF0dXMYAiABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImAKD1NldE1vZGVtUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEjwKBW1vZGVtGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8iXAoJU2V0RHJpdmVyEkMKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclNwZWNCBaoBAggDSgQIAhADSgQIAxAEIkkKDExpc3RPZkRyaXZlchI5CgVpdGVtcxgBIAMoCzIqLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyIlkKBkRyaXZlchJDCgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJTcGVjQgWqAQIIA0oECAIQA0oECAMQBCL7AQoKRHJpdmVyU3BlYxIPCgd2ZXJzaW9uGAEgASgJEhYKDmxpc3RlbmluZ19wb3J0GAIgASgNEhMKC2RyaXZlcl90eXBlGAMgASgJEhsKE21heF9jb25jdXJyZW50X2pvYnMYBCABKAUSGQoRbWF4X2Nhc2NhZGVfZGVwdGgYBSABKA0SGQoRdHlwaWNhbF9tZW1fdXNhZ2UYBiABKAUSRgoJdGVtcGxhdGVzGAcgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJUZW1wbGF0ZXMSFAoMZGlzcGxheV9uYW1lGAggASgJQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9hY3F1aXNpdGlvbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_metadata, file_common_fields, file_acquisition_shared]);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
@@ -278,6 +278,49 @@ export const ListOfDeviceGroupSchema: GenMessage<ListOfDeviceGroup> = /*@__PURE_
   messageDesc(file_acquisition_main, 10);
 
 /**
+ * @generated from message io.clbs.openhes.models.acquisition.StreamDeviceGroup
+ */
+export type StreamDeviceGroup = Message<"io.clbs.openhes.models.acquisition.StreamDeviceGroup"> & {
+  /**
+   * The oneof field containing the device group partial data.
+   *
+   * @generated from oneof io.clbs.openhes.models.acquisition.StreamDeviceGroup.parts
+   */
+  parts: {
+    /**
+     * The device group specification.
+     *
+     * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1;
+     */
+    value: DeviceGroupSpec;
+    case: "spec";
+  } | {
+    /**
+     * The device group status.
+     *
+     * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupStatus status = 2;
+     */
+    value: DeviceGroupStatus;
+    case: "status";
+  } | {
+    /**
+     * The metadata fields.
+     *
+     * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
+     */
+    value: MetadataFields;
+    case: "metadata";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.acquisition.StreamDeviceGroup.
+ * Use `create(StreamDeviceGroupSchema)` to create a new message.
+ */
+export const StreamDeviceGroupSchema: GenMessage<StreamDeviceGroup> = /*@__PURE__*/
+  messageDesc(file_acquisition_main, 11);
+
+/**
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroup
  */
 export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGroup"> & {
@@ -308,7 +351,7 @@ export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGrou
  * Use `create(DeviceGroupSchema)` to create a new message.
  */
 export const DeviceGroupSchema: GenMessage<DeviceGroup> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 11);
+  messageDesc(file_acquisition_main, 12);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupSpec
@@ -334,7 +377,7 @@ export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.Device
  * Use `create(DeviceGroupSpecSchema)` to create a new message.
  */
 export const DeviceGroupSpecSchema: GenMessage<DeviceGroupSpec> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 12);
+  messageDesc(file_acquisition_main, 13);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupStatus
@@ -353,7 +396,7 @@ export type DeviceGroupStatus = Message<"io.clbs.openhes.models.acquisition.Devi
  * Use `create(DeviceGroupStatusSchema)` to create a new message.
  */
 export const DeviceGroupStatusSchema: GenMessage<DeviceGroupStatus> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 13);
+  messageDesc(file_acquisition_main, 14);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
@@ -379,7 +422,7 @@ export type SetDeviceCommunicationUnitsRequest = Message<"io.clbs.openhes.models
  * Use `create(SetDeviceCommunicationUnitsRequestSchema)` to create a new message.
  */
 export const SetDeviceCommunicationUnitsRequestSchema: GenMessage<SetDeviceCommunicationUnitsRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 14);
+  messageDesc(file_acquisition_main, 15);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
@@ -398,7 +441,7 @@ export type ListOfDeviceCommunicationUnit = Message<"io.clbs.openhes.models.acqu
  * Use `create(ListOfDeviceCommunicationUnitSchema)` to create a new message.
  */
 export const ListOfDeviceCommunicationUnitSchema: GenMessage<ListOfDeviceCommunicationUnit> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 15);
+  messageDesc(file_acquisition_main, 16);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
@@ -424,7 +467,7 @@ export type AddDevicesToGroupRequest = Message<"io.clbs.openhes.models.acquisiti
  * Use `create(AddDevicesToGroupRequestSchema)` to create a new message.
  */
 export const AddDevicesToGroupRequestSchema: GenMessage<AddDevicesToGroupRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 16);
+  messageDesc(file_acquisition_main, 17);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
@@ -450,7 +493,7 @@ export type RemoveDevicesFromGroupRequest = Message<"io.clbs.openhes.models.acqu
  * Use `create(RemoveDevicesFromGroupRequestSchema)` to create a new message.
  */
 export const RemoveDevicesFromGroupRequestSchema: GenMessage<RemoveDevicesFromGroupRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 17);
+  messageDesc(file_acquisition_main, 18);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.CreateBulkRequest
@@ -476,7 +519,7 @@ export type CreateBulkRequest = Message<"io.clbs.openhes.models.acquisition.Crea
  * Use `create(CreateBulkRequestSchema)` to create a new message.
  */
 export const CreateBulkRequestSchema: GenMessage<CreateBulkRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 18);
+  messageDesc(file_acquisition_main, 19);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ListOfBulk
@@ -495,7 +538,7 @@ export type ListOfBulk = Message<"io.clbs.openhes.models.acquisition.ListOfBulk"
  * Use `create(ListOfBulkSchema)` to create a new message.
  */
 export const ListOfBulkSchema: GenMessage<ListOfBulk> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 19);
+  messageDesc(file_acquisition_main, 20);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.Bulk
@@ -528,7 +571,7 @@ export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
  * Use `create(BulkSchema)` to create a new message.
  */
 export const BulkSchema: GenMessage<Bulk> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 20);
+  messageDesc(file_acquisition_main, 21);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.BulkSpec
@@ -606,7 +649,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
  * Use `create(BulkSpecSchema)` to create a new message.
  */
 export const BulkSpecSchema: GenMessage<BulkSpec> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 21);
+  messageDesc(file_acquisition_main, 22);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.BulkStatus
@@ -632,7 +675,7 @@ export type BulkStatus = Message<"io.clbs.openhes.models.acquisition.BulkStatus"
  * Use `create(BulkStatusSchema)` to create a new message.
  */
 export const BulkStatusSchema: GenMessage<BulkStatus> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 22);
+  messageDesc(file_acquisition_main, 23);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.SetModemPoolRequest
@@ -658,7 +701,7 @@ export type SetModemPoolRequest = Message<"io.clbs.openhes.models.acquisition.Se
  * Use `create(SetModemPoolRequestSchema)` to create a new message.
  */
 export const SetModemPoolRequestSchema: GenMessage<SetModemPoolRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 23);
+  messageDesc(file_acquisition_main, 24);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ListOfModemPool
@@ -677,7 +720,7 @@ export type ListOfModemPool = Message<"io.clbs.openhes.models.acquisition.ListOf
  * Use `create(ListOfModemPoolSchema)` to create a new message.
  */
 export const ListOfModemPoolSchema: GenMessage<ListOfModemPool> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 24);
+  messageDesc(file_acquisition_main, 25);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolSpec
@@ -690,7 +733,7 @@ export type ModemPoolSpec = Message<"io.clbs.openhes.models.acquisition.ModemPoo
  * Use `create(ModemPoolSpecSchema)` to create a new message.
  */
 export const ModemPoolSpecSchema: GenMessage<ModemPoolSpec> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 25);
+  messageDesc(file_acquisition_main, 26);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolStatus
@@ -709,7 +752,7 @@ export type ModemPoolStatus = Message<"io.clbs.openhes.models.acquisition.ModemP
  * Use `create(ModemPoolStatusSchema)` to create a new message.
  */
 export const ModemPoolStatusSchema: GenMessage<ModemPoolStatus> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 26);
+  messageDesc(file_acquisition_main, 27);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ModemPool
@@ -742,7 +785,7 @@ export type ModemPool = Message<"io.clbs.openhes.models.acquisition.ModemPool"> 
  * Use `create(ModemPoolSchema)` to create a new message.
  */
 export const ModemPoolSchema: GenMessage<ModemPool> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 27);
+  messageDesc(file_acquisition_main, 28);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.SetModemRequest
@@ -768,7 +811,7 @@ export type SetModemRequest = Message<"io.clbs.openhes.models.acquisition.SetMod
  * Use `create(SetModemRequestSchema)` to create a new message.
  */
 export const SetModemRequestSchema: GenMessage<SetModemRequest> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 28);
+  messageDesc(file_acquisition_main, 29);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.SetDriver
@@ -787,7 +830,7 @@ export type SetDriver = Message<"io.clbs.openhes.models.acquisition.SetDriver"> 
  * Use `create(SetDriverSchema)` to create a new message.
  */
 export const SetDriverSchema: GenMessage<SetDriver> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 29);
+  messageDesc(file_acquisition_main, 30);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDriver
@@ -806,7 +849,7 @@ export type ListOfDriver = Message<"io.clbs.openhes.models.acquisition.ListOfDri
  * Use `create(ListOfDriverSchema)` to create a new message.
  */
 export const ListOfDriverSchema: GenMessage<ListOfDriver> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 30);
+  messageDesc(file_acquisition_main, 31);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.Driver
@@ -825,7 +868,7 @@ export type Driver = Message<"io.clbs.openhes.models.acquisition.Driver"> & {
  * Use `create(DriverSchema)` to create a new message.
  */
 export const DriverSchema: GenMessage<Driver> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 31);
+  messageDesc(file_acquisition_main, 32);
 
 /**
  * @generated from message io.clbs.openhes.models.acquisition.DriverSpec
@@ -898,5 +941,5 @@ export type DriverSpec = Message<"io.clbs.openhes.models.acquisition.DriverSpec"
  * Use `create(DriverSpecSchema)` to create a new message.
  */
 export const DriverSpecSchema: GenMessage<DriverSpec> = /*@__PURE__*/
-  messageDesc(file_acquisition_main, 32);
+  messageDesc(file_acquisition_main, 33);
 

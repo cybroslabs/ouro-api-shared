@@ -72,6 +72,15 @@ message ListOfDeviceGroup {
     repeated DeviceGroup items = 1;  // The list of device groups.
 }
 
+message StreamDeviceGroup {
+    // The oneof field containing the device group partial data.
+    oneof parts {
+        DeviceGroupSpec spec           = 1;  // The device group specification.
+        DeviceGroupStatus status       = 2;  // The device group status.
+        common.MetadataFields metadata = 3;  // The metadata fields.
+    }
+}
+
 message DeviceGroup {
     DeviceGroupSpec spec           = 1 [features.field_presence = LEGACY_REQUIRED];  // The device group specification.
     DeviceGroupStatus status       = 2;                                              // The device group status.
