@@ -14,7 +14,7 @@ gen-go:
 
 	rm -rf ./gen/ts
 	find ./gen/go -type f -name "*.pb.go" -delete
-	find ./gen/go -type d -name "docs" -delete
+	find ./gen/go -depth -type d -name "docs" -exec rm -r {} \;
 	find ./gen/go -type d -empty -delete
 
 	cd proto && buf dep update
