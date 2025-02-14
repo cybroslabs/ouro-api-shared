@@ -3185,12 +3185,12 @@
         timeout
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Duration">
           
-          <span>int32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      <td class="content"><p>The timeout for TCP/IP connection.</p></td>
       
     </tr>
     
@@ -3346,12 +3346,12 @@
         timeout
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Duration">
           
-          <span>int32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      <td class="content"><p>The timeout for direct serial port connection.</p></td>
       
     </tr>
     
@@ -3441,12 +3441,12 @@
         timeout
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Duration">
           
-          <span>int32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      <td class="content"><p>The timeout for serial port connection that implements the Moxa protocol.</p></td>
       
     </tr>
     
@@ -3521,12 +3521,12 @@
         timeout
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Duration">
           
-          <span>int32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout in miliseconds for the connection.</p></td>
+      <td class="content"><p>The timeout for serial port connection that implements the RFC 2217 protocol.</p></td>
       
     </tr>
     
@@ -4392,7 +4392,7 @@
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.</p></td>
+      <td class="content"><p>The clock delta against acquisition server clock (got by a driver) where positive value means that the device clock is ahead of local clock and vice versa.</p></td>
       
     </tr>
     
@@ -5961,12 +5961,12 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         maxDuration
       </td>
       <td>
-        <code title="int64">
+        <code title="google.protobuf.Duration">
           
-          <span>int64</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.</p></td>
+      <td class="content"><p>Maximum duration of the job attempt. This is related to the real time for the driver.</p></td>
       
     </tr>
     
@@ -6009,12 +6009,12 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         retryDelay
       </td>
       <td>
-        <code title="int64">
+        <code title="google.protobuf.Duration">
           
-          <span>int64</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Delay in miliseconds between two attempts.</p></td>
+      <td class="content"><p>Delay between two attempts.</p></td>
       
     </tr>
     
@@ -6024,12 +6024,12 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         deferStart
       </td>
       <td>
-        <code title="uint64">
+        <code title="google.protobuf.Duration">
           
-          <span>uint64</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Number of miliseconds to wait before starting the job.</p></td>
+      <td class="content"><p>Time to wait before starting the job.</p></td>
       
     </tr>
     
@@ -7060,12 +7060,12 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         connectTimeout
       </td>
       <td>
-        <code title="uint32">
+        <code title="google.protobuf.Duration">
           
-          <span>uint32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The modem connect timeout, if applicable given by the modem_connection field, in miliseconds.</p></td>
+      <td class="content"><p>The modem connection timeout, if applicable given by the modem_connection field.</p></td>
       
     </tr>
     
@@ -7075,12 +7075,12 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         commandTimeout
       </td>
       <td>
-        <code title="uint32">
+        <code title="google.protobuf.Duration">
           
-          <span>uint32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The modem command timeout, if applicable given by the modem_connection field, in miliseconds.</p></td>
+      <td class="content"><p>The modem command timeout, if applicable given by the modem_connection field.</p></td>
       
     </tr>
     

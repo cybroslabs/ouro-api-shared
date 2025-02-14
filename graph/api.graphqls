@@ -581,8 +581,8 @@ type ConnectionTypeDirectTcpIp {
   host: String
   # The TCP port number of the device to connect to.
   port: Int
-  # The timeout in miliseconds for the connection.
-  timeout: Int
+  # The timeout for TCP/IP connection.
+  timeout: Duration
 }
 
 # Sub-message containing connection info for phone line (modem) connection type
@@ -600,8 +600,8 @@ type ConnectionTypeSerialDirect {
   host: String
   # The TCP port number of the device to connect to.
   port: Int
-  # The timeout in miliseconds for the connection.
-  timeout: Int
+  # The timeout for direct serial port connection.
+  timeout: Duration
 }
 
 # Sub-message containing connection info for controlled-serial line (Moxa) connection type
@@ -612,8 +612,8 @@ type ConnectionTypeSerialMoxa {
   dataPort: Int
   # The TCP port number of the device to connect to - command port.
   commandPort: Int
-  # The timeout in miliseconds for the connection.
-  timeout: Int
+  # The timeout for serial port connection that implements the Moxa protocol.
+  timeout: Duration
 }
 
 # Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
@@ -622,8 +622,8 @@ type ConnectionTypeSerialRfc2217 {
   host: String
   # The TCP port number of the device to connect to.
   port: Int
-  # The timeout in miliseconds for the connection.
-  timeout: Int
+  # The timeout for serial port connection that implements the RFC 2217 protocol.
+  timeout: Duration
 }
 
 type CreateBulkRequest {
@@ -716,7 +716,7 @@ type DeviceInfo {
   deviceSerialNumber: String
   # The firmware version identifier of the device. Typical source: 0-0:0.2.0.255
   firmwareVersion: String
-  # The clock delta against acquisition server clock (got by a driver) in seconds where positive value means that the device clock is ahead of local clock and vice versa.
+  # The clock delta against acquisition server clock (got by a driver) where positive value means that the device clock is ahead of local clock and vice versa.
   clockDelta: Duration
   # The model of the device.
   deviceModel: String
@@ -902,16 +902,16 @@ type JobDeviceId {
 
 # Sub-message containing job parameters
 type JobSettings {
-  # Maximum duration of the job attempt in miliseconds. This is related to the real time for the driver.
-  maxDuration: Int64
+  # Maximum duration of the job attempt. This is related to the real time for the driver.
+  maxDuration: Duration
   # Priority of the job.
   priority: JobPriority
   # Maximum number of attempts, 1 is the minimum.
   attempts: [Int]
-  # Delay in miliseconds between two attempts.
-  retryDelay: Int64
-  # Number of miliseconds to wait before starting the job.
-  deferStart: BigInt
+  # Delay between two attempts.
+  retryDelay: Duration
+  # Time to wait before starting the job.
+  deferStart: Duration
   # The timestamp when the job expires.
   expiresAt: Timestamp
 }
@@ -1020,10 +1020,10 @@ type ModemInfo {
   atHangup: String
   # The modem escape command, e.g. +++.
   atEscape: String
-  # The modem connect timeout, if applicable given by the modem_connection field, in miliseconds.
-  connectTimeout: Int
-  # The modem command timeout, if applicable given by the modem_connection field, in miliseconds.
-  commandTimeout: Int
+  # The modem connection timeout, if applicable given by the modem_connection field.
+  connectTimeout: Duration
+  # The modem command timeout, if applicable given by the modem_connection field.
+  commandTimeout: Duration
   # The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
   tcpip: ConnectionTypeDirectTcpIp
   # The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.

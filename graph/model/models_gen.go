@@ -178,9 +178,9 @@ type ConnectionTypeControlledSerial struct {
 }
 
 type ConnectionTypeDirectTCPIP struct {
-	Host    *string `json:"host,omitempty"`
-	Port    *int32  `json:"port,omitempty"`
-	Timeout *int32  `json:"timeout,omitempty"`
+	Host    *string   `json:"host,omitempty"`
+	Port    *int32    `json:"port,omitempty"`
+	Timeout *Duration `json:"timeout,omitempty"`
 }
 
 type ConnectionTypeModemPool struct {
@@ -190,22 +190,22 @@ type ConnectionTypeModemPool struct {
 }
 
 type ConnectionTypeSerialDirect struct {
-	Host    *string `json:"host,omitempty"`
-	Port    *int32  `json:"port,omitempty"`
-	Timeout *int32  `json:"timeout,omitempty"`
+	Host    *string   `json:"host,omitempty"`
+	Port    *int32    `json:"port,omitempty"`
+	Timeout *Duration `json:"timeout,omitempty"`
 }
 
 type ConnectionTypeSerialMoxa struct {
-	Host        *string `json:"host,omitempty"`
-	DataPort    *int32  `json:"dataPort,omitempty"`
-	CommandPort *int32  `json:"commandPort,omitempty"`
-	Timeout     *int32  `json:"timeout,omitempty"`
+	Host        *string   `json:"host,omitempty"`
+	DataPort    *int32    `json:"dataPort,omitempty"`
+	CommandPort *int32    `json:"commandPort,omitempty"`
+	Timeout     *Duration `json:"timeout,omitempty"`
 }
 
 type ConnectionTypeSerialRfc2217 struct {
-	Host    *string `json:"host,omitempty"`
-	Port    *int32  `json:"port,omitempty"`
-	Timeout *int32  `json:"timeout,omitempty"`
+	Host    *string   `json:"host,omitempty"`
+	Port    *int32    `json:"port,omitempty"`
+	Timeout *Duration `json:"timeout,omitempty"`
 }
 
 type CreateBulkRequest struct {
@@ -423,11 +423,11 @@ type JobDeviceID struct {
 }
 
 type JobSettings struct {
-	MaxDuration *int64       `json:"maxDuration,omitempty"`
+	MaxDuration *Duration    `json:"maxDuration,omitempty"`
 	Priority    *JobPriority `json:"priority,omitempty"`
 	Attempts    []*int32     `json:"attempts,omitempty"`
-	RetryDelay  *int64       `json:"retryDelay,omitempty"`
-	DeferStart  *string      `json:"deferStart,omitempty"`
+	RetryDelay  *Duration    `json:"retryDelay,omitempty"`
+	DeferStart  *Duration    `json:"deferStart,omitempty"`
 	ExpiresAt   *string      `json:"expiresAt,omitempty"`
 }
 
@@ -536,8 +536,8 @@ type ModemInfo struct {
 	AtDial         *string                         `json:"atDial,omitempty"`
 	AtHangup       *string                         `json:"atHangup,omitempty"`
 	AtEscape       *string                         `json:"atEscape,omitempty"`
-	ConnectTimeout *int32                          `json:"connectTimeout,omitempty"`
-	CommandTimeout *int32                          `json:"commandTimeout,omitempty"`
+	ConnectTimeout *Duration                       `json:"connectTimeout,omitempty"`
+	CommandTimeout *Duration                       `json:"commandTimeout,omitempty"`
 	Tcpip          *ConnectionTypeDirectTCPIP      `json:"tcpip,omitempty"`
 	SerialOverIP   *ConnectionTypeControlledSerial `json:"serialOverIp,omitempty"`
 	SerialBaudRate *int32                          `json:"serialBaudRate,omitempty"`

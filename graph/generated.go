@@ -6708,9 +6708,9 @@ func (ec *executionContext) _ConnectionTypeDirectTcpIp_timeout(ctx context.Conte
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeDirectTcpIp_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6720,7 +6720,13 @@ func (ec *executionContext) fieldContext_ConnectionTypeDirectTcpIp_timeout(_ con
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -6978,9 +6984,9 @@ func (ec *executionContext) _ConnectionTypeSerialDirect_timeout(ctx context.Cont
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialDirect_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6990,7 +6996,13 @@ func (ec *executionContext) fieldContext_ConnectionTypeSerialDirect_timeout(_ co
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -7142,9 +7154,9 @@ func (ec *executionContext) _ConnectionTypeSerialMoxa_timeout(ctx context.Contex
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialMoxa_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7154,7 +7166,13 @@ func (ec *executionContext) fieldContext_ConnectionTypeSerialMoxa_timeout(_ cont
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -7265,9 +7283,9 @@ func (ec *executionContext) _ConnectionTypeSerialRfc2217_timeout(ctx context.Con
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7277,7 +7295,13 @@ func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_timeout(_ c
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -12761,9 +12785,9 @@ func (ec *executionContext) _JobSettings_maxDuration(ctx context.Context, field 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int64)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_maxDuration(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12773,7 +12797,13 @@ func (ec *executionContext) fieldContext_JobSettings_maxDuration(_ context.Conte
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int64 does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -12884,9 +12914,9 @@ func (ec *executionContext) _JobSettings_retryDelay(ctx context.Context, field g
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int64)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_retryDelay(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12896,7 +12926,13 @@ func (ec *executionContext) fieldContext_JobSettings_retryDelay(_ context.Contex
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int64 does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -12925,9 +12961,9 @@ func (ec *executionContext) _JobSettings_deferStart(ctx context.Context, field g
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOBigInt2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_deferStart(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12937,7 +12973,13 @@ func (ec *executionContext) fieldContext_JobSettings_deferStart(_ context.Contex
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type BigInt does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -15320,9 +15362,9 @@ func (ec *executionContext) _ModemInfo_connectTimeout(ctx context.Context, field
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_connectTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15332,7 +15374,13 @@ func (ec *executionContext) fieldContext_ModemInfo_connectTimeout(_ context.Cont
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -15361,9 +15409,9 @@ func (ec *executionContext) _ModemInfo_commandTimeout(ctx context.Context, field
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*int32)
+	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_commandTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15373,7 +15421,13 @@ func (ec *executionContext) fieldContext_ModemInfo_commandTimeout(_ context.Cont
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
