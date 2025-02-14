@@ -28,3 +28,9 @@ gen-go:
 more:
 	cd proto && npx buf generate --template buf.gen.graphql.yaml
 	go run github.com/99designs/gqlgen generate
+
+update:
+	GOPROXY=direct GOPRIVATE=github.com go get -u ./...
+	sed -i '' 's|github.com/google/cel-go v[^ ]*|github.com/google/cel-go v0.22.1|g' go.mod
+	sed -i '' 's|github.com/bufbuild/protovalidate-go v[^ ]*|github.com/bufbuild/protovalidate-go v0.8.0|g' go.mod
+	go mod tidy
