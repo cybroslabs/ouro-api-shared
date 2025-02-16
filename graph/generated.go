@@ -316,6 +316,7 @@ type ComplexityRoot struct {
 	DeviceSpec struct {
 		Attributes            func(childComplexity int) int
 		CommunicationUnitLink func(childComplexity int) int
+		DriverType            func(childComplexity int) int
 		ExternalID            func(childComplexity int) int
 		Timezone              func(childComplexity int) int
 	}
@@ -1593,6 +1594,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceSpec.CommunicationUnitLink(childComplexity), true
+
+	case "DeviceSpec.driverType":
+		if e.complexity.DeviceSpec.DriverType == nil {
+			break
+		}
+
+		return e.complexity.DeviceSpec.DriverType(childComplexity), true
 
 	case "DeviceSpec.externalId":
 		if e.complexity.DeviceSpec.ExternalID == nil {
@@ -7708,6 +7716,8 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "driverType":
+				return ec.fieldContext_DeviceSpec_driverType(ctx, field)
 			case "externalId":
 				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
 			case "attributes":
@@ -7967,6 +7977,8 @@ func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field gr
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "driverType":
+				return ec.fieldContext_DeviceSpec_driverType(ctx, field)
 			case "externalId":
 				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
 			case "attributes":
@@ -8812,6 +8824,47 @@ func (ec *executionContext) fieldContext_DeviceInfo_connectionState(_ context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceSpec_driverType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceSpec_driverType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DriverType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceSpec_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -22455,6 +22508,8 @@ func (ec *executionContext) _DeviceSpec(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceSpec")
+		case "driverType":
+			out.Values[i] = ec._DeviceSpec_driverType(ctx, field, obj)
 		case "externalId":
 			out.Values[i] = ec._DeviceSpec_externalId(ctx, field, obj)
 		case "attributes":

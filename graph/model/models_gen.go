@@ -277,6 +277,7 @@ type DeviceInfo struct {
 }
 
 type DeviceSpec struct {
+	DriverType            *string                    `json:"driverType,omitempty"`
 	ExternalID            *string                    `json:"externalId,omitempty"`
 	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
 	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communicationUnitLink,omitempty"`

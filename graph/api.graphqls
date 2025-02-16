@@ -730,6 +730,8 @@ type DeviceInfo {
 
 # Sub-message - the device specification.
 type DeviceSpec {
+  # The driver type identifier.
+  driverType: String
   # The external identifier of the device.
   externalId: String
   # The template of the action attributes. It is represented as a list of attribute definitions.
