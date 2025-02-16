@@ -261,7 +261,11 @@ type DeviceGroupSpec struct {
 }
 
 type DeviceGroupStatus struct {
-	DeviceID []*string `json:"deviceId,omitempty"`
+	Devices []*MapDeviceGroupStatusDevice `json:"devices,omitempty"`
+}
+
+type DeviceGroupStatusDevice struct {
+	DriverType *string `json:"driverType,omitempty"`
 }
 
 type DeviceInfo struct {
@@ -605,6 +609,11 @@ type SystemConfig struct {
 	MaxReplicas           *int32 `json:"maxReplicas,omitempty"`
 	MaxCascadeDeviceCount *int32 `json:"maxCascadeDeviceCount,omitempty"`
 	MaxSlotsPerDriver     *int32 `json:"maxSlotsPerDriver,omitempty"`
+}
+
+type MapDeviceGroupStatusDevice struct {
+	Key   string                   `json:"key"`
+	Value *DeviceGroupStatusDevice `json:"value,omitempty"`
 }
 
 type MapFieldValue struct {

@@ -93,7 +93,11 @@ message DeviceGroupSpec {
 }
 
 message DeviceGroupStatus {
-    repeated string device_id = 4;  // The list of device identifiers that are part of the group.
+    map<string, DeviceGroupStatusDevice> devices = 4;  // The list of devices that are part of the group. The key represents the device identifier, the value contains additional information.
+}
+
+message DeviceGroupStatusDevice {
+    string driver_type = 1;  // The driver type.
 }
 
 // Device#CU specification.

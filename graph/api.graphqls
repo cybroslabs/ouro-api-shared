@@ -702,8 +702,13 @@ type DeviceGroupSpec {
 }
 
 type DeviceGroupStatus {
-  # The list of device identifiers that are part of the group.
-  deviceId: [String]
+  # The list of devices that are part of the group. The key represents the device identifier, the value contains additional information.
+  devices: [_mapDeviceGroupStatusDevice]
+}
+
+type DeviceGroupStatusDevice {
+  # The driver type.
+  driverType: String
 }
 
 # Message holds common device information.
@@ -1262,6 +1267,11 @@ type SystemConfig {
 type _mapFieldValue {
   key: String!
   value: FieldValue
+}
+
+type _mapDeviceGroupStatusDevice {
+  key: String!
+  value: DeviceGroupStatusDevice
 }
 
 type _mapstring {
