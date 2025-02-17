@@ -634,6 +634,7 @@ type ComplexityRoot struct {
 		ListBulks                                    func(childComplexity int) int
 		ListCommunicationBuses                       func(childComplexity int) int
 		ListCommunicationUnits                       func(childComplexity int) int
+		ListDeviceGroupDevices                       func(childComplexity int) int
 		ListDeviceGroups                             func(childComplexity int) int
 		ListDevices                                  func(childComplexity int) int
 		ListDrivers                                  func(childComplexity int) int
@@ -726,6 +727,7 @@ type QueryResolver interface {
 	GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error)
 	AddDevicesToGroup(ctx context.Context) (*model.Empty, error)
 	RemoveDevicesFromGroup(ctx context.Context) (*model.Empty, error)
+	ListDeviceGroupDevices(ctx context.Context) (*model.ListOfDevice, error)
 	ListModemPools(ctx context.Context) (*model.ListOfModemPool, error)
 	GetModemPool(ctx context.Context) (*model.ModemPool, error)
 	CreateModemPool(ctx context.Context) (*model.StringValue, error)
@@ -2905,6 +2907,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.ListCommunicationUnits(childComplexity), true
+
+	case "Query.listDeviceGroupDevices":
+		if e.complexity.Query.ListDeviceGroupDevices == nil {
+			break
+		}
+
+		return e.complexity.Query.ListDeviceGroupDevices(childComplexity), true
 
 	case "Query.listDeviceGroups":
 		if e.complexity.Query.ListDeviceGroups == nil {
@@ -17233,6 +17242,51 @@ func (ec *executionContext) fieldContext_Query_removeDevicesFromGroup(_ context.
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_listDeviceGroupDevices(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listDeviceGroupDevices(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListDeviceGroupDevices(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfDevice)
+	fc.Result = res
+	return ec.marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDevice(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listDeviceGroupDevices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfDevice_items(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfDevice", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_listModemPools(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_listModemPools(ctx, field)
 	if err != nil {
@@ -24936,6 +24990,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_removeDevicesFromGroup(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listDeviceGroupDevices":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listDeviceGroupDevices(ctx, field)
 				return res
 			}
 

@@ -135,6 +135,11 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.RemoveDevicesFromGroupRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.ListDeviceGroupDevices = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroupDevices',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDevice.FromString,
+                _registered_method=True)
         self.ListModemPools = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListModemPools',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -399,6 +404,14 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListDeviceGroupDevices(self, request, context):
+        """@group: Devices
+        @tag: devicegroup
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListModemPools(self, request, context):
         """@group: Devices
         @tag: modempool
@@ -604,6 +617,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.RemoveDevicesFromGroup,
                     request_deserializer=acquisition_dot_main__pb2.RemoveDevicesFromGroupRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'ListDeviceGroupDevices': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceGroupDevices,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDevice.SerializeToString,
             ),
             'ListModemPools': grpc.unary_unary_rpc_method_handler(
                     servicer.ListModemPools,
@@ -1278,6 +1296,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup',
             acquisition_dot_main__pb2.RemoveDevicesFromGroupRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDeviceGroupDevices(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroupDevices',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDevice.FromString,
             options,
             channel_credentials,
             insecure,

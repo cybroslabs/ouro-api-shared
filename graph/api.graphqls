@@ -1308,6 +1308,7 @@ type Query {
   getDeviceGroup: DeviceGroup
   addDevicesToGroup: Empty
   removeDevicesFromGroup: Empty
+  listDeviceGroupDevices: ListOfDevice
   listModemPools: ListOfModemPool
   getModemPool: ModemPool
   createModemPool: StringValue

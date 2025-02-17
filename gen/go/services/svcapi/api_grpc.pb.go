@@ -47,6 +47,7 @@ const (
 	ApiService_GetDeviceGroup_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
 	ApiService_AddDevicesToGroup_FullMethodName                            = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
 	ApiService_RemoveDevicesFromGroup_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
+	ApiService_ListDeviceGroupDevices_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroupDevices"
 	ApiService_ListModemPools_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
 	ApiService_GetModemPool_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
 	ApiService_CreateModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
@@ -151,6 +152,9 @@ type ApiServiceClient interface {
 	// @tag: devicegroup
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(ctx context.Context, in *acquisition.RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: devicegroup
+	ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
@@ -429,6 +433,16 @@ func (c *apiServiceClient) RemoveDevicesFromGroup(ctx context.Context, in *acqui
 	return out, nil
 }
 
+func (c *apiServiceClient) ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDevice)
+	err := c.cc.Invoke(ctx, ApiService_ListDeviceGroupDevices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) ListModemPools(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfModemPool)
@@ -622,6 +636,9 @@ type ApiServiceServer interface {
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	// @group: Devices
+	// @tag: devicegroup
+	ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error)
+	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
 	ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error)
@@ -737,6 +754,9 @@ func (UnimplementedApiServiceServer) AddDevicesToGroup(context.Context, *acquisi
 }
 func (UnimplementedApiServiceServer) RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDevicesFromGroup not implemented")
+}
+func (UnimplementedApiServiceServer) ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceGroupDevices not implemented")
 }
 func (UnimplementedApiServiceServer) ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModemPools not implemented")
@@ -1203,6 +1223,24 @@ func _ApiService_RemoveDevicesFromGroup_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_ListDeviceGroupDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListDeviceGroupDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListDeviceGroupDevices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListDeviceGroupDevices(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_ListModemPools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
@@ -1481,6 +1519,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveDevicesFromGroup",
 			Handler:    _ApiService_RemoveDevicesFromGroup_Handler,
+		},
+		{
+			MethodName: "ListDeviceGroupDevices",
+			Handler:    _ApiService_ListDeviceGroupDevices_Handler,
 		},
 		{
 			MethodName: "ListModemPools",

@@ -126,6 +126,11 @@ func (r *queryResolver) RemoveDevicesFromGroup(ctx context.Context) (*model.Empt
 	panic(fmt.Errorf("not implemented: RemoveDevicesFromGroup - removeDevicesFromGroup"))
 }
 
+// ListDeviceGroupDevices is the resolver for the listDeviceGroupDevices field.
+func (r *queryResolver) ListDeviceGroupDevices(ctx context.Context) (*model.ListOfDevice, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceGroupDevices - listDeviceGroupDevices"))
+}
+
 // ListModemPools is the resolver for the listModemPools field.
 func (r *queryResolver) ListModemPools(ctx context.Context) (*model.ListOfModemPool, error) {
 	panic(fmt.Errorf("not implemented: ListModemPools - listModemPools"))
