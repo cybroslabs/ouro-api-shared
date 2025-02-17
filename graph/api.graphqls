@@ -965,7 +965,7 @@ type ListOfDevice {
 
 type ListOfDeviceCommunicationUnit {
   # The list of linked communication units.
-  communicationUnits: [DeviceCommunicationUnit]
+  items: [DeviceCommunicationUnit]
 }
 
 type ListOfDeviceGroup {

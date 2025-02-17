@@ -464,7 +464,7 @@ type ListOfDevice struct {
 }
 
 type ListOfDeviceCommunicationUnit struct {
-	CommunicationUnits []*DeviceCommunicationUnit `json:"communicationUnits,omitempty"`
+	Items []*DeviceCommunicationUnit `json:"items,omitempty"`
 }
 
 type ListOfDeviceGroup struct {

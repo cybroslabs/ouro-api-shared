@@ -501,7 +501,7 @@ type ComplexityRoot struct {
 	}
 
 	ListOfDeviceCommunicationUnit struct {
-		CommunicationUnits func(childComplexity int) int
+		Items func(childComplexity int) int
 	}
 
 	ListOfDeviceGroup struct {
@@ -2353,12 +2353,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfDevice.Items(childComplexity), true
 
-	case "ListOfDeviceCommunicationUnit.communicationUnits":
-		if e.complexity.ListOfDeviceCommunicationUnit.CommunicationUnits == nil {
+	case "ListOfDeviceCommunicationUnit.items":
+		if e.complexity.ListOfDeviceCommunicationUnit.Items == nil {
 			break
 		}
 
-		return e.complexity.ListOfDeviceCommunicationUnit.CommunicationUnits(childComplexity), true
+		return e.complexity.ListOfDeviceCommunicationUnit.Items(childComplexity), true
 
 	case "ListOfDeviceGroup.items":
 		if e.complexity.ListOfDeviceGroup.Items == nil {
@@ -13704,8 +13704,8 @@ func (ec *executionContext) fieldContext_ListOfDevice_items(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfDeviceCommunicationUnit_communicationUnits(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnit) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(ctx, field)
+func (ec *executionContext) _ListOfDeviceCommunicationUnit_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnit_items(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13718,7 +13718,7 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit_communicationUnits(ct
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.CommunicationUnits, nil
+		return obj.Items, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -13732,7 +13732,7 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit_communicationUnits(ct
 	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListOfDeviceCommunicationUnit",
 		Field:      field,
@@ -16995,8 +16995,8 @@ func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ con
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "communicationUnits":
-				return ec.fieldContext_ListOfDeviceCommunicationUnit_communicationUnits(ctx, field)
+			case "items":
+				return ec.fieldContext_ListOfDeviceCommunicationUnit_items(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceCommunicationUnit", field.Name)
 		},
@@ -23776,8 +23776,8 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit(ctx context.Context, 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListOfDeviceCommunicationUnit")
-		case "communicationUnits":
-			out.Values[i] = ec._ListOfDeviceCommunicationUnit_communicationUnits(ctx, field, obj)
+		case "items":
+			out.Values[i] = ec._ListOfDeviceCommunicationUnit_items(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
