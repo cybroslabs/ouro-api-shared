@@ -72,6 +72,8 @@ service DeviceRegistryService {
     rpc AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
     rpc RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
+    // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
+    rpc ListDeviceGroupDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
 
     // The method to get list of the modem pools.
     rpc ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
