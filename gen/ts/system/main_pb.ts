@@ -10,14 +10,14 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iZAoMU3lzdGVtQ29uZmlnEhQKDG1heF9yZXBsaWNhcxgBIAEoBRIgChhtYXhfY2FzY2FkZV9kZXZpY2VfY291bnQYAiABKAUSHAoUbWF4X3Nsb3RzX3Blcl9kcml2ZXIYAyABKAVCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac");
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0i7AEKDFN5c3RlbUNvbmZpZxIUCgxtYXhfcmVwbGljYXMYASABKAUSIAoYbWF4X2Nhc2NhZGVfZGV2aWNlX2NvdW50GAIgASgFEhwKFG1heF9zbG90c19wZXJfZHJpdmVyGAMgASgFElIKDG1pbl9yZXBsaWNhcxgEIAMoCzI8LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLlN5c3RlbUNvbmZpZy5NaW5SZXBsaWNhc0VudHJ5GjIKEE1pblJlcGxpY2FzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgFOgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw");
 
 /**
  * @generated from message io.clbs.openhes.models.system.SystemConfig
  */
 export type SystemConfig = Message<"io.clbs.openhes.models.system.SystemConfig"> & {
   /**
-   * The maximum number of replicas for the driver.
+   * The maximum number of replicas for all drivers.
    *    0 represents no active replicas will run, effectively disabling acquisition
    *   >0 represents the maximum number of replicas per driver
    *
@@ -41,6 +41,15 @@ export type SystemConfig = Message<"io.clbs.openhes.models.system.SystemConfig">
    * @generated from field: int32 max_slots_per_driver = 3;
    */
   maxSlotsPerDriver: number;
+
+  /**
+   * The minimum number of replicas per type of driver.
+   * The key is the driver type, the value is the minimum number of replicas.
+   * The minimum replicas is guaranteed to be running at all times even if the total number of replicas exceeds the maximum number of replicas set in max_replicas.
+   *
+   * @generated from field: map<string, int32> min_replicas = 4;
+   */
+  minReplicas: { [key: string]: number };
 };
 
 /**

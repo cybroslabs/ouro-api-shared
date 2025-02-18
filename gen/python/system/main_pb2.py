@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\"\x9b\x01\n\x0cSystemConfig\x12!\n\x0cmax_replicas\x18\x01 \x01(\x05R\x0bmaxReplicas\x12\x37\n\x18max_cascade_device_count\x18\x02 \x01(\x05R\x15maxCascadeDeviceCount\x12/\n\x14max_slots_per_driver\x18\x03 \x01(\x05R\x11maxSlotsPerDriverB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\"\xbc\x02\n\x0cSystemConfig\x12!\n\x0cmax_replicas\x18\x01 \x01(\x05R\x0bmaxReplicas\x12\x37\n\x18max_cascade_device_count\x18\x02 \x01(\x05R\x15maxCascadeDeviceCount\x12/\n\x14max_slots_per_driver\x18\x03 \x01(\x05R\x11maxSlotsPerDriver\x12_\n\x0cmin_replicas\x18\x04 \x03(\x0b\x32<.io.clbs.openhes.models.system.SystemConfig.MinReplicasEntryR\x0bminReplicas\x1a>\n\x10MinReplicasEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\x05R\x05value:\x02\x38\x01\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,6 +32,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'system.main_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z.github.com/cybroslabs/hes-2-apis/gen/go/system'
+  _globals['_SYSTEMCONFIG_MINREPLICASENTRY']._loaded_options = None
+  _globals['_SYSTEMCONFIG_MINREPLICASENTRY']._serialized_options = b'8\001'
   _globals['_SYSTEMCONFIG']._serialized_start=53
-  _globals['_SYSTEMCONFIG']._serialized_end=208
+  _globals['_SYSTEMCONFIG']._serialized_end=369
+  _globals['_SYSTEMCONFIG_MINREPLICASENTRY']._serialized_start=307
+  _globals['_SYSTEMCONFIG_MINREPLICASENTRY']._serialized_end=369
 # @@protoc_insertion_point(module_scope)

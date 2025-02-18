@@ -680,6 +680,7 @@ type ComplexityRoot struct {
 		MaxCascadeDeviceCount func(childComplexity int) int
 		MaxReplicas           func(childComplexity int) int
 		MaxSlotsPerDriver     func(childComplexity int) int
+		MinReplicas           func(childComplexity int) int
 	}
 
 	_mapDeviceGroupStatusDevice struct {
@@ -693,6 +694,11 @@ type ComplexityRoot struct {
 	}
 
 	_mapListOfString struct {
+		Key   func(childComplexity int) int
+		Value func(childComplexity int) int
+	}
+
+	_mapint32 struct {
 		Key   func(childComplexity int) int
 		Value func(childComplexity int) int
 	}
@@ -3083,6 +3089,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.SystemConfig.MaxSlotsPerDriver(childComplexity), true
 
+	case "SystemConfig.minReplicas":
+		if e.complexity.SystemConfig.MinReplicas == nil {
+			break
+		}
+
+		return e.complexity.SystemConfig.MinReplicas(childComplexity), true
+
 	case "_mapDeviceGroupStatusDevice.key":
 		if e.complexity._mapDeviceGroupStatusDevice.Key == nil {
 			break
@@ -3124,6 +3137,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity._mapListOfString.Value(childComplexity), true
+
+	case "_mapint32.key":
+		if e.complexity._mapint32.Key == nil {
+			break
+		}
+
+		return e.complexity._mapint32.Key(childComplexity), true
+
+	case "_mapint32.value":
+		if e.complexity._mapint32.Value == nil {
+			break
+		}
+
+		return e.complexity._mapint32.Value(childComplexity), true
 
 	case "_mapstring.key":
 		if e.complexity._mapstring.Key == nil {
@@ -16415,6 +16442,8 @@ func (ec *executionContext) fieldContext_Query_getConfig(_ context.Context, fiel
 				return ec.fieldContext_SystemConfig_maxCascadeDeviceCount(ctx, field)
 			case "maxSlotsPerDriver":
 				return ec.fieldContext_SystemConfig_maxSlotsPerDriver(ctx, field)
+			case "minReplicas":
+				return ec.fieldContext_SystemConfig_minReplicas(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type SystemConfig", field.Name)
 		},
@@ -18487,6 +18516,53 @@ func (ec *executionContext) fieldContext_SystemConfig_maxSlotsPerDriver(_ contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SystemConfig_minReplicas(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SystemConfig_minReplicas(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.MinReplicas, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Mapint32)
+	fc.Result = res
+	return ec.marshalO_mapint322ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SystemConfig_minReplicas(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SystemConfig",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "key":
+				return ec.fieldContext__mapint32_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapint32_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type _mapint32", field.Name)
 		},
 	}
 	return fc, nil
@@ -20711,6 +20787,91 @@ func (ec *executionContext) fieldContext__mapListOfString_value(_ context.Contex
 				return ec.fieldContext_ListOfString_items(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfString", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) __mapint32_key(ctx context.Context, field graphql.CollectedField, obj *model.Mapint32) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext__mapint32_key(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Key, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext__mapint32_key(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "_mapint32",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) __mapint32_value(ctx context.Context, field graphql.CollectedField, obj *model.Mapint32) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext__mapint32_value(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Value, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext__mapint32_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "_mapint32",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -25482,6 +25643,8 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._SystemConfig_maxCascadeDeviceCount(ctx, field, obj)
 		case "maxSlotsPerDriver":
 			out.Values[i] = ec._SystemConfig_maxSlotsPerDriver(ctx, field, obj)
+		case "minReplicas":
+			out.Values[i] = ec._SystemConfig_minReplicas(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -25936,6 +26099,47 @@ func (ec *executionContext) __mapListOfString(ctx context.Context, sel ast.Selec
 			}
 		case "value":
 			out.Values[i] = ec.__mapListOfString_value(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var _mapint32Implementors = []string{"_mapint32"}
+
+func (ec *executionContext) __mapint32(ctx context.Context, sel ast.SelectionSet, obj *model.Mapint32) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, _mapint32Implementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("_mapint32")
+		case "key":
+			out.Values[i] = ec.__mapint32_key(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				out.Invalids++
+			}
+		case "value":
+			out.Values[i] = ec.__mapint32_value(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -28978,6 +29182,54 @@ func (ec *executionContext) marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslab
 		return graphql.Null
 	}
 	return ec.__mapListOfString(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalO_mapint322ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapint32(ctx context.Context, sel ast.SelectionSet, v []*model.Mapint32) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalO_mapint322ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapint32(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalO_mapint322ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapint32(ctx context.Context, sel ast.SelectionSet, v *model.Mapint32) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec.__mapint32(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v []*model.Mapstring) graphql.Marshaler {

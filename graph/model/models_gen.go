@@ -606,9 +606,10 @@ type StringValue struct {
 }
 
 type SystemConfig struct {
-	MaxReplicas           *int32 `json:"maxReplicas,omitempty"`
-	MaxCascadeDeviceCount *int32 `json:"maxCascadeDeviceCount,omitempty"`
-	MaxSlotsPerDriver     *int32 `json:"maxSlotsPerDriver,omitempty"`
+	MaxReplicas           *int32      `json:"maxReplicas,omitempty"`
+	MaxCascadeDeviceCount *int32      `json:"maxCascadeDeviceCount,omitempty"`
+	MaxSlotsPerDriver     *int32      `json:"maxSlotsPerDriver,omitempty"`
+	MinReplicas           []*Mapint32 `json:"minReplicas,omitempty"`
 }
 
 type MapDeviceGroupStatusDevice struct {
@@ -624,6 +625,11 @@ type MapFieldValue struct {
 type MapListOfString struct {
 	Key   string        `json:"key"`
 	Value *ListOfString `json:"value,omitempty"`
+}
+
+type Mapint32 struct {
+	Key   string `json:"key"`
+	Value *int32 `json:"value,omitempty"`
 }
 
 type Mapstring struct {
