@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "platform API"
+name = "platform_api"
 version = "1.0.0"
 description = "Platform API for openHES and related applications"
 readme = "README.md"
