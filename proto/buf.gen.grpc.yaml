@@ -9,6 +9,6 @@ plugins:
       - paths=source_relative
       - default_api_level=API_OPAQUE
   - protoc_builtin: python
-    out: ../gen/python
+    out: ../gen/python/platform_api
   - remote: buf.build/grpc/python
-    out: ../gen/python
+    out: ../gen/python/platform_api
