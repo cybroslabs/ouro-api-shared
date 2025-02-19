@@ -159,6 +159,12 @@ message BulkStatus {
     repeated BulkJob jobs = 2;  // The list of job statuses.
 }
 
+message BulkJob {
+    reserved 1;            // reserved for spec
+    JobStatus status = 2;  // The job status.
+    reserved 3;            // reserved for metadata
+}
+
 // Modem Pool specification.
 
 message SetModemPoolRequest {

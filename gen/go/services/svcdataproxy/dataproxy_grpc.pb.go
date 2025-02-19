@@ -27,6 +27,7 @@ const (
 	DataproxyService_ListBulks_FullMethodName  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
 	DataproxyService_GetBulk_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
 	DataproxyService_CancelBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_GetBulkJob_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -45,6 +46,9 @@ type DataproxyServiceClient interface {
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
 	// Cancels the bulk of jobs.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Retrieves the job status.
+	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
 }
 
 type dataproxyServiceClient struct {
@@ -95,6 +99,16 @@ func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.BulkJob)
+	err := c.cc.Invoke(ctx, DataproxyService_GetBulkJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility.
@@ -111,6 +125,9 @@ type DataproxyServiceServer interface {
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
 	// Cancels the bulk of jobs.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Retrieves the job status.
+	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -132,6 +149,9 @@ func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.
 }
 func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 func (UnimplementedDataproxyServiceServer) testEmbeddedByValue()                          {}
@@ -226,6 +246,24 @@ func _DataproxyService_CancelBulk_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_GetBulkJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetBulkJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetBulkJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetBulkJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -248,6 +286,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelBulk",
 			Handler:    _DataproxyService_CancelBulk_Handler,
+		},
+		{
+			MethodName: "GetBulkJob",
+			Handler:    _DataproxyService_GetBulkJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

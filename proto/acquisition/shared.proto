@@ -607,11 +607,6 @@ enum BulkStatusCode {
     BULK_STATUS_EXPIRED = 4;
 }
 
-message BulkJob {
-    string job_id    = 1;  // The job identifier.
-    JobStatus status = 2;  // The job status.
-}
-
 // Sub-message containing job status info
 message JobStatus {
     JobStatusCode status                  = 1;  // The status of the job.

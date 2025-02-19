@@ -118,7 +118,6 @@ type Bulk struct {
 }
 
 type BulkJob struct {
-	JobID  *string    `json:"jobId,omitempty"`
 	Status *JobStatus `json:"status,omitempty"`
 }
 

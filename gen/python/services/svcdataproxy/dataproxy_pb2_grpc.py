@@ -38,6 +38,11 @@ class DataproxyServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetBulkJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.BulkJob.FromString,
+                _registered_method=True)
 
 
 class DataproxyServiceServicer(object):
@@ -74,6 +79,16 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetBulkJob(self, request, context):
+        """@group: Bulks
+        Retrieves the job status.
+        // Cancels the job(s) identified by the job identifier(s).
+        rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataproxyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -96,6 +111,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.CancelBulk,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetBulkJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetBulkJob,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.BulkJob.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -207,6 +227,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetBulkJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.BulkJob.FromString,
             options,
             channel_credentials,
             insecure,

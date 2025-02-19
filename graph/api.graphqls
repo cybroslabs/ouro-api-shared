@@ -483,8 +483,6 @@ type Bulk {
 }
 
 type BulkJob {
-  # The job identifier.
-  jobId: String
   # The job status.
   status: JobStatus
 }
@@ -1298,6 +1296,7 @@ type Query {
   listBulks: ListOfBulk
   getBulk: Bulk
   cancelBulk: Empty
+  getBulkJob: BulkJob
   getConfig: SystemConfig
   setConfig: Empty
   createCommunicationUnit: StringValue

@@ -28,10 +28,10 @@ service ApiService {
     // @group: Bulks
     // Cancels the bulk of jobs.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Bulks
+    // Retrieves the job status.
+    rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
 
-    // // @group: Bulks
-    // // Retrieves the job status.
-    // rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
     // // @group: Bulks
     // // Cancels the job(s) identified by the job identifier(s).
     // rpc CancelJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
