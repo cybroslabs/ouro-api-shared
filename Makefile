@@ -16,11 +16,14 @@ gen-go:
 	find ./gen/go -type f -name "*.pb.go" -delete
 	find ./gen/go -depth -type d -name "docs" -exec rm -r {} \;
 	find ./gen/go -type d -empty -delete
+	find ./gen/python -depth -mindepth 1 -type d -delete -exec rm -r {} \;
 
 	cd proto && buf dep update
 	cd proto && npx buf generate --template buf.gen.grpc.yaml
 	cd proto && npx buf generate --template buf.gen.api.yaml
 	cd proto && buf build -o ../gen/go/services/svcapi/raw.binpb
+
+	find ./gen/python -type d -mindepth 1 -maxdepth 1 -exec touch {}/__init__.py \;
 
 	./src/mdgen/main.py
 

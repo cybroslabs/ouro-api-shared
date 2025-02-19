@@ -8,4 +8,8 @@ version = "1.0.0"
 description = "Platform API for openHES and related applications"
 readme = "README.md"
 dependencies = []
-requires-python = ">=3.6"
+requires-python = ">=3.9"
+
+[tool.setuptools.packages.find]
+include = ["*"]
+exclude = ["tests", "docs"]
