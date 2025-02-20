@@ -484,47 +484,63 @@ type ComplexityRoot struct {
 	}
 
 	ListOfBulk struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfCommunicationBus struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfCommunicationUnit struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfDevice struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfDeviceCommunicationUnit struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfDeviceGroup struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfDriver struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
+	ListOfFieldDescriptor struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfJobDevice struct {
-		List func(childComplexity int) int
+		List       func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfJobDeviceId struct {
-		List func(childComplexity int) int
+		List       func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfModemPool struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListOfString struct {
-		Items func(childComplexity int) int
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
 	}
 
 	ListSelector struct {
@@ -638,6 +654,7 @@ type ComplexityRoot struct {
 		ListDeviceGroups                             func(childComplexity int) int
 		ListDevices                                  func(childComplexity int) int
 		ListDrivers                                  func(childComplexity int) int
+		ListFieldDescriptors                         func(childComplexity int) int
 		ListModemPools                               func(childComplexity int) int
 		RemoveCommunicationUnitsFromCommunicationBus func(childComplexity int) int
 		RemoveDevicesFromGroup                       func(childComplexity int) int
@@ -745,6 +762,7 @@ type QueryResolver interface {
 	DeleteModem(ctx context.Context) (*model.Empty, error)
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
+	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
 }
 
 type executableSchema struct {
@@ -2334,12 +2352,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfBulk.Items(childComplexity), true
 
+	case "ListOfBulk.totalCount":
+		if e.complexity.ListOfBulk.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfBulk.TotalCount(childComplexity), true
+
 	case "ListOfCommunicationBus.items":
 		if e.complexity.ListOfCommunicationBus.Items == nil {
 			break
 		}
 
 		return e.complexity.ListOfCommunicationBus.Items(childComplexity), true
+
+	case "ListOfCommunicationBus.totalCount":
+		if e.complexity.ListOfCommunicationBus.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfCommunicationBus.TotalCount(childComplexity), true
 
 	case "ListOfCommunicationUnit.items":
 		if e.complexity.ListOfCommunicationUnit.Items == nil {
@@ -2348,12 +2380,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfCommunicationUnit.Items(childComplexity), true
 
+	case "ListOfCommunicationUnit.totalCount":
+		if e.complexity.ListOfCommunicationUnit.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfCommunicationUnit.TotalCount(childComplexity), true
+
 	case "ListOfDevice.items":
 		if e.complexity.ListOfDevice.Items == nil {
 			break
 		}
 
 		return e.complexity.ListOfDevice.Items(childComplexity), true
+
+	case "ListOfDevice.totalCount":
+		if e.complexity.ListOfDevice.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDevice.TotalCount(childComplexity), true
 
 	case "ListOfDeviceCommunicationUnit.items":
 		if e.complexity.ListOfDeviceCommunicationUnit.Items == nil {
@@ -2362,12 +2408,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfDeviceCommunicationUnit.Items(childComplexity), true
 
+	case "ListOfDeviceCommunicationUnit.totalCount":
+		if e.complexity.ListOfDeviceCommunicationUnit.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceCommunicationUnit.TotalCount(childComplexity), true
+
 	case "ListOfDeviceGroup.items":
 		if e.complexity.ListOfDeviceGroup.Items == nil {
 			break
 		}
 
 		return e.complexity.ListOfDeviceGroup.Items(childComplexity), true
+
+	case "ListOfDeviceGroup.totalCount":
+		if e.complexity.ListOfDeviceGroup.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceGroup.TotalCount(childComplexity), true
 
 	case "ListOfDriver.items":
 		if e.complexity.ListOfDriver.Items == nil {
@@ -2376,12 +2436,40 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfDriver.Items(childComplexity), true
 
+	case "ListOfDriver.totalCount":
+		if e.complexity.ListOfDriver.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDriver.TotalCount(childComplexity), true
+
+	case "ListOfFieldDescriptor.items":
+		if e.complexity.ListOfFieldDescriptor.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfFieldDescriptor.Items(childComplexity), true
+
+	case "ListOfFieldDescriptor.totalCount":
+		if e.complexity.ListOfFieldDescriptor.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfFieldDescriptor.TotalCount(childComplexity), true
+
 	case "ListOfJobDevice.list":
 		if e.complexity.ListOfJobDevice.List == nil {
 			break
 		}
 
 		return e.complexity.ListOfJobDevice.List(childComplexity), true
+
+	case "ListOfJobDevice.totalCount":
+		if e.complexity.ListOfJobDevice.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfJobDevice.TotalCount(childComplexity), true
 
 	case "ListOfJobDeviceId.list":
 		if e.complexity.ListOfJobDeviceId.List == nil {
@@ -2390,6 +2478,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfJobDeviceId.List(childComplexity), true
 
+	case "ListOfJobDeviceId.totalCount":
+		if e.complexity.ListOfJobDeviceId.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfJobDeviceId.TotalCount(childComplexity), true
+
 	case "ListOfModemPool.items":
 		if e.complexity.ListOfModemPool.Items == nil {
 			break
@@ -2397,12 +2492,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfModemPool.Items(childComplexity), true
 
+	case "ListOfModemPool.totalCount":
+		if e.complexity.ListOfModemPool.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfModemPool.TotalCount(childComplexity), true
+
 	case "ListOfString.items":
 		if e.complexity.ListOfString.Items == nil {
 			break
 		}
 
 		return e.complexity.ListOfString.Items(childComplexity), true
+
+	case "ListOfString.totalCount":
+		if e.complexity.ListOfString.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfString.TotalCount(childComplexity), true
 
 	case "ListSelector.fields":
 		if e.complexity.ListSelector.Fields == nil {
@@ -2942,6 +3051,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.ListDrivers(childComplexity), true
+
+	case "Query.listFieldDescriptors":
+		if e.complexity.Query.ListFieldDescriptors == nil {
+			break
+		}
+
+		return e.complexity.Query.ListFieldDescriptors(childComplexity), true
 
 	case "Query.listModemPools":
 		if e.complexity.Query.ListModemPools == nil {
@@ -5437,6 +5553,8 @@ func (ec *executionContext) fieldContext_BulkSpec_devices(_ context.Context, fie
 			switch field.Name {
 			case "list":
 				return ec.fieldContext_ListOfJobDeviceId_list(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfJobDeviceId_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfJobDeviceId", field.Name)
 		},
@@ -5482,6 +5600,8 @@ func (ec *executionContext) fieldContext_BulkSpec_customDevices(_ context.Contex
 			switch field.Name {
 			case "list":
 				return ec.fieldContext_ListOfJobDevice_list(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfJobDevice_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfJobDevice", field.Name)
 		},
@@ -13555,6 +13675,47 @@ func (ec *executionContext) fieldContext_ListOfBulk_items(_ context.Context, fie
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfBulk_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfBulk) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfBulk_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfBulk_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfBulk",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfCommunicationBus_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationBus) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfCommunicationBus_items(ctx, field)
 	if err != nil {
@@ -13602,6 +13763,47 @@ func (ec *executionContext) fieldContext_ListOfCommunicationBus_items(_ context.
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfCommunicationBus_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationBus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationBus_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfCommunicationBus_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfCommunicationBus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfCommunicationUnit_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnit) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfCommunicationUnit_items(ctx, field)
 	if err != nil {
@@ -13644,6 +13846,47 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnit_items(_ context
 				return ec.fieldContext_CommunicationUnit_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnit", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfCommunicationUnit_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationUnit_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfCommunicationUnit_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfCommunicationUnit",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -13698,6 +13941,47 @@ func (ec *executionContext) fieldContext_ListOfDevice_items(_ context.Context, f
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfDevice_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDevice_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDevice_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDevice",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfDeviceCommunicationUnit_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnit) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnit_items(ctx, field)
 	if err != nil {
@@ -13740,6 +14024,47 @@ func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_items(_ c
 				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfDeviceCommunicationUnit_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnit_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceCommunicationUnit",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -13794,6 +14119,47 @@ func (ec *executionContext) fieldContext_ListOfDeviceGroup_items(_ context.Conte
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfDeviceGroup_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceGroup) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceGroup_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceGroup_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceGroup",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfDriver_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDriver) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfDriver_items(ctx, field)
 	if err != nil {
@@ -13834,6 +14200,161 @@ func (ec *executionContext) fieldContext_ListOfDriver_items(_ context.Context, f
 				return ec.fieldContext_Driver_spec(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfDriver_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDriver) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDriver_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDriver_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDriver",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfFieldDescriptor_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfFieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfFieldDescriptor_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.FieldDescriptor)
+	fc.Result = res
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfFieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fieldId":
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "label":
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
+			case "tooltip":
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
+			case "required":
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
+			case "validation":
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfFieldDescriptor_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfFieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfFieldDescriptor_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfFieldDescriptor_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfFieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -13896,6 +14417,47 @@ func (ec *executionContext) fieldContext_ListOfJobDevice_list(_ context.Context,
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfJobDevice_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfJobDevice_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfJobDevice_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfJobDevice",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfJobDeviceId_list(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDeviceID) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfJobDeviceId_list(ctx, field)
 	if err != nil {
@@ -13938,6 +14500,47 @@ func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Contex
 				return ec.fieldContext_JobDeviceId_deviceId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobDeviceId", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfJobDeviceId_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDeviceID) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfJobDeviceId_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfJobDeviceId_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfJobDeviceId",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -13992,6 +14595,47 @@ func (ec *executionContext) fieldContext_ListOfModemPool_items(_ context.Context
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfModemPool_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfModemPool) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfModemPool_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfModemPool_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfModemPool",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfString_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfString) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfString_items(ctx, field)
 	if err != nil {
@@ -14028,6 +14672,47 @@ func (ec *executionContext) fieldContext_ListOfString_items(_ context.Context, f
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfString_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfString) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfString_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfString_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfString",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -16257,6 +16942,8 @@ func (ec *executionContext) fieldContext_Query_listBulks(_ context.Context, fiel
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfBulk_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfBulk_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfBulk", field.Name)
 		},
@@ -16582,6 +17269,8 @@ func (ec *executionContext) fieldContext_Query_listCommunicationUnits(_ context.
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfCommunicationUnit_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfCommunicationUnit_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnit", field.Name)
 		},
@@ -16719,6 +17408,8 @@ func (ec *executionContext) fieldContext_Query_listCommunicationBuses(_ context.
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfCommunicationBus_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfCommunicationBus_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationBus", field.Name)
 		},
@@ -16899,6 +17590,8 @@ func (ec *executionContext) fieldContext_Query_listDevices(_ context.Context, fi
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfDevice_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDevice_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDevice", field.Name)
 		},
@@ -17038,6 +17731,8 @@ func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ con
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfDeviceCommunicationUnit_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDeviceCommunicationUnit_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceCommunicationUnit", field.Name)
 		},
@@ -17128,6 +17823,8 @@ func (ec *executionContext) fieldContext_Query_listDeviceGroups(_ context.Contex
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfDeviceGroup_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDeviceGroup_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceGroup", field.Name)
 		},
@@ -17312,6 +18009,8 @@ func (ec *executionContext) fieldContext_Query_listDeviceGroupDevices(_ context.
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfDevice_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDevice_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDevice", field.Name)
 		},
@@ -17357,6 +18056,8 @@ func (ec *executionContext) fieldContext_Query_listModemPools(_ context.Context,
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfModemPool_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfModemPool_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfModemPool", field.Name)
 		},
@@ -17721,6 +18422,8 @@ func (ec *executionContext) fieldContext_Query_listDrivers(_ context.Context, fi
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfDriver_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDriver_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDriver", field.Name)
 		},
@@ -17768,6 +18471,53 @@ func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, fiel
 				return ec.fieldContext_Driver_spec(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listFieldDescriptors(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listFieldDescriptors(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListFieldDescriptors(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfFieldDescriptor)
+	fc.Result = res
+	return ec.marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfFieldDescriptor_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfFieldDescriptor_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfFieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -20788,6 +21538,8 @@ func (ec *executionContext) fieldContext__mapListOfString_value(_ context.Contex
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfString_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfString_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfString", field.Name)
 		},
@@ -23850,6 +24602,8 @@ func (ec *executionContext) _ListOfBulk(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = graphql.MarshalString("ListOfBulk")
 		case "items":
 			out.Values[i] = ec._ListOfBulk_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfBulk_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23886,6 +24640,8 @@ func (ec *executionContext) _ListOfCommunicationBus(ctx context.Context, sel ast
 			out.Values[i] = graphql.MarshalString("ListOfCommunicationBus")
 		case "items":
 			out.Values[i] = ec._ListOfCommunicationBus_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfCommunicationBus_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23922,6 +24678,8 @@ func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel as
 			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnit")
 		case "items":
 			out.Values[i] = ec._ListOfCommunicationUnit_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfCommunicationUnit_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23958,6 +24716,8 @@ func (ec *executionContext) _ListOfDevice(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("ListOfDevice")
 		case "items":
 			out.Values[i] = ec._ListOfDevice_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDevice_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -23994,6 +24754,8 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit(ctx context.Context, 
 			out.Values[i] = graphql.MarshalString("ListOfDeviceCommunicationUnit")
 		case "items":
 			out.Values[i] = ec._ListOfDeviceCommunicationUnit_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDeviceCommunicationUnit_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24030,6 +24792,8 @@ func (ec *executionContext) _ListOfDeviceGroup(ctx context.Context, sel ast.Sele
 			out.Values[i] = graphql.MarshalString("ListOfDeviceGroup")
 		case "items":
 			out.Values[i] = ec._ListOfDeviceGroup_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDeviceGroup_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24066,6 +24830,46 @@ func (ec *executionContext) _ListOfDriver(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("ListOfDriver")
 		case "items":
 			out.Values[i] = ec._ListOfDriver_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDriver_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var listOfFieldDescriptorImplementors = []string{"ListOfFieldDescriptor"}
+
+func (ec *executionContext) _ListOfFieldDescriptor(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfFieldDescriptor) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfFieldDescriptorImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfFieldDescriptor")
+		case "items":
+			out.Values[i] = ec._ListOfFieldDescriptor_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfFieldDescriptor_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24102,6 +24906,8 @@ func (ec *executionContext) _ListOfJobDevice(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("ListOfJobDevice")
 		case "list":
 			out.Values[i] = ec._ListOfJobDevice_list(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfJobDevice_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24138,6 +24944,8 @@ func (ec *executionContext) _ListOfJobDeviceId(ctx context.Context, sel ast.Sele
 			out.Values[i] = graphql.MarshalString("ListOfJobDeviceId")
 		case "list":
 			out.Values[i] = ec._ListOfJobDeviceId_list(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfJobDeviceId_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24174,6 +24982,8 @@ func (ec *executionContext) _ListOfModemPool(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("ListOfModemPool")
 		case "items":
 			out.Values[i] = ec._ListOfModemPool_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfModemPool_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -24210,6 +25020,8 @@ func (ec *executionContext) _ListOfString(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("ListOfString")
 		case "items":
 			out.Values[i] = ec._ListOfString_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfString_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -25380,6 +26192,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDriver(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listFieldDescriptors":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listFieldDescriptors(ctx, field)
 				return res
 			}
 
@@ -28379,6 +29210,13 @@ func (ec *executionContext) marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._ListOfDriver(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ListOfFieldDescriptor) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfFieldDescriptor(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDevice) graphql.Marshaler {

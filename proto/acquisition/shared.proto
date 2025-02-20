@@ -68,11 +68,13 @@ message JobAction {
 // Sub-message - holds the bulk job specification.
 
 message ListOfJobDevice {
-    repeated JobDevice list = 5;  // The list of devices in the bulk.
+    repeated JobDevice list = 1;  // The list of devices in the bulk.
+    int32 total_count       = 2;  // The total number of items.
 }
 
 message ListOfJobDeviceId {
-    repeated JobDeviceId list = 5;  // The list of devices in the bulk.
+    repeated JobDeviceId list = 1;  // The list of devices in the bulk.
+    int32 total_count         = 2;  // The total number of items.
 }
 
 message JobDeviceId {
@@ -645,11 +647,13 @@ message DeviceConnectionInfo {
 // Addon for DB
 message ListOfModemInfo {
     repeated ModemInfo items = 1;
+    int32 total_count        = 2;  // The total number of items.
 }
 
 // Addon for DB
 message ListOfConnectionInfo {
     repeated DeviceConnectionInfo items = 1;
+    int32 total_count                   = 2;  // The total number of items.
 }
 
 // Job statuses

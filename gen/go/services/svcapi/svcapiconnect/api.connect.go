@@ -38,6 +38,9 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
+	// ListFieldDescriptors RPC.
+	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
 	// ApiServiceCreateBulkProcedure is the fully-qualified name of the ApiService's CreateBulk RPC.
 	ApiServiceCreateBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
@@ -131,6 +134,9 @@ const (
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceClient interface {
+	// @group: Fields
+	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -274,6 +280,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 	baseURL = strings.TrimRight(baseURL, "/")
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
 	return &apiServiceClient{
+		listFieldDescriptors: connect.NewClient[emptypb.Empty, common.ListOfFieldDescriptor](
+			httpClient,
+			baseURL+ApiServiceListFieldDescriptorsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+			connect.WithClientOptions(opts...),
+		),
 		createBulk: connect.NewClient[acquisition.CreateBulkRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateBulkProcedure,
@@ -489,6 +501,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
+	listFieldDescriptors                         *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
 	createBulk                                   *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
 	listBulks                                    *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	getBulk                                      *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
@@ -524,6 +537,11 @@ type apiServiceClient struct {
 	deleteModem                                  *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getConfig                                    *connect.Client[emptypb.Empty, system.SystemConfig]
 	setConfig                                    *connect.Client[system.SystemConfig, emptypb.Empty]
+}
+
+// ListFieldDescriptors calls io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors.
+func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
+	return c.listFieldDescriptors.CallUnary(ctx, req)
 }
 
 // CreateBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateBulk.
@@ -707,6 +725,9 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[s
 
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
+	// @group: Fields
+	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -846,6 +867,12 @@ type ApiServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
+	apiServiceListFieldDescriptorsHandler := connect.NewUnaryHandler(
+		ApiServiceListFieldDescriptorsProcedure,
+		svc.ListFieldDescriptors,
+		connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateBulkHandler := connect.NewUnaryHandler(
 		ApiServiceCreateBulkProcedure,
 		svc.CreateBulk,
@@ -1058,6 +1085,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ApiServiceListFieldDescriptorsProcedure:
+			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateBulkProcedure:
 			apiServiceCreateBulkHandler.ServeHTTP(w, r)
 		case ApiServiceListBulksProcedure:
@@ -1136,6 +1165,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 
 // UnimplementedApiServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedApiServiceHandler struct{}
+
+func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors is not implemented"))
+}
 
 func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateBulk is not implemented"))

@@ -25,21 +25,21 @@ message ListSelectorSortBy {
 
 // The filter operator.
 enum FilterOperator {
-    EQUAL                 = 0;   // Single operand operator for text, integer, number, boolean fields.
-    NOT_EQUAL             = 1;   // Single operand operator for text, integer, number, boolean fields.
-    GREATER_THAN          = 2;   // Single operand operator for integer, number fields.
-    GREATER_THAN_OR_EQUAL = 3;   // Single operand operator for integer, number  fields.
-    LESS_THAN             = 4;   // Single operand operator for integer, number fields.
-    LESS_THAN_OR_EQUAL    = 5;   // Single operand operator for integer, number fields.
+    EQUAL                 = 0;   // Single operand operator for text, integer, number, boolean, date fields.
+    NOT_EQUAL             = 1;   // Single operand operator for text, integer, number, boolean, date fields.
+    GREATER_THAN          = 2;   // Single operand operator for integer, number, date fields.
+    GREATER_THAN_OR_EQUAL = 3;   // Single operand operator for integer, number, date fields.
+    LESS_THAN             = 4;   // Single operand operator for integer, number, date fields.
+    LESS_THAN_OR_EQUAL    = 5;   // Single operand operator for integer, number, date fields.
     CONTAINS              = 6;   // Single operand operator for text fields.
     NOT_CONTAINS          = 7;   // Single operand operator for text fields.
     STARTS_WITH           = 8;   // Single operand operator for text fields.
     ENDS_WITH             = 9;   // Single operand operator for text fields.
     IN                    = 10;  // Multiple operand operator for text, integer, number, boolean fields.
     NOT_IN                = 11;  // Multiple operand operator for text, integer, number, boolean fields.
-    BETWEEN               = 12;  // Two operand operator for integer, number fields.
-    IS_NULL               = 13;  // No operand operator.
-    IS_NOT_NULL           = 14;  // No operand operator.
+    BETWEEN               = 12;  // Two operand operator for integer, number, date fields.
+    IS_NULL               = 13;  // No operand operator. For both null and empty string.
+    IS_NOT_NULL           = 14;  // No operand operator. For both null and empty string.
 }
 
 // The filtering criteria.
@@ -60,11 +60,6 @@ message ListSelectorFilterBy {
     repeated double number                  = 6;  // The number-typed value(s) used for filtering.
     repeated bool boolean                   = 7;  // The boolean-typed value(s) used for filtering.
     repeated google.protobuf.Timestamp date = 8;  // The date-typed value(s) used for filtering.
-}
-
-// Data descriptor for listing methods.
-message ListDescriptor {
-    repeated FieldDescriptor fields = 1;  // The list of fields.
 }
 
 // Enum representing the field data type.
@@ -132,4 +127,9 @@ message FieldValue {
         bool bool_value                      = 5;  // Represents a boolean-typed value.
         google.protobuf.Timestamp date_value = 6;  // Represents a date-typed value.
     }
+}
+
+message ListOfFieldDescriptor {
+    repeated FieldDescriptor items = 1;  // The list of field descriptors.
+    int32 total_count              = 2;  // The total number of items.
 }

@@ -24,6 +24,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	ApiService_ListFieldDescriptors_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
 	ApiService_CreateBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	ApiService_ListBulks_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	ApiService_GetBulk_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
@@ -67,6 +68,9 @@ const (
 //
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
+	// @group: Fields
+	// The method to get the list of fields.
+	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -205,6 +209,16 @@ type apiServiceClient struct {
 
 func NewApiServiceClient(cc grpc.ClientConnInterface) ApiServiceClient {
 	return &apiServiceClient{cc}
+}
+
+func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfFieldDescriptor)
+	err := c.cc.Invoke(ctx, ApiService_ListFieldDescriptors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *apiServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
@@ -563,6 +577,9 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, in *system.SystemConfi
 //
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
+	// @group: Fields
+	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -703,6 +720,9 @@ type ApiServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedApiServiceServer struct{}
 
+func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
+}
 func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
@@ -827,6 +847,24 @@ func RegisterApiServiceServer(s grpc.ServiceRegistrar, srv ApiServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ApiService_ServiceDesc, srv)
+}
+
+func _ApiService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListFieldDescriptors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListFieldDescriptors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListFieldDescriptors(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1466,6 +1504,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svcapi.ApiService",
 	HandlerType: (*ApiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListFieldDescriptors",
+			Handler:    _ApiService_ListFieldDescriptors_Handler,
+		},
 		{
 			MethodName: "CreateBulk",
 			Handler:    _ApiService_CreateBulk_Handler,

@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIlAKDkxpc3REZXNjcmlwdG9yEj4KBmZpZWxkcxgBIAMoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvciLbAwoPRmllbGREZXNjcmlwdG9yEhAKCGZpZWxkX2lkGAEgASgJEg0KBWxhYmVsGAIgASgJEhAKCGdyb3VwX2lkGAYgASgJEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSQQoGZm9ybWF0GAQgASgOMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREaXNwbGF5Rm9ybWF0EgwKBHVuaXQYBSABKAkSEQoJcHJlY2lzaW9uGAggASgFEg8KB3Rvb2x0aXAYCSABKAkSEAoIcmVxdWlyZWQYCyABKAgSEAoIZWRpdGFibGUYDCABKAgSDwoHdmlzaWJsZRgNIAEoCBITCgttdWx0aV92YWx1ZRgOIAEoCBIPCgdzZWN1cmVkGA8gASgIEkIKCnZhbGlkYXRpb24YECABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbGlkYXRpb24SQAoNZGVmYXVsdF92YWx1ZRgRIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWUilQIKD0ZpZWxkVmFsaWRhdGlvbhIKCgJyZRgBIAEoCRISCgptaW5fbGVuZ3RoGAIgASgFEhIKCm1heF9sZW5ndGgYAyABKAUSEwoLbWluX2ludGVnZXIYBCABKBISEwoLbWF4X2ludGVnZXIYBSABKBISEgoKbWluX251bWJlchgGIAEoARISCgptYXhfbnVtYmVyGAcgASgBEkwKB29wdGlvbnMYCCADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbGlkYXRpb24uT3B0aW9uc0VudHJ5Gi4KDE9wdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIr0BCgpGaWVsZFZhbHVlEhYKDHN0cmluZ192YWx1ZRgBIAEoCUgAEhcKDWludGVnZXJfdmFsdWUYAiABKANIABIWCgxkb3VibGVfdmFsdWUYAyABKAFIABIWCgxiaW5hcnlfdmFsdWUYBCABKAxIABIUCgpib29sX3ZhbHVlGAUgASgISAASMAoKZGF0ZV92YWx1ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAEIGCgRraW5kKv0BCg5GaWx0ZXJPcGVyYXRvchIJCgVFUVVBTBAAEg0KCU5PVF9FUVVBTBABEhAKDEdSRUFURVJfVEhBThACEhkKFUdSRUFURVJfVEhBTl9PUl9FUVVBTBADEg0KCUxFU1NfVEhBThAEEhYKEkxFU1NfVEhBTl9PUl9FUVVBTBAFEgwKCENPTlRBSU5TEAYSEAoMTk9UX0NPTlRBSU5TEAcSDwoLU1RBUlRTX1dJVEgQCBINCglFTkRTX1dJVEgQCRIGCgJJThAKEgoKBk5PVF9JThALEgsKB0JFVFdFRU4QDBILCgdJU19OVUxMEA0SDwoLSVNfTk9UX05VTEwQDipaCg1GaWVsZERhdGFUeXBlEggKBFRFWFQQABILCgdJTlRFR0VSEAESCgoGRE9VQkxFEAISCwoHQk9PTEVBThADEg0KCVRJTUVTVEFNUBAEEgoKBkJJTkFSWRAFKqYBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEgwKCERVUkFUSU9OEAESDAoISU5URVJWQUwQAhIICgREQVRFEAMSDAoIVVRDX0RBVEUQBBIJCgVNT05USBAFEg0KCURBWU9GV0VFSxAGEg0KCVRJTUVPRkRBWRAHEgkKBU1PTkVZEAgSDAoIUEFTU1dPUkQQCRINCglNVUxUSUxJTkUQCkIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wItsDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDQoFbGFiZWwYAiABKAkSEAoIZ3JvdXBfaWQYBiABKAkSPwoJZGF0YV90eXBlGAMgASgOMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREYXRhVHlwZRJBCgZmb3JtYXQYBCABKA4yMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERpc3BsYXlGb3JtYXQSDAoEdW5pdBgFIAEoCRIRCglwcmVjaXNpb24YCCABKAUSDwoHdG9vbHRpcBgJIAEoCRIQCghyZXF1aXJlZBgLIAEoCBIQCghlZGl0YWJsZRgMIAEoCBIPCgd2aXNpYmxlGA0gASgIEhMKC211bHRpX3ZhbHVlGA4gASgIEg8KB3NlY3VyZWQYDyABKAgSQgoKdmFsaWRhdGlvbhgQIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbhJACg1kZWZhdWx0X3ZhbHVlGBEgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZSKVAgoPRmllbGRWYWxpZGF0aW9uEgoKAnJlGAEgASgJEhIKCm1pbl9sZW5ndGgYAiABKAUSEgoKbWF4X2xlbmd0aBgDIAEoBRITCgttaW5faW50ZWdlchgEIAEoEhITCgttYXhfaW50ZWdlchgFIAEoEhISCgptaW5fbnVtYmVyGAYgASgBEhIKCm1heF9udW1iZXIYByABKAESTAoHb3B0aW9ucxgIIAMoCzI7LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsaWRhdGlvbi5PcHRpb25zRW50cnkaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEivQEKCkZpZWxkVmFsdWUSFgoMc3RyaW5nX3ZhbHVlGAEgASgJSAASFwoNaW50ZWdlcl92YWx1ZRgCIAEoA0gAEhYKDGRvdWJsZV92YWx1ZRgDIAEoAUgAEhYKDGJpbmFyeV92YWx1ZRgEIAEoDEgAEhQKCmJvb2xfdmFsdWUYBSABKAhIABIwCgpkYXRlX3ZhbHVlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAQgYKBGtpbmQiawoVTGlzdE9mRmllbGREZXNjcmlwdG9yEj0KBWl0ZW1zGAEgAygLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yEhMKC3RvdGFsX2NvdW50GAIgASgFKv0BCg5GaWx0ZXJPcGVyYXRvchIJCgVFUVVBTBAAEg0KCU5PVF9FUVVBTBABEhAKDEdSRUFURVJfVEhBThACEhkKFUdSRUFURVJfVEhBTl9PUl9FUVVBTBADEg0KCUxFU1NfVEhBThAEEhYKEkxFU1NfVEhBTl9PUl9FUVVBTBAFEgwKCENPTlRBSU5TEAYSEAoMTk9UX0NPTlRBSU5TEAcSDwoLU1RBUlRTX1dJVEgQCBINCglFTkRTX1dJVEgQCRIGCgJJThAKEgoKBk5PVF9JThALEgsKB0JFVFdFRU4QDBILCgdJU19OVUxMEA0SDwoLSVNfTk9UX05VTEwQDipaCg1GaWVsZERhdGFUeXBlEggKBFRFWFQQABILCgdJTlRFR0VSEAESCgoGRE9VQkxFEAISCwoHQk9PTEVBThADEg0KCVRJTUVTVEFNUBAEEgoKBkJJTkFSWRAFKqYBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEgwKCERVUkFUSU9OEAESDAoISU5URVJWQUwQAhIICgREQVRFEAMSDAoIVVRDX0RBVEUQBBIJCgVNT05USBAFEg0KCURBWU9GV0VFSxAGEg0KCVRJTUVPRkRBWRAHEgkKBU1PTkVZEAgSDAoIUEFTU1dPUkQQCRINCglNVUxUSUxJTkUQCkIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp]);
 
 /**
  * The listing selector.
@@ -172,27 +172,6 @@ export const ListSelectorFilterBySchema: GenMessage<ListSelectorFilterBy> = /*@_
   messageDesc(file_common_fields, 2);
 
 /**
- * Data descriptor for listing methods.
- *
- * @generated from message io.clbs.openhes.models.common.ListDescriptor
- */
-export type ListDescriptor = Message<"io.clbs.openhes.models.common.ListDescriptor"> & {
-  /**
-   * The list of fields.
-   *
-   * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor fields = 1;
-   */
-  fields: FieldDescriptor[];
-};
-
-/**
- * Describes the message io.clbs.openhes.models.common.ListDescriptor.
- * Use `create(ListDescriptorSchema)` to create a new message.
- */
-export const ListDescriptorSchema: GenMessage<ListDescriptor> = /*@__PURE__*/
-  messageDesc(file_common_fields, 3);
-
-/**
  * The field descriptor.
  *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptor
@@ -309,7 +288,7 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
  * Use `create(FieldDescriptorSchema)` to create a new message.
  */
 export const FieldDescriptorSchema: GenMessage<FieldDescriptor> = /*@__PURE__*/
-  messageDesc(file_common_fields, 4);
+  messageDesc(file_common_fields, 3);
 
 /**
  * Validation rules for the field.
@@ -379,7 +358,7 @@ export type FieldValidation = Message<"io.clbs.openhes.models.common.FieldValida
  * Use `create(FieldValidationSchema)` to create a new message.
  */
 export const FieldValidationSchema: GenMessage<FieldValidation> = /*@__PURE__*/
-  messageDesc(file_common_fields, 5);
+  messageDesc(file_common_fields, 4);
 
 /**
  * @generated from message io.clbs.openhes.models.common.FieldValue
@@ -444,6 +423,32 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
  * Use `create(FieldValueSchema)` to create a new message.
  */
 export const FieldValueSchema: GenMessage<FieldValue> = /*@__PURE__*/
+  messageDesc(file_common_fields, 5);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptor
+ */
+export type ListOfFieldDescriptor = Message<"io.clbs.openhes.models.common.ListOfFieldDescriptor"> & {
+  /**
+   * The list of field descriptors.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 1;
+   */
+  items: FieldDescriptor[];
+
+  /**
+   * The total number of items.
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount: number;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.ListOfFieldDescriptor.
+ * Use `create(ListOfFieldDescriptorSchema)` to create a new message.
+ */
+export const ListOfFieldDescriptorSchema: GenMessage<ListOfFieldDescriptor> = /*@__PURE__*/
   messageDesc(file_common_fields, 6);
 
 /**
@@ -453,42 +458,42 @@ export const FieldValueSchema: GenMessage<FieldValue> = /*@__PURE__*/
  */
 export enum FilterOperator {
   /**
-   * Single operand operator for text, integer, number, boolean fields.
+   * Single operand operator for text, integer, number, boolean, date fields.
    *
    * @generated from enum value: EQUAL = 0;
    */
   EQUAL = 0,
 
   /**
-   * Single operand operator for text, integer, number, boolean fields.
+   * Single operand operator for text, integer, number, boolean, date fields.
    *
    * @generated from enum value: NOT_EQUAL = 1;
    */
   NOT_EQUAL = 1,
 
   /**
-   * Single operand operator for integer, number fields.
+   * Single operand operator for integer, number, date fields.
    *
    * @generated from enum value: GREATER_THAN = 2;
    */
   GREATER_THAN = 2,
 
   /**
-   * Single operand operator for integer, number  fields.
+   * Single operand operator for integer, number, date fields.
    *
    * @generated from enum value: GREATER_THAN_OR_EQUAL = 3;
    */
   GREATER_THAN_OR_EQUAL = 3,
 
   /**
-   * Single operand operator for integer, number fields.
+   * Single operand operator for integer, number, date fields.
    *
    * @generated from enum value: LESS_THAN = 4;
    */
   LESS_THAN = 4,
 
   /**
-   * Single operand operator for integer, number fields.
+   * Single operand operator for integer, number, date fields.
    *
    * @generated from enum value: LESS_THAN_OR_EQUAL = 5;
    */
@@ -537,21 +542,21 @@ export enum FilterOperator {
   NOT_IN = 11,
 
   /**
-   * Two operand operator for integer, number fields.
+   * Two operand operator for integer, number, date fields.
    *
    * @generated from enum value: BETWEEN = 12;
    */
   BETWEEN = 12,
 
   /**
-   * No operand operator.
+   * No operand operator. For both null and empty string.
    *
    * @generated from enum value: IS_NULL = 13;
    */
   IS_NULL = 13,
 
   /**
-   * No operand operator.
+   * No operand operator. For both null and empty string.
    *
    * @generated from enum value: IS_NOT_NULL = 14;
    */

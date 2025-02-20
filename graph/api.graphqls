@@ -202,17 +202,17 @@ enum FieldDisplayFormat {
 
 # The filter operator.
 enum FilterOperator {
-  # Single operand operator for text, integer, number, boolean fields.
+  # Single operand operator for text, integer, number, boolean, date fields.
   EQUAL
-  # Single operand operator for text, integer, number, boolean fields.
+  # Single operand operator for text, integer, number, boolean, date fields.
   NOT_EQUAL
-  # Single operand operator for integer, number fields.
+  # Single operand operator for integer, number, date fields.
   GREATER_THAN
-  # Single operand operator for integer, number  fields.
+  # Single operand operator for integer, number, date fields.
   GREATER_THAN_OR_EQUAL
-  # Single operand operator for integer, number fields.
+  # Single operand operator for integer, number, date fields.
   LESS_THAN
-  # Single operand operator for integer, number fields.
+  # Single operand operator for integer, number, date fields.
   LESS_THAN_OR_EQUAL
   # Single operand operator for text fields.
   CONTAINS
@@ -226,11 +226,11 @@ enum FilterOperator {
   IN
   # Multiple operand operator for text, integer, number, boolean fields.
   NOT_IN
-  # Two operand operator for integer, number fields.
+  # Two operand operator for integer, number, date fields.
   BETWEEN
-  # No operand operator.
+  # No operand operator. For both null and empty string.
   IS_NULL
-  # No operand operator.
+  # No operand operator. For both null and empty string.
   IS_NOT_NULL
 }
 
@@ -944,51 +944,71 @@ type JobStatus {
 type ListOfBulk {
   # The list of bulks.
   items: [Bulk]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfCommunicationBus {
   # The list of communication unit buses.
   items: [CommunicationBus]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfCommunicationUnit {
   # The communication unit specification.
   items: [CommunicationUnit]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfDevice {
   # The list of devices.
   items: [Device]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfDeviceCommunicationUnit {
   # The list of linked communication units.
   items: [DeviceCommunicationUnit]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfDeviceGroup {
   # The list of device groups.
   items: [DeviceGroup]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfDriver {
   # The list of drivers.
   items: [Driver]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfJobDevice {
   # The list of devices in the bulk.
   list: [JobDevice]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfJobDeviceId {
   # The list of devices in the bulk.
   list: [JobDeviceId]
+  # The total number of items.
+  totalCount: Int
 }
 
 type ListOfModemPool {
   # The list of modem pools.
   items: [ModemPool]
+  # The total number of items.
+  totalCount: Int
 }
 
 # Sub-message containing measured value
@@ -1177,9 +1197,19 @@ type FieldValue {
   dateValue: Timestamp
 }
 
+type ListOfFieldDescriptor {
+  # The list of field descriptors.
+  items: [FieldDescriptor]
+  # The total number of items.
+  totalCount: Int
+}
+
 # The list of string items.
 type ListOfString {
+  # Generic list of string items.
   items: [String]
+  # The total number of items.
+  totalCount: Int
 }
 
 # The listing selector.
@@ -1327,6 +1357,7 @@ type Query {
   deleteModem: Empty
   listDrivers: ListOfDriver
   getDriver: Driver
+  listFieldDescriptors: ListOfFieldDescriptor
 }
 
 scalar Timestamp

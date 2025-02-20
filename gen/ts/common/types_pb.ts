@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/types.proto.
  */
 export const file_common_types: GenFile = /*@__PURE__*/
-  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIhYKCExpc3RPZklkEgoKAmlkGAEgAygJIh0KDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
+  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIisKCExpc3RPZklkEgoKAmlkGAEgAygJEhMKC3RvdGFsX2NvdW50GAIgASgFIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
 
 /**
  * The list of UUID identifiers.
@@ -19,9 +19,18 @@ export const file_common_types: GenFile = /*@__PURE__*/
  */
 export type ListOfId = Message<"io.clbs.openhes.models.common.ListOfId"> & {
   /**
+   * Generic list of UUID identifiers.
+   *
    * @generated from field: repeated string id = 1;
    */
   id: string[];
+
+  /**
+   * The total number of items.
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount: number;
 };
 
 /**
@@ -38,9 +47,18 @@ export const ListOfIdSchema: GenMessage<ListOfId> = /*@__PURE__*/
  */
 export type ListOfString = Message<"io.clbs.openhes.models.common.ListOfString"> & {
   /**
+   * Generic list of string items.
+   *
    * @generated from field: repeated string items = 1;
    */
   items: string[];
+
+  /**
+   * The total number of items.
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount: number;
 };
 
 /**

@@ -20,6 +20,11 @@ class ApiServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.ListFieldDescriptors = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=common_dot_fields__pb2.ListOfFieldDescriptor.FromString,
+                _registered_method=True)
         self.CreateBulk = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateBulk',
                 request_serializer=acquisition_dot_main__pb2.CreateBulkRequest.SerializeToString,
@@ -200,6 +205,14 @@ class ApiServiceStub(object):
 class ApiServiceServicer(object):
     """The Dataproxy related service definition.
     """
+
+    def ListFieldDescriptors(self, request, context):
+        """@group: Fields
+        The method to get the list of fields.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateBulk(self, request, context):
         """@group: Bulks
@@ -513,6 +526,11 @@ class ApiServiceServicer(object):
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'ListFieldDescriptors': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListFieldDescriptors,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=common_dot_fields__pb2.ListOfFieldDescriptor.SerializeToString,
+            ),
             'CreateBulk': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateBulk,
                     request_deserializer=acquisition_dot_main__pb2.CreateBulkRequest.FromString,
@@ -699,6 +717,33 @@ def add_ApiServiceServicer_to_server(servicer, server):
 class ApiService(object):
     """The Dataproxy related service definition.
     """
+
+    @staticmethod
+    def ListFieldDescriptors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            common_dot_fields__pb2.ListOfFieldDescriptor.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def CreateBulk(request,

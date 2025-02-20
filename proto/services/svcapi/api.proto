@@ -14,6 +14,10 @@ import "system/main.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
+    // @group: Fields
+    // The method to get the list of fields.
+    rpc ListFieldDescriptors(google.protobuf.Empty) returns (io.clbs.openhes.models.common.ListOfFieldDescriptor);
+
     // @group: Bulks
     // @tag: acquisition
     // @tag: action

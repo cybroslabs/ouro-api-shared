@@ -447,47 +447,63 @@ type JobStatus struct {
 }
 
 type ListOfBulk struct {
-	Items []*Bulk `json:"items,omitempty"`
+	Items      []*Bulk `json:"items,omitempty"`
+	TotalCount *int32  `json:"totalCount,omitempty"`
 }
 
 type ListOfCommunicationBus struct {
-	Items []*CommunicationBus `json:"items,omitempty"`
+	Items      []*CommunicationBus `json:"items,omitempty"`
+	TotalCount *int32              `json:"totalCount,omitempty"`
 }
 
 type ListOfCommunicationUnit struct {
-	Items []*CommunicationUnit `json:"items,omitempty"`
+	Items      []*CommunicationUnit `json:"items,omitempty"`
+	TotalCount *int32               `json:"totalCount,omitempty"`
 }
 
 type ListOfDevice struct {
-	Items []*Device `json:"items,omitempty"`
+	Items      []*Device `json:"items,omitempty"`
+	TotalCount *int32    `json:"totalCount,omitempty"`
 }
 
 type ListOfDeviceCommunicationUnit struct {
-	Items []*DeviceCommunicationUnit `json:"items,omitempty"`
+	Items      []*DeviceCommunicationUnit `json:"items,omitempty"`
+	TotalCount *int32                     `json:"totalCount,omitempty"`
 }
 
 type ListOfDeviceGroup struct {
-	Items []*DeviceGroup `json:"items,omitempty"`
+	Items      []*DeviceGroup `json:"items,omitempty"`
+	TotalCount *int32         `json:"totalCount,omitempty"`
 }
 
 type ListOfDriver struct {
-	Items []*Driver `json:"items,omitempty"`
+	Items      []*Driver `json:"items,omitempty"`
+	TotalCount *int32    `json:"totalCount,omitempty"`
+}
+
+type ListOfFieldDescriptor struct {
+	Items      []*FieldDescriptor `json:"items,omitempty"`
+	TotalCount *int32             `json:"totalCount,omitempty"`
 }
 
 type ListOfJobDevice struct {
-	List []*JobDevice `json:"list,omitempty"`
+	List       []*JobDevice `json:"list,omitempty"`
+	TotalCount *int32       `json:"totalCount,omitempty"`
 }
 
 type ListOfJobDeviceID struct {
-	List []*JobDeviceID `json:"list,omitempty"`
+	List       []*JobDeviceID `json:"list,omitempty"`
+	TotalCount *int32         `json:"totalCount,omitempty"`
 }
 
 type ListOfModemPool struct {
-	Items []*ModemPool `json:"items,omitempty"`
+	Items      []*ModemPool `json:"items,omitempty"`
+	TotalCount *int32       `json:"totalCount,omitempty"`
 }
 
 type ListOfString struct {
-	Items []*string `json:"items,omitempty"`
+	Items      []*string `json:"items,omitempty"`
+	TotalCount *int32    `json:"totalCount,omitempty"`
 }
 
 type ListSelector struct {

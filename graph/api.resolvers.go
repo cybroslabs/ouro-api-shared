@@ -186,6 +186,11 @@ func (r *queryResolver) GetDriver(ctx context.Context) (*model.Driver, error) {
 	panic(fmt.Errorf("not implemented: GetDriver - getDriver"))
 }
 
+// ListFieldDescriptors is the resolver for the listFieldDescriptors field.
+func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error) {
+	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
+}
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 

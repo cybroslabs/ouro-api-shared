@@ -96,6 +96,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.common.ListOfFieldDescriptor">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfFieldDescriptor</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.common.ListOfString">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfString</code> 
@@ -760,6 +769,74 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListOfFieldDescriptor">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListOfFieldDescriptor" title="io.clbs.openhes.models.common.ListOfFieldDescriptor">message ListOfFieldDescriptor</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDescriptor">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldDescriptor"><span title="io.clbs.openhes.models.common.FieldDescriptor">io.clbs.openhes.models.common.FieldDescriptor</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of field descriptors.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListOfString">
   <span>
     <a href="#message-io.clbs.openhes.models.common.ListOfString" title="io.clbs.openhes.models.common.ListOfString">message ListOfString</a>
@@ -797,7 +874,22 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>Generic list of string items.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
       
     </tr>
     
@@ -1464,37 +1556,37 @@
     <tr>
       <td><code>EQUAL</code></td>
       <td>0</td>
-      <td class="content"><p>Single operand operator for text, integer, number, boolean fields.</p></td>
+      <td class="content"><p>Single operand operator for text, integer, number, boolean, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>NOT_EQUAL</code></td>
       <td>1</td>
-      <td class="content"><p>Single operand operator for text, integer, number, boolean fields.</p></td>
+      <td class="content"><p>Single operand operator for text, integer, number, boolean, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>GREATER_THAN</code></td>
       <td>2</td>
-      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>GREATER_THAN_OR_EQUAL</code></td>
       <td>3</td>
-      <td class="content"><p>Single operand operator for integer, number  fields.</p></td>
+      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>LESS_THAN</code></td>
       <td>4</td>
-      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>LESS_THAN_OR_EQUAL</code></td>
       <td>5</td>
-      <td class="content"><p>Single operand operator for integer, number fields.</p></td>
+      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
@@ -1536,19 +1628,19 @@
     <tr>
       <td><code>BETWEEN</code></td>
       <td>12</td>
-      <td class="content"><p>Two operand operator for integer, number fields.</p></td>
+      <td class="content"><p>Two operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>IS_NULL</code></td>
       <td>13</td>
-      <td class="content"><p>No operand operator.</p></td>
+      <td class="content"><p>No operand operator. For both null and empty string.</p></td>
     </tr>
     
     <tr>
       <td><code>IS_NOT_NULL</code></td>
       <td>14</td>
-      <td class="content"><p>No operand operator.</p></td>
+      <td class="content"><p>No operand operator. For both null and empty string.</p></td>
     </tr>
     
   </tbody>

@@ -19,6 +19,7 @@ message CreateCommunicationUnitRequest {
 
 message ListOfCommunicationUnit {
     repeated CommunicationUnit items = 1;  // The communication unit specification.
+    int32 total_count                = 2;  // The total number of items.
 }
 
 // Communication Bus specification.
@@ -30,6 +31,7 @@ message CreateCommunicationBusRequest {
 
 message ListOfCommunicationBus {
     repeated CommunicationBus items = 1;  // The list of communication unit buses.
+    int32 total_count               = 2;  // The total number of items.
 }
 
 // CommunicationUnit#CommunicationBus specification.
@@ -53,6 +55,7 @@ message CreateDeviceRequest {
 
 message ListOfDevice {
     repeated Device items = 1;  // The list of devices.
+    int32 total_count     = 2;  // The total number of items.
 }
 
 message Device {
@@ -70,6 +73,7 @@ message CreateDeviceGroupRequest {
 
 message ListOfDeviceGroup {
     repeated DeviceGroup items = 1;  // The list of device groups.
+    int32 total_count          = 2;  // The total number of items.
 }
 
 message StreamDeviceGroup {
@@ -109,6 +113,7 @@ message SetDeviceCommunicationUnitsRequest {
 
 message ListOfDeviceCommunicationUnit {
     repeated DeviceCommunicationUnit items = 1;  // The list of linked communication units.
+    int32 total_count                      = 2;  // The total number of items.
 }
 
 // Device#Group specification.
@@ -132,6 +137,7 @@ message CreateBulkRequest {
 
 message ListOfBulk {
     repeated Bulk items = 1;  // The list of bulks.
+    int32 total_count   = 2;  // The total number of items.
 }
 
 message Bulk {
@@ -175,6 +181,7 @@ message SetModemPoolRequest {
 
 message ListOfModemPool {
     repeated ModemPool items = 1;  // The list of modem pools.
+    int32 total_count        = 2;  // The total number of items.
 }
 
 message ModemPoolSpec {
@@ -206,6 +213,7 @@ message SetDriver {
 
 message ListOfDriver {
     repeated Driver items = 1;  // The list of drivers.
+    int32 total_count     = 2;  // The total number of items.
 }
 
 message Driver {
