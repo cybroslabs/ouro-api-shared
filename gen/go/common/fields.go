@@ -136,3 +136,81 @@ func (fd *FieldDescriptor) WithInterval() *FieldDescriptor {
 	fd.SetMultiValue(true)
 	return fd
 }
+
+func (fd *FieldDescriptor) WithRe(re string) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	if len(re) == 0 {
+		v.ClearRe()
+	} else {
+		v.SetRe(re)
+	}
+	return fd
+}
+
+func (fd *FieldDescriptor) WithMinInteger(min int) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	v.SetMinInteger(int64(min))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithMaxInteger(max int) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	v.SetMaxInteger(int64(max))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithMinNumber(min int) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	v.SetMinNumber(float64(min))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithMaxNumber(max int) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	v.SetMaxNumber(float64(max))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	if maxLength == 0 {
+		v.ClearMaxLength()
+	} else {
+		v.SetMaxLength(int32(maxLength))
+	}
+	return fd
+}
+
+func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	v.SetOptions(options)
+	return fd
+}
