@@ -1,6 +1,7 @@
 package common
 
 import (
+	"strconv"
 	"strings"
 )
 
@@ -212,5 +213,19 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 		fd.SetValidation(v)
 	}
 	v.SetOptions(options)
+	return fd
+}
+
+func (fd *FieldDescriptor) WithEnumOptions(options map[int32]string) *FieldDescriptor {
+	v := fd.GetValidation()
+	if v == nil {
+		v = FieldValidation_builder{}.Build()
+		fd.SetValidation(v)
+	}
+	tmp := make(map[string]string, len(options))
+	for k, v := range options {
+		tmp[strconv.Itoa(int(k))] = v
+	}
+	v.SetOptions(tmp)
 	return fd
 }
