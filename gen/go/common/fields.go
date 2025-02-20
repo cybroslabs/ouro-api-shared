@@ -4,7 +4,7 @@ import (
 	"strings"
 )
 
-func NewFieldDescriptor(fieldId string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
+func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
 	fieldId = strings.TrimSpace(fieldId)
 	if fieldId == "" {
 		panic("fieldId is required")
@@ -15,6 +15,7 @@ func NewFieldDescriptor(fieldId string, label string, groupId string, required b
 	}
 	fd := FieldDescriptor_builder{
 		FieldId:    &fieldId,
+		JsPath:     &jsPath,
 		Label:      &label,
 		DataType:   FieldDataType_TEXT.Enum(),
 		GroupId:    &groupId,
