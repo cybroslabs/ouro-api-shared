@@ -216,7 +216,8 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 	return fd
 }
 
-func (fd *FieldDescriptor) WithEnumOptions(options map[int32]string) *FieldDescriptor {
+func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
+	fd.SetDataType(FieldDataType_INTEGER)
 	v := fd.GetValidation()
 	if v == nil {
 		v = FieldValidation_builder{}.Build()
