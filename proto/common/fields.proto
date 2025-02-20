@@ -90,6 +90,7 @@ enum FieldDisplayFormat {
 // The field descriptor.
 message FieldDescriptor {
     string field_id            = 1;   // Unique identifier for the field
+    string js_path             = 18;  // The path to the field in the JSON data model
     string label               = 2;   // Label displayed for the field
     string group_id            = 6;   // Group (section) identifier for the field
     FieldDataType data_type    = 3;   // Data type of the field (e.g., text, double)

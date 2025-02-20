@@ -351,6 +351,7 @@ type FieldDescriptor struct {
 	Secured      *bool               `json:"secured,omitempty"`
 	Validation   *FieldValidation    `json:"validation,omitempty"`
 	DefaultValue *FieldValue         `json:"defaultValue,omitempty"`
+	JsPath       *string             `json:"jsPath,omitempty"`
 }
 
 type FieldValidation struct {

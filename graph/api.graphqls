@@ -1160,6 +1160,8 @@ type FieldDescriptor {
   validation: FieldValidation
   # The default value of the attribute, it does not support multi-value fields
   defaultValue: FieldValue
+  # The path to the field in the JSON data model
+  jsPath: String
 }
 
 # Validation rules for the field.
