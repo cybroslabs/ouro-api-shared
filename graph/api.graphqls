@@ -561,8 +561,6 @@ type ConnectionInfo {
   communicationBusId: String
   # The connection attributes, see options in the DataLinkTemplate for given link_protocol.
   attributes: [_mapFieldValue]
-  # The driver type identifier.
-  driverType: String
 }
 
 # Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type

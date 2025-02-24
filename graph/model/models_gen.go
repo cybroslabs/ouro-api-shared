@@ -168,7 +168,6 @@ type ConnectionInfo struct {
 	LinkProtocol       *DataLinkProtocol               `json:"linkProtocol,omitempty"`
 	CommunicationBusID *string                         `json:"communicationBusId,omitempty"`
 	Attributes         []*MapFieldValue                `json:"attributes,omitempty"`
-	DriverType         *string                         `json:"driverType,omitempty"`
 }
 
 type ConnectionTypeControlledSerial struct {
