@@ -201,6 +201,7 @@ type ComplexityRoot struct {
 	ConnectionInfo struct {
 		Attributes         func(childComplexity int) int
 		CommunicationBusID func(childComplexity int) int
+		DriverType         func(childComplexity int) int
 		LinkProtocol       func(childComplexity int) int
 		ModemPool          func(childComplexity int) int
 		SerialOverIP       func(childComplexity int) int
@@ -1225,6 +1226,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConnectionInfo.CommunicationBusID(childComplexity), true
+
+	case "ConnectionInfo.driverType":
+		if e.complexity.ConnectionInfo.DriverType == nil {
+			break
+		}
+
+		return e.complexity.ConnectionInfo.DriverType(childComplexity), true
 
 	case "ConnectionInfo.linkProtocol":
 		if e.complexity.ConnectionInfo.LinkProtocol == nil {
@@ -6333,6 +6341,8 @@ func (ec *executionContext) fieldContext_CommunicationUnitSpec_connectionInfo(_ 
 				return ec.fieldContext_ConnectionInfo_communicationBusId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
+			case "driverType":
+				return ec.fieldContext_ConnectionInfo_driverType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -6611,6 +6621,47 @@ func (ec *executionContext) fieldContext_ConnectionInfo_attributes(_ context.Con
 				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ConnectionInfo_driverType(ctx context.Context, field graphql.CollectedField, obj *model.ConnectionInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ConnectionInfo_driverType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DriverType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ConnectionInfo_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ConnectionInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -12890,6 +12941,8 @@ func (ec *executionContext) fieldContext_JobDevice_connectionInfo(_ context.Cont
 				return ec.fieldContext_ConnectionInfo_communicationBusId(ctx, field)
 			case "attributes":
 				return ec.fieldContext_ConnectionInfo_attributes(ctx, field)
+			case "driverType":
+				return ec.fieldContext_ConnectionInfo_driverType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ConnectionInfo", field.Name)
 		},
@@ -22951,6 +23004,8 @@ func (ec *executionContext) _ConnectionInfo(ctx context.Context, sel ast.Selecti
 			out.Values[i] = ec._ConnectionInfo_communicationBusId(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._ConnectionInfo_attributes(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._ConnectionInfo_driverType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
