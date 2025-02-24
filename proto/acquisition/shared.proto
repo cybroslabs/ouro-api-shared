@@ -200,7 +200,6 @@ message ConnectionInfo {
     DataLinkProtocol link_protocol            = 4;  // The data link protocol.
     string communication_bus_id               = 5;  // The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
     map<string, common.FieldValue> attributes = 6;  // The connection attributes, see options in the DataLinkTemplate for given link_protocol.
-    string driver_type                        = 7;  // The driver type identifier.
 }
 
 // Sub-message containing connection info for TCP connection type
@@ -643,6 +642,7 @@ message DeviceConnectionInfo {
     ApplicationProtocol app_protocol                 = 2;  // The application protocol to be used for the communication over the communication unit.
     map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
     string timezone                                  = 4;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string driver_type                               = 5;  // The driver type identifier.
 }
 
 // Addon for DB
