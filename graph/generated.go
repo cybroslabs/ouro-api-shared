@@ -479,6 +479,7 @@ type ComplexityRoot struct {
 		CreatedAt    func(childComplexity int) int
 		DeviceInfo   func(childComplexity int) int
 		FinishedAt   func(childComplexity int) int
+		QueueID      func(childComplexity int) int
 		Results      func(childComplexity int) int
 		StartedAt    func(childComplexity int) int
 		Status       func(childComplexity int) int
@@ -2331,6 +2332,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobStatus.FinishedAt(childComplexity), true
+
+	case "JobStatus.queueId":
+		if e.complexity.JobStatus.QueueID == nil {
+			break
+		}
+
+		return e.complexity.JobStatus.QueueID(childComplexity), true
 
 	case "JobStatus.results":
 		if e.complexity.JobStatus.Results == nil {
@@ -5436,6 +5444,8 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 				return ec.fieldContext_JobStatus_attemptsDone(ctx, field)
 			case "deviceInfo":
 				return ec.fieldContext_JobStatus_deviceInfo(ctx, field)
+			case "queueId":
+				return ec.fieldContext_JobStatus_queueId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobStatus", field.Name)
 		},
@@ -13676,6 +13686,47 @@ func (ec *executionContext) fieldContext_JobStatus_deviceInfo(_ context.Context,
 				return ec.fieldContext_DeviceInfo_connectionState(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobStatus_queueId(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobStatus_queueId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.QueueID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int64)
+	fc.Result = res
+	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobStatus_queueId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int64 does not have child fields")
 		},
 	}
 	return fc, nil
@@ -24625,6 +24676,8 @@ func (ec *executionContext) _JobStatus(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobStatus_attemptsDone(ctx, field, obj)
 		case "deviceInfo":
 			out.Values[i] = ec._JobStatus_deviceInfo(ctx, field, obj)
+		case "queueId":
+			out.Values[i] = ec._JobStatus_queueId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

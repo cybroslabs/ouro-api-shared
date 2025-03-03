@@ -445,6 +445,7 @@ type JobStatus struct {
 	FinishedAt   *string         `json:"finishedAt,omitempty"`
 	AttemptsDone *int32          `json:"attemptsDone,omitempty"`
 	DeviceInfo   *DeviceInfo     `json:"deviceInfo,omitempty"`
+	QueueID      *int64          `json:"queueId,omitempty"`
 }
 
 type ListOfBulk struct {

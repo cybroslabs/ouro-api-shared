@@ -939,6 +939,8 @@ type JobStatus {
   attemptsDone: Int
   # The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
   deviceInfo: DeviceInfo
+  # The internal queue identifier set by the Taskmaster when the job is queued to process.
+  queueId: Int64
 }
 
 type ListOfBulk {

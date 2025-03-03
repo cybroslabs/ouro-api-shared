@@ -619,6 +619,7 @@ message JobStatus {
     google.protobuf.Timestamp finished_at = 6;  // The finish timestamp of the job.
     int32 attempts_done                   = 7;  // The number of attempts already done.
     DeviceInfo device_info                = 8;  // The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
+    int64 queue_id                        = 9;  // The internal queue identifier set by the Taskmaster when the job is queued to process.
 }
 
 // Sub-message containing job start request for single device
