@@ -696,10 +696,11 @@ type ComplexityRoot struct {
 	}
 
 	SystemConfig struct {
-		MaxCascadeDeviceCount func(childComplexity int) int
-		MaxReplicas           func(childComplexity int) int
-		MaxSlotsPerDriver     func(childComplexity int) int
-		MinReplicas           func(childComplexity int) int
+		DisableDataProxyProcessing func(childComplexity int) int
+		MaxCascadeDeviceCount      func(childComplexity int) int
+		MaxReplicas                func(childComplexity int) int
+		MaxSlotsPerDriver          func(childComplexity int) int
+		MinReplicas                func(childComplexity int) int
 	}
 
 	_mapDeviceGroupStatusDevice struct {
@@ -3200,6 +3201,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.StringValue.Value(childComplexity), true
+
+	case "SystemConfig.disableDataProxyProcessing":
+		if e.complexity.SystemConfig.DisableDataProxyProcessing == nil {
+			break
+		}
+
+		return e.complexity.SystemConfig.DisableDataProxyProcessing(childComplexity), true
 
 	case "SystemConfig.maxCascadeDeviceCount":
 		if e.complexity.SystemConfig.MaxCascadeDeviceCount == nil {
@@ -17242,6 +17250,8 @@ func (ec *executionContext) fieldContext_Query_getConfig(_ context.Context, fiel
 				return ec.fieldContext_SystemConfig_maxSlotsPerDriver(ctx, field)
 			case "minReplicas":
 				return ec.fieldContext_SystemConfig_minReplicas(ctx, field)
+			case "disableDataProxyProcessing":
+				return ec.fieldContext_SystemConfig_disableDataProxyProcessing(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type SystemConfig", field.Name)
 		},
@@ -19424,6 +19434,47 @@ func (ec *executionContext) fieldContext_SystemConfig_minReplicas(_ context.Cont
 				return ec.fieldContext__mapint32_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapint32", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SystemConfig_disableDataProxyProcessing(ctx context.Context, field graphql.CollectedField, obj *model.SystemConfig) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SystemConfig_disableDataProxyProcessing(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DisableDataProxyProcessing, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SystemConfig_disableDataProxyProcessing(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SystemConfig",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
 		},
 	}
 	return fc, nil
@@ -26608,6 +26659,8 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._SystemConfig_maxSlotsPerDriver(ctx, field, obj)
 		case "minReplicas":
 			out.Values[i] = ec._SystemConfig_minReplicas(ctx, field, obj)
+		case "disableDataProxyProcessing":
+			out.Values[i] = ec._SystemConfig_disableDataProxyProcessing(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

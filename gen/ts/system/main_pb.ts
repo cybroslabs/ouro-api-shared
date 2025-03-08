@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0i7AEKDFN5c3RlbUNvbmZpZxIUCgxtYXhfcmVwbGljYXMYASABKAUSIAoYbWF4X2Nhc2NhZGVfZGV2aWNlX2NvdW50GAIgASgFEhwKFG1heF9zbG90c19wZXJfZHJpdmVyGAMgASgFElIKDG1pbl9yZXBsaWNhcxgEIAMoCzI8LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLlN5c3RlbUNvbmZpZy5NaW5SZXBsaWNhc0VudHJ5GjIKEE1pblJlcGxpY2FzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgFOgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw");
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0ikwIKDFN5c3RlbUNvbmZpZxIUCgxtYXhfcmVwbGljYXMYASABKAUSIAoYbWF4X2Nhc2NhZGVfZGV2aWNlX2NvdW50GAIgASgFEhwKFG1heF9zbG90c19wZXJfZHJpdmVyGAMgASgFElIKDG1pbl9yZXBsaWNhcxgEIAMoCzI8LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLlN5c3RlbUNvbmZpZy5NaW5SZXBsaWNhc0VudHJ5EiUKHWRpc2FibGVfZGF0YV9wcm94eV9wcm9jZXNzaW5nGAUgASgIGjIKEE1pblJlcGxpY2FzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgFOgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw");
 
 /**
  * @generated from message io.clbs.openhes.models.system.SystemConfig
@@ -50,6 +50,13 @@ export type SystemConfig = Message<"io.clbs.openhes.models.system.SystemConfig">
    * @generated from field: map<string, int32> min_replicas = 4;
    */
   minReplicas: { [key: string]: number };
+
+  /**
+   * Disable data proxy to process data from ouro temp tables.
+   *
+   * @generated from field: bool disable_data_proxy_processing = 5;
+   */
+  disableDataProxyProcessing: boolean;
 };
 
 /**

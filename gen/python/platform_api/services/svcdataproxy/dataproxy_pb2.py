@@ -28,9 +28,10 @@ from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from common import fields_pb2 as common_dot_fields__pb2
+from system import main_pb2 as system_dot_main__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16\x61\x63quisition/main.proto\x1a\x13\x63ommon/fields.proto2\xcf\x03\n\x10\x44\x61taproxyService\x12\x61\n\nCreateBulk\x12\x35.io.clbs.openhes.models.acquisition.CreateBulkRequest\x1a\x1c.google.protobuf.StringValue\x12h\n\tListBulks\x12+.io.clbs.openhes.models.common.ListSelector\x1a..io.clbs.openhes.models.acquisition.ListOfBulk\x12Q\n\x07GetBulk\x12\x1c.google.protobuf.StringValue\x1a(.io.clbs.openhes.models.acquisition.Bulk\x12\x42\n\nCancelBulk\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12W\n\nGetBulkJob\x12\x1c.google.protobuf.StringValue\x1a+.io.clbs.openhes.models.acquisition.BulkJobB?Z=github.com/cybroslabs/hes-2-apis/gen/go/services/svcdataproxyb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16\x61\x63quisition/main.proto\x1a\x13\x63ommon/fields.proto\x1a\x11system/main.proto2\xf3\x04\n\x10\x44\x61taproxyService\x12\x61\n\nCreateBulk\x12\x35.io.clbs.openhes.models.acquisition.CreateBulkRequest\x1a\x1c.google.protobuf.StringValue\x12h\n\tListBulks\x12+.io.clbs.openhes.models.common.ListSelector\x1a..io.clbs.openhes.models.acquisition.ListOfBulk\x12Q\n\x07GetBulk\x12\x1c.google.protobuf.StringValue\x1a(.io.clbs.openhes.models.acquisition.Bulk\x12\x42\n\nCancelBulk\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12W\n\nGetBulkJob\x12\x1c.google.protobuf.StringValue\x1a+.io.clbs.openhes.models.acquisition.BulkJob\x12P\n\tGetConfig\x12\x16.google.protobuf.Empty\x1a+.io.clbs.openhes.models.system.SystemConfig\x12P\n\tSetConfig\x12+.io.clbs.openhes.models.system.SystemConfig\x1a\x16.google.protobuf.EmptyB?Z=github.com/cybroslabs/hes-2-apis/gen/go/services/svcdataproxyb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -38,6 +39,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'services.svcdataproxy.datap
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z=github.com/cybroslabs/hes-2-apis/gen/go/services/svcdataproxy'
-  _globals['_DATAPROXYSERVICE']._serialized_start=250
-  _globals['_DATAPROXYSERVICE']._serialized_end=713
+  _globals['_DATAPROXYSERVICE']._serialized_start=269
+  _globals['_DATAPROXYSERVICE']._serialized_end=896
 # @@protoc_insertion_point(module_scope)

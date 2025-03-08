@@ -623,10 +623,11 @@ type StringValue struct {
 }
 
 type SystemConfig struct {
-	MaxReplicas           *int32      `json:"maxReplicas,omitempty"`
-	MaxCascadeDeviceCount *int32      `json:"maxCascadeDeviceCount,omitempty"`
-	MaxSlotsPerDriver     *int32      `json:"maxSlotsPerDriver,omitempty"`
-	MinReplicas           []*Mapint32 `json:"minReplicas,omitempty"`
+	MaxReplicas                *int32      `json:"maxReplicas,omitempty"`
+	MaxCascadeDeviceCount      *int32      `json:"maxCascadeDeviceCount,omitempty"`
+	MaxSlotsPerDriver          *int32      `json:"maxSlotsPerDriver,omitempty"`
+	MinReplicas                []*Mapint32 `json:"minReplicas,omitempty"`
+	DisableDataProxyProcessing *bool       `json:"disableDataProxyProcessing,omitempty"`
 }
 
 type MapDeviceGroupStatusDevice struct {

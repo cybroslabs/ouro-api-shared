@@ -1301,6 +1301,8 @@ type SystemConfig {
   #  The key is the driver type, the value is the minimum number of replicas.
   #  The minimum replicas is guaranteed to be running at all times even if the total number of replicas exceeds the maximum number of replicas set in max_replicas.
   minReplicas: [_mapint32]
+  # Disable data proxy to process data from ouro temp tables.
+  disableDataProxyProcessing: Boolean
 }
 
 type _mapFieldValue {
