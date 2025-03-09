@@ -74,7 +74,7 @@ def generate(
                     if m_request == "google.protobuf.Empty":
                         m_request = ""
                     elif m_request.startswith("google."):
-                        pass
+                        m_request_link = m_request
                     else:
                         m_request_link = (
                             f"[{m_request}](model-{sanitizeUrl(m_request)}.md)"
@@ -83,8 +83,8 @@ def generate(
                     m_response_link = ""
                     if m_response == "google.protobuf.Empty":
                         m_response = ""
-                    elif m_request.startswith("google."):
-                        pass
+                    elif m_response.startswith("google."):
+                        m_response_link = m_response
                     else:
                         m_response_link = (
                             f"[{m_response}](model-{sanitizeUrl(m_response)}.md)"
@@ -97,12 +97,12 @@ def generate(
                             f"```proto\n{method.name}({m_request}) returns ({m_response})\n```\n\n"
                         )
                         if m_request_link:
-                            fh.write(f"Input: {m_request_link}\n")
-                        fh.write(f"Output: {m_response_link}\n\n")
+                            fh.write(f"- Input: {m_request_link}\n")
+                        fh.write(f"- Output: {m_response_link}\n\n")
                     else:
                         fh.write(f"```proto\n{method.name}({m_request})\n```\n\n")
                         if m_request_link:
-                            fh.write(f"Input: {m_request_link}\n\n")
+                            fh.write(f"- Input: {m_request_link}\n\n")
 
     # Generate files describing models
     for package in visible_packages:

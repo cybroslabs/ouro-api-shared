@@ -8,7 +8,7 @@ The method to get the system configuration.
 GetConfig() returns (io.clbs.openhes.models.system.SystemConfig)
 ```
 
-Output: [io.clbs.openhes.models.system.SystemConfig](model-io-clbs-openhes-models-system-systemconfig.md)
+- Output: [io.clbs.openhes.models.system.SystemConfig](model-io-clbs-openhes-models-system-systemconfig.md)
 
 ## SetConfig
 
@@ -18,5 +18,5 @@ The method to set the system configuration.
 SetConfig(io.clbs.openhes.models.system.SystemConfig)
 ```
 
-Input: [io.clbs.openhes.models.system.SystemConfig](model-io-clbs-openhes-models-system-systemconfig.md)
+- Input: [io.clbs.openhes.models.system.SystemConfig](model-io-clbs-openhes-models-system-systemconfig.md)
 
