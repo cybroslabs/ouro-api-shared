@@ -108,7 +108,8 @@ def generate(
     for package in visible_packages:
         for message in package.messages:
             with open(
-                os.path.join(output_dir, f"model-{message.full_name}.md"), "w"
+                os.path.join(output_dir, f"model-{sanitizeUrl(message.full_name)}.md"),
+                "w",
             ) as fh:
                 fh.write(f"# Model: {message.full_name}\n\n")
                 if message.description:

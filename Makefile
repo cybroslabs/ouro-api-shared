@@ -13,6 +13,7 @@ gen-go:
 	npm i
 
 	rm -rf ./gen/ts
+	rm -rf ./gen/markdown
 	find ./gen/go -type f -name "*.pb.go" -delete
 	find ./gen/go -depth -type d -name "docs" -exec rm -r {} \;
 	find ./gen/go -type d -empty -delete
