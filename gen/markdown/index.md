@@ -8,8 +8,8 @@ The Dataproxy related service definition.
 
 - [Bulks](service-bulks-apiservice.md)
 - [Configuration](service-configuration-apiservice.md)
+- [Device Configuration Register](service-device-configuration-register-apiservice.md)
 - [Device Configuration Templates](service-device-configuration-templates-apiservice.md)
-- [Device Registers](service-device-registers-apiservice.md)
 - [Devices](service-devices-apiservice.md)
 - [Driver Info](service-driver-info-apiservice.md)
 - [Fields](service-fields-apiservice.md)

@@ -14,17 +14,17 @@ import "system/main.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
-    // @group: Device Registers
+    // @group: Device Configuration Register
     // Creates a new register. The register object holds the information about the single device register.
-    rpc CreateDeviceRegister(io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest) returns (google.protobuf.StringValue);
-    // @group: Device Registers
-    rpc ListDeviceRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceRegister);
-    // @group: Device Registers
-    rpc GetDeviceRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceRegister);
-    // @group: Device Registers
-    rpc UpdateDeviceRegister(io.clbs.openhes.models.acquisition.DeviceRegister) returns (google.protobuf.Empty);
-    // @group: Device Registers
-    rpc DeleteDeviceRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
+    // @group: Device Configuration Register
+    rpc ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister);
+    // @group: Device Configuration Register
+    rpc GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister);
+    // @group: Device Configuration Register
+    rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
+    // @group: Device Configuration Register
+    rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: Device Configuration Templates
     rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
@@ -37,9 +37,9 @@ service ApiService {
     // @group: Device Configuration Templates
     rpc DeleteDeviceConfigurationTemplate(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Device Configuration Templates
-    rpc AddRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    rpc AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
     // @group: Device Configuration Templates
-    rpc RemoveRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
 
     // @group: Fields
     // The method to get the list of fields.

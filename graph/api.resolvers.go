@@ -51,6 +51,31 @@ func (r *queryResolver) SetConfig(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: SetConfig - setConfig"))
 }
 
+// CreateDeviceConfigurationRegister is the resolver for the createDeviceConfigurationRegister field.
+func (r *queryResolver) CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateDeviceConfigurationRegister - createDeviceConfigurationRegister"))
+}
+
+// ListDeviceConfigurationRegisters is the resolver for the listDeviceConfigurationRegisters field.
+func (r *queryResolver) ListDeviceConfigurationRegisters(ctx context.Context) (*model.ListOfDeviceConfigurationRegister, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceConfigurationRegisters - listDeviceConfigurationRegisters"))
+}
+
+// GetDeviceConfigurationRegister is the resolver for the getDeviceConfigurationRegister field.
+func (r *queryResolver) GetDeviceConfigurationRegister(ctx context.Context) (*model.DeviceConfigurationRegister, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceConfigurationRegister - getDeviceConfigurationRegister"))
+}
+
+// UpdateDeviceConfigurationRegister is the resolver for the updateDeviceConfigurationRegister field.
+func (r *queryResolver) UpdateDeviceConfigurationRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateDeviceConfigurationRegister - updateDeviceConfigurationRegister"))
+}
+
+// DeleteDeviceConfigurationRegister is the resolver for the deleteDeviceConfigurationRegister field.
+func (r *queryResolver) DeleteDeviceConfigurationRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDeviceConfigurationRegister - deleteDeviceConfigurationRegister"))
+}
+
 // CreateDeviceConfigurationTemplate is the resolver for the createDeviceConfigurationTemplate field.
 func (r *queryResolver) CreateDeviceConfigurationTemplate(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDeviceConfigurationTemplate - createDeviceConfigurationTemplate"))
@@ -76,39 +101,14 @@ func (r *queryResolver) DeleteDeviceConfigurationTemplate(ctx context.Context) (
 	panic(fmt.Errorf("not implemented: DeleteDeviceConfigurationTemplate - deleteDeviceConfigurationTemplate"))
 }
 
-// AddRegisterToDeviceConfigurationTemplate is the resolver for the addRegisterToDeviceConfigurationTemplate field.
-func (r *queryResolver) AddRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: AddRegisterToDeviceConfigurationTemplate - addRegisterToDeviceConfigurationTemplate"))
+// AddDeviceConfigurationRegisterToDeviceConfigurationTemplate is the resolver for the addDeviceConfigurationRegisterToDeviceConfigurationTemplate field.
+func (r *queryResolver) AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddDeviceConfigurationRegisterToDeviceConfigurationTemplate - addDeviceConfigurationRegisterToDeviceConfigurationTemplate"))
 }
 
-// RemoveRegisterFromDeviceConfigurationTemplate is the resolver for the removeRegisterFromDeviceConfigurationTemplate field.
-func (r *queryResolver) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: RemoveRegisterFromDeviceConfigurationTemplate - removeRegisterFromDeviceConfigurationTemplate"))
-}
-
-// CreateDeviceRegister is the resolver for the createDeviceRegister field.
-func (r *queryResolver) CreateDeviceRegister(ctx context.Context) (*model.StringValue, error) {
-	panic(fmt.Errorf("not implemented: CreateDeviceRegister - createDeviceRegister"))
-}
-
-// ListDeviceRegisters is the resolver for the listDeviceRegisters field.
-func (r *queryResolver) ListDeviceRegisters(ctx context.Context) (*model.ListOfDeviceRegister, error) {
-	panic(fmt.Errorf("not implemented: ListDeviceRegisters - listDeviceRegisters"))
-}
-
-// GetDeviceRegister is the resolver for the getDeviceRegister field.
-func (r *queryResolver) GetDeviceRegister(ctx context.Context) (*model.DeviceRegister, error) {
-	panic(fmt.Errorf("not implemented: GetDeviceRegister - getDeviceRegister"))
-}
-
-// UpdateDeviceRegister is the resolver for the updateDeviceRegister field.
-func (r *queryResolver) UpdateDeviceRegister(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: UpdateDeviceRegister - updateDeviceRegister"))
-}
-
-// DeleteDeviceRegister is the resolver for the deleteDeviceRegister field.
-func (r *queryResolver) DeleteDeviceRegister(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: DeleteDeviceRegister - deleteDeviceRegister"))
+// RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate is the resolver for the removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate field.
+func (r *queryResolver) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate - removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate"))
 }
 
 // CreateCommunicationUnit is the resolver for the createCommunicationUnit field.
@@ -260,3 +260,33 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }
+
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//    it when you're done.
+//  - You have helper methods in this file. Move them out to keep these resolver files clean.
+/*
+	func (r *queryResolver) AddRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddRegisterToDeviceConfigurationTemplate - addRegisterToDeviceConfigurationTemplate"))
+}
+func (r *queryResolver) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveRegisterFromDeviceConfigurationTemplate - removeRegisterFromDeviceConfigurationTemplate"))
+}
+func (r *queryResolver) CreateDeviceRegister(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateDeviceRegister - createDeviceRegister"))
+}
+func (r *queryResolver) ListDeviceRegisters(ctx context.Context) (*model.ListOfDeviceRegister, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceRegisters - listDeviceRegisters"))
+}
+func (r *queryResolver) GetDeviceRegister(ctx context.Context) (*model.DeviceRegister, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceRegister - getDeviceRegister"))
+}
+func (r *queryResolver) UpdateDeviceRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateDeviceRegister - updateDeviceRegister"))
+}
+func (r *queryResolver) DeleteDeviceRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDeviceRegister - deleteDeviceRegister"))
+}
+*/

@@ -15,19 +15,19 @@ import "common/fields.proto";
 // The Deviceregistry service definition.
 service DeviceRegistryService {
     // Creates a new register. The register object holds the information about the single device register.
-    rpc CreateDeviceRegister(io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest) returns (google.protobuf.StringValue);
-    rpc ListDeviceRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceRegister);
-    rpc GetDeviceRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceRegister);
-    rpc UpdateDeviceRegister(io.clbs.openhes.models.acquisition.DeviceRegister) returns (google.protobuf.Empty);
-    rpc DeleteDeviceRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
+    rpc ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister);
+    rpc GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister);
+    rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
+    rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
     rpc ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate);
     rpc GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate);
     rpc UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate) returns (google.protobuf.Empty);
     rpc DeleteDeviceConfigurationTemplate(google.protobuf.StringValue) returns (google.protobuf.Empty);
-    rpc AddRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
-    rpc RemoveRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    rpc AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
 
     // The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
     rpc SetDriverTemplates(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);

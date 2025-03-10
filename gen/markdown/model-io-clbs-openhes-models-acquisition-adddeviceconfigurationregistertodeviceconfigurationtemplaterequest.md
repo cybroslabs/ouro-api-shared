@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest
+# Model: io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest
 
 ## Fields
 

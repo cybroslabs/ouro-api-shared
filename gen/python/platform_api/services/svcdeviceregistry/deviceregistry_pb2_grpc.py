@@ -21,28 +21,28 @@ class DeviceRegistryServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.CreateDeviceRegister = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceRegister',
-                request_serializer=acquisition_dot_main__pb2.CreateDeviceRegisterRequest.SerializeToString,
+        self.CreateDeviceConfigurationRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister',
+                request_serializer=acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                 _registered_method=True)
-        self.ListDeviceRegisters = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceRegisters',
+        self.ListDeviceConfigurationRegisters = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationRegisters',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceRegister.FromString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceConfigurationRegister.FromString,
                 _registered_method=True)
-        self.GetDeviceRegister = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceRegister',
+        self.GetDeviceConfigurationRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationRegister',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.DeviceRegister.FromString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceConfigurationRegister.FromString,
                 _registered_method=True)
-        self.UpdateDeviceRegister = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceRegister',
-                request_serializer=acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+        self.UpdateDeviceConfigurationRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationRegister',
+                request_serializer=acquisition_dot_main__pb2.DeviceConfigurationRegister.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.DeleteDeviceRegister = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceRegister',
+        self.DeleteDeviceConfigurationRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
@@ -71,14 +71,14 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.AddRegisterToDeviceConfigurationTemplate = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToDeviceConfigurationTemplate',
-                request_serializer=acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
+        self.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.RemoveRegisterFromDeviceConfigurationTemplate = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveRegisterFromDeviceConfigurationTemplate',
-                request_serializer=acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
+        self.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.SetDriverTemplates = channel.unary_unary(
@@ -232,32 +232,32 @@ class DeviceRegistryServiceServicer(object):
     """The Deviceregistry service definition.
     """
 
-    def CreateDeviceRegister(self, request, context):
+    def CreateDeviceConfigurationRegister(self, request, context):
         """Creates a new register. The register object holds the information about the single device register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListDeviceRegisters(self, request, context):
+    def ListDeviceConfigurationRegisters(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetDeviceRegister(self, request, context):
+    def GetDeviceConfigurationRegister(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UpdateDeviceRegister(self, request, context):
+    def UpdateDeviceConfigurationRegister(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def DeleteDeviceRegister(self, request, context):
+    def DeleteDeviceConfigurationRegister(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -293,13 +293,13 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def AddRegisterToDeviceConfigurationTemplate(self, request, context):
+    def AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RemoveRegisterFromDeviceConfigurationTemplate(self, request, context):
+    def RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -525,28 +525,28 @@ class DeviceRegistryServiceServicer(object):
 
 def add_DeviceRegistryServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'CreateDeviceRegister': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateDeviceRegister,
-                    request_deserializer=acquisition_dot_main__pb2.CreateDeviceRegisterRequest.FromString,
+            'CreateDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateDeviceConfigurationRegister,
+                    request_deserializer=acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             ),
-            'ListDeviceRegisters': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListDeviceRegisters,
+            'ListDeviceConfigurationRegisters': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceConfigurationRegisters,
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
-                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceRegister.SerializeToString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceConfigurationRegister.SerializeToString,
             ),
-            'GetDeviceRegister': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetDeviceRegister,
+            'GetDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceConfigurationRegister,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-                    response_serializer=acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceConfigurationRegister.SerializeToString,
             ),
-            'UpdateDeviceRegister': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateDeviceRegister,
-                    request_deserializer=acquisition_dot_main__pb2.DeviceRegister.FromString,
+            'UpdateDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateDeviceConfigurationRegister,
+                    request_deserializer=acquisition_dot_main__pb2.DeviceConfigurationRegister.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'DeleteDeviceRegister': grpc.unary_unary_rpc_method_handler(
-                    servicer.DeleteDeviceRegister,
+            'DeleteDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteDeviceConfigurationRegister,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
@@ -575,14 +575,14 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'AddRegisterToDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
-                    servicer.AddRegisterToDeviceConfigurationTemplate,
-                    request_deserializer=acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.FromString,
+            'AddDeviceConfigurationRegisterToDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'RemoveRegisterFromDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
-                    servicer.RemoveRegisterFromDeviceConfigurationTemplate,
-                    request_deserializer=acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.FromString,
+            'RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'SetDriverTemplates': grpc.unary_unary_rpc_method_handler(
@@ -743,7 +743,7 @@ class DeviceRegistryService(object):
     """
 
     @staticmethod
-    def CreateDeviceRegister(request,
+    def CreateDeviceConfigurationRegister(request,
             target,
             options=(),
             channel_credentials=None,
@@ -756,8 +756,8 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceRegister',
-            acquisition_dot_main__pb2.CreateDeviceRegisterRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister',
+            acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.SerializeToString,
             google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
             options,
             channel_credentials,
@@ -770,7 +770,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def ListDeviceRegisters(request,
+    def ListDeviceConfigurationRegisters(request,
             target,
             options=(),
             channel_credentials=None,
@@ -783,9 +783,9 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceRegisters',
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationRegisters',
             common_dot_fields__pb2.ListSelector.SerializeToString,
-            acquisition_dot_main__pb2.ListOfDeviceRegister.FromString,
+            acquisition_dot_main__pb2.ListOfDeviceConfigurationRegister.FromString,
             options,
             channel_credentials,
             insecure,
@@ -797,7 +797,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetDeviceRegister(request,
+    def GetDeviceConfigurationRegister(request,
             target,
             options=(),
             channel_credentials=None,
@@ -810,9 +810,9 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceRegister',
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationRegister',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-            acquisition_dot_main__pb2.DeviceRegister.FromString,
+            acquisition_dot_main__pb2.DeviceConfigurationRegister.FromString,
             options,
             channel_credentials,
             insecure,
@@ -824,7 +824,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def UpdateDeviceRegister(request,
+    def UpdateDeviceConfigurationRegister(request,
             target,
             options=(),
             channel_credentials=None,
@@ -837,8 +837,8 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceRegister',
-            acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationRegister',
+            acquisition_dot_main__pb2.DeviceConfigurationRegister.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -851,7 +851,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def DeleteDeviceRegister(request,
+    def DeleteDeviceConfigurationRegister(request,
             target,
             options=(),
             channel_credentials=None,
@@ -864,7 +864,7 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceRegister',
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -1013,7 +1013,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def AddRegisterToDeviceConfigurationTemplate(request,
+    def AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1026,8 +1026,8 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToDeviceConfigurationTemplate',
-            acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -1040,7 +1040,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def RemoveRegisterFromDeviceConfigurationTemplate(request,
+    def RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1053,8 +1053,8 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveRegisterFromDeviceConfigurationTemplate',
-            acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

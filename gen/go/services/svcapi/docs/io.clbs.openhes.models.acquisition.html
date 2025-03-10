@@ -222,18 +222,18 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>AddDevicesToGroupRequest</code> 
+          <code>AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest</code> 
         </a>
       </p>
       
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>AddRegisterToDeviceConfigurationTemplateRequest</code> 
+          <code>AddDevicesToGroupRequest</code> 
         </a>
       </p>
       
@@ -438,6 +438,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateDeviceConfigurationRegisterRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateDeviceConfigurationTemplateRequest</code> 
@@ -450,15 +459,6 @@
         <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateDeviceGroupRequest</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>CreateDeviceRegisterRequest</code> 
         </a>
       </p>
       
@@ -504,6 +504,24 @@
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceCommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceConfigurationRegister</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceConfigurationRegisterSpec</code> 
         </a>
       </p>
       
@@ -567,24 +585,6 @@
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceInfo">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceInfo</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegister">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>DeviceRegister</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegisterSpec">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>DeviceRegisterSpec</code> 
         </a>
       </p>
       
@@ -780,6 +780,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfDeviceConfigurationRegister</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDeviceConfigurationTemplate</code> 
@@ -792,15 +801,6 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceGroup">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDeviceGroup</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceRegister">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ListOfDeviceRegister</code> 
         </a>
       </p>
       
@@ -924,18 +924,18 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>RemoveDevicesFromGroupRequest</code> 
+          <code>RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest</code> 
         </a>
       </p>
       
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>RemoveRegisterFromDeviceConfigurationTemplateRequest</code> 
+          <code>RemoveDevicesFromGroupRequest</code> 
         </a>
       </p>
       
@@ -1975,6 +1975,71 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest" title="io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest">message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        templateId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device configuration template.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        registerId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the register.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest" title="io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest">message AddDevicesToGroupRequest</a>
@@ -2028,71 +2093,6 @@
         </code>
       </td>
       <td class="content"><p>The unique identifier of the device.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest" title="io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest">message AddRegisterToDeviceConfigurationTemplateRequest</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        templateId
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the device configuration template.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        registerId
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the register.</p></td>
       
     </tr>
     
@@ -3858,6 +3858,73 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest" title="io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest">message CreateDeviceConfigurationRegisterRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec"><span title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The register specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest" title="io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest">message CreateDeviceConfigurationTemplateRequest</a>
@@ -3962,73 +4029,6 @@
         </code>
       </td>
       <td class="content"><p>The device group specification.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        metadata
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.common.MetadataFields">
-          
-          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The metadata fields.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest" title="io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest">message CreateDeviceRegisterRequest</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        spec
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.DeviceRegisterSpec">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceRegisterSpec"><span title="io.clbs.openhes.models.acquisition.DeviceRegisterSpec">io.clbs.openhes.models.acquisition.DeviceRegisterSpec</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The register specification.</p></td>
       
     </tr>
     
@@ -4415,6 +4415,154 @@
         </code>
       </td>
       <td class="content"><p>The application protocol to be used for the communication over the communication unit.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister" title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">message DeviceConfigurationRegister</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec"><span title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The register specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec" title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec">message DeviceConfigurationRegisterSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        driverType
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device (driver) type.string</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        actionType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ActionType">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ActionType"><span title="io.clbs.openhes.models.acquisition.ActionType">io.clbs.openhes.models.acquisition.ActionType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of action for which the register is defined.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The field values.</p></td>
       
     </tr>
     
@@ -4953,154 +5101,6 @@
         </code>
       </td>
       <td class="content"><p>The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceRegister">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegister" title="io.clbs.openhes.models.acquisition.DeviceRegister">message DeviceRegister</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        spec
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.DeviceRegisterSpec">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceRegisterSpec"><span title="io.clbs.openhes.models.acquisition.DeviceRegisterSpec">io.clbs.openhes.models.acquisition.DeviceRegisterSpec</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The register specification.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        metadata
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.common.MetadataFields">
-          
-          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The metadata fields.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceRegisterSpec">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegisterSpec" title="io.clbs.openhes.models.acquisition.DeviceRegisterSpec">message DeviceRegisterSpec</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        driverType
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The device (driver) type.string</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        actionType
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.ActionType">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ActionType"><span title="io.clbs.openhes.models.acquisition.ActionType">io.clbs.openhes.models.acquisition.ActionType</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The type of action for which the register is defined.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        attributes
-      </td>
-      <td>
-        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
-          
-          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
-        </code>
-      </td>
-      <td class="content"><p>The field values.</p></td>
       
     </tr>
     
@@ -7236,6 +7236,74 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister" title="io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister">message ListOfDeviceConfigurationRegister</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister"><span title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">io.clbs.openhes.models.acquisition.DeviceConfigurationRegister</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of registers.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate" title="io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate">message ListOfDeviceConfigurationTemplate</a>
@@ -7343,74 +7411,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         </code>
       </td>
       <td class="content"><p>The list of device groups.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        totalCount
-      </td>
-      <td>
-        <code title="int32">
-          
-          <span>int32</span>
-        </code>
-      </td>
-      <td class="content"><p>The total number of items.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDeviceRegister">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceRegister" title="io.clbs.openhes.models.acquisition.ListOfDeviceRegister">message ListOfDeviceRegister</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        items
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.DeviceRegister">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceRegister"><span title="io.clbs.openhes.models.acquisition.DeviceRegister">io.clbs.openhes.models.acquisition.DeviceRegister</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The list of registers.</p></td>
       
     </tr>
     
@@ -8643,6 +8643,71 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest" title="io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest">message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        templateId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device configuration template.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        registerId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the register.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest" title="io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">message RemoveDevicesFromGroupRequest</a>
@@ -8696,71 +8761,6 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         </code>
       </td>
       <td class="content"><p>The unique identifier of the device.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest" title="io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest">message RemoveRegisterFromDeviceConfigurationTemplateRequest</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        templateId
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the device configuration template.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        registerId
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the register.</p></td>
       
     </tr>
     

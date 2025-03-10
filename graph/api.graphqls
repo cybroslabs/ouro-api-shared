@@ -443,18 +443,18 @@ type AddCommunicationUnitsToCommunicationBusRequest {
   communicationUnitId: [String]
 }
 
+type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
+  # The unique identifier of the device configuration template.
+  templateId: String
+  # The unique identifier of the register.
+  registerId: String
+}
+
 type AddDevicesToGroupRequest {
   # The unique identifier of the device group.
   groupId: String
   # The unique identifier of the device.
   deviceId: [String]
-}
-
-type AddRegisterToDeviceConfigurationTemplateRequest {
-  # The unique identifier of the device configuration template.
-  templateId: String
-  # The unique identifier of the register.
-  registerId: String
 }
 
 # Sub-message containing destription for one application protocol, e.g. DLMS_SN.
@@ -649,6 +649,13 @@ type CreateCommunicationUnitRequest {
   metadata: MetadataFields
 }
 
+type CreateDeviceConfigurationRegisterRequest {
+  # The register specification.
+  spec: DeviceConfigurationRegisterSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type CreateDeviceConfigurationTemplateRequest {
   # The device configuration template specification.
   spec: DeviceConfigurationTemplateSpec
@@ -659,13 +666,6 @@ type CreateDeviceConfigurationTemplateRequest {
 type CreateDeviceGroupRequest {
   # The device group specification.
   spec: DeviceGroupSpec
-  # The metadata fields.
-  metadata: MetadataFields
-}
-
-type CreateDeviceRegisterRequest {
-  # The register specification.
-  spec: DeviceRegisterSpec
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -708,6 +708,22 @@ type DeviceCommunicationUnit {
   communicationUnitId: String
   # The application protocol to be used for the communication over the communication unit.
   appProtocol: ApplicationProtocol
+}
+
+type DeviceConfigurationRegister {
+  # The register specification.
+  spec: DeviceConfigurationRegisterSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type DeviceConfigurationRegisterSpec {
+  # The device (driver) type.string
+  driverType: String
+  # The type of action for which the register is defined.
+  actionType: ActionType
+  # The field values.
+  attributes: [_mapFieldValue]
 }
 
 type DeviceConfigurationTemplate {
@@ -768,22 +784,6 @@ type DeviceInfo {
   relayStates: [Boolean]
   # The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
   connectionState: Boolean
-}
-
-type DeviceRegister {
-  # The register specification.
-  spec: DeviceRegisterSpec
-  # The metadata fields.
-  metadata: MetadataFields
-}
-
-type DeviceRegisterSpec {
-  # The device (driver) type.string
-  driverType: String
-  # The type of action for which the register is defined.
-  actionType: ActionType
-  # The field values.
-  attributes: [_mapFieldValue]
 }
 
 # Sub-message - the device specification.
@@ -1033,6 +1033,13 @@ type ListOfDeviceCommunicationUnit {
   totalCount: Int
 }
 
+type ListOfDeviceConfigurationRegister {
+  # The list of registers.
+  items: [DeviceConfigurationRegister]
+  # The total number of items.
+  totalCount: Int
+}
+
 type ListOfDeviceConfigurationTemplate {
   # The list of device configuration templates.
   items: [DeviceConfigurationTemplate]
@@ -1043,13 +1050,6 @@ type ListOfDeviceConfigurationTemplate {
 type ListOfDeviceGroup {
   # The list of device groups.
   items: [DeviceGroup]
-  # The total number of items.
-  totalCount: Int
-}
-
-type ListOfDeviceRegister {
-  # The list of registers.
-  items: [DeviceRegister]
   # The total number of items.
   totalCount: Int
 }
@@ -1186,18 +1186,18 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest {
   communicationUnitId: [String]
 }
 
+type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
+  # The unique identifier of the device configuration template.
+  templateId: String
+  # The unique identifier of the register.
+  registerId: String
+}
+
 type RemoveDevicesFromGroupRequest {
   # The unique identifier of the device group.
   groupId: String
   # The unique identifier of the device.
   deviceId: [String]
-}
-
-type RemoveRegisterFromDeviceConfigurationTemplateRequest {
-  # The unique identifier of the device configuration template.
-  templateId: String
-  # The unique identifier of the register.
-  registerId: String
 }
 
 type SetDeviceCommunicationUnitsRequest {
@@ -1427,18 +1427,18 @@ type Query {
   getBulkJob: BulkJob
   getConfig: SystemConfig
   setConfig: Empty
+  createDeviceConfigurationRegister: StringValue
+  listDeviceConfigurationRegisters: ListOfDeviceConfigurationRegister
+  getDeviceConfigurationRegister: DeviceConfigurationRegister
+  updateDeviceConfigurationRegister: Empty
+  deleteDeviceConfigurationRegister: Empty
   createDeviceConfigurationTemplate: StringValue
   listDeviceConfigurationTemplates: ListOfDeviceConfigurationTemplate
   getDeviceConfigurationTemplate: DeviceConfigurationTemplate
   updateDeviceConfigurationTemplate: Empty
   deleteDeviceConfigurationTemplate: Empty
-  addRegisterToDeviceConfigurationTemplate: Empty
-  removeRegisterFromDeviceConfigurationTemplate: Empty
-  createDeviceRegister: StringValue
-  listDeviceRegisters: ListOfDeviceRegister
-  getDeviceRegister: DeviceRegister
-  updateDeviceRegister: Empty
-  deleteDeviceRegister: Empty
+  addDeviceConfigurationRegisterToDeviceConfigurationTemplate: Empty
+  removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate: Empty
   createCommunicationUnit: StringValue
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit

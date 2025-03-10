@@ -90,14 +90,14 @@ type AddCommunicationUnitsToCommunicationBusRequest struct {
 	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
 }
 
+type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
+	TemplateID *string `json:"templateId,omitempty"`
+	RegisterID *string `json:"registerId,omitempty"`
+}
+
 type AddDevicesToGroupRequest struct {
 	GroupID  *string   `json:"groupId,omitempty"`
 	DeviceID []*string `json:"deviceId,omitempty"`
-}
-
-type AddRegisterToDeviceConfigurationTemplateRequest struct {
-	TemplateID *string `json:"templateId,omitempty"`
-	RegisterID *string `json:"registerId,omitempty"`
 }
 
 type ApplicationProtocolTemplate struct {
@@ -224,6 +224,11 @@ type CreateCommunicationUnitRequest struct {
 	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
+type CreateDeviceConfigurationRegisterRequest struct {
+	Spec     *DeviceConfigurationRegisterSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields                  `json:"metadata,omitempty"`
+}
+
 type CreateDeviceConfigurationTemplateRequest struct {
 	Spec     *DeviceConfigurationTemplateSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields                  `json:"metadata,omitempty"`
@@ -232,11 +237,6 @@ type CreateDeviceConfigurationTemplateRequest struct {
 type CreateDeviceGroupRequest struct {
 	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields  `json:"metadata,omitempty"`
-}
-
-type CreateDeviceRegisterRequest struct {
-	Spec     *DeviceRegisterSpec `json:"spec,omitempty"`
-	Metadata *MetadataFields     `json:"metadata,omitempty"`
 }
 
 type CreateDeviceRequest struct {
@@ -264,6 +264,17 @@ type Device struct {
 type DeviceCommunicationUnit struct {
 	CommunicationUnitID *string              `json:"communicationUnitId,omitempty"`
 	AppProtocol         *ApplicationProtocol `json:"appProtocol,omitempty"`
+}
+
+type DeviceConfigurationRegister struct {
+	Spec     *DeviceConfigurationRegisterSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields                  `json:"metadata,omitempty"`
+}
+
+type DeviceConfigurationRegisterSpec struct {
+	DriverType *string          `json:"driverType,omitempty"`
+	ActionType *ActionType      `json:"actionType,omitempty"`
+	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
 type DeviceConfigurationTemplate struct {
@@ -304,17 +315,6 @@ type DeviceInfo struct {
 	ErrorRegister            *string   `json:"errorRegister,omitempty"`
 	RelayStates              []*bool   `json:"relayStates,omitempty"`
 	ConnectionState          *bool     `json:"connectionState,omitempty"`
-}
-
-type DeviceRegister struct {
-	Spec     *DeviceRegisterSpec `json:"spec,omitempty"`
-	Metadata *MetadataFields     `json:"metadata,omitempty"`
-}
-
-type DeviceRegisterSpec struct {
-	DriverType *string          `json:"driverType,omitempty"`
-	ActionType *ActionType      `json:"actionType,omitempty"`
-	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
 type DeviceSpec struct {
@@ -511,6 +511,11 @@ type ListOfDeviceCommunicationUnit struct {
 	TotalCount *int32                     `json:"totalCount,omitempty"`
 }
 
+type ListOfDeviceConfigurationRegister struct {
+	Items      []*DeviceConfigurationRegister `json:"items,omitempty"`
+	TotalCount *int32                         `json:"totalCount,omitempty"`
+}
+
 type ListOfDeviceConfigurationTemplate struct {
 	Items      []*DeviceConfigurationTemplate `json:"items,omitempty"`
 	TotalCount *int32                         `json:"totalCount,omitempty"`
@@ -519,11 +524,6 @@ type ListOfDeviceConfigurationTemplate struct {
 type ListOfDeviceGroup struct {
 	Items      []*DeviceGroup `json:"items,omitempty"`
 	TotalCount *int32         `json:"totalCount,omitempty"`
-}
-
-type ListOfDeviceRegister struct {
-	Items      []*DeviceRegister `json:"items,omitempty"`
-	TotalCount *int32            `json:"totalCount,omitempty"`
 }
 
 type ListOfDriver struct {
@@ -655,14 +655,14 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
 	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
 }
 
+type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
+	TemplateID *string `json:"templateId,omitempty"`
+	RegisterID *string `json:"registerId,omitempty"`
+}
+
 type RemoveDevicesFromGroupRequest struct {
 	GroupID  *string   `json:"groupId,omitempty"`
 	DeviceID []*string `json:"deviceId,omitempty"`
-}
-
-type RemoveRegisterFromDeviceConfigurationTemplateRequest struct {
-	TemplateID *string `json:"templateId,omitempty"`
-	RegisterID *string `json:"registerId,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {

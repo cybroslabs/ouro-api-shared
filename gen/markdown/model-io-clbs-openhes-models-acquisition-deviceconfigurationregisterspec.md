@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.DeviceRegisterSpec
+# Model: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
 
 ## Fields
 

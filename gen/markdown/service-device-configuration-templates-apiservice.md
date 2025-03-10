@@ -43,19 +43,19 @@ DeleteDeviceConfigurationTemplate(google.protobuf.StringValue)
 
 - Input: google.protobuf.StringValue
 
-## AddRegisterToDeviceConfigurationTemplate
+## AddDeviceConfigurationRegisterToDeviceConfigurationTemplate
 
 ```proto
-AddRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest)
+AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-addregistertodeviceconfigurationtemplaterequest.md)
+- Input: [io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md)
 
-## RemoveRegisterFromDeviceConfigurationTemplate
+## RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate
 
 ```proto
-RemoveRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest)
+RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-removeregisterfromdeviceconfigurationtemplaterequest.md)
+- Input: [io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest.md)
 
