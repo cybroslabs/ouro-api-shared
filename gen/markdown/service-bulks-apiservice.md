@@ -1,8 +1,19 @@
 # ApiService - Bulks
 
+## CreateProxyBulk
+
+Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+
+```proto
+CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue)
+```
+
+- Input: [io.clbs.openhes.models.acquisition.CreateProxyBulkRequest](model-io-clbs-openhes-models-acquisition-createproxybulkrequest.md)
+- Output: google.protobuf.StringValue
+
 ## CreateBulk
 
-Starts a new bulk of jobs.
+Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 
 ```proto
 CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue)

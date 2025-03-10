@@ -447,6 +447,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateProxyBulkRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateProxyBulkRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DataLinkTemplate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DataLinkTemplate</code> 
@@ -810,6 +819,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ProfileValues">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ProfileValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ProxyBulkSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ProxyBulkSpec</code> 
         </a>
       </p>
       
@@ -2311,7 +2329,7 @@
   <tbody>
     
     <tr>
-      <td>2</td>
+      <td>1</td>
       <td>
         correlationId
       </td>
@@ -2327,22 +2345,7 @@
     </tr>
     
     <tr>
-      <td>3</td>
-      <td>
-        driverType
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The device (driver) type.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>6</td>
+      <td>4</td>
       <td>
         settings
       </td>
@@ -2358,7 +2361,7 @@
     </tr>
     
     <tr>
-      <td>7</td>
+      <td>5</td>
       <td>
         actions
       </td>
@@ -2376,7 +2379,7 @@
     </tr>
     
     <tr>
-      <td>8</td>
+      <td>6</td>
       <td>
         webhookUrl
       </td>
@@ -2405,7 +2408,7 @@
 
         <tr>
           <td>
-            4
+            2
           </td>
           <td>
             devices
@@ -2425,27 +2428,7 @@
 
         <tr>
           <td>
-            5
-          </td>
-          <td>
-            customDevices
-          </td>
-          <td>
-            <code title="io.clbs.openhes.models.acquisition.ListOfJobDevice">
-              
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfJobDevice"><span title="io.clbs.openhes.models.acquisition.ListOfJobDevice">io.clbs.openhes.models.acquisition.ListOfJobDevice</span>
-    </a>
-            </code>
-          </td>
-          <td class="content"><p>The list of custom devices in the bulk.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
-            9
+            3
           </td>
           <td>
             deviceGroupId
@@ -3824,6 +3807,73 @@
         </code>
       </td>
       <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateProxyBulkRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateProxyBulkRequest" title="io.clbs.openhes.models.acquisition.CreateProxyBulkRequest">message CreateProxyBulkRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ProxyBulkSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ProxyBulkSpec"><span title="io.clbs.openhes.models.acquisition.ProxyBulkSpec">io.clbs.openhes.models.acquisition.ProxyBulkSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The proxy bulk-job spec.</p></td>
       
     </tr>
     
@@ -7691,6 +7741,137 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
         </code>
       </td>
       <td class="content"><p>The list of continuous profile blocks.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ProxyBulkSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ProxyBulkSpec" title="io.clbs.openhes.models.acquisition.ProxyBulkSpec">message ProxyBulkSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        correlationId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>@gqltype: UUID</p>
+<p>The correlation identifier, e.g. to define relation to non-homogenous group.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        driverType
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The device (driver) type.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        devices
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ListOfJobDevice">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfJobDevice"><span title="io.clbs.openhes.models.acquisition.ListOfJobDevice">io.clbs.openhes.models.acquisition.ListOfJobDevice</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of custom devices in the bulk.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        settings
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobSettings">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobSettings"><span title="io.clbs.openhes.models.acquisition.JobSettings">io.clbs.openhes.models.acquisition.JobSettings</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The bulk-shared job settings.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        actions
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.JobAction">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobAction"><span title="io.clbs.openhes.models.acquisition.JobAction">io.clbs.openhes.models.acquisition.JobAction</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list actions to be executed.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        webhookUrl
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The webhook URL to call when the bulk is completed.</p></td>
       
     </tr>
     

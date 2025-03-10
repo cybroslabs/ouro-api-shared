@@ -25,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ApiService_ListFieldDescriptors_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	ApiService_CreateProxyBulk_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
 	ApiService_CreateBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	ApiService_ListBulks_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	ApiService_GetBulk_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
@@ -74,7 +75,12 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk of jobs.
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Bulks
+	// @tag: acquisition
+	// @tag: action
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
@@ -215,6 +221,16 @@ func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfFieldDescriptor)
 	err := c.cc.Invoke(ctx, ApiService_ListFieldDescriptors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -583,7 +599,12 @@ type ApiServiceServer interface {
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk of jobs.
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
+	// @group: Bulks
+	// @tag: acquisition
+	// @tag: action
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
@@ -722,6 +743,9 @@ type UnimplementedApiServiceServer struct{}
 
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
+}
+func (UnimplementedApiServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
 }
 func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
@@ -863,6 +887,24 @@ func _ApiService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).ListFieldDescriptors(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateProxyBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1507,6 +1549,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListFieldDescriptors",
 			Handler:    _ApiService_ListFieldDescriptors_Handler,
+		},
+		{
+			MethodName: "CreateProxyBulk",
+			Handler:    _ApiService_CreateProxyBulk_Handler,
 		},
 		{
 			MethodName: "CreateBulk",

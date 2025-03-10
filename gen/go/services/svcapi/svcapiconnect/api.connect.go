@@ -41,6 +41,9 @@ const (
 	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
 	// ListFieldDescriptors RPC.
 	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	// ApiServiceCreateProxyBulkProcedure is the fully-qualified name of the ApiService's
+	// CreateProxyBulk RPC.
+	ApiServiceCreateProxyBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
 	// ApiServiceCreateBulkProcedure is the fully-qualified name of the ApiService's CreateBulk RPC.
 	ApiServiceCreateBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
@@ -140,7 +143,12 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk of jobs.
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Bulks
+	// @tag: acquisition
+	// @tag: action
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
@@ -284,6 +292,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceListFieldDescriptorsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+			connect.WithClientOptions(opts...),
+		),
+		createProxyBulk: connect.NewClient[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateProxyBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
 			connect.WithClientOptions(opts...),
 		),
 		createBulk: connect.NewClient[acquisition.CreateBulkRequest, wrapperspb.StringValue](
@@ -502,6 +516,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
 	listFieldDescriptors                         *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
+	createProxyBulk                              *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
 	createBulk                                   *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
 	listBulks                                    *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	getBulk                                      *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
@@ -542,6 +557,11 @@ type apiServiceClient struct {
 // ListFieldDescriptors calls io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors.
 func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
 	return c.listFieldDescriptors.CallUnary(ctx, req)
+}
+
+// CreateProxyBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk.
+func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, req *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createProxyBulk.CallUnary(ctx, req)
 }
 
 // CreateBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateBulk.
@@ -731,7 +751,12 @@ type ApiServiceHandler interface {
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk of jobs.
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Bulks
+	// @tag: acquisition
+	// @tag: action
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Bulks
 	// Retrieves the list of bulks.
@@ -871,6 +896,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceListFieldDescriptorsProcedure,
 		svc.ListFieldDescriptors,
 		connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateProxyBulkHandler := connect.NewUnaryHandler(
+		ApiServiceCreateProxyBulkProcedure,
+		svc.CreateProxyBulk,
+		connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateBulkHandler := connect.NewUnaryHandler(
@@ -1087,6 +1118,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		switch r.URL.Path {
 		case ApiServiceListFieldDescriptorsProcedure:
 			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
+		case ApiServiceCreateProxyBulkProcedure:
+			apiServiceCreateProxyBulkHandler.ServeHTTP(w, r)
 		case ApiServiceCreateBulkProcedure:
 			apiServiceCreateBulkHandler.ServeHTTP(w, r)
 		case ApiServiceListBulksProcedure:
@@ -1168,6 +1201,10 @@ type UnimplementedApiServiceHandler struct{}
 
 func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {

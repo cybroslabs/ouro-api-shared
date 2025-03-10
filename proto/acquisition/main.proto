@@ -148,16 +148,14 @@ message Bulk {
 
 message BulkSpec {
     // @gqltype: UUID
-    string correlation_id = 2;  // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string driver_type    = 3;  // The device (driver) type.
+    string correlation_id = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
     oneof device {
-        ListOfJobDeviceId devices      = 4;  // The list of devices in the bulk.
-        ListOfJobDevice custom_devices = 5;  // The list of custom devices in the bulk.
-        string device_group_id         = 9;  // The device group identifier.
+        ListOfJobDeviceId devices = 2;  // The list of devices in the bulk.
+        string device_group_id    = 3;  // The device group identifier.
     }
-    JobSettings settings       = 6;  // The bulk-shared job settings.
-    repeated JobAction actions = 7;  // The list actions to be executed.
-    string webhook_url         = 8;  // The webhook URL to call when the bulk is completed.
+    JobSettings settings       = 4;  // The bulk-shared job settings.
+    repeated JobAction actions = 5;  // The list actions to be executed.
+    string webhook_url         = 6;  // The webhook URL to call when the bulk is completed.
 }
 
 message BulkStatus {
@@ -169,6 +167,23 @@ message BulkJob {
     reserved 1;            // reserved for spec
     JobStatus status = 2;  // The job status.
     reserved 3;            // reserved for metadata
+}
+
+// Proxy Bulk specification.
+
+message CreateProxyBulkRequest {
+    ProxyBulkSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The proxy bulk-job spec.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
+}
+
+message ProxyBulkSpec {
+    // @gqltype: UUID
+    string correlation_id      = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string driver_type         = 2;  // The device (driver) type.
+    ListOfJobDevice devices    = 3;  // The list of custom devices in the bulk.
+    JobSettings settings       = 4;  // The bulk-shared job settings.
+    repeated JobAction actions = 5;  // The list actions to be executed.
+    string webhook_url         = 6;  // The webhook URL to call when the bulk is completed.
 }
 
 // Modem Pool specification.

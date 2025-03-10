@@ -493,20 +493,16 @@ type BulkJob {
 type BulkSpec {
   # The correlation identifier, e.g. to define relation to non-homogenous group.
   correlationId: UUID
-  # The device (driver) type.
-  driverType: String
   # The list of devices in the bulk.
   devices: ListOfJobDeviceId
-  # The list of custom devices in the bulk.
-  customDevices: ListOfJobDevice
+  # The device group identifier.
+  deviceGroupId: String
   # The bulk-shared job settings.
   settings: JobSettings
   # The list actions to be executed.
   actions: [JobAction]
   # The webhook URL to call when the bulk is completed.
   webhookUrl: String
-  # The device group identifier.
-  deviceGroupId: String
 }
 
 type BulkStatus {
@@ -656,6 +652,13 @@ type CreateDeviceGroupRequest {
 type CreateDeviceRequest {
   # The device specification.
   spec: DeviceSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CreateProxyBulkRequest {
+  # The proxy bulk-job spec.
+  spec: ProxyBulkSpec
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -1098,6 +1101,21 @@ type ProfileValues {
   blocks: [ProfileBlok]
 }
 
+type ProxyBulkSpec {
+  # The correlation identifier, e.g. to define relation to non-homogenous group.
+  correlationId: UUID
+  # The device (driver) type.
+  driverType: String
+  # The list of custom devices in the bulk.
+  devices: ListOfJobDevice
+  # The bulk-shared job settings.
+  settings: JobSettings
+  # The list actions to be executed.
+  actions: [JobAction]
+  # The webhook URL to call when the bulk is completed.
+  webhookUrl: String
+}
+
 type RemoveCommunicationUnitsFromCommunicationBusRequest {
   # The unique identifier of the communication bus.
   communicationBusId: String
@@ -1331,6 +1349,7 @@ type _mapint32 {
 }
 
 type Query {
+  createProxyBulk: StringValue
   createBulk: StringValue
   listBulks: ListOfBulk
   getBulk: Bulk

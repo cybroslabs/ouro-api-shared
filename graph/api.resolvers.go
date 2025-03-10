@@ -11,6 +11,11 @@ import (
 	"github.com/cybroslabs/hes-2-apis/graph/model"
 )
 
+// CreateProxyBulk is the resolver for the createProxyBulk field.
+func (r *queryResolver) CreateProxyBulk(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateProxyBulk - createProxyBulk"))
+}
+
 // CreateBulk is the resolver for the createBulk field.
 func (r *queryResolver) CreateBulk(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateBulk - createBulk"))

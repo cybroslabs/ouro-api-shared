@@ -123,13 +123,11 @@ type BulkJob struct {
 
 type BulkSpec struct {
 	CorrelationID *uuid.UUID         `json:"correlationId,omitempty"`
-	DriverType    *string            `json:"driverType,omitempty"`
 	Devices       *ListOfJobDeviceID `json:"devices,omitempty"`
-	CustomDevices *ListOfJobDevice   `json:"customDevices,omitempty"`
+	DeviceGroupID *string            `json:"deviceGroupId,omitempty"`
 	Settings      *JobSettings       `json:"settings,omitempty"`
 	Actions       []*JobAction       `json:"actions,omitempty"`
 	WebhookURL    *string            `json:"webhookUrl,omitempty"`
-	DeviceGroupID *string            `json:"deviceGroupId,omitempty"`
 }
 
 type BulkStatus struct {
@@ -228,6 +226,11 @@ type CreateDeviceGroupRequest struct {
 
 type CreateDeviceRequest struct {
 	Spec     *DeviceSpec     `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type CreateProxyBulkRequest struct {
+	Spec     *ProxyBulkSpec  `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
@@ -588,6 +591,15 @@ type ProfileValues struct {
 	Period *int32         `json:"period,omitempty"`
 	Unit   *string        `json:"unit,omitempty"`
 	Blocks []*ProfileBlok `json:"blocks,omitempty"`
+}
+
+type ProxyBulkSpec struct {
+	CorrelationID *uuid.UUID       `json:"correlationId,omitempty"`
+	DriverType    *string          `json:"driverType,omitempty"`
+	Devices       *ListOfJobDevice `json:"devices,omitempty"`
+	Settings      *JobSettings     `json:"settings,omitempty"`
+	Actions       []*JobAction     `json:"actions,omitempty"`
+	WebhookURL    *string          `json:"webhookUrl,omitempty"`
 }
 
 type Query struct {
