@@ -718,14 +718,8 @@ type DeviceConfigurationTemplate {
 }
 
 type DeviceConfigurationTemplateSpec {
-  # The technical/internal ID of the device configuration template.
-  templateType: String
-  # The display name of the device configuration template. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-  #  It must respect upper/lower characters.
-  #  The generic templates, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-  #
-  #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-  displayName: String
+  # The device (driver) type.string
+  driverType: String
 }
 
 type DeviceGroup {
@@ -779,26 +773,17 @@ type DeviceInfo {
 type DeviceRegister {
   # The register specification.
   spec: DeviceRegisterSpec
-  # The register status.
-  status: DeviceRegisterStatus
   # The metadata fields.
   metadata: MetadataFields
 }
 
 type DeviceRegisterSpec {
-  # The technical/internal ID of the register.
-  registerType: String
-  # The display name of the register. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-  #  It must respect upper/lower characters.
-  #  The generic registers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-  #
-  #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-  displayName: String
-}
-
-# The list of registers that are part of the device. The key represents the register identifier, the value contains additional information.
-type DeviceRegisterStatus {
-  _empty: Boolean
+  # The device (driver) type.string
+  driverType: String
+  # The type of action for which the register is defined.
+  actionType: ActionType
+  # The field values.
+  attributes: [_mapFieldValue]
 }
 
 # Sub-message - the device specification.

@@ -273,24 +273,15 @@ message ListOfDeviceRegister {
 }
 
 message DeviceRegister {
+    reserved 2;                                                                      // reserved for status
     DeviceRegisterSpec spec        = 1 [features.field_presence = LEGACY_REQUIRED];  // The register specification.
-    DeviceRegisterStatus status    = 2;                                              // The register status.
     common.MetadataFields metadata = 3;                                              // The metadata fields.
 }
 
 message DeviceRegisterSpec {
-    // The technical/internal ID of the register.
-    string register_type = 1;
-    // The display name of the register. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-    // It must respect upper/lower characters.
-    // The generic registers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-    //
-    // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-    string display_name = 2;
-}
-
-message DeviceRegisterStatus {
-    // The list of registers that are part of the device. The key represents the register identifier, the value contains additional information.
+    string driver_type                        = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.string
+    ActionType action_type                    = 2 [features.field_presence = LEGACY_REQUIRED];  // The type of action for which the register is defined.
+    map<string, common.FieldValue> attributes = 3;                                              // The field values.
 }
 
 // Device Configuration Template specification.
@@ -306,19 +297,13 @@ message ListOfDeviceConfigurationTemplate {
 }
 
 message DeviceConfigurationTemplate {
+    reserved 2;                                                                            // reserved for status
     DeviceConfigurationTemplateSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The device configuration template specification.
-    common.MetadataFields metadata       = 2;                                              // The metadata fields.
+    common.MetadataFields metadata       = 3;                                              // The metadata fields.
 }
 
 message DeviceConfigurationTemplateSpec {
-    // The technical/internal ID of the device configuration template.
-    string template_type = 1;
-    // The display name of the device configuration template. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-    // It must respect upper/lower characters.
-    // The generic templates, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-    //
-    // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
-    string display_name = 2;
+    string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.string
 }
 
 message AddRegisterToDeviceConfigurationTemplateRequest {

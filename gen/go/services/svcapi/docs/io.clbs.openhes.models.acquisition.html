@@ -591,15 +591,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegisterStatus">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>DeviceRegisterStatus</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceSpec</code> 
@@ -4479,7 +4470,7 @@
     </tr>
     
     <tr>
-      <td>2</td>
+      <td>3</td>
       <td>
         metadata
       </td>
@@ -4532,7 +4523,7 @@
     <tr>
       <td>1</td>
       <td>
-        templateType
+        driverType
       </td>
       <td>
         <code title="string">
@@ -4540,25 +4531,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The technical/internal ID of the device configuration template.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        displayName
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The display name of the device configuration template. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-It must respect upper/lower characters.
-The generic templates, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.</p>
-<p>Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'</p></td>
+      <td class="content"><p>The device (driver) type.string</p></td>
       
     </tr>
     
@@ -5035,22 +5008,6 @@ The generic templates, such as 'cybros labs generic', must be named as '<driver_
     </tr>
     
     <tr>
-      <td>2</td>
-      <td>
-        status
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.DeviceRegisterStatus">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceRegisterStatus"><span title="io.clbs.openhes.models.acquisition.DeviceRegisterStatus">io.clbs.openhes.models.acquisition.DeviceRegisterStatus</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The register status.</p></td>
-      
-    </tr>
-    
-    <tr>
       <td>3</td>
       <td>
         metadata
@@ -5104,7 +5061,7 @@ The generic templates, such as 'cybros labs generic', must be named as '<driver_
     <tr>
       <td>1</td>
       <td>
-        registerType
+        driverType
       </td>
       <td>
         <code title="string">
@@ -5112,62 +5069,40 @@ The generic templates, such as 'cybros labs generic', must be named as '<driver_
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The technical/internal ID of the register.</p></td>
+      <td class="content"><p>The device (driver) type.string</p></td>
       
     </tr>
     
     <tr>
       <td>2</td>
       <td>
-        displayName
+        actionType
       </td>
       <td>
-        <code title="string">
+        <code title="io.clbs.openhes.models.acquisition.ActionType">
           
-          <span>string</span>
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ActionType"><span title="io.clbs.openhes.models.acquisition.ActionType">io.clbs.openhes.models.acquisition.ActionType</span>
+    </a>
         </code>
       </td>
-      <td class="content"><p>The display name of the register. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-It must respect upper/lower characters.
-The generic registers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.</p>
-<p>Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'</p></td>
+      <td class="content"><p>The type of action for which the register is defined.</p></td>
       
     </tr>
     
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceRegisterStatus">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.DeviceRegisterStatus" title="io.clbs.openhes.models.acquisition.DeviceRegisterStatus">message DeviceRegisterStatus</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>The list of registers that are part of the device. The key represents the register identifier, the value contains additional information.</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
     <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The field values.</p></td>
       
     </tr>
-  </thead>
-  <tbody>
     
     
   </tbody>

@@ -272,8 +272,7 @@ type DeviceConfigurationTemplate struct {
 }
 
 type DeviceConfigurationTemplateSpec struct {
-	TemplateType *string `json:"templateType,omitempty"`
-	DisplayName  *string `json:"displayName,omitempty"`
+	DriverType *string `json:"driverType,omitempty"`
 }
 
 type DeviceGroup struct {
@@ -308,18 +307,14 @@ type DeviceInfo struct {
 }
 
 type DeviceRegister struct {
-	Spec     *DeviceRegisterSpec   `json:"spec,omitempty"`
-	Status   *DeviceRegisterStatus `json:"status,omitempty"`
-	Metadata *MetadataFields       `json:"metadata,omitempty"`
+	Spec     *DeviceRegisterSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields     `json:"metadata,omitempty"`
 }
 
 type DeviceRegisterSpec struct {
-	RegisterType *string `json:"registerType,omitempty"`
-	DisplayName  *string `json:"displayName,omitempty"`
-}
-
-type DeviceRegisterStatus struct {
-	Empty *bool `json:"_empty,omitempty"`
+	DriverType *string          `json:"driverType,omitempty"`
+	ActionType *ActionType      `json:"actionType,omitempty"`
+	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
 type DeviceSpec struct {
