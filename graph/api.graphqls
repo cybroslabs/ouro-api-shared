@@ -718,7 +718,7 @@ type DeviceConfigurationRegister {
 }
 
 type DeviceConfigurationRegisterSpec {
-  # The device (driver) type.string
+  # The device (driver) type.
   driverType: String
   # The type of action for which the register is defined.
   actionType: ActionType
@@ -734,7 +734,7 @@ type DeviceConfigurationTemplate {
 }
 
 type DeviceConfigurationTemplateSpec {
-  # The device (driver) type.string
+  # The device (driver) type.
   driverType: String
 }
 

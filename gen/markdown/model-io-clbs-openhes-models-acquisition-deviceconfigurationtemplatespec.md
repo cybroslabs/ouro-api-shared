@@ -4,5 +4,5 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| driverType | string | The device (driver) type.string |
+| driverType | string | The device (driver) type. |
 

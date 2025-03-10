@@ -260,33 +260,3 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//    it when you're done.
-//  - You have helper methods in this file. Move them out to keep these resolver files clean.
-/*
-	func (r *queryResolver) AddRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: AddRegisterToDeviceConfigurationTemplate - addRegisterToDeviceConfigurationTemplate"))
-}
-func (r *queryResolver) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: RemoveRegisterFromDeviceConfigurationTemplate - removeRegisterFromDeviceConfigurationTemplate"))
-}
-func (r *queryResolver) CreateDeviceRegister(ctx context.Context) (*model.StringValue, error) {
-	panic(fmt.Errorf("not implemented: CreateDeviceRegister - createDeviceRegister"))
-}
-func (r *queryResolver) ListDeviceRegisters(ctx context.Context) (*model.ListOfDeviceRegister, error) {
-	panic(fmt.Errorf("not implemented: ListDeviceRegisters - listDeviceRegisters"))
-}
-func (r *queryResolver) GetDeviceRegister(ctx context.Context) (*model.DeviceRegister, error) {
-	panic(fmt.Errorf("not implemented: GetDeviceRegister - getDeviceRegister"))
-}
-func (r *queryResolver) UpdateDeviceRegister(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: UpdateDeviceRegister - updateDeviceRegister"))
-}
-func (r *queryResolver) DeleteDeviceRegister(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: DeleteDeviceRegister - deleteDeviceRegister"))
-}
-*/

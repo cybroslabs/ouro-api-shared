@@ -279,7 +279,7 @@ message DeviceConfigurationRegister {
 }
 
 message DeviceConfigurationRegisterSpec {
-    string driver_type                        = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.string
+    string driver_type                        = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
     ActionType action_type                    = 2 [features.field_presence = LEGACY_REQUIRED];  // The type of action for which the register is defined.
     map<string, common.FieldValue> attributes = 3;                                              // The field values.
 }
@@ -303,7 +303,7 @@ message DeviceConfigurationTemplate {
 }
 
 message DeviceConfigurationTemplateSpec {
-    string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.string
+    string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
 }
 
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {

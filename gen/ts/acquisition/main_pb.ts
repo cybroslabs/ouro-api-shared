@@ -1187,7 +1187,7 @@ export const DeviceConfigurationRegisterSchema: GenMessage<DeviceConfigurationRe
  */
 export type DeviceConfigurationRegisterSpec = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec"> & {
   /**
-   * The device (driver) type.string
+   * The device (driver) type.
    *
    * @generated from field: string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];
    */
@@ -1298,7 +1298,7 @@ export const DeviceConfigurationTemplateSchema: GenMessage<DeviceConfigurationTe
  */
 export type DeviceConfigurationTemplateSpec = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec"> & {
   /**
-   * The device (driver) type.string
+   * The device (driver) type.
    *
    * @generated from field: string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];
    */
