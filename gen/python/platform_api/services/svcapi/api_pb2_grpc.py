@@ -20,6 +20,66 @@ class ApiServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.CreateDeviceRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceRegister',
+                request_serializer=acquisition_dot_main__pb2.CreateDeviceRegisterRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListDeviceRegisters = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceRegisters',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceRegister.FromString,
+                _registered_method=True)
+        self.GetDeviceRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceRegister',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceRegister.FromString,
+                _registered_method=True)
+        self.UpdateDeviceRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceRegister',
+                request_serializer=acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteDeviceRegister = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceRegister',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.CreateDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.CreateDeviceConfigurationTemplateRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListDeviceConfigurationTemplates = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceConfigurationTemplates',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceConfigurationTemplate.FromString,
+                _registered_method=True)
+        self.GetDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceConfigurationTemplate',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceConfigurationTemplate.FromString,
+                _registered_method=True)
+        self.UpdateDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.DeviceConfigurationTemplate.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceConfigurationTemplate',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.AddRegisterToDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.RemoveRegisterFromDeviceConfigurationTemplate = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/RemoveRegisterFromDeviceConfigurationTemplate',
+                request_serializer=acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.ListFieldDescriptors = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
@@ -210,6 +270,91 @@ class ApiServiceStub(object):
 class ApiServiceServicer(object):
     """The Dataproxy related service definition.
     """
+
+    def CreateDeviceRegister(self, request, context):
+        """@group: Device Registers
+        Creates a new register. The register object holds the information about the single device register.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListDeviceRegisters(self, request, context):
+        """@group: Device Registers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceRegister(self, request, context):
+        """@group: Device Registers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateDeviceRegister(self, request, context):
+        """@group: Device Registers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteDeviceRegister(self, request, context):
+        """@group: Device Registers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListDeviceConfigurationTemplates(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddRegisterToDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveRegisterFromDeviceConfigurationTemplate(self, request, context):
+        """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ListFieldDescriptors(self, request, context):
         """@group: Fields
@@ -541,6 +686,66 @@ class ApiServiceServicer(object):
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'CreateDeviceRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateDeviceRegister,
+                    request_deserializer=acquisition_dot_main__pb2.CreateDeviceRegisterRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListDeviceRegisters': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceRegisters,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceRegister.SerializeToString,
+            ),
+            'GetDeviceRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceRegister,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+            ),
+            'UpdateDeviceRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateDeviceRegister,
+                    request_deserializer=acquisition_dot_main__pb2.DeviceRegister.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteDeviceRegister': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteDeviceRegister,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'CreateDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.CreateDeviceConfigurationTemplateRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListDeviceConfigurationTemplates': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceConfigurationTemplates,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceConfigurationTemplate.SerializeToString,
+            ),
+            'GetDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceConfigurationTemplate,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceConfigurationTemplate.SerializeToString,
+            ),
+            'UpdateDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.DeviceConfigurationTemplate.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteDeviceConfigurationTemplate,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'AddRegisterToDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddRegisterToDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RemoveRegisterFromDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveRegisterFromDeviceConfigurationTemplate,
+                    request_deserializer=acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'ListFieldDescriptors': grpc.unary_unary_rpc_method_handler(
                     servicer.ListFieldDescriptors,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
@@ -737,6 +942,330 @@ def add_ApiServiceServicer_to_server(servicer, server):
 class ApiService(object):
     """The Dataproxy related service definition.
     """
+
+    @staticmethod
+    def CreateDeviceRegister(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceRegister',
+            acquisition_dot_main__pb2.CreateDeviceRegisterRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDeviceRegisters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceRegisters',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDeviceRegister.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceRegister(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceRegister',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.DeviceRegister.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateDeviceRegister(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceRegister',
+            acquisition_dot_main__pb2.DeviceRegister.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteDeviceRegister(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceRegister',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.CreateDeviceConfigurationTemplateRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDeviceConfigurationTemplates(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceConfigurationTemplates',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDeviceConfigurationTemplate.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceConfigurationTemplate',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.DeviceConfigurationTemplate.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.DeviceConfigurationTemplate.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceConfigurationTemplate',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddRegisterToDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.AddRegisterToDeviceConfigurationTemplateRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RemoveRegisterFromDeviceConfigurationTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/RemoveRegisterFromDeviceConfigurationTemplate',
+            acquisition_dot_main__pb2.RemoveRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ListFieldDescriptors(request,

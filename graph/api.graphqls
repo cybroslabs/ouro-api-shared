@@ -450,6 +450,13 @@ type AddDevicesToGroupRequest {
   deviceId: [String]
 }
 
+type AddRegisterToDeviceConfigurationTemplateRequest {
+  # The unique identifier of the device configuration template.
+  templateId: String
+  # The unique identifier of the register.
+  registerId: String
+}
+
 # Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 type ApplicationProtocolTemplate {
   # Unique identifier of the application protocol.
@@ -642,9 +649,23 @@ type CreateCommunicationUnitRequest {
   metadata: MetadataFields
 }
 
+type CreateDeviceConfigurationTemplateRequest {
+  # The device configuration template specification.
+  spec: DeviceConfigurationTemplateSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type CreateDeviceGroupRequest {
   # The device group specification.
   spec: DeviceGroupSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CreateDeviceRegisterRequest {
+  # The register specification.
+  spec: DeviceRegisterSpec
   # The metadata fields.
   metadata: MetadataFields
 }
@@ -687,6 +708,24 @@ type DeviceCommunicationUnit {
   communicationUnitId: String
   # The application protocol to be used for the communication over the communication unit.
   appProtocol: ApplicationProtocol
+}
+
+type DeviceConfigurationTemplate {
+  # The device configuration template specification.
+  spec: DeviceConfigurationTemplateSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type DeviceConfigurationTemplateSpec {
+  # The technical/internal ID of the device configuration template.
+  templateType: String
+  # The display name of the device configuration template. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+  #  It must respect upper/lower characters.
+  #  The generic templates, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+  #
+  #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+  displayName: String
 }
 
 type DeviceGroup {
@@ -735,6 +774,31 @@ type DeviceInfo {
   relayStates: [Boolean]
   # The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.
   connectionState: Boolean
+}
+
+type DeviceRegister {
+  # The register specification.
+  spec: DeviceRegisterSpec
+  # The register status.
+  status: DeviceRegisterStatus
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type DeviceRegisterSpec {
+  # The technical/internal ID of the register.
+  registerType: String
+  # The display name of the register. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+  #  It must respect upper/lower characters.
+  #  The generic registers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+  #
+  #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+  displayName: String
+}
+
+# The list of registers that are part of the device. The key represents the register identifier, the value contains additional information.
+type DeviceRegisterStatus {
+  _empty: Boolean
 }
 
 # Sub-message - the device specification.
@@ -984,9 +1048,23 @@ type ListOfDeviceCommunicationUnit {
   totalCount: Int
 }
 
+type ListOfDeviceConfigurationTemplate {
+  # The list of device configuration templates.
+  items: [DeviceConfigurationTemplate]
+  # The total number of items.
+  totalCount: Int
+}
+
 type ListOfDeviceGroup {
   # The list of device groups.
   items: [DeviceGroup]
+  # The total number of items.
+  totalCount: Int
+}
+
+type ListOfDeviceRegister {
+  # The list of registers.
+  items: [DeviceRegister]
   # The total number of items.
   totalCount: Int
 }
@@ -1128,6 +1206,13 @@ type RemoveDevicesFromGroupRequest {
   groupId: String
   # The unique identifier of the device.
   deviceId: [String]
+}
+
+type RemoveRegisterFromDeviceConfigurationTemplateRequest {
+  # The unique identifier of the device configuration template.
+  templateId: String
+  # The unique identifier of the register.
+  registerId: String
 }
 
 type SetDeviceCommunicationUnitsRequest {
@@ -1357,6 +1442,18 @@ type Query {
   getBulkJob: BulkJob
   getConfig: SystemConfig
   setConfig: Empty
+  createDeviceConfigurationTemplate: StringValue
+  listDeviceConfigurationTemplates: ListOfDeviceConfigurationTemplate
+  getDeviceConfigurationTemplate: DeviceConfigurationTemplate
+  updateDeviceConfigurationTemplate: Empty
+  deleteDeviceConfigurationTemplate: Empty
+  addRegisterToDeviceConfigurationTemplate: Empty
+  removeRegisterFromDeviceConfigurationTemplate: Empty
+  createDeviceRegister: StringValue
+  listDeviceRegisters: ListOfDeviceRegister
+  getDeviceRegister: DeviceRegister
+  updateDeviceRegister: Empty
+  deleteDeviceRegister: Empty
   createCommunicationUnit: StringValue
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit

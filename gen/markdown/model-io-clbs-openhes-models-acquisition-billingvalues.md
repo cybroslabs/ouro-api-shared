@@ -6,5 +6,5 @@ Sub-message containing billing-typed values
 
 | Field | Type | Description |
 | --- | --- | --- |
-| values | io.clbs.openhes.models.acquisition.BillingValue | The list of register values. |
+| values | [io.clbs.openhes.models.acquisition.BillingValue](model-io-clbs-openhes-models-acquisition-billingvalue.md) | The list of register values. |
 

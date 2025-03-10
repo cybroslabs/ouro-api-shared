@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| items | io.clbs.openhes.models.acquisition.DeviceGroup | The list of device groups. |
+| items | [io.clbs.openhes.models.acquisition.DeviceGroup](model-io-clbs-openhes-models-acquisition-devicegroup.md) | The list of device groups. |
 | totalCount | int32 | The total number of items. |
 

@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| items | io.clbs.openhes.models.acquisition.Device | The list of devices. |
+| items | [io.clbs.openhes.models.acquisition.Device](model-io-clbs-openhes-models-acquisition-device.md) | The list of devices. |
 | totalCount | int32 | The total number of items. |
 

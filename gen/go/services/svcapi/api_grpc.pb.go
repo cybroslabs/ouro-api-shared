@@ -24,43 +24,55 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ApiService_ListFieldDescriptors_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
-	ApiService_CreateProxyBulk_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
-	ApiService_CreateBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
-	ApiService_ListBulks_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
-	ApiService_GetBulk_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
-	ApiService_CancelBulk_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	ApiService_GetBulkJob_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
-	ApiService_ListDrivers_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
-	ApiService_GetDriver_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
-	ApiService_CreateCommunicationUnit_FullMethodName                      = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
-	ApiService_ListCommunicationUnits_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
-	ApiService_GetCommunicationUnit_FullMethodName                         = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
-	ApiService_CreateCommunicationBus_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
-	ApiService_ListCommunicationBuses_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
-	ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToCommunicationBus"
-	ApiService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromCommunicationBus"
-	ApiService_CreateDevice_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
-	ApiService_ListDevices_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
-	ApiService_GetDevice_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
-	ApiService_SetDeviceCommunicationUnits_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
-	ApiService_GetDeviceCommunicationUnits_FullMethodName                  = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
-	ApiService_CreateDeviceGroup_FullMethodName                            = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
-	ApiService_ListDeviceGroups_FullMethodName                             = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
-	ApiService_GetDeviceGroup_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
-	ApiService_AddDevicesToGroup_FullMethodName                            = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
-	ApiService_RemoveDevicesFromGroup_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
-	ApiService_ListDeviceGroupDevices_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroupDevices"
-	ApiService_ListModemPools_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
-	ApiService_GetModemPool_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
-	ApiService_CreateModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
-	ApiService_UpdateModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
-	ApiService_DeleteModemPool_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
-	ApiService_CreateModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
-	ApiService_UpdateModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
-	ApiService_DeleteModem_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
-	ApiService_GetConfig_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
-	ApiService_SetConfig_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	ApiService_CreateDeviceRegister_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceRegister"
+	ApiService_ListDeviceRegisters_FullMethodName                           = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceRegisters"
+	ApiService_GetDeviceRegister_FullMethodName                             = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceRegister"
+	ApiService_UpdateDeviceRegister_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceRegister"
+	ApiService_DeleteDeviceRegister_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceRegister"
+	ApiService_CreateDeviceConfigurationTemplate_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationTemplate"
+	ApiService_ListDeviceConfigurationTemplates_FullMethodName              = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceConfigurationTemplates"
+	ApiService_GetDeviceConfigurationTemplate_FullMethodName                = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceConfigurationTemplate"
+	ApiService_UpdateDeviceConfigurationTemplate_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceConfigurationTemplate"
+	ApiService_DeleteDeviceConfigurationTemplate_FullMethodName             = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceConfigurationTemplate"
+	ApiService_AddRegisterToDeviceConfigurationTemplate_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToDeviceConfigurationTemplate"
+	ApiService_RemoveRegisterFromDeviceConfigurationTemplate_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveRegisterFromDeviceConfigurationTemplate"
+	ApiService_ListFieldDescriptors_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	ApiService_CreateProxyBulk_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
+	ApiService_CreateBulk_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
+	ApiService_ListBulks_FullMethodName                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
+	ApiService_GetBulk_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
+	ApiService_CancelBulk_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
+	ApiService_GetBulkJob_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	ApiService_ListDrivers_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
+	ApiService_GetDriver_FullMethodName                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
+	ApiService_CreateCommunicationUnit_FullMethodName                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
+	ApiService_ListCommunicationUnits_FullMethodName                        = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
+	ApiService_GetCommunicationUnit_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
+	ApiService_CreateCommunicationBus_FullMethodName                        = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
+	ApiService_ListCommunicationBuses_FullMethodName                        = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
+	ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName       = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToCommunicationBus"
+	ApiService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName  = "/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromCommunicationBus"
+	ApiService_CreateDevice_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
+	ApiService_ListDevices_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
+	ApiService_GetDevice_FullMethodName                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
+	ApiService_SetDeviceCommunicationUnits_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
+	ApiService_GetDeviceCommunicationUnits_FullMethodName                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
+	ApiService_CreateDeviceGroup_FullMethodName                             = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
+	ApiService_ListDeviceGroups_FullMethodName                              = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
+	ApiService_GetDeviceGroup_FullMethodName                                = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
+	ApiService_AddDevicesToGroup_FullMethodName                             = "/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup"
+	ApiService_RemoveDevicesFromGroup_FullMethodName                        = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDevicesFromGroup"
+	ApiService_ListDeviceGroupDevices_FullMethodName                        = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroupDevices"
+	ApiService_ListModemPools_FullMethodName                                = "/io.clbs.openhes.services.svcapi.ApiService/ListModemPools"
+	ApiService_GetModemPool_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetModemPool"
+	ApiService_CreateModemPool_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/CreateModemPool"
+	ApiService_UpdateModemPool_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModemPool"
+	ApiService_DeleteModemPool_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModemPool"
+	ApiService_CreateModem_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
+	ApiService_UpdateModem_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
+	ApiService_DeleteModem_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
+	ApiService_GetConfig_FullMethodName                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
+	ApiService_SetConfig_FullMethodName                                     = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -69,6 +81,31 @@ const (
 //
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
+	// @group: Device Registers
+	// Creates a new register. The register object holds the information about the single device register.
+	CreateDeviceRegister(ctx context.Context, in *acquisition.CreateDeviceRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Device Registers
+	ListDeviceRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceRegister, error)
+	// @group: Device Registers
+	GetDeviceRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceRegister, error)
+	// @group: Device Registers
+	UpdateDeviceRegister(ctx context.Context, in *acquisition.DeviceRegister, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Device Registers
+	DeleteDeviceRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Device Configuration Templates
+	ListDeviceConfigurationTemplates(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationTemplate, error)
+	// @group: Device Configuration Templates
+	GetDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationTemplate, error)
+	// @group: Device Configuration Templates
+	UpdateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.DeviceConfigurationTemplate, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	DeleteDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	AddRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
@@ -215,6 +252,126 @@ type apiServiceClient struct {
 
 func NewApiServiceClient(cc grpc.ClientConnInterface) ApiServiceClient {
 	return &apiServiceClient{cc}
+}
+
+func (c *apiServiceClient) CreateDeviceRegister(ctx context.Context, in *acquisition.CreateDeviceRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateDeviceRegister_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListDeviceRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceRegister, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceRegister)
+	err := c.cc.Invoke(ctx, ApiService_ListDeviceRegisters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetDeviceRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceRegister, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.DeviceRegister)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceRegister_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateDeviceRegister(ctx context.Context, in *acquisition.DeviceRegister, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateDeviceRegister_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteDeviceRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteDeviceRegister_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListDeviceConfigurationTemplates(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationTemplate, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceConfigurationTemplate)
+	err := c.cc.Invoke(ctx, ApiService_ListDeviceConfigurationTemplates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationTemplate, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.DeviceConfigurationTemplate)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.DeviceConfigurationTemplate, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) AddRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_AddRegisterToDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_RemoveRegisterFromDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error) {
@@ -593,6 +750,31 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, in *system.SystemConfi
 //
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
+	// @group: Device Registers
+	// Creates a new register. The register object holds the information about the single device register.
+	CreateDeviceRegister(context.Context, *acquisition.CreateDeviceRegisterRequest) (*wrapperspb.StringValue, error)
+	// @group: Device Registers
+	ListDeviceRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceRegister, error)
+	// @group: Device Registers
+	GetDeviceRegister(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceRegister, error)
+	// @group: Device Registers
+	UpdateDeviceRegister(context.Context, *acquisition.DeviceRegister) (*emptypb.Empty, error)
+	// @group: Device Registers
+	DeleteDeviceRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error)
+	// @group: Device Configuration Templates
+	ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error)
+	// @group: Device Configuration Templates
+	GetDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationTemplate, error)
+	// @group: Device Configuration Templates
+	UpdateDeviceConfigurationTemplate(context.Context, *acquisition.DeviceConfigurationTemplate) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	DeleteDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	AddRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
+	// @group: Device Configuration Templates
+	RemoveRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
@@ -741,6 +923,42 @@ type ApiServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedApiServiceServer struct{}
 
+func (UnimplementedApiServiceServer) CreateDeviceRegister(context.Context, *acquisition.CreateDeviceRegisterRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceRegister not implemented")
+}
+func (UnimplementedApiServiceServer) ListDeviceRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceRegister, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceRegisters not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceRegister(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceRegister, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceRegister not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateDeviceRegister(context.Context, *acquisition.DeviceRegister) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeviceRegister not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteDeviceRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceRegister not implemented")
+}
+func (UnimplementedApiServiceServer) CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceConfigurationTemplates not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationTemplate, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateDeviceConfigurationTemplate(context.Context, *acquisition.DeviceConfigurationTemplate) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) AddRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRegisterToDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) RemoveRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveRegisterFromDeviceConfigurationTemplate not implemented")
+}
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
 }
@@ -871,6 +1089,222 @@ func RegisterApiServiceServer(s grpc.ServiceRegistrar, srv ApiServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ApiService_ServiceDesc, srv)
+}
+
+func _ApiService_CreateDeviceRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateDeviceRegisterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateDeviceRegister(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateDeviceRegister_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateDeviceRegister(ctx, req.(*acquisition.CreateDeviceRegisterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListDeviceRegisters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListDeviceRegisters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListDeviceRegisters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListDeviceRegisters(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetDeviceRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceRegister(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceRegister_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceRegister(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateDeviceRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.DeviceRegister)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateDeviceRegister(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateDeviceRegister_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateDeviceRegister(ctx, req.(*acquisition.DeviceRegister))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteDeviceRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteDeviceRegister(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteDeviceRegister_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteDeviceRegister(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CreateDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateDeviceConfigurationTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateDeviceConfigurationTemplate(ctx, req.(*acquisition.CreateDeviceConfigurationTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListDeviceConfigurationTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListDeviceConfigurationTemplates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListDeviceConfigurationTemplates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListDeviceConfigurationTemplates(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceConfigurationTemplate(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.DeviceConfigurationTemplate)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateDeviceConfigurationTemplate(ctx, req.(*acquisition.DeviceConfigurationTemplate))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteDeviceConfigurationTemplate(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_AddRegisterToDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddRegisterToDeviceConfigurationTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).AddRegisterToDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_AddRegisterToDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).AddRegisterToDeviceConfigurationTemplate(ctx, req.(*acquisition.AddRegisterToDeviceConfigurationTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_RemoveRegisterFromDeviceConfigurationTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).RemoveRegisterFromDeviceConfigurationTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_RemoveRegisterFromDeviceConfigurationTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).RemoveRegisterFromDeviceConfigurationTemplate(ctx, req.(*acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1546,6 +1980,54 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svcapi.ApiService",
 	HandlerType: (*ApiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateDeviceRegister",
+			Handler:    _ApiService_CreateDeviceRegister_Handler,
+		},
+		{
+			MethodName: "ListDeviceRegisters",
+			Handler:    _ApiService_ListDeviceRegisters_Handler,
+		},
+		{
+			MethodName: "GetDeviceRegister",
+			Handler:    _ApiService_GetDeviceRegister_Handler,
+		},
+		{
+			MethodName: "UpdateDeviceRegister",
+			Handler:    _ApiService_UpdateDeviceRegister_Handler,
+		},
+		{
+			MethodName: "DeleteDeviceRegister",
+			Handler:    _ApiService_DeleteDeviceRegister_Handler,
+		},
+		{
+			MethodName: "CreateDeviceConfigurationTemplate",
+			Handler:    _ApiService_CreateDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "ListDeviceConfigurationTemplates",
+			Handler:    _ApiService_ListDeviceConfigurationTemplates_Handler,
+		},
+		{
+			MethodName: "GetDeviceConfigurationTemplate",
+			Handler:    _ApiService_GetDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "UpdateDeviceConfigurationTemplate",
+			Handler:    _ApiService_UpdateDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "DeleteDeviceConfigurationTemplate",
+			Handler:    _ApiService_DeleteDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "AddRegisterToDeviceConfigurationTemplate",
+			Handler:    _ApiService_AddRegisterToDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "RemoveRegisterFromDeviceConfigurationTemplate",
+			Handler:    _ApiService_RemoveRegisterFromDeviceConfigurationTemplate_Handler,
+		},
 		{
 			MethodName: "ListFieldDescriptors",
 			Handler:    _ApiService_ListFieldDescriptors_Handler,

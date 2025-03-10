@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| items | io.clbs.openhes.models.common.FieldDescriptor | The list of field descriptors. |
+| items | [io.clbs.openhes.models.common.FieldDescriptor](model-io-clbs-openhes-models-common-fielddescriptor.md) | The list of field descriptors. |
 | totalCount | int32 | The total number of items. |
 

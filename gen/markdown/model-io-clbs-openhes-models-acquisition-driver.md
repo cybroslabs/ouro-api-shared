@@ -4,5 +4,5 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| spec | io.clbs.openhes.models.acquisition.DriverSpec | The driver specification. |
+| spec | [io.clbs.openhes.models.acquisition.DriverSpec](model-io-clbs-openhes-models-acquisition-driverspec.md) | The driver specification. |
 

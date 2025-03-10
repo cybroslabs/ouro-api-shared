@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os
-import json
-import markdown
+import os, re
 from shutil import copy, copytree, rmtree
 from sabledocs.lunr_search import build_search_index
 from sabledocs.proto_model import SableConfig, SableContext, Package, Service
@@ -25,6 +23,24 @@ def sanitizeUrl(url: str) -> str:
         .replace(")", "")
         .lower()
     )
+
+
+def getLinkFromType(full_type: str, clean_google_empty=False) -> Tuple[str, str]:
+    if (m := re.match(r"^map<([^>,]+), ([^>]+)>$", full_type)) is not None:
+        _, k = getLinkFromType(m.group(1))
+        _, v = getLinkFromType(m.group(2))
+        return full_type, f"map<{k}, {v}>"
+
+    full_type_link = ""
+    if full_type == "google.protobuf.Empty" and clean_google_empty:
+        full_type = ""
+    elif full_type.startswith("google.") or "." not in full_type:
+        # simple proto types does not contian a dot, so they are not linked
+        # google.* types are not linked
+        full_type_link = full_type
+    else:
+        full_type_link = f"[{full_type}](model-{sanitizeUrl(full_type)}.md)"
+    return full_type, full_type_link
 
 
 def generate(
@@ -69,26 +85,14 @@ def generate(
                 fh.write(f"# {service.name} - {group}\n\n")
                 for method, tags in methods:
                     # Request model name (if not google.protobuf.Empty)
-                    m_request = method.request.full_type
-                    m_request_link = ""
-                    if m_request == "google.protobuf.Empty":
-                        m_request = ""
-                    elif m_request.startswith("google."):
-                        m_request_link = m_request
-                    else:
-                        m_request_link = (
-                            f"[{m_request}](model-{sanitizeUrl(m_request)}.md)"
-                        )
-                    m_response = method.response.full_type
-                    m_response_link = ""
-                    if m_response == "google.protobuf.Empty":
-                        m_response = ""
-                    elif m_response.startswith("google."):
-                        m_response_link = m_response
-                    else:
-                        m_response_link = (
-                            f"[{m_response}](model-{sanitizeUrl(m_response)}.md)"
-                        )
+                    m_request, m_request_link = getLinkFromType(
+                        method.request.full_type, clean_google_empty=True
+                    )
+                    # Response model name (if not google.protobuf.Empty)
+                    m_response, m_response_link = getLinkFromType(
+                        method.response.full_type, clean_google_empty=True
+                    )
+
                     fh.write(f"## {method.name}\n\n")
                     if (d := _sanitizeMethodDescripton(method.description)) and d:
                         fh.write(f"{d}\n\n")
@@ -128,7 +132,10 @@ def generate(
                             )
                         else:
                             field_description = ""
+                        _, full_type_link = getLinkFromType(
+                            field.full_type, clean_google_empty=False
+                        )
                         fh.write(
-                            f"| {field.name} | {field.full_type} | {field_description} |\n"
+                            f"| {field.name} | {full_type_link} | {field_description} |\n"
                         )
                     fh.write("\n")

@@ -7,6 +7,6 @@ Sub-message containing action result for a single action.
 | Field | Type | Description |
 | --- | --- | --- |
 | actionId | string | The action identifier. |
-| status | io.clbs.openhes.models.acquisition.ActionResultCode | The status of the action. |
-| data | io.clbs.openhes.models.acquisition.ActionData | The action result data. |
+| status | [io.clbs.openhes.models.acquisition.ActionResultCode](model-io-clbs-openhes-models-acquisition-actionresultcode.md) | The status of the action. |
+| data | [io.clbs.openhes.models.acquisition.ActionData](model-io-clbs-openhes-models-acquisition-actiondata.md) | The action result data. |
 

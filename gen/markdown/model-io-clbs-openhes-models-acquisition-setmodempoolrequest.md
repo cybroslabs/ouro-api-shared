@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| spec | io.clbs.openhes.models.acquisition.ModemPoolSpec | The modem pool specification. |
-| metadata | io.clbs.openhes.models.common.MetadataFields | The metadata fields. |
+| spec | [io.clbs.openhes.models.acquisition.ModemPoolSpec](model-io-clbs-openhes-models-acquisition-modempoolspec.md) | The modem pool specification. |
+| metadata | [io.clbs.openhes.models.common.MetadataFields](model-io-clbs-openhes-models-common-metadatafields.md) | The metadata fields. |
 

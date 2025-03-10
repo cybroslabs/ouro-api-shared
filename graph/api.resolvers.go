@@ -51,6 +51,66 @@ func (r *queryResolver) SetConfig(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: SetConfig - setConfig"))
 }
 
+// CreateDeviceConfigurationTemplate is the resolver for the createDeviceConfigurationTemplate field.
+func (r *queryResolver) CreateDeviceConfigurationTemplate(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateDeviceConfigurationTemplate - createDeviceConfigurationTemplate"))
+}
+
+// ListDeviceConfigurationTemplates is the resolver for the listDeviceConfigurationTemplates field.
+func (r *queryResolver) ListDeviceConfigurationTemplates(ctx context.Context) (*model.ListOfDeviceConfigurationTemplate, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceConfigurationTemplates - listDeviceConfigurationTemplates"))
+}
+
+// GetDeviceConfigurationTemplate is the resolver for the getDeviceConfigurationTemplate field.
+func (r *queryResolver) GetDeviceConfigurationTemplate(ctx context.Context) (*model.DeviceConfigurationTemplate, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceConfigurationTemplate - getDeviceConfigurationTemplate"))
+}
+
+// UpdateDeviceConfigurationTemplate is the resolver for the updateDeviceConfigurationTemplate field.
+func (r *queryResolver) UpdateDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateDeviceConfigurationTemplate - updateDeviceConfigurationTemplate"))
+}
+
+// DeleteDeviceConfigurationTemplate is the resolver for the deleteDeviceConfigurationTemplate field.
+func (r *queryResolver) DeleteDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDeviceConfigurationTemplate - deleteDeviceConfigurationTemplate"))
+}
+
+// AddRegisterToDeviceConfigurationTemplate is the resolver for the addRegisterToDeviceConfigurationTemplate field.
+func (r *queryResolver) AddRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddRegisterToDeviceConfigurationTemplate - addRegisterToDeviceConfigurationTemplate"))
+}
+
+// RemoveRegisterFromDeviceConfigurationTemplate is the resolver for the removeRegisterFromDeviceConfigurationTemplate field.
+func (r *queryResolver) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveRegisterFromDeviceConfigurationTemplate - removeRegisterFromDeviceConfigurationTemplate"))
+}
+
+// CreateDeviceRegister is the resolver for the createDeviceRegister field.
+func (r *queryResolver) CreateDeviceRegister(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateDeviceRegister - createDeviceRegister"))
+}
+
+// ListDeviceRegisters is the resolver for the listDeviceRegisters field.
+func (r *queryResolver) ListDeviceRegisters(ctx context.Context) (*model.ListOfDeviceRegister, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceRegisters - listDeviceRegisters"))
+}
+
+// GetDeviceRegister is the resolver for the getDeviceRegister field.
+func (r *queryResolver) GetDeviceRegister(ctx context.Context) (*model.DeviceRegister, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceRegister - getDeviceRegister"))
+}
+
+// UpdateDeviceRegister is the resolver for the updateDeviceRegister field.
+func (r *queryResolver) UpdateDeviceRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateDeviceRegister - updateDeviceRegister"))
+}
+
+// DeleteDeviceRegister is the resolver for the deleteDeviceRegister field.
+func (r *queryResolver) DeleteDeviceRegister(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDeviceRegister - deleteDeviceRegister"))
+}
+
 // CreateCommunicationUnit is the resolver for the createCommunicationUnit field.
 func (r *queryResolver) CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateCommunicationUnit - createCommunicationUnit"))

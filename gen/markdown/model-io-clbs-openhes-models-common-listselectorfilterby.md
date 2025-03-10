@@ -15,8 +15,8 @@ The filtering criteria.
 | Field | Type | Description |
 | --- | --- | --- |
 | fieldId | string | Field id. |
-| operator | io.clbs.openhes.models.common.FilterOperator | The filter operator. |
-| dataType | io.clbs.openhes.models.common.FieldDataType | The data type of the field. |
+| operator | [io.clbs.openhes.models.common.FilterOperator](model-io-clbs-openhes-models-common-filteroperator.md) | The filter operator. |
+| dataType | [io.clbs.openhes.models.common.FieldDataType](model-io-clbs-openhes-models-common-fielddatatype.md) | The data type of the field. |
 | text | string | The text-typed value(s) used for filtering. |
 | integer | sint64 | The integer-typed value(s) used for filtering. |
 | number | double | The number-typed value(s) used for filtering. |

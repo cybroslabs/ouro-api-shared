@@ -38,6 +38,42 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ApiServiceCreateDeviceRegisterProcedure is the fully-qualified name of the ApiService's
+	// CreateDeviceRegister RPC.
+	ApiServiceCreateDeviceRegisterProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceRegister"
+	// ApiServiceListDeviceRegistersProcedure is the fully-qualified name of the ApiService's
+	// ListDeviceRegisters RPC.
+	ApiServiceListDeviceRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceRegisters"
+	// ApiServiceGetDeviceRegisterProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceRegister RPC.
+	ApiServiceGetDeviceRegisterProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceRegister"
+	// ApiServiceUpdateDeviceRegisterProcedure is the fully-qualified name of the ApiService's
+	// UpdateDeviceRegister RPC.
+	ApiServiceUpdateDeviceRegisterProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceRegister"
+	// ApiServiceDeleteDeviceRegisterProcedure is the fully-qualified name of the ApiService's
+	// DeleteDeviceRegister RPC.
+	ApiServiceDeleteDeviceRegisterProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceRegister"
+	// ApiServiceCreateDeviceConfigurationTemplateProcedure is the fully-qualified name of the
+	// ApiService's CreateDeviceConfigurationTemplate RPC.
+	ApiServiceCreateDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationTemplate"
+	// ApiServiceListDeviceConfigurationTemplatesProcedure is the fully-qualified name of the
+	// ApiService's ListDeviceConfigurationTemplates RPC.
+	ApiServiceListDeviceConfigurationTemplatesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceConfigurationTemplates"
+	// ApiServiceGetDeviceConfigurationTemplateProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceConfigurationTemplate RPC.
+	ApiServiceGetDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceConfigurationTemplate"
+	// ApiServiceUpdateDeviceConfigurationTemplateProcedure is the fully-qualified name of the
+	// ApiService's UpdateDeviceConfigurationTemplate RPC.
+	ApiServiceUpdateDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceConfigurationTemplate"
+	// ApiServiceDeleteDeviceConfigurationTemplateProcedure is the fully-qualified name of the
+	// ApiService's DeleteDeviceConfigurationTemplate RPC.
+	ApiServiceDeleteDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceConfigurationTemplate"
+	// ApiServiceAddRegisterToDeviceConfigurationTemplateProcedure is the fully-qualified name of the
+	// ApiService's AddRegisterToDeviceConfigurationTemplate RPC.
+	ApiServiceAddRegisterToDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToDeviceConfigurationTemplate"
+	// ApiServiceRemoveRegisterFromDeviceConfigurationTemplateProcedure is the fully-qualified name of
+	// the ApiService's RemoveRegisterFromDeviceConfigurationTemplate RPC.
+	ApiServiceRemoveRegisterFromDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/RemoveRegisterFromDeviceConfigurationTemplate"
 	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
 	// ListFieldDescriptors RPC.
 	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
@@ -137,6 +173,31 @@ const (
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceClient interface {
+	// @group: Device Registers
+	// Creates a new register. The register object holds the information about the single device register.
+	CreateDeviceRegister(context.Context, *connect.Request[acquisition.CreateDeviceRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Device Registers
+	ListDeviceRegisters(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceRegister], error)
+	// @group: Device Registers
+	GetDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceRegister], error)
+	// @group: Device Registers
+	UpdateDeviceRegister(context.Context, *connect.Request[acquisition.DeviceRegister]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Registers
+	DeleteDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	CreateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationTemplateRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Device Configuration Templates
+	ListDeviceConfigurationTemplates(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceConfigurationTemplate], error)
+	// @group: Device Configuration Templates
+	GetDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceConfigurationTemplate], error)
+	// @group: Device Configuration Templates
+	UpdateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.DeviceConfigurationTemplate]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	DeleteDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	AddRegisterToDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.AddRegisterToDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	RemoveRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
@@ -288,6 +349,78 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 	baseURL = strings.TrimRight(baseURL, "/")
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
 	return &apiServiceClient{
+		createDeviceRegister: connect.NewClient[acquisition.CreateDeviceRegisterRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateDeviceRegisterProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateDeviceRegister")),
+			connect.WithClientOptions(opts...),
+		),
+		listDeviceRegisters: connect.NewClient[common.ListSelector, acquisition.ListOfDeviceRegister](
+			httpClient,
+			baseURL+ApiServiceListDeviceRegistersProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDeviceRegisters")),
+			connect.WithClientOptions(opts...),
+		),
+		getDeviceRegister: connect.NewClient[wrapperspb.StringValue, acquisition.DeviceRegister](
+			httpClient,
+			baseURL+ApiServiceGetDeviceRegisterProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceRegister")),
+			connect.WithClientOptions(opts...),
+		),
+		updateDeviceRegister: connect.NewClient[acquisition.DeviceRegister, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateDeviceRegisterProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceRegister")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteDeviceRegister: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteDeviceRegisterProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteDeviceRegister")),
+			connect.WithClientOptions(opts...),
+		),
+		createDeviceConfigurationTemplate: connect.NewClient[acquisition.CreateDeviceConfigurationTemplateRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		listDeviceConfigurationTemplates: connect.NewClient[common.ListSelector, acquisition.ListOfDeviceConfigurationTemplate](
+			httpClient,
+			baseURL+ApiServiceListDeviceConfigurationTemplatesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDeviceConfigurationTemplates")),
+			connect.WithClientOptions(opts...),
+		),
+		getDeviceConfigurationTemplate: connect.NewClient[wrapperspb.StringValue, acquisition.DeviceConfigurationTemplate](
+			httpClient,
+			baseURL+ApiServiceGetDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		updateDeviceConfigurationTemplate: connect.NewClient[acquisition.DeviceConfigurationTemplate, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteDeviceConfigurationTemplate: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		addRegisterToDeviceConfigurationTemplate: connect.NewClient[acquisition.AddRegisterToDeviceConfigurationTemplateRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceAddRegisterToDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("AddRegisterToDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		removeRegisterFromDeviceConfigurationTemplate: connect.NewClient[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceRemoveRegisterFromDeviceConfigurationTemplateProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("RemoveRegisterFromDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
 		listFieldDescriptors: connect.NewClient[emptypb.Empty, common.ListOfFieldDescriptor](
 			httpClient,
 			baseURL+ApiServiceListFieldDescriptorsProcedure,
@@ -515,43 +648,122 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
-	listFieldDescriptors                         *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
-	createProxyBulk                              *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
-	createBulk                                   *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
-	listBulks                                    *connect.Client[common.ListSelector, acquisition.ListOfBulk]
-	getBulk                                      *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
-	cancelBulk                                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getBulkJob                                   *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
-	listDrivers                                  *connect.Client[common.ListSelector, acquisition.ListOfDriver]
-	getDriver                                    *connect.Client[wrapperspb.StringValue, acquisition.Driver]
-	createCommunicationUnit                      *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
-	listCommunicationUnits                       *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
-	getCommunicationUnit                         *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
-	createCommunicationBus                       *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
-	listCommunicationBuses                       *connect.Client[common.ListSelector, acquisition.ListOfCommunicationBus]
-	addCommunicationUnitsToCommunicationBus      *connect.Client[acquisition.AddCommunicationUnitsToCommunicationBusRequest, emptypb.Empty]
-	removeCommunicationUnitsFromCommunicationBus *connect.Client[acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, emptypb.Empty]
-	createDevice                                 *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
-	listDevices                                  *connect.Client[common.ListSelector, acquisition.ListOfDevice]
-	getDevice                                    *connect.Client[wrapperspb.StringValue, acquisition.Device]
-	setDeviceCommunicationUnits                  *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
-	getDeviceCommunicationUnits                  *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
-	createDeviceGroup                            *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
-	listDeviceGroups                             *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
-	getDeviceGroup                               *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
-	addDevicesToGroup                            *connect.Client[acquisition.AddDevicesToGroupRequest, emptypb.Empty]
-	removeDevicesFromGroup                       *connect.Client[acquisition.RemoveDevicesFromGroupRequest, emptypb.Empty]
-	listDeviceGroupDevices                       *connect.Client[common.ListSelector, acquisition.ListOfDevice]
-	listModemPools                               *connect.Client[common.ListSelector, acquisition.ListOfModemPool]
-	getModemPool                                 *connect.Client[wrapperspb.StringValue, acquisition.ModemPool]
-	createModemPool                              *connect.Client[acquisition.SetModemPoolRequest, wrapperspb.StringValue]
-	updateModemPool                              *connect.Client[acquisition.SetModemPoolRequest, emptypb.Empty]
-	deleteModemPool                              *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	createModem                                  *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
-	updateModem                                  *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
-	deleteModem                                  *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getConfig                                    *connect.Client[emptypb.Empty, system.SystemConfig]
-	setConfig                                    *connect.Client[system.SystemConfig, emptypb.Empty]
+	createDeviceRegister                          *connect.Client[acquisition.CreateDeviceRegisterRequest, wrapperspb.StringValue]
+	listDeviceRegisters                           *connect.Client[common.ListSelector, acquisition.ListOfDeviceRegister]
+	getDeviceRegister                             *connect.Client[wrapperspb.StringValue, acquisition.DeviceRegister]
+	updateDeviceRegister                          *connect.Client[acquisition.DeviceRegister, emptypb.Empty]
+	deleteDeviceRegister                          *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createDeviceConfigurationTemplate             *connect.Client[acquisition.CreateDeviceConfigurationTemplateRequest, wrapperspb.StringValue]
+	listDeviceConfigurationTemplates              *connect.Client[common.ListSelector, acquisition.ListOfDeviceConfigurationTemplate]
+	getDeviceConfigurationTemplate                *connect.Client[wrapperspb.StringValue, acquisition.DeviceConfigurationTemplate]
+	updateDeviceConfigurationTemplate             *connect.Client[acquisition.DeviceConfigurationTemplate, emptypb.Empty]
+	deleteDeviceConfigurationTemplate             *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	addRegisterToDeviceConfigurationTemplate      *connect.Client[acquisition.AddRegisterToDeviceConfigurationTemplateRequest, emptypb.Empty]
+	removeRegisterFromDeviceConfigurationTemplate *connect.Client[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest, emptypb.Empty]
+	listFieldDescriptors                          *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
+	createProxyBulk                               *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
+	createBulk                                    *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
+	listBulks                                     *connect.Client[common.ListSelector, acquisition.ListOfBulk]
+	getBulk                                       *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
+	cancelBulk                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	getBulkJob                                    *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
+	listDrivers                                   *connect.Client[common.ListSelector, acquisition.ListOfDriver]
+	getDriver                                     *connect.Client[wrapperspb.StringValue, acquisition.Driver]
+	createCommunicationUnit                       *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
+	listCommunicationUnits                        *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
+	getCommunicationUnit                          *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
+	createCommunicationBus                        *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
+	listCommunicationBuses                        *connect.Client[common.ListSelector, acquisition.ListOfCommunicationBus]
+	addCommunicationUnitsToCommunicationBus       *connect.Client[acquisition.AddCommunicationUnitsToCommunicationBusRequest, emptypb.Empty]
+	removeCommunicationUnitsFromCommunicationBus  *connect.Client[acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, emptypb.Empty]
+	createDevice                                  *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
+	listDevices                                   *connect.Client[common.ListSelector, acquisition.ListOfDevice]
+	getDevice                                     *connect.Client[wrapperspb.StringValue, acquisition.Device]
+	setDeviceCommunicationUnits                   *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
+	getDeviceCommunicationUnits                   *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
+	createDeviceGroup                             *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
+	listDeviceGroups                              *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
+	getDeviceGroup                                *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
+	addDevicesToGroup                             *connect.Client[acquisition.AddDevicesToGroupRequest, emptypb.Empty]
+	removeDevicesFromGroup                        *connect.Client[acquisition.RemoveDevicesFromGroupRequest, emptypb.Empty]
+	listDeviceGroupDevices                        *connect.Client[common.ListSelector, acquisition.ListOfDevice]
+	listModemPools                                *connect.Client[common.ListSelector, acquisition.ListOfModemPool]
+	getModemPool                                  *connect.Client[wrapperspb.StringValue, acquisition.ModemPool]
+	createModemPool                               *connect.Client[acquisition.SetModemPoolRequest, wrapperspb.StringValue]
+	updateModemPool                               *connect.Client[acquisition.SetModemPoolRequest, emptypb.Empty]
+	deleteModemPool                               *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createModem                                   *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
+	updateModem                                   *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
+	deleteModem                                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	getConfig                                     *connect.Client[emptypb.Empty, system.SystemConfig]
+	setConfig                                     *connect.Client[system.SystemConfig, emptypb.Empty]
+}
+
+// CreateDeviceRegister calls io.clbs.openhes.services.svcapi.ApiService.CreateDeviceRegister.
+func (c *apiServiceClient) CreateDeviceRegister(ctx context.Context, req *connect.Request[acquisition.CreateDeviceRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createDeviceRegister.CallUnary(ctx, req)
+}
+
+// ListDeviceRegisters calls io.clbs.openhes.services.svcapi.ApiService.ListDeviceRegisters.
+func (c *apiServiceClient) ListDeviceRegisters(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceRegister], error) {
+	return c.listDeviceRegisters.CallUnary(ctx, req)
+}
+
+// GetDeviceRegister calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceRegister.
+func (c *apiServiceClient) GetDeviceRegister(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceRegister], error) {
+	return c.getDeviceRegister.CallUnary(ctx, req)
+}
+
+// UpdateDeviceRegister calls io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceRegister.
+func (c *apiServiceClient) UpdateDeviceRegister(ctx context.Context, req *connect.Request[acquisition.DeviceRegister]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateDeviceRegister.CallUnary(ctx, req)
+}
+
+// DeleteDeviceRegister calls io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceRegister.
+func (c *apiServiceClient) DeleteDeviceRegister(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteDeviceRegister.CallUnary(ctx, req)
+}
+
+// CreateDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationTemplate.
+func (c *apiServiceClient) CreateDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[acquisition.CreateDeviceConfigurationTemplateRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// ListDeviceConfigurationTemplates calls
+// io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationTemplates.
+func (c *apiServiceClient) ListDeviceConfigurationTemplates(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceConfigurationTemplate], error) {
+	return c.listDeviceConfigurationTemplates.CallUnary(ctx, req)
+}
+
+// GetDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationTemplate.
+func (c *apiServiceClient) GetDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceConfigurationTemplate], error) {
+	return c.getDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// UpdateDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationTemplate.
+func (c *apiServiceClient) UpdateDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[acquisition.DeviceConfigurationTemplate]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// DeleteDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationTemplate.
+func (c *apiServiceClient) DeleteDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// AddRegisterToDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.AddRegisterToDeviceConfigurationTemplate.
+func (c *apiServiceClient) AddRegisterToDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[acquisition.AddRegisterToDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.addRegisterToDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// RemoveRegisterFromDeviceConfigurationTemplate calls
+// io.clbs.openhes.services.svcapi.ApiService.RemoveRegisterFromDeviceConfigurationTemplate.
+func (c *apiServiceClient) RemoveRegisterFromDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.removeRegisterFromDeviceConfigurationTemplate.CallUnary(ctx, req)
 }
 
 // ListFieldDescriptors calls io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors.
@@ -745,6 +957,31 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[s
 
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
+	// @group: Device Registers
+	// Creates a new register. The register object holds the information about the single device register.
+	CreateDeviceRegister(context.Context, *connect.Request[acquisition.CreateDeviceRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Device Registers
+	ListDeviceRegisters(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceRegister], error)
+	// @group: Device Registers
+	GetDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceRegister], error)
+	// @group: Device Registers
+	UpdateDeviceRegister(context.Context, *connect.Request[acquisition.DeviceRegister]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Registers
+	DeleteDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	CreateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationTemplateRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Device Configuration Templates
+	ListDeviceConfigurationTemplates(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceConfigurationTemplate], error)
+	// @group: Device Configuration Templates
+	GetDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceConfigurationTemplate], error)
+	// @group: Device Configuration Templates
+	UpdateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.DeviceConfigurationTemplate]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	DeleteDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	AddRegisterToDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.AddRegisterToDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Device Configuration Templates
+	RemoveRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
@@ -892,6 +1129,78 @@ type ApiServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
+	apiServiceCreateDeviceRegisterHandler := connect.NewUnaryHandler(
+		ApiServiceCreateDeviceRegisterProcedure,
+		svc.CreateDeviceRegister,
+		connect.WithSchema(apiServiceMethods.ByName("CreateDeviceRegister")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListDeviceRegistersHandler := connect.NewUnaryHandler(
+		ApiServiceListDeviceRegistersProcedure,
+		svc.ListDeviceRegisters,
+		connect.WithSchema(apiServiceMethods.ByName("ListDeviceRegisters")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetDeviceRegisterHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceRegisterProcedure,
+		svc.GetDeviceRegister,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceRegister")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateDeviceRegisterHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateDeviceRegisterProcedure,
+		svc.UpdateDeviceRegister,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceRegister")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteDeviceRegisterHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteDeviceRegisterProcedure,
+		svc.DeleteDeviceRegister,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteDeviceRegister")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceCreateDeviceConfigurationTemplateProcedure,
+		svc.CreateDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("CreateDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListDeviceConfigurationTemplatesHandler := connect.NewUnaryHandler(
+		ApiServiceListDeviceConfigurationTemplatesProcedure,
+		svc.ListDeviceConfigurationTemplates,
+		connect.WithSchema(apiServiceMethods.ByName("ListDeviceConfigurationTemplates")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceConfigurationTemplateProcedure,
+		svc.GetDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateDeviceConfigurationTemplateProcedure,
+		svc.UpdateDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteDeviceConfigurationTemplateProcedure,
+		svc.DeleteDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceAddRegisterToDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceAddRegisterToDeviceConfigurationTemplateProcedure,
+		svc.AddRegisterToDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("AddRegisterToDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceRemoveRegisterFromDeviceConfigurationTemplateHandler := connect.NewUnaryHandler(
+		ApiServiceRemoveRegisterFromDeviceConfigurationTemplateProcedure,
+		svc.RemoveRegisterFromDeviceConfigurationTemplate,
+		connect.WithSchema(apiServiceMethods.ByName("RemoveRegisterFromDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceListFieldDescriptorsHandler := connect.NewUnaryHandler(
 		ApiServiceListFieldDescriptorsProcedure,
 		svc.ListFieldDescriptors,
@@ -1116,6 +1425,30 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ApiServiceCreateDeviceRegisterProcedure:
+			apiServiceCreateDeviceRegisterHandler.ServeHTTP(w, r)
+		case ApiServiceListDeviceRegistersProcedure:
+			apiServiceListDeviceRegistersHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceRegisterProcedure:
+			apiServiceGetDeviceRegisterHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateDeviceRegisterProcedure:
+			apiServiceUpdateDeviceRegisterHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteDeviceRegisterProcedure:
+			apiServiceDeleteDeviceRegisterHandler.ServeHTTP(w, r)
+		case ApiServiceCreateDeviceConfigurationTemplateProcedure:
+			apiServiceCreateDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceListDeviceConfigurationTemplatesProcedure:
+			apiServiceListDeviceConfigurationTemplatesHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceConfigurationTemplateProcedure:
+			apiServiceGetDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateDeviceConfigurationTemplateProcedure:
+			apiServiceUpdateDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteDeviceConfigurationTemplateProcedure:
+			apiServiceDeleteDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceAddRegisterToDeviceConfigurationTemplateProcedure:
+			apiServiceAddRegisterToDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceRemoveRegisterFromDeviceConfigurationTemplateProcedure:
+			apiServiceRemoveRegisterFromDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
 		case ApiServiceListFieldDescriptorsProcedure:
 			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateProxyBulkProcedure:
@@ -1198,6 +1531,54 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 
 // UnimplementedApiServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedApiServiceHandler struct{}
+
+func (UnimplementedApiServiceHandler) CreateDeviceRegister(context.Context, *connect.Request[acquisition.CreateDeviceRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateDeviceRegister is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListDeviceRegisters(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceRegister], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListDeviceRegisters is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceRegister], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceRegister is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateDeviceRegister(context.Context, *connect.Request[acquisition.DeviceRegister]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceRegister is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteDeviceRegister(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceRegister is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationTemplateRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListDeviceConfigurationTemplates(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceConfigurationTemplate], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationTemplates is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceConfigurationTemplate], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.DeviceConfigurationTemplate]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteDeviceConfigurationTemplate(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) AddRegisterToDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.AddRegisterToDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.AddRegisterToDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) RemoveRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.RemoveRegisterFromDeviceConfigurationTemplate is not implemented"))
+}
 
 func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors is not implemented"))

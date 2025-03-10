@@ -4058,6 +4058,1084 @@ func (b0 DriverSpec_builder) Build() *DriverSpec {
 	return m0
 }
 
+type CreateDeviceRegisterRequest struct {
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *DeviceRegisterSpec    `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *CreateDeviceRegisterRequest) Reset() {
+	*x = CreateDeviceRegisterRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateDeviceRegisterRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateDeviceRegisterRequest) ProtoMessage() {}
+
+func (x *CreateDeviceRegisterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CreateDeviceRegisterRequest) GetSpec() *DeviceRegisterSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *CreateDeviceRegisterRequest) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *CreateDeviceRegisterRequest) SetSpec(v *DeviceRegisterSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *CreateDeviceRegisterRequest) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *CreateDeviceRegisterRequest) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *CreateDeviceRegisterRequest) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *CreateDeviceRegisterRequest) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *CreateDeviceRegisterRequest) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type CreateDeviceRegisterRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *DeviceRegisterSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 CreateDeviceRegisterRequest_builder) Build() *CreateDeviceRegisterRequest {
+	m0 := &CreateDeviceRegisterRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+type ListOfDeviceRegister struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items       *[]*DeviceRegister     `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfDeviceRegister) Reset() {
+	*x = ListOfDeviceRegister{}
+	mi := &file_acquisition_main_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfDeviceRegister) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfDeviceRegister) ProtoMessage() {}
+
+func (x *ListOfDeviceRegister) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfDeviceRegister) GetItems() []*DeviceRegister {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *ListOfDeviceRegister) GetTotalCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_TotalCount
+	}
+	return 0
+}
+
+func (x *ListOfDeviceRegister) SetItems(v []*DeviceRegister) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *ListOfDeviceRegister) SetTotalCount(v int32) {
+	x.xxx_hidden_TotalCount = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListOfDeviceRegister) HasTotalCount() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ListOfDeviceRegister) ClearTotalCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_TotalCount = 0
+}
+
+type ListOfDeviceRegister_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items      []*DeviceRegister
+	TotalCount *int32
+}
+
+func (b0 ListOfDeviceRegister_builder) Build() *ListOfDeviceRegister {
+	m0 := &ListOfDeviceRegister{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	if b.TotalCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_TotalCount = *b.TotalCount
+	}
+	return m0
+}
+
+type DeviceRegister struct {
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *DeviceRegisterSpec    `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Status   *DeviceRegisterStatus  `protobuf:"bytes,2,opt,name=status"`
+	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeviceRegister) Reset() {
+	*x = DeviceRegister{}
+	mi := &file_acquisition_main_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceRegister) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceRegister) ProtoMessage() {}
+
+func (x *DeviceRegister) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceRegister) GetSpec() *DeviceRegisterSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *DeviceRegister) GetStatus() *DeviceRegisterStatus {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return nil
+}
+
+func (x *DeviceRegister) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *DeviceRegister) SetSpec(v *DeviceRegisterSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *DeviceRegister) SetStatus(v *DeviceRegisterStatus) {
+	x.xxx_hidden_Status = v
+}
+
+func (x *DeviceRegister) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *DeviceRegister) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *DeviceRegister) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Status != nil
+}
+
+func (x *DeviceRegister) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *DeviceRegister) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *DeviceRegister) ClearStatus() {
+	x.xxx_hidden_Status = nil
+}
+
+func (x *DeviceRegister) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type DeviceRegister_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *DeviceRegisterSpec
+	Status   *DeviceRegisterStatus
+	Metadata *common.MetadataFields
+}
+
+func (b0 DeviceRegister_builder) Build() *DeviceRegister {
+	m0 := &DeviceRegister{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Status = b.Status
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+type DeviceRegisterSpec struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_RegisterType *string                `protobuf:"bytes,1,opt,name=register_type,json=registerType"`
+	xxx_hidden_DisplayName  *string                `protobuf:"bytes,2,opt,name=display_name,json=displayName"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *DeviceRegisterSpec) Reset() {
+	*x = DeviceRegisterSpec{}
+	mi := &file_acquisition_main_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceRegisterSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceRegisterSpec) ProtoMessage() {}
+
+func (x *DeviceRegisterSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceRegisterSpec) GetRegisterType() string {
+	if x != nil {
+		if x.xxx_hidden_RegisterType != nil {
+			return *x.xxx_hidden_RegisterType
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceRegisterSpec) GetDisplayName() string {
+	if x != nil {
+		if x.xxx_hidden_DisplayName != nil {
+			return *x.xxx_hidden_DisplayName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceRegisterSpec) SetRegisterType(v string) {
+	x.xxx_hidden_RegisterType = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DeviceRegisterSpec) SetDisplayName(v string) {
+	x.xxx_hidden_DisplayName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *DeviceRegisterSpec) HasRegisterType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DeviceRegisterSpec) HasDisplayName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DeviceRegisterSpec) ClearRegisterType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_RegisterType = nil
+}
+
+func (x *DeviceRegisterSpec) ClearDisplayName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_DisplayName = nil
+}
+
+type DeviceRegisterSpec_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// The technical/internal ID of the register.
+	RegisterType *string
+	// The display name of the register. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+	// It must respect upper/lower characters.
+	// The generic registers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+	//
+	// Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+	DisplayName *string
+}
+
+func (b0 DeviceRegisterSpec_builder) Build() *DeviceRegisterSpec {
+	m0 := &DeviceRegisterSpec{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.RegisterType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_RegisterType = b.RegisterType
+	}
+	if b.DisplayName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_DisplayName = b.DisplayName
+	}
+	return m0
+}
+
+type DeviceRegisterStatus struct {
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeviceRegisterStatus) Reset() {
+	*x = DeviceRegisterStatus{}
+	mi := &file_acquisition_main_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceRegisterStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceRegisterStatus) ProtoMessage() {}
+
+func (x *DeviceRegisterStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+type DeviceRegisterStatus_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+}
+
+func (b0 DeviceRegisterStatus_builder) Build() *DeviceRegisterStatus {
+	m0 := &DeviceRegisterStatus{}
+	b, x := &b0, m0
+	_, _ = b, x
+	return m0
+}
+
+type CreateDeviceConfigurationTemplateRequest struct {
+	state               protoimpl.MessageState           `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) Reset() {
+	*x = CreateDeviceConfigurationTemplateRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateDeviceConfigurationTemplateRequest) ProtoMessage() {}
+
+func (x *CreateDeviceConfigurationTemplateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) GetSpec() *DeviceConfigurationTemplateSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) SetSpec(v *DeviceConfigurationTemplateSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *CreateDeviceConfigurationTemplateRequest) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type CreateDeviceConfigurationTemplateRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *DeviceConfigurationTemplateSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 CreateDeviceConfigurationTemplateRequest_builder) Build() *CreateDeviceConfigurationTemplateRequest {
+	m0 := &CreateDeviceConfigurationTemplateRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+type ListOfDeviceConfigurationTemplate struct {
+	state                  protoimpl.MessageState          `protogen:"opaque.v1"`
+	xxx_hidden_Items       *[]*DeviceConfigurationTemplate `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                           `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfDeviceConfigurationTemplate) Reset() {
+	*x = ListOfDeviceConfigurationTemplate{}
+	mi := &file_acquisition_main_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfDeviceConfigurationTemplate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfDeviceConfigurationTemplate) ProtoMessage() {}
+
+func (x *ListOfDeviceConfigurationTemplate) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfDeviceConfigurationTemplate) GetItems() []*DeviceConfigurationTemplate {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *ListOfDeviceConfigurationTemplate) GetTotalCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_TotalCount
+	}
+	return 0
+}
+
+func (x *ListOfDeviceConfigurationTemplate) SetItems(v []*DeviceConfigurationTemplate) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *ListOfDeviceConfigurationTemplate) SetTotalCount(v int32) {
+	x.xxx_hidden_TotalCount = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListOfDeviceConfigurationTemplate) HasTotalCount() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ListOfDeviceConfigurationTemplate) ClearTotalCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_TotalCount = 0
+}
+
+type ListOfDeviceConfigurationTemplate_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items      []*DeviceConfigurationTemplate
+	TotalCount *int32
+}
+
+func (b0 ListOfDeviceConfigurationTemplate_builder) Build() *ListOfDeviceConfigurationTemplate {
+	m0 := &ListOfDeviceConfigurationTemplate{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	if b.TotalCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_TotalCount = *b.TotalCount
+	}
+	return m0
+}
+
+type DeviceConfigurationTemplate struct {
+	state               protoimpl.MessageState           `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeviceConfigurationTemplate) Reset() {
+	*x = DeviceConfigurationTemplate{}
+	mi := &file_acquisition_main_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceConfigurationTemplate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceConfigurationTemplate) ProtoMessage() {}
+
+func (x *DeviceConfigurationTemplate) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceConfigurationTemplate) GetSpec() *DeviceConfigurationTemplateSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *DeviceConfigurationTemplate) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *DeviceConfigurationTemplate) SetSpec(v *DeviceConfigurationTemplateSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *DeviceConfigurationTemplate) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *DeviceConfigurationTemplate) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *DeviceConfigurationTemplate) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *DeviceConfigurationTemplate) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *DeviceConfigurationTemplate) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type DeviceConfigurationTemplate_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *DeviceConfigurationTemplateSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 DeviceConfigurationTemplate_builder) Build() *DeviceConfigurationTemplate {
+	m0 := &DeviceConfigurationTemplate{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+type DeviceConfigurationTemplateSpec struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_TemplateType *string                `protobuf:"bytes,1,opt,name=template_type,json=templateType"`
+	xxx_hidden_DisplayName  *string                `protobuf:"bytes,2,opt,name=display_name,json=displayName"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *DeviceConfigurationTemplateSpec) Reset() {
+	*x = DeviceConfigurationTemplateSpec{}
+	mi := &file_acquisition_main_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceConfigurationTemplateSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceConfigurationTemplateSpec) ProtoMessage() {}
+
+func (x *DeviceConfigurationTemplateSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceConfigurationTemplateSpec) GetTemplateType() string {
+	if x != nil {
+		if x.xxx_hidden_TemplateType != nil {
+			return *x.xxx_hidden_TemplateType
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceConfigurationTemplateSpec) GetDisplayName() string {
+	if x != nil {
+		if x.xxx_hidden_DisplayName != nil {
+			return *x.xxx_hidden_DisplayName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceConfigurationTemplateSpec) SetTemplateType(v string) {
+	x.xxx_hidden_TemplateType = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DeviceConfigurationTemplateSpec) SetDisplayName(v string) {
+	x.xxx_hidden_DisplayName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *DeviceConfigurationTemplateSpec) HasTemplateType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DeviceConfigurationTemplateSpec) HasDisplayName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DeviceConfigurationTemplateSpec) ClearTemplateType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_TemplateType = nil
+}
+
+func (x *DeviceConfigurationTemplateSpec) ClearDisplayName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_DisplayName = nil
+}
+
+type DeviceConfigurationTemplateSpec_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// The technical/internal ID of the device configuration template.
+	TemplateType *string
+	// The display name of the device configuration template. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
+	// It must respect upper/lower characters.
+	// The generic templates, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
+	//
+	// Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+	DisplayName *string
+}
+
+func (b0 DeviceConfigurationTemplateSpec_builder) Build() *DeviceConfigurationTemplateSpec {
+	m0 := &DeviceConfigurationTemplateSpec{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.TemplateType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_TemplateType = b.TemplateType
+	}
+	if b.DisplayName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_DisplayName = b.DisplayName
+	}
+	return m0
+}
+
+type AddRegisterToDeviceConfigurationTemplateRequest struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_TemplateId  *string                `protobuf:"bytes,1,opt,name=template_id,json=templateId"`
+	xxx_hidden_RegisterId  *string                `protobuf:"bytes,2,opt,name=register_id,json=registerId"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) Reset() {
+	*x = AddRegisterToDeviceConfigurationTemplateRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRegisterToDeviceConfigurationTemplateRequest) ProtoMessage() {}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) GetTemplateId() string {
+	if x != nil {
+		if x.xxx_hidden_TemplateId != nil {
+			return *x.xxx_hidden_TemplateId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) GetRegisterId() string {
+	if x != nil {
+		if x.xxx_hidden_RegisterId != nil {
+			return *x.xxx_hidden_RegisterId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) SetTemplateId(v string) {
+	x.xxx_hidden_TemplateId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) SetRegisterId(v string) {
+	x.xxx_hidden_RegisterId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) HasTemplateId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) HasRegisterId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) ClearTemplateId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_TemplateId = nil
+}
+
+func (x *AddRegisterToDeviceConfigurationTemplateRequest) ClearRegisterId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_RegisterId = nil
+}
+
+type AddRegisterToDeviceConfigurationTemplateRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	TemplateId *string
+	RegisterId *string
+}
+
+func (b0 AddRegisterToDeviceConfigurationTemplateRequest_builder) Build() *AddRegisterToDeviceConfigurationTemplateRequest {
+	m0 := &AddRegisterToDeviceConfigurationTemplateRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.TemplateId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_TemplateId = b.TemplateId
+	}
+	if b.RegisterId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_RegisterId = b.RegisterId
+	}
+	return m0
+}
+
+type RemoveRegisterFromDeviceConfigurationTemplateRequest struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_TemplateId  *string                `protobuf:"bytes,1,opt,name=template_id,json=templateId"`
+	xxx_hidden_RegisterId  *string                `protobuf:"bytes,2,opt,name=register_id,json=registerId"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) Reset() {
+	*x = RemoveRegisterFromDeviceConfigurationTemplateRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveRegisterFromDeviceConfigurationTemplateRequest) ProtoMessage() {}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) GetTemplateId() string {
+	if x != nil {
+		if x.xxx_hidden_TemplateId != nil {
+			return *x.xxx_hidden_TemplateId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) GetRegisterId() string {
+	if x != nil {
+		if x.xxx_hidden_RegisterId != nil {
+			return *x.xxx_hidden_RegisterId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) SetTemplateId(v string) {
+	x.xxx_hidden_TemplateId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) SetRegisterId(v string) {
+	x.xxx_hidden_RegisterId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) HasTemplateId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) HasRegisterId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) ClearTemplateId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_TemplateId = nil
+}
+
+func (x *RemoveRegisterFromDeviceConfigurationTemplateRequest) ClearRegisterId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_RegisterId = nil
+}
+
+type RemoveRegisterFromDeviceConfigurationTemplateRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	TemplateId *string
+	RegisterId *string
+}
+
+func (b0 RemoveRegisterFromDeviceConfigurationTemplateRequest_builder) Build() *RemoveRegisterFromDeviceConfigurationTemplateRequest {
+	m0 := &RemoveRegisterFromDeviceConfigurationTemplateRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.TemplateId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_TemplateId = b.TemplateId
+	}
+	if b.RegisterId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_RegisterId = b.RegisterId
+	}
+	return m0
+}
+
 var File_acquisition_main_proto protoreflect.FileDescriptor
 
 var file_acquisition_main_proto_rawDesc = string([]byte{
@@ -4465,132 +5543,255 @@ var file_acquisition_main_proto_rawDesc = string([]byte{
 	0x2e, 0x44, 0x72, 0x69, 0x76, 0x65, 0x72, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x73,
 	0x52, 0x09, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x64,
 	0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0x35,
-	0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62,
-	0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f, 0x68, 0x65, 0x73, 0x2d, 0x32, 0x2d, 0x61, 0x70,
-	0x69, 0x73, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73,
-	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x08, 0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70,
-	0xe8, 0x07,
+	0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0xbb,
+	0x01, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x51,
+	0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x36, 0x2e, 0x69,
+	0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
+	0x53, 0x70, 0x65, 0x63, 0x42, 0x05, 0xaa, 0x01, 0x02, 0x08, 0x03, 0x52, 0x04, 0x73, 0x70, 0x65,
+	0x63, 0x12, 0x49, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70,
+	0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x63, 0x6f, 0x6d,
+	0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x46, 0x69, 0x65, 0x6c,
+	0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0x81, 0x01, 0x0a,
+	0x14, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x66, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x12, 0x48, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f,
+	0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63,
+	0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65,
+	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x12,
+	0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x22, 0x80, 0x02, 0x0a, 0x0e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x65, 0x72, 0x12, 0x51, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x36, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e,
+	0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63, 0x71, 0x75, 0x69,
+	0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x42, 0x05, 0xaa, 0x01, 0x02, 0x08, 0x03,
+	0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x12, 0x50, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x38, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73,
+	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e,
+	0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x49, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61,
+	0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x69, 0x6f, 0x2e,
+	0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x22, 0x5c, 0x0a, 0x12, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0c, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x21,
+	0x0a, 0x0c, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d,
+	0x65, 0x22, 0x16, 0x0a, 0x14, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xd5, 0x01, 0x0a, 0x28, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x5e, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x43, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f,
+	0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63,
+	0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d,
+	0x70, 0x6c, 0x61, 0x74, 0x65, 0x53, 0x70, 0x65, 0x63, 0x42, 0x05, 0xaa, 0x01, 0x02, 0x08, 0x03,
+	0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x12, 0x49, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c,
+	0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0x22, 0x9b, 0x01, 0x0a, 0x21, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x66, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54,
+	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x55, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3f, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73,
+	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e,
+	0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69,
+	0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54,
+	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x12, 0x1f,
+	0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22,
+	0xc8, 0x01, 0x0a, 0x1b, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x12,
+	0x5e, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x43, 0x2e,
+	0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x68, 0x65, 0x73, 0x2e,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x53, 0x70,
+	0x65, 0x63, 0x42, 0x05, 0xaa, 0x01, 0x02, 0x08, 0x03, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x12,
+	0x49, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x2d, 0x2e, 0x69, 0x6f, 0x2e, 0x63, 0x6c, 0x62, 0x73, 0x2e, 0x6f, 0x70, 0x65, 0x6e,
+	0x68, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f,
+	0x6e, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73,
+	0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0x69, 0x0a, 0x1f, 0x44, 0x65,
+	0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x53, 0x70, 0x65, 0x63, 0x12, 0x23, 0x0a,
+	0x0d, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x54, 0x79,
+	0x70, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61,
+	0x79, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x73, 0x0a, 0x2f, 0x41, 0x64, 0x64, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x54, 0x6f, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x65, 0x6d, 0x70,
+	0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74,
+	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x72, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x22, 0x78, 0x0a, 0x34, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x46, 0x72, 0x6f, 0x6d,
+	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74,
+	0x65, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x64, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f, 0x68, 0x65,
+	0x73, 0x2d, 0x32, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f,
+	0x61, 0x63, 0x71, 0x75, 0x69, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x08, 0x65, 0x64, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x70, 0xe8, 0x07,
 })
 
-var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
+var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 50)
 var file_acquisition_main_proto_goTypes = []any{
-	(*CreateCommunicationUnitRequest)(nil),                      // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
-	(*ListOfCommunicationUnit)(nil),                             // 1: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	(*CreateCommunicationBusRequest)(nil),                       // 2: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
-	(*ListOfCommunicationBus)(nil),                              // 3: io.clbs.openhes.models.acquisition.ListOfCommunicationBus
-	(*AddCommunicationUnitsToCommunicationBusRequest)(nil),      // 4: io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest
-	(*RemoveCommunicationUnitsFromCommunicationBusRequest)(nil), // 5: io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest
-	(*CreateDeviceRequest)(nil),                                 // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest
-	(*ListOfDevice)(nil),                                        // 7: io.clbs.openhes.models.acquisition.ListOfDevice
-	(*Device)(nil),                                              // 8: io.clbs.openhes.models.acquisition.Device
-	(*CreateDeviceGroupRequest)(nil),                            // 9: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
-	(*ListOfDeviceGroup)(nil),                                   // 10: io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	(*StreamDeviceGroup)(nil),                                   // 11: io.clbs.openhes.models.acquisition.StreamDeviceGroup
-	(*DeviceGroup)(nil),                                         // 12: io.clbs.openhes.models.acquisition.DeviceGroup
-	(*DeviceGroupSpec)(nil),                                     // 13: io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	(*DeviceGroupStatus)(nil),                                   // 14: io.clbs.openhes.models.acquisition.DeviceGroupStatus
-	(*DeviceGroupStatusDevice)(nil),                             // 15: io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
-	(*SetDeviceCommunicationUnitsRequest)(nil),                  // 16: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
-	(*ListOfDeviceCommunicationUnit)(nil),                       // 17: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
-	(*AddDevicesToGroupRequest)(nil),                            // 18: io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
-	(*RemoveDevicesFromGroupRequest)(nil),                       // 19: io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
-	(*CreateBulkRequest)(nil),                                   // 20: io.clbs.openhes.models.acquisition.CreateBulkRequest
-	(*ListOfBulk)(nil),                                          // 21: io.clbs.openhes.models.acquisition.ListOfBulk
-	(*Bulk)(nil),                                                // 22: io.clbs.openhes.models.acquisition.Bulk
-	(*BulkSpec)(nil),                                            // 23: io.clbs.openhes.models.acquisition.BulkSpec
-	(*BulkStatus)(nil),                                          // 24: io.clbs.openhes.models.acquisition.BulkStatus
-	(*BulkJob)(nil),                                             // 25: io.clbs.openhes.models.acquisition.BulkJob
-	(*CreateProxyBulkRequest)(nil),                              // 26: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest
-	(*ProxyBulkSpec)(nil),                                       // 27: io.clbs.openhes.models.acquisition.ProxyBulkSpec
-	(*SetModemPoolRequest)(nil),                                 // 28: io.clbs.openhes.models.acquisition.SetModemPoolRequest
-	(*ListOfModemPool)(nil),                                     // 29: io.clbs.openhes.models.acquisition.ListOfModemPool
-	(*ModemPoolSpec)(nil),                                       // 30: io.clbs.openhes.models.acquisition.ModemPoolSpec
-	(*ModemPoolStatus)(nil),                                     // 31: io.clbs.openhes.models.acquisition.ModemPoolStatus
-	(*ModemPool)(nil),                                           // 32: io.clbs.openhes.models.acquisition.ModemPool
-	(*SetModemRequest)(nil),                                     // 33: io.clbs.openhes.models.acquisition.SetModemRequest
-	(*SetDriver)(nil),                                           // 34: io.clbs.openhes.models.acquisition.SetDriver
-	(*ListOfDriver)(nil),                                        // 35: io.clbs.openhes.models.acquisition.ListOfDriver
-	(*Driver)(nil),                                              // 36: io.clbs.openhes.models.acquisition.Driver
-	(*DriverSpec)(nil),                                          // 37: io.clbs.openhes.models.acquisition.DriverSpec
-	nil,                                                         // 38: io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry
-	(*CommunicationUnitSpec)(nil),                               // 39: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*common.MetadataFields)(nil),                               // 40: io.clbs.openhes.models.common.MetadataFields
-	(*CommunicationUnit)(nil),                                   // 41: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationBus)(nil),                                    // 42: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*DeviceSpec)(nil),                                          // 43: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                                        // 44: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*common.ListSelector)(nil),                                 // 45: io.clbs.openhes.models.common.ListSelector
-	(*DeviceCommunicationUnit)(nil),                             // 46: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*ListOfJobDeviceId)(nil),                                   // 47: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	(*JobSettings)(nil),                                         // 48: io.clbs.openhes.models.acquisition.JobSettings
-	(*JobAction)(nil),                                           // 49: io.clbs.openhes.models.acquisition.JobAction
-	(BulkStatusCode)(0),                                         // 50: io.clbs.openhes.models.acquisition.BulkStatusCode
-	(*JobStatus)(nil),                                           // 51: io.clbs.openhes.models.acquisition.JobStatus
-	(*ListOfJobDevice)(nil),                                     // 52: io.clbs.openhes.models.acquisition.ListOfJobDevice
-	(*ModemInfo)(nil),                                           // 53: io.clbs.openhes.models.acquisition.ModemInfo
-	(*DriverTemplates)(nil),                                     // 54: io.clbs.openhes.models.acquisition.DriverTemplates
+	(*CreateCommunicationUnitRequest)(nil),                       // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
+	(*ListOfCommunicationUnit)(nil),                              // 1: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	(*CreateCommunicationBusRequest)(nil),                        // 2: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
+	(*ListOfCommunicationBus)(nil),                               // 3: io.clbs.openhes.models.acquisition.ListOfCommunicationBus
+	(*AddCommunicationUnitsToCommunicationBusRequest)(nil),       // 4: io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest
+	(*RemoveCommunicationUnitsFromCommunicationBusRequest)(nil),  // 5: io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest
+	(*CreateDeviceRequest)(nil),                                  // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest
+	(*ListOfDevice)(nil),                                         // 7: io.clbs.openhes.models.acquisition.ListOfDevice
+	(*Device)(nil),                                               // 8: io.clbs.openhes.models.acquisition.Device
+	(*CreateDeviceGroupRequest)(nil),                             // 9: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
+	(*ListOfDeviceGroup)(nil),                                    // 10: io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	(*StreamDeviceGroup)(nil),                                    // 11: io.clbs.openhes.models.acquisition.StreamDeviceGroup
+	(*DeviceGroup)(nil),                                          // 12: io.clbs.openhes.models.acquisition.DeviceGroup
+	(*DeviceGroupSpec)(nil),                                      // 13: io.clbs.openhes.models.acquisition.DeviceGroupSpec
+	(*DeviceGroupStatus)(nil),                                    // 14: io.clbs.openhes.models.acquisition.DeviceGroupStatus
+	(*DeviceGroupStatusDevice)(nil),                              // 15: io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
+	(*SetDeviceCommunicationUnitsRequest)(nil),                   // 16: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
+	(*ListOfDeviceCommunicationUnit)(nil),                        // 17: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
+	(*AddDevicesToGroupRequest)(nil),                             // 18: io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
+	(*RemoveDevicesFromGroupRequest)(nil),                        // 19: io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
+	(*CreateBulkRequest)(nil),                                    // 20: io.clbs.openhes.models.acquisition.CreateBulkRequest
+	(*ListOfBulk)(nil),                                           // 21: io.clbs.openhes.models.acquisition.ListOfBulk
+	(*Bulk)(nil),                                                 // 22: io.clbs.openhes.models.acquisition.Bulk
+	(*BulkSpec)(nil),                                             // 23: io.clbs.openhes.models.acquisition.BulkSpec
+	(*BulkStatus)(nil),                                           // 24: io.clbs.openhes.models.acquisition.BulkStatus
+	(*BulkJob)(nil),                                              // 25: io.clbs.openhes.models.acquisition.BulkJob
+	(*CreateProxyBulkRequest)(nil),                               // 26: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest
+	(*ProxyBulkSpec)(nil),                                        // 27: io.clbs.openhes.models.acquisition.ProxyBulkSpec
+	(*SetModemPoolRequest)(nil),                                  // 28: io.clbs.openhes.models.acquisition.SetModemPoolRequest
+	(*ListOfModemPool)(nil),                                      // 29: io.clbs.openhes.models.acquisition.ListOfModemPool
+	(*ModemPoolSpec)(nil),                                        // 30: io.clbs.openhes.models.acquisition.ModemPoolSpec
+	(*ModemPoolStatus)(nil),                                      // 31: io.clbs.openhes.models.acquisition.ModemPoolStatus
+	(*ModemPool)(nil),                                            // 32: io.clbs.openhes.models.acquisition.ModemPool
+	(*SetModemRequest)(nil),                                      // 33: io.clbs.openhes.models.acquisition.SetModemRequest
+	(*SetDriver)(nil),                                            // 34: io.clbs.openhes.models.acquisition.SetDriver
+	(*ListOfDriver)(nil),                                         // 35: io.clbs.openhes.models.acquisition.ListOfDriver
+	(*Driver)(nil),                                               // 36: io.clbs.openhes.models.acquisition.Driver
+	(*DriverSpec)(nil),                                           // 37: io.clbs.openhes.models.acquisition.DriverSpec
+	(*CreateDeviceRegisterRequest)(nil),                          // 38: io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest
+	(*ListOfDeviceRegister)(nil),                                 // 39: io.clbs.openhes.models.acquisition.ListOfDeviceRegister
+	(*DeviceRegister)(nil),                                       // 40: io.clbs.openhes.models.acquisition.DeviceRegister
+	(*DeviceRegisterSpec)(nil),                                   // 41: io.clbs.openhes.models.acquisition.DeviceRegisterSpec
+	(*DeviceRegisterStatus)(nil),                                 // 42: io.clbs.openhes.models.acquisition.DeviceRegisterStatus
+	(*CreateDeviceConfigurationTemplateRequest)(nil),             // 43: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest
+	(*ListOfDeviceConfigurationTemplate)(nil),                    // 44: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
+	(*DeviceConfigurationTemplate)(nil),                          // 45: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
+	(*DeviceConfigurationTemplateSpec)(nil),                      // 46: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
+	(*AddRegisterToDeviceConfigurationTemplateRequest)(nil),      // 47: io.clbs.openhes.models.acquisition.AddRegisterToDeviceConfigurationTemplateRequest
+	(*RemoveRegisterFromDeviceConfigurationTemplateRequest)(nil), // 48: io.clbs.openhes.models.acquisition.RemoveRegisterFromDeviceConfigurationTemplateRequest
+	nil,                             // 49: io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry
+	(*CommunicationUnitSpec)(nil),   // 50: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*common.MetadataFields)(nil),   // 51: io.clbs.openhes.models.common.MetadataFields
+	(*CommunicationUnit)(nil),       // 52: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationBus)(nil),        // 53: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*DeviceSpec)(nil),              // 54: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),            // 55: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*common.ListSelector)(nil),     // 56: io.clbs.openhes.models.common.ListSelector
+	(*DeviceCommunicationUnit)(nil), // 57: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*ListOfJobDeviceId)(nil),       // 58: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	(*JobSettings)(nil),             // 59: io.clbs.openhes.models.acquisition.JobSettings
+	(*JobAction)(nil),               // 60: io.clbs.openhes.models.acquisition.JobAction
+	(BulkStatusCode)(0),             // 61: io.clbs.openhes.models.acquisition.BulkStatusCode
+	(*JobStatus)(nil),               // 62: io.clbs.openhes.models.acquisition.JobStatus
+	(*ListOfJobDevice)(nil),         // 63: io.clbs.openhes.models.acquisition.ListOfJobDevice
+	(*ModemInfo)(nil),               // 64: io.clbs.openhes.models.acquisition.ModemInfo
+	(*DriverTemplates)(nil),         // 65: io.clbs.openhes.models.acquisition.DriverTemplates
 }
 var file_acquisition_main_proto_depIdxs = []int32{
-	39, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	40, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	41, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	40, // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	42, // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
-	43, // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	40, // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	50, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	51, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	52, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	51, // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	53, // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
+	54, // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	51, // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	8,  // 7: io.clbs.openhes.models.acquisition.ListOfDevice.items:type_name -> io.clbs.openhes.models.acquisition.Device
-	43, // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	44, // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
-	40, // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	54, // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	55, // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
+	51, // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	13, // 11: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	40, // 12: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	51, // 12: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	12, // 13: io.clbs.openhes.models.acquisition.ListOfDeviceGroup.items:type_name -> io.clbs.openhes.models.acquisition.DeviceGroup
 	13, // 14: io.clbs.openhes.models.acquisition.StreamDeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	14, // 15: io.clbs.openhes.models.acquisition.StreamDeviceGroup.status:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatus
-	40, // 16: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	51, // 16: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	13, // 17: io.clbs.openhes.models.acquisition.DeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	14, // 18: io.clbs.openhes.models.acquisition.DeviceGroup.status:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatus
-	40, // 19: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	45, // 20: io.clbs.openhes.models.acquisition.DeviceGroupSpec.dynamic_filter:type_name -> io.clbs.openhes.models.common.ListSelector
-	38, // 21: io.clbs.openhes.models.acquisition.DeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry
-	46, // 22: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	46, // 23: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	51, // 19: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	56, // 20: io.clbs.openhes.models.acquisition.DeviceGroupSpec.dynamic_filter:type_name -> io.clbs.openhes.models.common.ListSelector
+	49, // 21: io.clbs.openhes.models.acquisition.DeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry
+	57, // 22: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	57, // 23: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
 	23, // 24: io.clbs.openhes.models.acquisition.CreateBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
-	40, // 25: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	51, // 25: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	22, // 26: io.clbs.openhes.models.acquisition.ListOfBulk.items:type_name -> io.clbs.openhes.models.acquisition.Bulk
 	23, // 27: io.clbs.openhes.models.acquisition.Bulk.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
 	24, // 28: io.clbs.openhes.models.acquisition.Bulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	40, // 29: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	47, // 30: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	48, // 31: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	49, // 32: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	50, // 33: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
+	51, // 29: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	58, // 30: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	59, // 31: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	60, // 32: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	61, // 33: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
 	25, // 34: io.clbs.openhes.models.acquisition.BulkStatus.jobs:type_name -> io.clbs.openhes.models.acquisition.BulkJob
-	51, // 35: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	62, // 35: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
 	27, // 36: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ProxyBulkSpec
-	40, // 37: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	52, // 38: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
-	48, // 39: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	49, // 40: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	51, // 37: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 38: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
+	59, // 39: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	60, // 40: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
 	30, // 41: io.clbs.openhes.models.acquisition.SetModemPoolRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
-	40, // 42: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	51, // 42: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	32, // 43: io.clbs.openhes.models.acquisition.ListOfModemPool.items:type_name -> io.clbs.openhes.models.acquisition.ModemPool
-	53, // 44: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	64, // 44: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	30, // 45: io.clbs.openhes.models.acquisition.ModemPool.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
 	31, // 46: io.clbs.openhes.models.acquisition.ModemPool.status:type_name -> io.clbs.openhes.models.acquisition.ModemPoolStatus
-	40, // 47: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	53, // 48: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	51, // 47: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	64, // 48: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	37, // 49: io.clbs.openhes.models.acquisition.SetDriver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
 	36, // 50: io.clbs.openhes.models.acquisition.ListOfDriver.items:type_name -> io.clbs.openhes.models.acquisition.Driver
 	37, // 51: io.clbs.openhes.models.acquisition.Driver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
-	54, // 52: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
-	15, // 53: io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
-	54, // [54:54] is the sub-list for method output_type
-	54, // [54:54] is the sub-list for method input_type
-	54, // [54:54] is the sub-list for extension type_name
-	54, // [54:54] is the sub-list for extension extendee
-	0,  // [0:54] is the sub-list for field type_name
+	65, // 52: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
+	41, // 53: io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceRegisterSpec
+	51, // 54: io.clbs.openhes.models.acquisition.CreateDeviceRegisterRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	40, // 55: io.clbs.openhes.models.acquisition.ListOfDeviceRegister.items:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
+	41, // 56: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceRegisterSpec
+	42, // 57: io.clbs.openhes.models.acquisition.DeviceRegister.status:type_name -> io.clbs.openhes.models.acquisition.DeviceRegisterStatus
+	51, // 58: io.clbs.openhes.models.acquisition.DeviceRegister.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	46, // 59: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
+	51, // 60: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	45, // 61: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
+	46, // 62: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
+	51, // 63: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	15, // 64: io.clbs.openhes.models.acquisition.DeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
+	65, // [65:65] is the sub-list for method output_type
+	65, // [65:65] is the sub-list for method input_type
+	65, // [65:65] is the sub-list for extension type_name
+	65, // [65:65] is the sub-list for extension extendee
+	0,  // [0:65] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_main_proto_init() }
@@ -4614,7 +5815,7 @@ func file_acquisition_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_main_proto_rawDesc), len(file_acquisition_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   39,
+			NumMessages:   50,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

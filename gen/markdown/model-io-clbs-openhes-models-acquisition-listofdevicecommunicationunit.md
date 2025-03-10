@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| items | io.clbs.openhes.models.acquisition.DeviceCommunicationUnit | The list of linked communication units. |
+| items | [io.clbs.openhes.models.acquisition.DeviceCommunicationUnit](model-io-clbs-openhes-models-acquisition-devicecommunicationunit.md) | The list of linked communication units. |
 | totalCount | int32 | The total number of items. |
 
