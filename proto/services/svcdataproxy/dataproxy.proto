@@ -13,6 +13,9 @@ import "system/main.proto";
 
 // The Dataproxy related service definition.
 service DataproxyService {
+    // Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+    rpc CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue);
+
     // The method called by the RestApi to start a new bulk of jobs.
     rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
     // @group: Bulks

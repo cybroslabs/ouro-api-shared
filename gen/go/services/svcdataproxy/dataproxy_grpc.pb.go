@@ -24,13 +24,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataproxyService_CreateBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
-	DataproxyService_ListBulks_FullMethodName  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
-	DataproxyService_GetBulk_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
-	DataproxyService_CancelBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
-	DataproxyService_GetBulkJob_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
-	DataproxyService_GetConfig_FullMethodName  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
-	DataproxyService_SetConfig_FullMethodName  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
+	DataproxyService_CreateProxyBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
+	DataproxyService_CreateBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_ListBulks_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
+	DataproxyService_GetBulk_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
+	DataproxyService_CancelBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_GetBulkJob_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_GetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
+	DataproxyService_SetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -39,6 +40,8 @@ const (
 //
 // The Dataproxy related service definition.
 type DataproxyServiceClient interface {
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
@@ -64,6 +67,16 @@ type dataproxyServiceClient struct {
 
 func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClient {
 	return &dataproxyServiceClient{cc}
+}
+
+func (c *dataproxyServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
@@ -142,6 +155,8 @@ func (c *dataproxyServiceClient) SetConfig(ctx context.Context, in *system.Syste
 //
 // The Dataproxy related service definition.
 type DataproxyServiceServer interface {
+	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
 	// The method called by the RestApi to start a new bulk of jobs.
 	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
@@ -169,6 +184,9 @@ type DataproxyServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataproxyServiceServer struct{}
 
+func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
+}
 func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
@@ -209,6 +227,24 @@ func RegisterDataproxyServiceServer(s grpc.ServiceRegistrar, srv DataproxyServic
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&DataproxyService_ServiceDesc, srv)
+}
+
+func _DataproxyService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateProxyBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_CreateProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -344,6 +380,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svcdataproxy.DataproxyService",
 	HandlerType: (*DataproxyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateProxyBulk",
+			Handler:    _DataproxyService_CreateProxyBulk_Handler,
+		},
 		{
 			MethodName: "CreateBulk",
 			Handler:    _DataproxyService_CreateBulk_Handler,
