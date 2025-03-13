@@ -303,7 +303,8 @@ message DeviceConfigurationTemplate {
 }
 
 message DeviceConfigurationTemplateSpec {
-    string driver_type = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
+    string driver_type          = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
+    repeated string register_id = 2;                                              // The list of device configuration register identifiers.
 }
 
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {

@@ -283,7 +283,8 @@ type DeviceConfigurationTemplate struct {
 }
 
 type DeviceConfigurationTemplateSpec struct {
-	DriverType *string `json:"driverType,omitempty"`
+	DriverType *string   `json:"driverType,omitempty"`
+	RegisterID []*string `json:"registerId,omitempty"`
 }
 
 type DeviceGroup struct {

@@ -321,6 +321,7 @@ type ComplexityRoot struct {
 
 	DeviceConfigurationTemplateSpec struct {
 		DriverType func(childComplexity int) int
+		RegisterID func(childComplexity int) int
 	}
 
 	DeviceGroup struct {
@@ -1693,6 +1694,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceConfigurationTemplateSpec.DriverType(childComplexity), true
+
+	case "DeviceConfigurationTemplateSpec.registerId":
+		if e.complexity.DeviceConfigurationTemplateSpec.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.DeviceConfigurationTemplateSpec.RegisterID(childComplexity), true
 
 	case "DeviceGroup.metadata":
 		if e.complexity.DeviceGroup.Metadata == nil {
@@ -8239,6 +8247,8 @@ func (ec *executionContext) fieldContext_CreateDeviceConfigurationTemplateReques
 			switch field.Name {
 			case "driverType":
 				return ec.fieldContext_DeviceConfigurationTemplateSpec_driverType(ctx, field)
+			case "registerId":
+				return ec.fieldContext_DeviceConfigurationTemplateSpec_registerId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceConfigurationTemplateSpec", field.Name)
 		},
@@ -9272,6 +9282,8 @@ func (ec *executionContext) fieldContext_DeviceConfigurationTemplate_spec(_ cont
 			switch field.Name {
 			case "driverType":
 				return ec.fieldContext_DeviceConfigurationTemplateSpec_driverType(ctx, field)
+			case "registerId":
+				return ec.fieldContext_DeviceConfigurationTemplateSpec_registerId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceConfigurationTemplateSpec", field.Name)
 		},
@@ -9361,6 +9373,47 @@ func (ec *executionContext) _DeviceConfigurationTemplateSpec_driverType(ctx cont
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationTemplateSpec_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceConfigurationTemplateSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceConfigurationTemplateSpec_registerId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceConfigurationTemplateSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceConfigurationTemplateSpec_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceConfigurationTemplateSpec_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceConfigurationTemplateSpec",
 		Field:      field,
@@ -26075,6 +26128,8 @@ func (ec *executionContext) _DeviceConfigurationTemplateSpec(ctx context.Context
 			out.Values[i] = graphql.MarshalString("DeviceConfigurationTemplateSpec")
 		case "driverType":
 			out.Values[i] = ec._DeviceConfigurationTemplateSpec_driverType(ctx, field, obj)
+		case "registerId":
+			out.Values[i] = ec._DeviceConfigurationTemplateSpec_registerId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

@@ -736,6 +736,8 @@ type DeviceConfigurationTemplate {
 type DeviceConfigurationTemplateSpec {
   # The device (driver) type.
   driverType: String
+  # The list of device configuration register identifiers.
+  registerId: [String]
 }
 
 type DeviceGroup {
