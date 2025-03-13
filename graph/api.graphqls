@@ -752,8 +752,6 @@ type DeviceGroup {
 type DeviceGroupSpec {
   # The external identifier of the communication unit.
   externalId: String
-  # The list selector used over Device object to dynamically select devices.
-  dynamicFilter: ListSelector
 }
 
 type DeviceGroupStatus {

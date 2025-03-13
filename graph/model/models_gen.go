@@ -294,8 +294,7 @@ type DeviceGroup struct {
 }
 
 type DeviceGroupSpec struct {
-	ExternalID    *string       `json:"externalId,omitempty"`
-	DynamicFilter *ListSelector `json:"dynamicFilter,omitempty"`
+	ExternalID *string `json:"externalId,omitempty"`
 }
 
 type DeviceGroupStatus struct {

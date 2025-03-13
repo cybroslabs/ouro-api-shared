@@ -331,8 +331,7 @@ type ComplexityRoot struct {
 	}
 
 	DeviceGroupSpec struct {
-		DynamicFilter func(childComplexity int) int
-		ExternalID    func(childComplexity int) int
+		ExternalID func(childComplexity int) int
 	}
 
 	DeviceGroupStatus struct {
@@ -1722,13 +1721,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceGroup.Status(childComplexity), true
-
-	case "DeviceGroupSpec.dynamicFilter":
-		if e.complexity.DeviceGroupSpec.DynamicFilter == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroupSpec.DynamicFilter(childComplexity), true
 
 	case "DeviceGroupSpec.externalId":
 		if e.complexity.DeviceGroupSpec.ExternalID == nil {
@@ -8347,8 +8339,6 @@ func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context
 			switch field.Name {
 			case "externalId":
 				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
-			case "dynamicFilter":
-				return ec.fieldContext_DeviceGroupSpec_dynamicFilter(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupSpec", field.Name)
 		},
@@ -9464,8 +9454,6 @@ func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, fie
 			switch field.Name {
 			case "externalId":
 				return ec.fieldContext_DeviceGroupSpec_externalId(ctx, field)
-			case "dynamicFilter":
-				return ec.fieldContext_DeviceGroupSpec_dynamicFilter(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupSpec", field.Name)
 		},
@@ -9607,59 +9595,6 @@ func (ec *executionContext) fieldContext_DeviceGroupSpec_externalId(_ context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceGroupSpec_dynamicFilter(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupSpec_dynamicFilter(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.DynamicFilter, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.ListSelector)
-	fc.Result = res
-	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroupSpec_dynamicFilter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroupSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "pageSize":
-				return ec.fieldContext_ListSelector_pageSize(ctx, field)
-			case "offset":
-				return ec.fieldContext_ListSelector_offset(ctx, field)
-			case "sortBy":
-				return ec.fieldContext_ListSelector_sortBy(ctx, field)
-			case "filterBy":
-				return ec.fieldContext_ListSelector_filterBy(ctx, field)
-			case "fields":
-				return ec.fieldContext_ListSelector_fields(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type ListSelector", field.Name)
 		},
 	}
 	return fc, nil
@@ -26206,8 +26141,6 @@ func (ec *executionContext) _DeviceGroupSpec(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("DeviceGroupSpec")
 		case "externalId":
 			out.Values[i] = ec._DeviceGroupSpec_externalId(ctx, field, obj)
-		case "dynamicFilter":
-			out.Values[i] = ec._DeviceGroupSpec_dynamicFilter(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32470,13 +32403,6 @@ func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._ListOfString(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx context.Context, sel ast.SelectionSet, v *model.ListSelector) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ListSelector(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorFilterBy) graphql.Marshaler {

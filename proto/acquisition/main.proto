@@ -93,7 +93,6 @@ message DeviceGroup {
 
 message DeviceGroupSpec {
     string external_id                 = 1;  // The external identifier of the communication unit.
-    common.ListSelector dynamic_filter = 2;  // The list selector used over Device object to dynamically select devices.
 }
 
 message DeviceGroupStatus {
