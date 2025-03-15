@@ -158,6 +158,15 @@ enum JobStatusCode {
   JOB_STATUS_EXPIRED
 }
 
+enum RegisterType {
+  # The register is a generic register.
+  Register
+  # The register is part of a periodical profile.
+  PeriodicalProfile
+  # The register is part of an irregular profile.
+  IrregularProfile
+}
+
 # Enum representing the field data type.
 enum FieldDataType {
   # The text data type.
@@ -721,7 +730,7 @@ type DeviceConfigurationRegisterSpec {
   # The device (driver) type.
   driverType: String
   # The type of action for which the register is defined.
-  actionType: ActionType
+  registerType: RegisterType
   # The field values.
   attributes: [_mapFieldValue]
 }

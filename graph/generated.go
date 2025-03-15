@@ -309,9 +309,9 @@ type ComplexityRoot struct {
 	}
 
 	DeviceConfigurationRegisterSpec struct {
-		ActionType func(childComplexity int) int
-		Attributes func(childComplexity int) int
-		DriverType func(childComplexity int) int
+		Attributes   func(childComplexity int) int
+		DriverType   func(childComplexity int) int
+		RegisterType func(childComplexity int) int
 	}
 
 	DeviceConfigurationTemplate struct {
@@ -1669,13 +1669,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceConfigurationRegister.Spec(childComplexity), true
 
-	case "DeviceConfigurationRegisterSpec.actionType":
-		if e.complexity.DeviceConfigurationRegisterSpec.ActionType == nil {
-			break
-		}
-
-		return e.complexity.DeviceConfigurationRegisterSpec.ActionType(childComplexity), true
-
 	case "DeviceConfigurationRegisterSpec.attributes":
 		if e.complexity.DeviceConfigurationRegisterSpec.Attributes == nil {
 			break
@@ -1689,6 +1682,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceConfigurationRegisterSpec.DriverType(childComplexity), true
+
+	case "DeviceConfigurationRegisterSpec.registerType":
+		if e.complexity.DeviceConfigurationRegisterSpec.RegisterType == nil {
+			break
+		}
+
+		return e.complexity.DeviceConfigurationRegisterSpec.RegisterType(childComplexity), true
 
 	case "DeviceConfigurationTemplate.metadata":
 		if e.complexity.DeviceConfigurationTemplate.Metadata == nil {
@@ -8250,8 +8250,8 @@ func (ec *executionContext) fieldContext_CreateDeviceConfigurationRegisterReques
 			switch field.Name {
 			case "driverType":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_driverType(ctx, field)
-			case "actionType":
-				return ec.fieldContext_DeviceConfigurationRegisterSpec_actionType(ctx, field)
+			case "registerType":
+				return ec.fieldContext_DeviceConfigurationRegisterSpec_registerType(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_attributes(ctx, field)
 			}
@@ -9154,8 +9154,8 @@ func (ec *executionContext) fieldContext_DeviceConfigurationRegister_spec(_ cont
 			switch field.Name {
 			case "driverType":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_driverType(ctx, field)
-			case "actionType":
-				return ec.fieldContext_DeviceConfigurationRegisterSpec_actionType(ctx, field)
+			case "registerType":
+				return ec.fieldContext_DeviceConfigurationRegisterSpec_registerType(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_attributes(ctx, field)
 			}
@@ -9259,8 +9259,8 @@ func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_driverT
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceConfigurationRegisterSpec_actionType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceConfigurationRegisterSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceConfigurationRegisterSpec_actionType(ctx, field)
+func (ec *executionContext) _DeviceConfigurationRegisterSpec_registerType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceConfigurationRegisterSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceConfigurationRegisterSpec_registerType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9273,7 +9273,7 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec_actionType(ctx cont
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ActionType, nil
+		return obj.RegisterType, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -9282,19 +9282,19 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec_actionType(ctx cont
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ActionType)
+	res := resTmp.(*model.RegisterType)
 	fc.Result = res
-	return ec.marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionType(ctx, field.Selections, res)
+	return ec.marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_actionType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_registerType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceConfigurationRegisterSpec",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type ActionType does not have child fields")
+			return nil, errors.New("field of type RegisterType does not have child fields")
 		},
 	}
 	return fc, nil
@@ -26730,8 +26730,8 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec(ctx context.Context
 			out.Values[i] = graphql.MarshalString("DeviceConfigurationRegisterSpec")
 		case "driverType":
 			out.Values[i] = ec._DeviceConfigurationRegisterSpec_driverType(ctx, field, obj)
-		case "actionType":
-			out.Values[i] = ec._DeviceConfigurationRegisterSpec_actionType(ctx, field, obj)
+		case "registerType":
+			out.Values[i] = ec._DeviceConfigurationRegisterSpec_registerType(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DeviceConfigurationRegisterSpec_attributes(ctx, field, obj)
 		default:
@@ -33581,6 +33581,22 @@ func (ec *executionContext) marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabs�
 		return graphql.Null
 	}
 	return ec._ProxyBulkSpec(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx context.Context, v any) (*model.RegisterType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.RegisterType)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx context.Context, sel ast.SelectionSet, v *model.RegisterType) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) unmarshalOString2ᚕᚖstring(ctx context.Context, v any) ([]*string, error) {

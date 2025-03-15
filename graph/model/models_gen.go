@@ -272,9 +272,9 @@ type DeviceConfigurationRegister struct {
 }
 
 type DeviceConfigurationRegisterSpec struct {
-	DriverType *string          `json:"driverType,omitempty"`
-	ActionType *ActionType      `json:"actionType,omitempty"`
-	Attributes []*MapFieldValue `json:"attributes,omitempty"`
+	DriverType   *string          `json:"driverType,omitempty"`
+	RegisterType *RegisterType    `json:"registerType,omitempty"`
+	Attributes   []*MapFieldValue `json:"attributes,omitempty"`
 }
 
 type DeviceConfigurationTemplate struct {
@@ -1361,5 +1361,48 @@ func (e *JobStatusCode) UnmarshalGQL(v any) error {
 }
 
 func (e JobStatusCode) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+type RegisterType string
+
+const (
+	RegisterTypeRegister          RegisterType = "Register"
+	RegisterTypePeriodicalProfile RegisterType = "PeriodicalProfile"
+	RegisterTypeIrregularProfile  RegisterType = "IrregularProfile"
+)
+
+var AllRegisterType = []RegisterType{
+	RegisterTypeRegister,
+	RegisterTypePeriodicalProfile,
+	RegisterTypeIrregularProfile,
+}
+
+func (e RegisterType) IsValid() bool {
+	switch e {
+	case RegisterTypeRegister, RegisterTypePeriodicalProfile, RegisterTypeIrregularProfile:
+		return true
+	}
+	return false
+}
+
+func (e RegisterType) String() string {
+	return string(e)
+}
+
+func (e *RegisterType) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = RegisterType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid RegisterType", str)
+	}
+	return nil
+}
+
+func (e RegisterType) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }

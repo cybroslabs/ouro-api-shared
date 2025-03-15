@@ -665,6 +665,22 @@ message CancelJobRequest {
     string job_id = 1;  // The job identifier.
 }
 
+enum RegisterType {
+    // The register is a generic register.
+    Register = 0;
+    // The register is part of a periodical profile.
+    PeriodicalProfile = 1;
+    // The register is part of an irregular profile.
+    IrregularProfile = 2;
+}
+
+// Addon
+message DeviceRegister {
+    int64 register_id                         = 1 [features.field_presence = LEGACY_REQUIRED];  // The register identifier.
+    RegisterType register_type                = 2 [features.field_presence = LEGACY_REQUIRED];  // The register type.
+    map<string, common.FieldValue> attributes = 3;                                              // The attributes used for the action.
+}
+
 // Addon
 message DeviceConnectionInfo {
     ConnectionInfo communication_unit                = 1;  // The unique identifier of the communication unit.
@@ -672,6 +688,7 @@ message DeviceConnectionInfo {
     map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
     string timezone                                  = 4;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
     string driver_type                               = 5;  // The driver type identifier.
+    map<string, DeviceRegister> registers            = 6;  // The list of registers get using current device configuration template.
 }
 
 // Addon for DB
