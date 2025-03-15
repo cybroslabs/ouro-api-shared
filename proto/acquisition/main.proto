@@ -277,12 +277,6 @@ message DeviceConfigurationRegister {
     common.MetadataFields metadata       = 3;                                              // The metadata fields.
 }
 
-message DeviceConfigurationRegisterSpec {
-    string driver_type                        = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
-    RegisterType register_type                = 2 [features.field_presence = LEGACY_REQUIRED];  // The type of action for which the register is defined.
-    map<string, common.FieldValue> attributes = 3;                                              // The field values.
-}
-
 // Device Configuration Template specification.
 
 message CreateDeviceConfigurationTemplateRequest {
