@@ -44,10 +44,38 @@ message JobSettings {
     google.protobuf.Timestamp expires_at  = 6;  // The timestamp when the job expires.
 }
 
-// Sub-message containing job action specification
+// Sub-message containing job action specification.
+// The JobAction is used to define a single action to be performed on a single device.
+// For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.
 message JobAction {
     string action_id                          = 1;  // The action identifier.
     map<string, common.FieldValue> attributes = 2;  // The action attributes.
+    oneof action {
+        ActionGetRegister get_register                    = 3;   // The get register action specification.
+        ActionGetPeriodicalProfile get_periodical_profile = 4;   // The get periodical profile action specification.
+        ActionGetIrregularProfile get_irregular_profile   = 5;   // The get irregular profile action specification.
+        ActionGetEvents get_events                        = 6;   // The get events action specification.
+        ActionGetDeviceInfo get_device_info               = 7;   // The get device info action specification.
+        ActionSyncClock sync_clock                        = 8;   // The sync clock action specification.
+        ActionSetRelayState set_relay_state               = 10;  // The set relay state action specification.
+        ActionSetDisconnectorState set_disconnector_state = 12;  // The set disconnector state action specification.
+        ActionGetTou get_tou                              = 13;  // The get tou action specification.
+        ActionSetTou set_tou                              = 14;  // The set tou action specification.
+        ActionSetLimiter set_limiter                      = 16;  // The set limiter action specification.
+        ActionResetBillingPeriod reset_billing_period     = 17;  // The reset billing period action specification.
+        ActionFwUpdate fw_update                          = 18;  // The firmware update action specification.
+    }
+}
+
+// Sub-message containing job action set specification.
+// In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
+// For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
+// then then system gets all registers defined for active device configuration template and reads them all.
+message JobActionSet {
+    // The filter, meaning depends on the action.
+    // - GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.
+    // - Others: Not applicable, ignored.
+    repeated string variables = 2;
     oneof action {
         ActionGetRegister get_register                    = 3;   // The get register action specification.
         ActionGetPeriodicalProfile get_periodical_profile = 4;   // The get periodical profile action specification.

@@ -131,7 +131,7 @@ type BulkSpec struct {
 	Devices       *ListOfJobDeviceID `json:"devices,omitempty"`
 	DeviceGroupID *string            `json:"deviceGroupId,omitempty"`
 	Settings      *JobSettings       `json:"settings,omitempty"`
-	Actions       []*JobAction       `json:"actions,omitempty"`
+	Actions       []*JobActionSet    `json:"actions,omitempty"`
 	WebhookURL    *string            `json:"webhookUrl,omitempty"`
 }
 
@@ -448,6 +448,23 @@ type JobActionAttributes struct {
 type JobActionContraints struct {
 	GetRegisterTypeName       []*Mapstring       `json:"getRegisterTypeName,omitempty"`
 	GetRegisterTypeAttributes []*MapListOfString `json:"getRegisterTypeAttributes,omitempty"`
+}
+
+type JobActionSet struct {
+	Variables            []*string                   `json:"variables,omitempty"`
+	GetRegister          *ActionGetRegister          `json:"getRegister,omitempty"`
+	GetPeriodicalProfile *ActionGetPeriodicalProfile `json:"getPeriodicalProfile,omitempty"`
+	GetIrregularProfile  *ActionGetIrregularProfile  `json:"getIrregularProfile,omitempty"`
+	GetEvents            *ActionGetEvents            `json:"getEvents,omitempty"`
+	GetDeviceInfo        *ActionGetDeviceInfo        `json:"getDeviceInfo,omitempty"`
+	SyncClock            *ActionSyncClock            `json:"syncClock,omitempty"`
+	SetRelayState        *ActionSetRelayState        `json:"setRelayState,omitempty"`
+	SetDisconnectorState *ActionSetDisconnectorState `json:"setDisconnectorState,omitempty"`
+	GetTou               *ActionGetTou               `json:"getTou,omitempty"`
+	SetTou               *ActionSetTou               `json:"setTou,omitempty"`
+	SetLimiter           *ActionSetLimiter           `json:"setLimiter,omitempty"`
+	ResetBillingPeriod   *ActionResetBillingPeriod   `json:"resetBillingPeriod,omitempty"`
+	FwUpdate             *ActionFwUpdate             `json:"fwUpdate,omitempty"`
 }
 
 type JobDevice struct {

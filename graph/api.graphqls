@@ -507,7 +507,7 @@ type BulkSpec {
   # The bulk-shared job settings.
   settings: JobSettings
   # The list actions to be executed.
-  actions: [JobAction]
+  actions: [JobActionSet]
   # The webhook URL to call when the bulk is completed.
   webhookUrl: String
 }
@@ -882,7 +882,9 @@ type IrregularValue {
   value: MeasuredValue
 }
 
-# Sub-message containing job action specification
+# Sub-message containing job action specification.
+#  The JobAction is used to define a single action to be performed on a single device.
+#  For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.
 type JobAction {
   # The action identifier.
   actionId: String
@@ -933,6 +935,43 @@ type JobActionContraints {
   #  See JobActionAttributes for the attribute definitions.
   #  Action: ACTION_TYPE_GET_REGISTER
   getRegisterTypeAttributes: [_mapListOfString]
+}
+
+# Sub-message containing job action set specification.
+#  In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
+#  For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
+#  then then system gets all registers defined for active device configuration template and reads them all.
+type JobActionSet {
+  # The filter, meaning depends on the action.
+  #  - GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.
+  #  - Others: Not applicable, ignored.
+  variables: [String]
+  # The get register action specification.
+  getRegister: ActionGetRegister
+  # The get periodical profile action specification.
+  getPeriodicalProfile: ActionGetPeriodicalProfile
+  # The get irregular profile action specification.
+  getIrregularProfile: ActionGetIrregularProfile
+  # The get events action specification.
+  getEvents: ActionGetEvents
+  # The get device info action specification.
+  getDeviceInfo: ActionGetDeviceInfo
+  # The sync clock action specification.
+  syncClock: ActionSyncClock
+  # The set relay state action specification.
+  setRelayState: ActionSetRelayState
+  # The set disconnector state action specification.
+  setDisconnectorState: ActionSetDisconnectorState
+  # The get tou action specification.
+  getTou: ActionGetTou
+  # The set tou action specification.
+  setTou: ActionSetTou
+  # The set limiter action specification.
+  setLimiter: ActionSetLimiter
+  # The reset billing period action specification.
+  resetBillingPeriod: ActionResetBillingPeriod
+  # The firmware update action specification.
+  fwUpdate: ActionFwUpdate
 }
 
 # Sub-message representing a single job-device info.
@@ -1169,13 +1208,13 @@ type ProxyBulkSpec {
   correlationId: UUID
   # The device (driver) type.
   driverType: String
-  # The list of custom devices in the bulk.
+  # The list of custom devices in the proxy bulk.
   devices: ListOfJobDevice
   # The bulk-shared job settings.
   settings: JobSettings
   # The list actions to be executed.
   actions: [JobAction]
-  # The webhook URL to call when the bulk is completed.
+  # The webhook URL to call when the proxy bulk is completed.
   webhookUrl: String
 }
 

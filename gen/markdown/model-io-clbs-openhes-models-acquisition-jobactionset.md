@@ -1,15 +1,15 @@
-# Model: io.clbs.openhes.models.acquisition.JobAction
+# Model: io.clbs.openhes.models.acquisition.JobActionSet
 
-Sub-message containing job action specification.
- The JobAction is used to define a single action to be performed on a single device.
- For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.
+Sub-message containing job action set specification.
+ In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
+ For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
+ then then system gets all registers defined for active device configuration template and reads them all.
 
 ## Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| actionId | string | The action identifier. |
-| attributes | map<string, [io.clbs.openhes.models.common.FieldValue](model-io-clbs-openhes-models-common-fieldvalue.md)> | The action attributes. |
+| variables | string | The filter, meaning depends on the action.<br> - GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.<br> - Others: Not applicable, ignored. |
 | getRegister | [io.clbs.openhes.models.acquisition.ActionGetRegister](model-io-clbs-openhes-models-acquisition-actiongetregister.md) | The get register action specification. |
 | getPeriodicalProfile | [io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile](model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md) | The get periodical profile action specification. |
 | getIrregularProfile | [io.clbs.openhes.models.acquisition.ActionGetIrregularProfile](model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md) | The get irregular profile action specification. |

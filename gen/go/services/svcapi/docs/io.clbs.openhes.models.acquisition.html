@@ -699,6 +699,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.JobActionSet">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>JobActionSet</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.JobDevice">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>JobDevice</code> 
@@ -2521,11 +2530,11 @@
         actions
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.JobAction">
+        <code title="io.clbs.openhes.models.acquisition.JobActionSet">
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobAction"><span title="io.clbs.openhes.models.acquisition.JobAction">io.clbs.openhes.models.acquisition.JobAction</span>
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.JobActionSet"><span title="io.clbs.openhes.models.acquisition.JobActionSet">io.clbs.openhes.models.acquisition.JobActionSet</span>
     </a>
         </code>
       </td>
@@ -5920,7 +5929,9 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing job action specification</p>
+  <p>Sub-message containing job action specification.
+The JobAction is used to define a single action to be performed on a single device.
+For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6373,6 +6384,334 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
       
     </tr>
     
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.JobActionSet">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.JobActionSet" title="io.clbs.openhes.models.acquisition.JobActionSet">message JobActionSet</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing job action set specification.
+In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
+For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
+then then system gets all registers defined for active device configuration template and reads them all.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        variables
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The filter, meaning depends on the action.
+- GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.
+- Others: Not applicable, ignored.</p></td>
+      
+    </tr>
+    
+    
+      
+        
+          <tr class="nohover"><td style="border: 0px"></td></tr>
+          <tr class="nohover">
+            <td class="oneof-heading" colspan="4">
+              <div class="oneof-heading">
+                <strong>oneof action</strong>
+              </div>
+            </td>
+          </tr>
+        
+
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            getRegister
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetRegister">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetRegister"><span title="io.clbs.openhes.models.acquisition.ActionGetRegister">io.clbs.openhes.models.acquisition.ActionGetRegister</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get register action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            4
+          </td>
+          <td>
+            getPeriodicalProfile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile"><span title="io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile">io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get periodical profile action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            5
+          </td>
+          <td>
+            getIrregularProfile
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetIrregularProfile"><span title="io.clbs.openhes.models.acquisition.ActionGetIrregularProfile">io.clbs.openhes.models.acquisition.ActionGetIrregularProfile</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get irregular profile action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            6
+          </td>
+          <td>
+            getEvents
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetEvents">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetEvents"><span title="io.clbs.openhes.models.acquisition.ActionGetEvents">io.clbs.openhes.models.acquisition.ActionGetEvents</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get events action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            7
+          </td>
+          <td>
+            getDeviceInfo
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetDeviceInfo">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetDeviceInfo"><span title="io.clbs.openhes.models.acquisition.ActionGetDeviceInfo">io.clbs.openhes.models.acquisition.ActionGetDeviceInfo</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get device info action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            8
+          </td>
+          <td>
+            syncClock
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSyncClock">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSyncClock"><span title="io.clbs.openhes.models.acquisition.ActionSyncClock">io.clbs.openhes.models.acquisition.ActionSyncClock</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The sync clock action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            setRelayState
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetRelayState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetRelayState"><span title="io.clbs.openhes.models.acquisition.ActionSetRelayState">io.clbs.openhes.models.acquisition.ActionSetRelayState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set relay state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            12
+          </td>
+          <td>
+            setDisconnectorState
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetDisconnectorState"><span title="io.clbs.openhes.models.acquisition.ActionSetDisconnectorState">io.clbs.openhes.models.acquisition.ActionSetDisconnectorState</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set disconnector state action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            13
+          </td>
+          <td>
+            getTou
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionGetTou">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionGetTou"><span title="io.clbs.openhes.models.acquisition.ActionGetTou">io.clbs.openhes.models.acquisition.ActionGetTou</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The get tou action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            14
+          </td>
+          <td>
+            setTou
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetTou">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetTou"><span title="io.clbs.openhes.models.acquisition.ActionSetTou">io.clbs.openhes.models.acquisition.ActionSetTou</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set tou action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            16
+          </td>
+          <td>
+            setLimiter
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionSetLimiter">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionSetLimiter"><span title="io.clbs.openhes.models.acquisition.ActionSetLimiter">io.clbs.openhes.models.acquisition.ActionSetLimiter</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The set limiter action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            17
+          </td>
+          <td>
+            resetBillingPeriod
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionResetBillingPeriod"><span title="io.clbs.openhes.models.acquisition.ActionResetBillingPeriod">io.clbs.openhes.models.acquisition.ActionResetBillingPeriod</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The reset billing period action specification.</p></td>
+          
+        </tr>
+      
+        
+
+        <tr>
+          <td>
+            18
+          </td>
+          <td>
+            fwUpdate
+          </td>
+          <td>
+            <code title="io.clbs.openhes.models.acquisition.ActionFwUpdate">
+              
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFwUpdate"><span title="io.clbs.openhes.models.acquisition.ActionFwUpdate">io.clbs.openhes.models.acquisition.ActionFwUpdate</span>
+    </a>
+            </code>
+          </td>
+          <td class="content"><p>The firmware update action specification.</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -8513,7 +8852,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of custom devices in the bulk.</p></td>
+      <td class="content"><p>The list of custom devices in the proxy bulk.</p></td>
       
     </tr>
     
@@ -8562,7 +8901,7 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The webhook URL to call when the bulk is completed.</p></td>
+      <td class="content"><p>The webhook URL to call when the proxy bulk is completed.</p></td>
       
     </tr>
     

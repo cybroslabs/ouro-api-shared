@@ -487,6 +487,23 @@ type ComplexityRoot struct {
 		GetRegisterTypeName       func(childComplexity int) int
 	}
 
+	JobActionSet struct {
+		FwUpdate             func(childComplexity int) int
+		GetDeviceInfo        func(childComplexity int) int
+		GetEvents            func(childComplexity int) int
+		GetIrregularProfile  func(childComplexity int) int
+		GetPeriodicalProfile func(childComplexity int) int
+		GetRegister          func(childComplexity int) int
+		GetTou               func(childComplexity int) int
+		ResetBillingPeriod   func(childComplexity int) int
+		SetDisconnectorState func(childComplexity int) int
+		SetLimiter           func(childComplexity int) int
+		SetRelayState        func(childComplexity int) int
+		SetTou               func(childComplexity int) int
+		SyncClock            func(childComplexity int) int
+		Variables            func(childComplexity int) int
+	}
+
 	JobDevice struct {
 		AppProtocol      func(childComplexity int) int
 		ConnectionInfo   func(childComplexity int) int
@@ -2379,6 +2396,104 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobActionContraints.GetRegisterTypeName(childComplexity), true
+
+	case "JobActionSet.fwUpdate":
+		if e.complexity.JobActionSet.FwUpdate == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.FwUpdate(childComplexity), true
+
+	case "JobActionSet.getDeviceInfo":
+		if e.complexity.JobActionSet.GetDeviceInfo == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetDeviceInfo(childComplexity), true
+
+	case "JobActionSet.getEvents":
+		if e.complexity.JobActionSet.GetEvents == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetEvents(childComplexity), true
+
+	case "JobActionSet.getIrregularProfile":
+		if e.complexity.JobActionSet.GetIrregularProfile == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetIrregularProfile(childComplexity), true
+
+	case "JobActionSet.getPeriodicalProfile":
+		if e.complexity.JobActionSet.GetPeriodicalProfile == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetPeriodicalProfile(childComplexity), true
+
+	case "JobActionSet.getRegister":
+		if e.complexity.JobActionSet.GetRegister == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetRegister(childComplexity), true
+
+	case "JobActionSet.getTou":
+		if e.complexity.JobActionSet.GetTou == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.GetTou(childComplexity), true
+
+	case "JobActionSet.resetBillingPeriod":
+		if e.complexity.JobActionSet.ResetBillingPeriod == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.ResetBillingPeriod(childComplexity), true
+
+	case "JobActionSet.setDisconnectorState":
+		if e.complexity.JobActionSet.SetDisconnectorState == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.SetDisconnectorState(childComplexity), true
+
+	case "JobActionSet.setLimiter":
+		if e.complexity.JobActionSet.SetLimiter == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.SetLimiter(childComplexity), true
+
+	case "JobActionSet.setRelayState":
+		if e.complexity.JobActionSet.SetRelayState == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.SetRelayState(childComplexity), true
+
+	case "JobActionSet.setTou":
+		if e.complexity.JobActionSet.SetTou == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.SetTou(childComplexity), true
+
+	case "JobActionSet.syncClock":
+		if e.complexity.JobActionSet.SyncClock == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.SyncClock(childComplexity), true
+
+	case "JobActionSet.variables":
+		if e.complexity.JobActionSet.Variables == nil {
+			break
+		}
+
+		return e.complexity.JobActionSet.Variables(childComplexity), true
 
 	case "JobDevice.appProtocol":
 		if e.complexity.JobDevice.AppProtocol == nil {
@@ -6107,9 +6222,9 @@ func (ec *executionContext) _BulkSpec_actions(ctx context.Context, field graphql
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.JobAction)
+	res := resTmp.([]*model.JobActionSet)
 	fc.Result = res
-	return ec.marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx, field.Selections, res)
+	return ec.marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6120,38 +6235,36 @@ func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "actionId":
-				return ec.fieldContext_JobAction_actionId(ctx, field)
-			case "attributes":
-				return ec.fieldContext_JobAction_attributes(ctx, field)
+			case "variables":
+				return ec.fieldContext_JobActionSet_variables(ctx, field)
 			case "getRegister":
-				return ec.fieldContext_JobAction_getRegister(ctx, field)
+				return ec.fieldContext_JobActionSet_getRegister(ctx, field)
 			case "getPeriodicalProfile":
-				return ec.fieldContext_JobAction_getPeriodicalProfile(ctx, field)
+				return ec.fieldContext_JobActionSet_getPeriodicalProfile(ctx, field)
 			case "getIrregularProfile":
-				return ec.fieldContext_JobAction_getIrregularProfile(ctx, field)
+				return ec.fieldContext_JobActionSet_getIrregularProfile(ctx, field)
 			case "getEvents":
-				return ec.fieldContext_JobAction_getEvents(ctx, field)
+				return ec.fieldContext_JobActionSet_getEvents(ctx, field)
 			case "getDeviceInfo":
-				return ec.fieldContext_JobAction_getDeviceInfo(ctx, field)
+				return ec.fieldContext_JobActionSet_getDeviceInfo(ctx, field)
 			case "syncClock":
-				return ec.fieldContext_JobAction_syncClock(ctx, field)
+				return ec.fieldContext_JobActionSet_syncClock(ctx, field)
 			case "setRelayState":
-				return ec.fieldContext_JobAction_setRelayState(ctx, field)
+				return ec.fieldContext_JobActionSet_setRelayState(ctx, field)
 			case "setDisconnectorState":
-				return ec.fieldContext_JobAction_setDisconnectorState(ctx, field)
+				return ec.fieldContext_JobActionSet_setDisconnectorState(ctx, field)
 			case "getTou":
-				return ec.fieldContext_JobAction_getTou(ctx, field)
+				return ec.fieldContext_JobActionSet_getTou(ctx, field)
 			case "setTou":
-				return ec.fieldContext_JobAction_setTou(ctx, field)
+				return ec.fieldContext_JobActionSet_setTou(ctx, field)
 			case "setLimiter":
-				return ec.fieldContext_JobAction_setLimiter(ctx, field)
+				return ec.fieldContext_JobActionSet_setLimiter(ctx, field)
 			case "resetBillingPeriod":
-				return ec.fieldContext_JobAction_resetBillingPeriod(ctx, field)
+				return ec.fieldContext_JobActionSet_resetBillingPeriod(ctx, field)
 			case "fwUpdate":
-				return ec.fieldContext_JobAction_fwUpdate(ctx, field)
+				return ec.fieldContext_JobActionSet_fwUpdate(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type JobAction", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type JobActionSet", field.Name)
 		},
 	}
 	return fc, nil
@@ -13698,6 +13811,638 @@ func (ec *executionContext) fieldContext_JobActionContraints_getRegisterTypeAttr
 				return ec.fieldContext__mapListOfString_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapListOfString", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_variables(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_variables(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Variables, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_variables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getRegister(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getRegister(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetRegister, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetRegister)
+	fc.Result = res
+	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionGetRegister__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetRegister", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getPeriodicalProfile(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getPeriodicalProfile(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetPeriodicalProfile, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetPeriodicalProfile)
+	fc.Result = res
+	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getPeriodicalProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "from":
+				return ec.fieldContext_ActionGetPeriodicalProfile_from(ctx, field)
+			case "to":
+				return ec.fieldContext_ActionGetPeriodicalProfile_to(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetPeriodicalProfile", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getIrregularProfile(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getIrregularProfile(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetIrregularProfile, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetIrregularProfile)
+	fc.Result = res
+	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getIrregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "from":
+				return ec.fieldContext_ActionGetIrregularProfile_from(ctx, field)
+			case "to":
+				return ec.fieldContext_ActionGetIrregularProfile_to(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetIrregularProfile", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getEvents(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getEvents(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetEvents, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetEvents)
+	fc.Result = res
+	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "from":
+				return ec.fieldContext_ActionGetEvents_from(ctx, field)
+			case "to":
+				return ec.fieldContext_ActionGetEvents_to(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetEvents", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getDeviceInfo(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getDeviceInfo(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetDeviceInfo, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetDeviceInfo)
+	fc.Result = res
+	return ec.marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getDeviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionGetDeviceInfo__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetDeviceInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_syncClock(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_syncClock(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SyncClock, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionSyncClock)
+	fc.Result = res
+	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_syncClock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionSyncClock__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionSyncClock", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_setRelayState(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_setRelayState(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SetRelayState, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionSetRelayState)
+	fc.Result = res
+	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_setRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionSetRelayState__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionSetRelayState", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_setDisconnectorState(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_setDisconnectorState(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SetDisconnectorState, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionSetDisconnectorState)
+	fc.Result = res
+	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_setDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionSetDisconnectorState__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionSetDisconnectorState", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_getTou(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_getTou(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GetTou, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionGetTou)
+	fc.Result = res
+	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_getTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionGetTou__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionGetTou", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_setTou(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_setTou(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SetTou, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionSetTou)
+	fc.Result = res
+	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_setTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionSetTou__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionSetTou", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_setLimiter(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_setLimiter(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SetLimiter, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionSetLimiter)
+	fc.Result = res
+	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_setLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionSetLimiter__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionSetLimiter", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_resetBillingPeriod(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_resetBillingPeriod(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ResetBillingPeriod, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionResetBillingPeriod)
+	fc.Result = res
+	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_resetBillingPeriod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionResetBillingPeriod__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionResetBillingPeriod", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _JobActionSet_fwUpdate(ctx context.Context, field graphql.CollectedField, obj *model.JobActionSet) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_JobActionSet_fwUpdate(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.FwUpdate, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ActionFwUpdate)
+	fc.Result = res
+	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_JobActionSet_fwUpdate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "JobActionSet",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_ActionFwUpdate__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ActionFwUpdate", field.Name)
 		},
 	}
 	return fc, nil
@@ -27030,6 +27775,68 @@ func (ec *executionContext) _JobActionContraints(ctx context.Context, sel ast.Se
 	return out
 }
 
+var jobActionSetImplementors = []string{"JobActionSet"}
+
+func (ec *executionContext) _JobActionSet(ctx context.Context, sel ast.SelectionSet, obj *model.JobActionSet) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, jobActionSetImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("JobActionSet")
+		case "variables":
+			out.Values[i] = ec._JobActionSet_variables(ctx, field, obj)
+		case "getRegister":
+			out.Values[i] = ec._JobActionSet_getRegister(ctx, field, obj)
+		case "getPeriodicalProfile":
+			out.Values[i] = ec._JobActionSet_getPeriodicalProfile(ctx, field, obj)
+		case "getIrregularProfile":
+			out.Values[i] = ec._JobActionSet_getIrregularProfile(ctx, field, obj)
+		case "getEvents":
+			out.Values[i] = ec._JobActionSet_getEvents(ctx, field, obj)
+		case "getDeviceInfo":
+			out.Values[i] = ec._JobActionSet_getDeviceInfo(ctx, field, obj)
+		case "syncClock":
+			out.Values[i] = ec._JobActionSet_syncClock(ctx, field, obj)
+		case "setRelayState":
+			out.Values[i] = ec._JobActionSet_setRelayState(ctx, field, obj)
+		case "setDisconnectorState":
+			out.Values[i] = ec._JobActionSet_setDisconnectorState(ctx, field, obj)
+		case "getTou":
+			out.Values[i] = ec._JobActionSet_getTou(ctx, field, obj)
+		case "setTou":
+			out.Values[i] = ec._JobActionSet_setTou(ctx, field, obj)
+		case "setLimiter":
+			out.Values[i] = ec._JobActionSet_setLimiter(ctx, field, obj)
+		case "resetBillingPeriod":
+			out.Values[i] = ec._JobActionSet_resetBillingPeriod(ctx, field, obj)
+		case "fwUpdate":
+			out.Values[i] = ec._JobActionSet_fwUpdate(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var jobDeviceImplementors = []string{"JobDevice"}
 
 func (ec *executionContext) _JobDevice(ctx context.Context, sel ast.SelectionSet, obj *model.JobDevice) graphql.Marshaler {
@@ -32147,6 +32954,54 @@ func (ec *executionContext) marshalOJobActionContraints2ᚖgithubᚗcomᚋcybros
 		return graphql.Null
 	}
 	return ec._JobActionContraints(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v []*model.JobActionSet) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v *model.JobActionSet) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._JobActionSet(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx context.Context, sel ast.SelectionSet, v []*model.JobDevice) graphql.Marshaler {

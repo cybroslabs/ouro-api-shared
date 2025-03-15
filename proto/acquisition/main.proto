@@ -92,7 +92,7 @@ message DeviceGroup {
 }
 
 message DeviceGroupSpec {
-    string external_id                 = 1;  // The external identifier of the communication unit.
+    string external_id = 1;  // The external identifier of the communication unit.
 }
 
 message DeviceGroupStatus {
@@ -152,9 +152,9 @@ message BulkSpec {
         ListOfJobDeviceId devices = 2;  // The list of devices in the bulk.
         string device_group_id    = 3;  // The device group identifier.
     }
-    JobSettings settings       = 4;  // The bulk-shared job settings.
-    repeated JobAction actions = 5;  // The list actions to be executed.
-    string webhook_url         = 6;  // The webhook URL to call when the bulk is completed.
+    JobSettings settings        = 4;  // The bulk-shared job settings.
+    repeated JobActionSet actions = 5;  // The list actions to be executed.
+    string webhook_url          = 6;  // The webhook URL to call when the bulk is completed.
 }
 
 message BulkStatus {
@@ -177,12 +177,12 @@ message CreateProxyBulkRequest {
 
 message ProxyBulkSpec {
     // @gqltype: UUID
-    string correlation_id      = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string driver_type         = 2;  // The device (driver) type.
-    ListOfJobDevice devices    = 3;  // The list of custom devices in the bulk.
-    JobSettings settings       = 4;  // The bulk-shared job settings.
+    string correlation_id           = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string driver_type              = 2;  // The device (driver) type.
+    ListOfJobDevice devices         = 3;  // The list of custom devices in the proxy bulk.
+    JobSettings settings            = 4;  // The bulk-shared job settings.
     repeated JobAction actions = 5;  // The list actions to be executed.
-    string webhook_url         = 6;  // The webhook URL to call when the bulk is completed.
+    string webhook_url              = 6;  // The webhook URL to call when the proxy bulk is completed.
 }
 
 // Modem Pool specification.
