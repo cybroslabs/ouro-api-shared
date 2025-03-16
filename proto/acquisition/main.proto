@@ -185,6 +185,12 @@ message ProxyBulkSpec {
     string webhook_url         = 6;  // The webhook URL to call when the proxy bulk is completed.
 }
 
+message ProxyBulk {
+    ProxyBulkSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
+    BulkStatus status              = 2;                                              // The bulk-job status/data.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
+}
+
 // Modem Pool specification.
 
 message SetModemPoolRequest {
