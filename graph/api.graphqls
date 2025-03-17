@@ -1046,6 +1046,13 @@ type JobStatus {
   queueId: Int64
 }
 
+type ListDeviceGroupDevicesRequest {
+  # The unique identifier of the device group.
+  groupId: String
+  # The list selector.
+  selector: ListSelector
+}
+
 type ListOfBulk {
   # The list of bulks.
   items: [Bulk]

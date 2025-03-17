@@ -127,6 +127,11 @@ message RemoveDevicesFromGroupRequest {
     repeated string device_id = 2;  // The unique identifier of the device.
 }
 
+message ListDeviceGroupDevicesRequest {
+    string group_id                                     = 1;  // The unique identifier of the device group.
+    io.clbs.openhes.models.common.ListSelector selector = 2;  // The list selector.
+}
+
 // Bulk specification.
 
 message CreateBulkRequest {

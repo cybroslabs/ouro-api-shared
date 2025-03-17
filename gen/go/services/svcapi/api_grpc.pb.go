@@ -205,7 +205,7 @@ type ApiServiceClient interface {
 	RemoveDevicesFromGroup(ctx context.Context, in *acquisition.RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
+	ListDeviceGroupDevices(ctx context.Context, in *acquisition.ListDeviceGroupDevicesRequest, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
@@ -634,7 +634,7 @@ func (c *apiServiceClient) RemoveDevicesFromGroup(ctx context.Context, in *acqui
 	return out, nil
 }
 
-func (c *apiServiceClient) ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
+func (c *apiServiceClient) ListDeviceGroupDevices(ctx context.Context, in *acquisition.ListDeviceGroupDevicesRequest, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDevice)
 	err := c.cc.Invoke(ctx, ApiService_ListDeviceGroupDevices_FullMethodName, in, out, cOpts...)
@@ -874,7 +874,7 @@ type ApiServiceServer interface {
 	RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error)
+	ListDeviceGroupDevices(context.Context, *acquisition.ListDeviceGroupDevicesRequest) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
@@ -1037,7 +1037,7 @@ func (UnimplementedApiServiceServer) AddDevicesToGroup(context.Context, *acquisi
 func (UnimplementedApiServiceServer) RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDevicesFromGroup not implemented")
 }
-func (UnimplementedApiServiceServer) ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error) {
+func (UnimplementedApiServiceServer) ListDeviceGroupDevices(context.Context, *acquisition.ListDeviceGroupDevicesRequest) (*acquisition.ListOfDevice, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceGroupDevices not implemented")
 }
 func (UnimplementedApiServiceServer) ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error) {
@@ -1776,7 +1776,7 @@ func _ApiService_RemoveDevicesFromGroup_Handler(srv interface{}, ctx context.Con
 }
 
 func _ApiService_ListDeviceGroupDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ListSelector)
+	in := new(acquisition.ListDeviceGroupDevicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1788,7 +1788,7 @@ func _ApiService_ListDeviceGroupDevices_Handler(srv interface{}, ctx context.Con
 		FullMethod: ApiService_ListDeviceGroupDevices_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).ListDeviceGroupDevices(ctx, req.(*common.ListSelector))
+		return srv.(ApiServiceServer).ListDeviceGroupDevices(ctx, req.(*acquisition.ListDeviceGroupDevicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

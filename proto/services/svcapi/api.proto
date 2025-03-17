@@ -151,7 +151,7 @@ service ApiService {
     rpc RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: devicegroup
-    rpc ListDeviceGroupDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
+    rpc ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
 
     // @group: Devices
     // @tag: modempool

@@ -299,7 +299,7 @@ type ApiServiceClient interface {
 	RemoveDevicesFromGroup(context.Context, *connect.Request[acquisition.RemoveDevicesFromGroupRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: devicegroup
-	ListDeviceGroupDevices(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDevice], error)
+	ListDeviceGroupDevices(context.Context, *connect.Request[acquisition.ListDeviceGroupDevicesRequest]) (*connect.Response[acquisition.ListOfDevice], error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
@@ -579,7 +579,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("RemoveDevicesFromGroup")),
 			connect.WithClientOptions(opts...),
 		),
-		listDeviceGroupDevices: connect.NewClient[common.ListSelector, acquisition.ListOfDevice](
+		listDeviceGroupDevices: connect.NewClient[acquisition.ListDeviceGroupDevicesRequest, acquisition.ListOfDevice](
 			httpClient,
 			baseURL+ApiServiceListDeviceGroupDevicesProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("ListDeviceGroupDevices")),
@@ -688,7 +688,7 @@ type apiServiceClient struct {
 	getDeviceGroup                                                   *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
 	addDevicesToGroup                                                *connect.Client[acquisition.AddDevicesToGroupRequest, emptypb.Empty]
 	removeDevicesFromGroup                                           *connect.Client[acquisition.RemoveDevicesFromGroupRequest, emptypb.Empty]
-	listDeviceGroupDevices                                           *connect.Client[common.ListSelector, acquisition.ListOfDevice]
+	listDeviceGroupDevices                                           *connect.Client[acquisition.ListDeviceGroupDevicesRequest, acquisition.ListOfDevice]
 	listModemPools                                                   *connect.Client[common.ListSelector, acquisition.ListOfModemPool]
 	getModemPool                                                     *connect.Client[wrapperspb.StringValue, acquisition.ModemPool]
 	createModemPool                                                  *connect.Client[acquisition.SetModemPoolRequest, wrapperspb.StringValue]
@@ -908,7 +908,7 @@ func (c *apiServiceClient) RemoveDevicesFromGroup(ctx context.Context, req *conn
 }
 
 // ListDeviceGroupDevices calls io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroupDevices.
-func (c *apiServiceClient) ListDeviceGroupDevices(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDevice], error) {
+func (c *apiServiceClient) ListDeviceGroupDevices(ctx context.Context, req *connect.Request[acquisition.ListDeviceGroupDevicesRequest]) (*connect.Response[acquisition.ListOfDevice], error) {
 	return c.listDeviceGroupDevices.CallUnary(ctx, req)
 }
 
@@ -1088,7 +1088,7 @@ type ApiServiceHandler interface {
 	RemoveDevicesFromGroup(context.Context, *connect.Request[acquisition.RemoveDevicesFromGroupRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: devicegroup
-	ListDeviceGroupDevices(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDevice], error)
+	ListDeviceGroupDevices(context.Context, *connect.Request[acquisition.ListDeviceGroupDevicesRequest]) (*connect.Response[acquisition.ListOfDevice], error)
 	// @group: Devices
 	// @tag: modempool
 	// The method to get list of the modem pools.
@@ -1691,7 +1691,7 @@ func (UnimplementedApiServiceHandler) RemoveDevicesFromGroup(context.Context, *c
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.RemoveDevicesFromGroup is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) ListDeviceGroupDevices(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDevice], error) {
+func (UnimplementedApiServiceHandler) ListDeviceGroupDevices(context.Context, *connect.Request[acquisition.ListDeviceGroupDevicesRequest]) (*connect.Response[acquisition.ListOfDevice], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroupDevices is not implemented"))
 }
 

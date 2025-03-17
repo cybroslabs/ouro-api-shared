@@ -540,6 +540,11 @@ type ComplexityRoot struct {
 		Status       func(childComplexity int) int
 	}
 
+	ListDeviceGroupDevicesRequest struct {
+		GroupID  func(childComplexity int) int
+		Selector func(childComplexity int) int
+	}
+
 	ListOfBulk struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
@@ -2662,6 +2667,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobStatus.Status(childComplexity), true
+
+	case "ListDeviceGroupDevicesRequest.groupId":
+		if e.complexity.ListDeviceGroupDevicesRequest.GroupID == nil {
+			break
+		}
+
+		return e.complexity.ListDeviceGroupDevicesRequest.GroupID(childComplexity), true
+
+	case "ListDeviceGroupDevicesRequest.selector":
+		if e.complexity.ListDeviceGroupDevicesRequest.Selector == nil {
+			break
+		}
+
+		return e.complexity.ListDeviceGroupDevicesRequest.Selector(childComplexity), true
 
 	case "ListOfBulk.items":
 		if e.complexity.ListOfBulk.Items == nil {
@@ -15498,6 +15517,100 @@ func (ec *executionContext) fieldContext_JobStatus_queueId(_ context.Context, fi
 	return fc, nil
 }
 
+func (ec *executionContext) _ListDeviceGroupDevicesRequest_groupId(ctx context.Context, field graphql.CollectedField, obj *model.ListDeviceGroupDevicesRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListDeviceGroupDevicesRequest_groupId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GroupID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListDeviceGroupDevicesRequest_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListDeviceGroupDevicesRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListDeviceGroupDevicesRequest_selector(ctx context.Context, field graphql.CollectedField, obj *model.ListDeviceGroupDevicesRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListDeviceGroupDevicesRequest_selector(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Selector, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListSelector)
+	fc.Result = res
+	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListDeviceGroupDevicesRequest_selector(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListDeviceGroupDevicesRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "pageSize":
+				return ec.fieldContext_ListSelector_pageSize(ctx, field)
+			case "offset":
+				return ec.fieldContext_ListSelector_offset(ctx, field)
+			case "sortBy":
+				return ec.fieldContext_ListSelector_sortBy(ctx, field)
+			case "filterBy":
+				return ec.fieldContext_ListSelector_filterBy(ctx, field)
+			case "fields":
+				return ec.fieldContext_ListSelector_fields(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListSelector", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfBulk_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfBulk) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfBulk_items(ctx, field)
 	if err != nil {
@@ -28021,6 +28134,44 @@ func (ec *executionContext) _JobStatus(ctx context.Context, sel ast.SelectionSet
 	return out
 }
 
+var listDeviceGroupDevicesRequestImplementors = []string{"ListDeviceGroupDevicesRequest"}
+
+func (ec *executionContext) _ListDeviceGroupDevicesRequest(ctx context.Context, sel ast.SelectionSet, obj *model.ListDeviceGroupDevicesRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listDeviceGroupDevicesRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListDeviceGroupDevicesRequest")
+		case "groupId":
+			out.Values[i] = ec._ListDeviceGroupDevicesRequest_groupId(ctx, field, obj)
+		case "selector":
+			out.Values[i] = ec._ListDeviceGroupDevicesRequest_selector(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listOfBulkImplementors = []string{"ListOfBulk"}
 
 func (ec *executionContext) _ListOfBulk(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfBulk) graphql.Marshaler {
@@ -33258,6 +33409,13 @@ func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._ListOfString(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx context.Context, sel ast.SelectionSet, v *model.ListSelector) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListSelector(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorFilterBy) graphql.Marshaler {

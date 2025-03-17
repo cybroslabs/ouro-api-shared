@@ -177,10 +177,10 @@ RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroup
 ## ListDeviceGroupDevices
 
 ```proto
-ListDeviceGroupDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
+ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
+- Input: [io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest](model-io-clbs-openhes-models-acquisition-listdevicegroupdevicesrequest.md)
 - Output: [io.clbs.openhes.models.acquisition.ListOfDevice](model-io-clbs-openhes-models-acquisition-listofdevice.md)
 
 ## ListModemPools
