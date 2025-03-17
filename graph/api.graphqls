@@ -453,9 +453,9 @@ type AddCommunicationUnitsToCommunicationBusRequest {
 }
 
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
-  # The unique identifier of the device configuration template.
-  templateId: String
-  # The unique identifier of the register.
+  # The identifier of the device configuration template.
+  dctId: String
+  # The identifier of the register to be linked to the template.
   registerId: String
 }
 
@@ -1235,9 +1235,9 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest {
 }
 
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
-  # The unique identifier of the device configuration template.
-  templateId: String
-  # The unique identifier of the register.
+  # The identifier of the device configuration template.
+  dctId: String
+  # The identifier of the register to be unlinked from the template.
   registerId: String
 }
 

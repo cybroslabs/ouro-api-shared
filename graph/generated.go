@@ -128,8 +128,8 @@ type ComplexityRoot struct {
 	}
 
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
+		DctID      func(childComplexity int) int
 		RegisterID func(childComplexity int) int
-		TemplateID func(childComplexity int) int
 	}
 
 	AddDevicesToGroupRequest struct {
@@ -759,8 +759,8 @@ type ComplexityRoot struct {
 	}
 
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
+		DctID      func(childComplexity int) int
 		RegisterID func(childComplexity int) int
-		TemplateID func(childComplexity int) int
 	}
 
 	RemoveDevicesFromGroupRequest struct {
@@ -1095,19 +1095,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.AddCommunicationUnitsToCommunicationBusRequest.CommunicationUnitID(childComplexity), true
 
+	case "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.dctId":
+		if e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.DctID == nil {
+			break
+		}
+
+		return e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.DctID(childComplexity), true
+
 	case "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.registerId":
 		if e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.RegisterID == nil {
 			break
 		}
 
 		return e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.RegisterID(childComplexity), true
-
-	case "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.templateId":
-		if e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.TemplateID == nil {
-			break
-		}
-
-		return e.complexity.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest.TemplateID(childComplexity), true
 
 	case "AddDevicesToGroupRequest.deviceId":
 		if e.complexity.AddDevicesToGroupRequest.DeviceID == nil {
@@ -3601,19 +3601,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationUnitID(childComplexity), true
 
+	case "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.dctId":
+		if e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.DctID == nil {
+			break
+		}
+
+		return e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.DctID(childComplexity), true
+
 	case "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.registerId":
 		if e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.RegisterID == nil {
 			break
 		}
 
 		return e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.RegisterID(childComplexity), true
-
-	case "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.templateId":
-		if e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.TemplateID == nil {
-			break
-		}
-
-		return e.complexity.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.TemplateID(childComplexity), true
 
 	case "RemoveDevicesFromGroupRequest.deviceId":
 		if e.complexity.RemoveDevicesFromGroupRequest.DeviceID == nil {
@@ -5288,8 +5288,8 @@ func (ec *executionContext) fieldContext_AddCommunicationUnitsToCommunicationBus
 	return fc, nil
 }
 
-func (ec *executionContext) _AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_templateId(ctx context.Context, field graphql.CollectedField, obj *model.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_templateId(ctx, field)
+func (ec *executionContext) _AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_dctId(ctx context.Context, field graphql.CollectedField, obj *model.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_dctId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5302,7 +5302,7 @@ func (ec *executionContext) _AddDeviceConfigurationRegisterToDeviceConfiguration
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.TemplateID, nil
+		return obj.DctID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5316,7 +5316,7 @@ func (ec *executionContext) _AddDeviceConfigurationRegisterToDeviceConfiguration
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_templateId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_dctId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest",
 		Field:      field,
@@ -21679,8 +21679,8 @@ func (ec *executionContext) fieldContext_RemoveCommunicationUnitsFromCommunicati
 	return fc, nil
 }
 
-func (ec *executionContext) _RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_templateId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_templateId(ctx, field)
+func (ec *executionContext) _RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_dctId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_dctId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -21693,7 +21693,7 @@ func (ec *executionContext) _RemoveDeviceConfigurationRegisterFromDeviceConfigur
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.TemplateID, nil
+		return obj.DctID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -21707,7 +21707,7 @@ func (ec *executionContext) _RemoveDeviceConfigurationRegisterFromDeviceConfigur
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_templateId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_dctId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest",
 		Field:      field,
@@ -25442,8 +25442,8 @@ func (ec *executionContext) _AddDeviceConfigurationRegisterToDeviceConfiguration
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest")
-		case "templateId":
-			out.Values[i] = ec._AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_templateId(ctx, field, obj)
+		case "dctId":
+			out.Values[i] = ec._AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_dctId(ctx, field, obj)
 		case "registerId":
 			out.Values[i] = ec._AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_registerId(ctx, field, obj)
 		default:
@@ -30101,8 +30101,8 @@ func (ec *executionContext) _RemoveDeviceConfigurationRegisterFromDeviceConfigur
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest")
-		case "templateId":
-			out.Values[i] = ec._RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_templateId(ctx, field, obj)
+		case "dctId":
+			out.Values[i] = ec._RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_dctId(ctx, field, obj)
 		case "registerId":
 			out.Values[i] = ec._RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_registerId(ctx, field, obj)
 		default:

@@ -4,6 +4,6 @@
 
 | Field | Type | Description |
 | --- | --- | --- |
-| templateId | string | The unique identifier of the device configuration template. |
-| registerId | string | The unique identifier of the register. |
+| dctId | string | The identifier of the device configuration template. |
+| registerId | string | The identifier of the register to be unlinked from the template. |
 

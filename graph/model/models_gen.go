@@ -91,7 +91,7 @@ type AddCommunicationUnitsToCommunicationBusRequest struct {
 }
 
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
-	TemplateID *string `json:"templateId,omitempty"`
+	DctID      *string `json:"dctId,omitempty"`
 	RegisterID *string `json:"registerId,omitempty"`
 }
 
@@ -673,7 +673,7 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
 }
 
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
-	TemplateID *string `json:"templateId,omitempty"`
+	DctID      *string `json:"dctId,omitempty"`
 	RegisterID *string `json:"registerId,omitempty"`
 }
 

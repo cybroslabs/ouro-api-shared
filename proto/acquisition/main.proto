@@ -307,11 +307,11 @@ message DeviceConfigurationTemplateSpec {
 }
 
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
-    string template_id = 1;  // The unique identifier of the device configuration template.
-    string register_id = 2;  // The unique identifier of the register.
+    string dct_id      = 1;  // The identifier of the device configuration template.
+    string register_id = 2;  // The identifier of the register to be linked to the template.
 }
 
 message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
-    string template_id = 1;  // The unique identifier of the device configuration template.
-    string register_id = 2;  // The unique identifier of the register.
+    string dct_id      = 1;  // The identifier of the device configuration template.
+    string register_id = 2;  // The identifier of the register to be unlinked from the template.
 }
