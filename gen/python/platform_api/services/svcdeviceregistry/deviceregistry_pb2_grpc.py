@@ -183,7 +183,7 @@ class DeviceRegistryServiceStub(object):
                 _registered_method=True)
         self.ListDeviceGroupDevices = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroupDevices',
-                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                request_serializer=acquisition_dot_main__pb2.ListDeviceGroupDevicesRequest.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDevice.FromString,
                 _registered_method=True)
         self.ListModemPools = channel.unary_unary(
@@ -687,7 +687,7 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             ),
             'ListDeviceGroupDevices': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDeviceGroupDevices,
-                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    request_deserializer=acquisition_dot_main__pb2.ListDeviceGroupDevicesRequest.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDevice.SerializeToString,
             ),
             'ListModemPools': grpc.unary_unary_rpc_method_handler(
@@ -1621,7 +1621,7 @@ class DeviceRegistryService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroupDevices',
-            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListDeviceGroupDevicesRequest.SerializeToString,
             acquisition_dot_main__pb2.ListOfDevice.FromString,
             options,
             channel_credentials,

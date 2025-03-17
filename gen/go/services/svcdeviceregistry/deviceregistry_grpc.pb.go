@@ -141,7 +141,7 @@ type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(ctx context.Context, in *acquisition.RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-	ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
+	ListDeviceGroupDevices(ctx context.Context, in *acquisition.ListDeviceGroupDevicesRequest, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
 	// The method to get list of the modem pools.
 	ListModemPools(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
@@ -497,7 +497,7 @@ func (c *deviceRegistryServiceClient) RemoveDevicesFromGroup(ctx context.Context
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListDeviceGroupDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
+func (c *deviceRegistryServiceClient) ListDeviceGroupDevices(ctx context.Context, in *acquisition.ListDeviceGroupDevicesRequest, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDevice)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDeviceGroupDevices_FullMethodName, in, out, cOpts...)
@@ -661,7 +661,7 @@ type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
 	RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
-	ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error)
+	ListDeviceGroupDevices(context.Context, *acquisition.ListDeviceGroupDevicesRequest) (*acquisition.ListOfDevice, error)
 	// The method to get list of the modem pools.
 	ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error)
 	// The method to get the information about the modem pool. The method returns the modem pool information.
@@ -784,7 +784,7 @@ func (UnimplementedDeviceRegistryServiceServer) AddDevicesToGroup(context.Contex
 func (UnimplementedDeviceRegistryServiceServer) RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDevicesFromGroup not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListDeviceGroupDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListDeviceGroupDevices(context.Context, *acquisition.ListDeviceGroupDevicesRequest) (*acquisition.ListOfDevice, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceGroupDevices not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error) {
@@ -1402,7 +1402,7 @@ func _DeviceRegistryService_RemoveDevicesFromGroup_Handler(srv interface{}, ctx 
 }
 
 func _DeviceRegistryService_ListDeviceGroupDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ListSelector)
+	in := new(acquisition.ListDeviceGroupDevicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1414,7 +1414,7 @@ func _DeviceRegistryService_ListDeviceGroupDevices_Handler(srv interface{}, ctx 
 		FullMethod: DeviceRegistryService_ListDeviceGroupDevices_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListDeviceGroupDevices(ctx, req.(*common.ListSelector))
+		return srv.(DeviceRegistryServiceServer).ListDeviceGroupDevices(ctx, req.(*acquisition.ListDeviceGroupDevicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
