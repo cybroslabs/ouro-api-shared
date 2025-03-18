@@ -800,6 +800,8 @@ type DeviceSpec {
 type DeviceStatus {
   # The device info.
   info: DeviceInfo
+  # The driver type selecte by it's device configuration template.
+  driverType: String
 }
 
 type Driver {

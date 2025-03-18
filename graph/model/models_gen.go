@@ -317,7 +317,8 @@ type DeviceSpec struct {
 }
 
 type DeviceStatus struct {
-	Info *DeviceInfo `json:"info,omitempty"`
+	Info       *DeviceInfo `json:"info,omitempty"`
+	DriverType *string     `json:"driverType,omitempty"`
 }
 
 type Driver struct {

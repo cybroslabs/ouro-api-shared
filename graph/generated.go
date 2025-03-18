@@ -354,7 +354,8 @@ type ComplexityRoot struct {
 	}
 
 	DeviceStatus struct {
-		Info func(childComplexity int) int
+		DriverType func(childComplexity int) int
+		Info       func(childComplexity int) int
 	}
 
 	Driver struct {
@@ -1827,6 +1828,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceSpec.Timezone(childComplexity), true
+
+	case "DeviceStatus.driverType":
+		if e.complexity.DeviceStatus.DriverType == nil {
+			break
+		}
+
+		return e.complexity.DeviceStatus.DriverType(childComplexity), true
 
 	case "DeviceStatus.info":
 		if e.complexity.DeviceStatus.Info == nil {
@@ -8944,6 +8952,8 @@ func (ec *executionContext) fieldContext_Device_status(_ context.Context, field 
 			switch field.Name {
 			case "info":
 				return ec.fieldContext_DeviceStatus_info(ctx, field)
+			case "driverType":
+				return ec.fieldContext_DeviceStatus_driverType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceStatus", field.Name)
 		},
@@ -10286,6 +10296,47 @@ func (ec *executionContext) fieldContext_DeviceStatus_info(_ context.Context, fi
 				return ec.fieldContext_DeviceInfo_connectionState(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceStatus_driverType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceStatus_driverType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DriverType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceStatus_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -26854,6 +26905,8 @@ func (ec *executionContext) _DeviceStatus(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("DeviceStatus")
 		case "info":
 			out.Values[i] = ec._DeviceStatus_info(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._DeviceStatus_driverType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

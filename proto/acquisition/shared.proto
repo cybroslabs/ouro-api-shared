@@ -747,7 +747,8 @@ message DeviceSpec {
 }
 
 message DeviceStatus {
-    DeviceInfo info = 1;  // The device info.
+    DeviceInfo info    = 1;  // The device info.
+    string driver_type = 2;  // The driver type selecte by it's device configuration template.
 }
 
 message DeviceCommunicationUnit {
