@@ -20,6 +20,26 @@ class ApiServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.CreateVariable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateVariable',
+                request_serializer=acquisition_dot_main__pb2.CreateVariableRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListVariables = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListVariables',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfVariable.FromString,
+                _registered_method=True)
+        self.UpdateVariable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable',
+                request_serializer=acquisition_dot_main__pb2.Variable.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteVariable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteVariable',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.CreateDeviceConfigurationRegister = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationRegister',
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.SerializeToString,
@@ -270,6 +290,35 @@ class ApiServiceStub(object):
 class ApiServiceServicer(object):
     """The Dataproxy related service definition.
     """
+
+    def CreateVariable(self, request, context):
+        """@group: Variables
+        Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListVariables(self, request, context):
+        """@group: Variables
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateVariable(self, request, context):
+        """@group: Variables
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteVariable(self, request, context):
+        """@group: Variables
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def CreateDeviceConfigurationRegister(self, request, context):
         """@group: Device Configuration Register
@@ -686,6 +735,26 @@ class ApiServiceServicer(object):
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'CreateVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateVariable,
+                    request_deserializer=acquisition_dot_main__pb2.CreateVariableRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListVariables': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListVariables,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfVariable.SerializeToString,
+            ),
+            'UpdateVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateVariable,
+                    request_deserializer=acquisition_dot_main__pb2.Variable.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteVariable,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'CreateDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDeviceConfigurationRegister,
                     request_deserializer=acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.FromString,
@@ -942,6 +1011,114 @@ def add_ApiServiceServicer_to_server(servicer, server):
 class ApiService(object):
     """The Dataproxy related service definition.
     """
+
+    @staticmethod
+    def CreateVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateVariable',
+            acquisition_dot_main__pb2.CreateVariableRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListVariables(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListVariables',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfVariable.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable',
+            acquisition_dot_main__pb2.Variable.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteVariable',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def CreateDeviceConfigurationRegister(request,

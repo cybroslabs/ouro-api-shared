@@ -693,6 +693,13 @@ type CreateProxyBulkRequest {
   metadata: MetadataFields
 }
 
+type CreateVariableRequest {
+  # The variable specification.
+  spec: VariableSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 # Sub-message containing destription for one data link protocol, e.g. HDLC.
 type DataLinkTemplate {
   # The data link protocol.
@@ -1127,6 +1134,13 @@ type ListOfModemPool {
   totalCount: Int
 }
 
+type ListOfVariable {
+  # The list of variables.
+  items: [Variable]
+  # The total number of items.
+  totalCount: Int
+}
+
 # Sub-message containing measured value
 type MeasuredValue {
   # The status of the value.
@@ -1264,6 +1278,18 @@ type SetModemRequest {
   poolId: String
   # The modem specification.
   modem: ModemInfo
+}
+
+type Variable {
+  # The variable specification.
+  spec: VariableSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type VariableSpec {
+  # The list of device configuration register identifiers.
+  registerId: [String]
 }
 
 # The field descriptor.
@@ -1508,6 +1534,10 @@ type Query {
   listDrivers: ListOfDriver
   getDriver: Driver
   listFieldDescriptors: ListOfFieldDescriptor
+  createVariable: StringValue
+  listVariables: ListOfVariable
+  updateVariable: Empty
+  deleteVariable: Empty
 }
 
 scalar Timestamp

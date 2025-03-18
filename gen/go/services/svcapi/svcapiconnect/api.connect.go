@@ -38,6 +38,18 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ApiServiceCreateVariableProcedure is the fully-qualified name of the ApiService's CreateVariable
+	// RPC.
+	ApiServiceCreateVariableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateVariable"
+	// ApiServiceListVariablesProcedure is the fully-qualified name of the ApiService's ListVariables
+	// RPC.
+	ApiServiceListVariablesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListVariables"
+	// ApiServiceUpdateVariableProcedure is the fully-qualified name of the ApiService's UpdateVariable
+	// RPC.
+	ApiServiceUpdateVariableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable"
+	// ApiServiceDeleteVariableProcedure is the fully-qualified name of the ApiService's DeleteVariable
+	// RPC.
+	ApiServiceDeleteVariableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteVariable"
 	// ApiServiceCreateDeviceConfigurationRegisterProcedure is the fully-qualified name of the
 	// ApiService's CreateDeviceConfigurationRegister RPC.
 	ApiServiceCreateDeviceConfigurationRegisterProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationRegister"
@@ -175,6 +187,15 @@ const (
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceClient interface {
+	// @group: Variables
+	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	CreateVariable(context.Context, *connect.Request[acquisition.CreateVariableRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Variables
+	ListVariables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error)
+	// @group: Variables
+	UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error)
+	// @group: Variables
+	DeleteVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Device Configuration Register
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -351,6 +372,30 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 	baseURL = strings.TrimRight(baseURL, "/")
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
 	return &apiServiceClient{
+		createVariable: connect.NewClient[acquisition.CreateVariableRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateVariableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateVariable")),
+			connect.WithClientOptions(opts...),
+		),
+		listVariables: connect.NewClient[common.ListSelector, acquisition.ListOfVariable](
+			httpClient,
+			baseURL+ApiServiceListVariablesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListVariables")),
+			connect.WithClientOptions(opts...),
+		),
+		updateVariable: connect.NewClient[acquisition.Variable, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateVariableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateVariable")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteVariable: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteVariableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteVariable")),
+			connect.WithClientOptions(opts...),
+		),
 		createDeviceConfigurationRegister: connect.NewClient[acquisition.CreateDeviceConfigurationRegisterRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateDeviceConfigurationRegisterProcedure,
@@ -650,6 +695,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 
 // apiServiceClient implements ApiServiceClient.
 type apiServiceClient struct {
+	createVariable                                                   *connect.Client[acquisition.CreateVariableRequest, wrapperspb.StringValue]
+	listVariables                                                    *connect.Client[common.ListSelector, acquisition.ListOfVariable]
+	updateVariable                                                   *connect.Client[acquisition.Variable, emptypb.Empty]
+	deleteVariable                                                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	createDeviceConfigurationRegister                                *connect.Client[acquisition.CreateDeviceConfigurationRegisterRequest, wrapperspb.StringValue]
 	listDeviceConfigurationRegisters                                 *connect.Client[common.ListSelector, acquisition.ListOfDeviceConfigurationRegister]
 	getDeviceConfigurationRegister                                   *connect.Client[wrapperspb.StringValue, acquisition.DeviceConfigurationRegister]
@@ -699,6 +748,26 @@ type apiServiceClient struct {
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getConfig                                                        *connect.Client[emptypb.Empty, system.SystemConfig]
 	setConfig                                                        *connect.Client[system.SystemConfig, emptypb.Empty]
+}
+
+// CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
+func (c *apiServiceClient) CreateVariable(ctx context.Context, req *connect.Request[acquisition.CreateVariableRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createVariable.CallUnary(ctx, req)
+}
+
+// ListVariables calls io.clbs.openhes.services.svcapi.ApiService.ListVariables.
+func (c *apiServiceClient) ListVariables(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error) {
+	return c.listVariables.CallUnary(ctx, req)
+}
+
+// UpdateVariable calls io.clbs.openhes.services.svcapi.ApiService.UpdateVariable.
+func (c *apiServiceClient) UpdateVariable(ctx context.Context, req *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateVariable.CallUnary(ctx, req)
+}
+
+// DeleteVariable calls io.clbs.openhes.services.svcapi.ApiService.DeleteVariable.
+func (c *apiServiceClient) DeleteVariable(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteVariable.CallUnary(ctx, req)
 }
 
 // CreateDeviceConfigurationRegister calls
@@ -964,6 +1033,15 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[s
 
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
+	// @group: Variables
+	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	CreateVariable(context.Context, *connect.Request[acquisition.CreateVariableRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Variables
+	ListVariables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error)
+	// @group: Variables
+	UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error)
+	// @group: Variables
+	DeleteVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Device Configuration Register
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -1136,6 +1214,30 @@ type ApiServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	apiServiceMethods := svcapi.File_services_svcapi_api_proto.Services().ByName("ApiService").Methods()
+	apiServiceCreateVariableHandler := connect.NewUnaryHandler(
+		ApiServiceCreateVariableProcedure,
+		svc.CreateVariable,
+		connect.WithSchema(apiServiceMethods.ByName("CreateVariable")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListVariablesHandler := connect.NewUnaryHandler(
+		ApiServiceListVariablesProcedure,
+		svc.ListVariables,
+		connect.WithSchema(apiServiceMethods.ByName("ListVariables")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateVariableHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateVariableProcedure,
+		svc.UpdateVariable,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateVariable")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteVariableHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteVariableProcedure,
+		svc.DeleteVariable,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteVariable")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateDeviceConfigurationRegisterHandler := connect.NewUnaryHandler(
 		ApiServiceCreateDeviceConfigurationRegisterProcedure,
 		svc.CreateDeviceConfigurationRegister,
@@ -1432,6 +1534,14 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ApiServiceCreateVariableProcedure:
+			apiServiceCreateVariableHandler.ServeHTTP(w, r)
+		case ApiServiceListVariablesProcedure:
+			apiServiceListVariablesHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateVariableProcedure:
+			apiServiceUpdateVariableHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteVariableProcedure:
+			apiServiceDeleteVariableHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceConfigurationRegisterProcedure:
 			apiServiceCreateDeviceConfigurationRegisterHandler.ServeHTTP(w, r)
 		case ApiServiceListDeviceConfigurationRegistersProcedure:
@@ -1538,6 +1648,22 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 
 // UnimplementedApiServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedApiServiceHandler struct{}
+
+func (UnimplementedApiServiceHandler) CreateVariable(context.Context, *connect.Request[acquisition.CreateVariableRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateVariable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListVariables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListVariables is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateVariable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteVariable is not implemented"))
+}
 
 func (UnimplementedApiServiceHandler) CreateDeviceConfigurationRegister(context.Context, *connect.Request[acquisition.CreateDeviceConfigurationRegisterRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationRegister is not implemented"))

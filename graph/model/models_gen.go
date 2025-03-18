@@ -249,6 +249,11 @@ type CreateProxyBulkRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
+type CreateVariableRequest struct {
+	Spec     *VariableSpec   `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
 type DataLinkTemplate struct {
 	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
 	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
@@ -570,6 +575,11 @@ type ListOfString struct {
 	TotalCount *int32    `json:"totalCount,omitempty"`
 }
 
+type ListOfVariable struct {
+	Items      []*Variable `json:"items,omitempty"`
+	TotalCount *int32      `json:"totalCount,omitempty"`
+}
+
 type ListSelector struct {
 	PageSize *int32                  `json:"pageSize,omitempty"`
 	Offset   *int32                  `json:"offset,omitempty"`
@@ -704,6 +714,15 @@ type SystemConfig struct {
 	MaxSlotsPerDriver          *int32      `json:"maxSlotsPerDriver,omitempty"`
 	MinReplicas                []*Mapint32 `json:"minReplicas,omitempty"`
 	DisableDataProxyProcessing *bool       `json:"disableDataProxyProcessing,omitempty"`
+}
+
+type Variable struct {
+	Spec     *VariableSpec   `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type VariableSpec struct {
+	RegisterID []*string `json:"registerId,omitempty"`
 }
 
 type MapFieldValue struct {

@@ -256,6 +256,26 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
 }
 
+// CreateVariable is the resolver for the createVariable field.
+func (r *queryResolver) CreateVariable(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateVariable - createVariable"))
+}
+
+// ListVariables is the resolver for the listVariables field.
+func (r *queryResolver) ListVariables(ctx context.Context) (*model.ListOfVariable, error) {
+	panic(fmt.Errorf("not implemented: ListVariables - listVariables"))
+}
+
+// UpdateVariable is the resolver for the updateVariable field.
+func (r *queryResolver) UpdateVariable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateVariable - updateVariable"))
+}
+
+// DeleteVariable is the resolver for the deleteVariable field.
+func (r *queryResolver) DeleteVariable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteVariable - deleteVariable"))
+}
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 

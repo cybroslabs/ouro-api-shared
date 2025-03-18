@@ -14,6 +14,12 @@ import "common/fields.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
+    // Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+    rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue);
+    rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
+    rpc UpdateVariable(io.clbs.openhes.models.acquisition.Variable) returns (google.protobuf.Empty);
+    rpc DeleteVariable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
     // Creates a new register. The register object holds the information about the single device register.
     rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
     rpc ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister);

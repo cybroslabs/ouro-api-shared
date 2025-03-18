@@ -483,6 +483,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateVariableRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateVariableRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DataLinkTemplate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DataLinkTemplate</code> 
@@ -843,6 +852,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfVariable">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfVariable</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.MeasuredValue">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>MeasuredValue</code> 
@@ -963,6 +981,24 @@
         <a href="#message-io.clbs.openhes.models.acquisition.SetModemRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>SetModemRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.Variable">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Variable</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.VariableSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>VariableSpec</code> 
         </a>
       </p>
       
@@ -4170,6 +4206,73 @@
         </code>
       </td>
       <td class="content"><p>The proxy bulk-job spec.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateVariableRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateVariableRequest" title="io.clbs.openhes.models.acquisition.CreateVariableRequest">message CreateVariableRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.VariableSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.VariableSpec"><span title="io.clbs.openhes.models.acquisition.VariableSpec">io.clbs.openhes.models.acquisition.VariableSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The variable specification.</p></td>
       
     </tr>
     
@@ -8016,6 +8119,74 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfVariable">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfVariable" title="io.clbs.openhes.models.acquisition.ListOfVariable">message ListOfVariable</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.Variable">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.Variable"><span title="io.clbs.openhes.models.acquisition.Variable">io.clbs.openhes.models.acquisition.Variable</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of variables.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.MeasuredValue">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.MeasuredValue" title="io.clbs.openhes.models.acquisition.MeasuredValue">message MeasuredValue</a>
@@ -9266,6 +9437,125 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The modem specification.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Variable">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.Variable" title="io.clbs.openhes.models.acquisition.Variable">message Variable</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.VariableSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.VariableSpec"><span title="io.clbs.openhes.models.acquisition.VariableSpec">io.clbs.openhes.models.acquisition.VariableSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The variable specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.VariableSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.VariableSpec" title="io.clbs.openhes.models.acquisition.VariableSpec">message VariableSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        registerId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of device configuration register identifiers.</p></td>
       
     </tr>
     

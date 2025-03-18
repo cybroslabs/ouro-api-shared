@@ -14,6 +14,16 @@ import "system/main.proto";
 
 // The Dataproxy related service definition.
 service ApiService {
+    // @group: Variables
+    // Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+    rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue);
+    // @group: Variables
+    rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
+    // @group: Variables
+    rpc UpdateVariable(io.clbs.openhes.models.acquisition.Variable) returns (google.protobuf.Empty);
+    // @group: Variables
+    rpc DeleteVariable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
     // @group: Device Configuration Register
     // Creates a new register. The register object holds the information about the single device register.
     rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);

@@ -286,6 +286,11 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
+	CreateVariableRequest struct {
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
+	}
+
 	DataLinkTemplate struct {
 		AppProtocolRefs func(childComplexity int) int
 		Attributes      func(childComplexity int) int
@@ -607,6 +612,11 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
+	ListOfVariable struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
 	ListSelector struct {
 		Fields   func(childComplexity int) int
 		FilterBy func(childComplexity int) int
@@ -713,10 +723,12 @@ type ComplexityRoot struct {
 		CreateModem                                                      func(childComplexity int) int
 		CreateModemPool                                                  func(childComplexity int) int
 		CreateProxyBulk                                                  func(childComplexity int) int
+		CreateVariable                                                   func(childComplexity int) int
 		DeleteDeviceConfigurationRegister                                func(childComplexity int) int
 		DeleteDeviceConfigurationTemplate                                func(childComplexity int) int
 		DeleteModem                                                      func(childComplexity int) int
 		DeleteModemPool                                                  func(childComplexity int) int
+		DeleteVariable                                                   func(childComplexity int) int
 		GetBulk                                                          func(childComplexity int) int
 		GetBulkJob                                                       func(childComplexity int) int
 		GetCommunicationUnit                                             func(childComplexity int) int
@@ -739,6 +751,7 @@ type ComplexityRoot struct {
 		ListDrivers                                                      func(childComplexity int) int
 		ListFieldDescriptors                                             func(childComplexity int) int
 		ListModemPools                                                   func(childComplexity int) int
+		ListVariables                                                    func(childComplexity int) int
 		RemoveCommunicationUnitsFromCommunicationBus                     func(childComplexity int) int
 		RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate func(childComplexity int) int
 		RemoveDevicesFromGroup                                           func(childComplexity int) int
@@ -748,6 +761,7 @@ type ComplexityRoot struct {
 		UpdateDeviceConfigurationTemplate                                func(childComplexity int) int
 		UpdateModem                                                      func(childComplexity int) int
 		UpdateModemPool                                                  func(childComplexity int) int
+		UpdateVariable                                                   func(childComplexity int) int
 	}
 
 	RemoveCommunicationUnitsFromCommunicationBusRequest struct {
@@ -790,6 +804,15 @@ type ComplexityRoot struct {
 		MaxReplicas                func(childComplexity int) int
 		MaxSlotsPerDriver          func(childComplexity int) int
 		MinReplicas                func(childComplexity int) int
+	}
+
+	Variable struct {
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
+	}
+
+	VariableSpec struct {
+		RegisterID func(childComplexity int) int
 	}
 
 	_mapFieldValue struct {
@@ -863,6 +886,10 @@ type QueryResolver interface {
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
+	CreateVariable(ctx context.Context) (*model.StringValue, error)
+	ListVariables(ctx context.Context) (*model.ListOfVariable, error)
+	UpdateVariable(ctx context.Context) (*model.Empty, error)
+	DeleteVariable(ctx context.Context) (*model.Empty, error)
 }
 
 type executableSchema struct {
@@ -1590,6 +1617,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CreateProxyBulkRequest.Spec(childComplexity), true
+
+	case "CreateVariableRequest.metadata":
+		if e.complexity.CreateVariableRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CreateVariableRequest.Metadata(childComplexity), true
+
+	case "CreateVariableRequest.spec":
+		if e.complexity.CreateVariableRequest.Spec == nil {
+			break
+		}
+
+		return e.complexity.CreateVariableRequest.Spec(childComplexity), true
 
 	case "DataLinkTemplate.appProtocolRefs":
 		if e.complexity.DataLinkTemplate.AppProtocolRefs == nil {
@@ -2851,6 +2892,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfString.TotalCount(childComplexity), true
 
+	case "ListOfVariable.items":
+		if e.complexity.ListOfVariable.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfVariable.Items(childComplexity), true
+
+	case "ListOfVariable.totalCount":
+		if e.complexity.ListOfVariable.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfVariable.TotalCount(childComplexity), true
+
 	case "ListSelector.fields":
 		if e.complexity.ListSelector.Fields == nil {
 			break
@@ -3334,6 +3389,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.CreateProxyBulk(childComplexity), true
 
+	case "Query.createVariable":
+		if e.complexity.Query.CreateVariable == nil {
+			break
+		}
+
+		return e.complexity.Query.CreateVariable(childComplexity), true
+
 	case "Query.deleteDeviceConfigurationRegister":
 		if e.complexity.Query.DeleteDeviceConfigurationRegister == nil {
 			break
@@ -3361,6 +3423,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.DeleteModemPool(childComplexity), true
+
+	case "Query.deleteVariable":
+		if e.complexity.Query.DeleteVariable == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteVariable(childComplexity), true
 
 	case "Query.getBulk":
 		if e.complexity.Query.GetBulk == nil {
@@ -3516,6 +3585,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListModemPools(childComplexity), true
 
+	case "Query.listVariables":
+		if e.complexity.Query.ListVariables == nil {
+			break
+		}
+
+		return e.complexity.Query.ListVariables(childComplexity), true
+
 	case "Query.removeCommunicationUnitsFromCommunicationBus":
 		if e.complexity.Query.RemoveCommunicationUnitsFromCommunicationBus == nil {
 			break
@@ -3578,6 +3654,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.UpdateModemPool(childComplexity), true
+
+	case "Query.updateVariable":
+		if e.complexity.Query.UpdateVariable == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateVariable(childComplexity), true
 
 	case "RemoveCommunicationUnitsFromCommunicationBusRequest.communicationBusId":
 		if e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationBusID == nil {
@@ -3704,6 +3787,27 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.SystemConfig.MinReplicas(childComplexity), true
+
+	case "Variable.metadata":
+		if e.complexity.Variable.Metadata == nil {
+			break
+		}
+
+		return e.complexity.Variable.Metadata(childComplexity), true
+
+	case "Variable.spec":
+		if e.complexity.Variable.Spec == nil {
+			break
+		}
+
+		return e.complexity.Variable.Spec(childComplexity), true
+
+	case "VariableSpec.registerId":
+		if e.complexity.VariableSpec.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.VariableSpec.RegisterID(childComplexity), true
 
 	case "_mapFieldValue.key":
 		if e.complexity._mapFieldValue.Key == nil {
@@ -8682,6 +8786,104 @@ func (ec *executionContext) _CreateProxyBulkRequest_metadata(ctx context.Context
 func (ec *executionContext) fieldContext_CreateProxyBulkRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "CreateProxyBulkRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateVariableRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.CreateVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateVariableRequest_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.VariableSpec)
+	fc.Result = res
+	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateVariableRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateVariableRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "registerId":
+				return ec.fieldContext_VariableSpec_registerId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type VariableSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateVariableRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateVariableRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateVariableRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateVariableRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -16748,6 +16950,94 @@ func (ec *executionContext) fieldContext_ListOfString_totalCount(_ context.Conte
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfVariable_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfVariable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfVariable_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Variable)
+	fc.Result = res
+	return ec.marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfVariable_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfVariable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_Variable_spec(ctx, field)
+			case "metadata":
+				return ec.fieldContext_Variable_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Variable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfVariable_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfVariable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfVariable_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfVariable_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfVariable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListSelector_pageSize(ctx context.Context, field graphql.CollectedField, obj *model.ListSelector) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListSelector_pageSize(ctx, field)
 	if err != nil {
@@ -21444,6 +21734,188 @@ func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Co
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_createVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createVariable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().CreateVariable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StringValue)
+	fc.Result = res
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_createVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "value":
+				return ec.fieldContext_StringValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listVariables(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listVariables(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListVariables(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfVariable)
+	fc.Result = res
+	return ec.marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfVariable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listVariables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfVariable_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfVariable_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfVariable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_updateVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateVariable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateVariable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteVariable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteVariable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query___type(ctx, field)
 	if err != nil {
@@ -22360,6 +22832,145 @@ func (ec *executionContext) fieldContext_SystemConfig_disableDataProxyProcessing
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Variable_spec(ctx context.Context, field graphql.CollectedField, obj *model.Variable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Variable_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.VariableSpec)
+	fc.Result = res
+	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Variable_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Variable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "registerId":
+				return ec.fieldContext_VariableSpec_registerId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type VariableSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Variable_metadata(ctx context.Context, field graphql.CollectedField, obj *model.Variable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Variable_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Variable_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Variable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _VariableSpec_registerId(ctx context.Context, field graphql.CollectedField, obj *model.VariableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_VariableSpec_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_VariableSpec_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "VariableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -26450,6 +27061,44 @@ func (ec *executionContext) _CreateProxyBulkRequest(ctx context.Context, sel ast
 	return out
 }
 
+var createVariableRequestImplementors = []string{"CreateVariableRequest"}
+
+func (ec *executionContext) _CreateVariableRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateVariableRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, createVariableRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CreateVariableRequest")
+		case "spec":
+			out.Values[i] = ec._CreateVariableRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CreateVariableRequest_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var dataLinkTemplateImplementors = []string{"DataLinkTemplate"}
 
 func (ec *executionContext) _DataLinkTemplate(ctx context.Context, sel ast.SelectionSet, obj *model.DataLinkTemplate) graphql.Marshaler {
@@ -28408,6 +29057,44 @@ func (ec *executionContext) _ListOfString(ctx context.Context, sel ast.Selection
 	return out
 }
 
+var listOfVariableImplementors = []string{"ListOfVariable"}
+
+func (ec *executionContext) _ListOfVariable(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfVariable) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfVariableImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfVariable")
+		case "items":
+			out.Values[i] = ec._ListOfVariable_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfVariable_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listSelectorImplementors = []string{"ListSelector"}
 
 func (ec *executionContext) _ListSelector(ctx context.Context, sel ast.SelectionSet, obj *model.ListSelector) graphql.Marshaler {
@@ -29876,6 +30563,82 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "createVariable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_createVariable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listVariables":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listVariables(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateVariable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateVariable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteVariable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteVariable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "__type":
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
 				return ec._Query___type(ctx, field)
@@ -30192,6 +30955,80 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._SystemConfig_minReplicas(ctx, field, obj)
 		case "disableDataProxyProcessing":
 			out.Values[i] = ec._SystemConfig_disableDataProxyProcessing(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var variableImplementors = []string{"Variable"}
+
+func (ec *executionContext) _Variable(ctx context.Context, sel ast.SelectionSet, obj *model.Variable) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, variableImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Variable")
+		case "spec":
+			out.Values[i] = ec._Variable_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._Variable_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var variableSpecImplementors = []string{"VariableSpec"}
+
+func (ec *executionContext) _VariableSpec(ctx context.Context, sel ast.SelectionSet, obj *model.VariableSpec) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, variableSpecImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("VariableSpec")
+		case "registerId":
+			out.Values[i] = ec._VariableSpec_registerId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -33060,6 +33897,13 @@ func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋ
 	return ec._ListOfString(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfVariable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfVariable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfVariable(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx context.Context, sel ast.SelectionSet, v *model.ListSelector) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -33530,6 +34374,61 @@ func (ec *executionContext) marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(
 	}
 	res := graphql.MarshalUUID(*v)
 	return res
+}
+
+func (ec *executionContext) marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v []*model.Variable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v *model.Variable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Variable(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx context.Context, sel ast.SelectionSet, v *model.VariableSpec) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._VariableSpec(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {

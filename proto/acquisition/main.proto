@@ -270,6 +270,28 @@ message DriverSpec {
     string display_name = 8;
 }
 
+// Variables
+
+message CreateVariableRequest {
+    VariableSpec spec              = 1 [features.field_presence = LEGACY_REQUIRED];  // The variable specification.
+    common.MetadataFields metadata = 2;                                              // The metadata fields.
+}
+
+message ListOfVariable {
+    repeated Variable items = 1;  // The list of variables.
+    int32 total_count       = 2;  // The total number of items.
+}
+
+message Variable {
+    reserved 2;                                                                      // reserved for status
+    VariableSpec spec              = 1 [features.field_presence = LEGACY_REQUIRED];  // The variable specification.
+    common.MetadataFields metadata = 3;                                              // The metadata fields.
+}
+
+message VariableSpec {
+    repeated string register_id = 1;  // The list of device configuration register identifiers.
+}
+
 // Device Configuration Register specification
 
 message CreateDeviceConfigurationRegisterRequest {
