@@ -123,7 +123,8 @@ type Bulk struct {
 }
 
 type BulkJob struct {
-	Status *JobStatus `json:"status,omitempty"`
+	Status   *JobStatus      `json:"status,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
 type BulkSpec struct {
@@ -136,8 +137,10 @@ type BulkSpec struct {
 }
 
 type BulkStatus struct {
-	Status *BulkStatusCode `json:"status,omitempty"`
-	Jobs   []*BulkJob      `json:"jobs,omitempty"`
+	Status         *BulkStatusCode `json:"status,omitempty"`
+	JobsCount      *int32          `json:"jobsCount,omitempty"`
+	JobsFinished   *int32          `json:"jobsFinished,omitempty"`
+	JobsSuccessful *int32          `json:"jobsSuccessful,omitempty"`
 }
 
 type CommunicationBus struct {

@@ -164,13 +164,25 @@ message BulkSpec {
 
 message BulkStatus {
     BulkStatusCode status = 1;  // The job status.
-    repeated BulkJob jobs = 2;  // The list of job statuses.
+    int32 jobs_count      = 2;  // The number of jobs in the bulk.
+    int32 jobs_finished   = 3;  // The number of jobs finished.
+    int32 jobs_successful = 4;  // The number of jobs successful.
 }
 
 message BulkJob {
-    reserved 1;            // reserved for spec
-    JobStatus status = 2;  // The job status.
-    reserved 3;            // reserved for metadata
+    reserved 1;                          // reserved for spec
+    JobStatus status               = 2;  // The job status.
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message ListBulkJobsRequest {
+    string bulk_id                                      = 1;  // The bulk identifier.
+    io.clbs.openhes.models.common.ListSelector selector = 2;  // The list selector.
+}
+
+message ListOfBulkJob {
+    repeated BulkJob items = 1;  // The list of jobs.
+    int32 total_count      = 2;  // The total number of items.
 }
 
 // Proxy Bulk specification.

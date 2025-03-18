@@ -160,7 +160,8 @@ type ComplexityRoot struct {
 	}
 
 	BulkJob struct {
-		Status func(childComplexity int) int
+		Metadata func(childComplexity int) int
+		Status   func(childComplexity int) int
 	}
 
 	BulkSpec struct {
@@ -173,8 +174,10 @@ type ComplexityRoot struct {
 	}
 
 	BulkStatus struct {
-		Jobs   func(childComplexity int) int
-		Status func(childComplexity int) int
+		JobsCount      func(childComplexity int) int
+		JobsFinished   func(childComplexity int) int
+		JobsSuccessful func(childComplexity int) int
+		Status         func(childComplexity int) int
 	}
 
 	CommunicationBus struct {
@@ -1212,6 +1215,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Bulk.Status(childComplexity), true
 
+	case "BulkJob.metadata":
+		if e.complexity.BulkJob.Metadata == nil {
+			break
+		}
+
+		return e.complexity.BulkJob.Metadata(childComplexity), true
+
 	case "BulkJob.status":
 		if e.complexity.BulkJob.Status == nil {
 			break
@@ -1261,12 +1271,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.WebhookURL(childComplexity), true
 
-	case "BulkStatus.jobs":
-		if e.complexity.BulkStatus.Jobs == nil {
+	case "BulkStatus.jobsCount":
+		if e.complexity.BulkStatus.JobsCount == nil {
 			break
 		}
 
-		return e.complexity.BulkStatus.Jobs(childComplexity), true
+		return e.complexity.BulkStatus.JobsCount(childComplexity), true
+
+	case "BulkStatus.jobsFinished":
+		if e.complexity.BulkStatus.JobsFinished == nil {
+			break
+		}
+
+		return e.complexity.BulkStatus.JobsFinished(childComplexity), true
+
+	case "BulkStatus.jobsSuccessful":
+		if e.complexity.BulkStatus.JobsSuccessful == nil {
+			break
+		}
+
+		return e.complexity.BulkStatus.JobsSuccessful(childComplexity), true
 
 	case "BulkStatus.status":
 		if e.complexity.BulkStatus.Status == nil {
@@ -5974,8 +5998,12 @@ func (ec *executionContext) fieldContext_Bulk_status(_ context.Context, field gr
 			switch field.Name {
 			case "status":
 				return ec.fieldContext_BulkStatus_status(ctx, field)
-			case "jobs":
-				return ec.fieldContext_BulkStatus_jobs(ctx, field)
+			case "jobsCount":
+				return ec.fieldContext_BulkStatus_jobsCount(ctx, field)
+			case "jobsFinished":
+				return ec.fieldContext_BulkStatus_jobsFinished(ctx, field)
+			case "jobsSuccessful":
+				return ec.fieldContext_BulkStatus_jobsSuccessful(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkStatus", field.Name)
 		},
@@ -6092,6 +6120,59 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 				return ec.fieldContext_JobStatus_queueId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkJob_metadata(ctx context.Context, field graphql.CollectedField, obj *model.BulkJob) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkJob_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkJob_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkJob",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
 	}
 	return fc, nil
@@ -6434,8 +6515,8 @@ func (ec *executionContext) fieldContext_BulkStatus_status(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _BulkStatus_jobs(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BulkStatus_jobs(ctx, field)
+func (ec *executionContext) _BulkStatus_jobsCount(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_jobsCount(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6448,7 +6529,7 @@ func (ec *executionContext) _BulkStatus_jobs(ctx context.Context, field graphql.
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Jobs, nil
+		return obj.JobsCount, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6457,23 +6538,101 @@ func (ec *executionContext) _BulkStatus_jobs(ctx context.Context, field graphql.
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.BulkJob)
+	res := resTmp.(*int32)
 	fc.Result = res
-	return ec.marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx, field.Selections, res)
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BulkStatus_jobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BulkStatus_jobsCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "BulkStatus",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "status":
-				return ec.fieldContext_BulkJob_status(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type BulkJob", field.Name)
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkStatus_jobsFinished(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_jobsFinished(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.JobsFinished, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkStatus_jobsFinished(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkStatus_jobsSuccessful(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_jobsSuccessful(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.JobsSuccessful, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkStatus_jobsSuccessful(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
@@ -19746,6 +19905,8 @@ func (ec *executionContext) fieldContext_Query_getBulkJob(_ context.Context, fie
 			switch field.Name {
 			case "status":
 				return ec.fieldContext_BulkJob_status(ctx, field)
+			case "metadata":
+				return ec.fieldContext_BulkJob_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkJob", field.Name)
 		},
@@ -26176,6 +26337,8 @@ func (ec *executionContext) _BulkJob(ctx context.Context, sel ast.SelectionSet, 
 			out.Values[i] = graphql.MarshalString("BulkJob")
 		case "status":
 			out.Values[i] = ec._BulkJob_status(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._BulkJob_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -26258,8 +26421,12 @@ func (ec *executionContext) _BulkStatus(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = graphql.MarshalString("BulkStatus")
 		case "status":
 			out.Values[i] = ec._BulkStatus_status(ctx, field, obj)
-		case "jobs":
-			out.Values[i] = ec._BulkStatus_jobs(ctx, field, obj)
+		case "jobsCount":
+			out.Values[i] = ec._BulkStatus_jobsCount(ctx, field, obj)
+		case "jobsFinished":
+			out.Values[i] = ec._BulkStatus_jobsFinished(ctx, field, obj)
+		case "jobsSuccessful":
+			out.Values[i] = ec._BulkStatus_jobsSuccessful(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32360,47 +32527,6 @@ func (ec *executionContext) marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2�
 		return graphql.Null
 	}
 	return ec._Bulk(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v []*model.BulkJob) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
 }
 
 func (ec *executionContext) marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v *model.BulkJob) graphql.Marshaler {

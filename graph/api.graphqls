@@ -504,6 +504,8 @@ type Bulk {
 type BulkJob {
   # The job status.
   status: JobStatus
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 type BulkSpec {
@@ -524,8 +526,12 @@ type BulkSpec {
 type BulkStatus {
   # The job status.
   status: BulkStatusCode
-  # The list of job statuses.
-  jobs: [BulkJob]
+  # The number of jobs in the bulk.
+  jobsCount: Int
+  # The number of jobs finished.
+  jobsFinished: Int
+  # The number of jobs successful.
+  jobsSuccessful: Int
 }
 
 type CommunicationBus {

@@ -29,6 +29,10 @@ service DataproxyService {
     // @group: Bulks
     // Retrieves the job status.
     rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
+    // @group: Bulks
+    // Retrieves the list of jobs.
+    rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
+
     // // Cancels the job(s) identified by the job identifier(s).
     // rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
 

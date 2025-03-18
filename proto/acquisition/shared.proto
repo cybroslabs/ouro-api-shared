@@ -684,6 +684,7 @@ message DeviceConfigurationRegisterSpec {
 message DeviceRegister {
     int64 register_id                    = 1 [features.field_presence = LEGACY_REQUIRED];  // The register identifier.
     DeviceConfigurationRegisterSpec spec = 2 [features.field_presence = LEGACY_REQUIRED];  // The register spec.
+    repeated string variable_name        = 3;                                              // The name of the variable, if the register is assigned to some.
 }
 
 // Addon
