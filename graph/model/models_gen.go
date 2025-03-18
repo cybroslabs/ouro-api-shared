@@ -288,21 +288,12 @@ type DeviceConfigurationTemplateSpec struct {
 }
 
 type DeviceGroup struct {
-	Spec     *DeviceGroupSpec   `json:"spec,omitempty"`
-	Status   *DeviceGroupStatus `json:"status,omitempty"`
-	Metadata *MetadataFields    `json:"metadata,omitempty"`
+	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields  `json:"metadata,omitempty"`
 }
 
 type DeviceGroupSpec struct {
 	ExternalID *string `json:"externalId,omitempty"`
-}
-
-type DeviceGroupStatus struct {
-	Devices []*MapDeviceGroupStatusDevice `json:"devices,omitempty"`
-}
-
-type DeviceGroupStatusDevice struct {
-	DriverType *string `json:"driverType,omitempty"`
 }
 
 type DeviceInfo struct {
@@ -712,11 +703,6 @@ type SystemConfig struct {
 	MaxSlotsPerDriver          *int32      `json:"maxSlotsPerDriver,omitempty"`
 	MinReplicas                []*Mapint32 `json:"minReplicas,omitempty"`
 	DisableDataProxyProcessing *bool       `json:"disableDataProxyProcessing,omitempty"`
-}
-
-type MapDeviceGroupStatusDevice struct {
-	Key   string                   `json:"key"`
-	Value *DeviceGroupStatusDevice `json:"value,omitempty"`
 }
 
 type MapFieldValue struct {

@@ -166,8 +166,13 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDeviceGroup.FromString,
                 _registered_method=True)
-        self.GetDeviceGroup = channel.unary_stream(
+        self.GetDeviceGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceGroup.FromString,
+                _registered_method=True)
+        self.StreamDeviceGroup = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.StreamDeviceGroup.FromString,
                 _registered_method=True)
@@ -445,6 +450,14 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def StreamDeviceGroup(self, request, context):
+        """The method returns stream of devices from the device group.
+        @param The device group identifier.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AddDevicesToGroup(self, request, context):
         """The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
         """
@@ -670,8 +683,13 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDeviceGroup.SerializeToString,
             ),
-            'GetDeviceGroup': grpc.unary_stream_rpc_method_handler(
+            'GetDeviceGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceGroup,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceGroup.SerializeToString,
+            ),
+            'StreamDeviceGroup': grpc.unary_stream_rpc_method_handler(
+                    servicer.StreamDeviceGroup,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.StreamDeviceGroup.SerializeToString,
             ),
@@ -1536,10 +1554,37 @@ class DeviceRegistryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(
+        return grpc.experimental.unary_unary(
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.DeviceGroup.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def StreamDeviceGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.StreamDeviceGroup.FromString,
             options,

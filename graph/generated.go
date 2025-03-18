@@ -327,19 +327,10 @@ type ComplexityRoot struct {
 	DeviceGroup struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
-		Status   func(childComplexity int) int
 	}
 
 	DeviceGroupSpec struct {
 		ExternalID func(childComplexity int) int
-	}
-
-	DeviceGroupStatus struct {
-		Devices func(childComplexity int) int
-	}
-
-	DeviceGroupStatusDevice struct {
-		DriverType func(childComplexity int) int
 	}
 
 	DeviceInfo struct {
@@ -798,11 +789,6 @@ type ComplexityRoot struct {
 		MaxReplicas                func(childComplexity int) int
 		MaxSlotsPerDriver          func(childComplexity int) int
 		MinReplicas                func(childComplexity int) int
-	}
-
-	_mapDeviceGroupStatusDevice struct {
-		Key   func(childComplexity int) int
-		Value func(childComplexity int) int
 	}
 
 	_mapFieldValue struct {
@@ -1737,33 +1723,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceGroup.Spec(childComplexity), true
 
-	case "DeviceGroup.status":
-		if e.complexity.DeviceGroup.Status == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroup.Status(childComplexity), true
-
 	case "DeviceGroupSpec.externalId":
 		if e.complexity.DeviceGroupSpec.ExternalID == nil {
 			break
 		}
 
 		return e.complexity.DeviceGroupSpec.ExternalID(childComplexity), true
-
-	case "DeviceGroupStatus.devices":
-		if e.complexity.DeviceGroupStatus.Devices == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroupStatus.Devices(childComplexity), true
-
-	case "DeviceGroupStatusDevice.driverType":
-		if e.complexity.DeviceGroupStatusDevice.DriverType == nil {
-			break
-		}
-
-		return e.complexity.DeviceGroupStatusDevice.DriverType(childComplexity), true
 
 	case "DeviceInfo.clockDelta":
 		if e.complexity.DeviceInfo.ClockDelta == nil {
@@ -3731,20 +3696,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.SystemConfig.MinReplicas(childComplexity), true
-
-	case "_mapDeviceGroupStatusDevice.key":
-		if e.complexity._mapDeviceGroupStatusDevice.Key == nil {
-			break
-		}
-
-		return e.complexity._mapDeviceGroupStatusDevice.Key(childComplexity), true
-
-	case "_mapDeviceGroupStatusDevice.value":
-		if e.complexity._mapDeviceGroupStatusDevice.Value == nil {
-			break
-		}
-
-		return e.complexity._mapDeviceGroupStatusDevice.Value(childComplexity), true
 
 	case "_mapFieldValue.key":
 		if e.complexity._mapFieldValue.Key == nil {
@@ -9593,51 +9544,6 @@ func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceGroup_status(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroup) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroup_status(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Status, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.DeviceGroupStatus)
-	fc.Result = res
-	return ec.marshalODeviceGroupStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupStatus(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroup_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroup",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "devices":
-				return ec.fieldContext_DeviceGroupStatus_devices(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupStatus", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _DeviceGroup_metadata(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroup) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DeviceGroup_metadata(ctx, field)
 	if err != nil {
@@ -9722,94 +9628,6 @@ func (ec *executionContext) _DeviceGroupSpec_externalId(ctx context.Context, fie
 func (ec *executionContext) fieldContext_DeviceGroupSpec_externalId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceGroupSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceGroupStatus_devices(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupStatus_devices(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Devices, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.MapDeviceGroupStatusDevice)
-	fc.Result = res
-	return ec.marshalO_mapDeviceGroupStatusDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapDeviceGroupStatusDevice(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroupStatus_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroupStatus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "key":
-				return ec.fieldContext__mapDeviceGroupStatusDevice_key(ctx, field)
-			case "value":
-				return ec.fieldContext__mapDeviceGroupStatusDevice_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapDeviceGroupStatusDevice", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceGroupStatusDevice_driverType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceGroupStatusDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceGroupStatusDevice_driverType(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.DriverType, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceGroupStatusDevice_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceGroupStatusDevice",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -16269,8 +16087,6 @@ func (ec *executionContext) fieldContext_ListOfDeviceGroup_items(_ context.Conte
 			switch field.Name {
 			case "spec":
 				return ec.fieldContext_DeviceGroup_spec(ctx, field)
-			case "status":
-				return ec.fieldContext_DeviceGroup_status(ctx, field)
 			case "metadata":
 				return ec.fieldContext_DeviceGroup_metadata(ctx, field)
 			}
@@ -20926,8 +20742,6 @@ func (ec *executionContext) fieldContext_Query_getDeviceGroup(_ context.Context,
 			switch field.Name {
 			case "spec":
 				return ec.fieldContext_DeviceGroup_spec(ctx, field)
-			case "status":
-				return ec.fieldContext_DeviceGroup_status(ctx, field)
 			case "metadata":
 				return ec.fieldContext_DeviceGroup_metadata(ctx, field)
 			}
@@ -24447,95 +24261,6 @@ func (ec *executionContext) fieldContext___Type_isOneOf(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) __mapDeviceGroupStatusDevice_key(ctx context.Context, field graphql.CollectedField, obj *model.MapDeviceGroupStatusDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapDeviceGroupStatusDevice_key(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Key, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapDeviceGroupStatusDevice_key(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapDeviceGroupStatusDevice",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) __mapDeviceGroupStatusDevice_value(ctx context.Context, field graphql.CollectedField, obj *model.MapDeviceGroupStatusDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext__mapDeviceGroupStatusDevice_value(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.DeviceGroupStatusDevice)
-	fc.Result = res
-	return ec.marshalODeviceGroupStatusDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupStatusDevice(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext__mapDeviceGroupStatusDevice_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "_mapDeviceGroupStatusDevice",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "driverType":
-				return ec.fieldContext_DeviceGroupStatusDevice_driverType(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type DeviceGroupStatusDevice", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) __mapFieldValue_key(ctx context.Context, field graphql.CollectedField, obj *model.MapFieldValue) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext__mapFieldValue_key(ctx, field)
 	if err != nil {
@@ -26959,8 +26684,6 @@ func (ec *executionContext) _DeviceGroup(ctx context.Context, sel ast.SelectionS
 			out.Values[i] = graphql.MarshalString("DeviceGroup")
 		case "spec":
 			out.Values[i] = ec._DeviceGroup_spec(ctx, field, obj)
-		case "status":
-			out.Values[i] = ec._DeviceGroup_status(ctx, field, obj)
 		case "metadata":
 			out.Values[i] = ec._DeviceGroup_metadata(ctx, field, obj)
 		default:
@@ -26999,78 +26722,6 @@ func (ec *executionContext) _DeviceGroupSpec(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("DeviceGroupSpec")
 		case "externalId":
 			out.Values[i] = ec._DeviceGroupSpec_externalId(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var deviceGroupStatusImplementors = []string{"DeviceGroupStatus"}
-
-func (ec *executionContext) _DeviceGroupStatus(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceGroupStatus) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, deviceGroupStatusImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("DeviceGroupStatus")
-		case "devices":
-			out.Values[i] = ec._DeviceGroupStatus_devices(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var deviceGroupStatusDeviceImplementors = []string{"DeviceGroupStatusDevice"}
-
-func (ec *executionContext) _DeviceGroupStatusDevice(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceGroupStatusDevice) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, deviceGroupStatusDeviceImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("DeviceGroupStatusDevice")
-		case "driverType":
-			out.Values[i] = ec._DeviceGroupStatusDevice_driverType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -30842,47 +30493,6 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 	return out
 }
 
-var _mapDeviceGroupStatusDeviceImplementors = []string{"_mapDeviceGroupStatusDevice"}
-
-func (ec *executionContext) __mapDeviceGroupStatusDevice(ctx context.Context, sel ast.SelectionSet, obj *model.MapDeviceGroupStatusDevice) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, _mapDeviceGroupStatusDeviceImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("_mapDeviceGroupStatusDevice")
-		case "key":
-			out.Values[i] = ec.__mapDeviceGroupStatusDevice_key(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "value":
-			out.Values[i] = ec.__mapDeviceGroupStatusDevice_value(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
 var _mapFieldValueImplementors = []string{"_mapFieldValue"}
 
 func (ec *executionContext) __mapFieldValue(ctx context.Context, sel ast.SelectionSet, obj *model.MapFieldValue) graphql.Marshaler {
@@ -32529,20 +32139,6 @@ func (ec *executionContext) marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabs
 	return ec._DeviceGroupSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceGroupStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupStatus(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroupStatus) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._DeviceGroupStatus(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalODeviceGroupStatusDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupStatusDevice(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroupStatusDevice) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._DeviceGroupStatusDevice(ctx, sel, v)
-}
-
 func (ec *executionContext) marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx context.Context, sel ast.SelectionSet, v *model.DeviceInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -34083,54 +33679,6 @@ func (ec *executionContext) marshalO__Type2ᚖgithubᚗcomᚋ99designsᚋgqlgen�
 		return graphql.Null
 	}
 	return ec.___Type(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalO_mapDeviceGroupStatusDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapDeviceGroupStatusDevice(ctx context.Context, sel ast.SelectionSet, v []*model.MapDeviceGroupStatusDevice) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalO_mapDeviceGroupStatusDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapDeviceGroupStatusDevice(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalO_mapDeviceGroupStatusDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapDeviceGroupStatusDevice(ctx context.Context, sel ast.SelectionSet, v *model.MapDeviceGroupStatusDevice) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec.__mapDeviceGroupStatusDevice(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v []*model.MapFieldValue) graphql.Marshaler {

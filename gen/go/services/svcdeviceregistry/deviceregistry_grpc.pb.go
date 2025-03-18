@@ -54,6 +54,7 @@ const (
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
 	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
 	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
+	DeviceRegistryService_StreamDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup"
 	DeviceRegistryService_AddDevicesToGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
 	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
 	DeviceRegistryService_ListDeviceGroupDevices_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroupDevices"
@@ -135,7 +136,10 @@ type DeviceRegistryServiceClient interface {
 	// The method returns single device group.
 	// @param The device group identifier.
 	// @return The device group specification.
-	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error)
+	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceGroup, error)
+	// The method returns stream of devices from the device group.
+	// @param The device group identifier.
+	StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error)
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
 	AddDevicesToGroup(ctx context.Context, in *acquisition.AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
@@ -458,9 +462,19 @@ func (c *deviceRegistryServiceClient) ListDeviceGroups(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error) {
+func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceGroup, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[0], DeviceRegistryService_GetDeviceGroup_FullMethodName, cOpts...)
+	out := new(acquisition.DeviceGroup)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[0], DeviceRegistryService_StreamDeviceGroup_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -475,7 +489,7 @@ func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wr
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DeviceRegistryService_GetDeviceGroupClient = grpc.ServerStreamingClient[acquisition.StreamDeviceGroup]
+type DeviceRegistryService_StreamDeviceGroupClient = grpc.ServerStreamingClient[acquisition.StreamDeviceGroup]
 
 func (c *deviceRegistryServiceClient) AddDevicesToGroup(ctx context.Context, in *acquisition.AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -655,7 +669,10 @@ type DeviceRegistryServiceServer interface {
 	// The method returns single device group.
 	// @param The device group identifier.
 	// @return The device group specification.
-	GetDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error
+	GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error)
+	// The method returns stream of devices from the device group.
+	// @param The device group identifier.
+	StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error
 	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
 	AddDevicesToGroup(context.Context, *acquisition.AddDevicesToGroupRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
@@ -775,8 +792,11 @@ func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Contex
 func (UnimplementedDeviceRegistryServiceServer) ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceGroups not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error {
-	return status.Errorf(codes.Unimplemented, "method GetDeviceGroup not implemented")
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroup not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDeviceGroup not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) AddDevicesToGroup(context.Context, *acquisition.AddDevicesToGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDevicesToGroup not implemented")
@@ -1354,16 +1374,34 @@ func _DeviceRegistryService_ListDeviceGroups_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_GetDeviceGroup_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _DeviceRegistryService_GetDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDeviceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDeviceGroup(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_StreamDeviceGroup_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(wrapperspb.StringValue)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DeviceRegistryServiceServer).GetDeviceGroup(m, &grpc.GenericServerStream[wrapperspb.StringValue, acquisition.StreamDeviceGroup]{ServerStream: stream})
+	return srv.(DeviceRegistryServiceServer).StreamDeviceGroup(m, &grpc.GenericServerStream[wrapperspb.StringValue, acquisition.StreamDeviceGroup]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DeviceRegistryService_GetDeviceGroupServer = grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]
+type DeviceRegistryService_StreamDeviceGroupServer = grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]
 
 func _DeviceRegistryService_AddDevicesToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.AddDevicesToGroupRequest)
@@ -1687,6 +1725,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_ListDeviceGroups_Handler,
 		},
 		{
+			MethodName: "GetDeviceGroup",
+			Handler:    _DeviceRegistryService_GetDeviceGroup_Handler,
+		},
+		{
 			MethodName: "AddDevicesToGroup",
 			Handler:    _DeviceRegistryService_AddDevicesToGroup_Handler,
 		},
@@ -1733,8 +1775,8 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetDeviceGroup",
-			Handler:       _DeviceRegistryService_GetDeviceGroup_Handler,
+			StreamName:    "StreamDeviceGroup",
+			Handler:       _DeviceRegistryService_StreamDeviceGroup_Handler,
 			ServerStreams: true,
 		},
 	},
