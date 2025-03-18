@@ -735,6 +735,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListBulkJobsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListBulkJobsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListDeviceGroupDevicesRequest</code> 
@@ -747,6 +756,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfBulk">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfBulk</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfBulkJob">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfBulkJob</code> 
         </a>
       </p>
       
@@ -7280,6 +7298,72 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListBulkJobsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListBulkJobsRequest" title="io.clbs.openhes.models.acquisition.ListBulkJobsRequest">message ListBulkJobsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        bulkId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The bulk identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        selector
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ListSelector">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelector"><span title="io.clbs.openhes.models.common.ListSelector">io.clbs.openhes.models.common.ListSelector</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list selector.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest" title="io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest">message ListDeviceGroupDevicesRequest</a>
@@ -7385,6 +7469,74 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The list of bulks.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfBulkJob">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfBulkJob" title="io.clbs.openhes.models.acquisition.ListOfBulkJob">message ListOfBulkJob</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkJob">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of jobs.</p></td>
       
     </tr>
     

@@ -78,6 +78,9 @@ service ApiService {
     // @group: Bulks
     // Retrieves the job status.
     rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
+    // @group: Bulks
+    // Retrieves the list of jobs.
+    rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
 
     // // @group: Bulks
     // // Cancels the job(s) identified by the job identifier(s).

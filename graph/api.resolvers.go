@@ -41,6 +41,11 @@ func (r *queryResolver) GetBulkJob(ctx context.Context) (*model.BulkJob, error) 
 	panic(fmt.Errorf("not implemented: GetBulkJob - getBulkJob"))
 }
 
+// ListBulkJobs is the resolver for the listBulkJobs field.
+func (r *queryResolver) ListBulkJobs(ctx context.Context) (*model.ListOfBulkJob, error) {
+	panic(fmt.Errorf("not implemented: ListBulkJobs - listBulkJobs"))
+}
+
 // GetConfig is the resolver for the getConfig field.
 func (r *queryResolver) GetConfig(ctx context.Context) (*model.SystemConfig, error) {
 	panic(fmt.Errorf("not implemented: GetConfig - getConfig"))

@@ -135,6 +135,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.BulkJob.FromString,
                 _registered_method=True)
+        self.ListBulkJobs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs',
+                request_serializer=acquisition_dot_main__pb2.ListBulkJobsRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfBulkJob.FromString,
+                _registered_method=True)
         self.ListDrivers = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListDrivers',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -460,6 +465,14 @@ class ApiServiceServicer(object):
     def GetBulkJob(self, request, context):
         """@group: Bulks
         Retrieves the job status.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListBulkJobs(self, request, context):
+        """@group: Bulks
+        Retrieves the list of jobs.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -849,6 +862,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetBulkJob,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.BulkJob.SerializeToString,
+            ),
+            'ListBulkJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListBulkJobs,
+                    request_deserializer=acquisition_dot_main__pb2.ListBulkJobsRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfBulkJob.SerializeToString,
             ),
             'ListDrivers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDrivers,
@@ -1623,6 +1641,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.BulkJob.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListBulkJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs',
+            acquisition_dot_main__pb2.ListBulkJobsRequest.SerializeToString,
+            acquisition_dot_main__pb2.ListOfBulkJob.FromString,
             options,
             channel_credentials,
             insecure,

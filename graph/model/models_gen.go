@@ -503,6 +503,11 @@ type JobStatus struct {
 	QueueID      *int64          `json:"queueId,omitempty"`
 }
 
+type ListBulkJobsRequest struct {
+	BulkID   *string       `json:"bulkId,omitempty"`
+	Selector *ListSelector `json:"selector,omitempty"`
+}
+
 type ListDeviceGroupDevicesRequest struct {
 	GroupID  *string       `json:"groupId,omitempty"`
 	Selector *ListSelector `json:"selector,omitempty"`
@@ -511,6 +516,11 @@ type ListDeviceGroupDevicesRequest struct {
 type ListOfBulk struct {
 	Items      []*Bulk `json:"items,omitempty"`
 	TotalCount *int32  `json:"totalCount,omitempty"`
+}
+
+type ListOfBulkJob struct {
+	Items      []*BulkJob `json:"items,omitempty"`
+	TotalCount *int32     `json:"totalCount,omitempty"`
 }
 
 type ListOfCommunicationBus struct {

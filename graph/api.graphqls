@@ -1049,6 +1049,13 @@ type JobStatus {
   queueId: Int64
 }
 
+type ListBulkJobsRequest {
+  # The bulk identifier.
+  bulkId: String
+  # The list selector.
+  selector: ListSelector
+}
+
 type ListDeviceGroupDevicesRequest {
   # The unique identifier of the device group.
   groupId: String
@@ -1059,6 +1066,13 @@ type ListDeviceGroupDevicesRequest {
 type ListOfBulk {
   # The list of bulks.
   items: [Bulk]
+  # The total number of items.
+  totalCount: Int
+}
+
+type ListOfBulkJob {
+  # The list of jobs.
+  items: [BulkJob]
   # The total number of items.
   totalCount: Int
 }
@@ -1497,6 +1511,7 @@ type Query {
   getBulk: Bulk
   cancelBulk: Empty
   getBulkJob: BulkJob
+  listBulkJobs: ListOfBulkJob
   getConfig: SystemConfig
   setConfig: Empty
   createDeviceConfigurationRegister: StringValue

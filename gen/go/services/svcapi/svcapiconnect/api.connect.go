@@ -104,6 +104,8 @@ const (
 	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
 	// ApiServiceGetBulkJobProcedure is the fully-qualified name of the ApiService's GetBulkJob RPC.
 	ApiServiceGetBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	// ApiServiceListBulkJobsProcedure is the fully-qualified name of the ApiService's ListBulkJobs RPC.
+	ApiServiceListBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	// ApiServiceListDriversProcedure is the fully-qualified name of the ApiService's ListDrivers RPC.
 	ApiServiceListDriversProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	// ApiServiceGetDriverProcedure is the fully-qualified name of the ApiService's GetDriver RPC.
@@ -246,6 +248,9 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
+	// @group: Bulks
+	// Retrieves the list of jobs.
+	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -510,6 +515,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 			connect.WithClientOptions(opts...),
 		),
+		listBulkJobs: connect.NewClient[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob](
+			httpClient,
+			baseURL+ApiServiceListBulkJobsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
+			connect.WithClientOptions(opts...),
+		),
 		listDrivers: connect.NewClient[common.ListSelector, acquisition.ListOfDriver](
 			httpClient,
 			baseURL+ApiServiceListDriversProcedure,
@@ -718,6 +729,7 @@ type apiServiceClient struct {
 	getBulk                                                          *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
 	cancelBulk                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
+	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
 	listDrivers                                                      *connect.Client[common.ListSelector, acquisition.ListOfDriver]
 	getDriver                                                        *connect.Client[wrapperspb.StringValue, acquisition.Driver]
 	createCommunicationUnit                                          *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
@@ -875,6 +887,11 @@ func (c *apiServiceClient) CancelBulk(ctx context.Context, req *connect.Request[
 // GetBulkJob calls io.clbs.openhes.services.svcapi.ApiService.GetBulkJob.
 func (c *apiServiceClient) GetBulkJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error) {
 	return c.getBulkJob.CallUnary(ctx, req)
+}
+
+// ListBulkJobs calls io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs.
+func (c *apiServiceClient) ListBulkJobs(ctx context.Context, req *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
+	return c.listBulkJobs.CallUnary(ctx, req)
 }
 
 // ListDrivers calls io.clbs.openhes.services.svcapi.ApiService.ListDrivers.
@@ -1092,6 +1109,9 @@ type ApiServiceHandler interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
+	// @group: Bulks
+	// Retrieves the list of jobs.
+	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -1352,6 +1372,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceListBulkJobsHandler := connect.NewUnaryHandler(
+		ApiServiceListBulkJobsProcedure,
+		svc.ListBulkJobs,
+		connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceListDriversHandler := connect.NewUnaryHandler(
 		ApiServiceListDriversProcedure,
 		svc.ListDrivers,
@@ -1580,6 +1606,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceCancelBulkHandler.ServeHTTP(w, r)
 		case ApiServiceGetBulkJobProcedure:
 			apiServiceGetBulkJobHandler.ServeHTTP(w, r)
+		case ApiServiceListBulkJobsProcedure:
+			apiServiceListBulkJobsHandler.ServeHTTP(w, r)
 		case ApiServiceListDriversProcedure:
 			apiServiceListDriversHandler.ServeHTTP(w, r)
 		case ApiServiceGetDriverProcedure:
@@ -1739,6 +1767,10 @@ func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Reque
 
 func (UnimplementedApiServiceHandler) GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulkJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error) {

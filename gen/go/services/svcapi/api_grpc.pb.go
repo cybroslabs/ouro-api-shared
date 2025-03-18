@@ -47,6 +47,7 @@ const (
 	ApiService_GetBulk_FullMethodName                                                          = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
 	ApiService_CancelBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
 	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	ApiService_ListBulkJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	ApiService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	ApiService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
 	ApiService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
@@ -144,6 +145,9 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Retrieves the list of jobs.
+	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
@@ -491,6 +495,16 @@ func (c *apiServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.String
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.BulkJob)
 	err := c.cc.Invoke(ctx, ApiService_GetBulkJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfBulkJob)
+	err := c.cc.Invoke(ctx, ApiService_ListBulkJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -862,6 +876,9 @@ type ApiServiceServer interface {
 	// @group: Bulks
 	// Retrieves the job status.
 	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Retrieves the list of jobs.
+	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
@@ -1053,6 +1070,9 @@ func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.Str
 }
 func (UnimplementedApiServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
+}
+func (UnimplementedApiServiceServer) ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBulkJobs not implemented")
 }
 func (UnimplementedApiServiceServer) ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
@@ -1575,6 +1595,24 @@ func _ApiService_GetBulkJob_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).GetBulkJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.ListBulkJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListBulkJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListBulkJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListBulkJobs(ctx, req.(*acquisition.ListBulkJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2217,6 +2255,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulkJob",
 			Handler:    _ApiService_GetBulkJob_Handler,
+		},
+		{
+			MethodName: "ListBulkJobs",
+			Handler:    _ApiService_ListBulkJobs_Handler,
 		},
 		{
 			MethodName: "ListDrivers",

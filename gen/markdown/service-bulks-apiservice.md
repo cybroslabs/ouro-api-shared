@@ -65,3 +65,14 @@ GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisit
 - Input: google.protobuf.StringValue
 - Output: [io.clbs.openhes.models.acquisition.BulkJob](model-io-clbs-openhes-models-acquisition-bulkjob.md)
 
+## ListBulkJobs
+
+Retrieves the list of jobs.
+
+```proto
+ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob)
+```
+
+- Input: [io.clbs.openhes.models.acquisition.ListBulkJobsRequest](model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md)
+- Output: [io.clbs.openhes.models.acquisition.ListOfBulkJob](model-io-clbs-openhes-models-acquisition-listofbulkjob.md)
+
