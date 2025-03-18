@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| driverType | string | The device (driver) type. |
-| registerId | string | The list of device configuration register identifiers. |
+| Field | Information |
+| --- | --- |
+| driverType | <b>Type:</b> string<br><b>Description:</b><br>The device (driver) type. |
+| registerId | <b>Type:</b> string<br><b>Description:</b><br>The list of device configuration register identifiers. |
 

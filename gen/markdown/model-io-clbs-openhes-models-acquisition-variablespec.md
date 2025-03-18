@@ -2,7 +2,7 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| registerId | string | The list of device configuration register identifiers. |
+| Field | Information |
+| --- | --- |
+| registerId | <b>Type:</b> string<br><b>Description:</b><br>The list of device configuration register identifiers. |
 

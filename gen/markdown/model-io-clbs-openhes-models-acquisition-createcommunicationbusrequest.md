@@ -2,7 +2,7 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| metadata | [io.clbs.openhes.models.common.MetadataFields](model-io-clbs-openhes-models-common-metadatafields.md) | The metadata fields. |
+| Field | Information |
+| --- | --- |
+| metadata | <b>Type:</b> [io.clbs.openhes.models.common.MetadataFields](model-io-clbs-openhes-models-common-metadatafields.md)<br><b>Description:</b><br>The metadata fields. |
 

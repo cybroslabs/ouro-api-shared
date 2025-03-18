@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| items | [io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md) | The list of device configuration templates. |
-| totalCount | int32 | The total number of items. |
+| Field | Information |
+| --- | --- |
+| items | <b>Type:</b> [io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)<br><b>Description:</b><br>The list of device configuration templates. |
+| totalCount | <b>Type:</b> int32<br><b>Description:</b><br>The total number of items. |
 

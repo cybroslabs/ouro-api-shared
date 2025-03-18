@@ -4,7 +4,7 @@ Sub-message containing event records
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| values | [io.clbs.openhes.models.acquisition.EventRecord](model-io-clbs-openhes-models-acquisition-eventrecord.md) | The list of events. |
+| Field | Information |
+| --- | --- |
+| values | <b>Type:</b> [io.clbs.openhes.models.acquisition.EventRecord](model-io-clbs-openhes-models-acquisition-eventrecord.md)<br><b>Description:</b><br>The list of events. |
 

@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| unit | string | The unit of the profile values. |
-| values | [io.clbs.openhes.models.acquisition.IrregularValue](model-io-clbs-openhes-models-acquisition-irregularvalue.md) | The list of continuous profile blocks. |
+| Field | Information |
+| --- | --- |
+| unit | <b>Type:</b> string<br><b>Description:</b><br>The unit of the profile values. |
+| values | <b>Type:</b> [io.clbs.openhes.models.acquisition.IrregularValue](model-io-clbs-openhes-models-acquisition-irregularvalue.md)<br><b>Description:</b><br>The list of continuous profile blocks. |
 

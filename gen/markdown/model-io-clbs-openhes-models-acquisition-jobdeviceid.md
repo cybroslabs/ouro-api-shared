@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| jobId | string | The device's job identifier within the parent bulk. |
-| deviceId | string | The device identifier. |
+| Field | Information |
+| --- | --- |
+| jobId | <b>Type:</b> string<br><b>Description:</b><br>The device's job identifier within the parent bulk. |
+| deviceId | <b>Type:</b> string<br><b>Description:</b><br>The device identifier. |
 

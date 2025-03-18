@@ -4,11 +4,11 @@ The listing selector.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| pageSize | uint32 | The number of items per page. |
-| offset | uint32 | The offset of the first item to return, zero based. |
-| sortBy | [io.clbs.openhes.models.common.ListSelectorSortBy](model-io-clbs-openhes-models-common-listselectorsortby.md) | The sorting criteria. |
-| filterBy | [io.clbs.openhes.models.common.ListSelectorFilterBy](model-io-clbs-openhes-models-common-listselectorfilterby.md) | The filtering criteria. |
-| fields | string | FIXME: This needs to be designed properly.<br><br>The list of additional fields to be returned. |
+| Field | Information |
+| --- | --- |
+| pageSize | <b>Type:</b> uint32<br><b>Description:</b><br>The number of items per page. |
+| offset | <b>Type:</b> uint32<br><b>Description:</b><br>The offset of the first item to return, zero based. |
+| sortBy | <b>Type:</b> [io.clbs.openhes.models.common.ListSelectorSortBy](model-io-clbs-openhes-models-common-listselectorsortby.md)<br><b>Description:</b><br>The sorting criteria. |
+| filterBy | <b>Type:</b> [io.clbs.openhes.models.common.ListSelectorFilterBy](model-io-clbs-openhes-models-common-listselectorfilterby.md)<br><b>Description:</b><br>The filtering criteria. |
+| fields | <b>Type:</b> string<br><b>Description:</b><br>FIXME: This needs to be designed properly.<br><br>The list of additional fields to be returned. |
 

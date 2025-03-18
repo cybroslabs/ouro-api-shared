@@ -123,7 +123,7 @@ def generate(
                     # Generate message.fields as a table; look for longest values and align them to genarate a markdown table
                     # Keep in mind that the field.description may contain multiple lines separated by \n so handle them to keep the generated markdown table valid!
                     # ... it may need to prefix all lines and merge them fit into single cell - The key is to use HTML line breaks (<br>) within the cell content to create new lines.
-                    fh.write("| Field | Type | Description |\n| --- | --- | --- |\n")
+                    fh.write("| Field | Information |\n| --- | --- |\n")
                     for field in message.fields:
                         if field.description:
                             # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
@@ -135,7 +135,6 @@ def generate(
                         _, full_type_link = getLinkFromType(
                             field.full_type, clean_google_empty=False
                         )
-                        fh.write(
-                            f"| {field.name} | {full_type_link} | {field_description} |\n"
-                        )
+                        field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
+                        fh.write(f"| {field.name} | {field_description} |\n")
                     fh.write("\n")

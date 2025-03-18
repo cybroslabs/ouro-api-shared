@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| groupId | string | The unique identifier of the device group. |
-| deviceId | string | The unique identifier of the device. |
+| Field | Information |
+| --- | --- |
+| groupId | <b>Type:</b> string<br><b>Description:</b><br>The unique identifier of the device group. |
+| deviceId | <b>Type:</b> string<br><b>Description:</b><br>The unique identifier of the device. |
 

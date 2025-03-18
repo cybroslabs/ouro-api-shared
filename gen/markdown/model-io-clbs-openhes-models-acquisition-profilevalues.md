@@ -4,9 +4,9 @@ Sub-message containing profile-typed values
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| period | int32 | The period of the profile values. |
-| unit | string | The unit of the profile values. |
-| blocks | [io.clbs.openhes.models.acquisition.ProfileBlok](model-io-clbs-openhes-models-acquisition-profileblok.md) | The list of continuous profile blocks. |
+| Field | Information |
+| --- | --- |
+| period | <b>Type:</b> int32<br><b>Description:</b><br>The period of the profile values. |
+| unit | <b>Type:</b> string<br><b>Description:</b><br>The unit of the profile values. |
+| blocks | <b>Type:</b> [io.clbs.openhes.models.acquisition.ProfileBlok](model-io-clbs-openhes-models-acquisition-profileblok.md)<br><b>Description:</b><br>The list of continuous profile blocks. |
 

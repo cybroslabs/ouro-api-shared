@@ -2,7 +2,7 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| communicationUnitId | string | The list of communication unit identifiers. |
+| Field | Information |
+| --- | --- |
+| communicationUnitId | <b>Type:</b> string<br><b>Description:</b><br>The list of communication unit identifiers. |
 

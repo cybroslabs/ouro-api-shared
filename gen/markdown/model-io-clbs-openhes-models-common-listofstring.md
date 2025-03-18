@@ -4,8 +4,8 @@ The list of string items.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| items | string | Generic list of string items. |
-| totalCount | int32 | The total number of items. |
+| Field | Information |
+| --- | --- |
+| items | <b>Type:</b> string<br><b>Description:</b><br>Generic list of string items. |
+| totalCount | <b>Type:</b> int32<br><b>Description:</b><br>The total number of items. |
 

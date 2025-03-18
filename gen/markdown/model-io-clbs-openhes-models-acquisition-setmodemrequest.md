@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| poolId | string | The modem pool identifier, required for update operation. |
-| modem | [io.clbs.openhes.models.acquisition.ModemInfo](model-io-clbs-openhes-models-acquisition-modeminfo.md) | The modem specification. |
+| Field | Information |
+| --- | --- |
+| poolId | <b>Type:</b> string<br><b>Description:</b><br>The modem pool identifier, required for update operation. |
+| modem | <b>Type:</b> [io.clbs.openhes.models.acquisition.ModemInfo](model-io-clbs-openhes-models-acquisition-modeminfo.md)<br><b>Description:</b><br>The modem specification. |
 

@@ -4,8 +4,8 @@ The sorting criteria.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| fieldId | string | Field id. |
-| desc | bool | Set to true to sort in descending order. |
+| Field | Information |
+| --- | --- |
+| fieldId | <b>Type:</b> string<br><b>Description:</b><br>Field id. |
+| desc | <b>Type:</b> bool<br><b>Description:</b><br>Set to true to sort in descending order. |
 

@@ -2,7 +2,7 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| externalId | string | The external identifier of the communication unit. |
+| Field | Information |
+| --- | --- |
+| externalId | <b>Type:</b> string<br><b>Description:</b><br>The external identifier of the communication unit. |
 

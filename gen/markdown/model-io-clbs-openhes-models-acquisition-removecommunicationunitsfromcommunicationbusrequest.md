@@ -2,8 +2,8 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| communicationBusId | string | The unique identifier of the communication bus. |
-| communicationUnitId | string | The unique identifier of the communication unit. |
+| Field | Information |
+| --- | --- |
+| communicationBusId | <b>Type:</b> string<br><b>Description:</b><br>The unique identifier of the communication bus. |
+| communicationUnitId | <b>Type:</b> string<br><b>Description:</b><br>The unique identifier of the communication unit. |
 

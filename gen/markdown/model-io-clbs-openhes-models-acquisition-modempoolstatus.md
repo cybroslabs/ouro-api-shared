@@ -2,7 +2,7 @@
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| modems | [io.clbs.openhes.models.acquisition.ModemInfo](model-io-clbs-openhes-models-acquisition-modeminfo.md) | The list of modems in the pool. |
+| Field | Information |
+| --- | --- |
+| modems | <b>Type:</b> [io.clbs.openhes.models.acquisition.ModemInfo](model-io-clbs-openhes-models-acquisition-modeminfo.md)<br><b>Description:</b><br>The list of modems in the pool. |
 
