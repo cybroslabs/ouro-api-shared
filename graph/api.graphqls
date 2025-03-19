@@ -167,6 +167,8 @@ enum RegisterType {
   PeriodicalProfile
   # The register is part of an irregular profile.
   IrregularProfile
+  # Synthetic register, not visible by drivers. It can be defined to store derived or external data.
+  Synthetic
 }
 
 # Enum representing the field data type.

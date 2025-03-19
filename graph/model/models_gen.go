@@ -1396,17 +1396,19 @@ const (
 	RegisterTypeRegister          RegisterType = "Register"
 	RegisterTypePeriodicalProfile RegisterType = "PeriodicalProfile"
 	RegisterTypeIrregularProfile  RegisterType = "IrregularProfile"
+	RegisterTypeSynthetic         RegisterType = "Synthetic"
 )
 
 var AllRegisterType = []RegisterType{
 	RegisterTypeRegister,
 	RegisterTypePeriodicalProfile,
 	RegisterTypeIrregularProfile,
+	RegisterTypeSynthetic,
 }
 
 func (e RegisterType) IsValid() bool {
 	switch e {
-	case RegisterTypeRegister, RegisterTypePeriodicalProfile, RegisterTypeIrregularProfile:
+	case RegisterTypeRegister, RegisterTypePeriodicalProfile, RegisterTypeIrregularProfile, RegisterTypeSynthetic:
 		return true
 	}
 	return false

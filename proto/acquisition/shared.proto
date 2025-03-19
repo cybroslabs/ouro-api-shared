@@ -672,6 +672,8 @@ enum RegisterType {
     PeriodicalProfile = 1;
     // The register is part of an irregular profile.
     IrregularProfile = 2;
+    // Synthetic register, not visible by drivers. It can be defined to store derived or external data.
+    Synthetic = 99;
 }
 
 message DeviceConfigurationRegisterSpec {
