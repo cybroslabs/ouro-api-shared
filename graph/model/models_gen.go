@@ -1342,17 +1342,19 @@ func (e JobPriority) MarshalGQL(w io.Writer) {
 type JobStatusCode string
 
 const (
-	JobStatusCodeJobStatusQueued    JobStatusCode = "JOB_STATUS_QUEUED"
-	JobStatusCodeJobStatusRunning   JobStatusCode = "JOB_STATUS_RUNNING"
-	JobStatusCodeJobStatusCompleted JobStatusCode = "JOB_STATUS_COMPLETED"
-	JobStatusCodeJobStatusFailed    JobStatusCode = "JOB_STATUS_FAILED"
-	JobStatusCodeJobStatusCancelled JobStatusCode = "JOB_STATUS_CANCELLED"
-	JobStatusCodeJobStatusExpired   JobStatusCode = "JOB_STATUS_EXPIRED"
+	JobStatusCodeJobStatusQueued         JobStatusCode = "JOB_STATUS_QUEUED"
+	JobStatusCodeJobStatusRunning        JobStatusCode = "JOB_STATUS_RUNNING"
+	JobStatusCodeJobStatusProcessingData JobStatusCode = "JOB_STATUS_PROCESSING_DATA"
+	JobStatusCodeJobStatusCompleted      JobStatusCode = "JOB_STATUS_COMPLETED"
+	JobStatusCodeJobStatusFailed         JobStatusCode = "JOB_STATUS_FAILED"
+	JobStatusCodeJobStatusCancelled      JobStatusCode = "JOB_STATUS_CANCELLED"
+	JobStatusCodeJobStatusExpired        JobStatusCode = "JOB_STATUS_EXPIRED"
 )
 
 var AllJobStatusCode = []JobStatusCode{
 	JobStatusCodeJobStatusQueued,
 	JobStatusCodeJobStatusRunning,
+	JobStatusCodeJobStatusProcessingData,
 	JobStatusCodeJobStatusCompleted,
 	JobStatusCodeJobStatusFailed,
 	JobStatusCodeJobStatusCancelled,
@@ -1361,7 +1363,7 @@ var AllJobStatusCode = []JobStatusCode{
 
 func (e JobStatusCode) IsValid() bool {
 	switch e {
-	case JobStatusCodeJobStatusQueued, JobStatusCodeJobStatusRunning, JobStatusCodeJobStatusCompleted, JobStatusCodeJobStatusFailed, JobStatusCodeJobStatusCancelled, JobStatusCodeJobStatusExpired:
+	case JobStatusCodeJobStatusQueued, JobStatusCodeJobStatusRunning, JobStatusCodeJobStatusProcessingData, JobStatusCodeJobStatusCompleted, JobStatusCodeJobStatusFailed, JobStatusCodeJobStatusCancelled, JobStatusCodeJobStatusExpired:
 		return true
 	}
 	return false

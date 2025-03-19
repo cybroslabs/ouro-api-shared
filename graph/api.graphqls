@@ -148,6 +148,8 @@ enum JobStatusCode {
   JOB_STATUS_QUEUED
   # The job is running
   JOB_STATUS_RUNNING
+  # The data has been fully acquired and is being processed
+  JOB_STATUS_PROCESSING_DATA
   # The job is completed
   JOB_STATUS_COMPLETED
   # The job is failed

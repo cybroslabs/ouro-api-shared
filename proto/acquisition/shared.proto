@@ -715,14 +715,16 @@ enum JobStatusCode {
     JOB_STATUS_QUEUED = 0;
     // The job is running
     JOB_STATUS_RUNNING = 1;
+    // The data has been fully acquired and is being processed
+    JOB_STATUS_PROCESSING_DATA = 2;
     // The job is completed
-    JOB_STATUS_COMPLETED = 2;
+    JOB_STATUS_COMPLETED = 3;
     // The job is failed
-    JOB_STATUS_FAILED = 3;
+    JOB_STATUS_FAILED = 4;
     // The job is cancelled
-    JOB_STATUS_CANCELLED = 4;
+    JOB_STATUS_CANCELLED = 5;
     // The job has expired
-    JOB_STATUS_EXPIRED = 5;
+    JOB_STATUS_EXPIRED = 6;
 }
 
 // Sub-message containing action result for a single action.
