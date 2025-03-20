@@ -56,15 +56,21 @@ func validateDisplayFormat(dataType FieldDataType, format *FieldDisplayFormat) F
 	panic("displayFormat is not supported")
 }
 
+// WithTooltip sets the field's tooltip.
 func (fd *FieldDescriptor) WithTooltip(tooltip string) *FieldDescriptor {
 	fd.SetTooltip(tooltip)
 	return fd
 }
 
-func (fd *FieldDescriptor) WithDouble(precision *uint, unit string, displayFormat *FieldDisplayFormat) *FieldDescriptor {
+// WithDouble sets the field to a double type with the given precision and unit.
+// The precision is the number of decimal places, if it's less than -15, it's ignored.
+// The unit is the unit of the value, it can be empty.
+// The displayFormat is the format of the value, it can be nil.
+// If the displayFormat is MONEY, the unit must be a valid ISO 4217 currency code.
+func (fd *FieldDescriptor) WithDouble(precision int32, unit string, displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_DOUBLE)
-	if precision != nil {
-		fd.SetPrecision(int32(*precision))
+	if precision > -15 {
+		fd.SetPrecision(precision)
 	} else {
 		fd.ClearPrecision()
 	}
