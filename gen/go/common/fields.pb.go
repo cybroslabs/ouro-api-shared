@@ -166,8 +166,8 @@ const (
 	FieldDisplayFormat_DATE      FieldDisplayFormat = 3 // The date display format with local timezone. Data type must be TIMESTAMP or string.
 	FieldDisplayFormat_UTC_DATE  FieldDisplayFormat = 4 // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
 	FieldDisplayFormat_TIMEOFDAY FieldDisplayFormat = 5 // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-	FieldDisplayFormat_MONEY     FieldDisplayFormat = 6 // The money display format. The unit shall be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-	FieldDisplayFormat_PASSWORD  FieldDisplayFormat = 7 // The password display format, e.g., ********. Data type must be TEXT.
+	FieldDisplayFormat_MONEY     FieldDisplayFormat = 6 // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+	FieldDisplayFormat_PASSWORD  FieldDisplayFormat = 7 // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
 	FieldDisplayFormat_MULTILINE FieldDisplayFormat = 8 // The multiline-string display format. Data type must be TEXT.
 )
 

@@ -201,9 +201,9 @@ enum FieldDisplayFormat {
   UTC_DATE
   # The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
   TIMEOFDAY
-  # The money display format. The unit shall be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+  # The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
   MONEY
-  # The password display format, e.g., ********. Data type must be TEXT.
+  # The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
   PASSWORD
   # The multiline-string display format. Data type must be TEXT.
   MULTILINE

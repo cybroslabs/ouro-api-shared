@@ -680,14 +680,14 @@ export enum FieldDisplayFormat {
   TIMEOFDAY = 5,
 
   /**
-   * The money display format. The unit shall be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+   * The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
    *
    * @generated from enum value: MONEY = 6;
    */
   MONEY = 6,
 
   /**
-   * The password display format, e.g., ********. Data type must be TEXT.
+   * The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
    *
    * @generated from enum value: PASSWORD = 7;
    */
