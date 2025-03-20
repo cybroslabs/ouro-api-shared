@@ -193,8 +193,6 @@ enum FieldDisplayFormat {
   DEFAULT
   # The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
   DURATION
-  # The interval display format. Data type must be TIMESTAMP with multiple values (2).
-  INTERVAL
   # The date display format with local timezone. Data type must be TIMESTAMP or string.
   DATE
   # The date display format with in UTC timezone. Data type must be TIMESTAMP or string.

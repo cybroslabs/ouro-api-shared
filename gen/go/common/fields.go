@@ -38,7 +38,7 @@ var validFormats = map[FieldDataType][]FieldDisplayFormat{
 	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD},
 	FieldDataType_INTEGER:   {FieldDisplayFormat_DURATION, FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
 	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
-	FieldDataType_TIMESTAMP: {FieldDisplayFormat_INTERVAL, FieldDisplayFormat_DATE, FieldDisplayFormat_UTC_DATE},
+	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE, FieldDisplayFormat_UTC_DATE},
 	FieldDataType_BOOLEAN:   {FieldDisplayFormat_DEFAULT},
 }
 
@@ -128,15 +128,6 @@ func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
 	fd.ClearPrecision()
 	fd.ClearUnit()
 	fd.SetFormat(FieldDisplayFormat_DEFAULT)
-	return fd
-}
-
-func (fd *FieldDescriptor) WithInterval() *FieldDescriptor {
-	fd.SetDataType(FieldDataType_TIMESTAMP)
-	fd.ClearPrecision()
-	fd.ClearUnit()
-	fd.SetFormat(FieldDisplayFormat_INTERVAL)
-	fd.SetMultiValue(true)
 	return fd
 }
 
