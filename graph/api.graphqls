@@ -506,10 +506,17 @@ type Bulk {
 }
 
 type BulkJob {
+  # The job spec.
+  spec: BulkJobSpec
   # The job status.
   status: JobStatus
   # The metadata fields.
   metadata: MetadataFields
+}
+
+type BulkJobSpec {
+  # The device info.
+  device: JobDevice
 }
 
 type BulkSpec {

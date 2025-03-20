@@ -123,8 +123,13 @@ type Bulk struct {
 }
 
 type BulkJob struct {
+	Spec     *BulkJobSpec    `json:"spec,omitempty"`
 	Status   *JobStatus      `json:"status,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type BulkJobSpec struct {
+	Device *JobDevice `json:"device,omitempty"`
 }
 
 type BulkSpec struct {

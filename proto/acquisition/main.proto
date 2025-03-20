@@ -170,9 +170,13 @@ message BulkStatus {
 }
 
 message BulkJob {
-    reserved 1;                          // reserved for spec
+    BulkJobSpec spec               = 1;  // The job spec.
     JobStatus status               = 2;  // The job status.
     common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message BulkJobSpec {
+    JobDevice device = 1;  // The device info.
 }
 
 message ListBulkJobsRequest {
