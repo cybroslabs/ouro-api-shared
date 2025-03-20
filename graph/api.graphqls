@@ -191,25 +191,21 @@ enum FieldDataType {
 enum FieldDisplayFormat {
   # The default display format.
   DEFAULT
-  # The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
+  # The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
   DURATION
-  # The interval display format.
+  # The interval display format. Data type must be TIMESTAMP with multiple values (2).
   INTERVAL
-  # The date display format with local timezone. Data type must be timestamp or string.
+  # The date display format with local timezone. Data type must be TIMESTAMP or string.
   DATE
-  # The date display format with in UTC timezone. Data type must be timestamp or string.
+  # The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
   UTC_DATE
-  # The month display format.
-  MONTH
-  # The day of week display format.
-  DAYOFWEEK
-  # The time of day display format.
+  # The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
   TIMEOFDAY
-  # The money display format.
+  # The money display format. The unit shall be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
   MONEY
-  # The password display format, e.g., ********.
+  # The password display format, e.g., ********. Data type must be TEXT.
   PASSWORD
-  # The multiline-string display format.
+  # The multiline-string display format. Data type must be TEXT.
   MULTILINE
 }
 

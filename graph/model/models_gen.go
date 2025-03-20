@@ -1124,8 +1124,6 @@ const (
 	FieldDisplayFormatInterval  FieldDisplayFormat = "INTERVAL"
 	FieldDisplayFormatDate      FieldDisplayFormat = "DATE"
 	FieldDisplayFormatUtcDate   FieldDisplayFormat = "UTC_DATE"
-	FieldDisplayFormatMonth     FieldDisplayFormat = "MONTH"
-	FieldDisplayFormatDayofweek FieldDisplayFormat = "DAYOFWEEK"
 	FieldDisplayFormatTimeofday FieldDisplayFormat = "TIMEOFDAY"
 	FieldDisplayFormatMoney     FieldDisplayFormat = "MONEY"
 	FieldDisplayFormatPassword  FieldDisplayFormat = "PASSWORD"
@@ -1138,8 +1136,6 @@ var AllFieldDisplayFormat = []FieldDisplayFormat{
 	FieldDisplayFormatInterval,
 	FieldDisplayFormatDate,
 	FieldDisplayFormatUtcDate,
-	FieldDisplayFormatMonth,
-	FieldDisplayFormatDayofweek,
 	FieldDisplayFormatTimeofday,
 	FieldDisplayFormatMoney,
 	FieldDisplayFormatPassword,
@@ -1148,7 +1144,7 @@ var AllFieldDisplayFormat = []FieldDisplayFormat{
 
 func (e FieldDisplayFormat) IsValid() bool {
 	switch e {
-	case FieldDisplayFormatDefault, FieldDisplayFormatDuration, FieldDisplayFormatInterval, FieldDisplayFormatDate, FieldDisplayFormatUtcDate, FieldDisplayFormatMonth, FieldDisplayFormatDayofweek, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
+	case FieldDisplayFormatDefault, FieldDisplayFormatDuration, FieldDisplayFormatInterval, FieldDisplayFormatDate, FieldDisplayFormatUtcDate, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
 		return true
 	}
 	return false

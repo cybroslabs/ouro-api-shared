@@ -12,6 +12,7 @@ require (
 	github.com/99designs/gqlgen v0.17.66
 	github.com/cerbos/cerbos-sdk-go v0.2.13
 	github.com/google/uuid v1.6.0
+	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.22
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.36.5

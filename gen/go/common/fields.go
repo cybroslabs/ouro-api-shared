@@ -1,8 +1,12 @@
 package common
 
 import (
+	"fmt"
+	"slices"
 	"strconv"
 	"strings"
+
+	"github.com/rmg/iso4217"
 )
 
 func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
@@ -30,6 +34,28 @@ func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId str
 	return fd
 }
 
+var validFormats = map[FieldDataType][]FieldDisplayFormat{
+	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD},
+	FieldDataType_INTEGER:   {FieldDisplayFormat_DURATION, FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
+	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
+	FieldDataType_TIMESTAMP: {FieldDisplayFormat_INTERVAL, FieldDisplayFormat_DATE, FieldDisplayFormat_UTC_DATE},
+	FieldDataType_BOOLEAN:   {FieldDisplayFormat_DEFAULT},
+}
+
+func validateDisplayFormat(dataType FieldDataType, format *FieldDisplayFormat) FieldDisplayFormat {
+	if format == nil || *format == FieldDisplayFormat_DEFAULT {
+		return FieldDisplayFormat_DEFAULT
+	}
+	allowed, ok := validFormats[dataType]
+	if !ok {
+		return FieldDisplayFormat_DEFAULT
+	}
+	if slices.Contains(allowed, *format) {
+		return *format
+	}
+	panic("displayFormat is not supported")
+}
+
 func (fd *FieldDescriptor) WithTooltip(tooltip string) *FieldDescriptor {
 	fd.SetTooltip(tooltip)
 	return fd
@@ -47,18 +73,13 @@ func (fd *FieldDescriptor) WithDouble(precision *uint, unit string, displayForma
 	} else {
 		fd.ClearUnit()
 	}
-	if displayFormat != nil {
-		switch *displayFormat {
-		case FieldDisplayFormat_DEFAULT:
-		case FieldDisplayFormat_DURATION:
-		case FieldDisplayFormat_INTERVAL:
-		default:
-			panic("displayFormat is not supported for double")
+	fmt := validateDisplayFormat(fd.GetDataType(), displayFormat)
+	if fmt == FieldDisplayFormat_MONEY {
+		if code, _ := iso4217.ByName(unit); code == 0 {
+			panic("unit is not a valid ISO 4217 currency code")
 		}
-		fd.SetFormat(*displayFormat)
-	} else {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
 	}
+	fd.SetFormat(fmt)
 	return fd
 }
 
@@ -70,19 +91,13 @@ func (fd *FieldDescriptor) WithInteger(unit string, displayFormat *FieldDisplayF
 	} else {
 		fd.ClearUnit()
 	}
-	if displayFormat != nil {
-		switch *displayFormat {
-		case FieldDisplayFormat_DEFAULT:
-		case FieldDisplayFormat_DURATION:
-		case FieldDisplayFormat_INTERVAL:
-		case FieldDisplayFormat_MONTH:
-		default:
-			panic("displayFormat is not supported for double")
+	fmt := validateDisplayFormat(fd.GetDataType(), displayFormat)
+	if fmt == FieldDisplayFormat_MONEY {
+		if code, _ := iso4217.ByName(unit); code == 0 {
+			panic("unit is not a valid ISO 4217 currency code")
 		}
-		fd.SetFormat(*displayFormat)
-	} else {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
 	}
+	fd.SetFormat(fmt)
 	return fd
 }
 
@@ -90,20 +105,7 @@ func (fd *FieldDescriptor) WithTimestamp(displayFormat *FieldDisplayFormat) *Fie
 	fd.SetDataType(FieldDataType_TIMESTAMP)
 	fd.ClearPrecision()
 	fd.ClearUnit()
-	if displayFormat != nil {
-		switch *displayFormat {
-		case FieldDisplayFormat_DEFAULT:
-		case FieldDisplayFormat_DATE:
-		case FieldDisplayFormat_UTC_DATE:
-		case FieldDisplayFormat_DAYOFWEEK:
-		case FieldDisplayFormat_TIMEOFDAY:
-		default:
-			panic("displayFormat is not supported for double")
-		}
-		fd.SetFormat(*displayFormat)
-	} else {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
-	}
+	fd.SetFormat(validateDisplayFormat(fd.GetDataType(), displayFormat))
 	return fd
 }
 
@@ -111,21 +113,15 @@ func (fd *FieldDescriptor) WithString(displayFormat *FieldDisplayFormat) *FieldD
 	fd.SetDataType(FieldDataType_TEXT)
 	fd.ClearPrecision()
 	fd.ClearUnit()
-	if displayFormat != nil {
-		switch *displayFormat {
-		case FieldDisplayFormat_DEFAULT:
-		case FieldDisplayFormat_MULTILINE:
-		case FieldDisplayFormat_DATE:
-		case FieldDisplayFormat_UTC_DATE:
-		case FieldDisplayFormat_TIMEOFDAY:
-		case FieldDisplayFormat_PASSWORD:
-		default:
-			panic("displayFormat is not supported for double")
-		}
-		fd.SetFormat(*displayFormat)
-	} else {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
-	}
+	fd.SetFormat(validateDisplayFormat(fd.GetDataType(), displayFormat))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
+	fd.SetDataType(FieldDataType_BOOLEAN)
+	fd.ClearPrecision()
+	fd.ClearUnit()
+	fd.SetFormat(FieldDisplayFormat_DEFAULT)
 	return fd
 }
 
@@ -138,95 +134,94 @@ func (fd *FieldDescriptor) WithInterval() *FieldDescriptor {
 	return fd
 }
 
+func (fd *FieldDescriptor) ensureValidation() *FieldValidation {
+	v := fd.GetValidation()
+	if v != nil {
+		return v
+	}
+	v = FieldValidation_builder{}.Build()
+	fd.SetValidation(v)
+	return v
+}
+
 func (fd *FieldDescriptor) WithRe(re string) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
-	}
 	if len(re) == 0 {
-		v.ClearRe()
+		fd.ensureValidation().ClearRe()
 	} else {
-		v.SetRe(re)
+		fd.ensureValidation().SetRe(re)
 	}
 	return fd
 }
 
-func (fd *FieldDescriptor) WithMinInteger(min int) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
+func (fd *FieldDescriptor) WithMin(min int) *FieldDescriptor {
+	if fd.GetDataType() == FieldDataType_INTEGER {
+		fd.ensureValidation().SetMinInteger(int64(min))
+	} else if fd.GetDataType() == FieldDataType_DOUBLE {
+		fd.ensureValidation().SetMinNumber(float64(min))
+	} else {
+		panic("FieldDataType is not INTEGER or DOUBLE")
 	}
-	v.SetMinInteger(int64(min))
 	return fd
 }
 
-func (fd *FieldDescriptor) WithMaxInteger(max int) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
+func (fd *FieldDescriptor) WithMax(max int) *FieldDescriptor {
+	if fd.GetDataType() == FieldDataType_INTEGER {
+		fd.ensureValidation().SetMaxInteger(int64(max))
+	} else if fd.GetDataType() == FieldDataType_DOUBLE {
+		fd.ensureValidation().SetMaxNumber(float64(max))
+	} else {
+		panic("FieldDataType is not INTEGER or DOUBLE")
 	}
-	v.SetMaxInteger(int64(max))
 	return fd
 }
 
-func (fd *FieldDescriptor) WithMinNumber(min int) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
+func (fd *FieldDescriptor) WithMinNumber(min float64) *FieldDescriptor {
+	if fd.GetDataType() != FieldDataType_DOUBLE {
+		panic("FieldDataType is not DOUBLE")
 	}
-	v.SetMinNumber(float64(min))
+	fd.ensureValidation().SetMinNumber(min)
 	return fd
 }
 
-func (fd *FieldDescriptor) WithMaxNumber(max int) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
+func (fd *FieldDescriptor) WithMaxNumber(max float64) *FieldDescriptor {
+	if fd.GetDataType() != FieldDataType_DOUBLE {
+		panic("FieldDataType is not DOUBLE")
 	}
-	v.SetMaxNumber(float64(max))
+	fd.ensureValidation().SetMaxNumber(max)
 	return fd
 }
 
 func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
-	}
 	if maxLength == 0 {
-		v.ClearMaxLength()
+		fd.ensureValidation().ClearMaxLength()
 	} else {
-		v.SetMaxLength(int32(maxLength))
+		fd.ensureValidation().SetMaxLength(int32(maxLength))
 	}
 	return fd
 }
 
 func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
+	if fd.GetDataType() != FieldDataType_INTEGER && fd.GetDataType() != FieldDataType_TEXT {
+		panic("Options are only supported for INTEGER or TEXT fields")
 	}
-	v.SetOptions(options)
+	if fd.GetDataType() != FieldDataType_INTEGER {
+		// Validate indexes
+		for k := range options {
+			if _, err := strconv.Atoi(k); err != nil {
+				panic("Options keys must be string-integers when FieldDataType is INTEGER")
+			}
+		}
+	}
+	fd.ensureValidation().SetOptions(options)
 	return fd
 }
 
 func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_INTEGER)
-	v := fd.GetValidation()
-	if v == nil {
-		v = FieldValidation_builder{}.Build()
-		fd.SetValidation(v)
-	}
 	tmp := make(map[string]string, len(options))
 	for k, v := range options {
-		tmp[strconv.Itoa(int(k))] = v
+		tmp[fmt.Sprintf("%d", k)] = v
 	}
-	v.SetOptions(tmp)
+	fd.ensureValidation().SetOptions(tmp)
 	return fd
 }

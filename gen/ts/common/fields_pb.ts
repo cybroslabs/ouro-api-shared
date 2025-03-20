@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASK9AQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSABCBgoEa2luZCJrChVMaXN0T2ZGaWVsZERlc2NyaXB0b3ISPQoFaXRlbXMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3ISEwoLdG90YWxfY291bnQYAiABKAUq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKloKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhILCgdCT09MRUFOEAMSDQoJVElNRVNUQU1QEAQSCgoGQklOQVJZEAUqpgEKEkZpZWxkRGlzcGxheUZvcm1hdBILCgdERUZBVUxUEAASDAoIRFVSQVRJT04QARIMCghJTlRFUlZBTBACEggKBERBVEUQAxIMCghVVENfREFURRAEEgkKBU1PTlRIEAUSDQoJREFZT0ZXRUVLEAYSDQoJVElNRU9GREFZEAcSCQoFTU9ORVkQCBIMCghQQVNTV09SRBAJEg0KCU1VTFRJTElORRAKQjBaLmdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_google_protobuf_timestamp]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASK9AQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSABCBgoEa2luZCJrChVMaXN0T2ZGaWVsZERlc2NyaXB0b3ISPQoFaXRlbXMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3ISEwoLdG90YWxfY291bnQYAiABKAUq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKloKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhILCgdCT09MRUFOEAMSDQoJVElNRVNUQU1QEAQSCgoGQklOQVJZEAUqjAEKEkZpZWxkRGlzcGxheUZvcm1hdBILCgdERUZBVUxUEAASDAoIRFVSQVRJT04QARIMCghJTlRFUlZBTBACEggKBERBVEUQAxIMCghVVENfREFURRAEEg0KCVRJTUVPRkRBWRAFEgkKBU1PTkVZEAYSDAoIUEFTU1dPUkQQBxINCglNVUxUSUxJTkUQCEIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp]);
 
 /**
  * The listing selector.
@@ -645,74 +645,60 @@ export enum FieldDisplayFormat {
   DEFAULT = 0,
 
   /**
-   * The duration display format, e.g., 1h 30m. Data type must be integer or number; unit must be milliseconds.
+   * The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
    *
    * @generated from enum value: DURATION = 1;
    */
   DURATION = 1,
 
   /**
-   * The interval display format.
+   * The interval display format. Data type must be TIMESTAMP with multiple values (2).
    *
    * @generated from enum value: INTERVAL = 2;
    */
   INTERVAL = 2,
 
   /**
-   * The date display format with local timezone. Data type must be timestamp or string.
+   * The date display format with local timezone. Data type must be TIMESTAMP or string.
    *
    * @generated from enum value: DATE = 3;
    */
   DATE = 3,
 
   /**
-   * The date display format with in UTC timezone. Data type must be timestamp or string.
+   * The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
    *
    * @generated from enum value: UTC_DATE = 4;
    */
   UTC_DATE = 4,
 
   /**
-   * The month display format.
+   * The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
    *
-   * @generated from enum value: MONTH = 5;
+   * @generated from enum value: TIMEOFDAY = 5;
    */
-  MONTH = 5,
+  TIMEOFDAY = 5,
 
   /**
-   * The day of week display format.
+   * The money display format. The unit shall be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
    *
-   * @generated from enum value: DAYOFWEEK = 6;
+   * @generated from enum value: MONEY = 6;
    */
-  DAYOFWEEK = 6,
+  MONEY = 6,
 
   /**
-   * The time of day display format.
+   * The password display format, e.g., ********. Data type must be TEXT.
    *
-   * @generated from enum value: TIMEOFDAY = 7;
+   * @generated from enum value: PASSWORD = 7;
    */
-  TIMEOFDAY = 7,
+  PASSWORD = 7,
 
   /**
-   * The money display format.
+   * The multiline-string display format. Data type must be TEXT.
    *
-   * @generated from enum value: MONEY = 8;
+   * @generated from enum value: MULTILINE = 8;
    */
-  MONEY = 8,
-
-  /**
-   * The password display format, e.g., ********.
-   *
-   * @generated from enum value: PASSWORD = 9;
-   */
-  PASSWORD = 9,
-
-  /**
-   * The multiline-string display format.
-   *
-   * @generated from enum value: MULTILINE = 10;
-   */
-  MULTILINE = 10,
+  MULTILINE = 8,
 }
 
 /**
