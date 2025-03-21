@@ -179,24 +179,26 @@ enum FieldDataType {
   INTEGER
   # The double data type.
   DOUBLE
-  # The boolean data type.
-  BOOLEAN
-  # The timestamp data type.
-  TIMESTAMP
   # The binary data type.
   BINARY
+  # The boolean data type.
+  BOOLEAN
+  # The timestamp data type, represented by google.protobuf.Timestamp.
+  TIMESTAMP
+  # The duration data type, represented by google.protobuf.Duration.
+  DURATION
 }
 
 # Enum representing the field display format.
 enum FieldDisplayFormat {
-  # The default display format.
+  # The default display format. The GUI shows text, int, double, date-time or duration in the default format.
   DEFAULT
-  # The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
-  DURATION
-  # The date display format with local timezone. Data type must be TIMESTAMP or string.
-  DATE
+  # The date-only display format of local date-time. Data type must be TIMESTAMP or string.
+  DATE_ONLY
+  # The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
+  UTC_DATETIME
   # The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-  UTC_DATE
+  UTC_DATE_ONLY
   # The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
   TIMEOFDAY
   # The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
@@ -1386,6 +1388,8 @@ type FieldValue {
   boolValue: Boolean
   # Represents a date-typed value.
   dateValue: Timestamp
+  # Represents a duration-typed value.
+  durationValue: Duration
 }
 
 type ListOfFieldDescriptor {

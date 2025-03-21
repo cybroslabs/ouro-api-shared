@@ -4,15 +4,15 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { Duration, Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASK9AQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSABCBgoEa2luZCJrChVMaXN0T2ZGaWVsZERlc2NyaXB0b3ISPQoFaXRlbXMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3ISEwoLdG90YWxfY291bnQYAiABKAUq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKloKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhILCgdCT09MRUFOEAMSDQoJVElNRVNUQU1QEAQSCgoGQklOQVJZEAUqfgoSRmllbGREaXNwbGF5Rm9ybWF0EgsKB0RFRkFVTFQQABIMCghEVVJBVElPThABEggKBERBVEUQAhIMCghVVENfREFURRADEg0KCVRJTUVPRkRBWRAEEgkKBU1PTkVZEAUSDAoIUEFTU1dPUkQQBhINCglNVUxUSUxJTkUQB0IwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLyAQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAASMwoOZHVyYXRpb25fdmFsdWUYByABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IAEIGCgRraW5kImsKFUxpc3RPZkZpZWxkRGVzY3JpcHRvchI9CgVpdGVtcxgBIAMoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvchITCgt0b3RhbF9jb3VudBgCIAEoBSr9AQoORmlsdGVyT3BlcmF0b3ISCQoFRVFVQUwQABINCglOT1RfRVFVQUwQARIQCgxHUkVBVEVSX1RIQU4QAhIZChVHUkVBVEVSX1RIQU5fT1JfRVFVQUwQAxINCglMRVNTX1RIQU4QBBIWChJMRVNTX1RIQU5fT1JfRVFVQUwQBRIMCghDT05UQUlOUxAGEhAKDE5PVF9DT05UQUlOUxAHEg8KC1NUQVJUU19XSVRIEAgSDQoJRU5EU19XSVRIEAkSBgoCSU4QChIKCgZOT1RfSU4QCxILCgdCRVRXRUVOEAwSCwoHSVNfTlVMTBANEg8KC0lTX05PVF9OVUxMEA4qaAoNRmllbGREYXRhVHlwZRIICgRURVhUEAASCwoHSU5URUdFUhABEgoKBkRPVUJMRRACEgoKBkJJTkFSWRADEgsKB0JPT0xFQU4QBBINCglUSU1FU1RBTVAQBRIMCghEVVJBVElPThAGKowBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEg0KCURBVEVfT05MWRABEhAKDFVUQ19EQVRFVElNRRACEhEKDVVUQ19EQVRFX09OTFkQAxINCglUSU1FT0ZEQVkQBBIJCgVNT05FWRAFEgwKCFBBU1NXT1JEEAYSDQoJTVVMVElMSU5FEAdCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_timestamp, file_google_protobuf_duration]);
 
 /**
  * The listing selector.
@@ -422,6 +422,14 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
      */
     value: Timestamp;
     case: "dateValue";
+  } | {
+    /**
+     * Represents a duration-typed value.
+     *
+     * @generated from field: google.protobuf.Duration duration_value = 7;
+     */
+    value: Duration;
+    case: "durationValue";
   } | { case: undefined; value?: undefined };
 };
 
@@ -604,25 +612,32 @@ export enum FieldDataType {
   DOUBLE = 2,
 
   /**
-   * The boolean data type.
-   *
-   * @generated from enum value: BOOLEAN = 3;
-   */
-  BOOLEAN = 3,
-
-  /**
-   * The timestamp data type.
-   *
-   * @generated from enum value: TIMESTAMP = 4;
-   */
-  TIMESTAMP = 4,
-
-  /**
    * The binary data type.
    *
-   * @generated from enum value: BINARY = 5;
+   * @generated from enum value: BINARY = 3;
    */
-  BINARY = 5,
+  BINARY = 3,
+
+  /**
+   * The boolean data type.
+   *
+   * @generated from enum value: BOOLEAN = 4;
+   */
+  BOOLEAN = 4,
+
+  /**
+   * The timestamp data type, represented by google.protobuf.Timestamp.
+   *
+   * @generated from enum value: TIMESTAMP = 5;
+   */
+  TIMESTAMP = 5,
+
+  /**
+   * The duration data type, represented by google.protobuf.Duration.
+   *
+   * @generated from enum value: DURATION = 6;
+   */
+  DURATION = 6,
 }
 
 /**
@@ -638,32 +653,32 @@ export const FieldDataTypeSchema: GenEnum<FieldDataType> = /*@__PURE__*/
  */
 export enum FieldDisplayFormat {
   /**
-   * The default display format.
+   * The default display format. The GUI shows text, int, double, date-time or duration in the default format.
    *
    * @generated from enum value: DEFAULT = 0;
    */
   DEFAULT = 0,
 
   /**
-   * The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
+   * The date-only display format of local date-time. Data type must be TIMESTAMP or string.
    *
-   * @generated from enum value: DURATION = 1;
+   * @generated from enum value: DATE_ONLY = 1;
    */
-  DURATION = 1,
+  DATE_ONLY = 1,
 
   /**
-   * The date display format with local timezone. Data type must be TIMESTAMP or string.
+   * The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
    *
-   * @generated from enum value: DATE = 2;
+   * @generated from enum value: UTC_DATETIME = 2;
    */
-  DATE = 2,
+  UTC_DATETIME = 2,
 
   /**
    * The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
    *
-   * @generated from enum value: UTC_DATE = 3;
+   * @generated from enum value: UTC_DATE_ONLY = 3;
    */
-  UTC_DATE = 3,
+  UTC_DATE_ONLY = 3,
 
   /**
    * The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.

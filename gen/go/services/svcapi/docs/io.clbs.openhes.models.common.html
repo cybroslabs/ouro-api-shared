@@ -773,6 +773,25 @@
           
         </tr>
       
+        
+
+        <tr>
+          <td>
+            7
+          </td>
+          <td>
+            durationValue
+          </td>
+          <td>
+            <code title="google.protobuf.Duration">
+              
+              <span>google.protobuf.Duration</span>
+            </code>
+          </td>
+          <td class="content"><p>Represents a duration-typed value.</p></td>
+          
+        </tr>
+      
     
   </tbody>
 </table>
@@ -1437,21 +1456,27 @@
     </tr>
     
     <tr>
-      <td><code>BOOLEAN</code></td>
+      <td><code>BINARY</code></td>
       <td>3</td>
+      <td class="content"><p>The binary data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BOOLEAN</code></td>
+      <td>4</td>
       <td class="content"><p>The boolean data type.</p></td>
     </tr>
     
     <tr>
       <td><code>TIMESTAMP</code></td>
-      <td>4</td>
-      <td class="content"><p>The timestamp data type.</p></td>
+      <td>5</td>
+      <td class="content"><p>The timestamp data type, represented by google.protobuf.Timestamp.</p></td>
     </tr>
     
     <tr>
-      <td><code>BINARY</code></td>
-      <td>5</td>
-      <td class="content"><p>The binary data type.</p></td>
+      <td><code>DURATION</code></td>
+      <td>6</td>
+      <td class="content"><p>The duration data type, represented by google.protobuf.Duration.</p></td>
     </tr>
     
   </tbody>
@@ -1481,23 +1506,23 @@
     <tr>
       <td><code>DEFAULT</code></td>
       <td>0</td>
-      <td class="content"><p>The default display format.</p></td>
+      <td class="content"><p>The default display format. The GUI shows text, int, double, date-time or duration in the default format.</p></td>
     </tr>
     
     <tr>
-      <td><code>DURATION</code></td>
+      <td><code>DATE_ONLY</code></td>
       <td>1</td>
-      <td class="content"><p>The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.</p></td>
+      <td class="content"><p>The date-only display format of local date-time. Data type must be TIMESTAMP or string.</p></td>
     </tr>
     
     <tr>
-      <td><code>DATE</code></td>
+      <td><code>UTC_DATETIME</code></td>
       <td>2</td>
-      <td class="content"><p>The date display format with local timezone. Data type must be TIMESTAMP or string.</p></td>
+      <td class="content"><p>The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.</p></td>
     </tr>
     
     <tr>
-      <td><code>UTC_DATE</code></td>
+      <td><code>UTC_DATE_ONLY</code></td>
       <td>3</td>
       <td class="content"><p>The date display format with in UTC timezone. Data type must be TIMESTAMP or string.</p></td>
     </tr>

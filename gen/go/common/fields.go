@@ -36,9 +36,9 @@ func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId str
 
 var validFormats = map[FieldDataType][]FieldDisplayFormat{
 	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD},
-	FieldDataType_INTEGER:   {FieldDisplayFormat_DURATION, FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
+	FieldDataType_INTEGER:   {FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
 	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
-	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE, FieldDisplayFormat_UTC_DATE},
+	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE_ONLY, FieldDisplayFormat_UTC_DATETIME, FieldDisplayFormat_UTC_DATE_ONLY},
 	FieldDataType_BOOLEAN:   {FieldDisplayFormat_DEFAULT},
 }
 
@@ -79,7 +79,7 @@ func (fd *FieldDescriptor) WithDouble(precision int32, unit string, displayForma
 	} else {
 		fd.ClearUnit()
 	}
-	fmt := validateDisplayFormat(fd.GetDataType(), displayFormat)
+	fmt := validateDisplayFormat(FieldDataType_DOUBLE, displayFormat)
 	if fmt == FieldDisplayFormat_MONEY {
 		if code, _ := iso4217.ByName(unit); code == 0 {
 			panic("unit is not a valid ISO 4217 currency code")
@@ -97,7 +97,7 @@ func (fd *FieldDescriptor) WithInteger(unit string, displayFormat *FieldDisplayF
 	} else {
 		fd.ClearUnit()
 	}
-	fmt := validateDisplayFormat(fd.GetDataType(), displayFormat)
+	fmt := validateDisplayFormat(FieldDataType_INTEGER, displayFormat)
 	if fmt == FieldDisplayFormat_MONEY {
 		if code, _ := iso4217.ByName(unit); code == 0 {
 			panic("unit is not a valid ISO 4217 currency code")
@@ -111,7 +111,7 @@ func (fd *FieldDescriptor) WithTimestamp(displayFormat *FieldDisplayFormat) *Fie
 	fd.SetDataType(FieldDataType_TIMESTAMP)
 	fd.ClearPrecision()
 	fd.ClearUnit()
-	fd.SetFormat(validateDisplayFormat(fd.GetDataType(), displayFormat))
+	fd.SetFormat(validateDisplayFormat(FieldDataType_TIMESTAMP, displayFormat))
 	return fd
 }
 
@@ -119,7 +119,7 @@ func (fd *FieldDescriptor) WithString(displayFormat *FieldDisplayFormat) *FieldD
 	fd.SetDataType(FieldDataType_TEXT)
 	fd.ClearPrecision()
 	fd.ClearUnit()
-	fd.SetFormat(validateDisplayFormat(fd.GetDataType(), displayFormat))
+	fd.SetFormat(validateDisplayFormat(FieldDataType_TEXT, displayFormat))
 	return fd
 }
 
@@ -128,6 +128,22 @@ func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
 	fd.ClearPrecision()
 	fd.ClearUnit()
 	fd.SetFormat(FieldDisplayFormat_DEFAULT)
+	return fd
+}
+
+func (fd *FieldDescriptor) WithDateTime(displayFormat *FieldDisplayFormat) *FieldDescriptor {
+	fd.SetDataType(FieldDataType_TIMESTAMP)
+	fd.ClearPrecision()
+	fd.ClearUnit()
+	fd.SetFormat(validateDisplayFormat(FieldDataType_TIMESTAMP, displayFormat))
+	return fd
+}
+
+func (fd *FieldDescriptor) WithDuration(displayFormat *FieldDisplayFormat) *FieldDescriptor {
+	fd.SetDataType(FieldDataType_DURATION)
+	fd.ClearPrecision()
+	fd.ClearUnit()
+	fd.SetFormat(validateDisplayFormat(FieldDataType_DURATION, displayFormat))
 	return fd
 }
 

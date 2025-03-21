@@ -10,4 +10,5 @@
 | binaryValue | <b>Type:</b> bytes<br><b>Description:</b><br>Represents a binary-typed value. |
 | boolValue | <b>Type:</b> bool<br><b>Description:</b><br>Represents a boolean-typed value. |
 | dateValue | <b>Type:</b> google.protobuf.Timestamp<br><b>Description:</b><br>Represents a date-typed value. |
+| durationValue | <b>Type:</b> google.protobuf.Duration<br><b>Description:</b><br>Represents a duration-typed value. |
 

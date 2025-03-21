@@ -446,12 +446,13 @@ type ComplexityRoot struct {
 	}
 
 	FieldValue struct {
-		BinaryValue  func(childComplexity int) int
-		BoolValue    func(childComplexity int) int
-		DateValue    func(childComplexity int) int
-		DoubleValue  func(childComplexity int) int
-		IntegerValue func(childComplexity int) int
-		StringValue  func(childComplexity int) int
+		BinaryValue   func(childComplexity int) int
+		BoolValue     func(childComplexity int) int
+		DateValue     func(childComplexity int) int
+		DoubleValue   func(childComplexity int) int
+		DurationValue func(childComplexity int) int
+		IntegerValue  func(childComplexity int) int
+		StringValue   func(childComplexity int) int
 	}
 
 	IrregularProfileValues struct {
@@ -2295,6 +2296,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.FieldValue.DoubleValue(childComplexity), true
+
+	case "FieldValue.durationValue":
+		if e.complexity.FieldValue.DurationValue == nil {
+			break
+		}
+
+		return e.complexity.FieldValue.DurationValue(childComplexity), true
 
 	case "FieldValue.integerValue":
 		if e.complexity.FieldValue.IntegerValue == nil {
@@ -12528,6 +12536,8 @@ func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.
 				return ec.fieldContext_FieldValue_boolValue(ctx, field)
 			case "dateValue":
 				return ec.fieldContext_FieldValue_dateValue(ctx, field)
+			case "durationValue":
+				return ec.fieldContext_FieldValue_durationValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
 		},
@@ -13151,6 +13161,53 @@ func (ec *executionContext) fieldContext_FieldValue_dateValue(_ context.Context,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldValue_durationValue(ctx context.Context, field graphql.CollectedField, obj *model.FieldValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValue_durationValue(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DurationValue, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Duration)
+	fc.Result = res
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldValue_durationValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "seconds":
+				return ec.fieldContext_Duration_seconds(ctx, field)
+			case "nanos":
+				return ec.fieldContext_Duration_nanos(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Duration", field.Name)
 		},
 	}
 	return fc, nil
@@ -25577,6 +25634,8 @@ func (ec *executionContext) fieldContext__mapFieldValue_value(_ context.Context,
 				return ec.fieldContext_FieldValue_boolValue(ctx, field)
 			case "dateValue":
 				return ec.fieldContext_FieldValue_dateValue(ctx, field)
+			case "durationValue":
+				return ec.fieldContext_FieldValue_durationValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
 		},
@@ -28608,6 +28667,8 @@ func (ec *executionContext) _FieldValue(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._FieldValue_boolValue(ctx, field, obj)
 		case "dateValue":
 			out.Values[i] = ec._FieldValue_dateValue(ctx, field, obj)
+		case "durationValue":
+			out.Values[i] = ec._FieldValue_durationValue(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

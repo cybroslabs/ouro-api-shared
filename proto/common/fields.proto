@@ -5,6 +5,7 @@ package io.clbs.openhes.models.common;
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 
 // The listing selector.
 message ListSelector {
@@ -67,21 +68,22 @@ enum FieldDataType {
     TEXT      = 0;  // The text data type.
     INTEGER   = 1;  // The integer data type.
     DOUBLE    = 2;  // The double data type.
-    BOOLEAN   = 3;  // The boolean data type.
-    TIMESTAMP = 4;  // The timestamp data type.
-    BINARY    = 5;  // The binary data type.
+    BINARY    = 3;  // The binary data type.
+    BOOLEAN   = 4;  // The boolean data type.
+    TIMESTAMP = 5;  // The timestamp data type, represented by google.protobuf.Timestamp.
+    DURATION  = 6;  // The duration data type, represented by google.protobuf.Duration.
 }
 
 // Enum representing the field display format.
 enum FieldDisplayFormat {
-    DEFAULT   = 0;  // The default display format.
-    DURATION  = 1;  // The duration display format, e.g., 1h 30m. Data type must be INTEGER in milliseconds.
-    DATE      = 2;  // The date display format with local timezone. Data type must be TIMESTAMP or string.
-    UTC_DATE  = 3;  // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-    TIMEOFDAY = 4;  // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-    MONEY     = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-    PASSWORD  = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
-    MULTILINE = 7;  // The multiline-string display format. Data type must be TEXT.
+    DEFAULT       = 0;  // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
+    DATE_ONLY     = 1;  // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
+    UTC_DATETIME  = 2;  // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
+    UTC_DATE_ONLY = 3;  // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
+    TIMEOFDAY     = 4;  // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
+    MONEY         = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+    PASSWORD      = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
+    MULTILINE     = 7;  // The multiline-string display format. Data type must be TEXT.
 }
 
 // The field descriptor.
@@ -118,12 +120,13 @@ message FieldValidation {
 
 message FieldValue {
     oneof kind {
-        string string_value                  = 1;  // Represents a string-typed value.
-        int64 integer_value                  = 2;  // Represents a 64-bit integer-typed value.
-        double double_value                  = 3;  // Represents a 64-bit double-typed value.
-        bytes binary_value                   = 4;  // Represents a binary-typed value.
-        bool bool_value                      = 5;  // Represents a boolean-typed value.
-        google.protobuf.Timestamp date_value = 6;  // Represents a date-typed value.
+        string string_value                     = 1;  // Represents a string-typed value.
+        int64 integer_value                     = 2;  // Represents a 64-bit integer-typed value.
+        double double_value                     = 3;  // Represents a 64-bit double-typed value.
+        bytes binary_value                      = 4;  // Represents a binary-typed value.
+        bool bool_value                         = 5;  // Represents a boolean-typed value.
+        google.protobuf.Timestamp date_value    = 6;  // Represents a date-typed value.
+        google.protobuf.Duration duration_value = 7;  // Represents a duration-typed value.
     }
 }
 

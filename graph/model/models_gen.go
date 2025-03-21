@@ -409,12 +409,13 @@ type FieldValidation struct {
 }
 
 type FieldValue struct {
-	StringValue  *string  `json:"stringValue,omitempty"`
-	IntegerValue *int64   `json:"integerValue,omitempty"`
-	DoubleValue  *float64 `json:"doubleValue,omitempty"`
-	BinaryValue  *string  `json:"binaryValue,omitempty"`
-	BoolValue    *bool    `json:"boolValue,omitempty"`
-	DateValue    *string  `json:"dateValue,omitempty"`
+	StringValue   *string   `json:"stringValue,omitempty"`
+	IntegerValue  *int64    `json:"integerValue,omitempty"`
+	DoubleValue   *float64  `json:"doubleValue,omitempty"`
+	BinaryValue   *string   `json:"binaryValue,omitempty"`
+	BoolValue     *bool     `json:"boolValue,omitempty"`
+	DateValue     *string   `json:"dateValue,omitempty"`
+	DurationValue *Duration `json:"durationValue,omitempty"`
 }
 
 type IrregularProfileValues struct {
@@ -1073,23 +1074,25 @@ const (
 	FieldDataTypeText      FieldDataType = "TEXT"
 	FieldDataTypeInteger   FieldDataType = "INTEGER"
 	FieldDataTypeDouble    FieldDataType = "DOUBLE"
+	FieldDataTypeBinary    FieldDataType = "BINARY"
 	FieldDataTypeBoolean   FieldDataType = "BOOLEAN"
 	FieldDataTypeTimestamp FieldDataType = "TIMESTAMP"
-	FieldDataTypeBinary    FieldDataType = "BINARY"
+	FieldDataTypeDuration  FieldDataType = "DURATION"
 )
 
 var AllFieldDataType = []FieldDataType{
 	FieldDataTypeText,
 	FieldDataTypeInteger,
 	FieldDataTypeDouble,
+	FieldDataTypeBinary,
 	FieldDataTypeBoolean,
 	FieldDataTypeTimestamp,
-	FieldDataTypeBinary,
+	FieldDataTypeDuration,
 }
 
 func (e FieldDataType) IsValid() bool {
 	switch e {
-	case FieldDataTypeText, FieldDataTypeInteger, FieldDataTypeDouble, FieldDataTypeBoolean, FieldDataTypeTimestamp, FieldDataTypeBinary:
+	case FieldDataTypeText, FieldDataTypeInteger, FieldDataTypeDouble, FieldDataTypeBinary, FieldDataTypeBoolean, FieldDataTypeTimestamp, FieldDataTypeDuration:
 		return true
 	}
 	return false
@@ -1119,21 +1122,21 @@ func (e FieldDataType) MarshalGQL(w io.Writer) {
 type FieldDisplayFormat string
 
 const (
-	FieldDisplayFormatDefault   FieldDisplayFormat = "DEFAULT"
-	FieldDisplayFormatDuration  FieldDisplayFormat = "DURATION"
-	FieldDisplayFormatDate      FieldDisplayFormat = "DATE"
-	FieldDisplayFormatUtcDate   FieldDisplayFormat = "UTC_DATE"
-	FieldDisplayFormatTimeofday FieldDisplayFormat = "TIMEOFDAY"
-	FieldDisplayFormatMoney     FieldDisplayFormat = "MONEY"
-	FieldDisplayFormatPassword  FieldDisplayFormat = "PASSWORD"
-	FieldDisplayFormatMultiline FieldDisplayFormat = "MULTILINE"
+	FieldDisplayFormatDefault     FieldDisplayFormat = "DEFAULT"
+	FieldDisplayFormatDateOnly    FieldDisplayFormat = "DATE_ONLY"
+	FieldDisplayFormatUtcDatetime FieldDisplayFormat = "UTC_DATETIME"
+	FieldDisplayFormatUtcDateOnly FieldDisplayFormat = "UTC_DATE_ONLY"
+	FieldDisplayFormatTimeofday   FieldDisplayFormat = "TIMEOFDAY"
+	FieldDisplayFormatMoney       FieldDisplayFormat = "MONEY"
+	FieldDisplayFormatPassword    FieldDisplayFormat = "PASSWORD"
+	FieldDisplayFormatMultiline   FieldDisplayFormat = "MULTILINE"
 )
 
 var AllFieldDisplayFormat = []FieldDisplayFormat{
 	FieldDisplayFormatDefault,
-	FieldDisplayFormatDuration,
-	FieldDisplayFormatDate,
-	FieldDisplayFormatUtcDate,
+	FieldDisplayFormatDateOnly,
+	FieldDisplayFormatUtcDatetime,
+	FieldDisplayFormatUtcDateOnly,
 	FieldDisplayFormatTimeofday,
 	FieldDisplayFormatMoney,
 	FieldDisplayFormatPassword,
@@ -1142,7 +1145,7 @@ var AllFieldDisplayFormat = []FieldDisplayFormat{
 
 func (e FieldDisplayFormat) IsValid() bool {
 	switch e {
-	case FieldDisplayFormatDefault, FieldDisplayFormatDuration, FieldDisplayFormatDate, FieldDisplayFormatUtcDate, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
+	case FieldDisplayFormatDefault, FieldDisplayFormatDateOnly, FieldDisplayFormatUtcDatetime, FieldDisplayFormatUtcDateOnly, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
 		return true
 	}
 	return false
