@@ -38,7 +38,7 @@ service DeviceRegistryService {
     // The method called by the RestApi to get the list of drivers.
     rpc ListDrivers(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
     // The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
-    rpc SetDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
+    rpc CreateDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
