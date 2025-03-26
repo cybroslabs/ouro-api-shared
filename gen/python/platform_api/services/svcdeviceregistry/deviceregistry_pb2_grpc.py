@@ -101,10 +101,20 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.SetDriverTemplates = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverTemplates',
+        self.ListDrivers = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDriver.FromString,
+                _registered_method=True)
+        self.SetDriver = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriver',
                 request_serializer=acquisition_dot_main__pb2.SetDriver.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.GetDriver = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.Driver.FromString,
                 _registered_method=True)
         self.CreateCommunicationUnit = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit',
@@ -355,8 +365,22 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetDriverTemplates(self, request, context):
+    def ListDrivers(self, request, context):
+        """The method called by the RestApi to get the list of drivers.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDriver(self, request, context):
         """The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDriver(self, request, context):
+        """The method called by the RestApi to get the driver templates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -663,10 +687,20 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'SetDriverTemplates': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetDriverTemplates,
+            'ListDrivers': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDrivers,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDriver.SerializeToString,
+            ),
+            'SetDriver': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDriver,
                     request_deserializer=acquisition_dot_main__pb2.SetDriver.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDriver': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDriver,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.Driver.SerializeToString,
             ),
             'CreateCommunicationUnit': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationUnit,
@@ -1258,7 +1292,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def SetDriverTemplates(request,
+    def ListDrivers(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1271,9 +1305,63 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverTemplates',
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDriver.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetDriver(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriver',
             acquisition_dot_main__pb2.SetDriver.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDriver(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.Driver.FromString,
             options,
             channel_credentials,
             insecure,

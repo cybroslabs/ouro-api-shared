@@ -40,7 +40,9 @@ const (
 	DeviceRegistryService_DeleteDeviceConfigurationTemplate_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationTemplate"
 	DeviceRegistryService_AddDeviceConfigurationRegisterToDeviceConfigurationTemplate_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate"
 	DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
-	DeviceRegistryService_SetDriverTemplates_FullMethodName                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverTemplates"
+	DeviceRegistryService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers"
+	DeviceRegistryService_SetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriver"
+	DeviceRegistryService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver"
 	DeviceRegistryService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
 	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
@@ -96,8 +98,12 @@ type DeviceRegistryServiceClient interface {
 	DeleteDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method called by the RestApi to get the list of drivers.
+	ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
-	SetDriverTemplates(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method called by the RestApi to get the driver templates.
+	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -341,10 +347,30 @@ func (c *deviceRegistryServiceClient) RemoveDeviceConfigurationRegisterFromDevic
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) SetDriverTemplates(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deviceRegistryServiceClient) ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDriver)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDrivers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDriverTemplates_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDriver_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.Driver)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDriver_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -674,8 +700,12 @@ type DeviceRegistryServiceServer interface {
 	DeleteDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
+	// The method called by the RestApi to get the list of drivers.
+	ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
-	SetDriverTemplates(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
+	SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
+	// The method called by the RestApi to get the driver templates.
+	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -807,8 +837,14 @@ func (UnimplementedDeviceRegistryServiceServer) AddDeviceConfigurationRegisterTo
 func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) SetDriverTemplates(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetDriverTemplates not implemented")
+func (UnimplementedDeviceRegistryServiceServer) ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDriver not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDriver not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
@@ -1206,20 +1242,56 @@ func _DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigura
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_SetDriverTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceRegistryService_ListDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListDrivers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListDrivers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListDrivers(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.SetDriver)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).SetDriverTemplates(ctx, in)
+		return srv.(DeviceRegistryServiceServer).SetDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_SetDriverTemplates_FullMethodName,
+		FullMethod: DeviceRegistryService_SetDriver_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).SetDriverTemplates(ctx, req.(*acquisition.SetDriver))
+		return srv.(DeviceRegistryServiceServer).SetDriver(ctx, req.(*acquisition.SetDriver))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDriver(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDriver_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDriver(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1811,8 +1883,16 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_Handler,
 		},
 		{
-			MethodName: "SetDriverTemplates",
-			Handler:    _DeviceRegistryService_SetDriverTemplates_Handler,
+			MethodName: "ListDrivers",
+			Handler:    _DeviceRegistryService_ListDrivers_Handler,
+		},
+		{
+			MethodName: "SetDriver",
+			Handler:    _DeviceRegistryService_SetDriver_Handler,
+		},
+		{
+			MethodName: "GetDriver",
+			Handler:    _DeviceRegistryService_GetDriver_Handler,
 		},
 		{
 			MethodName: "CreateCommunicationUnit",
