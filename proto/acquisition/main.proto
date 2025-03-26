@@ -163,10 +163,13 @@ message BulkSpec {
 }
 
 message BulkStatus {
-    BulkStatusCode status = 1;  // The job status.
-    int32 jobs_count      = 2;  // The number of jobs in the bulk.
-    int32 jobs_finished   = 3;  // The number of jobs finished.
-    int32 jobs_successful = 4;  // The number of jobs successful.
+    BulkStatusCode status                 = 1;  // The job status.
+    int32 jobs_count                      = 2;  // The number of jobs in the bulk.
+    int32 jobs_finished                   = 3;  // The number of jobs finished.
+    int32 jobs_successful                 = 4;  // The number of jobs successful.
+    google.protobuf.Timestamp created_at  = 5;  // The creation timestamp of the bulk.
+    google.protobuf.Timestamp started_at  = 6;  // The start timestamp of the bulk.
+    google.protobuf.Timestamp finished_at = 7;  // The finish timestamp of the bulk.
 }
 
 message BulkJob {

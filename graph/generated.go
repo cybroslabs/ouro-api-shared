@@ -179,9 +179,12 @@ type ComplexityRoot struct {
 	}
 
 	BulkStatus struct {
+		CreatedAt      func(childComplexity int) int
+		FinishedAt     func(childComplexity int) int
 		JobsCount      func(childComplexity int) int
 		JobsFinished   func(childComplexity int) int
 		JobsSuccessful func(childComplexity int) int
+		StartedAt      func(childComplexity int) int
 		Status         func(childComplexity int) int
 	}
 
@@ -537,7 +540,6 @@ type ComplexityRoot struct {
 	JobStatus struct {
 		AttemptsDone func(childComplexity int) int
 		Code         func(childComplexity int) int
-		CreatedAt    func(childComplexity int) int
 		DeviceInfo   func(childComplexity int) int
 		FinishedAt   func(childComplexity int) int
 		QueueID      func(childComplexity int) int
@@ -1303,6 +1305,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.BulkSpec.WebhookURL(childComplexity), true
 
+	case "BulkStatus.createdAt":
+		if e.complexity.BulkStatus.CreatedAt == nil {
+			break
+		}
+
+		return e.complexity.BulkStatus.CreatedAt(childComplexity), true
+
+	case "BulkStatus.finishedAt":
+		if e.complexity.BulkStatus.FinishedAt == nil {
+			break
+		}
+
+		return e.complexity.BulkStatus.FinishedAt(childComplexity), true
+
 	case "BulkStatus.jobsCount":
 		if e.complexity.BulkStatus.JobsCount == nil {
 			break
@@ -1323,6 +1339,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.BulkStatus.JobsSuccessful(childComplexity), true
+
+	case "BulkStatus.startedAt":
+		if e.complexity.BulkStatus.StartedAt == nil {
+			break
+		}
+
+		return e.complexity.BulkStatus.StartedAt(childComplexity), true
 
 	case "BulkStatus.status":
 		if e.complexity.BulkStatus.Status == nil {
@@ -2695,13 +2718,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.JobStatus.Code(childComplexity), true
-
-	case "JobStatus.createdAt":
-		if e.complexity.JobStatus.CreatedAt == nil {
-			break
-		}
-
-		return e.complexity.JobStatus.CreatedAt(childComplexity), true
 
 	case "JobStatus.deviceInfo":
 		if e.complexity.JobStatus.DeviceInfo == nil {
@@ -6078,6 +6094,12 @@ func (ec *executionContext) fieldContext_Bulk_status(_ context.Context, field gr
 				return ec.fieldContext_BulkStatus_jobsFinished(ctx, field)
 			case "jobsSuccessful":
 				return ec.fieldContext_BulkStatus_jobsSuccessful(ctx, field)
+			case "createdAt":
+				return ec.fieldContext_BulkStatus_createdAt(ctx, field)
+			case "startedAt":
+				return ec.fieldContext_BulkStatus_startedAt(ctx, field)
+			case "finishedAt":
+				return ec.fieldContext_BulkStatus_finishedAt(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type BulkStatus", field.Name)
 		},
@@ -6225,8 +6247,6 @@ func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field
 				return ec.fieldContext_JobStatus_code(ctx, field)
 			case "results":
 				return ec.fieldContext_JobStatus_results(ctx, field)
-			case "createdAt":
-				return ec.fieldContext_JobStatus_createdAt(ctx, field)
 			case "startedAt":
 				return ec.fieldContext_JobStatus_startedAt(ctx, field)
 			case "finishedAt":
@@ -6809,6 +6829,129 @@ func (ec *executionContext) fieldContext_BulkStatus_jobsSuccessful(_ context.Con
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkStatus_createdAt(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_createdAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CreatedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkStatus_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkStatus_startedAt(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_startedAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.StartedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkStatus_startedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BulkStatus_finishedAt(ctx context.Context, field graphql.CollectedField, obj *model.BulkStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BulkStatus_finishedAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.FinishedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BulkStatus_finishedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BulkStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
 		},
 	}
 	return fc, nil
@@ -15701,47 +15844,6 @@ func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, fi
 				return ec.fieldContext_ActionResult_data(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionResult", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _JobStatus_createdAt(ctx context.Context, field graphql.CollectedField, obj *model.JobStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_JobStatus_createdAt(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.CreatedAt, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_JobStatus_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "JobStatus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Timestamp does not have child fields")
 		},
 	}
 	return fc, nil
@@ -26925,6 +27027,12 @@ func (ec *executionContext) _BulkStatus(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._BulkStatus_jobsFinished(ctx, field, obj)
 		case "jobsSuccessful":
 			out.Values[i] = ec._BulkStatus_jobsSuccessful(ctx, field, obj)
+		case "createdAt":
+			out.Values[i] = ec._BulkStatus_createdAt(ctx, field, obj)
+		case "startedAt":
+			out.Values[i] = ec._BulkStatus_startedAt(ctx, field, obj)
+		case "finishedAt":
+			out.Values[i] = ec._BulkStatus_finishedAt(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -29119,8 +29227,6 @@ func (ec *executionContext) _JobStatus(ctx context.Context, sel ast.SelectionSet
 			out.Values[i] = ec._JobStatus_code(ctx, field, obj)
 		case "results":
 			out.Values[i] = ec._JobStatus_results(ctx, field, obj)
-		case "createdAt":
-			out.Values[i] = ec._JobStatus_createdAt(ctx, field, obj)
 		case "startedAt":
 			out.Values[i] = ec._JobStatus_startedAt(ctx, field, obj)
 		case "finishedAt":

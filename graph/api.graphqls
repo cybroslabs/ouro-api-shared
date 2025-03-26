@@ -539,6 +539,12 @@ type BulkStatus {
   jobsFinished: Int
   # The number of jobs successful.
   jobsSuccessful: Int
+  # The creation timestamp of the bulk.
+  createdAt: Timestamp
+  # The start timestamp of the bulk.
+  startedAt: Timestamp
+  # The finish timestamp of the bulk.
+  finishedAt: Timestamp
 }
 
 type CommunicationBus {
@@ -1042,8 +1048,6 @@ type JobStatus {
   code: JobErrorCode
   # The result data for all job actions.
   results: [ActionResult]
-  # The creation timestamp of the job.
-  createdAt: Timestamp
   # The start timestamp of the job.
   startedAt: Timestamp
   # The finish timestamp of the job.

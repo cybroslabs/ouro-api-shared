@@ -146,6 +146,9 @@ type BulkStatus struct {
 	JobsCount      *int32          `json:"jobsCount,omitempty"`
 	JobsFinished   *int32          `json:"jobsFinished,omitempty"`
 	JobsSuccessful *int32          `json:"jobsSuccessful,omitempty"`
+	CreatedAt      *string         `json:"createdAt,omitempty"`
+	StartedAt      *string         `json:"startedAt,omitempty"`
+	FinishedAt     *string         `json:"finishedAt,omitempty"`
 }
 
 type CommunicationBus struct {
@@ -501,7 +504,6 @@ type JobStatus struct {
 	Status       *JobStatusCode  `json:"status,omitempty"`
 	Code         *JobErrorCode   `json:"code,omitempty"`
 	Results      []*ActionResult `json:"results,omitempty"`
-	CreatedAt    *string         `json:"createdAt,omitempty"`
 	StartedAt    *string         `json:"startedAt,omitempty"`
 	FinishedAt   *string         `json:"finishedAt,omitempty"`
 	AttemptsDone *int32          `json:"attemptsDone,omitempty"`

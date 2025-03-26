@@ -642,7 +642,6 @@ message JobStatus {
     JobStatusCode status                  = 1;  // The status of the job.
     JobErrorCode code                     = 2;  // The error code of the job.
     repeated ActionResult results         = 3;  // The result data for all job actions.
-    google.protobuf.Timestamp created_at  = 4;  // The creation timestamp of the job.
     google.protobuf.Timestamp started_at  = 5;  // The start timestamp of the job.
     google.protobuf.Timestamp finished_at = 6;  // The finish timestamp of the job.
     int32 attempts_done                   = 7;  // The number of attempts already done.

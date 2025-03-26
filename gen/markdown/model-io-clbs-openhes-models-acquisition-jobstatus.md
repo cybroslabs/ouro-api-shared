@@ -9,7 +9,6 @@ Sub-message containing job status info
 | status | <b>Type:</b> [io.clbs.openhes.models.acquisition.JobStatusCode](model-io-clbs-openhes-models-acquisition-jobstatuscode.md)<br><b>Description:</b><br>The status of the job. |
 | code | <b>Type:</b> [io.clbs.openhes.models.acquisition.JobErrorCode](model-io-clbs-openhes-models-acquisition-joberrorcode.md)<br><b>Description:</b><br>The error code of the job. |
 | results | <b>Type:</b> [io.clbs.openhes.models.acquisition.ActionResult](model-io-clbs-openhes-models-acquisition-actionresult.md)<br><b>Description:</b><br>The result data for all job actions. |
-| createdAt | <b>Type:</b> google.protobuf.Timestamp<br><b>Description:</b><br>The creation timestamp of the job. |
 | startedAt | <b>Type:</b> google.protobuf.Timestamp<br><b>Description:</b><br>The start timestamp of the job. |
 | finishedAt | <b>Type:</b> google.protobuf.Timestamp<br><b>Description:</b><br>The finish timestamp of the job. |
 | attemptsDone | <b>Type:</b> int32<br><b>Description:</b><br>The number of attempts already done. |
