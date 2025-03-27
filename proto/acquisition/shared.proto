@@ -642,11 +642,11 @@ message JobStatus {
     JobStatusCode status                  = 1;  // The status of the job.
     JobErrorCode code                     = 2;  // The error code of the job.
     repeated ActionResult results         = 3;  // The result data for all job actions.
-    google.protobuf.Timestamp started_at  = 5;  // The start timestamp of the job.
-    google.protobuf.Timestamp finished_at = 6;  // The finish timestamp of the job.
-    int32 attempts_done                   = 7;  // The number of attempts already done.
-    DeviceInfo device_info                = 8;  // The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
-    int64 queue_id                        = 9;  // The internal queue identifier set by the Taskmaster when the job is queued to process.
+    google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
+    google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
+    int32 attempts_done                   = 6;  // The number of attempts already done.
+    DeviceInfo device_info                = 7;  // The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
+    int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued to process.
 }
 
 // Sub-message containing job start request for single device
@@ -695,7 +695,8 @@ message DeviceConnectionInfo {
     map<string, common.FieldValue> device_attributes = 3;                                              // The device attributes. For example HDLC address, password and other driver-specific attributes.
     string timezone                                  = 4;                                              // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
     string driver_type                               = 5 [features.field_presence = LEGACY_REQUIRED];  // The driver type identifier.
-    repeated DeviceRegister registers                = 6;                                              // The list of registers get using current device configuration template.
+    string driver_version                            = 7 [features.field_presence = LEGACY_REQUIRED];  // The driver version.
+    repeated DeviceRegister registers                = 8;                                              // The list of registers get using current device configuration template.
 }
 
 // Addon for DB
