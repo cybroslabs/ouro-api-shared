@@ -765,11 +765,18 @@ message DeviceCommunicationUnit {
 
 // Sub-message - job specification
 message JobSpec {
-    JobDevice device                           = 2;  // The device info.
-    acquisition.JobSettings job_settings       = 3;  // The job parameters.
-    string driver_type                         = 4;  // The device (driver) type.
-    repeated acquisition.JobAction job_actions = 5;  // The list actions to be executed.
-    map<string, int64> action_to_register_map  = 6;  // The map of action to register.
+    JobDevice device                            = 2;  // The device info.
+    acquisition.JobSettings job_settings        = 3;  // The job parameters.
+    string driver_type                          = 4;  // The device (driver) type.
+    repeated acquisition.JobAction job_actions  = 5;  // The list actions to be executed.
+    repeated JobActionMapRecord job_action_info = 6;  // The mapping data for all actions.
+}
+
+message JobActionMapRecord {
+    int32 action_index         = 1;  // The index of the action in the job_actions list.
+    int64 internal_register_id = 3;  // The internal register identifier.
+    string register_id         = 2;  // The register identifier.
+    string variable_id         = 4;  // The variable identifier.
 }
 
 // Message used to notify DP that the job is done, sent by Taskmaster
