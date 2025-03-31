@@ -684,8 +684,9 @@ message DeviceConfigurationRegisterSpec {
 // Addon
 message DeviceRegister {
     int64 register_id                    = 1 [features.field_presence = LEGACY_REQUIRED];  // The register identifier.
-    DeviceConfigurationRegisterSpec spec = 2 [features.field_presence = LEGACY_REQUIRED];  // The register spec.
-    repeated string variable_name        = 3;                                              // The name of the variable, if the register is assigned to some.
+    string public_register_id            = 2 [features.field_presence = LEGACY_REQUIRED];  // The public register identifier.
+    DeviceConfigurationRegisterSpec spec = 3 [features.field_presence = LEGACY_REQUIRED];  // The register spec.
+    repeated string variable_name        = 4;                                              // The name of the variable, if the register is assigned to some.
 }
 
 // Addon
@@ -773,10 +774,10 @@ message JobSpec {
 }
 
 message JobActionMapRecord {
-    int32 action_index         = 1;  // The index of the action in the job_actions list.
-    int64 internal_register_id = 3;  // The internal register identifier.
-    string register_id         = 2;  // The register identifier.
-    string variable_id         = 4;  // The variable identifier.
+    int32 action_index            = 1;  // The index of the action in the job_actions list.
+    int64 register_id             = 3;  // The internal register identifier.
+    string public_register_id     = 2;  // The register identifier.
+    repeated string variable_name = 4;  // The name of the variable, if the register is assigned to some.
 }
 
 // Message used to notify DP that the job is done, sent by Taskmaster
