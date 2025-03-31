@@ -418,6 +418,10 @@ type ActionResult {
   status: ActionResultCode
   # The action result data.
   data: ActionData
+  # The register identifier. It is a read-only value, set only if the action data are related to a register. The value is applicable only and only for regular bulks.
+  registerId: String
+  # The variable identifier. It is a read-only value, set only if the action data are related to a variable. The value is applicable only and only for regular bulks.
+  variableId: String
 }
 
 # Sub-message containing set disconnector state action specification

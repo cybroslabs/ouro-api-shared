@@ -734,6 +734,8 @@ message ActionResult {
     string action_id        = 1;  // The action identifier.
     ActionResultCode status = 2;  // The status of the action.
     ActionData data         = 3;  // The action result data.
+    string register_id      = 4;  // The register identifier. It is a read-only value, set only if the action data are related to a register. The value is applicable only and only for regular bulks.
+    string variable_id      = 5;  // The variable identifier. It is a read-only value, set only if the action data are related to a variable. The value is applicable only and only for regular bulks.
 }
 
 // Taskmaster -> Dataproxy job/action progress update message

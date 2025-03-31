@@ -97,9 +97,11 @@ type ComplexityRoot struct {
 	}
 
 	ActionResult struct {
-		ActionID func(childComplexity int) int
-		Data     func(childComplexity int) int
-		Status   func(childComplexity int) int
+		ActionID   func(childComplexity int) int
+		Data       func(childComplexity int) int
+		RegisterID func(childComplexity int) int
+		Status     func(childComplexity int) int
+		VariableID func(childComplexity int) int
 	}
 
 	ActionSetDisconnectorState struct {
@@ -1081,12 +1083,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionResult.Data(childComplexity), true
 
+	case "ActionResult.registerId":
+		if e.complexity.ActionResult.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.ActionResult.RegisterID(childComplexity), true
+
 	case "ActionResult.status":
 		if e.complexity.ActionResult.Status == nil {
 			break
 		}
 
 		return e.complexity.ActionResult.Status(childComplexity), true
+
+	case "ActionResult.variableId":
+		if e.complexity.ActionResult.VariableID == nil {
+			break
+		}
+
+		return e.complexity.ActionResult.VariableID(childComplexity), true
 
 	case "ActionSetDisconnectorState._empty":
 		if e.complexity.ActionSetDisconnectorState.Empty == nil {
@@ -5192,6 +5208,88 @@ func (ec *executionContext) fieldContext_ActionResult_data(_ context.Context, fi
 				return ec.fieldContext_ActionData_events(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionData", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionResult_registerId(ctx context.Context, field graphql.CollectedField, obj *model.ActionResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionResult_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionResult_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionResult",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionResult_variableId(ctx context.Context, field graphql.CollectedField, obj *model.ActionResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionResult_variableId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionResult_variableId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionResult",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -15842,6 +15940,10 @@ func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, fi
 				return ec.fieldContext_ActionResult_status(ctx, field)
 			case "data":
 				return ec.fieldContext_ActionResult_data(ctx, field)
+			case "registerId":
+				return ec.fieldContext_ActionResult_registerId(ctx, field)
+			case "variableId":
+				return ec.fieldContext_ActionResult_variableId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionResult", field.Name)
 		},
@@ -26413,6 +26515,10 @@ func (ec *executionContext) _ActionResult(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._ActionResult_status(ctx, field, obj)
 		case "data":
 			out.Values[i] = ec._ActionResult_data(ctx, field, obj)
+		case "registerId":
+			out.Values[i] = ec._ActionResult_registerId(ctx, field, obj)
+		case "variableId":
+			out.Values[i] = ec._ActionResult_variableId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

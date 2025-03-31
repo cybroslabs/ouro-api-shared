@@ -60,9 +60,11 @@ type ActionResetBillingPeriod struct {
 }
 
 type ActionResult struct {
-	ActionID *string           `json:"actionId,omitempty"`
-	Status   *ActionResultCode `json:"status,omitempty"`
-	Data     *ActionData       `json:"data,omitempty"`
+	ActionID   *string           `json:"actionId,omitempty"`
+	Status     *ActionResultCode `json:"status,omitempty"`
+	Data       *ActionData       `json:"data,omitempty"`
+	RegisterID *string           `json:"registerId,omitempty"`
+	VariableID *string           `json:"variableId,omitempty"`
 }
 
 type ActionSetDisconnectorState struct {
