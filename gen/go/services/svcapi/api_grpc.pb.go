@@ -41,13 +41,14 @@ const (
 	ApiService_AddDeviceConfigurationRegisterToDeviceConfigurationTemplate_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate"
 	ApiService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
 	ApiService_ListFieldDescriptors_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
-	ApiService_CreateProxyBulk_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
-	ApiService_CreateBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	ApiService_ListBulks_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
-	ApiService_GetBulk_FullMethodName                                                          = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
-	ApiService_CancelBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
 	ApiService_ListBulkJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
+	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	ApiService_CancelBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
+	ApiService_CreateProxyBulk_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
+	ApiService_GetProxyBulk_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetProxyBulk"
+	ApiService_CreateBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
+	ApiService_GetBulk_FullMethodName                                                          = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
 	ApiService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	ApiService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
 	ApiService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
@@ -124,30 +125,35 @@ type ApiServiceClient interface {
 	// The method to get the list of fields.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
 	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Bulks
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
-	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
-	// @group: Bulks
-	// Cancels the bulk of jobs.
-	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
@@ -441,26 +447,6 @@ func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb
 	return out, nil
 }
 
-func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
-	err := c.cc.Invoke(ctx, ApiService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *apiServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
-	err := c.cc.Invoke(ctx, ApiService_CreateBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *apiServiceClient) ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfBulk)
@@ -471,20 +457,10 @@ func (c *apiServiceClient) ListBulks(ctx context.Context, in *common.ListSelecto
 	return out, nil
 }
 
-func (c *apiServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error) {
+func (c *apiServiceClient) ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.Bulk)
-	err := c.cc.Invoke(ctx, ApiService_GetBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *apiServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiService_CancelBulk_FullMethodName, in, out, cOpts...)
+	out := new(acquisition.ListOfBulkJob)
+	err := c.cc.Invoke(ctx, ApiService_ListBulkJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -501,10 +477,50 @@ func (c *apiServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.String
 	return out, nil
 }
 
-func (c *apiServiceClient) ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error) {
+func (c *apiServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.ListOfBulkJob)
-	err := c.cc.Invoke(ctx, ApiService_ListBulkJobs_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_CancelBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ProxyBulk)
+	err := c.cc.Invoke(ctx, ApiService_GetProxyBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.Bulk)
+	err := c.cc.Invoke(ctx, ApiService_GetBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -855,30 +871,35 @@ type ApiServiceServer interface {
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
 	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
+	// @group: Bulks
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
-	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
-	// @group: Bulks
-	// Cancels the bulk of jobs.
-	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
@@ -1053,26 +1074,29 @@ func (UnimplementedApiServiceServer) RemoveDeviceConfigurationRegisterFromDevice
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
 }
-func (UnimplementedApiServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
-}
-func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
-}
 func (UnimplementedApiServiceServer) ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBulks not implemented")
 }
-func (UnimplementedApiServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
-}
-func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+func (UnimplementedApiServiceServer) ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBulkJobs not implemented")
 }
 func (UnimplementedApiServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
-func (UnimplementedApiServiceServer) ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListBulkJobs not implemented")
+func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+}
+func (UnimplementedApiServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
+}
+func (UnimplementedApiServiceServer) GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProxyBulk not implemented")
+}
+func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
+}
+func (UnimplementedApiServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
 }
 func (UnimplementedApiServiceServer) ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
@@ -1491,42 +1515,6 @@ func _ApiService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.CreateProxyBulkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApiServiceServer).CreateProxyBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ApiService_CreateProxyBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApiService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.CreateBulkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApiServiceServer).CreateBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ApiService_CreateBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CreateBulk(ctx, req.(*acquisition.CreateBulkRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ApiService_ListBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
@@ -1545,38 +1533,20 @@ func _ApiService_ListBulks_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+func _ApiService_ListBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.ListBulkJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).GetBulk(ctx, in)
+		return srv.(ApiServiceServer).ListBulkJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_GetBulk_FullMethodName,
+		FullMethod: ApiService_ListBulkJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApiService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApiServiceServer).CancelBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ApiService_CancelBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+		return srv.(ApiServiceServer).ListBulkJobs(ctx, req.(*acquisition.ListBulkJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1599,20 +1569,92 @@ func _ApiService_GetBulkJob_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_ListBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.ListBulkJobsRequest)
+func _ApiService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).ListBulkJobs(ctx, in)
+		return srv.(ApiServiceServer).CancelBulk(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_ListBulkJobs_FullMethodName,
+		FullMethod: ApiService_CancelBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).ListBulkJobs(ctx, req.(*acquisition.ListBulkJobsRequest))
+		return srv.(ApiServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateProxyBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetProxyBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateBulk(ctx, req.(*acquisition.CreateBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2233,32 +2275,36 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_ListFieldDescriptors_Handler,
 		},
 		{
-			MethodName: "CreateProxyBulk",
-			Handler:    _ApiService_CreateProxyBulk_Handler,
-		},
-		{
-			MethodName: "CreateBulk",
-			Handler:    _ApiService_CreateBulk_Handler,
-		},
-		{
 			MethodName: "ListBulks",
 			Handler:    _ApiService_ListBulks_Handler,
 		},
 		{
-			MethodName: "GetBulk",
-			Handler:    _ApiService_GetBulk_Handler,
-		},
-		{
-			MethodName: "CancelBulk",
-			Handler:    _ApiService_CancelBulk_Handler,
+			MethodName: "ListBulkJobs",
+			Handler:    _ApiService_ListBulkJobs_Handler,
 		},
 		{
 			MethodName: "GetBulkJob",
 			Handler:    _ApiService_GetBulkJob_Handler,
 		},
 		{
-			MethodName: "ListBulkJobs",
-			Handler:    _ApiService_ListBulkJobs_Handler,
+			MethodName: "CancelBulk",
+			Handler:    _ApiService_CancelBulk_Handler,
+		},
+		{
+			MethodName: "CreateProxyBulk",
+			Handler:    _ApiService_CreateProxyBulk_Handler,
+		},
+		{
+			MethodName: "GetProxyBulk",
+			Handler:    _ApiService_GetProxyBulk_Handler,
+		},
+		{
+			MethodName: "CreateBulk",
+			Handler:    _ApiService_CreateBulk_Handler,
+		},
+		{
+			MethodName: "GetBulk",
+			Handler:    _ApiService_GetBulk_Handler,
 		},
 		{
 			MethodName: "ListDrivers",

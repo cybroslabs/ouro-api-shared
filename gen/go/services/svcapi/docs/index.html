@@ -90,6 +90,92 @@
     
     <div class="box">
       <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListBulks">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListBulks">
+            rpc <code>ListBulks</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelector"><span title="io.clbs.openhes.models.common.ListSelector">io.clbs.openhes.models.common.ListSelector</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfBulk"><span title="io.clbs.openhes.models.acquisition.ListOfBulk">io.clbs.openhes.models.acquisition.ListOfBulk</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+The list contains both the proxy bulks and the regular bulks.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListBulkJobs">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListBulkJobs">
+            rpc <code>ListBulkJobs</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListBulkJobsRequest"><span title="io.clbs.openhes.models.acquisition.ListBulkJobsRequest">io.clbs.openhes.models.acquisition.ListBulkJobsRequest</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfBulkJob"><span title="io.clbs.openhes.models.acquisition.ListOfBulkJob">io.clbs.openhes.models.acquisition.ListOfBulkJob</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+The listing can be used for both proxy bulks and regular bulks.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetBulkJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetBulkJob">
+            rpc <code>GetBulkJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CancelBulk">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CancelBulk">
+            rpc <code>CancelBulk</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Cancels the bulk of jobs. It can be used for both proxy and regular bulks.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
         <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CreateProxyBulk">
           <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CreateProxyBulk">
             rpc <code>CreateProxyBulk</code>
@@ -113,6 +199,27 @@
       
       <div class="block">
         <p><p>Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetProxyBulk">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetProxyBulk">
+            rpc <code>GetProxyBulk</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ProxyBulk"><span title="io.clbs.openhes.models.acquisition.ProxyBulk">io.clbs.openhes.models.acquisition.ProxyBulk</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the proxy bulk info and status.</p></p>
       </div>
       
     </div>
@@ -148,27 +255,6 @@
     
     <div class="box">
       <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListBulks">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListBulks">
-            rpc <code>ListBulks</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelector"><span title="io.clbs.openhes.models.common.ListSelector">io.clbs.openhes.models.common.ListSelector</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfBulk"><span title="io.clbs.openhes.models.acquisition.ListOfBulk">io.clbs.openhes.models.acquisition.ListOfBulk</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the list of bulks.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
         <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetBulk">
           <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetBulk">
             rpc <code>GetBulk</code>
@@ -184,69 +270,6 @@
       
       <div class="block">
         <p><p>Retrieves the bulk info and status.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CancelBulk">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CancelBulk">
-            rpc <code>CancelBulk</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
-    </a></code><br>
-        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Cancels the bulk of jobs.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetBulkJob">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetBulkJob">
-            rpc <code>GetBulkJob</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the job status.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListBulkJobs">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListBulkJobs">
-            rpc <code>ListBulkJobs</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListBulkJobsRequest"><span title="io.clbs.openhes.models.acquisition.ListBulkJobsRequest">io.clbs.openhes.models.acquisition.ListBulkJobsRequest</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ListOfBulkJob"><span title="io.clbs.openhes.models.acquisition.ListOfBulkJob">io.clbs.openhes.models.acquisition.ListOfBulkJob</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the list of jobs.</p></p>
       </div>
       
     </div>

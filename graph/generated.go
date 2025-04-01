@@ -722,6 +722,12 @@ type ComplexityRoot struct {
 		Unit   func(childComplexity int) int
 	}
 
+	ProxyBulk struct {
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
+		Status   func(childComplexity int) int
+	}
+
 	ProxyBulkSpec struct {
 		Actions       func(childComplexity int) int
 		CorrelationID func(childComplexity int) int
@@ -763,6 +769,7 @@ type ComplexityRoot struct {
 		GetDeviceGroup                                                   func(childComplexity int) int
 		GetDriver                                                        func(childComplexity int) int
 		GetModemPool                                                     func(childComplexity int) int
+		GetProxyBulk                                                     func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
@@ -861,13 +868,14 @@ type ComplexityRoot struct {
 }
 
 type QueryResolver interface {
-	CreateProxyBulk(ctx context.Context) (*model.StringValue, error)
-	CreateBulk(ctx context.Context) (*model.StringValue, error)
 	ListBulks(ctx context.Context) (*model.ListOfBulk, error)
-	GetBulk(ctx context.Context) (*model.Bulk, error)
-	CancelBulk(ctx context.Context) (*model.Empty, error)
-	GetBulkJob(ctx context.Context) (*model.BulkJob, error)
 	ListBulkJobs(ctx context.Context) (*model.ListOfBulkJob, error)
+	GetBulkJob(ctx context.Context) (*model.BulkJob, error)
+	CancelBulk(ctx context.Context) (*model.Empty, error)
+	CreateProxyBulk(ctx context.Context) (*model.StringValue, error)
+	GetProxyBulk(ctx context.Context) (*model.ProxyBulk, error)
+	CreateBulk(ctx context.Context) (*model.StringValue, error)
+	GetBulk(ctx context.Context) (*model.Bulk, error)
 	GetConfig(ctx context.Context) (*model.SystemConfig, error)
 	SetConfig(ctx context.Context) (*model.Empty, error)
 	CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error)
@@ -3372,6 +3380,27 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ProfileValues.Unit(childComplexity), true
 
+	case "ProxyBulk.metadata":
+		if e.complexity.ProxyBulk.Metadata == nil {
+			break
+		}
+
+		return e.complexity.ProxyBulk.Metadata(childComplexity), true
+
+	case "ProxyBulk.spec":
+		if e.complexity.ProxyBulk.Spec == nil {
+			break
+		}
+
+		return e.complexity.ProxyBulk.Spec(childComplexity), true
+
+	case "ProxyBulk.status":
+		if e.complexity.ProxyBulk.Status == nil {
+			break
+		}
+
+		return e.complexity.ProxyBulk.Status(childComplexity), true
+
 	case "ProxyBulkSpec.actions":
 		if e.complexity.ProxyBulkSpec.Actions == nil {
 			break
@@ -3630,6 +3659,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.GetModemPool(childComplexity), true
+
+	case "Query.getProxyBulk":
+		if e.complexity.Query.GetProxyBulk == nil {
+			break
+		}
+
+		return e.complexity.Query.GetProxyBulk(childComplexity), true
 
 	case "Query.listBulkJobs":
 		if e.complexity.Query.ListBulkJobs == nil {
@@ -19951,6 +19987,171 @@ func (ec *executionContext) fieldContext_ProfileValues_blocks(_ context.Context,
 	return fc, nil
 }
 
+func (ec *executionContext) _ProxyBulk_spec(ctx context.Context, field graphql.CollectedField, obj *model.ProxyBulk) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProxyBulk_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ProxyBulkSpec)
+	fc.Result = res
+	return ec.marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulkSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ProxyBulk_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ProxyBulk",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "correlationId":
+				return ec.fieldContext_ProxyBulkSpec_correlationId(ctx, field)
+			case "driverType":
+				return ec.fieldContext_ProxyBulkSpec_driverType(ctx, field)
+			case "devices":
+				return ec.fieldContext_ProxyBulkSpec_devices(ctx, field)
+			case "settings":
+				return ec.fieldContext_ProxyBulkSpec_settings(ctx, field)
+			case "actions":
+				return ec.fieldContext_ProxyBulkSpec_actions(ctx, field)
+			case "webhookUrl":
+				return ec.fieldContext_ProxyBulkSpec_webhookUrl(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ProxyBulkSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ProxyBulk_status(ctx context.Context, field graphql.CollectedField, obj *model.ProxyBulk) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProxyBulk_status(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Status, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.BulkStatus)
+	fc.Result = res
+	return ec.marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ProxyBulk_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ProxyBulk",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_BulkStatus_status(ctx, field)
+			case "jobsCount":
+				return ec.fieldContext_BulkStatus_jobsCount(ctx, field)
+			case "jobsFinished":
+				return ec.fieldContext_BulkStatus_jobsFinished(ctx, field)
+			case "jobsSuccessful":
+				return ec.fieldContext_BulkStatus_jobsSuccessful(ctx, field)
+			case "createdAt":
+				return ec.fieldContext_BulkStatus_createdAt(ctx, field)
+			case "startedAt":
+				return ec.fieldContext_BulkStatus_startedAt(ctx, field)
+			case "finishedAt":
+				return ec.fieldContext_BulkStatus_finishedAt(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type BulkStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ProxyBulk_metadata(ctx context.Context, field graphql.CollectedField, obj *model.ProxyBulk) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProxyBulk_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ProxyBulk_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ProxyBulk",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ProxyBulkSpec_correlationId(ctx context.Context, field graphql.CollectedField, obj *model.ProxyBulkSpec) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ProxyBulkSpec_correlationId(ctx, field)
 	if err != nil {
@@ -20249,96 +20450,6 @@ func (ec *executionContext) fieldContext_ProxyBulkSpec_webhookUrl(_ context.Cont
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_createProxyBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_createProxyBulk(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().CreateProxyBulk(rctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.StringValue)
-	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Query_createProxyBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Query",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "value":
-				return ec.fieldContext_StringValue_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Query_createBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_createBulk(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().CreateBulk(rctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.StringValue)
-	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Query_createBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Query",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "value":
-				return ec.fieldContext_StringValue_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _Query_listBulks(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_listBulks(ctx, field)
 	if err != nil {
@@ -20386,8 +20497,8 @@ func (ec *executionContext) fieldContext_Query_listBulks(_ context.Context, fiel
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_getBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_getBulk(ctx, field)
+func (ec *executionContext) _Query_listBulkJobs(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listBulkJobs(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -20400,7 +20511,7 @@ func (ec *executionContext) _Query_getBulk(ctx context.Context, field graphql.Co
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().GetBulk(rctx)
+		return ec.resolvers.Query().ListBulkJobs(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -20409,12 +20520,12 @@ func (ec *executionContext) _Query_getBulk(ctx context.Context, field graphql.Co
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.Bulk)
+	res := resTmp.(*model.ListOfBulkJob)
 	fc.Result = res
-	return ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
+	return ec.marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulkJob(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_getBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_listBulkJobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -20422,59 +20533,12 @@ func (ec *executionContext) fieldContext_Query_getBulk(_ context.Context, field 
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "spec":
-				return ec.fieldContext_Bulk_spec(ctx, field)
-			case "status":
-				return ec.fieldContext_Bulk_status(ctx, field)
-			case "metadata":
-				return ec.fieldContext_Bulk_metadata(ctx, field)
+			case "items":
+				return ec.fieldContext_ListOfBulkJob_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfBulkJob_totalCount(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Bulk", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Query_cancelBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_cancelBulk(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().CancelBulk(rctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.Empty)
-	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Query_cancelBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Query",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_Empty__empty(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ListOfBulkJob", field.Name)
 		},
 	}
 	return fc, nil
@@ -20529,8 +20593,8 @@ func (ec *executionContext) fieldContext_Query_getBulkJob(_ context.Context, fie
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_listBulkJobs(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_listBulkJobs(ctx, field)
+func (ec *executionContext) _Query_cancelBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_cancelBulk(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -20543,7 +20607,7 @@ func (ec *executionContext) _Query_listBulkJobs(ctx context.Context, field graph
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().ListBulkJobs(rctx)
+		return ec.resolvers.Query().CancelBulk(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -20552,12 +20616,12 @@ func (ec *executionContext) _Query_listBulkJobs(ctx context.Context, field graph
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ListOfBulkJob)
+	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulkJob(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_listBulkJobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_cancelBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -20565,12 +20629,198 @@ func (ec *executionContext) fieldContext_Query_listBulkJobs(_ context.Context, f
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "items":
-				return ec.fieldContext_ListOfBulkJob_items(ctx, field)
-			case "totalCount":
-				return ec.fieldContext_ListOfBulkJob_totalCount(ctx, field)
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ListOfBulkJob", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_createProxyBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createProxyBulk(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().CreateProxyBulk(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StringValue)
+	fc.Result = res
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_createProxyBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "value":
+				return ec.fieldContext_StringValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getProxyBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getProxyBulk(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetProxyBulk(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ProxyBulk)
+	fc.Result = res
+	return ec.marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulk(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getProxyBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_ProxyBulk_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_ProxyBulk_status(ctx, field)
+			case "metadata":
+				return ec.fieldContext_ProxyBulk_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ProxyBulk", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_createBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createBulk(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().CreateBulk(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StringValue)
+	fc.Result = res
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_createBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "value":
+				return ec.fieldContext_StringValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getBulk(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetBulk(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Bulk)
+	fc.Result = res
+	return ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_Bulk_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_Bulk_status(ctx, field)
+			case "metadata":
+				return ec.fieldContext_Bulk_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Bulk", field.Name)
 		},
 	}
 	return fc, nil
@@ -30522,6 +30772,46 @@ func (ec *executionContext) _ProfileValues(ctx context.Context, sel ast.Selectio
 	return out
 }
 
+var proxyBulkImplementors = []string{"ProxyBulk"}
+
+func (ec *executionContext) _ProxyBulk(ctx context.Context, sel ast.SelectionSet, obj *model.ProxyBulk) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, proxyBulkImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ProxyBulk")
+		case "spec":
+			out.Values[i] = ec._ProxyBulk_spec(ctx, field, obj)
+		case "status":
+			out.Values[i] = ec._ProxyBulk_status(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._ProxyBulk_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var proxyBulkSpecImplementors = []string{"ProxyBulkSpec"}
 
 func (ec *executionContext) _ProxyBulkSpec(ctx context.Context, sel ast.SelectionSet, obj *model.ProxyBulkSpec) graphql.Marshaler {
@@ -30587,44 +30877,6 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
-		case "createProxyBulk":
-			field := field
-
-			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Query_createProxyBulk(ctx, field)
-				return res
-			}
-
-			rrm := func(ctx context.Context) graphql.Marshaler {
-				return ec.OperationContext.RootResolverMiddleware(ctx,
-					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "createBulk":
-			field := field
-
-			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Query_createBulk(ctx, field)
-				return res
-			}
-
-			rrm := func(ctx context.Context) graphql.Marshaler {
-				return ec.OperationContext.RootResolverMiddleware(ctx,
-					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "listBulks":
 			field := field
 
@@ -30644,7 +30896,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "getBulk":
+		case "listBulkJobs":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -30653,26 +30905,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_getBulk(ctx, field)
-				return res
-			}
-
-			rrm := func(ctx context.Context) graphql.Marshaler {
-				return ec.OperationContext.RootResolverMiddleware(ctx,
-					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "cancelBulk":
-			field := field
-
-			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Query_cancelBulk(ctx, field)
+				res = ec._Query_listBulkJobs(ctx, field)
 				return res
 			}
 
@@ -30701,7 +30934,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "listBulkJobs":
+		case "cancelBulk":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -30710,7 +30943,83 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_listBulkJobs(ctx, field)
+				res = ec._Query_cancelBulk(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "createProxyBulk":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_createProxyBulk(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getProxyBulk":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getProxyBulk(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "createBulk":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_createBulk(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getBulk":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getBulk(ctx, field)
 				return res
 			}
 
@@ -35213,6 +35522,13 @@ func (ec *executionContext) marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabs�
 		return graphql.Null
 	}
 	return ec._ProfileValues(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulk(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulk) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ProxyBulk(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulkSpec(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulkSpec) graphql.Marshaler {

@@ -91,21 +91,23 @@ const (
 	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
 	// ListFieldDescriptors RPC.
 	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
+	ApiServiceListBulksProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
+	// ApiServiceListBulkJobsProcedure is the fully-qualified name of the ApiService's ListBulkJobs RPC.
+	ApiServiceListBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
+	// ApiServiceGetBulkJobProcedure is the fully-qualified name of the ApiService's GetBulkJob RPC.
+	ApiServiceGetBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	// ApiServiceCancelBulkProcedure is the fully-qualified name of the ApiService's CancelBulk RPC.
+	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
 	// ApiServiceCreateProxyBulkProcedure is the fully-qualified name of the ApiService's
 	// CreateProxyBulk RPC.
 	ApiServiceCreateProxyBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
+	// ApiServiceGetProxyBulkProcedure is the fully-qualified name of the ApiService's GetProxyBulk RPC.
+	ApiServiceGetProxyBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetProxyBulk"
 	// ApiServiceCreateBulkProcedure is the fully-qualified name of the ApiService's CreateBulk RPC.
 	ApiServiceCreateBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
-	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
-	ApiServiceListBulksProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	// ApiServiceGetBulkProcedure is the fully-qualified name of the ApiService's GetBulk RPC.
 	ApiServiceGetBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
-	// ApiServiceCancelBulkProcedure is the fully-qualified name of the ApiService's CancelBulk RPC.
-	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	// ApiServiceGetBulkJobProcedure is the fully-qualified name of the ApiService's GetBulkJob RPC.
-	ApiServiceGetBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
-	// ApiServiceListBulkJobsProcedure is the fully-qualified name of the ApiService's ListBulkJobs RPC.
-	ApiServiceListBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	// ApiServiceListDriversProcedure is the fully-qualified name of the ApiService's ListDrivers RPC.
 	ApiServiceListDriversProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	// ApiServiceGetDriverProcedure is the fully-qualified name of the ApiService's GetDriver RPC.
@@ -227,30 +229,35 @@ type ApiServiceClient interface {
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
 	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Bulks
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ProxyBulk], error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error)
-	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error)
-	// @group: Bulks
-	// Cancels the bulk of jobs.
-	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -479,34 +486,16 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
 			connect.WithClientOptions(opts...),
 		),
-		createProxyBulk: connect.NewClient[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue](
-			httpClient,
-			baseURL+ApiServiceCreateProxyBulkProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
-			connect.WithClientOptions(opts...),
-		),
-		createBulk: connect.NewClient[acquisition.CreateBulkRequest, wrapperspb.StringValue](
-			httpClient,
-			baseURL+ApiServiceCreateBulkProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
-			connect.WithClientOptions(opts...),
-		),
 		listBulks: connect.NewClient[common.ListSelector, acquisition.ListOfBulk](
 			httpClient,
 			baseURL+ApiServiceListBulksProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("ListBulks")),
 			connect.WithClientOptions(opts...),
 		),
-		getBulk: connect.NewClient[wrapperspb.StringValue, acquisition.Bulk](
+		listBulkJobs: connect.NewClient[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob](
 			httpClient,
-			baseURL+ApiServiceGetBulkProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
-			connect.WithClientOptions(opts...),
-		),
-		cancelBulk: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
-			httpClient,
-			baseURL+ApiServiceCancelBulkProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
+			baseURL+ApiServiceListBulkJobsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
 			connect.WithClientOptions(opts...),
 		),
 		getBulkJob: connect.NewClient[wrapperspb.StringValue, acquisition.BulkJob](
@@ -515,10 +504,34 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 			connect.WithClientOptions(opts...),
 		),
-		listBulkJobs: connect.NewClient[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob](
+		cancelBulk: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
 			httpClient,
-			baseURL+ApiServiceListBulkJobsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
+			baseURL+ApiServiceCancelBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
+			connect.WithClientOptions(opts...),
+		),
+		createProxyBulk: connect.NewClient[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateProxyBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
+			connect.WithClientOptions(opts...),
+		),
+		getProxyBulk: connect.NewClient[wrapperspb.StringValue, acquisition.ProxyBulk](
+			httpClient,
+			baseURL+ApiServiceGetProxyBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetProxyBulk")),
+			connect.WithClientOptions(opts...),
+		),
+		createBulk: connect.NewClient[acquisition.CreateBulkRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
+			connect.WithClientOptions(opts...),
+		),
+		getBulk: connect.NewClient[wrapperspb.StringValue, acquisition.Bulk](
+			httpClient,
+			baseURL+ApiServiceGetBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
 			connect.WithClientOptions(opts...),
 		),
 		listDrivers: connect.NewClient[common.ListSelector, acquisition.ListOfDriver](
@@ -723,13 +736,14 @@ type apiServiceClient struct {
 	addDeviceConfigurationRegisterToDeviceConfigurationTemplate      *connect.Client[acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, emptypb.Empty]
 	removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate *connect.Client[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, emptypb.Empty]
 	listFieldDescriptors                                             *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
-	createProxyBulk                                                  *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
-	createBulk                                                       *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
 	listBulks                                                        *connect.Client[common.ListSelector, acquisition.ListOfBulk]
-	getBulk                                                          *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
-	cancelBulk                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
 	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
+	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
+	cancelBulk                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createProxyBulk                                                  *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
+	getProxyBulk                                                     *connect.Client[wrapperspb.StringValue, acquisition.ProxyBulk]
+	createBulk                                                       *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
+	getBulk                                                          *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
 	listDrivers                                                      *connect.Client[common.ListSelector, acquisition.ListOfDriver]
 	getDriver                                                        *connect.Client[wrapperspb.StringValue, acquisition.Driver]
 	createCommunicationUnit                                          *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
@@ -859,29 +873,14 @@ func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, req *connec
 	return c.listFieldDescriptors.CallUnary(ctx, req)
 }
 
-// CreateProxyBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk.
-func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, req *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
-	return c.createProxyBulk.CallUnary(ctx, req)
-}
-
-// CreateBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateBulk.
-func (c *apiServiceClient) CreateBulk(ctx context.Context, req *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
-	return c.createBulk.CallUnary(ctx, req)
-}
-
 // ListBulks calls io.clbs.openhes.services.svcapi.ApiService.ListBulks.
 func (c *apiServiceClient) ListBulks(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error) {
 	return c.listBulks.CallUnary(ctx, req)
 }
 
-// GetBulk calls io.clbs.openhes.services.svcapi.ApiService.GetBulk.
-func (c *apiServiceClient) GetBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
-	return c.getBulk.CallUnary(ctx, req)
-}
-
-// CancelBulk calls io.clbs.openhes.services.svcapi.ApiService.CancelBulk.
-func (c *apiServiceClient) CancelBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
-	return c.cancelBulk.CallUnary(ctx, req)
+// ListBulkJobs calls io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs.
+func (c *apiServiceClient) ListBulkJobs(ctx context.Context, req *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
+	return c.listBulkJobs.CallUnary(ctx, req)
 }
 
 // GetBulkJob calls io.clbs.openhes.services.svcapi.ApiService.GetBulkJob.
@@ -889,9 +888,29 @@ func (c *apiServiceClient) GetBulkJob(ctx context.Context, req *connect.Request[
 	return c.getBulkJob.CallUnary(ctx, req)
 }
 
-// ListBulkJobs calls io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs.
-func (c *apiServiceClient) ListBulkJobs(ctx context.Context, req *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
-	return c.listBulkJobs.CallUnary(ctx, req)
+// CancelBulk calls io.clbs.openhes.services.svcapi.ApiService.CancelBulk.
+func (c *apiServiceClient) CancelBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.cancelBulk.CallUnary(ctx, req)
+}
+
+// CreateProxyBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk.
+func (c *apiServiceClient) CreateProxyBulk(ctx context.Context, req *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createProxyBulk.CallUnary(ctx, req)
+}
+
+// GetProxyBulk calls io.clbs.openhes.services.svcapi.ApiService.GetProxyBulk.
+func (c *apiServiceClient) GetProxyBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ProxyBulk], error) {
+	return c.getProxyBulk.CallUnary(ctx, req)
+}
+
+// CreateBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateBulk.
+func (c *apiServiceClient) CreateBulk(ctx context.Context, req *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createBulk.CallUnary(ctx, req)
+}
+
+// GetBulk calls io.clbs.openhes.services.svcapi.ApiService.GetBulk.
+func (c *apiServiceClient) GetBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
+	return c.getBulk.CallUnary(ctx, req)
 }
 
 // ListDrivers calls io.clbs.openhes.services.svcapi.ApiService.ListDrivers.
@@ -1088,30 +1107,35 @@ type ApiServiceHandler interface {
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
 	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Bulks
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ProxyBulk], error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error)
-	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error)
-	// @group: Bulks
-	// Cancels the bulk of jobs.
-	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -1336,34 +1360,16 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceCreateProxyBulkHandler := connect.NewUnaryHandler(
-		ApiServiceCreateProxyBulkProcedure,
-		svc.CreateProxyBulk,
-		connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
-		connect.WithHandlerOptions(opts...),
-	)
-	apiServiceCreateBulkHandler := connect.NewUnaryHandler(
-		ApiServiceCreateBulkProcedure,
-		svc.CreateBulk,
-		connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
-		connect.WithHandlerOptions(opts...),
-	)
 	apiServiceListBulksHandler := connect.NewUnaryHandler(
 		ApiServiceListBulksProcedure,
 		svc.ListBulks,
 		connect.WithSchema(apiServiceMethods.ByName("ListBulks")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetBulkHandler := connect.NewUnaryHandler(
-		ApiServiceGetBulkProcedure,
-		svc.GetBulk,
-		connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
-		connect.WithHandlerOptions(opts...),
-	)
-	apiServiceCancelBulkHandler := connect.NewUnaryHandler(
-		ApiServiceCancelBulkProcedure,
-		svc.CancelBulk,
-		connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
+	apiServiceListBulkJobsHandler := connect.NewUnaryHandler(
+		ApiServiceListBulkJobsProcedure,
+		svc.ListBulkJobs,
+		connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetBulkJobHandler := connect.NewUnaryHandler(
@@ -1372,10 +1378,34 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceListBulkJobsHandler := connect.NewUnaryHandler(
-		ApiServiceListBulkJobsProcedure,
-		svc.ListBulkJobs,
-		connect.WithSchema(apiServiceMethods.ByName("ListBulkJobs")),
+	apiServiceCancelBulkHandler := connect.NewUnaryHandler(
+		ApiServiceCancelBulkProcedure,
+		svc.CancelBulk,
+		connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateProxyBulkHandler := connect.NewUnaryHandler(
+		ApiServiceCreateProxyBulkProcedure,
+		svc.CreateProxyBulk,
+		connect.WithSchema(apiServiceMethods.ByName("CreateProxyBulk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetProxyBulkHandler := connect.NewUnaryHandler(
+		ApiServiceGetProxyBulkProcedure,
+		svc.GetProxyBulk,
+		connect.WithSchema(apiServiceMethods.ByName("GetProxyBulk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateBulkHandler := connect.NewUnaryHandler(
+		ApiServiceCreateBulkProcedure,
+		svc.CreateBulk,
+		connect.WithSchema(apiServiceMethods.ByName("CreateBulk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetBulkHandler := connect.NewUnaryHandler(
+		ApiServiceGetBulkProcedure,
+		svc.GetBulk,
+		connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceListDriversHandler := connect.NewUnaryHandler(
@@ -1594,20 +1624,22 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
 		case ApiServiceListFieldDescriptorsProcedure:
 			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
-		case ApiServiceCreateProxyBulkProcedure:
-			apiServiceCreateProxyBulkHandler.ServeHTTP(w, r)
-		case ApiServiceCreateBulkProcedure:
-			apiServiceCreateBulkHandler.ServeHTTP(w, r)
 		case ApiServiceListBulksProcedure:
 			apiServiceListBulksHandler.ServeHTTP(w, r)
-		case ApiServiceGetBulkProcedure:
-			apiServiceGetBulkHandler.ServeHTTP(w, r)
-		case ApiServiceCancelBulkProcedure:
-			apiServiceCancelBulkHandler.ServeHTTP(w, r)
-		case ApiServiceGetBulkJobProcedure:
-			apiServiceGetBulkJobHandler.ServeHTTP(w, r)
 		case ApiServiceListBulkJobsProcedure:
 			apiServiceListBulkJobsHandler.ServeHTTP(w, r)
+		case ApiServiceGetBulkJobProcedure:
+			apiServiceGetBulkJobHandler.ServeHTTP(w, r)
+		case ApiServiceCancelBulkProcedure:
+			apiServiceCancelBulkHandler.ServeHTTP(w, r)
+		case ApiServiceCreateProxyBulkProcedure:
+			apiServiceCreateProxyBulkHandler.ServeHTTP(w, r)
+		case ApiServiceGetProxyBulkProcedure:
+			apiServiceGetProxyBulkHandler.ServeHTTP(w, r)
+		case ApiServiceCreateBulkProcedure:
+			apiServiceCreateBulkHandler.ServeHTTP(w, r)
+		case ApiServiceGetBulkProcedure:
+			apiServiceGetBulkHandler.ServeHTTP(w, r)
 		case ApiServiceListDriversProcedure:
 			apiServiceListDriversHandler.ServeHTTP(w, r)
 		case ApiServiceGetDriverProcedure:
@@ -1745,32 +1777,36 @@ func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *con
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk is not implemented"))
-}
-
-func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateBulk is not implemented"))
-}
-
 func (UnimplementedApiServiceHandler) ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListBulks is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulk is not implemented"))
-}
-
-func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CancelBulk is not implemented"))
+func (UnimplementedApiServiceHandler) ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulkJob is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) ListBulkJobs(context.Context, *connect.Request[acquisition.ListBulkJobsRequest]) (*connect.Response[acquisition.ListOfBulkJob], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs is not implemented"))
+func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CancelBulk is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetProxyBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ProxyBulk], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetProxyBulk is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Request[acquisition.CreateBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateBulk is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulk is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error) {

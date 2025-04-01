@@ -24,13 +24,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataproxyService_CreateProxyBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
-	DataproxyService_CreateBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
 	DataproxyService_ListBulks_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
-	DataproxyService_GetBulk_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
-	DataproxyService_CancelBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
-	DataproxyService_GetBulkJob_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
 	DataproxyService_ListBulkJobs_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
+	DataproxyService_GetBulkJob_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_CancelBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_CreateProxyBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
+	DataproxyService_GetProxyBulk_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
+	DataproxyService_CreateBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_GetBulk_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
 	DataproxyService_GetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
 	DataproxyService_SetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
 )
@@ -41,24 +42,32 @@ const (
 //
 // The Dataproxy related service definition.
 type DataproxyServiceClient interface {
+	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
-	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error)
+	// @group: Bulks
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
-	// Cancels the bulk of jobs.
-	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
@@ -73,26 +82,6 @@ func NewDataproxyServiceClient(cc grpc.ClientConnInterface) DataproxyServiceClie
 	return &dataproxyServiceClient{cc}
 }
 
-func (c *dataproxyServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
-	err := c.cc.Invoke(ctx, DataproxyService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
-	err := c.cc.Invoke(ctx, DataproxyService_CreateBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dataproxyServiceClient) ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfBulk)
@@ -103,20 +92,10 @@ func (c *dataproxyServiceClient) ListBulks(ctx context.Context, in *common.ListS
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error) {
+func (c *dataproxyServiceClient) ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.Bulk)
-	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DataproxyService_CancelBulk_FullMethodName, in, out, cOpts...)
+	out := new(acquisition.ListOfBulkJob)
+	err := c.cc.Invoke(ctx, DataproxyService_ListBulkJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,10 +112,50 @@ func (c *dataproxyServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error) {
+func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.ListOfBulkJob)
-	err := c.cc.Invoke(ctx, DataproxyService_ListBulkJobs_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_CancelBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ProxyBulk)
+	err := c.cc.Invoke(ctx, DataproxyService_GetProxyBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_CreateBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.Bulk)
+	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -169,24 +188,32 @@ func (c *dataproxyServiceClient) SetConfig(ctx context.Context, in *system.Syste
 //
 // The Dataproxy related service definition.
 type DataproxyServiceServer interface {
+	// @group: Bulks
+	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+	// The list contains both the proxy bulks and the regular bulks.
+	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
+	// @group: Bulks
+	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+	// The listing can be used for both proxy bulks and regular bulks.
+	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
+	// @group: Bulks
+	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
+	// @group: Bulks
+	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
-	// The method called by the RestApi to start a new bulk of jobs.
-	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the list of bulks.
-	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
+	// Retrieves the proxy bulk info and status.
+	GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error)
+	// @group: Bulks
+	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
-	// Cancels the bulk of jobs.
-	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
-	// @group: Bulks
-	// Retrieves the job status.
-	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
-	// @group: Bulks
-	// Retrieves the list of jobs.
-	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// The method called by the RestApi to get the system configuration.
 	GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
@@ -201,26 +228,29 @@ type DataproxyServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataproxyServiceServer struct{}
 
-func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
-}
-func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
-}
 func (UnimplementedDataproxyServiceServer) ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBulks not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
-}
-func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+func (UnimplementedDataproxyServiceServer) ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBulkJobs not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
-func (UnimplementedDataproxyServiceServer) ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListBulkJobs not implemented")
+func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProxyBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
@@ -249,42 +279,6 @@ func RegisterDataproxyServiceServer(s grpc.ServiceRegistrar, srv DataproxyServic
 	s.RegisterService(&DataproxyService_ServiceDesc, srv)
 }
 
-func _DataproxyService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.CreateProxyBulkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_CreateProxyBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.CreateBulkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).CreateBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_CreateBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).CreateBulk(ctx, req.(*acquisition.CreateBulkRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DataproxyService_ListBulks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
@@ -303,38 +297,20 @@ func _DataproxyService_ListBulks_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+func _DataproxyService_ListBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.ListBulkJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataproxyServiceServer).GetBulk(ctx, in)
+		return srv.(DataproxyServiceServer).ListBulkJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataproxyService_GetBulk_FullMethodName,
+		FullMethod: DataproxyService_ListBulkJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataproxyService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).CancelBulk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_CancelBulk_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+		return srv.(DataproxyServiceServer).ListBulkJobs(ctx, req.(*acquisition.ListBulkJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -357,20 +333,92 @@ func _DataproxyService_GetBulkJob_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_ListBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.ListBulkJobsRequest)
+func _DataproxyService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataproxyServiceServer).ListBulkJobs(ctx, in)
+		return srv.(DataproxyServiceServer).CancelBulk(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataproxyService_ListBulkJobs_FullMethodName,
+		FullMethod: DataproxyService_CancelBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).ListBulkJobs(ctx, req.(*acquisition.ListBulkJobsRequest))
+		return srv.(DataproxyServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_CreateProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateProxyBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_CreateProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).CreateProxyBulk(ctx, req.(*acquisition.CreateProxyBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetProxyBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetProxyBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetProxyBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetProxyBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_CreateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).CreateBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_CreateBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).CreateBulk(ctx, req.(*acquisition.CreateBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -419,32 +467,36 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DataproxyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateProxyBulk",
-			Handler:    _DataproxyService_CreateProxyBulk_Handler,
-		},
-		{
-			MethodName: "CreateBulk",
-			Handler:    _DataproxyService_CreateBulk_Handler,
-		},
-		{
 			MethodName: "ListBulks",
 			Handler:    _DataproxyService_ListBulks_Handler,
 		},
 		{
-			MethodName: "GetBulk",
-			Handler:    _DataproxyService_GetBulk_Handler,
-		},
-		{
-			MethodName: "CancelBulk",
-			Handler:    _DataproxyService_CancelBulk_Handler,
+			MethodName: "ListBulkJobs",
+			Handler:    _DataproxyService_ListBulkJobs_Handler,
 		},
 		{
 			MethodName: "GetBulkJob",
 			Handler:    _DataproxyService_GetBulkJob_Handler,
 		},
 		{
-			MethodName: "ListBulkJobs",
-			Handler:    _DataproxyService_ListBulkJobs_Handler,
+			MethodName: "CancelBulk",
+			Handler:    _DataproxyService_CancelBulk_Handler,
+		},
+		{
+			MethodName: "CreateProxyBulk",
+			Handler:    _DataproxyService_CreateProxyBulk_Handler,
+		},
+		{
+			MethodName: "GetProxyBulk",
+			Handler:    _DataproxyService_GetProxyBulk_Handler,
+		},
+		{
+			MethodName: "CreateBulk",
+			Handler:    _DataproxyService_CreateBulk_Handler,
+		},
+		{
+			MethodName: "GetBulk",
+			Handler:    _DataproxyService_GetBulk_Handler,
 		},
 		{
 			MethodName: "GetConfig",
