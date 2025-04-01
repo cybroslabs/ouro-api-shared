@@ -685,6 +685,12 @@ type ProfileValues struct {
 	Blocks []*ProfileBlok `json:"blocks,omitempty"`
 }
 
+type ProxyBulk struct {
+	Spec     *ProxyBulkSpec  `json:"spec,omitempty"`
+	Status   *BulkStatus     `json:"status,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
 type ProxyBulkSpec struct {
 	CorrelationID *uuid.UUID       `json:"correlationId,omitempty"`
 	DriverType    *string          `json:"driverType,omitempty"`

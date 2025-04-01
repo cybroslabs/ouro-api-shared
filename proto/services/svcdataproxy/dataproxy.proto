@@ -13,25 +13,35 @@ import "system/main.proto";
 
 // The Dataproxy related service definition.
 service DataproxyService {
+    // @group: Bulks
+    // Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
+    // The list contains both the proxy bulks and the regular bulks.
+    rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);
+    // @group: Bulks
+    // Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
+    // The listing can be used for both proxy bulks and regular bulks.
+    rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
+    // @group: Bulks
+    // Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+    rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
+    // @group: Bulks
+    // Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+    rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+    // @group: Bulks
     // Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
     rpc CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue);
-
-    // The method called by the RestApi to start a new bulk of jobs.
-    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
     // @group: Bulks
-    // Retrieves the list of bulks.
-    rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);
+    // Retrieves the proxy bulk info and status.
+    rpc GetProxyBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ProxyBulk);
+
+    // @group: Bulks
+    // Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
     // @group: Bulks
     // Retrieves the bulk info and status.
     rpc GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Bulk);
-    // Cancels the bulk of jobs.
-    rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
-    // @group: Bulks
-    // Retrieves the job status.
-    rpc GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob);
-    // @group: Bulks
-    // Retrieves the list of jobs.
-    rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
+
 
     // // Cancels the job(s) identified by the job identifier(s).
     // rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);

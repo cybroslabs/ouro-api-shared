@@ -1258,6 +1258,15 @@ type ProfileValues {
   blocks: [ProfileBlok]
 }
 
+type ProxyBulk {
+  # The bulk-job spec.
+  spec: ProxyBulkSpec
+  # The bulk-job status/data.
+  status: BulkStatus
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type ProxyBulkSpec {
   # The correlation identifier, e.g. to define relation to non-homogenous group.
   correlationId: UUID
@@ -1522,13 +1531,14 @@ type _mapint32 {
 }
 
 type Query {
-  createProxyBulk: StringValue
-  createBulk: StringValue
   listBulks: ListOfBulk
-  getBulk: Bulk
-  cancelBulk: Empty
-  getBulkJob: BulkJob
   listBulkJobs: ListOfBulkJob
+  getBulkJob: BulkJob
+  cancelBulk: Empty
+  createProxyBulk: StringValue
+  getProxyBulk: ProxyBulk
+  createBulk: StringValue
+  getBulk: Bulk
   getConfig: SystemConfig
   setConfig: Empty
   createDeviceConfigurationRegister: StringValue
