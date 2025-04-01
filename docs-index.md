@@ -1,3 +1,3 @@
-# OpenHES gRPC API documentation.
+# Ouro Platform gRPC API documentation.
 
-This is an awesome documentation for OpenHES gRPC API.
+This is an awesome documentation for Ouro Platform gRPC API.

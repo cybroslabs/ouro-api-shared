@@ -3,7 +3,6 @@ package authentication
 import (
 	"context"
 
-	"github.com/cerbos/cerbos-sdk-go/cerbos"
 	"google.golang.org/grpc/metadata"
 )
 
@@ -20,9 +19,7 @@ type UserInfo struct {
 	// Exp represents the expiration time of the token.
 	Exp int64
 	// Raw represents the raw token data.
-	Raw map[string]interface{}
-	// Principal represents the principal of the user to handle authorization.
-	Principal *cerbos.Principal
+	Raw map[string]any
 }
 
 // NewOutgoingContextUser returns outgoing context derived from ctx with the sub, iss and ownerid set. Original context values are preserved.

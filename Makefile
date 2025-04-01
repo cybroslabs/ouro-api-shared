@@ -7,11 +7,13 @@ setup:
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	go install github.com/bufbuild/buf/cmd/buf@latest
+	go mod tidy
 
 .PHONY: gen-go
 gen-go:
 	npm i
 
+	rm -rf ./graph
 	rm -rf ./gen/ts
 	rm -rf ./gen/markdown
 	find ./gen/go -type f -name "*.pb.go" -delete
@@ -32,7 +34,4 @@ more:
 	go run github.com/99designs/gqlgen generate
 
 update:
-	GOPROXY=direct GOPRIVATE=github.com go get -u ./...
-	sed -i '' 's|github.com/google/cel-go v[^ ]*|github.com/google/cel-go v0.22.1|g' go.mod
-	sed -i '' 's|github.com/bufbuild/protovalidate-go v[^ ]*|github.com/bufbuild/protovalidate-go v0.8.0|g' go.mod
-	go mod tidy
+	GOPROXY=direct GOPRIVATE=github.com go get -u ./... && go mod tidy
