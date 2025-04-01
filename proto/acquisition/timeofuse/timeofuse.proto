@@ -1,0 +1,67 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.acquisition.timeofuse;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+// Enumeration for Relay State
+enum RelayState {
+    NOOP       = 0;  // Relay state is ignored (no action)
+    CONNECT    = 1;  // Relay connects
+    DISCONNECT = 2;  // Relay disconnects
+}
+
+// Switching data includes tariffs and relay states for specific times
+message Switching {
+    int32 hour                    = 1;  // Hour of the switching event (0-23)
+    int32 minute                  = 2;  // Minute of the switching event (0-59)
+    int32 tariff                  = 3;  // Tariff ID (-1 means no tariff, otherwise valid tariff ID)
+    map<int32, RelayState> relays = 4;  // Map of relay ID to relay state (Connect/Disconnect)
+}
+
+// DayProfile represents the profile for a single day, containing multiple Switching times
+message DayProfile {
+    string day_id                = 1;  // Unique identifier for the day profile
+    repeated Switching switching = 2;  // List of switching events (each with specific time and relay states)
+}
+
+// SpecialDay represents specific days such as holidays or exceptions
+message SpecialDay {
+    int32 year    = 1;  // Year of the special day (e.g., 2023)
+    int32 month   = 2;  // Month of the special day (1-12)
+    int32 day     = 3;  // Day of the special day (1-31)
+    string day_id = 4;  // Unique identifier for the special day
+}
+
+// Week represents a week of the year, containing a list of Day IDs and Week Name
+message Week {
+    string week_id          = 1;  // Unique identifier for the week
+    string week_name        = 2;  // Name of the week (e.g., "Week 1")
+    repeated string day_ids = 3;  // List of day IDs that belong to this week
+}
+
+// Season represents a season which spans across a specific start date and references a week
+message Season {
+    string id         = 1;  // Unique identifier for the season
+    string name       = 2;  // Name of the season (e.g., "Winter")
+    int32 start_year  = 3;  // Start year of the season (e.g., 2023)
+    int32 start_month = 4;  // Start month of the season (1-12)
+    int32 start_day   = 5;  // Start day of the season (1-31)
+    string week_id    = 6;  // Reference to a Week ID that this season is associated with
+}
+
+// TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
+message TimeOfUse {
+    string identification               = 1;  // Unique identifier for the TOU (e.g., "TOU-001")
+    string name                         = 2;  // Common name for the TOU (e.g., "Standard TOU Table")
+    google.protobuf.Timestamp expies_at = 3;  // Expiration date of the TOU table
+    string hdo_group_id                 = 4;  // HDO (High Demand Option) Group ID
+    google.type.Date activate_at        = 5;  // Activation date of the TOU table
+    repeated Season seasons             = 6;  // List of seasons defined in the TOU
+    repeated Week weeks                 = 7;  // List of weeks defined in the TOU
+    repeated DayProfile day_profiles    = 8;  // List of day profiles (each day having a list of switching events)
+    repeated SpecialDay special_days    = 9;  // List of special days (e.g., holidays, exceptions)
+}
