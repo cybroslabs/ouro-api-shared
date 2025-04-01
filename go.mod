@@ -10,7 +10,7 @@ retract (
 require (
 	connectrpc.com/connect v1.18.1
 	github.com/99designs/gqlgen v0.17.66
-	github.com/cerbos/cerbos-sdk-go v0.2.13
+	github.com/cerbos/cerbos-sdk-go v0.2.15
 	github.com/google/uuid v1.6.0
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.22
@@ -24,16 +24,16 @@ require (
 	cel.dev/expr v0.20.0 // indirect
 	github.com/agnivade/levenshtein v1.2.1 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
-	github.com/bufbuild/protovalidate-go v0.8.0 // indirect
+	github.com/bufbuild/protovalidate-go v0.9.1 // indirect
 	github.com/cerbos/cerbos/api/genpb v0.40.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.6 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.3.0 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
-	github.com/google/cel-go v0.22.1 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
-	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.2.0 // indirect
+	github.com/google/cel-go v0.23.2 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
+	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.1 // indirect
 	github.com/jdxcode/netrc v1.0.0 // indirect
 	github.com/lestrrat-go/blackmagic v1.0.2 // indirect
