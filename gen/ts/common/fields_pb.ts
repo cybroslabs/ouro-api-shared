@@ -161,11 +161,11 @@ export const ListSelectorSortBySchema: GenMessage<ListSelectorSortBy, ListSelect
 /**
  * The filtering criteria.
  *
- * Depending on the operator, the 'text', 'integer', 'number', 'boolean' or 'date' field should be used.
- * - No value must be set for operators: 'IS_NULL', 'IS_NOT_NULL'.
- * - One value must be set for single operand operators: 'EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'CONTAINS', 'NOT_CONTAINS', 'STARTS_WITH', 'ENDS_WITH'.
- * - Two values must be set for two operand operators: 'BETWEEN'.
- * - Any number of values can be set for generic operators: 'IN', 'NOT_IN'.
+ * Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
+ * - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
+ * - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+ * - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+ * - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
  *
  * Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
  *
@@ -232,11 +232,11 @@ export type ListSelectorFilterBy = Message<"io.clbs.openhes.models.common.ListSe
 /**
  * The filtering criteria.
  *
- * Depending on the operator, the 'text', 'integer', 'number', 'boolean' or 'date' field should be used.
- * - No value must be set for operators: 'IS_NULL', 'IS_NOT_NULL'.
- * - One value must be set for single operand operators: 'EQUAL', 'NOT_EQUAL', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL', 'CONTAINS', 'NOT_CONTAINS', 'STARTS_WITH', 'ENDS_WITH'.
- * - Two values must be set for two operand operators: 'BETWEEN'.
- * - Any number of values can be set for generic operators: 'IN', 'NOT_IN'.
+ * Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
+ * - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
+ * - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+ * - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+ * - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
  *
  * Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
  *
