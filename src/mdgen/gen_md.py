@@ -132,9 +132,17 @@ def generate(
                             )
                         else:
                             field_description = ""
+
+                        field_description = field_description.replace(
+                            "@values:", "<b>Values:</b>"
+                        )
+                        field_description = field_description.replace(
+                            "@example:", "<b>Example:</b>"
+                        )
+
                         _, full_type_link = getLinkFromType(
                             field.full_type, clean_google_empty=False
                         )
-                        field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
+                        field_description = f"<b>Type:</b> `{full_type_link}`<br><b>Description:</b><br>{field_description}"
                         fh.write(f"| {field.name} | {field_description} |\n")
                     fh.write("\n")

@@ -6,7 +6,7 @@ Sub-message containing billing-typed value
 
 | Field | Information |
 | --- | --- |
-| timestamp | <b>Type:</b> google.protobuf.Timestamp<br><b>Description:</b><br>The timestamp of the value. |
-| unit | <b>Type:</b> string<br><b>Description:</b><br>The unit of the value. |
-| value | <b>Type:</b> [io.clbs.openhes.models.acquisition.MeasuredValue](model-io-clbs-openhes-models-acquisition-measuredvalue.md)<br><b>Description:</b><br>The value. |
+| timestamp | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The timestamp of the value. |
+| unit | <b>Type:</b> `string`<br><b>Description:</b><br>The unit of the value. |
+| value | <b>Type:</b> `[io.clbs.openhes.models.acquisition.MeasuredValue](model-io-clbs-openhes-models-acquisition-measuredvalue.md)`<br><b>Description:</b><br>The value. |
 

@@ -191,6 +191,9 @@ func (x *Switching) ClearTariff() {
 type Switching_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// Hour of the switching event.
+	// @values: 0-23
+	// @example: 7
 	Hour   *int32
 	Minute *int32
 	Tariff *int32

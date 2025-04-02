@@ -29,6 +29,8 @@ export type ListSelector = Message<"io.clbs.openhes.models.common.ListSelector">
 
   /**
    * The offset of the first item to return, zero based.
+   * @values: any non-negative integer
+   * @example: 15
    *
    * @generated from field: uint32 offset = 2;
    */
@@ -73,6 +75,8 @@ export type ListSelectorJson = {
 
   /**
    * The offset of the first item to return, zero based.
+   * @values: any non-negative integer
+   * @example: 15
    *
    * @generated from field: uint32 offset = 2;
    */

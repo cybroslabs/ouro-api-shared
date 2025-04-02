@@ -348,6 +348,9 @@ type ListSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	PageSize *uint32
+	// The offset of the first item to return, zero based.
+	// @values: any non-negative integer
+	// @example: 15
 	Offset   *uint32
 	SortBy   []*ListSelectorSortBy
 	FilterBy []*ListSelectorFilterBy

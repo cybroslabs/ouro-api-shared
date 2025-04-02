@@ -4,5 +4,5 @@
 
 | Field | Information |
 | --- | --- |
-| communicationUnitId | <b>Type:</b> string<br><b>Description:</b><br>The list of communication unit identifiers. |
+| communicationUnitId | <b>Type:</b> `string`<br><b>Description:</b><br>The list of communication unit identifiers. |
 
