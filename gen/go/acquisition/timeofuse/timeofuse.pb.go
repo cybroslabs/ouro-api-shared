@@ -192,11 +192,20 @@ type Switching_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// Hour of the switching event.
-	// @values: 0-23
+	// @values: 0–23
 	// @example: 7
-	Hour   *int32
+	Hour *int32
+	// Minute of the switching event.
+	// @values: 0–59
+	// @example: 30
 	Minute *int32
+	// Tariff ID.
+	// @values: -1 means no tariff; other values are valid tariff IDs
+	// @example: 2
 	Tariff *int32
+	// Map of relay ID to relay state.
+	// @values: keys = relay IDs, values = RelayState enum
+	// @example: {1: CONNECT, 2: DISCONNECT}
 	Relays map[int32]RelayState
 }
 
@@ -299,7 +308,10 @@ func (x *DayProfile) ClearDayId() {
 type DayProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DayId     *string
+	// Unique identifier for the day profile
+	// @example: "weekday-profile"
+	DayId *string
+	// List of switching events (each with specific time and relay states)
 	Switching []*Switching
 }
 
@@ -455,9 +467,20 @@ func (x *SpecialDay) ClearDayId() {
 type SpecialDay_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Year  *int32
+	// Year of the special day
+	// @values: full year (e.g., 2023)
+	// @example: 2023
+	Year *int32
+	// Month of the special day
+	// @values: 1–12
+	// @example: 12
 	Month *int32
-	Day   *int32
+	// Day of the special day
+	// @values: 1–31
+	// @example: 25
+	Day *int32
+	// Unique identifier for the special day
+	// @example: "christmas"
 	DayId *string
 }
 
@@ -589,9 +612,15 @@ func (x *Week) ClearWeekName() {
 type Week_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	WeekId   *string
+	// Unique identifier for the week
+	// @example: "week-01"
+	WeekId *string
+	// Name of the week
+	// @example: "Week 1"
 	WeekName *string
-	DayIds   []string
+	// List of day IDs that belong to this week
+	// @example: ["monday", "tuesday", "holiday"]
+	DayIds []string
 }
 
 func (b0 Week_builder) Build() *Week {
@@ -806,12 +835,26 @@ func (x *Season) ClearWeekId() {
 type Season_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id         *string
-	Name       *string
-	StartYear  *int32
+	// Unique identifier for the season
+	// @example: "season-winter"
+	Id *string
+	// Name of the season
+	// @example: "Winter"
+	Name *string
+	// Start year of the season
+	// @example: 2023
+	StartYear *int32
+	// Start month of the season
+	// @values: 1–12
+	// @example: 12
 	StartMonth *int32
-	StartDay   *int32
-	WeekId     *string
+	// Start day of the season
+	// @values: 1–31
+	// @example: 1
+	StartDay *int32
+	// Reference to a Week ID that this season is associated with
+	// @example: "week-01"
+	WeekId *string
 }
 
 func (b0 Season_builder) Build() *Season {
@@ -1068,15 +1111,29 @@ func (x *TimeOfUse) ClearActivateAt() {
 type TimeOfUse_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// Unique identifier for the TOU
+	// @example: "TOU-001"
 	Identification *string
-	Name           *string
-	ExpiesAt       *timestamppb.Timestamp
-	HdoGroupId     *string
-	ActivateAt     *date.Date
-	Seasons        []*Season
-	Weeks          []*Week
-	DayProfiles    []*DayProfile
-	SpecialDays    []*SpecialDay
+	// Common name for the TOU
+	// @example: "Standard TOU Table"
+	Name *string
+	// Expiration date of the TOU table
+	// @example: "2025-01-01T00:00:00Z"
+	ExpiesAt *timestamppb.Timestamp
+	// HDO (High Demand Option) Group ID
+	// @example: "group-a"
+	HdoGroupId *string
+	// Activation date of the TOU table
+	// @example: "2024-06-01"
+	ActivateAt *date.Date
+	// List of seasons defined in the TOU
+	Seasons []*Season
+	// List of weeks defined in the TOU
+	Weeks []*Week
+	// List of day profiles (each day having a list of switching events)
+	DayProfiles []*DayProfile
+	// List of special days (e.g., holidays, exceptions)
+	SpecialDays []*SpecialDay
 }
 
 func (b0 TimeOfUse_builder) Build() *TimeOfUse {

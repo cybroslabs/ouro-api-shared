@@ -17,54 +17,133 @@ enum RelayState {
 // Switching data includes tariffs and relay states for specific times
 message Switching {
     // Hour of the switching event.
-    // @values: 0-23
+    // @values: 0–23
     // @example: 7
-    int32 hour                    = 1;
-    int32 minute                  = 2;  // Minute of the switching event (0-59)
-    int32 tariff                  = 3;  // Tariff ID (-1 means no tariff, otherwise valid tariff ID)
-    map<int32, RelayState> relays = 4;  // Map of relay ID to relay state (Connect/Disconnect)
+    int32 hour = 1;
+
+    // Minute of the switching event.
+    // @values: 0–59
+    // @example: 30
+    int32 minute = 2;
+
+    // Tariff ID.
+    // @values: -1 means no tariff; other values are valid tariff IDs
+    // @example: 2
+    int32 tariff = 3;
+
+    // Map of relay ID to relay state.
+    // @values: keys = relay IDs, values = RelayState enum
+    // @example: {1: CONNECT, 2: DISCONNECT}
+    map<int32, RelayState> relays = 4;
 }
 
 // DayProfile represents the profile for a single day, containing multiple Switching times
 message DayProfile {
-    string day_id                = 1;  // Unique identifier for the day profile
-    repeated Switching switching = 2;  // List of switching events (each with specific time and relay states)
+    // Unique identifier for the day profile
+    // @example: "weekday-profile"
+    string day_id = 1;
+
+    // List of switching events (each with specific time and relay states)
+    repeated Switching switching = 2;
 }
 
 // SpecialDay represents specific days such as holidays or exceptions
 message SpecialDay {
-    int32 year    = 1;  // Year of the special day (e.g., 2023)
-    int32 month   = 2;  // Month of the special day (1-12)
-    int32 day     = 3;  // Day of the special day (1-31)
-    string day_id = 4;  // Unique identifier for the special day
+    // Year of the special day
+    // @values: full year (e.g., 2023)
+    // @example: 2023
+    int32 year = 1;
+
+    // Month of the special day
+    // @values: 1–12
+    // @example: 12
+    int32 month = 2;
+
+    // Day of the special day
+    // @values: 1–31
+    // @example: 25
+    int32 day = 3;
+
+    // Unique identifier for the special day
+    // @example: "christmas"
+    string day_id = 4;
 }
 
 // Week represents a week of the year, containing a list of Day IDs and Week Name
 message Week {
-    string week_id          = 1;  // Unique identifier for the week
-    string week_name        = 2;  // Name of the week (e.g., "Week 1")
-    repeated string day_ids = 3;  // List of day IDs that belong to this week
+    // Unique identifier for the week
+    // @example: "week-01"
+    string week_id = 1;
+
+    // Name of the week
+    // @example: "Week 1"
+    string week_name = 2;
+
+    // List of day IDs that belong to this week
+    // @example: ["monday", "tuesday", "holiday"]
+    repeated string day_ids = 3;
 }
 
 // Season represents a season which spans across a specific start date and references a week
 message Season {
-    string id         = 1;  // Unique identifier for the season
-    string name       = 2;  // Name of the season (e.g., "Winter")
-    int32 start_year  = 3;  // Start year of the season (e.g., 2023)
-    int32 start_month = 4;  // Start month of the season (1-12)
-    int32 start_day   = 5;  // Start day of the season (1-31)
-    string week_id    = 6;  // Reference to a Week ID that this season is associated with
+    // Unique identifier for the season
+    // @example: "season-winter"
+    string id = 1;
+
+    // Name of the season
+    // @example: "Winter"
+    string name = 2;
+
+    // Start year of the season
+    // @example: 2023
+    int32 start_year = 3;
+
+    // Start month of the season
+    // @values: 1–12
+    // @example: 12
+    int32 start_month = 4;
+
+    // Start day of the season
+    // @values: 1–31
+    // @example: 1
+    int32 start_day = 5;
+
+    // Reference to a Week ID that this season is associated with
+    // @example: "week-01"
+    string week_id = 6;
 }
 
 // TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
 message TimeOfUse {
-    string identification               = 1;  // Unique identifier for the TOU (e.g., "TOU-001")
-    string name                         = 2;  // Common name for the TOU (e.g., "Standard TOU Table")
-    google.protobuf.Timestamp expies_at = 3;  // Expiration date of the TOU table
-    string hdo_group_id                 = 4;  // HDO (High Demand Option) Group ID
-    google.type.Date activate_at        = 5;  // Activation date of the TOU table
-    repeated Season seasons             = 6;  // List of seasons defined in the TOU
-    repeated Week weeks                 = 7;  // List of weeks defined in the TOU
-    repeated DayProfile day_profiles    = 8;  // List of day profiles (each day having a list of switching events)
-    repeated SpecialDay special_days    = 9;  // List of special days (e.g., holidays, exceptions)
+    // Unique identifier for the TOU
+    // @example: "TOU-001"
+    string identification = 1;
+
+    // Common name for the TOU
+    // @example: "Standard TOU Table"
+    string name = 2;
+
+    // Expiration date of the TOU table
+    // @example: "2025-01-01T00:00:00Z"
+    google.protobuf.Timestamp expies_at = 3;
+
+    // HDO (High Demand Option) Group ID
+    // @example: "group-a"
+    string hdo_group_id = 4;
+
+    // Activation date of the TOU table
+    // @example: "2024-06-01"
+    google.type.Date activate_at = 5;
+
+    // List of seasons defined in the TOU
+    repeated Season seasons = 6;
+
+    // List of weeks defined in the TOU
+    repeated Week weeks = 7;
+
+    // List of day profiles (each day having a list of switching events)
+    repeated DayProfile day_profiles = 8;
+
+    // List of special days (e.g., holidays, exceptions)
+    repeated SpecialDay special_days = 9;
 }
