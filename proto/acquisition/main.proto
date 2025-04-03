@@ -371,6 +371,10 @@ message GetMeterDataRequest {
     repeated string variable_name  = 4;                                              // The unique identifier of the register.
 }
 
+message StreamMeterDataPacket {
+    repeated StreamMeterData part = 1;  // The part of meter data. The data are ordered by timestamp from the oldest to the newest.
+}
+
 message StreamMeterData {
     google.protobuf.Timestamp ts        = 1 [features.field_presence = LEGACY_REQUIRED];
     repeated StreamMeterDataDevice data = 2;
