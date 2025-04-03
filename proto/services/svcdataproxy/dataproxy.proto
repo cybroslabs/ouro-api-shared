@@ -50,4 +50,8 @@ service DataproxyService {
     rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
     // The method called by the RestApi to set the system configuration.
     rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
+
+    // @group: Meter Data
+    // The method to stream out meter data.
+    rpc GetMeterData(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.StreamMeterData);
 }

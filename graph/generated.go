@@ -460,6 +460,13 @@ type ComplexityRoot struct {
 		StringValue   func(childComplexity int) int
 	}
 
+	GetMeterDataRequest struct {
+		DeviceID     func(childComplexity int) int
+		From         func(childComplexity int) int
+		To           func(childComplexity int) int
+		VariableName func(childComplexity int) int
+	}
+
 	IrregularProfileValues struct {
 		Unit   func(childComplexity int) int
 		Values func(childComplexity int) int
@@ -768,6 +775,7 @@ type ComplexityRoot struct {
 		GetDeviceConfigurationTemplate                                   func(childComplexity int) int
 		GetDeviceGroup                                                   func(childComplexity int) int
 		GetDriver                                                        func(childComplexity int) int
+		GetMeterData                                                     func(childComplexity int) int
 		GetModemPool                                                     func(childComplexity int) int
 		GetProxyBulk                                                     func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
@@ -823,6 +831,16 @@ type ComplexityRoot struct {
 	SetModemRequest struct {
 		Modem  func(childComplexity int) int
 		PoolID func(childComplexity int) int
+	}
+
+	StreamMeterData struct {
+		Data func(childComplexity int) int
+		Ts   func(childComplexity int) int
+	}
+
+	StreamMeterDataDevice struct {
+		Data     func(childComplexity int) int
+		DeviceID func(childComplexity int) int
 	}
 
 	StringValue struct {
@@ -919,6 +937,7 @@ type QueryResolver interface {
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
+	GetMeterData(ctx context.Context) (*model.StreamMeterData, error)
 	CreateVariable(ctx context.Context) (*model.StringValue, error)
 	ListVariables(ctx context.Context) (*model.ListOfVariable, error)
 	UpdateVariable(ctx context.Context) (*model.Empty, error)
@@ -2365,6 +2384,34 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.FieldValue.StringValue(childComplexity), true
 
+	case "GetMeterDataRequest.deviceId":
+		if e.complexity.GetMeterDataRequest.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.GetMeterDataRequest.DeviceID(childComplexity), true
+
+	case "GetMeterDataRequest.from":
+		if e.complexity.GetMeterDataRequest.From == nil {
+			break
+		}
+
+		return e.complexity.GetMeterDataRequest.From(childComplexity), true
+
+	case "GetMeterDataRequest.to":
+		if e.complexity.GetMeterDataRequest.To == nil {
+			break
+		}
+
+		return e.complexity.GetMeterDataRequest.To(childComplexity), true
+
+	case "GetMeterDataRequest.variableName":
+		if e.complexity.GetMeterDataRequest.VariableName == nil {
+			break
+		}
+
+		return e.complexity.GetMeterDataRequest.VariableName(childComplexity), true
+
 	case "IrregularProfileValues.unit":
 		if e.complexity.IrregularProfileValues.Unit == nil {
 			break
@@ -3653,6 +3700,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.GetDriver(childComplexity), true
 
+	case "Query.getMeterData":
+		if e.complexity.Query.GetMeterData == nil {
+			break
+		}
+
+		return e.complexity.Query.GetMeterData(childComplexity), true
+
 	case "Query.getModemPool":
 		if e.complexity.Query.GetModemPool == nil {
 			break
@@ -3911,6 +3965,34 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.SetModemRequest.PoolID(childComplexity), true
+
+	case "StreamMeterData.data":
+		if e.complexity.StreamMeterData.Data == nil {
+			break
+		}
+
+		return e.complexity.StreamMeterData.Data(childComplexity), true
+
+	case "StreamMeterData.ts":
+		if e.complexity.StreamMeterData.Ts == nil {
+			break
+		}
+
+		return e.complexity.StreamMeterData.Ts(childComplexity), true
+
+	case "StreamMeterDataDevice.data":
+		if e.complexity.StreamMeterDataDevice.Data == nil {
+			break
+		}
+
+		return e.complexity.StreamMeterDataDevice.Data(childComplexity), true
+
+	case "StreamMeterDataDevice.deviceId":
+		if e.complexity.StreamMeterDataDevice.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.StreamMeterDataDevice.DeviceID(childComplexity), true
 
 	case "StringValue.value":
 		if e.complexity.StringValue.Value == nil {
@@ -13490,6 +13572,170 @@ func (ec *executionContext) fieldContext_FieldValue_durationValue(_ context.Cont
 	return fc, nil
 }
 
+func (ec *executionContext) _GetMeterDataRequest_from(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterDataRequest_from(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.From, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterDataRequest_from(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterDataRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetMeterDataRequest_to(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterDataRequest_to(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.To, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterDataRequest_to(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterDataRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetMeterDataRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterDataRequest_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterDataRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterDataRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetMeterDataRequest_variableName(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterDataRequest_variableName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterDataRequest_variableName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterDataRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _IrregularProfileValues_unit(ctx context.Context, field graphql.CollectedField, obj *model.IrregularProfileValues) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_IrregularProfileValues_unit(ctx, field)
 	if err != nil {
@@ -22807,6 +23053,53 @@ func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Co
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_getMeterData(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getMeterData(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetMeterData(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StreamMeterData)
+	fc.Result = res
+	return ec.marshalOStreamMeterData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterData(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getMeterData(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "ts":
+				return ec.fieldContext_StreamMeterData_ts(ctx, field)
+			case "data":
+				return ec.fieldContext_StreamMeterData_data(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StreamMeterData", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_createVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_createVariable(ctx, field)
 	if err != nil {
@@ -23653,6 +23946,194 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 				return ec.fieldContext_ModemInfo_serialBaudRate(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ModemInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _StreamMeterData_ts(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_StreamMeterData_ts(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Ts, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_StreamMeterData_ts(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "StreamMeterData",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _StreamMeterData_data(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_StreamMeterData_data(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Data, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.StreamMeterDataDevice)
+	fc.Result = res
+	return ec.marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_StreamMeterData_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "StreamMeterData",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "deviceId":
+				return ec.fieldContext_StreamMeterDataDevice_deviceId(ctx, field)
+			case "data":
+				return ec.fieldContext_StreamMeterDataDevice_data(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StreamMeterDataDevice", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _StreamMeterDataDevice_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterDataDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_StreamMeterDataDevice_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_StreamMeterDataDevice_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "StreamMeterDataDevice",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _StreamMeterDataDevice_data(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterDataDevice) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_StreamMeterDataDevice_data(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Data, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MeasuredValue)
+	fc.Result = res
+	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_StreamMeterDataDevice_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "StreamMeterDataDevice",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_MeasuredValue_status(ctx, field)
+			case "exponent":
+				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
+			case "timestampValue":
+				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
+			case "timestampTzValue":
+				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -29156,6 +29637,48 @@ func (ec *executionContext) _FieldValue(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
+var getMeterDataRequestImplementors = []string{"GetMeterDataRequest"}
+
+func (ec *executionContext) _GetMeterDataRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetMeterDataRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, getMeterDataRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("GetMeterDataRequest")
+		case "from":
+			out.Values[i] = ec._GetMeterDataRequest_from(ctx, field, obj)
+		case "to":
+			out.Values[i] = ec._GetMeterDataRequest_to(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._GetMeterDataRequest_deviceId(ctx, field, obj)
+		case "variableName":
+			out.Values[i] = ec._GetMeterDataRequest_variableName(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var irregularProfileValuesImplementors = []string{"IrregularProfileValues"}
 
 func (ec *executionContext) _IrregularProfileValues(ctx context.Context, sel ast.SelectionSet, obj *model.IrregularProfileValues) graphql.Marshaler {
@@ -31846,6 +32369,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getMeterData":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getMeterData(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "createVariable":
 			field := field
 
@@ -32158,6 +32700,82 @@ func (ec *executionContext) _SetModemRequest(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._SetModemRequest_poolId(ctx, field, obj)
 		case "modem":
 			out.Values[i] = ec._SetModemRequest_modem(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var streamMeterDataImplementors = []string{"StreamMeterData"}
+
+func (ec *executionContext) _StreamMeterData(ctx context.Context, sel ast.SelectionSet, obj *model.StreamMeterData) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, streamMeterDataImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("StreamMeterData")
+		case "ts":
+			out.Values[i] = ec._StreamMeterData_ts(ctx, field, obj)
+		case "data":
+			out.Values[i] = ec._StreamMeterData_data(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var streamMeterDataDeviceImplementors = []string{"StreamMeterDataDevice"}
+
+func (ec *executionContext) _StreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, obj *model.StreamMeterDataDevice) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, streamMeterDataDeviceImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("StreamMeterDataDevice")
+		case "deviceId":
+			out.Values[i] = ec._StreamMeterDataDevice_deviceId(ctx, field, obj)
+		case "data":
+			out.Values[i] = ec._StreamMeterDataDevice_data(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -35540,6 +36158,61 @@ func (ec *executionContext) marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return v
+}
+
+func (ec *executionContext) marshalOStreamMeterData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterData(ctx context.Context, sel ast.SelectionSet, v *model.StreamMeterData) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._StreamMeterData(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, v []*model.StreamMeterDataDevice) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOStreamMeterDataDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOStreamMeterDataDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, v *model.StreamMeterDataDevice) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._StreamMeterDataDevice(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOString2ᚕᚖstring(ctx context.Context, v any) ([]*string, error) {

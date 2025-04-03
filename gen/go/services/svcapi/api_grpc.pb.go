@@ -79,6 +79,7 @@ const (
 	ApiService_DeleteModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
 	ApiService_GetConfig_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
 	ApiService_SetConfig_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	ApiService_GetMeterData_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterData"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -267,6 +268,9 @@ type ApiServiceClient interface {
 	// @group: Configuration
 	// The method to set the system configuration.
 	SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error)
 }
 
 type apiServiceClient struct {
@@ -827,6 +831,25 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, in *system.SystemConfi
 	return out, nil
 }
 
+func (c *apiServiceClient) GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[0], ApiService_GetMeterData_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_GetMeterDataClient = grpc.ServerStreamingClient[acquisition.StreamMeterData]
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1013,6 +1036,9 @@ type ApiServiceServer interface {
 	// @group: Configuration
 	// The method to set the system configuration.
 	SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -1187,6 +1213,9 @@ func (UnimplementedApiServiceServer) GetConfig(context.Context, *emptypb.Empty) 
 }
 func (UnimplementedApiServiceServer) SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
+}
+func (UnimplementedApiServiceServer) GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterData not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -2199,6 +2228,17 @@ func _ApiService_SetConfig_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetMeterData_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetMeterDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ApiServiceServer).GetMeterData(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_GetMeterDataServer = grpc.ServerStreamingServer[acquisition.StreamMeterData]
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2427,6 +2467,12 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_SetConfig_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetMeterData",
+			Handler:       _ApiService_GetMeterData_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "services/svcapi/api.proto",
 }

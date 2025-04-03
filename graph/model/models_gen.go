@@ -423,6 +423,13 @@ type FieldValue struct {
 	DurationValue *Duration `json:"durationValue,omitempty"`
 }
 
+type GetMeterDataRequest struct {
+	From         *string   `json:"from,omitempty"`
+	To           *string   `json:"to,omitempty"`
+	DeviceID     []*string `json:"deviceId,omitempty"`
+	VariableName []*string `json:"variableName,omitempty"`
+}
+
 type IrregularProfileValues struct {
 	Unit   *string           `json:"unit,omitempty"`
 	Values []*IrregularValue `json:"values,omitempty"`
@@ -731,6 +738,16 @@ type SetModemPoolRequest struct {
 type SetModemRequest struct {
 	PoolID *string    `json:"poolId,omitempty"`
 	Modem  *ModemInfo `json:"modem,omitempty"`
+}
+
+type StreamMeterData struct {
+	Ts   *string                  `json:"ts,omitempty"`
+	Data []*StreamMeterDataDevice `json:"data,omitempty"`
+}
+
+type StreamMeterDataDevice struct {
+	DeviceID *string          `json:"deviceId,omitempty"`
+	Data     []*MeasuredValue `json:"data,omitempty"`
 }
 
 type StringValue struct {

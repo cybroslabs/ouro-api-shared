@@ -34,6 +34,7 @@ const (
 	DataproxyService_GetBulk_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
 	DataproxyService_GetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
 	DataproxyService_SetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
+	DataproxyService_GetMeterData_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterData"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -72,6 +73,9 @@ type DataproxyServiceClient interface {
 	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error)
 }
 
 type dataproxyServiceClient struct {
@@ -182,6 +186,25 @@ func (c *dataproxyServiceClient) SetConfig(ctx context.Context, in *system.Syste
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetMeterData_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataClient = grpc.ServerStreamingClient[acquisition.StreamMeterData]
+
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility.
@@ -218,6 +241,9 @@ type DataproxyServiceServer interface {
 	GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error)
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -257,6 +283,9 @@ func (UnimplementedDataproxyServiceServer) GetConfig(context.Context, *emptypb.E
 }
 func (UnimplementedDataproxyServiceServer) SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterData not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 func (UnimplementedDataproxyServiceServer) testEmbeddedByValue()                          {}
@@ -459,6 +488,17 @@ func _DataproxyService_SetConfig_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_GetMeterData_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetMeterDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataproxyServiceServer).GetMeterData(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataServer = grpc.ServerStreamingServer[acquisition.StreamMeterData]
+
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -507,6 +547,12 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataproxyService_SetConfig_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetMeterData",
+			Handler:       _DataproxyService_GetMeterData_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "services/svcdataproxy/dataproxy.proto",
 }

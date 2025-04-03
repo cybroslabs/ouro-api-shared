@@ -266,6 +266,11 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
 }
 
+// GetMeterData is the resolver for the getMeterData field.
+func (r *queryResolver) GetMeterData(ctx context.Context) (*model.StreamMeterData, error) {
+	panic(fmt.Errorf("not implemented: GetMeterData - getMeterData"))
+}
+
 // CreateVariable is the resolver for the createVariable field.
 func (r *queryResolver) CreateVariable(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateVariable - createVariable"))

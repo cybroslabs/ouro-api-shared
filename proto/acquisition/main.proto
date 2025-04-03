@@ -361,3 +361,22 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
     string dct_id      = 1;  // The identifier of the device configuration template.
     string register_id = 2;  // The identifier of the register to be unlinked from the template.
 }
+
+// Meter Data
+
+message GetMeterDataRequest {
+    google.protobuf.Timestamp from = 1 [features.field_presence = LEGACY_REQUIRED];  // The start timestamp of the data.
+    google.protobuf.Timestamp to   = 2 [features.field_presence = LEGACY_REQUIRED];  // The end timestamp of the data.
+    repeated string device_id      = 3;                                              // One or more identifiers of the devices.
+    repeated string variable_name  = 4;                                              // The unique identifier of the register.
+}
+
+message StreamMeterData {
+    google.protobuf.Timestamp ts        = 1 [features.field_presence = LEGACY_REQUIRED];
+    repeated StreamMeterDataDevice data = 2;
+}
+
+message StreamMeterDataDevice {
+    string device_id            = 1 [features.field_presence = LEGACY_REQUIRED];  // The unique identifier of the device.
+    repeated MeasuredValue data = 2;                                              // The list of meter data.
+}

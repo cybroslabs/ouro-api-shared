@@ -187,6 +187,8 @@ const (
 	ApiServiceGetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
 	// ApiServiceSetConfigProcedure is the fully-qualified name of the ApiService's SetConfig RPC.
 	ApiServiceSetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	// ApiServiceGetMeterDataProcedure is the fully-qualified name of the ApiService's GetMeterData RPC.
+	ApiServiceGetMeterDataProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterData"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -371,6 +373,9 @@ type ApiServiceClient interface {
 	// @group: Configuration
 	// The method to set the system configuration.
 	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.StreamMeterData], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -714,6 +719,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
 			connect.WithClientOptions(opts...),
 		),
+		getMeterData: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.StreamMeterData](
+			httpClient,
+			baseURL+ApiServiceGetMeterDataProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetMeterData")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -774,6 +785,7 @@ type apiServiceClient struct {
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getConfig                                                        *connect.Client[emptypb.Empty, system.SystemConfig]
 	setConfig                                                        *connect.Client[system.SystemConfig, emptypb.Empty]
+	getMeterData                                                     *connect.Client[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1067,6 +1079,11 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[s
 	return c.setConfig.CallUnary(ctx, req)
 }
 
+// GetMeterData calls io.clbs.openhes.services.svcapi.ApiService.GetMeterData.
+func (c *apiServiceClient) GetMeterData(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.StreamMeterData], error) {
+	return c.getMeterData.CallServerStream(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -1249,6 +1266,9 @@ type ApiServiceHandler interface {
 	// @group: Configuration
 	// The method to set the system configuration.
 	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
+	// @group: Meter Data
+	// The method to stream out meter data.
+	GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.StreamMeterData]) error
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -1588,6 +1608,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetMeterDataHandler := connect.NewServerStreamHandler(
+		ApiServiceGetMeterDataProcedure,
+		svc.GetMeterData,
+		connect.WithSchema(apiServiceMethods.ByName("GetMeterData")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -1700,6 +1726,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetConfigHandler.ServeHTTP(w, r)
 		case ApiServiceSetConfigProcedure:
 			apiServiceSetConfigHandler.ServeHTTP(w, r)
+		case ApiServiceGetMeterDataProcedure:
+			apiServiceGetMeterDataHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -1927,4 +1955,8 @@ func (UnimplementedApiServiceHandler) GetConfig(context.Context, *connect.Reques
 
 func (UnimplementedApiServiceHandler) SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.StreamMeterData]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterData is not implemented"))
 }

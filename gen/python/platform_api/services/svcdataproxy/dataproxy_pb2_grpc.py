@@ -69,6 +69,11 @@ class DataproxyServiceStub(object):
                 request_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetMeterData = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterData',
+                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.StreamMeterData.FromString,
+                _registered_method=True)
 
 
 class DataproxyServiceServicer(object):
@@ -158,6 +163,14 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetMeterData(self, request, context):
+        """@group: Meter Data
+        The method to stream out meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataproxyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -210,6 +223,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.SetConfig,
                     request_deserializer=system_dot_main__pb2.SystemConfig.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetMeterData': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetMeterData,
+                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.StreamMeterData.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -483,6 +501,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig',
             system_dot_main__pb2.SystemConfig.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMeterData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterData',
+            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            acquisition_dot_main__pb2.StreamMeterData.FromString,
             options,
             channel_credentials,
             insecure,

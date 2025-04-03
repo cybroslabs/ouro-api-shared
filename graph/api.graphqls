@@ -897,6 +897,17 @@ type EventRecords {
   values: [EventRecord]
 }
 
+type GetMeterDataRequest {
+  # The start timestamp of the data.
+  from: Timestamp
+  # The end timestamp of the data.
+  to: Timestamp
+  # One or more identifiers of the devices.
+  deviceId: [String]
+  # The unique identifier of the register.
+  variableName: [String]
+}
+
 type IrregularProfileValues {
   # The unit of the profile values.
   unit: String
@@ -1324,6 +1335,18 @@ type SetModemRequest {
   modem: ModemInfo
 }
 
+type StreamMeterData {
+  ts: Timestamp
+  data: [StreamMeterDataDevice]
+}
+
+type StreamMeterDataDevice {
+  # The unique identifier of the device.
+  deviceId: String
+  # The list of meter data.
+  data: [MeasuredValue]
+}
+
 type Variable {
   # The variable specification.
   spec: VariableSpec
@@ -1582,6 +1605,7 @@ type Query {
   listDrivers: ListOfDriver
   getDriver: Driver
   listFieldDescriptors: ListOfFieldDescriptor
+  getMeterData: StreamMeterData
   createVariable: StringValue
   listVariables: ListOfVariable
   updateVariable: Empty
