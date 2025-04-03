@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 import "common/metadata.proto";
 import "common/fields.proto";
 import "acquisition/shared.proto";
+import "acquisition/timeofuse/timeofuse.proto";
 
 // Communication Unit specification.
 
@@ -371,16 +372,27 @@ message GetMeterDataRequest {
     repeated string variable_name  = 4;                                              // The unique identifier of the register.
 }
 
-message StreamMeterDataPacket {
-    repeated StreamMeterData part = 1;  // The part of meter data. The data are ordered by timestamp from the oldest to the newest.
+// Meter Events
+
+message GetMeterEventsRequest {
+    google.protobuf.Timestamp from = 1 [features.field_presence = LEGACY_REQUIRED];  // The start timestamp of the data.
+    google.protobuf.Timestamp to   = 2 [features.field_presence = LEGACY_REQUIRED];  // The end timestamp of the data.
 }
 
-message StreamMeterData {
-    google.protobuf.Timestamp ts        = 1 [features.field_presence = LEGACY_REQUIRED];
-    repeated StreamMeterDataDevice data = 2;
+// TOU
+
+message CreateTimeOfUseTableRequest {
+    timeofuse.TimeOfUseTableSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The time-of-use table specification.
+    common.MetadataFields metadata    = 2;                                              // The metadata fields.
 }
 
-message StreamMeterDataDevice {
-    string device_id            = 1 [features.field_presence = LEGACY_REQUIRED];  // The unique identifier of the device.
-    repeated MeasuredValue data = 2;                                              // The list of meter data.
+message ListOfTimeOfUseTable {
+    repeated TimeOfUseTable items = 1;  // The list of time-of-use tables.
+    int32 total_count             = 2;  // The total number of items.
+}
+
+message TimeOfUseTable {
+    reserved 2;                                                                         // reserved for status
+    timeofuse.TimeOfUseTableSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The time-of-use table specification.
+    common.MetadataFields metadata    = 3;                                              // The metadata fields.
 }

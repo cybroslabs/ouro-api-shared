@@ -7,6 +7,7 @@
 package acquisition
 
 import (
+	timeofuse "github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse"
 	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -6013,27 +6014,28 @@ func (b0 GetMeterDataRequest_builder) Build() *GetMeterDataRequest {
 	return m0
 }
 
-type StreamMeterDataPacket struct {
+type GetMeterEventsRequest struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Part *[]*StreamMeterData    `protobuf:"bytes,1,rep,name=part"`
+	xxx_hidden_From *timestamppb.Timestamp `protobuf:"bytes,1,req,name=from"`
+	xxx_hidden_To   *timestamppb.Timestamp `protobuf:"bytes,2,req,name=to"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *StreamMeterDataPacket) Reset() {
-	*x = StreamMeterDataPacket{}
+func (x *GetMeterEventsRequest) Reset() {
+	*x = GetMeterEventsRequest{}
 	mi := &file_acquisition_main_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StreamMeterDataPacket) String() string {
+func (x *GetMeterEventsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StreamMeterDataPacket) ProtoMessage() {}
+func (*GetMeterEventsRequest) ProtoMessage() {}
 
-func (x *StreamMeterDataPacket) ProtoReflect() protoreflect.Message {
+func (x *GetMeterEventsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_main_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6045,141 +6047,183 @@ func (x *StreamMeterDataPacket) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *StreamMeterDataPacket) GetPart() []*StreamMeterData {
+func (x *GetMeterEventsRequest) GetFrom() *timestamppb.Timestamp {
 	if x != nil {
-		if x.xxx_hidden_Part != nil {
-			return *x.xxx_hidden_Part
-		}
+		return x.xxx_hidden_From
 	}
 	return nil
 }
 
-func (x *StreamMeterDataPacket) SetPart(v []*StreamMeterData) {
-	x.xxx_hidden_Part = &v
-}
-
-type StreamMeterDataPacket_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Part []*StreamMeterData
-}
-
-func (b0 StreamMeterDataPacket_builder) Build() *StreamMeterDataPacket {
-	m0 := &StreamMeterDataPacket{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_Part = &b.Part
-	return m0
-}
-
-type StreamMeterData struct {
-	state           protoimpl.MessageState    `protogen:"opaque.v1"`
-	xxx_hidden_Ts   *timestamppb.Timestamp    `protobuf:"bytes,1,req,name=ts"`
-	xxx_hidden_Data *[]*StreamMeterDataDevice `protobuf:"bytes,2,rep,name=data"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *StreamMeterData) Reset() {
-	*x = StreamMeterData{}
-	mi := &file_acquisition_main_proto_msgTypes[58]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StreamMeterData) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StreamMeterData) ProtoMessage() {}
-
-func (x *StreamMeterData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_main_proto_msgTypes[58]
+func (x *GetMeterEventsRequest) GetTo() *timestamppb.Timestamp {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *StreamMeterData) GetTs() *timestamppb.Timestamp {
-	if x != nil {
-		return x.xxx_hidden_Ts
+		return x.xxx_hidden_To
 	}
 	return nil
 }
 
-func (x *StreamMeterData) GetData() []*StreamMeterDataDevice {
-	if x != nil {
-		if x.xxx_hidden_Data != nil {
-			return *x.xxx_hidden_Data
-		}
-	}
-	return nil
+func (x *GetMeterEventsRequest) SetFrom(v *timestamppb.Timestamp) {
+	x.xxx_hidden_From = v
 }
 
-func (x *StreamMeterData) SetTs(v *timestamppb.Timestamp) {
-	x.xxx_hidden_Ts = v
+func (x *GetMeterEventsRequest) SetTo(v *timestamppb.Timestamp) {
+	x.xxx_hidden_To = v
 }
 
-func (x *StreamMeterData) SetData(v []*StreamMeterDataDevice) {
-	x.xxx_hidden_Data = &v
-}
-
-func (x *StreamMeterData) HasTs() bool {
+func (x *GetMeterEventsRequest) HasFrom() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_Ts != nil
+	return x.xxx_hidden_From != nil
 }
 
-func (x *StreamMeterData) ClearTs() {
-	x.xxx_hidden_Ts = nil
+func (x *GetMeterEventsRequest) HasTo() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_To != nil
 }
 
-type StreamMeterData_builder struct {
+func (x *GetMeterEventsRequest) ClearFrom() {
+	x.xxx_hidden_From = nil
+}
+
+func (x *GetMeterEventsRequest) ClearTo() {
+	x.xxx_hidden_To = nil
+}
+
+type GetMeterEventsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Ts   *timestamppb.Timestamp
-	Data []*StreamMeterDataDevice
+	From *timestamppb.Timestamp
+	To   *timestamppb.Timestamp
 }
 
-func (b0 StreamMeterData_builder) Build() *StreamMeterData {
-	m0 := &StreamMeterData{}
+func (b0 GetMeterEventsRequest_builder) Build() *GetMeterEventsRequest {
+	m0 := &GetMeterEventsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Ts = b.Ts
-	x.xxx_hidden_Data = &b.Data
+	x.xxx_hidden_From = b.From
+	x.xxx_hidden_To = b.To
 	return m0
 }
 
-type StreamMeterDataDevice struct {
+type CreateTimeOfUseTableRequest struct {
+	state               protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields        `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *CreateTimeOfUseTableRequest) Reset() {
+	*x = CreateTimeOfUseTableRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateTimeOfUseTableRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTimeOfUseTableRequest) ProtoMessage() {}
+
+func (x *CreateTimeOfUseTableRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CreateTimeOfUseTableRequest) GetSpec() *timeofuse.TimeOfUseTableSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *CreateTimeOfUseTableRequest) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *CreateTimeOfUseTableRequest) SetSpec(v *timeofuse.TimeOfUseTableSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *CreateTimeOfUseTableRequest) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *CreateTimeOfUseTableRequest) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *CreateTimeOfUseTableRequest) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *CreateTimeOfUseTableRequest) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *CreateTimeOfUseTableRequest) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type CreateTimeOfUseTableRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *timeofuse.TimeOfUseTableSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 CreateTimeOfUseTableRequest_builder) Build() *CreateTimeOfUseTableRequest {
+	m0 := &CreateTimeOfUseTableRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+type ListOfTimeOfUseTable struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DeviceId    *string                `protobuf:"bytes,1,req,name=device_id,json=deviceId"`
-	xxx_hidden_Data        *[]*MeasuredValue      `protobuf:"bytes,2,rep,name=data"`
+	xxx_hidden_Items       *[]*TimeOfUseTable     `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *StreamMeterDataDevice) Reset() {
-	*x = StreamMeterDataDevice{}
+func (x *ListOfTimeOfUseTable) Reset() {
+	*x = ListOfTimeOfUseTable{}
 	mi := &file_acquisition_main_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StreamMeterDataDevice) String() string {
+func (x *ListOfTimeOfUseTable) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StreamMeterDataDevice) ProtoMessage() {}
+func (*ListOfTimeOfUseTable) ProtoMessage() {}
 
-func (x *StreamMeterDataDevice) ProtoReflect() protoreflect.Message {
+func (x *ListOfTimeOfUseTable) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_main_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6191,62 +6235,152 @@ func (x *StreamMeterDataDevice) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *StreamMeterDataDevice) GetDeviceId() string {
+func (x *ListOfTimeOfUseTable) GetItems() []*TimeOfUseTable {
 	if x != nil {
-		if x.xxx_hidden_DeviceId != nil {
-			return *x.xxx_hidden_DeviceId
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *StreamMeterDataDevice) GetData() []*MeasuredValue {
-	if x != nil {
-		if x.xxx_hidden_Data != nil {
-			return *x.xxx_hidden_Data
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
 		}
 	}
 	return nil
 }
 
-func (x *StreamMeterDataDevice) SetDeviceId(v string) {
-	x.xxx_hidden_DeviceId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+func (x *ListOfTimeOfUseTable) GetTotalCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_TotalCount
+	}
+	return 0
 }
 
-func (x *StreamMeterDataDevice) SetData(v []*MeasuredValue) {
-	x.xxx_hidden_Data = &v
+func (x *ListOfTimeOfUseTable) SetItems(v []*TimeOfUseTable) {
+	x.xxx_hidden_Items = &v
 }
 
-func (x *StreamMeterDataDevice) HasDeviceId() bool {
+func (x *ListOfTimeOfUseTable) SetTotalCount(v int32) {
+	x.xxx_hidden_TotalCount = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListOfTimeOfUseTable) HasTotalCount() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *StreamMeterDataDevice) ClearDeviceId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_DeviceId = nil
+func (x *ListOfTimeOfUseTable) ClearTotalCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_TotalCount = 0
 }
 
-type StreamMeterDataDevice_builder struct {
+type ListOfTimeOfUseTable_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DeviceId *string
-	Data     []*MeasuredValue
+	Items      []*TimeOfUseTable
+	TotalCount *int32
 }
 
-func (b0 StreamMeterDataDevice_builder) Build() *StreamMeterDataDevice {
-	m0 := &StreamMeterDataDevice{}
+func (b0 ListOfTimeOfUseTable_builder) Build() *ListOfTimeOfUseTable {
+	m0 := &ListOfTimeOfUseTable{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.DeviceId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
-		x.xxx_hidden_DeviceId = b.DeviceId
+	x.xxx_hidden_Items = &b.Items
+	if b.TotalCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_TotalCount = *b.TotalCount
 	}
-	x.xxx_hidden_Data = &b.Data
+	return m0
+}
+
+type TimeOfUseTable struct {
+	state               protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields        `protobuf:"bytes,3,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *TimeOfUseTable) Reset() {
+	*x = TimeOfUseTable{}
+	mi := &file_acquisition_main_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TimeOfUseTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimeOfUseTable) ProtoMessage() {}
+
+func (x *TimeOfUseTable) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *TimeOfUseTable) GetSpec() *timeofuse.TimeOfUseTableSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *TimeOfUseTable) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *TimeOfUseTable) SetSpec(v *timeofuse.TimeOfUseTableSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *TimeOfUseTable) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *TimeOfUseTable) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *TimeOfUseTable) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *TimeOfUseTable) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *TimeOfUseTable) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type TimeOfUseTable_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *timeofuse.TimeOfUseTableSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 TimeOfUseTable_builder) Build() *TimeOfUseTable {
+	m0 := &TimeOfUseTable{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
 	return m0
 }
 
@@ -6254,7 +6388,7 @@ var File_acquisition_main_proto protoreflect.FileDescriptor
 
 const file_acquisition_main_proto_rawDesc = "" +
 	"\n" +
-	"\x16acquisition/main.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15common/metadata.proto\x1a\x13common/fields.proto\x1a\x18acquisition/shared.proto\"\xc1\x01\n" +
+	"\x16acquisition/main.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15common/metadata.proto\x1a\x13common/fields.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\"\xc1\x01\n" +
 	"\x1eCreateCommunicationUnitRequest\x12T\n" +
 	"\x04spec\x18\x01 \x01(\v29.io.clbs.openhes.models.acquisition.CommunicationUnitSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x87\x01\n" +
@@ -6476,17 +6610,22 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x04from\x121\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x02to\x12\x1b\n" +
 	"\tdevice_id\x18\x03 \x03(\tR\bdeviceId\x12#\n" +
-	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"`\n" +
-	"\x15StreamMeterDataPacket\x12G\n" +
-	"\x04part\x18\x01 \x03(\v23.io.clbs.openhes.models.acquisition.StreamMeterDataR\x04part\"\x93\x01\n" +
-	"\x0fStreamMeterData\x121\n" +
-	"\x02ts\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x02ts\x12M\n" +
-	"\x04data\x18\x02 \x03(\v29.io.clbs.openhes.models.acquisition.StreamMeterDataDeviceR\x04data\"\x82\x01\n" +
-	"\x15StreamMeterDataDevice\x12\"\n" +
-	"\tdevice_id\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\bdeviceId\x12E\n" +
-	"\x04data\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x04dataB5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\x81\x01\n" +
+	"\x15GetMeterEventsRequest\x125\n" +
+	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x04from\x121\n" +
+	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x02to\"\xc5\x01\n" +
+	"\x1bCreateTimeOfUseTableRequest\x12[\n" +
+	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x81\x01\n" +
+	"\x14ListOfTimeOfUseTable\x12H\n" +
+	"\x05items\x18\x01 \x03(\v22.io.clbs.openhes.models.acquisition.TimeOfUseTableR\x05items\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\"\xbe\x01\n" +
+	"\x0eTimeOfUseTable\x12[\n" +
+	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
 
-var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
 var file_acquisition_main_proto_goTypes = []any{
 	(*CreateCommunicationUnitRequest)(nil),                      // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
 	(*ListOfCommunicationUnit)(nil),                             // 1: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
@@ -6545,122 +6684,126 @@ var file_acquisition_main_proto_goTypes = []any{
 	(*AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest)(nil),      // 54: io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest
 	(*RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest)(nil), // 55: io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	(*GetMeterDataRequest)(nil),             // 56: io.clbs.openhes.models.acquisition.GetMeterDataRequest
-	(*StreamMeterDataPacket)(nil),           // 57: io.clbs.openhes.models.acquisition.StreamMeterDataPacket
-	(*StreamMeterData)(nil),                 // 58: io.clbs.openhes.models.acquisition.StreamMeterData
-	(*StreamMeterDataDevice)(nil),           // 59: io.clbs.openhes.models.acquisition.StreamMeterDataDevice
-	nil,                                     // 60: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
-	(*CommunicationUnitSpec)(nil),           // 61: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*common.MetadataFields)(nil),           // 62: io.clbs.openhes.models.common.MetadataFields
-	(*CommunicationUnit)(nil),               // 63: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationBus)(nil),                // 64: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*DeviceSpec)(nil),                      // 65: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                    // 66: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*DeviceCommunicationUnit)(nil),         // 67: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*common.ListSelector)(nil),             // 68: io.clbs.openhes.models.common.ListSelector
-	(*ListOfJobDeviceId)(nil),               // 69: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	(*JobSettings)(nil),                     // 70: io.clbs.openhes.models.acquisition.JobSettings
-	(*JobActionSet)(nil),                    // 71: io.clbs.openhes.models.acquisition.JobActionSet
-	(BulkStatusCode)(0),                     // 72: io.clbs.openhes.models.acquisition.BulkStatusCode
-	(*timestamppb.Timestamp)(nil),           // 73: google.protobuf.Timestamp
-	(*JobStatus)(nil),                       // 74: io.clbs.openhes.models.acquisition.JobStatus
-	(*JobDevice)(nil),                       // 75: io.clbs.openhes.models.acquisition.JobDevice
-	(*ListOfJobDevice)(nil),                 // 76: io.clbs.openhes.models.acquisition.ListOfJobDevice
-	(*JobAction)(nil),                       // 77: io.clbs.openhes.models.acquisition.JobAction
-	(*ModemInfo)(nil),                       // 78: io.clbs.openhes.models.acquisition.ModemInfo
-	(*DriverTemplates)(nil),                 // 79: io.clbs.openhes.models.acquisition.DriverTemplates
-	(*DeviceConfigurationRegisterSpec)(nil), // 80: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	(*MeasuredValue)(nil),                   // 81: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*GetMeterEventsRequest)(nil),           // 57: io.clbs.openhes.models.acquisition.GetMeterEventsRequest
+	(*CreateTimeOfUseTableRequest)(nil),     // 58: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
+	(*ListOfTimeOfUseTable)(nil),            // 59: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	(*TimeOfUseTable)(nil),                  // 60: io.clbs.openhes.models.acquisition.TimeOfUseTable
+	nil,                                     // 61: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
+	(*CommunicationUnitSpec)(nil),           // 62: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*common.MetadataFields)(nil),           // 63: io.clbs.openhes.models.common.MetadataFields
+	(*CommunicationUnit)(nil),               // 64: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationBus)(nil),                // 65: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*DeviceSpec)(nil),                      // 66: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),                    // 67: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*DeviceCommunicationUnit)(nil),         // 68: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*common.ListSelector)(nil),             // 69: io.clbs.openhes.models.common.ListSelector
+	(*ListOfJobDeviceId)(nil),               // 70: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	(*JobSettings)(nil),                     // 71: io.clbs.openhes.models.acquisition.JobSettings
+	(*JobActionSet)(nil),                    // 72: io.clbs.openhes.models.acquisition.JobActionSet
+	(BulkStatusCode)(0),                     // 73: io.clbs.openhes.models.acquisition.BulkStatusCode
+	(*timestamppb.Timestamp)(nil),           // 74: google.protobuf.Timestamp
+	(*JobStatus)(nil),                       // 75: io.clbs.openhes.models.acquisition.JobStatus
+	(*JobDevice)(nil),                       // 76: io.clbs.openhes.models.acquisition.JobDevice
+	(*ListOfJobDevice)(nil),                 // 77: io.clbs.openhes.models.acquisition.ListOfJobDevice
+	(*JobAction)(nil),                       // 78: io.clbs.openhes.models.acquisition.JobAction
+	(*ModemInfo)(nil),                       // 79: io.clbs.openhes.models.acquisition.ModemInfo
+	(*DriverTemplates)(nil),                 // 80: io.clbs.openhes.models.acquisition.DriverTemplates
+	(*DeviceConfigurationRegisterSpec)(nil), // 81: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	(*timeofuse.TimeOfUseTableSpec)(nil),    // 82: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 }
 var file_acquisition_main_proto_depIdxs = []int32{
-	61, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	62, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	63, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	62, // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	64, // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
-	65, // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	62, // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	62, // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	63, // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	64, // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	63, // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	65, // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
+	66, // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	63, // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	8,  // 7: io.clbs.openhes.models.acquisition.ListOfDevice.items:type_name -> io.clbs.openhes.models.acquisition.Device
-	65, // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	66, // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
-	62, // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	66, // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	67, // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
+	63, // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	13, // 11: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	62, // 12: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 12: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	12, // 13: io.clbs.openhes.models.acquisition.ListOfDeviceGroup.items:type_name -> io.clbs.openhes.models.acquisition.DeviceGroup
 	13, // 14: io.clbs.openhes.models.acquisition.StreamDeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	14, // 15: io.clbs.openhes.models.acquisition.StreamDeviceGroup.status:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus
-	62, // 16: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 16: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	13, // 17: io.clbs.openhes.models.acquisition.DeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	62, // 18: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	60, // 19: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
-	67, // 20: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	67, // 21: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	68, // 22: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	63, // 18: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	61, // 19: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
+	68, // 20: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	68, // 21: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	69, // 22: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
 	24, // 23: io.clbs.openhes.models.acquisition.CreateBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
-	62, // 24: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 24: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	23, // 25: io.clbs.openhes.models.acquisition.ListOfBulk.items:type_name -> io.clbs.openhes.models.acquisition.Bulk
 	24, // 26: io.clbs.openhes.models.acquisition.Bulk.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
 	25, // 27: io.clbs.openhes.models.acquisition.Bulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	62, // 28: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	69, // 29: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	70, // 30: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	71, // 31: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobActionSet
-	72, // 32: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
-	73, // 33: io.clbs.openhes.models.acquisition.BulkStatus.created_at:type_name -> google.protobuf.Timestamp
-	73, // 34: io.clbs.openhes.models.acquisition.BulkStatus.started_at:type_name -> google.protobuf.Timestamp
-	73, // 35: io.clbs.openhes.models.acquisition.BulkStatus.finished_at:type_name -> google.protobuf.Timestamp
+	63, // 28: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	70, // 29: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	71, // 30: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	72, // 31: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobActionSet
+	73, // 32: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
+	74, // 33: io.clbs.openhes.models.acquisition.BulkStatus.created_at:type_name -> google.protobuf.Timestamp
+	74, // 34: io.clbs.openhes.models.acquisition.BulkStatus.started_at:type_name -> google.protobuf.Timestamp
+	74, // 35: io.clbs.openhes.models.acquisition.BulkStatus.finished_at:type_name -> google.protobuf.Timestamp
 	27, // 36: io.clbs.openhes.models.acquisition.BulkJob.spec:type_name -> io.clbs.openhes.models.acquisition.BulkJobSpec
-	74, // 37: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	62, // 38: io.clbs.openhes.models.acquisition.BulkJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	75, // 39: io.clbs.openhes.models.acquisition.BulkJobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	68, // 40: io.clbs.openhes.models.acquisition.ListBulkJobsRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	75, // 37: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	63, // 38: io.clbs.openhes.models.acquisition.BulkJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	76, // 39: io.clbs.openhes.models.acquisition.BulkJobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	69, // 40: io.clbs.openhes.models.acquisition.ListBulkJobsRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
 	26, // 41: io.clbs.openhes.models.acquisition.ListOfBulkJob.items:type_name -> io.clbs.openhes.models.acquisition.BulkJob
 	31, // 42: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ProxyBulkSpec
-	62, // 43: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	76, // 44: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
-	70, // 45: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	77, // 46: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	63, // 43: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	77, // 44: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
+	71, // 45: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	78, // 46: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
 	31, // 47: io.clbs.openhes.models.acquisition.ProxyBulk.spec:type_name -> io.clbs.openhes.models.acquisition.ProxyBulkSpec
 	25, // 48: io.clbs.openhes.models.acquisition.ProxyBulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	62, // 49: io.clbs.openhes.models.acquisition.ProxyBulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 49: io.clbs.openhes.models.acquisition.ProxyBulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	35, // 50: io.clbs.openhes.models.acquisition.SetModemPoolRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
-	62, // 51: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 51: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	37, // 52: io.clbs.openhes.models.acquisition.ListOfModemPool.items:type_name -> io.clbs.openhes.models.acquisition.ModemPool
-	78, // 53: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	79, // 53: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	35, // 54: io.clbs.openhes.models.acquisition.ModemPool.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
 	36, // 55: io.clbs.openhes.models.acquisition.ModemPool.status:type_name -> io.clbs.openhes.models.acquisition.ModemPoolStatus
-	62, // 56: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	78, // 57: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	63, // 56: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	79, // 57: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	42, // 58: io.clbs.openhes.models.acquisition.SetDriver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
 	41, // 59: io.clbs.openhes.models.acquisition.ListOfDriver.items:type_name -> io.clbs.openhes.models.acquisition.Driver
 	42, // 60: io.clbs.openhes.models.acquisition.Driver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
-	79, // 61: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
+	80, // 61: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
 	46, // 62: io.clbs.openhes.models.acquisition.CreateVariableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.VariableSpec
-	62, // 63: io.clbs.openhes.models.acquisition.CreateVariableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 63: io.clbs.openhes.models.acquisition.CreateVariableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	45, // 64: io.clbs.openhes.models.acquisition.ListOfVariable.items:type_name -> io.clbs.openhes.models.acquisition.Variable
 	46, // 65: io.clbs.openhes.models.acquisition.Variable.spec:type_name -> io.clbs.openhes.models.acquisition.VariableSpec
-	62, // 66: io.clbs.openhes.models.acquisition.Variable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	80, // 67: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	62, // 68: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 66: io.clbs.openhes.models.acquisition.Variable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	81, // 67: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	63, // 68: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	49, // 69: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
-	80, // 70: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	62, // 71: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	81, // 70: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	63, // 71: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	53, // 72: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
-	62, // 73: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	63, // 73: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	52, // 74: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
 	53, // 75: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
-	62, // 76: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	73, // 77: io.clbs.openhes.models.acquisition.GetMeterDataRequest.from:type_name -> google.protobuf.Timestamp
-	73, // 78: io.clbs.openhes.models.acquisition.GetMeterDataRequest.to:type_name -> google.protobuf.Timestamp
-	58, // 79: io.clbs.openhes.models.acquisition.StreamMeterDataPacket.part:type_name -> io.clbs.openhes.models.acquisition.StreamMeterData
-	73, // 80: io.clbs.openhes.models.acquisition.StreamMeterData.ts:type_name -> google.protobuf.Timestamp
-	59, // 81: io.clbs.openhes.models.acquisition.StreamMeterData.data:type_name -> io.clbs.openhes.models.acquisition.StreamMeterDataDevice
-	81, // 82: io.clbs.openhes.models.acquisition.StreamMeterDataDevice.data:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	15, // 83: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
-	84, // [84:84] is the sub-list for method output_type
-	84, // [84:84] is the sub-list for method input_type
-	84, // [84:84] is the sub-list for extension type_name
-	84, // [84:84] is the sub-list for extension extendee
-	0,  // [0:84] is the sub-list for field type_name
+	63, // 76: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	74, // 77: io.clbs.openhes.models.acquisition.GetMeterDataRequest.from:type_name -> google.protobuf.Timestamp
+	74, // 78: io.clbs.openhes.models.acquisition.GetMeterDataRequest.to:type_name -> google.protobuf.Timestamp
+	74, // 79: io.clbs.openhes.models.acquisition.GetMeterEventsRequest.from:type_name -> google.protobuf.Timestamp
+	74, // 80: io.clbs.openhes.models.acquisition.GetMeterEventsRequest.to:type_name -> google.protobuf.Timestamp
+	82, // 81: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	63, // 82: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	60, // 83: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable.items:type_name -> io.clbs.openhes.models.acquisition.TimeOfUseTable
+	82, // 84: io.clbs.openhes.models.acquisition.TimeOfUseTable.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	63, // 85: io.clbs.openhes.models.acquisition.TimeOfUseTable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	15, // 86: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
+	87, // [87:87] is the sub-list for method output_type
+	87, // [87:87] is the sub-list for method input_type
+	87, // [87:87] is the sub-list for extension type_name
+	87, // [87:87] is the sub-list for extension extendee
+	0,  // [0:87] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_main_proto_init() }
@@ -6684,7 +6827,7 @@ func file_acquisition_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_main_proto_rawDesc), len(file_acquisition_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   61,
+			NumMessages:   62,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

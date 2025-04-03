@@ -889,37 +889,35 @@ func (b0 Season_builder) Build() *Season {
 }
 
 // TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
-type TimeOfUse struct {
-	state                     protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Identification *string                `protobuf:"bytes,1,opt,name=identification"`
-	xxx_hidden_Name           *string                `protobuf:"bytes,2,opt,name=name"`
-	xxx_hidden_ExpiesAt       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expies_at,json=expiesAt"`
-	xxx_hidden_HdoGroupId     *string                `protobuf:"bytes,4,opt,name=hdo_group_id,json=hdoGroupId"`
-	xxx_hidden_ActivateAt     *date.Date             `protobuf:"bytes,5,opt,name=activate_at,json=activateAt"`
-	xxx_hidden_Seasons        *[]*Season             `protobuf:"bytes,6,rep,name=seasons"`
-	xxx_hidden_Weeks          *[]*Week               `protobuf:"bytes,7,rep,name=weeks"`
-	xxx_hidden_DayProfiles    *[]*DayProfile         `protobuf:"bytes,8,rep,name=day_profiles,json=dayProfiles"`
-	xxx_hidden_SpecialDays    *[]*SpecialDay         `protobuf:"bytes,9,rep,name=special_days,json=specialDays"`
-	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
-	XXX_presence              [1]uint32
-	unknownFields             protoimpl.UnknownFields
-	sizeCache                 protoimpl.SizeCache
+type TimeOfUseTableSpec struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ExpiesAt    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expies_at,json=expiesAt"`
+	xxx_hidden_HdoGroupId  *string                `protobuf:"bytes,4,opt,name=hdo_group_id,json=hdoGroupId"`
+	xxx_hidden_ActivateAt  *date.Date             `protobuf:"bytes,5,opt,name=activate_at,json=activateAt"`
+	xxx_hidden_Seasons     *[]*Season             `protobuf:"bytes,6,rep,name=seasons"`
+	xxx_hidden_Weeks       *[]*Week               `protobuf:"bytes,7,rep,name=weeks"`
+	xxx_hidden_DayProfiles *[]*DayProfile         `protobuf:"bytes,8,rep,name=day_profiles,json=dayProfiles"`
+	xxx_hidden_SpecialDays *[]*SpecialDay         `protobuf:"bytes,9,rep,name=special_days,json=specialDays"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
-func (x *TimeOfUse) Reset() {
-	*x = TimeOfUse{}
+func (x *TimeOfUseTableSpec) Reset() {
+	*x = TimeOfUseTableSpec{}
 	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TimeOfUse) String() string {
+func (x *TimeOfUseTableSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TimeOfUse) ProtoMessage() {}
+func (*TimeOfUseTableSpec) ProtoMessage() {}
 
-func (x *TimeOfUse) ProtoReflect() protoreflect.Message {
+func (x *TimeOfUseTableSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -931,34 +929,14 @@ func (x *TimeOfUse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *TimeOfUse) GetIdentification() string {
-	if x != nil {
-		if x.xxx_hidden_Identification != nil {
-			return *x.xxx_hidden_Identification
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *TimeOfUse) GetName() string {
-	if x != nil {
-		if x.xxx_hidden_Name != nil {
-			return *x.xxx_hidden_Name
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *TimeOfUse) GetExpiesAt() *timestamppb.Timestamp {
+func (x *TimeOfUseTableSpec) GetExpiesAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_ExpiesAt
 	}
 	return nil
 }
 
-func (x *TimeOfUse) GetHdoGroupId() string {
+func (x *TimeOfUseTableSpec) GetHdoGroupId() string {
 	if x != nil {
 		if x.xxx_hidden_HdoGroupId != nil {
 			return *x.xxx_hidden_HdoGroupId
@@ -968,14 +946,14 @@ func (x *TimeOfUse) GetHdoGroupId() string {
 	return ""
 }
 
-func (x *TimeOfUse) GetActivateAt() *date.Date {
+func (x *TimeOfUseTableSpec) GetActivateAt() *date.Date {
 	if x != nil {
 		return x.xxx_hidden_ActivateAt
 	}
 	return nil
 }
 
-func (x *TimeOfUse) GetSeasons() []*Season {
+func (x *TimeOfUseTableSpec) GetSeasons() []*Season {
 	if x != nil {
 		if x.xxx_hidden_Seasons != nil {
 			return *x.xxx_hidden_Seasons
@@ -984,7 +962,7 @@ func (x *TimeOfUse) GetSeasons() []*Season {
 	return nil
 }
 
-func (x *TimeOfUse) GetWeeks() []*Week {
+func (x *TimeOfUseTableSpec) GetWeeks() []*Week {
 	if x != nil {
 		if x.xxx_hidden_Weeks != nil {
 			return *x.xxx_hidden_Weeks
@@ -993,7 +971,7 @@ func (x *TimeOfUse) GetWeeks() []*Week {
 	return nil
 }
 
-func (x *TimeOfUse) GetDayProfiles() []*DayProfile {
+func (x *TimeOfUseTableSpec) GetDayProfiles() []*DayProfile {
 	if x != nil {
 		if x.xxx_hidden_DayProfiles != nil {
 			return *x.xxx_hidden_DayProfiles
@@ -1002,7 +980,7 @@ func (x *TimeOfUse) GetDayProfiles() []*DayProfile {
 	return nil
 }
 
-func (x *TimeOfUse) GetSpecialDays() []*SpecialDay {
+func (x *TimeOfUseTableSpec) GetSpecialDays() []*SpecialDay {
 	if x != nil {
 		if x.xxx_hidden_SpecialDays != nil {
 			return *x.xxx_hidden_SpecialDays
@@ -1011,112 +989,72 @@ func (x *TimeOfUse) GetSpecialDays() []*SpecialDay {
 	return nil
 }
 
-func (x *TimeOfUse) SetIdentification(v string) {
-	x.xxx_hidden_Identification = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
-}
-
-func (x *TimeOfUse) SetName(v string) {
-	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
-}
-
-func (x *TimeOfUse) SetExpiesAt(v *timestamppb.Timestamp) {
+func (x *TimeOfUseTableSpec) SetExpiesAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_ExpiesAt = v
 }
 
-func (x *TimeOfUse) SetHdoGroupId(v string) {
+func (x *TimeOfUseTableSpec) SetHdoGroupId(v string) {
 	x.xxx_hidden_HdoGroupId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
 }
 
-func (x *TimeOfUse) SetActivateAt(v *date.Date) {
+func (x *TimeOfUseTableSpec) SetActivateAt(v *date.Date) {
 	x.xxx_hidden_ActivateAt = v
 }
 
-func (x *TimeOfUse) SetSeasons(v []*Season) {
+func (x *TimeOfUseTableSpec) SetSeasons(v []*Season) {
 	x.xxx_hidden_Seasons = &v
 }
 
-func (x *TimeOfUse) SetWeeks(v []*Week) {
+func (x *TimeOfUseTableSpec) SetWeeks(v []*Week) {
 	x.xxx_hidden_Weeks = &v
 }
 
-func (x *TimeOfUse) SetDayProfiles(v []*DayProfile) {
+func (x *TimeOfUseTableSpec) SetDayProfiles(v []*DayProfile) {
 	x.xxx_hidden_DayProfiles = &v
 }
 
-func (x *TimeOfUse) SetSpecialDays(v []*SpecialDay) {
+func (x *TimeOfUseTableSpec) SetSpecialDays(v []*SpecialDay) {
 	x.xxx_hidden_SpecialDays = &v
 }
 
-func (x *TimeOfUse) HasIdentification() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *TimeOfUse) HasName() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
-func (x *TimeOfUse) HasExpiesAt() bool {
+func (x *TimeOfUseTableSpec) HasExpiesAt() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_ExpiesAt != nil
 }
 
-func (x *TimeOfUse) HasHdoGroupId() bool {
+func (x *TimeOfUseTableSpec) HasHdoGroupId() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *TimeOfUse) HasActivateAt() bool {
+func (x *TimeOfUseTableSpec) HasActivateAt() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_ActivateAt != nil
 }
 
-func (x *TimeOfUse) ClearIdentification() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Identification = nil
-}
-
-func (x *TimeOfUse) ClearName() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Name = nil
-}
-
-func (x *TimeOfUse) ClearExpiesAt() {
+func (x *TimeOfUseTableSpec) ClearExpiesAt() {
 	x.xxx_hidden_ExpiesAt = nil
 }
 
-func (x *TimeOfUse) ClearHdoGroupId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+func (x *TimeOfUseTableSpec) ClearHdoGroupId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_HdoGroupId = nil
 }
 
-func (x *TimeOfUse) ClearActivateAt() {
+func (x *TimeOfUseTableSpec) ClearActivateAt() {
 	x.xxx_hidden_ActivateAt = nil
 }
 
-type TimeOfUse_builder struct {
+type TimeOfUseTableSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Unique identifier for the TOU
-	// @example: "TOU-001"
-	Identification *string
-	// Common name for the TOU
-	// @example: "Standard TOU Table"
-	Name *string
 	// Expiration date of the TOU table
 	// @example: "2025-01-01T00:00:00Z"
 	ExpiesAt *timestamppb.Timestamp
@@ -1136,21 +1074,13 @@ type TimeOfUse_builder struct {
 	SpecialDays []*SpecialDay
 }
 
-func (b0 TimeOfUse_builder) Build() *TimeOfUse {
-	m0 := &TimeOfUse{}
+func (b0 TimeOfUseTableSpec_builder) Build() *TimeOfUseTableSpec {
+	m0 := &TimeOfUseTableSpec{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Identification != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
-		x.xxx_hidden_Identification = b.Identification
-	}
-	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
-		x.xxx_hidden_Name = b.Name
-	}
 	x.xxx_hidden_ExpiesAt = b.ExpiesAt
 	if b.HdoGroupId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
 		x.xxx_hidden_HdoGroupId = b.HdoGroupId
 	}
 	x.xxx_hidden_ActivateAt = b.ActivateAt
@@ -1196,10 +1126,8 @@ const file_acquisition_timeofuse_timeofuse_proto_rawDesc = "" +
 	"\vstart_month\x18\x04 \x01(\x05R\n" +
 	"startMonth\x12\x1b\n" +
 	"\tstart_day\x18\x05 \x01(\x05R\bstartDay\x12\x17\n" +
-	"\aweek_id\x18\x06 \x01(\tR\x06weekId\"\xaa\x04\n" +
-	"\tTimeOfUse\x12&\n" +
-	"\x0eidentification\x18\x01 \x01(\tR\x0eidentification\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x127\n" +
+	"\aweek_id\x18\x06 \x01(\tR\x06weekId\"\xf7\x03\n" +
+	"\x12TimeOfUseTableSpec\x127\n" +
 	"\texpies_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\bexpiesAt\x12 \n" +
 	"\fhdo_group_id\x18\x04 \x01(\tR\n" +
 	"hdoGroupId\x122\n" +
@@ -1225,7 +1153,7 @@ var file_acquisition_timeofuse_timeofuse_proto_goTypes = []any{
 	(*SpecialDay)(nil),            // 3: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
 	(*Week)(nil),                  // 4: io.clbs.openhes.models.acquisition.timeofuse.Week
 	(*Season)(nil),                // 5: io.clbs.openhes.models.acquisition.timeofuse.Season
-	(*TimeOfUse)(nil),             // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse
+	(*TimeOfUseTableSpec)(nil),    // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 	nil,                           // 7: io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry
 	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 	(*date.Date)(nil),             // 9: google.type.Date
@@ -1233,12 +1161,12 @@ var file_acquisition_timeofuse_timeofuse_proto_goTypes = []any{
 var file_acquisition_timeofuse_timeofuse_proto_depIdxs = []int32{
 	7, // 0: io.clbs.openhes.models.acquisition.timeofuse.Switching.relays:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry
 	1, // 1: io.clbs.openhes.models.acquisition.timeofuse.DayProfile.switching:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Switching
-	8, // 2: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.expies_at:type_name -> google.protobuf.Timestamp
-	9, // 3: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.activate_at:type_name -> google.type.Date
-	5, // 4: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.seasons:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Season
-	4, // 5: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.weeks:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Week
-	2, // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.day_profiles:type_name -> io.clbs.openhes.models.acquisition.timeofuse.DayProfile
-	3, // 7: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUse.special_days:type_name -> io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
+	8, // 2: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.expies_at:type_name -> google.protobuf.Timestamp
+	9, // 3: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.activate_at:type_name -> google.type.Date
+	5, // 4: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.seasons:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Season
+	4, // 5: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.weeks:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Week
+	2, // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.day_profiles:type_name -> io.clbs.openhes.models.acquisition.timeofuse.DayProfile
+	3, // 7: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.special_days:type_name -> io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
 	0, // 8: io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry.value:type_name -> io.clbs.openhes.models.acquisition.timeofuse.RelayState
 	9, // [9:9] is the sub-list for method output_type
 	9, // [9:9] is the sub-list for method input_type

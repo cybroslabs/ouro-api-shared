@@ -24,17 +24,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataproxyService_ListBulks_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
-	DataproxyService_ListBulkJobs_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
-	DataproxyService_GetBulkJob_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
-	DataproxyService_CancelBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
-	DataproxyService_CreateProxyBulk_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
-	DataproxyService_GetProxyBulk_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
-	DataproxyService_CreateBulk_FullMethodName      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
-	DataproxyService_GetBulk_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
-	DataproxyService_GetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
-	DataproxyService_SetConfig_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
-	DataproxyService_GetMeterData_FullMethodName    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterData"
+	DataproxyService_ListBulks_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
+	DataproxyService_ListBulkJobs_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
+	DataproxyService_GetBulkJob_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_CancelBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_CreateProxyBulk_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
+	DataproxyService_GetProxyBulk_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
+	DataproxyService_CreateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_GetBulk_FullMethodName                       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
+	DataproxyService_GetConfig_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
+	DataproxyService_SetConfig_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
+	DataproxyService_GetMeterDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters"
+	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
+	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
+	DataproxyService_GetMeterEvents_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents"
+	DataproxyService_CreateTimeOfUseTable_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateTimeOfUseTable"
+	DataproxyService_ListTimeOfUseTables_FullMethodName           = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListTimeOfUseTables"
+	DataproxyService_GetTimeOfUseTable_FullMethodName             = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetTimeOfUseTable"
+	DataproxyService_UpdateTimeOfUseTable_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateTimeOfUseTable"
+	DataproxyService_DeleteTimeOfUseTable_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteTimeOfUseTable"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -74,8 +82,32 @@ type DataproxyServiceClient interface {
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Meter Data
-	// The method to stream out meter data.
-	GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error)
+	// The method to stream out register-typed meter data.
+	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
+	// @group: Meter Events
+	// The method to stream out profile-typed meter data.
+	GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.TimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(ctx context.Context, in *acquisition.TimeOfUseTable, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type dataproxyServiceClient struct {
@@ -186,13 +218,13 @@ func (c *dataproxyServiceClient) SetConfig(ctx context.Context, in *system.Syste
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetMeterData(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamMeterData], error) {
+func (c *dataproxyServiceClient) GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetMeterData_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetMeterDataRegisters_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -203,7 +235,114 @@ func (c *dataproxyServiceClient) GetMeterData(ctx context.Context, in *acquisiti
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataClient = grpc.ServerStreamingClient[acquisition.StreamMeterData]
+type DataproxyService_GetMeterDataRegistersClient = grpc.ServerStreamingClient[acquisition.RegisterValues]
+
+func (c *dataproxyServiceClient) GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[1], DataproxyService_GetMeterDataProfiles_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataProfilesClient = grpc.ServerStreamingClient[acquisition.ProfileValues]
+
+func (c *dataproxyServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[2], DataproxyService_GetMeterDataIrregularProfiles_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
+
+func (c *dataproxyServiceClient) GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[3], DataproxyService_GetMeterEvents_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterEventsClient = grpc.ServerStreamingClient[acquisition.EventRecords]
+
+func (c *dataproxyServiceClient) CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_CreateTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfTimeOfUseTable)
+	err := c.cc.Invoke(ctx, DataproxyService_ListTimeOfUseTables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.TimeOfUseTable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.TimeOfUseTable)
+	err := c.cc.Invoke(ctx, DataproxyService_GetTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) UpdateTimeOfUseTable(ctx context.Context, in *acquisition.TimeOfUseTable, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_UpdateTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_DeleteTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
@@ -242,8 +381,32 @@ type DataproxyServiceServer interface {
 	// The method called by the RestApi to set the system configuration.
 	SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error)
 	// @group: Meter Data
-	// The method to stream out meter data.
-	GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error
+	// The method to stream out register-typed meter data.
+	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
+	// @group: Meter Events
+	// The method to stream out profile-typed meter data.
+	GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*acquisition.TimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(context.Context, *acquisition.TimeOfUseTable) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -284,8 +447,32 @@ func (UnimplementedDataproxyServiceServer) GetConfig(context.Context, *emptypb.E
 func (UnimplementedDataproxyServiceServer) SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetMeterData(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.StreamMeterData]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterData not implemented")
+func (UnimplementedDataproxyServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterDataProfiles not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterDataIrregularProfiles not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
+	return status.Errorf(codes.Unimplemented, "method GetMeterEvents not implemented")
+}
+func (UnimplementedDataproxyServiceServer) CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTimeOfUseTable not implemented")
+}
+func (UnimplementedDataproxyServiceServer) ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTimeOfUseTables not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*acquisition.TimeOfUseTable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTimeOfUseTable not implemented")
+}
+func (UnimplementedDataproxyServiceServer) UpdateTimeOfUseTable(context.Context, *acquisition.TimeOfUseTable) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTimeOfUseTable not implemented")
+}
+func (UnimplementedDataproxyServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 func (UnimplementedDataproxyServiceServer) testEmbeddedByValue()                          {}
@@ -488,16 +675,139 @@ func _DataproxyService_SetConfig_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetMeterData_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _DataproxyService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetMeterData(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetMeterDataRegisters(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataServer = grpc.ServerStreamingServer[acquisition.StreamMeterData]
+type DataproxyService_GetMeterDataRegistersServer = grpc.ServerStreamingServer[acquisition.RegisterValues]
+
+func _DataproxyService_GetMeterDataProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetMeterDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataproxyServiceServer).GetMeterDataProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataProfilesServer = grpc.ServerStreamingServer[acquisition.ProfileValues]
+
+func _DataproxyService_GetMeterDataIrregularProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetMeterDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataproxyServiceServer).GetMeterDataIrregularProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
+
+func _DataproxyService_GetMeterEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetMeterEventsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataproxyServiceServer).GetMeterEvents(m, &grpc.GenericServerStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DataproxyService_GetMeterEventsServer = grpc.ServerStreamingServer[acquisition.EventRecords]
+
+func _DataproxyService_CreateTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateTimeOfUseTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).CreateTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_CreateTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).CreateTimeOfUseTable(ctx, req.(*acquisition.CreateTimeOfUseTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_ListTimeOfUseTables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).ListTimeOfUseTables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_ListTimeOfUseTables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).ListTimeOfUseTables(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetTimeOfUseTable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_UpdateTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.TimeOfUseTable)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).UpdateTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_UpdateTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).UpdateTimeOfUseTable(ctx, req.(*acquisition.TimeOfUseTable))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).DeleteTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_DeleteTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).DeleteTimeOfUseTable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -546,11 +856,46 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "SetConfig",
 			Handler:    _DataproxyService_SetConfig_Handler,
 		},
+		{
+			MethodName: "CreateTimeOfUseTable",
+			Handler:    _DataproxyService_CreateTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "ListTimeOfUseTables",
+			Handler:    _DataproxyService_ListTimeOfUseTables_Handler,
+		},
+		{
+			MethodName: "GetTimeOfUseTable",
+			Handler:    _DataproxyService_GetTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "UpdateTimeOfUseTable",
+			Handler:    _DataproxyService_UpdateTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "DeleteTimeOfUseTable",
+			Handler:    _DataproxyService_DeleteTimeOfUseTable_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetMeterData",
-			Handler:       _DataproxyService_GetMeterData_Handler,
+			StreamName:    "GetMeterDataRegisters",
+			Handler:       _DataproxyService_GetMeterDataRegisters_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetMeterDataProfiles",
+			Handler:       _DataproxyService_GetMeterDataProfiles_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetMeterDataIrregularProfiles",
+			Handler:       _DataproxyService_GetMeterDataIrregularProfiles_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetMeterEvents",
+			Handler:       _DataproxyService_GetMeterEvents_Handler,
 			ServerStreams: true,
 		},
 	},

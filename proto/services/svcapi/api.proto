@@ -10,6 +10,7 @@ import "common/fields.proto";
 import "common/types.proto";
 import "acquisition/main.proto";
 import "acquisition/shared.proto";
+import "acquisition/timeofuse/timeofuse.proto";
 import "system/main.proto";
 
 // The Dataproxy related service definition.
@@ -138,6 +139,9 @@ service ApiService {
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
     // @group: Devices
+    // The method to stream out profile-typed meter data.
+    rpc GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo);
+    // @group: Devices
     // @tag: device
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
@@ -213,6 +217,34 @@ service ApiService {
     rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
 
     // @group: Meter Data
-    // The method to stream out meter data.
-    rpc GetMeterData(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.StreamMeterData);
+    // The method to stream out register-typed meter data.
+    rpc GetMeterDataRegisters(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);
+
+    // @group: Meter Data
+    // The method to stream out profile-typed meter data.
+    rpc GetMeterDataProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.ProfileValues);
+
+    // @group: Meter Data
+    // The method to stream out profile-typed meter data.
+    rpc GetMeterDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.IrregularProfileValues);
+
+    // @group: Meter Events
+    // The method to stream out profile-typed meter data.
+    rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
+
+    // @group: Time-Of-Use Tables
+    // The method to create a new time-of-use table.
+    rpc CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.StringValue);
+    // @group: Time-Of-Use Tables
+    // The method to get the list of time-of-use tables.
+    rpc ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable);
+    // @group: Time-Of-Use Tables
+    // The method to get the time-of-use table.
+    rpc GetTimeOfUseTable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.TimeOfUseTable);
+    // @group: Time-Of-Use Tables
+    // The method to update the time-of-use table.
+    rpc UpdateTimeOfUseTable(io.clbs.openhes.models.acquisition.TimeOfUseTable) returns (google.protobuf.Empty);
+    // @group: Time-Of-Use Tables
+    // The method to delete the time-of-use table.
+    rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }

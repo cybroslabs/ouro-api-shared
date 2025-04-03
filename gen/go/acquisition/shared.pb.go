@@ -5574,7 +5574,7 @@ func (x *ActionData) GetNodata() *emptypb.Empty {
 	return nil
 }
 
-func (x *ActionData) GetBillings() *BillingValues {
+func (x *ActionData) GetBillings() *RegisterValues {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Data.(*actionData_Billings); ok {
 			return x.Billings
@@ -5627,7 +5627,7 @@ func (x *ActionData) SetNodata(v *emptypb.Empty) {
 	x.xxx_hidden_Data = &actionData_Nodata{v}
 }
 
-func (x *ActionData) SetBillings(v *BillingValues) {
+func (x *ActionData) SetBillings(v *RegisterValues) {
 	if v == nil {
 		x.xxx_hidden_Data = nil
 		return
@@ -5797,7 +5797,7 @@ type ActionData_builder struct {
 
 	// Fields of oneof xxx_hidden_Data:
 	Nodata           *emptypb.Empty
-	Billings         *BillingValues
+	Billings         *RegisterValues
 	Profile          *ProfileValues
 	IrregularProfile *IrregularProfileValues
 	DeviceInfo       *DeviceInfo
@@ -5849,7 +5849,7 @@ type actionData_Nodata struct {
 }
 
 type actionData_Billings struct {
-	Billings *BillingValues `protobuf:"bytes,2,opt,name=billings,oneof"` // Register values
+	Billings *RegisterValues `protobuf:"bytes,2,opt,name=billings,oneof"` // Register values
 }
 
 type actionData_Profile struct {
@@ -6837,27 +6837,27 @@ func (b0 ProfileBlok_builder) Build() *ProfileBlok {
 }
 
 // Sub-message containing billing-typed values
-type BillingValues struct {
+type RegisterValues struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Values *[]*BillingValue       `protobuf:"bytes,1,rep,name=values"`
+	xxx_hidden_Values *[]*RegisterValue      `protobuf:"bytes,1,rep,name=values"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *BillingValues) Reset() {
-	*x = BillingValues{}
+func (x *RegisterValues) Reset() {
+	*x = RegisterValues{}
 	mi := &file_acquisition_shared_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *BillingValues) String() string {
+func (x *RegisterValues) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BillingValues) ProtoMessage() {}
+func (*RegisterValues) ProtoMessage() {}
 
-func (x *BillingValues) ProtoReflect() protoreflect.Message {
+func (x *RegisterValues) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6869,7 +6869,7 @@ func (x *BillingValues) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *BillingValues) GetValues() []*BillingValue {
+func (x *RegisterValues) GetValues() []*RegisterValue {
 	if x != nil {
 		if x.xxx_hidden_Values != nil {
 			return *x.xxx_hidden_Values
@@ -6878,18 +6878,18 @@ func (x *BillingValues) GetValues() []*BillingValue {
 	return nil
 }
 
-func (x *BillingValues) SetValues(v []*BillingValue) {
+func (x *RegisterValues) SetValues(v []*RegisterValue) {
 	x.xxx_hidden_Values = &v
 }
 
-type BillingValues_builder struct {
+type RegisterValues_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Values []*BillingValue
+	Values []*RegisterValue
 }
 
-func (b0 BillingValues_builder) Build() *BillingValues {
-	m0 := &BillingValues{}
+func (b0 RegisterValues_builder) Build() *RegisterValues {
+	m0 := &RegisterValues{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Values = &b.Values
@@ -6897,7 +6897,7 @@ func (b0 BillingValues_builder) Build() *BillingValues {
 }
 
 // Sub-message containing billing-typed value
-type BillingValue struct {
+type RegisterValue struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
 	xxx_hidden_Unit        *string                `protobuf:"bytes,2,opt,name=unit"`
@@ -6908,20 +6908,20 @@ type BillingValue struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *BillingValue) Reset() {
-	*x = BillingValue{}
+func (x *RegisterValue) Reset() {
+	*x = RegisterValue{}
 	mi := &file_acquisition_shared_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *BillingValue) String() string {
+func (x *RegisterValue) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BillingValue) ProtoMessage() {}
+func (*RegisterValue) ProtoMessage() {}
 
-func (x *BillingValue) ProtoReflect() protoreflect.Message {
+func (x *RegisterValue) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6933,14 +6933,14 @@ func (x *BillingValue) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *BillingValue) GetTimestamp() *timestamppb.Timestamp {
+func (x *RegisterValue) GetTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_Timestamp
 	}
 	return nil
 }
 
-func (x *BillingValue) GetUnit() string {
+func (x *RegisterValue) GetUnit() string {
 	if x != nil {
 		if x.xxx_hidden_Unit != nil {
 			return *x.xxx_hidden_Unit
@@ -6950,61 +6950,61 @@ func (x *BillingValue) GetUnit() string {
 	return ""
 }
 
-func (x *BillingValue) GetValue() *MeasuredValue {
+func (x *RegisterValue) GetValue() *MeasuredValue {
 	if x != nil {
 		return x.xxx_hidden_Value
 	}
 	return nil
 }
 
-func (x *BillingValue) SetTimestamp(v *timestamppb.Timestamp) {
+func (x *RegisterValue) SetTimestamp(v *timestamppb.Timestamp) {
 	x.xxx_hidden_Timestamp = v
 }
 
-func (x *BillingValue) SetUnit(v string) {
+func (x *RegisterValue) SetUnit(v string) {
 	x.xxx_hidden_Unit = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *BillingValue) SetValue(v *MeasuredValue) {
+func (x *RegisterValue) SetValue(v *MeasuredValue) {
 	x.xxx_hidden_Value = v
 }
 
-func (x *BillingValue) HasTimestamp() bool {
+func (x *RegisterValue) HasTimestamp() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_Timestamp != nil
 }
 
-func (x *BillingValue) HasUnit() bool {
+func (x *RegisterValue) HasUnit() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *BillingValue) HasValue() bool {
+func (x *RegisterValue) HasValue() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_Value != nil
 }
 
-func (x *BillingValue) ClearTimestamp() {
+func (x *RegisterValue) ClearTimestamp() {
 	x.xxx_hidden_Timestamp = nil
 }
 
-func (x *BillingValue) ClearUnit() {
+func (x *RegisterValue) ClearUnit() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Unit = nil
 }
 
-func (x *BillingValue) ClearValue() {
+func (x *RegisterValue) ClearValue() {
 	x.xxx_hidden_Value = nil
 }
 
-type BillingValue_builder struct {
+type RegisterValue_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Timestamp *timestamppb.Timestamp
@@ -7012,8 +7012,8 @@ type BillingValue_builder struct {
 	Value     *MeasuredValue
 }
 
-func (b0 BillingValue_builder) Build() *BillingValue {
-	m0 := &BillingValue{}
+func (b0 RegisterValue_builder) Build() *RegisterValue {
+	m0 := &RegisterValue{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Timestamp = b.Timestamp
@@ -11443,11 +11443,11 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x11JobProgressUpdate\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12D\n" +
 	"\x04code\x18\x02 \x01(\x0e20.io.clbs.openhes.models.acquisition.JobErrorCodeR\x04code\x125\n" +
-	"\bduration\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\bduration\"\xf0\x03\n" +
+	"\bduration\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\bduration\"\xf1\x03\n" +
 	"\n" +
 	"ActionData\x120\n" +
-	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12O\n" +
-	"\bbillings\x18\x02 \x01(\v21.io.clbs.openhes.models.acquisition.BillingValuesH\x00R\bbillings\x12M\n" +
+	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12P\n" +
+	"\bbillings\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.RegisterValuesH\x00R\bbillings\x12M\n" +
 	"\aprofile\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.ProfileValuesH\x00R\aprofile\x12i\n" +
 	"\x11irregular_profile\x18\x04 \x01(\v2:.io.clbs.openhes.models.acquisition.IrregularProfileValuesH\x00R\x10irregularProfile\x12Q\n" +
 	"\vdevice_info\x18\x05 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoH\x00R\n" +
@@ -11488,10 +11488,10 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\x9d\x01\n" +
 	"\vProfileBlok\x12C\n" +
 	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12I\n" +
-	"\x06values\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"Y\n" +
-	"\rBillingValues\x12H\n" +
-	"\x06values\x18\x01 \x03(\v20.io.clbs.openhes.models.acquisition.BillingValueR\x06values\"\xa5\x01\n" +
-	"\fBillingValue\x128\n" +
+	"\x06values\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"[\n" +
+	"\x0eRegisterValues\x12I\n" +
+	"\x06values\x18\x01 \x03(\v21.io.clbs.openhes.models.acquisition.RegisterValueR\x06values\"\xa6\x01\n" +
+	"\rRegisterValue\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x12\n" +
 	"\x04unit\x18\x02 \x01(\tR\x04unit\x12G\n" +
 	"\x05value\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\xd4\x02\n" +
@@ -11827,8 +11827,8 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*IrregularProfileValues)(nil),          // 41: io.clbs.openhes.models.acquisition.IrregularProfileValues
 	(*IrregularValue)(nil),                  // 42: io.clbs.openhes.models.acquisition.IrregularValue
 	(*ProfileBlok)(nil),                     // 43: io.clbs.openhes.models.acquisition.ProfileBlok
-	(*BillingValues)(nil),                   // 44: io.clbs.openhes.models.acquisition.BillingValues
-	(*BillingValue)(nil),                    // 45: io.clbs.openhes.models.acquisition.BillingValue
+	(*RegisterValues)(nil),                  // 44: io.clbs.openhes.models.acquisition.RegisterValues
+	(*RegisterValue)(nil),                   // 45: io.clbs.openhes.models.acquisition.RegisterValue
 	(*MeasuredValue)(nil),                   // 46: io.clbs.openhes.models.acquisition.MeasuredValue
 	(*JobActionAttributes)(nil),             // 47: io.clbs.openhes.models.acquisition.JobActionAttributes
 	(*ConnectionTypeControlledSerial)(nil),  // 48: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
@@ -11957,7 +11957,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	10,  // 69: io.clbs.openhes.models.acquisition.JobProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
 	93,  // 70: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
 	96,  // 71: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
-	44,  // 72: io.clbs.openhes.models.acquisition.ActionData.billings:type_name -> io.clbs.openhes.models.acquisition.BillingValues
+	44,  // 72: io.clbs.openhes.models.acquisition.ActionData.billings:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
 	40,  // 73: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
 	41,  // 74: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
 	39,  // 75: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
@@ -11972,9 +11972,9 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	46,  // 84: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	94,  // 85: io.clbs.openhes.models.acquisition.ProfileBlok.start_timestamp:type_name -> google.protobuf.Timestamp
 	46,  // 86: io.clbs.openhes.models.acquisition.ProfileBlok.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	45,  // 87: io.clbs.openhes.models.acquisition.BillingValues.values:type_name -> io.clbs.openhes.models.acquisition.BillingValue
-	94,  // 88: io.clbs.openhes.models.acquisition.BillingValue.timestamp:type_name -> google.protobuf.Timestamp
-	46,  // 89: io.clbs.openhes.models.acquisition.BillingValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	45,  // 87: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
+	94,  // 88: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
+	46,  // 89: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	94,  // 90: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
 	8,   // 91: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
 	95,  // 92: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor

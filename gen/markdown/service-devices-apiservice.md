@@ -100,6 +100,17 @@ GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisiti
 - Input: google.protobuf.StringValue
 - Output: [io.clbs.openhes.models.acquisition.Device](model-io-clbs-openhes-models-acquisition-device.md)
 
+## GetDeviceInfo
+
+The method to stream out profile-typed meter data.
+
+```proto
+GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo)
+```
+
+- Input: google.protobuf.StringValue
+- Output: [io.clbs.openhes.models.acquisition.DeviceInfo](model-io-clbs-openhes-models-acquisition-deviceinfo.md)
+
 ## SetDeviceCommunicationUnits
 
 The method called by the RestAPI to replace ordered set of linked communication units.

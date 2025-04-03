@@ -139,6 +139,9 @@ const (
 	ApiServiceListDevicesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
 	// ApiServiceGetDeviceProcedure is the fully-qualified name of the ApiService's GetDevice RPC.
 	ApiServiceGetDeviceProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDevice"
+	// ApiServiceGetDeviceInfoProcedure is the fully-qualified name of the ApiService's GetDeviceInfo
+	// RPC.
+	ApiServiceGetDeviceInfoProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceInfo"
 	// ApiServiceSetDeviceCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
 	// SetDeviceCommunicationUnits RPC.
 	ApiServiceSetDeviceCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
@@ -187,8 +190,33 @@ const (
 	ApiServiceGetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
 	// ApiServiceSetConfigProcedure is the fully-qualified name of the ApiService's SetConfig RPC.
 	ApiServiceSetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
-	// ApiServiceGetMeterDataProcedure is the fully-qualified name of the ApiService's GetMeterData RPC.
-	ApiServiceGetMeterDataProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterData"
+	// ApiServiceGetMeterDataRegistersProcedure is the fully-qualified name of the ApiService's
+	// GetMeterDataRegisters RPC.
+	ApiServiceGetMeterDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
+	// ApiServiceGetMeterDataProfilesProcedure is the fully-qualified name of the ApiService's
+	// GetMeterDataProfiles RPC.
+	ApiServiceGetMeterDataProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles"
+	// ApiServiceGetMeterDataIrregularProfilesProcedure is the fully-qualified name of the ApiService's
+	// GetMeterDataIrregularProfiles RPC.
+	ApiServiceGetMeterDataIrregularProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles"
+	// ApiServiceGetMeterEventsProcedure is the fully-qualified name of the ApiService's GetMeterEvents
+	// RPC.
+	ApiServiceGetMeterEventsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents"
+	// ApiServiceCreateTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
+	// CreateTimeOfUseTable RPC.
+	ApiServiceCreateTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable"
+	// ApiServiceListTimeOfUseTablesProcedure is the fully-qualified name of the ApiService's
+	// ListTimeOfUseTables RPC.
+	ApiServiceListTimeOfUseTablesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListTimeOfUseTables"
+	// ApiServiceGetTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
+	// GetTimeOfUseTable RPC.
+	ApiServiceGetTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTimeOfUseTable"
+	// ApiServiceUpdateTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
+	// UpdateTimeOfUseTable RPC.
+	ApiServiceUpdateTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTimeOfUseTable"
+	// ApiServiceDeleteTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
+	// DeleteTimeOfUseTable RPC.
+	ApiServiceDeleteTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -303,6 +331,9 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Device], error)
 	// @group: Devices
+	// The method to stream out profile-typed meter data.
+	GetDeviceInfo(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error)
+	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *connect.Request[acquisition.SetDeviceCommunicationUnitsRequest]) (*connect.Response[emptypb.Empty], error)
@@ -374,8 +405,32 @@ type ApiServiceClient interface {
 	// The method to set the system configuration.
 	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
 	// @group: Meter Data
-	// The method to stream out meter data.
-	GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.StreamMeterData], error)
+	// The method to stream out register-typed meter data.
+	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error)
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error)
+	// @group: Meter Events
+	// The method to stream out profile-typed meter data.
+	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error)
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfTimeOfUseTable], error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.TimeOfUseTable], error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(context.Context, *connect.Request[acquisition.TimeOfUseTable]) (*connect.Response[emptypb.Empty], error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -611,6 +666,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDevice")),
 			connect.WithClientOptions(opts...),
 		),
+		getDeviceInfo: connect.NewClient[wrapperspb.StringValue, acquisition.DeviceInfo](
+			httpClient,
+			baseURL+ApiServiceGetDeviceInfoProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceInfo")),
+			connect.WithClientOptions(opts...),
+		),
 		setDeviceCommunicationUnits: connect.NewClient[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty](
 			httpClient,
 			baseURL+ApiServiceSetDeviceCommunicationUnitsProcedure,
@@ -719,10 +780,58 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterData: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.StreamMeterData](
+		getMeterDataRegisters: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.RegisterValues](
 			httpClient,
-			baseURL+ApiServiceGetMeterDataProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetMeterData")),
+			baseURL+ApiServiceGetMeterDataRegistersProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataRegisters")),
+			connect.WithClientOptions(opts...),
+		),
+		getMeterDataProfiles: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.ProfileValues](
+			httpClient,
+			baseURL+ApiServiceGetMeterDataProfilesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataProfiles")),
+			connect.WithClientOptions(opts...),
+		),
+		getMeterDataIrregularProfiles: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues](
+			httpClient,
+			baseURL+ApiServiceGetMeterDataIrregularProfilesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataIrregularProfiles")),
+			connect.WithClientOptions(opts...),
+		),
+		getMeterEvents: connect.NewClient[acquisition.GetMeterEventsRequest, acquisition.EventRecords](
+			httpClient,
+			baseURL+ApiServiceGetMeterEventsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetMeterEvents")),
+			connect.WithClientOptions(opts...),
+		),
+		createTimeOfUseTable: connect.NewClient[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateTimeOfUseTableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateTimeOfUseTable")),
+			connect.WithClientOptions(opts...),
+		),
+		listTimeOfUseTables: connect.NewClient[common.ListSelector, acquisition.ListOfTimeOfUseTable](
+			httpClient,
+			baseURL+ApiServiceListTimeOfUseTablesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListTimeOfUseTables")),
+			connect.WithClientOptions(opts...),
+		),
+		getTimeOfUseTable: connect.NewClient[wrapperspb.StringValue, acquisition.TimeOfUseTable](
+			httpClient,
+			baseURL+ApiServiceGetTimeOfUseTableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetTimeOfUseTable")),
+			connect.WithClientOptions(opts...),
+		),
+		updateTimeOfUseTable: connect.NewClient[acquisition.TimeOfUseTable, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateTimeOfUseTableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateTimeOfUseTable")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteTimeOfUseTable: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteTimeOfUseTableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -767,6 +876,7 @@ type apiServiceClient struct {
 	createDevice                                                     *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
 	listDevices                                                      *connect.Client[common.ListSelector, acquisition.ListOfDevice]
 	getDevice                                                        *connect.Client[wrapperspb.StringValue, acquisition.Device]
+	getDeviceInfo                                                    *connect.Client[wrapperspb.StringValue, acquisition.DeviceInfo]
 	setDeviceCommunicationUnits                                      *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
 	getDeviceCommunicationUnits                                      *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
 	createDeviceGroup                                                *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
@@ -785,7 +895,15 @@ type apiServiceClient struct {
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getConfig                                                        *connect.Client[emptypb.Empty, system.SystemConfig]
 	setConfig                                                        *connect.Client[system.SystemConfig, emptypb.Empty]
-	getMeterData                                                     *connect.Client[acquisition.GetMeterDataRequest, acquisition.StreamMeterData]
+	getMeterDataRegisters                                            *connect.Client[acquisition.GetMeterDataRequest, acquisition.RegisterValues]
+	getMeterDataProfiles                                             *connect.Client[acquisition.GetMeterDataRequest, acquisition.ProfileValues]
+	getMeterDataIrregularProfiles                                    *connect.Client[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]
+	getMeterEvents                                                   *connect.Client[acquisition.GetMeterEventsRequest, acquisition.EventRecords]
+	createTimeOfUseTable                                             *connect.Client[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue]
+	listTimeOfUseTables                                              *connect.Client[common.ListSelector, acquisition.ListOfTimeOfUseTable]
+	getTimeOfUseTable                                                *connect.Client[wrapperspb.StringValue, acquisition.TimeOfUseTable]
+	updateTimeOfUseTable                                             *connect.Client[acquisition.TimeOfUseTable, emptypb.Empty]
+	deleteTimeOfUseTable                                             *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -987,6 +1105,11 @@ func (c *apiServiceClient) GetDevice(ctx context.Context, req *connect.Request[w
 	return c.getDevice.CallUnary(ctx, req)
 }
 
+// GetDeviceInfo calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceInfo.
+func (c *apiServiceClient) GetDeviceInfo(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error) {
+	return c.getDeviceInfo.CallUnary(ctx, req)
+}
+
 // SetDeviceCommunicationUnits calls
 // io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits.
 func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, req *connect.Request[acquisition.SetDeviceCommunicationUnitsRequest]) (*connect.Response[emptypb.Empty], error) {
@@ -1079,9 +1202,50 @@ func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[s
 	return c.setConfig.CallUnary(ctx, req)
 }
 
-// GetMeterData calls io.clbs.openhes.services.svcapi.ApiService.GetMeterData.
-func (c *apiServiceClient) GetMeterData(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.StreamMeterData], error) {
-	return c.getMeterData.CallServerStream(ctx, req)
+// GetMeterDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters.
+func (c *apiServiceClient) GetMeterDataRegisters(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error) {
+	return c.getMeterDataRegisters.CallServerStream(ctx, req)
+}
+
+// GetMeterDataProfiles calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles.
+func (c *apiServiceClient) GetMeterDataProfiles(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error) {
+	return c.getMeterDataProfiles.CallServerStream(ctx, req)
+}
+
+// GetMeterDataIrregularProfiles calls
+// io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles.
+func (c *apiServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error) {
+	return c.getMeterDataIrregularProfiles.CallServerStream(ctx, req)
+}
+
+// GetMeterEvents calls io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents.
+func (c *apiServiceClient) GetMeterEvents(ctx context.Context, req *connect.Request[acquisition.GetMeterEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error) {
+	return c.getMeterEvents.CallServerStream(ctx, req)
+}
+
+// CreateTimeOfUseTable calls io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable.
+func (c *apiServiceClient) CreateTimeOfUseTable(ctx context.Context, req *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createTimeOfUseTable.CallUnary(ctx, req)
+}
+
+// ListTimeOfUseTables calls io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables.
+func (c *apiServiceClient) ListTimeOfUseTables(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfTimeOfUseTable], error) {
+	return c.listTimeOfUseTables.CallUnary(ctx, req)
+}
+
+// GetTimeOfUseTable calls io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable.
+func (c *apiServiceClient) GetTimeOfUseTable(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.TimeOfUseTable], error) {
+	return c.getTimeOfUseTable.CallUnary(ctx, req)
+}
+
+// UpdateTimeOfUseTable calls io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable.
+func (c *apiServiceClient) UpdateTimeOfUseTable(ctx context.Context, req *connect.Request[acquisition.TimeOfUseTable]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateTimeOfUseTable.CallUnary(ctx, req)
+}
+
+// DeleteTimeOfUseTable calls io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable.
+func (c *apiServiceClient) DeleteTimeOfUseTable(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteTimeOfUseTable.CallUnary(ctx, req)
 }
 
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
@@ -1196,6 +1360,9 @@ type ApiServiceHandler interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Device], error)
 	// @group: Devices
+	// The method to stream out profile-typed meter data.
+	GetDeviceInfo(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error)
+	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *connect.Request[acquisition.SetDeviceCommunicationUnitsRequest]) (*connect.Response[emptypb.Empty], error)
@@ -1267,8 +1434,32 @@ type ApiServiceHandler interface {
 	// The method to set the system configuration.
 	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
 	// @group: Meter Data
-	// The method to stream out meter data.
-	GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.StreamMeterData]) error
+	// The method to stream out register-typed meter data.
+	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error
+	// @group: Meter Data
+	// The method to stream out profile-typed meter data.
+	GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error
+	// @group: Meter Events
+	// The method to stream out profile-typed meter data.
+	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfTimeOfUseTable], error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.TimeOfUseTable], error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(context.Context, *connect.Request[acquisition.TimeOfUseTable]) (*connect.Response[emptypb.Empty], error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -1500,6 +1691,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetDevice")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetDeviceInfoHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceInfoProcedure,
+		svc.GetDeviceInfo,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceInfo")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceSetDeviceCommunicationUnitsHandler := connect.NewUnaryHandler(
 		ApiServiceSetDeviceCommunicationUnitsProcedure,
 		svc.SetDeviceCommunicationUnits,
@@ -1608,10 +1805,58 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetMeterDataHandler := connect.NewServerStreamHandler(
-		ApiServiceGetMeterDataProcedure,
-		svc.GetMeterData,
-		connect.WithSchema(apiServiceMethods.ByName("GetMeterData")),
+	apiServiceGetMeterDataRegistersHandler := connect.NewServerStreamHandler(
+		ApiServiceGetMeterDataRegistersProcedure,
+		svc.GetMeterDataRegisters,
+		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataRegisters")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetMeterDataProfilesHandler := connect.NewServerStreamHandler(
+		ApiServiceGetMeterDataProfilesProcedure,
+		svc.GetMeterDataProfiles,
+		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataProfiles")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetMeterDataIrregularProfilesHandler := connect.NewServerStreamHandler(
+		ApiServiceGetMeterDataIrregularProfilesProcedure,
+		svc.GetMeterDataIrregularProfiles,
+		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataIrregularProfiles")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetMeterEventsHandler := connect.NewServerStreamHandler(
+		ApiServiceGetMeterEventsProcedure,
+		svc.GetMeterEvents,
+		connect.WithSchema(apiServiceMethods.ByName("GetMeterEvents")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateTimeOfUseTableHandler := connect.NewUnaryHandler(
+		ApiServiceCreateTimeOfUseTableProcedure,
+		svc.CreateTimeOfUseTable,
+		connect.WithSchema(apiServiceMethods.ByName("CreateTimeOfUseTable")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListTimeOfUseTablesHandler := connect.NewUnaryHandler(
+		ApiServiceListTimeOfUseTablesProcedure,
+		svc.ListTimeOfUseTables,
+		connect.WithSchema(apiServiceMethods.ByName("ListTimeOfUseTables")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetTimeOfUseTableHandler := connect.NewUnaryHandler(
+		ApiServiceGetTimeOfUseTableProcedure,
+		svc.GetTimeOfUseTable,
+		connect.WithSchema(apiServiceMethods.ByName("GetTimeOfUseTable")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateTimeOfUseTableHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateTimeOfUseTableProcedure,
+		svc.UpdateTimeOfUseTable,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateTimeOfUseTable")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteTimeOfUseTableHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteTimeOfUseTableProcedure,
+		svc.DeleteTimeOfUseTable,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -1690,6 +1935,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceListDevicesHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceProcedure:
 			apiServiceGetDeviceHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceInfoProcedure:
+			apiServiceGetDeviceInfoHandler.ServeHTTP(w, r)
 		case ApiServiceSetDeviceCommunicationUnitsProcedure:
 			apiServiceSetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceCommunicationUnitsProcedure:
@@ -1726,8 +1973,24 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetConfigHandler.ServeHTTP(w, r)
 		case ApiServiceSetConfigProcedure:
 			apiServiceSetConfigHandler.ServeHTTP(w, r)
-		case ApiServiceGetMeterDataProcedure:
-			apiServiceGetMeterDataHandler.ServeHTTP(w, r)
+		case ApiServiceGetMeterDataRegistersProcedure:
+			apiServiceGetMeterDataRegistersHandler.ServeHTTP(w, r)
+		case ApiServiceGetMeterDataProfilesProcedure:
+			apiServiceGetMeterDataProfilesHandler.ServeHTTP(w, r)
+		case ApiServiceGetMeterDataIrregularProfilesProcedure:
+			apiServiceGetMeterDataIrregularProfilesHandler.ServeHTTP(w, r)
+		case ApiServiceGetMeterEventsProcedure:
+			apiServiceGetMeterEventsHandler.ServeHTTP(w, r)
+		case ApiServiceCreateTimeOfUseTableProcedure:
+			apiServiceCreateTimeOfUseTableHandler.ServeHTTP(w, r)
+		case ApiServiceListTimeOfUseTablesProcedure:
+			apiServiceListTimeOfUseTablesHandler.ServeHTTP(w, r)
+		case ApiServiceGetTimeOfUseTableProcedure:
+			apiServiceGetTimeOfUseTableHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateTimeOfUseTableProcedure:
+			apiServiceUpdateTimeOfUseTableHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteTimeOfUseTableProcedure:
+			apiServiceDeleteTimeOfUseTableHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -1885,6 +2148,10 @@ func (UnimplementedApiServiceHandler) GetDevice(context.Context, *connect.Reques
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDevice is not implemented"))
 }
 
+func (UnimplementedApiServiceHandler) GetDeviceInfo(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceInfo is not implemented"))
+}
+
 func (UnimplementedApiServiceHandler) SetDeviceCommunicationUnits(context.Context, *connect.Request[acquisition.SetDeviceCommunicationUnitsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits is not implemented"))
 }
@@ -1957,6 +2224,38 @@ func (UnimplementedApiServiceHandler) SetConfig(context.Context, *connect.Reques
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetConfig is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterData(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.StreamMeterData]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterData is not implemented"))
+func (UnimplementedApiServiceHandler) GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListTimeOfUseTables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfTimeOfUseTable], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.TimeOfUseTable], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateTimeOfUseTable(context.Context, *connect.Request[acquisition.TimeOfUseTable]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable is not implemented"))
 }

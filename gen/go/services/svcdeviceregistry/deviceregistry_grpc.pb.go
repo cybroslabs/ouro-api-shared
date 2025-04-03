@@ -57,6 +57,7 @@ const (
 	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
 	DeviceRegistryService_SetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo"
+	DeviceRegistryService_GetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo"
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
 	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
 	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
@@ -144,6 +145,9 @@ type DeviceRegistryServiceClient interface {
 	GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
 	SetDeviceInfo(ctx context.Context, in *acquisition.SetDeviceInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// The method to stream out profile-typed meter data.
+	GetDeviceInfo(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceInfo, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -517,6 +521,16 @@ func (c *deviceRegistryServiceClient) SetDeviceInfo(ctx context.Context, in *acq
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetDeviceInfo(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.DeviceInfo)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -746,6 +760,9 @@ type DeviceRegistryServiceServer interface {
 	GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
 	SetDeviceInfo(context.Context, *acquisition.SetDeviceInfoRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// The method to stream out profile-typed meter data.
+	GetDeviceInfo(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceInfo, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -887,6 +904,9 @@ func (UnimplementedDeviceRegistryServiceServer) GetDeviceConnectionInfo(context.
 }
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceInfo(context.Context, *acquisition.SetDeviceInfoRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceInfo not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceInfo(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceInfo not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -1548,6 +1568,24 @@ func _DeviceRegistryService_SetDeviceInfo_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetDeviceInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDeviceInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDeviceInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDeviceInfo(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateDeviceGroupRequest)
 	if err := dec(in); err != nil {
@@ -1949,6 +1987,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetDeviceInfo",
 			Handler:    _DeviceRegistryService_SetDeviceInfo_Handler,
+		},
+		{
+			MethodName: "GetDeviceInfo",
+			Handler:    _DeviceRegistryService_GetDeviceInfo_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",

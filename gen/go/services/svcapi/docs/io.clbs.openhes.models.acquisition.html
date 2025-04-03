@@ -249,24 +249,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.BillingValue">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>BillingValue</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.BillingValues">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>BillingValues</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.Bulk">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>Bulk</code> 
@@ -492,6 +474,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateTimeOfUseTableRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CreateVariableRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateVariableRequest</code> 
@@ -657,6 +648,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.GetMeterDataRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>GetMeterDataRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetMeterEventsRequest</code> 
         </a>
       </p>
       
@@ -888,6 +888,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfTimeOfUseTable</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfVariable">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfVariable</code> 
@@ -978,6 +987,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.RegisterValue">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RegisterValue</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.RegisterValues">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RegisterValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>RemoveCommunicationUnitsFromCommunicationBusRequest</code> 
@@ -1032,18 +1059,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.StreamMeterData">
+        <a href="#message-io.clbs.openhes.models.acquisition.TimeOfUseTable">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>StreamMeterData</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.StreamMeterDataDevice">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>StreamMeterDataDevice</code> 
+          <code>TimeOfUseTable</code> 
         </a>
       </p>
       
@@ -1286,9 +1304,9 @@
             billings
           </td>
           <td>
-            <code title="io.clbs.openhes.models.acquisition.BillingValues">
+            <code title="io.clbs.openhes.models.acquisition.RegisterValues">
               
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BillingValues"><span title="io.clbs.openhes.models.acquisition.BillingValues">io.clbs.openhes.models.acquisition.BillingValues</span>
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.RegisterValues"><span title="io.clbs.openhes.models.acquisition.RegisterValues">io.clbs.openhes.models.acquisition.RegisterValues</span>
     </a>
             </code>
           </td>
@@ -2315,140 +2333,6 @@
         </code>
       </td>
       <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BillingValue">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.BillingValue" title="io.clbs.openhes.models.acquisition.BillingValue">message BillingValue</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing billing-typed value</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        timestamp
-      </td>
-      <td>
-        <code title="google.protobuf.Timestamp">
-          
-          <span>google.protobuf.Timestamp</span>
-        </code>
-      </td>
-      <td class="content"><p>The timestamp of the value.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        unit
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unit of the value.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        value
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The value.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.BillingValues">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.BillingValues" title="io.clbs.openhes.models.acquisition.BillingValues">message BillingValues</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Sub-message containing billing-typed values</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        values
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.BillingValue">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BillingValue"><span title="io.clbs.openhes.models.acquisition.BillingValue">io.clbs.openhes.models.acquisition.BillingValue</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The list of register values.</p></td>
       
     </tr>
     
@@ -4486,6 +4370,73 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest" title="io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest">message CreateTimeOfUseTableRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"><span title="io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec">io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The time-of-use table specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateVariableRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.CreateVariableRequest" title="io.clbs.openhes.models.acquisition.CreateVariableRequest">message CreateVariableRequest</a>
@@ -6122,6 +6073,71 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
         </code>
       </td>
       <td class="content"><p>The unique identifier of the register.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest" title="io.clbs.openhes.models.acquisition.GetMeterEventsRequest">message GetMeterEventsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        from
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the data.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        to
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The end timestamp of the data.</p></td>
       
     </tr>
     
@@ -8587,6 +8603,74 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable" title="io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable">message ListOfTimeOfUseTable</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.TimeOfUseTable">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.TimeOfUseTable"><span title="io.clbs.openhes.models.acquisition.TimeOfUseTable">io.clbs.openhes.models.acquisition.TimeOfUseTable</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of time-of-use tables.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfVariable">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ListOfVariable" title="io.clbs.openhes.models.acquisition.ListOfVariable">message ListOfVariable</a>
@@ -9602,6 +9686,140 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RegisterValue">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RegisterValue" title="io.clbs.openhes.models.acquisition.RegisterValue">message RegisterValue</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed value</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unit of the value.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        value
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The value.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RegisterValues">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RegisterValues" title="io.clbs.openhes.models.acquisition.RegisterValues">message RegisterValues</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Sub-message containing billing-typed values</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        values
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.RegisterValue">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.RegisterValue"><span title="io.clbs.openhes.models.acquisition.RegisterValue">io.clbs.openhes.models.acquisition.RegisterValue</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of register values.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest" title="io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest">message RemoveCommunicationUnitsFromCommunicationBusRequest</a>
@@ -10002,9 +10220,9 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.StreamMeterData">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.TimeOfUseTable">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.StreamMeterData" title="io.clbs.openhes.models.acquisition.StreamMeterData">message StreamMeterData</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.TimeOfUseTable" title="io.clbs.openhes.models.acquisition.TimeOfUseTable">message TimeOfUseTable</a>
   
   </span>
   
@@ -10029,101 +10247,32 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td>1</td>
       <td>
-        ts
+        spec
       </td>
       <td>
-        <code title="google.protobuf.Timestamp">
+        <code title="io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec">
           
-          <span>google.protobuf.Timestamp</span>
-        </code>
-      </td>
-      <td class="content"></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        data
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.acquisition.StreamMeterDataDevice">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.StreamMeterDataDevice"><span title="io.clbs.openhes.models.acquisition.StreamMeterDataDevice">io.clbs.openhes.models.acquisition.StreamMeterDataDevice</span>
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"><span title="io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec">io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec</span>
     </a>
         </code>
       </td>
-      <td class="content"></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.StreamMeterDataDevice">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.StreamMeterDataDevice" title="io.clbs.openhes.models.acquisition.StreamMeterDataDevice">message StreamMeterDataDevice</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        deviceId
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The time-of-use table specification.</p></td>
       
     </tr>
     
     <tr>
-      <td>2</td>
+      <td>3</td>
       <td>
-        data
+        metadata
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.MeasuredValue">
+        <code title="io.clbs.openhes.models.common.MetadataFields">
           
-            repeated
-          
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.MeasuredValue"><span title="io.clbs.openhes.models.acquisition.MeasuredValue">io.clbs.openhes.models.acquisition.MeasuredValue</span>
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of meter data.</p></td>
+      <td class="content"><p>The metadata fields.</p></td>
       
     </tr>
     

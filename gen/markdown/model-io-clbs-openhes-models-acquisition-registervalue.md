@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.BillingValue
+# Model: io.clbs.openhes.models.acquisition.RegisterValue
 
 Sub-message containing billing-typed value
 

@@ -114,15 +114,7 @@ message Season {
 }
 
 // TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
-message TimeOfUse {
-    // Unique identifier for the TOU
-    // @example: "TOU-001"
-    string identification = 1;
-
-    // Common name for the TOU
-    // @example: "Standard TOU Table"
-    string name = 2;
-
+message TimeOfUseTableSpec {
     // Expiration date of the TOU table
     // @example: "2025-01-01T00:00:00Z"
     google.protobuf.Timestamp expies_at = 3;

@@ -186,6 +186,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=acquisition_dot_internal__pb2.SetDeviceInfoRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetDeviceInfo = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.DeviceInfo.FromString,
+                _registered_method=True)
         self.CreateDeviceGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup',
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceGroupRequest.SerializeToString,
@@ -496,6 +501,14 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDeviceInfo(self, request, context):
+        """@group: Devices
+        The method to stream out profile-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateDeviceGroup(self, request, context):
         """The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
         """
@@ -771,6 +784,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.SetDeviceInfo,
                     request_deserializer=acquisition_dot_internal__pb2.SetDeviceInfoRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDeviceInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceInfo,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.DeviceInfo.SerializeToString,
             ),
             'CreateDeviceGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDeviceGroup,
@@ -1740,6 +1758,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo',
             acquisition_dot_internal__pb2.SetDeviceInfoRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_shared__pb2.DeviceInfo.FromString,
             options,
             channel_credentials,
             insecure,

@@ -385,7 +385,7 @@ message JobProgressUpdate {
 message ActionData {
     oneof data {
         google.protobuf.Empty nodata             = 1;  // No data
-        BillingValues billings                   = 2;  // Register values
+        RegisterValues billings                   = 2;  // Register values
         ProfileValues profile                    = 3;  // Profile values
         IrregularProfileValues irregular_profile = 4;  // Irregular (non-periodical) profile values, e.g. daily profile
         DeviceInfo device_info                   = 5;  // Device info
@@ -444,12 +444,12 @@ message ProfileBlok {
 }
 
 // Sub-message containing billing-typed values
-message BillingValues {
-    repeated BillingValue values = 1;  // The list of register values.
+message RegisterValues {
+    repeated RegisterValue values = 1;  // The list of register values.
 }
 
 // Sub-message containing billing-typed value
-message BillingValue {
+message RegisterValue {
     google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
     string unit                         = 2;  // The unit of the value.
     MeasuredValue value                 = 3;  // The value.

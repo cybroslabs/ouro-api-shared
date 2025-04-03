@@ -205,6 +205,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Device.FromString,
                 _registered_method=True)
+        self.GetDeviceInfo = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceInfo',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.DeviceInfo.FromString,
+                _registered_method=True)
         self.SetDeviceCommunicationUnits = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits',
                 request_serializer=acquisition_dot_main__pb2.SetDeviceCommunicationUnitsRequest.SerializeToString,
@@ -295,10 +300,50 @@ class ApiServiceStub(object):
                 request_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.GetMeterData = channel.unary_stream(
-                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterData',
+        self.GetMeterDataRegisters = channel.unary_stream(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters',
                 request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.StreamMeterData.FromString,
+                response_deserializer=acquisition_dot_shared__pb2.RegisterValues.FromString,
+                _registered_method=True)
+        self.GetMeterDataProfiles = channel.unary_stream(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles',
+                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.ProfileValues.FromString,
+                _registered_method=True)
+        self.GetMeterDataIrregularProfiles = channel.unary_stream(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles',
+                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
+                _registered_method=True)
+        self.GetMeterEvents = channel.unary_stream(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
+                request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
+                _registered_method=True)
+        self.CreateTimeOfUseTable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable',
+                request_serializer=acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListTimeOfUseTables = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListTimeOfUseTables',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfTimeOfUseTable.FromString,
+                _registered_method=True)
+        self.GetTimeOfUseTable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetTimeOfUseTable',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.TimeOfUseTable.FromString,
+                _registered_method=True)
+        self.UpdateTimeOfUseTable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateTimeOfUseTable',
+                request_serializer=acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteTimeOfUseTable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
 
@@ -604,6 +649,14 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDeviceInfo(self, request, context):
+        """@group: Devices
+        The method to stream out profile-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetDeviceCommunicationUnits(self, request, context):
         """@group: Devices
         @tag: device
@@ -765,9 +818,73 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterData(self, request, context):
+    def GetMeterDataRegisters(self, request, context):
         """@group: Meter Data
-        The method to stream out meter data.
+        The method to stream out register-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMeterDataProfiles(self, request, context):
+        """@group: Meter Data
+        The method to stream out profile-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMeterDataIrregularProfiles(self, request, context):
+        """@group: Meter Data
+        The method to stream out profile-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMeterEvents(self, request, context):
+        """@group: Meter Events
+        The method to stream out profile-typed meter data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateTimeOfUseTable(self, request, context):
+        """@group: Time-Of-Use Tables
+        The method to create a new time-of-use table.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListTimeOfUseTables(self, request, context):
+        """@group: Time-Of-Use Tables
+        The method to get the list of time-of-use tables.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTimeOfUseTable(self, request, context):
+        """@group: Time-Of-Use Tables
+        The method to get the time-of-use table.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateTimeOfUseTable(self, request, context):
+        """@group: Time-Of-Use Tables
+        The method to update the time-of-use table.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTimeOfUseTable(self, request, context):
+        """@group: Time-Of-Use Tables
+        The method to delete the time-of-use table.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -961,6 +1078,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Device.SerializeToString,
             ),
+            'GetDeviceInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceInfo,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.DeviceInfo.SerializeToString,
+            ),
             'SetDeviceCommunicationUnits': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDeviceCommunicationUnits,
                     request_deserializer=acquisition_dot_main__pb2.SetDeviceCommunicationUnitsRequest.FromString,
@@ -1051,10 +1173,50 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=system_dot_main__pb2.SystemConfig.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'GetMeterData': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterData,
+            'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetMeterDataRegisters,
                     request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
-                    response_serializer=acquisition_dot_main__pb2.StreamMeterData.SerializeToString,
+                    response_serializer=acquisition_dot_shared__pb2.RegisterValues.SerializeToString,
+            ),
+            'GetMeterDataProfiles': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetMeterDataProfiles,
+                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.ProfileValues.SerializeToString,
+            ),
+            'GetMeterDataIrregularProfiles': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetMeterDataIrregularProfiles,
+                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.IrregularProfileValues.SerializeToString,
+            ),
+            'GetMeterEvents': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetMeterEvents,
+                    request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
+            ),
+            'CreateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateTimeOfUseTable,
+                    request_deserializer=acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListTimeOfUseTables': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListTimeOfUseTables,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfTimeOfUseTable.SerializeToString,
+            ),
+            'GetTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTimeOfUseTable,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
+            ),
+            'UpdateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateTimeOfUseTable,
+                    request_deserializer=acquisition_dot_main__pb2.TimeOfUseTable.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTimeOfUseTable,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -2068,6 +2230,33 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
+    def GetDeviceInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceInfo',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_shared__pb2.DeviceInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def SetDeviceCommunicationUnits(request,
             target,
             options=(),
@@ -2554,7 +2743,7 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterData(request,
+    def GetMeterDataRegisters(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2567,9 +2756,225 @@ class ApiService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterData',
+            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters',
             acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
-            acquisition_dot_main__pb2.StreamMeterData.FromString,
+            acquisition_dot_shared__pb2.RegisterValues.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMeterDataProfiles(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles',
+            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            acquisition_dot_shared__pb2.ProfileValues.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMeterDataIrregularProfiles(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles',
+            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMeterEvents(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
+            acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+            acquisition_dot_shared__pb2.EventRecords.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateTimeOfUseTable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable',
+            acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListTimeOfUseTables(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListTimeOfUseTables',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfTimeOfUseTable.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetTimeOfUseTable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetTimeOfUseTable',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.TimeOfUseTable.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateTimeOfUseTable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateTimeOfUseTable',
+            acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTimeOfUseTable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
