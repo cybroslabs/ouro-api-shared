@@ -11,6 +11,7 @@ import "google/protobuf/duration.proto";
 import "common/fields.proto";
 import "common/metadata.proto";
 import "common/types.proto";
+import "acquisition/timeofuse/timeofuse.proto";
 
 // Job priorities
 enum JobPriority {
@@ -390,6 +391,7 @@ message ActionData {
         IrregularProfileValues irregular_profile = 4;  // Irregular (non-periodical) profile values, e.g. daily profile
         DeviceInfo device_info                   = 5;  // Device info
         EventRecords events                      = 6;  // Event records
+        timeofuse.TimeOfUseTableSpec tou_table   = 7;  // The time-of-use table.
     }
 }
 
@@ -568,10 +570,12 @@ message ActionSetDisconnectorState {
 
 // Sub-message containing get tou action specification
 message ActionGetTou {
+    bool passive = 1;  // Identifies whether to read passive TOU table. By default it is set to false to read active TOU table.
 }
 
 // Sub-message containing set tou action specification
 message ActionSetTou {
+    timeofuse.TimeOfUseTableSpec table = 1;  // The time-of-use table to be set.
 }
 
 // Sub-message containing set limiter action specification

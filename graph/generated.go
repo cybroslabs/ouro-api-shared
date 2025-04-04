@@ -53,12 +53,13 @@ type ComplexityRoot struct {
 	}
 
 	ActionData struct {
-		Billings         func(childComplexity int) int
 		DeviceInfo       func(childComplexity int) int
 		Events           func(childComplexity int) int
 		IrregularProfile func(childComplexity int) int
 		Nodata           func(childComplexity int) int
 		Profile          func(childComplexity int) int
+		Registers        func(childComplexity int) int
+		TouTable         func(childComplexity int) int
 	}
 
 	ActionFwUpdate struct {
@@ -89,7 +90,7 @@ type ComplexityRoot struct {
 	}
 
 	ActionGetTou struct {
-		Empty func(childComplexity int) int
+		Passive func(childComplexity int) int
 	}
 
 	ActionResetBillingPeriod struct {
@@ -117,7 +118,7 @@ type ComplexityRoot struct {
 	}
 
 	ActionSetTou struct {
-		Empty func(childComplexity int) int
+		Table func(childComplexity int) int
 	}
 
 	ActionSyncClock struct {
@@ -143,16 +144,6 @@ type ComplexityRoot struct {
 		Attributes func(childComplexity int) int
 		ID         func(childComplexity int) int
 		Protocol   func(childComplexity int) int
-	}
-
-	BillingValue struct {
-		Timestamp func(childComplexity int) int
-		Unit      func(childComplexity int) int
-		Value     func(childComplexity int) int
-	}
-
-	BillingValues struct {
-		Values func(childComplexity int) int
 	}
 
 	Bulk struct {
@@ -299,6 +290,11 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
+	CreateTimeOfUseTableRequest struct {
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
+	}
+
 	CreateVariableRequest struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
@@ -308,6 +304,17 @@ type ComplexityRoot struct {
 		AppProtocolRefs func(childComplexity int) int
 		Attributes      func(childComplexity int) int
 		LinkProtocol    func(childComplexity int) int
+	}
+
+	Date struct {
+		Day   func(childComplexity int) int
+		Month func(childComplexity int) int
+		Year  func(childComplexity int) int
+	}
+
+	DayProfile struct {
+		DayID     func(childComplexity int) int
+		Switching func(childComplexity int) int
 	}
 
 	Device struct {
@@ -465,6 +472,11 @@ type ComplexityRoot struct {
 		From         func(childComplexity int) int
 		To           func(childComplexity int) int
 		VariableName func(childComplexity int) int
+	}
+
+	GetMeterEventsRequest struct {
+		From func(childComplexity int) int
+		To   func(childComplexity int) int
 	}
 
 	IrregularProfileValues struct {
@@ -642,6 +654,11 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
+	ListOfTimeOfUseTable struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
 	ListOfVariable struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
@@ -718,7 +735,7 @@ type ComplexityRoot struct {
 		Modems func(childComplexity int) int
 	}
 
-	ProfileBlok struct {
+	ProfileBlock struct {
 		StartTimestamp func(childComplexity int) int
 		Values         func(childComplexity int) int
 	}
@@ -759,11 +776,13 @@ type ComplexityRoot struct {
 		CreateModem                                                      func(childComplexity int) int
 		CreateModemPool                                                  func(childComplexity int) int
 		CreateProxyBulk                                                  func(childComplexity int) int
+		CreateTimeOfUseTable                                             func(childComplexity int) int
 		CreateVariable                                                   func(childComplexity int) int
 		DeleteDeviceConfigurationRegister                                func(childComplexity int) int
 		DeleteDeviceConfigurationTemplate                                func(childComplexity int) int
 		DeleteModem                                                      func(childComplexity int) int
 		DeleteModemPool                                                  func(childComplexity int) int
+		DeleteTimeOfUseTable                                             func(childComplexity int) int
 		DeleteVariable                                                   func(childComplexity int) int
 		GetBulk                                                          func(childComplexity int) int
 		GetBulkJob                                                       func(childComplexity int) int
@@ -774,10 +793,15 @@ type ComplexityRoot struct {
 		GetDeviceConfigurationRegister                                   func(childComplexity int) int
 		GetDeviceConfigurationTemplate                                   func(childComplexity int) int
 		GetDeviceGroup                                                   func(childComplexity int) int
+		GetDeviceInfo                                                    func(childComplexity int) int
 		GetDriver                                                        func(childComplexity int) int
-		GetMeterData                                                     func(childComplexity int) int
+		GetMeterDataIrregularProfiles                                    func(childComplexity int) int
+		GetMeterDataProfiles                                             func(childComplexity int) int
+		GetMeterDataRegisters                                            func(childComplexity int) int
+		GetMeterEvents                                                   func(childComplexity int) int
 		GetModemPool                                                     func(childComplexity int) int
 		GetProxyBulk                                                     func(childComplexity int) int
+		GetTimeOfUseTable                                                func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
@@ -790,6 +814,7 @@ type ComplexityRoot struct {
 		ListDrivers                                                      func(childComplexity int) int
 		ListFieldDescriptors                                             func(childComplexity int) int
 		ListModemPools                                                   func(childComplexity int) int
+		ListTimeOfUseTables                                              func(childComplexity int) int
 		ListVariables                                                    func(childComplexity int) int
 		RemoveCommunicationUnitsFromCommunicationBus                     func(childComplexity int) int
 		RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate func(childComplexity int) int
@@ -800,7 +825,23 @@ type ComplexityRoot struct {
 		UpdateDeviceConfigurationTemplate                                func(childComplexity int) int
 		UpdateModem                                                      func(childComplexity int) int
 		UpdateModemPool                                                  func(childComplexity int) int
+		UpdateTimeOfUseTable                                             func(childComplexity int) int
 		UpdateVariable                                                   func(childComplexity int) int
+	}
+
+	RegisterValue struct {
+		Timestamp func(childComplexity int) int
+		Unit      func(childComplexity int) int
+		Value     func(childComplexity int) int
+	}
+
+	RegisterValues struct {
+		Values func(childComplexity int) int
+	}
+
+	RelayStateRecord struct {
+		RelayID func(childComplexity int) int
+		State   func(childComplexity int) int
 	}
 
 	RemoveCommunicationUnitsFromCommunicationBusRequest struct {
@@ -818,6 +859,15 @@ type ComplexityRoot struct {
 		GroupID  func(childComplexity int) int
 	}
 
+	Season struct {
+		ID         func(childComplexity int) int
+		Name       func(childComplexity int) int
+		StartDay   func(childComplexity int) int
+		StartMonth func(childComplexity int) int
+		StartYear  func(childComplexity int) int
+		WeekID     func(childComplexity int) int
+	}
+
 	SetDeviceCommunicationUnitsRequest struct {
 		CommunicationUnits func(childComplexity int) int
 		DeviceID           func(childComplexity int) int
@@ -833,18 +883,22 @@ type ComplexityRoot struct {
 		PoolID func(childComplexity int) int
 	}
 
-	StreamMeterData struct {
-		Data func(childComplexity int) int
-		Ts   func(childComplexity int) int
-	}
-
-	StreamMeterDataDevice struct {
-		Data     func(childComplexity int) int
-		DeviceID func(childComplexity int) int
+	SpecialDay struct {
+		Day   func(childComplexity int) int
+		DayID func(childComplexity int) int
+		Month func(childComplexity int) int
+		Year  func(childComplexity int) int
 	}
 
 	StringValue struct {
 		Value func(childComplexity int) int
+	}
+
+	Switching struct {
+		Hour   func(childComplexity int) int
+		Minute func(childComplexity int) int
+		Relays func(childComplexity int) int
+		Tariff func(childComplexity int) int
 	}
 
 	SystemConfig struct {
@@ -855,6 +909,21 @@ type ComplexityRoot struct {
 		MinReplicas                func(childComplexity int) int
 	}
 
+	TimeOfUseTable struct {
+		Metadata func(childComplexity int) int
+		Spec     func(childComplexity int) int
+	}
+
+	TimeOfUseTableSpec struct {
+		ActivateAt  func(childComplexity int) int
+		DayProfiles func(childComplexity int) int
+		ExpiesAt    func(childComplexity int) int
+		HdoGroupID  func(childComplexity int) int
+		Seasons     func(childComplexity int) int
+		SpecialDays func(childComplexity int) int
+		Weeks       func(childComplexity int) int
+	}
+
 	Variable struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
@@ -862,6 +931,12 @@ type ComplexityRoot struct {
 
 	VariableSpec struct {
 		RegisterID func(childComplexity int) int
+	}
+
+	Week struct {
+		DayIds   func(childComplexity int) int
+		WeekID   func(childComplexity int) int
+		WeekName func(childComplexity int) int
 	}
 
 	_mapFieldValue struct {
@@ -918,6 +993,7 @@ type QueryResolver interface {
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
+	GetDeviceInfo(ctx context.Context) (*model.DeviceInfo, error)
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
 	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfDeviceCommunicationUnit, error)
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
@@ -937,7 +1013,15 @@ type QueryResolver interface {
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
-	GetMeterData(ctx context.Context) (*model.StreamMeterData, error)
+	GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error)
+	GetMeterDataProfiles(ctx context.Context) (*model.ProfileValues, error)
+	GetMeterDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error)
+	GetMeterEvents(ctx context.Context) (*model.EventRecords, error)
+	CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error)
+	ListTimeOfUseTables(ctx context.Context) (*model.ListOfTimeOfUseTable, error)
+	GetTimeOfUseTable(ctx context.Context) (*model.TimeOfUseTable, error)
+	UpdateTimeOfUseTable(ctx context.Context) (*model.Empty, error)
+	DeleteTimeOfUseTable(ctx context.Context) (*model.Empty, error)
 	CreateVariable(ctx context.Context) (*model.StringValue, error)
 	ListVariables(ctx context.Context) (*model.ListOfVariable, error)
 	UpdateVariable(ctx context.Context) (*model.Empty, error)
@@ -977,13 +1061,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.AccessLevelTemplate.Name(childComplexity), true
 
-	case "ActionData.billings":
-		if e.complexity.ActionData.Billings == nil {
-			break
-		}
-
-		return e.complexity.ActionData.Billings(childComplexity), true
-
 	case "ActionData.deviceInfo":
 		if e.complexity.ActionData.DeviceInfo == nil {
 			break
@@ -1018,6 +1095,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ActionData.Profile(childComplexity), true
+
+	case "ActionData.registers":
+		if e.complexity.ActionData.Registers == nil {
+			break
+		}
+
+		return e.complexity.ActionData.Registers(childComplexity), true
+
+	case "ActionData.touTable":
+		if e.complexity.ActionData.TouTable == nil {
+			break
+		}
+
+		return e.complexity.ActionData.TouTable(childComplexity), true
 
 	case "ActionFwUpdate._empty":
 		if e.complexity.ActionFwUpdate.Empty == nil {
@@ -1082,12 +1173,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionGetRegister.Empty(childComplexity), true
 
-	case "ActionGetTou._empty":
-		if e.complexity.ActionGetTou.Empty == nil {
+	case "ActionGetTou.passive":
+		if e.complexity.ActionGetTou.Passive == nil {
 			break
 		}
 
-		return e.complexity.ActionGetTou.Empty(childComplexity), true
+		return e.complexity.ActionGetTou.Passive(childComplexity), true
 
 	case "ActionResetBillingPeriod._empty":
 		if e.complexity.ActionResetBillingPeriod.Empty == nil {
@@ -1152,12 +1243,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ActionSetRelayState.Empty(childComplexity), true
 
-	case "ActionSetTou._empty":
-		if e.complexity.ActionSetTou.Empty == nil {
+	case "ActionSetTou.table":
+		if e.complexity.ActionSetTou.Table == nil {
 			break
 		}
 
-		return e.complexity.ActionSetTou.Empty(childComplexity), true
+		return e.complexity.ActionSetTou.Table(childComplexity), true
 
 	case "ActionSyncClock._empty":
 		if e.complexity.ActionSyncClock.Empty == nil {
@@ -1228,34 +1319,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ApplicationProtocolTemplate.Protocol(childComplexity), true
-
-	case "BillingValue.timestamp":
-		if e.complexity.BillingValue.Timestamp == nil {
-			break
-		}
-
-		return e.complexity.BillingValue.Timestamp(childComplexity), true
-
-	case "BillingValue.unit":
-		if e.complexity.BillingValue.Unit == nil {
-			break
-		}
-
-		return e.complexity.BillingValue.Unit(childComplexity), true
-
-	case "BillingValue.value":
-		if e.complexity.BillingValue.Value == nil {
-			break
-		}
-
-		return e.complexity.BillingValue.Value(childComplexity), true
-
-	case "BillingValues.values":
-		if e.complexity.BillingValues.Values == nil {
-			break
-		}
-
-		return e.complexity.BillingValues.Values(childComplexity), true
 
 	case "Bulk.metadata":
 		if e.complexity.Bulk.Metadata == nil {
@@ -1740,6 +1803,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CreateProxyBulkRequest.Spec(childComplexity), true
 
+	case "CreateTimeOfUseTableRequest.metadata":
+		if e.complexity.CreateTimeOfUseTableRequest.Metadata == nil {
+			break
+		}
+
+		return e.complexity.CreateTimeOfUseTableRequest.Metadata(childComplexity), true
+
+	case "CreateTimeOfUseTableRequest.spec":
+		if e.complexity.CreateTimeOfUseTableRequest.Spec == nil {
+			break
+		}
+
+		return e.complexity.CreateTimeOfUseTableRequest.Spec(childComplexity), true
+
 	case "CreateVariableRequest.metadata":
 		if e.complexity.CreateVariableRequest.Metadata == nil {
 			break
@@ -1774,6 +1851,41 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DataLinkTemplate.LinkProtocol(childComplexity), true
+
+	case "Date.day":
+		if e.complexity.Date.Day == nil {
+			break
+		}
+
+		return e.complexity.Date.Day(childComplexity), true
+
+	case "Date.month":
+		if e.complexity.Date.Month == nil {
+			break
+		}
+
+		return e.complexity.Date.Month(childComplexity), true
+
+	case "Date.year":
+		if e.complexity.Date.Year == nil {
+			break
+		}
+
+		return e.complexity.Date.Year(childComplexity), true
+
+	case "DayProfile.dayId":
+		if e.complexity.DayProfile.DayID == nil {
+			break
+		}
+
+		return e.complexity.DayProfile.DayID(childComplexity), true
+
+	case "DayProfile.switching":
+		if e.complexity.DayProfile.Switching == nil {
+			break
+		}
+
+		return e.complexity.DayProfile.Switching(childComplexity), true
 
 	case "Device.metadata":
 		if e.complexity.Device.Metadata == nil {
@@ -2411,6 +2523,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.GetMeterDataRequest.VariableName(childComplexity), true
+
+	case "GetMeterEventsRequest.from":
+		if e.complexity.GetMeterEventsRequest.From == nil {
+			break
+		}
+
+		return e.complexity.GetMeterEventsRequest.From(childComplexity), true
+
+	case "GetMeterEventsRequest.to":
+		if e.complexity.GetMeterEventsRequest.To == nil {
+			break
+		}
+
+		return e.complexity.GetMeterEventsRequest.To(childComplexity), true
 
 	case "IrregularProfileValues.unit":
 		if e.complexity.IrregularProfileValues.Unit == nil {
@@ -3070,6 +3196,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ListOfString.TotalCount(childComplexity), true
 
+	case "ListOfTimeOfUseTable.items":
+		if e.complexity.ListOfTimeOfUseTable.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfTimeOfUseTable.Items(childComplexity), true
+
+	case "ListOfTimeOfUseTable.totalCount":
+		if e.complexity.ListOfTimeOfUseTable.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfTimeOfUseTable.TotalCount(childComplexity), true
+
 	case "ListOfVariable.items":
 		if e.complexity.ListOfVariable.Items == nil {
 			break
@@ -3392,19 +3532,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ModemPoolStatus.Modems(childComplexity), true
 
-	case "ProfileBlok.startTimestamp":
-		if e.complexity.ProfileBlok.StartTimestamp == nil {
+	case "ProfileBlock.startTimestamp":
+		if e.complexity.ProfileBlock.StartTimestamp == nil {
 			break
 		}
 
-		return e.complexity.ProfileBlok.StartTimestamp(childComplexity), true
+		return e.complexity.ProfileBlock.StartTimestamp(childComplexity), true
 
-	case "ProfileBlok.values":
-		if e.complexity.ProfileBlok.Values == nil {
+	case "ProfileBlock.values":
+		if e.complexity.ProfileBlock.Values == nil {
 			break
 		}
 
-		return e.complexity.ProfileBlok.Values(childComplexity), true
+		return e.complexity.ProfileBlock.Values(childComplexity), true
 
 	case "ProfileValues.blocks":
 		if e.complexity.ProfileValues.Blocks == nil {
@@ -3588,6 +3728,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.CreateProxyBulk(childComplexity), true
 
+	case "Query.createTimeOfUseTable":
+		if e.complexity.Query.CreateTimeOfUseTable == nil {
+			break
+		}
+
+		return e.complexity.Query.CreateTimeOfUseTable(childComplexity), true
+
 	case "Query.createVariable":
 		if e.complexity.Query.CreateVariable == nil {
 			break
@@ -3622,6 +3769,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.DeleteModemPool(childComplexity), true
+
+	case "Query.deleteTimeOfUseTable":
+		if e.complexity.Query.DeleteTimeOfUseTable == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteTimeOfUseTable(childComplexity), true
 
 	case "Query.deleteVariable":
 		if e.complexity.Query.DeleteVariable == nil {
@@ -3693,6 +3847,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.GetDeviceGroup(childComplexity), true
 
+	case "Query.getDeviceInfo":
+		if e.complexity.Query.GetDeviceInfo == nil {
+			break
+		}
+
+		return e.complexity.Query.GetDeviceInfo(childComplexity), true
+
 	case "Query.getDriver":
 		if e.complexity.Query.GetDriver == nil {
 			break
@@ -3700,12 +3861,33 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.GetDriver(childComplexity), true
 
-	case "Query.getMeterData":
-		if e.complexity.Query.GetMeterData == nil {
+	case "Query.getMeterDataIrregularProfiles":
+		if e.complexity.Query.GetMeterDataIrregularProfiles == nil {
 			break
 		}
 
-		return e.complexity.Query.GetMeterData(childComplexity), true
+		return e.complexity.Query.GetMeterDataIrregularProfiles(childComplexity), true
+
+	case "Query.getMeterDataProfiles":
+		if e.complexity.Query.GetMeterDataProfiles == nil {
+			break
+		}
+
+		return e.complexity.Query.GetMeterDataProfiles(childComplexity), true
+
+	case "Query.getMeterDataRegisters":
+		if e.complexity.Query.GetMeterDataRegisters == nil {
+			break
+		}
+
+		return e.complexity.Query.GetMeterDataRegisters(childComplexity), true
+
+	case "Query.getMeterEvents":
+		if e.complexity.Query.GetMeterEvents == nil {
+			break
+		}
+
+		return e.complexity.Query.GetMeterEvents(childComplexity), true
 
 	case "Query.getModemPool":
 		if e.complexity.Query.GetModemPool == nil {
@@ -3720,6 +3902,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.GetProxyBulk(childComplexity), true
+
+	case "Query.getTimeOfUseTable":
+		if e.complexity.Query.GetTimeOfUseTable == nil {
+			break
+		}
+
+		return e.complexity.Query.GetTimeOfUseTable(childComplexity), true
 
 	case "Query.listBulkJobs":
 		if e.complexity.Query.ListBulkJobs == nil {
@@ -3805,6 +3994,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.ListModemPools(childComplexity), true
 
+	case "Query.listTimeOfUseTables":
+		if e.complexity.Query.ListTimeOfUseTables == nil {
+			break
+		}
+
+		return e.complexity.Query.ListTimeOfUseTables(childComplexity), true
+
 	case "Query.listVariables":
 		if e.complexity.Query.ListVariables == nil {
 			break
@@ -3875,12 +4071,61 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.UpdateModemPool(childComplexity), true
 
+	case "Query.updateTimeOfUseTable":
+		if e.complexity.Query.UpdateTimeOfUseTable == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateTimeOfUseTable(childComplexity), true
+
 	case "Query.updateVariable":
 		if e.complexity.Query.UpdateVariable == nil {
 			break
 		}
 
 		return e.complexity.Query.UpdateVariable(childComplexity), true
+
+	case "RegisterValue.timestamp":
+		if e.complexity.RegisterValue.Timestamp == nil {
+			break
+		}
+
+		return e.complexity.RegisterValue.Timestamp(childComplexity), true
+
+	case "RegisterValue.unit":
+		if e.complexity.RegisterValue.Unit == nil {
+			break
+		}
+
+		return e.complexity.RegisterValue.Unit(childComplexity), true
+
+	case "RegisterValue.value":
+		if e.complexity.RegisterValue.Value == nil {
+			break
+		}
+
+		return e.complexity.RegisterValue.Value(childComplexity), true
+
+	case "RegisterValues.values":
+		if e.complexity.RegisterValues.Values == nil {
+			break
+		}
+
+		return e.complexity.RegisterValues.Values(childComplexity), true
+
+	case "RelayStateRecord.relayId":
+		if e.complexity.RelayStateRecord.RelayID == nil {
+			break
+		}
+
+		return e.complexity.RelayStateRecord.RelayID(childComplexity), true
+
+	case "RelayStateRecord.state":
+		if e.complexity.RelayStateRecord.State == nil {
+			break
+		}
+
+		return e.complexity.RelayStateRecord.State(childComplexity), true
 
 	case "RemoveCommunicationUnitsFromCommunicationBusRequest.communicationBusId":
 		if e.complexity.RemoveCommunicationUnitsFromCommunicationBusRequest.CommunicationBusID == nil {
@@ -3924,6 +4169,48 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.RemoveDevicesFromGroupRequest.GroupID(childComplexity), true
 
+	case "Season.id":
+		if e.complexity.Season.ID == nil {
+			break
+		}
+
+		return e.complexity.Season.ID(childComplexity), true
+
+	case "Season.name":
+		if e.complexity.Season.Name == nil {
+			break
+		}
+
+		return e.complexity.Season.Name(childComplexity), true
+
+	case "Season.startDay":
+		if e.complexity.Season.StartDay == nil {
+			break
+		}
+
+		return e.complexity.Season.StartDay(childComplexity), true
+
+	case "Season.startMonth":
+		if e.complexity.Season.StartMonth == nil {
+			break
+		}
+
+		return e.complexity.Season.StartMonth(childComplexity), true
+
+	case "Season.startYear":
+		if e.complexity.Season.StartYear == nil {
+			break
+		}
+
+		return e.complexity.Season.StartYear(childComplexity), true
+
+	case "Season.weekId":
+		if e.complexity.Season.WeekID == nil {
+			break
+		}
+
+		return e.complexity.Season.WeekID(childComplexity), true
+
 	case "SetDeviceCommunicationUnitsRequest.communicationUnits":
 		if e.complexity.SetDeviceCommunicationUnitsRequest.CommunicationUnits == nil {
 			break
@@ -3966,33 +4253,33 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.SetModemRequest.PoolID(childComplexity), true
 
-	case "StreamMeterData.data":
-		if e.complexity.StreamMeterData.Data == nil {
+	case "SpecialDay.day":
+		if e.complexity.SpecialDay.Day == nil {
 			break
 		}
 
-		return e.complexity.StreamMeterData.Data(childComplexity), true
+		return e.complexity.SpecialDay.Day(childComplexity), true
 
-	case "StreamMeterData.ts":
-		if e.complexity.StreamMeterData.Ts == nil {
+	case "SpecialDay.dayId":
+		if e.complexity.SpecialDay.DayID == nil {
 			break
 		}
 
-		return e.complexity.StreamMeterData.Ts(childComplexity), true
+		return e.complexity.SpecialDay.DayID(childComplexity), true
 
-	case "StreamMeterDataDevice.data":
-		if e.complexity.StreamMeterDataDevice.Data == nil {
+	case "SpecialDay.month":
+		if e.complexity.SpecialDay.Month == nil {
 			break
 		}
 
-		return e.complexity.StreamMeterDataDevice.Data(childComplexity), true
+		return e.complexity.SpecialDay.Month(childComplexity), true
 
-	case "StreamMeterDataDevice.deviceId":
-		if e.complexity.StreamMeterDataDevice.DeviceID == nil {
+	case "SpecialDay.year":
+		if e.complexity.SpecialDay.Year == nil {
 			break
 		}
 
-		return e.complexity.StreamMeterDataDevice.DeviceID(childComplexity), true
+		return e.complexity.SpecialDay.Year(childComplexity), true
 
 	case "StringValue.value":
 		if e.complexity.StringValue.Value == nil {
@@ -4000,6 +4287,34 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.StringValue.Value(childComplexity), true
+
+	case "Switching.hour":
+		if e.complexity.Switching.Hour == nil {
+			break
+		}
+
+		return e.complexity.Switching.Hour(childComplexity), true
+
+	case "Switching.minute":
+		if e.complexity.Switching.Minute == nil {
+			break
+		}
+
+		return e.complexity.Switching.Minute(childComplexity), true
+
+	case "Switching.relays":
+		if e.complexity.Switching.Relays == nil {
+			break
+		}
+
+		return e.complexity.Switching.Relays(childComplexity), true
+
+	case "Switching.tariff":
+		if e.complexity.Switching.Tariff == nil {
+			break
+		}
+
+		return e.complexity.Switching.Tariff(childComplexity), true
 
 	case "SystemConfig.disableDataProxyProcessing":
 		if e.complexity.SystemConfig.DisableDataProxyProcessing == nil {
@@ -4036,6 +4351,69 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.SystemConfig.MinReplicas(childComplexity), true
 
+	case "TimeOfUseTable.metadata":
+		if e.complexity.TimeOfUseTable.Metadata == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTable.Metadata(childComplexity), true
+
+	case "TimeOfUseTable.spec":
+		if e.complexity.TimeOfUseTable.Spec == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTable.Spec(childComplexity), true
+
+	case "TimeOfUseTableSpec.activateAt":
+		if e.complexity.TimeOfUseTableSpec.ActivateAt == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.ActivateAt(childComplexity), true
+
+	case "TimeOfUseTableSpec.dayProfiles":
+		if e.complexity.TimeOfUseTableSpec.DayProfiles == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.DayProfiles(childComplexity), true
+
+	case "TimeOfUseTableSpec.expiesAt":
+		if e.complexity.TimeOfUseTableSpec.ExpiesAt == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.ExpiesAt(childComplexity), true
+
+	case "TimeOfUseTableSpec.hdoGroupId":
+		if e.complexity.TimeOfUseTableSpec.HdoGroupID == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.HdoGroupID(childComplexity), true
+
+	case "TimeOfUseTableSpec.seasons":
+		if e.complexity.TimeOfUseTableSpec.Seasons == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.Seasons(childComplexity), true
+
+	case "TimeOfUseTableSpec.specialDays":
+		if e.complexity.TimeOfUseTableSpec.SpecialDays == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.SpecialDays(childComplexity), true
+
+	case "TimeOfUseTableSpec.weeks":
+		if e.complexity.TimeOfUseTableSpec.Weeks == nil {
+			break
+		}
+
+		return e.complexity.TimeOfUseTableSpec.Weeks(childComplexity), true
+
 	case "Variable.metadata":
 		if e.complexity.Variable.Metadata == nil {
 			break
@@ -4056,6 +4434,27 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.VariableSpec.RegisterID(childComplexity), true
+
+	case "Week.dayIds":
+		if e.complexity.Week.DayIds == nil {
+			break
+		}
+
+		return e.complexity.Week.DayIds(childComplexity), true
+
+	case "Week.weekId":
+		if e.complexity.Week.WeekID == nil {
+			break
+		}
+
+		return e.complexity.Week.WeekID(childComplexity), true
+
+	case "Week.weekName":
+		if e.complexity.Week.WeekName == nil {
+			break
+		}
+
+		return e.complexity.Week.WeekName(childComplexity), true
 
 	case "_mapFieldValue.key":
 		if e.complexity._mapFieldValue.Key == nil {
@@ -4496,8 +4895,8 @@ func (ec *executionContext) fieldContext_ActionData_nodata(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionData_billings(ctx context.Context, field graphql.CollectedField, obj *model.ActionData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionData_billings(ctx, field)
+func (ec *executionContext) _ActionData_registers(ctx context.Context, field graphql.CollectedField, obj *model.ActionData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionData_registers(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -4510,7 +4909,7 @@ func (ec *executionContext) _ActionData_billings(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Billings, nil
+		return obj.Registers, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -4519,12 +4918,12 @@ func (ec *executionContext) _ActionData_billings(ctx context.Context, field grap
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.BillingValues)
+	res := resTmp.(*model.RegisterValues)
 	fc.Result = res
-	return ec.marshalOBillingValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValues(ctx, field.Selections, res)
+	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ActionData_billings(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ActionData_registers(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionData",
 		Field:      field,
@@ -4533,9 +4932,9 @@ func (ec *executionContext) fieldContext_ActionData_billings(_ context.Context, 
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "values":
-				return ec.fieldContext_BillingValues_values(ctx, field)
+				return ec.fieldContext_RegisterValues_values(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type BillingValues", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type RegisterValues", field.Name)
 		},
 	}
 	return fc, nil
@@ -4738,6 +5137,63 @@ func (ec *executionContext) fieldContext_ActionData_events(_ context.Context, fi
 				return ec.fieldContext_EventRecords_values(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type EventRecords", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionData_touTable(ctx context.Context, field graphql.CollectedField, obj *model.ActionData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionData_touTable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TouTable, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.TimeOfUseTableSpec)
+	fc.Result = res
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionData_touTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionData",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "expiesAt":
+				return ec.fieldContext_TimeOfUseTableSpec_expiesAt(ctx, field)
+			case "hdoGroupId":
+				return ec.fieldContext_TimeOfUseTableSpec_hdoGroupId(ctx, field)
+			case "activateAt":
+				return ec.fieldContext_TimeOfUseTableSpec_activateAt(ctx, field)
+			case "seasons":
+				return ec.fieldContext_TimeOfUseTableSpec_seasons(ctx, field)
+			case "weeks":
+				return ec.fieldContext_TimeOfUseTableSpec_weeks(ctx, field)
+			case "dayProfiles":
+				return ec.fieldContext_TimeOfUseTableSpec_dayProfiles(ctx, field)
+			case "specialDays":
+				return ec.fieldContext_TimeOfUseTableSpec_specialDays(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTableSpec", field.Name)
 		},
 	}
 	return fc, nil
@@ -5112,8 +5568,8 @@ func (ec *executionContext) fieldContext_ActionGetRegister__empty(_ context.Cont
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionGetTou__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetTou) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionGetTou__empty(ctx, field)
+func (ec *executionContext) _ActionGetTou_passive(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetTou) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetTou_passive(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5126,7 +5582,7 @@ func (ec *executionContext) _ActionGetTou__empty(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
+		return obj.Passive, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5140,7 +5596,7 @@ func (ec *executionContext) _ActionGetTou__empty(ctx context.Context, field grap
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ActionGetTou__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ActionGetTou_passive(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionGetTou",
 		Field:      field,
@@ -5314,8 +5770,8 @@ func (ec *executionContext) fieldContext_ActionResult_data(_ context.Context, fi
 			switch field.Name {
 			case "nodata":
 				return ec.fieldContext_ActionData_nodata(ctx, field)
-			case "billings":
-				return ec.fieldContext_ActionData_billings(ctx, field)
+			case "registers":
+				return ec.fieldContext_ActionData_registers(ctx, field)
 			case "profile":
 				return ec.fieldContext_ActionData_profile(ctx, field)
 			case "irregularProfile":
@@ -5324,6 +5780,8 @@ func (ec *executionContext) fieldContext_ActionResult_data(_ context.Context, fi
 				return ec.fieldContext_ActionData_deviceInfo(ctx, field)
 			case "events":
 				return ec.fieldContext_ActionData_events(ctx, field)
+			case "touTable":
+				return ec.fieldContext_ActionData_touTable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionData", field.Name)
 		},
@@ -5536,8 +5994,8 @@ func (ec *executionContext) fieldContext_ActionSetRelayState__empty(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionSetTou__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionSetTou) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionSetTou__empty(ctx, field)
+func (ec *executionContext) _ActionSetTou_table(ctx context.Context, field graphql.CollectedField, obj *model.ActionSetTou) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionSetTou_table(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -5550,7 +6008,7 @@ func (ec *executionContext) _ActionSetTou__empty(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
+		return obj.Table, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5559,19 +6017,35 @@ func (ec *executionContext) _ActionSetTou__empty(ctx context.Context, field grap
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*bool)
+	res := resTmp.(*model.TimeOfUseTableSpec)
 	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ActionSetTou__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ActionSetTou_table(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionSetTou",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
+			switch field.Name {
+			case "expiesAt":
+				return ec.fieldContext_TimeOfUseTableSpec_expiesAt(ctx, field)
+			case "hdoGroupId":
+				return ec.fieldContext_TimeOfUseTableSpec_hdoGroupId(ctx, field)
+			case "activateAt":
+				return ec.fieldContext_TimeOfUseTableSpec_activateAt(ctx, field)
+			case "seasons":
+				return ec.fieldContext_TimeOfUseTableSpec_seasons(ctx, field)
+			case "weeks":
+				return ec.fieldContext_TimeOfUseTableSpec_weeks(ctx, field)
+			case "dayProfiles":
+				return ec.fieldContext_TimeOfUseTableSpec_dayProfiles(ctx, field)
+			case "specialDays":
+				return ec.fieldContext_TimeOfUseTableSpec_specialDays(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTableSpec", field.Name)
 		},
 	}
 	return fc, nil
@@ -6016,196 +6490,6 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _BillingValue_timestamp(ctx context.Context, field graphql.CollectedField, obj *model.BillingValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BillingValue_timestamp(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Timestamp, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BillingValue_timestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BillingValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Timestamp does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _BillingValue_unit(ctx context.Context, field graphql.CollectedField, obj *model.BillingValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BillingValue_unit(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Unit, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BillingValue_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BillingValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _BillingValue_value(ctx context.Context, field graphql.CollectedField, obj *model.BillingValue) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BillingValue_value(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*model.MeasuredValue)
-	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BillingValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BillingValue",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "status":
-				return ec.fieldContext_MeasuredValue_status(ctx, field)
-			case "exponent":
-				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
-			case "doubleValue":
-				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
-			case "integerValue":
-				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
-			case "stringValue":
-				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
-			case "timestampValue":
-				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
-			case "timestampTzValue":
-				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
-			case "boolValue":
-				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _BillingValues_values(ctx context.Context, field graphql.CollectedField, obj *model.BillingValues) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BillingValues_values(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Values, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.BillingValue)
-	fc.Result = res
-	return ec.marshalOBillingValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_BillingValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "BillingValues",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "timestamp":
-				return ec.fieldContext_BillingValue_timestamp(ctx, field)
-			case "unit":
-				return ec.fieldContext_BillingValue_unit(ctx, field)
-			case "value":
-				return ec.fieldContext_BillingValue_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type BillingValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -9502,6 +9786,116 @@ func (ec *executionContext) fieldContext_CreateProxyBulkRequest_metadata(_ conte
 	return fc, nil
 }
 
+func (ec *executionContext) _CreateTimeOfUseTableRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.CreateTimeOfUseTableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateTimeOfUseTableRequest_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.TimeOfUseTableSpec)
+	fc.Result = res
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateTimeOfUseTableRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateTimeOfUseTableRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "expiesAt":
+				return ec.fieldContext_TimeOfUseTableSpec_expiesAt(ctx, field)
+			case "hdoGroupId":
+				return ec.fieldContext_TimeOfUseTableSpec_hdoGroupId(ctx, field)
+			case "activateAt":
+				return ec.fieldContext_TimeOfUseTableSpec_activateAt(ctx, field)
+			case "seasons":
+				return ec.fieldContext_TimeOfUseTableSpec_seasons(ctx, field)
+			case "weeks":
+				return ec.fieldContext_TimeOfUseTableSpec_weeks(ctx, field)
+			case "dayProfiles":
+				return ec.fieldContext_TimeOfUseTableSpec_dayProfiles(ctx, field)
+			case "specialDays":
+				return ec.fieldContext_TimeOfUseTableSpec_specialDays(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTableSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateTimeOfUseTableRequest_metadata(ctx context.Context, field graphql.CollectedField, obj *model.CreateTimeOfUseTableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateTimeOfUseTableRequest_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateTimeOfUseTableRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateTimeOfUseTableRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _CreateVariableRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.CreateVariableRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_CreateVariableRequest_spec(ctx, field)
 	if err != nil {
@@ -9752,6 +10146,221 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Date_year(ctx context.Context, field graphql.CollectedField, obj *model.Date) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Date_year(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Year, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Date_year(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Date",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Date_month(ctx context.Context, field graphql.CollectedField, obj *model.Date) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Date_month(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Month, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Date_month(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Date",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Date_day(ctx context.Context, field graphql.CollectedField, obj *model.Date) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Date_day(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Day, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Date_day(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Date",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DayProfile_dayId(ctx context.Context, field graphql.CollectedField, obj *model.DayProfile) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DayProfile_dayId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DayID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DayProfile_dayId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DayProfile",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DayProfile_switching(ctx context.Context, field graphql.CollectedField, obj *model.DayProfile) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DayProfile_switching(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Switching, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Switching)
+	fc.Result = res
+	return ec.marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DayProfile_switching(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DayProfile",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "hour":
+				return ec.fieldContext_Switching_hour(ctx, field)
+			case "minute":
+				return ec.fieldContext_Switching_minute(ctx, field)
+			case "tariff":
+				return ec.fieldContext_Switching_tariff(ctx, field)
+			case "relays":
+				return ec.fieldContext_Switching_relays(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Switching", field.Name)
 		},
 	}
 	return fc, nil
@@ -13736,6 +14345,88 @@ func (ec *executionContext) fieldContext_GetMeterDataRequest_variableName(_ cont
 	return fc, nil
 }
 
+func (ec *executionContext) _GetMeterEventsRequest_from(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterEventsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterEventsRequest_from(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.From, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterEventsRequest_from(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterEventsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetMeterEventsRequest_to(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterEventsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetMeterEventsRequest_to(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.To, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetMeterEventsRequest_to(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetMeterEventsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _IrregularProfileValues_unit(ctx context.Context, field graphql.CollectedField, obj *model.IrregularProfileValues) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_IrregularProfileValues_unit(ctx, field)
 	if err != nil {
@@ -14414,8 +15105,8 @@ func (ec *executionContext) fieldContext_JobAction_getTou(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetTou__empty(ctx, field)
+			case "passive":
+				return ec.fieldContext_ActionGetTou_passive(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetTou", field.Name)
 		},
@@ -14459,8 +15150,8 @@ func (ec *executionContext) fieldContext_JobAction_setTou(_ context.Context, fie
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionSetTou__empty(ctx, field)
+			case "table":
+				return ec.fieldContext_ActionSetTou_table(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionSetTou", field.Name)
 		},
@@ -15256,8 +15947,8 @@ func (ec *executionContext) fieldContext_JobActionSet_getTou(_ context.Context, 
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetTou__empty(ctx, field)
+			case "passive":
+				return ec.fieldContext_ActionGetTou_passive(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetTou", field.Name)
 		},
@@ -15301,8 +15992,8 @@ func (ec *executionContext) fieldContext_JobActionSet_setTou(_ context.Context, 
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionSetTou__empty(ctx, field)
+			case "table":
+				return ec.fieldContext_ActionSetTou_table(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionSetTou", field.Name)
 		},
@@ -18004,6 +18695,94 @@ func (ec *executionContext) fieldContext_ListOfString_totalCount(_ context.Conte
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfTimeOfUseTable_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfTimeOfUseTable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfTimeOfUseTable_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.TimeOfUseTable)
+	fc.Result = res
+	return ec.marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfTimeOfUseTable_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfTimeOfUseTable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_TimeOfUseTable_spec(ctx, field)
+			case "metadata":
+				return ec.fieldContext_TimeOfUseTable_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfTimeOfUseTable_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfTimeOfUseTable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfTimeOfUseTable_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfTimeOfUseTable_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfTimeOfUseTable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfVariable_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfVariable) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfVariable_items(ctx, field)
 	if err != nil {
@@ -20004,8 +20783,8 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _ProfileBlok_startTimestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlok) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ProfileBlok_startTimestamp(ctx, field)
+func (ec *executionContext) _ProfileBlock_startTimestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlock) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProfileBlock_startTimestamp(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -20032,9 +20811,9 @@ func (ec *executionContext) _ProfileBlok_startTimestamp(ctx context.Context, fie
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ProfileBlok_startTimestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ProfileBlock_startTimestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "ProfileBlok",
+		Object:     "ProfileBlock",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -20045,8 +20824,8 @@ func (ec *executionContext) fieldContext_ProfileBlok_startTimestamp(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _ProfileBlok_values(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlok) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ProfileBlok_values(ctx, field)
+func (ec *executionContext) _ProfileBlock_values(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlock) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ProfileBlock_values(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -20073,9 +20852,9 @@ func (ec *executionContext) _ProfileBlok_values(ctx context.Context, field graph
 	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ProfileBlok_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ProfileBlock_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "ProfileBlok",
+		Object:     "ProfileBlock",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -20209,9 +20988,9 @@ func (ec *executionContext) _ProfileValues_blocks(ctx context.Context, field gra
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.ProfileBlok)
+	res := resTmp.([]*model.ProfileBlock)
 	fc.Result = res
-	return ec.marshalOProfileBlok2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlok(ctx, field.Selections, res)
+	return ec.marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProfileValues_blocks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20223,11 +21002,11 @@ func (ec *executionContext) fieldContext_ProfileValues_blocks(_ context.Context,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "startTimestamp":
-				return ec.fieldContext_ProfileBlok_startTimestamp(ctx, field)
+				return ec.fieldContext_ProfileBlock_startTimestamp(ctx, field)
 			case "values":
-				return ec.fieldContext_ProfileBlok_values(ctx, field)
+				return ec.fieldContext_ProfileBlock_values(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ProfileBlok", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ProfileBlock", field.Name)
 		},
 	}
 	return fc, nil
@@ -22180,6 +22959,67 @@ func (ec *executionContext) fieldContext_Query_getDevice(_ context.Context, fiel
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_getDeviceInfo(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getDeviceInfo(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetDeviceInfo(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.DeviceInfo)
+	fc.Result = res
+	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getDeviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "infoTimestamp":
+				return ec.fieldContext_DeviceInfo_infoTimestamp(ctx, field)
+			case "manufacturerSerialNumber":
+				return ec.fieldContext_DeviceInfo_manufacturerSerialNumber(ctx, field)
+			case "deviceSerialNumber":
+				return ec.fieldContext_DeviceInfo_deviceSerialNumber(ctx, field)
+			case "firmwareVersion":
+				return ec.fieldContext_DeviceInfo_firmwareVersion(ctx, field)
+			case "clockDelta":
+				return ec.fieldContext_DeviceInfo_clockDelta(ctx, field)
+			case "deviceModel":
+				return ec.fieldContext_DeviceInfo_deviceModel(ctx, field)
+			case "errorRegister":
+				return ec.fieldContext_DeviceInfo_errorRegister(ctx, field)
+			case "relayStates":
+				return ec.fieldContext_DeviceInfo_relayStates(ctx, field)
+			case "connectionState":
+				return ec.fieldContext_DeviceInfo_connectionState(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_setDeviceCommunicationUnits(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_setDeviceCommunicationUnits(ctx, field)
 	if err != nil {
@@ -23053,8 +23893,8 @@ func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_getMeterData(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_getMeterData(ctx, field)
+func (ec *executionContext) _Query_getMeterDataRegisters(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getMeterDataRegisters(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -23067,7 +23907,7 @@ func (ec *executionContext) _Query_getMeterData(ctx context.Context, field graph
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().GetMeterData(rctx)
+		return ec.resolvers.Query().GetMeterDataRegisters(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -23076,12 +23916,12 @@ func (ec *executionContext) _Query_getMeterData(ctx context.Context, field graph
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.StreamMeterData)
+	res := resTmp.(*model.RegisterValues)
 	fc.Result = res
-	return ec.marshalOStreamMeterData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterData(ctx, field.Selections, res)
+	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_getMeterData(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_getMeterDataRegisters(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -23089,12 +23929,380 @@ func (ec *executionContext) fieldContext_Query_getMeterData(_ context.Context, f
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "ts":
-				return ec.fieldContext_StreamMeterData_ts(ctx, field)
-			case "data":
-				return ec.fieldContext_StreamMeterData_data(ctx, field)
+			case "values":
+				return ec.fieldContext_RegisterValues_values(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type StreamMeterData", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type RegisterValues", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getMeterDataProfiles(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getMeterDataProfiles(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetMeterDataProfiles(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ProfileValues)
+	fc.Result = res
+	return ec.marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileValues(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getMeterDataProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "period":
+				return ec.fieldContext_ProfileValues_period(ctx, field)
+			case "unit":
+				return ec.fieldContext_ProfileValues_unit(ctx, field)
+			case "blocks":
+				return ec.fieldContext_ProfileValues_blocks(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ProfileValues", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getMeterDataIrregularProfiles(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getMeterDataIrregularProfiles(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetMeterDataIrregularProfiles(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.IrregularProfileValues)
+	fc.Result = res
+	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getMeterDataIrregularProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "unit":
+				return ec.fieldContext_IrregularProfileValues_unit(ctx, field)
+			case "values":
+				return ec.fieldContext_IrregularProfileValues_values(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type IrregularProfileValues", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getMeterEvents(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getMeterEvents(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetMeterEvents(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.EventRecords)
+	fc.Result = res
+	return ec.marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecords(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getMeterEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "values":
+				return ec.fieldContext_EventRecords_values(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type EventRecords", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_createTimeOfUseTable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createTimeOfUseTable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().CreateTimeOfUseTable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StringValue)
+	fc.Result = res
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_createTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "value":
+				return ec.fieldContext_StringValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listTimeOfUseTables(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listTimeOfUseTables(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListTimeOfUseTables(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfTimeOfUseTable)
+	fc.Result = res
+	return ec.marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listTimeOfUseTables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfTimeOfUseTable_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfTimeOfUseTable_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfTimeOfUseTable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getTimeOfUseTable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getTimeOfUseTable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetTimeOfUseTable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.TimeOfUseTable)
+	fc.Result = res
+	return ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_TimeOfUseTable_spec(ctx, field)
+			case "metadata":
+				return ec.fieldContext_TimeOfUseTable_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_updateTimeOfUseTable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateTimeOfUseTable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateTimeOfUseTable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteTimeOfUseTable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteTimeOfUseTable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteTimeOfUseTable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
 		},
 	}
 	return fc, nil
@@ -23413,6 +24621,278 @@ func (ec *executionContext) fieldContext_Query___schema(_ context.Context, field
 	return fc, nil
 }
 
+func (ec *executionContext) _RegisterValue_timestamp(ctx context.Context, field graphql.CollectedField, obj *model.RegisterValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RegisterValue_timestamp(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timestamp, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RegisterValue_timestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RegisterValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RegisterValue_unit(ctx context.Context, field graphql.CollectedField, obj *model.RegisterValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RegisterValue_unit(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Unit, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RegisterValue_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RegisterValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RegisterValue_value(ctx context.Context, field graphql.CollectedField, obj *model.RegisterValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RegisterValue_value(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Value, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MeasuredValue)
+	fc.Result = res
+	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RegisterValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RegisterValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_MeasuredValue_status(ctx, field)
+			case "exponent":
+				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
+			case "doubleValue":
+				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
+			case "integerValue":
+				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
+			case "stringValue":
+				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
+			case "timestampValue":
+				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
+			case "timestampTzValue":
+				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
+			case "boolValue":
+				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RegisterValues_values(ctx context.Context, field graphql.CollectedField, obj *model.RegisterValues) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RegisterValues_values(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Values, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.RegisterValue)
+	fc.Result = res
+	return ec.marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RegisterValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RegisterValues",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "timestamp":
+				return ec.fieldContext_RegisterValue_timestamp(ctx, field)
+			case "unit":
+				return ec.fieldContext_RegisterValue_unit(ctx, field)
+			case "value":
+				return ec.fieldContext_RegisterValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type RegisterValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RelayStateRecord_relayId(ctx context.Context, field graphql.CollectedField, obj *model.RelayStateRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RelayStateRecord_relayId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RelayID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RelayStateRecord_relayId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RelayStateRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RelayStateRecord_state(ctx context.Context, field graphql.CollectedField, obj *model.RelayStateRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RelayStateRecord_state(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.State, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.RelayState)
+	fc.Result = res
+	return ec.marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RelayStateRecord_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RelayStateRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type RelayState does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveCommunicationUnitsFromCommunicationBusRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_RemoveCommunicationUnitsFromCommunicationBusRequest_communicationBusId(ctx, field)
 	if err != nil {
@@ -23649,6 +25129,252 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest_deviceId(ctx context.
 func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "RemoveDevicesFromGroupRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_id(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_id(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_name(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_name(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_startYear(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_startYear(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.StartYear, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_startYear(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_startMonth(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_startMonth(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.StartMonth, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_startMonth(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_startDay(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_startDay(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.StartDay, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_startDay(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Season_weekId(ctx context.Context, field graphql.CollectedField, obj *model.Season) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Season_weekId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.WeekID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Season_weekId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Season",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -23951,8 +25677,8 @@ func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _StreamMeterData_ts(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_StreamMeterData_ts(ctx, field)
+func (ec *executionContext) _SpecialDay_year(ctx context.Context, field graphql.CollectedField, obj *model.SpecialDay) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SpecialDay_year(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -23965,7 +25691,7 @@ func (ec *executionContext) _StreamMeterData_ts(ctx context.Context, field graph
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Ts, nil
+		return obj.Year, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -23974,26 +25700,26 @@ func (ec *executionContext) _StreamMeterData_ts(ctx context.Context, field graph
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*int32)
 	fc.Result = res
-	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_StreamMeterData_ts(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SpecialDay_year(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "StreamMeterData",
+		Object:     "SpecialDay",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Timestamp does not have child fields")
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _StreamMeterData_data(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_StreamMeterData_data(ctx, field)
+func (ec *executionContext) _SpecialDay_month(ctx context.Context, field graphql.CollectedField, obj *model.SpecialDay) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SpecialDay_month(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -24006,7 +25732,7 @@ func (ec *executionContext) _StreamMeterData_data(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Data, nil
+		return obj.Month, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -24015,32 +25741,26 @@ func (ec *executionContext) _StreamMeterData_data(ctx context.Context, field gra
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.StreamMeterDataDevice)
+	res := resTmp.(*int32)
 	fc.Result = res
-	return ec.marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx, field.Selections, res)
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_StreamMeterData_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SpecialDay_month(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "StreamMeterData",
+		Object:     "SpecialDay",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "deviceId":
-				return ec.fieldContext_StreamMeterDataDevice_deviceId(ctx, field)
-			case "data":
-				return ec.fieldContext_StreamMeterDataDevice_data(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type StreamMeterDataDevice", field.Name)
+			return nil, errors.New("field of type Int does not have child fields")
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _StreamMeterDataDevice_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterDataDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_StreamMeterDataDevice_deviceId(ctx, field)
+func (ec *executionContext) _SpecialDay_day(ctx context.Context, field graphql.CollectedField, obj *model.SpecialDay) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SpecialDay_day(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -24053,7 +25773,48 @@ func (ec *executionContext) _StreamMeterDataDevice_deviceId(ctx context.Context,
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.DeviceID, nil
+		return obj.Day, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SpecialDay_day(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SpecialDay",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SpecialDay_dayId(ctx context.Context, field graphql.CollectedField, obj *model.SpecialDay) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SpecialDay_dayId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DayID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -24067,73 +25828,14 @@ func (ec *executionContext) _StreamMeterDataDevice_deviceId(ctx context.Context,
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_StreamMeterDataDevice_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SpecialDay_dayId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "StreamMeterDataDevice",
+		Object:     "SpecialDay",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _StreamMeterDataDevice_data(ctx context.Context, field graphql.CollectedField, obj *model.StreamMeterDataDevice) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_StreamMeterDataDevice_data(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Data, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.MeasuredValue)
-	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_StreamMeterDataDevice_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "StreamMeterDataDevice",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "status":
-				return ec.fieldContext_MeasuredValue_status(ctx, field)
-			case "exponent":
-				return ec.fieldContext_MeasuredValue_exponent(ctx, field)
-			case "doubleValue":
-				return ec.fieldContext_MeasuredValue_doubleValue(ctx, field)
-			case "integerValue":
-				return ec.fieldContext_MeasuredValue_integerValue(ctx, field)
-			case "stringValue":
-				return ec.fieldContext_MeasuredValue_stringValue(ctx, field)
-			case "timestampValue":
-				return ec.fieldContext_MeasuredValue_timestampValue(ctx, field)
-			case "timestampTzValue":
-				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
-			case "boolValue":
-				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -24175,6 +25877,176 @@ func (ec *executionContext) fieldContext_StringValue_value(_ context.Context, fi
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Switching_hour(ctx context.Context, field graphql.CollectedField, obj *model.Switching) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Switching_hour(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Hour, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Switching_hour(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Switching",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Switching_minute(ctx context.Context, field graphql.CollectedField, obj *model.Switching) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Switching_minute(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Minute, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Switching_minute(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Switching",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Switching_tariff(ctx context.Context, field graphql.CollectedField, obj *model.Switching) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Switching_tariff(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Tariff, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Switching_tariff(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Switching",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Switching_relays(ctx context.Context, field graphql.CollectedField, obj *model.Switching) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Switching_relays(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Relays, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.RelayStateRecord)
+	fc.Result = res
+	return ec.marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Switching_relays(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Switching",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "relayId":
+				return ec.fieldContext_RelayStateRecord_relayId(ctx, field)
+			case "state":
+				return ec.fieldContext_RelayStateRecord_state(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type RelayStateRecord", field.Name)
 		},
 	}
 	return fc, nil
@@ -24391,6 +26263,449 @@ func (ec *executionContext) fieldContext_SystemConfig_disableDataProxyProcessing
 	return fc, nil
 }
 
+func (ec *executionContext) _TimeOfUseTable_spec(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTable_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.TimeOfUseTableSpec)
+	fc.Result = res
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTable_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "expiesAt":
+				return ec.fieldContext_TimeOfUseTableSpec_expiesAt(ctx, field)
+			case "hdoGroupId":
+				return ec.fieldContext_TimeOfUseTableSpec_hdoGroupId(ctx, field)
+			case "activateAt":
+				return ec.fieldContext_TimeOfUseTableSpec_activateAt(ctx, field)
+			case "seasons":
+				return ec.fieldContext_TimeOfUseTableSpec_seasons(ctx, field)
+			case "weeks":
+				return ec.fieldContext_TimeOfUseTableSpec_weeks(ctx, field)
+			case "dayProfiles":
+				return ec.fieldContext_TimeOfUseTableSpec_dayProfiles(ctx, field)
+			case "specialDays":
+				return ec.fieldContext_TimeOfUseTableSpec_specialDays(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TimeOfUseTableSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTable_metadata(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTable) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTable_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTable_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTable",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_expiesAt(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_expiesAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ExpiesAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_expiesAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_hdoGroupId(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_hdoGroupId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.HdoGroupID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_hdoGroupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_activateAt(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_activateAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ActivateAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Date)
+	fc.Result = res
+	return ec.marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDate(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_activateAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "year":
+				return ec.fieldContext_Date_year(ctx, field)
+			case "month":
+				return ec.fieldContext_Date_month(ctx, field)
+			case "day":
+				return ec.fieldContext_Date_day(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Date", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_seasons(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_seasons(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Seasons, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Season)
+	fc.Result = res
+	return ec.marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_seasons(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_Season_id(ctx, field)
+			case "name":
+				return ec.fieldContext_Season_name(ctx, field)
+			case "startYear":
+				return ec.fieldContext_Season_startYear(ctx, field)
+			case "startMonth":
+				return ec.fieldContext_Season_startMonth(ctx, field)
+			case "startDay":
+				return ec.fieldContext_Season_startDay(ctx, field)
+			case "weekId":
+				return ec.fieldContext_Season_weekId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Season", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_weeks(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_weeks(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Weeks, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Week)
+	fc.Result = res
+	return ec.marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_weeks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "weekId":
+				return ec.fieldContext_Week_weekId(ctx, field)
+			case "weekName":
+				return ec.fieldContext_Week_weekName(ctx, field)
+			case "dayIds":
+				return ec.fieldContext_Week_dayIds(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Week", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_dayProfiles(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_dayProfiles(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DayProfiles, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.DayProfile)
+	fc.Result = res
+	return ec.marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_dayProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "dayId":
+				return ec.fieldContext_DayProfile_dayId(ctx, field)
+			case "switching":
+				return ec.fieldContext_DayProfile_switching(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DayProfile", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TimeOfUseTableSpec_specialDays(ctx context.Context, field graphql.CollectedField, obj *model.TimeOfUseTableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TimeOfUseTableSpec_specialDays(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SpecialDays, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.SpecialDay)
+	fc.Result = res
+	return ec.marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TimeOfUseTableSpec_specialDays(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TimeOfUseTableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "year":
+				return ec.fieldContext_SpecialDay_year(ctx, field)
+			case "month":
+				return ec.fieldContext_SpecialDay_month(ctx, field)
+			case "day":
+				return ec.fieldContext_SpecialDay_day(ctx, field)
+			case "dayId":
+				return ec.fieldContext_SpecialDay_dayId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type SpecialDay", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Variable_spec(ctx context.Context, field graphql.CollectedField, obj *model.Variable) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Variable_spec(ctx, field)
 	if err != nil {
@@ -24520,6 +26835,129 @@ func (ec *executionContext) _VariableSpec_registerId(ctx context.Context, field 
 func (ec *executionContext) fieldContext_VariableSpec_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "VariableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Week_weekId(ctx context.Context, field graphql.CollectedField, obj *model.Week) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Week_weekId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.WeekID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Week_weekId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Week",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Week_weekName(ctx context.Context, field graphql.CollectedField, obj *model.Week) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Week_weekName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.WeekName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Week_weekName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Week",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Week_dayIds(ctx context.Context, field graphql.CollectedField, obj *model.Week) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Week_dayIds(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DayIds, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Week_dayIds(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Week",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -26902,8 +29340,8 @@ func (ec *executionContext) _ActionData(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = graphql.MarshalString("ActionData")
 		case "nodata":
 			out.Values[i] = ec._ActionData_nodata(ctx, field, obj)
-		case "billings":
-			out.Values[i] = ec._ActionData_billings(ctx, field, obj)
+		case "registers":
+			out.Values[i] = ec._ActionData_registers(ctx, field, obj)
 		case "profile":
 			out.Values[i] = ec._ActionData_profile(ctx, field, obj)
 		case "irregularProfile":
@@ -26912,6 +29350,8 @@ func (ec *executionContext) _ActionData(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._ActionData_deviceInfo(ctx, field, obj)
 		case "events":
 			out.Values[i] = ec._ActionData_events(ctx, field, obj)
+		case "touTable":
+			out.Values[i] = ec._ActionData_touTable(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -27168,8 +29608,8 @@ func (ec *executionContext) _ActionGetTou(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ActionGetTou")
-		case "_empty":
-			out.Values[i] = ec._ActionGetTou__empty(ctx, field, obj)
+		case "passive":
+			out.Values[i] = ec._ActionGetTou_passive(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -27392,8 +29832,8 @@ func (ec *executionContext) _ActionSetTou(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ActionSetTou")
-		case "_empty":
-			out.Values[i] = ec._ActionSetTou__empty(ctx, field, obj)
+		case "table":
+			out.Values[i] = ec._ActionSetTou_table(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -27584,82 +30024,6 @@ func (ec *executionContext) _ApplicationProtocolTemplate(ctx context.Context, se
 			out.Values[i] = ec._ApplicationProtocolTemplate_protocol(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._ApplicationProtocolTemplate_attributes(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var billingValueImplementors = []string{"BillingValue"}
-
-func (ec *executionContext) _BillingValue(ctx context.Context, sel ast.SelectionSet, obj *model.BillingValue) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, billingValueImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("BillingValue")
-		case "timestamp":
-			out.Values[i] = ec._BillingValue_timestamp(ctx, field, obj)
-		case "unit":
-			out.Values[i] = ec._BillingValue_unit(ctx, field, obj)
-		case "value":
-			out.Values[i] = ec._BillingValue_value(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var billingValuesImplementors = []string{"BillingValues"}
-
-func (ec *executionContext) _BillingValues(ctx context.Context, sel ast.SelectionSet, obj *model.BillingValues) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, billingValuesImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("BillingValues")
-		case "values":
-			out.Values[i] = ec._BillingValues_values(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -28671,6 +31035,44 @@ func (ec *executionContext) _CreateProxyBulkRequest(ctx context.Context, sel ast
 	return out
 }
 
+var createTimeOfUseTableRequestImplementors = []string{"CreateTimeOfUseTableRequest"}
+
+func (ec *executionContext) _CreateTimeOfUseTableRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateTimeOfUseTableRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, createTimeOfUseTableRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CreateTimeOfUseTableRequest")
+		case "spec":
+			out.Values[i] = ec._CreateTimeOfUseTableRequest_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._CreateTimeOfUseTableRequest_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var createVariableRequestImplementors = []string{"CreateVariableRequest"}
 
 func (ec *executionContext) _CreateVariableRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateVariableRequest) graphql.Marshaler {
@@ -28726,6 +31128,84 @@ func (ec *executionContext) _DataLinkTemplate(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._DataLinkTemplate_appProtocolRefs(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DataLinkTemplate_attributes(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var dateImplementors = []string{"Date"}
+
+func (ec *executionContext) _Date(ctx context.Context, sel ast.SelectionSet, obj *model.Date) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, dateImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Date")
+		case "year":
+			out.Values[i] = ec._Date_year(ctx, field, obj)
+		case "month":
+			out.Values[i] = ec._Date_month(ctx, field, obj)
+		case "day":
+			out.Values[i] = ec._Date_day(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var dayProfileImplementors = []string{"DayProfile"}
+
+func (ec *executionContext) _DayProfile(ctx context.Context, sel ast.SelectionSet, obj *model.DayProfile) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, dayProfileImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DayProfile")
+		case "dayId":
+			out.Values[i] = ec._DayProfile_dayId(ctx, field, obj)
+		case "switching":
+			out.Values[i] = ec._DayProfile_switching(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -29656,6 +32136,44 @@ func (ec *executionContext) _GetMeterDataRequest(ctx context.Context, sel ast.Se
 			out.Values[i] = ec._GetMeterDataRequest_deviceId(ctx, field, obj)
 		case "variableName":
 			out.Values[i] = ec._GetMeterDataRequest_variableName(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var getMeterEventsRequestImplementors = []string{"GetMeterEventsRequest"}
+
+func (ec *executionContext) _GetMeterEventsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetMeterEventsRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, getMeterEventsRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("GetMeterEventsRequest")
+		case "from":
+			out.Values[i] = ec._GetMeterEventsRequest_from(ctx, field, obj)
+		case "to":
+			out.Values[i] = ec._GetMeterEventsRequest_to(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -30785,6 +33303,44 @@ func (ec *executionContext) _ListOfString(ctx context.Context, sel ast.Selection
 	return out
 }
 
+var listOfTimeOfUseTableImplementors = []string{"ListOfTimeOfUseTable"}
+
+func (ec *executionContext) _ListOfTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfTimeOfUseTable) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfTimeOfUseTableImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfTimeOfUseTable")
+		case "items":
+			out.Values[i] = ec._ListOfTimeOfUseTable_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfTimeOfUseTable_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listOfVariableImplementors = []string{"ListOfVariable"}
 
 func (ec *executionContext) _ListOfVariable(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfVariable) graphql.Marshaler {
@@ -31217,21 +33773,21 @@ func (ec *executionContext) _ModemPoolStatus(ctx context.Context, sel ast.Select
 	return out
 }
 
-var profileBlokImplementors = []string{"ProfileBlok"}
+var profileBlockImplementors = []string{"ProfileBlock"}
 
-func (ec *executionContext) _ProfileBlok(ctx context.Context, sel ast.SelectionSet, obj *model.ProfileBlok) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, profileBlokImplementors)
+func (ec *executionContext) _ProfileBlock(ctx context.Context, sel ast.SelectionSet, obj *model.ProfileBlock) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, profileBlockImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("ProfileBlok")
+			out.Values[i] = graphql.MarshalString("ProfileBlock")
 		case "startTimestamp":
-			out.Values[i] = ec._ProfileBlok_startTimestamp(ctx, field, obj)
+			out.Values[i] = ec._ProfileBlock_startTimestamp(ctx, field, obj)
 		case "values":
-			out.Values[i] = ec._ProfileBlok_values(ctx, field, obj)
+			out.Values[i] = ec._ProfileBlock_values(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32008,6 +34564,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getDeviceInfo":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getDeviceInfo(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "setDeviceCommunicationUnits":
 			field := field
 
@@ -32369,7 +34944,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "getMeterData":
+		case "getMeterDataRegisters":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -32378,7 +34953,159 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_getMeterData(ctx, field)
+				res = ec._Query_getMeterDataRegisters(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getMeterDataProfiles":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getMeterDataProfiles(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getMeterDataIrregularProfiles":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getMeterDataIrregularProfiles(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getMeterEvents":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getMeterEvents(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "createTimeOfUseTable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_createTimeOfUseTable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listTimeOfUseTables":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listTimeOfUseTables(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getTimeOfUseTable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getTimeOfUseTable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateTimeOfUseTable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateTimeOfUseTable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteTimeOfUseTable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteTimeOfUseTable(ctx, field)
 				return res
 			}
 
@@ -32472,6 +35199,120 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
 				return ec._Query___schema(ctx, field)
 			})
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var registerValueImplementors = []string{"RegisterValue"}
+
+func (ec *executionContext) _RegisterValue(ctx context.Context, sel ast.SelectionSet, obj *model.RegisterValue) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, registerValueImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("RegisterValue")
+		case "timestamp":
+			out.Values[i] = ec._RegisterValue_timestamp(ctx, field, obj)
+		case "unit":
+			out.Values[i] = ec._RegisterValue_unit(ctx, field, obj)
+		case "value":
+			out.Values[i] = ec._RegisterValue_value(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var registerValuesImplementors = []string{"RegisterValues"}
+
+func (ec *executionContext) _RegisterValues(ctx context.Context, sel ast.SelectionSet, obj *model.RegisterValues) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, registerValuesImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("RegisterValues")
+		case "values":
+			out.Values[i] = ec._RegisterValues_values(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var relayStateRecordImplementors = []string{"RelayStateRecord"}
+
+func (ec *executionContext) _RelayStateRecord(ctx context.Context, sel ast.SelectionSet, obj *model.RelayStateRecord) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, relayStateRecordImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("RelayStateRecord")
+		case "relayId":
+			out.Values[i] = ec._RelayStateRecord_relayId(ctx, field, obj)
+		case "state":
+			out.Values[i] = ec._RelayStateRecord_state(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32609,6 +35450,52 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest(ctx context.Context, 
 	return out
 }
 
+var seasonImplementors = []string{"Season"}
+
+func (ec *executionContext) _Season(ctx context.Context, sel ast.SelectionSet, obj *model.Season) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, seasonImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Season")
+		case "id":
+			out.Values[i] = ec._Season_id(ctx, field, obj)
+		case "name":
+			out.Values[i] = ec._Season_name(ctx, field, obj)
+		case "startYear":
+			out.Values[i] = ec._Season_startYear(ctx, field, obj)
+		case "startMonth":
+			out.Values[i] = ec._Season_startMonth(ctx, field, obj)
+		case "startDay":
+			out.Values[i] = ec._Season_startDay(ctx, field, obj)
+		case "weekId":
+			out.Values[i] = ec._Season_weekId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var setDeviceCommunicationUnitsRequestImplementors = []string{"SetDeviceCommunicationUnitsRequest"}
 
 func (ec *executionContext) _SetDeviceCommunicationUnitsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.SetDeviceCommunicationUnitsRequest) graphql.Marshaler {
@@ -32723,59 +35610,25 @@ func (ec *executionContext) _SetModemRequest(ctx context.Context, sel ast.Select
 	return out
 }
 
-var streamMeterDataImplementors = []string{"StreamMeterData"}
+var specialDayImplementors = []string{"SpecialDay"}
 
-func (ec *executionContext) _StreamMeterData(ctx context.Context, sel ast.SelectionSet, obj *model.StreamMeterData) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, streamMeterDataImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	deferred := make(map[string]*graphql.FieldSet)
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("StreamMeterData")
-		case "ts":
-			out.Values[i] = ec._StreamMeterData_ts(ctx, field, obj)
-		case "data":
-			out.Values[i] = ec._StreamMeterData_data(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch(ctx)
-	if out.Invalids > 0 {
-		return graphql.Null
-	}
-
-	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
-
-	for label, dfs := range deferred {
-		ec.processDeferredGroup(graphql.DeferredGroup{
-			Label:    label,
-			Path:     graphql.GetPath(ctx),
-			FieldSet: dfs,
-			Context:  ctx,
-		})
-	}
-
-	return out
-}
-
-var streamMeterDataDeviceImplementors = []string{"StreamMeterDataDevice"}
-
-func (ec *executionContext) _StreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, obj *model.StreamMeterDataDevice) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, streamMeterDataDeviceImplementors)
+func (ec *executionContext) _SpecialDay(ctx context.Context, sel ast.SelectionSet, obj *model.SpecialDay) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, specialDayImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("StreamMeterDataDevice")
-		case "deviceId":
-			out.Values[i] = ec._StreamMeterDataDevice_deviceId(ctx, field, obj)
-		case "data":
-			out.Values[i] = ec._StreamMeterDataDevice_data(ctx, field, obj)
+			out.Values[i] = graphql.MarshalString("SpecialDay")
+		case "year":
+			out.Values[i] = ec._SpecialDay_year(ctx, field, obj)
+		case "month":
+			out.Values[i] = ec._SpecialDay_month(ctx, field, obj)
+		case "day":
+			out.Values[i] = ec._SpecialDay_day(ctx, field, obj)
+		case "dayId":
+			out.Values[i] = ec._SpecialDay_dayId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32835,6 +35688,48 @@ func (ec *executionContext) _StringValue(ctx context.Context, sel ast.SelectionS
 	return out
 }
 
+var switchingImplementors = []string{"Switching"}
+
+func (ec *executionContext) _Switching(ctx context.Context, sel ast.SelectionSet, obj *model.Switching) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, switchingImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Switching")
+		case "hour":
+			out.Values[i] = ec._Switching_hour(ctx, field, obj)
+		case "minute":
+			out.Values[i] = ec._Switching_minute(ctx, field, obj)
+		case "tariff":
+			out.Values[i] = ec._Switching_tariff(ctx, field, obj)
+		case "relays":
+			out.Values[i] = ec._Switching_relays(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var systemConfigImplementors = []string{"SystemConfig"}
 
 func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.SelectionSet, obj *model.SystemConfig) graphql.Marshaler {
@@ -32856,6 +35751,92 @@ func (ec *executionContext) _SystemConfig(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._SystemConfig_minReplicas(ctx, field, obj)
 		case "disableDataProxyProcessing":
 			out.Values[i] = ec._SystemConfig_disableDataProxyProcessing(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var timeOfUseTableImplementors = []string{"TimeOfUseTable"}
+
+func (ec *executionContext) _TimeOfUseTable(ctx context.Context, sel ast.SelectionSet, obj *model.TimeOfUseTable) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, timeOfUseTableImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("TimeOfUseTable")
+		case "spec":
+			out.Values[i] = ec._TimeOfUseTable_spec(ctx, field, obj)
+		case "metadata":
+			out.Values[i] = ec._TimeOfUseTable_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var timeOfUseTableSpecImplementors = []string{"TimeOfUseTableSpec"}
+
+func (ec *executionContext) _TimeOfUseTableSpec(ctx context.Context, sel ast.SelectionSet, obj *model.TimeOfUseTableSpec) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, timeOfUseTableSpecImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("TimeOfUseTableSpec")
+		case "expiesAt":
+			out.Values[i] = ec._TimeOfUseTableSpec_expiesAt(ctx, field, obj)
+		case "hdoGroupId":
+			out.Values[i] = ec._TimeOfUseTableSpec_hdoGroupId(ctx, field, obj)
+		case "activateAt":
+			out.Values[i] = ec._TimeOfUseTableSpec_activateAt(ctx, field, obj)
+		case "seasons":
+			out.Values[i] = ec._TimeOfUseTableSpec_seasons(ctx, field, obj)
+		case "weeks":
+			out.Values[i] = ec._TimeOfUseTableSpec_weeks(ctx, field, obj)
+		case "dayProfiles":
+			out.Values[i] = ec._TimeOfUseTableSpec_dayProfiles(ctx, field, obj)
+		case "specialDays":
+			out.Values[i] = ec._TimeOfUseTableSpec_specialDays(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32930,6 +35911,46 @@ func (ec *executionContext) _VariableSpec(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("VariableSpec")
 		case "registerId":
 			out.Values[i] = ec._VariableSpec_registerId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var weekImplementors = []string{"Week"}
+
+func (ec *executionContext) _Week(ctx context.Context, sel ast.SelectionSet, obj *model.Week) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, weekImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Week")
+		case "weekId":
+			out.Values[i] = ec._Week_weekId(ctx, field, obj)
+		case "weekName":
+			out.Values[i] = ec._Week_weekName(ctx, field, obj)
+		case "dayIds":
+			out.Values[i] = ec._Week_dayIds(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -34098,61 +37119,6 @@ func (ec *executionContext) marshalOBigInt2ᚖstring(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalOBillingValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValue(ctx context.Context, sel ast.SelectionSet, v []*model.BillingValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOBillingValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValue(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalOBillingValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValue(ctx context.Context, sel ast.SelectionSet, v *model.BillingValue) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._BillingValue(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOBillingValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBillingValues(ctx context.Context, sel ast.SelectionSet, v *model.BillingValues) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._BillingValues(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalOBoolean2bool(ctx context.Context, v any) (bool, error) {
 	res, err := graphql.UnmarshalBoolean(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -34668,6 +37634,61 @@ func (ec *executionContext) marshalODataLinkTemplate2ᚖgithubᚗcomᚋcybroslab
 		return graphql.Null
 	}
 	return ec._DataLinkTemplate(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDate(ctx context.Context, sel ast.SelectionSet, v *model.Date) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Date(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v []*model.DayProfile) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v *model.DayProfile) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DayProfile(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx context.Context, sel ast.SelectionSet, v []*model.Device) graphql.Marshaler {
@@ -35800,6 +38821,13 @@ func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋ
 	return ec._ListOfString(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfTimeOfUseTable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfTimeOfUseTable(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfVariable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfVariable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -36075,7 +39103,7 @@ func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabs
 	return ec._ModemPoolStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProfileBlok2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlok(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlok) graphql.Marshaler {
+func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlock) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -36102,7 +39130,7 @@ func (ec *executionContext) marshalOProfileBlok2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOProfileBlok2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlok(ctx, sel, v[i])
+			ret[i] = ec.marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -36116,11 +39144,11 @@ func (ec *executionContext) marshalOProfileBlok2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalOProfileBlok2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlok(ctx context.Context, sel ast.SelectionSet, v *model.ProfileBlok) graphql.Marshaler {
+func (ec *executionContext) marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v *model.ProfileBlock) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec._ProfileBlok(ctx, sel, v)
+	return ec._ProfileBlock(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.ProfileValues) graphql.Marshaler {
@@ -36160,14 +39188,7 @@ func (ec *executionContext) marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋ
 	return v
 }
 
-func (ec *executionContext) marshalOStreamMeterData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterData(ctx context.Context, sel ast.SelectionSet, v *model.StreamMeterData) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._StreamMeterData(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, v []*model.StreamMeterDataDevice) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v []*model.RegisterValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -36194,7 +39215,7 @@ func (ec *executionContext) marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOStreamMeterDataDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx, sel, v[i])
+			ret[i] = ec.marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -36208,11 +39229,178 @@ func (ec *executionContext) marshalOStreamMeterDataDevice2ᚕᚖgithubᚗcomᚋc
 	return ret
 }
 
-func (ec *executionContext) marshalOStreamMeterDataDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStreamMeterDataDevice(ctx context.Context, sel ast.SelectionSet, v *model.StreamMeterDataDevice) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec._StreamMeterDataDevice(ctx, sel, v)
+	return ec._RegisterValue(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValues) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._RegisterValues(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx context.Context, v any) (*model.RelayState, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.RelayState)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx context.Context, sel ast.SelectionSet, v *model.RelayState) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
+}
+
+func (ec *executionContext) marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v []*model.RelayStateRecord) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v *model.RelayStateRecord) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._RelayStateRecord(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v []*model.Season) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v *model.Season) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Season(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v []*model.SpecialDay) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v *model.SpecialDay) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._SpecialDay(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOString2ᚕᚖstring(ctx context.Context, v any) ([]*string, error) {
@@ -36268,11 +39456,114 @@ func (ec *executionContext) marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋh
 	return ec._StringValue(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v []*model.Switching) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v *model.Switching) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Switching(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOSystemConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSystemConfig(ctx context.Context, sel ast.SelectionSet, v *model.SystemConfig) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._SystemConfig(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v []*model.TimeOfUseTable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTable) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._TimeOfUseTable(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTableSpec) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._TimeOfUseTableSpec(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOTimestamp2ᚕᚖstring(ctx context.Context, v any) ([]*string, error) {
@@ -36390,6 +39681,54 @@ func (ec *executionContext) marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋ
 		return graphql.Null
 	}
 	return ec._VariableSpec(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v []*model.Week) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v *model.Week) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Week(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {

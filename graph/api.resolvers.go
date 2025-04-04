@@ -171,6 +171,11 @@ func (r *queryResolver) GetDevice(ctx context.Context) (*model.Device, error) {
 	panic(fmt.Errorf("not implemented: GetDevice - getDevice"))
 }
 
+// GetDeviceInfo is the resolver for the getDeviceInfo field.
+func (r *queryResolver) GetDeviceInfo(ctx context.Context) (*model.DeviceInfo, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceInfo - getDeviceInfo"))
+}
+
 // SetDeviceCommunicationUnits is the resolver for the setDeviceCommunicationUnits field.
 func (r *queryResolver) SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: SetDeviceCommunicationUnits - setDeviceCommunicationUnits"))
@@ -266,9 +271,49 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
 }
 
-// GetMeterData is the resolver for the getMeterData field.
-func (r *queryResolver) GetMeterData(ctx context.Context) (*model.StreamMeterData, error) {
-	panic(fmt.Errorf("not implemented: GetMeterData - getMeterData"))
+// GetMeterDataRegisters is the resolver for the getMeterDataRegisters field.
+func (r *queryResolver) GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error) {
+	panic(fmt.Errorf("not implemented: GetMeterDataRegisters - getMeterDataRegisters"))
+}
+
+// GetMeterDataProfiles is the resolver for the getMeterDataProfiles field.
+func (r *queryResolver) GetMeterDataProfiles(ctx context.Context) (*model.ProfileValues, error) {
+	panic(fmt.Errorf("not implemented: GetMeterDataProfiles - getMeterDataProfiles"))
+}
+
+// GetMeterDataIrregularProfiles is the resolver for the getMeterDataIrregularProfiles field.
+func (r *queryResolver) GetMeterDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error) {
+	panic(fmt.Errorf("not implemented: GetMeterDataIrregularProfiles - getMeterDataIrregularProfiles"))
+}
+
+// GetMeterEvents is the resolver for the getMeterEvents field.
+func (r *queryResolver) GetMeterEvents(ctx context.Context) (*model.EventRecords, error) {
+	panic(fmt.Errorf("not implemented: GetMeterEvents - getMeterEvents"))
+}
+
+// CreateTimeOfUseTable is the resolver for the createTimeOfUseTable field.
+func (r *queryResolver) CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateTimeOfUseTable - createTimeOfUseTable"))
+}
+
+// ListTimeOfUseTables is the resolver for the listTimeOfUseTables field.
+func (r *queryResolver) ListTimeOfUseTables(ctx context.Context) (*model.ListOfTimeOfUseTable, error) {
+	panic(fmt.Errorf("not implemented: ListTimeOfUseTables - listTimeOfUseTables"))
+}
+
+// GetTimeOfUseTable is the resolver for the getTimeOfUseTable field.
+func (r *queryResolver) GetTimeOfUseTable(ctx context.Context) (*model.TimeOfUseTable, error) {
+	panic(fmt.Errorf("not implemented: GetTimeOfUseTable - getTimeOfUseTable"))
+}
+
+// UpdateTimeOfUseTable is the resolver for the updateTimeOfUseTable field.
+func (r *queryResolver) UpdateTimeOfUseTable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateTimeOfUseTable - updateTimeOfUseTable"))
+}
+
+// DeleteTimeOfUseTable is the resolver for the deleteTimeOfUseTable field.
+func (r *queryResolver) DeleteTimeOfUseTable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteTimeOfUseTable - deleteTimeOfUseTable"))
 }
 
 // CreateVariable is the resolver for the createVariable field.

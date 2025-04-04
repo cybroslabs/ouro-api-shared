@@ -14,7 +14,7 @@ enum ActionResultCode {
 
 # Action types
 enum ActionType {
-  # Get billing value, for example instantaneous values. The action covers specific register.
+  # Get register value, for example instantaneous values. The action covers specific register.
   ACTION_TYPE_GET_REGISTER
   # Get periodical profile, for example load-profile. The action covers specific profile column.
   ACTION_TYPE_GET_PERIODICAL_PROFILE
@@ -169,6 +169,16 @@ enum RegisterType {
   IrregularProfile
   # Synthetic register, not visible by drivers. It can be defined to store derived or external data.
   Synthetic
+}
+
+# Enumeration for Relay State
+enum RelayState {
+  # Relay state is ignored (no action)
+  NOOP
+  # Relay connects
+  CONNECT
+  # Relay disconnects
+  DISCONNECT
 }
 
 # Enum representing the field data type.
@@ -337,6 +347,32 @@ type StringValue {
   value: String
 }
 
+# Represents a whole or partial calendar date, such as a birthday. The time of
+#  day and time zone are either specified elsewhere or are insignificant. The
+#  date is relative to the Gregorian Calendar. This can represent one of the
+#  following:
+#
+#  * A full date, with non-zero year, month, and day values
+#  * A month and day value, with a zero year, such as an anniversary
+#  * A year on its own, with zero month and day values
+#  * A year and month value, with a zero day, such as a credit card expiration
+#  date
+#
+#  Related types are [google.type.TimeOfDay][google.type.TimeOfDay] and
+#  `google.protobuf.Timestamp`.
+type Date {
+  # Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+  #  a year.
+  year: Int
+  # Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+  #  month and day.
+  month: Int
+  # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+  #  to specify a year by itself or a year and month where the day isn't
+  #  significant.
+  day: Int
+}
+
 # Sub-message containing access level definition
 type AccessLevelTemplate {
   # The access level identifier, such as "1", "G", "16" or similar.
@@ -350,7 +386,7 @@ type ActionData {
   # No data
   nodata: Empty
   # Register values
-  billings: BillingValues
+  registers: RegisterValues
   # Profile values
   profile: ProfileValues
   # Irregular (non-periodical) profile values, e.g. daily profile
@@ -359,6 +395,8 @@ type ActionData {
   deviceInfo: DeviceInfo
   # Event records
   events: EventRecords
+  # The time-of-use table.
+  touTable: TimeOfUseTableSpec
 }
 
 # Sub-message containing firmware update action specification
@@ -402,7 +440,8 @@ type ActionGetRegister {
 
 # Sub-message containing get tou action specification
 type ActionGetTou {
-  _empty: Boolean
+  # Identifies whether to read passive TOU table. By default it is set to false to read active TOU table.
+  passive: Boolean
 }
 
 # Sub-message containing reset billing period action specification
@@ -441,7 +480,8 @@ type ActionSetRelayState {
 
 # Sub-message containing set tou action specification
 type ActionSetTou {
-  _empty: Boolean
+  # The time-of-use table to be set.
+  table: TimeOfUseTableSpec
 }
 
 # Sub-message containing sync clock action specification
@@ -478,22 +518,6 @@ type ApplicationProtocolTemplate {
   protocol: ApplicationProtocol
   # The list of attribute definitions for the protocol.
   attributes: [FieldDescriptor]
-}
-
-# Sub-message containing billing-typed value
-type BillingValue {
-  # The timestamp of the value.
-  timestamp: Timestamp
-  # The unit of the value.
-  unit: String
-  # The value.
-  value: MeasuredValue
-}
-
-# Sub-message containing billing-typed values
-type BillingValues {
-  # The list of register values.
-  values: [BillingValue]
 }
 
 type Bulk {
@@ -716,6 +740,13 @@ type CreateProxyBulkRequest {
   metadata: MetadataFields
 }
 
+type CreateTimeOfUseTableRequest {
+  # The time-of-use table specification.
+  spec: TimeOfUseTableSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
 type CreateVariableRequest {
   # The variable specification.
   spec: VariableSpec
@@ -906,6 +937,13 @@ type GetMeterDataRequest {
   deviceId: [String]
   # The unique identifier of the register.
   variableName: [String]
+}
+
+type GetMeterEventsRequest {
+  # The start timestamp of the data.
+  from: Timestamp
+  # The end timestamp of the data.
+  to: Timestamp
 }
 
 type IrregularProfileValues {
@@ -1180,6 +1218,13 @@ type ListOfModemPool {
   totalCount: Int
 }
 
+type ListOfTimeOfUseTable {
+  # The list of time-of-use tables.
+  items: [TimeOfUseTable]
+  # The total number of items.
+  totalCount: Int
+}
+
 type ListOfVariable {
   # The list of variables.
   items: [Variable]
@@ -1252,7 +1297,7 @@ type ModemPoolStatus {
 }
 
 # Sub-message containing a single profile block
-type ProfileBlok {
+type ProfileBlock {
   # The start timestamp of the block.
   startTimestamp: Timestamp
   # The list of profile values. Values are ordered by timestamp.
@@ -1266,7 +1311,7 @@ type ProfileValues {
   # The unit of the profile values.
   unit: String
   # The list of continuous profile blocks.
-  blocks: [ProfileBlok]
+  blocks: [ProfileBlock]
 }
 
 type ProxyBulk {
@@ -1291,6 +1336,22 @@ type ProxyBulkSpec {
   actions: [JobAction]
   # The webhook URL to call when the proxy bulk is completed.
   webhookUrl: String
+}
+
+# Sub-message containing register-typed value
+type RegisterValue {
+  # The timestamp of the value.
+  timestamp: Timestamp
+  # The unit of the value.
+  unit: String
+  # The value.
+  value: MeasuredValue
+}
+
+# Sub-message containing register-typed values
+type RegisterValues {
+  # The list of register values.
+  values: [RegisterValue]
 }
 
 type RemoveCommunicationUnitsFromCommunicationBusRequest {
@@ -1335,16 +1396,11 @@ type SetModemRequest {
   modem: ModemInfo
 }
 
-type StreamMeterData {
-  ts: Timestamp
-  data: [StreamMeterDataDevice]
-}
-
-type StreamMeterDataDevice {
-  # The unique identifier of the device.
-  deviceId: String
-  # The list of meter data.
-  data: [MeasuredValue]
+type TimeOfUseTable {
+  # The time-of-use table specification.
+  spec: TimeOfUseTableSpec
+  # The metadata fields.
+  metadata: MetadataFields
 }
 
 type Variable {
@@ -1357,6 +1413,92 @@ type Variable {
 type VariableSpec {
   # The list of device configuration register identifiers.
   registerId: [String]
+}
+
+# DayProfile represents the profile for a single day, containing multiple Switching times
+type DayProfile {
+  # Unique identifier for the day profile
+  dayId: String
+  # List of switching events (each with specific time and relay states)
+  switching: [Switching]
+}
+
+# RelayStateRecord represents the state of a relay at a specific time.
+#  It contains the relay ID and its state (CONNECT or DISCONNECT).
+#  The relay ID must be unique within the list of relays.
+type RelayStateRecord {
+  # Relay ID
+  relayId: Int
+  # State of the relay (CONNECT or DISCONNECT)
+  state: RelayState
+}
+
+# Season represents a season which spans across a specific start date and references a week
+type Season {
+  # Unique identifier for the season
+  id: String
+  # Name of the season
+  name: String
+  # Start year of the season
+  startYear: Int
+  # Start month of the season
+  startMonth: Int
+  # Start day of the season
+  startDay: Int
+  # Reference to a Week ID that this season is associated with
+  weekId: String
+}
+
+# SpecialDay represents specific days such as holidays or exceptions
+type SpecialDay {
+  # Year of the special day
+  year: Int
+  # Month of the special day
+  month: Int
+  # Day of the special day
+  day: Int
+  # Unique identifier for the special day
+  dayId: String
+}
+
+# Switching data includes tariffs and relay states for specific times
+type Switching {
+  # Hour of the switching event.
+  hour: Int
+  # Minute of the switching event.
+  minute: Int
+  # Tariff ID.
+  tariff: Int
+  # Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+  relays: [RelayStateRecord]
+}
+
+# TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
+type TimeOfUseTableSpec {
+  # Expiration date of the TOU table
+  expiesAt: Timestamp
+  # HDO (High Demand Option) Group ID
+  hdoGroupId: String
+  # Activation date of the TOU table
+  activateAt: Date
+  # List of seasons defined in the TOU
+  seasons: [Season]
+  # List of weeks defined in the TOU
+  weeks: [Week]
+  # List of day profiles (each day having a list of switching events)
+  dayProfiles: [DayProfile]
+  # List of special days (e.g., holidays, exceptions)
+  specialDays: [SpecialDay]
+}
+
+# Week represents a week of the year, containing a list of Day IDs and Week Name
+type Week {
+  # Unique identifier for the week
+  weekId: String
+  # Name of the week
+  weekName: String
+  # List of day IDs that belong to this week
+  dayIds: [String]
 }
 
 # The field descriptor.
@@ -1586,6 +1728,7 @@ type Query {
   createDevice: StringValue
   listDevices: ListOfDevice
   getDevice: Device
+  getDeviceInfo: DeviceInfo
   setDeviceCommunicationUnits: Empty
   getDeviceCommunicationUnits: ListOfDeviceCommunicationUnit
   createDeviceGroup: StringValue
@@ -1605,7 +1748,15 @@ type Query {
   listDrivers: ListOfDriver
   getDriver: Driver
   listFieldDescriptors: ListOfFieldDescriptor
-  getMeterData: StreamMeterData
+  getMeterDataRegisters: RegisterValues
+  getMeterDataProfiles: ProfileValues
+  getMeterDataIrregularProfiles: IrregularProfileValues
+  getMeterEvents: EventRecords
+  createTimeOfUseTable: StringValue
+  listTimeOfUseTables: ListOfTimeOfUseTable
+  getTimeOfUseTable: TimeOfUseTable
+  updateTimeOfUseTable: Empty
+  deleteTimeOfUseTable: Empty
   createVariable: StringValue
   listVariables: ListOfVariable
   updateVariable: Empty

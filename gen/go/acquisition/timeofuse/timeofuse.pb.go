@@ -73,7 +73,7 @@ type Switching struct {
 	xxx_hidden_Hour        int32                  `protobuf:"varint,1,opt,name=hour"`
 	xxx_hidden_Minute      int32                  `protobuf:"varint,2,opt,name=minute"`
 	xxx_hidden_Tariff      int32                  `protobuf:"varint,3,opt,name=tariff"`
-	xxx_hidden_Relays      map[int32]RelayState   `protobuf:"bytes,4,rep,name=relays" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=io.clbs.openhes.models.acquisition.timeofuse.RelayState"`
+	xxx_hidden_Relays      *[]*RelayStateRecord   `protobuf:"bytes,4,rep,name=relays"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -126,9 +126,11 @@ func (x *Switching) GetTariff() int32 {
 	return 0
 }
 
-func (x *Switching) GetRelays() map[int32]RelayState {
+func (x *Switching) GetRelays() []*RelayStateRecord {
 	if x != nil {
-		return x.xxx_hidden_Relays
+		if x.xxx_hidden_Relays != nil {
+			return *x.xxx_hidden_Relays
+		}
 	}
 	return nil
 }
@@ -148,8 +150,8 @@ func (x *Switching) SetTariff(v int32) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
 }
 
-func (x *Switching) SetRelays(v map[int32]RelayState) {
-	x.xxx_hidden_Relays = v
+func (x *Switching) SetRelays(v []*RelayStateRecord) {
+	x.xxx_hidden_Relays = &v
 }
 
 func (x *Switching) HasHour() bool {
@@ -203,10 +205,8 @@ type Switching_builder struct {
 	// @values: -1 means no tariff; other values are valid tariff IDs
 	// @example: 2
 	Tariff *int32
-	// Map of relay ID to relay state.
-	// @values: keys = relay IDs, values = RelayState enum
-	// @example: {1: CONNECT, 2: DISCONNECT}
-	Relays map[int32]RelayState
+	// Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+	Relays []*RelayStateRecord
 }
 
 func (b0 Switching_builder) Build() *Switching {
@@ -225,7 +225,121 @@ func (b0 Switching_builder) Build() *Switching {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
 		x.xxx_hidden_Tariff = *b.Tariff
 	}
-	x.xxx_hidden_Relays = b.Relays
+	x.xxx_hidden_Relays = &b.Relays
+	return m0
+}
+
+// RelayStateRecord represents the state of a relay at a specific time.
+// It contains the relay ID and its state (CONNECT or DISCONNECT).
+// The relay ID must be unique within the list of relays.
+type RelayStateRecord struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_RelayId     int32                  `protobuf:"varint,1,opt,name=relay_id,json=relayId"`
+	xxx_hidden_State       RelayState             `protobuf:"varint,2,opt,name=state,enum=io.clbs.openhes.models.acquisition.timeofuse.RelayState"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *RelayStateRecord) Reset() {
+	*x = RelayStateRecord{}
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RelayStateRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RelayStateRecord) ProtoMessage() {}
+
+func (x *RelayStateRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *RelayStateRecord) GetRelayId() int32 {
+	if x != nil {
+		return x.xxx_hidden_RelayId
+	}
+	return 0
+}
+
+func (x *RelayStateRecord) GetState() RelayState {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_State
+		}
+	}
+	return RelayState_NOOP
+}
+
+func (x *RelayStateRecord) SetRelayId(v int32) {
+	x.xxx_hidden_RelayId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *RelayStateRecord) SetState(v RelayState) {
+	x.xxx_hidden_State = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *RelayStateRecord) HasRelayId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *RelayStateRecord) HasState() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *RelayStateRecord) ClearRelayId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_RelayId = 0
+}
+
+func (x *RelayStateRecord) ClearState() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_State = RelayState_NOOP
+}
+
+type RelayStateRecord_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// Relay ID
+	// @example: 1
+	RelayId *int32
+	// State of the relay (CONNECT or DISCONNECT)
+	// @example: CONNECT
+	State *RelayState
+}
+
+func (b0 RelayStateRecord_builder) Build() *RelayStateRecord {
+	m0 := &RelayStateRecord{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.RelayId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_RelayId = *b.RelayId
+	}
+	if b.State != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_State = *b.State
+	}
 	return m0
 }
 
@@ -242,7 +356,7 @@ type DayProfile struct {
 
 func (x *DayProfile) Reset() {
 	*x = DayProfile{}
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[1]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -254,7 +368,7 @@ func (x *DayProfile) String() string {
 func (*DayProfile) ProtoMessage() {}
 
 func (x *DayProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[1]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,7 +456,7 @@ type SpecialDay struct {
 
 func (x *SpecialDay) Reset() {
 	*x = SpecialDay{}
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[2]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -354,7 +468,7 @@ func (x *SpecialDay) String() string {
 func (*SpecialDay) ProtoMessage() {}
 
 func (x *SpecialDay) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[2]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -521,7 +635,7 @@ type Week struct {
 
 func (x *Week) Reset() {
 	*x = Week{}
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[3]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -533,7 +647,7 @@ func (x *Week) String() string {
 func (*Week) ProtoMessage() {}
 
 func (x *Week) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[3]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +770,7 @@ type Season struct {
 
 func (x *Season) Reset() {
 	*x = Season{}
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[4]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -668,7 +782,7 @@ func (x *Season) String() string {
 func (*Season) ProtoMessage() {}
 
 func (x *Season) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[4]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -906,7 +1020,7 @@ type TimeOfUseTableSpec struct {
 
 func (x *TimeOfUseTableSpec) Reset() {
 	*x = TimeOfUseTableSpec{}
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -918,7 +1032,7 @@ func (x *TimeOfUseTableSpec) String() string {
 func (*TimeOfUseTableSpec) ProtoMessage() {}
 
 func (x *TimeOfUseTableSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[5]
+	mi := &file_acquisition_timeofuse_timeofuse_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1095,15 +1209,15 @@ var File_acquisition_timeofuse_timeofuse_proto protoreflect.FileDescriptor
 
 const file_acquisition_timeofuse_timeofuse_proto_rawDesc = "" +
 	"\n" +
-	"%acquisition/timeofuse/timeofuse.proto\x12,io.clbs.openhes.models.acquisition.timeofuse\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16google/type/date.proto\"\xa1\x02\n" +
+	"%acquisition/timeofuse/timeofuse.proto\x12,io.clbs.openhes.models.acquisition.timeofuse\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16google/type/date.proto\"\xa7\x01\n" +
 	"\tSwitching\x12\x12\n" +
 	"\x04hour\x18\x01 \x01(\x05R\x04hour\x12\x16\n" +
 	"\x06minute\x18\x02 \x01(\x05R\x06minute\x12\x16\n" +
-	"\x06tariff\x18\x03 \x01(\x05R\x06tariff\x12[\n" +
-	"\x06relays\x18\x04 \x03(\v2C.io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntryR\x06relays\x1as\n" +
-	"\vRelaysEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12N\n" +
-	"\x05value\x18\x02 \x01(\x0e28.io.clbs.openhes.models.acquisition.timeofuse.RelayStateR\x05value:\x028\x01\"z\n" +
+	"\x06tariff\x18\x03 \x01(\x05R\x06tariff\x12V\n" +
+	"\x06relays\x18\x04 \x03(\v2>.io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecordR\x06relays\"}\n" +
+	"\x10RelayStateRecord\x12\x19\n" +
+	"\brelay_id\x18\x01 \x01(\x05R\arelayId\x12N\n" +
+	"\x05state\x18\x02 \x01(\x0e28.io.clbs.openhes.models.acquisition.timeofuse.RelayStateR\x05state\"z\n" +
 	"\n" +
 	"DayProfile\x12\x15\n" +
 	"\x06day_id\x18\x01 \x01(\tR\x05dayId\x12U\n" +
@@ -1149,25 +1263,25 @@ var file_acquisition_timeofuse_timeofuse_proto_msgTypes = make([]protoimpl.Messa
 var file_acquisition_timeofuse_timeofuse_proto_goTypes = []any{
 	(RelayState)(0),               // 0: io.clbs.openhes.models.acquisition.timeofuse.RelayState
 	(*Switching)(nil),             // 1: io.clbs.openhes.models.acquisition.timeofuse.Switching
-	(*DayProfile)(nil),            // 2: io.clbs.openhes.models.acquisition.timeofuse.DayProfile
-	(*SpecialDay)(nil),            // 3: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
-	(*Week)(nil),                  // 4: io.clbs.openhes.models.acquisition.timeofuse.Week
-	(*Season)(nil),                // 5: io.clbs.openhes.models.acquisition.timeofuse.Season
-	(*TimeOfUseTableSpec)(nil),    // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	nil,                           // 7: io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry
+	(*RelayStateRecord)(nil),      // 2: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
+	(*DayProfile)(nil),            // 3: io.clbs.openhes.models.acquisition.timeofuse.DayProfile
+	(*SpecialDay)(nil),            // 4: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
+	(*Week)(nil),                  // 5: io.clbs.openhes.models.acquisition.timeofuse.Week
+	(*Season)(nil),                // 6: io.clbs.openhes.models.acquisition.timeofuse.Season
+	(*TimeOfUseTableSpec)(nil),    // 7: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 	(*date.Date)(nil),             // 9: google.type.Date
 }
 var file_acquisition_timeofuse_timeofuse_proto_depIdxs = []int32{
-	7, // 0: io.clbs.openhes.models.acquisition.timeofuse.Switching.relays:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry
-	1, // 1: io.clbs.openhes.models.acquisition.timeofuse.DayProfile.switching:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Switching
-	8, // 2: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.expies_at:type_name -> google.protobuf.Timestamp
-	9, // 3: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.activate_at:type_name -> google.type.Date
-	5, // 4: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.seasons:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Season
-	4, // 5: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.weeks:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Week
-	2, // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.day_profiles:type_name -> io.clbs.openhes.models.acquisition.timeofuse.DayProfile
-	3, // 7: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.special_days:type_name -> io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
-	0, // 8: io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntry.value:type_name -> io.clbs.openhes.models.acquisition.timeofuse.RelayState
+	2, // 0: io.clbs.openhes.models.acquisition.timeofuse.Switching.relays:type_name -> io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
+	0, // 1: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord.state:type_name -> io.clbs.openhes.models.acquisition.timeofuse.RelayState
+	1, // 2: io.clbs.openhes.models.acquisition.timeofuse.DayProfile.switching:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Switching
+	8, // 3: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.expies_at:type_name -> google.protobuf.Timestamp
+	9, // 4: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.activate_at:type_name -> google.type.Date
+	6, // 5: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.seasons:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Season
+	5, // 6: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.weeks:type_name -> io.clbs.openhes.models.acquisition.timeofuse.Week
+	3, // 7: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.day_profiles:type_name -> io.clbs.openhes.models.acquisition.timeofuse.DayProfile
+	4, // 8: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec.special_days:type_name -> io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
 	9, // [9:9] is the sub-list for method output_type
 	9, // [9:9] is the sub-list for method input_type
 	9, // [9:9] is the sub-list for extension type_name

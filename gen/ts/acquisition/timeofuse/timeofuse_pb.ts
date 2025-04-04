@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file acquisition/timeofuse/timeofuse.proto.
  */
 export const file_acquisition_timeofuse_timeofuse: GenFile = /*@__PURE__*/
-  fileDesc("CiVhY3F1aXNpdGlvbi90aW1lb2Z1c2UvdGltZW9mdXNlLnByb3RvEixpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZSL3AQoJU3dpdGNoaW5nEgwKBGhvdXIYASABKAUSDgoGbWludXRlGAIgASgFEg4KBnRhcmlmZhgDIAEoBRJTCgZyZWxheXMYBCADKAsyQy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5Td2l0Y2hpbmcuUmVsYXlzRW50cnkaZwoLUmVsYXlzRW50cnkSCwoDa2V5GAEgASgFEkcKBXZhbHVlGAIgASgOMjguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuUmVsYXlTdGF0ZToCOAEiaAoKRGF5UHJvZmlsZRIOCgZkYXlfaWQYASABKAkSSgoJc3dpdGNoaW5nGAIgAygLMjcuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuU3dpdGNoaW5nIkYKClNwZWNpYWxEYXkSDAoEeWVhchgBIAEoBRINCgVtb250aBgCIAEoBRILCgNkYXkYAyABKAUSDgoGZGF5X2lkGAQgASgJIjsKBFdlZWsSDwoHd2Vla19pZBgBIAEoCRIRCgl3ZWVrX25hbWUYAiABKAkSDwoHZGF5X2lkcxgDIAMoCSJvCgZTZWFzb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRISCgpzdGFydF95ZWFyGAMgASgFEhMKC3N0YXJ0X21vbnRoGAQgASgFEhEKCXN0YXJ0X2RheRgFIAEoBRIPCgd3ZWVrX2lkGAYgASgJIqsDChJUaW1lT2ZVc2VUYWJsZVNwZWMSLQoJZXhwaWVzX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIUCgxoZG9fZ3JvdXBfaWQYBCABKAkSJgoLYWN0aXZhdGVfYXQYBSABKAsyES5nb29nbGUudHlwZS5EYXRlEkUKB3NlYXNvbnMYBiADKAsyNC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5TZWFzb24SQQoFd2Vla3MYByADKAsyMi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5XZWVrEk4KDGRheV9wcm9maWxlcxgIIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24udGltZW9mdXNlLkRheVByb2ZpbGUSTgoMc3BlY2lhbF9kYXlzGAkgAygLMjguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuU3BlY2lhbERheSozCgpSZWxheVN0YXRlEggKBE5PT1AQABILCgdDT05ORUNUEAESDgoKRElTQ09OTkVDVBACQj9aPWdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9hY3F1aXNpdGlvbi90aW1lb2Z1c2ViCGVkaXRpb25zcOgH", [file_google_protobuf_timestamp, file_google_type_date]);
+  fileDesc("CiVhY3F1aXNpdGlvbi90aW1lb2Z1c2UvdGltZW9mdXNlLnByb3RvEixpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZSKJAQoJU3dpdGNoaW5nEgwKBGhvdXIYASABKAUSDgoGbWludXRlGAIgASgFEg4KBnRhcmlmZhgDIAEoBRJOCgZyZWxheXMYBCADKAsyPi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5SZWxheVN0YXRlUmVjb3JkIm0KEFJlbGF5U3RhdGVSZWNvcmQSEAoIcmVsYXlfaWQYASABKAUSRwoFc3RhdGUYAiABKA4yOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5SZWxheVN0YXRlImgKCkRheVByb2ZpbGUSDgoGZGF5X2lkGAEgASgJEkoKCXN3aXRjaGluZxgCIAMoCzI3LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24udGltZW9mdXNlLlN3aXRjaGluZyJGCgpTcGVjaWFsRGF5EgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFEg4KBmRheV9pZBgEIAEoCSI7CgRXZWVrEg8KB3dlZWtfaWQYASABKAkSEQoJd2Vla19uYW1lGAIgASgJEg8KB2RheV9pZHMYAyADKAkibwoGU2Vhc29uEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSEgoKc3RhcnRfeWVhchgDIAEoBRITCgtzdGFydF9tb250aBgEIAEoBRIRCglzdGFydF9kYXkYBSABKAUSDwoHd2Vla19pZBgGIAEoCSKrAwoSVGltZU9mVXNlVGFibGVTcGVjEi0KCWV4cGllc19hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFAoMaGRvX2dyb3VwX2lkGAQgASgJEiYKC2FjdGl2YXRlX2F0GAUgASgLMhEuZ29vZ2xlLnR5cGUuRGF0ZRJFCgdzZWFzb25zGAYgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuU2Vhc29uEkEKBXdlZWtzGAcgAygLMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuV2VlaxJOCgxkYXlfcHJvZmlsZXMYCCADKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5EYXlQcm9maWxlEk4KDHNwZWNpYWxfZGF5cxgJIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24udGltZW9mdXNlLlNwZWNpYWxEYXkqMwoKUmVsYXlTdGF0ZRIICgROT09QEAASCwoHQ09OTkVDVBABEg4KCkRJU0NPTk5FQ1QQAkI/Wj1naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vYWNxdWlzaXRpb24vdGltZW9mdXNlYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp, file_google_type_date]);
 
 /**
  * Switching data includes tariffs and relay states for specific times
@@ -50,13 +50,11 @@ export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Sw
   tariff: number;
 
   /**
-   * Map of relay ID to relay state.
-   * @values: keys = relay IDs, values = RelayState enum
-   * @example: {1: CONNECT, 2: DISCONNECT}
+   * Map of relay ID to relay state. The list must not contain duplicit relay IDs.
    *
-   * @generated from field: map<int32, io.clbs.openhes.models.acquisition.timeofuse.RelayState> relays = 4;
+   * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord relays = 4;
    */
-  relays: { [key: number]: RelayState };
+  relays: RelayStateRecord[];
 };
 
 /**
@@ -93,13 +91,11 @@ export type SwitchingJson = {
   tariff?: number;
 
   /**
-   * Map of relay ID to relay state.
-   * @values: keys = relay IDs, values = RelayState enum
-   * @example: {1: CONNECT, 2: DISCONNECT}
+   * Map of relay ID to relay state. The list must not contain duplicit relay IDs.
    *
-   * @generated from field: map<int32, io.clbs.openhes.models.acquisition.timeofuse.RelayState> relays = 4;
+   * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord relays = 4;
    */
-  relays?: { [key: number]: RelayStateJson };
+  relays?: RelayStateRecordJson[];
 };
 
 /**
@@ -108,6 +104,63 @@ export type SwitchingJson = {
  */
 export const SwitchingSchema: GenMessage<Switching, SwitchingJson> = /*@__PURE__*/
   messageDesc(file_acquisition_timeofuse_timeofuse, 0);
+
+/**
+ * RelayStateRecord represents the state of a relay at a specific time.
+ * It contains the relay ID and its state (CONNECT or DISCONNECT).
+ * The relay ID must be unique within the list of relays.
+ *
+ * @generated from message io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
+ */
+export type RelayStateRecord = Message<"io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"> & {
+  /**
+   * Relay ID
+   * @example: 1
+   *
+   * @generated from field: int32 relay_id = 1;
+   */
+  relayId: number;
+
+  /**
+   * State of the relay (CONNECT or DISCONNECT)
+   * @example: CONNECT
+   *
+   * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.RelayState state = 2;
+   */
+  state: RelayState;
+};
+
+/**
+ * RelayStateRecord represents the state of a relay at a specific time.
+ * It contains the relay ID and its state (CONNECT or DISCONNECT).
+ * The relay ID must be unique within the list of relays.
+ *
+ * @generated from message io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
+ */
+export type RelayStateRecordJson = {
+  /**
+   * Relay ID
+   * @example: 1
+   *
+   * @generated from field: int32 relay_id = 1;
+   */
+  relayId?: number;
+
+  /**
+   * State of the relay (CONNECT or DISCONNECT)
+   * @example: CONNECT
+   *
+   * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.RelayState state = 2;
+   */
+  state?: RelayStateJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord.
+ * Use `create(RelayStateRecordSchema)` to create a new message.
+ */
+export const RelayStateRecordSchema: GenMessage<RelayStateRecord, RelayStateRecordJson> = /*@__PURE__*/
+  messageDesc(file_acquisition_timeofuse_timeofuse, 1);
 
 /**
  * DayProfile represents the profile for a single day, containing multiple Switching times
@@ -158,7 +211,7 @@ export type DayProfileJson = {
  * Use `create(DayProfileSchema)` to create a new message.
  */
 export const DayProfileSchema: GenMessage<DayProfile, DayProfileJson> = /*@__PURE__*/
-  messageDesc(file_acquisition_timeofuse_timeofuse, 1);
+  messageDesc(file_acquisition_timeofuse_timeofuse, 2);
 
 /**
  * SpecialDay represents specific days such as holidays or exceptions
@@ -249,7 +302,7 @@ export type SpecialDayJson = {
  * Use `create(SpecialDaySchema)` to create a new message.
  */
 export const SpecialDaySchema: GenMessage<SpecialDay, SpecialDayJson> = /*@__PURE__*/
-  messageDesc(file_acquisition_timeofuse_timeofuse, 2);
+  messageDesc(file_acquisition_timeofuse_timeofuse, 3);
 
 /**
  * Week represents a week of the year, containing a list of Day IDs and Week Name
@@ -318,7 +371,7 @@ export type WeekJson = {
  * Use `create(WeekSchema)` to create a new message.
  */
 export const WeekSchema: GenMessage<Week, WeekJson> = /*@__PURE__*/
-  messageDesc(file_acquisition_timeofuse_timeofuse, 3);
+  messageDesc(file_acquisition_timeofuse_timeofuse, 4);
 
 /**
  * Season represents a season which spans across a specific start date and references a week
@@ -439,7 +492,7 @@ export type SeasonJson = {
  * Use `create(SeasonSchema)` to create a new message.
  */
 export const SeasonSchema: GenMessage<Season, SeasonJson> = /*@__PURE__*/
-  messageDesc(file_acquisition_timeofuse_timeofuse, 4);
+  messageDesc(file_acquisition_timeofuse_timeofuse, 5);
 
 /**
  * TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
@@ -564,7 +617,7 @@ export type TimeOfUseTableSpecJson = {
  * Use `create(TimeOfUseTableSpecSchema)` to create a new message.
  */
 export const TimeOfUseTableSpecSchema: GenMessage<TimeOfUseTableSpec, TimeOfUseTableSpecJson> = /*@__PURE__*/
-  messageDesc(file_acquisition_timeofuse_timeofuse, 5);
+  messageDesc(file_acquisition_timeofuse_timeofuse, 6);
 
 /**
  * Enumeration for Relay State

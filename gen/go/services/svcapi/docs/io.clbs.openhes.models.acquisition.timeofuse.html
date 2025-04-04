@@ -69,6 +69,51 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.DayProfile">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DayProfile</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RelayStateRecord</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Season">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Season</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.SpecialDay">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SpecialDay</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Switching">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Switching</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>TimeOfUseTableSpec</code> 
@@ -76,7 +121,23 @@
       </p>
       
     
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Week">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>Week</code> 
+        </a>
+      </p>
+      
+    
 
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.timeofuse.RelayState">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>RelayState</code> 
+        </a>
+      </p>
     
   </div>
 
@@ -92,6 +153,484 @@
       Messages
     </h3>
 
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.DayProfile">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.DayProfile" title="io.clbs.openhes.models.acquisition.timeofuse.DayProfile">message DayProfile</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>DayProfile represents the profile for a single day, containing multiple Switching times</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        dayId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the day profile
+@example: "weekday-profile"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        switching
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.timeofuse.Switching">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.Switching"><span title="io.clbs.openhes.models.acquisition.timeofuse.Switching">io.clbs.openhes.models.acquisition.timeofuse.Switching</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>List of switching events (each with specific time and relay states)</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord" title="io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord">message RelayStateRecord</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>RelayStateRecord represents the state of a relay at a specific time.
+It contains the relay ID and its state (CONNECT or DISCONNECT).
+The relay ID must be unique within the list of relays.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        relayId
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Relay ID
+@example: 1</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        state
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.timeofuse.RelayState">
+          
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#enum-io.clbs.openhes.models.acquisition.timeofuse.RelayState"><span title="io.clbs.openhes.models.acquisition.timeofuse.RelayState">io.clbs.openhes.models.acquisition.timeofuse.RelayState</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>State of the relay (CONNECT or DISCONNECT)
+@example: CONNECT</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.Season">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Season" title="io.clbs.openhes.models.acquisition.timeofuse.Season">message Season</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Season represents a season which spans across a specific start date and references a week</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the season
+@example: "season-winter"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        name
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Name of the season
+@example: "Winter"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        startYear
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Start year of the season
+@example: 2023</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        startMonth
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Start month of the season
+@values: 1–12
+@example: 12</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        startDay
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Start day of the season
+@values: 1–31
+@example: 1</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        weekId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Reference to a Week ID that this season is associated with
+@example: "week-01"</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.SpecialDay">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.SpecialDay" title="io.clbs.openhes.models.acquisition.timeofuse.SpecialDay">message SpecialDay</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>SpecialDay represents specific days such as holidays or exceptions</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        year
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Year of the special day
+@values: full year (e.g., 2023)
+@example: 2023</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        month
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Month of the special day
+@values: 1–12
+@example: 12</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        day
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Day of the special day
+@values: 1–31
+@example: 25</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        dayId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the special day
+@example: "christmas"</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.Switching">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Switching" title="io.clbs.openhes.models.acquisition.timeofuse.Switching">message Switching</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Switching data includes tariffs and relay states for specific times</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        hour
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Hour of the switching event.
+@values: 0–23
+@example: 7</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        minute
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Minute of the switching event.
+@values: 0–59
+@example: 30</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        tariff
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>Tariff ID.
+@values: -1 means no tariff; other values are valid tariff IDs
+@example: 2</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        relays
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"><span title="io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord">io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Map of relay ID to relay state. The list must not contain duplicit relay IDs.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
     
       
       <div class="block">
@@ -180,7 +719,7 @@
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.Season"><span title="io.clbs.openhes.models.acquisition.timeofuse.Season">io.clbs.openhes.models.acquisition.timeofuse.Season</span>
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.Season"><span title="io.clbs.openhes.models.acquisition.timeofuse.Season">io.clbs.openhes.models.acquisition.timeofuse.Season</span>
     </a>
         </code>
       </td>
@@ -198,7 +737,7 @@
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.Week"><span title="io.clbs.openhes.models.acquisition.timeofuse.Week">io.clbs.openhes.models.acquisition.timeofuse.Week</span>
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.Week"><span title="io.clbs.openhes.models.acquisition.timeofuse.Week">io.clbs.openhes.models.acquisition.timeofuse.Week</span>
     </a>
         </code>
       </td>
@@ -216,7 +755,7 @@
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.DayProfile"><span title="io.clbs.openhes.models.acquisition.timeofuse.DayProfile">io.clbs.openhes.models.acquisition.timeofuse.DayProfile</span>
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.DayProfile"><span title="io.clbs.openhes.models.acquisition.timeofuse.DayProfile">io.clbs.openhes.models.acquisition.timeofuse.DayProfile</span>
     </a>
         </code>
       </td>
@@ -234,7 +773,7 @@
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"><span title="io.clbs.openhes.models.acquisition.timeofuse.SpecialDay">io.clbs.openhes.models.acquisition.timeofuse.SpecialDay</span>
+          <a href="io.clbs.openhes.models.acquisition.timeofuse.html#message-io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"><span title="io.clbs.openhes.models.acquisition.timeofuse.SpecialDay">io.clbs.openhes.models.acquisition.timeofuse.SpecialDay</span>
     </a>
         </code>
       </td>
@@ -249,8 +788,143 @@
       </div>
       
     
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.timeofuse.Week">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.timeofuse.Week" title="io.clbs.openhes.models.acquisition.timeofuse.Week">message Week</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Week represents a week of the year, containing a list of Day IDs and Week Name</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        weekId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the week
+@example: "week-01"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        weekName
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Name of the week
+@example: "Week 1"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        dayIds
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>List of day IDs that belong to this week
+@example: ["monday", "tuesday", "holiday"]</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
 
   
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.timeofuse.RelayState">
+  <a href="#enum-io.clbs.openhes.models.acquisition.timeofuse.RelayState" title="io.clbs.openhes.models.acquisition.timeofuse.RelayState">enum RelayState</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Enumeration for Relay State</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>NOOP</code></td>
+      <td>0</td>
+      <td class="content"><p>Relay state is ignored (no action)</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>CONNECT</code></td>
+      <td>1</td>
+      <td class="content"><p>Relay connects</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DISCONNECT</code></td>
+      <td>2</td>
+      <td class="content"><p>Relay disconnects</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
 
   
 

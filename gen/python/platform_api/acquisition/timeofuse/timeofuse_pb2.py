@@ -26,7 +26,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from google.type import date_pb2 as google_dot_type_dot_date__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%acquisition/timeofuse/timeofuse.proto\x12,io.clbs.openhes.models.acquisition.timeofuse\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16google/type/date.proto\"\xa1\x02\n\tSwitching\x12\x12\n\x04hour\x18\x01 \x01(\x05R\x04hour\x12\x16\n\x06minute\x18\x02 \x01(\x05R\x06minute\x12\x16\n\x06tariff\x18\x03 \x01(\x05R\x06tariff\x12[\n\x06relays\x18\x04 \x03(\x0b\x32\x43.io.clbs.openhes.models.acquisition.timeofuse.Switching.RelaysEntryR\x06relays\x1as\n\x0bRelaysEntry\x12\x10\n\x03key\x18\x01 \x01(\x05R\x03key\x12N\n\x05value\x18\x02 \x01(\x0e\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.RelayStateR\x05value:\x02\x38\x01\"z\n\nDayProfile\x12\x15\n\x06\x64\x61y_id\x18\x01 \x01(\tR\x05\x64\x61yId\x12U\n\tswitching\x18\x02 \x03(\x0b\x32\x37.io.clbs.openhes.models.acquisition.timeofuse.SwitchingR\tswitching\"_\n\nSpecialDay\x12\x12\n\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n\x05month\x18\x02 \x01(\x05R\x05month\x12\x10\n\x03\x64\x61y\x18\x03 \x01(\x05R\x03\x64\x61y\x12\x15\n\x06\x64\x61y_id\x18\x04 \x01(\tR\x05\x64\x61yId\"U\n\x04Week\x12\x17\n\x07week_id\x18\x01 \x01(\tR\x06weekId\x12\x1b\n\tweek_name\x18\x02 \x01(\tR\x08weekName\x12\x17\n\x07\x64\x61y_ids\x18\x03 \x03(\tR\x06\x64\x61yIds\"\xa2\x01\n\x06Season\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n\nstart_year\x18\x03 \x01(\x05R\tstartYear\x12\x1f\n\x0bstart_month\x18\x04 \x01(\x05R\nstartMonth\x12\x1b\n\tstart_day\x18\x05 \x01(\x05R\x08startDay\x12\x17\n\x07week_id\x18\x06 \x01(\tR\x06weekId\"\xf7\x03\n\x12TimeOfUseTableSpec\x12\x37\n\texpies_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08\x65xpiesAt\x12 \n\x0chdo_group_id\x18\x04 \x01(\tR\nhdoGroupId\x12\x32\n\x0b\x61\x63tivate_at\x18\x05 \x01(\x0b\x32\x11.google.type.DateR\nactivateAt\x12N\n\x07seasons\x18\x06 \x03(\x0b\x32\x34.io.clbs.openhes.models.acquisition.timeofuse.SeasonR\x07seasons\x12H\n\x05weeks\x18\x07 \x03(\x0b\x32\x32.io.clbs.openhes.models.acquisition.timeofuse.WeekR\x05weeks\x12[\n\x0c\x64\x61y_profiles\x18\x08 \x03(\x0b\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.DayProfileR\x0b\x64\x61yProfiles\x12[\n\x0cspecial_days\x18\t \x03(\x0b\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.SpecialDayR\x0bspecialDays*3\n\nRelayState\x12\x08\n\x04NOOP\x10\x00\x12\x0b\n\x07\x43ONNECT\x10\x01\x12\x0e\n\nDISCONNECT\x10\x02\x42?Z=github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuseb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%acquisition/timeofuse/timeofuse.proto\x12,io.clbs.openhes.models.acquisition.timeofuse\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16google/type/date.proto\"\xa7\x01\n\tSwitching\x12\x12\n\x04hour\x18\x01 \x01(\x05R\x04hour\x12\x16\n\x06minute\x18\x02 \x01(\x05R\x06minute\x12\x16\n\x06tariff\x18\x03 \x01(\x05R\x06tariff\x12V\n\x06relays\x18\x04 \x03(\x0b\x32>.io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecordR\x06relays\"}\n\x10RelayStateRecord\x12\x19\n\x08relay_id\x18\x01 \x01(\x05R\x07relayId\x12N\n\x05state\x18\x02 \x01(\x0e\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.RelayStateR\x05state\"z\n\nDayProfile\x12\x15\n\x06\x64\x61y_id\x18\x01 \x01(\tR\x05\x64\x61yId\x12U\n\tswitching\x18\x02 \x03(\x0b\x32\x37.io.clbs.openhes.models.acquisition.timeofuse.SwitchingR\tswitching\"_\n\nSpecialDay\x12\x12\n\x04year\x18\x01 \x01(\x05R\x04year\x12\x14\n\x05month\x18\x02 \x01(\x05R\x05month\x12\x10\n\x03\x64\x61y\x18\x03 \x01(\x05R\x03\x64\x61y\x12\x15\n\x06\x64\x61y_id\x18\x04 \x01(\tR\x05\x64\x61yId\"U\n\x04Week\x12\x17\n\x07week_id\x18\x01 \x01(\tR\x06weekId\x12\x1b\n\tweek_name\x18\x02 \x01(\tR\x08weekName\x12\x17\n\x07\x64\x61y_ids\x18\x03 \x03(\tR\x06\x64\x61yIds\"\xa2\x01\n\x06Season\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n\nstart_year\x18\x03 \x01(\x05R\tstartYear\x12\x1f\n\x0bstart_month\x18\x04 \x01(\x05R\nstartMonth\x12\x1b\n\tstart_day\x18\x05 \x01(\x05R\x08startDay\x12\x17\n\x07week_id\x18\x06 \x01(\tR\x06weekId\"\xf7\x03\n\x12TimeOfUseTableSpec\x12\x37\n\texpies_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08\x65xpiesAt\x12 \n\x0chdo_group_id\x18\x04 \x01(\tR\nhdoGroupId\x12\x32\n\x0b\x61\x63tivate_at\x18\x05 \x01(\x0b\x32\x11.google.type.DateR\nactivateAt\x12N\n\x07seasons\x18\x06 \x03(\x0b\x32\x34.io.clbs.openhes.models.acquisition.timeofuse.SeasonR\x07seasons\x12H\n\x05weeks\x18\x07 \x03(\x0b\x32\x32.io.clbs.openhes.models.acquisition.timeofuse.WeekR\x05weeks\x12[\n\x0c\x64\x61y_profiles\x18\x08 \x03(\x0b\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.DayProfileR\x0b\x64\x61yProfiles\x12[\n\x0cspecial_days\x18\t \x03(\x0b\x32\x38.io.clbs.openhes.models.acquisition.timeofuse.SpecialDayR\x0bspecialDays*3\n\nRelayState\x12\x08\n\x04NOOP\x10\x00\x12\x0b\n\x07\x43ONNECT\x10\x01\x12\x0e\n\nDISCONNECT\x10\x02\x42?Z=github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuseb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,22 +34,20 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'acquisition.timeofuse.timeo
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z=github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse'
-  _globals['_SWITCHING_RELAYSENTRY']._loaded_options = None
-  _globals['_SWITCHING_RELAYSENTRY']._serialized_options = b'8\001'
-  _globals['_RELAYSTATE']._serialized_start=1415
-  _globals['_RELAYSTATE']._serialized_end=1466
+  _globals['_RELAYSTATE']._serialized_start=1420
+  _globals['_RELAYSTATE']._serialized_end=1471
   _globals['_SWITCHING']._serialized_start=145
-  _globals['_SWITCHING']._serialized_end=434
-  _globals['_SWITCHING_RELAYSENTRY']._serialized_start=319
-  _globals['_SWITCHING_RELAYSENTRY']._serialized_end=434
-  _globals['_DAYPROFILE']._serialized_start=436
-  _globals['_DAYPROFILE']._serialized_end=558
-  _globals['_SPECIALDAY']._serialized_start=560
-  _globals['_SPECIALDAY']._serialized_end=655
-  _globals['_WEEK']._serialized_start=657
-  _globals['_WEEK']._serialized_end=742
-  _globals['_SEASON']._serialized_start=745
-  _globals['_SEASON']._serialized_end=907
-  _globals['_TIMEOFUSETABLESPEC']._serialized_start=910
-  _globals['_TIMEOFUSETABLESPEC']._serialized_end=1413
+  _globals['_SWITCHING']._serialized_end=312
+  _globals['_RELAYSTATERECORD']._serialized_start=314
+  _globals['_RELAYSTATERECORD']._serialized_end=439
+  _globals['_DAYPROFILE']._serialized_start=441
+  _globals['_DAYPROFILE']._serialized_end=563
+  _globals['_SPECIALDAY']._serialized_start=565
+  _globals['_SPECIALDAY']._serialized_end=660
+  _globals['_WEEK']._serialized_start=662
+  _globals['_WEEK']._serialized_end=747
+  _globals['_SEASON']._serialized_start=750
+  _globals['_SEASON']._serialized_end=912
+  _globals['_TIMEOFUSETABLESPEC']._serialized_start=915
+  _globals['_TIMEOFUSETABLESPEC']._serialized_end=1418
 # @@protoc_insertion_point(module_scope)

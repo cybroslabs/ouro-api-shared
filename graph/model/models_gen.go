@@ -17,11 +17,12 @@ type AccessLevelTemplate struct {
 
 type ActionData struct {
 	Nodata           *Empty                  `json:"nodata,omitempty"`
-	Billings         *BillingValues          `json:"billings,omitempty"`
+	Registers        *RegisterValues         `json:"registers,omitempty"`
 	Profile          *ProfileValues          `json:"profile,omitempty"`
 	IrregularProfile *IrregularProfileValues `json:"irregularProfile,omitempty"`
 	DeviceInfo       *DeviceInfo             `json:"deviceInfo,omitempty"`
 	Events           *EventRecords           `json:"events,omitempty"`
+	TouTable         *TimeOfUseTableSpec     `json:"touTable,omitempty"`
 }
 
 type ActionFwUpdate struct {
@@ -52,7 +53,7 @@ type ActionGetRegister struct {
 }
 
 type ActionGetTou struct {
-	Empty *bool `json:"_empty,omitempty"`
+	Passive *bool `json:"passive,omitempty"`
 }
 
 type ActionResetBillingPeriod struct {
@@ -80,7 +81,7 @@ type ActionSetRelayState struct {
 }
 
 type ActionSetTou struct {
-	Empty *bool `json:"_empty,omitempty"`
+	Table *TimeOfUseTableSpec `json:"table,omitempty"`
 }
 
 type ActionSyncClock struct {
@@ -106,16 +107,6 @@ type ApplicationProtocolTemplate struct {
 	ID         *string              `json:"id,omitempty"`
 	Protocol   *ApplicationProtocol `json:"protocol,omitempty"`
 	Attributes []*FieldDescriptor   `json:"attributes,omitempty"`
-}
-
-type BillingValue struct {
-	Timestamp *string        `json:"timestamp,omitempty"`
-	Unit      *string        `json:"unit,omitempty"`
-	Value     *MeasuredValue `json:"value,omitempty"`
-}
-
-type BillingValues struct {
-	Values []*BillingValue `json:"values,omitempty"`
 }
 
 type Bulk struct {
@@ -262,6 +253,11 @@ type CreateProxyBulkRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
+type CreateTimeOfUseTableRequest struct {
+	Spec     *TimeOfUseTableSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields     `json:"metadata,omitempty"`
+}
+
 type CreateVariableRequest struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
@@ -271,6 +267,17 @@ type DataLinkTemplate struct {
 	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
 	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
 	Attributes      []*FieldDescriptor     `json:"attributes,omitempty"`
+}
+
+type Date struct {
+	Year  *int32 `json:"year,omitempty"`
+	Month *int32 `json:"month,omitempty"`
+	Day   *int32 `json:"day,omitempty"`
+}
+
+type DayProfile struct {
+	DayID     *string      `json:"dayId,omitempty"`
+	Switching []*Switching `json:"switching,omitempty"`
 }
 
 type Device struct {
@@ -428,6 +435,11 @@ type GetMeterDataRequest struct {
 	To           *string   `json:"to,omitempty"`
 	DeviceID     []*string `json:"deviceId,omitempty"`
 	VariableName []*string `json:"variableName,omitempty"`
+}
+
+type GetMeterEventsRequest struct {
+	From *string `json:"from,omitempty"`
+	To   *string `json:"to,omitempty"`
 }
 
 type IrregularProfileValues struct {
@@ -605,6 +617,11 @@ type ListOfString struct {
 	TotalCount *int32    `json:"totalCount,omitempty"`
 }
 
+type ListOfTimeOfUseTable struct {
+	Items      []*TimeOfUseTable `json:"items,omitempty"`
+	TotalCount *int32            `json:"totalCount,omitempty"`
+}
+
 type ListOfVariable struct {
 	Items      []*Variable `json:"items,omitempty"`
 	TotalCount *int32      `json:"totalCount,omitempty"`
@@ -681,15 +698,15 @@ type ModemPoolStatus struct {
 	Modems []*ModemInfo `json:"modems,omitempty"`
 }
 
-type ProfileBlok struct {
+type ProfileBlock struct {
 	StartTimestamp *string          `json:"startTimestamp,omitempty"`
 	Values         []*MeasuredValue `json:"values,omitempty"`
 }
 
 type ProfileValues struct {
-	Period *int32         `json:"period,omitempty"`
-	Unit   *string        `json:"unit,omitempty"`
-	Blocks []*ProfileBlok `json:"blocks,omitempty"`
+	Period *int32          `json:"period,omitempty"`
+	Unit   *string         `json:"unit,omitempty"`
+	Blocks []*ProfileBlock `json:"blocks,omitempty"`
 }
 
 type ProxyBulk struct {
@@ -710,6 +727,21 @@ type ProxyBulkSpec struct {
 type Query struct {
 }
 
+type RegisterValue struct {
+	Timestamp *string        `json:"timestamp,omitempty"`
+	Unit      *string        `json:"unit,omitempty"`
+	Value     *MeasuredValue `json:"value,omitempty"`
+}
+
+type RegisterValues struct {
+	Values []*RegisterValue `json:"values,omitempty"`
+}
+
+type RelayStateRecord struct {
+	RelayID *int32      `json:"relayId,omitempty"`
+	State   *RelayState `json:"state,omitempty"`
+}
+
 type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
 	CommunicationBusID  *string   `json:"communicationBusId,omitempty"`
 	CommunicationUnitID []*string `json:"communicationUnitId,omitempty"`
@@ -723,6 +755,15 @@ type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest str
 type RemoveDevicesFromGroupRequest struct {
 	GroupID  *string   `json:"groupId,omitempty"`
 	DeviceID []*string `json:"deviceId,omitempty"`
+}
+
+type Season struct {
+	ID         *string `json:"id,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	StartYear  *int32  `json:"startYear,omitempty"`
+	StartMonth *int32  `json:"startMonth,omitempty"`
+	StartDay   *int32  `json:"startDay,omitempty"`
+	WeekID     *string `json:"weekId,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {
@@ -740,18 +781,22 @@ type SetModemRequest struct {
 	Modem  *ModemInfo `json:"modem,omitempty"`
 }
 
-type StreamMeterData struct {
-	Ts   *string                  `json:"ts,omitempty"`
-	Data []*StreamMeterDataDevice `json:"data,omitempty"`
-}
-
-type StreamMeterDataDevice struct {
-	DeviceID *string          `json:"deviceId,omitempty"`
-	Data     []*MeasuredValue `json:"data,omitempty"`
+type SpecialDay struct {
+	Year  *int32  `json:"year,omitempty"`
+	Month *int32  `json:"month,omitempty"`
+	Day   *int32  `json:"day,omitempty"`
+	DayID *string `json:"dayId,omitempty"`
 }
 
 type StringValue struct {
 	Value *string `json:"value,omitempty"`
+}
+
+type Switching struct {
+	Hour   *int32              `json:"hour,omitempty"`
+	Minute *int32              `json:"minute,omitempty"`
+	Tariff *int32              `json:"tariff,omitempty"`
+	Relays []*RelayStateRecord `json:"relays,omitempty"`
 }
 
 type SystemConfig struct {
@@ -762,6 +807,21 @@ type SystemConfig struct {
 	DisableDataProxyProcessing *bool       `json:"disableDataProxyProcessing,omitempty"`
 }
 
+type TimeOfUseTable struct {
+	Spec     *TimeOfUseTableSpec `json:"spec,omitempty"`
+	Metadata *MetadataFields     `json:"metadata,omitempty"`
+}
+
+type TimeOfUseTableSpec struct {
+	ExpiesAt    *string       `json:"expiesAt,omitempty"`
+	HdoGroupID  *string       `json:"hdoGroupId,omitempty"`
+	ActivateAt  *Date         `json:"activateAt,omitempty"`
+	Seasons     []*Season     `json:"seasons,omitempty"`
+	Weeks       []*Week       `json:"weeks,omitempty"`
+	DayProfiles []*DayProfile `json:"dayProfiles,omitempty"`
+	SpecialDays []*SpecialDay `json:"specialDays,omitempty"`
+}
+
 type Variable struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
@@ -769,6 +829,12 @@ type Variable struct {
 
 type VariableSpec struct {
 	RegisterID []*string `json:"registerId,omitempty"`
+}
+
+type Week struct {
+	WeekID   *string   `json:"weekId,omitempty"`
+	WeekName *string   `json:"weekName,omitempty"`
+	DayIds   []*string `json:"dayIds,omitempty"`
 }
 
 type MapFieldValue struct {
@@ -1461,5 +1527,48 @@ func (e *RegisterType) UnmarshalGQL(v any) error {
 }
 
 func (e RegisterType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+type RelayState string
+
+const (
+	RelayStateNoop       RelayState = "NOOP"
+	RelayStateConnect    RelayState = "CONNECT"
+	RelayStateDisconnect RelayState = "DISCONNECT"
+)
+
+var AllRelayState = []RelayState{
+	RelayStateNoop,
+	RelayStateConnect,
+	RelayStateDisconnect,
+}
+
+func (e RelayState) IsValid() bool {
+	switch e {
+	case RelayStateNoop, RelayStateConnect, RelayStateDisconnect:
+		return true
+	}
+	return false
+}
+
+func (e RelayState) String() string {
+	return string(e)
+}
+
+func (e *RelayState) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = RelayState(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid RelayState", str)
+	}
+	return nil
+}
+
+func (e RelayState) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }

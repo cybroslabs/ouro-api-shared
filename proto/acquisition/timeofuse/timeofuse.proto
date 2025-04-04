@@ -31,10 +31,21 @@ message Switching {
     // @example: 2
     int32 tariff = 3;
 
-    // Map of relay ID to relay state.
-    // @values: keys = relay IDs, values = RelayState enum
-    // @example: {1: CONNECT, 2: DISCONNECT}
-    map<int32, RelayState> relays = 4;
+    // Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+    repeated RelayStateRecord relays = 4;
+}
+
+// RelayStateRecord represents the state of a relay at a specific time.
+// It contains the relay ID and its state (CONNECT or DISCONNECT).
+// The relay ID must be unique within the list of relays.
+message RelayStateRecord {
+    // Relay ID
+    // @example: 1
+    int32 relay_id = 1;
+
+    // State of the relay (CONNECT or DISCONNECT)
+    // @example: CONNECT
+    RelayState state = 2;
 }
 
 // DayProfile represents the profile for a single day, containing multiple Switching times
