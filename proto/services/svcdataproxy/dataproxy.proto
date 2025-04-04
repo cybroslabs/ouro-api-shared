@@ -66,20 +66,4 @@ service DataproxyService {
     // @group: Meter Events
     // The method to stream out profile-typed meter data.
     rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
-
-    // @group: Time-Of-Use Tables
-    // The method to create a new time-of-use table.
-    rpc CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.StringValue);
-    // @group: Time-Of-Use Tables
-    // The method to get the list of time-of-use tables.
-    rpc ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable);
-    // @group: Time-Of-Use Tables
-    // The method to get the time-of-use table.
-    rpc GetTimeOfUseTable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.TimeOfUseTable);
-    // @group: Time-Of-Use Tables
-    // The method to update the time-of-use table.
-    rpc UpdateTimeOfUseTable(io.clbs.openhes.models.acquisition.TimeOfUseTable) returns (google.protobuf.Empty);
-    // @group: Time-Of-Use Tables
-    // The method to delete the time-of-use table.
-    rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }

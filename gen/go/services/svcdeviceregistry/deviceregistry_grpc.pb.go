@@ -73,6 +73,11 @@ const (
 	DeviceRegistryService_CreateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateModem"
 	DeviceRegistryService_UpdateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModem"
 	DeviceRegistryService_DeleteModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteModem"
+	DeviceRegistryService_CreateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateTimeOfUseTable"
+	DeviceRegistryService_ListTimeOfUseTables_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListTimeOfUseTables"
+	DeviceRegistryService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetTimeOfUseTable"
+	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
+	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -181,6 +186,21 @@ type DeviceRegistryServiceClient interface {
 	UpdateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method to delete the modem within the pool.
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.TimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(ctx context.Context, in *acquisition.TimeOfUseTable, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -690,6 +710,56 @@ func (c *deviceRegistryServiceClient) DeleteModem(ctx context.Context, in *wrapp
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfTimeOfUseTable)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListTimeOfUseTables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.TimeOfUseTable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.TimeOfUseTable)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) UpdateTimeOfUseTable(ctx context.Context, in *acquisition.TimeOfUseTable, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceRegistryServiceServer is the server API for DeviceRegistryService service.
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
@@ -796,6 +866,21 @@ type DeviceRegistryServiceServer interface {
 	UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
 	// The method to delete the modem within the pool.
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to create a new time-of-use table.
+	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the list of time-of-use tables.
+	ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to get the time-of-use table.
+	GetTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*acquisition.TimeOfUseTable, error)
+	// @group: Time-Of-Use Tables
+	// The method to update the time-of-use table.
+	UpdateTimeOfUseTable(context.Context, *acquisition.TimeOfUseTable) (*emptypb.Empty, error)
+	// @group: Time-Of-Use Tables
+	// The method to delete the time-of-use table.
+	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -952,6 +1037,21 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateModem(context.Context, *ac
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModem not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTimeOfUseTables not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*acquisition.TimeOfUseTable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateTimeOfUseTable(context.Context, *acquisition.TimeOfUseTable) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -1849,6 +1949,96 @@ func _DeviceRegistryService_DeleteModem_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_CreateTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateTimeOfUseTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).CreateTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_CreateTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).CreateTimeOfUseTable(ctx, req.(*acquisition.CreateTimeOfUseTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_ListTimeOfUseTables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListTimeOfUseTables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListTimeOfUseTables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListTimeOfUseTables(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetTimeOfUseTable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_UpdateTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.TimeOfUseTable)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateTimeOfUseTable(ctx, req.(*acquisition.TimeOfUseTable))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteTimeOfUseTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteTimeOfUseTable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceRegistryService_ServiceDesc is the grpc.ServiceDesc for DeviceRegistryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2047,6 +2237,26 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteModem",
 			Handler:    _DeviceRegistryService_DeleteModem_Handler,
+		},
+		{
+			MethodName: "CreateTimeOfUseTable",
+			Handler:    _DeviceRegistryService_CreateTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "ListTimeOfUseTables",
+			Handler:    _DeviceRegistryService_ListTimeOfUseTables_Handler,
+		},
+		{
+			MethodName: "GetTimeOfUseTable",
+			Handler:    _DeviceRegistryService_GetTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "UpdateTimeOfUseTable",
+			Handler:    _DeviceRegistryService_UpdateTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "DeleteTimeOfUseTable",
+			Handler:    _DeviceRegistryService_DeleteTimeOfUseTable_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

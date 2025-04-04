@@ -90,31 +90,6 @@ class DataproxyServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
                 _registered_method=True)
-        self.CreateTimeOfUseTable = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateTimeOfUseTable',
-                request_serializer=acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-                _registered_method=True)
-        self.ListTimeOfUseTables = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListTimeOfUseTables',
-                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.ListOfTimeOfUseTable.FromString,
-                _registered_method=True)
-        self.GetTimeOfUseTable = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetTimeOfUseTable',
-                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-                response_deserializer=acquisition_dot_main__pb2.TimeOfUseTable.FromString,
-                _registered_method=True)
-        self.UpdateTimeOfUseTable = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateTimeOfUseTable',
-                request_serializer=acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.DeleteTimeOfUseTable = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteTimeOfUseTable',
-                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
 
 
 class DataproxyServiceServicer(object):
@@ -236,46 +211,6 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateTimeOfUseTable(self, request, context):
-        """@group: Time-Of-Use Tables
-        The method to create a new time-of-use table.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListTimeOfUseTables(self, request, context):
-        """@group: Time-Of-Use Tables
-        The method to get the list of time-of-use tables.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetTimeOfUseTable(self, request, context):
-        """@group: Time-Of-Use Tables
-        The method to get the time-of-use table.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def UpdateTimeOfUseTable(self, request, context):
-        """@group: Time-Of-Use Tables
-        The method to update the time-of-use table.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def DeleteTimeOfUseTable(self, request, context):
-        """@group: Time-Of-Use Tables
-        The method to delete the time-of-use table.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_DataproxyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -348,31 +283,6 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.GetMeterEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
-            ),
-            'CreateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateTimeOfUseTable,
-                    request_deserializer=acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-            ),
-            'ListTimeOfUseTables': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListTimeOfUseTables,
-                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
-                    response_serializer=acquisition_dot_main__pb2.ListOfTimeOfUseTable.SerializeToString,
-            ),
-            'GetTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetTimeOfUseTable,
-                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-                    response_serializer=acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
-            ),
-            'UpdateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateTimeOfUseTable,
-                    request_deserializer=acquisition_dot_main__pb2.TimeOfUseTable.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'DeleteTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
-                    servicer.DeleteTimeOfUseTable,
-                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -754,141 +664,6 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents',
             acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
             acquisition_dot_shared__pb2.EventRecords.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def CreateTimeOfUseTable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateTimeOfUseTable',
-            acquisition_dot_main__pb2.CreateTimeOfUseTableRequest.SerializeToString,
-            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def ListTimeOfUseTables(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListTimeOfUseTables',
-            common_dot_fields__pb2.ListSelector.SerializeToString,
-            acquisition_dot_main__pb2.ListOfTimeOfUseTable.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetTimeOfUseTable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetTimeOfUseTable',
-            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-            acquisition_dot_main__pb2.TimeOfUseTable.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def UpdateTimeOfUseTable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateTimeOfUseTable',
-            acquisition_dot_main__pb2.TimeOfUseTable.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def DeleteTimeOfUseTable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteTimeOfUseTable',
-            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
