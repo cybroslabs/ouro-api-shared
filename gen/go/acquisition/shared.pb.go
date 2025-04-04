@@ -533,7 +533,7 @@ func (x ApplicationProtocol) Number() protoreflect.EnumNumber {
 type ActionType int32
 
 const (
-	// Get billing value, for example instantaneous values. The action covers specific register.
+	// Get register value, for example instantaneous values. The action covers specific register.
 	ActionType_ACTION_TYPE_GET_REGISTER ActionType = 0
 	// Get periodical profile, for example load-profile. The action covers specific profile column.
 	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 1
@@ -5574,10 +5574,10 @@ func (x *ActionData) GetNodata() *emptypb.Empty {
 	return nil
 }
 
-func (x *ActionData) GetBillings() *RegisterValues {
+func (x *ActionData) GetRegisters() *RegisterValues {
 	if x != nil {
-		if x, ok := x.xxx_hidden_Data.(*actionData_Billings); ok {
-			return x.Billings
+		if x, ok := x.xxx_hidden_Data.(*actionData_Registers); ok {
+			return x.Registers
 		}
 	}
 	return nil
@@ -5627,12 +5627,12 @@ func (x *ActionData) SetNodata(v *emptypb.Empty) {
 	x.xxx_hidden_Data = &actionData_Nodata{v}
 }
 
-func (x *ActionData) SetBillings(v *RegisterValues) {
+func (x *ActionData) SetRegisters(v *RegisterValues) {
 	if v == nil {
 		x.xxx_hidden_Data = nil
 		return
 	}
-	x.xxx_hidden_Data = &actionData_Billings{v}
+	x.xxx_hidden_Data = &actionData_Registers{v}
 }
 
 func (x *ActionData) SetProfile(v *ProfileValues) {
@@ -5682,11 +5682,11 @@ func (x *ActionData) HasNodata() bool {
 	return ok
 }
 
-func (x *ActionData) HasBillings() bool {
+func (x *ActionData) HasRegisters() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.xxx_hidden_Data.(*actionData_Billings)
+	_, ok := x.xxx_hidden_Data.(*actionData_Registers)
 	return ok
 }
 
@@ -5732,8 +5732,8 @@ func (x *ActionData) ClearNodata() {
 	}
 }
 
-func (x *ActionData) ClearBillings() {
-	if _, ok := x.xxx_hidden_Data.(*actionData_Billings); ok {
+func (x *ActionData) ClearRegisters() {
+	if _, ok := x.xxx_hidden_Data.(*actionData_Registers); ok {
 		x.xxx_hidden_Data = nil
 	}
 }
@@ -5764,7 +5764,7 @@ func (x *ActionData) ClearEvents() {
 
 const ActionData_Data_not_set_case case_ActionData_Data = 0
 const ActionData_Nodata_case case_ActionData_Data = 1
-const ActionData_Billings_case case_ActionData_Data = 2
+const ActionData_Registers_case case_ActionData_Data = 2
 const ActionData_Profile_case case_ActionData_Data = 3
 const ActionData_IrregularProfile_case case_ActionData_Data = 4
 const ActionData_DeviceInfo_case case_ActionData_Data = 5
@@ -5777,8 +5777,8 @@ func (x *ActionData) WhichData() case_ActionData_Data {
 	switch x.xxx_hidden_Data.(type) {
 	case *actionData_Nodata:
 		return ActionData_Nodata_case
-	case *actionData_Billings:
-		return ActionData_Billings_case
+	case *actionData_Registers:
+		return ActionData_Registers_case
 	case *actionData_Profile:
 		return ActionData_Profile_case
 	case *actionData_IrregularProfile:
@@ -5797,7 +5797,7 @@ type ActionData_builder struct {
 
 	// Fields of oneof xxx_hidden_Data:
 	Nodata           *emptypb.Empty
-	Billings         *RegisterValues
+	Registers        *RegisterValues
 	Profile          *ProfileValues
 	IrregularProfile *IrregularProfileValues
 	DeviceInfo       *DeviceInfo
@@ -5812,8 +5812,8 @@ func (b0 ActionData_builder) Build() *ActionData {
 	if b.Nodata != nil {
 		x.xxx_hidden_Data = &actionData_Nodata{b.Nodata}
 	}
-	if b.Billings != nil {
-		x.xxx_hidden_Data = &actionData_Billings{b.Billings}
+	if b.Registers != nil {
+		x.xxx_hidden_Data = &actionData_Registers{b.Registers}
 	}
 	if b.Profile != nil {
 		x.xxx_hidden_Data = &actionData_Profile{b.Profile}
@@ -5848,8 +5848,8 @@ type actionData_Nodata struct {
 	Nodata *emptypb.Empty `protobuf:"bytes,1,opt,name=nodata,oneof"` // No data
 }
 
-type actionData_Billings struct {
-	Billings *RegisterValues `protobuf:"bytes,2,opt,name=billings,oneof"` // Register values
+type actionData_Registers struct {
+	Registers *RegisterValues `protobuf:"bytes,2,opt,name=registers,oneof"` // Register values
 }
 
 type actionData_Profile struct {
@@ -5870,7 +5870,7 @@ type actionData_Events struct {
 
 func (*actionData_Nodata) isActionData_Data() {}
 
-func (*actionData_Billings) isActionData_Data() {}
+func (*actionData_Registers) isActionData_Data() {}
 
 func (*actionData_Profile) isActionData_Data() {}
 
@@ -6444,7 +6444,7 @@ type ProfileValues struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Period      int32                  `protobuf:"varint,1,opt,name=period"`
 	xxx_hidden_Unit        *string                `protobuf:"bytes,2,opt,name=unit"`
-	xxx_hidden_Blocks      *[]*ProfileBlok        `protobuf:"bytes,3,rep,name=blocks"`
+	xxx_hidden_Blocks      *[]*ProfileBlock       `protobuf:"bytes,3,rep,name=blocks"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -6493,7 +6493,7 @@ func (x *ProfileValues) GetUnit() string {
 	return ""
 }
 
-func (x *ProfileValues) GetBlocks() []*ProfileBlok {
+func (x *ProfileValues) GetBlocks() []*ProfileBlock {
 	if x != nil {
 		if x.xxx_hidden_Blocks != nil {
 			return *x.xxx_hidden_Blocks
@@ -6512,7 +6512,7 @@ func (x *ProfileValues) SetUnit(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *ProfileValues) SetBlocks(v []*ProfileBlok) {
+func (x *ProfileValues) SetBlocks(v []*ProfileBlock) {
 	x.xxx_hidden_Blocks = &v
 }
 
@@ -6545,7 +6545,7 @@ type ProfileValues_builder struct {
 
 	Period *int32
 	Unit   *string
-	Blocks []*ProfileBlok
+	Blocks []*ProfileBlock
 }
 
 func (b0 ProfileValues_builder) Build() *ProfileValues {
@@ -6752,7 +6752,7 @@ func (b0 IrregularValue_builder) Build() *IrregularValue {
 }
 
 // Sub-message containing a single profile block
-type ProfileBlok struct {
+type ProfileBlock struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
 	xxx_hidden_Values         *[]*MeasuredValue      `protobuf:"bytes,2,rep,name=values"`
@@ -6760,20 +6760,20 @@ type ProfileBlok struct {
 	sizeCache                 protoimpl.SizeCache
 }
 
-func (x *ProfileBlok) Reset() {
-	*x = ProfileBlok{}
+func (x *ProfileBlock) Reset() {
+	*x = ProfileBlock{}
 	mi := &file_acquisition_shared_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProfileBlok) String() string {
+func (x *ProfileBlock) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProfileBlok) ProtoMessage() {}
+func (*ProfileBlock) ProtoMessage() {}
 
-func (x *ProfileBlok) ProtoReflect() protoreflect.Message {
+func (x *ProfileBlock) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6785,14 +6785,14 @@ func (x *ProfileBlok) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ProfileBlok) GetStartTimestamp() *timestamppb.Timestamp {
+func (x *ProfileBlock) GetStartTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_StartTimestamp
 	}
 	return nil
 }
 
-func (x *ProfileBlok) GetValues() []*MeasuredValue {
+func (x *ProfileBlock) GetValues() []*MeasuredValue {
 	if x != nil {
 		if x.xxx_hidden_Values != nil {
 			return *x.xxx_hidden_Values
@@ -6801,34 +6801,34 @@ func (x *ProfileBlok) GetValues() []*MeasuredValue {
 	return nil
 }
 
-func (x *ProfileBlok) SetStartTimestamp(v *timestamppb.Timestamp) {
+func (x *ProfileBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
 	x.xxx_hidden_StartTimestamp = v
 }
 
-func (x *ProfileBlok) SetValues(v []*MeasuredValue) {
+func (x *ProfileBlock) SetValues(v []*MeasuredValue) {
 	x.xxx_hidden_Values = &v
 }
 
-func (x *ProfileBlok) HasStartTimestamp() bool {
+func (x *ProfileBlock) HasStartTimestamp() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_StartTimestamp != nil
 }
 
-func (x *ProfileBlok) ClearStartTimestamp() {
+func (x *ProfileBlock) ClearStartTimestamp() {
 	x.xxx_hidden_StartTimestamp = nil
 }
 
-type ProfileBlok_builder struct {
+type ProfileBlock_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	StartTimestamp *timestamppb.Timestamp
 	Values         []*MeasuredValue
 }
 
-func (b0 ProfileBlok_builder) Build() *ProfileBlok {
-	m0 := &ProfileBlok{}
+func (b0 ProfileBlock_builder) Build() *ProfileBlock {
+	m0 := &ProfileBlock{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_StartTimestamp = b.StartTimestamp
@@ -6836,7 +6836,7 @@ func (b0 ProfileBlok_builder) Build() *ProfileBlok {
 	return m0
 }
 
-// Sub-message containing billing-typed values
+// Sub-message containing register-typed values
 type RegisterValues struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Values *[]*RegisterValue      `protobuf:"bytes,1,rep,name=values"`
@@ -6896,7 +6896,7 @@ func (b0 RegisterValues_builder) Build() *RegisterValues {
 	return m0
 }
 
-// Sub-message containing billing-typed value
+// Sub-message containing register-typed value
 type RegisterValue struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
@@ -11443,11 +11443,11 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x11JobProgressUpdate\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12D\n" +
 	"\x04code\x18\x02 \x01(\x0e20.io.clbs.openhes.models.acquisition.JobErrorCodeR\x04code\x125\n" +
-	"\bduration\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\bduration\"\xf1\x03\n" +
+	"\bduration\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\bduration\"\xf3\x03\n" +
 	"\n" +
 	"ActionData\x120\n" +
-	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12P\n" +
-	"\bbillings\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.RegisterValuesH\x00R\bbillings\x12M\n" +
+	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12R\n" +
+	"\tregisters\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.RegisterValuesH\x00R\tregisters\x12M\n" +
 	"\aprofile\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.ProfileValuesH\x00R\aprofile\x12i\n" +
 	"\x11irregular_profile\x18\x04 \x01(\v2:.io.clbs.openhes.models.acquisition.IrregularProfileValuesH\x00R\x10irregularProfile\x12Q\n" +
 	"\vdevice_info\x18\x05 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoH\x00R\n" +
@@ -11475,18 +11475,18 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\fdevice_model\x18\x06 \x01(\tR\vdeviceModel\x12%\n" +
 	"\x0eerror_register\x18\a \x01(\x04R\rerrorRegister\x12!\n" +
 	"\frelay_states\x18\b \x03(\bR\vrelayStates\x12)\n" +
-	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\x84\x01\n" +
+	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\x85\x01\n" +
 	"\rProfileValues\x12\x16\n" +
 	"\x06period\x18\x01 \x01(\x05R\x06period\x12\x12\n" +
-	"\x04unit\x18\x02 \x01(\tR\x04unit\x12G\n" +
-	"\x06blocks\x18\x03 \x03(\v2/.io.clbs.openhes.models.acquisition.ProfileBlokR\x06blocks\"x\n" +
+	"\x04unit\x18\x02 \x01(\tR\x04unit\x12H\n" +
+	"\x06blocks\x18\x03 \x03(\v20.io.clbs.openhes.models.acquisition.ProfileBlockR\x06blocks\"x\n" +
 	"\x16IrregularProfileValues\x12\x12\n" +
 	"\x04unit\x18\x01 \x01(\tR\x04unit\x12J\n" +
 	"\x06values\x18\x02 \x03(\v22.io.clbs.openhes.models.acquisition.IrregularValueR\x06values\"\x93\x01\n" +
 	"\x0eIrregularValue\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12G\n" +
-	"\x05value\x18\x02 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\x9d\x01\n" +
-	"\vProfileBlok\x12C\n" +
+	"\x05value\x18\x02 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\x9e\x01\n" +
+	"\fProfileBlock\x12C\n" +
 	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12I\n" +
 	"\x06values\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"[\n" +
 	"\x0eRegisterValues\x12I\n" +
@@ -11826,7 +11826,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*ProfileValues)(nil),                   // 40: io.clbs.openhes.models.acquisition.ProfileValues
 	(*IrregularProfileValues)(nil),          // 41: io.clbs.openhes.models.acquisition.IrregularProfileValues
 	(*IrregularValue)(nil),                  // 42: io.clbs.openhes.models.acquisition.IrregularValue
-	(*ProfileBlok)(nil),                     // 43: io.clbs.openhes.models.acquisition.ProfileBlok
+	(*ProfileBlock)(nil),                    // 43: io.clbs.openhes.models.acquisition.ProfileBlock
 	(*RegisterValues)(nil),                  // 44: io.clbs.openhes.models.acquisition.RegisterValues
 	(*RegisterValue)(nil),                   // 45: io.clbs.openhes.models.acquisition.RegisterValue
 	(*MeasuredValue)(nil),                   // 46: io.clbs.openhes.models.acquisition.MeasuredValue
@@ -11957,7 +11957,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	10,  // 69: io.clbs.openhes.models.acquisition.JobProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
 	93,  // 70: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
 	96,  // 71: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
-	44,  // 72: io.clbs.openhes.models.acquisition.ActionData.billings:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
+	44,  // 72: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
 	40,  // 73: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
 	41,  // 74: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
 	39,  // 75: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
@@ -11966,12 +11966,12 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	94,  // 78: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
 	94,  // 79: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
 	93,  // 80: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
-	43,  // 81: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlok
+	43,  // 81: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
 	42,  // 82: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
 	94,  // 83: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
 	46,  // 84: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	94,  // 85: io.clbs.openhes.models.acquisition.ProfileBlok.start_timestamp:type_name -> google.protobuf.Timestamp
-	46,  // 86: io.clbs.openhes.models.acquisition.ProfileBlok.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	94,  // 85: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	46,  // 86: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	45,  // 87: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
 	94,  // 88: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
 	46,  // 89: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
@@ -12086,7 +12086,7 @@ func file_acquisition_shared_proto_init() {
 	}
 	file_acquisition_shared_proto_msgTypes[22].OneofWrappers = []any{
 		(*actionData_Nodata)(nil),
-		(*actionData_Billings)(nil),
+		(*actionData_Registers)(nil),
 		(*actionData_Profile)(nil),
 		(*actionData_IrregularProfile)(nil),
 		(*actionData_DeviceInfo)(nil),

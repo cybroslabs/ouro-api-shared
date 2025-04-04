@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.ProfileBlok
+# Model: io.clbs.openhes.models.acquisition.ProfileBlock
 
 Sub-message containing a single profile block
 

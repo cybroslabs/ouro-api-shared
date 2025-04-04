@@ -385,7 +385,7 @@ message JobProgressUpdate {
 message ActionData {
     oneof data {
         google.protobuf.Empty nodata             = 1;  // No data
-        RegisterValues billings                   = 2;  // Register values
+        RegisterValues registers                 = 2;  // Register values
         ProfileValues profile                    = 3;  // Profile values
         IrregularProfileValues irregular_profile = 4;  // Irregular (non-periodical) profile values, e.g. daily profile
         DeviceInfo device_info                   = 5;  // Device info
@@ -422,9 +422,9 @@ message DeviceInfo {
 
 // Sub-message containing profile-typed values
 message ProfileValues {
-    int32 period                = 1;  // The period of the profile values.
-    string unit                 = 2;  // The unit of the profile values.
-    repeated ProfileBlok blocks = 3;  // The list of continuous profile blocks.
+    int32 period                 = 1;  // The period of the profile values.
+    string unit                  = 2;  // The unit of the profile values.
+    repeated ProfileBlock blocks = 3;  // The list of continuous profile blocks.
 }
 
 message IrregularProfileValues {
@@ -438,17 +438,17 @@ message IrregularValue {
 }
 
 // Sub-message containing a single profile block
-message ProfileBlok {
+message ProfileBlock {
     google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
     repeated MeasuredValue values             = 2;  // The list of profile values. Values are ordered by timestamp.
 }
 
-// Sub-message containing billing-typed values
+// Sub-message containing register-typed values
 message RegisterValues {
     repeated RegisterValue values = 1;  // The list of register values.
 }
 
-// Sub-message containing billing-typed value
+// Sub-message containing register-typed value
 message RegisterValue {
     google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
     string unit                         = 2;  // The unit of the value.
@@ -490,7 +490,7 @@ message ConnectionTypeControlledSerial {
 
 // Action types
 enum ActionType {
-    // Get billing value, for example instantaneous values. The action covers specific register.
+    // Get register value, for example instantaneous values. The action covers specific register.
     ACTION_TYPE_GET_REGISTER = 0;
     // Get periodical profile, for example load-profile. The action covers specific profile column.
     ACTION_TYPE_GET_PERIODICAL_PROFILE = 1;

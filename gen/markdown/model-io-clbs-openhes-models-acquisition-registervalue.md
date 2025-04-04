@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.acquisition.RegisterValue
 
-Sub-message containing billing-typed value
+Sub-message containing register-typed value
 
 ## Fields
 
