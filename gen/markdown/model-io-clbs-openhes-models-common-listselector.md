@@ -8,7 +8,7 @@ The listing selector.
 | --- | --- |
 | pageSize | <b>Type:</b> `uint32`<br><b>Description:</b><br>The number of items per page. |
 | offset | <b>Type:</b> `uint32`<br><b>Description:</b><br>The offset of the first item to return, zero based.<br> <b>Values:</b> any non-negative integer<br> <b>Example:</b> 15 |
-| sortBy | <b>Type:</b> `[io.clbs.openhes.models.common.ListSelectorSortBy](model-io-clbs-openhes-models-common-listselectorsortby.md)`<br><b>Description:</b><br>The sorting criteria. |
-| filterBy | <b>Type:</b> `[io.clbs.openhes.models.common.ListSelectorFilterBy](model-io-clbs-openhes-models-common-listselectorfilterby.md)`<br><b>Description:</b><br>The filtering criteria. |
+| sortBy | <b>Type:</b> [`io.clbs.openhes.models.common.ListSelectorSortBy`](model-io-clbs-openhes-models-common-listselectorsortby.md)<br><b>Description:</b><br>The sorting criteria. |
+| filterBy | <b>Type:</b> [`io.clbs.openhes.models.common.ListSelectorFilterBy`](model-io-clbs-openhes-models-common-listselectorfilterby.md)<br><b>Description:</b><br>The filtering criteria. |
 | fields | <b>Type:</b> `string`<br><b>Description:</b><br>FIXME: This needs to be designed properly.<br><br>The list of additional fields to be returned. |
 

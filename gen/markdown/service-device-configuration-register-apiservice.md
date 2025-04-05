@@ -8,8 +8,8 @@ Creates a new register. The register object holds the information about the sing
 CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest](model-io-clbs-openhes-models-acquisition-createdeviceconfigurationregisterrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest`](model-io-clbs-openhes-models-acquisition-createdeviceconfigurationregisterrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListDeviceConfigurationRegisters
 
@@ -17,8 +17,8 @@ CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDevic
 ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister](model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationregister.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister`](model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationregister.md)
 
 ## GetDeviceConfigurationRegister
 
@@ -26,8 +26,8 @@ ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) ret
 GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.DeviceConfigurationRegister](model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.DeviceConfigurationRegister`](model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md)
 
 ## UpdateDeviceConfigurationRegister
 
@@ -35,7 +35,7 @@ GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.ope
 UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.DeviceConfigurationRegister](model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md)
+- Input: [`io.clbs.openhes.models.acquisition.DeviceConfigurationRegister`](model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md)
 
 ## DeleteDeviceConfigurationRegister
 
@@ -43,5 +43,5 @@ UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfi
 DeleteDeviceConfigurationRegister(google.protobuf.StringValue)
 ```
 
-- Input: google.protobuf.StringValue
+- Input: `google.protobuf.StringValue`
 

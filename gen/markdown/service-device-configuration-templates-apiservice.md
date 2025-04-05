@@ -6,8 +6,8 @@
 CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-createdeviceconfigurationtemplaterequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest`](model-io-clbs-openhes-models-acquisition-createdeviceconfigurationtemplaterequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListDeviceConfigurationTemplates
 
@@ -15,8 +15,8 @@ CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDevic
 ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate](model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationtemplate.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate`](model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationtemplate.md)
 
 ## GetDeviceConfigurationTemplate
 
@@ -24,8 +24,8 @@ ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) ret
 GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate`](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)
 
 ## UpdateDeviceConfigurationTemplate
 
@@ -33,7 +33,7 @@ GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.ope
 UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)
+- Input: [`io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate`](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)
 
 ## DeleteDeviceConfigurationTemplate
 
@@ -41,7 +41,7 @@ UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfi
 DeleteDeviceConfigurationTemplate(google.protobuf.StringValue)
 ```
 
-- Input: google.protobuf.StringValue
+- Input: `google.protobuf.StringValue`
 
 ## AddDeviceConfigurationRegisterToDeviceConfigurationTemplate
 
@@ -49,7 +49,7 @@ DeleteDeviceConfigurationTemplate(google.protobuf.StringValue)
 AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest`](model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md)
 
 ## RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate
 
@@ -57,5 +57,5 @@ AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.mode
 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest](model-io-clbs-openhes-models-acquisition-removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest`](model-io-clbs-openhes-models-acquisition-removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest.md)
 

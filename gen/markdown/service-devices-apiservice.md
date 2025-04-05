@@ -8,8 +8,8 @@ The method called by the RestAPI to register a new communication unit. The param
 CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest](model-io-clbs-openhes-models-acquisition-createcommunicationunitrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest`](model-io-clbs-openhes-models-acquisition-createcommunicationunitrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListCommunicationUnits
 
@@ -19,8 +19,8 @@ The method called by the RestAPI to get the information about the communication 
 ListCommunicationUnits(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfCommunicationUnit](model-io-clbs-openhes-models-acquisition-listofcommunicationunit.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfCommunicationUnit`](model-io-clbs-openhes-models-acquisition-listofcommunicationunit.md)
 
 ## GetCommunicationUnit
 
@@ -30,8 +30,8 @@ The method called by the RestAPI to get the information about the communication 
 GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.CommunicationUnit](model-io-clbs-openhes-models-acquisition-communicationunit.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.CommunicationUnit`](model-io-clbs-openhes-models-acquisition-communicationunit.md)
 
 ## CreateCommunicationBus
 
@@ -39,8 +39,8 @@ GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.model
 CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest](model-io-clbs-openhes-models-acquisition-createcommunicationbusrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest`](model-io-clbs-openhes-models-acquisition-createcommunicationbusrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListCommunicationBuses
 
@@ -48,8 +48,8 @@ CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBus
 ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfCommunicationBus](model-io-clbs-openhes-models-acquisition-listofcommunicationbus.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfCommunicationBus`](model-io-clbs-openhes-models-acquisition-listofcommunicationbus.md)
 
 ## AddCommunicationUnitsToCommunicationBus
 
@@ -57,7 +57,7 @@ ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.c
 AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest](model-io-clbs-openhes-models-acquisition-addcommunicationunitstocommunicationbusrequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest`](model-io-clbs-openhes-models-acquisition-addcommunicationunitstocommunicationbusrequest.md)
 
 ## RemoveCommunicationUnitsFromCommunicationBus
 
@@ -65,7 +65,7 @@ AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCo
 RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest](model-io-clbs-openhes-models-acquisition-removecommunicationunitsfromcommunicationbusrequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest`](model-io-clbs-openhes-models-acquisition-removecommunicationunitsfromcommunicationbusrequest.md)
 
 ## CreateDevice
 
@@ -75,8 +75,8 @@ The method called by the RestAPI to register a new device. The parameter contain
 CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateDeviceRequest](model-io-clbs-openhes-models-acquisition-createdevicerequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateDeviceRequest`](model-io-clbs-openhes-models-acquisition-createdevicerequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListDevices
 
@@ -86,8 +86,8 @@ The method called by the RestAPI to get the information about the device. The pa
 ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfDevice](model-io-clbs-openhes-models-acquisition-listofdevice.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDevice`](model-io-clbs-openhes-models-acquisition-listofdevice.md)
 
 ## GetDevice
 
@@ -97,8 +97,8 @@ The method called by the RestAPI to get the information about the device. The pa
 GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.Device](model-io-clbs-openhes-models-acquisition-device.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.Device`](model-io-clbs-openhes-models-acquisition-device.md)
 
 ## GetDeviceInfo
 
@@ -108,8 +108,8 @@ The method to stream out profile-typed meter data.
 GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.DeviceInfo](model-io-clbs-openhes-models-acquisition-deviceinfo.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.DeviceInfo`](model-io-clbs-openhes-models-acquisition-deviceinfo.md)
 
 ## SetDeviceCommunicationUnits
 
@@ -119,7 +119,7 @@ The method called by the RestAPI to replace ordered set of linked communication 
 SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest](model-io-clbs-openhes-models-acquisition-setdevicecommunicationunitsrequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest`](model-io-clbs-openhes-models-acquisition-setdevicecommunicationunitsrequest.md)
 
 ## GetDeviceCommunicationUnits
 
@@ -129,8 +129,8 @@ The method called by the RestAPI to get communication units definitions linked t
 GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit](model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit`](model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md)
 
 ## CreateDeviceGroup
 
@@ -140,8 +140,8 @@ The method called by the RestAPI to create a new device group. The parameter con
 CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest](model-io-clbs-openhes-models-acquisition-createdevicegrouprequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest`](model-io-clbs-openhes-models-acquisition-createdevicegrouprequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## ListDeviceGroups
 
@@ -151,8 +151,8 @@ The method returns a list of device groups.
 ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfDeviceGroup](model-io-clbs-openhes-models-acquisition-listofdevicegroup.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceGroup`](model-io-clbs-openhes-models-acquisition-listofdevicegroup.md)
 
 ## GetDeviceGroup
 
@@ -162,8 +162,8 @@ The method returns single device group.
 GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.DeviceGroup](model-io-clbs-openhes-models-acquisition-devicegroup.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.DeviceGroup`](model-io-clbs-openhes-models-acquisition-devicegroup.md)
 
 ## AddDevicesToGroup
 
@@ -173,7 +173,7 @@ The method called by the RestAPI to add a new device to the device group. The pa
 AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest](model-io-clbs-openhes-models-acquisition-adddevicestogrouprequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest`](model-io-clbs-openhes-models-acquisition-adddevicestogrouprequest.md)
 
 ## RemoveDevicesFromGroup
 
@@ -183,7 +183,7 @@ The method called by the RestAPI to remove a device from the device group. The p
 RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest](model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest`](model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md)
 
 ## ListDeviceGroupDevices
 
@@ -191,8 +191,8 @@ RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroup
 ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest](model-io-clbs-openhes-models-acquisition-listdevicegroupdevicesrequest.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfDevice](model-io-clbs-openhes-models-acquisition-listofdevice.md)
+- Input: [`io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest`](model-io-clbs-openhes-models-acquisition-listdevicegroupdevicesrequest.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDevice`](model-io-clbs-openhes-models-acquisition-listofdevice.md)
 
 ## ListModemPools
 
@@ -202,8 +202,8 @@ The method to get list of the modem pools.
 ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfModemPool)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfModemPool](model-io-clbs-openhes-models-acquisition-listofmodempool.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfModemPool`](model-io-clbs-openhes-models-acquisition-listofmodempool.md)
 
 ## GetModemPool
 
@@ -213,8 +213,8 @@ The method to get the information about the modem pool. The method returns the m
 GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ModemPool)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.ModemPool](model-io-clbs-openhes-models-acquisition-modempool.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.ModemPool`](model-io-clbs-openhes-models-acquisition-modempool.md)
 
 ## CreateModemPool
 
@@ -224,8 +224,8 @@ The method to create a new modem pool.
 CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.SetModemPoolRequest](model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.SetModemPoolRequest`](model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## UpdateModemPool
 
@@ -235,7 +235,7 @@ The method to update the modem pool.
 UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.SetModemPoolRequest](model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.SetModemPoolRequest`](model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md)
 
 ## DeleteModemPool
 
@@ -245,7 +245,7 @@ The method to delete the modem pool.
 DeleteModemPool(google.protobuf.StringValue)
 ```
 
-- Input: google.protobuf.StringValue
+- Input: `google.protobuf.StringValue`
 
 ## CreateModem
 
@@ -255,8 +255,8 @@ The method to create a new modem within the pool.
 CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.SetModemRequest](model-io-clbs-openhes-models-acquisition-setmodemrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.SetModemRequest`](model-io-clbs-openhes-models-acquisition-setmodemrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## UpdateModem
 
@@ -266,7 +266,7 @@ The method to update the modem within the pool.
 UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.SetModemRequest](model-io-clbs-openhes-models-acquisition-setmodemrequest.md)
+- Input: [`io.clbs.openhes.models.acquisition.SetModemRequest`](model-io-clbs-openhes-models-acquisition-setmodemrequest.md)
 
 ## DeleteModem
 
@@ -276,5 +276,5 @@ The method to delete the modem.
 DeleteModem(google.protobuf.StringValue)
 ```
 
-- Input: google.protobuf.StringValue
+- Input: `google.protobuf.StringValue`
 

@@ -37,9 +37,9 @@ def getLinkFromType(full_type: str, clean_google_empty=False) -> Tuple[str, str]
     elif full_type.startswith("google.") or "." not in full_type:
         # simple proto types does not contian a dot, so they are not linked
         # google.* types are not linked
-        full_type_link = full_type
+        full_type_link = f"`{full_type}`"
     else:
-        full_type_link = f"[{full_type}](model-{sanitizeUrl(full_type)}.md)"
+        full_type_link = f"[`{full_type}`](model-{sanitizeUrl(full_type)}.md)"
     return full_type, full_type_link
 
 
@@ -143,6 +143,6 @@ def generate(
                         _, full_type_link = getLinkFromType(
                             field.full_type, clean_google_empty=False
                         )
-                        field_description = f"<b>Type:</b> `{full_type_link}`<br><b>Description:</b><br>{field_description}"
+                        field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
                         fh.write(f"| {field.name} | {field_description} |\n")
                     fh.write("\n")

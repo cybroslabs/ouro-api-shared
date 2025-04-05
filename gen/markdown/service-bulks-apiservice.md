@@ -9,8 +9,8 @@ Retrieves the list of bulks. The list of bulks is paginated. The page size is de
 ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk)
 ```
 
-- Input: [io.clbs.openhes.models.common.ListSelector](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfBulk](model-io-clbs-openhes-models-acquisition-listofbulk.md)
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfBulk`](model-io-clbs-openhes-models-acquisition-listofbulk.md)
 
 ## ListBulkJobs
 
@@ -21,8 +21,8 @@ Retrieves the list of jobs. The list of jobs is paginated. The page size is defi
 ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.ListBulkJobsRequest](model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md)
-- Output: [io.clbs.openhes.models.acquisition.ListOfBulkJob](model-io-clbs-openhes-models-acquisition-listofbulkjob.md)
+- Input: [`io.clbs.openhes.models.acquisition.ListBulkJobsRequest`](model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfBulkJob`](model-io-clbs-openhes-models-acquisition-listofbulkjob.md)
 
 ## GetBulkJob
 
@@ -32,8 +32,8 @@ Retrieves the job status. It can be used for jobs related to both proxy and regu
 GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.BulkJob](model-io-clbs-openhes-models-acquisition-bulkjob.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.BulkJob`](model-io-clbs-openhes-models-acquisition-bulkjob.md)
 
 ## CancelBulk
 
@@ -43,7 +43,7 @@ Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 CancelBulk(google.protobuf.StringValue)
 ```
 
-- Input: google.protobuf.StringValue
+- Input: `google.protobuf.StringValue`
 
 ## CreateProxyBulk
 
@@ -53,8 +53,8 @@ Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job r
 CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateProxyBulkRequest](model-io-clbs-openhes-models-acquisition-createproxybulkrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateProxyBulkRequest`](model-io-clbs-openhes-models-acquisition-createproxybulkrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## GetProxyBulk
 
@@ -64,8 +64,8 @@ Retrieves the proxy bulk info and status.
 GetProxyBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ProxyBulk)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.ProxyBulk](model-io-clbs-openhes-models-acquisition-proxybulk.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.ProxyBulk`](model-io-clbs-openhes-models-acquisition-proxybulk.md)
 
 ## CreateBulk
 
@@ -75,8 +75,8 @@ Starts a new bulk. The bulk is a collection of jobs where each jobs represents a
 CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue)
 ```
 
-- Input: [io.clbs.openhes.models.acquisition.CreateBulkRequest](model-io-clbs-openhes-models-acquisition-createbulkrequest.md)
-- Output: google.protobuf.StringValue
+- Input: [`io.clbs.openhes.models.acquisition.CreateBulkRequest`](model-io-clbs-openhes-models-acquisition-createbulkrequest.md)
+- Output: `google.protobuf.StringValue`
 
 ## GetBulk
 
@@ -86,6 +86,6 @@ Retrieves the bulk info and status.
 GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Bulk)
 ```
 
-- Input: google.protobuf.StringValue
-- Output: [io.clbs.openhes.models.acquisition.Bulk](model-io-clbs-openhes-models-acquisition-bulk.md)
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.Bulk`](model-io-clbs-openhes-models-acquisition-bulk.md)
 
