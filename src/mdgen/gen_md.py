@@ -46,12 +46,12 @@ def sanitizeUrl(url: str) -> str:
 
 
 def getLinkFromType(
-    full_type: str, clean_google_empty=False, subtype=None, outlinechar="`"
+    full_type: str, clean_google_empty=False, subtype=None
 ) -> Tuple[str, str]:
     if (m := re.match(r"^map<([^>,]+), ([^>]+)>$", full_type)) is not None:
-        _, k = getLinkFromType(m.group(1), outlinechar="")
-        _, v = getLinkFromType(m.group(2), outlinechar="")
-        return full_type, f"{outlinechar}map<{k}, {v}>{outlinechar}"
+        _, k = getLinkFromType(m.group(1))
+        _, v = getLinkFromType(m.group(2))
+        return full_type, f"map<{k}, {v}>"
 
     full_type_link = ""
     if full_type == "google.protobuf.Empty" and clean_google_empty:
@@ -60,14 +60,16 @@ def getLinkFromType(
         # simple proto types does not contian a dot, so they are not linked
         # google.* types are not linked
         if subtype is not None:
-            full_type_link = f"{outlinechar}{full_type} - {subtype}{outlinechar}"
+            full_type_link = f"`{full_type} - {subtype}`"
         else:
-            full_type_link = f"{outlinechar}{full_type}{outlinechar}"
+            full_type_link = f"`{full_type}`"
     else:
         if subtype is not None:
-            full_type_link = f"[{outlinechar}{full_type} - {subtype}{outlinechar}](model-{sanitizeUrl(full_type)}.md)"
+            full_type_link = (
+                f"[`{full_type} - {subtype}`](model-{sanitizeUrl(full_type)}.md)"
+            )
         else:
-            full_type_link = f"[{outlinechar}{full_type}{outlinechar}](model-{sanitizeUrl(full_type)}.md)"
+            full_type_link = f"[`{full_type}`](model-{sanitizeUrl(full_type)}.md)"
     return full_type, full_type_link
 
 
