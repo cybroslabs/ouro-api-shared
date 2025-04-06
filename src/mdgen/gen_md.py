@@ -4,7 +4,27 @@ import os, re
 from shutil import copy, copytree, rmtree
 from sabledocs.lunr_search import build_search_index
 from sabledocs.proto_model import SableConfig, SableContext, Package, Service
-from typing import List, Tuple, Any
+from typing import List, Tuple, Dict, Any
+
+re_hint = re.compile(r"@([a-z]+): (.*)")
+
+
+def _parseHints(description: str) -> Tuple[str, Dict[str, str]]:
+    """
+    Parse the hints in the description and return a list of tuples with the hint type and value.
+    """
+    result = []
+    hints = {}
+    for line in description.splitlines():
+        if (m := re_hint.match(line)) is not None:
+            hints[m.group(1)] = m.group(2)
+            line = re_hint.sub("", line).strip()
+            if line:
+                result.append(line)
+        else:
+            result.append(line)
+
+    return "\n".join(result), hints
 
 
 def _sanitizeMethodDescripton(description: str) -> str:
@@ -25,7 +45,9 @@ def sanitizeUrl(url: str) -> str:
     )
 
 
-def getLinkFromType(full_type: str, clean_google_empty=False) -> Tuple[str, str]:
+def getLinkFromType(
+    full_type: str, clean_google_empty=False, subtype=None
+) -> Tuple[str, str]:
     if (m := re.match(r"^map<([^>,]+), ([^>]+)>$", full_type)) is not None:
         _, k = getLinkFromType(m.group(1))
         _, v = getLinkFromType(m.group(2))
@@ -37,9 +59,17 @@ def getLinkFromType(full_type: str, clean_google_empty=False) -> Tuple[str, str]
     elif full_type.startswith("google.") or "." not in full_type:
         # simple proto types does not contian a dot, so they are not linked
         # google.* types are not linked
-        full_type_link = f"`{full_type}`"
+        if subtype is not None:
+            full_type_link = f"`{full_type} - {subtype}`"
+        else:
+            full_type_link = f"`{full_type}`"
     else:
-        full_type_link = f"[`{full_type}`](model-{sanitizeUrl(full_type)}.md)"
+        if subtype is not None:
+            full_type_link = (
+                f"[`{full_type} - {subtype}`](model-{sanitizeUrl(full_type)}.md)"
+            )
+        else:
+            full_type_link = f"[`{full_type}`](model-{sanitizeUrl(full_type)}.md)"
     return full_type, full_type_link
 
 
@@ -127,10 +157,10 @@ def generate(
                     for field in message.fields:
                         if field.description:
                             # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
-                            field_description = "<br>".join(
-                                field.description.split("\n")
-                            )
+                            tmp, hints = _parseHints(field.description)
+                            field_description = "<br>".join(tmp.split("\n"))
                         else:
+                            hints = {}
                             field_description = ""
 
                         field_description = field_description.replace(
@@ -141,7 +171,9 @@ def generate(
                         )
 
                         _, full_type_link = getLinkFromType(
-                            field.full_type, clean_google_empty=False
+                            field.full_type,
+                            clean_google_empty=False,
+                            subtype=hints.get("gqltype", None),
                         )
                         field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
                         fh.write(f"| {field.name} | {field_description} |\n")
