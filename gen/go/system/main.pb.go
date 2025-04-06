@@ -176,10 +176,10 @@ type SystemConfig_builder struct {
 	// The maximum number of cascade devices for the driver. Minimum is 1.
 	MaxCascadeDeviceCount *int32
 	// The maximum number of slots per driver
-	//
-	//	-1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-	//	 0 represents no active slots will run, effectively disabling acquisition
-	//	>0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+	// @values:
+	// - -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+	// -  0 represents no active slots will run, effectively disabling acquisition
+	// - >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
 	MaxSlotsPerDriver *int32
 	// The minimum number of replicas per type of driver.
 	// The key is the driver type, the value is the minimum number of replicas.

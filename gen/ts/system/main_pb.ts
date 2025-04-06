@@ -34,9 +34,10 @@ export type SystemConfig = Message<"io.clbs.openhes.models.system.SystemConfig">
 
   /**
    * The maximum number of slots per driver
-   *   -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-   *    0 represents no active slots will run, effectively disabling acquisition
-   *   >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+   * @values:
+   * - -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+   * -  0 represents no active slots will run, effectively disabling acquisition
+   * - >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
    *
    * @generated from field: int32 max_slots_per_driver = 3;
    */
@@ -81,9 +82,10 @@ export type SystemConfigJson = {
 
   /**
    * The maximum number of slots per driver
-   *   -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-   *    0 represents no active slots will run, effectively disabling acquisition
-   *   >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
+   * @values:
+   * - -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
+   * -  0 represents no active slots will run, effectively disabling acquisition
+   * - >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
    *
    * @generated from field: int32 max_slots_per_driver = 3;
    */
