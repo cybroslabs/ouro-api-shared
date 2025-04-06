@@ -24,7 +24,7 @@ def _parseHints(description: str) -> Tuple[str, Dict[str, str]]:
         else:
             result.append(line)
 
-    return "\n".join(result), hints
+    return "\n".join(result).strip(), hints
 
 
 def _sanitizeMethodDescripton(description: str) -> str:
