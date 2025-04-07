@@ -1,0 +1,13 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.services.svccrypto;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svccrypto";
+
+import "crypto/crypto.proto";
+
+// The Deviceregistry service definition.
+service CryproService {
+    // Initialize the crypto service stream-based RPC for DLMS frames.
+    rpc Dlms(stream io.clbs.openhes.models.crypto.DlmsIn) returns (stream io.clbs.openhes.models.crypto.DlmsOut);
+}

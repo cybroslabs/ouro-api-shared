@@ -1,0 +1,112 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.crypto;
+
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/crypto";
+
+// DLMS crypto mode
+enum AuthenticatedEncryption {
+    AE_NONE        = 0;
+    AE_AES_GCM_128 = 1;
+    AE_AES_GCM_256 = 2;
+}
+
+enum DigitalSignature {
+    DS_ECDSA_NONE  = 0;
+    DS_ECDSA_P_256 = 1;
+    DS_ECDSA_P_384 = 2;
+}
+
+enum KeyAgreement {
+    KA_NONE       = 0;
+    KA_ECDH_P_256 = 1;
+    KA_ECDH_P_384 = 2;
+}
+
+enum Hash {
+    HASH_NONE = 0;
+    // MD5 hash.
+    // In standard DLMS:
+    //   MD5(StoC || HLS Secret)
+    HASH_MD5 = 1;
+    // SHA1 hash.
+    // In standard DLMS:
+    //   SHA1(StoC || HLS Secret)
+    HASH_SHA_1 = 2;
+    // SHA1 hash.
+    // In standard DLMS:
+    //   SC || IC || GMAC(SC || AK || StoC)
+    HASH_GMAC = 3;
+    // SHA256 hash.
+    // In standard DLMS:
+    //   SHA-256(HLS_Secret || SystemTitle-C || SystemTitle-S || StoC || CtoS)
+    HASH_SHA_256 = 4;
+    // ECDSA signature.
+    // In standard DLMS:
+    //   ECDSA(SystemTitle-C || SystemTitle-S || StoC || CtoS)
+    HASH_ECDSA = 5;
+}
+
+enum Compression {
+    COMPRESS_NO  = 0;
+    COMPRESS_V44 = 1;
+}
+
+// Sub-message containing job parameters
+message DlmsIn {
+    uint64 id = 1 [features.field_presence = LEGACY_REQUIRED];  // The request ID.
+    oneof request {
+        DlmsInit init       = 2;  // The initialize request. It can be called only once, as the first request.
+        DlmsSetup setup     = 3;  // The setup request. It sets generic parameters.
+        DlmsHash hash       = 4;  // The hash request.
+        DlmsEncrypt encrypt = 5;  // The encryption request.
+        DlmsDecrypt decrypt = 6;  // The decryption request.
+    }
+}
+
+message DlmsInit {
+    AuthenticatedEncryption encryption = 1 [features.field_presence = LEGACY_REQUIRED];  // The encryption mode.
+    DigitalSignature signature         = 2 [features.field_presence = LEGACY_REQUIRED];  // The digital signature mode.
+    Compression compression            = 4 [features.field_presence = LEGACY_REQUIRED];  // The compression mode.
+    string driver_id                   = 5 [features.field_presence = LEGACY_REQUIRED];  // The driver identifier.
+    string serial_number               = 6 [features.field_presence = LEGACY_REQUIRED];  // The serial number of the device.
+    string access_level                = 7 [features.field_presence = LEGACY_REQUIRED];  // The access level.
+}
+
+message DlmsSetup {
+    bytes system_title_c = 4 [features.field_presence = LEGACY_REQUIRED];  // The DLMS client system-title.
+    bytes system_title_s = 5 [features.field_presence = LEGACY_REQUIRED];  // The DLMS server system-title.
+    bytes s_to_c         = 6 [features.field_presence = LEGACY_REQUIRED];  // The StoC data.
+    bytes c_to_s         = 7 [features.field_presence = LEGACY_REQUIRED];  // The CtoS data.
+}
+
+message DlmsOut {
+    uint64 id          = 1 [features.field_presence = LEGACY_REQUIRED];  // The request ID.
+    ErrorMessage error = 2;                                              // The error message, if any.
+    bytes data         = 3;                                              // The result of the operation.
+}
+
+message DlmsEncrypt {
+    uint32 frame_counter    = 1 [features.field_presence = LEGACY_REQUIRED];  // The frame counter.
+    uint32 security_control = 2 [features.field_presence = LEGACY_REQUIRED];  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3 [features.field_presence = LEGACY_REQUIRED];  // The data to be encrypted.
+}
+
+message DlmsDecrypt {
+    uint32 frame_counter    = 1 [features.field_presence = LEGACY_REQUIRED];  // The frame counter.
+    uint32 security_control = 2 [features.field_presence = LEGACY_REQUIRED];  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3 [features.field_presence = LEGACY_REQUIRED];  // The data to be decrypted.
+}
+
+message DlmsHash {
+    Hash mode               = 1 [features.field_presence = LEGACY_REQUIRED];  // The hash mode.
+    uint32 frame_counter    = 2 [features.field_presence = LEGACY_REQUIRED];  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 3 [features.field_presence = LEGACY_REQUIRED];  // The security control.
+}
+
+message ErrorMessage {
+    // The error code, use standard codes package, see https://pkg.go.dev/google.golang.org/grpc/codes#pkg-constants.
+    uint32 code = 1;
+    // The error message to be witten to the log.
+    string message = 2;
+}
