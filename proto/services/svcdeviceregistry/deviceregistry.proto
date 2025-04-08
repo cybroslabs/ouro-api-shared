@@ -70,6 +70,10 @@ service DeviceRegistryService {
     rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: device
+    // The method updates the device. The parameter contains the device specification.
+    rpc UpdateDevice(io.clbs.openhes.models.acquisition.Device) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
     // @group: Devices

@@ -156,6 +156,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                 _registered_method=True)
+        self.UpdateDevice = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice',
+                request_serializer=acquisition_dot_main__pb2.Device.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.ListDevices = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -475,6 +480,15 @@ class DeviceRegistryServiceServicer(object):
 
     def CreateDevice(self, request, context):
         """The method called by the RestAPI to register a new device. The parameter contains the device specification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateDevice(self, request, context):
+        """@group: Devices
+        @tag: device
+        The method updates the device. The parameter contains the device specification.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -819,6 +833,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.CreateDevice,
                     request_deserializer=acquisition_dot_main__pb2.CreateDeviceRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'UpdateDevice': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateDevice,
+                    request_deserializer=acquisition_dot_main__pb2.Device.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'ListDevices': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDevices,
@@ -1686,6 +1705,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice',
             acquisition_dot_main__pb2.CreateDeviceRequest.SerializeToString,
             google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateDevice(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice',
+            acquisition_dot_main__pb2.Device.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

@@ -161,6 +161,11 @@ func (r *queryResolver) CreateDevice(ctx context.Context) (*model.StringValue, e
 	panic(fmt.Errorf("not implemented: CreateDevice - createDevice"))
 }
 
+// UpdateDevice is the resolver for the updateDevice field.
+func (r *queryResolver) UpdateDevice(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateDevice - updateDevice"))
+}
+
 // ListDevices is the resolver for the listDevices field.
 func (r *queryResolver) ListDevices(ctx context.Context) (*model.ListOfDevice, error) {
 	panic(fmt.Errorf("not implemented: ListDevices - listDevices"))

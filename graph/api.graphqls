@@ -778,6 +778,8 @@ type DeviceCommunicationUnit {
   communicationUnitId: String
   # The application protocol to be used for the communication over the communication unit.
   appProtocol: ApplicationProtocol
+  # The app-protocol related device attributes. It is represented as a list of attribute definitions.
+  attributes: [_mapFieldValue]
 }
 
 type DeviceConfigurationRegister {
@@ -850,8 +852,6 @@ type DeviceSpec {
   dctId: UUID
   # The external identifier of the device.
   externalId: String
-  # The template of the action attributes. It is represented as a list of attribute definitions.
-  attributes: [_mapFieldValue]
   # The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
   communicationUnitLink: [DeviceCommunicationUnit]
   # The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
@@ -1727,6 +1727,7 @@ type Query {
   addCommunicationUnitsToCommunicationBus: Empty
   removeCommunicationUnitsFromCommunicationBus: Empty
   createDevice: StringValue
+  updateDevice: Empty
   listDevices: ListOfDevice
   getDevice: Device
   getDeviceInfo: DeviceInfo

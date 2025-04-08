@@ -289,6 +289,7 @@ type Device struct {
 type DeviceCommunicationUnit struct {
 	CommunicationUnitID *string              `json:"communicationUnitId,omitempty"`
 	AppProtocol         *ApplicationProtocol `json:"appProtocol,omitempty"`
+	Attributes          []*MapFieldValue     `json:"attributes,omitempty"`
 }
 
 type DeviceConfigurationRegister struct {
@@ -336,7 +337,6 @@ type DeviceInfo struct {
 type DeviceSpec struct {
 	DctID                 *uuid.UUID                 `json:"dctId,omitempty"`
 	ExternalID            *string                    `json:"externalId,omitempty"`
-	Attributes            []*MapFieldValue           `json:"attributes,omitempty"`
 	CommunicationUnitLink []*DeviceCommunicationUnit `json:"communicationUnitLink,omitempty"`
 	Timezone              *string                    `json:"timezone,omitempty"`
 }

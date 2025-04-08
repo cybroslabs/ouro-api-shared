@@ -325,6 +325,7 @@ type ComplexityRoot struct {
 
 	DeviceCommunicationUnit struct {
 		AppProtocol         func(childComplexity int) int
+		Attributes          func(childComplexity int) int
 		CommunicationUnitID func(childComplexity int) int
 	}
 
@@ -371,7 +372,6 @@ type ComplexityRoot struct {
 	}
 
 	DeviceSpec struct {
-		Attributes            func(childComplexity int) int
 		CommunicationUnitLink func(childComplexity int) int
 		DctID                 func(childComplexity int) int
 		ExternalID            func(childComplexity int) int
@@ -821,6 +821,7 @@ type ComplexityRoot struct {
 		RemoveDevicesFromGroup                                           func(childComplexity int) int
 		SetConfig                                                        func(childComplexity int) int
 		SetDeviceCommunicationUnits                                      func(childComplexity int) int
+		UpdateDevice                                                     func(childComplexity int) int
 		UpdateDeviceConfigurationRegister                                func(childComplexity int) int
 		UpdateDeviceConfigurationTemplate                                func(childComplexity int) int
 		UpdateModem                                                      func(childComplexity int) int
@@ -991,6 +992,7 @@ type QueryResolver interface {
 	AddCommunicationUnitsToCommunicationBus(ctx context.Context) (*model.Empty, error)
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context) (*model.Empty, error)
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
+	UpdateDevice(ctx context.Context) (*model.Empty, error)
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
 	GetDeviceInfo(ctx context.Context) (*model.DeviceInfo, error)
@@ -1915,6 +1917,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.DeviceCommunicationUnit.AppProtocol(childComplexity), true
 
+	case "DeviceCommunicationUnit.attributes":
+		if e.complexity.DeviceCommunicationUnit.Attributes == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnit.Attributes(childComplexity), true
+
 	case "DeviceCommunicationUnit.communicationUnitId":
 		if e.complexity.DeviceCommunicationUnit.CommunicationUnitID == nil {
 			break
@@ -2068,13 +2077,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DeviceInfo.RelayStates(childComplexity), true
-
-	case "DeviceSpec.attributes":
-		if e.complexity.DeviceSpec.Attributes == nil {
-			break
-		}
-
-		return e.complexity.DeviceSpec.Attributes(childComplexity), true
 
 	case "DeviceSpec.communicationUnitLink":
 		if e.complexity.DeviceSpec.CommunicationUnitLink == nil {
@@ -4042,6 +4044,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.SetDeviceCommunicationUnits(childComplexity), true
+
+	case "Query.updateDevice":
+		if e.complexity.Query.UpdateDevice == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateDevice(childComplexity), true
 
 	case "Query.updateDeviceConfigurationRegister":
 		if e.complexity.Query.UpdateDeviceConfigurationRegister == nil {
@@ -9612,8 +9621,6 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Cont
 				return ec.fieldContext_DeviceSpec_dctId(ctx, field)
 			case "externalId":
 				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
-			case "attributes":
-				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
 			case "communicationUnitLink":
 				return ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 			case "timezone":
@@ -10406,8 +10413,6 @@ func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field gr
 				return ec.fieldContext_DeviceSpec_dctId(ctx, field)
 			case "externalId":
 				return ec.fieldContext_DeviceSpec_externalId(ctx, field)
-			case "attributes":
-				return ec.fieldContext_DeviceSpec_attributes(ctx, field)
 			case "communicationUnitLink":
 				return ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 			case "timezone":
@@ -10596,6 +10601,53 @@ func (ec *executionContext) fieldContext_DeviceCommunicationUnit_appProtocol(_ c
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type ApplicationProtocol does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnit_attributes(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnit) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnit_attributes(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Attributes, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MapFieldValue)
+	fc.Result = res
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnit_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnit",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "key":
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
 		},
 	}
 	return fc, nil
@@ -11610,53 +11662,6 @@ func (ec *executionContext) fieldContext_DeviceSpec_externalId(_ context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceSpec_attributes(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceSpec_attributes(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Attributes, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.MapFieldValue)
-	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceSpec_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceSpec",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "key":
-				return ec.fieldContext__mapFieldValue_key(ctx, field)
-			case "value":
-				return ec.fieldContext__mapFieldValue_value(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _DeviceSpec_communicationUnitLink(ctx context.Context, field graphql.CollectedField, obj *model.DeviceSpec) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DeviceSpec_communicationUnitLink(ctx, field)
 	if err != nil {
@@ -11697,6 +11702,8 @@ func (ec *executionContext) fieldContext_DeviceSpec_communicationUnitLink(_ cont
 				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
 			case "appProtocol":
 				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
+			case "attributes":
+				return ec.fieldContext_DeviceCommunicationUnit_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
 		},
@@ -17823,6 +17830,8 @@ func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_items(_ c
 				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
 			case "appProtocol":
 				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
+			case "attributes":
+				return ec.fieldContext_DeviceCommunicationUnit_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
 		},
@@ -22863,6 +22872,51 @@ func (ec *executionContext) fieldContext_Query_createDevice(_ context.Context, f
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_updateDevice(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateDevice(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateDevice(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateDevice(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_listDevices(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_listDevices(ctx, field)
 	if err != nil {
@@ -25466,6 +25520,8 @@ func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_comm
 				return ec.fieldContext_DeviceCommunicationUnit_communicationUnitId(ctx, field)
 			case "appProtocol":
 				return ec.fieldContext_DeviceCommunicationUnit_appProtocol(ctx, field)
+			case "attributes":
+				return ec.fieldContext_DeviceCommunicationUnit_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnit", field.Name)
 		},
@@ -31284,6 +31340,8 @@ func (ec *executionContext) _DeviceCommunicationUnit(ctx context.Context, sel as
 			out.Values[i] = ec._DeviceCommunicationUnit_communicationUnitId(ctx, field, obj)
 		case "appProtocol":
 			out.Values[i] = ec._DeviceCommunicationUnit_appProtocol(ctx, field, obj)
+		case "attributes":
+			out.Values[i] = ec._DeviceCommunicationUnit_attributes(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -31602,8 +31660,6 @@ func (ec *executionContext) _DeviceSpec(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._DeviceSpec_dctId(ctx, field, obj)
 		case "externalId":
 			out.Values[i] = ec._DeviceSpec_externalId(ctx, field, obj)
-		case "attributes":
-			out.Values[i] = ec._DeviceSpec_attributes(ctx, field, obj)
 		case "communicationUnitLink":
 			out.Values[i] = ec._DeviceSpec_communicationUnitLink(ctx, field, obj)
 		case "timezone":
@@ -34517,6 +34573,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_createDevice(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateDevice":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateDevice(ctx, field)
 				return res
 			}
 

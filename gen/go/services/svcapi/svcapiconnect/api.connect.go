@@ -135,6 +135,8 @@ const (
 	ApiServiceRemoveCommunicationUnitsFromCommunicationBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/RemoveCommunicationUnitsFromCommunicationBus"
 	// ApiServiceCreateDeviceProcedure is the fully-qualified name of the ApiService's CreateDevice RPC.
 	ApiServiceCreateDeviceProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDevice"
+	// ApiServiceUpdateDeviceProcedure is the fully-qualified name of the ApiService's UpdateDevice RPC.
+	ApiServiceUpdateDeviceProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDevice"
 	// ApiServiceListDevicesProcedure is the fully-qualified name of the ApiService's ListDevices RPC.
 	ApiServiceListDevicesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDevices"
 	// ApiServiceGetDeviceProcedure is the fully-qualified name of the ApiService's GetDevice RPC.
@@ -322,6 +324,10 @@ type ApiServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(context.Context, *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: device
+	// The method updates the device. The parameter contains the device specification.
+	UpdateDevice(context.Context, *connect.Request[acquisition.Device]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -654,6 +660,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateDevice")),
 			connect.WithClientOptions(opts...),
 		),
+		updateDevice: connect.NewClient[acquisition.Device, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateDeviceProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateDevice")),
+			connect.WithClientOptions(opts...),
+		),
 		listDevices: connect.NewClient[common.ListSelector, acquisition.ListOfDevice](
 			httpClient,
 			baseURL+ApiServiceListDevicesProcedure,
@@ -874,6 +886,7 @@ type apiServiceClient struct {
 	addCommunicationUnitsToCommunicationBus                          *connect.Client[acquisition.AddCommunicationUnitsToCommunicationBusRequest, emptypb.Empty]
 	removeCommunicationUnitsFromCommunicationBus                     *connect.Client[acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, emptypb.Empty]
 	createDevice                                                     *connect.Client[acquisition.CreateDeviceRequest, wrapperspb.StringValue]
+	updateDevice                                                     *connect.Client[acquisition.Device, emptypb.Empty]
 	listDevices                                                      *connect.Client[common.ListSelector, acquisition.ListOfDevice]
 	getDevice                                                        *connect.Client[wrapperspb.StringValue, acquisition.Device]
 	getDeviceInfo                                                    *connect.Client[wrapperspb.StringValue, acquisition.DeviceInfo]
@@ -1093,6 +1106,11 @@ func (c *apiServiceClient) RemoveCommunicationUnitsFromCommunicationBus(ctx cont
 // CreateDevice calls io.clbs.openhes.services.svcapi.ApiService.CreateDevice.
 func (c *apiServiceClient) CreateDevice(ctx context.Context, req *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.createDevice.CallUnary(ctx, req)
+}
+
+// UpdateDevice calls io.clbs.openhes.services.svcapi.ApiService.UpdateDevice.
+func (c *apiServiceClient) UpdateDevice(ctx context.Context, req *connect.Request[acquisition.Device]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateDevice.CallUnary(ctx, req)
 }
 
 // ListDevices calls io.clbs.openhes.services.svcapi.ApiService.ListDevices.
@@ -1351,6 +1369,10 @@ type ApiServiceHandler interface {
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(context.Context, *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: device
+	// The method updates the device. The parameter contains the device specification.
+	UpdateDevice(context.Context, *connect.Request[acquisition.Device]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -1679,6 +1701,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateDevice")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceUpdateDeviceHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateDeviceProcedure,
+		svc.UpdateDevice,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateDevice")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceListDevicesHandler := connect.NewUnaryHandler(
 		ApiServiceListDevicesProcedure,
 		svc.ListDevices,
@@ -1931,6 +1959,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceRemoveCommunicationUnitsFromCommunicationBusHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceProcedure:
 			apiServiceCreateDeviceHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateDeviceProcedure:
+			apiServiceUpdateDeviceHandler.ServeHTTP(w, r)
 		case ApiServiceListDevicesProcedure:
 			apiServiceListDevicesHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceProcedure:
@@ -2138,6 +2168,10 @@ func (UnimplementedApiServiceHandler) RemoveCommunicationUnitsFromCommunicationB
 
 func (UnimplementedApiServiceHandler) CreateDevice(context.Context, *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateDevice is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateDevice(context.Context, *connect.Request[acquisition.Device]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateDevice is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListDevices(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDevice], error) {

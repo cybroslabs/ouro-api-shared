@@ -10121,12 +10121,11 @@ func (b0 JobEventData_builder) Build() *JobEventData {
 
 // Sub-message - the device specification.
 type DeviceSpec struct {
-	state                            protoimpl.MessageState        `protogen:"opaque.v1"`
-	xxx_hidden_DctId                 *string                       `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
-	xxx_hidden_ExternalId            *string                       `protobuf:"bytes,2,opt,name=external_id,json=externalId"`
-	xxx_hidden_Attributes            map[string]*common.FieldValue `protobuf:"bytes,4,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_CommunicationUnitLink *[]*DeviceCommunicationUnit   `protobuf:"bytes,5,rep,name=communication_unit_link,json=communicationUnitLink"`
-	xxx_hidden_Timezone              *string                       `protobuf:"bytes,6,opt,name=timezone"`
+	state                            protoimpl.MessageState      `protogen:"opaque.v1"`
+	xxx_hidden_DctId                 *string                     `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
+	xxx_hidden_ExternalId            *string                     `protobuf:"bytes,2,opt,name=external_id,json=externalId"`
+	xxx_hidden_CommunicationUnitLink *[]*DeviceCommunicationUnit `protobuf:"bytes,3,rep,name=communication_unit_link,json=communicationUnitLink"`
+	xxx_hidden_Timezone              *string                     `protobuf:"bytes,4,opt,name=timezone"`
 	XXX_raceDetectHookData           protoimpl.RaceDetectHookData
 	XXX_presence                     [1]uint32
 	unknownFields                    protoimpl.UnknownFields
@@ -10178,13 +10177,6 @@ func (x *DeviceSpec) GetExternalId() string {
 	return ""
 }
 
-func (x *DeviceSpec) GetAttributes() map[string]*common.FieldValue {
-	if x != nil {
-		return x.xxx_hidden_Attributes
-	}
-	return nil
-}
-
 func (x *DeviceSpec) GetCommunicationUnitLink() []*DeviceCommunicationUnit {
 	if x != nil {
 		if x.xxx_hidden_CommunicationUnitLink != nil {
@@ -10206,16 +10198,12 @@ func (x *DeviceSpec) GetTimezone() string {
 
 func (x *DeviceSpec) SetDctId(v string) {
 	x.xxx_hidden_DctId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
 func (x *DeviceSpec) SetExternalId(v string) {
 	x.xxx_hidden_ExternalId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
-}
-
-func (x *DeviceSpec) SetAttributes(v map[string]*common.FieldValue) {
-	x.xxx_hidden_Attributes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
 }
 
 func (x *DeviceSpec) SetCommunicationUnitLink(v []*DeviceCommunicationUnit) {
@@ -10224,7 +10212,7 @@ func (x *DeviceSpec) SetCommunicationUnitLink(v []*DeviceCommunicationUnit) {
 
 func (x *DeviceSpec) SetTimezone(v string) {
 	x.xxx_hidden_Timezone = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
 }
 
 func (x *DeviceSpec) HasDctId() bool {
@@ -10245,7 +10233,7 @@ func (x *DeviceSpec) HasTimezone() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
 func (x *DeviceSpec) ClearDctId() {
@@ -10259,7 +10247,7 @@ func (x *DeviceSpec) ClearExternalId() {
 }
 
 func (x *DeviceSpec) ClearTimezone() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_Timezone = nil
 }
 
@@ -10269,7 +10257,6 @@ type DeviceSpec_builder struct {
 	// @gqltype: UUID
 	DctId                 *string
 	ExternalId            *string
-	Attributes            map[string]*common.FieldValue
 	CommunicationUnitLink []*DeviceCommunicationUnit
 	Timezone              *string
 }
@@ -10279,17 +10266,16 @@ func (b0 DeviceSpec_builder) Build() *DeviceSpec {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.DctId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
 		x.xxx_hidden_DctId = b.DctId
 	}
 	if b.ExternalId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
 		x.xxx_hidden_ExternalId = b.ExternalId
 	}
-	x.xxx_hidden_Attributes = b.Attributes
 	x.xxx_hidden_CommunicationUnitLink = &b.CommunicationUnitLink
 	if b.Timezone != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
 		x.xxx_hidden_Timezone = b.Timezone
 	}
 	return m0
@@ -10399,9 +10385,10 @@ func (b0 DeviceStatus_builder) Build() *DeviceStatus {
 }
 
 type DeviceCommunicationUnit struct {
-	state                          protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
-	xxx_hidden_AppProtocol         ApplicationProtocol    `protobuf:"varint,2,opt,name=app_protocol,json=appProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
+	state                          protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnitId *string                       `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_AppProtocol         ApplicationProtocol           `protobuf:"varint,2,opt,name=app_protocol,json=appProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
+	xxx_hidden_Attributes          map[string]*common.FieldValue `protobuf:"bytes,3,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
 	unknownFields                  protoimpl.UnknownFields
@@ -10452,14 +10439,25 @@ func (x *DeviceCommunicationUnit) GetAppProtocol() ApplicationProtocol {
 	return ApplicationProtocol_APPPROTO_IEC_62056_21
 }
 
+func (x *DeviceCommunicationUnit) GetAttributes() map[string]*common.FieldValue {
+	if x != nil {
+		return x.xxx_hidden_Attributes
+	}
+	return nil
+}
+
 func (x *DeviceCommunicationUnit) SetCommunicationUnitId(v string) {
 	x.xxx_hidden_CommunicationUnitId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *DeviceCommunicationUnit) SetAppProtocol(v ApplicationProtocol) {
 	x.xxx_hidden_AppProtocol = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *DeviceCommunicationUnit) SetAttributes(v map[string]*common.FieldValue) {
+	x.xxx_hidden_Attributes = v
 }
 
 func (x *DeviceCommunicationUnit) HasCommunicationUnitId() bool {
@@ -10491,6 +10489,7 @@ type DeviceCommunicationUnit_builder struct {
 
 	CommunicationUnitId *string
 	AppProtocol         *ApplicationProtocol
+	Attributes          map[string]*common.FieldValue
 }
 
 func (b0 DeviceCommunicationUnit_builder) Build() *DeviceCommunicationUnit {
@@ -10498,13 +10497,14 @@ func (b0 DeviceCommunicationUnit_builder) Build() *DeviceCommunicationUnit {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.CommunicationUnitId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
 	if b.AppProtocol != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_AppProtocol = *b.AppProtocol
 	}
+	x.xxx_hidden_Attributes = b.Attributes
 	return m0
 }
 
@@ -11718,27 +11718,27 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"registerId\x12#\n" +
 	"\rvariable_name\x18\x05 \x03(\tR\fvariableName\"%\n" +
 	"\fJobEventData\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\fR\x05jobId\"\x9f\x03\n" +
+	"\x06job_id\x18\x01 \x01(\fR\x05jobId\"\xd5\x01\n" +
 	"\n" +
 	"DeviceSpec\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
 	"\vexternal_id\x18\x02 \x01(\tR\n" +
-	"externalId\x12^\n" +
-	"\n" +
-	"attributes\x18\x04 \x03(\v2>.io.clbs.openhes.models.acquisition.DeviceSpec.AttributesEntryR\n" +
-	"attributes\x12s\n" +
-	"\x17communication_unit_link\x18\x05 \x03(\v2;.io.clbs.openhes.models.acquisition.DeviceCommunicationUnitR\x15communicationUnitLink\x12\x1a\n" +
-	"\btimezone\x18\x06 \x01(\tR\btimezone\x1ah\n" +
-	"\x0fAttributesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"s\n" +
+	"externalId\x12s\n" +
+	"\x17communication_unit_link\x18\x03 \x03(\v2;.io.clbs.openhes.models.acquisition.DeviceCommunicationUnitR\x15communicationUnitLink\x12\x1a\n" +
+	"\btimezone\x18\x04 \x01(\tR\btimezone\"s\n" +
 	"\fDeviceStatus\x12B\n" +
 	"\x04info\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\x04info\x12\x1f\n" +
 	"\vdriver_type\x18\x02 \x01(\tR\n" +
-	"driverType\"\xa9\x01\n" +
+	"driverType\"\x80\x03\n" +
 	"\x17DeviceCommunicationUnit\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12Z\n" +
-	"\fapp_protocol\x18\x02 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\vappProtocol\"\xf5\x02\n" +
+	"\fapp_protocol\x18\x02 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\vappProtocol\x12k\n" +
+	"\n" +
+	"attributes\x18\x03 \x03(\v2K.io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntryR\n" +
+	"attributes\x1ah\n" +
+	"\x0fAttributesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\xf5\x02\n" +
 	"\aJobSpec\x12E\n" +
 	"\x06device\x18\x02 \x01(\v2-.io.clbs.openhes.models.acquisition.JobDeviceR\x06device\x12R\n" +
 	"\fjob_settings\x18\x03 \x01(\v2/.io.clbs.openhes.models.acquisition.JobSettingsR\vjobSettings\x12\x1f\n" +
@@ -11980,7 +11980,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	nil,                                     // 89: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
 	nil,                                     // 90: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
 	nil,                                     // 91: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	nil,                                     // 92: io.clbs.openhes.models.acquisition.DeviceSpec.AttributesEntry
+	nil,                                     // 92: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
 	(*durationpb.Duration)(nil),             // 93: google.protobuf.Duration
 	(*timestamppb.Timestamp)(nil),           // 94: google.protobuf.Timestamp
 	(*common.FieldDescriptor)(nil),          // 95: io.clbs.openhes.models.common.FieldDescriptor
@@ -12118,10 +12118,10 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	68,  // 124: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
 	9,   // 125: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
 	36,  // 126: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	92,  // 127: io.clbs.openhes.models.acquisition.DeviceSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec.AttributesEntry
-	75,  // 128: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	39,  // 129: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	7,   // 130: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	75,  // 127: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	39,  // 128: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	7,   // 129: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	92,  // 130: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
 	20,  // 131: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
 	14,  // 132: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
 	15,  // 133: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
@@ -12140,7 +12140,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	99,  // 146: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
 	99,  // 147: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
 	99,  // 148: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	99,  // 149: io.clbs.openhes.models.acquisition.DeviceSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	99,  // 149: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
 	150, // [150:150] is the sub-list for method output_type
 	150, // [150:150] is the sub-list for method input_type
 	150, // [150:150] is the sub-list for extension type_name

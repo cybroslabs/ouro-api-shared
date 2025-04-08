@@ -51,6 +51,7 @@ const (
 	DeviceRegistryService_AddCommunicationUnitsToCommunicationBus_FullMethodName                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToCommunicationBus"
 	DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus"
 	DeviceRegistryService_CreateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
+	DeviceRegistryService_UpdateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice"
 	DeviceRegistryService_ListDevices_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
 	DeviceRegistryService_GetDevice_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
@@ -134,6 +135,10 @@ type DeviceRegistryServiceClient interface {
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Devices
+	// @tag: device
+	// The method updates the device. The parameter contains the device specification.
+	UpdateDevice(ctx context.Context, in *acquisition.Device, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
@@ -481,6 +486,16 @@ func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *acqu
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) UpdateDevice(ctx context.Context, in *acquisition.Device, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateDevice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) ListDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDevice)
@@ -816,6 +831,10 @@ type DeviceRegistryServiceServer interface {
 	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
+	// The method updates the device. The parameter contains the device specification.
+	UpdateDevice(context.Context, *acquisition.Device) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	ListDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error)
 	// @group: Devices
@@ -971,6 +990,9 @@ func (UnimplementedDeviceRegistryServiceServer) RemoveCommunicationUnitsFromComm
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateDevice(context.Context, *acquisition.Device) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDevice not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDevices not implemented")
@@ -1556,6 +1578,24 @@ func _DeviceRegistryService_CreateDevice_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).CreateDevice(ctx, req.(*acquisition.CreateDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_UpdateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.Device)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateDevice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateDevice(ctx, req.(*acquisition.Device))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2153,6 +2193,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateDevice",
 			Handler:    _DeviceRegistryService_CreateDevice_Handler,
+		},
+		{
+			MethodName: "UpdateDevice",
+			Handler:    _DeviceRegistryService_UpdateDevice_Handler,
 		},
 		{
 			MethodName: "ListDevices",

@@ -78,6 +78,16 @@ CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (go
 - Input: [`io.clbs.openhes.models.acquisition.CreateDeviceRequest`](model-io-clbs-openhes-models-acquisition-createdevicerequest.md)
 - Output: `google.protobuf.StringValue`
 
+## UpdateDevice
+
+The method updates the device. The parameter contains the device specification.
+
+```proto
+UpdateDevice(io.clbs.openhes.models.acquisition.Device)
+```
+
+- Input: [`io.clbs.openhes.models.acquisition.Device`](model-io-clbs-openhes-models-acquisition-device.md)
+
 ## ListDevices
 
 The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
