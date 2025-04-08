@@ -9,7 +9,7 @@ import "google/protobuf/duration.proto";
 
 // The listing selector.
 message ListSelector {
-    uint32 page_size                        = 1;  // The number of items per page.
+    uint32 page_size = 1;  // The number of items per page.
     // The offset of the first item to return, zero based.
     // @values: any non-negative integer
     // @example: 15
@@ -131,6 +131,15 @@ message FieldValue {
         google.protobuf.Timestamp date_value    = 6;  // Represents a date-typed value.
         google.protobuf.Duration duration_value = 7;  // Represents a duration-typed value.
     }
+}
+
+message FieldValues {
+    map<string, common.FieldValue> attributes = 1;  // The field values.
+}
+
+message ListOfFieldValue {
+    repeated FieldValue items = 1;  // The list of field values.
+    int32 total_count         = 2;  // The total number of items.
 }
 
 message ListOfFieldDescriptor {

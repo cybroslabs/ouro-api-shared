@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLyAQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAASMwoOZHVyYXRpb25fdmFsdWUYByABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IAEIGCgRraW5kImsKFUxpc3RPZkZpZWxkRGVzY3JpcHRvchI9CgVpdGVtcxgBIAMoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvchITCgt0b3RhbF9jb3VudBgCIAEoBSr9AQoORmlsdGVyT3BlcmF0b3ISCQoFRVFVQUwQABINCglOT1RfRVFVQUwQARIQCgxHUkVBVEVSX1RIQU4QAhIZChVHUkVBVEVSX1RIQU5fT1JfRVFVQUwQAxINCglMRVNTX1RIQU4QBBIWChJMRVNTX1RIQU5fT1JfRVFVQUwQBRIMCghDT05UQUlOUxAGEhAKDE5PVF9DT05UQUlOUxAHEg8KC1NUQVJUU19XSVRIEAgSDQoJRU5EU19XSVRIEAkSBgoCSU4QChIKCgZOT1RfSU4QCxILCgdCRVRXRUVOEAwSCwoHSVNfTlVMTBANEg8KC0lTX05PVF9OVUxMEA4qaAoNRmllbGREYXRhVHlwZRIICgRURVhUEAASCwoHSU5URUdFUhABEgoKBkRPVUJMRRACEgoKBkJJTkFSWRADEgsKB0JPT0xFQU4QBBINCglUSU1FU1RBTVAQBRIMCghEVVJBVElPThAGKowBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEg0KCURBVEVfT05MWRABEhAKDFVUQ19EQVRFVElNRRACEhEKDVVUQ19EQVRFX09OTFkQAxINCglUSU1FT0ZEQVkQBBIJCgVNT05FWRAFEgwKCFBBU1NXT1JEEAYSDQoJTVVMVElMSU5FEAdCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_timestamp, file_google_protobuf_duration]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiOwoSTGlzdFNlbGVjdG9yU29ydEJ5EhAKCGZpZWxkX2lkGAEgASgJEhMKBGRlc2MYAiABKAg6BWZhbHNlIpQCChRMaXN0U2VsZWN0b3JGaWx0ZXJCeRIQCghmaWVsZF9pZBgBIAEoCRI/CghvcGVyYXRvchgCIAEoDjItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpbHRlck9wZXJhdG9yEj8KCWRhdGFfdHlwZRgDIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSDAoEdGV4dBgEIAMoCRIPCgdpbnRlZ2VyGAUgAygSEg4KBm51bWJlchgGIAMoARIPCgdib29sZWFuGAcgAygIEigKBGRhdGUYCCADKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuwDCg9GaWVsZERlc2NyaXB0b3ISEAoIZmllbGRfaWQYASABKAkSDwoHanNfcGF0aBgSIAEoCRINCgVsYWJlbBgCIAEoCRIQCghncm91cF9pZBgGIAEoCRI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgEIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAUgASgJEhEKCXByZWNpc2lvbhgIIAEoBRIPCgd0b29sdGlwGAkgASgJEhAKCHJlcXVpcmVkGAsgASgIEhAKCGVkaXRhYmxlGAwgASgIEg8KB3Zpc2libGUYDSABKAgSEwoLbXVsdGlfdmFsdWUYDiABKAgSDwoHc2VjdXJlZBgPIAEoCBJCCgp2YWxpZGF0aW9uGBAgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYESABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLyAQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAASMwoOZHVyYXRpb25fdmFsdWUYByABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IAEIGCgRraW5kIrsBCgtGaWVsZFZhbHVlcxJOCgphdHRyaWJ1dGVzGAEgAygLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZXMuQXR0cmlidXRlc0VudHJ5GlwKD0F0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASJhChBMaXN0T2ZGaWVsZFZhbHVlEjgKBWl0ZW1zGAEgAygLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZRITCgt0b3RhbF9jb3VudBgCIAEoBSJrChVMaXN0T2ZGaWVsZERlc2NyaXB0b3ISPQoFaXRlbXMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3ISEwoLdG90YWxfY291bnQYAiABKAUq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKmgKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhIKCgZCSU5BUlkQAxILCgdCT09MRUFOEAQSDQoJVElNRVNUQU1QEAUSDAoIRFVSQVRJT04QBiqMAQoSRmllbGREaXNwbGF5Rm9ybWF0EgsKB0RFRkFVTFQQABINCglEQVRFX09OTFkQARIQCgxVVENfREFURVRJTUUQAhIRCg1VVENfREFURV9PTkxZEAMSDQoJVElNRU9GREFZEAQSCQoFTU9ORVkQBRIMCghQQVNTV09SRBAGEg0KCU1VTFRJTElORRAHQjBaLmdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_google_protobuf_timestamp, file_google_protobuf_duration]);
 
 /**
  * The listing selector.
@@ -817,6 +817,82 @@ export const FieldValueSchema: GenMessage<FieldValue, FieldValueJson> = /*@__PUR
   messageDesc(file_common_fields, 5);
 
 /**
+ * @generated from message io.clbs.openhes.models.common.FieldValues
+ */
+export type FieldValues = Message<"io.clbs.openhes.models.common.FieldValues"> & {
+  /**
+   * The field values.
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 1;
+   */
+  attributes: { [key: string]: FieldValue };
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.FieldValues
+ */
+export type FieldValuesJson = {
+  /**
+   * The field values.
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 1;
+   */
+  attributes?: { [key: string]: FieldValueJson };
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.FieldValues.
+ * Use `create(FieldValuesSchema)` to create a new message.
+ */
+export const FieldValuesSchema: GenMessage<FieldValues, FieldValuesJson> = /*@__PURE__*/
+  messageDesc(file_common_fields, 6);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.ListOfFieldValue
+ */
+export type ListOfFieldValue = Message<"io.clbs.openhes.models.common.ListOfFieldValue"> & {
+  /**
+   * The list of field values.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.common.FieldValue items = 1;
+   */
+  items: FieldValue[];
+
+  /**
+   * The total number of items.
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount: number;
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.ListOfFieldValue
+ */
+export type ListOfFieldValueJson = {
+  /**
+   * The list of field values.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.common.FieldValue items = 1;
+   */
+  items?: FieldValueJson[];
+
+  /**
+   * The total number of items.
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount?: number;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.ListOfFieldValue.
+ * Use `create(ListOfFieldValueSchema)` to create a new message.
+ */
+export const ListOfFieldValueSchema: GenMessage<ListOfFieldValue, ListOfFieldValueJson> = /*@__PURE__*/
+  messageDesc(file_common_fields, 7);
+
+/**
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptor
  */
 export type ListOfFieldDescriptor = Message<"io.clbs.openhes.models.common.ListOfFieldDescriptor"> & {
@@ -859,7 +935,7 @@ export type ListOfFieldDescriptorJson = {
  * Use `create(ListOfFieldDescriptorSchema)` to create a new message.
  */
 export const ListOfFieldDescriptorSchema: GenMessage<ListOfFieldDescriptor, ListOfFieldDescriptorJson> = /*@__PURE__*/
-  messageDesc(file_common_fields, 6);
+  messageDesc(file_common_fields, 8);
 
 /**
  * The filter operator.
