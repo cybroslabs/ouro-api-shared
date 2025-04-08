@@ -716,6 +716,11 @@ message ListOfConnectionInfo {
     int32 total_count                   = 2;  // The total number of items.
 }
 
+// Addon
+message FieldValuesList {
+    repeated common.FieldValues items = 1;  // The list of field values.
+}
+
 // Job statuses
 enum JobStatusCode {
     // The job is waiting in the queue
