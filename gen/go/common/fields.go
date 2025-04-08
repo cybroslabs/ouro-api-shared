@@ -1,11 +1,14 @@
 package common
 
 import (
+	"errors"
 	"fmt"
+	"regexp"
 	"slices"
 	"strconv"
 	"strings"
 
+	"github.com/pkg/errors"
 	"github.com/rmg/iso4217"
 )
 
@@ -237,4 +240,123 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 	}
 	fd.ensureValidation().SetOptions(tmp)
 	return fd
+}
+
+func (fd *FieldDescriptor) Validate(value *FieldValue) error {
+	if fd == nil {
+		return nil
+	}
+
+	switch fd.GetDataType() {
+	case FieldDataType_TEXT:
+		if value.WhichKind() != FieldValue_StringValue_case {
+			return errors.New("The value must be a string")
+		}
+		if validation := fd.GetValidation(); validation != nil {
+			if validation.HasMaxLength() && (len(value.GetStringValue()) > int(validation.GetMaxLength())) {
+				return errors.New("The value is too long")
+			}
+			if validation.HasMinLength() && (len(value.GetStringValue()) < int(validation.GetMinLength())) {
+				return errors.New("The value is too short")
+			}
+			if validation.HasRe() {
+				if re, err := regexp.Compile(validation.GetRe()); err == nil && !re.MatchString(value.GetStringValue()) {
+					return errors.New("The value does not match the regular expression format")
+				}
+			}
+		}
+
+	case FieldDataType_INTEGER:
+		if value.WhichKind() != FieldValue_IntegerValue_case {
+			return errors.New("The value must be an integer")
+		}
+		if validation := fd.GetValidation(); validation != nil {
+			if validation.HasMaxInteger() && (value.GetIntegerValue() > validation.GetMaxInteger()) {
+				return errors.New("The value is too high")
+			}
+			if validation.HasMinInteger() && (value.GetIntegerValue() > validation.GetMinInteger()) {
+				return errors.New("The value is too low")
+			}
+			if validation.HasRe() {
+				if re, err := regexp.Compile(validation.GetRe()); err == nil && !re.MatchString(fmt.Sprintf("%d", value.GetIntegerValue())) {
+					return errors.New("The value does not match the regular expression format")
+				}
+			}
+		}
+
+	case FieldDataType_DOUBLE:
+		if value.WhichKind() != FieldValue_DoubleValue_case {
+			return errors.New("The value must be a number")
+		}
+		if validation := fd.GetValidation(); validation != nil {
+			if validation.HasMaxNumber() && (value.GetDoubleValue() > validation.GetMaxNumber()) {
+				return errors.New("The value is too high")
+			}
+			if validation.HasMinNumber() && (value.GetDoubleValue() > validation.GetMinNumber()) {
+				return errors.New("The value is too low")
+			}
+			if validation.HasRe() {
+				if re, err := regexp.Compile(validation.GetRe()); err == nil && !re.MatchString(fmt.Sprintf("%f", value.GetDoubleValue())) {
+					return errors.New("The value does not match the regular expression format")
+				}
+			}
+		}
+
+	case FieldDataType_DURATION:
+		if value.WhichKind() != FieldValue_DurationValue_case {
+			return errors.New("The value must be a duration")
+		}
+
+	case FieldDataType_BOOLEAN:
+		if value.WhichKind() != FieldValue_BoolValue_case {
+			return errors.New("The value must be a boolean")
+		}
+
+	case FieldDataType_TIMESTAMP:
+		if value.WhichKind() != FieldValue_DateValue_case {
+			return errors.New("The value must be a date")
+		}
+
+	case FieldDataType_BINARY:
+		if value.WhichKind() != FieldValue_BinaryValue_case {
+		}
+
+	default:
+		return errors.ErrUnsupported
+	}
+
+	return nil
+}
+
+// The method validates the field values against the field descriptors.
+// It returns an error if any of the field values are invalid or if any required fields are missing.
+// It also sets the default values for any fields that are not present in the values map.
+func ValidateFields(descriptors []*FieldDescriptor, values map[string]*FieldValue) error {
+	fd_map := make(map[string]*FieldDescriptor, len(descriptors))
+	for _, fd := range descriptors {
+		fd_map[fd.GetFieldId()] = fd
+	}
+
+	for field_id, field := range values {
+		fd, ok := fd_map[field_id]
+		if !ok {
+			return fmt.Errorf("Field %s is not defined", field_id)
+		}
+		if err := fd.Validate(field); err != nil {
+			return fmt.Errorf("Field %s: %w", field_id, err)
+		}
+		delete(fd_map, field_id)
+	}
+
+	for field_id, descriptor := range fd_map {
+		if descriptor.HasDefaultValue() {
+			values[field_id] = descriptor.GetDefaultValue()
+			continue
+		}
+		if descriptor.GetRequired() {
+			return fmt.Errorf("Field %s is required", field_id)
+		}
+	}
+
+	return nil
 }
