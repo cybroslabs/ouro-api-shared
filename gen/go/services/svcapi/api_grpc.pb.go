@@ -52,6 +52,7 @@ const (
 	ApiService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	ApiService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
 	ApiService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
+	ApiService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateCommunicationUnit"
 	ApiService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
 	ApiService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
 	ApiService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
@@ -175,6 +176,10 @@ type ApiServiceClient interface {
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(ctx context.Context, in *acquisition.CommunicationUnit, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -596,6 +601,16 @@ func (c *apiServiceClient) CreateCommunicationUnit(ctx context.Context, in *acqu
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_CreateCommunicationUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateCommunicationUnit(ctx context.Context, in *acquisition.CommunicationUnit, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1103,6 +1118,10 @@ type ApiServiceServer interface {
 	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
@@ -1331,6 +1350,9 @@ func (UnimplementedApiServiceServer) GetDriver(context.Context, *wrapperspb.Stri
 }
 func (UnimplementedApiServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCommunicationUnit not implemented")
 }
 func (UnimplementedApiServiceServer) ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnits not implemented")
@@ -1967,6 +1989,24 @@ func _ApiService_CreateCommunicationUnit_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).CreateCommunicationUnit(ctx, req.(*acquisition.CreateCommunicationUnitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CommunicationUnit)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateCommunicationUnit(ctx, req.(*acquisition.CommunicationUnit))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2745,6 +2785,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCommunicationUnit",
 			Handler:    _ApiService_CreateCommunicationUnit_Handler,
+		},
+		{
+			MethodName: "UpdateCommunicationUnit",
+			Handler:    _ApiService_UpdateCommunicationUnit_Handler,
 		},
 		{
 			MethodName: "ListCommunicationUnits",

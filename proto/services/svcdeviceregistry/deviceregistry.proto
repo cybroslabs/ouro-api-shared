@@ -42,8 +42,14 @@ service DeviceRegistryService {
     // The method called by the RestApi to get the driver templates.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
+    // @group: Devices
+    // @tag: communicationunit
     // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
     rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
+    // @group: Devices
+    // @tag: communicationunit
+    // The method updates the communication unit. The parameter contains the communication unit specification.
+    rpc UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -66,6 +72,8 @@ service DeviceRegistryService {
     // @tag: communicationbus
     rpc RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) returns (google.protobuf.Empty);
 
+    // @group: Devices
+    // @tag: device
     // The method called by the RestAPI to register a new device. The parameter contains the device specification.
     rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices

@@ -44,6 +44,7 @@ const (
 	DeviceRegistryService_CreateDriver_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDriver"
 	DeviceRegistryService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver"
 	DeviceRegistryService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
+	DeviceRegistryService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateCommunicationUnit"
 	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
 	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
@@ -111,8 +112,14 @@ type DeviceRegistryServiceClient interface {
 	CreateDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(ctx context.Context, in *acquisition.CommunicationUnit, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -133,6 +140,8 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationbus
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -410,6 +419,16 @@ func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Contex
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateCommunicationUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) UpdateCommunicationUnit(ctx context.Context, in *acquisition.CommunicationUnit, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -805,8 +824,14 @@ type DeviceRegistryServiceServer interface {
 	CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -827,6 +852,8 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationbus
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
 	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -969,6 +996,9 @@ func (UnimplementedDeviceRegistryServiceServer) GetDriver(context.Context, *wrap
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnits not implemented")
@@ -1452,6 +1482,24 @@ func _DeviceRegistryService_CreateCommunicationUnit_Handler(srv interface{}, ctx
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).CreateCommunicationUnit(ctx, req.(*acquisition.CreateCommunicationUnitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_UpdateCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CommunicationUnit)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateCommunicationUnit(ctx, req.(*acquisition.CommunicationUnit))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2165,6 +2213,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCommunicationUnit",
 			Handler:    _DeviceRegistryService_CreateCommunicationUnit_Handler,
+		},
+		{
+			MethodName: "UpdateCommunicationUnit",
+			Handler:    _DeviceRegistryService_UpdateCommunicationUnit_Handler,
 		},
 		{
 			MethodName: "ListCommunicationUnits",

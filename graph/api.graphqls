@@ -1716,6 +1716,7 @@ type Query {
   addDeviceConfigurationRegisterToDeviceConfigurationTemplate: Empty
   removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate: Empty
   createCommunicationUnit: StringValue
+  updateCommunicationUnit: Empty
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
   createCommunicationBus: StringValue

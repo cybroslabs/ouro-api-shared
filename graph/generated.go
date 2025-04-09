@@ -819,6 +819,7 @@ type ComplexityRoot struct {
 		RemoveDevicesFromGroup                                           func(childComplexity int) int
 		SetConfig                                                        func(childComplexity int) int
 		SetDeviceCommunicationUnits                                      func(childComplexity int) int
+		UpdateCommunicationUnit                                          func(childComplexity int) int
 		UpdateDevice                                                     func(childComplexity int) int
 		UpdateDeviceConfigurationRegister                                func(childComplexity int) int
 		UpdateDeviceConfigurationTemplate                                func(childComplexity int) int
@@ -983,6 +984,7 @@ type QueryResolver interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error)
 	CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error)
+	UpdateCommunicationUnit(ctx context.Context) (*model.Empty, error)
 	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
 	CreateCommunicationBus(ctx context.Context) (*model.StringValue, error)
@@ -4028,6 +4030,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.SetDeviceCommunicationUnits(childComplexity), true
+
+	case "Query.updateCommunicationUnit":
+		if e.complexity.Query.UpdateCommunicationUnit == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateCommunicationUnit(childComplexity), true
 
 	case "Query.updateDevice":
 		if e.complexity.Query.UpdateDevice == nil {
@@ -22415,6 +22424,51 @@ func (ec *executionContext) fieldContext_Query_createCommunicationUnit(_ context
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_updateCommunicationUnit(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateCommunicationUnit(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateCommunicationUnit(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_listCommunicationUnits(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_listCommunicationUnits(ctx, field)
 	if err != nil {
@@ -34300,6 +34354,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_createCommunicationUnit(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateCommunicationUnit":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateCommunicationUnit(ctx, field)
 				return res
 			}
 

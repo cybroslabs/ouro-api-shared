@@ -115,6 +115,9 @@ const (
 	// ApiServiceCreateCommunicationUnitProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationUnit RPC.
 	ApiServiceCreateCommunicationUnitProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
+	// ApiServiceUpdateCommunicationUnitProcedure is the fully-qualified name of the ApiService's
+	// UpdateCommunicationUnit RPC.
+	ApiServiceUpdateCommunicationUnitProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateCommunicationUnit"
 	// ApiServiceListCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
 	// ListCommunicationUnits RPC.
 	ApiServiceListCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
@@ -300,6 +303,10 @@ type ApiServiceClient interface {
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *connect.Request[acquisition.CreateCommunicationUnitRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(context.Context, *connect.Request[acquisition.CommunicationUnit]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -618,6 +625,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnit")),
 			connect.WithClientOptions(opts...),
 		),
+		updateCommunicationUnit: connect.NewClient[acquisition.CommunicationUnit, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateCommunicationUnitProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateCommunicationUnit")),
+			connect.WithClientOptions(opts...),
+		),
 		listCommunicationUnits: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnit](
 			httpClient,
 			baseURL+ApiServiceListCommunicationUnitsProcedure,
@@ -879,6 +892,7 @@ type apiServiceClient struct {
 	listDrivers                                                      *connect.Client[common.ListSelector, acquisition.ListOfDriver]
 	getDriver                                                        *connect.Client[wrapperspb.StringValue, acquisition.Driver]
 	createCommunicationUnit                                          *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
+	updateCommunicationUnit                                          *connect.Client[acquisition.CommunicationUnit, emptypb.Empty]
 	listCommunicationUnits                                           *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
 	getCommunicationUnit                                             *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
 	createCommunicationBus                                           *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
@@ -1069,6 +1083,11 @@ func (c *apiServiceClient) GetDriver(ctx context.Context, req *connect.Request[w
 // CreateCommunicationUnit calls io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnit.
 func (c *apiServiceClient) CreateCommunicationUnit(ctx context.Context, req *connect.Request[acquisition.CreateCommunicationUnitRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.createCommunicationUnit.CallUnary(ctx, req)
+}
+
+// UpdateCommunicationUnit calls io.clbs.openhes.services.svcapi.ApiService.UpdateCommunicationUnit.
+func (c *apiServiceClient) UpdateCommunicationUnit(ctx context.Context, req *connect.Request[acquisition.CommunicationUnit]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateCommunicationUnit.CallUnary(ctx, req)
 }
 
 // ListCommunicationUnits calls io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnits.
@@ -1345,6 +1364,10 @@ type ApiServiceHandler interface {
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
 	CreateCommunicationUnit(context.Context, *connect.Request[acquisition.CreateCommunicationUnitRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method updates the communication unit. The parameter contains the communication unit specification.
+	UpdateCommunicationUnit(context.Context, *connect.Request[acquisition.CommunicationUnit]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
@@ -1659,6 +1682,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateCommunicationUnit")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceUpdateCommunicationUnitHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateCommunicationUnitProcedure,
+		svc.UpdateCommunicationUnit,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateCommunicationUnit")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceListCommunicationUnitsHandler := connect.NewUnaryHandler(
 		ApiServiceListCommunicationUnitsProcedure,
 		svc.ListCommunicationUnits,
@@ -1945,6 +1974,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDriverHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationUnitProcedure:
 			apiServiceCreateCommunicationUnitHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateCommunicationUnitProcedure:
+			apiServiceUpdateCommunicationUnitHandler.ServeHTTP(w, r)
 		case ApiServiceListCommunicationUnitsProcedure:
 			apiServiceListCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetCommunicationUnitProcedure:
@@ -2140,6 +2171,10 @@ func (UnimplementedApiServiceHandler) GetDriver(context.Context, *connect.Reques
 
 func (UnimplementedApiServiceHandler) CreateCommunicationUnit(context.Context, *connect.Request[acquisition.CreateCommunicationUnitRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnit is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateCommunicationUnit(context.Context, *connect.Request[acquisition.CommunicationUnit]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateCommunicationUnit is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListCommunicationUnits(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnit], error) {

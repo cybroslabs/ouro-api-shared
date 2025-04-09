@@ -106,6 +106,10 @@ service ApiService {
     rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: communicationunit
+    // The method updates the communication unit. The parameter contains the communication unit specification.
+    rpc UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc ListCommunicationUnits(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
     // @group: Devices

@@ -11,6 +11,16 @@ CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUn
 - Input: [`io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest`](model-io-clbs-openhes-models-acquisition-createcommunicationunitrequest.md)
 - Output: `google.protobuf.StringValue`
 
+## UpdateCommunicationUnit
+
+The method updates the communication unit. The parameter contains the communication unit specification.
+
+```proto
+UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit)
+```
+
+- Input: [`io.clbs.openhes.models.acquisition.CommunicationUnit`](model-io-clbs-openhes-models-acquisition-communicationunit.md)
+
 ## ListCommunicationUnits
 
 The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.

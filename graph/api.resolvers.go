@@ -126,6 +126,11 @@ func (r *queryResolver) CreateCommunicationUnit(ctx context.Context) (*model.Str
 	panic(fmt.Errorf("not implemented: CreateCommunicationUnit - createCommunicationUnit"))
 }
 
+// UpdateCommunicationUnit is the resolver for the updateCommunicationUnit field.
+func (r *queryResolver) UpdateCommunicationUnit(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateCommunicationUnit - updateCommunicationUnit"))
+}
+
 // ListCommunicationUnits is the resolver for the listCommunicationUnits field.
 func (r *queryResolver) ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error) {
 	panic(fmt.Errorf("not implemented: ListCommunicationUnits - listCommunicationUnits"))

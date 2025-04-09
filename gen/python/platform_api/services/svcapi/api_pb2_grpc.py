@@ -160,6 +160,11 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.CreateCommunicationUnitRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                 _registered_method=True)
+        self.UpdateCommunicationUnit = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateCommunicationUnit',
+                request_serializer=acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.ListCommunicationUnits = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -572,6 +577,15 @@ class ApiServiceServicer(object):
         """@group: Devices
         @tag: communicationunit
         The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateCommunicationUnit(self, request, context):
+        """@group: Devices
+        @tag: communicationunit
+        The method updates the communication unit. The parameter contains the communication unit specification.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1046,6 +1060,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.CreateCommunicationUnit,
                     request_deserializer=acquisition_dot_main__pb2.CreateCommunicationUnitRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'UpdateCommunicationUnit': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateCommunicationUnit,
+                    request_deserializer=acquisition_dot_shared__pb2.CommunicationUnit.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'ListCommunicationUnits': grpc.unary_unary_rpc_method_handler(
                     servicer.ListCommunicationUnits,
@@ -1995,6 +2014,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit',
             acquisition_dot_main__pb2.CreateCommunicationUnitRequest.SerializeToString,
             google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateCommunicationUnit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateCommunicationUnit',
+            acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
