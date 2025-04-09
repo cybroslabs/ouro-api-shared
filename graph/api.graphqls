@@ -758,6 +758,8 @@ type DataLinkTemplate {
   linkProtocol: DataLinkProtocol
   # The list of application protocol identifiers supported by the driver.
   appProtocolRefs: [ApplicationProtocol]
+  # The list of attribute definitions related to given data link type (see link_protocol property). The field definitions are taken from the system, drivers must leave this empty.
+  attributes: [FieldDescriptor]
 }
 
 type Device {

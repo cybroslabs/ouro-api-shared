@@ -333,6 +333,8 @@ message DataLinkTemplate {
     DataLinkProtocol link_protocol = 1;
     // The list of application protocol identifiers supported by the driver.
     repeated ApplicationProtocol app_protocol_refs = 2;
+    // The list of attribute definitions related to given data link type (see link_protocol property). The field definitions are taken from the system, drivers must leave this empty.
+    repeated common.FieldDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.

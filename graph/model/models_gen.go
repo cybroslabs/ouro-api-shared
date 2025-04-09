@@ -265,6 +265,7 @@ type CreateVariableRequest struct {
 type DataLinkTemplate struct {
 	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
 	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
+	Attributes      []*FieldDescriptor     `json:"attributes,omitempty"`
 }
 
 type Date struct {
