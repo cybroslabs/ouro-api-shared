@@ -330,7 +330,10 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 // The method validates the field values against the field descriptors.
 // It returns an error if any of the field values are invalid or if any required fields are missing.
 // It also sets the default values for any fields that are not present in the values map.
-func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldValue) error {
+// If the values map is nil, it will be initialized with the default values for all fields that have them and the initialized flag will be set to true.
+func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldValue) (initialized bool, err error) {
+	initialized = false
+
 	fd_map := make(map[string]*FieldDescriptor, len(descriptors))
 	for _, fd := range descriptors {
 		fd_map[fd.GetFieldId()] = fd
@@ -340,10 +343,10 @@ func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldVal
 		for field_id, field := range *values {
 			fd, ok := fd_map[field_id]
 			if !ok {
-				return fmt.Errorf("field %s is not defined", field_id)
+				return false, fmt.Errorf("field %s is not defined", field_id)
 			}
 			if err := fd.Validate(field); err != nil {
-				return fmt.Errorf("field %s: %w", field_id, err)
+				return false, fmt.Errorf("field %s: %w", field_id, err)
 			}
 			delete(fd_map, field_id)
 		}
@@ -352,6 +355,7 @@ func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldVal
 	for field_id, descriptor := range fd_map {
 		if descriptor.HasDefaultValue() {
 			if values == nil {
+				initialized = true
 				values = &map[string]*FieldValue{
 					field_id: descriptor.GetDefaultValue(),
 				}
@@ -361,9 +365,9 @@ func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldVal
 			continue
 		}
 		if descriptor.GetRequired() {
-			return fmt.Errorf("field %s is required", field_id)
+			return initialized, fmt.Errorf("field %s is required", field_id)
 		}
 	}
 
-	return nil
+	return
 }
