@@ -332,31 +332,31 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 // It also sets the default values for any fields that are not present in the values map.
 // If the values map is nil, it will be initialized with the default values for all fields that have them and the initialized flag will be set to true.
 func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldValue) (initialized bool, err error) {
-	initialized = false
+	if values == nil {
+		return false, errors.New("unable to validate nil value map")
+	}
 
 	fd_map := make(map[string]*FieldDescriptor, len(descriptors))
 	for _, fd := range descriptors {
 		fd_map[fd.GetFieldId()] = fd
 	}
 
-	if values != nil {
-		for field_id, field := range *values {
-			fd, ok := fd_map[field_id]
-			if !ok {
-				return false, fmt.Errorf("field %s is not defined", field_id)
-			}
-			if err := fd.Validate(field); err != nil {
-				return false, fmt.Errorf("field %s: %w", field_id, err)
-			}
-			delete(fd_map, field_id)
+	for field_id, field := range *values {
+		fd, ok := fd_map[field_id]
+		if !ok {
+			return false, fmt.Errorf("field %s is not defined", field_id)
 		}
+		if err := fd.Validate(field); err != nil {
+			return false, fmt.Errorf("field %s: %w", field_id, err)
+		}
+		delete(fd_map, field_id)
 	}
 
 	for field_id, descriptor := range fd_map {
 		if descriptor.HasDefaultValue() {
-			if values == nil {
+			if *values == nil {
 				initialized = true
-				values = &map[string]*FieldValue{
+				*values = map[string]*FieldValue{
 					field_id: descriptor.GetDefaultValue(),
 				}
 			} else {
