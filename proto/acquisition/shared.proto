@@ -226,16 +226,16 @@ message ConnectionInfo {
         ConnectionTypeModemPool modem_pool            = 2;  // The phone connection type.
         ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial over IP connection type.
     }
-    DataLinkProtocol link_protocol            = 4;  // The data link protocol.
-    string communication_bus_id               = 5;  // The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
-    map<string, common.FieldValue> attributes = 6;  // The connection attributes, see GetDataLinkFields in the acquisition package.
+    DataLinkProtocol link_protocol            = 4 [features.field_presence = LEGACY_REQUIRED];  // The data link protocol.
+    string communication_bus_id               = 5;                                              // The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
+    map<string, common.FieldValue> attributes = 6;                                              // The connection attributes, see GetDataLinkFields in the acquisition package.
 }
 
 // Sub-message containing connection info for TCP connection type
 message ConnectionTypeDirectTcpIp {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for TCP/IP connection.
+    string host                      = 1 [features.field_presence = LEGACY_REQUIRED];  // The host name or IP address of the device to connect to.
+    uint32 port                      = 2 [features.field_presence = LEGACY_REQUIRED];  // The TCP port number of the device to connect to.
+    google.protobuf.Duration timeout = 3;                                              // The timeout for TCP/IP connection.
 }
 
 // Sub-message containing connection info for phone line (modem) connection type
@@ -249,24 +249,24 @@ message ConnectionTypeModemPool {
 }
 
 message ConnectionTypeSerialDirect {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for direct serial port connection.
+    string host                      = 1 [features.field_presence = LEGACY_REQUIRED];  // The host name or IP address of the device to connect to.
+    uint32 port                      = 2 [features.field_presence = LEGACY_REQUIRED];  // The TCP port number of the device to connect to.
+    google.protobuf.Duration timeout = 3;                                              // The timeout for direct serial port connection.
 }
 
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
 message ConnectionTypeSerialMoxa {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 dataPort                  = 2;  // The TCP port number of the device to connect to - data port.
-    uint32 command_port              = 3;  // The TCP port number of the device to connect to - command port.
-    google.protobuf.Duration timeout = 4;  // The timeout for serial port connection that implements the Moxa protocol.
+    string host                      = 1 [features.field_presence = LEGACY_REQUIRED];  // The host name or IP address of the device to connect to.
+    uint32 dataPort                  = 2 [features.field_presence = LEGACY_REQUIRED];  // The TCP port number of the device to connect to - data port.
+    uint32 command_port              = 3 [features.field_presence = LEGACY_REQUIRED];  // The TCP port number of the device to connect to - command port.
+    google.protobuf.Duration timeout = 4;                                              // The timeout for serial port connection that implements the Moxa protocol.
 }
 
 // Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
 message ConnectionTypeSerialRfc2217 {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for serial port connection that implements the RFC 2217 protocol.
+    string host                      = 1 [features.field_presence = LEGACY_REQUIRED];  // The host name or IP address of the device to connect to.
+    uint32 port                      = 2 [features.field_presence = LEGACY_REQUIRED];  // The TCP port number of the device to connect to.
+    google.protobuf.Duration timeout = 3;                                              // The timeout for serial port connection that implements the RFC 2217 protocol.
 }
 
 // Connection types

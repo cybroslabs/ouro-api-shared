@@ -3641,7 +3641,7 @@ func (b0 SerialConfig_builder) Build() *SerialConfig {
 type ConnectionInfo struct {
 	state                         protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Connection         isConnectionInfo_Connection   `protobuf_oneof:"connection"`
-	xxx_hidden_LinkProtocol       DataLinkProtocol              `protobuf:"varint,4,opt,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
+	xxx_hidden_LinkProtocol       DataLinkProtocol              `protobuf:"varint,4,req,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
 	xxx_hidden_CommunicationBusId *string                       `protobuf:"bytes,5,opt,name=communication_bus_id,json=communicationBusId"`
 	xxx_hidden_Attributes         map[string]*common.FieldValue `protobuf:"bytes,6,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	XXX_raceDetectHookData        protoimpl.RaceDetectHookData
@@ -3939,8 +3939,8 @@ func (*connectionInfo_SerialOverIp) isConnectionInfo_Connection() {}
 // Sub-message containing connection info for TCP connection type
 type ConnectionTypeDirectTcpIp struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
-	xxx_hidden_Port        uint32                 `protobuf:"varint,2,opt,name=port"`
+	xxx_hidden_Host        *string                `protobuf:"bytes,1,req,name=host"`
+	xxx_hidden_Port        uint32                 `protobuf:"varint,2,req,name=port"`
 	xxx_hidden_Timeout     *durationpb.Duration   `protobuf:"bytes,3,opt,name=timeout"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -4212,8 +4212,8 @@ func (b0 ConnectionTypeModemPool_builder) Build() *ConnectionTypeModemPool {
 
 type ConnectionTypeSerialDirect struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
-	xxx_hidden_Port        uint32                 `protobuf:"varint,2,opt,name=port"`
+	xxx_hidden_Host        *string                `protobuf:"bytes,1,req,name=host"`
+	xxx_hidden_Port        uint32                 `protobuf:"varint,2,req,name=port"`
 	xxx_hidden_Timeout     *durationpb.Duration   `protobuf:"bytes,3,opt,name=timeout"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -4346,9 +4346,9 @@ func (b0 ConnectionTypeSerialDirect_builder) Build() *ConnectionTypeSerialDirect
 // Sub-message containing connection info for controlled-serial line (Moxa) connection type
 type ConnectionTypeSerialMoxa struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
-	xxx_hidden_DataPort    uint32                 `protobuf:"varint,2,opt,name=dataPort"`
-	xxx_hidden_CommandPort uint32                 `protobuf:"varint,3,opt,name=command_port,json=commandPort"`
+	xxx_hidden_Host        *string                `protobuf:"bytes,1,req,name=host"`
+	xxx_hidden_DataPort    uint32                 `protobuf:"varint,2,req,name=dataPort"`
+	xxx_hidden_CommandPort uint32                 `protobuf:"varint,3,req,name=command_port,json=commandPort"`
 	xxx_hidden_Timeout     *durationpb.Duration   `protobuf:"bytes,4,opt,name=timeout"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -4510,8 +4510,8 @@ func (b0 ConnectionTypeSerialMoxa_builder) Build() *ConnectionTypeSerialMoxa {
 // Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
 type ConnectionTypeSerialRfc2217 struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
-	xxx_hidden_Port        uint32                 `protobuf:"varint,2,opt,name=port"`
+	xxx_hidden_Host        *string                `protobuf:"bytes,1,req,name=host"`
+	xxx_hidden_Port        uint32                 `protobuf:"varint,2,req,name=port"`
 	xxx_hidden_Timeout     *durationpb.Duration   `protobuf:"bytes,3,opt,name=timeout"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -11502,13 +11502,13 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\tbaud_rate\x18\x01 \x01(\x0e28.io.clbs.openhes.models.acquisition.SerialConfigBaudRateR\bbaudRate\x12N\n" +
 	"\x06parity\x18\x02 \x01(\x0e26.io.clbs.openhes.models.acquisition.SerialConfigParityR\x06parity\x12U\n" +
 	"\tdata_bits\x18\x03 \x01(\x0e28.io.clbs.openhes.models.acquisition.SerialConfigDataBitsR\bdataBits\x12U\n" +
-	"\tstop_bits\x18\x04 \x01(\x0e28.io.clbs.openhes.models.acquisition.SerialConfigStopBitsR\bstopBits\"\x9a\x05\n" +
+	"\tstop_bits\x18\x04 \x01(\x0e28.io.clbs.openhes.models.acquisition.SerialConfigStopBitsR\bstopBits\"\xa1\x05\n" +
 	"\x0eConnectionInfo\x12U\n" +
 	"\x05tcpip\x18\x01 \x01(\v2=.io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIpH\x00R\x05tcpip\x12\\\n" +
 	"\n" +
 	"modem_pool\x18\x02 \x01(\v2;.io.clbs.openhes.models.acquisition.ConnectionTypeModemPoolH\x00R\tmodemPool\x12j\n" +
-	"\x0eserial_over_ip\x18\x03 \x01(\v2B.io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerialH\x00R\fserialOverIp\x12Y\n" +
-	"\rlink_protocol\x18\x04 \x01(\x0e24.io.clbs.openhes.models.acquisition.DataLinkProtocolR\flinkProtocol\x120\n" +
+	"\x0eserial_over_ip\x18\x03 \x01(\v2B.io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerialH\x00R\fserialOverIp\x12`\n" +
+	"\rlink_protocol\x18\x04 \x01(\x0e24.io.clbs.openhes.models.acquisition.DataLinkProtocolB\x05\xaa\x01\x02\b\x03R\flinkProtocol\x120\n" +
 	"\x14communication_bus_id\x18\x05 \x01(\tR\x12communicationBusId\x12b\n" +
 	"\n" +
 	"attributes\x18\x06 \x03(\v2B.io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntryR\n" +
@@ -11517,27 +11517,27 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01B\f\n" +
 	"\n" +
-	"connection\"x\n" +
-	"\x19ConnectionTypeDirectTcpIp\x12\x12\n" +
-	"\x04host\x18\x01 \x01(\tR\x04host\x12\x12\n" +
-	"\x04port\x18\x02 \x01(\rR\x04port\x123\n" +
+	"connection\"\x86\x01\n" +
+	"\x19ConnectionTypeDirectTcpIp\x12\x19\n" +
+	"\x04host\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\x04host\x12\x19\n" +
+	"\x04port\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\x04port\x123\n" +
 	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\x8f\x01\n" +
 	"\x17ConnectionTypeModemPool\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\tR\x06number\x12\x17\n" +
 	"\apool_id\x18\x02 \x01(\tR\x06poolId\x12C\n" +
-	"\x05modem\x18\x04 \x01(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x05modem\"y\n" +
-	"\x1aConnectionTypeSerialDirect\x12\x12\n" +
-	"\x04host\x18\x01 \x01(\tR\x04host\x12\x12\n" +
-	"\x04port\x18\x02 \x01(\rR\x04port\x123\n" +
-	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xa2\x01\n" +
-	"\x18ConnectionTypeSerialMoxa\x12\x12\n" +
-	"\x04host\x18\x01 \x01(\tR\x04host\x12\x1a\n" +
-	"\bdataPort\x18\x02 \x01(\rR\bdataPort\x12!\n" +
-	"\fcommand_port\x18\x03 \x01(\rR\vcommandPort\x123\n" +
-	"\atimeout\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"z\n" +
-	"\x1bConnectionTypeSerialRfc2217\x12\x12\n" +
-	"\x04host\x18\x01 \x01(\tR\x04host\x12\x12\n" +
-	"\x04port\x18\x02 \x01(\rR\x04port\x123\n" +
+	"\x05modem\x18\x04 \x01(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x05modem\"\x87\x01\n" +
+	"\x1aConnectionTypeSerialDirect\x12\x19\n" +
+	"\x04host\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\x04host\x12\x19\n" +
+	"\x04port\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\x04port\x123\n" +
+	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xb7\x01\n" +
+	"\x18ConnectionTypeSerialMoxa\x12\x19\n" +
+	"\x04host\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\x04host\x12!\n" +
+	"\bdataPort\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\bdataPort\x12(\n" +
+	"\fcommand_port\x18\x03 \x01(\rB\x05\xaa\x01\x02\b\x03R\vcommandPort\x123\n" +
+	"\atimeout\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\x88\x01\n" +
+	"\x1bConnectionTypeSerialRfc2217\x12\x19\n" +
+	"\x04host\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\x04host\x12\x19\n" +
+	"\x04port\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\x04port\x123\n" +
 	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xc2\x01\n" +
 	"\x1bApplicationProtocolTemplate\x12S\n" +
 	"\bprotocol\x18\x01 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\bprotocol\x12N\n" +
