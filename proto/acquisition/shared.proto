@@ -116,7 +116,7 @@ message JobDevice {
     string job_id                                    = 1;  // The device's job identifier within the parent bulk.
     string device_id                                 = 2;  // The device identifier. If set then all below is loaded from the device registry.
     string external_id                               = 3;  // The external identifier.
-    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes to the device.
+    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes to the device, see options in the ApplicationProtocolTemplate for given application protocol (see app_protocol property).
     repeated ConnectionInfo connection_info          = 5;  // The connection (device) parameters.
     ApplicationProtocol app_protocol                 = 6;  // The application protocol.
     string timezone                                  = 7;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
@@ -228,7 +228,7 @@ message ConnectionInfo {
     }
     DataLinkProtocol link_protocol            = 4;  // The data link protocol.
     string communication_bus_id               = 5;  // The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
-    map<string, common.FieldValue> attributes = 6;  // The connection attributes, see options in the DataLinkTemplate for given link_protocol.
+    map<string, common.FieldValue> attributes = 6;  // The connection attributes, see GetDataLinkFields in the acquisition package.
 }
 
 // Sub-message containing connection info for TCP connection type
@@ -321,12 +321,10 @@ enum ApplicationProtocol {
 
 // Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 message ApplicationProtocolTemplate {
-    // Unique identifier of the application protocol.
-    string id = 1;
     // The application protocol.
-    ApplicationProtocol protocol = 2;
-    // The list of attribute definitions for the protocol.
-    repeated common.FieldDescriptor attributes = 3;
+    ApplicationProtocol protocol = 1;
+    // The list of attribute definitions for the application protocol and those will be instantiated for each device & communication unit pair.
+    repeated common.FieldDescriptor attributes = 2;
 }
 
 // Sub-message containing destription for one data link protocol, e.g. HDLC.
@@ -335,8 +333,6 @@ message DataLinkTemplate {
     DataLinkProtocol link_protocol = 1;
     // The list of application protocol identifiers supported by the driver.
     repeated ApplicationProtocol app_protocol_refs = 2;
-    // The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
-    repeated common.FieldDescriptor attributes = 3;
 }
 
 // Sub-message containing destription for one communication type, e.g. TCP/IP.

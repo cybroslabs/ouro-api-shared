@@ -142,7 +142,6 @@ type ComplexityRoot struct {
 
 	ApplicationProtocolTemplate struct {
 		Attributes func(childComplexity int) int
-		ID         func(childComplexity int) int
 		Protocol   func(childComplexity int) int
 	}
 
@@ -302,7 +301,6 @@ type ComplexityRoot struct {
 
 	DataLinkTemplate struct {
 		AppProtocolRefs func(childComplexity int) int
-		Attributes      func(childComplexity int) int
 		LinkProtocol    func(childComplexity int) int
 	}
 
@@ -1308,13 +1306,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ApplicationProtocolTemplate.Attributes(childComplexity), true
 
-	case "ApplicationProtocolTemplate.id":
-		if e.complexity.ApplicationProtocolTemplate.ID == nil {
-			break
-		}
-
-		return e.complexity.ApplicationProtocolTemplate.ID(childComplexity), true
-
 	case "ApplicationProtocolTemplate.protocol":
 		if e.complexity.ApplicationProtocolTemplate.Protocol == nil {
 			break
@@ -1839,13 +1830,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.DataLinkTemplate.AppProtocolRefs(childComplexity), true
-
-	case "DataLinkTemplate.attributes":
-		if e.complexity.DataLinkTemplate.Attributes == nil {
-			break
-		}
-
-		return e.complexity.DataLinkTemplate.Attributes(childComplexity), true
 
 	case "DataLinkTemplate.linkProtocol":
 		if e.complexity.DataLinkTemplate.LinkProtocol == nil {
@@ -6347,47 +6331,6 @@ func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_deviceId(_ con
 	return fc, nil
 }
 
-func (ec *executionContext) _ApplicationProtocolTemplate_id(ctx context.Context, field graphql.CollectedField, obj *model.ApplicationProtocolTemplate) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ApplicationProtocolTemplate_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ApplicationProtocolTemplate",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ApplicationProtocolTemplate_protocol(ctx context.Context, field graphql.CollectedField, obj *model.ApplicationProtocolTemplate) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ApplicationProtocolTemplate_protocol(ctx, field)
 	if err != nil {
@@ -7686,8 +7629,6 @@ func (ec *executionContext) fieldContext_CommunicationTemplate_datalinks(_ conte
 				return ec.fieldContext_DataLinkTemplate_linkProtocol(ctx, field)
 			case "appProtocolRefs":
 				return ec.fieldContext_DataLinkTemplate_appProtocolRefs(ctx, field)
-			case "attributes":
-				return ec.fieldContext_DataLinkTemplate_attributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DataLinkTemplate", field.Name)
 		},
@@ -10083,81 +10024,6 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_appProtocolRefs(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _DataLinkTemplate_attributes(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DataLinkTemplate_attributes(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Attributes, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*model.FieldDescriptor)
-	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DataLinkTemplate",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "fieldId":
-				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
-			case "label":
-				return ec.fieldContext_FieldDescriptor_label(ctx, field)
-			case "dataType":
-				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
-			case "format":
-				return ec.fieldContext_FieldDescriptor_format(ctx, field)
-			case "unit":
-				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
-			case "precision":
-				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
-			case "tooltip":
-				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
-			case "required":
-				return ec.fieldContext_FieldDescriptor_required(ctx, field)
-			case "editable":
-				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
-			case "visible":
-				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
-			case "multiValue":
-				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
-			case "secured":
-				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
-			case "validation":
-				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
-			case "defaultValue":
-				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _Date_year(ctx context.Context, field graphql.CollectedField, obj *model.Date) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Date_year(ctx, field)
 	if err != nil {
@@ -12336,8 +12202,6 @@ func (ec *executionContext) fieldContext_DriverTemplates_appProtocols(_ context.
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_ApplicationProtocolTemplate_id(ctx, field)
 			case "protocol":
 				return ec.fieldContext_ApplicationProtocolTemplate_protocol(ctx, field)
 			case "attributes":
@@ -30074,8 +29938,6 @@ func (ec *executionContext) _ApplicationProtocolTemplate(ctx context.Context, se
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ApplicationProtocolTemplate")
-		case "id":
-			out.Values[i] = ec._ApplicationProtocolTemplate_id(ctx, field, obj)
 		case "protocol":
 			out.Values[i] = ec._ApplicationProtocolTemplate_protocol(ctx, field, obj)
 		case "attributes":
@@ -31182,8 +31044,6 @@ func (ec *executionContext) _DataLinkTemplate(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._DataLinkTemplate_linkProtocol(ctx, field, obj)
 		case "appProtocolRefs":
 			out.Values[i] = ec._DataLinkTemplate_appProtocolRefs(ctx, field, obj)
-		case "attributes":
-			out.Values[i] = ec._DataLinkTemplate_attributes(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

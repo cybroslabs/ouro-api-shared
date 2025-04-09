@@ -2341,21 +2341,6 @@
     <tr>
       <td>1</td>
       <td>
-        id
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>Unique identifier of the application protocol.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
         protocol
       </td>
       <td>
@@ -2370,7 +2355,7 @@
     </tr>
     
     <tr>
-      <td>3</td>
+      <td>2</td>
       <td>
         attributes
       </td>
@@ -2383,7 +2368,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of attribute definitions for the protocol.</p></td>
+      <td class="content"><p>The list of attribute definitions for the application protocol and those will be instantiated for each device &amp; communication unit pair.</p></td>
       
     </tr>
     
@@ -3293,7 +3278,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes, see options in the DataLinkTemplate for given link_protocol.</p></td>
+      <td class="content"><p>The connection attributes, see GetDataLinkFields in the acquisition package.</p></td>
       
     </tr>
     
@@ -4610,24 +4595,6 @@
         </code>
       </td>
       <td class="content"><p>The list of application protocol identifiers supported by the driver.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        attributes
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.common.FieldDescriptor">
-          
-            repeated
-          
-          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldDescriptor"><span title="io.clbs.openhes.models.common.FieldDescriptor">io.clbs.openhes.models.common.FieldDescriptor</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.</p></td>
       
     </tr>
     
@@ -7220,7 +7187,7 @@ then then system gets all registers defined for active device configuration temp
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes to the device.</p></td>
+      <td class="content"><p>The connection attributes to the device, see options in the ApplicationProtocolTemplate for given application protocol (see app_protocol property).</p></td>
       
     </tr>
     

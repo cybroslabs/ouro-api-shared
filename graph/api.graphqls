@@ -512,11 +512,9 @@ type AddDevicesToGroupRequest {
 
 # Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 type ApplicationProtocolTemplate {
-  # Unique identifier of the application protocol.
-  id: String
   # The application protocol.
   protocol: ApplicationProtocol
-  # The list of attribute definitions for the protocol.
+  # The list of attribute definitions for the application protocol and those will be instantiated for each device & communication unit pair.
   attributes: [FieldDescriptor]
 }
 
@@ -621,7 +619,7 @@ type ConnectionInfo {
   linkProtocol: DataLinkProtocol
   # The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.
   communicationBusId: String
-  # The connection attributes, see options in the DataLinkTemplate for given link_protocol.
+  # The connection attributes, see GetDataLinkFields in the acquisition package.
   attributes: [_mapFieldValue]
 }
 
@@ -760,8 +758,6 @@ type DataLinkTemplate {
   linkProtocol: DataLinkProtocol
   # The list of application protocol identifiers supported by the driver.
   appProtocolRefs: [ApplicationProtocol]
-  # The list of attribute definitions related to given data link type (see link_protocol property) and all those will be instantiated for each device.
-  attributes: [FieldDescriptor]
 }
 
 type Device {
@@ -1060,7 +1056,7 @@ type JobDevice {
   deviceId: String
   # The external identifier.
   externalId: String
-  # The connection attributes to the device.
+  # The connection attributes to the device, see options in the ApplicationProtocolTemplate for given application protocol (see app_protocol property).
   deviceAttributes: [_mapFieldValue]
   # The connection (device) parameters.
   connectionInfo: [ConnectionInfo]

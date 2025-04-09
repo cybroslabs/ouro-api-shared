@@ -104,7 +104,6 @@ type AddDevicesToGroupRequest struct {
 }
 
 type ApplicationProtocolTemplate struct {
-	ID         *string              `json:"id,omitempty"`
 	Protocol   *ApplicationProtocol `json:"protocol,omitempty"`
 	Attributes []*FieldDescriptor   `json:"attributes,omitempty"`
 }
@@ -266,7 +265,6 @@ type CreateVariableRequest struct {
 type DataLinkTemplate struct {
 	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
 	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
-	Attributes      []*FieldDescriptor     `json:"attributes,omitempty"`
 }
 
 type Date struct {
