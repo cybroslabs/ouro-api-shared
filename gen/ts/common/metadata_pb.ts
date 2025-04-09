@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIqUDCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EhMKBG5hbWUYBSABKAlCBaoBAggDGlgKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBGl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBQjBaLmdpdGh1Yi5jb20vY3licm9zbGFicy9oZXMtMi1hcGlzL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_google_protobuf_struct, file_common_fields]);
 
 /**
  * The metadata fields managed by user and system.
@@ -52,7 +52,7 @@ export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFiel
   /**
    * The name of the resource. It's mutable and typically set by user. Must be set.
    *
-   * @generated from field: string name = 5 [features.field_presence = LEGACY_REQUIRED];
+   * @generated from field: string name = 5;
    */
   name: string;
 };
@@ -94,7 +94,7 @@ export type MetadataFieldsJson = {
   /**
    * The name of the resource. It's mutable and typically set by user. Must be set.
    *
-   * @generated from field: string name = 5 [features.field_presence = LEGACY_REQUIRED];
+   * @generated from field: string name = 5;
    */
   name?: string;
 };

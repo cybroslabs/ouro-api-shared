@@ -54,7 +54,7 @@ enum Compression {
 
 // Sub-message containing job parameters
 message DlmsIn {
-    uint64 id = 1 [features.field_presence = LEGACY_REQUIRED];  // The request ID.
+    uint64 id = 1;  // The request ID.
     oneof request {
         DlmsInit init       = 2;  // The initialize request. It can be called only once, as the first request.
         DlmsSetup setup     = 3;  // The setup request. It sets generic parameters.
@@ -65,43 +65,43 @@ message DlmsIn {
 }
 
 message DlmsInit {
-    AuthenticatedEncryption encryption = 1 [features.field_presence = LEGACY_REQUIRED];  // The encryption mode.
-    DigitalSignature signature         = 2 [features.field_presence = LEGACY_REQUIRED];  // The digital signature mode.
-    Compression compression            = 4 [features.field_presence = LEGACY_REQUIRED];  // The compression mode.
-    string driver_id                   = 5 [features.field_presence = LEGACY_REQUIRED];  // The driver identifier.
-    string serial_number               = 6 [features.field_presence = LEGACY_REQUIRED];  // The serial number of the device.
-    string access_level                = 7 [features.field_presence = LEGACY_REQUIRED];  // The access level.
+    AuthenticatedEncryption encryption = 1;  // The encryption mode.
+    DigitalSignature signature         = 2;  // The digital signature mode.
+    Compression compression            = 4;  // The compression mode.
+    string driver_id                   = 5;  // The driver identifier.
+    string serial_number               = 6;  // The serial number of the device.
+    string access_level                = 7;  // The access level.
 }
 
 message DlmsSetup {
-    bytes system_title_c = 4 [features.field_presence = LEGACY_REQUIRED];  // The DLMS client system-title.
-    bytes system_title_s = 5 [features.field_presence = LEGACY_REQUIRED];  // The DLMS server system-title.
-    bytes s_to_c         = 6 [features.field_presence = LEGACY_REQUIRED];  // The StoC data.
-    bytes c_to_s         = 7 [features.field_presence = LEGACY_REQUIRED];  // The CtoS data.
+    bytes system_title_c = 4;  // The DLMS client system-title.
+    bytes system_title_s = 5;  // The DLMS server system-title.
+    bytes s_to_c         = 6;  // The StoC data.
+    bytes c_to_s         = 7;  // The CtoS data.
 }
 
 message DlmsOut {
-    uint64 id          = 1 [features.field_presence = LEGACY_REQUIRED];  // The request ID.
-    ErrorMessage error = 2;                                              // The error message, if any.
-    bytes data         = 3;                                              // The result of the operation.
+    uint64 id          = 1;  // The request ID.
+    ErrorMessage error = 2;  // The error message, if any.
+    bytes data         = 3;  // The result of the operation.
 }
 
 message DlmsEncrypt {
-    uint32 frame_counter    = 1 [features.field_presence = LEGACY_REQUIRED];  // The frame counter.
-    uint32 security_control = 2 [features.field_presence = LEGACY_REQUIRED];  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 3 [features.field_presence = LEGACY_REQUIRED];  // The data to be encrypted.
+    uint32 frame_counter    = 1;  // The frame counter.
+    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3;  // The data to be encrypted.
 }
 
 message DlmsDecrypt {
-    uint32 frame_counter    = 1 [features.field_presence = LEGACY_REQUIRED];  // The frame counter.
-    uint32 security_control = 2 [features.field_presence = LEGACY_REQUIRED];  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 3 [features.field_presence = LEGACY_REQUIRED];  // The data to be decrypted.
+    uint32 frame_counter    = 1;  // The frame counter.
+    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3;  // The data to be decrypted.
 }
 
 message DlmsHash {
-    Hash mode               = 1 [features.field_presence = LEGACY_REQUIRED];  // The hash mode.
-    uint32 frame_counter    = 2 [features.field_presence = LEGACY_REQUIRED];  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    uint32 security_control = 3 [features.field_presence = LEGACY_REQUIRED];  // The security control.
+    Hash mode               = 1;  // The hash mode.
+    uint32 frame_counter    = 2;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 3;  // The security control.
 }
 
 message ErrorMessage {

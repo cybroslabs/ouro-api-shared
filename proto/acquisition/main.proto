@@ -14,8 +14,8 @@ import "acquisition/timeofuse/timeofuse.proto";
 // Communication Unit specification.
 
 message CreateCommunicationUnitRequest {
-    CommunicationUnitSpec spec     = 1 [features.field_presence = LEGACY_REQUIRED];  // The communication unit specification.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfCommunicationUnit {
@@ -50,8 +50,8 @@ message RemoveCommunicationUnitsFromCommunicationBusRequest {
 // Device specification.
 
 message CreateDeviceRequest {
-    DeviceSpec spec                = 1 [features.field_presence = LEGACY_REQUIRED];  // The device specification.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    DeviceSpec spec                = 1;  // The device specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfDevice {
@@ -60,16 +60,16 @@ message ListOfDevice {
 }
 
 message Device {
-    DeviceSpec spec                = 1 [features.field_presence = LEGACY_REQUIRED];  // The device specification.
-    DeviceStatus status            = 2;                                              // The device status.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    DeviceSpec spec                = 1;  // The device specification.
+    DeviceStatus status            = 2;  // The device status.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 // Device group specification.
 
 message CreateDeviceGroupRequest {
-    DeviceGroupSpec spec           = 1 [features.field_presence = LEGACY_REQUIRED];  // The device group specification.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    DeviceGroupSpec spec           = 1;  // The device group specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfDeviceGroup {
@@ -88,8 +88,8 @@ message StreamDeviceGroup {
 
 message DeviceGroup {
     reserved 2;
-    DeviceGroupSpec spec           = 1 [features.field_presence = LEGACY_REQUIRED];  // The device group specification.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    DeviceGroupSpec spec           = 1;  // The device group specification.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 message DeviceGroupSpec {
@@ -219,9 +219,9 @@ message ProxyBulk {
 // Modem Pool specification.
 
 message SetModemPoolRequest {
-    reserved 2;                                                                      // reserved for status
-    ModemPoolSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    reserved 2;                          // reserved for status
+    ModemPoolSpec spec             = 1;  // The modem pool specification.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 message ListOfModemPool {
@@ -237,9 +237,9 @@ message ModemPoolStatus {
 }
 
 message ModemPool {
-    ModemPoolSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The modem pool specification.
-    ModemPoolStatus status         = 2;                                              // The modem pool status.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    ModemPoolSpec spec             = 1;  // The modem pool specification.
+    ModemPoolStatus status         = 2;  // The modem pool status.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 // Modem specification.
@@ -252,8 +252,8 @@ message SetModemRequest {
 // Driver specification.
 
 message SetDriver {
-    reserved 2, 3;                                                    // reserved for status, metadata
-    DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The driver specification.
+    reserved 2, 3;        // reserved for status, metadata
+    DriverSpec spec = 1;  // The driver specification.
 }
 
 message ListOfDriver {
@@ -262,8 +262,8 @@ message ListOfDriver {
 }
 
 message Driver {
-    reserved 2, 3;                                                    // reserved for status, metadata
-    DriverSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The driver specification.
+    reserved 2, 3;        // reserved for status, metadata
+    DriverSpec spec = 1;  // The driver specification.
 }
 
 message DriverSpec {
@@ -293,8 +293,8 @@ message DriverSpec {
 // Variables
 
 message CreateVariableRequest {
-    VariableSpec spec              = 1 [features.field_presence = LEGACY_REQUIRED];  // The variable specification.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    VariableSpec spec              = 1;  // The variable specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfVariable {
@@ -303,9 +303,9 @@ message ListOfVariable {
 }
 
 message Variable {
-    reserved 2;                                                                      // reserved for status
-    VariableSpec spec              = 1 [features.field_presence = LEGACY_REQUIRED];  // The variable specification.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    reserved 2;                          // reserved for status
+    VariableSpec spec              = 1;  // The variable specification.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 message VariableSpec {
@@ -315,8 +315,8 @@ message VariableSpec {
 // Device Configuration Register specification
 
 message CreateDeviceConfigurationRegisterRequest {
-    DeviceConfigurationRegisterSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The register specification.
-    common.MetadataFields metadata       = 2;                                              // The metadata fields.
+    DeviceConfigurationRegisterSpec spec = 1;  // The register specification.
+    common.MetadataFields metadata       = 2;  // The metadata fields.
 }
 
 message ListOfDeviceConfigurationRegister {
@@ -325,16 +325,16 @@ message ListOfDeviceConfigurationRegister {
 }
 
 message DeviceConfigurationRegister {
-    reserved 2;                                                                            // reserved for status
-    DeviceConfigurationRegisterSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The register specification.
-    common.MetadataFields metadata       = 3;                                              // The metadata fields.
+    reserved 2;                                // reserved for status
+    DeviceConfigurationRegisterSpec spec = 1;  // The register specification.
+    common.MetadataFields metadata       = 3;  // The metadata fields.
 }
 
 // Device Configuration Template specification.
 
 message CreateDeviceConfigurationTemplateRequest {
-    DeviceConfigurationTemplateSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The device configuration template specification.
-    common.MetadataFields metadata       = 2;                                              // The metadata fields.
+    DeviceConfigurationTemplateSpec spec = 1;  // The device configuration template specification.
+    common.MetadataFields metadata       = 2;  // The metadata fields.
 }
 
 message ListOfDeviceConfigurationTemplate {
@@ -343,14 +343,14 @@ message ListOfDeviceConfigurationTemplate {
 }
 
 message DeviceConfigurationTemplate {
-    reserved 2;                                                                            // reserved for status
-    DeviceConfigurationTemplateSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The device configuration template specification.
-    common.MetadataFields metadata       = 3;                                              // The metadata fields.
+    reserved 2;                                // reserved for status
+    DeviceConfigurationTemplateSpec spec = 1;  // The device configuration template specification.
+    common.MetadataFields metadata       = 3;  // The metadata fields.
 }
 
 message DeviceConfigurationTemplateSpec {
-    string driver_type          = 1 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
-    repeated string register_id = 2;                                              // The list of device configuration register identifiers.
+    string driver_type          = 1;  // The device (driver) type.
+    repeated string register_id = 2;  // The list of device configuration register identifiers.
 }
 
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {

@@ -28,7 +28,7 @@ type MetadataFields struct {
 	xxx_hidden_Generation    int32                  `protobuf:"varint,2,opt,name=generation"`
 	xxx_hidden_Fields        map[string]*FieldValue `protobuf:"bytes,3,rep,name=fields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,4,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Name          *string                `protobuf:"bytes,5,req,name=name"`
+	xxx_hidden_Name          *string                `protobuf:"bytes,5,opt,name=name"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -195,15 +195,15 @@ var File_common_metadata_proto protoreflect.FileDescriptor
 
 const file_common_metadata_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\"\xea\x03\n" +
+	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\"\xe3\x03\n" +
 	"\x0eMetadataFields\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
 	"generation\x18\x02 \x01(\x05R\n" +
 	"generation\x12Q\n" +
 	"\x06fields\x18\x03 \x03(\v29.io.clbs.openhes.models.common.MetadataFields.FieldsEntryR\x06fields\x12g\n" +
-	"\x0emanaged_fields\x18\x04 \x03(\v2@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x19\n" +
-	"\x04name\x18\x05 \x01(\tB\x05\xaa\x01\x02\b\x03R\x04name\x1ad\n" +
+	"\x0emanaged_fields\x18\x04 \x03(\v2@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x1ad\n" +
 	"\vFieldsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\x1ak\n" +

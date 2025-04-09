@@ -270,7 +270,7 @@ func (x Compression) Number() protoreflect.EnumNumber {
 // Sub-message containing job parameters
 type DlmsIn struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          uint64                 `protobuf:"varint,1,req,name=id"`
+	xxx_hidden_Id          uint64                 `protobuf:"varint,1,opt,name=id"`
 	xxx_hidden_Request     isDlmsIn_Request       `protobuf_oneof:"request"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -605,12 +605,12 @@ func (*dlmsIn_Decrypt) isDlmsIn_Request() {}
 
 type DlmsInit struct {
 	state                   protoimpl.MessageState  `protogen:"opaque.v1"`
-	xxx_hidden_Encryption   AuthenticatedEncryption `protobuf:"varint,1,req,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
-	xxx_hidden_Signature    DigitalSignature        `protobuf:"varint,2,req,name=signature,enum=io.clbs.openhes.models.crypto.DigitalSignature"`
-	xxx_hidden_Compression  Compression             `protobuf:"varint,4,req,name=compression,enum=io.clbs.openhes.models.crypto.Compression"`
-	xxx_hidden_DriverId     *string                 `protobuf:"bytes,5,req,name=driver_id,json=driverId"`
-	xxx_hidden_SerialNumber *string                 `protobuf:"bytes,6,req,name=serial_number,json=serialNumber"`
-	xxx_hidden_AccessLevel  *string                 `protobuf:"bytes,7,req,name=access_level,json=accessLevel"`
+	xxx_hidden_Encryption   AuthenticatedEncryption `protobuf:"varint,1,opt,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
+	xxx_hidden_Signature    DigitalSignature        `protobuf:"varint,2,opt,name=signature,enum=io.clbs.openhes.models.crypto.DigitalSignature"`
+	xxx_hidden_Compression  Compression             `protobuf:"varint,4,opt,name=compression,enum=io.clbs.openhes.models.crypto.Compression"`
+	xxx_hidden_DriverId     *string                 `protobuf:"bytes,5,opt,name=driver_id,json=driverId"`
+	xxx_hidden_SerialNumber *string                 `protobuf:"bytes,6,opt,name=serial_number,json=serialNumber"`
+	xxx_hidden_AccessLevel  *string                 `protobuf:"bytes,7,opt,name=access_level,json=accessLevel"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -845,10 +845,10 @@ func (b0 DlmsInit_builder) Build() *DlmsInit {
 
 type DlmsSetup struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_SystemTitleC []byte                 `protobuf:"bytes,4,req,name=system_title_c,json=systemTitleC"`
-	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,5,req,name=system_title_s,json=systemTitleS"`
-	xxx_hidden_SToC         []byte                 `protobuf:"bytes,6,req,name=s_to_c,json=sToC"`
-	xxx_hidden_CToS         []byte                 `protobuf:"bytes,7,req,name=c_to_s,json=cToS"`
+	xxx_hidden_SystemTitleC []byte                 `protobuf:"bytes,4,opt,name=system_title_c,json=systemTitleC"`
+	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,5,opt,name=system_title_s,json=systemTitleS"`
+	xxx_hidden_SToC         []byte                 `protobuf:"bytes,6,opt,name=s_to_c,json=sToC"`
+	xxx_hidden_CToS         []byte                 `protobuf:"bytes,7,opt,name=c_to_s,json=cToS"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -1022,7 +1022,7 @@ func (b0 DlmsSetup_builder) Build() *DlmsSetup {
 
 type DlmsOut struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          uint64                 `protobuf:"varint,1,req,name=id"`
+	xxx_hidden_Id          uint64                 `protobuf:"varint,1,opt,name=id"`
 	xxx_hidden_Error       *ErrorMessage          `protobuf:"bytes,2,opt,name=error"`
 	xxx_hidden_Data        []byte                 `protobuf:"bytes,3,opt,name=data"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
@@ -1155,9 +1155,9 @@ func (b0 DlmsOut_builder) Build() *DlmsOut {
 
 type DlmsEncrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,req,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,req,name=security_control,json=securityControl"`
-	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,req,name=data"`
+	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,opt,name=security_control,json=securityControl"`
+	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,opt,name=data"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1293,9 +1293,9 @@ func (b0 DlmsEncrypt_builder) Build() *DlmsEncrypt {
 
 type DlmsDecrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,req,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,req,name=security_control,json=securityControl"`
-	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,req,name=data"`
+	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,opt,name=security_control,json=securityControl"`
+	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,opt,name=data"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1431,9 +1431,9 @@ func (b0 DlmsDecrypt_builder) Build() *DlmsDecrypt {
 
 type DlmsHash struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Mode            Hash                   `protobuf:"varint,1,req,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,2,req,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,3,req,name=security_control,json=securityControl"`
+	xxx_hidden_Mode            Hash                   `protobuf:"varint,1,opt,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
+	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,2,opt,name=frame_counter,json=frameCounter"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,3,opt,name=security_control,json=securityControl"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1680,45 +1680,45 @@ var File_crypto_crypto_proto protoreflect.FileDescriptor
 
 const file_crypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xfa\x02\n" +
-	"\x06DlmsIn\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x04B\x05\xaa\x01\x02\b\x03R\x02id\x12=\n" +
+	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xf3\x02\n" +
+	"\x06DlmsIn\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12=\n" +
 	"\x04init\x18\x02 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12@\n" +
 	"\x05setup\x18\x03 \x01(\v2(.io.clbs.openhes.models.crypto.DlmsSetupH\x00R\x05setup\x12=\n" +
 	"\x04hash\x18\x04 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12F\n" +
 	"\aencrypt\x18\x05 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\aencrypt\x12F\n" +
 	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecryptB\t\n" +
-	"\arequest\"\x8e\x03\n" +
-	"\bDlmsInit\x12]\n" +
+	"\arequest\"\xe4\x02\n" +
+	"\bDlmsInit\x12V\n" +
 	"\n" +
-	"encryption\x18\x01 \x01(\x0e26.io.clbs.openhes.models.crypto.AuthenticatedEncryptionB\x05\xaa\x01\x02\b\x03R\n" +
-	"encryption\x12T\n" +
-	"\tsignature\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.crypto.DigitalSignatureB\x05\xaa\x01\x02\b\x03R\tsignature\x12S\n" +
-	"\vcompression\x18\x04 \x01(\x0e2*.io.clbs.openhes.models.crypto.CompressionB\x05\xaa\x01\x02\b\x03R\vcompression\x12\"\n" +
-	"\tdriver_id\x18\x05 \x01(\tB\x05\xaa\x01\x02\b\x03R\bdriverId\x12*\n" +
-	"\rserial_number\x18\x06 \x01(\tB\x05\xaa\x01\x02\b\x03R\fserialNumber\x12(\n" +
-	"\faccess_level\x18\a \x01(\tB\x05\xaa\x01\x02\b\x03R\vaccessLevel\"\x9f\x01\n" +
-	"\tDlmsSetup\x12+\n" +
-	"\x0esystem_title_c\x18\x04 \x01(\fB\x05\xaa\x01\x02\b\x03R\fsystemTitleC\x12+\n" +
-	"\x0esystem_title_s\x18\x05 \x01(\fB\x05\xaa\x01\x02\b\x03R\fsystemTitleS\x12\x1b\n" +
-	"\x06s_to_c\x18\x06 \x01(\fB\x05\xaa\x01\x02\b\x03R\x04sToC\x12\x1b\n" +
-	"\x06c_to_s\x18\a \x01(\fB\x05\xaa\x01\x02\b\x03R\x04cToS\"w\n" +
-	"\aDlmsOut\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x04B\x05\xaa\x01\x02\b\x03R\x02id\x12A\n" +
+	"encryption\x18\x01 \x01(\x0e26.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\n" +
+	"encryption\x12M\n" +
+	"\tsignature\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12L\n" +
+	"\vcompression\x18\x04 \x01(\x0e2*.io.clbs.openhes.models.crypto.CompressionR\vcompression\x12\x1b\n" +
+	"\tdriver_id\x18\x05 \x01(\tR\bdriverId\x12#\n" +
+	"\rserial_number\x18\x06 \x01(\tR\fserialNumber\x12!\n" +
+	"\faccess_level\x18\a \x01(\tR\vaccessLevel\"\x83\x01\n" +
+	"\tDlmsSetup\x12$\n" +
+	"\x0esystem_title_c\x18\x04 \x01(\fR\fsystemTitleC\x12$\n" +
+	"\x0esystem_title_s\x18\x05 \x01(\fR\fsystemTitleS\x12\x14\n" +
+	"\x06s_to_c\x18\x06 \x01(\fR\x04sToC\x12\x14\n" +
+	"\x06c_to_s\x18\a \x01(\fR\x04cToS\"p\n" +
+	"\aDlmsOut\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12A\n" +
 	"\x05error\x18\x02 \x01(\v2+.io.clbs.openhes.models.crypto.ErrorMessageR\x05error\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"\x86\x01\n" +
-	"\vDlmsEncrypt\x12*\n" +
-	"\rframe_counter\x18\x01 \x01(\rB\x05\xaa\x01\x02\b\x03R\fframeCounter\x120\n" +
-	"\x10security_control\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\x0fsecurityControl\x12\x19\n" +
-	"\x04data\x18\x03 \x01(\fB\x05\xaa\x01\x02\b\x03R\x04data\"\x86\x01\n" +
-	"\vDlmsDecrypt\x12*\n" +
-	"\rframe_counter\x18\x01 \x01(\rB\x05\xaa\x01\x02\b\x03R\fframeCounter\x120\n" +
-	"\x10security_control\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\x0fsecurityControl\x12\x19\n" +
-	"\x04data\x18\x03 \x01(\fB\x05\xaa\x01\x02\b\x03R\x04data\"\xa8\x01\n" +
-	"\bDlmsHash\x12>\n" +
-	"\x04mode\x18\x01 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashB\x05\xaa\x01\x02\b\x03R\x04mode\x12*\n" +
-	"\rframe_counter\x18\x02 \x01(\rB\x05\xaa\x01\x02\b\x03R\fframeCounter\x120\n" +
-	"\x10security_control\x18\x03 \x01(\rB\x05\xaa\x01\x02\b\x03R\x0fsecurityControl\"<\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"q\n" +
+	"\vDlmsEncrypt\x12#\n" +
+	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12)\n" +
+	"\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"q\n" +
+	"\vDlmsDecrypt\x12#\n" +
+	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12)\n" +
+	"\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"\x93\x01\n" +
+	"\bDlmsHash\x127\n" +
+	"\x04mode\x18\x01 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
+	"\rframe_counter\x18\x02 \x01(\rR\fframeCounter\x12)\n" +
+	"\x10security_control\x18\x03 \x01(\rR\x0fsecurityControl\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +

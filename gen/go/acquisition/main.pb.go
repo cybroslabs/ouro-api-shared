@@ -26,7 +26,7 @@ const (
 
 type CreateCommunicationUnitRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *CommunicationUnitSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *CommunicationUnitSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -553,7 +553,7 @@ func (b0 RemoveCommunicationUnitsFromCommunicationBusRequest_builder) Build() *R
 
 type CreateDeviceRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -737,7 +737,7 @@ func (b0 ListOfDevice_builder) Build() *ListOfDevice {
 
 type Device struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Status   *DeviceStatus          `protobuf:"bytes,2,opt,name=status"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
@@ -855,7 +855,7 @@ func (b0 Device_builder) Build() *Device {
 
 type CreateDeviceGroupRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -1256,7 +1256,7 @@ func (*streamDeviceGroup_Metadata) isStreamDeviceGroup_Parts() {}
 
 type DeviceGroup struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -3657,7 +3657,7 @@ func (b0 ProxyBulk_builder) Build() *ProxyBulk {
 
 type SetModemPoolRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -3943,7 +3943,7 @@ func (b0 ModemPoolStatus_builder) Build() *ModemPoolStatus {
 
 type ModemPool struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Status   *ModemPoolStatus       `protobuf:"bytes,2,opt,name=status"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
@@ -4164,7 +4164,7 @@ func (b0 SetModemRequest_builder) Build() *SetModemRequest {
 
 type SetDriver struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec *DriverSpec            `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec *DriverSpec            `protobuf:"bytes,1,opt,name=spec"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -4323,7 +4323,7 @@ func (b0 ListOfDriver_builder) Build() *ListOfDriver {
 
 type Driver struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec *DriverSpec            `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec *DriverSpec            `protobuf:"bytes,1,opt,name=spec"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -4693,7 +4693,7 @@ func (b0 DriverSpec_builder) Build() *DriverSpec {
 
 type CreateVariableRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -4877,7 +4877,7 @@ func (b0 ListOfVariable_builder) Build() *ListOfVariable {
 
 type Variable struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -5027,7 +5027,7 @@ func (b0 VariableSpec_builder) Build() *VariableSpec {
 
 type CreateDeviceConfigurationRegisterRequest struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -5211,7 +5211,7 @@ func (b0 ListOfDeviceConfigurationRegister_builder) Build() *ListOfDeviceConfigu
 
 type DeviceConfigurationRegister struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -5304,7 +5304,7 @@ func (b0 DeviceConfigurationRegister_builder) Build() *DeviceConfigurationRegist
 
 type CreateDeviceConfigurationTemplateRequest struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -5488,7 +5488,7 @@ func (b0 ListOfDeviceConfigurationTemplate_builder) Build() *ListOfDeviceConfigu
 
 type DeviceConfigurationTemplate struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields           `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -5581,7 +5581,7 @@ func (b0 DeviceConfigurationTemplate_builder) Build() *DeviceConfigurationTempla
 
 type DeviceConfigurationTemplateSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,req,name=driver_type,json=driverType"`
+	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
 	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
@@ -6388,9 +6388,9 @@ var File_acquisition_main_proto protoreflect.FileDescriptor
 
 const file_acquisition_main_proto_rawDesc = "" +
 	"\n" +
-	"\x16acquisition/main.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15common/metadata.proto\x1a\x13common/fields.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\"\xc1\x01\n" +
-	"\x1eCreateCommunicationUnitRequest\x12T\n" +
-	"\x04spec\x18\x01 \x01(\v29.io.clbs.openhes.models.acquisition.CommunicationUnitSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\x16acquisition/main.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15common/metadata.proto\x1a\x13common/fields.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\"\xba\x01\n" +
+	"\x1eCreateCommunicationUnitRequest\x12M\n" +
+	"\x04spec\x18\x01 \x01(\v29.io.clbs.openhes.models.acquisition.CommunicationUnitSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x87\x01\n" +
 	"\x17ListOfCommunicationUnit\x12K\n" +
 	"\x05items\x18\x01 \x03(\v25.io.clbs.openhes.models.acquisition.CommunicationUnitR\x05items\x12\x1f\n" +
@@ -6407,20 +6407,20 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x15communication_unit_id\x18\x02 \x03(\tR\x13communicationUnitId\"\x9b\x01\n" +
 	"3RemoveCommunicationUnitsFromCommunicationBusRequest\x120\n" +
 	"\x14communication_bus_id\x18\x01 \x01(\tR\x12communicationBusId\x122\n" +
-	"\x15communication_unit_id\x18\x02 \x03(\tR\x13communicationUnitId\"\xab\x01\n" +
-	"\x13CreateDeviceRequest\x12I\n" +
-	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\x15communication_unit_id\x18\x02 \x03(\tR\x13communicationUnitId\"\xa4\x01\n" +
+	"\x13CreateDeviceRequest\x12B\n" +
+	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"q\n" +
 	"\fListOfDevice\x12@\n" +
 	"\x05items\x18\x01 \x03(\v2*.io.clbs.openhes.models.acquisition.DeviceR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xe8\x01\n" +
-	"\x06Device\x12I\n" +
-	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12H\n" +
+	"totalCount\"\xe1\x01\n" +
+	"\x06Device\x12B\n" +
+	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceSpecR\x04spec\x12H\n" +
 	"\x06status\x18\x02 \x01(\v20.io.clbs.openhes.models.acquisition.DeviceStatusR\x06status\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xb5\x01\n" +
-	"\x18CreateDeviceGroupRequest\x12N\n" +
-	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xae\x01\n" +
+	"\x18CreateDeviceGroupRequest\x12G\n" +
+	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"{\n" +
 	"\x11ListOfDeviceGroup\x12E\n" +
 	"\x05items\x18\x01 \x03(\v2/.io.clbs.openhes.models.acquisition.DeviceGroupR\x05items\x12\x1f\n" +
@@ -6430,9 +6430,9 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecH\x00R\x04spec\x12U\n" +
 	"\x06status\x18\x02 \x01(\v2;.io.clbs.openhes.models.acquisition.StreamDeviceGroupStatusH\x00R\x06status\x12K\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsH\x00R\bmetadataB\a\n" +
-	"\x05parts\"\xae\x01\n" +
-	"\vDeviceGroup\x12N\n" +
-	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\x05parts\"\xa7\x01\n" +
+	"\vDeviceGroup\x12G\n" +
+	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"2\n" +
 	"\x0fDeviceGroupSpec\x12\x1f\n" +
 	"\vexternal_id\x18\x01 \x01(\tR\n" +
@@ -6523,9 +6523,9 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\tProxyBulk\x12L\n" +
 	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.BulkStatusR\x06status\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xb4\x01\n" +
-	"\x13SetModemPoolRequest\x12L\n" +
-	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ModemPoolSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xad\x01\n" +
+	"\x13SetModemPoolRequest\x12E\n" +
+	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ModemPoolSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"w\n" +
 	"\x0fListOfModemPool\x12C\n" +
 	"\x05items\x18\x01 \x03(\v2-.io.clbs.openhes.models.acquisition.ModemPoolR\x05items\x12\x1f\n" +
@@ -6533,22 +6533,22 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"totalCount\"\x0f\n" +
 	"\rModemPoolSpec\"X\n" +
 	"\x0fModemPoolStatus\x12E\n" +
-	"\x06modems\x18\x01 \x03(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x06modems\"\xf1\x01\n" +
-	"\tModemPool\x12L\n" +
-	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ModemPoolSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12K\n" +
+	"\x06modems\x18\x01 \x03(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x06modems\"\xea\x01\n" +
+	"\tModemPool\x12E\n" +
+	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ModemPoolSpecR\x04spec\x12K\n" +
 	"\x06status\x18\x02 \x01(\v23.io.clbs.openhes.models.acquisition.ModemPoolStatusR\x06status\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"o\n" +
 	"\x0fSetModemRequest\x12\x17\n" +
 	"\apool_id\x18\x01 \x01(\tR\x06poolId\x12C\n" +
-	"\x05modem\x18\x02 \x01(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x05modem\"b\n" +
-	"\tSetDriver\x12I\n" +
-	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DriverSpecB\x05\xaa\x01\x02\b\x03R\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"q\n" +
+	"\x05modem\x18\x02 \x01(\v2-.io.clbs.openhes.models.acquisition.ModemInfoR\x05modem\"[\n" +
+	"\tSetDriver\x12B\n" +
+	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DriverSpecR\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"q\n" +
 	"\fListOfDriver\x12@\n" +
 	"\x05items\x18\x01 \x03(\v2*.io.clbs.openhes.models.acquisition.DriverR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"_\n" +
-	"\x06Driver\x12I\n" +
-	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DriverSpecB\x05\xaa\x01\x02\b\x03R\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\xec\x02\n" +
+	"totalCount\"X\n" +
+	"\x06Driver\x12B\n" +
+	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.acquisition.DriverSpecR\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\xec\x02\n" +
 	"\n" +
 	"DriverSpec\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12%\n" +
@@ -6559,42 +6559,42 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x11max_cascade_depth\x18\x05 \x01(\rR\x0fmaxCascadeDepth\x12*\n" +
 	"\x11typical_mem_usage\x18\x06 \x01(\x05R\x0ftypicalMemUsage\x12Q\n" +
 	"\ttemplates\x18\a \x01(\v23.io.clbs.openhes.models.acquisition.DriverTemplatesR\ttemplates\x12!\n" +
-	"\fdisplay_name\x18\b \x01(\tR\vdisplayName\"\xaf\x01\n" +
-	"\x15CreateVariableRequest\x12K\n" +
-	"\x04spec\x18\x01 \x01(\v20.io.clbs.openhes.models.acquisition.VariableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\fdisplay_name\x18\b \x01(\tR\vdisplayName\"\xa8\x01\n" +
+	"\x15CreateVariableRequest\x12D\n" +
+	"\x04spec\x18\x01 \x01(\v20.io.clbs.openhes.models.acquisition.VariableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"u\n" +
 	"\x0eListOfVariable\x12B\n" +
 	"\x05items\x18\x01 \x03(\v2,.io.clbs.openhes.models.acquisition.VariableR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xa8\x01\n" +
-	"\bVariable\x12K\n" +
-	"\x04spec\x18\x01 \x01(\v20.io.clbs.openhes.models.acquisition.VariableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"totalCount\"\xa1\x01\n" +
+	"\bVariable\x12D\n" +
+	"\x04spec\x18\x01 \x01(\v20.io.clbs.openhes.models.acquisition.VariableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"/\n" +
 	"\fVariableSpec\x12\x1f\n" +
 	"\vregister_id\x18\x01 \x03(\tR\n" +
-	"registerId\"\xd5\x01\n" +
-	"(CreateDeviceConfigurationRegisterRequest\x12^\n" +
-	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"registerId\"\xce\x01\n" +
+	"(CreateDeviceConfigurationRegisterRequest\x12W\n" +
+	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x9b\x01\n" +
 	"!ListOfDeviceConfigurationRegister\x12U\n" +
 	"\x05items\x18\x01 \x03(\v2?.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xce\x01\n" +
-	"\x1bDeviceConfigurationRegister\x12^\n" +
-	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"\xd5\x01\n" +
-	"(CreateDeviceConfigurationTemplateRequest\x12^\n" +
-	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"totalCount\"\xc7\x01\n" +
+	"\x1bDeviceConfigurationRegister\x12W\n" +
+	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecR\x04spec\x12I\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"\xce\x01\n" +
+	"(CreateDeviceConfigurationTemplateRequest\x12W\n" +
+	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x9b\x01\n" +
 	"!ListOfDeviceConfigurationTemplate\x12U\n" +
 	"\x05items\x18\x01 \x03(\v2?.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xce\x01\n" +
-	"\x1bDeviceConfigurationTemplate\x12^\n" +
-	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"j\n" +
-	"\x1fDeviceConfigurationTemplateSpec\x12&\n" +
-	"\vdriver_type\x18\x01 \x01(\tB\x05\xaa\x01\x02\b\x03R\n" +
+	"totalCount\"\xc7\x01\n" +
+	"\x1bDeviceConfigurationTemplate\x12W\n" +
+	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecR\x04spec\x12I\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"c\n" +
+	"\x1fDeviceConfigurationTemplateSpec\x12\x1f\n" +
+	"\vdriver_type\x18\x01 \x01(\tR\n" +
 	"driverType\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x03(\tR\n" +
 	"registerId\"|\n" +
