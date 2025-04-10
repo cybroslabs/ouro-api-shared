@@ -273,7 +273,7 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 			if validation.HasMaxInteger() && (value.GetIntegerValue() > validation.GetMaxInteger()) {
 				return errors.New("the value is too high")
 			}
-			if validation.HasMinInteger() && (value.GetIntegerValue() > validation.GetMinInteger()) {
+			if validation.HasMinInteger() && (value.GetIntegerValue() < validation.GetMinInteger()) {
 				return errors.New("the value is too low")
 			}
 			if validation.HasRe() {
@@ -291,7 +291,7 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 			if validation.HasMaxNumber() && (value.GetDoubleValue() > validation.GetMaxNumber()) {
 				return errors.New("the value is too high")
 			}
-			if validation.HasMinNumber() && (value.GetDoubleValue() > validation.GetMinNumber()) {
+			if validation.HasMinNumber() && (value.GetDoubleValue() < validation.GetMinNumber()) {
 				return errors.New("the value is too low")
 			}
 			if validation.HasRe() {
