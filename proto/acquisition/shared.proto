@@ -685,21 +685,21 @@ message DeviceConfigurationRegisterSpec {
 
 // Addon
 message DeviceRegister {
-    int64 register_id                    = 1 [features.field_presence = LEGACY_REQUIRED];  // The register identifier.
-    string public_register_id            = 2 [features.field_presence = LEGACY_REQUIRED];  // The public register identifier.
-    DeviceConfigurationRegisterSpec spec = 3 [features.field_presence = LEGACY_REQUIRED];  // The register spec.
-    repeated string variable_name        = 4;                                              // The name of the variable, if the register is assigned to some.
+    int64 register_id                    = 1;  // The register identifier.
+    string public_register_id            = 2;  // The public register identifier.
+    DeviceConfigurationRegisterSpec spec = 3;  // The register spec.
+    repeated string variable_name        = 4;  // The name of the variable, if the register is assigned to some.
 }
 
 // Addon
 message DeviceConnectionInfo {
-    ConnectionInfo communication_unit                = 1;                                              // The unique identifier of the communication unit.
-    ApplicationProtocol app_protocol                 = 2;                                              // The application protocol to be used for the communication over the communication unit.
-    map<string, common.FieldValue> device_attributes = 3;                                              // The device attributes. For example HDLC address, password and other driver-specific attributes.
-    string timezone                                  = 4;                                              // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
-    string driver_type                               = 5 [features.field_presence = LEGACY_REQUIRED];  // The driver type identifier.
-    string driver_version                            = 7 [features.field_presence = LEGACY_REQUIRED];  // The driver version.
-    repeated DeviceRegister registers                = 8;                                              // The list of registers get using current device configuration template.
+    ConnectionInfo communication_unit                = 1;  // The unique identifier of the communication unit.
+    ApplicationProtocol app_protocol                 = 2;  // The application protocol to be used for the communication over the communication unit.
+    map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password and other driver-specific attributes.
+    string timezone                                  = 4;  // The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    string driver_type                               = 5;  // The driver type identifier.
+    string driver_version                            = 7;  // The driver version.
+    repeated DeviceRegister registers                = 8;  // The list of registers get using current device configuration template.
 }
 
 // Addon for DB

@@ -2034,7 +2034,7 @@ func (b0 ListDeviceGroupDevicesRequest_builder) Build() *ListDeviceGroupDevicesR
 
 type CreateBulkRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -2218,7 +2218,7 @@ func (b0 ListOfBulk_builder) Build() *ListOfBulk {
 
 type Bulk struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Status   *BulkStatus            `protobuf:"bytes,2,opt,name=status"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
@@ -3235,7 +3235,7 @@ func (b0 ListOfBulkJob_builder) Build() *ListOfBulkJob {
 
 type CreateProxyBulkRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -3329,7 +3329,7 @@ func (b0 CreateProxyBulkRequest_builder) Build() *CreateProxyBulkRequest {
 type ProxyBulkSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CorrelationId *string                `protobuf:"bytes,1,opt,name=correlation_id,json=correlationId"`
-	xxx_hidden_DriverType    *string                `protobuf:"bytes,2,req,name=driver_type,json=driverType"`
+	xxx_hidden_DriverType    *string                `protobuf:"bytes,2,opt,name=driver_type,json=driverType"`
 	xxx_hidden_Devices       *ListOfJobDevice       `protobuf:"bytes,3,opt,name=devices"`
 	xxx_hidden_Settings      *JobSettings           `protobuf:"bytes,4,opt,name=settings"`
 	xxx_hidden_Actions       *[]*JobAction          `protobuf:"bytes,5,rep,name=actions"`
@@ -3539,7 +3539,7 @@ func (b0 ProxyBulkSpec_builder) Build() *ProxyBulkSpec {
 
 type ProxyBulk struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Status   *BulkStatus            `protobuf:"bytes,2,opt,name=status"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
@@ -5895,8 +5895,8 @@ func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 
 type GetMeterDataRequest struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_From         *timestamppb.Timestamp `protobuf:"bytes,1,req,name=from"`
-	xxx_hidden_To           *timestamppb.Timestamp `protobuf:"bytes,2,req,name=to"`
+	xxx_hidden_From         *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from"`
+	xxx_hidden_To           *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to"`
 	xxx_hidden_DeviceId     []string               `protobuf:"bytes,3,rep,name=device_id,json=deviceId"`
 	xxx_hidden_VariableName []string               `protobuf:"bytes,4,rep,name=variable_name,json=variableName"`
 	unknownFields           protoimpl.UnknownFields
@@ -6016,8 +6016,8 @@ func (b0 GetMeterDataRequest_builder) Build() *GetMeterDataRequest {
 
 type GetMeterEventsRequest struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_From *timestamppb.Timestamp `protobuf:"bytes,1,req,name=from"`
-	xxx_hidden_To   *timestamppb.Timestamp `protobuf:"bytes,2,req,name=to"`
+	xxx_hidden_From *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from"`
+	xxx_hidden_To   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -6109,7 +6109,7 @@ func (b0 GetMeterEventsRequest_builder) Build() *GetMeterEventsRequest {
 
 type CreateTimeOfUseTableRequest struct {
 	state               protoimpl.MessageState        `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields        `protobuf:"bytes,2,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -6293,7 +6293,7 @@ func (b0 ListOfTimeOfUseTable_builder) Build() *ListOfTimeOfUseTable {
 
 type TimeOfUseTable struct {
 	state               protoimpl.MessageState        `protogen:"opaque.v1"`
-	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,req,name=spec"`
+	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,opt,name=spec"`
 	xxx_hidden_Metadata *common.MetadataFields        `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -6460,17 +6460,17 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\tdevice_id\x18\x02 \x03(\tR\bdeviceId\"\x83\x01\n" +
 	"\x1dListDeviceGroupDevicesRequest\x12\x19\n" +
 	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12G\n" +
-	"\bselector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\bselector\"\xa7\x01\n" +
-	"\x11CreateBulkRequest\x12G\n" +
-	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.acquisition.BulkSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\bselector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\bselector\"\xa0\x01\n" +
+	"\x11CreateBulkRequest\x12@\n" +
+	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.acquisition.BulkSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"m\n" +
 	"\n" +
 	"ListOfBulk\x12>\n" +
 	"\x05items\x18\x01 \x03(\v2(.io.clbs.openhes.models.acquisition.BulkR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xe2\x01\n" +
-	"\x04Bulk\x12G\n" +
-	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.acquisition.BulkSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12F\n" +
+	"totalCount\"\xdb\x01\n" +
+	"\x04Bulk\x12@\n" +
+	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.acquisition.BulkSpecR\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.BulkStatusR\x06status\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xf2\x02\n" +
 	"\bBulkSpec\x12%\n" +
@@ -6507,21 +6507,21 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\rListOfBulkJob\x12A\n" +
 	"\x05items\x18\x01 \x03(\v2+.io.clbs.openhes.models.acquisition.BulkJobR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb1\x01\n" +
-	"\x16CreateProxyBulkRequest\x12L\n" +
-	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
-	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xe4\x02\n" +
+	"totalCount\"\xaa\x01\n" +
+	"\x16CreateProxyBulkRequest\x12E\n" +
+	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecR\x04spec\x12I\n" +
+	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xdd\x02\n" +
 	"\rProxyBulkSpec\x12%\n" +
-	"\x0ecorrelation_id\x18\x01 \x01(\tR\rcorrelationId\x12&\n" +
-	"\vdriver_type\x18\x02 \x01(\tB\x05\xaa\x01\x02\b\x03R\n" +
+	"\x0ecorrelation_id\x18\x01 \x01(\tR\rcorrelationId\x12\x1f\n" +
+	"\vdriver_type\x18\x02 \x01(\tR\n" +
 	"driverType\x12M\n" +
 	"\adevices\x18\x03 \x01(\v23.io.clbs.openhes.models.acquisition.ListOfJobDeviceR\adevices\x12K\n" +
 	"\bsettings\x18\x04 \x01(\v2/.io.clbs.openhes.models.acquisition.JobSettingsR\bsettings\x12G\n" +
 	"\aactions\x18\x05 \x03(\v2-.io.clbs.openhes.models.acquisition.JobActionR\aactions\x12\x1f\n" +
 	"\vwebhook_url\x18\x06 \x01(\tR\n" +
-	"webhookUrl\"\xec\x01\n" +
-	"\tProxyBulk\x12L\n" +
-	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12F\n" +
+	"webhookUrl\"\xe5\x01\n" +
+	"\tProxyBulk\x12E\n" +
+	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecR\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.BulkStatusR\x06status\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xad\x01\n" +
 	"\x13SetModemPoolRequest\x12E\n" +
@@ -6605,24 +6605,24 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"GRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x01(\tR\n" +
-	"registerId\"\xc1\x01\n" +
-	"\x13GetMeterDataRequest\x125\n" +
-	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x04from\x121\n" +
-	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x02to\x12\x1b\n" +
+	"registerId\"\xb3\x01\n" +
+	"\x13GetMeterDataRequest\x12.\n" +
+	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
+	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x1b\n" +
 	"\tdevice_id\x18\x03 \x03(\tR\bdeviceId\x12#\n" +
-	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\x81\x01\n" +
-	"\x15GetMeterEventsRequest\x125\n" +
-	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x04from\x121\n" +
-	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xaa\x01\x02\b\x03R\x02to\"\xc5\x01\n" +
-	"\x1bCreateTimeOfUseTableRequest\x12[\n" +
-	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"s\n" +
+	"\x15GetMeterEventsRequest\x12.\n" +
+	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
+	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"\xbe\x01\n" +
+	"\x1bCreateTimeOfUseTableRequest\x12T\n" +
+	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x81\x01\n" +
 	"\x14ListOfTimeOfUseTable\x12H\n" +
 	"\x05items\x18\x01 \x03(\v22.io.clbs.openhes.models.acquisition.TimeOfUseTableR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xbe\x01\n" +
-	"\x0eTimeOfUseTable\x12[\n" +
-	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12I\n" +
+	"totalCount\"\xb7\x01\n" +
+	"\x0eTimeOfUseTable\x12T\n" +
+	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 62)

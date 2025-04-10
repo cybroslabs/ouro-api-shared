@@ -9262,9 +9262,9 @@ func (b0 DeviceConfigurationRegisterSpec_builder) Build() *DeviceConfigurationRe
 // Addon
 type DeviceRegister struct {
 	state                       protoimpl.MessageState           `protogen:"opaque.v1"`
-	xxx_hidden_RegisterId       int64                            `protobuf:"varint,1,req,name=register_id,json=registerId"`
-	xxx_hidden_PublicRegisterId *string                          `protobuf:"bytes,2,req,name=public_register_id,json=publicRegisterId"`
-	xxx_hidden_Spec             *DeviceConfigurationRegisterSpec `protobuf:"bytes,3,req,name=spec"`
+	xxx_hidden_RegisterId       int64                            `protobuf:"varint,1,opt,name=register_id,json=registerId"`
+	xxx_hidden_PublicRegisterId *string                          `protobuf:"bytes,2,opt,name=public_register_id,json=publicRegisterId"`
+	xxx_hidden_Spec             *DeviceConfigurationRegisterSpec `protobuf:"bytes,3,opt,name=spec"`
 	xxx_hidden_VariableName     []string                         `protobuf:"bytes,4,rep,name=variable_name,json=variableName"`
 	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
 	XXX_presence                [1]uint32
@@ -9414,8 +9414,8 @@ type DeviceConnectionInfo struct {
 	xxx_hidden_AppProtocol       ApplicationProtocol           `protobuf:"varint,2,opt,name=app_protocol,json=appProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
 	xxx_hidden_DeviceAttributes  map[string]*common.FieldValue `protobuf:"bytes,3,rep,name=device_attributes,json=deviceAttributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_Timezone          *string                       `protobuf:"bytes,4,opt,name=timezone"`
-	xxx_hidden_DriverType        *string                       `protobuf:"bytes,5,req,name=driver_type,json=driverType"`
-	xxx_hidden_DriverVersion     *string                       `protobuf:"bytes,7,req,name=driver_version,json=driverVersion"`
+	xxx_hidden_DriverType        *string                       `protobuf:"bytes,5,opt,name=driver_type,json=driverType"`
+	xxx_hidden_DriverVersion     *string                       `protobuf:"bytes,7,opt,name=driver_version,json=driverVersion"`
 	xxx_hidden_Registers         *[]*DeviceRegister            `protobuf:"bytes,8,rep,name=registers"`
 	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
 	XXX_presence                 [1]uint32
@@ -11708,21 +11708,21 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"attributes\x1ah\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\xf2\x01\n" +
-	"\x0eDeviceRegister\x12&\n" +
-	"\vregister_id\x18\x01 \x01(\x03B\x05\xaa\x01\x02\b\x03R\n" +
-	"registerId\x123\n" +
-	"\x12public_register_id\x18\x02 \x01(\tB\x05\xaa\x01\x02\b\x03R\x10publicRegisterId\x12^\n" +
-	"\x04spec\x18\x03 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecB\x05\xaa\x01\x02\b\x03R\x04spec\x12#\n" +
-	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\x86\x05\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\xdd\x01\n" +
+	"\x0eDeviceRegister\x12\x1f\n" +
+	"\vregister_id\x18\x01 \x01(\x03R\n" +
+	"registerId\x12,\n" +
+	"\x12public_register_id\x18\x02 \x01(\tR\x10publicRegisterId\x12W\n" +
+	"\x04spec\x18\x03 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecR\x04spec\x12#\n" +
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\xf8\x04\n" +
 	"\x14DeviceConnectionInfo\x12a\n" +
 	"\x12communication_unit\x18\x01 \x01(\v22.io.clbs.openhes.models.acquisition.ConnectionInfoR\x11communicationUnit\x12Z\n" +
 	"\fapp_protocol\x18\x02 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\vappProtocol\x12{\n" +
 	"\x11device_attributes\x18\x03 \x03(\v2N.io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntryR\x10deviceAttributes\x12\x1a\n" +
-	"\btimezone\x18\x04 \x01(\tR\btimezone\x12&\n" +
-	"\vdriver_type\x18\x05 \x01(\tB\x05\xaa\x01\x02\b\x03R\n" +
-	"driverType\x12,\n" +
-	"\x0edriver_version\x18\a \x01(\tB\x05\xaa\x01\x02\b\x03R\rdriverVersion\x12P\n" +
+	"\btimezone\x18\x04 \x01(\tR\btimezone\x12\x1f\n" +
+	"\vdriver_type\x18\x05 \x01(\tR\n" +
+	"driverType\x12%\n" +
+	"\x0edriver_version\x18\a \x01(\tR\rdriverVersion\x12P\n" +
 	"\tregisters\x18\b \x03(\v22.io.clbs.openhes.models.acquisition.DeviceRegisterR\tregisters\x1an\n" +
 	"\x15DeviceAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +

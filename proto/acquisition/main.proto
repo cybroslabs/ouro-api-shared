@@ -136,8 +136,8 @@ message ListDeviceGroupDevicesRequest {
 // Bulk specification.
 
 message CreateBulkRequest {
-    BulkSpec spec                  = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    BulkSpec spec                  = 1;  // The bulk-job spec.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ListOfBulk {
@@ -146,9 +146,9 @@ message ListOfBulk {
 }
 
 message Bulk {
-    BulkSpec spec                  = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
-    BulkStatus status              = 2;                                              // The bulk-job status/data.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    BulkSpec spec                  = 1;  // The bulk-job spec.
+    BulkStatus status              = 2;  // The bulk-job status/data.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 message BulkSpec {
@@ -196,24 +196,24 @@ message ListOfBulkJob {
 // Proxy Bulk specification.
 
 message CreateProxyBulkRequest {
-    ProxyBulkSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The proxy bulk-job spec.
-    common.MetadataFields metadata = 2;                                              // The metadata fields.
+    ProxyBulkSpec spec             = 1;  // The proxy bulk-job spec.
+    common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
 message ProxyBulkSpec {
     // @gqltype: UUID
-    string correlation_id      = 1;                                              // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string driver_type         = 2 [features.field_presence = LEGACY_REQUIRED];  // The device (driver) type.
-    ListOfJobDevice devices    = 3;                                              // The list of custom devices in the proxy bulk.
-    JobSettings settings       = 4;                                              // The bulk-shared job settings.
-    repeated JobAction actions = 5;                                              // The list actions to be executed.
-    string webhook_url         = 6;                                              // The webhook URL to call when the proxy bulk is completed.
+    string correlation_id      = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string driver_type         = 2;  // The device (driver) type.
+    ListOfJobDevice devices    = 3;  // The list of custom devices in the proxy bulk.
+    JobSettings settings       = 4;  // The bulk-shared job settings.
+    repeated JobAction actions = 5;  // The list actions to be executed.
+    string webhook_url         = 6;  // The webhook URL to call when the proxy bulk is completed.
 }
 
 message ProxyBulk {
-    ProxyBulkSpec spec             = 1 [features.field_presence = LEGACY_REQUIRED];  // The bulk-job spec.
-    BulkStatus status              = 2;                                              // The bulk-job status/data.
-    common.MetadataFields metadata = 3;                                              // The metadata fields.
+    ProxyBulkSpec spec             = 1;  // The bulk-job spec.
+    BulkStatus status              = 2;  // The bulk-job status/data.
+    common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
 // Modem Pool specification.
@@ -366,24 +366,24 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
 // Meter Data
 
 message GetMeterDataRequest {
-    google.protobuf.Timestamp from = 1 [features.field_presence = LEGACY_REQUIRED];  // The start timestamp of the data.
-    google.protobuf.Timestamp to   = 2 [features.field_presence = LEGACY_REQUIRED];  // The end timestamp of the data.
-    repeated string device_id      = 3;                                              // One or more identifiers of the devices.
-    repeated string variable_name  = 4;                                              // The unique identifier of the register.
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
+    repeated string device_id      = 3;  // One or more identifiers of the devices.
+    repeated string variable_name  = 4;  // The unique identifier of the register.
 }
 
 // Meter Events
 
 message GetMeterEventsRequest {
-    google.protobuf.Timestamp from = 1 [features.field_presence = LEGACY_REQUIRED];  // The start timestamp of the data.
-    google.protobuf.Timestamp to   = 2 [features.field_presence = LEGACY_REQUIRED];  // The end timestamp of the data.
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
 }
 
 // TOU
 
 message CreateTimeOfUseTableRequest {
-    timeofuse.TimeOfUseTableSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The time-of-use table specification.
-    common.MetadataFields metadata    = 2;                                              // The metadata fields.
+    timeofuse.TimeOfUseTableSpec spec = 1;  // The time-of-use table specification.
+    common.MetadataFields metadata    = 2;  // The metadata fields.
 }
 
 message ListOfTimeOfUseTable {
@@ -392,7 +392,7 @@ message ListOfTimeOfUseTable {
 }
 
 message TimeOfUseTable {
-    reserved 2;                                                                         // reserved for status
-    timeofuse.TimeOfUseTableSpec spec = 1 [features.field_presence = LEGACY_REQUIRED];  // The time-of-use table specification.
-    common.MetadataFields metadata    = 3;                                              // The metadata fields.
+    reserved 2;                             // reserved for status
+    timeofuse.TimeOfUseTableSpec spec = 1;  // The time-of-use table specification.
+    common.MetadataFields metadata    = 3;  // The metadata fields.
 }
