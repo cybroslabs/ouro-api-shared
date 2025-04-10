@@ -90,6 +90,33 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 			}.Build(),
 		}
 
+	case DataLinkProtocol_LINKPROTO_COSEM_WRAPPER:
+		// COSEM Wrapper specific fields
+		return []*common.FieldDescriptor{
+			common.FieldDescriptor_builder{
+				FieldId:  ptr.To("source_address"),
+				Label:    ptr.To("Source address"),
+				Tooltip:  ptr.To("Source address for COSEM Wrapper frames."),
+				DataType: common.FieldDataType_INTEGER.Enum(),
+				Required: ptr.To(true),
+				Validation: common.FieldValidation_builder{
+					MinInteger: ptr.To(int64(0)),
+					MaxInteger: ptr.To(int64(65535)),
+				}.Build(),
+			}.Build(),
+			common.FieldDescriptor_builder{
+				FieldId:  ptr.To("destination_address"),
+				Label:    ptr.To("Destination address"),
+				Tooltip:  ptr.To("Destination address for COSEM Wrapper frames."),
+				DataType: common.FieldDataType_INTEGER.Enum(),
+				Required: ptr.To(true),
+				Validation: common.FieldValidation_builder{
+					MinInteger: ptr.To(int64(0)),
+					MaxInteger: ptr.To(int64(65535)),
+				}.Build(),
+			}.Build(),
+		}
+
 	default:
 		return []*common.FieldDescriptor{}
 	}
