@@ -54,11 +54,6 @@ enum HashDirection {
     SERVER_TO_CLIENT = 1;
 }
 
-enum Compression {
-    COMPRESS_NO  = 0;
-    COMPRESS_V44 = 1;
-}
-
 // Sub-message containing job parameters
 message DlmsIn {
     uint64 id = 1;  // The request ID.
@@ -74,7 +69,6 @@ message DlmsIn {
 message DlmsInit {
     AuthenticatedEncryption encryption = 1;  // The encryption mode.
     DigitalSignature signature         = 2;  // The digital signature mode.
-    Compression compression            = 4;  // The compression mode.
     string driver_id                   = 5;  // The driver identifier.
     string serial_number               = 6;  // The serial number of the device.
     string access_level                = 7;  // The access level.

@@ -269,47 +269,6 @@ func (x HashDirection) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-type Compression int32
-
-const (
-	Compression_COMPRESS_NO  Compression = 0
-	Compression_COMPRESS_V44 Compression = 1
-)
-
-// Enum value maps for Compression.
-var (
-	Compression_name = map[int32]string{
-		0: "COMPRESS_NO",
-		1: "COMPRESS_V44",
-	}
-	Compression_value = map[string]int32{
-		"COMPRESS_NO":  0,
-		"COMPRESS_V44": 1,
-	}
-)
-
-func (x Compression) Enum() *Compression {
-	p := new(Compression)
-	*p = x
-	return p
-}
-
-func (x Compression) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (Compression) Descriptor() protoreflect.EnumDescriptor {
-	return file_crypto_crypto_proto_enumTypes[5].Descriptor()
-}
-
-func (Compression) Type() protoreflect.EnumType {
-	return &file_crypto_crypto_proto_enumTypes[5]
-}
-
-func (x Compression) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
 // Sub-message containing job parameters
 type DlmsIn struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
@@ -650,7 +609,6 @@ type DlmsInit struct {
 	state                   protoimpl.MessageState  `protogen:"opaque.v1"`
 	xxx_hidden_Encryption   AuthenticatedEncryption `protobuf:"varint,1,opt,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
 	xxx_hidden_Signature    DigitalSignature        `protobuf:"varint,2,opt,name=signature,enum=io.clbs.openhes.models.crypto.DigitalSignature"`
-	xxx_hidden_Compression  Compression             `protobuf:"varint,4,opt,name=compression,enum=io.clbs.openhes.models.crypto.Compression"`
 	xxx_hidden_DriverId     *string                 `protobuf:"bytes,5,opt,name=driver_id,json=driverId"`
 	xxx_hidden_SerialNumber *string                 `protobuf:"bytes,6,opt,name=serial_number,json=serialNumber"`
 	xxx_hidden_AccessLevel  *string                 `protobuf:"bytes,7,opt,name=access_level,json=accessLevel"`
@@ -705,15 +663,6 @@ func (x *DlmsInit) GetSignature() DigitalSignature {
 	return DigitalSignature_DS_ECDSA_NONE
 }
 
-func (x *DlmsInit) GetCompression() Compression {
-	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
-			return x.xxx_hidden_Compression
-		}
-	}
-	return Compression_COMPRESS_NO
-}
-
 func (x *DlmsInit) GetDriverId() string {
 	if x != nil {
 		if x.xxx_hidden_DriverId != nil {
@@ -760,32 +709,27 @@ func (x *DlmsInit) GetCToS() []byte {
 
 func (x *DlmsInit) SetEncryption(v AuthenticatedEncryption) {
 	x.xxx_hidden_Encryption = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 7)
 }
 
 func (x *DlmsInit) SetSignature(v DigitalSignature) {
 	x.xxx_hidden_Signature = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
-}
-
-func (x *DlmsInit) SetCompression(v Compression) {
-	x.xxx_hidden_Compression = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
 }
 
 func (x *DlmsInit) SetDriverId(v string) {
 	x.xxx_hidden_DriverId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 7)
 }
 
 func (x *DlmsInit) SetSerialNumber(v string) {
 	x.xxx_hidden_SerialNumber = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
 }
 
 func (x *DlmsInit) SetAccessLevel(v string) {
 	x.xxx_hidden_AccessLevel = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
 }
 
 func (x *DlmsInit) SetSystemTitleC(v []byte) {
@@ -793,7 +737,7 @@ func (x *DlmsInit) SetSystemTitleC(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_SystemTitleC = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 7)
 }
 
 func (x *DlmsInit) SetCToS(v []byte) {
@@ -801,7 +745,7 @@ func (x *DlmsInit) SetCToS(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_CToS = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 7)
 }
 
 func (x *DlmsInit) HasEncryption() bool {
@@ -818,46 +762,39 @@ func (x *DlmsInit) HasSignature() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DlmsInit) HasCompression() bool {
+func (x *DlmsInit) HasDriverId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *DlmsInit) HasDriverId() bool {
+func (x *DlmsInit) HasSerialNumber() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *DlmsInit) HasSerialNumber() bool {
+func (x *DlmsInit) HasAccessLevel() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *DlmsInit) HasAccessLevel() bool {
+func (x *DlmsInit) HasSystemTitleC() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *DlmsInit) HasSystemTitleC() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
-}
-
 func (x *DlmsInit) HasCToS() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
 func (x *DlmsInit) ClearEncryption() {
@@ -870,33 +807,28 @@ func (x *DlmsInit) ClearSignature() {
 	x.xxx_hidden_Signature = DigitalSignature_DS_ECDSA_NONE
 }
 
-func (x *DlmsInit) ClearCompression() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_Compression = Compression_COMPRESS_NO
-}
-
 func (x *DlmsInit) ClearDriverId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_DriverId = nil
 }
 
 func (x *DlmsInit) ClearSerialNumber() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_SerialNumber = nil
 }
 
 func (x *DlmsInit) ClearAccessLevel() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
 	x.xxx_hidden_AccessLevel = nil
 }
 
 func (x *DlmsInit) ClearSystemTitleC() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_SystemTitleC = nil
 }
 
 func (x *DlmsInit) ClearCToS() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
 	x.xxx_hidden_CToS = nil
 }
 
@@ -905,7 +837,6 @@ type DlmsInit_builder struct {
 
 	Encryption   *AuthenticatedEncryption
 	Signature    *DigitalSignature
-	Compression  *Compression
 	DriverId     *string
 	SerialNumber *string
 	AccessLevel  *string
@@ -918,35 +849,31 @@ func (b0 DlmsInit_builder) Build() *DlmsInit {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Encryption != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 7)
 		x.xxx_hidden_Encryption = *b.Encryption
 	}
 	if b.Signature != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
 		x.xxx_hidden_Signature = *b.Signature
 	}
-	if b.Compression != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
-		x.xxx_hidden_Compression = *b.Compression
-	}
 	if b.DriverId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 7)
 		x.xxx_hidden_DriverId = b.DriverId
 	}
 	if b.SerialNumber != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
 		x.xxx_hidden_SerialNumber = b.SerialNumber
 	}
 	if b.AccessLevel != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
 		x.xxx_hidden_AccessLevel = b.AccessLevel
 	}
 	if b.SystemTitleC != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 7)
 		x.xxx_hidden_SystemTitleC = b.SystemTitleC
 	}
 	if b.CToS != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 7)
 		x.xxx_hidden_CToS = b.CToS
 	}
 	return m0
@@ -1763,13 +1690,12 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\x04hash\x18\x04 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12F\n" +
 	"\aencrypt\x18\x05 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\aencrypt\x12F\n" +
 	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecryptB\t\n" +
-	"\arequest\"\xa0\x03\n" +
+	"\arequest\"\xd2\x02\n" +
 	"\bDlmsInit\x12V\n" +
 	"\n" +
 	"encryption\x18\x01 \x01(\x0e26.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\n" +
 	"encryption\x12M\n" +
-	"\tsignature\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12L\n" +
-	"\vcompression\x18\x04 \x01(\x0e2*.io.clbs.openhes.models.crypto.CompressionR\vcompression\x12\x1b\n" +
+	"\tsignature\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12\x1b\n" +
 	"\tdriver_id\x18\x05 \x01(\tR\bdriverId\x12#\n" +
 	"\rserial_number\x18\x06 \x01(\tR\fserialNumber\x12!\n" +
 	"\faccess_level\x18\a \x01(\tR\vaccessLevel\x12$\n" +
@@ -1821,12 +1747,9 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"HASH_ECDSA\x10\x05*;\n" +
 	"\rHashDirection\x12\x14\n" +
 	"\x10CLIENT_TO_SERVER\x10\x00\x12\x14\n" +
-	"\x10SERVER_TO_CLIENT\x10\x01*0\n" +
-	"\vCompression\x12\x0f\n" +
-	"\vCOMPRESS_NO\x10\x00\x12\x10\n" +
-	"\fCOMPRESS_V44\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
+	"\x10SERVER_TO_CLIENT\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
 
-var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
+var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_crypto_crypto_proto_goTypes = []any{
 	(AuthenticatedEncryption)(0), // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
@@ -1834,33 +1757,31 @@ var file_crypto_crypto_proto_goTypes = []any{
 	(KeyAgreement)(0),            // 2: io.clbs.openhes.models.crypto.KeyAgreement
 	(Hash)(0),                    // 3: io.clbs.openhes.models.crypto.Hash
 	(HashDirection)(0),           // 4: io.clbs.openhes.models.crypto.HashDirection
-	(Compression)(0),             // 5: io.clbs.openhes.models.crypto.Compression
-	(*DlmsIn)(nil),               // 6: io.clbs.openhes.models.crypto.DlmsIn
-	(*DlmsInit)(nil),             // 7: io.clbs.openhes.models.crypto.DlmsInit
-	(*DlmsSetServerInfo)(nil),    // 8: io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	(*DlmsOut)(nil),              // 9: io.clbs.openhes.models.crypto.DlmsOut
-	(*DlmsEncrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsEncrypt
-	(*DlmsDecrypt)(nil),          // 11: io.clbs.openhes.models.crypto.DlmsDecrypt
-	(*DlmsHash)(nil),             // 12: io.clbs.openhes.models.crypto.DlmsHash
-	(*ErrorMessage)(nil),         // 13: io.clbs.openhes.models.crypto.ErrorMessage
+	(*DlmsIn)(nil),               // 5: io.clbs.openhes.models.crypto.DlmsIn
+	(*DlmsInit)(nil),             // 6: io.clbs.openhes.models.crypto.DlmsInit
+	(*DlmsSetServerInfo)(nil),    // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	(*DlmsOut)(nil),              // 8: io.clbs.openhes.models.crypto.DlmsOut
+	(*DlmsEncrypt)(nil),          // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
+	(*DlmsDecrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
+	(*DlmsHash)(nil),             // 11: io.clbs.openhes.models.crypto.DlmsHash
+	(*ErrorMessage)(nil),         // 12: io.clbs.openhes.models.crypto.ErrorMessage
 }
 var file_crypto_crypto_proto_depIdxs = []int32{
-	7,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
-	8,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	12, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
-	10, // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
-	11, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
+	6,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
+	7,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	11, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
+	9,  // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
+	10, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
 	0,  // 5: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
 	1,  // 6: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
-	5,  // 7: io.clbs.openhes.models.crypto.DlmsInit.compression:type_name -> io.clbs.openhes.models.crypto.Compression
-	13, // 8: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
-	4,  // 9: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
-	3,  // 10: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	12, // 7: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
+	4,  // 8: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
+	3,  // 9: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_crypto_crypto_proto_init() }
@@ -1880,7 +1801,7 @@ func file_crypto_crypto_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_crypto_crypto_proto_rawDesc), len(file_crypto_crypto_proto_rawDesc)),
-			NumEnums:      6,
+			NumEnums:      5,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
