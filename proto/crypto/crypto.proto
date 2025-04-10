@@ -47,6 +47,13 @@ enum Hash {
     HASH_ECDSA = 5;
 }
 
+enum HashDirection {
+    // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
+    CLIENT_TO_SERVER = 0;
+    // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
+    SERVER_TO_CLIENT = 1;
+}
+
 enum Compression {
     COMPRESS_NO  = 0;
     COMPRESS_V44 = 1;
@@ -99,9 +106,10 @@ message DlmsDecrypt {
 }
 
 message DlmsHash {
-    Hash mode               = 1;  // The hash mode.
-    uint32 frame_counter    = 2;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    uint32 security_control = 3;  // The security control.
+    HashDirection direction = 1;  // The hash direction.
+    Hash mode               = 2;  // The hash mode.
+    uint32 frame_counter    = 3;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 4;  // The security control.
 }
 
 message ErrorMessage {

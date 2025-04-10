@@ -226,6 +226,49 @@ func (x Hash) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+type HashDirection int32
+
+const (
+	// The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
+	HashDirection_CLIENT_TO_SERVER HashDirection = 0
+	// The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
+	HashDirection_SERVER_TO_CLIENT HashDirection = 1
+)
+
+// Enum value maps for HashDirection.
+var (
+	HashDirection_name = map[int32]string{
+		0: "CLIENT_TO_SERVER",
+		1: "SERVER_TO_CLIENT",
+	}
+	HashDirection_value = map[string]int32{
+		"CLIENT_TO_SERVER": 0,
+		"SERVER_TO_CLIENT": 1,
+	}
+)
+
+func (x HashDirection) Enum() *HashDirection {
+	p := new(HashDirection)
+	*p = x
+	return p
+}
+
+func (x HashDirection) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (HashDirection) Descriptor() protoreflect.EnumDescriptor {
+	return file_crypto_crypto_proto_enumTypes[4].Descriptor()
+}
+
+func (HashDirection) Type() protoreflect.EnumType {
+	return &file_crypto_crypto_proto_enumTypes[4]
+}
+
+func (x HashDirection) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
 type Compression int32
 
 const (
@@ -256,11 +299,11 @@ func (x Compression) String() string {
 }
 
 func (Compression) Descriptor() protoreflect.EnumDescriptor {
-	return file_crypto_crypto_proto_enumTypes[4].Descriptor()
+	return file_crypto_crypto_proto_enumTypes[5].Descriptor()
 }
 
 func (Compression) Type() protoreflect.EnumType {
-	return &file_crypto_crypto_proto_enumTypes[4]
+	return &file_crypto_crypto_proto_enumTypes[5]
 }
 
 func (x Compression) Number() protoreflect.EnumNumber {
@@ -1431,9 +1474,10 @@ func (b0 DlmsDecrypt_builder) Build() *DlmsDecrypt {
 
 type DlmsHash struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Mode            Hash                   `protobuf:"varint,1,opt,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,2,opt,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,3,opt,name=security_control,json=securityControl"`
+	xxx_hidden_Direction       HashDirection          `protobuf:"varint,1,opt,name=direction,enum=io.clbs.openhes.models.crypto.HashDirection"`
+	xxx_hidden_Mode            Hash                   `protobuf:"varint,2,opt,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
+	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,3,opt,name=frame_counter,json=frameCounter"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,4,opt,name=security_control,json=securityControl"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1465,9 +1509,18 @@ func (x *DlmsHash) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DlmsHash) GetMode() Hash {
+func (x *DlmsHash) GetDirection() HashDirection {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_Direction
+		}
+	}
+	return HashDirection_CLIENT_TO_SERVER
+}
+
+func (x *DlmsHash) GetMode() Hash {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
 			return x.xxx_hidden_Mode
 		}
 	}
@@ -1488,60 +1541,78 @@ func (x *DlmsHash) GetSecurityControl() uint32 {
 	return 0
 }
 
+func (x *DlmsHash) SetDirection(v HashDirection) {
+	x.xxx_hidden_Direction = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
 func (x *DlmsHash) SetMode(v Hash) {
 	x.xxx_hidden_Mode = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
 }
 
 func (x *DlmsHash) SetFrameCounter(v uint32) {
 	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
 }
 
 func (x *DlmsHash) SetSecurityControl(v uint32) {
 	x.xxx_hidden_SecurityControl = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
 }
 
-func (x *DlmsHash) HasMode() bool {
+func (x *DlmsHash) HasDirection() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *DlmsHash) HasFrameCounter() bool {
+func (x *DlmsHash) HasMode() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DlmsHash) HasSecurityControl() bool {
+func (x *DlmsHash) HasFrameCounter() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *DlmsHash) ClearMode() {
+func (x *DlmsHash) HasSecurityControl() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *DlmsHash) ClearDirection() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Direction = HashDirection_CLIENT_TO_SERVER
+}
+
+func (x *DlmsHash) ClearMode() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Mode = Hash_HASH_NONE
 }
 
 func (x *DlmsHash) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_FrameCounter = 0
 }
 
 func (x *DlmsHash) ClearSecurityControl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_SecurityControl = 0
 }
 
 type DlmsHash_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Direction       *HashDirection
 	Mode            *Hash
 	FrameCounter    *uint32
 	SecurityControl *uint32
@@ -1551,16 +1622,20 @@ func (b0 DlmsHash_builder) Build() *DlmsHash {
 	m0 := &DlmsHash{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Direction != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_Direction = *b.Direction
+	}
 	if b.Mode != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
 		x.xxx_hidden_Mode = *b.Mode
 	}
 	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
 		x.xxx_hidden_FrameCounter = *b.FrameCounter
 	}
 	if b.SecurityControl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
 		x.xxx_hidden_SecurityControl = *b.SecurityControl
 	}
 	return m0
@@ -1714,11 +1789,12 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\vDlmsDecrypt\x12#\n" +
 	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12)\n" +
 	"\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"\x93\x01\n" +
-	"\bDlmsHash\x127\n" +
-	"\x04mode\x18\x01 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
-	"\rframe_counter\x18\x02 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x03 \x01(\rR\x0fsecurityControl\"<\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"\xdf\x01\n" +
+	"\bDlmsHash\x12J\n" +
+	"\tdirection\x18\x01 \x01(\x0e2,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x127\n" +
+	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
+	"\rframe_counter\x18\x03 \x01(\rR\fframeCounter\x12)\n" +
+	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +
@@ -1742,44 +1818,49 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\tHASH_GMAC\x10\x03\x12\x10\n" +
 	"\fHASH_SHA_256\x10\x04\x12\x0e\n" +
 	"\n" +
-	"HASH_ECDSA\x10\x05*0\n" +
+	"HASH_ECDSA\x10\x05*;\n" +
+	"\rHashDirection\x12\x14\n" +
+	"\x10CLIENT_TO_SERVER\x10\x00\x12\x14\n" +
+	"\x10SERVER_TO_CLIENT\x10\x01*0\n" +
 	"\vCompression\x12\x0f\n" +
 	"\vCOMPRESS_NO\x10\x00\x12\x10\n" +
 	"\fCOMPRESS_V44\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
 
-var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_crypto_crypto_proto_goTypes = []any{
 	(AuthenticatedEncryption)(0), // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
 	(DigitalSignature)(0),        // 1: io.clbs.openhes.models.crypto.DigitalSignature
 	(KeyAgreement)(0),            // 2: io.clbs.openhes.models.crypto.KeyAgreement
 	(Hash)(0),                    // 3: io.clbs.openhes.models.crypto.Hash
-	(Compression)(0),             // 4: io.clbs.openhes.models.crypto.Compression
-	(*DlmsIn)(nil),               // 5: io.clbs.openhes.models.crypto.DlmsIn
-	(*DlmsInit)(nil),             // 6: io.clbs.openhes.models.crypto.DlmsInit
-	(*DlmsSetServerInfo)(nil),    // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	(*DlmsOut)(nil),              // 8: io.clbs.openhes.models.crypto.DlmsOut
-	(*DlmsEncrypt)(nil),          // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
-	(*DlmsDecrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
-	(*DlmsHash)(nil),             // 11: io.clbs.openhes.models.crypto.DlmsHash
-	(*ErrorMessage)(nil),         // 12: io.clbs.openhes.models.crypto.ErrorMessage
+	(HashDirection)(0),           // 4: io.clbs.openhes.models.crypto.HashDirection
+	(Compression)(0),             // 5: io.clbs.openhes.models.crypto.Compression
+	(*DlmsIn)(nil),               // 6: io.clbs.openhes.models.crypto.DlmsIn
+	(*DlmsInit)(nil),             // 7: io.clbs.openhes.models.crypto.DlmsInit
+	(*DlmsSetServerInfo)(nil),    // 8: io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	(*DlmsOut)(nil),              // 9: io.clbs.openhes.models.crypto.DlmsOut
+	(*DlmsEncrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsEncrypt
+	(*DlmsDecrypt)(nil),          // 11: io.clbs.openhes.models.crypto.DlmsDecrypt
+	(*DlmsHash)(nil),             // 12: io.clbs.openhes.models.crypto.DlmsHash
+	(*ErrorMessage)(nil),         // 13: io.clbs.openhes.models.crypto.ErrorMessage
 }
 var file_crypto_crypto_proto_depIdxs = []int32{
-	6,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
-	7,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	11, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
-	9,  // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
-	10, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
+	7,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
+	8,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	12, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
+	10, // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
+	11, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
 	0,  // 5: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
 	1,  // 6: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
-	4,  // 7: io.clbs.openhes.models.crypto.DlmsInit.compression:type_name -> io.clbs.openhes.models.crypto.Compression
-	12, // 8: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
-	3,  // 9: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	5,  // 7: io.clbs.openhes.models.crypto.DlmsInit.compression:type_name -> io.clbs.openhes.models.crypto.Compression
+	13, // 8: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
+	4,  // 9: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
+	3,  // 10: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_crypto_crypto_proto_init() }
@@ -1799,7 +1880,7 @@ func file_crypto_crypto_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_crypto_crypto_proto_rawDesc), len(file_crypto_crypto_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      6,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
