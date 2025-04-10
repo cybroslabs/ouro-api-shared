@@ -319,7 +319,7 @@ func (x *DlmsIn) GetInit() *DlmsInit {
 	return nil
 }
 
-func (x *DlmsIn) GetSetup() *DlmsSetup {
+func (x *DlmsIn) GetSetup() *DlmsSetServerInfo {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Request.(*dlmsIn_Setup); ok {
 			return x.Setup
@@ -368,7 +368,7 @@ func (x *DlmsIn) SetInit(v *DlmsInit) {
 	x.xxx_hidden_Request = &dlmsIn_Init{v}
 }
 
-func (x *DlmsIn) SetSetup(v *DlmsSetup) {
+func (x *DlmsIn) SetSetup(v *DlmsSetServerInfo) {
 	if v == nil {
 		x.xxx_hidden_Request = nil
 		return
@@ -526,7 +526,7 @@ type DlmsIn_builder struct {
 	Id *uint64
 	// Fields of oneof xxx_hidden_Request:
 	Init    *DlmsInit
-	Setup   *DlmsSetup
+	Setup   *DlmsSetServerInfo
 	Hash    *DlmsHash
 	Encrypt *DlmsEncrypt
 	Decrypt *DlmsDecrypt
@@ -578,7 +578,7 @@ type dlmsIn_Init struct {
 }
 
 type dlmsIn_Setup struct {
-	Setup *DlmsSetup `protobuf:"bytes,3,opt,name=setup,oneof"` // The setup request. It sets generic parameters.
+	Setup *DlmsSetServerInfo `protobuf:"bytes,3,opt,name=setup,oneof"` // The setup server into request. This message shall be called when the data known.
 }
 
 type dlmsIn_Hash struct {
@@ -611,6 +611,8 @@ type DlmsInit struct {
 	xxx_hidden_DriverId     *string                 `protobuf:"bytes,5,opt,name=driver_id,json=driverId"`
 	xxx_hidden_SerialNumber *string                 `protobuf:"bytes,6,opt,name=serial_number,json=serialNumber"`
 	xxx_hidden_AccessLevel  *string                 `protobuf:"bytes,7,opt,name=access_level,json=accessLevel"`
+	xxx_hidden_SystemTitleC []byte                  `protobuf:"bytes,8,opt,name=system_title_c,json=systemTitleC"`
+	xxx_hidden_CToS         []byte                  `protobuf:"bytes,9,opt,name=c_to_s,json=cToS"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -699,34 +701,64 @@ func (x *DlmsInit) GetAccessLevel() string {
 	return ""
 }
 
+func (x *DlmsInit) GetSystemTitleC() []byte {
+	if x != nil {
+		return x.xxx_hidden_SystemTitleC
+	}
+	return nil
+}
+
+func (x *DlmsInit) GetCToS() []byte {
+	if x != nil {
+		return x.xxx_hidden_CToS
+	}
+	return nil
+}
+
 func (x *DlmsInit) SetEncryption(v AuthenticatedEncryption) {
 	x.xxx_hidden_Encryption = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
 }
 
 func (x *DlmsInit) SetSignature(v DigitalSignature) {
 	x.xxx_hidden_Signature = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
 }
 
 func (x *DlmsInit) SetCompression(v Compression) {
 	x.xxx_hidden_Compression = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
 }
 
 func (x *DlmsInit) SetDriverId(v string) {
 	x.xxx_hidden_DriverId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
 }
 
 func (x *DlmsInit) SetSerialNumber(v string) {
 	x.xxx_hidden_SerialNumber = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
 }
 
 func (x *DlmsInit) SetAccessLevel(v string) {
 	x.xxx_hidden_AccessLevel = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
+}
+
+func (x *DlmsInit) SetSystemTitleC(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_SystemTitleC = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 8)
+}
+
+func (x *DlmsInit) SetCToS(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_CToS = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 8)
 }
 
 func (x *DlmsInit) HasEncryption() bool {
@@ -771,6 +803,20 @@ func (x *DlmsInit) HasAccessLevel() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
+func (x *DlmsInit) HasSystemTitleC() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
+}
+
+func (x *DlmsInit) HasCToS() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
+}
+
 func (x *DlmsInit) ClearEncryption() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Encryption = AuthenticatedEncryption_AE_NONE
@@ -801,6 +847,16 @@ func (x *DlmsInit) ClearAccessLevel() {
 	x.xxx_hidden_AccessLevel = nil
 }
 
+func (x *DlmsInit) ClearSystemTitleC() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_SystemTitleC = nil
+}
+
+func (x *DlmsInit) ClearCToS() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	x.xxx_hidden_CToS = nil
+}
+
 type DlmsInit_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -810,6 +866,8 @@ type DlmsInit_builder struct {
 	DriverId     *string
 	SerialNumber *string
 	AccessLevel  *string
+	SystemTitleC []byte
+	CToS         []byte
 }
 
 func (b0 DlmsInit_builder) Build() *DlmsInit {
@@ -817,58 +875,64 @@ func (b0 DlmsInit_builder) Build() *DlmsInit {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Encryption != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 8)
 		x.xxx_hidden_Encryption = *b.Encryption
 	}
 	if b.Signature != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
 		x.xxx_hidden_Signature = *b.Signature
 	}
 	if b.Compression != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
 		x.xxx_hidden_Compression = *b.Compression
 	}
 	if b.DriverId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
 		x.xxx_hidden_DriverId = b.DriverId
 	}
 	if b.SerialNumber != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
 		x.xxx_hidden_SerialNumber = b.SerialNumber
 	}
 	if b.AccessLevel != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
 		x.xxx_hidden_AccessLevel = b.AccessLevel
+	}
+	if b.SystemTitleC != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 8)
+		x.xxx_hidden_SystemTitleC = b.SystemTitleC
+	}
+	if b.CToS != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 8)
+		x.xxx_hidden_CToS = b.CToS
 	}
 	return m0
 }
 
-type DlmsSetup struct {
+type DlmsSetServerInfo struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_SystemTitleC []byte                 `protobuf:"bytes,4,opt,name=system_title_c,json=systemTitleC"`
 	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,5,opt,name=system_title_s,json=systemTitleS"`
 	xxx_hidden_SToC         []byte                 `protobuf:"bytes,6,opt,name=s_to_c,json=sToC"`
-	xxx_hidden_CToS         []byte                 `protobuf:"bytes,7,opt,name=c_to_s,json=cToS"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
 
-func (x *DlmsSetup) Reset() {
-	*x = DlmsSetup{}
+func (x *DlmsSetServerInfo) Reset() {
+	*x = DlmsSetServerInfo{}
 	mi := &file_crypto_crypto_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DlmsSetup) String() string {
+func (x *DlmsSetServerInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DlmsSetup) ProtoMessage() {}
+func (*DlmsSetServerInfo) ProtoMessage() {}
 
-func (x *DlmsSetup) ProtoReflect() protoreflect.Message {
+func (x *DlmsSetServerInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_crypto_crypto_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -880,142 +944,78 @@ func (x *DlmsSetup) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DlmsSetup) GetSystemTitleC() []byte {
-	if x != nil {
-		return x.xxx_hidden_SystemTitleC
-	}
-	return nil
-}
-
-func (x *DlmsSetup) GetSystemTitleS() []byte {
+func (x *DlmsSetServerInfo) GetSystemTitleS() []byte {
 	if x != nil {
 		return x.xxx_hidden_SystemTitleS
 	}
 	return nil
 }
 
-func (x *DlmsSetup) GetSToC() []byte {
+func (x *DlmsSetServerInfo) GetSToC() []byte {
 	if x != nil {
 		return x.xxx_hidden_SToC
 	}
 	return nil
 }
 
-func (x *DlmsSetup) GetCToS() []byte {
-	if x != nil {
-		return x.xxx_hidden_CToS
-	}
-	return nil
-}
-
-func (x *DlmsSetup) SetSystemTitleC(v []byte) {
-	if v == nil {
-		v = []byte{}
-	}
-	x.xxx_hidden_SystemTitleC = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
-}
-
-func (x *DlmsSetup) SetSystemTitleS(v []byte) {
+func (x *DlmsSetServerInfo) SetSystemTitleS(v []byte) {
 	if v == nil {
 		v = []byte{}
 	}
 	x.xxx_hidden_SystemTitleS = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
-func (x *DlmsSetup) SetSToC(v []byte) {
+func (x *DlmsSetServerInfo) SetSToC(v []byte) {
 	if v == nil {
 		v = []byte{}
 	}
 	x.xxx_hidden_SToC = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
-func (x *DlmsSetup) SetCToS(v []byte) {
-	if v == nil {
-		v = []byte{}
-	}
-	x.xxx_hidden_CToS = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
-}
-
-func (x *DlmsSetup) HasSystemTitleC() bool {
+func (x *DlmsSetServerInfo) HasSystemTitleS() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *DlmsSetup) HasSystemTitleS() bool {
+func (x *DlmsSetServerInfo) HasSToC() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DlmsSetup) HasSToC() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *DlmsSetup) HasCToS() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
-}
-
-func (x *DlmsSetup) ClearSystemTitleC() {
+func (x *DlmsSetServerInfo) ClearSystemTitleS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_SystemTitleC = nil
-}
-
-func (x *DlmsSetup) ClearSystemTitleS() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_SystemTitleS = nil
 }
 
-func (x *DlmsSetup) ClearSToC() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+func (x *DlmsSetServerInfo) ClearSToC() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_SToC = nil
 }
 
-func (x *DlmsSetup) ClearCToS() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
-	x.xxx_hidden_CToS = nil
-}
-
-type DlmsSetup_builder struct {
+type DlmsSetServerInfo_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	SystemTitleC []byte
 	SystemTitleS []byte
 	SToC         []byte
-	CToS         []byte
 }
 
-func (b0 DlmsSetup_builder) Build() *DlmsSetup {
-	m0 := &DlmsSetup{}
+func (b0 DlmsSetServerInfo_builder) Build() *DlmsSetServerInfo {
+	m0 := &DlmsSetServerInfo{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.SystemTitleC != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
-		x.xxx_hidden_SystemTitleC = b.SystemTitleC
-	}
 	if b.SystemTitleS != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_SystemTitleS = b.SystemTitleS
 	}
 	if b.SToC != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
 		x.xxx_hidden_SToC = b.SToC
-	}
-	if b.CToS != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
-		x.xxx_hidden_CToS = b.CToS
 	}
 	return m0
 }
@@ -1680,15 +1680,15 @@ var File_crypto_crypto_proto protoreflect.FileDescriptor
 
 const file_crypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xf3\x02\n" +
+	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xfb\x02\n" +
 	"\x06DlmsIn\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12=\n" +
-	"\x04init\x18\x02 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12@\n" +
-	"\x05setup\x18\x03 \x01(\v2(.io.clbs.openhes.models.crypto.DlmsSetupH\x00R\x05setup\x12=\n" +
+	"\x04init\x18\x02 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12H\n" +
+	"\x05setup\x18\x03 \x01(\v20.io.clbs.openhes.models.crypto.DlmsSetServerInfoH\x00R\x05setup\x12=\n" +
 	"\x04hash\x18\x04 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12F\n" +
 	"\aencrypt\x18\x05 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\aencrypt\x12F\n" +
 	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecryptB\t\n" +
-	"\arequest\"\xe4\x02\n" +
+	"\arequest\"\xa0\x03\n" +
 	"\bDlmsInit\x12V\n" +
 	"\n" +
 	"encryption\x18\x01 \x01(\x0e26.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\n" +
@@ -1697,12 +1697,12 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\vcompression\x18\x04 \x01(\x0e2*.io.clbs.openhes.models.crypto.CompressionR\vcompression\x12\x1b\n" +
 	"\tdriver_id\x18\x05 \x01(\tR\bdriverId\x12#\n" +
 	"\rserial_number\x18\x06 \x01(\tR\fserialNumber\x12!\n" +
-	"\faccess_level\x18\a \x01(\tR\vaccessLevel\"\x83\x01\n" +
-	"\tDlmsSetup\x12$\n" +
-	"\x0esystem_title_c\x18\x04 \x01(\fR\fsystemTitleC\x12$\n" +
+	"\faccess_level\x18\a \x01(\tR\vaccessLevel\x12$\n" +
+	"\x0esystem_title_c\x18\b \x01(\fR\fsystemTitleC\x12\x14\n" +
+	"\x06c_to_s\x18\t \x01(\fR\x04cToS\"O\n" +
+	"\x11DlmsSetServerInfo\x12$\n" +
 	"\x0esystem_title_s\x18\x05 \x01(\fR\fsystemTitleS\x12\x14\n" +
-	"\x06s_to_c\x18\x06 \x01(\fR\x04sToC\x12\x14\n" +
-	"\x06c_to_s\x18\a \x01(\fR\x04cToS\"p\n" +
+	"\x06s_to_c\x18\x06 \x01(\fR\x04sToC\"p\n" +
 	"\aDlmsOut\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12A\n" +
 	"\x05error\x18\x02 \x01(\v2+.io.clbs.openhes.models.crypto.ErrorMessageR\x05error\x12\x12\n" +
@@ -1757,7 +1757,7 @@ var file_crypto_crypto_proto_goTypes = []any{
 	(Compression)(0),             // 4: io.clbs.openhes.models.crypto.Compression
 	(*DlmsIn)(nil),               // 5: io.clbs.openhes.models.crypto.DlmsIn
 	(*DlmsInit)(nil),             // 6: io.clbs.openhes.models.crypto.DlmsInit
-	(*DlmsSetup)(nil),            // 7: io.clbs.openhes.models.crypto.DlmsSetup
+	(*DlmsSetServerInfo)(nil),    // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
 	(*DlmsOut)(nil),              // 8: io.clbs.openhes.models.crypto.DlmsOut
 	(*DlmsEncrypt)(nil),          // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
 	(*DlmsDecrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
@@ -1766,7 +1766,7 @@ var file_crypto_crypto_proto_goTypes = []any{
 }
 var file_crypto_crypto_proto_depIdxs = []int32{
 	6,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
-	7,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetup
+	7,  // 1: io.clbs.openhes.models.crypto.DlmsIn.setup:type_name -> io.clbs.openhes.models.crypto.DlmsSetServerInfo
 	11, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
 	9,  // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
 	10, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt

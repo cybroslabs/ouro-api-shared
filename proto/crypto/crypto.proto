@@ -56,11 +56,11 @@ enum Compression {
 message DlmsIn {
     uint64 id = 1;  // The request ID.
     oneof request {
-        DlmsInit init       = 2;  // The initialize request. It can be called only once, as the first request.
-        DlmsSetup setup     = 3;  // The setup request. It sets generic parameters.
-        DlmsHash hash       = 4;  // The hash request.
-        DlmsEncrypt encrypt = 5;  // The encryption request.
-        DlmsDecrypt decrypt = 6;  // The decryption request.
+        DlmsInit init           = 2;  // The initialize request. It can be called only once, as the first request.
+        DlmsSetServerInfo setup = 3;  // The setup server into request. This message shall be called when the data known.
+        DlmsHash hash           = 4;  // The hash request.
+        DlmsEncrypt encrypt     = 5;  // The encryption request.
+        DlmsDecrypt decrypt     = 6;  // The decryption request.
     }
 }
 
@@ -71,13 +71,13 @@ message DlmsInit {
     string driver_id                   = 5;  // The driver identifier.
     string serial_number               = 6;  // The serial number of the device.
     string access_level                = 7;  // The access level.
+    bytes system_title_c               = 8;  // The client system-title.
+    bytes c_to_s                       = 9;  // The client-to-server data.
 }
 
-message DlmsSetup {
-    bytes system_title_c = 4;  // The DLMS client system-title.
-    bytes system_title_s = 5;  // The DLMS server system-title.
-    bytes s_to_c         = 6;  // The StoC data.
-    bytes c_to_s         = 7;  // The CtoS data.
+message DlmsSetServerInfo {
+    bytes system_title_s = 5;  // The server system-title.
+    bytes s_to_c         = 6;  // The server-to-client data.
 }
 
 message DlmsOut {
