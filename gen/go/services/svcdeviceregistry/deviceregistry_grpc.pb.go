@@ -107,7 +107,7 @@ type DeviceRegistryServiceClient interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
-	ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
+	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
@@ -385,7 +385,7 @@ func (c *deviceRegistryServiceClient) RemoveDeviceConfigurationRegisterFromDevic
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error) {
+func (c *deviceRegistryServiceClient) ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDriver)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDrivers_FullMethodName, in, out, cOpts...)
@@ -819,7 +819,7 @@ type DeviceRegistryServiceServer interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
-	ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error)
+	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
@@ -985,7 +985,7 @@ func (UnimplementedDeviceRegistryServiceServer) AddDeviceConfigurationRegisterTo
 func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error) {
@@ -1415,7 +1415,7 @@ func _DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigura
 }
 
 func _DeviceRegistryService_ListDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1427,7 +1427,7 @@ func _DeviceRegistryService_ListDrivers_Handler(srv interface{}, ctx context.Con
 		FullMethod: DeviceRegistryService_ListDrivers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListDrivers(ctx, req.(*emptypb.Empty))
+		return srv.(DeviceRegistryServiceServer).ListDrivers(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

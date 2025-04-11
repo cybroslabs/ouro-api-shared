@@ -103,7 +103,7 @@ class DeviceRegistryServiceStub(object):
                 _registered_method=True)
         self.ListDrivers = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDriver.FromString,
                 _registered_method=True)
         self.CreateDriver = channel.unary_unary(
@@ -799,7 +799,7 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             ),
             'ListDrivers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDrivers,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDriver.SerializeToString,
             ),
             'CreateDriver': grpc.unary_unary_rpc_method_handler(
@@ -1456,7 +1456,7 @@ class DeviceRegistryService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            common_dot_fields__pb2.ListSelector.SerializeToString,
             acquisition_dot_main__pb2.ListOfDriver.FromString,
             options,
             channel_credentials,
