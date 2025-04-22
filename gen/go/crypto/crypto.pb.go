@@ -357,6 +357,24 @@ func (x *DlmsIn) GetDecrypt() *DlmsDecrypt {
 	return nil
 }
 
+func (x *DlmsIn) GetAuthReponse() *DlmsAuthEncodeResponse {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse); ok {
+			return x.AuthReponse
+		}
+	}
+	return nil
+}
+
+func (x *DlmsIn) GetAuthVerify() *DlmsAuthVerify {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Request.(*dlmsIn_AuthVerify); ok {
+			return x.AuthVerify
+		}
+	}
+	return nil
+}
+
 func (x *DlmsIn) SetId(v uint64) {
 	x.xxx_hidden_Id = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
@@ -400,6 +418,22 @@ func (x *DlmsIn) SetDecrypt(v *DlmsDecrypt) {
 		return
 	}
 	x.xxx_hidden_Request = &dlmsIn_Decrypt{v}
+}
+
+func (x *DlmsIn) SetAuthReponse(v *DlmsAuthEncodeResponse) {
+	if v == nil {
+		x.xxx_hidden_Request = nil
+		return
+	}
+	x.xxx_hidden_Request = &dlmsIn_AuthReponse{v}
+}
+
+func (x *DlmsIn) SetAuthVerify(v *DlmsAuthVerify) {
+	if v == nil {
+		x.xxx_hidden_Request = nil
+		return
+	}
+	x.xxx_hidden_Request = &dlmsIn_AuthVerify{v}
 }
 
 func (x *DlmsIn) HasId() bool {
@@ -456,6 +490,22 @@ func (x *DlmsIn) HasDecrypt() bool {
 	return ok
 }
 
+func (x *DlmsIn) HasAuthReponse() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse)
+	return ok
+}
+
+func (x *DlmsIn) HasAuthVerify() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Request.(*dlmsIn_AuthVerify)
+	return ok
+}
+
 func (x *DlmsIn) ClearId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Id = 0
@@ -495,12 +545,26 @@ func (x *DlmsIn) ClearDecrypt() {
 	}
 }
 
+func (x *DlmsIn) ClearAuthReponse() {
+	if _, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse); ok {
+		x.xxx_hidden_Request = nil
+	}
+}
+
+func (x *DlmsIn) ClearAuthVerify() {
+	if _, ok := x.xxx_hidden_Request.(*dlmsIn_AuthVerify); ok {
+		x.xxx_hidden_Request = nil
+	}
+}
+
 const DlmsIn_Request_not_set_case case_DlmsIn_Request = 0
 const DlmsIn_Init_case case_DlmsIn_Request = 2
 const DlmsIn_Setup_case case_DlmsIn_Request = 3
 const DlmsIn_Hash_case case_DlmsIn_Request = 4
 const DlmsIn_Encrypt_case case_DlmsIn_Request = 5
 const DlmsIn_Decrypt_case case_DlmsIn_Request = 6
+const DlmsIn_AuthReponse_case case_DlmsIn_Request = 7
+const DlmsIn_AuthVerify_case case_DlmsIn_Request = 8
 
 func (x *DlmsIn) WhichRequest() case_DlmsIn_Request {
 	if x == nil {
@@ -517,6 +581,10 @@ func (x *DlmsIn) WhichRequest() case_DlmsIn_Request {
 		return DlmsIn_Encrypt_case
 	case *dlmsIn_Decrypt:
 		return DlmsIn_Decrypt_case
+	case *dlmsIn_AuthReponse:
+		return DlmsIn_AuthReponse_case
+	case *dlmsIn_AuthVerify:
+		return DlmsIn_AuthVerify_case
 	default:
 		return DlmsIn_Request_not_set_case
 	}
@@ -527,11 +595,13 @@ type DlmsIn_builder struct {
 
 	Id *uint64
 	// Fields of oneof xxx_hidden_Request:
-	Init    *DlmsInit
-	Setup   *DlmsSetServerInfo
-	Hash    *DlmsHash
-	Encrypt *DlmsEncrypt
-	Decrypt *DlmsDecrypt
+	Init        *DlmsInit
+	Setup       *DlmsSetServerInfo
+	Hash        *DlmsHash
+	Encrypt     *DlmsEncrypt
+	Decrypt     *DlmsDecrypt
+	AuthReponse *DlmsAuthEncodeResponse
+	AuthVerify  *DlmsAuthVerify
 	// -- end of xxx_hidden_Request
 }
 
@@ -557,6 +627,12 @@ func (b0 DlmsIn_builder) Build() *DlmsIn {
 	}
 	if b.Decrypt != nil {
 		x.xxx_hidden_Request = &dlmsIn_Decrypt{b.Decrypt}
+	}
+	if b.AuthReponse != nil {
+		x.xxx_hidden_Request = &dlmsIn_AuthReponse{b.AuthReponse}
+	}
+	if b.AuthVerify != nil {
+		x.xxx_hidden_Request = &dlmsIn_AuthVerify{b.AuthVerify}
 	}
 	return m0
 }
@@ -595,6 +671,14 @@ type dlmsIn_Decrypt struct {
 	Decrypt *DlmsDecrypt `protobuf:"bytes,6,opt,name=decrypt,oneof"` // The decryption request.
 }
 
+type dlmsIn_AuthReponse struct {
+	AuthReponse *DlmsAuthEncodeResponse `protobuf:"bytes,7,opt,name=auth_reponse,json=authReponse,oneof"` // The authentication response.
+}
+
+type dlmsIn_AuthVerify struct {
+	AuthVerify *DlmsAuthVerify `protobuf:"bytes,8,opt,name=auth_verify,json=authVerify,oneof"` // The authentication verify.
+}
+
 func (*dlmsIn_Init) isDlmsIn_Request() {}
 
 func (*dlmsIn_Setup) isDlmsIn_Request() {}
@@ -604,6 +688,10 @@ func (*dlmsIn_Hash) isDlmsIn_Request() {}
 func (*dlmsIn_Encrypt) isDlmsIn_Request() {}
 
 func (*dlmsIn_Decrypt) isDlmsIn_Request() {}
+
+func (*dlmsIn_AuthReponse) isDlmsIn_Request() {}
+
+func (*dlmsIn_AuthVerify) isDlmsIn_Request() {}
 
 type DlmsInit struct {
 	state                   protoimpl.MessageState  `protogen:"opaque.v1"`
@@ -1568,6 +1656,189 @@ func (b0 DlmsHash_builder) Build() *DlmsHash {
 	return m0
 }
 
+type DlmsAuthEncodeResponse struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FrameCounter uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *DlmsAuthEncodeResponse) Reset() {
+	*x = DlmsAuthEncodeResponse{}
+	mi := &file_crypto_crypto_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DlmsAuthEncodeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DlmsAuthEncodeResponse) ProtoMessage() {}
+
+func (x *DlmsAuthEncodeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_crypto_crypto_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DlmsAuthEncodeResponse) GetFrameCounter() uint32 {
+	if x != nil {
+		return x.xxx_hidden_FrameCounter
+	}
+	return 0
+}
+
+func (x *DlmsAuthEncodeResponse) SetFrameCounter(v uint32) {
+	x.xxx_hidden_FrameCounter = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
+}
+
+func (x *DlmsAuthEncodeResponse) HasFrameCounter() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DlmsAuthEncodeResponse) ClearFrameCounter() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FrameCounter = 0
+}
+
+type DlmsAuthEncodeResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FrameCounter *uint32
+}
+
+func (b0 DlmsAuthEncodeResponse_builder) Build() *DlmsAuthEncodeResponse {
+	m0 := &DlmsAuthEncodeResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FrameCounter != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		x.xxx_hidden_FrameCounter = *b.FrameCounter
+	}
+	return m0
+}
+
+type DlmsAuthVerify struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FrameCounter uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
+	xxx_hidden_Data         []byte                 `protobuf:"bytes,2,opt,name=data"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *DlmsAuthVerify) Reset() {
+	*x = DlmsAuthVerify{}
+	mi := &file_crypto_crypto_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DlmsAuthVerify) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DlmsAuthVerify) ProtoMessage() {}
+
+func (x *DlmsAuthVerify) ProtoReflect() protoreflect.Message {
+	mi := &file_crypto_crypto_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DlmsAuthVerify) GetFrameCounter() uint32 {
+	if x != nil {
+		return x.xxx_hidden_FrameCounter
+	}
+	return 0
+}
+
+func (x *DlmsAuthVerify) GetData() []byte {
+	if x != nil {
+		return x.xxx_hidden_Data
+	}
+	return nil
+}
+
+func (x *DlmsAuthVerify) SetFrameCounter(v uint32) {
+	x.xxx_hidden_FrameCounter = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DlmsAuthVerify) SetData(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_Data = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *DlmsAuthVerify) HasFrameCounter() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DlmsAuthVerify) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DlmsAuthVerify) ClearFrameCounter() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FrameCounter = 0
+}
+
+func (x *DlmsAuthVerify) ClearData() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Data = nil
+}
+
+type DlmsAuthVerify_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FrameCounter *uint32
+	Data         []byte
+}
+
+func (b0 DlmsAuthVerify_builder) Build() *DlmsAuthVerify {
+	m0 := &DlmsAuthVerify{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FrameCounter != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_FrameCounter = *b.FrameCounter
+	}
+	if b.Data != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Data = b.Data
+	}
+	return m0
+}
+
 type ErrorMessage struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Code        uint32                 `protobuf:"varint,1,opt,name=code"`
@@ -1580,7 +1851,7 @@ type ErrorMessage struct {
 
 func (x *ErrorMessage) Reset() {
 	*x = ErrorMessage{}
-	mi := &file_crypto_crypto_proto_msgTypes[7]
+	mi := &file_crypto_crypto_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1592,7 +1863,7 @@ func (x *ErrorMessage) String() string {
 func (*ErrorMessage) ProtoMessage() {}
 
 func (x *ErrorMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_crypto_crypto_proto_msgTypes[7]
+	mi := &file_crypto_crypto_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1682,14 +1953,17 @@ var File_crypto_crypto_proto protoreflect.FileDescriptor
 
 const file_crypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xfb\x02\n" +
+	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xa9\x04\n" +
 	"\x06DlmsIn\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12=\n" +
 	"\x04init\x18\x02 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12H\n" +
 	"\x05setup\x18\x03 \x01(\v20.io.clbs.openhes.models.crypto.DlmsSetServerInfoH\x00R\x05setup\x12=\n" +
 	"\x04hash\x18\x04 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12F\n" +
 	"\aencrypt\x18\x05 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\aencrypt\x12F\n" +
-	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecryptB\t\n" +
+	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecrypt\x12Z\n" +
+	"\fauth_reponse\x18\a \x01(\v25.io.clbs.openhes.models.crypto.DlmsAuthEncodeResponseH\x00R\vauthReponse\x12P\n" +
+	"\vauth_verify\x18\b \x01(\v2-.io.clbs.openhes.models.crypto.DlmsAuthVerifyH\x00R\n" +
+	"authVerifyB\t\n" +
 	"\arequest\"\xd2\x02\n" +
 	"\bDlmsInit\x12V\n" +
 	"\n" +
@@ -1720,7 +1994,12 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\tdirection\x18\x01 \x01(\x0e2,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x127\n" +
 	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
 	"\rframe_counter\x18\x03 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"<\n" +
+	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"=\n" +
+	"\x16DlmsAuthEncodeResponse\x12#\n" +
+	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\"I\n" +
+	"\x0eDlmsAuthVerify\x12#\n" +
+	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +
@@ -1750,21 +2029,23 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\x10SERVER_TO_CLIENT\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
 
 var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_crypto_crypto_proto_goTypes = []any{
-	(AuthenticatedEncryption)(0), // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
-	(DigitalSignature)(0),        // 1: io.clbs.openhes.models.crypto.DigitalSignature
-	(KeyAgreement)(0),            // 2: io.clbs.openhes.models.crypto.KeyAgreement
-	(Hash)(0),                    // 3: io.clbs.openhes.models.crypto.Hash
-	(HashDirection)(0),           // 4: io.clbs.openhes.models.crypto.HashDirection
-	(*DlmsIn)(nil),               // 5: io.clbs.openhes.models.crypto.DlmsIn
-	(*DlmsInit)(nil),             // 6: io.clbs.openhes.models.crypto.DlmsInit
-	(*DlmsSetServerInfo)(nil),    // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	(*DlmsOut)(nil),              // 8: io.clbs.openhes.models.crypto.DlmsOut
-	(*DlmsEncrypt)(nil),          // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
-	(*DlmsDecrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
-	(*DlmsHash)(nil),             // 11: io.clbs.openhes.models.crypto.DlmsHash
-	(*ErrorMessage)(nil),         // 12: io.clbs.openhes.models.crypto.ErrorMessage
+	(AuthenticatedEncryption)(0),   // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
+	(DigitalSignature)(0),          // 1: io.clbs.openhes.models.crypto.DigitalSignature
+	(KeyAgreement)(0),              // 2: io.clbs.openhes.models.crypto.KeyAgreement
+	(Hash)(0),                      // 3: io.clbs.openhes.models.crypto.Hash
+	(HashDirection)(0),             // 4: io.clbs.openhes.models.crypto.HashDirection
+	(*DlmsIn)(nil),                 // 5: io.clbs.openhes.models.crypto.DlmsIn
+	(*DlmsInit)(nil),               // 6: io.clbs.openhes.models.crypto.DlmsInit
+	(*DlmsSetServerInfo)(nil),      // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	(*DlmsOut)(nil),                // 8: io.clbs.openhes.models.crypto.DlmsOut
+	(*DlmsEncrypt)(nil),            // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
+	(*DlmsDecrypt)(nil),            // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
+	(*DlmsHash)(nil),               // 11: io.clbs.openhes.models.crypto.DlmsHash
+	(*DlmsAuthEncodeResponse)(nil), // 12: io.clbs.openhes.models.crypto.DlmsAuthEncodeResponse
+	(*DlmsAuthVerify)(nil),         // 13: io.clbs.openhes.models.crypto.DlmsAuthVerify
+	(*ErrorMessage)(nil),           // 14: io.clbs.openhes.models.crypto.ErrorMessage
 }
 var file_crypto_crypto_proto_depIdxs = []int32{
 	6,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
@@ -1772,16 +2053,18 @@ var file_crypto_crypto_proto_depIdxs = []int32{
 	11, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
 	9,  // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
 	10, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
-	0,  // 5: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
-	1,  // 6: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
-	12, // 7: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
-	4,  // 8: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
-	3,  // 9: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	12, // 5: io.clbs.openhes.models.crypto.DlmsIn.auth_reponse:type_name -> io.clbs.openhes.models.crypto.DlmsAuthEncodeResponse
+	13, // 6: io.clbs.openhes.models.crypto.DlmsIn.auth_verify:type_name -> io.clbs.openhes.models.crypto.DlmsAuthVerify
+	0,  // 7: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
+	1,  // 8: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
+	14, // 9: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
+	4,  // 10: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
+	3,  // 11: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_crypto_crypto_proto_init() }
@@ -1795,6 +2078,8 @@ func file_crypto_crypto_proto_init() {
 		(*dlmsIn_Hash)(nil),
 		(*dlmsIn_Encrypt)(nil),
 		(*dlmsIn_Decrypt)(nil),
+		(*dlmsIn_AuthReponse)(nil),
+		(*dlmsIn_AuthVerify)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1802,7 +2087,7 @@ func file_crypto_crypto_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_crypto_crypto_proto_rawDesc), len(file_crypto_crypto_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
