@@ -1,6 +1,8 @@
 module github.com/cybroslabs/hes-2-apis
 
-go 1.23.0
+go 1.23.8
+
+toolchain go1.24.2
 
 retract (
 	v0.0.0-20240512071833-41b886c985c4
@@ -9,12 +11,12 @@ retract (
 
 require (
 	connectrpc.com/connect v1.18.1
-	github.com/99designs/gqlgen v0.17.70
+	github.com/99designs/gqlgen v0.17.72
 	github.com/google/uuid v1.6.0
 	github.com/rmg/iso4217 v1.0.1
-	github.com/vektah/gqlparser/v2 v2.5.24
-	google.golang.org/genproto v0.0.0-20250414145226-207652e42e2e
-	google.golang.org/grpc v1.71.1
+	github.com/vektah/gqlparser/v2 v2.5.25
+	google.golang.org/genproto v0.0.0-20250421163800-61c742ae3ef0
+	google.golang.org/grpc v1.72.0
 	google.golang.org/protobuf v1.36.6
 	k8s.io/utils v0.0.0-20250321185631-1f6e0b77f77e
 )
@@ -33,6 +35,6 @@ require (
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
 	golang.org/x/tools v0.32.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250414145226-207652e42e2e // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250421163800-61c742ae3ef0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
