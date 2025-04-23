@@ -1647,7 +1647,9 @@ func (b0 DlmsHash_builder) Build() *DlmsHash {
 
 type DlmsAuthVerify struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Data        []byte                 `protobuf:"bytes,1,opt,name=data"`
+	xxx_hidden_Direction   HashDirection          `protobuf:"varint,1,opt,name=direction,enum=io.clbs.openhes.models.crypto.HashDirection"`
+	xxx_hidden_Mode        Hash                   `protobuf:"varint,2,opt,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
+	xxx_hidden_Data        []byte                 `protobuf:"bytes,3,opt,name=data"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -1679,6 +1681,24 @@ func (x *DlmsAuthVerify) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
+func (x *DlmsAuthVerify) GetDirection() HashDirection {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_Direction
+		}
+	}
+	return HashDirection_CLIENT_TO_SERVER
+}
+
+func (x *DlmsAuthVerify) GetMode() Hash {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_Mode
+		}
+	}
+	return Hash_HASH_NONE
+}
+
 func (x *DlmsAuthVerify) GetData() []byte {
 	if x != nil {
 		return x.xxx_hidden_Data
@@ -1686,38 +1706,82 @@ func (x *DlmsAuthVerify) GetData() []byte {
 	return nil
 }
 
+func (x *DlmsAuthVerify) SetDirection(v HashDirection) {
+	x.xxx_hidden_Direction = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *DlmsAuthVerify) SetMode(v Hash) {
+	x.xxx_hidden_Mode = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
 func (x *DlmsAuthVerify) SetData(v []byte) {
 	if v == nil {
 		v = []byte{}
 	}
 	x.xxx_hidden_Data = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
-func (x *DlmsAuthVerify) HasData() bool {
+func (x *DlmsAuthVerify) HasDirection() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *DlmsAuthVerify) ClearData() {
+func (x *DlmsAuthVerify) HasMode() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DlmsAuthVerify) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *DlmsAuthVerify) ClearDirection() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Direction = HashDirection_CLIENT_TO_SERVER
+}
+
+func (x *DlmsAuthVerify) ClearMode() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Mode = Hash_HASH_NONE
+}
+
+func (x *DlmsAuthVerify) ClearData() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Data = nil
 }
 
 type DlmsAuthVerify_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Data []byte
+	Direction *HashDirection
+	Mode      *Hash
+	Data      []byte
 }
 
 func (b0 DlmsAuthVerify_builder) Build() *DlmsAuthVerify {
 	m0 := &DlmsAuthVerify{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Direction != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Direction = *b.Direction
+	}
+	if b.Mode != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_Mode = *b.Mode
+	}
 	if b.Data != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
 		x.xxx_hidden_Data = b.Data
 	}
 	return m0
@@ -1878,9 +1942,11 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\tdirection\x18\x01 \x01(\x0e2,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x127\n" +
 	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
 	"\rframe_counter\x18\x03 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"$\n" +
-	"\x0eDlmsAuthVerify\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\fR\x04data\"<\n" +
+	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"\xa9\x01\n" +
+	"\x0eDlmsAuthVerify\x12J\n" +
+	"\tdirection\x18\x01 \x01(\x0e2,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x127\n" +
+	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12\x12\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +
@@ -1939,11 +2005,13 @@ var file_crypto_crypto_proto_depIdxs = []int32{
 	13, // 8: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
 	4,  // 9: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
 	3,  // 10: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	4,  // 11: io.clbs.openhes.models.crypto.DlmsAuthVerify.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
+	3,  // 12: io.clbs.openhes.models.crypto.DlmsAuthVerify.mode:type_name -> io.clbs.openhes.models.crypto.Hash
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_crypto_crypto_proto_init() }

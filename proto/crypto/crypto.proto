@@ -109,7 +109,9 @@ message DlmsHash {
 }
 
 message DlmsAuthVerify {
-    bytes data = 1;  // The reference (recevied) data to be verified.
+    HashDirection direction = 1;  // The hash direction.
+    Hash mode               = 2;  // The hash mode.
+    bytes data              = 3;  // The reference (recevied) data to be verified.
 }
 
 message ErrorMessage {
