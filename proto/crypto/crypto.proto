@@ -68,16 +68,14 @@ message DlmsIn {
 }
 
 message DlmsInit {
-    AuthenticatedEncryption encryption = 1;   // The encryption mode.
-    DigitalSignature signature         = 2;   // The digital signature mode.
-    string driver_id                   = 3;   // The driver identifier.
-    string serial_number               = 4;   // The serial number of the device.
-    string access_level                = 5;   // The access level.
-    bytes system_title_c               = 6;   // The client system-title.
-    bytes system_title_s               = 7;   // The server system-title.
+    AuthenticatedEncryption encryption = 1;  // The encryption mode.
+    DigitalSignature signature         = 2;  // The digital signature mode.
+    string driver_id                   = 3;  // The driver identifier.
+    string serial_number               = 4;  // The serial number of the device.
+    string access_level                = 5;  // The access level.
+    bytes system_title_c               = 6;  // The client system-title.
+    bytes system_title_s               = 7;  // The server system-title.
     bytes c_to_s                       = 8;  // The client-to-server data.
-    uint32 frame_counter_c             = 9;  // The client frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    uint32 frame_counter_s             = 10;  // The server frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
 }
 
 message DlmsSetServerInfo {
@@ -92,19 +90,22 @@ message DlmsOut {
 }
 
 message DlmsEncrypt {
-    uint32 security_control = 1;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 2;  // The data to be encrypted.
+    uint32 frame_counter    = 1;  // The server frame counter.
+    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3;  // The data to be encrypted.
 }
 
 message DlmsDecrypt {
-    uint32 security_control = 1;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 2;  // The data to be decrypted.
+    uint32 frame_counter    = 1;  // The client frame counter.
+    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 3;  // The data to be decrypted.
 }
 
 message DlmsHash {
     HashDirection direction = 1;  // The hash direction.
     Hash mode               = 2;  // The hash mode.
-    uint32 security_control = 3;  // The security control.
+    uint32 frame_counter    = 3;  // The server frame counter.
+    uint32 security_control = 4;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
 }
 
 message DlmsAuthVerify {
