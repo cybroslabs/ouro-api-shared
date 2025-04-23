@@ -357,15 +357,6 @@ func (x *DlmsIn) GetDecrypt() *DlmsDecrypt {
 	return nil
 }
 
-func (x *DlmsIn) GetAuthReponse() *DlmsAuthEncodeResponse {
-	if x != nil {
-		if x, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse); ok {
-			return x.AuthReponse
-		}
-	}
-	return nil
-}
-
 func (x *DlmsIn) GetAuthVerify() *DlmsAuthVerify {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Request.(*dlmsIn_AuthVerify); ok {
@@ -418,14 +409,6 @@ func (x *DlmsIn) SetDecrypt(v *DlmsDecrypt) {
 		return
 	}
 	x.xxx_hidden_Request = &dlmsIn_Decrypt{v}
-}
-
-func (x *DlmsIn) SetAuthReponse(v *DlmsAuthEncodeResponse) {
-	if v == nil {
-		x.xxx_hidden_Request = nil
-		return
-	}
-	x.xxx_hidden_Request = &dlmsIn_AuthReponse{v}
 }
 
 func (x *DlmsIn) SetAuthVerify(v *DlmsAuthVerify) {
@@ -490,14 +473,6 @@ func (x *DlmsIn) HasDecrypt() bool {
 	return ok
 }
 
-func (x *DlmsIn) HasAuthReponse() bool {
-	if x == nil {
-		return false
-	}
-	_, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse)
-	return ok
-}
-
 func (x *DlmsIn) HasAuthVerify() bool {
 	if x == nil {
 		return false
@@ -545,12 +520,6 @@ func (x *DlmsIn) ClearDecrypt() {
 	}
 }
 
-func (x *DlmsIn) ClearAuthReponse() {
-	if _, ok := x.xxx_hidden_Request.(*dlmsIn_AuthReponse); ok {
-		x.xxx_hidden_Request = nil
-	}
-}
-
 func (x *DlmsIn) ClearAuthVerify() {
 	if _, ok := x.xxx_hidden_Request.(*dlmsIn_AuthVerify); ok {
 		x.xxx_hidden_Request = nil
@@ -563,8 +532,7 @@ const DlmsIn_Setup_case case_DlmsIn_Request = 3
 const DlmsIn_Hash_case case_DlmsIn_Request = 4
 const DlmsIn_Encrypt_case case_DlmsIn_Request = 5
 const DlmsIn_Decrypt_case case_DlmsIn_Request = 6
-const DlmsIn_AuthReponse_case case_DlmsIn_Request = 7
-const DlmsIn_AuthVerify_case case_DlmsIn_Request = 8
+const DlmsIn_AuthVerify_case case_DlmsIn_Request = 7
 
 func (x *DlmsIn) WhichRequest() case_DlmsIn_Request {
 	if x == nil {
@@ -581,8 +549,6 @@ func (x *DlmsIn) WhichRequest() case_DlmsIn_Request {
 		return DlmsIn_Encrypt_case
 	case *dlmsIn_Decrypt:
 		return DlmsIn_Decrypt_case
-	case *dlmsIn_AuthReponse:
-		return DlmsIn_AuthReponse_case
 	case *dlmsIn_AuthVerify:
 		return DlmsIn_AuthVerify_case
 	default:
@@ -595,13 +561,12 @@ type DlmsIn_builder struct {
 
 	Id *uint64
 	// Fields of oneof xxx_hidden_Request:
-	Init        *DlmsInit
-	Setup       *DlmsSetServerInfo
-	Hash        *DlmsHash
-	Encrypt     *DlmsEncrypt
-	Decrypt     *DlmsDecrypt
-	AuthReponse *DlmsAuthEncodeResponse
-	AuthVerify  *DlmsAuthVerify
+	Init       *DlmsInit
+	Setup      *DlmsSetServerInfo
+	Hash       *DlmsHash
+	Encrypt    *DlmsEncrypt
+	Decrypt    *DlmsDecrypt
+	AuthVerify *DlmsAuthVerify
 	// -- end of xxx_hidden_Request
 }
 
@@ -627,9 +592,6 @@ func (b0 DlmsIn_builder) Build() *DlmsIn {
 	}
 	if b.Decrypt != nil {
 		x.xxx_hidden_Request = &dlmsIn_Decrypt{b.Decrypt}
-	}
-	if b.AuthReponse != nil {
-		x.xxx_hidden_Request = &dlmsIn_AuthReponse{b.AuthReponse}
 	}
 	if b.AuthVerify != nil {
 		x.xxx_hidden_Request = &dlmsIn_AuthVerify{b.AuthVerify}
@@ -671,12 +633,8 @@ type dlmsIn_Decrypt struct {
 	Decrypt *DlmsDecrypt `protobuf:"bytes,6,opt,name=decrypt,oneof"` // The decryption request.
 }
 
-type dlmsIn_AuthReponse struct {
-	AuthReponse *DlmsAuthEncodeResponse `protobuf:"bytes,7,opt,name=auth_reponse,json=authReponse,oneof"` // The authentication response.
-}
-
 type dlmsIn_AuthVerify struct {
-	AuthVerify *DlmsAuthVerify `protobuf:"bytes,8,opt,name=auth_verify,json=authVerify,oneof"` // The authentication verify.
+	AuthVerify *DlmsAuthVerify `protobuf:"bytes,7,opt,name=auth_verify,json=authVerify,oneof"` // The authentication verify.
 }
 
 func (*dlmsIn_Init) isDlmsIn_Request() {}
@@ -689,23 +647,24 @@ func (*dlmsIn_Encrypt) isDlmsIn_Request() {}
 
 func (*dlmsIn_Decrypt) isDlmsIn_Request() {}
 
-func (*dlmsIn_AuthReponse) isDlmsIn_Request() {}
-
 func (*dlmsIn_AuthVerify) isDlmsIn_Request() {}
 
 type DlmsInit struct {
-	state                   protoimpl.MessageState  `protogen:"opaque.v1"`
-	xxx_hidden_Encryption   AuthenticatedEncryption `protobuf:"varint,1,opt,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
-	xxx_hidden_Signature    DigitalSignature        `protobuf:"varint,2,opt,name=signature,enum=io.clbs.openhes.models.crypto.DigitalSignature"`
-	xxx_hidden_DriverId     *string                 `protobuf:"bytes,5,opt,name=driver_id,json=driverId"`
-	xxx_hidden_SerialNumber *string                 `protobuf:"bytes,6,opt,name=serial_number,json=serialNumber"`
-	xxx_hidden_AccessLevel  *string                 `protobuf:"bytes,7,opt,name=access_level,json=accessLevel"`
-	xxx_hidden_SystemTitleC []byte                  `protobuf:"bytes,8,opt,name=system_title_c,json=systemTitleC"`
-	xxx_hidden_CToS         []byte                  `protobuf:"bytes,9,opt,name=c_to_s,json=cToS"`
-	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
-	XXX_presence            [1]uint32
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state                    protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Encryption    AuthenticatedEncryption `protobuf:"varint,1,opt,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
+	xxx_hidden_Signature     DigitalSignature        `protobuf:"varint,2,opt,name=signature,enum=io.clbs.openhes.models.crypto.DigitalSignature"`
+	xxx_hidden_DriverId      *string                 `protobuf:"bytes,3,opt,name=driver_id,json=driverId"`
+	xxx_hidden_SerialNumber  *string                 `protobuf:"bytes,4,opt,name=serial_number,json=serialNumber"`
+	xxx_hidden_AccessLevel   *string                 `protobuf:"bytes,5,opt,name=access_level,json=accessLevel"`
+	xxx_hidden_SystemTitleC  []byte                  `protobuf:"bytes,6,opt,name=system_title_c,json=systemTitleC"`
+	xxx_hidden_SystemTitleS  []byte                  `protobuf:"bytes,7,opt,name=system_title_s,json=systemTitleS"`
+	xxx_hidden_CToS          []byte                  `protobuf:"bytes,8,opt,name=c_to_s,json=cToS"`
+	xxx_hidden_FrameCounterC uint32                  `protobuf:"varint,9,opt,name=frame_counter_c,json=frameCounterC"`
+	xxx_hidden_FrameCounterS uint32                  `protobuf:"varint,10,opt,name=frame_counter_s,json=frameCounterS"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *DlmsInit) Reset() {
@@ -788,6 +747,13 @@ func (x *DlmsInit) GetSystemTitleC() []byte {
 	return nil
 }
 
+func (x *DlmsInit) GetSystemTitleS() []byte {
+	if x != nil {
+		return x.xxx_hidden_SystemTitleS
+	}
+	return nil
+}
+
 func (x *DlmsInit) GetCToS() []byte {
 	if x != nil {
 		return x.xxx_hidden_CToS
@@ -795,29 +761,43 @@ func (x *DlmsInit) GetCToS() []byte {
 	return nil
 }
 
+func (x *DlmsInit) GetFrameCounterC() uint32 {
+	if x != nil {
+		return x.xxx_hidden_FrameCounterC
+	}
+	return 0
+}
+
+func (x *DlmsInit) GetFrameCounterS() uint32 {
+	if x != nil {
+		return x.xxx_hidden_FrameCounterS
+	}
+	return 0
+}
+
 func (x *DlmsInit) SetEncryption(v AuthenticatedEncryption) {
 	x.xxx_hidden_Encryption = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 10)
 }
 
 func (x *DlmsInit) SetSignature(v DigitalSignature) {
 	x.xxx_hidden_Signature = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 10)
 }
 
 func (x *DlmsInit) SetDriverId(v string) {
 	x.xxx_hidden_DriverId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 10)
 }
 
 func (x *DlmsInit) SetSerialNumber(v string) {
 	x.xxx_hidden_SerialNumber = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 10)
 }
 
 func (x *DlmsInit) SetAccessLevel(v string) {
 	x.xxx_hidden_AccessLevel = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 10)
 }
 
 func (x *DlmsInit) SetSystemTitleC(v []byte) {
@@ -825,7 +805,15 @@ func (x *DlmsInit) SetSystemTitleC(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_SystemTitleC = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 10)
+}
+
+func (x *DlmsInit) SetSystemTitleS(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_SystemTitleS = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 10)
 }
 
 func (x *DlmsInit) SetCToS(v []byte) {
@@ -833,7 +821,17 @@ func (x *DlmsInit) SetCToS(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_CToS = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 10)
+}
+
+func (x *DlmsInit) SetFrameCounterC(v uint32) {
+	x.xxx_hidden_FrameCounterC = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 10)
+}
+
+func (x *DlmsInit) SetFrameCounterS(v uint32) {
+	x.xxx_hidden_FrameCounterS = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 10)
 }
 
 func (x *DlmsInit) HasEncryption() bool {
@@ -878,11 +876,32 @@ func (x *DlmsInit) HasSystemTitleC() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *DlmsInit) HasCToS() bool {
+func (x *DlmsInit) HasSystemTitleS() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
+}
+
+func (x *DlmsInit) HasCToS() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
+}
+
+func (x *DlmsInit) HasFrameCounterC() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
+}
+
+func (x *DlmsInit) HasFrameCounterS() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 9)
 }
 
 func (x *DlmsInit) ClearEncryption() {
@@ -915,21 +934,39 @@ func (x *DlmsInit) ClearSystemTitleC() {
 	x.xxx_hidden_SystemTitleC = nil
 }
 
-func (x *DlmsInit) ClearCToS() {
+func (x *DlmsInit) ClearSystemTitleS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_SystemTitleS = nil
+}
+
+func (x *DlmsInit) ClearCToS() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
 	x.xxx_hidden_CToS = nil
+}
+
+func (x *DlmsInit) ClearFrameCounterC() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	x.xxx_hidden_FrameCounterC = 0
+}
+
+func (x *DlmsInit) ClearFrameCounterS() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
+	x.xxx_hidden_FrameCounterS = 0
 }
 
 type DlmsInit_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Encryption   *AuthenticatedEncryption
-	Signature    *DigitalSignature
-	DriverId     *string
-	SerialNumber *string
-	AccessLevel  *string
-	SystemTitleC []byte
-	CToS         []byte
+	Encryption    *AuthenticatedEncryption
+	Signature     *DigitalSignature
+	DriverId      *string
+	SerialNumber  *string
+	AccessLevel   *string
+	SystemTitleC  []byte
+	SystemTitleS  []byte
+	CToS          []byte
+	FrameCounterC *uint32
+	FrameCounterS *uint32
 }
 
 func (b0 DlmsInit_builder) Build() *DlmsInit {
@@ -937,40 +974,52 @@ func (b0 DlmsInit_builder) Build() *DlmsInit {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Encryption != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 10)
 		x.xxx_hidden_Encryption = *b.Encryption
 	}
 	if b.Signature != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 10)
 		x.xxx_hidden_Signature = *b.Signature
 	}
 	if b.DriverId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 10)
 		x.xxx_hidden_DriverId = b.DriverId
 	}
 	if b.SerialNumber != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 10)
 		x.xxx_hidden_SerialNumber = b.SerialNumber
 	}
 	if b.AccessLevel != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 10)
 		x.xxx_hidden_AccessLevel = b.AccessLevel
 	}
 	if b.SystemTitleC != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 10)
 		x.xxx_hidden_SystemTitleC = b.SystemTitleC
 	}
+	if b.SystemTitleS != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 10)
+		x.xxx_hidden_SystemTitleS = b.SystemTitleS
+	}
 	if b.CToS != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 10)
 		x.xxx_hidden_CToS = b.CToS
+	}
+	if b.FrameCounterC != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 10)
+		x.xxx_hidden_FrameCounterC = *b.FrameCounterC
+	}
+	if b.FrameCounterS != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 10)
+		x.xxx_hidden_FrameCounterS = *b.FrameCounterS
 	}
 	return m0
 }
 
 type DlmsSetServerInfo struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,5,opt,name=system_title_s,json=systemTitleS"`
-	xxx_hidden_SToC         []byte                 `protobuf:"bytes,6,opt,name=s_to_c,json=sToC"`
+	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,1,opt,name=system_title_s,json=systemTitleS"`
+	xxx_hidden_SToC         []byte                 `protobuf:"bytes,2,opt,name=s_to_c,json=sToC"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -1213,9 +1262,8 @@ func (b0 DlmsOut_builder) Build() *DlmsOut {
 
 type DlmsEncrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,opt,name=security_control,json=securityControl"`
-	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,opt,name=data"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,1,opt,name=security_control,json=securityControl"`
+	xxx_hidden_Data            []byte                 `protobuf:"bytes,2,opt,name=data"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1247,13 +1295,6 @@ func (x *DlmsEncrypt) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DlmsEncrypt) GetFrameCounter() uint32 {
-	if x != nil {
-		return x.xxx_hidden_FrameCounter
-	}
-	return 0
-}
-
 func (x *DlmsEncrypt) GetSecurityControl() uint32 {
 	if x != nil {
 		return x.xxx_hidden_SecurityControl
@@ -1268,14 +1309,9 @@ func (x *DlmsEncrypt) GetData() []byte {
 	return nil
 }
 
-func (x *DlmsEncrypt) SetFrameCounter(v uint32) {
-	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
-}
-
 func (x *DlmsEncrypt) SetSecurityControl(v uint32) {
 	x.xxx_hidden_SecurityControl = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
 func (x *DlmsEncrypt) SetData(v []byte) {
@@ -1283,49 +1319,36 @@ func (x *DlmsEncrypt) SetData(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_Data = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
-}
-
-func (x *DlmsEncrypt) HasFrameCounter() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DlmsEncrypt) HasSecurityControl() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *DlmsEncrypt) HasData() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *DlmsEncrypt) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_FrameCounter = 0
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DlmsEncrypt) ClearSecurityControl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_SecurityControl = 0
 }
 
 func (x *DlmsEncrypt) ClearData() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Data = nil
 }
 
 type DlmsEncrypt_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	FrameCounter    *uint32
 	SecurityControl *uint32
 	Data            []byte
 }
@@ -1334,16 +1357,12 @@ func (b0 DlmsEncrypt_builder) Build() *DlmsEncrypt {
 	m0 := &DlmsEncrypt{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
-		x.xxx_hidden_FrameCounter = *b.FrameCounter
-	}
 	if b.SecurityControl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_SecurityControl = *b.SecurityControl
 	}
 	if b.Data != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
 		x.xxx_hidden_Data = b.Data
 	}
 	return m0
@@ -1351,9 +1370,8 @@ func (b0 DlmsEncrypt_builder) Build() *DlmsEncrypt {
 
 type DlmsDecrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,2,opt,name=security_control,json=securityControl"`
-	xxx_hidden_Data            []byte                 `protobuf:"bytes,3,opt,name=data"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,1,opt,name=security_control,json=securityControl"`
+	xxx_hidden_Data            []byte                 `protobuf:"bytes,2,opt,name=data"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1385,13 +1403,6 @@ func (x *DlmsDecrypt) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DlmsDecrypt) GetFrameCounter() uint32 {
-	if x != nil {
-		return x.xxx_hidden_FrameCounter
-	}
-	return 0
-}
-
 func (x *DlmsDecrypt) GetSecurityControl() uint32 {
 	if x != nil {
 		return x.xxx_hidden_SecurityControl
@@ -1406,14 +1417,9 @@ func (x *DlmsDecrypt) GetData() []byte {
 	return nil
 }
 
-func (x *DlmsDecrypt) SetFrameCounter(v uint32) {
-	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
-}
-
 func (x *DlmsDecrypt) SetSecurityControl(v uint32) {
 	x.xxx_hidden_SecurityControl = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
 func (x *DlmsDecrypt) SetData(v []byte) {
@@ -1421,49 +1427,36 @@ func (x *DlmsDecrypt) SetData(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_Data = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
-}
-
-func (x *DlmsDecrypt) HasFrameCounter() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DlmsDecrypt) HasSecurityControl() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *DlmsDecrypt) HasData() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *DlmsDecrypt) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_FrameCounter = 0
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DlmsDecrypt) ClearSecurityControl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_SecurityControl = 0
 }
 
 func (x *DlmsDecrypt) ClearData() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Data = nil
 }
 
 type DlmsDecrypt_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	FrameCounter    *uint32
 	SecurityControl *uint32
 	Data            []byte
 }
@@ -1472,16 +1465,12 @@ func (b0 DlmsDecrypt_builder) Build() *DlmsDecrypt {
 	m0 := &DlmsDecrypt{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
-		x.xxx_hidden_FrameCounter = *b.FrameCounter
-	}
 	if b.SecurityControl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_SecurityControl = *b.SecurityControl
 	}
 	if b.Data != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
 		x.xxx_hidden_Data = b.Data
 	}
 	return m0
@@ -1491,8 +1480,7 @@ type DlmsHash struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Direction       HashDirection          `protobuf:"varint,1,opt,name=direction,enum=io.clbs.openhes.models.crypto.HashDirection"`
 	xxx_hidden_Mode            Hash                   `protobuf:"varint,2,opt,name=mode,enum=io.clbs.openhes.models.crypto.Hash"`
-	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,3,opt,name=frame_counter,json=frameCounter"`
-	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,4,opt,name=security_control,json=securityControl"`
+	xxx_hidden_SecurityControl uint32                 `protobuf:"varint,3,opt,name=security_control,json=securityControl"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -1542,13 +1530,6 @@ func (x *DlmsHash) GetMode() Hash {
 	return Hash_HASH_NONE
 }
 
-func (x *DlmsHash) GetFrameCounter() uint32 {
-	if x != nil {
-		return x.xxx_hidden_FrameCounter
-	}
-	return 0
-}
-
 func (x *DlmsHash) GetSecurityControl() uint32 {
 	if x != nil {
 		return x.xxx_hidden_SecurityControl
@@ -1558,22 +1539,17 @@ func (x *DlmsHash) GetSecurityControl() uint32 {
 
 func (x *DlmsHash) SetDirection(v HashDirection) {
 	x.xxx_hidden_Direction = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *DlmsHash) SetMode(v Hash) {
 	x.xxx_hidden_Mode = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
-}
-
-func (x *DlmsHash) SetFrameCounter(v uint32) {
-	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *DlmsHash) SetSecurityControl(v uint32) {
 	x.xxx_hidden_SecurityControl = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *DlmsHash) HasDirection() bool {
@@ -1590,18 +1566,11 @@ func (x *DlmsHash) HasMode() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DlmsHash) HasFrameCounter() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
 func (x *DlmsHash) HasSecurityControl() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *DlmsHash) ClearDirection() {
@@ -1614,13 +1583,8 @@ func (x *DlmsHash) ClearMode() {
 	x.xxx_hidden_Mode = Hash_HASH_NONE
 }
 
-func (x *DlmsHash) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_FrameCounter = 0
-}
-
 func (x *DlmsHash) ClearSecurityControl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_SecurityControl = 0
 }
 
@@ -1629,7 +1593,6 @@ type DlmsHash_builder struct {
 
 	Direction       *HashDirection
 	Mode            *Hash
-	FrameCounter    *uint32
 	SecurityControl *uint32
 }
 
@@ -1638,112 +1601,32 @@ func (b0 DlmsHash_builder) Build() *DlmsHash {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Direction != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_Direction = *b.Direction
 	}
 	if b.Mode != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Mode = *b.Mode
 	}
-	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
-		x.xxx_hidden_FrameCounter = *b.FrameCounter
-	}
 	if b.SecurityControl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
 		x.xxx_hidden_SecurityControl = *b.SecurityControl
 	}
 	return m0
 }
 
-type DlmsAuthEncodeResponse struct {
-	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
-	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
-	XXX_presence            [1]uint32
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
-}
-
-func (x *DlmsAuthEncodeResponse) Reset() {
-	*x = DlmsAuthEncodeResponse{}
-	mi := &file_crypto_crypto_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DlmsAuthEncodeResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DlmsAuthEncodeResponse) ProtoMessage() {}
-
-func (x *DlmsAuthEncodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_crypto_crypto_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *DlmsAuthEncodeResponse) GetFrameCounter() uint32 {
-	if x != nil {
-		return x.xxx_hidden_FrameCounter
-	}
-	return 0
-}
-
-func (x *DlmsAuthEncodeResponse) SetFrameCounter(v uint32) {
-	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
-}
-
-func (x *DlmsAuthEncodeResponse) HasFrameCounter() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *DlmsAuthEncodeResponse) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_FrameCounter = 0
-}
-
-type DlmsAuthEncodeResponse_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	FrameCounter *uint32
-}
-
-func (b0 DlmsAuthEncodeResponse_builder) Build() *DlmsAuthEncodeResponse {
-	m0 := &DlmsAuthEncodeResponse{}
-	b, x := &b0, m0
-	_, _ = b, x
-	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_FrameCounter = *b.FrameCounter
-	}
-	return m0
-}
-
 type DlmsAuthVerify struct {
-	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FrameCounter uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
-	xxx_hidden_Data         []byte                 `protobuf:"bytes,2,opt,name=data"`
-	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
-	XXX_presence            [1]uint32
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Data        []byte                 `protobuf:"bytes,1,opt,name=data"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DlmsAuthVerify) Reset() {
 	*x = DlmsAuthVerify{}
-	mi := &file_crypto_crypto_proto_msgTypes[8]
+	mi := &file_crypto_crypto_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1755,7 +1638,7 @@ func (x *DlmsAuthVerify) String() string {
 func (*DlmsAuthVerify) ProtoMessage() {}
 
 func (x *DlmsAuthVerify) ProtoReflect() protoreflect.Message {
-	mi := &file_crypto_crypto_proto_msgTypes[8]
+	mi := &file_crypto_crypto_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1766,13 +1649,6 @@ func (x *DlmsAuthVerify) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DlmsAuthVerify) GetFrameCounter() uint32 {
-	if x != nil {
-		return x.xxx_hidden_FrameCounter
-	}
-	return 0
-}
-
 func (x *DlmsAuthVerify) GetData() []byte {
 	if x != nil {
 		return x.xxx_hidden_Data
@@ -1780,60 +1656,38 @@ func (x *DlmsAuthVerify) GetData() []byte {
 	return nil
 }
 
-func (x *DlmsAuthVerify) SetFrameCounter(v uint32) {
-	x.xxx_hidden_FrameCounter = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
-}
-
 func (x *DlmsAuthVerify) SetData(v []byte) {
 	if v == nil {
 		v = []byte{}
 	}
 	x.xxx_hidden_Data = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
-}
-
-func (x *DlmsAuthVerify) HasFrameCounter() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
 }
 
 func (x *DlmsAuthVerify) HasData() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
-func (x *DlmsAuthVerify) ClearFrameCounter() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_FrameCounter = 0
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *DlmsAuthVerify) ClearData() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Data = nil
 }
 
 type DlmsAuthVerify_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	FrameCounter *uint32
-	Data         []byte
+	Data []byte
 }
 
 func (b0 DlmsAuthVerify_builder) Build() *DlmsAuthVerify {
 	m0 := &DlmsAuthVerify{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.FrameCounter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
-		x.xxx_hidden_FrameCounter = *b.FrameCounter
-	}
 	if b.Data != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
 		x.xxx_hidden_Data = b.Data
 	}
 	return m0
@@ -1851,7 +1705,7 @@ type ErrorMessage struct {
 
 func (x *ErrorMessage) Reset() {
 	*x = ErrorMessage{}
-	mi := &file_crypto_crypto_proto_msgTypes[9]
+	mi := &file_crypto_crypto_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1863,7 +1717,7 @@ func (x *ErrorMessage) String() string {
 func (*ErrorMessage) ProtoMessage() {}
 
 func (x *ErrorMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_crypto_crypto_proto_msgTypes[9]
+	mi := &file_crypto_crypto_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1953,53 +1807,50 @@ var File_crypto_crypto_proto protoreflect.FileDescriptor
 
 const file_crypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xa9\x04\n" +
+	"\x13crypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xcd\x03\n" +
 	"\x06DlmsIn\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12=\n" +
 	"\x04init\x18\x02 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12H\n" +
 	"\x05setup\x18\x03 \x01(\v20.io.clbs.openhes.models.crypto.DlmsSetServerInfoH\x00R\x05setup\x12=\n" +
 	"\x04hash\x18\x04 \x01(\v2'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12F\n" +
 	"\aencrypt\x18\x05 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\aencrypt\x12F\n" +
-	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecrypt\x12Z\n" +
-	"\fauth_reponse\x18\a \x01(\v25.io.clbs.openhes.models.crypto.DlmsAuthEncodeResponseH\x00R\vauthReponse\x12P\n" +
-	"\vauth_verify\x18\b \x01(\v2-.io.clbs.openhes.models.crypto.DlmsAuthVerifyH\x00R\n" +
+	"\adecrypt\x18\x06 \x01(\v2*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\adecrypt\x12P\n" +
+	"\vauth_verify\x18\a \x01(\v2-.io.clbs.openhes.models.crypto.DlmsAuthVerifyH\x00R\n" +
 	"authVerifyB\t\n" +
-	"\arequest\"\xd2\x02\n" +
+	"\arequest\"\xc8\x03\n" +
 	"\bDlmsInit\x12V\n" +
 	"\n" +
 	"encryption\x18\x01 \x01(\x0e26.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\n" +
 	"encryption\x12M\n" +
 	"\tsignature\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12\x1b\n" +
-	"\tdriver_id\x18\x05 \x01(\tR\bdriverId\x12#\n" +
-	"\rserial_number\x18\x06 \x01(\tR\fserialNumber\x12!\n" +
-	"\faccess_level\x18\a \x01(\tR\vaccessLevel\x12$\n" +
-	"\x0esystem_title_c\x18\b \x01(\fR\fsystemTitleC\x12\x14\n" +
-	"\x06c_to_s\x18\t \x01(\fR\x04cToS\"O\n" +
+	"\tdriver_id\x18\x03 \x01(\tR\bdriverId\x12#\n" +
+	"\rserial_number\x18\x04 \x01(\tR\fserialNumber\x12!\n" +
+	"\faccess_level\x18\x05 \x01(\tR\vaccessLevel\x12$\n" +
+	"\x0esystem_title_c\x18\x06 \x01(\fR\fsystemTitleC\x12$\n" +
+	"\x0esystem_title_s\x18\a \x01(\fR\fsystemTitleS\x12\x14\n" +
+	"\x06c_to_s\x18\b \x01(\fR\x04cToS\x12&\n" +
+	"\x0fframe_counter_c\x18\t \x01(\rR\rframeCounterC\x12&\n" +
+	"\x0fframe_counter_s\x18\n" +
+	" \x01(\rR\rframeCounterS\"O\n" +
 	"\x11DlmsSetServerInfo\x12$\n" +
-	"\x0esystem_title_s\x18\x05 \x01(\fR\fsystemTitleS\x12\x14\n" +
-	"\x06s_to_c\x18\x06 \x01(\fR\x04sToC\"p\n" +
+	"\x0esystem_title_s\x18\x01 \x01(\fR\fsystemTitleS\x12\x14\n" +
+	"\x06s_to_c\x18\x02 \x01(\fR\x04sToC\"p\n" +
 	"\aDlmsOut\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12A\n" +
 	"\x05error\x18\x02 \x01(\v2+.io.clbs.openhes.models.crypto.ErrorMessageR\x05error\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"q\n" +
-	"\vDlmsEncrypt\x12#\n" +
-	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"q\n" +
-	"\vDlmsDecrypt\x12#\n" +
-	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"\xdf\x01\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"L\n" +
+	"\vDlmsEncrypt\x12)\n" +
+	"\x10security_control\x18\x01 \x01(\rR\x0fsecurityControl\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"L\n" +
+	"\vDlmsDecrypt\x12)\n" +
+	"\x10security_control\x18\x01 \x01(\rR\x0fsecurityControl\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"\xba\x01\n" +
 	"\bDlmsHash\x12J\n" +
 	"\tdirection\x18\x01 \x01(\x0e2,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x127\n" +
-	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n" +
-	"\rframe_counter\x18\x03 \x01(\rR\fframeCounter\x12)\n" +
-	"\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"=\n" +
-	"\x16DlmsAuthEncodeResponse\x12#\n" +
-	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\"I\n" +
-	"\x0eDlmsAuthVerify\x12#\n" +
-	"\rframe_counter\x18\x01 \x01(\rR\fframeCounter\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data\"<\n" +
+	"\x04mode\x18\x02 \x01(\x0e2#.io.clbs.openhes.models.crypto.HashR\x04mode\x12)\n" +
+	"\x10security_control\x18\x03 \x01(\rR\x0fsecurityControl\"$\n" +
+	"\x0eDlmsAuthVerify\x12\x12\n" +
+	"\x04data\x18\x01 \x01(\fR\x04data\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +
@@ -2029,23 +1880,22 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\x10SERVER_TO_CLIENT\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
 
 var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_crypto_crypto_proto_goTypes = []any{
-	(AuthenticatedEncryption)(0),   // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
-	(DigitalSignature)(0),          // 1: io.clbs.openhes.models.crypto.DigitalSignature
-	(KeyAgreement)(0),              // 2: io.clbs.openhes.models.crypto.KeyAgreement
-	(Hash)(0),                      // 3: io.clbs.openhes.models.crypto.Hash
-	(HashDirection)(0),             // 4: io.clbs.openhes.models.crypto.HashDirection
-	(*DlmsIn)(nil),                 // 5: io.clbs.openhes.models.crypto.DlmsIn
-	(*DlmsInit)(nil),               // 6: io.clbs.openhes.models.crypto.DlmsInit
-	(*DlmsSetServerInfo)(nil),      // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
-	(*DlmsOut)(nil),                // 8: io.clbs.openhes.models.crypto.DlmsOut
-	(*DlmsEncrypt)(nil),            // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
-	(*DlmsDecrypt)(nil),            // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
-	(*DlmsHash)(nil),               // 11: io.clbs.openhes.models.crypto.DlmsHash
-	(*DlmsAuthEncodeResponse)(nil), // 12: io.clbs.openhes.models.crypto.DlmsAuthEncodeResponse
-	(*DlmsAuthVerify)(nil),         // 13: io.clbs.openhes.models.crypto.DlmsAuthVerify
-	(*ErrorMessage)(nil),           // 14: io.clbs.openhes.models.crypto.ErrorMessage
+	(AuthenticatedEncryption)(0), // 0: io.clbs.openhes.models.crypto.AuthenticatedEncryption
+	(DigitalSignature)(0),        // 1: io.clbs.openhes.models.crypto.DigitalSignature
+	(KeyAgreement)(0),            // 2: io.clbs.openhes.models.crypto.KeyAgreement
+	(Hash)(0),                    // 3: io.clbs.openhes.models.crypto.Hash
+	(HashDirection)(0),           // 4: io.clbs.openhes.models.crypto.HashDirection
+	(*DlmsIn)(nil),               // 5: io.clbs.openhes.models.crypto.DlmsIn
+	(*DlmsInit)(nil),             // 6: io.clbs.openhes.models.crypto.DlmsInit
+	(*DlmsSetServerInfo)(nil),    // 7: io.clbs.openhes.models.crypto.DlmsSetServerInfo
+	(*DlmsOut)(nil),              // 8: io.clbs.openhes.models.crypto.DlmsOut
+	(*DlmsEncrypt)(nil),          // 9: io.clbs.openhes.models.crypto.DlmsEncrypt
+	(*DlmsDecrypt)(nil),          // 10: io.clbs.openhes.models.crypto.DlmsDecrypt
+	(*DlmsHash)(nil),             // 11: io.clbs.openhes.models.crypto.DlmsHash
+	(*DlmsAuthVerify)(nil),       // 12: io.clbs.openhes.models.crypto.DlmsAuthVerify
+	(*ErrorMessage)(nil),         // 13: io.clbs.openhes.models.crypto.ErrorMessage
 }
 var file_crypto_crypto_proto_depIdxs = []int32{
 	6,  // 0: io.clbs.openhes.models.crypto.DlmsIn.init:type_name -> io.clbs.openhes.models.crypto.DlmsInit
@@ -2053,18 +1903,17 @@ var file_crypto_crypto_proto_depIdxs = []int32{
 	11, // 2: io.clbs.openhes.models.crypto.DlmsIn.hash:type_name -> io.clbs.openhes.models.crypto.DlmsHash
 	9,  // 3: io.clbs.openhes.models.crypto.DlmsIn.encrypt:type_name -> io.clbs.openhes.models.crypto.DlmsEncrypt
 	10, // 4: io.clbs.openhes.models.crypto.DlmsIn.decrypt:type_name -> io.clbs.openhes.models.crypto.DlmsDecrypt
-	12, // 5: io.clbs.openhes.models.crypto.DlmsIn.auth_reponse:type_name -> io.clbs.openhes.models.crypto.DlmsAuthEncodeResponse
-	13, // 6: io.clbs.openhes.models.crypto.DlmsIn.auth_verify:type_name -> io.clbs.openhes.models.crypto.DlmsAuthVerify
-	0,  // 7: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
-	1,  // 8: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
-	14, // 9: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
-	4,  // 10: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
-	3,  // 11: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	12, // 5: io.clbs.openhes.models.crypto.DlmsIn.auth_verify:type_name -> io.clbs.openhes.models.crypto.DlmsAuthVerify
+	0,  // 6: io.clbs.openhes.models.crypto.DlmsInit.encryption:type_name -> io.clbs.openhes.models.crypto.AuthenticatedEncryption
+	1,  // 7: io.clbs.openhes.models.crypto.DlmsInit.signature:type_name -> io.clbs.openhes.models.crypto.DigitalSignature
+	13, // 8: io.clbs.openhes.models.crypto.DlmsOut.error:type_name -> io.clbs.openhes.models.crypto.ErrorMessage
+	4,  // 9: io.clbs.openhes.models.crypto.DlmsHash.direction:type_name -> io.clbs.openhes.models.crypto.HashDirection
+	3,  // 10: io.clbs.openhes.models.crypto.DlmsHash.mode:type_name -> io.clbs.openhes.models.crypto.Hash
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_crypto_crypto_proto_init() }
@@ -2078,7 +1927,6 @@ func file_crypto_crypto_proto_init() {
 		(*dlmsIn_Hash)(nil),
 		(*dlmsIn_Encrypt)(nil),
 		(*dlmsIn_Decrypt)(nil),
-		(*dlmsIn_AuthReponse)(nil),
 		(*dlmsIn_AuthVerify)(nil),
 	}
 	type x struct{}
@@ -2087,7 +1935,7 @@ func file_crypto_crypto_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_crypto_crypto_proto_rawDesc), len(file_crypto_crypto_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   10,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

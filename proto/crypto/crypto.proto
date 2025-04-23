@@ -58,29 +58,31 @@ enum HashDirection {
 message DlmsIn {
     uint64 id = 1;  // The request ID.
     oneof request {
-        DlmsInit init                       = 2;  // The initialize request. It can be called only once, as the first request.
-        DlmsSetServerInfo setup             = 3;  // The setup server into request. This message shall be called when the data known.
-        DlmsHash hash                       = 4;  // The hash request.
-        DlmsEncrypt encrypt                 = 5;  // The encryption request.
-        DlmsDecrypt decrypt                 = 6;  // The decryption request.
-        DlmsAuthEncodeResponse auth_reponse = 7;  // The authentication response.
-        DlmsAuthVerify auth_verify          = 8;  // The authentication verify.
+        DlmsInit init              = 2;  // The initialize request. It can be called only once, as the first request.
+        DlmsSetServerInfo setup    = 3;  // The setup server into request. This message shall be called when the data known.
+        DlmsHash hash              = 4;  // The hash request.
+        DlmsEncrypt encrypt        = 5;  // The encryption request.
+        DlmsDecrypt decrypt        = 6;  // The decryption request.
+        DlmsAuthVerify auth_verify = 7;  // The authentication verify.
     }
 }
 
 message DlmsInit {
-    AuthenticatedEncryption encryption = 1;  // The encryption mode.
-    DigitalSignature signature         = 2;  // The digital signature mode.
-    string driver_id                   = 5;  // The driver identifier.
-    string serial_number               = 6;  // The serial number of the device.
-    string access_level                = 7;  // The access level.
-    bytes system_title_c               = 8;  // The client system-title.
-    bytes c_to_s                       = 9;  // The client-to-server data.
+    AuthenticatedEncryption encryption = 1;   // The encryption mode.
+    DigitalSignature signature         = 2;   // The digital signature mode.
+    string driver_id                   = 3;   // The driver identifier.
+    string serial_number               = 4;   // The serial number of the device.
+    string access_level                = 5;   // The access level.
+    bytes system_title_c               = 6;   // The client system-title.
+    bytes system_title_s               = 7;   // The server system-title.
+    bytes c_to_s                       = 8;  // The client-to-server data.
+    uint32 frame_counter_c             = 9;  // The client frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 frame_counter_s             = 10;  // The server frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
 }
 
 message DlmsSetServerInfo {
-    bytes system_title_s = 5;  // The server system-title.
-    bytes s_to_c         = 6;  // The server-to-client data.
+    bytes system_title_s = 1;  // The server system-title. If not set then the shall be kept from the init message.
+    bytes s_to_c         = 2;  // The server-to-client data. If not set then the shall be kept from the init message.
 }
 
 message DlmsOut {
@@ -90,31 +92,23 @@ message DlmsOut {
 }
 
 message DlmsEncrypt {
-    uint32 frame_counter    = 1;  // The frame counter.
-    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 3;  // The data to be encrypted.
+    uint32 security_control = 1;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 2;  // The data to be encrypted.
 }
 
 message DlmsDecrypt {
-    uint32 frame_counter    = 1;  // The frame counter.
-    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 3;  // The data to be decrypted.
+    uint32 security_control = 1;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 2;  // The data to be decrypted.
 }
 
 message DlmsHash {
     HashDirection direction = 1;  // The hash direction.
     Hash mode               = 2;  // The hash mode.
-    uint32 frame_counter    = 3;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    uint32 security_control = 4;  // The security control.
-}
-
-message DlmsAuthEncodeResponse {
-    uint32 frame_counter = 1;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 3;  // The security control.
 }
 
 message DlmsAuthVerify {
-    uint32 frame_counter = 1;  // The frame counter. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data           = 2;  // The reference (recevied) data to be verified.
+    bytes data = 1;  // The reference (recevied) data to be verified.
 }
 
 message ErrorMessage {
