@@ -58,12 +58,11 @@ enum HashDirection {
 message DlmsIn {
     uint64 id = 1;  // The request ID.
     oneof request {
-        DlmsInit init              = 2;  // The initialize request. It can be called only once, as the first request.
-        DlmsSetServerInfo setup    = 3;  // The setup server into request. This message shall be called when the data known.
-        DlmsHash hash              = 4;  // The hash request.
-        DlmsEncrypt encrypt        = 5;  // The encryption request.
-        DlmsDecrypt decrypt        = 6;  // The decryption request.
-        DlmsAuthVerify auth_verify = 7;  // The authentication verify.
+        DlmsInit init           = 2;  // The initialize request. It can be called only once, as the first request.
+        DlmsSetServerInfo setup = 3;  // The setup server into request. This message shall be called when the data known.
+        DlmsHash hash           = 4;  // The hash request.
+        DlmsEncrypt encrypt     = 5;  // The encryption request.
+        DlmsDecrypt decrypt     = 6;  // The decryption request.
     }
 }
 
@@ -106,12 +105,6 @@ message DlmsHash {
     Hash mode               = 2;  // The hash mode.
     uint32 frame_counter    = 3;  // The server frame counter.
     uint32 security_control = 4;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-}
-
-message DlmsAuthVerify {
-    HashDirection direction = 1;  // The hash direction.
-    Hash mode               = 2;  // The hash mode.
-    bytes data              = 3;  // The reference (recevied) data to be verified.
 }
 
 message ErrorMessage {
