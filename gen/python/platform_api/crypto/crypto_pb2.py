@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13\x63rypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xfb\x02\n\x06\x44lmsIn\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12=\n\x04init\x18\x02 \x01(\x0b\x32\'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12H\n\x05setup\x18\x03 \x01(\x0b\x32\x30.io.clbs.openhes.models.crypto.DlmsSetServerInfoH\x00R\x05setup\x12=\n\x04hash\x18\x04 \x01(\x0b\x32\'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12\x46\n\x07\x65ncrypt\x18\x05 \x01(\x0b\x32*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\x07\x65ncrypt\x12\x46\n\x07\x64\x65\x63rypt\x18\x06 \x01(\x0b\x32*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\x07\x64\x65\x63ryptB\t\n\x07request\"\xf8\x02\n\x08\x44lmsInit\x12V\n\nencryption\x18\x01 \x01(\x0e\x32\x36.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\nencryption\x12M\n\tsignature\x18\x02 \x01(\x0e\x32/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12\x1b\n\tdriver_id\x18\x03 \x01(\tR\x08\x64riverId\x12#\n\rserial_number\x18\x04 \x01(\tR\x0cserialNumber\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x05 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12$\n\x0esystem_title_c\x18\x06 \x01(\x0cR\x0csystemTitleC\x12$\n\x0esystem_title_s\x18\x07 \x01(\x0cR\x0csystemTitleS\x12\x14\n\x06\x63_to_s\x18\x08 \x01(\x0cR\x04\x63ToS\"O\n\x11\x44lmsSetServerInfo\x12$\n\x0esystem_title_s\x18\x01 \x01(\x0cR\x0csystemTitleS\x12\x14\n\x06s_to_c\x18\x02 \x01(\x0cR\x04sToC\"p\n\x07\x44lmsOut\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x41\n\x05\x65rror\x18\x02 \x01(\x0b\x32+.io.clbs.openhes.models.crypto.ErrorMessageR\x05\x65rror\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"q\n\x0b\x44lmsEncrypt\x12#\n\rframe_counter\x18\x01 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"q\n\x0b\x44lmsDecrypt\x12#\n\rframe_counter\x18\x01 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"\xdf\x01\n\x08\x44lmsHash\x12J\n\tdirection\x18\x01 \x01(\x0e\x32,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x12\x37\n\x04mode\x18\x02 \x01(\x0e\x32#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n\rframe_counter\x18\x03 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"<\n\x0c\x45rrorMessage\x12\x12\n\x04\x63ode\x18\x01 \x01(\rR\x04\x63ode\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message*N\n\x17\x41uthenticatedEncryption\x12\x0b\n\x07\x41\x45_NONE\x10\x00\x12\x12\n\x0e\x41\x45_AES_GCM_128\x10\x01\x12\x12\n\x0e\x41\x45_AES_GCM_256\x10\x02*M\n\x10\x44igitalSignature\x12\x11\n\rDS_ECDSA_NONE\x10\x00\x12\x12\n\x0e\x44S_ECDSA_P_256\x10\x01\x12\x12\n\x0e\x44S_ECDSA_P_384\x10\x02*A\n\x0cKeyAgreement\x12\x0b\n\x07KA_NONE\x10\x00\x12\x11\n\rKA_ECDH_P_256\x10\x01\x12\x11\n\rKA_ECDH_P_384\x10\x02*d\n\x04Hash\x12\r\n\tHASH_NONE\x10\x00\x12\x0c\n\x08HASH_MD5\x10\x01\x12\x0e\n\nHASH_SHA_1\x10\x02\x12\r\n\tHASH_GMAC\x10\x03\x12\x10\n\x0cHASH_SHA_256\x10\x04\x12\x0e\n\nHASH_ECDSA\x10\x05*;\n\rHashDirection\x12\x14\n\x10\x43LIENT_TO_SERVER\x10\x00\x12\x14\n\x10SERVER_TO_CLIENT\x10\x01\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13\x63rypto/crypto.proto\x12\x1dio.clbs.openhes.models.crypto\"\xcd\x03\n\x06\x44lmsIn\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12=\n\x04init\x18\x02 \x01(\x0b\x32\'.io.clbs.openhes.models.crypto.DlmsInitH\x00R\x04init\x12H\n\x05setup\x18\x03 \x01(\x0b\x32\x30.io.clbs.openhes.models.crypto.DlmsSetServerInfoH\x00R\x05setup\x12=\n\x04hash\x18\x04 \x01(\x0b\x32\'.io.clbs.openhes.models.crypto.DlmsHashH\x00R\x04hash\x12\x46\n\x07\x65ncrypt\x18\x05 \x01(\x0b\x32*.io.clbs.openhes.models.crypto.DlmsEncryptH\x00R\x07\x65ncrypt\x12\x46\n\x07\x64\x65\x63rypt\x18\x06 \x01(\x0b\x32*.io.clbs.openhes.models.crypto.DlmsDecryptH\x00R\x07\x64\x65\x63rypt\x12P\n\x0b\x61uth_verify\x18\x07 \x01(\x0b\x32-.io.clbs.openhes.models.crypto.DlmsAuthVerifyH\x00R\nauthVerifyB\t\n\x07request\"\xf8\x02\n\x08\x44lmsInit\x12V\n\nencryption\x18\x01 \x01(\x0e\x32\x36.io.clbs.openhes.models.crypto.AuthenticatedEncryptionR\nencryption\x12M\n\tsignature\x18\x02 \x01(\x0e\x32/.io.clbs.openhes.models.crypto.DigitalSignatureR\tsignature\x12\x1b\n\tdriver_id\x18\x03 \x01(\tR\x08\x64riverId\x12#\n\rserial_number\x18\x04 \x01(\tR\x0cserialNumber\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x05 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12$\n\x0esystem_title_c\x18\x06 \x01(\x0cR\x0csystemTitleC\x12$\n\x0esystem_title_s\x18\x07 \x01(\x0cR\x0csystemTitleS\x12\x14\n\x06\x63_to_s\x18\x08 \x01(\x0cR\x04\x63ToS\"O\n\x11\x44lmsSetServerInfo\x12$\n\x0esystem_title_s\x18\x01 \x01(\x0cR\x0csystemTitleS\x12\x14\n\x06s_to_c\x18\x02 \x01(\x0cR\x04sToC\"p\n\x07\x44lmsOut\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x41\n\x05\x65rror\x18\x02 \x01(\x0b\x32+.io.clbs.openhes.models.crypto.ErrorMessageR\x05\x65rror\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"q\n\x0b\x44lmsEncrypt\x12#\n\rframe_counter\x18\x01 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"q\n\x0b\x44lmsDecrypt\x12#\n\rframe_counter\x18\x01 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x02 \x01(\rR\x0fsecurityControl\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"\xdf\x01\n\x08\x44lmsHash\x12J\n\tdirection\x18\x01 \x01(\x0e\x32,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x12\x37\n\x04mode\x18\x02 \x01(\x0e\x32#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n\rframe_counter\x18\x03 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\"\xf9\x01\n\x0e\x44lmsAuthVerify\x12J\n\tdirection\x18\x01 \x01(\x0e\x32,.io.clbs.openhes.models.crypto.HashDirectionR\tdirection\x12\x37\n\x04mode\x18\x02 \x01(\x0e\x32#.io.clbs.openhes.models.crypto.HashR\x04mode\x12#\n\rframe_counter\x18\x03 \x01(\rR\x0c\x66rameCounter\x12)\n\x10security_control\x18\x04 \x01(\rR\x0fsecurityControl\x12\x12\n\x04\x64\x61ta\x18\x05 \x01(\x0cR\x04\x64\x61ta\"<\n\x0c\x45rrorMessage\x12\x12\n\x04\x63ode\x18\x01 \x01(\rR\x04\x63ode\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message*N\n\x17\x41uthenticatedEncryption\x12\x0b\n\x07\x41\x45_NONE\x10\x00\x12\x12\n\x0e\x41\x45_AES_GCM_128\x10\x01\x12\x12\n\x0e\x41\x45_AES_GCM_256\x10\x02*M\n\x10\x44igitalSignature\x12\x11\n\rDS_ECDSA_NONE\x10\x00\x12\x12\n\x0e\x44S_ECDSA_P_256\x10\x01\x12\x12\n\x0e\x44S_ECDSA_P_384\x10\x02*A\n\x0cKeyAgreement\x12\x0b\n\x07KA_NONE\x10\x00\x12\x11\n\rKA_ECDH_P_256\x10\x01\x12\x11\n\rKA_ECDH_P_384\x10\x02*d\n\x04Hash\x12\r\n\tHASH_NONE\x10\x00\x12\x0c\n\x08HASH_MD5\x10\x01\x12\x0e\n\nHASH_SHA_1\x10\x02\x12\r\n\tHASH_GMAC\x10\x03\x12\x10\n\x0cHASH_SHA_256\x10\x04\x12\x0e\n\nHASH_ECDSA\x10\x05*;\n\rHashDirection\x12\x14\n\x10\x43LIENT_TO_SERVER\x10\x00\x12\x14\n\x10SERVER_TO_CLIENT\x10\x01\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,30 +32,32 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'crypto.crypto_pb2', _global
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z.github.com/cybroslabs/hes-2-apis/gen/go/crypto'
-  _globals['_AUTHENTICATEDENCRYPTION']._serialized_start=1528
-  _globals['_AUTHENTICATEDENCRYPTION']._serialized_end=1606
-  _globals['_DIGITALSIGNATURE']._serialized_start=1608
-  _globals['_DIGITALSIGNATURE']._serialized_end=1685
-  _globals['_KEYAGREEMENT']._serialized_start=1687
-  _globals['_KEYAGREEMENT']._serialized_end=1752
-  _globals['_HASH']._serialized_start=1754
-  _globals['_HASH']._serialized_end=1854
-  _globals['_HASHDIRECTION']._serialized_start=1856
-  _globals['_HASHDIRECTION']._serialized_end=1915
+  _globals['_AUTHENTICATEDENCRYPTION']._serialized_start=1862
+  _globals['_AUTHENTICATEDENCRYPTION']._serialized_end=1940
+  _globals['_DIGITALSIGNATURE']._serialized_start=1942
+  _globals['_DIGITALSIGNATURE']._serialized_end=2019
+  _globals['_KEYAGREEMENT']._serialized_start=2021
+  _globals['_KEYAGREEMENT']._serialized_end=2086
+  _globals['_HASH']._serialized_start=2088
+  _globals['_HASH']._serialized_end=2188
+  _globals['_HASHDIRECTION']._serialized_start=2190
+  _globals['_HASHDIRECTION']._serialized_end=2249
   _globals['_DLMSIN']._serialized_start=55
-  _globals['_DLMSIN']._serialized_end=434
-  _globals['_DLMSINIT']._serialized_start=437
-  _globals['_DLMSINIT']._serialized_end=813
-  _globals['_DLMSSETSERVERINFO']._serialized_start=815
-  _globals['_DLMSSETSERVERINFO']._serialized_end=894
-  _globals['_DLMSOUT']._serialized_start=896
-  _globals['_DLMSOUT']._serialized_end=1008
-  _globals['_DLMSENCRYPT']._serialized_start=1010
-  _globals['_DLMSENCRYPT']._serialized_end=1123
-  _globals['_DLMSDECRYPT']._serialized_start=1125
-  _globals['_DLMSDECRYPT']._serialized_end=1238
-  _globals['_DLMSHASH']._serialized_start=1241
-  _globals['_DLMSHASH']._serialized_end=1464
-  _globals['_ERRORMESSAGE']._serialized_start=1466
-  _globals['_ERRORMESSAGE']._serialized_end=1526
+  _globals['_DLMSIN']._serialized_end=516
+  _globals['_DLMSINIT']._serialized_start=519
+  _globals['_DLMSINIT']._serialized_end=895
+  _globals['_DLMSSETSERVERINFO']._serialized_start=897
+  _globals['_DLMSSETSERVERINFO']._serialized_end=976
+  _globals['_DLMSOUT']._serialized_start=978
+  _globals['_DLMSOUT']._serialized_end=1090
+  _globals['_DLMSENCRYPT']._serialized_start=1092
+  _globals['_DLMSENCRYPT']._serialized_end=1205
+  _globals['_DLMSDECRYPT']._serialized_start=1207
+  _globals['_DLMSDECRYPT']._serialized_end=1320
+  _globals['_DLMSHASH']._serialized_start=1323
+  _globals['_DLMSHASH']._serialized_end=1546
+  _globals['_DLMSAUTHVERIFY']._serialized_start=1549
+  _globals['_DLMSAUTHVERIFY']._serialized_end=1798
+  _globals['_ERRORMESSAGE']._serialized_start=1800
+  _globals['_ERRORMESSAGE']._serialized_end=1860
 # @@protoc_insertion_point(module_scope)
