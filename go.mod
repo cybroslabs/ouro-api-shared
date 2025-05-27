@@ -16,7 +16,7 @@ require (
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.27
 	google.golang.org/genproto v0.0.0-20250519155744-55703ea1f237
-	google.golang.org/grpc v1.72.1
+	google.golang.org/grpc v1.72.2
 	google.golang.org/protobuf v1.36.6
 	k8s.io/utils v0.0.0-20250502105355-0f33e8f1c979
 )
