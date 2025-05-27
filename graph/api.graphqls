@@ -1,5 +1,14 @@
 # Code generated, DO NOT EDIT.
 
+# `NullValue` is a singleton enumeration to represent the null value for the
+#  `Value` type union.
+#
+#  The JSON representation for `NullValue` is JSON `null`.
+enum NullValue {
+  # Null value.
+  NULL_VALUE
+}
+
 # Result codes related to job actions
 enum ActionResultCode {
   # The action has been completed successfully.
@@ -336,6 +345,14 @@ type Empty {
   _empty: Boolean
 }
 
+# `ListValue` is a wrapper around a repeated field of values.
+#
+#  The JSON representation for `ListValue` is JSON array.
+type ListValue {
+  # Repeated field of dynamically typed values.
+  values: [Value]
+}
+
 # Wrapper message for `string`.
 #
 #  The JSON representation for `StringValue` is JSON string.
@@ -345,6 +362,40 @@ type Empty {
 type StringValue {
   # The string value.
   value: String
+}
+
+# `Struct` represents a structured data value, consisting of fields
+#  which map to dynamically typed values. In some languages, `Struct`
+#  might be supported by a native representation. For example, in
+#  scripting languages like JS a struct is represented as an
+#  object. The details of that representation are described together
+#  with the proto support for the language.
+#
+#  The JSON representation for `Struct` is JSON object.
+type Struct {
+  # Unordered map of dynamically typed values.
+  fields: [_mapValue]
+}
+
+# `Value` represents a dynamically typed value which can be either
+#  null, a number, a string, a boolean, a recursive struct value, or a
+#  list of values. A producer of value is expected to set one of these
+#  variants. Absence of any variant indicates an error.
+#
+#  The JSON representation for `Value` is JSON value.
+type Value {
+  # Represents a null value.
+  nullValue: NullValue
+  # Represents a double value.
+  numberValue: Float
+  # Represents a string value.
+  stringValue: String
+  # Represents a boolean value.
+  boolValue: Boolean
+  # Represents a structured value.
+  structValue: Struct
+  # Represents a repeated `Value`.
+  listValue: ListValue
 }
 
 # Represents a whole or partial calendar date, such as a birthday. The time of
@@ -1653,25 +1704,15 @@ type MetadataFields {
   name: String
 }
 
-type SystemConfig {
-  # The maximum number of replicas for all drivers.
-  #     0 represents no active replicas will run, effectively disabling acquisition
-  #    >0 represents the maximum number of replicas per driver
-  maxReplicas: Int
-  # The maximum number of cascade devices for the driver. Minimum is 1.
-  maxCascadeDeviceCount: Int
-  # The maximum number of slots per driver
-  #  @values:
-  #  - -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-  #  -  0 represents no active slots will run, effectively disabling acquisition
-  #  - >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
-  maxSlotsPerDriver: Int
-  # The minimum number of replicas per type of driver.
-  #  The key is the driver type, the value is the minimum number of replicas.
-  #  The minimum replicas is guaranteed to be running at all times even if the total number of replicas exceeds the maximum number of replicas set in max_replicas.
-  minReplicas: [_mapint32]
-  # Disable data proxy to process data from ouro temp tables.
-  disableDataProxyProcessing: Boolean
+# Application config specification.
+type ApplicationConfig {
+  # The application configuration data.
+  data: Struct
+}
+
+type _mapValue {
+  key: String!
+  value: Value
 }
 
 type _mapFieldValue {
@@ -1689,11 +1730,6 @@ type _mapListOfString {
   value: ListOfString
 }
 
-type _mapint32 {
-  key: String!
-  value: Int
-}
-
 type Query {
   listBulks: ListOfBulk
   listBulkJobs: ListOfBulkJob
@@ -1703,8 +1739,8 @@ type Query {
   getProxyBulk: ProxyBulk
   createBulk: StringValue
   getBulk: Bulk
-  getConfig: SystemConfig
-  setConfig: Empty
+  getApplicationConfig: ApplicationConfig
+  setApplicationConfig: Empty
   createDeviceConfigurationRegister: StringValue
   listDeviceConfigurationRegisters: ListOfDeviceConfigurationRegister
   getDeviceConfigurationRegister: DeviceConfigurationRegister

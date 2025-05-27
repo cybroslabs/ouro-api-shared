@@ -69,9 +69,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.system.SystemConfig">
+        <a href="#message-io.clbs.openhes.models.system.ApplicationConfig">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>SystemConfig</code> 
+          <code>ApplicationConfig</code> 
         </a>
       </p>
       
@@ -97,16 +97,16 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.SystemConfig">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.ApplicationConfig">
   <span>
-    <a href="#message-io.clbs.openhes.models.system.SystemConfig" title="io.clbs.openhes.models.system.SystemConfig">message SystemConfig</a>
+    <a href="#message-io.clbs.openhes.models.system.ApplicationConfig" title="io.clbs.openhes.models.system.ApplicationConfig">message ApplicationConfig</a>
   
   </span>
   
 </h4>
 
 <div class="block content">
-  
+  <p>Application config specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -124,85 +124,15 @@
     <tr>
       <td>1</td>
       <td>
-        maxReplicas
+        data
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Struct">
           
-          <span>int32</span>
+          <span>google.protobuf.Struct</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of replicas for all drivers.
-   0 represents no active replicas will run, effectively disabling acquisition</p>
-<blockquote>
-<p>0 represents the maximum number of replicas per driver</p>
-</blockquote></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        maxCascadeDeviceCount
-      </td>
-      <td>
-        <code title="int32">
-          
-          <span>int32</span>
-        </code>
-      </td>
-      <td class="content"><p>The maximum number of cascade devices for the driver. Minimum is 1.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        maxSlotsPerDriver
-      </td>
-      <td>
-        <code title="int32">
-          
-          <span>int32</span>
-        </code>
-      </td>
-      <td class="content"><p>The maximum number of slots per driver
-@values:
-- -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
--  0 represents no active slots will run, effectively disabling acquisition
-- &gt;0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>4</td>
-      <td>
-        minReplicas
-      </td>
-      <td>
-        <code title="map&lt;string, int32&gt;">
-          
-          <span>map&lt;string, int32&gt;</span>
-        </code>
-      </td>
-      <td class="content"><p>The minimum number of replicas per type of driver.
-The key is the driver type, the value is the minimum number of replicas.
-The minimum replicas is guaranteed to be running at all times even if the total number of replicas exceeds the maximum number of replicas set in max_replicas.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        disableDataProxyProcessing
-      </td>
-      <td>
-        <code title="bool">
-          
-          <span>bool</span>
-        </code>
-      </td>
-      <td class="content"><p>Disable data proxy to process data from ouro temp tables.</p></td>
+      <td class="content"><p>The application configuration data.</p></td>
       
     </tr>
     

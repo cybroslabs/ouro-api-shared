@@ -30,7 +30,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\xbc;\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\xdc;\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -91,9 +91,9 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x0fDeleteModemPool\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12`\n" +
 	"\vCreateModem\x123.io.clbs.openhes.models.acquisition.SetModemRequest\x1a\x1c.google.protobuf.StringValue\x12Z\n" +
 	"\vUpdateModem\x123.io.clbs.openhes.models.acquisition.SetModemRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
-	"\vDeleteModem\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12P\n" +
-	"\tGetConfig\x12\x16.google.protobuf.Empty\x1a+.io.clbs.openhes.models.system.SystemConfig\x12P\n" +
-	"\tSetConfig\x12+.io.clbs.openhes.models.system.SystemConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
+	"\vDeleteModem\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12`\n" +
+	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a0.io.clbs.openhes.models.system.ApplicationConfig\x12`\n" +
+	"\x14SetApplicationConfig\x120.io.clbs.openhes.models.system.ApplicationConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
 	"\x15GetMeterDataRegisters\x127.io.clbs.openhes.models.acquisition.GetMeterDataRequest\x1a2.io.clbs.openhes.models.acquisition.RegisterValues0\x01\x12\x84\x01\n" +
 	"\x14GetMeterDataProfiles\x127.io.clbs.openhes.models.acquisition.GetMeterDataRequest\x1a1.io.clbs.openhes.models.acquisition.ProfileValues0\x01\x12\x96\x01\n" +
 	"\x1dGetMeterDataIrregularProfiles\x127.io.clbs.openhes.models.acquisition.GetMeterDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x7f\n" +
@@ -133,7 +133,7 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.ListDeviceGroupDevicesRequest)(nil),                                           // 25: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest
 	(*acquisition.SetModemPoolRequest)(nil),                                                     // 26: io.clbs.openhes.models.acquisition.SetModemPoolRequest
 	(*acquisition.SetModemRequest)(nil),                                                         // 27: io.clbs.openhes.models.acquisition.SetModemRequest
-	(*system.SystemConfig)(nil),                                                                 // 28: io.clbs.openhes.models.system.SystemConfig
+	(*system.ApplicationConfig)(nil),                                                            // 28: io.clbs.openhes.models.system.ApplicationConfig
 	(*acquisition.GetMeterDataRequest)(nil),                                                     // 29: io.clbs.openhes.models.acquisition.GetMeterDataRequest
 	(*acquisition.GetMeterEventsRequest)(nil),                                                   // 30: io.clbs.openhes.models.acquisition.GetMeterEventsRequest
 	(*acquisition.CreateTimeOfUseTableRequest)(nil),                                             // 31: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
@@ -221,8 +221,8 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	27, // 53: io.clbs.openhes.services.svcapi.ApiService.CreateModem:input_type -> io.clbs.openhes.models.acquisition.SetModemRequest
 	27, // 54: io.clbs.openhes.services.svcapi.ApiService.UpdateModem:input_type -> io.clbs.openhes.models.acquisition.SetModemRequest
 	3,  // 55: io.clbs.openhes.services.svcapi.ApiService.DeleteModem:input_type -> google.protobuf.StringValue
-	10, // 56: io.clbs.openhes.services.svcapi.ApiService.GetConfig:input_type -> google.protobuf.Empty
-	28, // 57: io.clbs.openhes.services.svcapi.ApiService.SetConfig:input_type -> io.clbs.openhes.models.system.SystemConfig
+	10, // 56: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:input_type -> google.protobuf.Empty
+	28, // 57: io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig:input_type -> io.clbs.openhes.models.system.ApplicationConfig
 	29, // 58: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters:input_type -> io.clbs.openhes.models.acquisition.GetMeterDataRequest
 	29, // 59: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles:input_type -> io.clbs.openhes.models.acquisition.GetMeterDataRequest
 	29, // 60: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles:input_type -> io.clbs.openhes.models.acquisition.GetMeterDataRequest
@@ -288,8 +288,8 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	3,  // 120: io.clbs.openhes.services.svcapi.ApiService.CreateModem:output_type -> google.protobuf.StringValue
 	10, // 121: io.clbs.openhes.services.svcapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
 	10, // 122: io.clbs.openhes.services.svcapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
-	28, // 123: io.clbs.openhes.services.svcapi.ApiService.GetConfig:output_type -> io.clbs.openhes.models.system.SystemConfig
-	10, // 124: io.clbs.openhes.services.svcapi.ApiService.SetConfig:output_type -> google.protobuf.Empty
+	28, // 123: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfig
+	10, // 124: io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig:output_type -> google.protobuf.Empty
 	53, // 125: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
 	54, // 126: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
 	55, // 127: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues

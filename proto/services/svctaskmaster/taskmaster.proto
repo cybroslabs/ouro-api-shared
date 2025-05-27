@@ -8,7 +8,6 @@ import "google/protobuf/wrappers.proto";
 import "acquisition/main.proto";
 import "acquisition/internal.proto";
 import "common/types.proto";
-import "system/main.proto";
 
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
@@ -27,9 +26,4 @@ service TaskmasterService {
     rpc SetCache(io.clbs.openhes.models.acquisition.SetCacheRequest) returns (google.protobuf.Empty);
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc GetCache(io.clbs.openhes.models.acquisition.GetCacheRequest) returns (io.clbs.openhes.models.acquisition.GetCacheResponse);
-
-    // The method called by the RestApi to get the system configuration.
-    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
-    // The method called by the RestApi to set the system configuration.
-    rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
 }

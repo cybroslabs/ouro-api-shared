@@ -10,7 +10,6 @@ import "google/protobuf/struct.proto";
 import "acquisition/main.proto";
 import "acquisition/shared.proto";
 import "common/fields.proto";
-import "system/main.proto";
 
 // The Dataproxy related service definition.
 service DataproxyService {
@@ -45,11 +44,6 @@ service DataproxyService {
 
     // // Cancels the job(s) identified by the job identifier(s).
     // rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
-
-    // The method called by the RestApi to get the system configuration.
-    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
-    // The method called by the RestApi to set the system configuration.
-    rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
 
     // @group: Meter Data
     // The method to stream out register-typed meter data.

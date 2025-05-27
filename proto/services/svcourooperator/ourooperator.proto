@@ -1,17 +1,18 @@
 // Editions version of proto3 file
 edition = "2023";
-package io.clbs.openhes.services.svcdriveroperator;
+package io.clbs.openhes.services.svcourooperator;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcdriveroperator";
+option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcourooperator";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "acquisition/internal.proto";
 import "acquisition/main.proto";
+import "system/main.proto";
 
-// The Driver Operator service definition.
-// Those are the gRPC services that the Driver Operator provides for other components.
-service DriverOperatorService {
+// The Ouro Operator service definition.
+// Those are the gRPC services that the Ouro Operator provides for other components.
+service OuroOperatorService {
     // The method called by the RestApi to get the list of drivers.
     rpc ListDrivers(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
     // The method called by the Driver to set the driver templates. The parameter contains the driver templates.
@@ -23,6 +24,11 @@ service DriverOperatorService {
     rpc SetDriverScale(io.clbs.openhes.models.acquisition.SetDriverScaleRequest) returns (google.protobuf.Empty);
     // The method called by the Taskmaster to get the driver scale.
     rpc GetDriverScale(io.clbs.openhes.models.acquisition.GetDriverScaleRequest) returns (google.protobuf.UInt32Value);
+
+    // Gets the application configuration, stored in the Kubernetes.
+    rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfig);
+    // Sets the application configuration, stored in the Kubernetes.
+    rpc SetApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
 
     // The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
     // The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.

@@ -7,7 +7,6 @@ from acquisition import main_pb2 as acquisition_dot_main__pb2
 from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
-from system import main_pb2 as system_dot_main__pb2
 
 
 class TaskmasterServiceStub(object):
@@ -55,16 +54,6 @@ class TaskmasterServiceStub(object):
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache',
                 request_serializer=acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
                 response_deserializer=acquisition_dot_internal__pb2.GetCacheResponse.FromString,
-                _registered_method=True)
-        self.GetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetConfig',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=system_dot_main__pb2.SystemConfig.FromString,
-                _registered_method=True)
-        self.SetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetConfig',
-                request_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
 
@@ -121,20 +110,6 @@ class TaskmasterServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetConfig(self, request, context):
-        """The method called by the RestApi to get the system configuration.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetConfig(self, request, context):
-        """The method called by the RestApi to set the system configuration.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_TaskmasterServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -172,16 +147,6 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
                     servicer.GetCache,
                     request_deserializer=acquisition_dot_internal__pb2.GetCacheRequest.FromString,
                     response_serializer=acquisition_dot_internal__pb2.GetCacheResponse.SerializeToString,
-            ),
-            'GetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetConfig,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
-            ),
-            'SetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetConfig,
-                    request_deserializer=system_dot_main__pb2.SystemConfig.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -375,60 +340,6 @@ class TaskmasterService(object):
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache',
             acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
             acquisition_dot_internal__pb2.GetCacheResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetConfig',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            system_dot_main__pb2.SystemConfig.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def SetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetConfig',
-            system_dot_main__pb2.SystemConfig.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

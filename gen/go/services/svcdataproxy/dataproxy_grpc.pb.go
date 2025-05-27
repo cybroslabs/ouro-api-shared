@@ -10,7 +10,6 @@ import (
 	context "context"
 	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
 	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
-	system "github.com/cybroslabs/hes-2-apis/gen/go/system"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -32,8 +31,6 @@ const (
 	DataproxyService_GetProxyBulk_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
 	DataproxyService_CreateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
 	DataproxyService_GetBulk_FullMethodName                       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
-	DataproxyService_GetConfig_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig"
-	DataproxyService_SetConfig_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig"
 	DataproxyService_GetMeterDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters"
 	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
 	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
@@ -72,10 +69,6 @@ type DataproxyServiceClient interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
-	// The method called by the RestApi to get the system configuration.
-	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error)
-	// The method called by the RestApi to set the system configuration.
-	SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -172,26 +165,6 @@ func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *wrapperspb.Str
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Bulk)
 	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataproxyServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(system.SystemConfig)
-	err := c.cc.Invoke(ctx, DataproxyService_GetConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataproxyServiceClient) SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DataproxyService_SetConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -306,10 +279,6 @@ type DataproxyServiceServer interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
-	// The method called by the RestApi to get the system configuration.
-	GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error)
-	// The method called by the RestApi to set the system configuration.
-	SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
@@ -355,12 +324,6 @@ func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisit
 }
 func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
-}
-func (UnimplementedDataproxyServiceServer) GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
-}
-func (UnimplementedDataproxyServiceServer) SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
@@ -539,42 +502,6 @@ func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).GetConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_GetConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).GetConfig(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataproxyService_SetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(system.SystemConfig)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataproxyServiceServer).SetConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataproxyService_SetConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).SetConfig(ctx, req.(*system.SystemConfig))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DataproxyService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -657,14 +584,6 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulk",
 			Handler:    _DataproxyService_GetBulk_Handler,
-		},
-		{
-			MethodName: "GetConfig",
-			Handler:    _DataproxyService_GetConfig_Handler,
-		},
-		{
-			MethodName: "SetConfig",
-			Handler:    _DataproxyService_SetConfig_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

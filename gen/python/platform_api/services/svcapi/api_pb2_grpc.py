@@ -300,14 +300,14 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.GetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svcapi.ApiService/GetConfig',
+        self.GetApplicationConfig = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=system_dot_main__pb2.SystemConfig.FromString,
+                response_deserializer=system_dot_main__pb2.ApplicationConfig.FromString,
                 _registered_method=True)
-        self.SetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svcapi.ApiService/SetConfig',
-                request_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
+        self.SetApplicationConfig = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig',
+                request_serializer=system_dot_main__pb2.ApplicationConfig.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.GetMeterDataRegisters = channel.unary_stream(
@@ -830,17 +830,17 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetConfig(self, request, context):
+    def GetApplicationConfig(self, request, context):
         """@group: Configuration
-        The method to get the system configuration.
+        Gets the application configuration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetConfig(self, request, context):
+    def SetApplicationConfig(self, request, context):
         """@group: Configuration
-        The method to set the system configuration.
+        Sets the application configuration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1201,14 +1201,14 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'GetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetConfig,
+            'GetApplicationConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetApplicationConfig,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
+                    response_serializer=system_dot_main__pb2.ApplicationConfig.SerializeToString,
             ),
-            'SetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetConfig,
-                    request_deserializer=system_dot_main__pb2.SystemConfig.FromString,
+            'SetApplicationConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetApplicationConfig,
+                    request_deserializer=system_dot_main__pb2.ApplicationConfig.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
@@ -2781,7 +2781,7 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetConfig(request,
+    def GetApplicationConfig(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2794,9 +2794,9 @@ class ApiService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcapi.ApiService/GetConfig',
+            '/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            system_dot_main__pb2.SystemConfig.FromString,
+            system_dot_main__pb2.ApplicationConfig.FromString,
             options,
             channel_credentials,
             insecure,
@@ -2808,7 +2808,7 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
-    def SetConfig(request,
+    def SetApplicationConfig(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2821,8 +2821,8 @@ class ApiService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcapi.ApiService/SetConfig',
-            system_dot_main__pb2.SystemConfig.SerializeToString,
+            '/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig',
+            system_dot_main__pb2.ApplicationConfig.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

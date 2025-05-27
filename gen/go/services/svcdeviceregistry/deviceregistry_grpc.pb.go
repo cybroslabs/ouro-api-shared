@@ -108,7 +108,7 @@ type DeviceRegistryServiceClient interface {
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
-	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+	// The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
@@ -820,7 +820,7 @@ type DeviceRegistryServiceServer interface {
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
-	// The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+	// The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)

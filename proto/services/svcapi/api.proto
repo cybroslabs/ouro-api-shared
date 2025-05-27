@@ -218,11 +218,11 @@ service ApiService {
     rpc DeleteModem(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: Configuration
-    // The method to get the system configuration.
-    rpc GetConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.SystemConfig);
+    // Gets the application configuration.
+    rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfig);
     // @group: Configuration
-    // The method to set the system configuration.
-    rpc SetConfig(io.clbs.openhes.models.system.SystemConfig) returns (google.protobuf.Empty);
+    // Sets the application configuration.
+    rpc SetApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
 
     // @group: Meter Data
     // The method to stream out register-typed meter data.

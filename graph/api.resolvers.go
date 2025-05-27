@@ -51,14 +51,14 @@ func (r *queryResolver) GetBulk(ctx context.Context) (*model.Bulk, error) {
 	panic(fmt.Errorf("not implemented: GetBulk - getBulk"))
 }
 
-// GetConfig is the resolver for the getConfig field.
-func (r *queryResolver) GetConfig(ctx context.Context) (*model.SystemConfig, error) {
-	panic(fmt.Errorf("not implemented: GetConfig - getConfig"))
+// GetApplicationConfig is the resolver for the getApplicationConfig field.
+func (r *queryResolver) GetApplicationConfig(ctx context.Context) (*model.ApplicationConfig, error) {
+	panic(fmt.Errorf("not implemented: GetApplicationConfig - getApplicationConfig"))
 }
 
-// SetConfig is the resolver for the setConfig field.
-func (r *queryResolver) SetConfig(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: SetConfig - setConfig"))
+// SetApplicationConfig is the resolver for the setApplicationConfig field.
+func (r *queryResolver) SetApplicationConfig(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: SetApplicationConfig - setApplicationConfig"))
 }
 
 // CreateDeviceConfigurationRegister is the resolver for the createDeviceConfigurationRegister field.

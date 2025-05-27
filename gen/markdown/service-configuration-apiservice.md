@@ -1,22 +1,22 @@
 # ApiService - Configuration
 
-## GetConfig
+## GetApplicationConfig
 
-The method to get the system configuration.
-
-```proto
-GetConfig() returns (io.clbs.openhes.models.system.SystemConfig)
-```
-
-- Output: [`io.clbs.openhes.models.system.SystemConfig`](model-io-clbs-openhes-models-system-systemconfig.md)
-
-## SetConfig
-
-The method to set the system configuration.
+Gets the application configuration.
 
 ```proto
-SetConfig(io.clbs.openhes.models.system.SystemConfig)
+GetApplicationConfig() returns (io.clbs.openhes.models.system.ApplicationConfig)
 ```
 
-- Input: [`io.clbs.openhes.models.system.SystemConfig`](model-io-clbs-openhes-models-system-systemconfig.md)
+- Output: [`io.clbs.openhes.models.system.ApplicationConfig`](model-io-clbs-openhes-models-system-applicationconfig.md)
+
+## SetApplicationConfig
+
+Sets the application configuration.
+
+```proto
+SetApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig)
+```
+
+- Input: [`io.clbs.openhes.models.system.ApplicationConfig`](model-io-clbs-openhes-models-system-applicationconfig.md)
 

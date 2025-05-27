@@ -7,7 +7,6 @@ from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
-from system import main_pb2 as system_dot_main__pb2
 
 
 class DataproxyServiceStub(object):
@@ -59,16 +58,6 @@ class DataproxyServiceStub(object):
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Bulk.FromString,
-                _registered_method=True)
-        self.GetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=system_dot_main__pb2.SystemConfig.FromString,
-                _registered_method=True)
-        self.SetConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig',
-                request_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.GetMeterDataRegisters = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters',
@@ -162,25 +151,11 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetConfig(self, request, context):
+    def GetMeterDataRegisters(self, request, context):
         """// Cancels the job(s) identified by the job identifier(s).
         rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
 
-        The method called by the RestApi to get the system configuration.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetConfig(self, request, context):
-        """The method called by the RestApi to set the system configuration.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetMeterDataRegisters(self, request, context):
-        """@group: Meter Data
+        @group: Meter Data
         The method to stream out register-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -253,16 +228,6 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.GetBulk,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Bulk.SerializeToString,
-            ),
-            'GetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetConfig,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=system_dot_main__pb2.SystemConfig.SerializeToString,
-            ),
-            'SetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetConfig,
-                    request_deserializer=system_dot_main__pb2.SystemConfig.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
                     servicer.GetMeterDataRegisters,
@@ -502,60 +467,6 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Bulk.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetConfig',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            system_dot_main__pb2.SystemConfig.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def SetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetConfig',
-            system_dot_main__pb2.SystemConfig.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

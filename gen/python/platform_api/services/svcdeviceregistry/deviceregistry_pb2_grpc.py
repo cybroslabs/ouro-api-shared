@@ -413,7 +413,7 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CreateDriver(self, request, context):
-        """The method called by the Driver Operator to set the driver templates. The parameter contains the driver templates.
+        """The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

@@ -191,10 +191,12 @@ const (
 	ApiServiceUpdateModemProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
 	// ApiServiceDeleteModemProcedure is the fully-qualified name of the ApiService's DeleteModem RPC.
 	ApiServiceDeleteModemProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
-	// ApiServiceGetConfigProcedure is the fully-qualified name of the ApiService's GetConfig RPC.
-	ApiServiceGetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
-	// ApiServiceSetConfigProcedure is the fully-qualified name of the ApiService's SetConfig RPC.
-	ApiServiceSetConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	// ApiServiceGetApplicationConfigProcedure is the fully-qualified name of the ApiService's
+	// GetApplicationConfig RPC.
+	ApiServiceGetApplicationConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig"
+	// ApiServiceSetApplicationConfigProcedure is the fully-qualified name of the ApiService's
+	// SetApplicationConfig RPC.
+	ApiServiceSetApplicationConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig"
 	// ApiServiceGetMeterDataRegistersProcedure is the fully-qualified name of the ApiService's
 	// GetMeterDataRegisters RPC.
 	ApiServiceGetMeterDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
@@ -412,11 +414,11 @@ type ApiServiceClient interface {
 	// The method to delete the modem.
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Configuration
-	// The method to get the system configuration.
-	GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.SystemConfig], error)
+	// Gets the application configuration.
+	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
 	// @group: Configuration
-	// The method to set the system configuration.
-	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
+	// Sets the application configuration.
+	SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
@@ -793,16 +795,16 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteModem")),
 			connect.WithClientOptions(opts...),
 		),
-		getConfig: connect.NewClient[emptypb.Empty, system.SystemConfig](
+		getApplicationConfig: connect.NewClient[emptypb.Empty, system.ApplicationConfig](
 			httpClient,
-			baseURL+ApiServiceGetConfigProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetConfig")),
+			baseURL+ApiServiceGetApplicationConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetApplicationConfig")),
 			connect.WithClientOptions(opts...),
 		),
-		setConfig: connect.NewClient[system.SystemConfig, emptypb.Empty](
+		setApplicationConfig: connect.NewClient[system.ApplicationConfig, emptypb.Empty](
 			httpClient,
-			baseURL+ApiServiceSetConfigProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
+			baseURL+ApiServiceSetApplicationConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SetApplicationConfig")),
 			connect.WithClientOptions(opts...),
 		),
 		getMeterDataRegisters: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.RegisterValues](
@@ -920,8 +922,8 @@ type apiServiceClient struct {
 	createModem                                                      *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
 	updateModem                                                      *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getConfig                                                        *connect.Client[emptypb.Empty, system.SystemConfig]
-	setConfig                                                        *connect.Client[system.SystemConfig, emptypb.Empty]
+	getApplicationConfig                                             *connect.Client[emptypb.Empty, system.ApplicationConfig]
+	setApplicationConfig                                             *connect.Client[system.ApplicationConfig, emptypb.Empty]
 	getMeterDataRegisters                                            *connect.Client[acquisition.GetMeterDataRequest, acquisition.RegisterValues]
 	getMeterDataProfiles                                             *connect.Client[acquisition.GetMeterDataRequest, acquisition.ProfileValues]
 	getMeterDataIrregularProfiles                                    *connect.Client[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]
@@ -1229,14 +1231,14 @@ func (c *apiServiceClient) DeleteModem(ctx context.Context, req *connect.Request
 	return c.deleteModem.CallUnary(ctx, req)
 }
 
-// GetConfig calls io.clbs.openhes.services.svcapi.ApiService.GetConfig.
-func (c *apiServiceClient) GetConfig(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.SystemConfig], error) {
-	return c.getConfig.CallUnary(ctx, req)
+// GetApplicationConfig calls io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig.
+func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error) {
+	return c.getApplicationConfig.CallUnary(ctx, req)
 }
 
-// SetConfig calls io.clbs.openhes.services.svcapi.ApiService.SetConfig.
-func (c *apiServiceClient) SetConfig(ctx context.Context, req *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error) {
-	return c.setConfig.CallUnary(ctx, req)
+// SetApplicationConfig calls io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig.
+func (c *apiServiceClient) SetApplicationConfig(ctx context.Context, req *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
+	return c.setApplicationConfig.CallUnary(ctx, req)
 }
 
 // GetMeterDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters.
@@ -1473,11 +1475,11 @@ type ApiServiceHandler interface {
 	// The method to delete the modem.
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Configuration
-	// The method to get the system configuration.
-	GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.SystemConfig], error)
+	// Gets the application configuration.
+	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
 	// @group: Configuration
-	// The method to set the system configuration.
-	SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error)
+	// Sets the application configuration.
+	SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
@@ -1850,16 +1852,16 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("DeleteModem")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetConfigHandler := connect.NewUnaryHandler(
-		ApiServiceGetConfigProcedure,
-		svc.GetConfig,
-		connect.WithSchema(apiServiceMethods.ByName("GetConfig")),
+	apiServiceGetApplicationConfigHandler := connect.NewUnaryHandler(
+		ApiServiceGetApplicationConfigProcedure,
+		svc.GetApplicationConfig,
+		connect.WithSchema(apiServiceMethods.ByName("GetApplicationConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceSetConfigHandler := connect.NewUnaryHandler(
-		ApiServiceSetConfigProcedure,
-		svc.SetConfig,
-		connect.WithSchema(apiServiceMethods.ByName("SetConfig")),
+	apiServiceSetApplicationConfigHandler := connect.NewUnaryHandler(
+		ApiServiceSetApplicationConfigProcedure,
+		svc.SetApplicationConfig,
+		connect.WithSchema(apiServiceMethods.ByName("SetApplicationConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetMeterDataRegistersHandler := connect.NewServerStreamHandler(
@@ -2030,10 +2032,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateModemHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteModemProcedure:
 			apiServiceDeleteModemHandler.ServeHTTP(w, r)
-		case ApiServiceGetConfigProcedure:
-			apiServiceGetConfigHandler.ServeHTTP(w, r)
-		case ApiServiceSetConfigProcedure:
-			apiServiceSetConfigHandler.ServeHTTP(w, r)
+		case ApiServiceGetApplicationConfigProcedure:
+			apiServiceGetApplicationConfigHandler.ServeHTTP(w, r)
+		case ApiServiceSetApplicationConfigProcedure:
+			apiServiceSetApplicationConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetMeterDataRegistersProcedure:
 			apiServiceGetMeterDataRegistersHandler.ServeHTTP(w, r)
 		case ApiServiceGetMeterDataProfilesProcedure:
@@ -2285,12 +2287,12 @@ func (UnimplementedApiServiceHandler) DeleteModem(context.Context, *connect.Requ
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteModem is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.SystemConfig], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetConfig is not implemented"))
+func (UnimplementedApiServiceHandler) GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) SetConfig(context.Context, *connect.Request[system.SystemConfig]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetConfig is not implemented"))
+func (UnimplementedApiServiceHandler) SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {

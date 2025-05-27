@@ -80,8 +80,8 @@ const (
 	ApiService_CreateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/CreateModem"
 	ApiService_UpdateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
 	ApiService_DeleteModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
-	ApiService_GetConfig_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetConfig"
-	ApiService_SetConfig_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/SetConfig"
+	ApiService_GetApplicationConfig_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig"
+	ApiService_SetApplicationConfig_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig"
 	ApiService_GetMeterDataRegisters_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
 	ApiService_GetMeterDataProfiles_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles"
 	ApiService_GetMeterDataIrregularProfiles_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles"
@@ -285,11 +285,11 @@ type ApiServiceClient interface {
 	// The method to delete the modem.
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
-	// The method to get the system configuration.
-	GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error)
+	// Gets the application configuration.
+	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error)
 	// @group: Configuration
-	// The method to set the system configuration.
-	SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Sets the application configuration.
+	SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -887,20 +887,20 @@ func (c *apiServiceClient) DeleteModem(ctx context.Context, in *wrapperspb.Strin
 	return out, nil
 }
 
-func (c *apiServiceClient) GetConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.SystemConfig, error) {
+func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(system.SystemConfig)
-	err := c.cc.Invoke(ctx, ApiService_GetConfig_FullMethodName, in, out, cOpts...)
+	out := new(system.ApplicationConfig)
+	err := c.cc.Invoke(ctx, ApiService_GetApplicationConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) SetConfig(ctx context.Context, in *system.SystemConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiService_SetConfig_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_SetApplicationConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1225,11 +1225,11 @@ type ApiServiceServer interface {
 	// The method to delete the modem.
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Configuration
-	// The method to get the system configuration.
-	GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error)
+	// Gets the application configuration.
+	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error)
 	// @group: Configuration
-	// The method to set the system configuration.
-	SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error)
+	// Sets the application configuration.
+	SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
@@ -1435,11 +1435,11 @@ func (UnimplementedApiServiceServer) UpdateModem(context.Context, *acquisition.S
 func (UnimplementedApiServiceServer) DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModem not implemented")
 }
-func (UnimplementedApiServiceServer) GetConfig(context.Context, *emptypb.Empty) (*system.SystemConfig, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
+func (UnimplementedApiServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationConfig not implemented")
 }
-func (UnimplementedApiServiceServer) SetConfig(context.Context, *system.SystemConfig) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetConfig not implemented")
+func (UnimplementedApiServiceServer) SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetApplicationConfig not implemented")
 }
 func (UnimplementedApiServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
@@ -2497,38 +2497,38 @@ func _ApiService_DeleteModem_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_GetApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).GetConfig(ctx, in)
+		return srv.(ApiServiceServer).GetApplicationConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_GetConfig_FullMethodName,
+		FullMethod: ApiService_GetApplicationConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetConfig(ctx, req.(*emptypb.Empty))
+		return srv.(ApiServiceServer).GetApplicationConfig(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_SetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(system.SystemConfig)
+func _ApiService_SetApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ApplicationConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).SetConfig(ctx, in)
+		return srv.(ApiServiceServer).SetApplicationConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_SetConfig_FullMethodName,
+		FullMethod: ApiService_SetApplicationConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).SetConfig(ctx, req.(*system.SystemConfig))
+		return srv.(ApiServiceServer).SetApplicationConfig(ctx, req.(*system.ApplicationConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2899,12 +2899,12 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_DeleteModem_Handler,
 		},
 		{
-			MethodName: "GetConfig",
-			Handler:    _ApiService_GetConfig_Handler,
+			MethodName: "GetApplicationConfig",
+			Handler:    _ApiService_GetApplicationConfig_Handler,
 		},
 		{
-			MethodName: "SetConfig",
-			Handler:    _ApiService_SetConfig_Handler,
+			MethodName: "SetApplicationConfig",
+			Handler:    _ApiService_SetApplicationConfig_Handler,
 		},
 		{
 			MethodName: "CreateTimeOfUseTable",

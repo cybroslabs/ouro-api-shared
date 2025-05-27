@@ -9,6 +9,7 @@ package system
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -20,33 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type SystemConfig struct {
-	state                                 protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_MaxReplicas                int32                  `protobuf:"varint,1,opt,name=max_replicas,json=maxReplicas"`
-	xxx_hidden_MaxCascadeDeviceCount      int32                  `protobuf:"varint,2,opt,name=max_cascade_device_count,json=maxCascadeDeviceCount"`
-	xxx_hidden_MaxSlotsPerDriver          int32                  `protobuf:"varint,3,opt,name=max_slots_per_driver,json=maxSlotsPerDriver"`
-	xxx_hidden_MinReplicas                map[string]int32       `protobuf:"bytes,4,rep,name=min_replicas,json=minReplicas" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	xxx_hidden_DisableDataProxyProcessing bool                   `protobuf:"varint,5,opt,name=disable_data_proxy_processing,json=disableDataProxyProcessing"`
-	XXX_raceDetectHookData                protoimpl.RaceDetectHookData
-	XXX_presence                          [1]uint32
-	unknownFields                         protoimpl.UnknownFields
-	sizeCache                             protoimpl.SizeCache
+// Application config specification.
+type ApplicationConfig struct {
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Data *structpb.Struct       `protobuf:"bytes,1,opt,name=data"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
-func (x *SystemConfig) Reset() {
-	*x = SystemConfig{}
+func (x *ApplicationConfig) Reset() {
+	*x = ApplicationConfig{}
 	mi := &file_system_main_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SystemConfig) String() string {
+func (x *ApplicationConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SystemConfig) ProtoMessage() {}
+func (*ApplicationConfig) ProtoMessage() {}
 
-func (x *SystemConfig) ProtoReflect() protoreflect.Message {
+func (x *ApplicationConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_system_main_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -58,158 +54,39 @@ func (x *SystemConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *SystemConfig) GetMaxReplicas() int32 {
+func (x *ApplicationConfig) GetData() *structpb.Struct {
 	if x != nil {
-		return x.xxx_hidden_MaxReplicas
-	}
-	return 0
-}
-
-func (x *SystemConfig) GetMaxCascadeDeviceCount() int32 {
-	if x != nil {
-		return x.xxx_hidden_MaxCascadeDeviceCount
-	}
-	return 0
-}
-
-func (x *SystemConfig) GetMaxSlotsPerDriver() int32 {
-	if x != nil {
-		return x.xxx_hidden_MaxSlotsPerDriver
-	}
-	return 0
-}
-
-func (x *SystemConfig) GetMinReplicas() map[string]int32 {
-	if x != nil {
-		return x.xxx_hidden_MinReplicas
+		return x.xxx_hidden_Data
 	}
 	return nil
 }
 
-func (x *SystemConfig) GetDisableDataProxyProcessing() bool {
-	if x != nil {
-		return x.xxx_hidden_DisableDataProxyProcessing
-	}
-	return false
+func (x *ApplicationConfig) SetData(v *structpb.Struct) {
+	x.xxx_hidden_Data = v
 }
 
-func (x *SystemConfig) SetMaxReplicas(v int32) {
-	x.xxx_hidden_MaxReplicas = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
-}
-
-func (x *SystemConfig) SetMaxCascadeDeviceCount(v int32) {
-	x.xxx_hidden_MaxCascadeDeviceCount = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
-}
-
-func (x *SystemConfig) SetMaxSlotsPerDriver(v int32) {
-	x.xxx_hidden_MaxSlotsPerDriver = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
-}
-
-func (x *SystemConfig) SetMinReplicas(v map[string]int32) {
-	x.xxx_hidden_MinReplicas = v
-}
-
-func (x *SystemConfig) SetDisableDataProxyProcessing(v bool) {
-	x.xxx_hidden_DisableDataProxyProcessing = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
-}
-
-func (x *SystemConfig) HasMaxReplicas() bool {
+func (x *ApplicationConfig) HasData() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	return x.xxx_hidden_Data != nil
 }
 
-func (x *SystemConfig) HasMaxCascadeDeviceCount() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+func (x *ApplicationConfig) ClearData() {
+	x.xxx_hidden_Data = nil
 }
 
-func (x *SystemConfig) HasMaxSlotsPerDriver() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *SystemConfig) HasDisableDataProxyProcessing() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
-}
-
-func (x *SystemConfig) ClearMaxReplicas() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_MaxReplicas = 0
-}
-
-func (x *SystemConfig) ClearMaxCascadeDeviceCount() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_MaxCascadeDeviceCount = 0
-}
-
-func (x *SystemConfig) ClearMaxSlotsPerDriver() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_MaxSlotsPerDriver = 0
-}
-
-func (x *SystemConfig) ClearDisableDataProxyProcessing() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_DisableDataProxyProcessing = false
-}
-
-type SystemConfig_builder struct {
+type ApplicationConfig_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The maximum number of replicas for all drivers.
-	//
-	//	 0 represents no active replicas will run, effectively disabling acquisition
-	//	>0 represents the maximum number of replicas per driver
-	MaxReplicas *int32
-	// The maximum number of cascade devices for the driver. Minimum is 1.
-	MaxCascadeDeviceCount *int32
-	// The maximum number of slots per driver
-	// @values:
-	// - -1 represents unlimited number of slots, effecticaly using maximum number of slots supported by driver
-	// -  0 represents no active slots will run, effectively disabling acquisition
-	// - >0 represents the maximum number of slots per driver, the number of slots never exceeds the number of slots supported by driver
-	MaxSlotsPerDriver *int32
-	// The minimum number of replicas per type of driver.
-	// The key is the driver type, the value is the minimum number of replicas.
-	// The minimum replicas is guaranteed to be running at all times even if the total number of replicas exceeds the maximum number of replicas set in max_replicas.
-	MinReplicas map[string]int32
-	// Disable data proxy to process data from ouro temp tables.
-	DisableDataProxyProcessing *bool
+	Data *structpb.Struct
 }
 
-func (b0 SystemConfig_builder) Build() *SystemConfig {
-	m0 := &SystemConfig{}
+func (b0 ApplicationConfig_builder) Build() *ApplicationConfig {
+	m0 := &ApplicationConfig{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.MaxReplicas != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
-		x.xxx_hidden_MaxReplicas = *b.MaxReplicas
-	}
-	if b.MaxCascadeDeviceCount != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
-		x.xxx_hidden_MaxCascadeDeviceCount = *b.MaxCascadeDeviceCount
-	}
-	if b.MaxSlotsPerDriver != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
-		x.xxx_hidden_MaxSlotsPerDriver = *b.MaxSlotsPerDriver
-	}
-	x.xxx_hidden_MinReplicas = b.MinReplicas
-	if b.DisableDataProxyProcessing != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
-		x.xxx_hidden_DisableDataProxyProcessing = *b.DisableDataProxyProcessing
-	}
+	x.xxx_hidden_Data = b.Data
 	return m0
 }
 
@@ -217,24 +94,17 @@ var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
 	"\n" +
-	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\"\xff\x02\n" +
-	"\fSystemConfig\x12!\n" +
-	"\fmax_replicas\x18\x01 \x01(\x05R\vmaxReplicas\x127\n" +
-	"\x18max_cascade_device_count\x18\x02 \x01(\x05R\x15maxCascadeDeviceCount\x12/\n" +
-	"\x14max_slots_per_driver\x18\x03 \x01(\x05R\x11maxSlotsPerDriver\x12_\n" +
-	"\fmin_replicas\x18\x04 \x03(\v2<.io.clbs.openhes.models.system.SystemConfig.MinReplicasEntryR\vminReplicas\x12A\n" +
-	"\x1ddisable_data_proxy_processing\x18\x05 \x01(\bR\x1adisableDataProxyProcessing\x1a>\n" +
-	"\x10MinReplicasEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
+	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x1cgoogle/protobuf/struct.proto\"@\n" +
+	"\x11ApplicationConfig\x12+\n" +
+	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04dataB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_system_main_proto_goTypes = []any{
-	(*SystemConfig)(nil), // 0: io.clbs.openhes.models.system.SystemConfig
-	nil,                  // 1: io.clbs.openhes.models.system.SystemConfig.MinReplicasEntry
+	(*ApplicationConfig)(nil), // 0: io.clbs.openhes.models.system.ApplicationConfig
+	(*structpb.Struct)(nil),   // 1: google.protobuf.Struct
 }
 var file_system_main_proto_depIdxs = []int32{
-	1, // 0: io.clbs.openhes.models.system.SystemConfig.min_replicas:type_name -> io.clbs.openhes.models.system.SystemConfig.MinReplicasEntry
+	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.data:type_name -> google.protobuf.Struct
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -253,7 +123,7 @@ func file_system_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
