@@ -318,6 +318,7 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 
 	case FieldDataType_BINARY:
 		if value.WhichKind() != FieldValue_BinaryValue_case {
+			return errors.New("the value must be a binary value")
 		}
 
 	default:
