@@ -4,9 +4,20 @@ package io.clbs.openhes.models.system;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/system";
 
+import "common/fields.proto";
 import "google/protobuf/struct.proto";
 
 // Application config specification.
 message ApplicationConfig {
-    google.protobuf.Struct data = 1; // The application configuration data.
+    repeated ComponentConfig items = 2;  // The default values for the application configuration.
+}
+
+message ComponentConfig {
+    string name              = 1;  // The component name.
+    common.FieldValues items = 2;  // The component configuration values.
+}
+
+message ComponentConfigDescriptor {
+    string name                           = 1;  // The component name.
+    repeated common.FieldDescriptor items = 2;  // The component configuration descriptors.
 }

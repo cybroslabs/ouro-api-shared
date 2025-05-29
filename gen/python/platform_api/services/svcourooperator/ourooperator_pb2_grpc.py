@@ -50,10 +50,15 @@ class OuroOperatorServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=system_dot_main__pb2.ApplicationConfig.FromString,
                 _registered_method=True)
-        self.SetApplicationConfig = channel.unary_unary(
-                '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetApplicationConfig',
+        self.UpdateApplicationConfig = channel.unary_unary(
+                '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/UpdateApplicationConfig',
                 request_serializer=system_dot_main__pb2.ApplicationConfig.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SynchronizeComponentConfig = channel.unary_unary(
+                '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SynchronizeComponentConfig',
+                request_serializer=system_dot_main__pb2.ComponentConfigDescriptor.SerializeToString,
+                response_deserializer=system_dot_main__pb2.ComponentConfig.FromString,
                 _registered_method=True)
         self.StartUpgrade = channel.unary_unary(
                 '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade',
@@ -109,8 +114,17 @@ class OuroOperatorServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetApplicationConfig(self, request, context):
-        """Sets the application configuration, stored in the Kubernetes.
+    def UpdateApplicationConfig(self, request, context):
+        """Updates the application configuration. The missing fields in the request will be kept unchanged.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SynchronizeComponentConfig(self, request, context):
+        """Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
+        The output value will contain currently set values inlcuding detauls which are not set.
+        The missing values in the defaults will be deleted if has been set previously in the application configuration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -157,10 +171,15 @@ def add_OuroOperatorServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=system_dot_main__pb2.ApplicationConfig.SerializeToString,
             ),
-            'SetApplicationConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetApplicationConfig,
+            'UpdateApplicationConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateApplicationConfig,
                     request_deserializer=system_dot_main__pb2.ApplicationConfig.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SynchronizeComponentConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SynchronizeComponentConfig,
+                    request_deserializer=system_dot_main__pb2.ComponentConfigDescriptor.FromString,
+                    response_serializer=system_dot_main__pb2.ComponentConfig.SerializeToString,
             ),
             'StartUpgrade': grpc.unary_unary_rpc_method_handler(
                     servicer.StartUpgrade,
@@ -343,7 +362,7 @@ class OuroOperatorService(object):
             _registered_method=True)
 
     @staticmethod
-    def SetApplicationConfig(request,
+    def UpdateApplicationConfig(request,
             target,
             options=(),
             channel_credentials=None,
@@ -356,9 +375,36 @@ class OuroOperatorService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetApplicationConfig',
+            '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/UpdateApplicationConfig',
             system_dot_main__pb2.ApplicationConfig.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SynchronizeComponentConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SynchronizeComponentConfig',
+            system_dot_main__pb2.ComponentConfigDescriptor.SerializeToString,
+            system_dot_main__pb2.ComponentConfig.FromString,
             options,
             channel_credentials,
             insecure,

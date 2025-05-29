@@ -105,7 +105,7 @@ type AddDevicesToGroupRequest struct {
 }
 
 type ApplicationConfig struct {
-	Data *Struct `json:"data,omitempty"`
+	Items []*ComponentConfig `json:"items,omitempty"`
 }
 
 type ApplicationProtocolTemplate struct {
@@ -170,6 +170,16 @@ type CommunicationUnit struct {
 type CommunicationUnitSpec struct {
 	ExternalID     *string         `json:"externalId,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connectionInfo,omitempty"`
+}
+
+type ComponentConfig struct {
+	Name  *string      `json:"name,omitempty"`
+	Items *FieldValues `json:"items,omitempty"`
+}
+
+type ComponentConfigDescriptor struct {
+	Name  *string            `json:"name,omitempty"`
+	Items []*FieldDescriptor `json:"items,omitempty"`
 }
 
 type ConnectionInfo struct {
@@ -434,6 +444,10 @@ type FieldValue struct {
 	DurationValue *Duration `json:"durationValue,omitempty"`
 }
 
+type FieldValues struct {
+	Attributes []*MapFieldValue `json:"attributes,omitempty"`
+}
+
 type GetMeterDataRequest struct {
 	From         *string   `json:"from,omitempty"`
 	To           *string   `json:"to,omitempty"`
@@ -655,10 +669,6 @@ type ListSelectorSortBy struct {
 	Desc    *bool   `json:"desc,omitempty"`
 }
 
-type ListValue struct {
-	Values []*Value `json:"values,omitempty"`
-}
-
 type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
@@ -800,10 +810,6 @@ type StringValue struct {
 	Value *string `json:"value,omitempty"`
 }
 
-type Struct struct {
-	Fields []*MapValue `json:"fields,omitempty"`
-}
-
 type Switching struct {
 	Hour   *int32              `json:"hour,omitempty"`
 	Minute *int32              `json:"minute,omitempty"`
@@ -824,15 +830,6 @@ type TimeOfUseTableSpec struct {
 	Weeks       []*Week       `json:"weeks,omitempty"`
 	DayProfiles []*DayProfile `json:"dayProfiles,omitempty"`
 	SpecialDays []*SpecialDay `json:"specialDays,omitempty"`
-}
-
-type Value struct {
-	NullValue   *NullValue `json:"nullValue,omitempty"`
-	NumberValue *float64   `json:"numberValue,omitempty"`
-	StringValue *string    `json:"stringValue,omitempty"`
-	BoolValue   *bool      `json:"boolValue,omitempty"`
-	StructValue *Struct    `json:"structValue,omitempty"`
-	ListValue   *ListValue `json:"listValue,omitempty"`
 }
 
 type Variable struct {
@@ -858,11 +855,6 @@ type MapFieldValue struct {
 type MapListOfString struct {
 	Key   string        `json:"key"`
 	Value *ListOfString `json:"value,omitempty"`
-}
-
-type MapValue struct {
-	Key   string `json:"key"`
-	Value *Value `json:"value,omitempty"`
 }
 
 type Mapstring struct {
@@ -1661,59 +1653,6 @@ func (e *JobStatusCode) UnmarshalJSON(b []byte) error {
 }
 
 func (e JobStatusCode) MarshalJSON() ([]byte, error) {
-	var buf bytes.Buffer
-	e.MarshalGQL(&buf)
-	return buf.Bytes(), nil
-}
-
-type NullValue string
-
-const (
-	NullValueNullValue NullValue = "NULL_VALUE"
-)
-
-var AllNullValue = []NullValue{
-	NullValueNullValue,
-}
-
-func (e NullValue) IsValid() bool {
-	switch e {
-	case NullValueNullValue:
-		return true
-	}
-	return false
-}
-
-func (e NullValue) String() string {
-	return string(e)
-}
-
-func (e *NullValue) UnmarshalGQL(v any) error {
-	str, ok := v.(string)
-	if !ok {
-		return fmt.Errorf("enums must be strings")
-	}
-
-	*e = NullValue(str)
-	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid NullValue", str)
-	}
-	return nil
-}
-
-func (e NullValue) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
-}
-
-func (e *NullValue) UnmarshalJSON(b []byte) error {
-	s, err := strconv.Unquote(string(b))
-	if err != nil {
-		return err
-	}
-	return e.UnmarshalGQL(s)
-}
-
-func (e NullValue) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

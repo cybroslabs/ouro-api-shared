@@ -23,14 +23,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OuroOperatorService_ListDrivers_FullMethodName          = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/ListDrivers"
-	OuroOperatorService_SetDriver_FullMethodName            = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetDriver"
-	OuroOperatorService_GetDriver_FullMethodName            = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetDriver"
-	OuroOperatorService_SetDriverScale_FullMethodName       = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetDriverScale"
-	OuroOperatorService_GetDriverScale_FullMethodName       = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetDriverScale"
-	OuroOperatorService_GetApplicationConfig_FullMethodName = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetApplicationConfig"
-	OuroOperatorService_SetApplicationConfig_FullMethodName = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetApplicationConfig"
-	OuroOperatorService_StartUpgrade_FullMethodName         = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade"
+	OuroOperatorService_ListDrivers_FullMethodName                = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/ListDrivers"
+	OuroOperatorService_SetDriver_FullMethodName                  = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetDriver"
+	OuroOperatorService_GetDriver_FullMethodName                  = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetDriver"
+	OuroOperatorService_SetDriverScale_FullMethodName             = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetDriverScale"
+	OuroOperatorService_GetDriverScale_FullMethodName             = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetDriverScale"
+	OuroOperatorService_GetApplicationConfig_FullMethodName       = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetApplicationConfig"
+	OuroOperatorService_UpdateApplicationConfig_FullMethodName    = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/UpdateApplicationConfig"
+	OuroOperatorService_SynchronizeComponentConfig_FullMethodName = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SynchronizeComponentConfig"
+	OuroOperatorService_StartUpgrade_FullMethodName               = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade"
 )
 
 // OuroOperatorServiceClient is the client API for OuroOperatorService service.
@@ -52,8 +53,12 @@ type OuroOperatorServiceClient interface {
 	GetDriverScale(ctx context.Context, in *acquisition.GetDriverScaleRequest, opts ...grpc.CallOption) (*wrapperspb.UInt32Value, error)
 	// Gets the application configuration, stored in the Kubernetes.
 	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error)
-	// Sets the application configuration, stored in the Kubernetes.
-	SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
 	StartUpgrade(ctx context.Context, in *acquisition.StartUpgradeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -127,10 +132,20 @@ func (c *ouroOperatorServiceClient) GetApplicationConfig(ctx context.Context, in
 	return out, nil
 }
 
-func (c *ouroOperatorServiceClient) SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *ouroOperatorServiceClient) UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, OuroOperatorService_SetApplicationConfig_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, OuroOperatorService_UpdateApplicationConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ouroOperatorServiceClient) SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.ComponentConfig)
+	err := c.cc.Invoke(ctx, OuroOperatorService_SynchronizeComponentConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,8 +181,12 @@ type OuroOperatorServiceServer interface {
 	GetDriverScale(context.Context, *acquisition.GetDriverScaleRequest) (*wrapperspb.UInt32Value, error)
 	// Gets the application configuration, stored in the Kubernetes.
 	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error)
-	// Sets the application configuration, stored in the Kubernetes.
-	SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
+	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
 	StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error)
@@ -199,8 +218,11 @@ func (UnimplementedOuroOperatorServiceServer) GetDriverScale(context.Context, *a
 func (UnimplementedOuroOperatorServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationConfig not implemented")
 }
-func (UnimplementedOuroOperatorServiceServer) SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetApplicationConfig not implemented")
+func (UnimplementedOuroOperatorServiceServer) UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateApplicationConfig not implemented")
+}
+func (UnimplementedOuroOperatorServiceServer) SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeComponentConfig not implemented")
 }
 func (UnimplementedOuroOperatorServiceServer) StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartUpgrade not implemented")
@@ -334,20 +356,38 @@ func _OuroOperatorService_GetApplicationConfig_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OuroOperatorService_SetApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OuroOperatorService_UpdateApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(system.ApplicationConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OuroOperatorServiceServer).SetApplicationConfig(ctx, in)
+		return srv.(OuroOperatorServiceServer).UpdateApplicationConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OuroOperatorService_SetApplicationConfig_FullMethodName,
+		FullMethod: OuroOperatorService_UpdateApplicationConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OuroOperatorServiceServer).SetApplicationConfig(ctx, req.(*system.ApplicationConfig))
+		return srv.(OuroOperatorServiceServer).UpdateApplicationConfig(ctx, req.(*system.ApplicationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OuroOperatorService_SynchronizeComponentConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ComponentConfigDescriptor)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OuroOperatorServiceServer).SynchronizeComponentConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OuroOperatorService_SynchronizeComponentConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OuroOperatorServiceServer).SynchronizeComponentConfig(ctx, req.(*system.ComponentConfigDescriptor))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -402,8 +442,12 @@ var OuroOperatorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OuroOperatorService_GetApplicationConfig_Handler,
 		},
 		{
-			MethodName: "SetApplicationConfig",
-			Handler:    _OuroOperatorService_SetApplicationConfig_Handler,
+			MethodName: "UpdateApplicationConfig",
+			Handler:    _OuroOperatorService_UpdateApplicationConfig_Handler,
+		},
+		{
+			MethodName: "SynchronizeComponentConfig",
+			Handler:    _OuroOperatorService_SynchronizeComponentConfig_Handler,
 		},
 		{
 			MethodName: "StartUpgrade",

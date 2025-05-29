@@ -6,5 +6,5 @@ Application config specification.
 
 | Field | Information |
 | --- | --- |
-| data | <b>Type:</b> `google.protobuf.Struct`<br><b>Description:</b><br>The application configuration data. |
+| items | <b>Type:</b> [`io.clbs.openhes.models.system.ComponentConfig`](model-io-clbs-openhes-models-system-componentconfig.md)<br><b>Description:</b><br>The default values for the application configuration. |
 

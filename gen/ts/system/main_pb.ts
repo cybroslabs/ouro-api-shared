@@ -4,15 +4,16 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { StructJson } from "@bufbuild/protobuf/wkt";
+import type { FieldDescriptor, FieldDescriptorJson, FieldValues, FieldValuesJson } from "../common/fields_pb";
+import { file_common_fields } from "../common/fields_pb";
 import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
-import type { JsonObject, Message } from "@bufbuild/protobuf";
+import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iOgoRQXBwbGljYXRpb25Db25maWcSJQoEZGF0YRgBIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_google_protobuf_struct]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct]);
 
 /**
  * Application config specification.
@@ -21,11 +22,11 @@ export const file_system_main: GenFile = /*@__PURE__*/
  */
 export type ApplicationConfig = Message<"io.clbs.openhes.models.system.ApplicationConfig"> & {
   /**
-   * The application configuration data.
+   * The default values for the application configuration.
    *
-   * @generated from field: google.protobuf.Struct data = 1;
+   * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
-  data?: JsonObject;
+  items: ComponentConfig[];
 };
 
 /**
@@ -35,11 +36,11 @@ export type ApplicationConfig = Message<"io.clbs.openhes.models.system.Applicati
  */
 export type ApplicationConfigJson = {
   /**
-   * The application configuration data.
+   * The default values for the application configuration.
    *
-   * @generated from field: google.protobuf.Struct data = 1;
+   * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
-  data?: StructJson;
+  items?: ComponentConfigJson[];
 };
 
 /**
@@ -48,4 +49,94 @@ export type ApplicationConfigJson = {
  */
 export const ApplicationConfigSchema: GenMessage<ApplicationConfig, {jsonType: ApplicationConfigJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 0);
+
+/**
+ * @generated from message io.clbs.openhes.models.system.ComponentConfig
+ */
+export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentConfig"> & {
+  /**
+   * The component name.
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * The component configuration values.
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValues items = 2;
+   */
+  items?: FieldValues;
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.system.ComponentConfig
+ */
+export type ComponentConfigJson = {
+  /**
+   * The component name.
+   *
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * The component configuration values.
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValues items = 2;
+   */
+  items?: FieldValuesJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.ComponentConfig.
+ * Use `create(ComponentConfigSchema)` to create a new message.
+ */
+export const ComponentConfigSchema: GenMessage<ComponentConfig, {jsonType: ComponentConfigJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 1);
+
+/**
+ * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
+ */
+export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.ComponentConfigDescriptor"> & {
+  /**
+   * The component name.
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * The component configuration descriptors.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
+   */
+  items: FieldDescriptor[];
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
+ */
+export type ComponentConfigDescriptorJson = {
+  /**
+   * The component name.
+   *
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * The component configuration descriptors.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
+   */
+  items?: FieldDescriptorJson[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.ComponentConfigDescriptor.
+ * Use `create(ComponentConfigDescriptorSchema)` to create a new message.
+ */
+export const ComponentConfigDescriptorSchema: GenMessage<ComponentConfigDescriptor, {jsonType: ComponentConfigDescriptorJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 2);
 

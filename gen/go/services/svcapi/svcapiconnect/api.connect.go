@@ -194,9 +194,12 @@ const (
 	// ApiServiceGetApplicationConfigProcedure is the fully-qualified name of the ApiService's
 	// GetApplicationConfig RPC.
 	ApiServiceGetApplicationConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig"
-	// ApiServiceSetApplicationConfigProcedure is the fully-qualified name of the ApiService's
-	// SetApplicationConfig RPC.
-	ApiServiceSetApplicationConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig"
+	// ApiServiceUpdateApplicationConfigProcedure is the fully-qualified name of the ApiService's
+	// UpdateApplicationConfig RPC.
+	ApiServiceUpdateApplicationConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateApplicationConfig"
+	// ApiServiceSynchronizeComponentConfigProcedure is the fully-qualified name of the ApiService's
+	// SynchronizeComponentConfig RPC.
+	ApiServiceSynchronizeComponentConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SynchronizeComponentConfig"
 	// ApiServiceGetMeterDataRegistersProcedure is the fully-qualified name of the ApiService's
 	// GetMeterDataRegisters RPC.
 	ApiServiceGetMeterDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
@@ -417,8 +420,13 @@ type ApiServiceClient interface {
 	// Gets the application configuration.
 	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
 	// @group: Configuration
-	// Sets the application configuration.
-	SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
+	// @group: Configuration
+	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(context.Context, *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
@@ -801,10 +809,16 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetApplicationConfig")),
 			connect.WithClientOptions(opts...),
 		),
-		setApplicationConfig: connect.NewClient[system.ApplicationConfig, emptypb.Empty](
+		updateApplicationConfig: connect.NewClient[system.ApplicationConfig, emptypb.Empty](
 			httpClient,
-			baseURL+ApiServiceSetApplicationConfigProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("SetApplicationConfig")),
+			baseURL+ApiServiceUpdateApplicationConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateApplicationConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		synchronizeComponentConfig: connect.NewClient[system.ComponentConfigDescriptor, system.ComponentConfig](
+			httpClient,
+			baseURL+ApiServiceSynchronizeComponentConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SynchronizeComponentConfig")),
 			connect.WithClientOptions(opts...),
 		),
 		getMeterDataRegisters: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.RegisterValues](
@@ -923,7 +937,8 @@ type apiServiceClient struct {
 	updateModem                                                      *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getApplicationConfig                                             *connect.Client[emptypb.Empty, system.ApplicationConfig]
-	setApplicationConfig                                             *connect.Client[system.ApplicationConfig, emptypb.Empty]
+	updateApplicationConfig                                          *connect.Client[system.ApplicationConfig, emptypb.Empty]
+	synchronizeComponentConfig                                       *connect.Client[system.ComponentConfigDescriptor, system.ComponentConfig]
 	getMeterDataRegisters                                            *connect.Client[acquisition.GetMeterDataRequest, acquisition.RegisterValues]
 	getMeterDataProfiles                                             *connect.Client[acquisition.GetMeterDataRequest, acquisition.ProfileValues]
 	getMeterDataIrregularProfiles                                    *connect.Client[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]
@@ -1236,9 +1251,15 @@ func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, req *connec
 	return c.getApplicationConfig.CallUnary(ctx, req)
 }
 
-// SetApplicationConfig calls io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig.
-func (c *apiServiceClient) SetApplicationConfig(ctx context.Context, req *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
-	return c.setApplicationConfig.CallUnary(ctx, req)
+// UpdateApplicationConfig calls io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig.
+func (c *apiServiceClient) UpdateApplicationConfig(ctx context.Context, req *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateApplicationConfig.CallUnary(ctx, req)
+}
+
+// SynchronizeComponentConfig calls
+// io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig.
+func (c *apiServiceClient) SynchronizeComponentConfig(ctx context.Context, req *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error) {
+	return c.synchronizeComponentConfig.CallUnary(ctx, req)
 }
 
 // GetMeterDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters.
@@ -1478,8 +1499,13 @@ type ApiServiceHandler interface {
 	// Gets the application configuration.
 	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
 	// @group: Configuration
-	// Sets the application configuration.
-	SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
+	// @group: Configuration
+	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(context.Context, *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
@@ -1858,10 +1884,16 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetApplicationConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceSetApplicationConfigHandler := connect.NewUnaryHandler(
-		ApiServiceSetApplicationConfigProcedure,
-		svc.SetApplicationConfig,
-		connect.WithSchema(apiServiceMethods.ByName("SetApplicationConfig")),
+	apiServiceUpdateApplicationConfigHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateApplicationConfigProcedure,
+		svc.UpdateApplicationConfig,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateApplicationConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceSynchronizeComponentConfigHandler := connect.NewUnaryHandler(
+		ApiServiceSynchronizeComponentConfigProcedure,
+		svc.SynchronizeComponentConfig,
+		connect.WithSchema(apiServiceMethods.ByName("SynchronizeComponentConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetMeterDataRegistersHandler := connect.NewServerStreamHandler(
@@ -2034,8 +2066,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceDeleteModemHandler.ServeHTTP(w, r)
 		case ApiServiceGetApplicationConfigProcedure:
 			apiServiceGetApplicationConfigHandler.ServeHTTP(w, r)
-		case ApiServiceSetApplicationConfigProcedure:
-			apiServiceSetApplicationConfigHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateApplicationConfigProcedure:
+			apiServiceUpdateApplicationConfigHandler.ServeHTTP(w, r)
+		case ApiServiceSynchronizeComponentConfigProcedure:
+			apiServiceSynchronizeComponentConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetMeterDataRegistersProcedure:
 			apiServiceGetMeterDataRegistersHandler.ServeHTTP(w, r)
 		case ApiServiceGetMeterDataProfilesProcedure:
@@ -2291,8 +2325,12 @@ func (UnimplementedApiServiceHandler) GetApplicationConfig(context.Context, *con
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) SetApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetApplicationConfig is not implemented"))
+func (UnimplementedApiServiceHandler) UpdateApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) SynchronizeComponentConfig(context.Context, *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {

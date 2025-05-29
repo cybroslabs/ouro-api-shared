@@ -81,7 +81,8 @@ const (
 	ApiService_UpdateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/UpdateModem"
 	ApiService_DeleteModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/DeleteModem"
 	ApiService_GetApplicationConfig_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig"
-	ApiService_SetApplicationConfig_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/SetApplicationConfig"
+	ApiService_UpdateApplicationConfig_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateApplicationConfig"
+	ApiService_SynchronizeComponentConfig_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/SynchronizeComponentConfig"
 	ApiService_GetMeterDataRegisters_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
 	ApiService_GetMeterDataProfiles_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles"
 	ApiService_GetMeterDataIrregularProfiles_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles"
@@ -288,8 +289,13 @@ type ApiServiceClient interface {
 	// Gets the application configuration.
 	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error)
 	// @group: Configuration
-	// Sets the application configuration.
-	SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Configuration
+	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -897,10 +903,20 @@ func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb
 	return out, nil
 }
 
-func (c *apiServiceClient) SetApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiService_SetApplicationConfig_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_UpdateApplicationConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.ComponentConfig)
+	err := c.cc.Invoke(ctx, ApiService_SynchronizeComponentConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1228,8 +1244,13 @@ type ApiServiceServer interface {
 	// Gets the application configuration.
 	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error)
 	// @group: Configuration
-	// Sets the application configuration.
-	SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
+	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
+	// @group: Configuration
+	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
@@ -1438,8 +1459,11 @@ func (UnimplementedApiServiceServer) DeleteModem(context.Context, *wrapperspb.St
 func (UnimplementedApiServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationConfig not implemented")
 }
-func (UnimplementedApiServiceServer) SetApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetApplicationConfig not implemented")
+func (UnimplementedApiServiceServer) UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateApplicationConfig not implemented")
+}
+func (UnimplementedApiServiceServer) SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeComponentConfig not implemented")
 }
 func (UnimplementedApiServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
@@ -2515,20 +2539,38 @@ func _ApiService_GetApplicationConfig_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_SetApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_UpdateApplicationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(system.ApplicationConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).SetApplicationConfig(ctx, in)
+		return srv.(ApiServiceServer).UpdateApplicationConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_SetApplicationConfig_FullMethodName,
+		FullMethod: ApiService_UpdateApplicationConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).SetApplicationConfig(ctx, req.(*system.ApplicationConfig))
+		return srv.(ApiServiceServer).UpdateApplicationConfig(ctx, req.(*system.ApplicationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_SynchronizeComponentConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ComponentConfigDescriptor)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SynchronizeComponentConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SynchronizeComponentConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SynchronizeComponentConfig(ctx, req.(*system.ComponentConfigDescriptor))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2903,8 +2945,12 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_GetApplicationConfig_Handler,
 		},
 		{
-			MethodName: "SetApplicationConfig",
-			Handler:    _ApiService_SetApplicationConfig_Handler,
+			MethodName: "UpdateApplicationConfig",
+			Handler:    _ApiService_UpdateApplicationConfig_Handler,
+		},
+		{
+			MethodName: "SynchronizeComponentConfig",
+			Handler:    _ApiService_SynchronizeComponentConfig_Handler,
 		},
 		{
 			MethodName: "CreateTimeOfUseTable",

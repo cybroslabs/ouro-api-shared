@@ -221,8 +221,13 @@ service ApiService {
     // Gets the application configuration.
     rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfig);
     // @group: Configuration
-    // Sets the application configuration.
-    rpc SetApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
+    // Updates the application configuration. The missing fields in the request will be kept unchanged.
+    rpc UpdateApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
+    // @group: Configuration
+    // Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+    // The output value will contain currently set values inlcuding detauls which are not set.
+    // The missing values in the defaults will be deleted if has been set previously in the application configuration.
+    rpc SynchronizeComponentConfig(io.clbs.openhes.models.system.ComponentConfigDescriptor) returns (io.clbs.openhes.models.system.ComponentConfig);
 
     // @group: Meter Data
     // The method to stream out register-typed meter data.

@@ -304,9 +304,9 @@ The listing can be used for both proxy bulks and regular bulks.</p></p>
     
     <div class="box">
       <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetApplicationConfig">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetApplicationConfig">
-            rpc <code>SetApplicationConfig</code>
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-UpdateApplicationConfig">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-UpdateApplicationConfig">
+            rpc <code>UpdateApplicationConfig</code>
           </a>
         </h5>
         
@@ -318,7 +318,30 @@ The listing can be used for both proxy bulks and regular bulks.</p></p>
 
       
       <div class="block">
-        <p><p>Sets the application configuration.</p></p>
+        <p><p>Updates the application configuration. The missing fields in the request will be kept unchanged.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SynchronizeComponentConfig">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SynchronizeComponentConfig">
+            rpc <code>SynchronizeComponentConfig</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.ComponentConfigDescriptor"><span title="io.clbs.openhes.models.system.ComponentConfigDescriptor">io.clbs.openhes.models.system.ComponentConfigDescriptor</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.ComponentConfig"><span title="io.clbs.openhes.models.system.ComponentConfig">io.clbs.openhes.models.system.ComponentConfig</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
+The output value will contain currently set values inlcuding detauls which are not set.
+The missing values in the defaults will be deleted if has been set previously in the application configuration.</p></p>
       </div>
       
     </div>

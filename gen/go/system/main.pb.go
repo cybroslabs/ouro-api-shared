@@ -7,9 +7,10 @@
 package system
 
 import (
+	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	structpb "google.golang.org/protobuf/types/known/structpb"
+	_ "google.golang.org/protobuf/types/known/structpb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -23,10 +24,10 @@ const (
 
 // Application config specification.
 type ApplicationConfig struct {
-	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Data *structpb.Struct       `protobuf:"bytes,1,opt,name=data"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items *[]*ComponentConfig    `protobuf:"bytes,2,rep,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *ApplicationConfig) Reset() {
@@ -54,39 +55,227 @@ func (x *ApplicationConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ApplicationConfig) GetData() *structpb.Struct {
+func (x *ApplicationConfig) GetItems() []*ComponentConfig {
 	if x != nil {
-		return x.xxx_hidden_Data
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
 	}
 	return nil
 }
 
-func (x *ApplicationConfig) SetData(v *structpb.Struct) {
-	x.xxx_hidden_Data = v
-}
-
-func (x *ApplicationConfig) HasData() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Data != nil
-}
-
-func (x *ApplicationConfig) ClearData() {
-	x.xxx_hidden_Data = nil
+func (x *ApplicationConfig) SetItems(v []*ComponentConfig) {
+	x.xxx_hidden_Items = &v
 }
 
 type ApplicationConfig_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Data *structpb.Struct
+	Items []*ComponentConfig
 }
 
 func (b0 ApplicationConfig_builder) Build() *ApplicationConfig {
 	m0 := &ApplicationConfig{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Data = b.Data
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
+type ComponentConfig struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Name        *string                `protobuf:"bytes,1,opt,name=name"`
+	xxx_hidden_Items       *common.FieldValues    `protobuf:"bytes,2,opt,name=items"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ComponentConfig) Reset() {
+	*x = ComponentConfig{}
+	mi := &file_system_main_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ComponentConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComponentConfig) ProtoMessage() {}
+
+func (x *ComponentConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ComponentConfig) GetName() string {
+	if x != nil {
+		if x.xxx_hidden_Name != nil {
+			return *x.xxx_hidden_Name
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ComponentConfig) GetItems() *common.FieldValues {
+	if x != nil {
+		return x.xxx_hidden_Items
+	}
+	return nil
+}
+
+func (x *ComponentConfig) SetName(v string) {
+	x.xxx_hidden_Name = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ComponentConfig) SetItems(v *common.FieldValues) {
+	x.xxx_hidden_Items = v
+}
+
+func (x *ComponentConfig) HasName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ComponentConfig) HasItems() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Items != nil
+}
+
+func (x *ComponentConfig) ClearName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Name = nil
+}
+
+func (x *ComponentConfig) ClearItems() {
+	x.xxx_hidden_Items = nil
+}
+
+type ComponentConfig_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Name  *string
+	Items *common.FieldValues
+}
+
+func (b0 ComponentConfig_builder) Build() *ComponentConfig {
+	m0 := &ComponentConfig{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Name != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_Name = b.Name
+	}
+	x.xxx_hidden_Items = b.Items
+	return m0
+}
+
+type ComponentConfigDescriptor struct {
+	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_Name        *string                    `protobuf:"bytes,1,opt,name=name"`
+	xxx_hidden_Items       *[]*common.FieldDescriptor `protobuf:"bytes,2,rep,name=items"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ComponentConfigDescriptor) Reset() {
+	*x = ComponentConfigDescriptor{}
+	mi := &file_system_main_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ComponentConfigDescriptor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComponentConfigDescriptor) ProtoMessage() {}
+
+func (x *ComponentConfigDescriptor) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ComponentConfigDescriptor) GetName() string {
+	if x != nil {
+		if x.xxx_hidden_Name != nil {
+			return *x.xxx_hidden_Name
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ComponentConfigDescriptor) GetItems() []*common.FieldDescriptor {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *ComponentConfigDescriptor) SetName(v string) {
+	x.xxx_hidden_Name = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ComponentConfigDescriptor) SetItems(v []*common.FieldDescriptor) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *ComponentConfigDescriptor) HasName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ComponentConfigDescriptor) ClearName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Name = nil
+}
+
+type ComponentConfigDescriptor_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Name  *string
+	Items []*common.FieldDescriptor
+}
+
+func (b0 ComponentConfigDescriptor_builder) Build() *ComponentConfigDescriptor {
+	m0 := &ComponentConfigDescriptor{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Name != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_Name = b.Name
+	}
+	x.xxx_hidden_Items = &b.Items
 	return m0
 }
 
@@ -94,22 +283,33 @@ var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
 	"\n" +
-	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x1cgoogle/protobuf/struct.proto\"@\n" +
-	"\x11ApplicationConfig\x12+\n" +
-	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04dataB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
+	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13common/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\"Y\n" +
+	"\x11ApplicationConfig\x12D\n" +
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"g\n" +
+	"\x0fComponentConfig\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12@\n" +
+	"\x05items\x18\x02 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\x05items\"u\n" +
+	"\x19ComponentConfigDescriptor\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12D\n" +
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05itemsB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_system_main_proto_goTypes = []any{
-	(*ApplicationConfig)(nil), // 0: io.clbs.openhes.models.system.ApplicationConfig
-	(*structpb.Struct)(nil),   // 1: google.protobuf.Struct
+	(*ApplicationConfig)(nil),         // 0: io.clbs.openhes.models.system.ApplicationConfig
+	(*ComponentConfig)(nil),           // 1: io.clbs.openhes.models.system.ComponentConfig
+	(*ComponentConfigDescriptor)(nil), // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
+	(*common.FieldValues)(nil),        // 3: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),    // 4: io.clbs.openhes.models.common.FieldDescriptor
 }
 var file_system_main_proto_depIdxs = []int32{
-	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.data:type_name -> google.protobuf.Struct
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	3, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	4, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_system_main_proto_init() }
@@ -123,7 +323,7 @@ func file_system_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

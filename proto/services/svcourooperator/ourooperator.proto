@@ -27,8 +27,12 @@ service OuroOperatorService {
 
     // Gets the application configuration, stored in the Kubernetes.
     rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfig);
-    // Sets the application configuration, stored in the Kubernetes.
-    rpc SetApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
+    // Updates the application configuration. The missing fields in the request will be kept unchanged.
+    rpc UpdateApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
+    // Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
+    // The output value will contain currently set values inlcuding detauls which are not set.
+    // The missing values in the defaults will be deleted if has been set previously in the application configuration.
+    rpc SynchronizeComponentConfig(io.clbs.openhes.models.system.ComponentConfigDescriptor) returns (io.clbs.openhes.models.system.ComponentConfig);
 
     // The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
     // The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.

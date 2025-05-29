@@ -56,9 +56,14 @@ func (r *queryResolver) GetApplicationConfig(ctx context.Context) (*model.Applic
 	panic(fmt.Errorf("not implemented: GetApplicationConfig - getApplicationConfig"))
 }
 
-// SetApplicationConfig is the resolver for the setApplicationConfig field.
-func (r *queryResolver) SetApplicationConfig(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: SetApplicationConfig - setApplicationConfig"))
+// UpdateApplicationConfig is the resolver for the updateApplicationConfig field.
+func (r *queryResolver) UpdateApplicationConfig(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateApplicationConfig - updateApplicationConfig"))
+}
+
+// SynchronizeComponentConfig is the resolver for the synchronizeComponentConfig field.
+func (r *queryResolver) SynchronizeComponentConfig(ctx context.Context) (*model.ComponentConfig, error) {
+	panic(fmt.Errorf("not implemented: SynchronizeComponentConfig - synchronizeComponentConfig"))
 }
 
 // CreateDeviceConfigurationRegister is the resolver for the createDeviceConfigurationRegister field.
