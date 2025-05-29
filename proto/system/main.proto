@@ -21,3 +21,9 @@ message ComponentConfigDescriptor {
     string name                           = 1;  // The component name.
     repeated common.FieldDescriptor items = 2;  // The component configuration descriptors.
 }
+
+// Addon for DB
+message ApplicationConfigWrapper {
+    repeated ComponentConfigDescriptor descriptors = 1;  // The component configuration descriptors.
+    repeated ComponentConfig items                 = 2;  // The default values for the application configuration.
+}
