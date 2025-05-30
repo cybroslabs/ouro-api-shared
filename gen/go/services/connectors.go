@@ -36,7 +36,22 @@ type ConnectorsOpts struct {
 	GrpcOptionsOuroOperator []grpc.DialOption
 }
 
+// Connectors is an interface that provides methods to open gRPC connections to various services.
+type Connectors interface {
+	// OpenTaskmasterServiceClient opens a new gRPC connection to the taskmaster service.
+	OpenTaskmasterServiceClient() (svctaskmaster.TaskmasterServiceClient, context.CancelFunc, error)
+	// OpenDataproxyServiceClient opens a new gRPC connection to the data-proxy service.
+	OpenDataproxyServiceClient() (svcdataproxy.DataproxyServiceClient, context.CancelFunc, error)
+	// OpenDeviceRegistryServiceClient opens a new gRPC connection to the device registry service.
+	OpenDeviceRegistryServiceClient() (svcdeviceregistry.DeviceRegistryServiceClient, context.CancelFunc, error)
+	// OpenOuroOperatorServiceClient opens a new gRPC connection to the OuroOperator service.
+	OpenOuroOperatorServiceClient() (svcourooperator.OuroOperatorServiceClient, context.CancelFunc, error)
+}
+
 type connectors struct {
+	// Implements the Connectors interface.
+	Connectors
+
 	taskmasterHost     string
 	dataproxyHost      string
 	deviceRegistryHost string
@@ -48,7 +63,7 @@ type connectors struct {
 	grpcOptionsOuroOperator   []grpc.DialOption
 }
 
-func NewConnectors(opts *ConnectorsOpts) (*connectors, error) {
+func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 	tokenBytes, err := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/token")
 	if err != nil {
 		return nil, fmt.Errorf("error reading service account token: %w", err)
