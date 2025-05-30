@@ -6,12 +6,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cybroslabs/hes-2-apis/gen/go/services"
 	"github.com/cybroslabs/hes-2-apis/gen/go/system"
 )
 
 type ConfigurationServiceOpts struct {
-	Connectors services.Connectors
+	Connectors Connectors
 	CacheTime  time.Duration
 	Descriptor *system.ComponentConfigDescriptor
 }
@@ -24,7 +23,7 @@ type ConfigurationService interface {
 type configurationService struct {
 	ConfigurationService
 
-	connectors services.Connectors
+	connectors Connectors
 	descriptor *system.ComponentConfigDescriptor
 
 	cacheTime time.Duration
