@@ -372,3 +372,28 @@ func ValidateFields(descriptors []*FieldDescriptor, values *map[string]*FieldVal
 
 	return
 }
+
+// GetAnyValue returns the value of the FieldValue as an interface{}.
+func (x *FieldValue) GetAnyValue() any {
+	if x != nil {
+		switch x.WhichKind() {
+		case FieldValue_StringValue_case:
+			return x.GetStringValue()
+		case FieldValue_IntegerValue_case:
+			return x.GetIntegerValue()
+		case FieldValue_DoubleValue_case:
+			return x.GetDoubleValue()
+		case FieldValue_BoolValue_case:
+			return x.GetBoolValue()
+		case FieldValue_DateValue_case:
+			return x.GetDateValue()
+		case FieldValue_DurationValue_case:
+			return x.GetDurationValue()
+		case FieldValue_BinaryValue_case:
+			return x.GetBinaryValue()
+		default:
+			return nil
+		}
+	}
+	return nil
+}
