@@ -3,10 +3,12 @@ package helpers
 import (
 	"context"
 	"errors"
+	"slices"
 	"sync"
 	"time"
 
 	"github.com/cybroslabs/hes-2-apis/gen/go/system"
+	"k8s.io/utils/ptr"
 )
 
 type ConfigurationServiceOpts struct {
@@ -46,10 +48,14 @@ func NewConfigurationService(opts *ConfigurationServiceOpts) (ConfigurationServi
 
 	return &configurationService{
 		connectors: opts.Connectors,
-		descriptor: opts.Descriptor,
-		cacheTime:  opts.CacheTime,
-		cache:      make(map[string]any),
-		cacheLast:  time.Time{},
+		// Create a local copy of the descriptor so that the items can be cleaned up after the first call
+		descriptor: system.ComponentConfigDescriptor_builder{
+			Name:  ptr.To(opts.Descriptor.GetName()),
+			Items: slices.Clone(opts.Descriptor.GetItems()),
+		}.Build(),
+		cacheTime: opts.CacheTime,
+		cache:     make(map[string]any),
+		cacheLast: time.Time{},
 	}, nil
 }
 
