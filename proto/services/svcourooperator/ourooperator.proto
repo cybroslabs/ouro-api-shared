@@ -26,7 +26,7 @@ service OuroOperatorService {
     rpc GetDriverScale(io.clbs.openhes.models.acquisition.GetDriverScaleRequest) returns (google.protobuf.UInt32Value);
 
     // Gets the application configuration, stored in the Kubernetes.
-    rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfig);
+    rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfigDescriptor);
     // Updates the application configuration. The missing fields in the request will be kept unchanged.
     rpc UpdateApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
     // Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).

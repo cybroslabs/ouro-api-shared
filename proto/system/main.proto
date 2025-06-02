@@ -22,8 +22,7 @@ message ComponentConfigDescriptor {
     repeated common.FieldDescriptor items = 2;  // The component configuration descriptors.
 }
 
-// Addon for DB
-message ApplicationConfigWrapper {
+message ApplicationConfigDescriptor {
     repeated ComponentConfigDescriptor descriptors = 1;  // The component configuration descriptors.
     repeated ComponentConfig items                 = 2;  // The default values for the application configuration.
 }
