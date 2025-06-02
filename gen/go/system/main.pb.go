@@ -279,8 +279,7 @@ func (b0 ComponentConfigDescriptor_builder) Build() *ComponentConfigDescriptor {
 	return m0
 }
 
-// Addon for DB
-type ApplicationConfigWrapper struct {
+type ApplicationConfigDescriptor struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Descriptors *[]*ComponentConfigDescriptor `protobuf:"bytes,1,rep,name=descriptors"`
 	xxx_hidden_Items       *[]*ComponentConfig           `protobuf:"bytes,2,rep,name=items"`
@@ -288,20 +287,20 @@ type ApplicationConfigWrapper struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *ApplicationConfigWrapper) Reset() {
-	*x = ApplicationConfigWrapper{}
+func (x *ApplicationConfigDescriptor) Reset() {
+	*x = ApplicationConfigDescriptor{}
 	mi := &file_system_main_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ApplicationConfigWrapper) String() string {
+func (x *ApplicationConfigDescriptor) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ApplicationConfigWrapper) ProtoMessage() {}
+func (*ApplicationConfigDescriptor) ProtoMessage() {}
 
-func (x *ApplicationConfigWrapper) ProtoReflect() protoreflect.Message {
+func (x *ApplicationConfigDescriptor) ProtoReflect() protoreflect.Message {
 	mi := &file_system_main_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -313,7 +312,7 @@ func (x *ApplicationConfigWrapper) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ApplicationConfigWrapper) GetDescriptors() []*ComponentConfigDescriptor {
+func (x *ApplicationConfigDescriptor) GetDescriptors() []*ComponentConfigDescriptor {
 	if x != nil {
 		if x.xxx_hidden_Descriptors != nil {
 			return *x.xxx_hidden_Descriptors
@@ -322,7 +321,7 @@ func (x *ApplicationConfigWrapper) GetDescriptors() []*ComponentConfigDescriptor
 	return nil
 }
 
-func (x *ApplicationConfigWrapper) GetItems() []*ComponentConfig {
+func (x *ApplicationConfigDescriptor) GetItems() []*ComponentConfig {
 	if x != nil {
 		if x.xxx_hidden_Items != nil {
 			return *x.xxx_hidden_Items
@@ -331,23 +330,23 @@ func (x *ApplicationConfigWrapper) GetItems() []*ComponentConfig {
 	return nil
 }
 
-func (x *ApplicationConfigWrapper) SetDescriptors(v []*ComponentConfigDescriptor) {
+func (x *ApplicationConfigDescriptor) SetDescriptors(v []*ComponentConfigDescriptor) {
 	x.xxx_hidden_Descriptors = &v
 }
 
-func (x *ApplicationConfigWrapper) SetItems(v []*ComponentConfig) {
+func (x *ApplicationConfigDescriptor) SetItems(v []*ComponentConfig) {
 	x.xxx_hidden_Items = &v
 }
 
-type ApplicationConfigWrapper_builder struct {
+type ApplicationConfigDescriptor_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Descriptors []*ComponentConfigDescriptor
 	Items       []*ComponentConfig
 }
 
-func (b0 ApplicationConfigWrapper_builder) Build() *ApplicationConfigWrapper {
-	m0 := &ApplicationConfigWrapper{}
+func (b0 ApplicationConfigDescriptor_builder) Build() *ApplicationConfigDescriptor {
+	m0 := &ApplicationConfigDescriptor{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Descriptors = &b.Descriptors
@@ -367,26 +366,26 @@ const file_system_main_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\x05items\"u\n" +
 	"\x19ComponentConfigDescriptor\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbc\x01\n" +
-	"\x18ApplicationConfigWrapper\x12Z\n" +
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n" +
+	"\x1bApplicationConfigDescriptor\x12Z\n" +
 	"\vdescriptors\x18\x01 \x03(\v28.io.clbs.openhes.models.system.ComponentConfigDescriptorR\vdescriptors\x12D\n" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05itemsB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
 
 var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_system_main_proto_goTypes = []any{
-	(*ApplicationConfig)(nil),         // 0: io.clbs.openhes.models.system.ApplicationConfig
-	(*ComponentConfig)(nil),           // 1: io.clbs.openhes.models.system.ComponentConfig
-	(*ComponentConfigDescriptor)(nil), // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
-	(*ApplicationConfigWrapper)(nil),  // 3: io.clbs.openhes.models.system.ApplicationConfigWrapper
-	(*common.FieldValues)(nil),        // 4: io.clbs.openhes.models.common.FieldValues
-	(*common.FieldDescriptor)(nil),    // 5: io.clbs.openhes.models.common.FieldDescriptor
+	(*ApplicationConfig)(nil),           // 0: io.clbs.openhes.models.system.ApplicationConfig
+	(*ComponentConfig)(nil),             // 1: io.clbs.openhes.models.system.ComponentConfig
+	(*ComponentConfigDescriptor)(nil),   // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
+	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
+	(*common.FieldValues)(nil),          // 4: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),      // 5: io.clbs.openhes.models.common.FieldDescriptor
 }
 var file_system_main_proto_depIdxs = []int32{
 	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
 	4, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
 	5, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	2, // 3: io.clbs.openhes.models.system.ApplicationConfigWrapper.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
-	1, // 4: io.clbs.openhes.models.system.ApplicationConfigWrapper.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	2, // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
+	1, // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

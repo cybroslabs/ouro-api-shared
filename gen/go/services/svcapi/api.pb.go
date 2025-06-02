@@ -30,7 +30,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\xe8<\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\xf2<\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -91,8 +91,8 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x0fDeleteModemPool\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12`\n" +
 	"\vCreateModem\x123.io.clbs.openhes.models.acquisition.SetModemRequest\x1a\x1c.google.protobuf.StringValue\x12Z\n" +
 	"\vUpdateModem\x123.io.clbs.openhes.models.acquisition.SetModemRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
-	"\vDeleteModem\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12`\n" +
-	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a0.io.clbs.openhes.models.system.ApplicationConfig\x12c\n" +
+	"\vDeleteModem\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12j\n" +
+	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a:.io.clbs.openhes.models.system.ApplicationConfigDescriptor\x12c\n" +
 	"\x17UpdateApplicationConfig\x120.io.clbs.openhes.models.system.ApplicationConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
 	"\x1aSynchronizeComponentConfig\x128.io.clbs.openhes.models.system.ComponentConfigDescriptor\x1a..io.clbs.openhes.models.system.ComponentConfig\x12\x86\x01\n" +
 	"\x15GetMeterDataRegisters\x127.io.clbs.openhes.models.acquisition.GetMeterDataRequest\x1a2.io.clbs.openhes.models.acquisition.RegisterValues0\x01\x12\x84\x01\n" +
@@ -160,12 +160,13 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.DeviceGroup)(nil),                                                             // 51: io.clbs.openhes.models.acquisition.DeviceGroup
 	(*acquisition.ListOfModemPool)(nil),                                                         // 52: io.clbs.openhes.models.acquisition.ListOfModemPool
 	(*acquisition.ModemPool)(nil),                                                               // 53: io.clbs.openhes.models.acquisition.ModemPool
-	(*system.ComponentConfig)(nil),                                                              // 54: io.clbs.openhes.models.system.ComponentConfig
-	(*acquisition.RegisterValues)(nil),                                                          // 55: io.clbs.openhes.models.acquisition.RegisterValues
-	(*acquisition.ProfileValues)(nil),                                                           // 56: io.clbs.openhes.models.acquisition.ProfileValues
-	(*acquisition.IrregularProfileValues)(nil),                                                  // 57: io.clbs.openhes.models.acquisition.IrregularProfileValues
-	(*acquisition.EventRecords)(nil),                                                            // 58: io.clbs.openhes.models.acquisition.EventRecords
-	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 59: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	(*system.ApplicationConfigDescriptor)(nil),                                                  // 54: io.clbs.openhes.models.system.ApplicationConfigDescriptor
+	(*system.ComponentConfig)(nil),                                                              // 55: io.clbs.openhes.models.system.ComponentConfig
+	(*acquisition.RegisterValues)(nil),                                                          // 56: io.clbs.openhes.models.acquisition.RegisterValues
+	(*acquisition.ProfileValues)(nil),                                                           // 57: io.clbs.openhes.models.acquisition.ProfileValues
+	(*acquisition.IrregularProfileValues)(nil),                                                  // 58: io.clbs.openhes.models.acquisition.IrregularProfileValues
+	(*acquisition.EventRecords)(nil),                                                            // 59: io.clbs.openhes.models.acquisition.EventRecords
+	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 60: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 }
 var file_services_svcapi_api_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:input_type -> io.clbs.openhes.models.acquisition.CreateVariableRequest
@@ -292,15 +293,15 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	3,  // 121: io.clbs.openhes.services.svcapi.ApiService.CreateModem:output_type -> google.protobuf.StringValue
 	10, // 122: io.clbs.openhes.services.svcapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
 	10, // 123: io.clbs.openhes.services.svcapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
-	28, // 124: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfig
+	54, // 124: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	10, // 125: io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig:output_type -> google.protobuf.Empty
-	54, // 126: io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
-	55, // 127: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
-	56, // 128: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
-	57, // 129: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	58, // 130: io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents:output_type -> io.clbs.openhes.models.acquisition.EventRecords
+	55, // 126: io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
+	56, // 127: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
+	57, // 128: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
+	58, // 129: io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	59, // 130: io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents:output_type -> io.clbs.openhes.models.acquisition.EventRecords
 	3,  // 131: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
-	59, // 132: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	60, // 132: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 	33, // 133: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
 	10, // 134: io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable:output_type -> google.protobuf.Empty
 	10, // 135: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:output_type -> google.protobuf.Empty

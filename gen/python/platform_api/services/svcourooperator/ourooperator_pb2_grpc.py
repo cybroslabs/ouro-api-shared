@@ -48,7 +48,7 @@ class OuroOperatorServiceStub(object):
         self.GetApplicationConfig = channel.unary_unary(
                 '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetApplicationConfig',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=system_dot_main__pb2.ApplicationConfig.FromString,
+                response_deserializer=system_dot_main__pb2.ApplicationConfigDescriptor.FromString,
                 _registered_method=True)
         self.UpdateApplicationConfig = channel.unary_unary(
                 '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/UpdateApplicationConfig',
@@ -169,7 +169,7 @@ def add_OuroOperatorServiceServicer_to_server(servicer, server):
             'GetApplicationConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetApplicationConfig,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=system_dot_main__pb2.ApplicationConfig.SerializeToString,
+                    response_serializer=system_dot_main__pb2.ApplicationConfigDescriptor.SerializeToString,
             ),
             'UpdateApplicationConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateApplicationConfig,
@@ -350,7 +350,7 @@ class OuroOperatorService(object):
             target,
             '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetApplicationConfig',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            system_dot_main__pb2.ApplicationConfig.FromString,
+            system_dot_main__pb2.ApplicationConfigDescriptor.FromString,
             options,
             channel_credentials,
             insecure,

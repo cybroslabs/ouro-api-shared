@@ -144,6 +144,11 @@ type ComplexityRoot struct {
 		Items func(childComplexity int) int
 	}
 
+	ApplicationConfigDescriptor struct {
+		Descriptors func(childComplexity int) int
+		Items       func(childComplexity int) int
+	}
+
 	ApplicationProtocolTemplate struct {
 		Attributes func(childComplexity int) int
 		Protocol   func(childComplexity int) int
@@ -976,7 +981,7 @@ type QueryResolver interface {
 	GetProxyBulk(ctx context.Context) (*model.ProxyBulk, error)
 	CreateBulk(ctx context.Context) (*model.StringValue, error)
 	GetBulk(ctx context.Context) (*model.Bulk, error)
-	GetApplicationConfig(ctx context.Context) (*model.ApplicationConfig, error)
+	GetApplicationConfig(ctx context.Context) (*model.ApplicationConfigDescriptor, error)
 	UpdateApplicationConfig(ctx context.Context) (*model.Empty, error)
 	SynchronizeComponentConfig(ctx context.Context) (*model.ComponentConfig, error)
 	CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error)
@@ -1315,6 +1320,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ApplicationConfig.Items(childComplexity), true
+
+	case "ApplicationConfigDescriptor.descriptors":
+		if e.complexity.ApplicationConfigDescriptor.Descriptors == nil {
+			break
+		}
+
+		return e.complexity.ApplicationConfigDescriptor.Descriptors(childComplexity), true
+
+	case "ApplicationConfigDescriptor.items":
+		if e.complexity.ApplicationConfigDescriptor.Items == nil {
+			break
+		}
+
+		return e.complexity.ApplicationConfigDescriptor.Items(childComplexity), true
 
 	case "ApplicationProtocolTemplate.attributes":
 		if e.complexity.ApplicationProtocolTemplate.Attributes == nil {
@@ -6386,6 +6405,100 @@ func (ec *executionContext) _ApplicationConfig_items(ctx context.Context, field 
 func (ec *executionContext) fieldContext_ApplicationConfig_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ApplicationConfig",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "name":
+				return ec.fieldContext_ComponentConfig_name(ctx, field)
+			case "items":
+				return ec.fieldContext_ComponentConfig_items(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ComponentConfig", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ApplicationConfigDescriptor_descriptors(ctx context.Context, field graphql.CollectedField, obj *model.ApplicationConfigDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ApplicationConfigDescriptor_descriptors(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Descriptors, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.ComponentConfigDescriptor)
+	fc.Result = res
+	return ec.marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ApplicationConfigDescriptor_descriptors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ApplicationConfigDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "name":
+				return ec.fieldContext_ComponentConfigDescriptor_name(ctx, field)
+			case "items":
+				return ec.fieldContext_ComponentConfigDescriptor_items(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ComponentConfigDescriptor", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ApplicationConfigDescriptor_items(ctx context.Context, field graphql.CollectedField, obj *model.ApplicationConfigDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ApplicationConfigDescriptor_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.ComponentConfig)
+	fc.Result = res
+	return ec.marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ApplicationConfigDescriptor_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ApplicationConfigDescriptor",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -22144,9 +22257,9 @@ func (ec *executionContext) _Query_getApplicationConfig(ctx context.Context, fie
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ApplicationConfig)
+	res := resTmp.(*model.ApplicationConfigDescriptor)
 	fc.Result = res
-	return ec.marshalOApplicationConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfig(ctx, field.Selections, res)
+	return ec.marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getApplicationConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22157,10 +22270,12 @@ func (ec *executionContext) fieldContext_Query_getApplicationConfig(_ context.Co
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "descriptors":
+				return ec.fieldContext_ApplicationConfigDescriptor_descriptors(ctx, field)
 			case "items":
-				return ec.fieldContext_ApplicationConfig_items(ctx, field)
+				return ec.fieldContext_ApplicationConfigDescriptor_items(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ApplicationConfig", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ApplicationConfigDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -30148,6 +30263,44 @@ func (ec *executionContext) _ApplicationConfig(ctx context.Context, sel ast.Sele
 	return out
 }
 
+var applicationConfigDescriptorImplementors = []string{"ApplicationConfigDescriptor"}
+
+func (ec *executionContext) _ApplicationConfigDescriptor(ctx context.Context, sel ast.SelectionSet, obj *model.ApplicationConfigDescriptor) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, applicationConfigDescriptorImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ApplicationConfigDescriptor")
+		case "descriptors":
+			out.Values[i] = ec._ApplicationConfigDescriptor_descriptors(ctx, field, obj)
+		case "items":
+			out.Values[i] = ec._ApplicationConfigDescriptor_items(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var applicationProtocolTemplateImplementors = []string{"ApplicationProtocolTemplate"}
 
 func (ec *executionContext) _ApplicationProtocolTemplate(ctx context.Context, sel ast.SelectionSet, obj *model.ApplicationProtocolTemplate) graphql.Marshaler {
@@ -37207,11 +37360,11 @@ func (ec *executionContext) marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhe
 	return v
 }
 
-func (ec *executionContext) marshalOApplicationConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfig(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationConfig) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationConfigDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec._ApplicationConfig(ctx, sel, v)
+	return ec._ApplicationConfigDescriptor(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) ([]*model.ApplicationProtocol, error) {
@@ -37768,6 +37921,54 @@ func (ec *executionContext) marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabs
 		return graphql.Null
 	}
 	return ec._ComponentConfig(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.ComponentConfigDescriptor) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ComponentConfigDescriptor) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ComponentConfigDescriptor(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx context.Context, sel ast.SelectionSet, v []*model.ConnectionInfo) graphql.Marshaler {

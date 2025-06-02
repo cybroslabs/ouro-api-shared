@@ -52,7 +52,7 @@ type OuroOperatorServiceClient interface {
 	// The method called by the Taskmaster to get the driver scale.
 	GetDriverScale(ctx context.Context, in *acquisition.GetDriverScaleRequest, opts ...grpc.CallOption) (*wrapperspb.UInt32Value, error)
 	// Gets the application configuration, stored in the Kubernetes.
-	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error)
+	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error)
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
@@ -122,9 +122,9 @@ func (c *ouroOperatorServiceClient) GetDriverScale(ctx context.Context, in *acqu
 	return out, nil
 }
 
-func (c *ouroOperatorServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error) {
+func (c *ouroOperatorServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(system.ApplicationConfig)
+	out := new(system.ApplicationConfigDescriptor)
 	err := c.cc.Invoke(ctx, OuroOperatorService_GetApplicationConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -180,7 +180,7 @@ type OuroOperatorServiceServer interface {
 	// The method called by the Taskmaster to get the driver scale.
 	GetDriverScale(context.Context, *acquisition.GetDriverScaleRequest) (*wrapperspb.UInt32Value, error)
 	// Gets the application configuration, stored in the Kubernetes.
-	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error)
+	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error)
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
 	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
@@ -215,7 +215,7 @@ func (UnimplementedOuroOperatorServiceServer) SetDriverScale(context.Context, *a
 func (UnimplementedOuroOperatorServiceServer) GetDriverScale(context.Context, *acquisition.GetDriverScaleRequest) (*wrapperspb.UInt32Value, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverScale not implemented")
 }
-func (UnimplementedOuroOperatorServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error) {
+func (UnimplementedOuroOperatorServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationConfig not implemented")
 }
 func (UnimplementedOuroOperatorServiceServer) UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {

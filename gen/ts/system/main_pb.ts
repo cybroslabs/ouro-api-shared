@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqAEKGEFwcGxpY2F0aW9uQ29uZmlnV3JhcHBlchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWdCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWdCMFouZ2l0aHViLmNvbS9jeWJyb3NsYWJzL2hlcy0yLWFwaXMvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct]);
 
 /**
  * Application config specification.
@@ -141,11 +141,9 @@ export const ComponentConfigDescriptorSchema: GenMessage<ComponentConfigDescript
   messageDesc(file_system_main, 2);
 
 /**
- * Addon for DB
- *
- * @generated from message io.clbs.openhes.models.system.ApplicationConfigWrapper
+ * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
-export type ApplicationConfigWrapper = Message<"io.clbs.openhes.models.system.ApplicationConfigWrapper"> & {
+export type ApplicationConfigDescriptor = Message<"io.clbs.openhes.models.system.ApplicationConfigDescriptor"> & {
   /**
    * The component configuration descriptors.
    *
@@ -162,11 +160,9 @@ export type ApplicationConfigWrapper = Message<"io.clbs.openhes.models.system.Ap
 };
 
 /**
- * Addon for DB
- *
- * @generated from message io.clbs.openhes.models.system.ApplicationConfigWrapper
+ * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
-export type ApplicationConfigWrapperJson = {
+export type ApplicationConfigDescriptorJson = {
   /**
    * The component configuration descriptors.
    *
@@ -183,9 +179,9 @@ export type ApplicationConfigWrapperJson = {
 };
 
 /**
- * Describes the message io.clbs.openhes.models.system.ApplicationConfigWrapper.
- * Use `create(ApplicationConfigWrapperSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.models.system.ApplicationConfigDescriptor.
+ * Use `create(ApplicationConfigDescriptorSchema)` to create a new message.
  */
-export const ApplicationConfigWrapperSchema: GenMessage<ApplicationConfigWrapper, {jsonType: ApplicationConfigWrapperJson}> = /*@__PURE__*/
+export const ApplicationConfigDescriptorSchema: GenMessage<ApplicationConfigDescriptor, {jsonType: ApplicationConfigDescriptorJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 3);
 

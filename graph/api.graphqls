@@ -1664,6 +1664,13 @@ type ApplicationConfig {
   items: [ComponentConfig]
 }
 
+type ApplicationConfigDescriptor {
+  # The component configuration descriptors.
+  descriptors: [ComponentConfigDescriptor]
+  # The default values for the application configuration.
+  items: [ComponentConfig]
+}
+
 type ComponentConfig {
   # The component name.
   name: String
@@ -1702,7 +1709,7 @@ type Query {
   getProxyBulk: ProxyBulk
   createBulk: StringValue
   getBulk: Bulk
-  getApplicationConfig: ApplicationConfig
+  getApplicationConfig: ApplicationConfigDescriptor
   updateApplicationConfig: Empty
   synchronizeComponentConfig: ComponentConfig
   createDeviceConfigurationRegister: StringValue

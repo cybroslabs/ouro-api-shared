@@ -108,6 +108,11 @@ type ApplicationConfig struct {
 	Items []*ComponentConfig `json:"items,omitempty"`
 }
 
+type ApplicationConfigDescriptor struct {
+	Descriptors []*ComponentConfigDescriptor `json:"descriptors,omitempty"`
+	Items       []*ComponentConfig           `json:"items,omitempty"`
+}
+
 type ApplicationProtocolTemplate struct {
 	Protocol   *ApplicationProtocol `json:"protocol,omitempty"`
 	Attributes []*FieldDescriptor   `json:"attributes,omitempty"`

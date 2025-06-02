@@ -5,10 +5,10 @@
 Gets the application configuration.
 
 ```proto
-GetApplicationConfig() returns (io.clbs.openhes.models.system.ApplicationConfig)
+GetApplicationConfig() returns (io.clbs.openhes.models.system.ApplicationConfigDescriptor)
 ```
 
-- Output: [`io.clbs.openhes.models.system.ApplicationConfig`](model-io-clbs-openhes-models-system-applicationconfig.md)
+- Output: [`io.clbs.openhes.models.system.ApplicationConfigDescriptor`](model-io-clbs-openhes-models-system-applicationconfigdescriptor.md)
 
 ## UpdateApplicationConfig
 

@@ -52,7 +52,7 @@ func (r *queryResolver) GetBulk(ctx context.Context) (*model.Bulk, error) {
 }
 
 // GetApplicationConfig is the resolver for the getApplicationConfig field.
-func (r *queryResolver) GetApplicationConfig(ctx context.Context) (*model.ApplicationConfig, error) {
+func (r *queryResolver) GetApplicationConfig(ctx context.Context) (*model.ApplicationConfigDescriptor, error) {
 	panic(fmt.Errorf("not implemented: GetApplicationConfig - getApplicationConfig"))
 }
 

@@ -418,7 +418,7 @@ type ApiServiceClient interface {
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Configuration
 	// Gets the application configuration.
-	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
+	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfigDescriptor], error)
 	// @group: Configuration
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
@@ -803,7 +803,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteModem")),
 			connect.WithClientOptions(opts...),
 		),
-		getApplicationConfig: connect.NewClient[emptypb.Empty, system.ApplicationConfig](
+		getApplicationConfig: connect.NewClient[emptypb.Empty, system.ApplicationConfigDescriptor](
 			httpClient,
 			baseURL+ApiServiceGetApplicationConfigProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetApplicationConfig")),
@@ -936,7 +936,7 @@ type apiServiceClient struct {
 	createModem                                                      *connect.Client[acquisition.SetModemRequest, wrapperspb.StringValue]
 	updateModem                                                      *connect.Client[acquisition.SetModemRequest, emptypb.Empty]
 	deleteModem                                                      *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	getApplicationConfig                                             *connect.Client[emptypb.Empty, system.ApplicationConfig]
+	getApplicationConfig                                             *connect.Client[emptypb.Empty, system.ApplicationConfigDescriptor]
 	updateApplicationConfig                                          *connect.Client[system.ApplicationConfig, emptypb.Empty]
 	synchronizeComponentConfig                                       *connect.Client[system.ComponentConfigDescriptor, system.ComponentConfig]
 	getMeterDataRegisters                                            *connect.Client[acquisition.GetMeterDataRequest, acquisition.RegisterValues]
@@ -1247,7 +1247,7 @@ func (c *apiServiceClient) DeleteModem(ctx context.Context, req *connect.Request
 }
 
 // GetApplicationConfig calls io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig.
-func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error) {
+func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfigDescriptor], error) {
 	return c.getApplicationConfig.CallUnary(ctx, req)
 }
 
@@ -1497,7 +1497,7 @@ type ApiServiceHandler interface {
 	DeleteModem(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Configuration
 	// Gets the application configuration.
-	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error)
+	GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfigDescriptor], error)
 	// @group: Configuration
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(context.Context, *connect.Request[system.ApplicationConfig]) (*connect.Response[emptypb.Empty], error)
@@ -2321,7 +2321,7 @@ func (UnimplementedApiServiceHandler) DeleteModem(context.Context, *connect.Requ
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteModem is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfig], error) {
+func (UnimplementedApiServiceHandler) GetApplicationConfig(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.ApplicationConfigDescriptor], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig is not implemented"))
 }
 

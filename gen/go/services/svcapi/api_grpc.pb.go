@@ -287,7 +287,7 @@ type ApiServiceClient interface {
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
 	// Gets the application configuration.
-	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error)
+	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error)
 	// @group: Configuration
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -893,9 +893,9 @@ func (c *apiServiceClient) DeleteModem(ctx context.Context, in *wrapperspb.Strin
 	return out, nil
 }
 
-func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfig, error) {
+func (c *apiServiceClient) GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(system.ApplicationConfig)
+	out := new(system.ApplicationConfigDescriptor)
 	err := c.cc.Invoke(ctx, ApiService_GetApplicationConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1242,7 +1242,7 @@ type ApiServiceServer interface {
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Configuration
 	// Gets the application configuration.
-	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error)
+	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error)
 	// @group: Configuration
 	// Updates the application configuration. The missing fields in the request will be kept unchanged.
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
@@ -1456,7 +1456,7 @@ func (UnimplementedApiServiceServer) UpdateModem(context.Context, *acquisition.S
 func (UnimplementedApiServiceServer) DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModem not implemented")
 }
-func (UnimplementedApiServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfig, error) {
+func (UnimplementedApiServiceServer) GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationConfig not implemented")
 }
 func (UnimplementedApiServiceServer) UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error) {
