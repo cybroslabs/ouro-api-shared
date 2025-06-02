@@ -26,11 +26,13 @@ const (
 	DataproxyService_ListBulks_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
 	DataproxyService_ListBulkJobs_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
 	DataproxyService_GetBulkJob_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_UpdateBulkJob_FullMethodName                 = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob"
 	DataproxyService_CancelBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
 	DataproxyService_CreateProxyBulk_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
 	DataproxyService_GetProxyBulk_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
 	DataproxyService_CreateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
 	DataproxyService_GetBulk_FullMethodName                       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
+	DataproxyService_UpdateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk"
 	DataproxyService_GetMeterDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters"
 	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
 	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
@@ -55,6 +57,9 @@ type DataproxyServiceClient interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -69,6 +74,9 @@ type DataproxyServiceClient interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -121,6 +129,16 @@ func (c *dataproxyServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_UpdateBulkJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -165,6 +183,16 @@ func (c *dataproxyServiceClient) GetBulk(ctx context.Context, in *wrapperspb.Str
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Bulk)
 	err := c.cc.Invoke(ctx, DataproxyService_GetBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_UpdateBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -265,6 +293,9 @@ type DataproxyServiceServer interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -279,6 +310,9 @@ type DataproxyServiceServer interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
@@ -310,6 +344,9 @@ func (UnimplementedDataproxyServiceServer) ListBulkJobs(context.Context, *acquis
 func (UnimplementedDataproxyServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
+func (UnimplementedDataproxyServiceServer) UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulkJob not implemented")
+}
 func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
 }
@@ -324,6 +361,9 @@ func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisit
 }
 func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
@@ -408,6 +448,24 @@ func _DataproxyService_GetBulkJob_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataproxyServiceServer).GetBulkJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_UpdateBulkJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateMetadata)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).UpdateBulkJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_UpdateBulkJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).UpdateBulkJob(ctx, req.(*common.UpdateMetadata))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -502,6 +560,24 @@ func _DataproxyService_GetBulk_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_UpdateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateMetadata)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).UpdateBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_UpdateBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).UpdateBulk(ctx, req.(*common.UpdateMetadata))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataproxyService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -566,6 +642,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataproxyService_GetBulkJob_Handler,
 		},
 		{
+			MethodName: "UpdateBulkJob",
+			Handler:    _DataproxyService_UpdateBulkJob_Handler,
+		},
+		{
 			MethodName: "CancelBulk",
 			Handler:    _DataproxyService_CancelBulk_Handler,
 		},
@@ -584,6 +664,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulk",
 			Handler:    _DataproxyService_GetBulk_Handler,
+		},
+		{
+			MethodName: "UpdateBulk",
+			Handler:    _DataproxyService_UpdateBulk_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

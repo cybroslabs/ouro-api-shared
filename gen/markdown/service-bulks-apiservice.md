@@ -35,6 +35,16 @@ GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisit
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.BulkJob`](model-io-clbs-openhes-models-acquisition-bulkjob.md)
 
+## UpdateBulkJob
+
+Updates the job metadata. The metadata is used to store additional information about the job.
+
+```proto
+UpdateBulkJob(io.clbs.openhes.models.common.UpdateMetadata)
+```
+
+- Input: [`io.clbs.openhes.models.common.UpdateMetadata`](model-io-clbs-openhes-models-common-updatemetadata.md)
+
 ## CancelBulk
 
 Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
@@ -88,4 +98,14 @@ GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition
 
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.Bulk`](model-io-clbs-openhes-models-acquisition-bulk.md)
+
+## UpdateBulk
+
+Updates the bulk metadata. The metadata is used to store additional information about the job.
+
+```proto
+UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata)
+```
+
+- Input: [`io.clbs.openhes.models.common.UpdateMetadata`](model-io-clbs-openhes-models-common-updatemetadata.md)
 

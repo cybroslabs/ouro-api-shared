@@ -97,6 +97,9 @@ const (
 	ApiServiceListBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	// ApiServiceGetBulkJobProcedure is the fully-qualified name of the ApiService's GetBulkJob RPC.
 	ApiServiceGetBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	// ApiServiceUpdateBulkJobProcedure is the fully-qualified name of the ApiService's UpdateBulkJob
+	// RPC.
+	ApiServiceUpdateBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulkJob"
 	// ApiServiceCancelBulkProcedure is the fully-qualified name of the ApiService's CancelBulk RPC.
 	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
 	// ApiServiceCreateProxyBulkProcedure is the fully-qualified name of the ApiService's
@@ -108,6 +111,8 @@ const (
 	ApiServiceCreateBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	// ApiServiceGetBulkProcedure is the fully-qualified name of the ApiService's GetBulk RPC.
 	ApiServiceGetBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
+	// ApiServiceUpdateBulkProcedure is the fully-qualified name of the ApiService's UpdateBulk RPC.
+	ApiServiceUpdateBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulk"
 	// ApiServiceListDriversProcedure is the fully-qualified name of the ApiService's ListDrivers RPC.
 	ApiServiceListDriversProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	// ApiServiceGetDriverProcedure is the fully-qualified name of the ApiService's GetDriver RPC.
@@ -280,6 +285,9 @@ type ApiServiceClient interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
@@ -298,6 +306,9 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -587,6 +598,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 			connect.WithClientOptions(opts...),
 		),
+		updateBulkJob: connect.NewClient[common.UpdateMetadata, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateBulkJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateBulkJob")),
+			connect.WithClientOptions(opts...),
+		),
 		cancelBulk: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
 			httpClient,
 			baseURL+ApiServiceCancelBulkProcedure,
@@ -615,6 +632,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceGetBulkProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
+			connect.WithClientOptions(opts...),
+		),
+		updateBulk: connect.NewClient[common.UpdateMetadata, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateBulkProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateBulk")),
 			connect.WithClientOptions(opts...),
 		),
 		listDrivers: connect.NewClient[common.ListSelector, acquisition.ListOfDriver](
@@ -900,11 +923,13 @@ type apiServiceClient struct {
 	listBulks                                                        *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
 	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
+	updateBulkJob                                                    *connect.Client[common.UpdateMetadata, emptypb.Empty]
 	cancelBulk                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	createProxyBulk                                                  *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
 	getProxyBulk                                                     *connect.Client[wrapperspb.StringValue, acquisition.ProxyBulk]
 	createBulk                                                       *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
 	getBulk                                                          *connect.Client[wrapperspb.StringValue, acquisition.Bulk]
+	updateBulk                                                       *connect.Client[common.UpdateMetadata, emptypb.Empty]
 	listDrivers                                                      *connect.Client[common.ListSelector, acquisition.ListOfDriver]
 	getDriver                                                        *connect.Client[wrapperspb.StringValue, acquisition.Driver]
 	createCommunicationUnit                                          *connect.Client[acquisition.CreateCommunicationUnitRequest, wrapperspb.StringValue]
@@ -1062,6 +1087,11 @@ func (c *apiServiceClient) GetBulkJob(ctx context.Context, req *connect.Request[
 	return c.getBulkJob.CallUnary(ctx, req)
 }
 
+// UpdateBulkJob calls io.clbs.openhes.services.svcapi.ApiService.UpdateBulkJob.
+func (c *apiServiceClient) UpdateBulkJob(ctx context.Context, req *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateBulkJob.CallUnary(ctx, req)
+}
+
 // CancelBulk calls io.clbs.openhes.services.svcapi.ApiService.CancelBulk.
 func (c *apiServiceClient) CancelBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return c.cancelBulk.CallUnary(ctx, req)
@@ -1085,6 +1115,11 @@ func (c *apiServiceClient) CreateBulk(ctx context.Context, req *connect.Request[
 // GetBulk calls io.clbs.openhes.services.svcapi.ApiService.GetBulk.
 func (c *apiServiceClient) GetBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
 	return c.getBulk.CallUnary(ctx, req)
+}
+
+// UpdateBulk calls io.clbs.openhes.services.svcapi.ApiService.UpdateBulk.
+func (c *apiServiceClient) UpdateBulk(ctx context.Context, req *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateBulk.CallUnary(ctx, req)
 }
 
 // ListDrivers calls io.clbs.openhes.services.svcapi.ApiService.ListDrivers.
@@ -1359,6 +1394,9 @@ type ApiServiceHandler interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.BulkJob], error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
@@ -1377,6 +1415,9 @@ type ApiServiceHandler interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error)
@@ -1662,6 +1703,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetBulkJob")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceUpdateBulkJobHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateBulkJobProcedure,
+		svc.UpdateBulkJob,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateBulkJob")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCancelBulkHandler := connect.NewUnaryHandler(
 		ApiServiceCancelBulkProcedure,
 		svc.CancelBulk,
@@ -1690,6 +1737,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceGetBulkProcedure,
 		svc.GetBulk,
 		connect.WithSchema(apiServiceMethods.ByName("GetBulk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateBulkHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateBulkProcedure,
+		svc.UpdateBulk,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateBulk")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceListDriversHandler := connect.NewUnaryHandler(
@@ -1992,6 +2045,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceListBulkJobsHandler.ServeHTTP(w, r)
 		case ApiServiceGetBulkJobProcedure:
 			apiServiceGetBulkJobHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateBulkJobProcedure:
+			apiServiceUpdateBulkJobHandler.ServeHTTP(w, r)
 		case ApiServiceCancelBulkProcedure:
 			apiServiceCancelBulkHandler.ServeHTTP(w, r)
 		case ApiServiceCreateProxyBulkProcedure:
@@ -2002,6 +2057,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceCreateBulkHandler.ServeHTTP(w, r)
 		case ApiServiceGetBulkProcedure:
 			apiServiceGetBulkHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateBulkProcedure:
+			apiServiceUpdateBulkHandler.ServeHTTP(w, r)
 		case ApiServiceListDriversProcedure:
 			apiServiceListDriversHandler.ServeHTTP(w, r)
 		case ApiServiceGetDriverProcedure:
@@ -2177,6 +2234,10 @@ func (UnimplementedApiServiceHandler) GetBulkJob(context.Context, *connect.Reque
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulkJob is not implemented"))
 }
 
+func (UnimplementedApiServiceHandler) UpdateBulkJob(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateBulkJob is not implemented"))
+}
+
 func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CancelBulk is not implemented"))
 }
@@ -2195,6 +2256,10 @@ func (UnimplementedApiServiceHandler) CreateBulk(context.Context, *connect.Reque
 
 func (UnimplementedApiServiceHandler) GetBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Bulk], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetBulk is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateBulk(context.Context, *connect.Request[common.UpdateMetadata]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateBulk is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListDrivers(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDriver], error) {

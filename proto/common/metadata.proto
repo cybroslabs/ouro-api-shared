@@ -15,3 +15,8 @@ message MetadataFields {
     map<string, FieldValue> managed_fields = 4;  // The additional fields managed by system.
     string name                            = 5;  // The name of the resource. It's mutable and typically set by user. Must be set.
 }
+
+message UpdateMetadata {
+    reserved 1, 2;                         // Reserved for compatibility with other typed models where the metadata is at the 3rd position.
+    repeated MetadataFields metadata = 3;  // The metadata fields of the resource.
+}

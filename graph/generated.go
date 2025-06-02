@@ -844,6 +844,8 @@ type ComplexityRoot struct {
 		SetDeviceCommunicationUnits                                      func(childComplexity int) int
 		SynchronizeComponentConfig                                       func(childComplexity int) int
 		UpdateApplicationConfig                                          func(childComplexity int) int
+		UpdateBulk                                                       func(childComplexity int) int
+		UpdateBulkJob                                                    func(childComplexity int) int
 		UpdateCommunicationUnit                                          func(childComplexity int) int
 		UpdateDevice                                                     func(childComplexity int) int
 		UpdateDeviceConfigurationRegister                                func(childComplexity int) int
@@ -941,6 +943,10 @@ type ComplexityRoot struct {
 		Weeks       func(childComplexity int) int
 	}
 
+	UpdateMetadata struct {
+		Metadata func(childComplexity int) int
+	}
+
 	Variable struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
@@ -976,11 +982,13 @@ type QueryResolver interface {
 	ListBulks(ctx context.Context) (*model.ListOfBulk, error)
 	ListBulkJobs(ctx context.Context) (*model.ListOfBulkJob, error)
 	GetBulkJob(ctx context.Context) (*model.BulkJob, error)
+	UpdateBulkJob(ctx context.Context) (*model.Empty, error)
 	CancelBulk(ctx context.Context) (*model.Empty, error)
 	CreateProxyBulk(ctx context.Context) (*model.StringValue, error)
 	GetProxyBulk(ctx context.Context) (*model.ProxyBulk, error)
 	CreateBulk(ctx context.Context) (*model.StringValue, error)
 	GetBulk(ctx context.Context) (*model.Bulk, error)
+	UpdateBulk(ctx context.Context) (*model.Empty, error)
 	GetApplicationConfig(ctx context.Context) (*model.ApplicationConfigDescriptor, error)
 	UpdateApplicationConfig(ctx context.Context) (*model.Empty, error)
 	SynchronizeComponentConfig(ctx context.Context) (*model.ComponentConfig, error)
@@ -4114,6 +4122,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.UpdateApplicationConfig(childComplexity), true
 
+	case "Query.updateBulk":
+		if e.complexity.Query.UpdateBulk == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateBulk(childComplexity), true
+
+	case "Query.updateBulkJob":
+		if e.complexity.Query.UpdateBulkJob == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateBulkJob(childComplexity), true
+
 	case "Query.updateCommunicationUnit":
 		if e.complexity.Query.UpdateCommunicationUnit == nil {
 			break
@@ -4463,6 +4485,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.TimeOfUseTableSpec.Weeks(childComplexity), true
+
+	case "UpdateMetadata.metadata":
+		if e.complexity.UpdateMetadata.Metadata == nil {
+			break
+		}
+
+		return e.complexity.UpdateMetadata.Metadata(childComplexity), true
 
 	case "Variable.metadata":
 		if e.complexity.Variable.Metadata == nil {
@@ -22001,6 +22030,51 @@ func (ec *executionContext) fieldContext_Query_getBulkJob(_ context.Context, fie
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_updateBulkJob(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateBulkJob(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateBulkJob(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateBulkJob(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_cancelBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_cancelBulk(ctx, field)
 	if err != nil {
@@ -22229,6 +22303,51 @@ func (ec *executionContext) fieldContext_Query_getBulk(_ context.Context, field 
 				return ec.fieldContext_Bulk_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Bulk", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_updateBulk(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateBulk(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateBulk(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
 		},
 	}
 	return fc, nil
@@ -27006,6 +27125,59 @@ func (ec *executionContext) fieldContext_TimeOfUseTableSpec_specialDays(_ contex
 				return ec.fieldContext_SpecialDay_dayId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type SpecialDay", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _UpdateMetadata_metadata(ctx context.Context, field graphql.CollectedField, obj *model.UpdateMetadata) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_UpdateMetadata_metadata(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MetadataFields)
+	fc.Result = res
+	return ec.marshalOMetadataFields2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_UpdateMetadata_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "UpdateMetadata",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_MetadataFields_id(ctx, field)
+			case "generation":
+				return ec.fieldContext_MetadataFields_generation(ctx, field)
+			case "fields":
+				return ec.fieldContext_MetadataFields_fields(ctx, field)
+			case "managedFields":
+				return ec.fieldContext_MetadataFields_managedFields(ctx, field)
+			case "name":
+				return ec.fieldContext_MetadataFields_name(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
 		},
 	}
 	return fc, nil
@@ -34417,6 +34589,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateBulkJob":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateBulkJob(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "cancelBulk":
 			field := field
 
@@ -34503,6 +34694,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getBulk(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateBulk":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateBulk(ctx, field)
 				return res
 			}
 
@@ -36254,6 +36464,42 @@ func (ec *executionContext) _TimeOfUseTableSpec(ctx context.Context, sel ast.Sel
 			out.Values[i] = ec._TimeOfUseTableSpec_dayProfiles(ctx, field, obj)
 		case "specialDays":
 			out.Values[i] = ec._TimeOfUseTableSpec_specialDays(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var updateMetadataImplementors = []string{"UpdateMetadata"}
+
+func (ec *executionContext) _UpdateMetadata(ctx context.Context, sel ast.SelectionSet, obj *model.UpdateMetadata) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, updateMetadataImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("UpdateMetadata")
+		case "metadata":
+			out.Values[i] = ec._UpdateMetadata_metadata(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -39485,6 +39731,47 @@ func (ec *executionContext) marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabs�
 		return graphql.Null
 	}
 	return ec._MeasuredValue(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOMetadataFields2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx context.Context, sel ast.SelectionSet, v []*model.MetadataFields) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
 }
 
 func (ec *executionContext) marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx context.Context, sel ast.SelectionSet, v *model.MetadataFields) graphql.Marshaler {

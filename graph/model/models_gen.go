@@ -837,6 +837,10 @@ type TimeOfUseTableSpec struct {
 	SpecialDays []*SpecialDay `json:"specialDays,omitempty"`
 }
 
+type UpdateMetadata struct {
+	Metadata []*MetadataFields `json:"metadata,omitempty"`
+}
+
 type Variable struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`

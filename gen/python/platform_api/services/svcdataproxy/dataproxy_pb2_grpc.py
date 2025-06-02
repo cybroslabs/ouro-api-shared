@@ -5,6 +5,7 @@ import grpc
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
+from common import metadata_pb2 as common_dot_metadata__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
@@ -34,6 +35,11 @@ class DataproxyServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.BulkJob.FromString,
                 _registered_method=True)
+        self.UpdateBulkJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob',
+                request_serializer=common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.CancelBulk = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
@@ -58,6 +64,11 @@ class DataproxyServiceStub(object):
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Bulk.FromString,
+                _registered_method=True)
+        self.UpdateBulk = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk',
+                request_serializer=common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.GetMeterDataRegisters = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters',
@@ -111,6 +122,14 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateBulkJob(self, request, context):
+        """@group: Bulks
+        Updates the job metadata. The metadata is used to store additional information about the job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CancelBulk(self, request, context):
         """@group: Bulks
         Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
@@ -146,6 +165,14 @@ class DataproxyServiceServicer(object):
     def GetBulk(self, request, context):
         """@group: Bulks
         Retrieves the bulk info and status.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateBulk(self, request, context):
+        """@group: Bulks
+        Updates the bulk metadata. The metadata is used to store additional information about the job.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -204,6 +231,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.BulkJob.SerializeToString,
             ),
+            'UpdateBulkJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateBulkJob,
+                    request_deserializer=common_dot_metadata__pb2.UpdateMetadata.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'CancelBulk': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelBulk,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
@@ -228,6 +260,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.GetBulk,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Bulk.SerializeToString,
+            ),
+            'UpdateBulk': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateBulk,
+                    request_deserializer=common_dot_metadata__pb2.UpdateMetadata.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
                     servicer.GetMeterDataRegisters,
@@ -332,6 +369,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.BulkJob.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateBulkJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob',
+            common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -467,6 +531,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Bulk.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateBulk(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk',
+            common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

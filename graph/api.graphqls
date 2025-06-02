@@ -1658,6 +1658,11 @@ type MetadataFields {
   name: String
 }
 
+type UpdateMetadata {
+  # The metadata fields of the resource.
+  metadata: [MetadataFields]
+}
+
 # Application config specification.
 type ApplicationConfig {
   # The default values for the application configuration.
@@ -1704,11 +1709,13 @@ type Query {
   listBulks: ListOfBulk
   listBulkJobs: ListOfBulkJob
   getBulkJob: BulkJob
+  updateBulkJob: Empty
   cancelBulk: Empty
   createProxyBulk: StringValue
   getProxyBulk: ProxyBulk
   createBulk: StringValue
   getBulk: Bulk
+  updateBulk: Empty
   getApplicationConfig: ApplicationConfigDescriptor
   updateApplicationConfig: Empty
   synchronizeComponentConfig: ComponentConfig

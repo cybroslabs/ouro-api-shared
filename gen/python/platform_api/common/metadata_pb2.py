@@ -26,7 +26,7 @@ from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13\x63ommon/fields.proto\"\xe3\x03\n\x0eMetadataFields\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x02 \x01(\x05R\ngeneration\x12Q\n\x06\x66ields\x18\x03 \x03(\x0b\x32\x39.io.clbs.openhes.models.common.MetadataFields.FieldsEntryR\x06\x66ields\x12g\n\x0emanaged_fields\x18\x04 \x03(\x0b\x32@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\x1a\x64\n\x0b\x46ieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13\x63ommon/fields.proto\"\xe3\x03\n\x0eMetadataFields\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x02 \x01(\x05R\ngeneration\x12Q\n\x06\x66ields\x18\x03 \x03(\x0b\x32\x39.io.clbs.openhes.models.common.MetadataFields.FieldsEntryR\x06\x66ields\x12g\n\x0emanaged_fields\x18\x04 \x03(\x0b\x32@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\x1a\x64\n\x0b\x46ieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\"g\n\x0eUpdateMetadata\x12I\n\x08metadata\x18\x03 \x03(\x0b\x32-.io.clbs.openhes.models.common.MetadataFieldsR\x08metadataJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03\x42\x30Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -44,4 +44,6 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_METADATAFIELDS_FIELDSENTRY']._serialized_end=482
   _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._serialized_start=484
   _globals['_METADATAFIELDS_MANAGEDFIELDSENTRY']._serialized_end=591
+  _globals['_UPDATEMETADATA']._serialized_start=593
+  _globals['_UPDATEMETADATA']._serialized_end=696
 # @@protoc_insertion_point(module_scope)

@@ -44,11 +44,13 @@ const (
 	ApiService_ListBulks_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	ApiService_ListBulkJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
+	ApiService_UpdateBulkJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulkJob"
 	ApiService_CancelBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
 	ApiService_CreateProxyBulk_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
 	ApiService_GetProxyBulk_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetProxyBulk"
 	ApiService_CreateBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
 	ApiService_GetBulk_FullMethodName                                                          = "/io.clbs.openhes.services.svcapi.ApiService/GetBulk"
+	ApiService_UpdateBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulk"
 	ApiService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/ListDrivers"
 	ApiService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/GetDriver"
 	ApiService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationUnit"
@@ -149,6 +151,9 @@ type ApiServiceClient interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -167,6 +172,9 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
@@ -533,6 +541,16 @@ func (c *apiServiceClient) GetBulkJob(ctx context.Context, in *wrapperspb.String
 	return out, nil
 }
 
+func (c *apiServiceClient) UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateBulkJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -577,6 +595,16 @@ func (c *apiServiceClient) GetBulk(ctx context.Context, in *wrapperspb.StringVal
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Bulk)
 	err := c.cc.Invoke(ctx, ApiService_GetBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1104,6 +1132,9 @@ type ApiServiceServer interface {
 	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
 	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
 	// @group: Bulks
+	// Updates the job metadata. The metadata is used to store additional information about the job.
+	UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -1122,6 +1153,9 @@ type ApiServiceServer interface {
 	// @group: Bulks
 	// Retrieves the bulk info and status.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
+	// @group: Bulks
+	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Driver Info
 	// Retrieves the list of drivers.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
@@ -1348,6 +1382,9 @@ func (UnimplementedApiServiceServer) ListBulkJobs(context.Context, *acquisition.
 func (UnimplementedApiServiceServer) GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkJob not implemented")
 }
+func (UnimplementedApiServiceServer) UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulkJob not implemented")
+}
 func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
 }
@@ -1362,6 +1399,9 @@ func (UnimplementedApiServiceServer) CreateBulk(context.Context, *acquisition.Cr
 }
 func (UnimplementedApiServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulk not implemented")
 }
 func (UnimplementedApiServiceServer) ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
@@ -1873,6 +1913,24 @@ func _ApiService_GetBulkJob_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_UpdateBulkJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateMetadata)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateBulkJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateBulkJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateBulkJob(ctx, req.(*common.UpdateMetadata))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
@@ -1959,6 +2017,24 @@ func _ApiService_GetBulk_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).GetBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateMetadata)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateBulk(ctx, req.(*common.UpdateMetadata))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2797,6 +2873,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_GetBulkJob_Handler,
 		},
 		{
+			MethodName: "UpdateBulkJob",
+			Handler:    _ApiService_UpdateBulkJob_Handler,
+		},
+		{
 			MethodName: "CancelBulk",
 			Handler:    _ApiService_CancelBulk_Handler,
 		},
@@ -2815,6 +2895,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulk",
 			Handler:    _ApiService_GetBulk_Handler,
+		},
+		{
+			MethodName: "UpdateBulk",
+			Handler:    _ApiService_UpdateBulk_Handler,
 		},
 		{
 			MethodName: "ListDrivers",

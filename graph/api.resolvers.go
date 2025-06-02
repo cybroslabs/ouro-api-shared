@@ -26,6 +26,11 @@ func (r *queryResolver) GetBulkJob(ctx context.Context) (*model.BulkJob, error) 
 	panic(fmt.Errorf("not implemented: GetBulkJob - getBulkJob"))
 }
 
+// UpdateBulkJob is the resolver for the updateBulkJob field.
+func (r *queryResolver) UpdateBulkJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateBulkJob - updateBulkJob"))
+}
+
 // CancelBulk is the resolver for the cancelBulk field.
 func (r *queryResolver) CancelBulk(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: CancelBulk - cancelBulk"))
@@ -49,6 +54,11 @@ func (r *queryResolver) CreateBulk(ctx context.Context) (*model.StringValue, err
 // GetBulk is the resolver for the getBulk field.
 func (r *queryResolver) GetBulk(ctx context.Context) (*model.Bulk, error) {
 	panic(fmt.Errorf("not implemented: GetBulk - getBulk"))
+}
+
+// UpdateBulk is the resolver for the updateBulk field.
+func (r *queryResolver) UpdateBulk(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateBulk - updateBulk"))
 }
 
 // GetApplicationConfig is the resolver for the getApplicationConfig field.
