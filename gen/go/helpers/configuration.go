@@ -30,7 +30,7 @@ type configurationService struct {
 
 	cacheTime time.Duration
 
-	cacheLock sync.Mutex
+	cacheLock sync.RWMutex
 	cacheLast time.Time
 	cache     map[string]any
 }
@@ -75,22 +75,34 @@ func (cs *configurationService) getConfiguration() (*system.ComponentConfig, err
 	return config, nil
 }
 
-func (cs *configurationService) GetOption(optionName string) (any, error) {
+func (cs *configurationService) loadConfiguration() error {
 	cs.cacheLock.Lock()
 	defer cs.cacheLock.Unlock()
 
-	if cs.cache == nil || time.Since(cs.cacheLast) > cs.cacheTime {
-		config, err := cs.getConfiguration()
-		if err != nil {
+	config, err := cs.getConfiguration()
+	if err != nil {
+		return err
+	}
+
+	cs.cache = make(map[string]any)
+	for k, v := range config.GetItems().GetAttributes() {
+		cs.cache[k] = v.GetAnyValue()
+	}
+
+	cs.cacheLast = time.Now()
+
+	return nil
+}
+
+func (cs *configurationService) GetOption(optionName string) (any, error) {
+	if time.Since(cs.cacheLast) > cs.cacheTime {
+		if err := cs.loadConfiguration(); err != nil {
 			return nil, err
 		}
-
-		cs.cache = make(map[string]any)
-		for k, v := range config.GetItems().GetAttributes() {
-			cs.cache[k] = v.GetIntegerValue()
-		}
-		cs.cacheLast = time.Now()
 	}
+
+	cs.cacheLock.RLock()
+	defer cs.cacheLock.RUnlock()
 
 	if value, ok := cs.cache[optionName]; ok {
 		return value, nil
