@@ -65,6 +65,14 @@ message Device {
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+message StreamDevicesDriverTypesRequest {
+    repeated string device_id = 1;  // The list of devices.
+}
+
+message StreamDevicesDriverTypesResponse {
+    map<string, string> data = 1;  // The map of devices to their driver types. The key is the device identifier, the value is the driver type.
+}
+
 // Device group specification.
 
 message CreateDeviceGroupRequest {

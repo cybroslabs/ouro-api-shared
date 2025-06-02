@@ -55,6 +55,7 @@ const (
 	DeviceRegistryService_UpdateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice"
 	DeviceRegistryService_ListDevices_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
 	DeviceRegistryService_GetDevice_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
+	DeviceRegistryService_StreamDeviceType_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
@@ -156,6 +157,9 @@ type DeviceRegistryServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Device, error)
+	// @group: Devices
+	// @tag: device
+	StreamDeviceType(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse], error)
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
@@ -535,6 +539,19 @@ func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *wrapper
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) StreamDeviceType(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[0], DeviceRegistryService_StreamDeviceType_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamDeviceTypeClient = grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]
+
 func (c *deviceRegistryServiceClient) SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -617,7 +634,7 @@ func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wr
 
 func (c *deviceRegistryServiceClient) StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[0], DeviceRegistryService_StreamDeviceGroup_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[1], DeviceRegistryService_StreamDeviceGroup_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -868,6 +885,9 @@ type DeviceRegistryServiceServer interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error)
+	// @group: Devices
+	// @tag: device
+	StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error
 	// The method called by the RestAPI to replace ordered set of linked communication units.
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
@@ -1029,6 +1049,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *co
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDeviceType not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceCommunicationUnits not implemented")
@@ -1683,6 +1706,13 @@ func _DeviceRegistryService_GetDevice_Handler(srv interface{}, ctx context.Conte
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _DeviceRegistryService_StreamDeviceType_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DeviceRegistryServiceServer).StreamDeviceType(&grpc.GenericServerStream[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamDeviceTypeServer = grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]
 
 func _DeviceRegistryService_SetDeviceCommunicationUnits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.SetDeviceCommunicationUnitsRequest)
@@ -2356,6 +2386,12 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamDeviceType",
+			Handler:       _DeviceRegistryService_StreamDeviceType_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
 		{
 			StreamName:    "StreamDeviceGroup",
 			Handler:       _DeviceRegistryService_StreamDeviceGroup_Handler,

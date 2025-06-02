@@ -293,7 +293,7 @@ type ApiServiceClient interface {
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
 	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
 	// @group: Meter Data
@@ -1248,7 +1248,7 @@ type ApiServiceServer interface {
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
 	// @group: Configuration
 	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values inlcuding detauls which are not set.
+	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
 	// @group: Meter Data

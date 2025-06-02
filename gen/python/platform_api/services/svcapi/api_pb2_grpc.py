@@ -854,7 +854,7 @@ class ApiServiceServicer(object):
     def SynchronizeComponentConfig(self, request, context):
         """@group: Configuration
         Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-        The output value will contain currently set values inlcuding detauls which are not set.
+        The output value will contain currently set values including details which are not set.
         The missing values in the defaults will be deleted if has been set previously in the application configuration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

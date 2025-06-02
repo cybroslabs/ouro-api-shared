@@ -88,6 +88,9 @@ service DeviceRegistryService {
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
+    // @group: Devices
+    // @tag: device
+    rpc StreamDeviceType(stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest) returns (stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get communication units definitions linked to the device(s).

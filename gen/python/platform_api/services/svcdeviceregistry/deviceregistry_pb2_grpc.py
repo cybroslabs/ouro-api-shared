@@ -176,6 +176,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Device.FromString,
                 _registered_method=True)
+        self.StreamDeviceType = channel.stream_stream(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType',
+                request_serializer=acquisition_dot_main__pb2.StreamDevicesDriverTypesRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.StreamDevicesDriverTypesResponse.FromString,
+                _registered_method=True)
         self.SetDeviceCommunicationUnits = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits',
                 request_serializer=acquisition_dot_main__pb2.SetDeviceCommunicationUnitsRequest.SerializeToString,
@@ -530,6 +535,14 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def StreamDeviceType(self, request_iterator, context):
+        """@group: Devices
+        @tag: device
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetDeviceCommunicationUnits(self, request, context):
         """The method called by the RestAPI to replace ordered set of linked communication units.
         """
@@ -871,6 +884,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.GetDevice,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Device.SerializeToString,
+            ),
+            'StreamDeviceType': grpc.stream_stream_rpc_method_handler(
+                    servicer.StreamDeviceType,
+                    request_deserializer=acquisition_dot_main__pb2.StreamDevicesDriverTypesRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.StreamDevicesDriverTypesResponse.SerializeToString,
             ),
             'SetDeviceCommunicationUnits': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDeviceCommunicationUnits,
@@ -1836,6 +1854,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Device.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def StreamDeviceType(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(
+            request_iterator,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType',
+            acquisition_dot_main__pb2.StreamDevicesDriverTypesRequest.SerializeToString,
+            acquisition_dot_main__pb2.StreamDevicesDriverTypesResponse.FromString,
             options,
             channel_credentials,
             insecure,
