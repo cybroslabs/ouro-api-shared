@@ -17,6 +17,6 @@ message MetadataFields {
 }
 
 message UpdateMetadata {
-    reserved 1, 2;                         // Reserved for compatibility with other typed models where the metadata is at the 3rd position.
-    repeated MetadataFields metadata = 3;  // The metadata fields of the resource.
+    reserved 1, 2;                // Reserved for compatibility with other typed models where the metadata is at the 3rd position.
+    MetadataFields metadata = 3;  // The metadata fields of the resource.
 }

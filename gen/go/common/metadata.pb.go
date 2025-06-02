@@ -193,7 +193,7 @@ func (b0 MetadataFields_builder) Build() *MetadataFields {
 
 type UpdateMetadata struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Metadata *[]*MetadataFields     `protobuf:"bytes,3,rep,name=metadata"`
+	xxx_hidden_Metadata *MetadataFields        `protobuf:"bytes,3,opt,name=metadata"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -223,30 +223,39 @@ func (x *UpdateMetadata) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *UpdateMetadata) GetMetadata() []*MetadataFields {
+func (x *UpdateMetadata) GetMetadata() *MetadataFields {
 	if x != nil {
-		if x.xxx_hidden_Metadata != nil {
-			return *x.xxx_hidden_Metadata
-		}
+		return x.xxx_hidden_Metadata
 	}
 	return nil
 }
 
-func (x *UpdateMetadata) SetMetadata(v []*MetadataFields) {
-	x.xxx_hidden_Metadata = &v
+func (x *UpdateMetadata) SetMetadata(v *MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *UpdateMetadata) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *UpdateMetadata) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
 }
 
 type UpdateMetadata_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Metadata []*MetadataFields
+	Metadata *MetadataFields
 }
 
 func (b0 UpdateMetadata_builder) Build() *UpdateMetadata {
 	m0 := &UpdateMetadata{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Metadata = &b.Metadata
+	x.xxx_hidden_Metadata = b.Metadata
 	return m0
 }
 
@@ -270,7 +279,7 @@ const file_common_metadata_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"g\n" +
 	"\x0eUpdateMetadata\x12I\n" +
-	"\bmetadata\x18\x03 \x03(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_metadata_proto_goTypes = []any{

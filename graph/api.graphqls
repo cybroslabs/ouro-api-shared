@@ -1660,7 +1660,7 @@ type MetadataFields {
 
 type UpdateMetadata {
   # The metadata fields of the resource.
-  metadata: [MetadataFields]
+  metadata: MetadataFields
 }
 
 # Application config specification.

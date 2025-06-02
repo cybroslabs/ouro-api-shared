@@ -838,7 +838,7 @@ type TimeOfUseTableSpec struct {
 }
 
 type UpdateMetadata struct {
-	Metadata []*MetadataFields `json:"metadata,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
 type Variable struct {
