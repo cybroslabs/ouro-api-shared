@@ -70,7 +70,7 @@ func (cs *configurationService) getConfiguration() (*system.ComponentConfig, err
 	if err != nil {
 		return nil, err
 	}
-	cs.descriptor = nil // Clear descriptor after the first successful call to avoid repeated synchronization
+	cs.descriptor.SetItems(nil) // Clear descriptor after the first successful call to avoid repeated synchronization
 
 	return config, nil
 }
