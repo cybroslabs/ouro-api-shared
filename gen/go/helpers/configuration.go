@@ -3,6 +3,7 @@ package helpers
 import (
 	"context"
 	"errors"
+	"reflect"
 	"slices"
 	"sync"
 	"time"
@@ -128,8 +129,22 @@ func GetOptionWithDefault[T any](cfg ConfigurationService, name string, defaultV
 	if err != nil {
 		return defaultValue
 	}
+
+	// Direct type support
 	if v, ok := val.(T); ok {
 		return v
 	}
+
+	// Fallback: try reflection-based conversion
+	valValue := reflect.ValueOf(val)
+	defValue := reflect.ValueOf(defaultValue)
+
+	if valValue.Type().ConvertibleTo(defValue.Type()) {
+		converted := valValue.Convert(defValue.Type())
+		if v, ok := converted.Interface().(T); ok {
+			return v
+		}
+	}
+
 	return defaultValue
 }
