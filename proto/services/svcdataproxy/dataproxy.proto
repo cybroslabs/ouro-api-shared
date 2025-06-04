@@ -1,7 +1,7 @@
 // Editions version of proto3 file
 edition = "2023";
 package io.clbs.openhes.services.svcdataproxy;
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcdataproxy";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxy";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";

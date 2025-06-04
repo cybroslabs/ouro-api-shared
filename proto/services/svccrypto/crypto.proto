@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.services.svccrypto;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svccrypto";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svccrypto";
 
 import "crypto/crypto.proto";
 

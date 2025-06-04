@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.models.common;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/common";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";

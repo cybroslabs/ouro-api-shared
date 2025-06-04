@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.services.svcapi;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcapi";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";

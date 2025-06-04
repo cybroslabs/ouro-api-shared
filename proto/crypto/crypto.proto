@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.models.crypto;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/crypto";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/crypto";
 
 // DLMS crypto mode
 enum AuthenticatedEncryption {

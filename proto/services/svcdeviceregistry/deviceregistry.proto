@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.services.svcdeviceregistry;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/services/svcdeviceregistry";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistry";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";

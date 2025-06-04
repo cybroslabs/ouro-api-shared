@@ -2,7 +2,7 @@
 edition = "2023";
 package io.clbs.openhes.models.acquisition;
 
-option go_package = "github.com/cybroslabs/hes-2-apis/gen/go/acquisition";
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
