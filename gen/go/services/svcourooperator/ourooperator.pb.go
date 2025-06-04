@@ -7,8 +7,8 @@
 package svcourooperator
 
 import (
-	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
-	system "github.com/cybroslabs/hes-2-apis/gen/go/system"
+	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
+	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -38,7 +38,7 @@ const file_services_svcourooperator_ourooperator_proto_rawDesc = "" +
 	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a:.io.clbs.openhes.models.system.ApplicationConfigDescriptor\x12c\n" +
 	"\x17UpdateApplicationConfig\x120.io.clbs.openhes.models.system.ApplicationConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
 	"\x1aSynchronizeComponentConfig\x128.io.clbs.openhes.models.system.ComponentConfigDescriptor\x1a..io.clbs.openhes.models.system.ComponentConfig\x12_\n" +
-	"\fStartUpgrade\x127.io.clbs.openhes.models.acquisition.StartUpgradeRequest\x1a\x16.google.protobuf.EmptyBBZ@github.com/cybroslabs/hes-2-apis/gen/go/services/svcourooperatorb\beditionsp\xe8\a"
+	"\fStartUpgrade\x127.io.clbs.openhes.models.acquisition.StartUpgradeRequest\x1a\x16.google.protobuf.EmptyBGZEgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperatorb\beditionsp\xe8\a"
 
 var file_services_svcourooperator_ourooperator_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),                      // 0: google.protobuf.Empty

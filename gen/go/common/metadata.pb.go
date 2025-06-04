@@ -279,7 +279,7 @@ const file_common_metadata_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"g\n" +
 	"\x0eUpdateMetadata\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_metadata_proto_goTypes = []any{

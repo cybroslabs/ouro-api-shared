@@ -1256,7 +1256,7 @@ const file_acquisition_timeofuse_timeofuse_proto_rawDesc = "" +
 	"\x04NOOP\x10\x00\x12\v\n" +
 	"\aCONNECT\x10\x01\x12\x0e\n" +
 	"\n" +
-	"DISCONNECT\x10\x02B?Z=github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuseb\beditionsp\xe8\a"
+	"DISCONNECT\x10\x02BDZBgithub.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuseb\beditionsp\xe8\a"
 
 var file_acquisition_timeofuse_timeofuse_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_acquisition_timeofuse_timeofuse_proto_msgTypes = make([]protoimpl.MessageInfo, 7)

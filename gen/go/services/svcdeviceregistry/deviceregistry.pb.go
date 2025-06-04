@@ -7,8 +7,8 @@
 package svcdeviceregistry
 
 import (
-	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -87,7 +87,7 @@ const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\x13ListTimeOfUseTables\x12+.io.clbs.openhes.models.common.ListSelector\x1a8.io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable\x12e\n" +
 	"\x11GetTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.TimeOfUseTable\x12b\n" +
 	"\x14UpdateTimeOfUseTable\x122.io.clbs.openhes.models.acquisition.TimeOfUseTable\x1a\x16.google.protobuf.Empty\x12L\n" +
-	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.EmptyBDZBgithub.com/cybroslabs/hes-2-apis/gen/go/services/svcdeviceregistryb\beditionsp\xe8\a"
+	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.EmptyBIZGgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistryb\beditionsp\xe8\a"
 
 var file_services_svcdeviceregistry_deviceregistry_proto_goTypes = []any{
 	(*acquisition.CreateVariableRequest)(nil),                                                   // 0: io.clbs.openhes.models.acquisition.CreateVariableRequest

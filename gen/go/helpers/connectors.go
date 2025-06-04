@@ -6,10 +6,10 @@ import (
 	"os"
 	"slices"
 
-	"github.com/cybroslabs/hes-2-apis/gen/go/services/svcdataproxy"
-	"github.com/cybroslabs/hes-2-apis/gen/go/services/svcdeviceregistry"
-	"github.com/cybroslabs/hes-2-apis/gen/go/services/svcourooperator"
-	"github.com/cybroslabs/hes-2-apis/gen/go/services/svctaskmaster"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxy"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistry"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperator"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmaster"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

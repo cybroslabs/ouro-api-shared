@@ -24,14 +24,14 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ommon/types.proto\x12\x1dio.clbs.openhes.models.common\";\n\x08ListOfId\x12\x0e\n\x02id\x18\x01 \x03(\tR\x02id\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"E\n\x0cListOfString\x12\x14\n\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCountB0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ommon/types.proto\x12\x1dio.clbs.openhes.models.common\";\n\x08ListOfId\x12\x0e\n\x02id\x18\x01 \x03(\tR\x02id\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"E\n\x0cListOfString\x12\x14\n\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCountB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'common.types_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'Z.github.com/cybroslabs/hes-2-apis/gen/go/common'
+  _globals['DESCRIPTOR']._serialized_options = b'Z3github.com/cybroslabs/ouro-api-shared/gen/go/common'
   _globals['_LISTOFID']._serialized_start=53
   _globals['_LISTOFID']._serialized_end=112
   _globals['_LISTOFSTRING']._serialized_start=114

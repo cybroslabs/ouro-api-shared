@@ -14,7 +14,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/cybroslabs/hes-2-apis/graph/model"
+	"github.com/cybroslabs/ouro-api-shared/graph/model"
 	"github.com/google/uuid"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
@@ -4940,7 +4940,7 @@ func (ec *executionContext) _ActionData_nodata(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_nodata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4985,7 +4985,7 @@ func (ec *executionContext) _ActionData_registers(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.RegisterValues)
 	fc.Result = res
-	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
+	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_registers(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5030,7 +5030,7 @@ func (ec *executionContext) _ActionData_profile(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.ProfileValues)
 	fc.Result = res
-	return ec.marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileValues(ctx, field.Selections, res)
+	return ec.marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_profile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5079,7 +5079,7 @@ func (ec *executionContext) _ActionData_irregularProfile(ctx context.Context, fi
 	}
 	res := resTmp.(*model.IrregularProfileValues)
 	fc.Result = res
-	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
+	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_irregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5126,7 +5126,7 @@ func (ec *executionContext) _ActionData_deviceInfo(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.DeviceInfo)
 	fc.Result = res
-	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_deviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5187,7 +5187,7 @@ func (ec *executionContext) _ActionData_events(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.EventRecords)
 	fc.Result = res
-	return ec.marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecords(ctx, field.Selections, res)
+	return ec.marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecords(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_events(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5232,7 +5232,7 @@ func (ec *executionContext) _ActionData_touTable(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.TimeOfUseTableSpec)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionData_touTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5781,7 +5781,7 @@ func (ec *executionContext) _ActionResult_status(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ActionResultCode)
 	fc.Result = res
-	return ec.marshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResultCode(ctx, field.Selections, res)
+	return ec.marshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResultCode(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionResult_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5822,7 +5822,7 @@ func (ec *executionContext) _ActionResult_data(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.ActionData)
 	fc.Result = res
-	return ec.marshalOActionData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionData(ctx, field.Selections, res)
+	return ec.marshalOActionData2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionData(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionResult_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6084,7 +6084,7 @@ func (ec *executionContext) _ActionSetTou_table(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.TimeOfUseTableSpec)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ActionSetTou_table(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6428,7 +6428,7 @@ func (ec *executionContext) _ApplicationConfig_items(ctx context.Context, field 
 	}
 	res := resTmp.([]*model.ComponentConfig)
 	fc.Result = res
-	return ec.marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
+	return ec.marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationConfig_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6475,7 +6475,7 @@ func (ec *executionContext) _ApplicationConfigDescriptor_descriptors(ctx context
 	}
 	res := resTmp.([]*model.ComponentConfigDescriptor)
 	fc.Result = res
-	return ec.marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, field.Selections, res)
+	return ec.marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationConfigDescriptor_descriptors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6522,7 +6522,7 @@ func (ec *executionContext) _ApplicationConfigDescriptor_items(ctx context.Conte
 	}
 	res := resTmp.([]*model.ComponentConfig)
 	fc.Result = res
-	return ec.marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
+	return ec.marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationConfigDescriptor_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6569,7 +6569,7 @@ func (ec *executionContext) _ApplicationProtocolTemplate_protocol(ctx context.Co
 	}
 	res := resTmp.(*model.ApplicationProtocol)
 	fc.Result = res
-	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
+	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_protocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6610,7 +6610,7 @@ func (ec *executionContext) _ApplicationProtocolTemplate_attributes(ctx context.
 	}
 	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6685,7 +6685,7 @@ func (ec *executionContext) _Bulk_spec(ctx context.Context, field graphql.Collec
 	}
 	res := resTmp.(*model.BulkSpec)
 	fc.Result = res
-	return ec.marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkSpec(ctx, field.Selections, res)
+	return ec.marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Bulk_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6740,7 +6740,7 @@ func (ec *executionContext) _Bulk_status(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.BulkStatus)
 	fc.Result = res
-	return ec.marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatus(ctx, field.Selections, res)
+	return ec.marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Bulk_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6797,7 +6797,7 @@ func (ec *executionContext) _Bulk_metadata(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Bulk_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6850,7 +6850,7 @@ func (ec *executionContext) _BulkJob_spec(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*model.BulkJobSpec)
 	fc.Result = res
-	return ec.marshalOBulkJobSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJobSpec(ctx, field.Selections, res)
+	return ec.marshalOBulkJobSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJobSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkJob_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6895,7 +6895,7 @@ func (ec *executionContext) _BulkJob_status(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.JobStatus)
 	fc.Result = res
-	return ec.marshalOJobStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobStatus(ctx, field.Selections, res)
+	return ec.marshalOJobStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkJob_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6954,7 +6954,7 @@ func (ec *executionContext) _BulkJob_metadata(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkJob_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7007,7 +7007,7 @@ func (ec *executionContext) _BulkJobSpec_device(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.JobDevice)
 	fc.Result = res
-	return ec.marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
+	return ec.marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkJobSpec_device(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7105,7 +7105,7 @@ func (ec *executionContext) _BulkSpec_devices(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.ListOfJobDeviceID)
 	fc.Result = res
-	return ec.marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDeviceID(ctx, field.Selections, res)
+	return ec.marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfJobDeviceID(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7193,7 +7193,7 @@ func (ec *executionContext) _BulkSpec_settings(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.JobSettings)
 	fc.Result = res
-	return ec.marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobSettings(ctx, field.Selections, res)
+	return ec.marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobSettings(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_settings(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7248,7 +7248,7 @@ func (ec *executionContext) _BulkSpec_actions(ctx context.Context, field graphql
 	}
 	res := resTmp.([]*model.JobActionSet)
 	fc.Result = res
-	return ec.marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx, field.Selections, res)
+	return ec.marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionSet(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkSpec_actions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7360,7 +7360,7 @@ func (ec *executionContext) _BulkStatus_status(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.BulkStatusCode)
 	fc.Result = res
-	return ec.marshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatusCode(ctx, field.Selections, res)
+	return ec.marshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatusCode(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_BulkStatus_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7647,7 +7647,7 @@ func (ec *executionContext) _CommunicationBus_status(ctx context.Context, field 
 	}
 	res := resTmp.(*model.CommunicationBusStatus)
 	fc.Result = res
-	return ec.marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBusStatus(ctx, field.Selections, res)
+	return ec.marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBusStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationBus_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7692,7 +7692,7 @@ func (ec *executionContext) _CommunicationBus_metadata(ctx context.Context, fiel
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationBus_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7786,7 +7786,7 @@ func (ec *executionContext) _CommunicationTemplate_type(ctx context.Context, fie
 	}
 	res := resTmp.(*model.CommunicationType)
 	fc.Result = res
-	return ec.marshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationType(ctx, field.Selections, res)
+	return ec.marshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationTemplate_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7827,7 +7827,7 @@ func (ec *executionContext) _CommunicationTemplate_datalinks(ctx context.Context
 	}
 	res := resTmp.([]*model.DataLinkTemplate)
 	fc.Result = res
-	return ec.marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkTemplate(ctx, field.Selections, res)
+	return ec.marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationTemplate_datalinks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7876,7 +7876,7 @@ func (ec *executionContext) _CommunicationUnit_spec(ctx context.Context, field g
 	}
 	res := resTmp.(*model.CommunicationUnitSpec)
 	fc.Result = res
-	return ec.marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx, field.Selections, res)
+	return ec.marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationUnit_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7923,7 +7923,7 @@ func (ec *executionContext) _CommunicationUnit_metadata(ctx context.Context, fie
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8017,7 +8017,7 @@ func (ec *executionContext) _CommunicationUnitSpec_connectionInfo(ctx context.Co
 	}
 	res := resTmp.(*model.ConnectionInfo)
 	fc.Result = res
-	return ec.marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
+	return ec.marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CommunicationUnitSpec_connectionInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8113,7 +8113,7 @@ func (ec *executionContext) _ComponentConfig_items(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.FieldValues)
 	fc.Result = res
-	return ec.marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValues(ctx, field.Selections, res)
+	return ec.marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ComponentConfig_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8199,7 +8199,7 @@ func (ec *executionContext) _ComponentConfigDescriptor_items(ctx context.Context
 	}
 	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8274,7 +8274,7 @@ func (ec *executionContext) _ConnectionInfo_tcpip(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.ConnectionTypeDirectTCPIP)
 	fc.Result = res
-	return ec.marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionInfo_tcpip(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8323,7 +8323,7 @@ func (ec *executionContext) _ConnectionInfo_modemPool(ctx context.Context, field
 	}
 	res := resTmp.(*model.ConnectionTypeModemPool)
 	fc.Result = res
-	return ec.marshalOConnectionTypeModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeModemPool(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeModemPool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionInfo_modemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8372,7 +8372,7 @@ func (ec *executionContext) _ConnectionInfo_serialOverIp(ctx context.Context, fi
 	}
 	res := resTmp.(*model.ConnectionTypeControlledSerial)
 	fc.Result = res
-	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionInfo_serialOverIp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8421,7 +8421,7 @@ func (ec *executionContext) _ConnectionInfo_linkProtocol(ctx context.Context, fi
 	}
 	res := resTmp.(*model.DataLinkProtocol)
 	fc.Result = res
-	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
+	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionInfo_linkProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8503,7 +8503,7 @@ func (ec *executionContext) _ConnectionInfo_attributes(ctx context.Context, fiel
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionInfo_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8550,7 +8550,7 @@ func (ec *executionContext) _ConnectionTypeControlledSerial_direct(ctx context.C
 	}
 	res := resTmp.(*model.ConnectionTypeSerialDirect)
 	fc.Result = res
-	return ec.marshalOConnectionTypeSerialDirect2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialDirect(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeSerialDirect2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialDirect(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_direct(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8599,7 +8599,7 @@ func (ec *executionContext) _ConnectionTypeControlledSerial_moxa(ctx context.Con
 	}
 	res := resTmp.(*model.ConnectionTypeSerialMoxa)
 	fc.Result = res
-	return ec.marshalOConnectionTypeSerialMoxa2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialMoxa(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeSerialMoxa2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialMoxa(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_moxa(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8650,7 +8650,7 @@ func (ec *executionContext) _ConnectionTypeControlledSerial_rfc2217(ctx context.
 	}
 	res := resTmp.(*model.ConnectionTypeSerialRfc2217)
 	fc.Result = res
-	return ec.marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeControlledSerial_rfc2217(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8781,7 +8781,7 @@ func (ec *executionContext) _ConnectionTypeDirectTcpIp_timeout(ctx context.Conte
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeDirectTcpIp_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8910,7 +8910,7 @@ func (ec *executionContext) _ConnectionTypeModemPool_modem(ctx context.Context, 
 	}
 	res := resTmp.(*model.ModemInfo)
 	fc.Result = res
-	return ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
+	return ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeModemPool_modem(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9057,7 +9057,7 @@ func (ec *executionContext) _ConnectionTypeSerialDirect_timeout(ctx context.Cont
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialDirect_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9227,7 +9227,7 @@ func (ec *executionContext) _ConnectionTypeSerialMoxa_timeout(ctx context.Contex
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialMoxa_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9356,7 +9356,7 @@ func (ec *executionContext) _ConnectionTypeSerialRfc2217_timeout(ctx context.Con
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConnectionTypeSerialRfc2217_timeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9403,7 +9403,7 @@ func (ec *executionContext) _CreateBulkRequest_spec(ctx context.Context, field g
 	}
 	res := resTmp.(*model.BulkSpec)
 	fc.Result = res
-	return ec.marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkSpec(ctx, field.Selections, res)
+	return ec.marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateBulkRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9458,7 +9458,7 @@ func (ec *executionContext) _CreateBulkRequest_metadata(ctx context.Context, fie
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateBulkRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9511,7 +9511,7 @@ func (ec *executionContext) _CreateCommunicationBusRequest_metadata(ctx context.
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateCommunicationBusRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9564,7 +9564,7 @@ func (ec *executionContext) _CreateCommunicationUnitRequest_spec(ctx context.Con
 	}
 	res := resTmp.(*model.CommunicationUnitSpec)
 	fc.Result = res
-	return ec.marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx, field.Selections, res)
+	return ec.marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9611,7 +9611,7 @@ func (ec *executionContext) _CreateCommunicationUnitRequest_metadata(ctx context
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateCommunicationUnitRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9664,7 +9664,7 @@ func (ec *executionContext) _CreateDeviceConfigurationRegisterRequest_spec(ctx c
 	}
 	res := resTmp.(*model.DeviceConfigurationRegisterSpec)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceConfigurationRegisterRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9713,7 +9713,7 @@ func (ec *executionContext) _CreateDeviceConfigurationRegisterRequest_metadata(c
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceConfigurationRegisterRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9766,7 +9766,7 @@ func (ec *executionContext) _CreateDeviceConfigurationTemplateRequest_spec(ctx c
 	}
 	res := resTmp.(*model.DeviceConfigurationTemplateSpec)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceConfigurationTemplateRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9813,7 +9813,7 @@ func (ec *executionContext) _CreateDeviceConfigurationTemplateRequest_metadata(c
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceConfigurationTemplateRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9866,7 +9866,7 @@ func (ec *executionContext) _CreateDeviceGroupRequest_spec(ctx context.Context, 
 	}
 	res := resTmp.(*model.DeviceGroupSpec)
 	fc.Result = res
-	return ec.marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroupSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9911,7 +9911,7 @@ func (ec *executionContext) _CreateDeviceGroupRequest_metadata(ctx context.Conte
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceGroupRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9964,7 +9964,7 @@ func (ec *executionContext) _CreateDeviceRequest_spec(ctx context.Context, field
 	}
 	res := resTmp.(*model.DeviceSpec)
 	fc.Result = res
-	return ec.marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10015,7 +10015,7 @@ func (ec *executionContext) _CreateDeviceRequest_metadata(ctx context.Context, f
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10068,7 +10068,7 @@ func (ec *executionContext) _CreateProxyBulkRequest_spec(ctx context.Context, fi
 	}
 	res := resTmp.(*model.ProxyBulkSpec)
 	fc.Result = res
-	return ec.marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulkSpec(ctx, field.Selections, res)
+	return ec.marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProxyBulkSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateProxyBulkRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10123,7 +10123,7 @@ func (ec *executionContext) _CreateProxyBulkRequest_metadata(ctx context.Context
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateProxyBulkRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10176,7 +10176,7 @@ func (ec *executionContext) _CreateTimeOfUseTableRequest_spec(ctx context.Contex
 	}
 	res := resTmp.(*model.TimeOfUseTableSpec)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateTimeOfUseTableRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10233,7 +10233,7 @@ func (ec *executionContext) _CreateTimeOfUseTableRequest_metadata(ctx context.Co
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateTimeOfUseTableRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10286,7 +10286,7 @@ func (ec *executionContext) _CreateVariableRequest_spec(ctx context.Context, fie
 	}
 	res := resTmp.(*model.VariableSpec)
 	fc.Result = res
-	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
+	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateVariableRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10331,7 +10331,7 @@ func (ec *executionContext) _CreateVariableRequest_metadata(ctx context.Context,
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateVariableRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10384,7 +10384,7 @@ func (ec *executionContext) _DataLinkTemplate_linkProtocol(ctx context.Context, 
 	}
 	res := resTmp.(*model.DataLinkProtocol)
 	fc.Result = res
-	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
+	return ec.marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DataLinkTemplate_linkProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10425,7 +10425,7 @@ func (ec *executionContext) _DataLinkTemplate_appProtocolRefs(ctx context.Contex
 	}
 	res := resTmp.([]*model.ApplicationProtocol)
 	fc.Result = res
-	return ec.marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
+	return ec.marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DataLinkTemplate_appProtocolRefs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10466,7 +10466,7 @@ func (ec *executionContext) _DataLinkTemplate_attributes(ctx context.Context, fi
 	}
 	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10705,7 +10705,7 @@ func (ec *executionContext) _DayProfile_switching(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.Switching)
 	fc.Result = res
-	return ec.marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx, field.Selections, res)
+	return ec.marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSwitching(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DayProfile_switching(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10756,7 +10756,7 @@ func (ec *executionContext) _Device_spec(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.DeviceSpec)
 	fc.Result = res
-	return ec.marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Device_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10807,7 +10807,7 @@ func (ec *executionContext) _Device_status(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.(*model.DeviceStatus)
 	fc.Result = res
-	return ec.marshalODeviceStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceStatus(ctx, field.Selections, res)
+	return ec.marshalODeviceStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Device_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10854,7 +10854,7 @@ func (ec *executionContext) _Device_metadata(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Device_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10948,7 +10948,7 @@ func (ec *executionContext) _DeviceCommunicationUnit_appProtocol(ctx context.Con
 	}
 	res := resTmp.(*model.ApplicationProtocol)
 	fc.Result = res
-	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
+	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceCommunicationUnit_appProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10989,7 +10989,7 @@ func (ec *executionContext) _DeviceCommunicationUnit_attributes(ctx context.Cont
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceCommunicationUnit_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11036,7 +11036,7 @@ func (ec *executionContext) _DeviceConfigurationRegister_spec(ctx context.Contex
 	}
 	res := resTmp.(*model.DeviceConfigurationRegisterSpec)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationRegister_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11085,7 +11085,7 @@ func (ec *executionContext) _DeviceConfigurationRegister_metadata(ctx context.Co
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationRegister_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11179,7 +11179,7 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec_registerType(ctx co
 	}
 	res := resTmp.(*model.RegisterType)
 	fc.Result = res
-	return ec.marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx, field.Selections, res)
+	return ec.marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_registerType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11220,7 +11220,7 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec_attributes(ctx cont
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11267,7 +11267,7 @@ func (ec *executionContext) _DeviceConfigurationTemplate_spec(ctx context.Contex
 	}
 	res := resTmp.(*model.DeviceConfigurationTemplateSpec)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationTemplate_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11314,7 +11314,7 @@ func (ec *executionContext) _DeviceConfigurationTemplate_metadata(ctx context.Co
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceConfigurationTemplate_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11449,7 +11449,7 @@ func (ec *executionContext) _DeviceGroup_spec(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.DeviceGroupSpec)
 	fc.Result = res
-	return ec.marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupSpec(ctx, field.Selections, res)
+	return ec.marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroupSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceGroup_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11494,7 +11494,7 @@ func (ec *executionContext) _DeviceGroup_metadata(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceGroup_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11752,7 +11752,7 @@ func (ec *executionContext) _DeviceInfo_clockDelta(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceInfo_clockDelta(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12045,7 +12045,7 @@ func (ec *executionContext) _DeviceSpec_communicationUnitLink(ctx context.Contex
 	}
 	res := resTmp.([]*model.DeviceCommunicationUnit)
 	fc.Result = res
-	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceSpec_communicationUnitLink(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12135,7 +12135,7 @@ func (ec *executionContext) _DeviceStatus_info(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.DeviceInfo)
 	fc.Result = res
-	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DeviceStatus_info(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12237,7 +12237,7 @@ func (ec *executionContext) _Driver_spec(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.DriverSpec)
 	fc.Result = res
-	return ec.marshalODriverSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriverSpec(ctx, field.Selections, res)
+	return ec.marshalODriverSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Driver_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12542,7 +12542,7 @@ func (ec *executionContext) _DriverSpec_templates(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.DriverTemplates)
 	fc.Result = res
-	return ec.marshalODriverTemplates2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriverTemplates(ctx, field.Selections, res)
+	return ec.marshalODriverTemplates2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverTemplates(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverSpec_templates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12636,7 +12636,7 @@ func (ec *executionContext) _DriverTemplates_communicationTemplates(ctx context.
 	}
 	res := resTmp.([]*model.CommunicationTemplate)
 	fc.Result = res
-	return ec.marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx, field.Selections, res)
+	return ec.marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverTemplates_communicationTemplates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12683,7 +12683,7 @@ func (ec *executionContext) _DriverTemplates_appProtocols(ctx context.Context, f
 	}
 	res := resTmp.([]*model.ApplicationProtocolTemplate)
 	fc.Result = res
-	return ec.marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx, field.Selections, res)
+	return ec.marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverTemplates_appProtocols(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12730,7 +12730,7 @@ func (ec *executionContext) _DriverTemplates_actionAttributes(ctx context.Contex
 	}
 	res := resTmp.([]*model.JobActionAttributes)
 	fc.Result = res
-	return ec.marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionAttributes(ctx, field.Selections, res)
+	return ec.marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionAttributes(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverTemplates_actionAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12777,7 +12777,7 @@ func (ec *executionContext) _DriverTemplates_accessTemplates(ctx context.Context
 	}
 	res := resTmp.([]*model.AccessLevelTemplate)
 	fc.Result = res
-	return ec.marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAccessLevelTemplate(ctx, field.Selections, res)
+	return ec.marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐAccessLevelTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverTemplates_accessTemplates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12824,7 +12824,7 @@ func (ec *executionContext) _DriverTemplates_actionConstraints(ctx context.Conte
 	}
 	res := resTmp.(*model.JobActionContraints)
 	fc.Result = res
-	return ec.marshalOJobActionContraints2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionContraints(ctx, field.Selections, res)
+	return ec.marshalOJobActionContraints2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionContraints(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DriverTemplates_actionConstraints(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13199,7 +13199,7 @@ func (ec *executionContext) _EventRecords_values(ctx context.Context, field grap
 	}
 	res := resTmp.([]*model.EventRecord)
 	fc.Result = res
-	return ec.marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecord(ctx, field.Selections, res)
+	return ec.marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecord(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_EventRecords_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13334,7 +13334,7 @@ func (ec *executionContext) _FieldDescriptor_dataType(ctx context.Context, field
 	}
 	res := resTmp.(*model.FieldDataType)
 	fc.Result = res
-	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13375,7 +13375,7 @@ func (ec *executionContext) _FieldDescriptor_format(ctx context.Context, field g
 	}
 	res := resTmp.(*model.FieldDisplayFormat)
 	fc.Result = res
-	return ec.marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx, field.Selections, res)
+	return ec.marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDisplayFormat(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_format(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13785,7 +13785,7 @@ func (ec *executionContext) _FieldDescriptor_validation(ctx context.Context, fie
 	}
 	res := resTmp.(*model.FieldValidation)
 	fc.Result = res
-	return ec.marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValidation(ctx, field.Selections, res)
+	return ec.marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValidation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_validation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13844,7 +13844,7 @@ func (ec *executionContext) _FieldDescriptor_defaultValue(ctx context.Context, f
 	}
 	res := resTmp.(*model.FieldValue)
 	fc.Result = res
-	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
+	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14229,7 +14229,7 @@ func (ec *executionContext) _FieldValidation_options(ctx context.Context, field 
 	}
 	res := resTmp.([]*model.Mapstring)
 	fc.Result = res
-	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
+	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14522,7 +14522,7 @@ func (ec *executionContext) _FieldValue_durationValue(ctx context.Context, field
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldValue_durationValue(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14569,7 +14569,7 @@ func (ec *executionContext) _FieldValues_attributes(ctx context.Context, field g
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FieldValues_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14903,7 +14903,7 @@ func (ec *executionContext) _IrregularProfileValues_values(ctx context.Context, 
 	}
 	res := resTmp.([]*model.IrregularValue)
 	fc.Result = res
-	return ec.marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx, field.Selections, res)
+	return ec.marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_IrregularProfileValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14991,7 +14991,7 @@ func (ec *executionContext) _IrregularValue_value(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.MeasuredValue)
 	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_IrregularValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15091,7 +15091,7 @@ func (ec *executionContext) _JobAction_attributes(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15138,7 +15138,7 @@ func (ec *executionContext) _JobAction_getRegister(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.ActionGetRegister)
 	fc.Result = res
-	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
+	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15183,7 +15183,7 @@ func (ec *executionContext) _JobAction_getPeriodicalProfile(ctx context.Context,
 	}
 	res := resTmp.(*model.ActionGetPeriodicalProfile)
 	fc.Result = res
-	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
+	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getPeriodicalProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15230,7 +15230,7 @@ func (ec *executionContext) _JobAction_getIrregularProfile(ctx context.Context, 
 	}
 	res := resTmp.(*model.ActionGetIrregularProfile)
 	fc.Result = res
-	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
+	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getIrregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15277,7 +15277,7 @@ func (ec *executionContext) _JobAction_getEvents(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ActionGetEvents)
 	fc.Result = res
-	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
+	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15324,7 +15324,7 @@ func (ec *executionContext) _JobAction_getDeviceInfo(ctx context.Context, field 
 	}
 	res := resTmp.(*model.ActionGetDeviceInfo)
 	fc.Result = res
-	return ec.marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getDeviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15369,7 +15369,7 @@ func (ec *executionContext) _JobAction_syncClock(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ActionSyncClock)
 	fc.Result = res
-	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
+	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_syncClock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15414,7 +15414,7 @@ func (ec *executionContext) _JobAction_setRelayState(ctx context.Context, field 
 	}
 	res := resTmp.(*model.ActionSetRelayState)
 	fc.Result = res
-	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
+	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_setRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15459,7 +15459,7 @@ func (ec *executionContext) _JobAction_setDisconnectorState(ctx context.Context,
 	}
 	res := resTmp.(*model.ActionSetDisconnectorState)
 	fc.Result = res
-	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
+	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_setDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15504,7 +15504,7 @@ func (ec *executionContext) _JobAction_getTou(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.ActionGetTou)
 	fc.Result = res
-	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
+	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_getTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15549,7 +15549,7 @@ func (ec *executionContext) _JobAction_setTou(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.ActionSetTou)
 	fc.Result = res
-	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
+	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_setTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15594,7 +15594,7 @@ func (ec *executionContext) _JobAction_setLimiter(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.ActionSetLimiter)
 	fc.Result = res
-	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
+	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_setLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15639,7 +15639,7 @@ func (ec *executionContext) _JobAction_resetBillingPeriod(ctx context.Context, f
 	}
 	res := resTmp.(*model.ActionResetBillingPeriod)
 	fc.Result = res
-	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
+	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_resetBillingPeriod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15684,7 +15684,7 @@ func (ec *executionContext) _JobAction_fwUpdate(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.ActionFwUpdate)
 	fc.Result = res
-	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
+	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobAction_fwUpdate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15729,7 +15729,7 @@ func (ec *executionContext) _JobActionAttributes_type(ctx context.Context, field
 	}
 	res := resTmp.(*model.ActionType)
 	fc.Result = res
-	return ec.marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionType(ctx, field.Selections, res)
+	return ec.marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionAttributes_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15770,7 +15770,7 @@ func (ec *executionContext) _JobActionAttributes_attributes(ctx context.Context,
 	}
 	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15845,7 +15845,7 @@ func (ec *executionContext) _JobActionContraints_getRegisterTypeName(ctx context
 	}
 	res := resTmp.([]*model.Mapstring)
 	fc.Result = res
-	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
+	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionContraints_getRegisterTypeName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15892,7 +15892,7 @@ func (ec *executionContext) _JobActionContraints_getRegisterTypeAttributes(ctx c
 	}
 	res := resTmp.([]*model.MapListOfString)
 	fc.Result = res
-	return ec.marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapListOfString(ctx, field.Selections, res)
+	return ec.marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapListOfString(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionContraints_getRegisterTypeAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -15980,7 +15980,7 @@ func (ec *executionContext) _JobActionSet_getRegister(ctx context.Context, field
 	}
 	res := resTmp.(*model.ActionGetRegister)
 	fc.Result = res
-	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
+	return ec.marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetRegister(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16025,7 +16025,7 @@ func (ec *executionContext) _JobActionSet_getPeriodicalProfile(ctx context.Conte
 	}
 	res := resTmp.(*model.ActionGetPeriodicalProfile)
 	fc.Result = res
-	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
+	return ec.marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getPeriodicalProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16072,7 +16072,7 @@ func (ec *executionContext) _JobActionSet_getIrregularProfile(ctx context.Contex
 	}
 	res := resTmp.(*model.ActionGetIrregularProfile)
 	fc.Result = res
-	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
+	return ec.marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getIrregularProfile(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16119,7 +16119,7 @@ func (ec *executionContext) _JobActionSet_getEvents(ctx context.Context, field g
 	}
 	res := resTmp.(*model.ActionGetEvents)
 	fc.Result = res
-	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
+	return ec.marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetEvents(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16166,7 +16166,7 @@ func (ec *executionContext) _JobActionSet_getDeviceInfo(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ActionGetDeviceInfo)
 	fc.Result = res
-	return ec.marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getDeviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16211,7 +16211,7 @@ func (ec *executionContext) _JobActionSet_syncClock(ctx context.Context, field g
 	}
 	res := resTmp.(*model.ActionSyncClock)
 	fc.Result = res
-	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
+	return ec.marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSyncClock(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_syncClock(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16256,7 +16256,7 @@ func (ec *executionContext) _JobActionSet_setRelayState(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ActionSetRelayState)
 	fc.Result = res
-	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
+	return ec.marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetRelayState(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_setRelayState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16301,7 +16301,7 @@ func (ec *executionContext) _JobActionSet_setDisconnectorState(ctx context.Conte
 	}
 	res := resTmp.(*model.ActionSetDisconnectorState)
 	fc.Result = res
-	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
+	return ec.marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_setDisconnectorState(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16346,7 +16346,7 @@ func (ec *executionContext) _JobActionSet_getTou(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ActionGetTou)
 	fc.Result = res
-	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
+	return ec.marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetTou(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_getTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16391,7 +16391,7 @@ func (ec *executionContext) _JobActionSet_setTou(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ActionSetTou)
 	fc.Result = res
-	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
+	return ec.marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetTou(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_setTou(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16436,7 +16436,7 @@ func (ec *executionContext) _JobActionSet_setLimiter(ctx context.Context, field 
 	}
 	res := resTmp.(*model.ActionSetLimiter)
 	fc.Result = res
-	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
+	return ec.marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetLimiter(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_setLimiter(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16481,7 +16481,7 @@ func (ec *executionContext) _JobActionSet_resetBillingPeriod(ctx context.Context
 	}
 	res := resTmp.(*model.ActionResetBillingPeriod)
 	fc.Result = res
-	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
+	return ec.marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_resetBillingPeriod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16526,7 +16526,7 @@ func (ec *executionContext) _JobActionSet_fwUpdate(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.ActionFwUpdate)
 	fc.Result = res
-	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
+	return ec.marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionFwUpdate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobActionSet_fwUpdate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16694,7 +16694,7 @@ func (ec *executionContext) _JobDevice_deviceAttributes(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobDevice_deviceAttributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16741,7 +16741,7 @@ func (ec *executionContext) _JobDevice_connectionInfo(ctx context.Context, field
 	}
 	res := resTmp.([]*model.ConnectionInfo)
 	fc.Result = res
-	return ec.marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
+	return ec.marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobDevice_connectionInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16796,7 +16796,7 @@ func (ec *executionContext) _JobDevice_appProtocol(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.ApplicationProtocol)
 	fc.Result = res
-	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
+	return ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobDevice_appProtocol(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -16960,7 +16960,7 @@ func (ec *executionContext) _JobSettings_maxDuration(ctx context.Context, field 
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_maxDuration(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17007,7 +17007,7 @@ func (ec *executionContext) _JobSettings_priority(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.JobPriority)
 	fc.Result = res
-	return ec.marshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobPriority(ctx, field.Selections, res)
+	return ec.marshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobPriority(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_priority(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17089,7 +17089,7 @@ func (ec *executionContext) _JobSettings_retryDelay(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_retryDelay(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17136,7 +17136,7 @@ func (ec *executionContext) _JobSettings_deferStart(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobSettings_deferStart(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17224,7 +17224,7 @@ func (ec *executionContext) _JobStatus_status(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.JobStatusCode)
 	fc.Result = res
-	return ec.marshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobStatusCode(ctx, field.Selections, res)
+	return ec.marshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobStatusCode(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobStatus_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17265,7 +17265,7 @@ func (ec *executionContext) _JobStatus_code(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.JobErrorCode)
 	fc.Result = res
-	return ec.marshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobErrorCode(ctx, field.Selections, res)
+	return ec.marshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobErrorCode(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobStatus_code(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17306,7 +17306,7 @@ func (ec *executionContext) _JobStatus_results(ctx context.Context, field graphq
 	}
 	res := resTmp.([]*model.ActionResult)
 	fc.Result = res
-	return ec.marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResult(ctx, field.Selections, res)
+	return ec.marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17482,7 +17482,7 @@ func (ec *executionContext) _JobStatus_deviceInfo(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.DeviceInfo)
 	fc.Result = res
-	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_JobStatus_deviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17625,7 +17625,7 @@ func (ec *executionContext) _ListBulkJobsRequest_selector(ctx context.Context, f
 	}
 	res := resTmp.(*model.ListSelector)
 	fc.Result = res
-	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
+	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListBulkJobsRequest_selector(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17719,7 +17719,7 @@ func (ec *executionContext) _ListDeviceGroupDevicesRequest_selector(ctx context.
 	}
 	res := resTmp.(*model.ListSelector)
 	fc.Result = res
-	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
+	return ec.marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelector(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListDeviceGroupDevicesRequest_selector(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17772,7 +17772,7 @@ func (ec *executionContext) _ListOfBulk_items(ctx context.Context, field graphql
 	}
 	res := resTmp.([]*model.Bulk)
 	fc.Result = res
-	return ec.marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
+	return ec.marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfBulk_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17862,7 +17862,7 @@ func (ec *executionContext) _ListOfBulkJob_items(ctx context.Context, field grap
 	}
 	res := resTmp.([]*model.BulkJob)
 	fc.Result = res
-	return ec.marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx, field.Selections, res)
+	return ec.marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJob(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfBulkJob_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -17952,7 +17952,7 @@ func (ec *executionContext) _ListOfCommunicationBus_items(ctx context.Context, f
 	}
 	res := resTmp.([]*model.CommunicationBus)
 	fc.Result = res
-	return ec.marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx, field.Selections, res)
+	return ec.marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfCommunicationBus_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18040,7 +18040,7 @@ func (ec *executionContext) _ListOfCommunicationUnit_items(ctx context.Context, 
 	}
 	res := resTmp.([]*model.CommunicationUnit)
 	fc.Result = res
-	return ec.marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfCommunicationUnit_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18128,7 +18128,7 @@ func (ec *executionContext) _ListOfDevice_items(ctx context.Context, field graph
 	}
 	res := resTmp.([]*model.Device)
 	fc.Result = res
-	return ec.marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx, field.Selections, res)
+	return ec.marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDevice_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18218,7 +18218,7 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit_items(ctx context.Con
 	}
 	res := resTmp.([]*model.DeviceCommunicationUnit)
 	fc.Result = res
-	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18308,7 +18308,7 @@ func (ec *executionContext) _ListOfDeviceConfigurationRegister_items(ctx context
 	}
 	res := resTmp.([]*model.DeviceConfigurationRegister)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationRegister2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationRegister2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDeviceConfigurationRegister_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18396,7 +18396,7 @@ func (ec *executionContext) _ListOfDeviceConfigurationTemplate_items(ctx context
 	}
 	res := resTmp.([]*model.DeviceConfigurationTemplate)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDeviceConfigurationTemplate_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18484,7 +18484,7 @@ func (ec *executionContext) _ListOfDeviceGroup_items(ctx context.Context, field 
 	}
 	res := resTmp.([]*model.DeviceGroup)
 	fc.Result = res
-	return ec.marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroup(ctx, field.Selections, res)
+	return ec.marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroup(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDeviceGroup_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18572,7 +18572,7 @@ func (ec *executionContext) _ListOfDriver_items(ctx context.Context, field graph
 	}
 	res := resTmp.([]*model.Driver)
 	fc.Result = res
-	return ec.marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriver(ctx, field.Selections, res)
+	return ec.marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriver(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfDriver_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18658,7 +18658,7 @@ func (ec *executionContext) _ListOfFieldDescriptor_items(ctx context.Context, fi
 	}
 	res := resTmp.([]*model.FieldDescriptor)
 	fc.Result = res
-	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18774,7 +18774,7 @@ func (ec *executionContext) _ListOfJobDevice_list(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.JobDevice)
 	fc.Result = res
-	return ec.marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
+	return ec.marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfJobDevice_list(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18872,7 +18872,7 @@ func (ec *executionContext) _ListOfJobDeviceId_list(ctx context.Context, field g
 	}
 	res := resTmp.([]*model.JobDeviceID)
 	fc.Result = res
-	return ec.marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx, field.Selections, res)
+	return ec.marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDeviceID(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfJobDeviceId_list(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -18960,7 +18960,7 @@ func (ec *executionContext) _ListOfModemPool_items(ctx context.Context, field gr
 	}
 	res := resTmp.([]*model.ModemPool)
 	fc.Result = res
-	return ec.marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx, field.Selections, res)
+	return ec.marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfModemPool_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19132,7 +19132,7 @@ func (ec *executionContext) _ListOfTimeOfUseTable_items(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.TimeOfUseTable)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfTimeOfUseTable_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19220,7 +19220,7 @@ func (ec *executionContext) _ListOfVariable_items(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.Variable)
 	fc.Result = res
-	return ec.marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx, field.Selections, res)
+	return ec.marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListOfVariable_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19390,7 +19390,7 @@ func (ec *executionContext) _ListSelector_sortBy(ctx context.Context, field grap
 	}
 	res := resTmp.([]*model.ListSelectorSortBy)
 	fc.Result = res
-	return ec.marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorSortBy(ctx, field.Selections, res)
+	return ec.marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorSortBy(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListSelector_sortBy(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19437,7 +19437,7 @@ func (ec *executionContext) _ListSelector_filterBy(ctx context.Context, field gr
 	}
 	res := resTmp.([]*model.ListSelectorFilterBy)
 	fc.Result = res
-	return ec.marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx, field.Selections, res)
+	return ec.marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorFilterBy(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListSelector_filterBy(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19578,7 +19578,7 @@ func (ec *executionContext) _ListSelectorFilterBy_operator(ctx context.Context, 
 	}
 	res := resTmp.(*model.FilterOperator)
 	fc.Result = res
-	return ec.marshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFilterOperator(ctx, field.Selections, res)
+	return ec.marshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFilterOperator(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListSelectorFilterBy_operator(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -19619,7 +19619,7 @@ func (ec *executionContext) _ListSelectorFilterBy_dataType(ctx context.Context, 
 	}
 	res := resTmp.(*model.FieldDataType)
 	fc.Result = res
-	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ListSelectorFilterBy_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20357,7 +20357,7 @@ func (ec *executionContext) _MetadataFields_fields(ctx context.Context, field gr
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20404,7 +20404,7 @@ func (ec *executionContext) _MetadataFields_managedFields(ctx context.Context, f
 	}
 	res := resTmp.([]*model.MapFieldValue)
 	fc.Result = res
-	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MetadataFields_managedFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20738,7 +20738,7 @@ func (ec *executionContext) _ModemInfo_connectTimeout(ctx context.Context, field
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_connectTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20785,7 +20785,7 @@ func (ec *executionContext) _ModemInfo_commandTimeout(ctx context.Context, field
 	}
 	res := resTmp.(*model.Duration)
 	fc.Result = res
-	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
+	return ec.marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_commandTimeout(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20832,7 +20832,7 @@ func (ec *executionContext) _ModemInfo_tcpip(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.ConnectionTypeDirectTCPIP)
 	fc.Result = res
-	return ec.marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_tcpip(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20881,7 +20881,7 @@ func (ec *executionContext) _ModemInfo_serialOverIp(ctx context.Context, field g
 	}
 	res := resTmp.(*model.ConnectionTypeControlledSerial)
 	fc.Result = res
-	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
+	return ec.marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemInfo_serialOverIp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -20971,7 +20971,7 @@ func (ec *executionContext) _ModemPool_spec(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.ModemPoolSpec)
 	fc.Result = res
-	return ec.marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx, field.Selections, res)
+	return ec.marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPoolSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemPool_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21016,7 +21016,7 @@ func (ec *executionContext) _ModemPool_status(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.ModemPoolStatus)
 	fc.Result = res
-	return ec.marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolStatus(ctx, field.Selections, res)
+	return ec.marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPoolStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemPool_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21061,7 +21061,7 @@ func (ec *executionContext) _ModemPool_metadata(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemPool_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21155,7 +21155,7 @@ func (ec *executionContext) _ModemPoolStatus_modems(ctx context.Context, field g
 	}
 	res := resTmp.([]*model.ModemInfo)
 	fc.Result = res
-	return ec.marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
+	return ec.marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21261,7 +21261,7 @@ func (ec *executionContext) _ProfileBlock_values(ctx context.Context, field grap
 	}
 	res := resTmp.([]*model.MeasuredValue)
 	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProfileBlock_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21402,7 +21402,7 @@ func (ec *executionContext) _ProfileValues_blocks(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.ProfileBlock)
 	fc.Result = res
-	return ec.marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx, field.Selections, res)
+	return ec.marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProfileValues_blocks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21449,7 +21449,7 @@ func (ec *executionContext) _ProxyBulk_spec(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.ProxyBulkSpec)
 	fc.Result = res
-	return ec.marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulkSpec(ctx, field.Selections, res)
+	return ec.marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProxyBulkSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulk_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21504,7 +21504,7 @@ func (ec *executionContext) _ProxyBulk_status(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.BulkStatus)
 	fc.Result = res
-	return ec.marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatus(ctx, field.Selections, res)
+	return ec.marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulk_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21561,7 +21561,7 @@ func (ec *executionContext) _ProxyBulk_metadata(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulk_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21696,7 +21696,7 @@ func (ec *executionContext) _ProxyBulkSpec_devices(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.ListOfJobDevice)
 	fc.Result = res
-	return ec.marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx, field.Selections, res)
+	return ec.marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfJobDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulkSpec_devices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21743,7 +21743,7 @@ func (ec *executionContext) _ProxyBulkSpec_settings(ctx context.Context, field g
 	}
 	res := resTmp.(*model.JobSettings)
 	fc.Result = res
-	return ec.marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobSettings(ctx, field.Selections, res)
+	return ec.marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobSettings(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulkSpec_settings(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21798,7 +21798,7 @@ func (ec *executionContext) _ProxyBulkSpec_actions(ctx context.Context, field gr
 	}
 	res := resTmp.([]*model.JobAction)
 	fc.Result = res
-	return ec.marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx, field.Selections, res)
+	return ec.marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobAction(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ProxyBulkSpec_actions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21912,7 +21912,7 @@ func (ec *executionContext) _Query_listBulks(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.ListOfBulk)
 	fc.Result = res
-	return ec.marshalOListOfBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulk(ctx, field.Selections, res)
+	return ec.marshalOListOfBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfBulk(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listBulks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -21959,7 +21959,7 @@ func (ec *executionContext) _Query_listBulkJobs(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.ListOfBulkJob)
 	fc.Result = res
-	return ec.marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulkJob(ctx, field.Selections, res)
+	return ec.marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfBulkJob(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listBulkJobs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22006,7 +22006,7 @@ func (ec *executionContext) _Query_getBulkJob(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.BulkJob)
 	fc.Result = res
-	return ec.marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx, field.Selections, res)
+	return ec.marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJob(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getBulkJob(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22055,7 +22055,7 @@ func (ec *executionContext) _Query_updateBulkJob(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateBulkJob(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22100,7 +22100,7 @@ func (ec *executionContext) _Query_cancelBulk(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_cancelBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22145,7 +22145,7 @@ func (ec *executionContext) _Query_createProxyBulk(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createProxyBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22190,7 +22190,7 @@ func (ec *executionContext) _Query_getProxyBulk(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.ProxyBulk)
 	fc.Result = res
-	return ec.marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulk(ctx, field.Selections, res)
+	return ec.marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProxyBulk(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getProxyBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22239,7 +22239,7 @@ func (ec *executionContext) _Query_createBulk(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22284,7 +22284,7 @@ func (ec *executionContext) _Query_getBulk(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.(*model.Bulk)
 	fc.Result = res
-	return ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
+	return ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulk(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22333,7 +22333,7 @@ func (ec *executionContext) _Query_updateBulk(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateBulk(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22378,7 +22378,7 @@ func (ec *executionContext) _Query_getApplicationConfig(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ApplicationConfigDescriptor)
 	fc.Result = res
-	return ec.marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx, field.Selections, res)
+	return ec.marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getApplicationConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22425,7 +22425,7 @@ func (ec *executionContext) _Query_updateApplicationConfig(ctx context.Context, 
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateApplicationConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22470,7 +22470,7 @@ func (ec *executionContext) _Query_synchronizeComponentConfig(ctx context.Contex
 	}
 	res := resTmp.(*model.ComponentConfig)
 	fc.Result = res
-	return ec.marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
+	return ec.marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_synchronizeComponentConfig(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22517,7 +22517,7 @@ func (ec *executionContext) _Query_createDeviceConfigurationRegister(ctx context
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createDeviceConfigurationRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22562,7 +22562,7 @@ func (ec *executionContext) _Query_listDeviceConfigurationRegisters(ctx context.
 	}
 	res := resTmp.(*model.ListOfDeviceConfigurationRegister)
 	fc.Result = res
-	return ec.marshalOListOfDeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceConfigurationRegister(ctx, field.Selections, res)
+	return ec.marshalOListOfDeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceConfigurationRegister(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDeviceConfigurationRegisters(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22609,7 +22609,7 @@ func (ec *executionContext) _Query_getDeviceConfigurationRegister(ctx context.Co
 	}
 	res := resTmp.(*model.DeviceConfigurationRegister)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceConfigurationRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22656,7 +22656,7 @@ func (ec *executionContext) _Query_updateDeviceConfigurationRegister(ctx context
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateDeviceConfigurationRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22701,7 +22701,7 @@ func (ec *executionContext) _Query_deleteDeviceConfigurationRegister(ctx context
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteDeviceConfigurationRegister(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22746,7 +22746,7 @@ func (ec *executionContext) _Query_createDeviceConfigurationTemplate(ctx context
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22791,7 +22791,7 @@ func (ec *executionContext) _Query_listDeviceConfigurationTemplates(ctx context.
 	}
 	res := resTmp.(*model.ListOfDeviceConfigurationTemplate)
 	fc.Result = res
-	return ec.marshalOListOfDeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceConfigurationTemplate(ctx, field.Selections, res)
+	return ec.marshalOListOfDeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceConfigurationTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDeviceConfigurationTemplates(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22838,7 +22838,7 @@ func (ec *executionContext) _Query_getDeviceConfigurationTemplate(ctx context.Co
 	}
 	res := resTmp.(*model.DeviceConfigurationTemplate)
 	fc.Result = res
-	return ec.marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, field.Selections, res)
+	return ec.marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22885,7 +22885,7 @@ func (ec *executionContext) _Query_updateDeviceConfigurationTemplate(ctx context
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22930,7 +22930,7 @@ func (ec *executionContext) _Query_deleteDeviceConfigurationTemplate(ctx context
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -22975,7 +22975,7 @@ func (ec *executionContext) _Query_addDeviceConfigurationRegisterToDeviceConfigu
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_addDeviceConfigurationRegisterToDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23020,7 +23020,7 @@ func (ec *executionContext) _Query_removeDeviceConfigurationRegisterFromDeviceCo
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23065,7 +23065,7 @@ func (ec *executionContext) _Query_createCommunicationUnit(ctx context.Context, 
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23110,7 +23110,7 @@ func (ec *executionContext) _Query_updateCommunicationUnit(ctx context.Context, 
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23155,7 +23155,7 @@ func (ec *executionContext) _Query_listCommunicationUnits(ctx context.Context, f
 	}
 	res := resTmp.(*model.ListOfCommunicationUnit)
 	fc.Result = res
-	return ec.marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23202,7 +23202,7 @@ func (ec *executionContext) _Query_getCommunicationUnit(ctx context.Context, fie
 	}
 	res := resTmp.(*model.CommunicationUnit)
 	fc.Result = res
-	return ec.marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23249,7 +23249,7 @@ func (ec *executionContext) _Query_createCommunicationBus(ctx context.Context, f
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23294,7 +23294,7 @@ func (ec *executionContext) _Query_listCommunicationBuses(ctx context.Context, f
 	}
 	res := resTmp.(*model.ListOfCommunicationBus)
 	fc.Result = res
-	return ec.marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationBus(ctx, field.Selections, res)
+	return ec.marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationBus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listCommunicationBuses(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23341,7 +23341,7 @@ func (ec *executionContext) _Query_addCommunicationUnitsToCommunicationBus(ctx c
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_addCommunicationUnitsToCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23386,7 +23386,7 @@ func (ec *executionContext) _Query_removeCommunicationUnitsFromCommunicationBus(
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_removeCommunicationUnitsFromCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23431,7 +23431,7 @@ func (ec *executionContext) _Query_createDevice(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createDevice(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23476,7 +23476,7 @@ func (ec *executionContext) _Query_updateDevice(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateDevice(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23521,7 +23521,7 @@ func (ec *executionContext) _Query_listDevices(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.ListOfDevice)
 	fc.Result = res
-	return ec.marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDevice(ctx, field.Selections, res)
+	return ec.marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDevices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23568,7 +23568,7 @@ func (ec *executionContext) _Query_getDevice(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.Device)
 	fc.Result = res
-	return ec.marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx, field.Selections, res)
+	return ec.marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDevice(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23617,7 +23617,7 @@ func (ec *executionContext) _Query_getDeviceInfo(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.DeviceInfo)
 	fc.Result = res
-	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
+	return ec.marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23678,7 +23678,7 @@ func (ec *executionContext) _Query_setDeviceCommunicationUnits(ctx context.Conte
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_setDeviceCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23723,7 +23723,7 @@ func (ec *executionContext) _Query_getDeviceCommunicationUnits(ctx context.Conte
 	}
 	res := resTmp.(*model.ListOfDeviceCommunicationUnit)
 	fc.Result = res
-	return ec.marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23770,7 +23770,7 @@ func (ec *executionContext) _Query_createDeviceGroup(ctx context.Context, field 
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createDeviceGroup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23815,7 +23815,7 @@ func (ec *executionContext) _Query_listDeviceGroups(ctx context.Context, field g
 	}
 	res := resTmp.(*model.ListOfDeviceGroup)
 	fc.Result = res
-	return ec.marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceGroup(ctx, field.Selections, res)
+	return ec.marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceGroup(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDeviceGroups(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23862,7 +23862,7 @@ func (ec *executionContext) _Query_getDeviceGroup(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.DeviceGroup)
 	fc.Result = res
-	return ec.marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroup(ctx, field.Selections, res)
+	return ec.marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroup(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDeviceGroup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23909,7 +23909,7 @@ func (ec *executionContext) _Query_addDevicesToGroup(ctx context.Context, field 
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_addDevicesToGroup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23954,7 +23954,7 @@ func (ec *executionContext) _Query_removeDevicesFromGroup(ctx context.Context, f
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_removeDevicesFromGroup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -23999,7 +23999,7 @@ func (ec *executionContext) _Query_listDeviceGroupDevices(ctx context.Context, f
 	}
 	res := resTmp.(*model.ListOfDevice)
 	fc.Result = res
-	return ec.marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDevice(ctx, field.Selections, res)
+	return ec.marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDevice(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDeviceGroupDevices(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24046,7 +24046,7 @@ func (ec *executionContext) _Query_listModemPools(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.ListOfModemPool)
 	fc.Result = res
-	return ec.marshalOListOfModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfModemPool(ctx, field.Selections, res)
+	return ec.marshalOListOfModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfModemPool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listModemPools(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24093,7 +24093,7 @@ func (ec *executionContext) _Query_getModemPool(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.ModemPool)
 	fc.Result = res
-	return ec.marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx, field.Selections, res)
+	return ec.marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getModemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24142,7 +24142,7 @@ func (ec *executionContext) _Query_createModemPool(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createModemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24187,7 +24187,7 @@ func (ec *executionContext) _Query_updateModemPool(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateModemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24232,7 +24232,7 @@ func (ec *executionContext) _Query_deleteModemPool(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteModemPool(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24277,7 +24277,7 @@ func (ec *executionContext) _Query_createModem(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createModem(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24322,7 +24322,7 @@ func (ec *executionContext) _Query_updateModem(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateModem(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24367,7 +24367,7 @@ func (ec *executionContext) _Query_deleteModem(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteModem(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24412,7 +24412,7 @@ func (ec *executionContext) _Query_listDrivers(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.ListOfDriver)
 	fc.Result = res
-	return ec.marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDriver(ctx, field.Selections, res)
+	return ec.marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDriver(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listDrivers(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24459,7 +24459,7 @@ func (ec *executionContext) _Query_getDriver(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.Driver)
 	fc.Result = res
-	return ec.marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriver(ctx, field.Selections, res)
+	return ec.marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriver(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24504,7 +24504,7 @@ func (ec *executionContext) _Query_listFieldDescriptors(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ListOfFieldDescriptor)
 	fc.Result = res
-	return ec.marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx, field.Selections, res)
+	return ec.marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24551,7 +24551,7 @@ func (ec *executionContext) _Query_getMeterDataRegisters(ctx context.Context, fi
 	}
 	res := resTmp.(*model.RegisterValues)
 	fc.Result = res
-	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
+	return ec.marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeterDataRegisters(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24596,7 +24596,7 @@ func (ec *executionContext) _Query_getMeterDataProfiles(ctx context.Context, fie
 	}
 	res := resTmp.(*model.ProfileValues)
 	fc.Result = res
-	return ec.marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileValues(ctx, field.Selections, res)
+	return ec.marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeterDataProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24645,7 +24645,7 @@ func (ec *executionContext) _Query_getMeterDataIrregularProfiles(ctx context.Con
 	}
 	res := resTmp.(*model.IrregularProfileValues)
 	fc.Result = res
-	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
+	return ec.marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularProfileValues(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeterDataIrregularProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24692,7 +24692,7 @@ func (ec *executionContext) _Query_getMeterEvents(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.EventRecords)
 	fc.Result = res
-	return ec.marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecords(ctx, field.Selections, res)
+	return ec.marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecords(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeterEvents(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24737,7 +24737,7 @@ func (ec *executionContext) _Query_createTimeOfUseTable(ctx context.Context, fie
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24782,7 +24782,7 @@ func (ec *executionContext) _Query_listTimeOfUseTables(ctx context.Context, fiel
 	}
 	res := resTmp.(*model.ListOfTimeOfUseTable)
 	fc.Result = res
-	return ec.marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx, field.Selections, res)
+	return ec.marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listTimeOfUseTables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24829,7 +24829,7 @@ func (ec *executionContext) _Query_getTimeOfUseTable(ctx context.Context, field 
 	}
 	res := resTmp.(*model.TimeOfUseTable)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTable(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24876,7 +24876,7 @@ func (ec *executionContext) _Query_updateTimeOfUseTable(ctx context.Context, fie
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24921,7 +24921,7 @@ func (ec *executionContext) _Query_deleteTimeOfUseTable(ctx context.Context, fie
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteTimeOfUseTable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -24966,7 +24966,7 @@ func (ec *executionContext) _Query_createVariable(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.StringValue)
 	fc.Result = res
-	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_createVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25011,7 +25011,7 @@ func (ec *executionContext) _Query_listVariables(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.ListOfVariable)
 	fc.Result = res
-	return ec.marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfVariable(ctx, field.Selections, res)
+	return ec.marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfVariable(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_listVariables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25058,7 +25058,7 @@ func (ec *executionContext) _Query_updateVariable(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_updateVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25103,7 +25103,7 @@ func (ec *executionContext) _Query_deleteVariable(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Empty)
 	fc.Result = res
-	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_deleteVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25361,7 +25361,7 @@ func (ec *executionContext) _RegisterValue_value(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.MeasuredValue)
 	fc.Result = res
-	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
+	return ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_RegisterValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25420,7 +25420,7 @@ func (ec *executionContext) _RegisterValues_values(ctx context.Context, field gr
 	}
 	res := resTmp.([]*model.RegisterValue)
 	fc.Result = res
-	return ec.marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx, field.Selections, res)
+	return ec.marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_RegisterValues_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -25510,7 +25510,7 @@ func (ec *executionContext) _RelayStateRecord_state(ctx context.Context, field g
 	}
 	res := resTmp.(*model.RelayState)
 	fc.Result = res
-	return ec.marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx, field.Selections, res)
+	return ec.marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayState(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_RelayStateRecord_state(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26084,7 +26084,7 @@ func (ec *executionContext) _SetDeviceCommunicationUnitsRequest_communicationUni
 	}
 	res := resTmp.([]*model.DeviceCommunicationUnit)
 	fc.Result = res
-	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
+	return ec.marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_communicationUnits(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26133,7 +26133,7 @@ func (ec *executionContext) _SetModemPoolRequest_spec(ctx context.Context, field
 	}
 	res := resTmp.(*model.ModemPoolSpec)
 	fc.Result = res
-	return ec.marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx, field.Selections, res)
+	return ec.marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPoolSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_SetModemPoolRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26178,7 +26178,7 @@ func (ec *executionContext) _SetModemPoolRequest_metadata(ctx context.Context, f
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_SetModemPoolRequest_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26272,7 +26272,7 @@ func (ec *executionContext) _SetModemRequest_modem(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.ModemInfo)
 	fc.Result = res
-	return ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
+	return ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_SetModemRequest_modem(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26665,7 +26665,7 @@ func (ec *executionContext) _Switching_relays(ctx context.Context, field graphql
 	}
 	res := resTmp.([]*model.RelayStateRecord)
 	fc.Result = res
-	return ec.marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx, field.Selections, res)
+	return ec.marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayStateRecord(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Switching_relays(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26712,7 +26712,7 @@ func (ec *executionContext) _TimeOfUseTable_spec(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.TimeOfUseTableSpec)
 	fc.Result = res
-	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
+	return ec.marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTable_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26769,7 +26769,7 @@ func (ec *executionContext) _TimeOfUseTable_metadata(ctx context.Context, field 
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTable_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26904,7 +26904,7 @@ func (ec *executionContext) _TimeOfUseTableSpec_activateAt(ctx context.Context, 
 	}
 	res := resTmp.(*model.Date)
 	fc.Result = res
-	return ec.marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDate(ctx, field.Selections, res)
+	return ec.marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDate(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTableSpec_activateAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -26953,7 +26953,7 @@ func (ec *executionContext) _TimeOfUseTableSpec_seasons(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.Season)
 	fc.Result = res
-	return ec.marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx, field.Selections, res)
+	return ec.marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSeason(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTableSpec_seasons(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27008,7 +27008,7 @@ func (ec *executionContext) _TimeOfUseTableSpec_weeks(ctx context.Context, field
 	}
 	res := resTmp.([]*model.Week)
 	fc.Result = res
-	return ec.marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx, field.Selections, res)
+	return ec.marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐWeek(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTableSpec_weeks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27057,7 +27057,7 @@ func (ec *executionContext) _TimeOfUseTableSpec_dayProfiles(ctx context.Context,
 	}
 	res := resTmp.([]*model.DayProfile)
 	fc.Result = res
-	return ec.marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx, field.Selections, res)
+	return ec.marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDayProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTableSpec_dayProfiles(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27104,7 +27104,7 @@ func (ec *executionContext) _TimeOfUseTableSpec_specialDays(ctx context.Context,
 	}
 	res := resTmp.([]*model.SpecialDay)
 	fc.Result = res
-	return ec.marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx, field.Selections, res)
+	return ec.marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSpecialDay(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_TimeOfUseTableSpec_specialDays(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27155,7 +27155,7 @@ func (ec *executionContext) _UpdateMetadata_metadata(ctx context.Context, field 
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_UpdateMetadata_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27208,7 +27208,7 @@ func (ec *executionContext) _Variable_spec(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.(*model.VariableSpec)
 	fc.Result = res
-	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
+	return ec.marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariableSpec(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Variable_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -27253,7 +27253,7 @@ func (ec *executionContext) _Variable_metadata(ctx context.Context, field graphq
 	}
 	res := resTmp.(*model.MetadataFields)
 	fc.Result = res
-	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
+	return ec.marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Variable_metadata(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -29461,7 +29461,7 @@ func (ec *executionContext) __mapFieldValue_value(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.FieldValue)
 	fc.Result = res
-	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
+	return ec.marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext__mapFieldValue_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -29562,7 +29562,7 @@ func (ec *executionContext) __mapListOfString_value(ctx context.Context, field g
 	}
 	res := resTmp.(*model.ListOfString)
 	fc.Result = res
-	return ec.marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfString(ctx, field.Selections, res)
+	return ec.marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfString(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext__mapListOfString_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -37380,7 +37380,7 @@ func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel a
 	return res
 }
 
-func (ec *executionContext) marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAccessLevelTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.AccessLevelTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐAccessLevelTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.AccessLevelTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37407,7 +37407,7 @@ func (ec *executionContext) marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcyb
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOAccessLevelTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAccessLevelTemplate(ctx, sel, v[i])
+			ret[i] = ec.marshalOAccessLevelTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐAccessLevelTemplate(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37421,77 +37421,77 @@ func (ec *executionContext) marshalOAccessLevelTemplate2ᚕᚖgithubᚗcomᚋcyb
 	return ret
 }
 
-func (ec *executionContext) marshalOAccessLevelTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐAccessLevelTemplate(ctx context.Context, sel ast.SelectionSet, v *model.AccessLevelTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOAccessLevelTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐAccessLevelTemplate(ctx context.Context, sel ast.SelectionSet, v *model.AccessLevelTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._AccessLevelTemplate(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionData2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionData(ctx context.Context, sel ast.SelectionSet, v *model.ActionData) graphql.Marshaler {
+func (ec *executionContext) marshalOActionData2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionData(ctx context.Context, sel ast.SelectionSet, v *model.ActionData) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionData(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionFwUpdate(ctx context.Context, sel ast.SelectionSet, v *model.ActionFwUpdate) graphql.Marshaler {
+func (ec *executionContext) marshalOActionFwUpdate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionFwUpdate(ctx context.Context, sel ast.SelectionSet, v *model.ActionFwUpdate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionFwUpdate(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetDeviceInfo) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetDeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetDeviceInfo(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetDeviceInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetDeviceInfo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetEvents(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetEvents) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetEvents2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetEvents(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetEvents) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetEvents(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetIrregularProfile) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetIrregularProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetIrregularProfile(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetIrregularProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetIrregularProfile(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetPeriodicalProfile) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetPeriodicalProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetPeriodicalProfile(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetPeriodicalProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetPeriodicalProfile(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetRegister(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetRegister) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetRegister(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetRegister) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetRegister(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionGetTou(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetTou) graphql.Marshaler {
+func (ec *executionContext) marshalOActionGetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionGetTou(ctx context.Context, sel ast.SelectionSet, v *model.ActionGetTou) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionGetTou(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx context.Context, sel ast.SelectionSet, v *model.ActionResetBillingPeriod) graphql.Marshaler {
+func (ec *executionContext) marshalOActionResetBillingPeriod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResetBillingPeriod(ctx context.Context, sel ast.SelectionSet, v *model.ActionResetBillingPeriod) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionResetBillingPeriod(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResult(ctx context.Context, sel ast.SelectionSet, v []*model.ActionResult) graphql.Marshaler {
+func (ec *executionContext) marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResult(ctx context.Context, sel ast.SelectionSet, v []*model.ActionResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37518,7 +37518,7 @@ func (ec *executionContext) marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabs
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOActionResult2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResult(ctx, sel, v[i])
+			ret[i] = ec.marshalOActionResult2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResult(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37532,14 +37532,14 @@ func (ec *executionContext) marshalOActionResult2ᚕᚖgithubᚗcomᚋcybroslabs
 	return ret
 }
 
-func (ec *executionContext) marshalOActionResult2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResult(ctx context.Context, sel ast.SelectionSet, v *model.ActionResult) graphql.Marshaler {
+func (ec *executionContext) marshalOActionResult2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResult(ctx context.Context, sel ast.SelectionSet, v *model.ActionResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionResult(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResultCode(ctx context.Context, v any) (*model.ActionResultCode, error) {
+func (ec *executionContext) unmarshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResultCode(ctx context.Context, v any) (*model.ActionResultCode, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -37548,49 +37548,49 @@ func (ec *executionContext) unmarshalOActionResultCode2ᚖgithubᚗcomᚋcybrosl
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionResultCode(ctx context.Context, sel ast.SelectionSet, v *model.ActionResultCode) graphql.Marshaler {
+func (ec *executionContext) marshalOActionResultCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionResultCode(ctx context.Context, sel ast.SelectionSet, v *model.ActionResultCode) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetDisconnectorState) graphql.Marshaler {
+func (ec *executionContext) marshalOActionSetDisconnectorState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetDisconnectorState(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetDisconnectorState) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionSetDisconnectorState(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetLimiter(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetLimiter) graphql.Marshaler {
+func (ec *executionContext) marshalOActionSetLimiter2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetLimiter(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetLimiter) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionSetLimiter(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetRelayState(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetRelayState) graphql.Marshaler {
+func (ec *executionContext) marshalOActionSetRelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetRelayState(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetRelayState) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionSetRelayState(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSetTou(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetTou) graphql.Marshaler {
+func (ec *executionContext) marshalOActionSetTou2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSetTou(ctx context.Context, sel ast.SelectionSet, v *model.ActionSetTou) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionSetTou(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionSyncClock(ctx context.Context, sel ast.SelectionSet, v *model.ActionSyncClock) graphql.Marshaler {
+func (ec *executionContext) marshalOActionSyncClock2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionSyncClock(ctx context.Context, sel ast.SelectionSet, v *model.ActionSyncClock) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ActionSyncClock(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionType(ctx context.Context, v any) (*model.ActionType, error) {
+func (ec *executionContext) unmarshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionType(ctx context.Context, v any) (*model.ActionType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -37599,21 +37599,21 @@ func (ec *executionContext) unmarshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋ
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐActionType(ctx context.Context, sel ast.SelectionSet, v *model.ActionType) graphql.Marshaler {
+func (ec *executionContext) marshalOActionType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐActionType(ctx context.Context, sel ast.SelectionSet, v *model.ActionType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationConfigDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationConfigDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ApplicationConfigDescriptor(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) ([]*model.ApplicationProtocol, error) {
+func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) ([]*model.ApplicationProtocol, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -37623,7 +37623,7 @@ func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋc
 	res := make([]*model.ApplicationProtocol, len(vSlice))
 	for i := range vSlice {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, vSlice[i])
+		res[i], err = ec.unmarshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
 		}
@@ -37631,7 +37631,7 @@ func (ec *executionContext) unmarshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋc
 	return res, nil
 }
 
-func (ec *executionContext) marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationProtocol) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationProtocol) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37658,7 +37658,7 @@ func (ec *executionContext) marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcyb
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx, sel, v[i])
+			ret[i] = ec.marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37672,7 +37672,7 @@ func (ec *executionContext) marshalOApplicationProtocol2ᚕᚖgithubᚗcomᚋcyb
 	return ret
 }
 
-func (ec *executionContext) unmarshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) (*model.ApplicationProtocol, error) {
+func (ec *executionContext) unmarshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, v any) (*model.ApplicationProtocol, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -37681,14 +37681,14 @@ func (ec *executionContext) unmarshalOApplicationProtocol2ᚖgithubᚗcomᚋcybr
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationProtocol) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocol(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationProtocol) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationProtocolTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationProtocolTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37715,7 +37715,7 @@ func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOApplicationProtocolTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx, sel, v[i])
+			ret[i] = ec.marshalOApplicationProtocolTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37729,7 +37729,7 @@ func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚕᚖgithubᚗc
 	return ret
 }
 
-func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationProtocolTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationProtocolTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐApplicationProtocolTemplate(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationProtocolTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37814,7 +37814,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx context.Context, sel ast.SelectionSet, v []*model.Bulk) graphql.Marshaler {
+func (ec *executionContext) marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulk(ctx context.Context, sel ast.SelectionSet, v []*model.Bulk) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37841,7 +37841,7 @@ func (ec *executionContext) marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx, sel, v[i])
+			ret[i] = ec.marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulk(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37855,14 +37855,14 @@ func (ec *executionContext) marshalOBulk2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes�
 	return ret
 }
 
-func (ec *executionContext) marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulk(ctx context.Context, sel ast.SelectionSet, v *model.Bulk) graphql.Marshaler {
+func (ec *executionContext) marshalOBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulk(ctx context.Context, sel ast.SelectionSet, v *model.Bulk) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Bulk(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v []*model.BulkJob) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v []*model.BulkJob) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37889,7 +37889,7 @@ func (ec *executionContext) marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhe
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx, sel, v[i])
+			ret[i] = ec.marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJob(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37903,35 +37903,35 @@ func (ec *executionContext) marshalOBulkJob2ᚕᚖgithubᚗcomᚋcybroslabsᚋhe
 	return ret
 }
 
-func (ec *executionContext) marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v *model.BulkJob) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJob(ctx context.Context, sel ast.SelectionSet, v *model.BulkJob) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._BulkJob(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOBulkJobSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkJobSpec(ctx context.Context, sel ast.SelectionSet, v *model.BulkJobSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkJobSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkJobSpec(ctx context.Context, sel ast.SelectionSet, v *model.BulkJobSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._BulkJobSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkSpec(ctx context.Context, sel ast.SelectionSet, v *model.BulkSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkSpec(ctx context.Context, sel ast.SelectionSet, v *model.BulkSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._BulkSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatus(ctx context.Context, sel ast.SelectionSet, v *model.BulkStatus) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatus(ctx context.Context, sel ast.SelectionSet, v *model.BulkStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._BulkStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatusCode(ctx context.Context, v any) (*model.BulkStatusCode, error) {
+func (ec *executionContext) unmarshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatusCode(ctx context.Context, v any) (*model.BulkStatusCode, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -37940,14 +37940,14 @@ func (ec *executionContext) unmarshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslab
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐBulkStatusCode(ctx context.Context, sel ast.SelectionSet, v *model.BulkStatusCode) graphql.Marshaler {
+func (ec *executionContext) marshalOBulkStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐBulkStatusCode(ctx context.Context, sel ast.SelectionSet, v *model.BulkStatusCode) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationBus) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationBus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -37974,7 +37974,7 @@ func (ec *executionContext) marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybros
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx, sel, v[i])
+			ret[i] = ec.marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBus(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -37988,21 +37988,21 @@ func (ec *executionContext) marshalOCommunicationBus2ᚕᚖgithubᚗcomᚋcybros
 	return ret
 }
 
-func (ec *executionContext) marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBus) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._CommunicationBus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationBusStatus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBusStatus) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationBusStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationBusStatus(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationBusStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._CommunicationBusStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38029,7 +38029,7 @@ func (ec *executionContext) marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOCommunicationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx, sel, v[i])
+			ret[i] = ec.marshalOCommunicationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationTemplate(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38043,14 +38043,14 @@ func (ec *executionContext) marshalOCommunicationTemplate2ᚕᚖgithubᚗcomᚋc
 	return ret
 }
 
-func (ec *executionContext) marshalOCommunicationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._CommunicationTemplate(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationType(ctx context.Context, v any) (*model.CommunicationType, error) {
+func (ec *executionContext) unmarshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationType(ctx context.Context, v any) (*model.CommunicationType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -38059,14 +38059,14 @@ func (ec *executionContext) unmarshalOCommunicationType2ᚖgithubᚗcomᚋcybros
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationType(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationType) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationType(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38093,7 +38093,7 @@ func (ec *executionContext) marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybro
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnit(ctx, sel, v[i])
+			ret[i] = ec.marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnit(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38107,21 +38107,21 @@ func (ec *executionContext) marshalOCommunicationUnit2ᚕᚖgithubᚗcomᚋcybro
 	return ret
 }
 
-func (ec *executionContext) marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._CommunicationUnit(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._CommunicationUnitSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx context.Context, sel ast.SelectionSet, v []*model.ComponentConfig) graphql.Marshaler {
+func (ec *executionContext) marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx context.Context, sel ast.SelectionSet, v []*model.ComponentConfig) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38148,7 +38148,7 @@ func (ec *executionContext) marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybrosl
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx, sel, v[i])
+			ret[i] = ec.marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38162,14 +38162,14 @@ func (ec *executionContext) marshalOComponentConfig2ᚕᚖgithubᚗcomᚋcybrosl
 	return ret
 }
 
-func (ec *executionContext) marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfig(ctx context.Context, sel ast.SelectionSet, v *model.ComponentConfig) graphql.Marshaler {
+func (ec *executionContext) marshalOComponentConfig2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfig(ctx context.Context, sel ast.SelectionSet, v *model.ComponentConfig) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ComponentConfig(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.ComponentConfigDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.ComponentConfigDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38196,7 +38196,7 @@ func (ec *executionContext) marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcom
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, sel, v[i])
+			ret[i] = ec.marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38210,14 +38210,14 @@ func (ec *executionContext) marshalOComponentConfigDescriptor2ᚕᚖgithubᚗcom
 	return ret
 }
 
-func (ec *executionContext) marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ComponentConfigDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOComponentConfigDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐComponentConfigDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ComponentConfigDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ComponentConfigDescriptor(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx context.Context, sel ast.SelectionSet, v []*model.ConnectionInfo) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionInfo(ctx context.Context, sel ast.SelectionSet, v []*model.ConnectionInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38244,7 +38244,7 @@ func (ec *executionContext) marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybrosla
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx, sel, v[i])
+			ret[i] = ec.marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionInfo(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38258,56 +38258,56 @@ func (ec *executionContext) marshalOConnectionInfo2ᚕᚖgithubᚗcomᚋcybrosla
 	return ret
 }
 
-func (ec *executionContext) marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionInfo(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionInfo) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionInfo(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionInfo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeControlledSerial) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeControlledSerial2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeControlledSerial(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeControlledSerial) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeControlledSerial(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeDirectTCPIP) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeDirectTcpIp2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeDirectTCPIP(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeDirectTCPIP) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeDirectTcpIp(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeModemPool) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeModemPool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeModemPool(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeSerialDirect2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialDirect(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialDirect) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeSerialDirect2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialDirect(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialDirect) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeSerialDirect(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeSerialMoxa2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialMoxa(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialMoxa) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeSerialMoxa2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialMoxa(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialMoxa) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeSerialMoxa(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialRfc2217) graphql.Marshaler {
+func (ec *executionContext) marshalOConnectionTypeSerialRfc22172ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐConnectionTypeSerialRfc2217(ctx context.Context, sel ast.SelectionSet, v *model.ConnectionTypeSerialRfc2217) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ConnectionTypeSerialRfc2217(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, v any) (*model.DataLinkProtocol, error) {
+func (ec *executionContext) unmarshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, v any) (*model.DataLinkProtocol, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -38316,14 +38316,14 @@ func (ec *executionContext) unmarshalODataLinkProtocol2ᚖgithubᚗcomᚋcybrosl
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, sel ast.SelectionSet, v *model.DataLinkProtocol) graphql.Marshaler {
+func (ec *executionContext) marshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, sel ast.SelectionSet, v *model.DataLinkProtocol) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.DataLinkTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.DataLinkTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38350,7 +38350,7 @@ func (ec *executionContext) marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybros
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODataLinkTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkTemplate(ctx, sel, v[i])
+			ret[i] = ec.marshalODataLinkTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkTemplate(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38364,21 +38364,21 @@ func (ec *executionContext) marshalODataLinkTemplate2ᚕᚖgithubᚗcomᚋcybros
 	return ret
 }
 
-func (ec *executionContext) marshalODataLinkTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDataLinkTemplate(ctx context.Context, sel ast.SelectionSet, v *model.DataLinkTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalODataLinkTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkTemplate(ctx context.Context, sel ast.SelectionSet, v *model.DataLinkTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DataLinkTemplate(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDate(ctx context.Context, sel ast.SelectionSet, v *model.Date) graphql.Marshaler {
+func (ec *executionContext) marshalODate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDate(ctx context.Context, sel ast.SelectionSet, v *model.Date) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Date(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v []*model.DayProfile) graphql.Marshaler {
+func (ec *executionContext) marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v []*model.DayProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38405,7 +38405,7 @@ func (ec *executionContext) marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx, sel, v[i])
+			ret[i] = ec.marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDayProfile(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38419,14 +38419,14 @@ func (ec *executionContext) marshalODayProfile2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v *model.DayProfile) graphql.Marshaler {
+func (ec *executionContext) marshalODayProfile2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDayProfile(ctx context.Context, sel ast.SelectionSet, v *model.DayProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DayProfile(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx context.Context, sel ast.SelectionSet, v []*model.Device) graphql.Marshaler {
+func (ec *executionContext) marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDevice(ctx context.Context, sel ast.SelectionSet, v []*model.Device) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38453,7 +38453,7 @@ func (ec *executionContext) marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx, sel, v[i])
+			ret[i] = ec.marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDevice(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38467,14 +38467,14 @@ func (ec *executionContext) marshalODevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 	return ret
 }
 
-func (ec *executionContext) marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDevice(ctx context.Context, sel ast.SelectionSet, v *model.Device) graphql.Marshaler {
+func (ec *executionContext) marshalODevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDevice(ctx context.Context, sel ast.SelectionSet, v *model.Device) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Device(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceCommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceCommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38501,7 +38501,7 @@ func (ec *executionContext) marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcom�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, sel, v[i])
+			ret[i] = ec.marshalODeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38515,14 +38515,14 @@ func (ec *executionContext) marshalODeviceCommunicationUnit2ᚕᚖgithubᚗcom�
 	return ret
 }
 
-func (ec *executionContext) marshalODeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.DeviceCommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.DeviceCommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceCommunicationUnit(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceConfigurationRegister2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceConfigurationRegister) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationRegister2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceConfigurationRegister) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38549,7 +38549,7 @@ func (ec *executionContext) marshalODeviceConfigurationRegister2ᚕᚖgithubᚗc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, sel, v[i])
+			ret[i] = ec.marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38563,21 +38563,21 @@ func (ec *executionContext) marshalODeviceConfigurationRegister2ᚕᚖgithubᚗc
 	return ret
 }
 
-func (ec *executionContext) marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationRegister) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationRegister) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceConfigurationRegister(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationRegisterSpec) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationRegisterSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegisterSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationRegisterSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceConfigurationRegisterSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceConfigurationTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceConfigurationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38604,7 +38604,7 @@ func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, sel, v[i])
+			ret[i] = ec.marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38618,21 +38618,21 @@ func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚕᚖgithubᚗc
 	return ret
 }
 
-func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceConfigurationTemplate(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationTemplateSpec) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceConfigurationTemplateSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationTemplateSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceConfigurationTemplateSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceConfigurationTemplateSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroup(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceGroup) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroup(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceGroup) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38659,7 +38659,7 @@ func (ec *executionContext) marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroup(ctx, sel, v[i])
+			ret[i] = ec.marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroup(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38673,42 +38673,42 @@ func (ec *executionContext) marshalODeviceGroup2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroup) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroup) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceGroup(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceGroupSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroupSpec) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceGroupSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceGroupSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceGroupSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceGroupSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceInfo(ctx context.Context, sel ast.SelectionSet, v *model.DeviceInfo) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceInfo(ctx context.Context, sel ast.SelectionSet, v *model.DeviceInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceInfo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceSpec) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODeviceStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDeviceStatus(ctx context.Context, sel ast.SelectionSet, v *model.DeviceStatus) graphql.Marshaler {
+func (ec *executionContext) marshalODeviceStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceStatus(ctx context.Context, sel ast.SelectionSet, v *model.DeviceStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DeviceStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriver(ctx context.Context, sel ast.SelectionSet, v []*model.Driver) graphql.Marshaler {
+func (ec *executionContext) marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriver(ctx context.Context, sel ast.SelectionSet, v []*model.Driver) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38735,7 +38735,7 @@ func (ec *executionContext) marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriver(ctx, sel, v[i])
+			ret[i] = ec.marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriver(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38749,42 +38749,42 @@ func (ec *executionContext) marshalODriver2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 	return ret
 }
 
-func (ec *executionContext) marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriver(ctx context.Context, sel ast.SelectionSet, v *model.Driver) graphql.Marshaler {
+func (ec *executionContext) marshalODriver2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriver(ctx context.Context, sel ast.SelectionSet, v *model.Driver) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Driver(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODriverSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriverSpec(ctx context.Context, sel ast.SelectionSet, v *model.DriverSpec) graphql.Marshaler {
+func (ec *executionContext) marshalODriverSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverSpec(ctx context.Context, sel ast.SelectionSet, v *model.DriverSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DriverSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODriverTemplates2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDriverTemplates(ctx context.Context, sel ast.SelectionSet, v *model.DriverTemplates) graphql.Marshaler {
+func (ec *executionContext) marshalODriverTemplates2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverTemplates(ctx context.Context, sel ast.SelectionSet, v *model.DriverTemplates) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._DriverTemplates(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐDuration(ctx context.Context, sel ast.SelectionSet, v *model.Duration) graphql.Marshaler {
+func (ec *executionContext) marshalODuration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDuration(ctx context.Context, sel ast.SelectionSet, v *model.Duration) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Duration(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEmpty(ctx context.Context, sel ast.SelectionSet, v *model.Empty) graphql.Marshaler {
+func (ec *executionContext) marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx context.Context, sel ast.SelectionSet, v *model.Empty) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Empty(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecord(ctx context.Context, sel ast.SelectionSet, v []*model.EventRecord) graphql.Marshaler {
+func (ec *executionContext) marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecord(ctx context.Context, sel ast.SelectionSet, v []*model.EventRecord) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38811,7 +38811,7 @@ func (ec *executionContext) marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOEventRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecord(ctx, sel, v[i])
+			ret[i] = ec.marshalOEventRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecord(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38825,21 +38825,21 @@ func (ec *executionContext) marshalOEventRecord2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalOEventRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecord(ctx context.Context, sel ast.SelectionSet, v *model.EventRecord) graphql.Marshaler {
+func (ec *executionContext) marshalOEventRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecord(ctx context.Context, sel ast.SelectionSet, v *model.EventRecord) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._EventRecord(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐEventRecords(ctx context.Context, sel ast.SelectionSet, v *model.EventRecords) graphql.Marshaler {
+func (ec *executionContext) marshalOEventRecords2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEventRecords(ctx context.Context, sel ast.SelectionSet, v *model.EventRecords) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._EventRecords(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx context.Context, v any) (*model.FieldDataType, error) {
+func (ec *executionContext) unmarshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx context.Context, v any) (*model.FieldDataType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -38848,14 +38848,14 @@ func (ec *executionContext) unmarshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabs
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDataType(ctx context.Context, sel ast.SelectionSet, v *model.FieldDataType) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx context.Context, sel ast.SelectionSet, v *model.FieldDataType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.FieldDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v []*model.FieldDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -38882,7 +38882,7 @@ func (ec *executionContext) marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybrosl
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx, sel, v[i])
+			ret[i] = ec.marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -38896,14 +38896,14 @@ func (ec *executionContext) marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybrosl
 	return ret
 }
 
-func (ec *executionContext) marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.FieldDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.FieldDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._FieldDescriptor(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, v any) (*model.FieldDisplayFormat, error) {
+func (ec *executionContext) unmarshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, v any) (*model.FieldDisplayFormat, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -38912,35 +38912,35 @@ func (ec *executionContext) unmarshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybro
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, sel ast.SelectionSet, v *model.FieldDisplayFormat) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, sel ast.SelectionSet, v *model.FieldDisplayFormat) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValidation(ctx context.Context, sel ast.SelectionSet, v *model.FieldValidation) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldValidation2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValidation(ctx context.Context, sel ast.SelectionSet, v *model.FieldValidation) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._FieldValidation(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValue(ctx context.Context, sel ast.SelectionSet, v *model.FieldValue) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValue(ctx context.Context, sel ast.SelectionSet, v *model.FieldValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._FieldValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFieldValues(ctx context.Context, sel ast.SelectionSet, v *model.FieldValues) graphql.Marshaler {
+func (ec *executionContext) marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValues(ctx context.Context, sel ast.SelectionSet, v *model.FieldValues) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._FieldValues(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFilterOperator(ctx context.Context, v any) (*model.FilterOperator, error) {
+func (ec *executionContext) unmarshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFilterOperator(ctx context.Context, v any) (*model.FilterOperator, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -38949,7 +38949,7 @@ func (ec *executionContext) unmarshalOFilterOperator2ᚖgithubᚗcomᚋcybroslab
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐFilterOperator(ctx context.Context, sel ast.SelectionSet, v *model.FilterOperator) graphql.Marshaler {
+func (ec *executionContext) marshalOFilterOperator2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFilterOperator(ctx context.Context, sel ast.SelectionSet, v *model.FilterOperator) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39099,14 +39099,14 @@ func (ec *executionContext) marshalOInt642ᚖint64(ctx context.Context, sel ast.
 	return res
 }
 
-func (ec *executionContext) marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.IrregularProfileValues) graphql.Marshaler {
+func (ec *executionContext) marshalOIrregularProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.IrregularProfileValues) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._IrregularProfileValues(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v []*model.IrregularValue) graphql.Marshaler {
+func (ec *executionContext) marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v []*model.IrregularValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39133,7 +39133,7 @@ func (ec *executionContext) marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybrosla
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx, sel, v[i])
+			ret[i] = ec.marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularValue(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39147,14 +39147,14 @@ func (ec *executionContext) marshalOIrregularValue2ᚕᚖgithubᚗcomᚋcybrosla
 	return ret
 }
 
-func (ec *executionContext) marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v *model.IrregularValue) graphql.Marshaler {
+func (ec *executionContext) marshalOIrregularValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐIrregularValue(ctx context.Context, sel ast.SelectionSet, v *model.IrregularValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._IrregularValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v []*model.JobAction) graphql.Marshaler {
+func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v []*model.JobAction) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39181,7 +39181,7 @@ func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOJobAction2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobAction2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobAction(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39195,14 +39195,14 @@ func (ec *executionContext) marshalOJobAction2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOJobAction2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v *model.JobAction) graphql.Marshaler {
+func (ec *executionContext) marshalOJobAction2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobAction(ctx context.Context, sel ast.SelectionSet, v *model.JobAction) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobAction(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionAttributes(ctx context.Context, sel ast.SelectionSet, v []*model.JobActionAttributes) graphql.Marshaler {
+func (ec *executionContext) marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionAttributes(ctx context.Context, sel ast.SelectionSet, v []*model.JobActionAttributes) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39229,7 +39229,7 @@ func (ec *executionContext) marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcyb
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOJobActionAttributes2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionAttributes(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobActionAttributes2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionAttributes(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39243,21 +39243,21 @@ func (ec *executionContext) marshalOJobActionAttributes2ᚕᚖgithubᚗcomᚋcyb
 	return ret
 }
 
-func (ec *executionContext) marshalOJobActionAttributes2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionAttributes(ctx context.Context, sel ast.SelectionSet, v *model.JobActionAttributes) graphql.Marshaler {
+func (ec *executionContext) marshalOJobActionAttributes2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionAttributes(ctx context.Context, sel ast.SelectionSet, v *model.JobActionAttributes) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobActionAttributes(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobActionContraints2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionContraints(ctx context.Context, sel ast.SelectionSet, v *model.JobActionContraints) graphql.Marshaler {
+func (ec *executionContext) marshalOJobActionContraints2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionContraints(ctx context.Context, sel ast.SelectionSet, v *model.JobActionContraints) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobActionContraints(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v []*model.JobActionSet) graphql.Marshaler {
+func (ec *executionContext) marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v []*model.JobActionSet) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39284,7 +39284,7 @@ func (ec *executionContext) marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabs
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionSet(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39298,14 +39298,14 @@ func (ec *executionContext) marshalOJobActionSet2ᚕᚖgithubᚗcomᚋcybroslabs
 	return ret
 }
 
-func (ec *executionContext) marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v *model.JobActionSet) graphql.Marshaler {
+func (ec *executionContext) marshalOJobActionSet2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobActionSet(ctx context.Context, sel ast.SelectionSet, v *model.JobActionSet) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobActionSet(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx context.Context, sel ast.SelectionSet, v []*model.JobDevice) graphql.Marshaler {
+func (ec *executionContext) marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDevice(ctx context.Context, sel ast.SelectionSet, v []*model.JobDevice) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39332,7 +39332,7 @@ func (ec *executionContext) marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDevice(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39346,14 +39346,14 @@ func (ec *executionContext) marshalOJobDevice2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.JobDevice) graphql.Marshaler {
+func (ec *executionContext) marshalOJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.JobDevice) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobDevice(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v []*model.JobDeviceID) graphql.Marshaler {
+func (ec *executionContext) marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v []*model.JobDeviceID) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39380,7 +39380,7 @@ func (ec *executionContext) marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDeviceID(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39394,14 +39394,14 @@ func (ec *executionContext) marshalOJobDeviceId2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.JobDeviceID) graphql.Marshaler {
+func (ec *executionContext) marshalOJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.JobDeviceID) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobDeviceId(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobErrorCode(ctx context.Context, v any) (*model.JobErrorCode, error) {
+func (ec *executionContext) unmarshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobErrorCode(ctx context.Context, v any) (*model.JobErrorCode, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -39410,14 +39410,14 @@ func (ec *executionContext) unmarshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabs�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobErrorCode(ctx context.Context, sel ast.SelectionSet, v *model.JobErrorCode) graphql.Marshaler {
+func (ec *executionContext) marshalOJobErrorCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobErrorCode(ctx context.Context, sel ast.SelectionSet, v *model.JobErrorCode) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) unmarshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobPriority(ctx context.Context, v any) (*model.JobPriority, error) {
+func (ec *executionContext) unmarshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobPriority(ctx context.Context, v any) (*model.JobPriority, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -39426,28 +39426,28 @@ func (ec *executionContext) unmarshalOJobPriority2ᚖgithubᚗcomᚋcybroslabs�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobPriority(ctx context.Context, sel ast.SelectionSet, v *model.JobPriority) graphql.Marshaler {
+func (ec *executionContext) marshalOJobPriority2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobPriority(ctx context.Context, sel ast.SelectionSet, v *model.JobPriority) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobSettings(ctx context.Context, sel ast.SelectionSet, v *model.JobSettings) graphql.Marshaler {
+func (ec *executionContext) marshalOJobSettings2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobSettings(ctx context.Context, sel ast.SelectionSet, v *model.JobSettings) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobSettings(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOJobStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobStatus(ctx context.Context, sel ast.SelectionSet, v *model.JobStatus) graphql.Marshaler {
+func (ec *executionContext) marshalOJobStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobStatus(ctx context.Context, sel ast.SelectionSet, v *model.JobStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._JobStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobStatusCode(ctx context.Context, v any) (*model.JobStatusCode, error) {
+func (ec *executionContext) unmarshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobStatusCode(ctx context.Context, v any) (*model.JobStatusCode, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -39456,140 +39456,140 @@ func (ec *executionContext) unmarshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabs
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐJobStatusCode(ctx context.Context, sel ast.SelectionSet, v *model.JobStatusCode) graphql.Marshaler {
+func (ec *executionContext) marshalOJobStatusCode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐJobStatusCode(ctx context.Context, sel ast.SelectionSet, v *model.JobStatusCode) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOListOfBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulk(ctx context.Context, sel ast.SelectionSet, v *model.ListOfBulk) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfBulk(ctx context.Context, sel ast.SelectionSet, v *model.ListOfBulk) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfBulk(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfBulkJob(ctx context.Context, sel ast.SelectionSet, v *model.ListOfBulkJob) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfBulkJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfBulkJob(ctx context.Context, sel ast.SelectionSet, v *model.ListOfBulkJob) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfBulkJob(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationBus) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfCommunicationBus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationBus(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationBus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfCommunicationBus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfCommunicationUnit(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDevice) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDevice) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDevice(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceCommunicationUnit) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceCommunicationUnit(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceCommunicationUnit) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDeviceCommunicationUnit(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceConfigurationRegister) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceConfigurationRegister) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDeviceConfigurationRegister(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceConfigurationTemplate) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDeviceConfigurationTemplate2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceConfigurationTemplate(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceConfigurationTemplate) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDeviceConfigurationTemplate(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceGroup) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceGroup) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDeviceGroup(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfDriver(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDriver) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfDriver2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDriver(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDriver) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfDriver(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ListOfFieldDescriptor) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfFieldDescriptor(ctx context.Context, sel ast.SelectionSet, v *model.ListOfFieldDescriptor) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfFieldDescriptor(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDevice) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfJobDevice2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfJobDevice(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDevice) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfJobDevice(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDeviceID) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfJobDeviceId2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfJobDeviceID(ctx context.Context, sel ast.SelectionSet, v *model.ListOfJobDeviceID) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfJobDeviceId(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ListOfModemPool) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ListOfModemPool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfModemPool(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfString(ctx context.Context, sel ast.SelectionSet, v *model.ListOfString) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfString2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfString(ctx context.Context, sel ast.SelectionSet, v *model.ListOfString) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfString(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfTimeOfUseTable) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfTimeOfUseTable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfTimeOfUseTable(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListOfVariable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfVariable) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfVariable(ctx context.Context, sel ast.SelectionSet, v *model.ListOfVariable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListOfVariable(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelector(ctx context.Context, sel ast.SelectionSet, v *model.ListSelector) graphql.Marshaler {
+func (ec *executionContext) marshalOListSelector2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelector(ctx context.Context, sel ast.SelectionSet, v *model.ListSelector) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListSelector(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorFilterBy) graphql.Marshaler {
+func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorFilterBy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39616,7 +39616,7 @@ func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcy
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOListSelectorFilterBy2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx, sel, v[i])
+			ret[i] = ec.marshalOListSelectorFilterBy2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorFilterBy(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39630,14 +39630,14 @@ func (ec *executionContext) marshalOListSelectorFilterBy2ᚕᚖgithubᚗcomᚋcy
 	return ret
 }
 
-func (ec *executionContext) marshalOListSelectorFilterBy2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v *model.ListSelectorFilterBy) graphql.Marshaler {
+func (ec *executionContext) marshalOListSelectorFilterBy2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorFilterBy(ctx context.Context, sel ast.SelectionSet, v *model.ListSelectorFilterBy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListSelectorFilterBy(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorSortBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorSortBy) graphql.Marshaler {
+func (ec *executionContext) marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorSortBy(ctx context.Context, sel ast.SelectionSet, v []*model.ListSelectorSortBy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39664,7 +39664,7 @@ func (ec *executionContext) marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybr
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOListSelectorSortBy2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorSortBy(ctx, sel, v[i])
+			ret[i] = ec.marshalOListSelectorSortBy2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorSortBy(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39678,14 +39678,14 @@ func (ec *executionContext) marshalOListSelectorSortBy2ᚕᚖgithubᚗcomᚋcybr
 	return ret
 }
 
-func (ec *executionContext) marshalOListSelectorSortBy2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐListSelectorSortBy(ctx context.Context, sel ast.SelectionSet, v *model.ListSelectorSortBy) graphql.Marshaler {
+func (ec *executionContext) marshalOListSelectorSortBy2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListSelectorSortBy(ctx context.Context, sel ast.SelectionSet, v *model.ListSelectorSortBy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ListSelectorSortBy(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v []*model.MeasuredValue) graphql.Marshaler {
+func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v []*model.MeasuredValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39712,7 +39712,7 @@ func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslab
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx, sel, v[i])
+			ret[i] = ec.marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39726,21 +39726,21 @@ func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslab
 	return ret
 }
 
-func (ec *executionContext) marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v *model.MeasuredValue) graphql.Marshaler {
+func (ec *executionContext) marshalOMeasuredValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v *model.MeasuredValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._MeasuredValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMetadataFields(ctx context.Context, sel ast.SelectionSet, v *model.MetadataFields) graphql.Marshaler {
+func (ec *executionContext) marshalOMetadataFields2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMetadataFields(ctx context.Context, sel ast.SelectionSet, v *model.MetadataFields) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._MetadataFields(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx context.Context, sel ast.SelectionSet, v []*model.ModemInfo) graphql.Marshaler {
+func (ec *executionContext) marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx context.Context, sel ast.SelectionSet, v []*model.ModemInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39767,7 +39767,7 @@ func (ec *executionContext) marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx, sel, v[i])
+			ret[i] = ec.marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39781,14 +39781,14 @@ func (ec *executionContext) marshalOModemInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemInfo(ctx context.Context, sel ast.SelectionSet, v *model.ModemInfo) graphql.Marshaler {
+func (ec *executionContext) marshalOModemInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemInfo(ctx context.Context, sel ast.SelectionSet, v *model.ModemInfo) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ModemInfo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v []*model.ModemPool) graphql.Marshaler {
+func (ec *executionContext) marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v []*model.ModemPool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39815,7 +39815,7 @@ func (ec *executionContext) marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx, sel, v[i])
+			ret[i] = ec.marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPool(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39829,28 +39829,28 @@ func (ec *executionContext) marshalOModemPool2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ModemPool) graphql.Marshaler {
+func (ec *executionContext) marshalOModemPool2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPool(ctx context.Context, sel ast.SelectionSet, v *model.ModemPool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ModemPool(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolSpec(ctx context.Context, sel ast.SelectionSet, v *model.ModemPoolSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOModemPoolSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPoolSpec(ctx context.Context, sel ast.SelectionSet, v *model.ModemPoolSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ModemPoolSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐModemPoolStatus(ctx context.Context, sel ast.SelectionSet, v *model.ModemPoolStatus) graphql.Marshaler {
+func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐModemPoolStatus(ctx context.Context, sel ast.SelectionSet, v *model.ModemPoolStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ModemPoolStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlock) graphql.Marshaler {
+func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlock) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39877,7 +39877,7 @@ func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabs
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx, sel, v[i])
+			ret[i] = ec.marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39891,35 +39891,35 @@ func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabs
 	return ret
 }
 
-func (ec *executionContext) marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v *model.ProfileBlock) graphql.Marshaler {
+func (ec *executionContext) marshalOProfileBlock2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v *model.ProfileBlock) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ProfileBlock(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.ProfileValues) graphql.Marshaler {
+func (ec *executionContext) marshalOProfileValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileValues(ctx context.Context, sel ast.SelectionSet, v *model.ProfileValues) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ProfileValues(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulk(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulk) graphql.Marshaler {
+func (ec *executionContext) marshalOProxyBulk2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProxyBulk(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulk) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ProxyBulk(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐProxyBulkSpec(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulkSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOProxyBulkSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProxyBulkSpec(ctx context.Context, sel ast.SelectionSet, v *model.ProxyBulkSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ProxyBulkSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx context.Context, v any) (*model.RegisterType, error) {
+func (ec *executionContext) unmarshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterType(ctx context.Context, v any) (*model.RegisterType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -39928,14 +39928,14 @@ func (ec *executionContext) unmarshalORegisterType2ᚖgithubᚗcomᚋcybroslabs�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterType(ctx context.Context, sel ast.SelectionSet, v *model.RegisterType) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterType(ctx context.Context, sel ast.SelectionSet, v *model.RegisterType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v []*model.RegisterValue) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v []*model.RegisterValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -39962,7 +39962,7 @@ func (ec *executionContext) marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslab
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx, sel, v[i])
+			ret[i] = ec.marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValue(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -39976,21 +39976,21 @@ func (ec *executionContext) marshalORegisterValue2ᚕᚖgithubᚗcomᚋcybroslab
 	return ret
 }
 
-func (ec *executionContext) marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValue) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValue(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._RegisterValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRegisterValues(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValues) graphql.Marshaler {
+func (ec *executionContext) marshalORegisterValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRegisterValues(ctx context.Context, sel ast.SelectionSet, v *model.RegisterValues) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._RegisterValues(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx context.Context, v any) (*model.RelayState, error) {
+func (ec *executionContext) unmarshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayState(ctx context.Context, v any) (*model.RelayState, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -39999,14 +39999,14 @@ func (ec *executionContext) unmarshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋ
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayState(ctx context.Context, sel ast.SelectionSet, v *model.RelayState) graphql.Marshaler {
+func (ec *executionContext) marshalORelayState2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayState(ctx context.Context, sel ast.SelectionSet, v *model.RelayState) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v []*model.RelayStateRecord) graphql.Marshaler {
+func (ec *executionContext) marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v []*model.RelayStateRecord) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40033,7 +40033,7 @@ func (ec *executionContext) marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybros
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx, sel, v[i])
+			ret[i] = ec.marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayStateRecord(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40047,14 +40047,14 @@ func (ec *executionContext) marshalORelayStateRecord2ᚕᚖgithubᚗcomᚋcybros
 	return ret
 }
 
-func (ec *executionContext) marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v *model.RelayStateRecord) graphql.Marshaler {
+func (ec *executionContext) marshalORelayStateRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐRelayStateRecord(ctx context.Context, sel ast.SelectionSet, v *model.RelayStateRecord) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._RelayStateRecord(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v []*model.Season) graphql.Marshaler {
+func (ec *executionContext) marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v []*model.Season) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40081,7 +40081,7 @@ func (ec *executionContext) marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx, sel, v[i])
+			ret[i] = ec.marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSeason(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40095,14 +40095,14 @@ func (ec *executionContext) marshalOSeason2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes
 	return ret
 }
 
-func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v *model.Season) graphql.Marshaler {
+func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSeason(ctx context.Context, sel ast.SelectionSet, v *model.Season) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Season(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v []*model.SpecialDay) graphql.Marshaler {
+func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v []*model.SpecialDay) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40129,7 +40129,7 @@ func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx, sel, v[i])
+			ret[i] = ec.marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSpecialDay(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40143,7 +40143,7 @@ func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v *model.SpecialDay) graphql.Marshaler {
+func (ec *executionContext) marshalOSpecialDay2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v *model.SpecialDay) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40198,14 +40198,14 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐStringValue(ctx context.Context, sel ast.SelectionSet, v *model.StringValue) graphql.Marshaler {
+func (ec *executionContext) marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx context.Context, sel ast.SelectionSet, v *model.StringValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._StringValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v []*model.Switching) graphql.Marshaler {
+func (ec *executionContext) marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v []*model.Switching) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40232,7 +40232,7 @@ func (ec *executionContext) marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx, sel, v[i])
+			ret[i] = ec.marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSwitching(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40246,14 +40246,14 @@ func (ec *executionContext) marshalOSwitching2ᚕᚖgithubᚗcomᚋcybroslabsᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v *model.Switching) graphql.Marshaler {
+func (ec *executionContext) marshalOSwitching2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSwitching(ctx context.Context, sel ast.SelectionSet, v *model.Switching) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Switching(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v []*model.TimeOfUseTable) graphql.Marshaler {
+func (ec *executionContext) marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v []*model.TimeOfUseTable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40280,7 +40280,7 @@ func (ec *executionContext) marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybrosla
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx, sel, v[i])
+			ret[i] = ec.marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTable(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40294,14 +40294,14 @@ func (ec *executionContext) marshalOTimeOfUseTable2ᚕᚖgithubᚗcomᚋcybrosla
 	return ret
 }
 
-func (ec *executionContext) marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTable) graphql.Marshaler {
+func (ec *executionContext) marshalOTimeOfUseTable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTable(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._TimeOfUseTable(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTableSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOTimeOfUseTableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTimeOfUseTableSpec(ctx context.Context, sel ast.SelectionSet, v *model.TimeOfUseTableSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40374,7 +40374,7 @@ func (ec *executionContext) marshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(
 	return res
 }
 
-func (ec *executionContext) marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v []*model.Variable) graphql.Marshaler {
+func (ec *executionContext) marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v []*model.Variable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40401,7 +40401,7 @@ func (ec *executionContext) marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋh
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx, sel, v[i])
+			ret[i] = ec.marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40415,21 +40415,21 @@ func (ec *executionContext) marshalOVariable2ᚕᚖgithubᚗcomᚋcybroslabsᚋh
 	return ret
 }
 
-func (ec *executionContext) marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v *model.Variable) graphql.Marshaler {
+func (ec *executionContext) marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx context.Context, sel ast.SelectionSet, v *model.Variable) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Variable(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐVariableSpec(ctx context.Context, sel ast.SelectionSet, v *model.VariableSpec) graphql.Marshaler {
+func (ec *executionContext) marshalOVariableSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariableSpec(ctx context.Context, sel ast.SelectionSet, v *model.VariableSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._VariableSpec(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v []*model.Week) graphql.Marshaler {
+func (ec *executionContext) marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v []*model.Week) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40456,7 +40456,7 @@ func (ec *executionContext) marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx, sel, v[i])
+			ret[i] = ec.marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐWeek(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40470,7 +40470,7 @@ func (ec *executionContext) marshalOWeek2ᚕᚖgithubᚗcomᚋcybroslabsᚋhes�
 	return ret
 }
 
-func (ec *executionContext) marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v *model.Week) graphql.Marshaler {
+func (ec *executionContext) marshalOWeek2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐWeek(ctx context.Context, sel ast.SelectionSet, v *model.Week) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40679,7 +40679,7 @@ func (ec *executionContext) marshalO__Type2ᚖgithubᚗcomᚋ99designsᚋgqlgen�
 	return ec.___Type(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v []*model.MapFieldValue) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v []*model.MapFieldValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40706,7 +40706,7 @@ func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybrosla
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalO_mapFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx, sel, v[i])
+			ret[i] = ec.marshalO_mapFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40720,14 +40720,14 @@ func (ec *executionContext) marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybrosla
 	return ret
 }
 
-func (ec *executionContext) marshalO_mapFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v *model.MapFieldValue) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapFieldValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx context.Context, sel ast.SelectionSet, v *model.MapFieldValue) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec.__mapFieldValue(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapListOfString(ctx context.Context, sel ast.SelectionSet, v []*model.MapListOfString) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapListOfString(ctx context.Context, sel ast.SelectionSet, v []*model.MapListOfString) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40754,7 +40754,7 @@ func (ec *executionContext) marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybros
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapListOfString(ctx, sel, v[i])
+			ret[i] = ec.marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapListOfString(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40768,14 +40768,14 @@ func (ec *executionContext) marshalO_mapListOfString2ᚕᚖgithubᚗcomᚋcybros
 	return ret
 }
 
-func (ec *executionContext) marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapListOfString(ctx context.Context, sel ast.SelectionSet, v *model.MapListOfString) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapListOfString2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapListOfString(ctx context.Context, sel ast.SelectionSet, v *model.MapListOfString) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec.__mapListOfString(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v []*model.Mapstring) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v []*model.Mapstring) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -40802,7 +40802,7 @@ func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabs�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalO_mapstring2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx, sel, v[i])
+			ret[i] = ec.marshalO_mapstring2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -40816,7 +40816,7 @@ func (ec *executionContext) marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabs�
 	return ret
 }
 
-func (ec *executionContext) marshalO_mapstring2ᚖgithubᚗcomᚋcybroslabsᚋhesᚑ2ᚑapisᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v *model.Mapstring) graphql.Marshaler {
+func (ec *executionContext) marshalO_mapstring2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx context.Context, sel ast.SelectionSet, v *model.Mapstring) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

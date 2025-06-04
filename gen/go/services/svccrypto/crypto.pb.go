@@ -7,7 +7,7 @@
 package svccrypto
 
 import (
-	crypto "github.com/cybroslabs/hes-2-apis/gen/go/crypto"
+	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -27,7 +27,7 @@ const file_services_svccrypto_crypto_proto_rawDesc = "" +
 	"\n" +
 	"\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x13crypto/crypto.proto2j\n" +
 	"\rCryproService\x12Y\n" +
-	"\x04Dlms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x010\x01B<Z:github.com/cybroslabs/hes-2-apis/gen/go/services/svccryptob\beditionsp\xe8\a"
+	"\x04Dlms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x010\x01BAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccryptob\beditionsp\xe8\a"
 
 var file_services_svccrypto_crypto_proto_goTypes = []any{
 	(*crypto.DlmsIn)(nil),  // 0: io.clbs.openhes.models.crypto.DlmsIn

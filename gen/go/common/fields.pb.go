@@ -2262,7 +2262,7 @@ const file_common_fields_proto_rawDesc = "" +
 	"\tTIMEOFDAY\x10\x04\x12\t\n" +
 	"\x05MONEY\x10\x05\x12\f\n" +
 	"\bPASSWORD\x10\x06\x12\r\n" +
-	"\tMULTILINE\x10\aB0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\beditionsp\xe8\a"
+	"\tMULTILINE\x10\aB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 11)

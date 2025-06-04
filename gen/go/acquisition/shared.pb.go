@@ -7,8 +7,8 @@
 package acquisition
 
 import (
-	timeofuse "github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	timeofuse "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuse"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
@@ -11910,7 +11910,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x14JOB_STATUS_COMPLETED\x10\x03\x12\x15\n" +
 	"\x11JOB_STATUS_FAILED\x10\x04\x12\x18\n" +
 	"\x14JOB_STATUS_CANCELLED\x10\x05\x12\x16\n" +
-	"\x12JOB_STATUS_EXPIRED\x10\x06B5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\x12JOB_STATUS_EXPIRED\x10\x06B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_shared_proto_enumTypes = make([]protoimpl.EnumInfo, 14)
 var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 80)

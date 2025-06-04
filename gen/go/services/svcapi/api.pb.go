@@ -7,10 +7,10 @@
 package svcapi
 
 import (
-	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
-	_ "github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
-	system "github.com/cybroslabs/hes-2-apis/gen/go/system"
+	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
+	_ "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuse"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -106,7 +106,7 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x13ListTimeOfUseTables\x12+.io.clbs.openhes.models.common.ListSelector\x1a8.io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable\x12e\n" +
 	"\x11GetTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.TimeOfUseTable\x12b\n" +
 	"\x14UpdateTimeOfUseTable\x122.io.clbs.openhes.models.acquisition.TimeOfUseTable\x1a\x16.google.protobuf.Empty\x12L\n" +
-	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.EmptyB9Z7github.com/cybroslabs/hes-2-apis/gen/go/services/svcapib\beditionsp\xe8\a"
+	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.EmptyB>Z<github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapib\beditionsp\xe8\a"
 
 var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.CreateVariableRequest)(nil),                                                   // 0: io.clbs.openhes.models.acquisition.CreateVariableRequest

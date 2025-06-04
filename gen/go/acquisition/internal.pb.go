@@ -7,7 +7,7 @@
 package acquisition
 
 import (
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
@@ -1258,7 +1258,7 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v28.io.clbs.openhes.models.acquisition.ListOfConnectionInfoR\x05value:\x028\x01\"w\n" +
 	"\x14SetDeviceInfoRequest\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12B\n" +
-	"\x04info\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\x04infoB5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\x04info\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\x04infoB:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_acquisition_internal_proto_goTypes = []any{

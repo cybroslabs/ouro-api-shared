@@ -212,7 +212,7 @@ const file_common_types_proto_rawDesc = "" +
 	"\fListOfString\x12\x14\n" +
 	"\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCountB0Z.github.com/cybroslabs/hes-2-apis/gen/go/commonb\beditionsp\xe8\a"
+	"totalCountB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_types_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_common_types_proto_goTypes = []any{

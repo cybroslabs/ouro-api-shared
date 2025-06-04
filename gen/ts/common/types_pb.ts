@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/types.proto.
  */
 export const file_common_types: GenFile = /*@__PURE__*/
-  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIisKCExpc3RPZklkEgoKAmlkGAEgAygJEhMKC3RvdGFsX2NvdW50GAIgASgFIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUIwWi5naXRodWIuY29tL2N5YnJvc2xhYnMvaGVzLTItYXBpcy9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
+  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIisKCExpc3RPZklkEgoKAmlkGAEgAygJEhMKC3RvdGFsX2NvdW50GAIgASgFIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
 
 /**
  * The list of UUID identifiers.

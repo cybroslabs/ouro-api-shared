@@ -7,8 +7,8 @@
 package svcdriver
 
 import (
-	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -30,7 +30,7 @@ const file_services_svcdriver_driver_proto_rawDesc = "" +
 	"\x1fservices/svcdriver/driver.proto\x12\"io.clbs.openhes.services.svcdriver\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x12common/types.proto2\xd5\x01\n" +
 	"\rDriverService\x12v\n" +
 	"\bStartJob\x124.io.clbs.openhes.models.acquisition.StartJobsRequest\x1a2.io.clbs.openhes.models.acquisition.ProgressUpdate0\x01\x12L\n" +
-	"\tCancelJob\x12'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.EmptyB<Z:github.com/cybroslabs/hes-2-apis/gen/go/services/svcdriverb\beditionsp\xe8\a"
+	"\tCancelJob\x12'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdriverb\beditionsp\xe8\a"
 
 var file_services_svcdriver_driver_proto_goTypes = []any{
 	(*acquisition.StartJobsRequest)(nil), // 0: io.clbs.openhes.models.acquisition.StartJobsRequest

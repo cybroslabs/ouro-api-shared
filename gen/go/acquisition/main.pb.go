@@ -7,8 +7,8 @@
 package acquisition
 
 import (
-	timeofuse "github.com/cybroslabs/hes-2-apis/gen/go/acquisition/timeofuse"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	timeofuse "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuse"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
@@ -6744,7 +6744,7 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"totalCount\"\xb7\x01\n" +
 	"\x0eTimeOfUseTable\x12T\n" +
 	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/hes-2-apis/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 65)
 var file_acquisition_main_proto_goTypes = []any{

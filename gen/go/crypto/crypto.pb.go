@@ -2035,7 +2035,7 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"HASH_ECDSA\x10\x05*;\n" +
 	"\rHashDirection\x12\x14\n" +
 	"\x10CLIENT_TO_SERVER\x10\x00\x12\x14\n" +
-	"\x10SERVER_TO_CLIENT\x10\x01B0Z.github.com/cybroslabs/hes-2-apis/gen/go/cryptob\beditionsp\xe8\a"
+	"\x10SERVER_TO_CLIENT\x10\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
 
 var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 9)

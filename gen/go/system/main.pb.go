@@ -7,7 +7,7 @@
 package system
 
 import (
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/structpb"
@@ -369,7 +369,7 @@ const file_system_main_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n" +
 	"\x1bApplicationConfigDescriptor\x12Z\n" +
 	"\vdescriptors\x18\x01 \x03(\v28.io.clbs.openhes.models.system.ComponentConfigDescriptorR\vdescriptors\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05itemsB0Z.github.com/cybroslabs/hes-2-apis/gen/go/systemb\beditionsp\xe8\a"
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05itemsB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
 var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_system_main_proto_goTypes = []any{

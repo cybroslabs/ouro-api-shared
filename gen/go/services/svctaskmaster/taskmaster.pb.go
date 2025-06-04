@@ -7,8 +7,8 @@
 package svctaskmaster
 
 import (
-	acquisition "github.com/cybroslabs/hes-2-apis/gen/go/acquisition"
-	common "github.com/cybroslabs/hes-2-apis/gen/go/common"
+	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
+	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -37,7 +37,7 @@ const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 	"CancelJobs\x12'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.Empty\x12R\n" +
 	"\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n" +
 	"\bSetCache\x123.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n" +
-	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponseB@Z>github.com/cybroslabs/hes-2-apis/gen/go/services/svctaskmasterb\beditionsp\xe8\a"
+	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponseBEZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmasterb\beditionsp\xe8\a"
 
 var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
 	(*acquisition.QueueJobsRequest)(nil), // 0: io.clbs.openhes.models.acquisition.QueueJobsRequest

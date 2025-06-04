@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cybroslabs/hes-2-apis/gen/go/system"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	"k8s.io/utils/ptr"
 )
 

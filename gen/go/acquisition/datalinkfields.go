@@ -1,7 +1,7 @@
 package acquisition
 
 import (
-	"github.com/cybroslabs/hes-2-apis/gen/go/common"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	"k8s.io/utils/ptr"
 )
 

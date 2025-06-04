@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/cybroslabs/hes-2-apis/graph/model"
+	"github.com/cybroslabs/ouro-api-shared/graph/model"
 )
 
 // ListBulks is the resolver for the listBulks field.
