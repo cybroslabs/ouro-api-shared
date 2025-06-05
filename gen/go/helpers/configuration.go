@@ -8,6 +8,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	"k8s.io/utils/ptr"
 )
@@ -19,6 +20,8 @@ type ConfigurationServiceOpts struct {
 }
 
 type ConfigurationService interface {
+	UpdateDescriptors(descriptors []*common.FieldDescriptor)
+	FlushCache()
 	GetOption(optionName string) (any, error)
 	GetOptionWithDefault(optionName string, defaultValue any) (any, error)
 }
@@ -95,8 +98,32 @@ func (cs *configurationService) loadConfiguration() error {
 	return nil
 }
 
+func (cs *configurationService) FlushCache() {
+	cs.cacheLock.Lock()
+	defer cs.cacheLock.Unlock()
+
+	cs.cacheLast = time.Time{} // Reset cache timestamp to force reload on next GetOption call
+}
+
+func (cs *configurationService) UpdateDescriptors(descriptors []*common.FieldDescriptor) {
+	if descriptors == nil {
+		return
+	}
+
+	cs.cacheLock.Lock()
+	defer cs.cacheLock.Unlock()
+
+	// Re-set the descriptor with the new items
+	cs.descriptor.SetItems(slices.Clone(descriptors))
+	cs.cacheLast = time.Time{} // Reset cache timestamp to force reload on next GetOption call
+}
+
 func (cs *configurationService) GetOption(optionName string) (any, error) {
-	if time.Since(cs.cacheLast) > cs.cacheTime {
+	cs.cacheLock.RLock()
+	t_delta := time.Since(cs.cacheLast)
+	cs.cacheLock.RUnlock()
+
+	if t_delta > cs.cacheTime {
 		if err := cs.loadConfiguration(); err != nil {
 			return nil, err
 		}
