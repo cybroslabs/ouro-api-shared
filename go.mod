@@ -18,7 +18,7 @@ require (
 	google.golang.org/genproto v0.0.0-20250603155806-513f23925822
 	google.golang.org/grpc v1.72.2
 	google.golang.org/protobuf v1.36.6
-	k8s.io/utils v0.0.0-20250502105355-0f33e8f1c979
+	k8s.io/utils v0.0.0-20250604170112-4c0f3b243397
 )
 
 require (
