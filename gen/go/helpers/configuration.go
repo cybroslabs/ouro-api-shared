@@ -10,13 +10,13 @@ import (
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/system"
-	"k8s.io/utils/ptr"
 )
 
 type ConfigurationServiceOpts struct {
-	Connectors Connectors
-	CacheTime  time.Duration
-	Descriptor *system.ComponentConfigDescriptor
+	Connectors    Connectors
+	CacheTime     time.Duration
+	ComponentName string
+	Descriptors   []*common.FieldDescriptor
 }
 
 type ConfigurationService interface {
@@ -30,7 +30,9 @@ type configurationService struct {
 	ConfigurationService
 
 	connectors Connectors
-	descriptor *system.ComponentConfigDescriptor
+
+	componentName string
+	descriptors   []*common.FieldDescriptor
 
 	cacheTime time.Duration
 
@@ -46,20 +48,23 @@ func NewConfigurationService(opts *ConfigurationServiceOpts) (ConfigurationServi
 	if opts.Connectors == nil {
 		return nil, errors.New("the Connectors cannot be nil")
 	}
-	if opts.Descriptor == nil {
-		return nil, errors.New("the Descriptor cannot be nil")
+	if len(opts.ComponentName) == 0 {
+		return nil, errors.New("the ComponentName cannot be empty")
+	}
+
+	var descriptors []*common.FieldDescriptor
+	if opts.Descriptors != nil {
+		// Create a local copy of the descriptor so that the items can be cleaned up after the first call
+		descriptors = slices.Clone(opts.Descriptors)
 	}
 
 	return &configurationService{
-		connectors: opts.Connectors,
-		// Create a local copy of the descriptor so that the items can be cleaned up after the first call
-		descriptor: system.ComponentConfigDescriptor_builder{
-			Name:  ptr.To(opts.Descriptor.GetName()),
-			Items: slices.Clone(opts.Descriptor.GetItems()),
-		}.Build(),
-		cacheTime: opts.CacheTime,
-		cache:     make(map[string]any),
-		cacheLast: time.Time{},
+		connectors:    opts.Connectors,
+		componentName: opts.ComponentName,
+		descriptors:   descriptors,
+		cacheTime:     opts.CacheTime,
+		cache:         make(map[string]any),
+		cacheLast:     time.Time{},
 	}, nil
 }
 
@@ -70,11 +75,14 @@ func (cs *configurationService) getConfiguration() (*system.ComponentConfig, err
 	}
 	defer close()
 
-	config, err := cli.SynchronizeComponentConfig(context.Background(), cs.descriptor)
+	config, err := cli.SynchronizeComponentConfig(context.Background(), system.ComponentConfigDescriptor_builder{
+		Name:  &cs.componentName,
+		Items: cs.descriptors,
+	}.Build())
 	if err != nil {
 		return nil, err
 	}
-	cs.descriptor.SetItems(nil) // Clear descriptor after the first successful call to avoid repeated synchronization
+	cs.descriptors = nil // Clear descriptor after the first successful call to avoid repeated synchronization
 
 	return config, nil
 }
@@ -114,7 +122,7 @@ func (cs *configurationService) UpdateDescriptors(descriptors []*common.FieldDes
 	defer cs.cacheLock.Unlock()
 
 	// Re-set the descriptor with the new items
-	cs.descriptor.SetItems(slices.Clone(descriptors))
+	cs.descriptors = slices.Clone(descriptors)
 	cs.cacheLast = time.Time{} // Reset cache timestamp to force reload on next GetOption call
 }
 
