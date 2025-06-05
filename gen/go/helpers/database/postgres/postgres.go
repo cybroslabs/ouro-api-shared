@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/helpers/database"
 )
 
 var (
@@ -22,7 +23,7 @@ var (
 // The function also handles errors related to invalid field IDs or unsupported data types.
 // It is designed to be used in a PostgreSQL context where JSONB fields are queried.
 // The function returns an error if there are issues with the input parameters or if the query cannot be constructed.
-func PrepareWOL(in *DbSelector, modelColumn string, idColumn string, fixedWhere ...PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
+func PrepareWOL(in *database.DbSelector, modelColumn string, idColumn string, fixedWhere ...database.PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
 	if in == nil {
 		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
 		return
@@ -67,7 +68,7 @@ func PrepareWOL(in *DbSelector, modelColumn string, idColumn string, fixedWhere 
 	return
 }
 
-func appendFixedWhere(fixedWhere []PersistentWhere, qWhere *string, qArgsIn []any) (qArgs []any) {
+func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qArgsIn []any) (qArgs []any) {
 	if len(fixedWhere) == 0 {
 		if qArgsIn == nil {
 			qArgs = _NO_ARGS
@@ -92,7 +93,7 @@ func appendFixedWhere(fixedWhere []PersistentWhere, qWhere *string, qArgsIn []an
 	return
 }
 
-func getWhere(in *DbSelector, modelColumn string) (string, []any, error) {
+func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error) {
 	var err error
 	parts := make([]string, 0, len(in.GetFilterBy()))
 	values := make([]any, 0, len(in.GetFilterBy()))
@@ -180,7 +181,7 @@ func getWhere(in *DbSelector, modelColumn string) (string, []any, error) {
 	}
 }
 
-func getOrderBy(in *DbSelector, modelColumn string) (string, error) {
+func getOrderBy(in *database.DbSelector, modelColumn string) (string, error) {
 	if in == nil {
 		return "", nil
 	}
@@ -207,7 +208,7 @@ func getOrderBy(in *DbSelector, modelColumn string) (string, error) {
 	return tmp.String(), nil
 }
 
-func getLimitOffset(in *DbSelector) (string, error) {
+func getLimitOffset(in *database.DbSelector) (string, error) {
 	if in == nil {
 		return " LIMIT 100", nil
 	}

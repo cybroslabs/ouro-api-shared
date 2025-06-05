@@ -1,4 +1,4 @@
-package postgres
+package database
 
 import (
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
