@@ -16,14 +16,18 @@ func NewZapLogger() *zap.Logger {
 	var logLevel = os.Getenv("LOG_LEVEL")
 	if _, ok := os.LookupEnv("KUBERNETES_SERVICE_HOST"); ok {
 		zap_config := zap.NewProductionConfig()
-		if lvl, err := zap.ParseAtomicLevel(logLevel); err == nil {
-			zap_config.Level = lvl
+		if len(logLevel) > 0 {
+			if lvl, err := zap.ParseAtomicLevel(logLevel); err == nil {
+				zap_config.Level = lvl
+			}
 		}
 		zap_logger, _ = zap_config.Build()
 	} else {
 		zap_config := zap.NewDevelopmentConfig()
-		if lvl, err := zap.ParseAtomicLevel(logLevel); err == nil {
-			zap_config.Level = lvl
+		if len(logLevel) > 0 {
+			if lvl, err := zap.ParseAtomicLevel(logLevel); err == nil {
+				zap_config.Level = lvl
+			}
 		}
 		zap_logger, _ = zap_config.Build()
 	}
