@@ -36,6 +36,11 @@ func (r *queryResolver) CancelBulk(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: CancelBulk - cancelBulk"))
 }
 
+// CancelBulkJobs is the resolver for the cancelBulkJobs field.
+func (r *queryResolver) CancelBulkJobs(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: CancelBulkJobs - cancelBulkJobs"))
+}
+
 // CreateProxyBulk is the resolver for the createProxyBulk field.
 func (r *queryResolver) CreateProxyBulk(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateProxyBulk - createProxyBulk"))

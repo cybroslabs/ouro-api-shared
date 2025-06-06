@@ -205,10 +205,7 @@ class DataproxyServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetMeterDataRegisters(self, request, context):
-        """// Cancels the job(s) identified by the job identifier(s).
-        rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
-
-        @group: Meter Data
+        """@group: Meter Data
         The method to stream out register-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

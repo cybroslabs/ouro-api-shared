@@ -56,9 +56,6 @@ service DataproxyService {
     // Sets the managed fields for the bulk. The managed fields are used to store system-sourced (managed) additional information about the bulk.
     rpc SetBulkManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
-    // // Cancels the job(s) identified by the job identifier(s).
-    // rpc CancelJobs(google.protobuf.ListValue) returns (google.protobuf.Empty);
-
     // @group: Meter Data
     // The method to stream out register-typed meter data.
     rpc GetMeterDataRegisters(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);

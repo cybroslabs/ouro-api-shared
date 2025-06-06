@@ -499,8 +499,8 @@ type AddCommunicationUnitsToCommunicationBusRequest {
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
   # The identifier of the device configuration template.
   dctId: String
-  # The identifier of the register to be linked to the template.
-  registerId: String
+  # The list of register identifiers to be linked to the template.
+  registerId: [String]
 }
 
 type AddDevicesToGroupRequest {
@@ -1366,8 +1366,8 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest {
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
   # The identifier of the device configuration template.
   dctId: String
-  # The identifier of the register to be unlinked from the template.
-  registerId: String
+  # The list of register identifiers to be unlinked from the template.
+  registerId: [String]
 }
 
 type RemoveDevicesFromGroupRequest {
@@ -1588,6 +1588,14 @@ type ListOfFieldDescriptor {
   totalCount: Int
 }
 
+# The list of UUID identifiers.
+type ListOfId {
+  # Generic list of UUID identifiers.
+  id: [String]
+  # The total number of items.
+  totalCount: Int
+}
+
 # The list of string items.
 type ListOfString {
   # Generic list of string items.
@@ -1715,6 +1723,7 @@ type Query {
   getBulkJob: BulkJob
   updateBulkJob: Empty
   cancelBulk: Empty
+  cancelBulkJobs: Empty
   createProxyBulk: StringValue
   getProxyBulk: ProxyBulk
   createBulk: StringValue

@@ -55,6 +55,16 @@ CancelBulk(google.protobuf.StringValue)
 
 - Input: `google.protobuf.StringValue`
 
+## CancelBulkJobs
+
+Cancels the job(s) identified by the job identifier(s).
+
+```proto
+CancelBulkJobs(io.clbs.openhes.models.common.ListOfId)
+```
+
+- Input: [`io.clbs.openhes.models.common.ListOfId`](model-io-clbs-openhes-models-common-listofid.md)
+
 ## CreateProxyBulk
 
 Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.

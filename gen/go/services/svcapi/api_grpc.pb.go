@@ -46,6 +46,7 @@ const (
 	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
 	ApiService_UpdateBulkJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulkJob"
 	ApiService_CancelBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
+	ApiService_CancelBulkJobs_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulkJobs"
 	ApiService_CreateProxyBulk_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
 	ApiService_GetProxyBulk_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetProxyBulk"
 	ApiService_CreateBulk_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/CreateBulk"
@@ -156,6 +157,9 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Cancels the job(s) identified by the job identifier(s).
+	CancelBulkJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -555,6 +559,16 @@ func (c *apiServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.String
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ApiService_CancelBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CancelBulkJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_CancelBulkJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1138,6 +1152,9 @@ type ApiServiceServer interface {
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
+	// Cancels the job(s) identified by the job identifier(s).
+	CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
+	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
@@ -1387,6 +1404,9 @@ func (UnimplementedApiServiceServer) UpdateBulkJob(context.Context, *common.Upda
 }
 func (UnimplementedApiServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
+}
+func (UnimplementedApiServiceServer) CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelBulkJobs not implemented")
 }
 func (UnimplementedApiServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
@@ -1945,6 +1965,24 @@ func _ApiService_CancelBulk_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).CancelBulk(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CancelBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListOfId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CancelBulkJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CancelBulkJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CancelBulkJobs(ctx, req.(*common.ListOfId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2879,6 +2917,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelBulk",
 			Handler:    _ApiService_CancelBulk_Handler,
+		},
+		{
+			MethodName: "CancelBulkJobs",
+			Handler:    _ApiService_CancelBulkJobs_Handler,
 		},
 		{
 			MethodName: "CreateProxyBulk",

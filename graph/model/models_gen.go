@@ -95,8 +95,8 @@ type AddCommunicationUnitsToCommunicationBusRequest struct {
 }
 
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
-	DctID      *string `json:"dctId,omitempty"`
-	RegisterID *string `json:"registerId,omitempty"`
+	DctID      *string   `json:"dctId,omitempty"`
+	RegisterID []*string `json:"registerId,omitempty"`
 }
 
 type AddDevicesToGroupRequest struct {
@@ -620,6 +620,11 @@ type ListOfFieldDescriptor struct {
 	TotalCount *int32             `json:"totalCount,omitempty"`
 }
 
+type ListOfID struct {
+	ID         []*string `json:"id,omitempty"`
+	TotalCount *int32    `json:"totalCount,omitempty"`
+}
+
 type ListOfJobDevice struct {
 	List       []*JobDevice `json:"list,omitempty"`
 	TotalCount *int32       `json:"totalCount,omitempty"`
@@ -773,8 +778,8 @@ type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
 }
 
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
-	DctID      *string `json:"dctId,omitempty"`
-	RegisterID *string `json:"registerId,omitempty"`
+	DctID      *string   `json:"dctId,omitempty"`
+	RegisterID []*string `json:"registerId,omitempty"`
 }
 
 type RemoveDevicesFromGroupRequest struct {

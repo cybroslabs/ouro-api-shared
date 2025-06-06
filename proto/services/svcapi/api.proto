@@ -74,6 +74,9 @@ service ApiService {
     // @group: Bulks
     // Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Bulks
+    // Cancels the job(s) identified by the job identifier(s).
+    rpc CancelBulkJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 
     // @group: Bulks
     // @tag: acquisition
@@ -96,10 +99,6 @@ service ApiService {
     // @group: Bulks
     // Updates the bulk metadata. The metadata is used to store additional information about the job.
     rpc UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata) returns (google.protobuf.Empty);
-
-    // // @group: Bulks
-    // // Cancels the job(s) identified by the job identifier(s).
-    // rpc CancelJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 
     // @group: Driver Info
     // Retrieves the list of drivers.

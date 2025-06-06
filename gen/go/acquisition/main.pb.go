@@ -5788,7 +5788,7 @@ func (b0 DeviceConfigurationTemplateSpec_builder) Build() *DeviceConfigurationTe
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
-	xxx_hidden_RegisterId  *string                `protobuf:"bytes,2,opt,name=register_id,json=registerId"`
+	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -5830,14 +5830,11 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Get
 	return ""
 }
 
-func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) GetRegisterId() string {
+func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) GetRegisterId() []string {
 	if x != nil {
-		if x.xxx_hidden_RegisterId != nil {
-			return *x.xxx_hidden_RegisterId
-		}
-		return ""
+		return x.xxx_hidden_RegisterId
 	}
-	return ""
+	return nil
 }
 
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetDctId(v string) {
@@ -5845,9 +5842,8 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Set
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
-func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetRegisterId(v string) {
-	x.xxx_hidden_RegisterId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetRegisterId(v []string) {
+	x.xxx_hidden_RegisterId = v
 }
 
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) HasDctId() bool {
@@ -5857,28 +5853,16 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Has
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) HasRegisterId() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) ClearDctId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_DctId = nil
-}
-
-func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) ClearRegisterId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_RegisterId = nil
 }
 
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	DctId      *string
-	RegisterId *string
+	RegisterId []string
 }
 
 func (b0 AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_builder) Build() *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
@@ -5889,17 +5873,14 @@ func (b0 AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_buil
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_DctId = b.DctId
 	}
-	if b.RegisterId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
-		x.xxx_hidden_RegisterId = b.RegisterId
-	}
+	x.xxx_hidden_RegisterId = b.RegisterId
 	return m0
 }
 
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
-	xxx_hidden_RegisterId  *string                `protobuf:"bytes,2,opt,name=register_id,json=registerId"`
+	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -5941,14 +5922,11 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	return ""
 }
 
-func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) GetRegisterId() string {
+func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) GetRegisterId() []string {
 	if x != nil {
-		if x.xxx_hidden_RegisterId != nil {
-			return *x.xxx_hidden_RegisterId
-		}
-		return ""
+		return x.xxx_hidden_RegisterId
 	}
-	return ""
+	return nil
 }
 
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetDctId(v string) {
@@ -5956,9 +5934,8 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
-func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetRegisterId(v string) {
-	x.xxx_hidden_RegisterId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetRegisterId(v []string) {
+	x.xxx_hidden_RegisterId = v
 }
 
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) HasDctId() bool {
@@ -5968,28 +5945,16 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) HasRegisterId() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) ClearDctId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_DctId = nil
-}
-
-func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) ClearRegisterId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_RegisterId = nil
 }
 
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	DctId      *string
-	RegisterId *string
+	RegisterId []string
 }
 
 func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_builder) Build() *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
@@ -6000,10 +5965,7 @@ func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_DctId = b.DctId
 	}
-	if b.RegisterId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
-		x.xxx_hidden_RegisterId = b.RegisterId
-	}
+	x.xxx_hidden_RegisterId = b.RegisterId
 	return m0
 }
 
@@ -6721,11 +6683,11 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"registerId\"|\n" +
 	"BAddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
-	"\vregister_id\x18\x02 \x01(\tR\n" +
+	"\vregister_id\x18\x02 \x03(\tR\n" +
 	"registerId\"\x81\x01\n" +
 	"GRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
-	"\vregister_id\x18\x02 \x01(\tR\n" +
+	"\vregister_id\x18\x02 \x03(\tR\n" +
 	"registerId\"\xb3\x01\n" +
 	"\x13GetMeterDataRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +

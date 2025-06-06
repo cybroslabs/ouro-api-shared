@@ -15,8 +15,6 @@ service TaskmasterService {
     rpc QueueJobs(io.clbs.openhes.models.acquisition.QueueJobsRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the job status. The parameter contains the job identifier.
     rpc GetJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetJobResponse);
-    // The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
-    rpc PurgeJobs(google.protobuf.Empty) returns (google.protobuf.Empty);
     // The method called by the RestApi to cancel the job.
     rpc CancelJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 

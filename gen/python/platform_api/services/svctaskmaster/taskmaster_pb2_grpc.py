@@ -30,11 +30,6 @@ class TaskmasterServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_internal__pb2.GetJobResponse.FromString,
                 _registered_method=True)
-        self.PurgeJobs = channel.unary_unary(
-                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/PurgeJobs',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
         self.CancelJobs = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs',
                 request_serializer=common_dot_types__pb2.ListOfId.SerializeToString,
@@ -70,13 +65,6 @@ class TaskmasterServiceServicer(object):
 
     def GetJob(self, request, context):
         """The method called by the RestApi to get the job status. The parameter contains the job identifier.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PurgeJobs(self, request, context):
-        """The method called by the RestApi to purge all jobs (queued/running/finished) from the system.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -122,11 +110,6 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
                     servicer.GetJob,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_internal__pb2.GetJobResponse.SerializeToString,
-            ),
-            'PurgeJobs': grpc.unary_unary_rpc_method_handler(
-                    servicer.PurgeJobs,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CancelJobs': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelJobs,
@@ -205,33 +188,6 @@ class TaskmasterService(object):
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_internal__pb2.GetJobResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def PurgeJobs(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/PurgeJobs',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
