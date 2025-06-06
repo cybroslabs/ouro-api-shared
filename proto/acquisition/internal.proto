@@ -74,6 +74,6 @@ message MapDeviceConnectionInfo {
 }
 
 message SetDeviceInfoRequest {
-    string device_id = 1;  // The device identifier.
+    string device_id            = 1;  // The device identifier.
     acquisition.DeviceInfo info = 2;  // The device information.
 }

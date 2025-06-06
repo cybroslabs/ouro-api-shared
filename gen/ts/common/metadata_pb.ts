@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEAMi/QEKF1NldE1hbmFnZWRGaWVsZHNSZXF1ZXN0EgoKAmlkGAEgASgJEhIKCmdlbmVyYXRpb24YAiABKAUSYQoObWFuYWdlZF9maWVsZHMYBCADKAsySS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5TZXRNYW5hZ2VkRmllbGRzUmVxdWVzdC5NYW5hZ2VkRmllbGRzRW50cnkaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_struct, file_common_fields]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEANCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields]);
 
 /**
  * The metadata fields managed by user and system.
@@ -136,67 +136,4 @@ export type UpdateMetadataJson = {
  */
 export const UpdateMetadataSchema: GenMessage<UpdateMetadata, {jsonType: UpdateMetadataJson}> = /*@__PURE__*/
   messageDesc(file_common_metadata, 1);
-
-/**
- * The request to set the managed fields of the resource.
- *
- * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
- */
-export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.SetManagedFieldsRequest"> & {
-  /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
-   *
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * The generation of the resource, optional. If set then it must match the current generation of the resource, otherwise the data are overwritten without checking the generation.
-   *
-   * @generated from field: int32 generation = 2;
-   */
-  generation: number;
-
-  /**
-   * The additional fields managed by system.
-   *
-   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
-   */
-  managedFields: { [key: string]: FieldValue };
-};
-
-/**
- * The request to set the managed fields of the resource.
- *
- * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
- */
-export type SetManagedFieldsRequestJson = {
-  /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
-   *
-   * @generated from field: string id = 1;
-   */
-  id?: string;
-
-  /**
-   * The generation of the resource, optional. If set then it must match the current generation of the resource, otherwise the data are overwritten without checking the generation.
-   *
-   * @generated from field: int32 generation = 2;
-   */
-  generation?: number;
-
-  /**
-   * The additional fields managed by system.
-   *
-   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
-   */
-  managedFields?: { [key: string]: FieldValueJson };
-};
-
-/**
- * Describes the message io.clbs.openhes.models.common.SetManagedFieldsRequest.
- * Use `create(SetManagedFieldsRequestSchema)` to create a new message.
- */
-export const SetManagedFieldsRequestSchema: GenMessage<SetManagedFieldsRequest, {jsonType: SetManagedFieldsRequestJson}> = /*@__PURE__*/
-  messageDesc(file_common_metadata, 2);
 

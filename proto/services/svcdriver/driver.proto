@@ -6,6 +6,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdr
 import "google/protobuf/empty.proto";
 import "acquisition/internal.proto";
 import "acquisition/main.proto";
+import "common/internal.proto";
 import "common/types.proto";
 
 // The driver service definition.
@@ -15,4 +16,5 @@ service DriverService {
     rpc StartJob(io.clbs.openhes.models.acquisition.StartJobsRequest) returns (stream io.clbs.openhes.models.acquisition.ProgressUpdate);
     // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
     rpc CancelJob(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
+    rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

@@ -10,6 +10,7 @@ import "google/protobuf/struct.proto";
 import "acquisition/main.proto";
 import "acquisition/shared.proto";
 import "common/fields.proto";
+import "common/internal.proto";
 import "common/metadata.proto";
 import "common/types.proto";
 
@@ -29,9 +30,6 @@ service DataproxyService {
     // @group: Bulks
     // Updates the job metadata. The metadata is used to store additional information about the job.
     rpc UpdateBulkJob(io.clbs.openhes.models.common.UpdateMetadata) returns (google.protobuf.Empty);
-    // @group: Bulks
-    // Sets the managed fields for the job. The managed fields are used to store system-sourced (managed) additional information about the job.
-    rpc SetBulkJobManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // @group: Bulks
     // Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
@@ -56,9 +54,6 @@ service DataproxyService {
     // @group: Bulks
     // Updates the bulk metadata. The metadata is used to store additional information about the job.
     rpc UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata) returns (google.protobuf.Empty);
-    // @group: Bulks
-    // Sets the managed fields for the bulk. The managed fields are used to store system-sourced (managed) additional information about the bulk.
-    rpc SetBulkManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // @group: Meter Data
     // The method to stream out register-typed meter data.
@@ -75,4 +70,6 @@ service DataproxyService {
     // @group: Meter Events
     // The method to stream out profile-typed meter data.
     rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
+
+    rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

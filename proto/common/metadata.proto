@@ -20,10 +20,3 @@ message UpdateMetadata {
     reserved 1, 2;                // Reserved for compatibility with other typed models where the metadata is at the 3rd position.
     MetadataFields metadata = 3;  // The metadata fields of the resource.
 }
-
-// The request to set the managed fields of the resource.
-message SetManagedFieldsRequest {
-    string id                              = 1;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
-    int32 generation                       = 2;  // The generation of the resource, optional. If set then it must match the current generation of the resource, otherwise the data are overwritten without checking the generation.
-    map<string, FieldValue> managed_fields = 4;  // The additional fields managed by system.
-}

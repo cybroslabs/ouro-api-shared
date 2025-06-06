@@ -5,6 +5,7 @@ import grpc
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
+from common import internal_pb2 as common_dot_internal__pb2
 from common import metadata_pb2 as common_dot_metadata__pb2
 from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
@@ -39,11 +40,6 @@ class DataproxyServiceStub(object):
         self.UpdateBulkJob = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob',
                 request_serializer=common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.SetBulkJobManagedFields = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkJobManagedFields',
-                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CancelBulk = channel.unary_unary(
@@ -81,11 +77,6 @@ class DataproxyServiceStub(object):
                 request_serializer=common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.SetBulkManagedFields = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkManagedFields',
-                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
         self.GetMeterDataRegisters = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters',
                 request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
@@ -105,6 +96,11 @@ class DataproxyServiceStub(object):
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents',
                 request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
+                _registered_method=True)
+        self.SetManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields',
+                request_serializer=common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
 
@@ -141,14 +137,6 @@ class DataproxyServiceServicer(object):
     def UpdateBulkJob(self, request, context):
         """@group: Bulks
         Updates the job metadata. The metadata is used to store additional information about the job.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetBulkJobManagedFields(self, request, context):
-        """@group: Bulks
-        Sets the managed fields for the job. The managed fields are used to store system-sourced (managed) additional information about the job.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -210,14 +198,6 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetBulkManagedFields(self, request, context):
-        """@group: Bulks
-        Sets the managed fields for the bulk. The managed fields are used to store system-sourced (managed) additional information about the bulk.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def GetMeterDataRegisters(self, request, context):
         """@group: Meter Data
         The method to stream out register-typed meter data.
@@ -250,6 +230,12 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataproxyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -271,11 +257,6 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
             'UpdateBulkJob': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateBulkJob,
                     request_deserializer=common_dot_metadata__pb2.UpdateMetadata.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'SetBulkJobManagedFields': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetBulkJobManagedFields,
-                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CancelBulk': grpc.unary_unary_rpc_method_handler(
@@ -313,11 +294,6 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     request_deserializer=common_dot_metadata__pb2.UpdateMetadata.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'SetBulkManagedFields': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetBulkManagedFields,
-                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
             'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
                     servicer.GetMeterDataRegisters,
                     request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
@@ -337,6 +313,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.GetMeterEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
+            ),
+            'SetManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetManagedFields,
+                    request_deserializer=common_dot_internal__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -447,33 +428,6 @@ class DataproxyService(object):
             target,
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob',
             common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def SetBulkJobManagedFields(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkJobManagedFields',
-            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -675,33 +629,6 @@ class DataproxyService(object):
             _registered_method=True)
 
     @staticmethod
-    def SetBulkManagedFields(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkManagedFields',
-            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
     def GetMeterDataRegisters(request,
             target,
             options=(),
@@ -799,6 +726,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents',
             acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
             acquisition_dot_shared__pb2.EventRecords.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields',
+            common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
