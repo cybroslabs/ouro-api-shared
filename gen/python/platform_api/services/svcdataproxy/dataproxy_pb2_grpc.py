@@ -6,6 +6,7 @@ from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 from common import metadata_pb2 as common_dot_metadata__pb2
+from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
@@ -48,6 +49,11 @@ class DataproxyServiceStub(object):
         self.CancelBulk = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.CancelBulkJobs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs',
+                request_serializer=common_dot_types__pb2.ListOfId.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CreateProxyBulk = channel.unary_unary(
@@ -151,6 +157,14 @@ class DataproxyServiceServicer(object):
     def CancelBulk(self, request, context):
         """@group: Bulks
         Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CancelBulkJobs(self, request, context):
+        """@group: Bulks
+        Cancels the job(s) identified by the job identifier(s).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -267,6 +281,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
             'CancelBulk': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelBulk,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'CancelBulkJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelBulkJobs,
+                    request_deserializer=common_dot_types__pb2.ListOfId.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateProxyBulk': grpc.unary_unary_rpc_method_handler(
@@ -482,6 +501,33 @@ class DataproxyService(object):
             target,
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CancelBulkJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs',
+            common_dot_types__pb2.ListOfId.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
