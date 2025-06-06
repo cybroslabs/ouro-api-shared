@@ -27,12 +27,14 @@ const (
 	DataproxyService_ListBulkJobs_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
 	DataproxyService_GetBulkJob_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
 	DataproxyService_UpdateBulkJob_FullMethodName                 = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob"
+	DataproxyService_SetBulkJobManagedFields_FullMethodName       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkJobManagedFields"
 	DataproxyService_CancelBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
 	DataproxyService_CreateProxyBulk_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
 	DataproxyService_GetProxyBulk_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
 	DataproxyService_CreateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
 	DataproxyService_GetBulk_FullMethodName                       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
 	DataproxyService_UpdateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk"
+	DataproxyService_SetBulkManagedFields_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetBulkManagedFields"
 	DataproxyService_GetMeterDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters"
 	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
 	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
@@ -60,6 +62,9 @@ type DataproxyServiceClient interface {
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
+	// Sets the managed fields for the job. The managed fields are used to store system-sourced (managed) additional information about the job.
+	SetBulkJobManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -77,6 +82,9 @@ type DataproxyServiceClient interface {
 	// @group: Bulks
 	// Updates the bulk metadata. The metadata is used to store additional information about the job.
 	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Sets the managed fields for the bulk. The managed fields are used to store system-sourced (managed) additional information about the bulk.
+	SetBulkManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -139,6 +147,16 @@ func (c *dataproxyServiceClient) UpdateBulkJob(ctx context.Context, in *common.U
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) SetBulkJobManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_SetBulkJobManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataproxyServiceClient) CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -193,6 +211,16 @@ func (c *dataproxyServiceClient) UpdateBulk(ctx context.Context, in *common.Upda
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_UpdateBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) SetBulkManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_SetBulkManagedFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -296,6 +324,9 @@ type DataproxyServiceServer interface {
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Bulks
+	// Sets the managed fields for the job. The managed fields are used to store system-sourced (managed) additional information about the job.
+	SetBulkJobManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
+	// @group: Bulks
 	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
@@ -313,6 +344,9 @@ type DataproxyServiceServer interface {
 	// @group: Bulks
 	// Updates the bulk metadata. The metadata is used to store additional information about the job.
 	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Sets the managed fields for the bulk. The managed fields are used to store system-sourced (managed) additional information about the bulk.
+	SetBulkManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Meter Data
 	// The method to stream out register-typed meter data.
 	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
@@ -347,6 +381,9 @@ func (UnimplementedDataproxyServiceServer) GetBulkJob(context.Context, *wrappers
 func (UnimplementedDataproxyServiceServer) UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulkJob not implemented")
 }
+func (UnimplementedDataproxyServiceServer) SetBulkJobManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetBulkJobManagedFields not implemented")
+}
 func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulk not implemented")
 }
@@ -364,6 +401,9 @@ func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.
 }
 func (UnimplementedDataproxyServiceServer) UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulk not implemented")
+}
+func (UnimplementedDataproxyServiceServer) SetBulkManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetBulkManagedFields not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
@@ -466,6 +506,24 @@ func _DataproxyService_UpdateBulkJob_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataproxyServiceServer).UpdateBulkJob(ctx, req.(*common.UpdateMetadata))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_SetBulkJobManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).SetBulkJobManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_SetBulkJobManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).SetBulkJobManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -578,6 +636,24 @@ func _DataproxyService_UpdateBulk_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_SetBulkManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).SetBulkManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_SetBulkManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).SetBulkManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataproxyService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -646,6 +722,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataproxyService_UpdateBulkJob_Handler,
 		},
 		{
+			MethodName: "SetBulkJobManagedFields",
+			Handler:    _DataproxyService_SetBulkJobManagedFields_Handler,
+		},
+		{
 			MethodName: "CancelBulk",
 			Handler:    _DataproxyService_CancelBulk_Handler,
 		},
@@ -668,6 +748,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBulk",
 			Handler:    _DataproxyService_UpdateBulk_Handler,
+		},
+		{
+			MethodName: "SetBulkManagedFields",
+			Handler:    _DataproxyService_SetBulkManagedFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

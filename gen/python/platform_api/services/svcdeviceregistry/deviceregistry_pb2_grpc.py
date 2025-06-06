@@ -6,6 +6,7 @@ from acquisition import internal_pb2 as acquisition_dot_internal__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
+from common import metadata_pb2 as common_dot_metadata__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
@@ -41,6 +42,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.SetVariableManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetVariableManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.CreateDeviceConfigurationRegister = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister',
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceConfigurationRegisterRequest.SerializeToString,
@@ -64,6 +70,11 @@ class DeviceRegistryServiceStub(object):
         self.DeleteDeviceConfigurationRegister = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SetDeviceConfigurationRegisterManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CreateDeviceConfigurationTemplate = channel.unary_unary(
@@ -101,6 +112,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.ListDrivers = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -115,6 +131,11 @@ class DeviceRegistryServiceStub(object):
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Driver.FromString,
+                _registered_method=True)
+        self.SetDriverManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CreateCommunicationUnit = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit',
@@ -136,6 +157,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.CommunicationUnit.FromString,
                 _registered_method=True)
+        self.SetCommunicationUnitManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationUnitManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.CreateCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus',
                 request_serializer=acquisition_dot_main__pb2.CreateCommunicationBusRequest.SerializeToString,
@@ -154,6 +180,11 @@ class DeviceRegistryServiceStub(object):
         self.RemoveCommunicationUnitsFromCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus',
                 request_serializer=acquisition_dot_main__pb2.RemoveCommunicationUnitsFromCommunicationBusRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SetCommunicationBusManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationBusManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CreateDevice = channel.unary_unary(
@@ -175,6 +206,11 @@ class DeviceRegistryServiceStub(object):
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Device.FromString,
+                _registered_method=True)
+        self.SetDeviceManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.StreamDeviceType = channel.stream_stream(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType',
@@ -221,6 +257,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.DeviceGroup.FromString,
                 _registered_method=True)
+        self.SetDeviceGroupManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceGroupManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.StreamDeviceGroup = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
@@ -259,6 +300,11 @@ class DeviceRegistryServiceStub(object):
         self.UpdateModemPool = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModemPool',
                 request_serializer=acquisition_dot_main__pb2.SetModemPoolRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SetModemPoolManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetModemPoolManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.DeleteModemPool = channel.unary_unary(
@@ -306,6 +352,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.SetTimeOfUseTableManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetTimeOfUseTableManagedFields',
+                request_serializer=common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
 
 
 class DeviceRegistryServiceServicer(object):
@@ -337,6 +388,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetVariableManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateDeviceConfigurationRegister(self, request, context):
         """Creates a new register. The register object holds the information about the single device register.
         """
@@ -363,6 +420,12 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteDeviceConfigurationRegister(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDeviceConfigurationRegisterManagedFields(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -410,6 +473,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListDrivers(self, request, context):
         """The method called by the RestApi to get the list of drivers.
         """
@@ -427,6 +496,12 @@ class DeviceRegistryServiceServicer(object):
     def GetDriver(self, request, context):
         """The method called by the RestApi to get the driver templates.
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDriverManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -467,6 +542,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetCommunicationUnitManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
@@ -495,6 +576,12 @@ class DeviceRegistryServiceServicer(object):
         """@group: Devices
         @tag: communicationbus
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetCommunicationBusManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -531,6 +618,12 @@ class DeviceRegistryServiceServicer(object):
         @tag: device
         The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDeviceManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -602,6 +695,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetDeviceGroupManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StreamDeviceGroup(self, request, context):
         """The method returns stream of devices from the device group.
         @param The device group identifier.
@@ -655,6 +754,12 @@ class DeviceRegistryServiceServicer(object):
     def UpdateModemPool(self, request, context):
         """The method to update the modem pool.
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetModemPoolManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -727,6 +832,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetTimeOfUseTableManagedFields(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DeviceRegistryServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -748,6 +859,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'DeleteVariable': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteVariable,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetVariableManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetVariableManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
@@ -773,6 +889,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'DeleteDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteDeviceConfigurationRegister,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetDeviceConfigurationRegisterManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDeviceConfigurationRegisterManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
@@ -810,6 +931,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
+            'SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'ListDrivers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDrivers,
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
@@ -824,6 +950,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.GetDriver,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Driver.SerializeToString,
+            ),
+            'SetDriverManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDriverManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateCommunicationUnit': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationUnit,
@@ -845,6 +976,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
             ),
+            'SetCommunicationUnitManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCommunicationUnitManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'CreateCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationBus,
                     request_deserializer=acquisition_dot_main__pb2.CreateCommunicationBusRequest.FromString,
@@ -863,6 +999,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'RemoveCommunicationUnitsFromCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.RemoveCommunicationUnitsFromCommunicationBus,
                     request_deserializer=acquisition_dot_main__pb2.RemoveCommunicationUnitsFromCommunicationBusRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetCommunicationBusManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCommunicationBusManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateDevice': grpc.unary_unary_rpc_method_handler(
@@ -884,6 +1025,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.GetDevice,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Device.SerializeToString,
+            ),
+            'SetDeviceManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDeviceManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'StreamDeviceType': grpc.stream_stream_rpc_method_handler(
                     servicer.StreamDeviceType,
@@ -930,6 +1076,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.DeviceGroup.SerializeToString,
             ),
+            'SetDeviceGroupManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDeviceGroupManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'StreamDeviceGroup': grpc.unary_stream_rpc_method_handler(
                     servicer.StreamDeviceGroup,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
@@ -968,6 +1119,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'UpdateModemPool': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateModemPool,
                     request_deserializer=acquisition_dot_main__pb2.SetModemPoolRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetModemPoolManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetModemPoolManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'DeleteModemPool': grpc.unary_unary_rpc_method_handler(
@@ -1013,6 +1169,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'DeleteTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteTimeOfUseTable,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetTimeOfUseTableManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTimeOfUseTableManagedFields,
+                    request_deserializer=common_dot_metadata__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -1124,6 +1285,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetVariableManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetVariableManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -1259,6 +1447,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetDeviceConfigurationRegisterManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -1460,6 +1675,33 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
+    def SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def ListDrivers(request,
             target,
             options=(),
@@ -1530,6 +1772,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Driver.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetDriverManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1649,6 +1918,33 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
+    def SetCommunicationUnitManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationUnitManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def CreateCommunicationBus(request,
             target,
             options=(),
@@ -1745,6 +2041,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus',
             acquisition_dot_main__pb2.RemoveCommunicationUnitsFromCommunicationBusRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetCommunicationBusManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationBusManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -1854,6 +2177,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Device.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetDeviceManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -2108,6 +2458,33 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
+    def SetDeviceGroupManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceGroupManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def StreamDeviceGroup(request,
             target,
             options=(),
@@ -2312,6 +2689,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModemPool',
             acquisition_dot_main__pb2.SetModemPoolRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetModemPoolManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetModemPoolManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -2555,6 +2959,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetTimeOfUseTableManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetTimeOfUseTableManagedFields',
+            common_dot_metadata__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

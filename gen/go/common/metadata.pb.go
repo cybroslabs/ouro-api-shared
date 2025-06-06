@@ -259,6 +259,129 @@ func (b0 UpdateMetadata_builder) Build() *UpdateMetadata {
 	return m0
 }
 
+// The request to set the managed fields of the resource.
+type SetManagedFieldsRequest struct {
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id            *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_Generation    int32                  `protobuf:"varint,2,opt,name=generation"`
+	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,4,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *SetManagedFieldsRequest) Reset() {
+	*x = SetManagedFieldsRequest{}
+	mi := &file_common_metadata_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetManagedFieldsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetManagedFieldsRequest) ProtoMessage() {}
+
+func (x *SetManagedFieldsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_metadata_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *SetManagedFieldsRequest) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetManagedFieldsRequest) GetGeneration() int32 {
+	if x != nil {
+		return x.xxx_hidden_Generation
+	}
+	return 0
+}
+
+func (x *SetManagedFieldsRequest) GetManagedFields() map[string]*FieldValue {
+	if x != nil {
+		return x.xxx_hidden_ManagedFields
+	}
+	return nil
+}
+
+func (x *SetManagedFieldsRequest) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *SetManagedFieldsRequest) SetGeneration(v int32) {
+	x.xxx_hidden_Generation = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *SetManagedFieldsRequest) SetManagedFields(v map[string]*FieldValue) {
+	x.xxx_hidden_ManagedFields = v
+}
+
+func (x *SetManagedFieldsRequest) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *SetManagedFieldsRequest) HasGeneration() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *SetManagedFieldsRequest) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *SetManagedFieldsRequest) ClearGeneration() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Generation = 0
+}
+
+type SetManagedFieldsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id            *string
+	Generation    *int32
+	ManagedFields map[string]*FieldValue
+}
+
+func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
+	m0 := &SetManagedFieldsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Id = b.Id
+	}
+	if b.Generation != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_Generation = *b.Generation
+	}
+	x.xxx_hidden_ManagedFields = b.ManagedFields
+	return m0
+}
+
 var File_common_metadata_proto protoreflect.FileDescriptor
 
 const file_common_metadata_proto_rawDesc = "" +
@@ -279,27 +402,40 @@ const file_common_metadata_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"g\n" +
 	"\x0eUpdateMetadata\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03\"\xa8\x02\n" +
+	"\x17SetManagedFieldsRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
+	"\n" +
+	"generation\x18\x02 \x01(\x05R\n" +
+	"generation\x12p\n" +
+	"\x0emanaged_fields\x18\x04 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x1ak\n" +
+	"\x12ManagedFieldsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_common_metadata_proto_goTypes = []any{
-	(*MetadataFields)(nil), // 0: io.clbs.openhes.models.common.MetadataFields
-	(*UpdateMetadata)(nil), // 1: io.clbs.openhes.models.common.UpdateMetadata
-	nil,                    // 2: io.clbs.openhes.models.common.MetadataFields.FieldsEntry
-	nil,                    // 3: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
-	(*FieldValue)(nil),     // 4: io.clbs.openhes.models.common.FieldValue
+	(*MetadataFields)(nil),          // 0: io.clbs.openhes.models.common.MetadataFields
+	(*UpdateMetadata)(nil),          // 1: io.clbs.openhes.models.common.UpdateMetadata
+	(*SetManagedFieldsRequest)(nil), // 2: io.clbs.openhes.models.common.SetManagedFieldsRequest
+	nil,                             // 3: io.clbs.openhes.models.common.MetadataFields.FieldsEntry
+	nil,                             // 4: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
+	nil,                             // 5: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	(*FieldValue)(nil),              // 6: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_metadata_proto_depIdxs = []int32{
-	2, // 0: io.clbs.openhes.models.common.MetadataFields.fields:type_name -> io.clbs.openhes.models.common.MetadataFields.FieldsEntry
-	3, // 1: io.clbs.openhes.models.common.MetadataFields.managed_fields:type_name -> io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
+	3, // 0: io.clbs.openhes.models.common.MetadataFields.fields:type_name -> io.clbs.openhes.models.common.MetadataFields.FieldsEntry
+	4, // 1: io.clbs.openhes.models.common.MetadataFields.managed_fields:type_name -> io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
 	0, // 2: io.clbs.openhes.models.common.UpdateMetadata.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	4, // 3: io.clbs.openhes.models.common.MetadataFields.FieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	4, // 4: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5, // 3: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	6, // 4: io.clbs.openhes.models.common.MetadataFields.FieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	6, // 5: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	6, // 6: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_common_metadata_proto_init() }
@@ -314,7 +450,7 @@ func file_common_metadata_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_metadata_proto_rawDesc), len(file_common_metadata_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

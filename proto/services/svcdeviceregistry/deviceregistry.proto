@@ -11,6 +11,7 @@ import "acquisition/main.proto";
 import "acquisition/internal.proto";
 import "acquisition/shared.proto";
 import "common/fields.proto";
+import "common/metadata.proto";
 
 // The Deviceregistry service definition.
 service DeviceRegistryService {
@@ -19,6 +20,7 @@ service DeviceRegistryService {
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
     rpc UpdateVariable(io.clbs.openhes.models.acquisition.Variable) returns (google.protobuf.Empty);
     rpc DeleteVariable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc SetVariableManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // Creates a new register. The register object holds the information about the single device register.
     rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
@@ -26,6 +28,7 @@ service DeviceRegistryService {
     rpc GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister);
     rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
     rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc SetDeviceConfigurationRegisterManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
     rpc ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate);
@@ -34,6 +37,7 @@ service DeviceRegistryService {
     rpc DeleteDeviceConfigurationTemplate(google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
     rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    rpc SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // The method called by the RestApi to get the list of drivers.
     rpc ListDrivers(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
@@ -41,6 +45,7 @@ service DeviceRegistryService {
     rpc CreateDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
     // The method called by the RestApi to get the driver templates.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
+    rpc SetDriverManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // @group: Devices
     // @tag: communicationunit
@@ -58,6 +63,7 @@ service DeviceRegistryService {
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
+    rpc SetCommunicationUnitManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // @group: Devices
     // @tag: communicationbus
@@ -71,6 +77,7 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: communicationbus
     rpc RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) returns (google.protobuf.Empty);
+    rpc SetCommunicationBusManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 
     // @group: Devices
     // @tag: device
@@ -88,6 +95,7 @@ service DeviceRegistryService {
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
+    rpc SetDeviceManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
     rpc StreamDeviceType(stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest) returns (stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse);
@@ -111,6 +119,7 @@ service DeviceRegistryService {
     // @param The device group identifier.
     // @return The device group specification.
     rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
+    rpc SetDeviceGroupManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // The method returns stream of devices from the device group.
     // @param The device group identifier.
     rpc StreamDeviceGroup(google.protobuf.StringValue) returns (stream io.clbs.openhes.models.acquisition.StreamDeviceGroup);
@@ -129,6 +138,7 @@ service DeviceRegistryService {
     rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue);
     // The method to update the modem pool.
     rpc UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
+    rpc SetModemPoolManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // The method to delete the modem pool.
     rpc DeleteModemPool(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // The method to create a new modem within the pool.
@@ -153,4 +163,5 @@ service DeviceRegistryService {
     // @group: Time-Of-Use Tables
     // The method to delete the time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc SetTimeOfUseTableManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

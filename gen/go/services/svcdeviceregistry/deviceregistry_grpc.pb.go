@@ -24,63 +24,73 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeviceRegistryService_CreateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateVariable"
-	DeviceRegistryService_ListVariables_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListVariables"
-	DeviceRegistryService_UpdateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateVariable"
-	DeviceRegistryService_DeleteVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable"
-	DeviceRegistryService_CreateDeviceConfigurationRegister_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister"
-	DeviceRegistryService_ListDeviceConfigurationRegisters_FullMethodName                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationRegisters"
-	DeviceRegistryService_GetDeviceConfigurationRegister_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationRegister"
-	DeviceRegistryService_UpdateDeviceConfigurationRegister_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationRegister"
-	DeviceRegistryService_DeleteDeviceConfigurationRegister_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister"
-	DeviceRegistryService_CreateDeviceConfigurationTemplate_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationTemplate"
-	DeviceRegistryService_ListDeviceConfigurationTemplates_FullMethodName                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationTemplates"
-	DeviceRegistryService_GetDeviceConfigurationTemplate_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationTemplate"
-	DeviceRegistryService_UpdateDeviceConfigurationTemplate_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationTemplate"
-	DeviceRegistryService_DeleteDeviceConfigurationTemplate_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationTemplate"
-	DeviceRegistryService_AddDeviceConfigurationRegisterToDeviceConfigurationTemplate_FullMethodName      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate"
-	DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
-	DeviceRegistryService_ListDrivers_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers"
-	DeviceRegistryService_CreateDriver_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDriver"
-	DeviceRegistryService_GetDriver_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver"
-	DeviceRegistryService_CreateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
-	DeviceRegistryService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateCommunicationUnit"
-	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
-	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
-	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
-	DeviceRegistryService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationBuses"
-	DeviceRegistryService_AddCommunicationUnitsToCommunicationBus_FullMethodName                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToCommunicationBus"
-	DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus"
-	DeviceRegistryService_CreateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
-	DeviceRegistryService_UpdateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice"
-	DeviceRegistryService_ListDevices_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
-	DeviceRegistryService_GetDevice_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
-	DeviceRegistryService_StreamDeviceType_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType"
-	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
-	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
-	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
-	DeviceRegistryService_SetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo"
-	DeviceRegistryService_GetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo"
-	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
-	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
-	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
-	DeviceRegistryService_StreamDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup"
-	DeviceRegistryService_AddDevicesToGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
-	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
-	DeviceRegistryService_ListDeviceGroupDevices_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroupDevices"
-	DeviceRegistryService_ListModemPools_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListModemPools"
-	DeviceRegistryService_GetModemPool_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetModemPool"
-	DeviceRegistryService_CreateModemPool_FullMethodName                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateModemPool"
-	DeviceRegistryService_UpdateModemPool_FullMethodName                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModemPool"
-	DeviceRegistryService_DeleteModemPool_FullMethodName                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteModemPool"
-	DeviceRegistryService_CreateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateModem"
-	DeviceRegistryService_UpdateModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModem"
-	DeviceRegistryService_DeleteModem_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteModem"
-	DeviceRegistryService_CreateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateTimeOfUseTable"
-	DeviceRegistryService_ListTimeOfUseTables_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListTimeOfUseTables"
-	DeviceRegistryService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetTimeOfUseTable"
-	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
-	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
+	DeviceRegistryService_CreateVariable_FullMethodName                                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateVariable"
+	DeviceRegistryService_ListVariables_FullMethodName                                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListVariables"
+	DeviceRegistryService_UpdateVariable_FullMethodName                                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateVariable"
+	DeviceRegistryService_DeleteVariable_FullMethodName                                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable"
+	DeviceRegistryService_SetVariableManagedFields_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetVariableManagedFields"
+	DeviceRegistryService_CreateDeviceConfigurationRegister_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister"
+	DeviceRegistryService_ListDeviceConfigurationRegisters_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationRegisters"
+	DeviceRegistryService_GetDeviceConfigurationRegister_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationRegister"
+	DeviceRegistryService_UpdateDeviceConfigurationRegister_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationRegister"
+	DeviceRegistryService_DeleteDeviceConfigurationRegister_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationRegister"
+	DeviceRegistryService_SetDeviceConfigurationRegisterManagedFields_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterManagedFields"
+	DeviceRegistryService_CreateDeviceConfigurationTemplate_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationTemplate"
+	DeviceRegistryService_ListDeviceConfigurationTemplates_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationTemplates"
+	DeviceRegistryService_GetDeviceConfigurationTemplate_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationTemplate"
+	DeviceRegistryService_UpdateDeviceConfigurationTemplate_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDeviceConfigurationTemplate"
+	DeviceRegistryService_DeleteDeviceConfigurationTemplate_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceConfigurationTemplate"
+	DeviceRegistryService_AddDeviceConfigurationRegisterToDeviceConfigurationTemplate_FullMethodName                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate"
+	DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
+	DeviceRegistryService_SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields_FullMethodName = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields"
+	DeviceRegistryService_ListDrivers_FullMethodName                                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDrivers"
+	DeviceRegistryService_CreateDriver_FullMethodName                                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDriver"
+	DeviceRegistryService_GetDriver_FullMethodName                                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDriver"
+	DeviceRegistryService_SetDriverManagedFields_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDriverManagedFields"
+	DeviceRegistryService_CreateCommunicationUnit_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationUnit"
+	DeviceRegistryService_UpdateCommunicationUnit_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateCommunicationUnit"
+	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
+	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                                       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
+	DeviceRegistryService_SetCommunicationUnitManagedFields_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationUnitManagedFields"
+	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
+	DeviceRegistryService_ListCommunicationBuses_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationBuses"
+	DeviceRegistryService_AddCommunicationUnitsToCommunicationBus_FullMethodName                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToCommunicationBus"
+	DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus"
+	DeviceRegistryService_SetCommunicationBusManagedFields_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCommunicationBusManagedFields"
+	DeviceRegistryService_CreateDevice_FullMethodName                                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
+	DeviceRegistryService_UpdateDevice_FullMethodName                                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice"
+	DeviceRegistryService_ListDevices_FullMethodName                                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
+	DeviceRegistryService_GetDevice_FullMethodName                                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
+	DeviceRegistryService_SetDeviceManagedFields_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceManagedFields"
+	DeviceRegistryService_StreamDeviceType_FullMethodName                                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType"
+	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
+	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
+	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
+	DeviceRegistryService_SetDeviceInfo_FullMethodName                                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo"
+	DeviceRegistryService_GetDeviceInfo_FullMethodName                                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo"
+	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
+	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
+	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
+	DeviceRegistryService_SetDeviceGroupManagedFields_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceGroupManagedFields"
+	DeviceRegistryService_StreamDeviceGroup_FullMethodName                                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup"
+	DeviceRegistryService_AddDevicesToGroup_FullMethodName                                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
+	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
+	DeviceRegistryService_ListDeviceGroupDevices_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroupDevices"
+	DeviceRegistryService_ListModemPools_FullMethodName                                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListModemPools"
+	DeviceRegistryService_GetModemPool_FullMethodName                                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetModemPool"
+	DeviceRegistryService_CreateModemPool_FullMethodName                                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateModemPool"
+	DeviceRegistryService_UpdateModemPool_FullMethodName                                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModemPool"
+	DeviceRegistryService_SetModemPoolManagedFields_FullMethodName                                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetModemPoolManagedFields"
+	DeviceRegistryService_DeleteModemPool_FullMethodName                                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteModemPool"
+	DeviceRegistryService_CreateModem_FullMethodName                                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateModem"
+	DeviceRegistryService_UpdateModem_FullMethodName                                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateModem"
+	DeviceRegistryService_DeleteModem_FullMethodName                                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteModem"
+	DeviceRegistryService_CreateTimeOfUseTable_FullMethodName                                                       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateTimeOfUseTable"
+	DeviceRegistryService_ListTimeOfUseTables_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListTimeOfUseTables"
+	DeviceRegistryService_GetTimeOfUseTable_FullMethodName                                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetTimeOfUseTable"
+	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                                       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
+	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                                       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
+	DeviceRegistryService_SetTimeOfUseTableManagedFields_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetTimeOfUseTableManagedFields"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -94,12 +104,14 @@ type DeviceRegistryServiceClient interface {
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetVariableManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	GetDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationRegister, error)
 	UpdateDeviceConfigurationRegister(ctx context.Context, in *acquisition.DeviceConfigurationRegister, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetDeviceConfigurationRegisterManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationTemplates(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	GetDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationTemplate, error)
@@ -107,12 +119,14 @@ type DeviceRegistryServiceClient interface {
 	DeleteDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
 	// The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
+	SetDriverManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
@@ -129,6 +143,7 @@ type DeviceRegistryServiceClient interface {
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
+	SetCommunicationUnitManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -141,6 +156,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationbus
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetCommunicationBusManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -157,6 +173,7 @@ type DeviceRegistryServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Device, error)
+	SetDeviceManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	StreamDeviceType(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse], error)
@@ -179,6 +196,7 @@ type DeviceRegistryServiceClient interface {
 	// @param The device group identifier.
 	// @return The device group specification.
 	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceGroup, error)
+	SetDeviceGroupManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method returns stream of devices from the device group.
 	// @param The device group identifier.
 	StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error)
@@ -196,6 +214,7 @@ type DeviceRegistryServiceClient interface {
 	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method to update the modem pool.
 	UpdateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetModemPoolManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method to delete the modem pool.
 	DeleteModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method to create a new modem within the pool.
@@ -219,6 +238,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetTimeOfUseTableManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -269,6 +289,16 @@ func (c *deviceRegistryServiceClient) DeleteVariable(ctx context.Context, in *wr
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetVariableManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetVariableManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -313,6 +343,16 @@ func (c *deviceRegistryServiceClient) DeleteDeviceConfigurationRegister(ctx cont
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteDeviceConfigurationRegister_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetDeviceConfigurationRegisterManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDeviceConfigurationRegisterManagedFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -389,6 +429,16 @@ func (c *deviceRegistryServiceClient) RemoveDeviceConfigurationRegisterFromDevic
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDriver)
@@ -413,6 +463,16 @@ func (c *deviceRegistryServiceClient) GetDriver(ctx context.Context, in *wrapper
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Driver)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDriver_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetDriverManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDriverManagedFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -459,6 +519,16 @@ func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetCommunicationUnitManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetCommunicationUnitManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -499,6 +569,16 @@ func (c *deviceRegistryServiceClient) RemoveCommunicationUnitsFromCommunicationB
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetCommunicationBusManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetCommunicationBusManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -533,6 +613,16 @@ func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *wrapper
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Device)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetDeviceManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDeviceManagedFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -632,6 +722,16 @@ func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wr
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetDeviceGroupManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetDeviceGroupManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[1], DeviceRegistryService_StreamDeviceGroup_FullMethodName, cOpts...)
@@ -715,6 +815,16 @@ func (c *deviceRegistryServiceClient) UpdateModemPool(ctx context.Context, in *a
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateModemPool_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetModemPoolManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetModemPoolManagedFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -811,6 +921,16 @@ func (c *deviceRegistryServiceClient) DeleteTimeOfUseTable(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) SetTimeOfUseTableManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetTimeOfUseTableManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceRegistryServiceServer is the server API for DeviceRegistryService service.
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
@@ -822,12 +942,14 @@ type DeviceRegistryServiceServer interface {
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	SetVariableManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	GetDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationRegister, error)
 	UpdateDeviceConfigurationRegister(context.Context, *acquisition.DeviceConfigurationRegister) (*emptypb.Empty, error)
 	DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	SetDeviceConfigurationRegisterManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	GetDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationTemplate, error)
@@ -835,12 +957,14 @@ type DeviceRegistryServiceServer interface {
 	DeleteDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
+	SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the list of drivers.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
 	// The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
 	CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
 	// The method called by the RestApi to get the driver templates.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
+	SetDriverManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
@@ -857,6 +981,7 @@ type DeviceRegistryServiceServer interface {
 	// @tag: communicationunit
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
+	SetCommunicationUnitManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
@@ -869,6 +994,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationbus
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error)
+	SetCommunicationBusManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
@@ -885,6 +1011,7 @@ type DeviceRegistryServiceServer interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error)
+	SetDeviceManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error
@@ -907,6 +1034,7 @@ type DeviceRegistryServiceServer interface {
 	// @param The device group identifier.
 	// @return The device group specification.
 	GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error)
+	SetDeviceGroupManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// The method returns stream of devices from the device group.
 	// @param The device group identifier.
 	StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error
@@ -924,6 +1052,7 @@ type DeviceRegistryServiceServer interface {
 	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error)
 	// The method to update the modem pool.
 	UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error)
+	SetModemPoolManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// The method to delete the modem pool.
 	DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// The method to create a new modem within the pool.
@@ -947,6 +1076,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	SetTimeOfUseTableManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -969,6 +1099,9 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateVariable(context.Context, 
 func (UnimplementedDeviceRegistryServiceServer) DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteVariable not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) SetVariableManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetVariableManagedFields not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationRegister not implemented")
 }
@@ -983,6 +1116,9 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateDeviceConfigurationRegiste
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceConfigurationRegister not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetDeviceConfigurationRegisterManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceConfigurationRegisterManagedFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationTemplate not implemented")
@@ -1005,6 +1141,9 @@ func (UnimplementedDeviceRegistryServiceServer) AddDeviceConfigurationRegisterTo
 func (UnimplementedDeviceRegistryServiceServer) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrivers not implemented")
 }
@@ -1013,6 +1152,9 @@ func (UnimplementedDeviceRegistryServiceServer) CreateDriver(context.Context, *a
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriver not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetDriverManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDriverManagedFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
@@ -1026,6 +1168,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.C
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) SetCommunicationUnitManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCommunicationUnitManagedFields not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
 }
@@ -1038,6 +1183,9 @@ func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitsToCommunica
 func (UnimplementedDeviceRegistryServiceServer) RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCommunicationUnitsFromCommunicationBus not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) SetCommunicationBusManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCommunicationBusManagedFields not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
@@ -1049,6 +1197,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *co
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetDeviceManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceManagedFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceType not implemented")
@@ -1077,6 +1228,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListDeviceGroups(context.Context
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroup not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) SetDeviceGroupManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceGroupManagedFields not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceGroup not implemented")
 }
@@ -1100,6 +1254,9 @@ func (UnimplementedDeviceRegistryServiceServer) CreateModemPool(context.Context,
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateModemPool not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetModemPoolManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetModemPoolManagedFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModemPool not implemented")
@@ -1127,6 +1284,9 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateTimeOfUseTable(context.Con
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetTimeOfUseTableManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTimeOfUseTableManagedFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -1221,6 +1381,24 @@ func _DeviceRegistryService_DeleteVariable_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetVariableManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetVariableManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetVariableManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetVariableManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_CreateDeviceConfigurationRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateDeviceConfigurationRegisterRequest)
 	if err := dec(in); err != nil {
@@ -1307,6 +1485,24 @@ func _DeviceRegistryService_DeleteDeviceConfigurationRegister_Handler(srv interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).DeleteDeviceConfigurationRegister(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetDeviceConfigurationRegisterManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDeviceConfigurationRegisterManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDeviceConfigurationRegisterManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDeviceConfigurationRegisterManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1437,6 +1633,24 @@ func _DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigura
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_ListDrivers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
@@ -1487,6 +1701,24 @@ func _DeviceRegistryService_GetDriver_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetDriver(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetDriverManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDriverManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDriverManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDriverManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1563,6 +1795,24 @@ func _DeviceRegistryService_GetCommunicationUnit_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetCommunicationUnitManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetCommunicationUnitManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetCommunicationUnitManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetCommunicationUnitManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_CreateCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateCommunicationBusRequest)
 	if err := dec(in); err != nil {
@@ -1635,6 +1885,24 @@ func _DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_Handler
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetCommunicationBusManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetCommunicationBusManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetCommunicationBusManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetCommunicationBusManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_CreateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateDeviceRequest)
 	if err := dec(in); err != nil {
@@ -1703,6 +1971,24 @@ func _DeviceRegistryService_GetDevice_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetDeviceManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDeviceManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDeviceManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDeviceManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1858,6 +2144,24 @@ func _DeviceRegistryService_GetDeviceGroup_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetDeviceGroupManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetDeviceGroupManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetDeviceGroupManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetDeviceGroupManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_StreamDeviceGroup_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(wrapperspb.StringValue)
 	if err := stream.RecvMsg(m); err != nil {
@@ -1991,6 +2295,24 @@ func _DeviceRegistryService_UpdateModemPool_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).UpdateModemPool(ctx, req.(*acquisition.SetModemPoolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetModemPoolManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetModemPoolManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetModemPoolManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetModemPoolManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2157,6 +2479,24 @@ func _DeviceRegistryService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_SetTimeOfUseTableManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetTimeOfUseTableManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetTimeOfUseTableManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetTimeOfUseTableManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceRegistryService_ServiceDesc is the grpc.ServiceDesc for DeviceRegistryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2181,6 +2521,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_DeleteVariable_Handler,
 		},
 		{
+			MethodName: "SetVariableManagedFields",
+			Handler:    _DeviceRegistryService_SetVariableManagedFields_Handler,
+		},
+		{
 			MethodName: "CreateDeviceConfigurationRegister",
 			Handler:    _DeviceRegistryService_CreateDeviceConfigurationRegister_Handler,
 		},
@@ -2199,6 +2543,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDeviceConfigurationRegister",
 			Handler:    _DeviceRegistryService_DeleteDeviceConfigurationRegister_Handler,
+		},
+		{
+			MethodName: "SetDeviceConfigurationRegisterManagedFields",
+			Handler:    _DeviceRegistryService_SetDeviceConfigurationRegisterManagedFields_Handler,
 		},
 		{
 			MethodName: "CreateDeviceConfigurationTemplate",
@@ -2229,6 +2577,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_Handler,
 		},
 		{
+			MethodName: "SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields",
+			Handler:    _DeviceRegistryService_SetDeviceConfigurationRegisterFromDeviceConfigurationTemplateManagedFields_Handler,
+		},
+		{
 			MethodName: "ListDrivers",
 			Handler:    _DeviceRegistryService_ListDrivers_Handler,
 		},
@@ -2239,6 +2591,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDriver",
 			Handler:    _DeviceRegistryService_GetDriver_Handler,
+		},
+		{
+			MethodName: "SetDriverManagedFields",
+			Handler:    _DeviceRegistryService_SetDriverManagedFields_Handler,
 		},
 		{
 			MethodName: "CreateCommunicationUnit",
@@ -2257,6 +2613,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_GetCommunicationUnit_Handler,
 		},
 		{
+			MethodName: "SetCommunicationUnitManagedFields",
+			Handler:    _DeviceRegistryService_SetCommunicationUnitManagedFields_Handler,
+		},
+		{
 			MethodName: "CreateCommunicationBus",
 			Handler:    _DeviceRegistryService_CreateCommunicationBus_Handler,
 		},
@@ -2273,6 +2633,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_Handler,
 		},
 		{
+			MethodName: "SetCommunicationBusManagedFields",
+			Handler:    _DeviceRegistryService_SetCommunicationBusManagedFields_Handler,
+		},
+		{
 			MethodName: "CreateDevice",
 			Handler:    _DeviceRegistryService_CreateDevice_Handler,
 		},
@@ -2287,6 +2651,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDevice",
 			Handler:    _DeviceRegistryService_GetDevice_Handler,
+		},
+		{
+			MethodName: "SetDeviceManagedFields",
+			Handler:    _DeviceRegistryService_SetDeviceManagedFields_Handler,
 		},
 		{
 			MethodName: "SetDeviceCommunicationUnits",
@@ -2321,6 +2689,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_GetDeviceGroup_Handler,
 		},
 		{
+			MethodName: "SetDeviceGroupManagedFields",
+			Handler:    _DeviceRegistryService_SetDeviceGroupManagedFields_Handler,
+		},
+		{
 			MethodName: "AddDevicesToGroup",
 			Handler:    _DeviceRegistryService_AddDevicesToGroup_Handler,
 		},
@@ -2347,6 +2719,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateModemPool",
 			Handler:    _DeviceRegistryService_UpdateModemPool_Handler,
+		},
+		{
+			MethodName: "SetModemPoolManagedFields",
+			Handler:    _DeviceRegistryService_SetModemPoolManagedFields_Handler,
 		},
 		{
 			MethodName: "DeleteModemPool",
@@ -2383,6 +2759,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTimeOfUseTable",
 			Handler:    _DeviceRegistryService_DeleteTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "SetTimeOfUseTableManagedFields",
+			Handler:    _DeviceRegistryService_SetTimeOfUseTableManagedFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
