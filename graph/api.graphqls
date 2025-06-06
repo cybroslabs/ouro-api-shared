@@ -1250,6 +1250,8 @@ type MeasuredValue {
   boolValue: Boolean
   # The normalized status of the value, see StatusBits enum for more details.
   nstatus: BigInt
+  # The timestamp when the value (e.g. peak) was recorded. It's typically before the capture timestamp.
+  peakTs: Timestamp
 }
 
 # Sub-message containing modem connection info

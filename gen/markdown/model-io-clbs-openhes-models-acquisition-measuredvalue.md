@@ -15,4 +15,5 @@ Sub-message containing measured value
 | timestampTzValue | <b>Type:</b> `string`<br><b>Description:</b><br>The timestamp with timezone-typed value, stored as string in ISO-8601. |
 | boolValue | <b>Type:</b> `bool`<br><b>Description:</b><br>The boolean-typed value. |
 | nstatus | <b>Type:</b> `uint64`<br><b>Description:</b><br>The normalized status of the value, see StatusBits enum for more details. |
+| peakTs | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The timestamp when the value (e.g. peak) was recorded. It's typically before the capture timestamp. |
 
