@@ -467,6 +467,7 @@ message MeasuredValue {
         string timestamp_tz_value                 = 7;  // The timestamp with timezone-typed value, stored as string in ISO-8601.
         bool bool_value                           = 8;  // The boolean-typed value.
     }
+    uint64 nstatus = 9;  // The normalized status of the value, see StatusBits enum for more details.
 }
 
 // Sub-message containing job action attributes

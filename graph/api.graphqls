@@ -1248,6 +1248,8 @@ type MeasuredValue {
   timestampTzValue: String
   # The boolean-typed value.
   boolValue: Boolean
+  # The normalized status of the value, see StatusBits enum for more details.
+  nstatus: BigInt
 }
 
 # Sub-message containing modem connection info

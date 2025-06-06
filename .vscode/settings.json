@@ -1,0 +1,12 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.pb.go": true,
+    "gen/**/*.html": true,
+    "gen/**/*.md": true,
+    "gen/**/*_pb2.py": true,
+    "gen/**/*_pb2_grpc.py": true,
+    "gen/**/*_pb.ts": true,
+    "graph": true
+  }
+}

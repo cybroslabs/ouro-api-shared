@@ -715,6 +715,7 @@ type ComplexityRoot struct {
 		DoubleValue      func(childComplexity int) int
 		Exponent         func(childComplexity int) int
 		IntegerValue     func(childComplexity int) int
+		Nstatus          func(childComplexity int) int
 		Status           func(childComplexity int) int
 		StringValue      func(childComplexity int) int
 		TimestampTzValue func(childComplexity int) int
@@ -3428,6 +3429,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.MeasuredValue.IntegerValue(childComplexity), true
+
+	case "MeasuredValue.nstatus":
+		if e.complexity.MeasuredValue.Nstatus == nil {
+			break
+		}
+
+		return e.complexity.MeasuredValue.Nstatus(childComplexity), true
 
 	case "MeasuredValue.status":
 		if e.complexity.MeasuredValue.Status == nil {
@@ -15018,6 +15026,8 @@ func (ec *executionContext) fieldContext_IrregularValue_value(_ context.Context,
 				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
 			case "boolValue":
 				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			case "nstatus":
+				return ec.fieldContext_MeasuredValue_nstatus(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
@@ -20250,6 +20260,47 @@ func (ec *executionContext) fieldContext_MeasuredValue_boolValue(_ context.Conte
 	return fc, nil
 }
 
+func (ec *executionContext) _MeasuredValue_nstatus(ctx context.Context, field graphql.CollectedField, obj *model.MeasuredValue) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeasuredValue_nstatus(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Nstatus, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOBigInt2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_MeasuredValue_nstatus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "MeasuredValue",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type BigInt does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _MetadataFields_id(ctx context.Context, field graphql.CollectedField, obj *model.MetadataFields) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_MetadataFields_id(ctx, field)
 	if err != nil {
@@ -21288,6 +21339,8 @@ func (ec *executionContext) fieldContext_ProfileBlock_values(_ context.Context, 
 				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
 			case "boolValue":
 				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			case "nstatus":
+				return ec.fieldContext_MeasuredValue_nstatus(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
@@ -25388,6 +25441,8 @@ func (ec *executionContext) fieldContext_RegisterValue_value(_ context.Context, 
 				return ec.fieldContext_MeasuredValue_timestampTzValue(ctx, field)
 			case "boolValue":
 				return ec.fieldContext_MeasuredValue_boolValue(ctx, field)
+			case "nstatus":
+				return ec.fieldContext_MeasuredValue_nstatus(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MeasuredValue", field.Name)
 		},
@@ -34114,6 +34169,8 @@ func (ec *executionContext) _MeasuredValue(ctx context.Context, sel ast.Selectio
 			out.Values[i] = ec._MeasuredValue_timestampTzValue(ctx, field, obj)
 		case "boolValue":
 			out.Values[i] = ec._MeasuredValue_boolValue(ctx, field, obj)
+		case "nstatus":
+			out.Values[i] = ec._MeasuredValue_nstatus(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

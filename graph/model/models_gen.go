@@ -683,6 +683,7 @@ type MeasuredValue struct {
 	TimestampValue   *string  `json:"timestampValue,omitempty"`
 	TimestampTzValue *string  `json:"timestampTzValue,omitempty"`
 	BoolValue        *bool    `json:"boolValue,omitempty"`
+	Nstatus          *string  `json:"nstatus,omitempty"`
 }
 
 type MetadataFields struct {

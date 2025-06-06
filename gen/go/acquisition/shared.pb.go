@@ -7042,6 +7042,7 @@ type MeasuredValue struct {
 	xxx_hidden_Status      int64                  `protobuf:"varint,1,opt,name=status"`
 	xxx_hidden_Exponent    int32                  `protobuf:"varint,2,opt,name=exponent"`
 	xxx_hidden_Kind        isMeasuredValue_Kind   `protobuf_oneof:"kind"`
+	xxx_hidden_Nstatus     uint64                 `protobuf:"varint,9,opt,name=nstatus"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -7141,14 +7142,21 @@ func (x *MeasuredValue) GetBoolValue() bool {
 	return false
 }
 
+func (x *MeasuredValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
 func (x *MeasuredValue) SetStatus(v int64) {
 	x.xxx_hidden_Status = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
 func (x *MeasuredValue) SetExponent(v int32) {
 	x.xxx_hidden_Exponent = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
 }
 
 func (x *MeasuredValue) SetDoubleValue(v float64) {
@@ -7177,6 +7185,11 @@ func (x *MeasuredValue) SetTimestampTzValue(v string) {
 
 func (x *MeasuredValue) SetBoolValue(v bool) {
 	x.xxx_hidden_Kind = &measuredValue_BoolValue{v}
+}
+
+func (x *MeasuredValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
 }
 
 func (x *MeasuredValue) HasStatus() bool {
@@ -7248,6 +7261,13 @@ func (x *MeasuredValue) HasBoolValue() bool {
 	return ok
 }
 
+func (x *MeasuredValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
 func (x *MeasuredValue) ClearStatus() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Status = 0
@@ -7298,6 +7318,11 @@ func (x *MeasuredValue) ClearBoolValue() {
 	}
 }
 
+func (x *MeasuredValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
 const MeasuredValue_Kind_not_set_case case_MeasuredValue_Kind = 0
 const MeasuredValue_DoubleValue_case case_MeasuredValue_Kind = 3
 const MeasuredValue_IntegerValue_case case_MeasuredValue_Kind = 4
@@ -7341,6 +7366,7 @@ type MeasuredValue_builder struct {
 	TimestampTzValue *string
 	BoolValue        *bool
 	// -- end of xxx_hidden_Kind
+	Nstatus *uint64
 }
 
 func (b0 MeasuredValue_builder) Build() *MeasuredValue {
@@ -7348,11 +7374,11 @@ func (b0 MeasuredValue_builder) Build() *MeasuredValue {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Status != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
 		x.xxx_hidden_Status = *b.Status
 	}
 	if b.Exponent != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
 		x.xxx_hidden_Exponent = *b.Exponent
 	}
 	if b.DoubleValue != nil {
@@ -7372,6 +7398,10 @@ func (b0 MeasuredValue_builder) Build() *MeasuredValue {
 	}
 	if b.BoolValue != nil {
 		x.xxx_hidden_Kind = &measuredValue_BoolValue{*b.BoolValue}
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		x.xxx_hidden_Nstatus = *b.Nstatus
 	}
 	return m0
 }
@@ -11622,7 +11652,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\rRegisterValue\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x12\n" +
 	"\x04unit\x18\x02 \x01(\tR\x04unit\x12G\n" +
-	"\x05value\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\xd4\x02\n" +
+	"\x05value\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\xee\x02\n" +
 	"\rMeasuredValue\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
 	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12#\n" +
@@ -11632,7 +11662,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x0ftimestamp_value\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x0etimestampValue\x12.\n" +
 	"\x12timestamp_tz_value\x18\a \x01(\tH\x00R\x10timestampTzValue\x12\x1f\n" +
 	"\n" +
-	"bool_value\x18\b \x01(\bH\x00R\tboolValueB\x06\n" +
+	"bool_value\x18\b \x01(\bH\x00R\tboolValue\x12\x18\n" +
+	"\anstatus\x18\t \x01(\x04R\anstatusB\x06\n" +
 	"\x04kind\"\xa9\x01\n" +
 	"\x13JobActionAttributes\x12B\n" +
 	"\x04type\x18\x01 \x01(\x0e2..io.clbs.openhes.models.acquisition.ActionTypeR\x04type\x12N\n" +
