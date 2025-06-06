@@ -2,7 +2,7 @@ module github.com/cybroslabs/ouro-api-shared
 
 go 1.23.8
 
-toolchain go1.24.3
+toolchain go1.24.4
 
 retract (
 	v0.0.0-20240512071833-41b886c985c4
