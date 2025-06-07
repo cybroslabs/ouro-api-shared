@@ -28,7 +28,7 @@ var File_services_svctaskmaster_taskmaster_proto protoreflect.FileDescriptor
 
 const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 	"\n" +
-	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x12common/types.proto2\xbd\x04\n" +
+	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x12common/types.proto\x1a\x15common/internal.proto2\xa1\x05\n" +
 	"\x11TaskmasterService\x12Y\n" +
 	"\tQueueJobs\x124.io.clbs.openhes.models.acquisition.QueueJobsRequest\x1a\x16.google.protobuf.Empty\x12Z\n" +
 	"\x06GetJob\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.GetJobResponse\x12M\n" +
@@ -36,18 +36,20 @@ const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 	"CancelJobs\x12'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.Empty\x12R\n" +
 	"\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n" +
 	"\bSetCache\x123.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n" +
-	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponseBEZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmasterb\beditionsp\xe8\a"
+	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponse\x12b\n" +
+	"\x10SetManagedFields\x126.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.EmptyBEZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmasterb\beditionsp\xe8\a"
 
 var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
-	(*acquisition.QueueJobsRequest)(nil), // 0: io.clbs.openhes.models.acquisition.QueueJobsRequest
-	(*wrapperspb.StringValue)(nil),       // 1: google.protobuf.StringValue
-	(*common.ListOfId)(nil),              // 2: io.clbs.openhes.models.common.ListOfId
-	(*acquisition.SetDriver)(nil),        // 3: io.clbs.openhes.models.acquisition.SetDriver
-	(*acquisition.SetCacheRequest)(nil),  // 4: io.clbs.openhes.models.acquisition.SetCacheRequest
-	(*acquisition.GetCacheRequest)(nil),  // 5: io.clbs.openhes.models.acquisition.GetCacheRequest
-	(*emptypb.Empty)(nil),                // 6: google.protobuf.Empty
-	(*acquisition.GetJobResponse)(nil),   // 7: io.clbs.openhes.models.acquisition.GetJobResponse
-	(*acquisition.GetCacheResponse)(nil), // 8: io.clbs.openhes.models.acquisition.GetCacheResponse
+	(*acquisition.QueueJobsRequest)(nil),   // 0: io.clbs.openhes.models.acquisition.QueueJobsRequest
+	(*wrapperspb.StringValue)(nil),         // 1: google.protobuf.StringValue
+	(*common.ListOfId)(nil),                // 2: io.clbs.openhes.models.common.ListOfId
+	(*acquisition.SetDriver)(nil),          // 3: io.clbs.openhes.models.acquisition.SetDriver
+	(*acquisition.SetCacheRequest)(nil),    // 4: io.clbs.openhes.models.acquisition.SetCacheRequest
+	(*acquisition.GetCacheRequest)(nil),    // 5: io.clbs.openhes.models.acquisition.GetCacheRequest
+	(*common.SetManagedFieldsRequest)(nil), // 6: io.clbs.openhes.models.common.SetManagedFieldsRequest
+	(*emptypb.Empty)(nil),                  // 7: google.protobuf.Empty
+	(*acquisition.GetJobResponse)(nil),     // 8: io.clbs.openhes.models.acquisition.GetJobResponse
+	(*acquisition.GetCacheResponse)(nil),   // 9: io.clbs.openhes.models.acquisition.GetCacheResponse
 }
 var file_services_svctaskmaster_taskmaster_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:input_type -> io.clbs.openhes.models.acquisition.QueueJobsRequest
@@ -56,14 +58,16 @@ var file_services_svctaskmaster_taskmaster_proto_depIdxs = []int32{
 	3, // 3: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:input_type -> io.clbs.openhes.models.acquisition.SetDriver
 	4, // 4: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:input_type -> io.clbs.openhes.models.acquisition.SetCacheRequest
 	5, // 5: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:input_type -> io.clbs.openhes.models.acquisition.GetCacheRequest
-	6, // 6: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:output_type -> google.protobuf.Empty
-	7, // 7: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetJob:output_type -> io.clbs.openhes.models.acquisition.GetJobResponse
-	6, // 8: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:output_type -> google.protobuf.Empty
-	6, // 9: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:output_type -> google.protobuf.Empty
-	6, // 10: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:output_type -> google.protobuf.Empty
-	8, // 11: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:output_type -> io.clbs.openhes.models.acquisition.GetCacheResponse
-	6, // [6:12] is the sub-list for method output_type
-	0, // [0:6] is the sub-list for method input_type
+	6, // 6: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
+	7, // 7: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:output_type -> google.protobuf.Empty
+	8, // 8: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetJob:output_type -> io.clbs.openhes.models.acquisition.GetJobResponse
+	7, // 9: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:output_type -> google.protobuf.Empty
+	7, // 10: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:output_type -> google.protobuf.Empty
+	7, // 11: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:output_type -> google.protobuf.Empty
+	9, // 12: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:output_type -> io.clbs.openhes.models.acquisition.GetCacheResponse
+	7, // 13: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:output_type -> google.protobuf.Empty
+	7, // [7:14] is the sub-list for method output_type
+	0, // [0:7] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

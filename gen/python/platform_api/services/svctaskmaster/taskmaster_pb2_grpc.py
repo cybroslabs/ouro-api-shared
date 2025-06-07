@@ -4,6 +4,7 @@ import grpc
 
 from acquisition import internal_pb2 as acquisition_dot_internal__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
+from common import internal_pb2 as common_dot_internal__pb2
 from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
@@ -50,6 +51,11 @@ class TaskmasterServiceStub(object):
                 request_serializer=acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
                 response_deserializer=acquisition_dot_internal__pb2.GetCacheResponse.FromString,
                 _registered_method=True)
+        self.SetManagedFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
+                request_serializer=common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
 
 
 class TaskmasterServiceServicer(object):
@@ -78,21 +84,32 @@ class TaskmasterServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetDriver(self, request, context):
-        """The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
+        """@group: Drivers
+        The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SetCache(self, request, context):
-        """The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
+        """@group: Drivers
+        The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetCache(self, request, context):
-        """The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+        """@group: Drivers
+        The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetManagedFields(self, request, context):
+        """@group: Drivers
+        The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -130,6 +147,11 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
                     servicer.GetCache,
                     request_deserializer=acquisition_dot_internal__pb2.GetCacheRequest.FromString,
                     response_serializer=acquisition_dot_internal__pb2.GetCacheResponse.SerializeToString,
+            ),
+            'SetManagedFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetManagedFields,
+                    request_deserializer=common_dot_internal__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -296,6 +318,33 @@ class TaskmasterService(object):
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache',
             acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
             acquisition_dot_internal__pb2.GetCacheResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetManagedFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
+            common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

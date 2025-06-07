@@ -16,5 +16,4 @@ service DriverService {
     rpc StartJob(io.clbs.openhes.models.acquisition.StartJobsRequest) returns (stream io.clbs.openhes.models.acquisition.ProgressUpdate);
     // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
     rpc CancelJob(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
-    rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

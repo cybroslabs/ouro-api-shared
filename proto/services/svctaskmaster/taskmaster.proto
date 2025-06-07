@@ -8,6 +8,7 @@ import "google/protobuf/wrappers.proto";
 import "acquisition/main.proto";
 import "acquisition/internal.proto";
 import "common/types.proto";
+import "common/internal.proto";
 
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
@@ -18,10 +19,16 @@ service TaskmasterService {
     // The method called by the RestApi to cancel the job.
     rpc CancelJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 
+    // @group: Drivers
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
     rpc SetDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
+    // @group: Drivers
     // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
     rpc SetCache(io.clbs.openhes.models.acquisition.SetCacheRequest) returns (google.protobuf.Empty);
+    // @group: Drivers
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc GetCache(io.clbs.openhes.models.acquisition.GetCacheRequest) returns (io.clbs.openhes.models.acquisition.GetCacheResponse);
+    // @group: Drivers
+    // The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+    rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

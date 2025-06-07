@@ -23,12 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskmasterService_QueueJobs_FullMethodName  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs"
-	TaskmasterService_GetJob_FullMethodName     = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob"
-	TaskmasterService_CancelJobs_FullMethodName = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs"
-	TaskmasterService_SetDriver_FullMethodName  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
-	TaskmasterService_SetCache_FullMethodName   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
-	TaskmasterService_GetCache_FullMethodName   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
+	TaskmasterService_QueueJobs_FullMethodName        = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs"
+	TaskmasterService_GetJob_FullMethodName           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob"
+	TaskmasterService_CancelJobs_FullMethodName       = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs"
+	TaskmasterService_SetDriver_FullMethodName        = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
+	TaskmasterService_SetCache_FullMethodName         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
+	TaskmasterService_GetCache_FullMethodName         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
+	TaskmasterService_SetManagedFields_FullMethodName = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields"
 )
 
 // TaskmasterServiceClient is the client API for TaskmasterService service.
@@ -43,12 +44,18 @@ type TaskmasterServiceClient interface {
 	GetJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
 	SetCache(ctx context.Context, in *acquisition.SetCacheRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	GetCache(ctx context.Context, in *acquisition.GetCacheRequest, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error)
+	// @group: Drivers
+	// The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type taskmasterServiceClient struct {
@@ -119,6 +126,16 @@ func (c *taskmasterServiceClient) GetCache(ctx context.Context, in *acquisition.
 	return out, nil
 }
 
+func (c *taskmasterServiceClient) SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_SetManagedFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TaskmasterServiceServer is the server API for TaskmasterService service.
 // All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility.
@@ -131,12 +148,18 @@ type TaskmasterServiceServer interface {
 	GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
 	SetCache(context.Context, *acquisition.SetCacheRequest) (*emptypb.Empty, error)
+	// @group: Drivers
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	GetCache(context.Context, *acquisition.GetCacheRequest) (*acquisition.GetCacheResponse, error)
+	// @group: Drivers
+	// The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -164,6 +187,9 @@ func (UnimplementedTaskmasterServiceServer) SetCache(context.Context, *acquisiti
 }
 func (UnimplementedTaskmasterServiceServer) GetCache(context.Context, *acquisition.GetCacheRequest) (*acquisition.GetCacheResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCache not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
 func (UnimplementedTaskmasterServiceServer) testEmbeddedByValue()                           {}
@@ -294,6 +320,24 @@ func _TaskmasterService_GetCache_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskmasterService_SetManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.SetManagedFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).SetManagedFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_SetManagedFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).SetManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TaskmasterService_ServiceDesc is the grpc.ServiceDesc for TaskmasterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -324,6 +368,10 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCache",
 			Handler:    _TaskmasterService_GetCache_Handler,
+		},
+		{
+			MethodName: "SetManagedFields",
+			Handler:    _TaskmasterService_SetManagedFields_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

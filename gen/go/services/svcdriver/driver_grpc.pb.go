@@ -22,9 +22,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DriverService_StartJob_FullMethodName         = "/io.clbs.openhes.services.svcdriver.DriverService/StartJob"
-	DriverService_CancelJob_FullMethodName        = "/io.clbs.openhes.services.svcdriver.DriverService/CancelJob"
-	DriverService_SetManagedFields_FullMethodName = "/io.clbs.openhes.services.svcdriver.DriverService/SetManagedFields"
+	DriverService_StartJob_FullMethodName  = "/io.clbs.openhes.services.svcdriver.DriverService/StartJob"
+	DriverService_CancelJob_FullMethodName = "/io.clbs.openhes.services.svcdriver.DriverService/CancelJob"
 )
 
 // DriverServiceClient is the client API for DriverService service.
@@ -38,7 +37,6 @@ type DriverServiceClient interface {
 	StartJob(ctx context.Context, in *acquisition.StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProgressUpdate], error)
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
 	CancelJob(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type driverServiceClient struct {
@@ -78,16 +76,6 @@ func (c *driverServiceClient) CancelJob(ctx context.Context, in *common.ListOfId
 	return out, nil
 }
 
-func (c *driverServiceClient) SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverService_SetManagedFields_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DriverServiceServer is the server API for DriverService service.
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
@@ -99,7 +87,6 @@ type DriverServiceServer interface {
 	StartJob(*acquisition.StartJobsRequest, grpc.ServerStreamingServer[acquisition.ProgressUpdate]) error
 	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
 	CancelJob(context.Context, *common.ListOfId) (*emptypb.Empty, error)
-	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -115,9 +102,6 @@ func (UnimplementedDriverServiceServer) StartJob(*acquisition.StartJobsRequest, 
 }
 func (UnimplementedDriverServiceServer) CancelJob(context.Context, *common.ListOfId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
-}
-func (UnimplementedDriverServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
 func (UnimplementedDriverServiceServer) testEmbeddedByValue()                       {}
@@ -169,24 +153,6 @@ func _DriverService_CancelJob_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DriverService_SetManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.SetManagedFieldsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverServiceServer).SetManagedFields(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverService_SetManagedFields_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).SetManagedFields(ctx, req.(*common.SetManagedFieldsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DriverService_ServiceDesc is the grpc.ServiceDesc for DriverService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -197,10 +163,6 @@ var DriverService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelJob",
 			Handler:    _DriverService_CancelJob_Handler,
-		},
-		{
-			MethodName: "SetManagedFields",
-			Handler:    _DriverService_SetManagedFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

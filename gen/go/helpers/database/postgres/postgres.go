@@ -102,7 +102,9 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 			continue
 		}
 
-		col := fieldToColumn(f.GetFieldId(), modelColumn, true)
+		fieldId := f.GetFieldId()
+
+		col := fieldToColumn(fieldId, modelColumn, true)
 		if len(col) == 0 {
 			return "", nil, errors.New("invalid field id")
 		}
@@ -149,15 +151,24 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 				if t := f.GetInteger(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
-					// Use jsonb_path_exists to optimize the query
-					parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %d && @ <= %d)')", modelColumn, fieldToPath(f.GetFieldId()), t[0], t[1]))
+					if dpath := fieldToPath(fieldId); len(dpath) > 0 {
+						// Use jsonb_path_exists to optimize the query
+						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %d && @ <= %d)')", modelColumn, dpath, t[0], t[1]))
+					} else {
+						parts = append(parts, fmt.Sprintf("%s >= $%d AND %s <= $%d", col, len(values)+1, col, len(values)+2))
+						values = append(values, t[0], t[1])
+					}
 				}
 			} else if f.GetDataType() == common.FieldDataType_DOUBLE {
 				if t := f.GetNumber(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
-					// Use jsonb_path_exists to optimize the query
-					parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %f && @ <= %f)')", modelColumn, fieldToPath(f.GetFieldId()), t[0], t[1]))
+					if dpath := fieldToPath(fieldId); len(dpath) > 0 {
+						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %f && @ <= %f)')", modelColumn, dpath, t[0], t[1]))
+					} else {
+						parts = append(parts, fmt.Sprintf("%s >= $%d AND %s <= $%d", col, len(values)+1, col, len(values)+2))
+						values = append(values, t[0], t[1])
+					}
 				}
 			} else {
 				return "", nil, errors.New("unsupported data type")
@@ -304,23 +315,17 @@ var (
 
 func fieldToPath(field string) string {
 	parts := strings.Split(field, ".")
-	if len(parts) < 2 {
-		return ""
-	}
-	if reObjectPrefix.MatchString(parts[0]) {
+	if len(parts) >= 2 && reObjectPrefix.MatchString(parts[0]) {
 		return "$." + strings.Join(parts[1:], ".")
 	} else {
-		// TODO: Implement other types (maybe not needed?)
+		// Neither a valid object field nor a valid column name
 		return ""
 	}
 }
 
 func fieldToColumn(field string, modelColumn string, useDoubleArrow bool) string {
 	parts := strings.Split(field, ".")
-	if len(parts) < 2 {
-		return ""
-	}
-	if reObjectPrefix.MatchString(parts[0]) {
+	if len(parts) >= 2 && reObjectPrefix.MatchString(parts[0]) {
 		if !useDoubleArrow {
 			return modelColumn + "->'" + strings.Join(parts[1:], "'->'") + "'"
 		}
@@ -329,8 +334,10 @@ func fieldToColumn(field string, modelColumn string, useDoubleArrow bool) string
 		} else {
 			return modelColumn + "->>'" + parts[len(parts)-1] + "'"
 		}
+	} else if len(parts) == 1 {
+		return field
 	} else {
-		// TODO: Implement other types (maybe not needed?)
+		// Neither a valid object field nor a valid column name
 		return ""
 	}
 }
