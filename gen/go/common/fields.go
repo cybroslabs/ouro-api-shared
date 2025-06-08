@@ -11,7 +11,7 @@ import (
 	"github.com/rmg/iso4217"
 )
 
-func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
+func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
 	fieldId = strings.TrimSpace(fieldId)
 	if fieldId == "" {
 		panic("fieldId is required")
@@ -21,6 +21,7 @@ func NewFieldDescriptor(fieldId string, jsPath string, label string, groupId str
 		panic("label is required")
 	}
 	fd := FieldDescriptor_builder{
+		ObjectType: objectType.Enum(),
 		FieldId:    &fieldId,
 		JsPath:     &jsPath,
 		Label:      &label,
