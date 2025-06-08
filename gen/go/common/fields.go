@@ -351,26 +351,27 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 	return nil
 }
 
-func (fd *FieldDescriptor) GenerateDatabaseFieldPath(prefix string) *string {
+// GenerateJsPath generates a JavaScript/TypeScript path for the field descriptor.
+func (fd *FieldDescriptor) GenerateJsPath(prefix string) *string {
 	if fd == nil {
 		return nil
 	}
 	tmp := prefix + fd.GetFieldId()
 	switch fd.GetDataType() {
 	case FieldDataType_TEXT:
-		tmp += ".stringValue"
+		tmp += ".kind.{stringValue}"
 	case FieldDataType_INTEGER:
-		tmp += ".integerValue"
+		tmp += ".kind.{integerValue}"
 	case FieldDataType_BOOLEAN:
-		tmp += ".boolValue"
+		tmp += ".kind.{boolValue}"
 	case FieldDataType_DOUBLE:
-		tmp += ".doubleValue"
+		tmp += ".kind.{doubleValue}"
 	case FieldDataType_BINARY:
-		tmp += ".binaryValue"
+		tmp += ".kind.{binaryValue}"
 	case FieldDataType_TIMESTAMP:
-		tmp += ".dateValue"
+		tmp += ".kind.{dateValue}"
 	case FieldDataType_DURATION:
-		tmp += ".durationValue"
+		tmp += ".kind.{durationValue}"
 	default:
 		return nil
 	}
