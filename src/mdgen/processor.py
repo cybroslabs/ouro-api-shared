@@ -82,6 +82,8 @@ def run(
         )
     )
     for svc in main_package.services:
+        if svc.name.endswith("ApiInternalService"):
+            continue
         for m in svc.methods:
             if m.request.type_kind == "MESSAGE":
                 used_messages[m.request.full_type] = (
@@ -127,6 +129,8 @@ def run(
 
     tagged_services = []
     for svc in sorted(main_package.services, key=lambda x: x.name):
+        if svc.name.endswith("ApiInternalService"):
+            continue
         tagger_methods = []
         for i in svc.methods:
             m = re_hint.findall(i.description)

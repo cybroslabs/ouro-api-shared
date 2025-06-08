@@ -446,22 +446,25 @@ type ComplexityRoot struct {
 	}
 
 	FieldDescriptor struct {
-		DataType     func(childComplexity int) int
-		DefaultValue func(childComplexity int) int
-		Editable     func(childComplexity int) int
-		FieldID      func(childComplexity int) int
-		Format       func(childComplexity int) int
-		GroupID      func(childComplexity int) int
-		JsPath       func(childComplexity int) int
-		Label        func(childComplexity int) int
-		MultiValue   func(childComplexity int) int
-		Precision    func(childComplexity int) int
-		Required     func(childComplexity int) int
-		Secured      func(childComplexity int) int
-		Tooltip      func(childComplexity int) int
-		Unit         func(childComplexity int) int
-		Validation   func(childComplexity int) int
-		Visible      func(childComplexity int) int
+		DataType      func(childComplexity int) int
+		DefaultValue  func(childComplexity int) int
+		Editable      func(childComplexity int) int
+		FieldID       func(childComplexity int) int
+		Format        func(childComplexity int) int
+		GroupID       func(childComplexity int) int
+		IsUserDefined func(childComplexity int) int
+		JsPath        func(childComplexity int) int
+		Label         func(childComplexity int) int
+		MultiValue    func(childComplexity int) int
+		Path          func(childComplexity int) int
+		Precision     func(childComplexity int) int
+		Required      func(childComplexity int) int
+		Secured       func(childComplexity int) int
+		Tooltip       func(childComplexity int) int
+		Type          func(childComplexity int) int
+		Unit          func(childComplexity int) int
+		Validation    func(childComplexity int) int
+		Visible       func(childComplexity int) int
 	}
 
 	FieldValidation struct {
@@ -703,16 +706,16 @@ type ComplexityRoot struct {
 		Boolean  func(childComplexity int) int
 		DataType func(childComplexity int) int
 		Date     func(childComplexity int) int
-		FieldID  func(childComplexity int) int
 		Integer  func(childComplexity int) int
 		Number   func(childComplexity int) int
 		Operator func(childComplexity int) int
+		Path     func(childComplexity int) int
 		Text     func(childComplexity int) int
 	}
 
 	ListSelectorSortBy struct {
-		Desc    func(childComplexity int) int
-		FieldID func(childComplexity int) int
+		Desc func(childComplexity int) int
+		Path func(childComplexity int) int
 	}
 
 	MeasuredValue struct {
@@ -2395,6 +2398,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldDescriptor.GroupID(childComplexity), true
 
+	case "FieldDescriptor.isUserDefined":
+		if e.complexity.FieldDescriptor.IsUserDefined == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.IsUserDefined(childComplexity), true
+
 	case "FieldDescriptor.jsPath":
 		if e.complexity.FieldDescriptor.JsPath == nil {
 			break
@@ -2415,6 +2425,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldDescriptor.MultiValue(childComplexity), true
+
+	case "FieldDescriptor.path":
+		if e.complexity.FieldDescriptor.Path == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Path(childComplexity), true
 
 	case "FieldDescriptor.precision":
 		if e.complexity.FieldDescriptor.Precision == nil {
@@ -2443,6 +2460,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldDescriptor.Tooltip(childComplexity), true
+
+	case "FieldDescriptor.type":
+		if e.complexity.FieldDescriptor.Type == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Type(childComplexity), true
 
 	case "FieldDescriptor.unit":
 		if e.complexity.FieldDescriptor.Unit == nil {
@@ -3375,13 +3399,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListSelectorFilterBy.Date(childComplexity), true
 
-	case "ListSelectorFilterBy.fieldId":
-		if e.complexity.ListSelectorFilterBy.FieldID == nil {
-			break
-		}
-
-		return e.complexity.ListSelectorFilterBy.FieldID(childComplexity), true
-
 	case "ListSelectorFilterBy.integer":
 		if e.complexity.ListSelectorFilterBy.Integer == nil {
 			break
@@ -3403,6 +3420,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListSelectorFilterBy.Operator(childComplexity), true
 
+	case "ListSelectorFilterBy.path":
+		if e.complexity.ListSelectorFilterBy.Path == nil {
+			break
+		}
+
+		return e.complexity.ListSelectorFilterBy.Path(childComplexity), true
+
 	case "ListSelectorFilterBy.text":
 		if e.complexity.ListSelectorFilterBy.Text == nil {
 			break
@@ -3417,12 +3441,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListSelectorSortBy.Desc(childComplexity), true
 
-	case "ListSelectorSortBy.fieldId":
-		if e.complexity.ListSelectorSortBy.FieldID == nil {
+	case "ListSelectorSortBy.path":
+		if e.complexity.ListSelectorSortBy.Path == nil {
 			break
 		}
 
-		return e.complexity.ListSelectorSortBy.FieldID(childComplexity), true
+		return e.complexity.ListSelectorSortBy.Path(childComplexity), true
 
 	case "MeasuredValue.boolValue":
 		if e.complexity.MeasuredValue.BoolValue == nil {
@@ -6665,18 +6689,26 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "type":
+				return ec.fieldContext_FieldDescriptor_type(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "dataType":
 				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 			case "format":
 				return ec.fieldContext_FieldDescriptor_format(ctx, field)
 			case "unit":
 				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "precision":
 				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
@@ -6695,8 +6727,6 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -8254,18 +8284,26 @@ func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ conte
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "type":
+				return ec.fieldContext_FieldDescriptor_type(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "dataType":
 				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 			case "format":
 				return ec.fieldContext_FieldDescriptor_format(ctx, field)
 			case "unit":
 				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "precision":
 				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
@@ -8284,8 +8322,6 @@ func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ conte
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -10521,18 +10557,26 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "type":
+				return ec.fieldContext_FieldDescriptor_type(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "dataType":
 				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 			case "format":
 				return ec.fieldContext_FieldDescriptor_format(ctx, field)
 			case "unit":
 				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "precision":
 				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
@@ -10551,8 +10595,6 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -13271,6 +13313,88 @@ func (ec *executionContext) fieldContext_EventRecords_values(_ context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _FieldDescriptor_isUserDefined(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.IsUserDefined, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_isUserDefined(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_type(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_type(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Type, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ObjectType)
+	fc.Result = res
+	return ec.marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type ObjectType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _FieldDescriptor_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 	if err != nil {
@@ -13312,6 +13436,88 @@ func (ec *executionContext) fieldContext_FieldDescriptor_fieldId(_ context.Conte
 	return fc, nil
 }
 
+func (ec *executionContext) _FieldDescriptor_jsPath(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.JsPath, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_jsPath(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_path(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_path(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Path, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_path(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _FieldDescriptor_label(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_FieldDescriptor_label(ctx, field)
 	if err != nil {
@@ -13341,6 +13547,47 @@ func (ec *executionContext) _FieldDescriptor_label(ctx context.Context, field gr
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_label(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_groupId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.GroupID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldDescriptor",
 		Field:      field,
@@ -13464,47 +13711,6 @@ func (ec *executionContext) _FieldDescriptor_unit(ctx context.Context, field gra
 }
 
 func (ec *executionContext) fieldContext_FieldDescriptor_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "FieldDescriptor",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _FieldDescriptor_groupId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldDescriptor_groupId(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.GroupID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_FieldDescriptor_groupId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldDescriptor",
 		Field:      field,
@@ -13915,47 +14121,6 @@ func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.
 				return ec.fieldContext_FieldValue_durationValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _FieldDescriptor_jsPath(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.JsPath, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_FieldDescriptor_jsPath(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "FieldDescriptor",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -15829,18 +15994,26 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "type":
+				return ec.fieldContext_FieldDescriptor_type(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "dataType":
 				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 			case "format":
 				return ec.fieldContext_FieldDescriptor_format(ctx, field)
 			case "unit":
 				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "precision":
 				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
@@ -15859,8 +16032,6 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -18717,18 +18888,26 @@ func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.C
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "type":
+				return ec.fieldContext_FieldDescriptor_type(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
 			case "label":
 				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "dataType":
 				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
 			case "format":
 				return ec.fieldContext_FieldDescriptor_format(ctx, field)
 			case "unit":
 				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
-			case "groupId":
-				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
 			case "precision":
 				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
 			case "tooltip":
@@ -18747,8 +18926,6 @@ func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.C
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
-			case "jsPath":
-				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -19531,8 +19708,8 @@ func (ec *executionContext) fieldContext_ListSelector_sortBy(_ context.Context, 
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "fieldId":
-				return ec.fieldContext_ListSelectorSortBy_fieldId(ctx, field)
+			case "path":
+				return ec.fieldContext_ListSelectorSortBy_path(ctx, field)
 			case "desc":
 				return ec.fieldContext_ListSelectorSortBy_desc(ctx, field)
 			}
@@ -19578,8 +19755,8 @@ func (ec *executionContext) fieldContext_ListSelector_filterBy(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "fieldId":
-				return ec.fieldContext_ListSelectorFilterBy_fieldId(ctx, field)
+			case "path":
+				return ec.fieldContext_ListSelectorFilterBy_path(ctx, field)
 			case "operator":
 				return ec.fieldContext_ListSelectorFilterBy_operator(ctx, field)
 			case "dataType":
@@ -19642,8 +19819,8 @@ func (ec *executionContext) fieldContext_ListSelector_fields(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelectorFilterBy_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorFilterBy) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelectorFilterBy_fieldId(ctx, field)
+func (ec *executionContext) _ListSelectorFilterBy_path(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorFilterBy) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelectorFilterBy_path(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -19656,7 +19833,7 @@ func (ec *executionContext) _ListSelectorFilterBy_fieldId(ctx context.Context, f
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.FieldID, nil
+		return obj.Path, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -19670,7 +19847,7 @@ func (ec *executionContext) _ListSelectorFilterBy_fieldId(ctx context.Context, f
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelectorFilterBy_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelectorFilterBy_path(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelectorFilterBy",
 		Field:      field,
@@ -19970,8 +20147,8 @@ func (ec *executionContext) fieldContext_ListSelectorFilterBy_date(_ context.Con
 	return fc, nil
 }
 
-func (ec *executionContext) _ListSelectorSortBy_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorSortBy) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListSelectorSortBy_fieldId(ctx, field)
+func (ec *executionContext) _ListSelectorSortBy_path(ctx context.Context, field graphql.CollectedField, obj *model.ListSelectorSortBy) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListSelectorSortBy_path(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -19984,7 +20161,7 @@ func (ec *executionContext) _ListSelectorSortBy_fieldId(ctx context.Context, fie
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.FieldID, nil
+		return obj.Path, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -19998,7 +20175,7 @@ func (ec *executionContext) _ListSelectorSortBy_fieldId(ctx context.Context, fie
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListSelectorSortBy_fieldId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListSelectorSortBy_path(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ListSelectorSortBy",
 		Field:      field,
@@ -32769,18 +32946,26 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("FieldDescriptor")
+		case "isUserDefined":
+			out.Values[i] = ec._FieldDescriptor_isUserDefined(ctx, field, obj)
+		case "type":
+			out.Values[i] = ec._FieldDescriptor_type(ctx, field, obj)
 		case "fieldId":
 			out.Values[i] = ec._FieldDescriptor_fieldId(ctx, field, obj)
+		case "jsPath":
+			out.Values[i] = ec._FieldDescriptor_jsPath(ctx, field, obj)
+		case "path":
+			out.Values[i] = ec._FieldDescriptor_path(ctx, field, obj)
 		case "label":
 			out.Values[i] = ec._FieldDescriptor_label(ctx, field, obj)
+		case "groupId":
+			out.Values[i] = ec._FieldDescriptor_groupId(ctx, field, obj)
 		case "dataType":
 			out.Values[i] = ec._FieldDescriptor_dataType(ctx, field, obj)
 		case "format":
 			out.Values[i] = ec._FieldDescriptor_format(ctx, field, obj)
 		case "unit":
 			out.Values[i] = ec._FieldDescriptor_unit(ctx, field, obj)
-		case "groupId":
-			out.Values[i] = ec._FieldDescriptor_groupId(ctx, field, obj)
 		case "precision":
 			out.Values[i] = ec._FieldDescriptor_precision(ctx, field, obj)
 		case "tooltip":
@@ -32799,8 +32984,6 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._FieldDescriptor_validation(ctx, field, obj)
 		case "defaultValue":
 			out.Values[i] = ec._FieldDescriptor_defaultValue(ctx, field, obj)
-		case "jsPath":
-			out.Values[i] = ec._FieldDescriptor_jsPath(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -34313,8 +34496,8 @@ func (ec *executionContext) _ListSelectorFilterBy(ctx context.Context, sel ast.S
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListSelectorFilterBy")
-		case "fieldId":
-			out.Values[i] = ec._ListSelectorFilterBy_fieldId(ctx, field, obj)
+		case "path":
+			out.Values[i] = ec._ListSelectorFilterBy_path(ctx, field, obj)
 		case "operator":
 			out.Values[i] = ec._ListSelectorFilterBy_operator(ctx, field, obj)
 		case "dataType":
@@ -34363,8 +34546,8 @@ func (ec *executionContext) _ListSelectorSortBy(ctx context.Context, sel ast.Sel
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ListSelectorSortBy")
-		case "fieldId":
-			out.Values[i] = ec._ListSelectorSortBy_fieldId(ctx, field, obj)
+		case "path":
+			out.Values[i] = ec._ListSelectorSortBy_path(ctx, field, obj)
 		case "desc":
 			out.Values[i] = ec._ListSelectorSortBy_desc(ctx, field, obj)
 		default:
@@ -40174,6 +40357,22 @@ func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabs
 		return graphql.Null
 	}
 	return ec._ModemPoolStatus(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx context.Context, v any) (*model.ObjectType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.ObjectType)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx context.Context, sel ast.SelectionSet, v *model.ObjectType) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlock) graphql.Marshaler {

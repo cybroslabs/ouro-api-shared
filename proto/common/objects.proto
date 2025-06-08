@@ -1,0 +1,20 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.common;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
+
+// Enum representing the object type.
+enum ObjectType {
+    BULK               = 0;   // The bulk.
+    BULK_JOB           = 1;   // The bulk job.
+    COMMUNITATION_UNIT = 2;   // The communication unit.
+    DEVICE             = 3;   // The device.
+    REGISTER           = 4;   // The register.
+    VARIABLE           = 5;   // The variable.
+    DEVICE_TEMPLATE    = 6;   // The device template.
+    COMMUNICATION_BUS  = 7;   // The communication bus.
+    MODEM_POOL         = 8;   // The modem pool.
+    DEVICE_GROUP       = 9;   // The device group.
+    TIME_OF_USE_TABLE  = 10;  // The time-of-use table.
+}

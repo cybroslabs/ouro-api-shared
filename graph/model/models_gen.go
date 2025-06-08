@@ -410,22 +410,25 @@ type EventRecords struct {
 }
 
 type FieldDescriptor struct {
-	FieldID      *string             `json:"fieldId,omitempty"`
-	Label        *string             `json:"label,omitempty"`
-	DataType     *FieldDataType      `json:"dataType,omitempty"`
-	Format       *FieldDisplayFormat `json:"format,omitempty"`
-	Unit         *string             `json:"unit,omitempty"`
-	GroupID      *string             `json:"groupId,omitempty"`
-	Precision    *int32              `json:"precision,omitempty"`
-	Tooltip      *string             `json:"tooltip,omitempty"`
-	Required     *bool               `json:"required,omitempty"`
-	Editable     *bool               `json:"editable,omitempty"`
-	Visible      *bool               `json:"visible,omitempty"`
-	MultiValue   *bool               `json:"multiValue,omitempty"`
-	Secured      *bool               `json:"secured,omitempty"`
-	Validation   *FieldValidation    `json:"validation,omitempty"`
-	DefaultValue *FieldValue         `json:"defaultValue,omitempty"`
-	JsPath       *string             `json:"jsPath,omitempty"`
+	IsUserDefined *bool               `json:"isUserDefined,omitempty"`
+	Type          *ObjectType         `json:"type,omitempty"`
+	FieldID       *string             `json:"fieldId,omitempty"`
+	JsPath        *string             `json:"jsPath,omitempty"`
+	Path          *string             `json:"path,omitempty"`
+	Label         *string             `json:"label,omitempty"`
+	GroupID       *string             `json:"groupId,omitempty"`
+	DataType      *FieldDataType      `json:"dataType,omitempty"`
+	Format        *FieldDisplayFormat `json:"format,omitempty"`
+	Unit          *string             `json:"unit,omitempty"`
+	Precision     *int32              `json:"precision,omitempty"`
+	Tooltip       *string             `json:"tooltip,omitempty"`
+	Required      *bool               `json:"required,omitempty"`
+	Editable      *bool               `json:"editable,omitempty"`
+	Visible       *bool               `json:"visible,omitempty"`
+	MultiValue    *bool               `json:"multiValue,omitempty"`
+	Secured       *bool               `json:"secured,omitempty"`
+	Validation    *FieldValidation    `json:"validation,omitempty"`
+	DefaultValue  *FieldValue         `json:"defaultValue,omitempty"`
 }
 
 type FieldValidation struct {
@@ -664,7 +667,7 @@ type ListSelector struct {
 }
 
 type ListSelectorFilterBy struct {
-	FieldID  *string         `json:"fieldId,omitempty"`
+	Path     *string         `json:"path,omitempty"`
 	Operator *FilterOperator `json:"operator,omitempty"`
 	DataType *FieldDataType  `json:"dataType,omitempty"`
 	Text     []*string       `json:"text,omitempty"`
@@ -675,8 +678,8 @@ type ListSelectorFilterBy struct {
 }
 
 type ListSelectorSortBy struct {
-	FieldID *string `json:"fieldId,omitempty"`
-	Desc    *bool   `json:"desc,omitempty"`
+	Path *string `json:"path,omitempty"`
+	Desc *bool   `json:"desc,omitempty"`
 }
 
 type MeasuredValue struct {
@@ -1669,6 +1672,79 @@ func (e *JobStatusCode) UnmarshalJSON(b []byte) error {
 }
 
 func (e JobStatusCode) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type ObjectType string
+
+const (
+	ObjectTypeBulk              ObjectType = "BULK"
+	ObjectTypeBulkJob           ObjectType = "BULK_JOB"
+	ObjectTypeCommunitationUnit ObjectType = "COMMUNITATION_UNIT"
+	ObjectTypeDevice            ObjectType = "DEVICE"
+	ObjectTypeRegister          ObjectType = "REGISTER"
+	ObjectTypeVariable          ObjectType = "VARIABLE"
+	ObjectTypeDeviceTemplate    ObjectType = "DEVICE_TEMPLATE"
+	ObjectTypeCommunicationBus  ObjectType = "COMMUNICATION_BUS"
+	ObjectTypeModemPool         ObjectType = "MODEM_POOL"
+	ObjectTypeDeviceGroup       ObjectType = "DEVICE_GROUP"
+	ObjectTypeTimeOfUseTable    ObjectType = "TIME_OF_USE_TABLE"
+)
+
+var AllObjectType = []ObjectType{
+	ObjectTypeBulk,
+	ObjectTypeBulkJob,
+	ObjectTypeCommunitationUnit,
+	ObjectTypeDevice,
+	ObjectTypeRegister,
+	ObjectTypeVariable,
+	ObjectTypeDeviceTemplate,
+	ObjectTypeCommunicationBus,
+	ObjectTypeModemPool,
+	ObjectTypeDeviceGroup,
+	ObjectTypeTimeOfUseTable,
+}
+
+func (e ObjectType) IsValid() bool {
+	switch e {
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunitationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable:
+		return true
+	}
+	return false
+}
+
+func (e ObjectType) String() string {
+	return string(e)
+}
+
+func (e *ObjectType) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = ObjectType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid ObjectType", str)
+	}
+	return nil
+}
+
+func (e ObjectType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *ObjectType) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e ObjectType) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

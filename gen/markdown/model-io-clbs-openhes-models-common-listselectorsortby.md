@@ -6,6 +6,6 @@ The sorting criteria.
 
 | Field | Information |
 | --- | --- |
-| fieldId | <b>Type:</b> `string`<br><b>Description:</b><br>Field id. |
+| path | <b>Type:</b> `string`<br><b>Description:</b><br>The js_path or path from the FieldDescriptor. |
 | desc | <b>Type:</b> `bool`<br><b>Description:</b><br>Set to true to sort in descending order. |
 

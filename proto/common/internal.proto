@@ -5,26 +5,22 @@ package io.clbs.openhes.models.common;
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 import "common/fields.proto";
-
-// The type of the managed fields update. It defines the resource type for which the managed fields are set.
-enum SetManagedFieldsType {
-    BULK               = 0;   // The managed fields update is for a bulk.
-    BULK_JOB           = 1;   // The managed fields update is for a bulk job.
-    COMMUNITATION_UNIT = 2;   // The managed fields update is for a communication unit.
-    DEVICE             = 3;   // The managed fields update is for a device.
-    REGISTER           = 4;   // The managed fields update is for a register.
-    VARIABLE           = 5;   // The managed fields update is for a variable.
-    DEVICE_TEMPLATE    = 6;   // The managed fields update is for a device template.
-    COMMUNICATION_BUS  = 7;   // The managed fields update is for a communication bus.
-    MODEM_POOL         = 8;   // The managed fields update is for a modem pool.
-    DEVICE_GROUP       = 9;   // The managed fields update is for a device group.
-    TIME_OF_USE_TABLE  = 10;  // The managed fields update is for a time-of-use table.
-}
+import "common/objects.proto";
 
 // The request to set the managed fields of the resource.
 message SetManagedFieldsRequest {
-    SetManagedFieldsType type                     = 1;  // The type of the managed fields update. It defines the resource type for which the managed fields are set.
+    ObjectType type                               = 1;  // The type of the managed fields update. It defines the resource type for which the managed fields are set.
     string id                                     = 2;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
     int32 generation                              = 3;  // The generation of the resource, optional. If set then it must match the current generation of the resource, otherwise the data are overwritten without checking the generation.
     map<string, common.FieldValue> managed_fields = 4;  // The additional fields managed by system.
+}
+
+message FieldDescriptorInternal {
+    string db_path                   = 1;  // The database path of the field, used for JSONB columns.
+    FieldDescriptor field_descriptor = 2;  // The field descriptor of the field, used for JSONB columns.
+}
+
+message UpdateFieldDescriptorsRequest {
+    string component_type                  = 1;  // The type of the component for which the field descriptors are updated, e.g., "device", "bulk", etc.
+    repeated FieldDescriptorInternal items = 2;  // The list of field descriptors.
 }

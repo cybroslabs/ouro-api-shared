@@ -6,6 +6,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "common/objects.proto";
 
 // The listing selector.
 message ListSelector {
@@ -23,8 +24,8 @@ message ListSelector {
 
 // The sorting criteria.
 message ListSelectorSortBy {
-    string field_id = 1;                    // Field id.
-    bool desc       = 2 [default = false];  // Set to true to sort in descending order.
+    string path = 1;                    // The js_path or path from the FieldDescriptor.
+    bool desc   = 2 [default = false];  // Set to true to sort in descending order.
 }
 
 // The filter operator.
@@ -56,7 +57,7 @@ enum FilterOperator {
 //
 // Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
 message ListSelectorFilterBy {
-    string field_id = 1;                          // Field id.
+    string path = 1;                              // The js_path or path from the FieldDescriptor.
     FilterOperator operator = 2;                  // The filter operator.
     FieldDataType data_type                 = 3;  // The data type of the field.
     repeated string text                    = 4;  // The text-typed value(s) used for filtering.
@@ -91,22 +92,25 @@ enum FieldDisplayFormat {
 
 // The field descriptor.
 message FieldDescriptor {
-    string field_id            = 1;   // Unique identifier for the field
-    string js_path             = 18;  // The path to the field in the JSON data model
-    string label               = 2;   // Label displayed for the field
-    string group_id            = 6;   // Group (section) identifier for the field
-    FieldDataType data_type    = 3;   // Data type of the field (e.g., text, double)
-    FieldDisplayFormat format  = 4;   // Display format (e.g., 1h 30m)
-    string unit                = 5;   // Unit to display (e.g., kWh, USD)
-    int32 precision            = 8;   // Decimal precision for double numbers
-    string tooltip             = 9;   // Tooltip or hint text
-    bool required              = 11;  // Whether the field is mandatory
-    bool editable              = 12;  // Whether the field is editable
-    bool visible               = 13;  // Whether the field is visible
-    bool multi_value           = 14;  // Whether the field can have multiple values
-    bool secured               = 15;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
-    FieldValidation validation = 16;  // Validation rules for the field
-    FieldValue default_value   = 17;  // The default value of the attribute, it does not support multi-value fields
+    bool is_user_defined       = 1;   // Whether the field descriptor is user-defined (e.g., custom fields added by users)
+    ObjectType type            = 2;   // The type of the managed fields update. It defines the resource type for which the managed fields are set.
+    string field_id            = 3;   // Unique identifier for the field descriptor
+    string js_path             = 4;   // The path to the field in the TypeScript representation
+    string path                = 5;   // The path to the field in the gRPC/JSON simplified representation
+    string label               = 6;   // Label displayed for the field
+    string group_id            = 7;   // Group (section) identifier for the field
+    FieldDataType data_type    = 8;   // Data type of the field (e.g., text, double)
+    FieldDisplayFormat format  = 9;   // Display format (e.g., 1h 30m)
+    string unit                = 10;  // Unit to display (e.g., kWh, USD)
+    int32 precision            = 11;  // Decimal precision for double numbers
+    string tooltip             = 12;  // Tooltip or hint text
+    bool required              = 13;  // Whether the field is mandatory
+    bool editable              = 14;  // Whether the field is editable
+    bool visible               = 15;  // Whether the field is visible
+    bool multi_value           = 16;  // Whether the field can have multiple values
+    bool secured               = 17;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+    FieldValidation validation = 18;  // Validation rules for the field
+    FieldValue default_value   = 19;  // The default value of the attribute, it does not support multi-value fields
 }
 
 // Validation rules for the field.

@@ -1,0 +1,15 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.services.svcapi;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi";
+
+import "google/protobuf/empty.proto";
+import "common/internal.proto";
+
+// The Dataproxy related service definition.
+service ApiInternalService {
+    // @group: Fields
+    // The method to get the list of fields.
+    rpc UpdateFieldDescriptors(io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest) returns (google.protobuf.Empty);
+}

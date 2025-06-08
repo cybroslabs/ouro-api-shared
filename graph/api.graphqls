@@ -253,6 +253,32 @@ enum FilterOperator {
   IS_NOT_NULL
 }
 
+# Enum representing the object type.
+enum ObjectType {
+  # The bulk.
+  BULK
+  # The bulk job.
+  BULK_JOB
+  # The communication unit.
+  COMMUNITATION_UNIT
+  # The device.
+  DEVICE
+  # The register.
+  REGISTER
+  # The variable.
+  VARIABLE
+  # The device template.
+  DEVICE_TEMPLATE
+  # The communication bus.
+  COMMUNICATION_BUS
+  # The modem pool.
+  MODEM_POOL
+  # The device group.
+  DEVICE_GROUP
+  # The time-of-use table.
+  TIME_OF_USE_TABLE
+}
+
 # A Duration represents a signed, fixed-length span of time represented
 #  as a count of seconds and fractions of seconds at nanosecond
 #  resolution. It is independent of any calendar and concepts like "day"
@@ -1505,18 +1531,26 @@ type Week {
 
 # The field descriptor.
 type FieldDescriptor {
-  # Unique identifier for the field
+  # Whether the field descriptor is user-defined (e.g., custom fields added by users)
+  isUserDefined: Boolean
+  # The type of the managed fields update. It defines the resource type for which the managed fields are set.
+  type: ObjectType
+  # Unique identifier for the field descriptor
   fieldId: String
+  # The path to the field in the TypeScript representation
+  jsPath: String
+  # The path to the field in the gRPC/JSON simplified representation
+  path: String
   # Label displayed for the field
   label: String
+  # Group (section) identifier for the field
+  groupId: String
   # Data type of the field (e.g., text, double)
   dataType: FieldDataType
   # Display format (e.g., 1h 30m)
   format: FieldDisplayFormat
   # Unit to display (e.g., kWh, USD)
   unit: String
-  # Group (section) identifier for the field
-  groupId: String
   # Decimal precision for double numbers
   precision: Int
   # Tooltip or hint text
@@ -1535,8 +1569,6 @@ type FieldDescriptor {
   validation: FieldValidation
   # The default value of the attribute, it does not support multi-value fields
   defaultValue: FieldValue
-  # The path to the field in the JSON data model
-  jsPath: String
 }
 
 # Validation rules for the field.
@@ -1630,8 +1662,8 @@ type ListSelector {
 #
 #  Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
 type ListSelectorFilterBy {
-  # Field id.
-  fieldId: String
+  # The js_path or path from the FieldDescriptor.
+  path: String
   # The filter operator.
   operator: FilterOperator
   # The data type of the field.
@@ -1650,8 +1682,8 @@ type ListSelectorFilterBy {
 
 # The sorting criteria.
 type ListSelectorSortBy {
-  # Field id.
-  fieldId: String
+  # The js_path or path from the FieldDescriptor.
+  path: String
   # Set to true to sort in descending order.
   desc: Boolean
 }

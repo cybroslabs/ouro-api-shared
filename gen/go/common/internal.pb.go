@@ -20,79 +20,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The type of the managed fields update. It defines the resource type for which the managed fields are set.
-type SetManagedFieldsType int32
-
-const (
-	SetManagedFieldsType_BULK               SetManagedFieldsType = 0  // The managed fields update is for a bulk.
-	SetManagedFieldsType_BULK_JOB           SetManagedFieldsType = 1  // The managed fields update is for a bulk job.
-	SetManagedFieldsType_COMMUNITATION_UNIT SetManagedFieldsType = 2  // The managed fields update is for a communication unit.
-	SetManagedFieldsType_DEVICE             SetManagedFieldsType = 3  // The managed fields update is for a device.
-	SetManagedFieldsType_REGISTER           SetManagedFieldsType = 4  // The managed fields update is for a register.
-	SetManagedFieldsType_VARIABLE           SetManagedFieldsType = 5  // The managed fields update is for a variable.
-	SetManagedFieldsType_DEVICE_TEMPLATE    SetManagedFieldsType = 6  // The managed fields update is for a device template.
-	SetManagedFieldsType_COMMUNICATION_BUS  SetManagedFieldsType = 7  // The managed fields update is for a communication bus.
-	SetManagedFieldsType_MODEM_POOL         SetManagedFieldsType = 8  // The managed fields update is for a modem pool.
-	SetManagedFieldsType_DEVICE_GROUP       SetManagedFieldsType = 9  // The managed fields update is for a device group.
-	SetManagedFieldsType_TIME_OF_USE_TABLE  SetManagedFieldsType = 10 // The managed fields update is for a time-of-use table.
-)
-
-// Enum value maps for SetManagedFieldsType.
-var (
-	SetManagedFieldsType_name = map[int32]string{
-		0:  "BULK",
-		1:  "BULK_JOB",
-		2:  "COMMUNITATION_UNIT",
-		3:  "DEVICE",
-		4:  "REGISTER",
-		5:  "VARIABLE",
-		6:  "DEVICE_TEMPLATE",
-		7:  "COMMUNICATION_BUS",
-		8:  "MODEM_POOL",
-		9:  "DEVICE_GROUP",
-		10: "TIME_OF_USE_TABLE",
-	}
-	SetManagedFieldsType_value = map[string]int32{
-		"BULK":               0,
-		"BULK_JOB":           1,
-		"COMMUNITATION_UNIT": 2,
-		"DEVICE":             3,
-		"REGISTER":           4,
-		"VARIABLE":           5,
-		"DEVICE_TEMPLATE":    6,
-		"COMMUNICATION_BUS":  7,
-		"MODEM_POOL":         8,
-		"DEVICE_GROUP":       9,
-		"TIME_OF_USE_TABLE":  10,
-	}
-)
-
-func (x SetManagedFieldsType) Enum() *SetManagedFieldsType {
-	p := new(SetManagedFieldsType)
-	*p = x
-	return p
-}
-
-func (x SetManagedFieldsType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (SetManagedFieldsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_common_internal_proto_enumTypes[0].Descriptor()
-}
-
-func (SetManagedFieldsType) Type() protoreflect.EnumType {
-	return &file_common_internal_proto_enumTypes[0]
-}
-
-func (x SetManagedFieldsType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
 // The request to set the managed fields of the resource.
 type SetManagedFieldsRequest struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Type          SetManagedFieldsType   `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.common.SetManagedFieldsType"`
+	xxx_hidden_Type          ObjectType             `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.common.ObjectType"`
 	xxx_hidden_Id            *string                `protobuf:"bytes,2,opt,name=id"`
 	xxx_hidden_Generation    int32                  `protobuf:"varint,3,opt,name=generation"`
 	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,4,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -127,13 +58,13 @@ func (x *SetManagedFieldsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *SetManagedFieldsRequest) GetType() SetManagedFieldsType {
+func (x *SetManagedFieldsRequest) GetType() ObjectType {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
 			return x.xxx_hidden_Type
 		}
 	}
-	return SetManagedFieldsType_BULK
+	return ObjectType_BULK
 }
 
 func (x *SetManagedFieldsRequest) GetId() string {
@@ -160,7 +91,7 @@ func (x *SetManagedFieldsRequest) GetManagedFields() map[string]*FieldValue {
 	return nil
 }
 
-func (x *SetManagedFieldsRequest) SetType(v SetManagedFieldsType) {
+func (x *SetManagedFieldsRequest) SetType(v ObjectType) {
 	x.xxx_hidden_Type = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
@@ -202,7 +133,7 @@ func (x *SetManagedFieldsRequest) HasGeneration() bool {
 
 func (x *SetManagedFieldsRequest) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = SetManagedFieldsType_BULK
+	x.xxx_hidden_Type = ObjectType_BULK
 }
 
 func (x *SetManagedFieldsRequest) ClearId() {
@@ -218,7 +149,7 @@ func (x *SetManagedFieldsRequest) ClearGeneration() {
 type SetManagedFieldsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Type          *SetManagedFieldsType
+	Type          *ObjectType
 	Id            *string
 	Generation    *int32
 	ManagedFields map[string]*FieldValue
@@ -244,13 +175,210 @@ func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
 	return m0
 }
 
+type FieldDescriptorInternal struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DbPath          *string                `protobuf:"bytes,1,opt,name=db_path,json=dbPath"`
+	xxx_hidden_FieldDescriptor *FieldDescriptor       `protobuf:"bytes,2,opt,name=field_descriptor,json=fieldDescriptor"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *FieldDescriptorInternal) Reset() {
+	*x = FieldDescriptorInternal{}
+	mi := &file_common_internal_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldDescriptorInternal) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldDescriptorInternal) ProtoMessage() {}
+
+func (x *FieldDescriptorInternal) ProtoReflect() protoreflect.Message {
+	mi := &file_common_internal_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FieldDescriptorInternal) GetDbPath() string {
+	if x != nil {
+		if x.xxx_hidden_DbPath != nil {
+			return *x.xxx_hidden_DbPath
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FieldDescriptorInternal) GetFieldDescriptor() *FieldDescriptor {
+	if x != nil {
+		return x.xxx_hidden_FieldDescriptor
+	}
+	return nil
+}
+
+func (x *FieldDescriptorInternal) SetDbPath(v string) {
+	x.xxx_hidden_DbPath = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *FieldDescriptorInternal) SetFieldDescriptor(v *FieldDescriptor) {
+	x.xxx_hidden_FieldDescriptor = v
+}
+
+func (x *FieldDescriptorInternal) HasDbPath() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FieldDescriptorInternal) HasFieldDescriptor() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_FieldDescriptor != nil
+}
+
+func (x *FieldDescriptorInternal) ClearDbPath() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_DbPath = nil
+}
+
+func (x *FieldDescriptorInternal) ClearFieldDescriptor() {
+	x.xxx_hidden_FieldDescriptor = nil
+}
+
+type FieldDescriptorInternal_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	DbPath          *string
+	FieldDescriptor *FieldDescriptor
+}
+
+func (b0 FieldDescriptorInternal_builder) Build() *FieldDescriptorInternal {
+	m0 := &FieldDescriptorInternal{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.DbPath != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_DbPath = b.DbPath
+	}
+	x.xxx_hidden_FieldDescriptor = b.FieldDescriptor
+	return m0
+}
+
+type UpdateFieldDescriptorsRequest struct {
+	state                    protoimpl.MessageState      `protogen:"opaque.v1"`
+	xxx_hidden_ComponentType *string                     `protobuf:"bytes,1,opt,name=component_type,json=componentType"`
+	xxx_hidden_Items         *[]*FieldDescriptorInternal `protobuf:"bytes,2,rep,name=items"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *UpdateFieldDescriptorsRequest) Reset() {
+	*x = UpdateFieldDescriptorsRequest{}
+	mi := &file_common_internal_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateFieldDescriptorsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateFieldDescriptorsRequest) ProtoMessage() {}
+
+func (x *UpdateFieldDescriptorsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_internal_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *UpdateFieldDescriptorsRequest) GetComponentType() string {
+	if x != nil {
+		if x.xxx_hidden_ComponentType != nil {
+			return *x.xxx_hidden_ComponentType
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UpdateFieldDescriptorsRequest) GetItems() []*FieldDescriptorInternal {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *UpdateFieldDescriptorsRequest) SetComponentType(v string) {
+	x.xxx_hidden_ComponentType = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *UpdateFieldDescriptorsRequest) SetItems(v []*FieldDescriptorInternal) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *UpdateFieldDescriptorsRequest) HasComponentType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *UpdateFieldDescriptorsRequest) ClearComponentType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ComponentType = nil
+}
+
+type UpdateFieldDescriptorsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ComponentType *string
+	Items         []*FieldDescriptorInternal
+}
+
+func (b0 UpdateFieldDescriptorsRequest_builder) Build() *UpdateFieldDescriptorsRequest {
+	m0 := &UpdateFieldDescriptorsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ComponentType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_ComponentType = b.ComponentType
+	}
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
 var File_common_internal_proto protoreflect.FileDescriptor
 
 const file_common_internal_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\"\xf1\x02\n" +
-	"\x17SetManagedFieldsRequest\x12G\n" +
-	"\x04type\x18\x01 \x01(\x0e23.io.clbs.openhes.models.common.SetManagedFieldsTypeR\x04type\x12\x0e\n" +
+	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xe7\x02\n" +
+	"\x17SetManagedFieldsRequest\x12=\n" +
+	"\x04type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\x04type\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
 	"generation\x18\x03 \x01(\x05R\n" +
@@ -258,40 +386,35 @@ const file_common_internal_proto_rawDesc = "" +
 	"\x0emanaged_fields\x18\x04 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x1ak\n" +
 	"\x12ManagedFieldsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01*\xd3\x01\n" +
-	"\x14SetManagedFieldsType\x12\b\n" +
-	"\x04BULK\x10\x00\x12\f\n" +
-	"\bBULK_JOB\x10\x01\x12\x16\n" +
-	"\x12COMMUNITATION_UNIT\x10\x02\x12\n" +
-	"\n" +
-	"\x06DEVICE\x10\x03\x12\f\n" +
-	"\bREGISTER\x10\x04\x12\f\n" +
-	"\bVARIABLE\x10\x05\x12\x13\n" +
-	"\x0fDEVICE_TEMPLATE\x10\x06\x12\x15\n" +
-	"\x11COMMUNICATION_BUS\x10\a\x12\x0e\n" +
-	"\n" +
-	"MODEM_POOL\x10\b\x12\x10\n" +
-	"\fDEVICE_GROUP\x10\t\x12\x15\n" +
-	"\x11TIME_OF_USE_TABLE\x10\n" +
-	"B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\x8d\x01\n" +
+	"\x17FieldDescriptorInternal\x12\x17\n" +
+	"\adb_path\x18\x01 \x01(\tR\x06dbPath\x12Y\n" +
+	"\x10field_descriptor\x18\x02 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x0ffieldDescriptor\"\x94\x01\n" +
+	"\x1dUpdateFieldDescriptorsRequest\x12%\n" +
+	"\x0ecomponent_type\x18\x01 \x01(\tR\rcomponentType\x12L\n" +
+	"\x05items\x18\x02 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05itemsB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_internal_proto_goTypes = []any{
-	(SetManagedFieldsType)(0),       // 0: io.clbs.openhes.models.common.SetManagedFieldsType
-	(*SetManagedFieldsRequest)(nil), // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest
-	nil,                             // 2: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
-	(*FieldValue)(nil),              // 3: io.clbs.openhes.models.common.FieldValue
+	(*SetManagedFieldsRequest)(nil),       // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest
+	(*FieldDescriptorInternal)(nil),       // 1: io.clbs.openhes.models.common.FieldDescriptorInternal
+	(*UpdateFieldDescriptorsRequest)(nil), // 2: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
+	nil,                                   // 3: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	(ObjectType)(0),                       // 4: io.clbs.openhes.models.common.ObjectType
+	(*FieldDescriptor)(nil),               // 5: io.clbs.openhes.models.common.FieldDescriptor
+	(*FieldValue)(nil),                    // 6: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_internal_proto_depIdxs = []int32{
-	0, // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.type:type_name -> io.clbs.openhes.models.common.SetManagedFieldsType
-	2, // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
-	3, // 2: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.type:type_name -> io.clbs.openhes.models.common.ObjectType
+	3, // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	5, // 2: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	1, // 3: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
+	6, // 4: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_common_internal_proto_init() }
@@ -300,19 +423,19 @@ func file_common_internal_proto_init() {
 		return
 	}
 	file_common_fields_proto_init()
+	file_common_objects_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_internal_proto_rawDesc), len(file_common_internal_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   2,
+			NumEnums:      0,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_common_internal_proto_goTypes,
 		DependencyIndexes: file_common_internal_proto_depIdxs,
-		EnumInfos:         file_common_internal_proto_enumTypes,
 		MessageInfos:      file_common_internal_proto_msgTypes,
 	}.Build()
 	File_common_internal_proto = out.File

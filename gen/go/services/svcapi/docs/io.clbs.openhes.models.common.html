@@ -198,6 +198,13 @@
         </a>
       </p>
     
+      <p>
+        <a href="#enum-io.clbs.openhes.models.common.ObjectType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ObjectType</code> 
+        </a>
+      </p>
+    
   </div>
 
   <div class="block">
@@ -244,6 +251,37 @@
     <tr>
       <td>1</td>
       <td>
+        isUserDefined
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the field descriptor is user-defined (e.g., custom fields added by users)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ObjectType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.ObjectType"><span title="io.clbs.openhes.models.common.ObjectType">io.clbs.openhes.models.common.ObjectType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the managed fields update. It defines the resource type for which the managed fields are set.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
         fieldId
       </td>
       <td>
@@ -252,12 +290,42 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the field</p></td>
+      <td class="content"><p>Unique identifier for the field descriptor</p></td>
       
     </tr>
     
     <tr>
-      <td>2</td>
+      <td>4</td>
+      <td>
+        jsPath
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The path to the field in the TypeScript representation</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        path
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The path to the field in the gRPC/JSON simplified representation</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
       <td>
         label
       </td>
@@ -272,54 +340,7 @@
     </tr>
     
     <tr>
-      <td>3</td>
-      <td>
-        dataType
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.common.FieldDataType">
-          
-          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDataType"><span title="io.clbs.openhes.models.common.FieldDataType">io.clbs.openhes.models.common.FieldDataType</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>Data type of the field (e.g., text, double)</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>4</td>
-      <td>
-        format
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.common.FieldDisplayFormat">
-          
-          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDisplayFormat"><span title="io.clbs.openhes.models.common.FieldDisplayFormat">io.clbs.openhes.models.common.FieldDisplayFormat</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>Display format (e.g., 1h 30m)</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
-      <td>
-        unit
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>Unit to display (e.g., kWh, USD)</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>6</td>
+      <td>7</td>
       <td>
         groupId
       </td>
@@ -336,6 +357,53 @@
     <tr>
       <td>8</td>
       <td>
+        dataType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDataType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDataType"><span title="io.clbs.openhes.models.common.FieldDataType">io.clbs.openhes.models.common.FieldDataType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Data type of the field (e.g., text, double)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        format
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDisplayFormat">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDisplayFormat"><span title="io.clbs.openhes.models.common.FieldDisplayFormat">io.clbs.openhes.models.common.FieldDisplayFormat</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Display format (e.g., 1h 30m)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>10</td>
+      <td>
+        unit
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unit to display (e.g., kWh, USD)</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>11</td>
+      <td>
         precision
       </td>
       <td>
@@ -349,7 +417,7 @@
     </tr>
     
     <tr>
-      <td>9</td>
+      <td>12</td>
       <td>
         tooltip
       </td>
@@ -364,7 +432,7 @@
     </tr>
     
     <tr>
-      <td>11</td>
+      <td>13</td>
       <td>
         required
       </td>
@@ -379,7 +447,7 @@
     </tr>
     
     <tr>
-      <td>12</td>
+      <td>14</td>
       <td>
         editable
       </td>
@@ -394,7 +462,7 @@
     </tr>
     
     <tr>
-      <td>13</td>
+      <td>15</td>
       <td>
         visible
       </td>
@@ -409,7 +477,7 @@
     </tr>
     
     <tr>
-      <td>14</td>
+      <td>16</td>
       <td>
         multiValue
       </td>
@@ -424,7 +492,7 @@
     </tr>
     
     <tr>
-      <td>15</td>
+      <td>17</td>
       <td>
         secured
       </td>
@@ -439,7 +507,7 @@
     </tr>
     
     <tr>
-      <td>16</td>
+      <td>18</td>
       <td>
         validation
       </td>
@@ -455,7 +523,7 @@
     </tr>
     
     <tr>
-      <td>17</td>
+      <td>19</td>
       <td>
         defaultValue
       </td>
@@ -467,21 +535,6 @@
         </code>
       </td>
       <td class="content"><p>The default value of the attribute, it does not support multi-value fields</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>18</td>
-      <td>
-        jsPath
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The path to the field in the JSON data model</p></td>
       
     </tr>
     
@@ -1236,7 +1289,7 @@
     <tr>
       <td>1</td>
       <td>
-        fieldId
+        path
       </td>
       <td>
         <code title="string">
@@ -1244,7 +1297,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Field id.</p></td>
+      <td class="content"><p>The js_path or path from the FieldDescriptor.</p></td>
       
     </tr>
     
@@ -1405,7 +1458,7 @@
     <tr>
       <td>1</td>
       <td>
-        fieldId
+        path
       </td>
       <td>
         <code title="string">
@@ -1413,7 +1466,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Field id.</p></td>
+      <td class="content"><p>The js_path or path from the FieldDescriptor.</p></td>
       
       <td></td>
       
@@ -1860,6 +1913,96 @@
       <td><code>IS_NOT_NULL</code></td>
       <td>14</td>
       <td class="content"><p>No operand operator. For both null and empty string.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.common.ObjectType">
+  <a href="#enum-io.clbs.openhes.models.common.ObjectType" title="io.clbs.openhes.models.common.ObjectType">enum ObjectType</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Enum representing the object type.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>BULK</code></td>
+      <td>0</td>
+      <td class="content"><p>The bulk.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_JOB</code></td>
+      <td>1</td>
+      <td class="content"><p>The bulk job.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNITATION_UNIT</code></td>
+      <td>2</td>
+      <td class="content"><p>The communication unit.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DEVICE</code></td>
+      <td>3</td>
+      <td class="content"><p>The device.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>REGISTER</code></td>
+      <td>4</td>
+      <td class="content"><p>The register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>VARIABLE</code></td>
+      <td>5</td>
+      <td class="content"><p>The variable.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DEVICE_TEMPLATE</code></td>
+      <td>6</td>
+      <td class="content"><p>The device template.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_BUS</code></td>
+      <td>7</td>
+      <td class="content"><p>The communication bus.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>MODEM_POOL</code></td>
+      <td>8</td>
+      <td class="content"><p>The modem pool.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DEVICE_GROUP</code></td>
+      <td>9</td>
+      <td class="content"><p>The device group.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TIME_OF_USE_TABLE</code></td>
+      <td>10</td>
+      <td class="content"><p>The time-of-use table.</p></td>
     </tr>
     
   </tbody>
