@@ -1533,8 +1533,8 @@ type Week {
 type FieldDescriptor {
   # Whether the field descriptor is user-defined (e.g., custom fields added by users)
   isUserDefined: Boolean
-  # The type of the managed fields update. It defines the resource type for which the managed fields are set.
-  type: ObjectType
+  # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+  objectType: ObjectType
   # Unique identifier for the field descriptor
   fieldId: String
   # The path to the field in the TypeScript representation

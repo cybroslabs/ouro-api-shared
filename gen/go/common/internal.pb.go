@@ -23,7 +23,7 @@ const (
 // The request to set the managed fields of the resource.
 type SetManagedFieldsRequest struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Type          ObjectType             `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_ObjectType    ObjectType             `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
 	xxx_hidden_Id            *string                `protobuf:"bytes,2,opt,name=id"`
 	xxx_hidden_Generation    int32                  `protobuf:"varint,3,opt,name=generation"`
 	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,4,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -58,10 +58,10 @@ func (x *SetManagedFieldsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *SetManagedFieldsRequest) GetType() ObjectType {
+func (x *SetManagedFieldsRequest) GetObjectType() ObjectType {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
-			return x.xxx_hidden_Type
+			return x.xxx_hidden_ObjectType
 		}
 	}
 	return ObjectType_BULK
@@ -91,8 +91,8 @@ func (x *SetManagedFieldsRequest) GetManagedFields() map[string]*FieldValue {
 	return nil
 }
 
-func (x *SetManagedFieldsRequest) SetType(v ObjectType) {
-	x.xxx_hidden_Type = v
+func (x *SetManagedFieldsRequest) SetObjectType(v ObjectType) {
+	x.xxx_hidden_ObjectType = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
@@ -110,7 +110,7 @@ func (x *SetManagedFieldsRequest) SetManagedFields(v map[string]*FieldValue) {
 	x.xxx_hidden_ManagedFields = v
 }
 
-func (x *SetManagedFieldsRequest) HasType() bool {
+func (x *SetManagedFieldsRequest) HasObjectType() bool {
 	if x == nil {
 		return false
 	}
@@ -131,9 +131,9 @@ func (x *SetManagedFieldsRequest) HasGeneration() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *SetManagedFieldsRequest) ClearType() {
+func (x *SetManagedFieldsRequest) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = ObjectType_BULK
+	x.xxx_hidden_ObjectType = ObjectType_BULK
 }
 
 func (x *SetManagedFieldsRequest) ClearId() {
@@ -149,7 +149,7 @@ func (x *SetManagedFieldsRequest) ClearGeneration() {
 type SetManagedFieldsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Type          *ObjectType
+	ObjectType    *ObjectType
 	Id            *string
 	Generation    *int32
 	ManagedFields map[string]*FieldValue
@@ -159,9 +159,9 @@ func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
 	m0 := &SetManagedFieldsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Type != nil {
+	if b.ObjectType != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
-		x.xxx_hidden_Type = *b.Type
+		x.xxx_hidden_ObjectType = *b.ObjectType
 	}
 	if b.Id != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
@@ -376,9 +376,10 @@ var File_common_internal_proto protoreflect.FileDescriptor
 
 const file_common_internal_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xe7\x02\n" +
-	"\x17SetManagedFieldsRequest\x12=\n" +
-	"\x04type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\x04type\x12\x0e\n" +
+	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xf4\x02\n" +
+	"\x17SetManagedFieldsRequest\x12J\n" +
+	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"objectType\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
 	"generation\x18\x03 \x01(\x05R\n" +
@@ -405,7 +406,7 @@ var file_common_internal_proto_goTypes = []any{
 	(*FieldValue)(nil),                    // 6: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_internal_proto_depIdxs = []int32{
-	4, // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.type:type_name -> io.clbs.openhes.models.common.ObjectType
+	4, // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
 	3, // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
 	5, // 2: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	1, // 3: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal

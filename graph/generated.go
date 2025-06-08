@@ -456,12 +456,12 @@ type ComplexityRoot struct {
 		JsPath        func(childComplexity int) int
 		Label         func(childComplexity int) int
 		MultiValue    func(childComplexity int) int
+		ObjectType    func(childComplexity int) int
 		Path          func(childComplexity int) int
 		Precision     func(childComplexity int) int
 		Required      func(childComplexity int) int
 		Secured       func(childComplexity int) int
 		Tooltip       func(childComplexity int) int
-		Type          func(childComplexity int) int
 		Unit          func(childComplexity int) int
 		Validation    func(childComplexity int) int
 		Visible       func(childComplexity int) int
@@ -2426,6 +2426,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldDescriptor.MultiValue(childComplexity), true
 
+	case "FieldDescriptor.objectType":
+		if e.complexity.FieldDescriptor.ObjectType == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.ObjectType(childComplexity), true
+
 	case "FieldDescriptor.path":
 		if e.complexity.FieldDescriptor.Path == nil {
 			break
@@ -2460,13 +2467,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldDescriptor.Tooltip(childComplexity), true
-
-	case "FieldDescriptor.type":
-		if e.complexity.FieldDescriptor.Type == nil {
-			break
-		}
-
-		return e.complexity.FieldDescriptor.Type(childComplexity), true
 
 	case "FieldDescriptor.unit":
 		if e.complexity.FieldDescriptor.Unit == nil {
@@ -6691,8 +6691,8 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 			switch field.Name {
 			case "isUserDefined":
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
-			case "type":
-				return ec.fieldContext_FieldDescriptor_type(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -8286,8 +8286,8 @@ func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ conte
 			switch field.Name {
 			case "isUserDefined":
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
-			case "type":
-				return ec.fieldContext_FieldDescriptor_type(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -10559,8 +10559,8 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 			switch field.Name {
 			case "isUserDefined":
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
-			case "type":
-				return ec.fieldContext_FieldDescriptor_type(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -13354,8 +13354,8 @@ func (ec *executionContext) fieldContext_FieldDescriptor_isUserDefined(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _FieldDescriptor_type(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_FieldDescriptor_type(ctx, field)
+func (ec *executionContext) _FieldDescriptor_objectType(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -13368,7 +13368,7 @@ func (ec *executionContext) _FieldDescriptor_type(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Type, nil
+		return obj.ObjectType, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -13382,7 +13382,7 @@ func (ec *executionContext) _FieldDescriptor_type(ctx context.Context, field gra
 	return ec.marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_FieldDescriptor_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_FieldDescriptor_objectType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "FieldDescriptor",
 		Field:      field,
@@ -15996,8 +15996,8 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 			switch field.Name {
 			case "isUserDefined":
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
-			case "type":
-				return ec.fieldContext_FieldDescriptor_type(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -18890,8 +18890,8 @@ func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.C
 			switch field.Name {
 			case "isUserDefined":
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
-			case "type":
-				return ec.fieldContext_FieldDescriptor_type(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -32948,8 +32948,8 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 			out.Values[i] = graphql.MarshalString("FieldDescriptor")
 		case "isUserDefined":
 			out.Values[i] = ec._FieldDescriptor_isUserDefined(ctx, field, obj)
-		case "type":
-			out.Values[i] = ec._FieldDescriptor_type(ctx, field, obj)
+		case "objectType":
+			out.Values[i] = ec._FieldDescriptor_objectType(ctx, field, obj)
 		case "fieldId":
 			out.Values[i] = ec._FieldDescriptor_fieldId(ctx, field, obj)
 		case "jsPath":

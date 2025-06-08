@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/internal.proto.
  */
 export const file_common_internal: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIrYCChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI3CgR0eXBlGAEgASgOMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uT2JqZWN0VHlwZRIKCgJpZBgCIAEoCRISCgpnZW5lcmF0aW9uGAMgASgFEmEKDm1hbmFnZWRfZmllbGRzGAQgAygLMkkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0TWFuYWdlZEZpZWxkc1JlcXVlc3QuTWFuYWdlZEZpZWxkc0VudHJ5Gl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASJ0ChdGaWVsZERlc2NyaXB0b3JJbnRlcm5hbBIPCgdkYl9wYXRoGAEgASgJEkgKEGZpZWxkX2Rlc2NyaXB0b3IYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IifgodVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QSFgoOY29tcG9uZW50X3R5cGUYASABKAkSRQoFaXRlbXMYAiADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEidAoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSDwoHZGJfcGF0aBgBIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAIgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIn4KHVVwZGF0ZUZpZWxkRGVzY3JpcHRvcnNSZXF1ZXN0EhYKDmNvbXBvbmVudF90eXBlGAEgASgJEkUKBWl0ZW1zGAIgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWxCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
 
 /**
  * The request to set the managed fields of the resource.
@@ -25,9 +25,9 @@ export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.Set
   /**
    * The type of the managed fields update. It defines the resource type for which the managed fields are set.
    *
-   * @generated from field: io.clbs.openhes.models.common.ObjectType type = 1;
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
-  type: ObjectType;
+  objectType: ObjectType;
 
   /**
    * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
@@ -60,9 +60,9 @@ export type SetManagedFieldsRequestJson = {
   /**
    * The type of the managed fields update. It defines the resource type for which the managed fields are set.
    *
-   * @generated from field: io.clbs.openhes.models.common.ObjectType type = 1;
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
-  type?: ObjectTypeJson;
+  objectType?: ObjectTypeJson;
 
   /**
    * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.

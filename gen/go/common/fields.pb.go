@@ -718,7 +718,7 @@ func (b0 ListSelectorFilterBy_builder) Build() *ListSelectorFilterBy {
 type FieldDescriptor struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_IsUserDefined bool                   `protobuf:"varint,1,opt,name=is_user_defined,json=isUserDefined"`
-	xxx_hidden_Type          ObjectType             `protobuf:"varint,2,opt,name=type,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_ObjectType    ObjectType             `protobuf:"varint,2,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
 	xxx_hidden_FieldId       *string                `protobuf:"bytes,3,opt,name=field_id,json=fieldId"`
 	xxx_hidden_JsPath        *string                `protobuf:"bytes,4,opt,name=js_path,json=jsPath"`
 	xxx_hidden_Path          *string                `protobuf:"bytes,5,opt,name=path"`
@@ -774,10 +774,10 @@ func (x *FieldDescriptor) GetIsUserDefined() bool {
 	return false
 }
 
-func (x *FieldDescriptor) GetType() ObjectType {
+func (x *FieldDescriptor) GetObjectType() ObjectType {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
-			return x.xxx_hidden_Type
+			return x.xxx_hidden_ObjectType
 		}
 	}
 	return ObjectType_BULK
@@ -932,8 +932,8 @@ func (x *FieldDescriptor) SetIsUserDefined(v bool) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 19)
 }
 
-func (x *FieldDescriptor) SetType(v ObjectType) {
-	x.xxx_hidden_Type = v
+func (x *FieldDescriptor) SetObjectType(v ObjectType) {
+	x.xxx_hidden_ObjectType = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 19)
 }
 
@@ -1027,7 +1027,7 @@ func (x *FieldDescriptor) HasIsUserDefined() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *FieldDescriptor) HasType() bool {
+func (x *FieldDescriptor) HasObjectType() bool {
 	if x == nil {
 		return false
 	}
@@ -1158,9 +1158,9 @@ func (x *FieldDescriptor) ClearIsUserDefined() {
 	x.xxx_hidden_IsUserDefined = false
 }
 
-func (x *FieldDescriptor) ClearType() {
+func (x *FieldDescriptor) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Type = ObjectType_BULK
+	x.xxx_hidden_ObjectType = ObjectType_BULK
 }
 
 func (x *FieldDescriptor) ClearFieldId() {
@@ -1250,7 +1250,7 @@ type FieldDescriptor_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	IsUserDefined *bool
-	Type          *ObjectType
+	ObjectType    *ObjectType
 	FieldId       *string
 	JsPath        *string
 	Path          *string
@@ -1278,9 +1278,9 @@ func (b0 FieldDescriptor_builder) Build() *FieldDescriptor {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 19)
 		x.xxx_hidden_IsUserDefined = *b.IsUserDefined
 	}
-	if b.Type != nil {
+	if b.ObjectType != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 19)
-		x.xxx_hidden_Type = *b.Type
+		x.xxx_hidden_ObjectType = *b.ObjectType
 	}
 	if b.FieldId != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 19)
@@ -2255,10 +2255,11 @@ const file_common_fields_proto_rawDesc = "" +
 	"\ainteger\x18\x05 \x03(\x12R\ainteger\x12\x16\n" +
 	"\x06number\x18\x06 \x03(\x01R\x06number\x12\x18\n" +
 	"\aboolean\x18\a \x03(\bR\aboolean\x12.\n" +
-	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"\x80\x06\n" +
+	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"\x8d\x06\n" +
 	"\x0fFieldDescriptor\x12&\n" +
-	"\x0fis_user_defined\x18\x01 \x01(\bR\risUserDefined\x12=\n" +
-	"\x04type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\x04type\x12\x19\n" +
+	"\x0fis_user_defined\x18\x01 \x01(\bR\risUserDefined\x12J\n" +
+	"\vobject_type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"objectType\x12\x19\n" +
 	"\bfield_id\x18\x03 \x01(\tR\afieldId\x12\x17\n" +
 	"\ajs_path\x18\x04 \x01(\tR\x06jsPath\x12\x12\n" +
 	"\x04path\x18\x05 \x01(\tR\x04path\x12\x14\n" +
@@ -2390,7 +2391,7 @@ var file_common_fields_proto_depIdxs = []int32{
 	0,  // 2: io.clbs.openhes.models.common.ListSelectorFilterBy.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
 	1,  // 3: io.clbs.openhes.models.common.ListSelectorFilterBy.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
 	14, // 4: io.clbs.openhes.models.common.ListSelectorFilterBy.date:type_name -> google.protobuf.Timestamp
-	15, // 5: io.clbs.openhes.models.common.FieldDescriptor.type:type_name -> io.clbs.openhes.models.common.ObjectType
+	15, // 5: io.clbs.openhes.models.common.FieldDescriptor.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
 	1,  // 6: io.clbs.openhes.models.common.FieldDescriptor.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
 	2,  // 7: io.clbs.openhes.models.common.FieldDescriptor.format:type_name -> io.clbs.openhes.models.common.FieldDisplayFormat
 	7,  // 8: io.clbs.openhes.models.common.FieldDescriptor.validation:type_name -> io.clbs.openhes.models.common.FieldValidation

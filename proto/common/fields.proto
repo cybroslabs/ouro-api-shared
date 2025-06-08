@@ -93,7 +93,7 @@ enum FieldDisplayFormat {
 // The field descriptor.
 message FieldDescriptor {
     bool is_user_defined       = 1;   // Whether the field descriptor is user-defined (e.g., custom fields added by users)
-    ObjectType type            = 2;   // The type of the managed fields update. It defines the resource type for which the managed fields are set.
+    ObjectType object_type     = 2;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
     string field_id            = 3;   // Unique identifier for the field descriptor
     string js_path             = 4;   // The path to the field in the TypeScript representation
     string path                = 5;   // The path to the field in the gRPC/JSON simplified representation
