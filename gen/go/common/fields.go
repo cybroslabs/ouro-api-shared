@@ -11,15 +11,36 @@ import (
 	"github.com/rmg/iso4217"
 )
 
+// NewFieldDescriptor creates a new FieldDescriptor with the given parameters.
+// It auto-generates the fieldId from the jsPath if not provided.
+// The jsPath must not be empty, and the fieldId must not start with '$.'.
+// The label must not be empty.
+// The jsPath is a JavaScript/TypeScript path to the field in given object type. It is a segment path like "name.first" or "address.street". Additionally, it shall contain case selector value in the brackets, like "seg.seg.holder.{option}.more".
+// The path is later automatically converted from the jsPath where holder is replaced directly with the option value.
 func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool) *FieldDescriptor {
+	if _, known := ObjectType_name[int32(objectType)]; !known {
+		panic(fmt.Sprintf("unknown objectType: %s", objectType))
+	}
+
+	jsPath = strings.TrimSpace(jsPath)
+	if jsPath == "" {
+		panic("jsPath is required")
+	}
+
 	fieldId = strings.TrimSpace(fieldId)
 	if fieldId == "" {
-		panic("fieldId is required")
+		// Auto-generate fieldId from jsPath
+		fieldId = "$." + jsPath
+	} else if strings.HasPrefix(fieldId, "$.") {
+		// If set, fieldId must not start with '$.'
+		panic("fieldId must not start with '$.'")
 	}
+
 	label = strings.TrimSpace(label)
 	if label == "" {
 		panic("label is required")
 	}
+
 	fd := FieldDescriptor_builder{
 		ObjectType: objectType.Enum(),
 		FieldId:    &fieldId,
@@ -34,6 +55,7 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		Secured:    &secured,
 		Format:     FieldDisplayFormat_DEFAULT.Enum(),
 	}.Build()
+
 	return fd
 }
 
