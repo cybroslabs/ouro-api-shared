@@ -351,6 +351,32 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 	return nil
 }
 
+func (fd *FieldDescriptor) GenerateDatabaseFieldPath(prefix string) *string {
+	if fd == nil {
+		return nil
+	}
+	tmp := prefix + fd.GetFieldId()
+	switch fd.GetDataType() {
+	case FieldDataType_TEXT:
+		tmp += ".stringValue"
+	case FieldDataType_INTEGER:
+		tmp += ".integerValue"
+	case FieldDataType_BOOLEAN:
+		tmp += ".boolValue"
+	case FieldDataType_DOUBLE:
+		tmp += ".doubleValue"
+	case FieldDataType_BINARY:
+		tmp += ".binaryValue"
+	case FieldDataType_TIMESTAMP:
+		tmp += ".dateValue"
+	case FieldDataType_DURATION:
+		tmp += ".durationValue"
+	default:
+		return nil
+	}
+	return &tmp
+}
+
 // The method validates the field values against the field descriptors.
 // It returns an error if any of the field values are invalid or if any required fields are missing.
 // It also sets the default values for any fields that are not present in the values map.
