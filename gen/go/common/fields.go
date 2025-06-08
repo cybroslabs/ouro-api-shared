@@ -46,10 +46,13 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		Format:     FieldDisplayFormat_DEFAULT.Enum(),
 	}.Build()
 
+	path := "$." + fd.ConvertJsPathToPath(jsPath)
+	fd.SetPath(path)
+
 	fieldId = strings.TrimSpace(fieldId)
 	if fieldId == "" {
-		// Auto-generate fieldId from jsPath
-		fieldId = "$." + fd.ConvertJsPathToPath(jsPath)
+		// Auto-generate fieldId as the path
+		fieldId = path
 	}
 	fd.SetFieldId(fieldId)
 
