@@ -27,15 +27,6 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		panic("jsPath is required")
 	}
 
-	fieldId = strings.TrimSpace(fieldId)
-	if fieldId == "" {
-		// Auto-generate fieldId from jsPath
-		fieldId = "$." + jsPath
-	} else if strings.HasPrefix(fieldId, "$.") {
-		// If set, fieldId must not start with '$.'
-		panic("fieldId must not start with '$.'")
-	}
-
 	label = strings.TrimSpace(label)
 	if label == "" {
 		panic("label is required")
@@ -43,7 +34,6 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 
 	fd := FieldDescriptor_builder{
 		ObjectType: objectType.Enum(),
-		FieldId:    &fieldId,
 		JsPath:     &jsPath,
 		Label:      &label,
 		DataType:   FieldDataType_TEXT.Enum(),
@@ -55,6 +45,13 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		Secured:    &secured,
 		Format:     FieldDisplayFormat_DEFAULT.Enum(),
 	}.Build()
+
+	fieldId = strings.TrimSpace(fieldId)
+	if fieldId == "" {
+		// Auto-generate fieldId from jsPath
+		fieldId = "$." + fd.ConvertJsPathToPath(jsPath)
+	}
+	fd.SetFieldId(fieldId)
 
 	return fd
 }
@@ -375,6 +372,18 @@ func (fd *FieldDescriptor) GenerateDatabaseFieldPath(prefix string) *string {
 		return nil
 	}
 	return &tmp
+}
+
+var (
+	_re_js_path = regexp.MustCompile(`(?:^|\.)[^\.\{\}]+\.\{([^\}]+)\}`)
+)
+
+// The method converts a JS path to a standard path format.
+// The JS path is extended covering case selector where value is defined in the brackets and the case-wrapper is the previous path segment.
+// In the path the wrapper is not present and the case-value is directly used as a path segment.
+// Example: 'any.dot.path.hide.{selector}.more' -> 'any.dot.path.selector.more'
+func (fd *FieldDescriptor) ConvertJsPathToPath(jsPath string) string {
+	return _re_js_path.ReplaceAllString(jsPath, "$2")
 }
 
 // The method validates the field values against the field descriptors.

@@ -3,7 +3,6 @@ package postgres
 import (
 	"errors"
 	"fmt"
-	"regexp"
 	"strings"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
@@ -102,9 +101,8 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 			continue
 		}
 
-		fieldId := f.GetFieldId()
-
-		col := fieldToColumn(fieldId, modelColumn, true)
+		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(f.GetPath())
+		col := fieldToColumn(path, modelColumn, true)
 		if len(col) == 0 {
 			return "", nil, errors.New("invalid field id")
 		}
@@ -151,7 +149,7 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 				if t := f.GetInteger(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
-					if dpath := fieldToPath(fieldId); len(dpath) > 0 {
+					if dpath := fieldToPath(path); len(dpath) > 0 {
 						// Use jsonb_path_exists to optimize the query
 						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %d && @ <= %d)')", modelColumn, dpath, t[0], t[1]))
 					} else {
@@ -163,7 +161,7 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 				if t := f.GetNumber(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
-					if dpath := fieldToPath(fieldId); len(dpath) > 0 {
+					if dpath := fieldToPath(path); len(dpath) > 0 {
 						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (@ >= %f && @ <= %f)')", modelColumn, dpath, t[0], t[1]))
 					} else {
 						parts = append(parts, fmt.Sprintf("%s >= $%d AND %s <= $%d", col, len(values)+1, col, len(values)+2))
@@ -204,7 +202,8 @@ func getOrderBy(in *database.DbSelector, modelColumn string) (string, error) {
 	tmp := strings.Builder{}
 	tmp.WriteString("ORDER BY ")
 	for i, s := range fields {
-		col := fieldToColumn(s.GetFieldId(), modelColumn, false)
+		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath())
+		col := fieldToColumn(path, modelColumn, false)
 		if len(col) == 0 {
 			return "", errors.New("invalid field id")
 		}
@@ -309,13 +308,9 @@ func addSingleOperandOperator(parts *[]string, values *[]any, col string, in *co
 	return nil
 }
 
-var (
-	reObjectPrefix = regexp.MustCompile(`^o(#[^\.]+)?$`)
-)
-
 func fieldToPath(field string) string {
 	parts := strings.Split(field, ".")
-	if len(parts) >= 2 && reObjectPrefix.MatchString(parts[0]) {
+	if len(parts) >= 2 && (parts[0] == "$") {
 		return "$." + strings.Join(parts[1:], ".")
 	} else {
 		// Neither a valid object field nor a valid column name
@@ -325,7 +320,7 @@ func fieldToPath(field string) string {
 
 func fieldToColumn(field string, modelColumn string, useDoubleArrow bool) string {
 	parts := strings.Split(field, ".")
-	if len(parts) >= 2 && reObjectPrefix.MatchString(parts[0]) {
+	if len(parts) >= 2 && (parts[0] == "$") {
 		if !useDoubleArrow {
 			return modelColumn + "->'" + strings.Join(parts[1:], "'->'") + "'"
 		}
