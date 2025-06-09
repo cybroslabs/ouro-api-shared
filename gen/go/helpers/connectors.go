@@ -72,6 +72,11 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 		return nil, fmt.Errorf("error reading service account token: %w", err)
 	}
 
+	if opts == nil {
+		// If opts is nil, we initialize it with default values.
+		opts = &ConnectorsOpts{}
+	}
+
 	grpcOptionsDataproxy := initGrpcOptions(opts.GrpcOptionsDataproxy)
 	grpcOptionsTaskmaster := initGrpcOptions(opts.GrpcOptionsTaskmaster)
 	grpcOptionsDeviceRegistry := initGrpcOptions(opts.GrpcOptionsDeviceRegistry)
