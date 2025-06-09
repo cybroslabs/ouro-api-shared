@@ -17,4 +17,5 @@ enum ObjectType {
     MODEM_POOL         = 8;   // The modem pool.
     DEVICE_GROUP       = 9;   // The device group.
     TIME_OF_USE_TABLE  = 10;  // The time-of-use table.
+    DRIVER             = 11;  // The driver.
 }

@@ -94,23 +94,24 @@ enum FieldDisplayFormat {
 message FieldDescriptor {
     bool is_user_defined       = 1;   // Whether the field descriptor is user-defined (e.g., custom fields added by users)
     ObjectType object_type     = 2;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string field_id            = 3;   // Unique identifier for the field descriptor
-    string js_path             = 4;   // The path to the field in the TypeScript representation
-    string path                = 5;   // The path to the field in the gRPC/JSON simplified representation
-    string label               = 6;   // Label displayed for the field
-    string group_id            = 7;   // Group (section) identifier for the field
-    FieldDataType data_type    = 8;   // Data type of the field (e.g., text, double)
-    FieldDisplayFormat format  = 9;   // Display format (e.g., 1h 30m)
-    string unit                = 10;  // Unit to display (e.g., kWh, USD)
-    int32 precision            = 11;  // Decimal precision for double numbers
-    string tooltip             = 12;  // Tooltip or hint text
-    bool required              = 13;  // Whether the field is mandatory
-    bool editable              = 14;  // Whether the field is editable
-    bool visible               = 15;  // Whether the field is visible
-    bool multi_value           = 16;  // Whether the field can have multiple values
-    bool secured               = 17;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
-    FieldValidation validation = 18;  // Validation rules for the field
-    FieldValue default_value   = 19;  // The default value of the attribute, it does not support multi-value fields
+    string object_group        = 3;   // Defines the group of the resource type for which the field descriptor is defined, e.g., specific driver type
+    string field_id            = 4;   // Unique identifier for the field descriptor
+    string js_path             = 5;   // The path to the field in the TypeScript representation
+    string path                = 6;   // The path to the field in the gRPC/JSON simplified representation
+    string label               = 7;   // Label displayed for the field
+    string group_id            = 8;   // Group (section) identifier for the field
+    FieldDataType data_type    = 9;   // Data type of the field (e.g., text, double)
+    FieldDisplayFormat format  = 10;   // Display format (e.g., 1h 30m)
+    string unit                = 11;  // Unit to display (e.g., kWh, USD)
+    int32 precision            = 12;  // Decimal precision for double numbers
+    string tooltip             = 13;  // Tooltip or hint text
+    bool required              = 14;  // Whether the field is mandatory
+    bool editable              = 15;  // Whether the field is editable
+    bool visible               = 16;  // Whether the field is visible
+    bool multi_value           = 17;  // Whether the field can have multiple values
+    bool secured               = 18;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+    FieldValidation validation = 19;  // Validation rules for the field
+    FieldValue default_value   = 20;  // The default value of the attribute, it does not support multi-value fields
 }
 
 // Validation rules for the field.
