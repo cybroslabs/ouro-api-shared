@@ -35,6 +35,7 @@ const (
 	ObjectType_MODEM_POOL         ObjectType = 8  // The modem pool.
 	ObjectType_DEVICE_GROUP       ObjectType = 9  // The device group.
 	ObjectType_TIME_OF_USE_TABLE  ObjectType = 10 // The time-of-use table.
+	ObjectType_DRIVER             ObjectType = 11 // The driver.
 )
 
 // Enum value maps for ObjectType.
@@ -51,6 +52,7 @@ var (
 		8:  "MODEM_POOL",
 		9:  "DEVICE_GROUP",
 		10: "TIME_OF_USE_TABLE",
+		11: "DRIVER",
 	}
 	ObjectType_value = map[string]int32{
 		"BULK":               0,
@@ -64,6 +66,7 @@ var (
 		"MODEM_POOL":         8,
 		"DEVICE_GROUP":       9,
 		"TIME_OF_USE_TABLE":  10,
+		"DRIVER":             11,
 	}
 )
 
@@ -93,7 +96,7 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xc9\x01\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xd5\x01\n" +
 	"\n" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
@@ -109,7 +112,9 @@ const file_common_objects_proto_rawDesc = "" +
 	"MODEM_POOL\x10\b\x12\x10\n" +
 	"\fDEVICE_GROUP\x10\t\x12\x15\n" +
 	"\x11TIME_OF_USE_TABLE\x10\n" +
-	"B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x12\n" +
+	"\n" +
+	"\x06DRIVER\x10\vB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_objects_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_common_objects_proto_goTypes = []any{

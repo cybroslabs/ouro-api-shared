@@ -412,6 +412,7 @@ type EventRecords struct {
 type FieldDescriptor struct {
 	IsUserDefined *bool               `json:"isUserDefined,omitempty"`
 	ObjectType    *ObjectType         `json:"objectType,omitempty"`
+	ObjectGroup   *string             `json:"objectGroup,omitempty"`
 	FieldID       *string             `json:"fieldId,omitempty"`
 	JsPath        *string             `json:"jsPath,omitempty"`
 	Path          *string             `json:"path,omitempty"`
@@ -1693,6 +1694,7 @@ const (
 	ObjectTypeModemPool         ObjectType = "MODEM_POOL"
 	ObjectTypeDeviceGroup       ObjectType = "DEVICE_GROUP"
 	ObjectTypeTimeOfUseTable    ObjectType = "TIME_OF_USE_TABLE"
+	ObjectTypeDriver            ObjectType = "DRIVER"
 )
 
 var AllObjectType = []ObjectType{
@@ -1707,11 +1709,12 @@ var AllObjectType = []ObjectType{
 	ObjectTypeModemPool,
 	ObjectTypeDeviceGroup,
 	ObjectTypeTimeOfUseTable,
+	ObjectTypeDriver,
 }
 
 func (e ObjectType) IsValid() bool {
 	switch e {
-	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunitationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable:
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunitationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver:
 		return true
 	}
 	return false

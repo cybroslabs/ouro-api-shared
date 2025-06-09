@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/fields.proto.
  */
 export const file_common_fields: GenFile = /*@__PURE__*/
-  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiNwoSTGlzdFNlbGVjdG9yU29ydEJ5EgwKBHBhdGgYASABKAkSEwoEZGVzYxgCIAEoCDoFZmFsc2UikAIKFExpc3RTZWxlY3RvckZpbHRlckJ5EgwKBHBhdGgYASABKAkSPwoIb3BlcmF0b3IYAiABKA4yLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWx0ZXJPcGVyYXRvchI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEgwKBHRleHQYBCADKAkSDwoHaW50ZWdlchgFIAMoEhIOCgZudW1iZXIYBiADKAESDwoHYm9vbGVhbhgHIAMoCBIoCgRkYXRlGAggAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLTBAoPRmllbGREZXNjcmlwdG9yEhcKD2lzX3VzZXJfZGVmaW5lZBgBIAEoCBI+CgtvYmplY3RfdHlwZRgCIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEAoIZmllbGRfaWQYAyABKAkSDwoHanNfcGF0aBgEIAEoCRIMCgRwYXRoGAUgASgJEg0KBWxhYmVsGAYgASgJEhAKCGdyb3VwX2lkGAcgASgJEj8KCWRhdGFfdHlwZRgIIAEoDjIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGF0YVR5cGUSQQoGZm9ybWF0GAkgASgOMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREaXNwbGF5Rm9ybWF0EgwKBHVuaXQYCiABKAkSEQoJcHJlY2lzaW9uGAsgASgFEg8KB3Rvb2x0aXAYDCABKAkSEAoIcmVxdWlyZWQYDSABKAgSEAoIZWRpdGFibGUYDiABKAgSDwoHdmlzaWJsZRgPIAEoCBITCgttdWx0aV92YWx1ZRgQIAEoCBIPCgdzZWN1cmVkGBEgASgIEkIKCnZhbGlkYXRpb24YEiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbGlkYXRpb24SQAoNZGVmYXVsdF92YWx1ZRgTIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWUilQIKD0ZpZWxkVmFsaWRhdGlvbhIKCgJyZRgBIAEoCRISCgptaW5fbGVuZ3RoGAIgASgFEhIKCm1heF9sZW5ndGgYAyABKAUSEwoLbWluX2ludGVnZXIYBCABKBISEwoLbWF4X2ludGVnZXIYBSABKBISEgoKbWluX251bWJlchgGIAEoARISCgptYXhfbnVtYmVyGAcgASgBEkwKB29wdGlvbnMYCCADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbGlkYXRpb24uT3B0aW9uc0VudHJ5Gi4KDE9wdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIvIBCgpGaWVsZFZhbHVlEhYKDHN0cmluZ192YWx1ZRgBIAEoCUgAEhcKDWludGVnZXJfdmFsdWUYAiABKANIABIWCgxkb3VibGVfdmFsdWUYAyABKAFIABIWCgxiaW5hcnlfdmFsdWUYBCABKAxIABIUCgpib29sX3ZhbHVlGAUgASgISAASMAoKZGF0ZV92YWx1ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIABIzCg5kdXJhdGlvbl92YWx1ZRgHIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkgAQgYKBGtpbmQiuwEKC0ZpZWxkVmFsdWVzEk4KCmF0dHJpYnV0ZXMYASADKAsyOi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcy5BdHRyaWJ1dGVzRW50cnkaXAoPQXR0cmlidXRlc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBImEKEExpc3RPZkZpZWxkVmFsdWUSOAoFaXRlbXMYASADKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlEhMKC3RvdGFsX2NvdW50GAIgASgFImsKFUxpc3RPZkZpZWxkRGVzY3JpcHRvchI9CgVpdGVtcxgBIAMoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvchITCgt0b3RhbF9jb3VudBgCIAEoBSr9AQoORmlsdGVyT3BlcmF0b3ISCQoFRVFVQUwQABINCglOT1RfRVFVQUwQARIQCgxHUkVBVEVSX1RIQU4QAhIZChVHUkVBVEVSX1RIQU5fT1JfRVFVQUwQAxINCglMRVNTX1RIQU4QBBIWChJMRVNTX1RIQU5fT1JfRVFVQUwQBRIMCghDT05UQUlOUxAGEhAKDE5PVF9DT05UQUlOUxAHEg8KC1NUQVJUU19XSVRIEAgSDQoJRU5EU19XSVRIEAkSBgoCSU4QChIKCgZOT1RfSU4QCxILCgdCRVRXRUVOEAwSCwoHSVNfTlVMTBANEg8KC0lTX05PVF9OVUxMEA4qaAoNRmllbGREYXRhVHlwZRIICgRURVhUEAASCwoHSU5URUdFUhABEgoKBkRPVUJMRRACEgoKBkJJTkFSWRADEgsKB0JPT0xFQU4QBBINCglUSU1FU1RBTVAQBRIMCghEVVJBVElPThAGKowBChJGaWVsZERpc3BsYXlGb3JtYXQSCwoHREVGQVVMVBAAEg0KCURBVEVfT05MWRABEhAKDFVUQ19EQVRFVElNRRACEhEKDVVUQ19EQVRFX09OTFkQAxINCglUSU1FT0ZEQVkQBBIJCgVNT05FWRAFEgwKCFBBU1NXT1JEEAYSDQoJTVVMVElMSU5FEAdCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp, file_google_protobuf_duration, file_common_objects]);
+  fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiNwoSTGlzdFNlbGVjdG9yU29ydEJ5EgwKBHBhdGgYASABKAkSEwoEZGVzYxgCIAEoCDoFZmFsc2UikAIKFExpc3RTZWxlY3RvckZpbHRlckJ5EgwKBHBhdGgYASABKAkSPwoIb3BlcmF0b3IYAiABKA4yLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWx0ZXJPcGVyYXRvchI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEgwKBHRleHQYBCADKAkSDwoHaW50ZWdlchgFIAMoEhIOCgZudW1iZXIYBiADKAESDwoHYm9vbGVhbhgHIAMoCBIoCgRkYXRlGAggAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLpBAoPRmllbGREZXNjcmlwdG9yEhcKD2lzX3VzZXJfZGVmaW5lZBgBIAEoCBI+CgtvYmplY3RfdHlwZRgCIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSFAoMb2JqZWN0X2dyb3VwGAMgASgJEhAKCGZpZWxkX2lkGAQgASgJEg8KB2pzX3BhdGgYBSABKAkSDAoEcGF0aBgGIAEoCRINCgVsYWJlbBgHIAEoCRIQCghncm91cF9pZBgIIAEoCRI/CglkYXRhX3R5cGUYCSABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgKIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAsgASgJEhEKCXByZWNpc2lvbhgMIAEoBRIPCgd0b29sdGlwGA0gASgJEhAKCHJlcXVpcmVkGA4gASgIEhAKCGVkaXRhYmxlGA8gASgIEg8KB3Zpc2libGUYECABKAgSEwoLbXVsdGlfdmFsdWUYESABKAgSDwoHc2VjdXJlZBgSIAEoCBJCCgp2YWxpZGF0aW9uGBMgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYFCABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlIpUCCg9GaWVsZFZhbGlkYXRpb24SCgoCcmUYASABKAkSEgoKbWluX2xlbmd0aBgCIAEoBRISCgptYXhfbGVuZ3RoGAMgASgFEhMKC21pbl9pbnRlZ2VyGAQgASgSEhMKC21heF9pbnRlZ2VyGAUgASgSEhIKCm1pbl9udW1iZXIYBiABKAESEgoKbWF4X251bWJlchgHIAEoARJMCgdvcHRpb25zGAggAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uLk9wdGlvbnNFbnRyeRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLyAQoKRmllbGRWYWx1ZRIWCgxzdHJpbmdfdmFsdWUYASABKAlIABIXCg1pbnRlZ2VyX3ZhbHVlGAIgASgDSAASFgoMZG91YmxlX3ZhbHVlGAMgASgBSAASFgoMYmluYXJ5X3ZhbHVlGAQgASgMSAASFAoKYm9vbF92YWx1ZRgFIAEoCEgAEjAKCmRhdGVfdmFsdWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAASMwoOZHVyYXRpb25fdmFsdWUYByABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IAEIGCgRraW5kIrsBCgtGaWVsZFZhbHVlcxJOCgphdHRyaWJ1dGVzGAEgAygLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZXMuQXR0cmlidXRlc0VudHJ5GlwKD0F0dHJpYnV0ZXNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASJhChBMaXN0T2ZGaWVsZFZhbHVlEjgKBWl0ZW1zGAEgAygLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZRITCgt0b3RhbF9jb3VudBgCIAEoBSJrChVMaXN0T2ZGaWVsZERlc2NyaXB0b3ISPQoFaXRlbXMYASADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3ISEwoLdG90YWxfY291bnQYAiABKAUq/QEKDkZpbHRlck9wZXJhdG9yEgkKBUVRVUFMEAASDQoJTk9UX0VRVUFMEAESEAoMR1JFQVRFUl9USEFOEAISGQoVR1JFQVRFUl9USEFOX09SX0VRVUFMEAMSDQoJTEVTU19USEFOEAQSFgoSTEVTU19USEFOX09SX0VRVUFMEAUSDAoIQ09OVEFJTlMQBhIQCgxOT1RfQ09OVEFJTlMQBxIPCgtTVEFSVFNfV0lUSBAIEg0KCUVORFNfV0lUSBAJEgYKAklOEAoSCgoGTk9UX0lOEAsSCwoHQkVUV0VFThAMEgsKB0lTX05VTEwQDRIPCgtJU19OT1RfTlVMTBAOKmgKDUZpZWxkRGF0YVR5cGUSCAoEVEVYVBAAEgsKB0lOVEVHRVIQARIKCgZET1VCTEUQAhIKCgZCSU5BUlkQAxILCgdCT09MRUFOEAQSDQoJVElNRVNUQU1QEAUSDAoIRFVSQVRJT04QBiqMAQoSRmllbGREaXNwbGF5Rm9ybWF0EgsKB0RFRkFVTFQQABINCglEQVRFX09OTFkQARIQCgxVVENfREFURVRJTUUQAhIRCg1VVENfREFURV9PTkxZEAMSDQoJVElNRU9GREFZEAQSCQoFTU9ORVkQBRIMCghQQVNTV09SRBAGEg0KCU1VTFRJTElORRAHQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_timestamp, file_google_protobuf_duration, file_common_objects]);
 
 /**
  * The listing selector.
@@ -334,121 +334,128 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
   objectType: ObjectType;
 
   /**
+   * Defines the group of the resource type for which the field descriptor is defined, e.g., specific driver type
+   *
+   * @generated from field: string object_group = 3;
+   */
+  objectGroup: string;
+
+  /**
    * Unique identifier for the field descriptor
    *
-   * @generated from field: string field_id = 3;
+   * @generated from field: string field_id = 4;
    */
   fieldId: string;
 
   /**
    * The path to the field in the TypeScript representation
    *
-   * @generated from field: string js_path = 4;
+   * @generated from field: string js_path = 5;
    */
   jsPath: string;
 
   /**
    * The path to the field in the gRPC/JSON simplified representation
    *
-   * @generated from field: string path = 5;
+   * @generated from field: string path = 6;
    */
   path: string;
 
   /**
    * Label displayed for the field
    *
-   * @generated from field: string label = 6;
+   * @generated from field: string label = 7;
    */
   label: string;
 
   /**
    * Group (section) identifier for the field
    *
-   * @generated from field: string group_id = 7;
+   * @generated from field: string group_id = 8;
    */
   groupId: string;
 
   /**
    * Data type of the field (e.g., text, double)
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 8;
+   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 9;
    */
   dataType: FieldDataType;
 
   /**
    * Display format (e.g., 1h 30m)
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 9;
+   * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 10;
    */
   format: FieldDisplayFormat;
 
   /**
    * Unit to display (e.g., kWh, USD)
    *
-   * @generated from field: string unit = 10;
+   * @generated from field: string unit = 11;
    */
   unit: string;
 
   /**
    * Decimal precision for double numbers
    *
-   * @generated from field: int32 precision = 11;
+   * @generated from field: int32 precision = 12;
    */
   precision: number;
 
   /**
    * Tooltip or hint text
    *
-   * @generated from field: string tooltip = 12;
+   * @generated from field: string tooltip = 13;
    */
   tooltip: string;
 
   /**
    * Whether the field is mandatory
    *
-   * @generated from field: bool required = 13;
+   * @generated from field: bool required = 14;
    */
   required: boolean;
 
   /**
    * Whether the field is editable
    *
-   * @generated from field: bool editable = 14;
+   * @generated from field: bool editable = 15;
    */
   editable: boolean;
 
   /**
    * Whether the field is visible
    *
-   * @generated from field: bool visible = 15;
+   * @generated from field: bool visible = 16;
    */
   visible: boolean;
 
   /**
    * Whether the field can have multiple values
    *
-   * @generated from field: bool multi_value = 16;
+   * @generated from field: bool multi_value = 17;
    */
   multiValue: boolean;
 
   /**
    * Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
    *
-   * @generated from field: bool secured = 17;
+   * @generated from field: bool secured = 18;
    */
   secured: boolean;
 
   /**
    * Validation rules for the field
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 18;
+   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 19;
    */
   validation?: FieldValidation;
 
   /**
    * The default value of the attribute, it does not support multi-value fields
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 19;
+   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 20;
    */
   defaultValue?: FieldValue;
 };
@@ -474,121 +481,128 @@ export type FieldDescriptorJson = {
   objectType?: ObjectTypeJson;
 
   /**
+   * Defines the group of the resource type for which the field descriptor is defined, e.g., specific driver type
+   *
+   * @generated from field: string object_group = 3;
+   */
+  objectGroup?: string;
+
+  /**
    * Unique identifier for the field descriptor
    *
-   * @generated from field: string field_id = 3;
+   * @generated from field: string field_id = 4;
    */
   fieldId?: string;
 
   /**
    * The path to the field in the TypeScript representation
    *
-   * @generated from field: string js_path = 4;
+   * @generated from field: string js_path = 5;
    */
   jsPath?: string;
 
   /**
    * The path to the field in the gRPC/JSON simplified representation
    *
-   * @generated from field: string path = 5;
+   * @generated from field: string path = 6;
    */
   path?: string;
 
   /**
    * Label displayed for the field
    *
-   * @generated from field: string label = 6;
+   * @generated from field: string label = 7;
    */
   label?: string;
 
   /**
    * Group (section) identifier for the field
    *
-   * @generated from field: string group_id = 7;
+   * @generated from field: string group_id = 8;
    */
   groupId?: string;
 
   /**
    * Data type of the field (e.g., text, double)
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 8;
+   * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 9;
    */
   dataType?: FieldDataTypeJson;
 
   /**
    * Display format (e.g., 1h 30m)
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 9;
+   * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 10;
    */
   format?: FieldDisplayFormatJson;
 
   /**
    * Unit to display (e.g., kWh, USD)
    *
-   * @generated from field: string unit = 10;
+   * @generated from field: string unit = 11;
    */
   unit?: string;
 
   /**
    * Decimal precision for double numbers
    *
-   * @generated from field: int32 precision = 11;
+   * @generated from field: int32 precision = 12;
    */
   precision?: number;
 
   /**
    * Tooltip or hint text
    *
-   * @generated from field: string tooltip = 12;
+   * @generated from field: string tooltip = 13;
    */
   tooltip?: string;
 
   /**
    * Whether the field is mandatory
    *
-   * @generated from field: bool required = 13;
+   * @generated from field: bool required = 14;
    */
   required?: boolean;
 
   /**
    * Whether the field is editable
    *
-   * @generated from field: bool editable = 14;
+   * @generated from field: bool editable = 15;
    */
   editable?: boolean;
 
   /**
    * Whether the field is visible
    *
-   * @generated from field: bool visible = 15;
+   * @generated from field: bool visible = 16;
    */
   visible?: boolean;
 
   /**
    * Whether the field can have multiple values
    *
-   * @generated from field: bool multi_value = 16;
+   * @generated from field: bool multi_value = 17;
    */
   multiValue?: boolean;
 
   /**
    * Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
    *
-   * @generated from field: bool secured = 17;
+   * @generated from field: bool secured = 18;
    */
   secured?: boolean;
 
   /**
    * Validation rules for the field
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 18;
+   * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 19;
    */
   validation?: FieldValidationJson;
 
   /**
    * The default value of the attribute, it does not support multi-value fields
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 19;
+   * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 20;
    */
   defaultValue?: FieldValueJson;
 };

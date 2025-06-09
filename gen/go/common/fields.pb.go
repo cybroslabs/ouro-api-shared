@@ -719,23 +719,24 @@ type FieldDescriptor struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_IsUserDefined bool                   `protobuf:"varint,1,opt,name=is_user_defined,json=isUserDefined"`
 	xxx_hidden_ObjectType    ObjectType             `protobuf:"varint,2,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
-	xxx_hidden_FieldId       *string                `protobuf:"bytes,3,opt,name=field_id,json=fieldId"`
-	xxx_hidden_JsPath        *string                `protobuf:"bytes,4,opt,name=js_path,json=jsPath"`
-	xxx_hidden_Path          *string                `protobuf:"bytes,5,opt,name=path"`
-	xxx_hidden_Label         *string                `protobuf:"bytes,6,opt,name=label"`
-	xxx_hidden_GroupId       *string                `protobuf:"bytes,7,opt,name=group_id,json=groupId"`
-	xxx_hidden_DataType      FieldDataType          `protobuf:"varint,8,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
-	xxx_hidden_Format        FieldDisplayFormat     `protobuf:"varint,9,opt,name=format,enum=io.clbs.openhes.models.common.FieldDisplayFormat"`
-	xxx_hidden_Unit          *string                `protobuf:"bytes,10,opt,name=unit"`
-	xxx_hidden_Precision     int32                  `protobuf:"varint,11,opt,name=precision"`
-	xxx_hidden_Tooltip       *string                `protobuf:"bytes,12,opt,name=tooltip"`
-	xxx_hidden_Required      bool                   `protobuf:"varint,13,opt,name=required"`
-	xxx_hidden_Editable      bool                   `protobuf:"varint,14,opt,name=editable"`
-	xxx_hidden_Visible       bool                   `protobuf:"varint,15,opt,name=visible"`
-	xxx_hidden_MultiValue    bool                   `protobuf:"varint,16,opt,name=multi_value,json=multiValue"`
-	xxx_hidden_Secured       bool                   `protobuf:"varint,17,opt,name=secured"`
-	xxx_hidden_Validation    *FieldValidation       `protobuf:"bytes,18,opt,name=validation"`
-	xxx_hidden_DefaultValue  *FieldValue            `protobuf:"bytes,19,opt,name=default_value,json=defaultValue"`
+	xxx_hidden_ObjectGroup   *string                `protobuf:"bytes,3,opt,name=object_group,json=objectGroup"`
+	xxx_hidden_FieldId       *string                `protobuf:"bytes,4,opt,name=field_id,json=fieldId"`
+	xxx_hidden_JsPath        *string                `protobuf:"bytes,5,opt,name=js_path,json=jsPath"`
+	xxx_hidden_Path          *string                `protobuf:"bytes,6,opt,name=path"`
+	xxx_hidden_Label         *string                `protobuf:"bytes,7,opt,name=label"`
+	xxx_hidden_GroupId       *string                `protobuf:"bytes,8,opt,name=group_id,json=groupId"`
+	xxx_hidden_DataType      FieldDataType          `protobuf:"varint,9,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
+	xxx_hidden_Format        FieldDisplayFormat     `protobuf:"varint,10,opt,name=format,enum=io.clbs.openhes.models.common.FieldDisplayFormat"`
+	xxx_hidden_Unit          *string                `protobuf:"bytes,11,opt,name=unit"`
+	xxx_hidden_Precision     int32                  `protobuf:"varint,12,opt,name=precision"`
+	xxx_hidden_Tooltip       *string                `protobuf:"bytes,13,opt,name=tooltip"`
+	xxx_hidden_Required      bool                   `protobuf:"varint,14,opt,name=required"`
+	xxx_hidden_Editable      bool                   `protobuf:"varint,15,opt,name=editable"`
+	xxx_hidden_Visible       bool                   `protobuf:"varint,16,opt,name=visible"`
+	xxx_hidden_MultiValue    bool                   `protobuf:"varint,17,opt,name=multi_value,json=multiValue"`
+	xxx_hidden_Secured       bool                   `protobuf:"varint,18,opt,name=secured"`
+	xxx_hidden_Validation    *FieldValidation       `protobuf:"bytes,19,opt,name=validation"`
+	xxx_hidden_DefaultValue  *FieldValue            `protobuf:"bytes,20,opt,name=default_value,json=defaultValue"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -781,6 +782,16 @@ func (x *FieldDescriptor) GetObjectType() ObjectType {
 		}
 	}
 	return ObjectType_BULK
+}
+
+func (x *FieldDescriptor) GetObjectGroup() string {
+	if x != nil {
+		if x.xxx_hidden_ObjectGroup != nil {
+			return *x.xxx_hidden_ObjectGroup
+		}
+		return ""
+	}
+	return ""
 }
 
 func (x *FieldDescriptor) GetFieldId() string {
@@ -835,7 +846,7 @@ func (x *FieldDescriptor) GetGroupId() string {
 
 func (x *FieldDescriptor) GetDataType() FieldDataType {
 	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 7) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 8) {
 			return x.xxx_hidden_DataType
 		}
 	}
@@ -844,7 +855,7 @@ func (x *FieldDescriptor) GetDataType() FieldDataType {
 
 func (x *FieldDescriptor) GetFormat() FieldDisplayFormat {
 	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 8) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 9) {
 			return x.xxx_hidden_Format
 		}
 	}
@@ -929,87 +940,92 @@ func (x *FieldDescriptor) GetDefaultValue() *FieldValue {
 
 func (x *FieldDescriptor) SetIsUserDefined(v bool) {
 	x.xxx_hidden_IsUserDefined = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 20)
 }
 
 func (x *FieldDescriptor) SetObjectType(v ObjectType) {
 	x.xxx_hidden_ObjectType = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 20)
+}
+
+func (x *FieldDescriptor) SetObjectGroup(v string) {
+	x.xxx_hidden_ObjectGroup = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 20)
 }
 
 func (x *FieldDescriptor) SetFieldId(v string) {
 	x.xxx_hidden_FieldId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 20)
 }
 
 func (x *FieldDescriptor) SetJsPath(v string) {
 	x.xxx_hidden_JsPath = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 20)
 }
 
 func (x *FieldDescriptor) SetPath(v string) {
 	x.xxx_hidden_Path = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 20)
 }
 
 func (x *FieldDescriptor) SetLabel(v string) {
 	x.xxx_hidden_Label = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 20)
 }
 
 func (x *FieldDescriptor) SetGroupId(v string) {
 	x.xxx_hidden_GroupId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 20)
 }
 
 func (x *FieldDescriptor) SetDataType(v FieldDataType) {
 	x.xxx_hidden_DataType = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 20)
 }
 
 func (x *FieldDescriptor) SetFormat(v FieldDisplayFormat) {
 	x.xxx_hidden_Format = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 20)
 }
 
 func (x *FieldDescriptor) SetUnit(v string) {
 	x.xxx_hidden_Unit = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 10, 20)
 }
 
 func (x *FieldDescriptor) SetPrecision(v int32) {
 	x.xxx_hidden_Precision = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 10, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 11, 20)
 }
 
 func (x *FieldDescriptor) SetTooltip(v string) {
 	x.xxx_hidden_Tooltip = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 11, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 12, 20)
 }
 
 func (x *FieldDescriptor) SetRequired(v bool) {
 	x.xxx_hidden_Required = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 12, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 13, 20)
 }
 
 func (x *FieldDescriptor) SetEditable(v bool) {
 	x.xxx_hidden_Editable = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 13, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 14, 20)
 }
 
 func (x *FieldDescriptor) SetVisible(v bool) {
 	x.xxx_hidden_Visible = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 14, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 15, 20)
 }
 
 func (x *FieldDescriptor) SetMultiValue(v bool) {
 	x.xxx_hidden_MultiValue = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 15, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 16, 20)
 }
 
 func (x *FieldDescriptor) SetSecured(v bool) {
 	x.xxx_hidden_Secured = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 16, 19)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 17, 20)
 }
 
 func (x *FieldDescriptor) SetValidation(v *FieldValidation) {
@@ -1034,109 +1050,116 @@ func (x *FieldDescriptor) HasObjectType() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *FieldDescriptor) HasFieldId() bool {
+func (x *FieldDescriptor) HasObjectGroup() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *FieldDescriptor) HasJsPath() bool {
+func (x *FieldDescriptor) HasFieldId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *FieldDescriptor) HasPath() bool {
+func (x *FieldDescriptor) HasJsPath() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *FieldDescriptor) HasLabel() bool {
+func (x *FieldDescriptor) HasPath() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *FieldDescriptor) HasGroupId() bool {
+func (x *FieldDescriptor) HasLabel() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
-func (x *FieldDescriptor) HasDataType() bool {
+func (x *FieldDescriptor) HasGroupId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
 }
 
-func (x *FieldDescriptor) HasFormat() bool {
+func (x *FieldDescriptor) HasDataType() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
 }
 
-func (x *FieldDescriptor) HasUnit() bool {
+func (x *FieldDescriptor) HasFormat() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 9)
 }
 
-func (x *FieldDescriptor) HasPrecision() bool {
+func (x *FieldDescriptor) HasUnit() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 10)
 }
 
-func (x *FieldDescriptor) HasTooltip() bool {
+func (x *FieldDescriptor) HasPrecision() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 11)
 }
 
-func (x *FieldDescriptor) HasRequired() bool {
+func (x *FieldDescriptor) HasTooltip() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 12)
 }
 
-func (x *FieldDescriptor) HasEditable() bool {
+func (x *FieldDescriptor) HasRequired() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 13)
 }
 
-func (x *FieldDescriptor) HasVisible() bool {
+func (x *FieldDescriptor) HasEditable() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 14)
 }
 
-func (x *FieldDescriptor) HasMultiValue() bool {
+func (x *FieldDescriptor) HasVisible() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 15)
 }
 
-func (x *FieldDescriptor) HasSecured() bool {
+func (x *FieldDescriptor) HasMultiValue() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 16)
+}
+
+func (x *FieldDescriptor) HasSecured() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 17)
 }
 
 func (x *FieldDescriptor) HasValidation() bool {
@@ -1163,78 +1186,83 @@ func (x *FieldDescriptor) ClearObjectType() {
 	x.xxx_hidden_ObjectType = ObjectType_BULK
 }
 
-func (x *FieldDescriptor) ClearFieldId() {
+func (x *FieldDescriptor) ClearObjectGroup() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_ObjectGroup = nil
+}
+
+func (x *FieldDescriptor) ClearFieldId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_FieldId = nil
 }
 
 func (x *FieldDescriptor) ClearJsPath() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
 	x.xxx_hidden_JsPath = nil
 }
 
 func (x *FieldDescriptor) ClearPath() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_Path = nil
 }
 
 func (x *FieldDescriptor) ClearLabel() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
 	x.xxx_hidden_Label = nil
 }
 
 func (x *FieldDescriptor) ClearGroupId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
 	x.xxx_hidden_GroupId = nil
 }
 
 func (x *FieldDescriptor) ClearDataType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
 	x.xxx_hidden_DataType = FieldDataType_TEXT
 }
 
 func (x *FieldDescriptor) ClearFormat() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
 	x.xxx_hidden_Format = FieldDisplayFormat_DEFAULT
 }
 
 func (x *FieldDescriptor) ClearUnit() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 10)
 	x.xxx_hidden_Unit = nil
 }
 
 func (x *FieldDescriptor) ClearPrecision() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 10)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 11)
 	x.xxx_hidden_Precision = 0
 }
 
 func (x *FieldDescriptor) ClearTooltip() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 11)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 12)
 	x.xxx_hidden_Tooltip = nil
 }
 
 func (x *FieldDescriptor) ClearRequired() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 12)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 13)
 	x.xxx_hidden_Required = false
 }
 
 func (x *FieldDescriptor) ClearEditable() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 13)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 14)
 	x.xxx_hidden_Editable = false
 }
 
 func (x *FieldDescriptor) ClearVisible() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 14)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 15)
 	x.xxx_hidden_Visible = false
 }
 
 func (x *FieldDescriptor) ClearMultiValue() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 15)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 16)
 	x.xxx_hidden_MultiValue = false
 }
 
 func (x *FieldDescriptor) ClearSecured() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 16)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 17)
 	x.xxx_hidden_Secured = false
 }
 
@@ -1251,6 +1279,7 @@ type FieldDescriptor_builder struct {
 
 	IsUserDefined *bool
 	ObjectType    *ObjectType
+	ObjectGroup   *string
 	FieldId       *string
 	JsPath        *string
 	Path          *string
@@ -1275,71 +1304,75 @@ func (b0 FieldDescriptor_builder) Build() *FieldDescriptor {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.IsUserDefined != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 20)
 		x.xxx_hidden_IsUserDefined = *b.IsUserDefined
 	}
 	if b.ObjectType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 20)
 		x.xxx_hidden_ObjectType = *b.ObjectType
 	}
+	if b.ObjectGroup != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 20)
+		x.xxx_hidden_ObjectGroup = b.ObjectGroup
+	}
 	if b.FieldId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 20)
 		x.xxx_hidden_FieldId = b.FieldId
 	}
 	if b.JsPath != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 20)
 		x.xxx_hidden_JsPath = b.JsPath
 	}
 	if b.Path != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 20)
 		x.xxx_hidden_Path = b.Path
 	}
 	if b.Label != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 20)
 		x.xxx_hidden_Label = b.Label
 	}
 	if b.GroupId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 20)
 		x.xxx_hidden_GroupId = b.GroupId
 	}
 	if b.DataType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 20)
 		x.xxx_hidden_DataType = *b.DataType
 	}
 	if b.Format != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 20)
 		x.xxx_hidden_Format = *b.Format
 	}
 	if b.Unit != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 10, 20)
 		x.xxx_hidden_Unit = b.Unit
 	}
 	if b.Precision != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 10, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 11, 20)
 		x.xxx_hidden_Precision = *b.Precision
 	}
 	if b.Tooltip != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 11, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 12, 20)
 		x.xxx_hidden_Tooltip = b.Tooltip
 	}
 	if b.Required != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 12, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 13, 20)
 		x.xxx_hidden_Required = *b.Required
 	}
 	if b.Editable != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 13, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 14, 20)
 		x.xxx_hidden_Editable = *b.Editable
 	}
 	if b.Visible != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 14, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 15, 20)
 		x.xxx_hidden_Visible = *b.Visible
 	}
 	if b.MultiValue != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 15, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 16, 20)
 		x.xxx_hidden_MultiValue = *b.MultiValue
 	}
 	if b.Secured != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 16, 19)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 17, 20)
 		x.xxx_hidden_Secured = *b.Secured
 	}
 	x.xxx_hidden_Validation = b.Validation
@@ -2255,32 +2288,33 @@ const file_common_fields_proto_rawDesc = "" +
 	"\ainteger\x18\x05 \x03(\x12R\ainteger\x12\x16\n" +
 	"\x06number\x18\x06 \x03(\x01R\x06number\x12\x18\n" +
 	"\aboolean\x18\a \x03(\bR\aboolean\x12.\n" +
-	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"\x8d\x06\n" +
+	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"\xb0\x06\n" +
 	"\x0fFieldDescriptor\x12&\n" +
 	"\x0fis_user_defined\x18\x01 \x01(\bR\risUserDefined\x12J\n" +
 	"\vobject_type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
-	"objectType\x12\x19\n" +
-	"\bfield_id\x18\x03 \x01(\tR\afieldId\x12\x17\n" +
-	"\ajs_path\x18\x04 \x01(\tR\x06jsPath\x12\x12\n" +
-	"\x04path\x18\x05 \x01(\tR\x04path\x12\x14\n" +
-	"\x05label\x18\x06 \x01(\tR\x05label\x12\x19\n" +
-	"\bgroup_id\x18\a \x01(\tR\agroupId\x12I\n" +
-	"\tdata_type\x18\b \x01(\x0e2,.io.clbs.openhes.models.common.FieldDataTypeR\bdataType\x12I\n" +
-	"\x06format\x18\t \x01(\x0e21.io.clbs.openhes.models.common.FieldDisplayFormatR\x06format\x12\x12\n" +
-	"\x04unit\x18\n" +
-	" \x01(\tR\x04unit\x12\x1c\n" +
-	"\tprecision\x18\v \x01(\x05R\tprecision\x12\x18\n" +
-	"\atooltip\x18\f \x01(\tR\atooltip\x12\x1a\n" +
-	"\brequired\x18\r \x01(\bR\brequired\x12\x1a\n" +
-	"\beditable\x18\x0e \x01(\bR\beditable\x12\x18\n" +
-	"\avisible\x18\x0f \x01(\bR\avisible\x12\x1f\n" +
-	"\vmulti_value\x18\x10 \x01(\bR\n" +
+	"objectType\x12!\n" +
+	"\fobject_group\x18\x03 \x01(\tR\vobjectGroup\x12\x19\n" +
+	"\bfield_id\x18\x04 \x01(\tR\afieldId\x12\x17\n" +
+	"\ajs_path\x18\x05 \x01(\tR\x06jsPath\x12\x12\n" +
+	"\x04path\x18\x06 \x01(\tR\x04path\x12\x14\n" +
+	"\x05label\x18\a \x01(\tR\x05label\x12\x19\n" +
+	"\bgroup_id\x18\b \x01(\tR\agroupId\x12I\n" +
+	"\tdata_type\x18\t \x01(\x0e2,.io.clbs.openhes.models.common.FieldDataTypeR\bdataType\x12I\n" +
+	"\x06format\x18\n" +
+	" \x01(\x0e21.io.clbs.openhes.models.common.FieldDisplayFormatR\x06format\x12\x12\n" +
+	"\x04unit\x18\v \x01(\tR\x04unit\x12\x1c\n" +
+	"\tprecision\x18\f \x01(\x05R\tprecision\x12\x18\n" +
+	"\atooltip\x18\r \x01(\tR\atooltip\x12\x1a\n" +
+	"\brequired\x18\x0e \x01(\bR\brequired\x12\x1a\n" +
+	"\beditable\x18\x0f \x01(\bR\beditable\x12\x18\n" +
+	"\avisible\x18\x10 \x01(\bR\avisible\x12\x1f\n" +
+	"\vmulti_value\x18\x11 \x01(\bR\n" +
 	"multiValue\x12\x18\n" +
-	"\asecured\x18\x11 \x01(\bR\asecured\x12N\n" +
+	"\asecured\x18\x12 \x01(\bR\asecured\x12N\n" +
 	"\n" +
-	"validation\x18\x12 \x01(\v2..io.clbs.openhes.models.common.FieldValidationR\n" +
+	"validation\x18\x13 \x01(\v2..io.clbs.openhes.models.common.FieldValidationR\n" +
 	"validation\x12N\n" +
-	"\rdefault_value\x18\x13 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\fdefaultValue\"\xf2\x02\n" +
+	"\rdefault_value\x18\x14 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\fdefaultValue\"\xf2\x02\n" +
 	"\x0fFieldValidation\x12\x0e\n" +
 	"\x02re\x18\x01 \x01(\tR\x02re\x12\x1d\n" +
 	"\n" +
