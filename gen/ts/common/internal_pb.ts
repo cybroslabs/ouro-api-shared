@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/internal.proto.
  */
 export const file_common_internal: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEigAEKF0ZpZWxkRGVzY3JpcHRvckludGVybmFsEgoKAmlkGAEgASgJEg8KB2RiX3BhdGgYAiABKAkSSAoQZmllbGRfZGVzY3JpcHRvchgDIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvciKXAQodVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QSFgoOY29tcG9uZW50X3R5cGUYASABKAkSRQoFaXRlbXMYAiADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbBIXCg9jbGVhbnVwX21pc3NpbmcYAyABKAhCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEijwEKF0ZpZWxkRGVzY3JpcHRvckludGVybmFsEgoKAmlkGAEgASgJEg0KBWdyb3VwGAIgASgJEg8KB2RiX3BhdGgYAyABKAkSSAoQZmllbGRfZGVzY3JpcHRvchgEIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvciKXAQodVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QSFgoOY29tcG9uZW50X3R5cGUYASABKAkSRQoFaXRlbXMYAiADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbBIXCg9jbGVhbnVwX21pc3NpbmcYAyABKAhCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
 
 /**
  * The request to set the managed fields of the resource.
@@ -105,16 +105,23 @@ export type FieldDescriptorInternal = Message<"io.clbs.openhes.models.common.Fie
   id: string;
 
   /**
+   * The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
+   *
+   * @generated from field: string group = 2;
+   */
+  group: string;
+
+  /**
    * The database path of the field, used for JSONB columns.
    *
-   * @generated from field: string db_path = 2;
+   * @generated from field: string db_path = 3;
    */
   dbPath: string;
 
   /**
    * The field descriptor of the field, used for JSONB columns.
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDescriptor field_descriptor = 3;
+   * @generated from field: io.clbs.openhes.models.common.FieldDescriptor field_descriptor = 4;
    */
   fieldDescriptor?: FieldDescriptor;
 };
@@ -131,16 +138,23 @@ export type FieldDescriptorInternalJson = {
   id?: string;
 
   /**
+   * The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
+   *
+   * @generated from field: string group = 2;
+   */
+  group?: string;
+
+  /**
    * The database path of the field, used for JSONB columns.
    *
-   * @generated from field: string db_path = 2;
+   * @generated from field: string db_path = 3;
    */
   dbPath?: string;
 
   /**
    * The field descriptor of the field, used for JSONB columns.
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldDescriptor field_descriptor = 3;
+   * @generated from field: io.clbs.openhes.models.common.FieldDescriptor field_descriptor = 4;
    */
   fieldDescriptor?: FieldDescriptorJson;
 };

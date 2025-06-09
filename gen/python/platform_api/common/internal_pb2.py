@@ -26,7 +26,7 @@ from common import fields_pb2 as common_dot_fields__pb2
 from common import objects_pb2 as common_dot_objects__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13\x63ommon/fields.proto\x1a\x14\x63ommon/objects.proto\"\xf4\x02\n\x17SetManagedFieldsRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x03 \x01(\x05R\ngeneration\x12p\n\x0emanaged_fields\x18\x04 \x03(\x0b\x32I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\"\x9d\x01\n\x17\x46ieldDescriptorInternal\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n\x07\x64\x62_path\x18\x02 \x01(\tR\x06\x64\x62Path\x12Y\n\x10\x66ield_descriptor\x18\x03 \x01(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x0f\x66ieldDescriptor\"\xbd\x01\n\x1dUpdateFieldDescriptorsRequest\x12%\n\x0e\x63omponent_type\x18\x01 \x01(\tR\rcomponentType\x12L\n\x05items\x18\x02 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12\'\n\x0f\x63leanup_missing\x18\x03 \x01(\x08R\x0e\x63leanupMissingB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13\x63ommon/fields.proto\x1a\x14\x63ommon/objects.proto\"\xf4\x02\n\x17SetManagedFieldsRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x03 \x01(\x05R\ngeneration\x12p\n\x0emanaged_fields\x18\x04 \x03(\x0b\x32I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\"\xb3\x01\n\x17\x46ieldDescriptorInternal\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n\x05group\x18\x02 \x01(\tR\x05group\x12\x17\n\x07\x64\x62_path\x18\x03 \x01(\tR\x06\x64\x62Path\x12Y\n\x10\x66ield_descriptor\x18\x04 \x01(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x0f\x66ieldDescriptor\"\xbd\x01\n\x1dUpdateFieldDescriptorsRequest\x12%\n\x0e\x63omponent_type\x18\x01 \x01(\tR\rcomponentType\x12L\n\x05items\x18\x02 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12\'\n\x0f\x63leanup_missing\x18\x03 \x01(\x08R\x0e\x63leanupMissingB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,7 +41,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_start=365
   _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_end=472
   _globals['_FIELDDESCRIPTORINTERNAL']._serialized_start=475
-  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_end=632
-  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_start=635
-  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_end=824
+  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_end=654
+  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_start=657
+  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_end=846
 # @@protoc_insertion_point(module_scope)
