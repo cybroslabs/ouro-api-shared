@@ -17,13 +17,15 @@ import (
 // ConnectorsOpts contains the options for creating a Connectors instance.
 // It includes the hostnames for the various services and custom gRPC options.
 type ConnectorsOpts struct {
-	// Hostnames for the taskmaster service.
+	// Hostname for the API service. If the value is empty, it will default to the environment variable OURO_API_GRPC_HOST.
+	ApiHost string
+	// Hostname for the taskmaster service. If the value is empty, it will default to the environment variable OURO_CORE_TASKMASTER_GRPC_HOST.
 	TaskmasterHost string
-	// Hostnames for the data-proxy service.
+	// Hostname for the data-proxy service. If the value is empty, it will default to the environment variable OURO_CORE_DATAPROXY_GRPC_HOST.
 	DataproxyHost string
-	// Hostnames for the device registry service.
+	// Hostname for the device registry service. If the value is empty, it will default to the environment variable OURO_CORE_DEVICEREGISTRY_GRPC_HOST.
 	DeviceRegistryHost string
-	// Hostnames for the driver operator service.
+	// Hostname for the driver operator service. If the value is empty, it will default to the environment variable OURO_OPERATOR_GRPC_HOST.
 	OuroOperatorHost string
 
 	// Custom gRPC options for the data-proxy service.
@@ -52,6 +54,7 @@ type connectors struct {
 	// Implements the Connectors interface.
 	Connectors
 
+	apiHost            string
 	taskmasterHost     string
 	dataproxyHost      string
 	deviceRegistryHost string
@@ -81,16 +84,24 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 	grpcOptionsOuroOperator = append(grpcOptionsOuroOperator, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 
 	return &connectors{
-		taskmasterHost:     opts.TaskmasterHost,
-		dataproxyHost:      opts.DataproxyHost,
-		deviceRegistryHost: opts.DeviceRegistryHost,
-		ouroOperatorHost:   opts.OuroOperatorHost,
+		apiHost:            emptyOr(opts.ApiHost, os.Getenv("OURO_API_GRPC_HOST")),
+		taskmasterHost:     emptyOr(opts.TaskmasterHost, os.Getenv("OURO_CORE_TASKMASTER_GRPC_HOST")),
+		dataproxyHost:      emptyOr(opts.DataproxyHost, os.Getenv("OURO_CORE_DATAPROXY_GRPC_HOST")),
+		deviceRegistryHost: emptyOr(opts.DeviceRegistryHost, os.Getenv("OURO_CORE_DEVICEREGISTRY_GRPC_HOST")),
+		ouroOperatorHost:   emptyOr(opts.OuroOperatorHost, os.Getenv("OURO_OPERATOR_GRPC_HOST")),
 
 		grpcOptionsDataproxy:      grpcOptionsDataproxy,
 		grpcOptionsTaskmaster:     grpcOptionsTaskmaster,
 		grpcOptionsDeviceRegistry: grpcOptionsDeviceRegistry,
 		grpcOptionsOuroOperator:   grpcOptionsOuroOperator,
 	}, nil
+}
+
+func emptyOr(value string, valueFallback string) string {
+	if value == "" {
+		return valueFallback
+	}
+	return value
 }
 
 func initGrpcOptions(opts []grpc.DialOption) []grpc.DialOption {
