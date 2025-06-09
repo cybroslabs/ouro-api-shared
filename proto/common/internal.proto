@@ -23,4 +23,5 @@ message FieldDescriptorInternal {
 message UpdateFieldDescriptorsRequest {
     string component_type                  = 1;  // The type of the component for which the field descriptors are updated, e.g., "device", "bulk", etc.
     repeated FieldDescriptorInternal items = 2;  // The list of field descriptors.
+    bool cleanup_missing                   = 3;  // If true, it will remove all field descriptors that are not present in the request for given component type.
 }

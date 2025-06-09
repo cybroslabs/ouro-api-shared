@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/internal.proto.
  */
 export const file_common_internal: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEidAoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSDwoHZGJfcGF0aBgBIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAIgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIn4KHVVwZGF0ZUZpZWxkRGVzY3JpcHRvcnNSZXF1ZXN0EhYKDmNvbXBvbmVudF90eXBlGAEgASgJEkUKBWl0ZW1zGAIgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWxCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEidAoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSDwoHZGJfcGF0aBgBIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAIgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIpcBCh1VcGRhdGVGaWVsZERlc2NyaXB0b3JzUmVxdWVzdBIWCg5jb21wb25lbnRfdHlwZRgBIAEoCRJFCgVpdGVtcxgCIAMoCzI2LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvckludGVybmFsEhcKD2NsZWFudXBfbWlzc2luZxgDIAEoCEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_common_fields, file_common_objects]);
 
 /**
  * The request to set the managed fields of the resource.
@@ -155,6 +155,13 @@ export type UpdateFieldDescriptorsRequest = Message<"io.clbs.openhes.models.comm
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptorInternal items = 2;
    */
   items: FieldDescriptorInternal[];
+
+  /**
+   * If true, it will remove all field descriptors that are not present in the request for given component type.
+   *
+   * @generated from field: bool cleanup_missing = 3;
+   */
+  cleanupMissing: boolean;
 };
 
 /**
@@ -174,6 +181,13 @@ export type UpdateFieldDescriptorsRequestJson = {
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptorInternal items = 2;
    */
   items?: FieldDescriptorInternalJson[];
+
+  /**
+   * If true, it will remove all field descriptors that are not present in the request for given component type.
+   *
+   * @generated from field: bool cleanup_missing = 3;
+   */
+  cleanupMissing?: boolean;
 };
 
 /**
