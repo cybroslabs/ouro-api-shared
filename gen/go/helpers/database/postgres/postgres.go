@@ -13,19 +13,23 @@ var (
 	_NO_ARGS = make([]any, 0)
 )
 
-// PrepareWOL prepares the SQL query with WHERE, ORDER BY, and LIMIT clauses based on the provided DbSelector.
-// It uses the specified modelColumn for the JSONB column and idColumn for the ID column.
+// PrepareWOL prepares the SQL query with WHERE, ORDER BY, and LIMIT clauses based on the provided DbSelector and the path map.
 // The function returns the WHERE clause, ORDER BY clause, LIMIT clause, and any arguments needed for the query.
+// The pathMap is used to map field paths to their corresponding database column names.
+// It uses the specified modelColumn for the JSONB column and idColumn for the ID column.
 // If the DbSelector is nil or has no filters, it returns an empty WHERE clause and a default LIMIT of 100.
 // If the DbSelector contains IDs, it constructs a WHERE clause to filter by those IDs.
 // If fixedWhere is provided, it appends those conditions to the WHERE clause.
 // The function also handles errors related to invalid field IDs or unsupported data types.
 // It is designed to be used in a PostgreSQL context where JSONB fields are queried.
 // The function returns an error if there are issues with the input parameters or if the query cannot be constructed.
-func PrepareWOL(in *database.DbSelector, modelColumn string, idColumn string, fixedWhere ...database.PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
+func PrepareWOL(in *database.DbSelector, pathMap map[string]string, modelColumn string, idColumn string, fixedWhere ...database.PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
 	if in == nil {
 		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
 		return
+	}
+	if pathMap == nil {
+		return "", "", "", nil, errors.New("pathMap cannot be nil")
 	}
 	if err = in.Err(); err != nil {
 		return
@@ -47,22 +51,24 @@ func PrepareWOL(in *database.DbSelector, modelColumn string, idColumn string, fi
 			qWhere += "))"
 		}
 		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
-		return
-	}
-	if in.FilterBy == nil {
-		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
+		// This should return single rocord, so no need for ORDER BY or LIMIT
 		return
 	}
 
-	qWhere, qArgs, err = getWhere(in, modelColumn)
-	if err != nil {
-		return
+	if in.FilterBy != nil {
+		qWhere, qArgs, err = getWhere(in, pathMap, modelColumn)
+		if err != nil {
+			return
+		}
 	}
+
 	qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
-	qOrderBy, err = getOrderBy(in, modelColumn)
+
+	qOrderBy, err = getOrderBy(in, pathMap, modelColumn)
 	if err != nil {
 		return
 	}
+
 	qLimit, err = getLimitOffset(in)
 	return
 }
@@ -92,7 +98,7 @@ func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qAr
 	return
 }
 
-func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error) {
+func getWhere(in *database.DbSelector, pathMap map[string]string, modelColumn string) (string, []any, error) {
 	var err error
 	parts := make([]string, 0, len(in.GetFilterBy()))
 	values := make([]any, 0, len(in.GetFilterBy()))
@@ -102,6 +108,11 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 		}
 
 		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(f.GetPath())
+		path, ok := pathMap[path]
+		if !ok {
+			return "", nil, errors.New("unknwon path: " + f.GetPath())
+		}
+
 		col := fieldToColumn(path, modelColumn, true)
 		if len(col) == 0 {
 			return "", nil, errors.New("invalid field id")
@@ -190,7 +201,7 @@ func getWhere(in *database.DbSelector, modelColumn string) (string, []any, error
 	}
 }
 
-func getOrderBy(in *database.DbSelector, modelColumn string) (string, error) {
+func getOrderBy(in *database.DbSelector, pathMap map[string]string, modelColumn string) (string, error) {
 	if in == nil {
 		return "", nil
 	}
@@ -203,6 +214,11 @@ func getOrderBy(in *database.DbSelector, modelColumn string) (string, error) {
 	tmp.WriteString("ORDER BY ")
 	for i, s := range fields {
 		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath())
+		path, ok := pathMap[path]
+		if !ok {
+			return "", errors.New("unknwon path: " + s.GetPath())
+		}
+
 		col := fieldToColumn(path, modelColumn, false)
 		if len(col) == 0 {
 			return "", errors.New("invalid field id")
