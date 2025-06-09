@@ -6,14 +6,14 @@ import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { EmptySchema } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
-import type { UpdateFieldDescriptorsRequestSchema } from "../../common/internal_pb";
+import type { ListOfFieldDescriptorInternalSchema, UpdateFieldDescriptorsRequestSchema } from "../../common/internal_pb";
 import { file_common_internal } from "../../common/internal_pb";
 
 /**
  * Describes the file services/svcapi/apiinternal.proto.
  */
 export const file_services_svcapi_apiinternal: GenFile = /*@__PURE__*/
-  fileDesc("CiFzZXJ2aWNlcy9zdmNhcGkvYXBpaW50ZXJuYWwucHJvdG8SH2lvLmNsYnMub3Blbmhlcy5zZXJ2aWNlcy5zdmNhcGkyhAEKEkFwaUludGVybmFsU2VydmljZRJuChZVcGRhdGVGaWVsZERlc2NyaXB0b3JzEjwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHlCPlo8Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc2VydmljZXMvc3ZjYXBpYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_common_internal]);
+  fileDesc("CiFzZXJ2aWNlcy9zdmNhcGkvYXBpaW50ZXJuYWwucHJvdG8SH2lvLmNsYnMub3Blbmhlcy5zZXJ2aWNlcy5zdmNhcGky8gEKEkFwaUludGVybmFsU2VydmljZRJsChRMaXN0RmllbGREZXNjcmlwdG9ycxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRo8LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RPZkZpZWxkRGVzY3JpcHRvckludGVybmFsEm4KFlVwZGF0ZUZpZWxkRGVzY3JpcHRvcnMSPC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5VcGRhdGVGaWVsZERlc2NyaXB0b3JzUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eUI+WjxnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zZXJ2aWNlcy9zdmNhcGliCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_common_internal]);
 
 /**
  * The Dataproxy related service definition.
@@ -21,6 +21,17 @@ export const file_services_svcapi_apiinternal: GenFile = /*@__PURE__*/
  * @generated from service io.clbs.openhes.services.svcapi.ApiInternalService
  */
 export const ApiInternalService: GenService<{
+  /**
+   * @group: Fields
+   * The method to get the list of fields.
+   *
+   * @generated from rpc io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors
+   */
+  listFieldDescriptors: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof ListOfFieldDescriptorInternalSchema;
+  },
   /**
    * @group: Fields
    * The method to get the list of fields.

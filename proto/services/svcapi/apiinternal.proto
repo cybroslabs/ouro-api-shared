@@ -11,5 +11,8 @@ import "common/internal.proto";
 service ApiInternalService {
     // @group: Fields
     // The method to get the list of fields.
+    rpc ListFieldDescriptors(google.protobuf.Empty) returns (io.clbs.openhes.models.common.ListOfFieldDescriptorInternal);
+    // @group: Fields
+    // The method to get the list of fields.
     rpc UpdateFieldDescriptors(io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest) returns (google.protobuf.Empty);
 }

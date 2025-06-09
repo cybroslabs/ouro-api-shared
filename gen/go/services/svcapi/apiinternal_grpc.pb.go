@@ -21,6 +21,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	ApiInternalService_ListFieldDescriptors_FullMethodName   = "/io.clbs.openhes.services.svcapi.ApiInternalService/ListFieldDescriptors"
 	ApiInternalService_UpdateFieldDescriptors_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateFieldDescriptors"
 )
 
@@ -32,6 +33,9 @@ const (
 type ApiInternalServiceClient interface {
 	// @group: Fields
 	// The method to get the list of fields.
+	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptorInternal, error)
+	// @group: Fields
+	// The method to get the list of fields.
 	UpdateFieldDescriptors(ctx context.Context, in *common.UpdateFieldDescriptorsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -41,6 +45,16 @@ type apiInternalServiceClient struct {
 
 func NewApiInternalServiceClient(cc grpc.ClientConnInterface) ApiInternalServiceClient {
 	return &apiInternalServiceClient{cc}
+}
+
+func (c *apiInternalServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptorInternal, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfFieldDescriptorInternal)
+	err := c.cc.Invoke(ctx, ApiInternalService_ListFieldDescriptors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, in *common.UpdateFieldDescriptorsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -61,6 +75,9 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, i
 type ApiInternalServiceServer interface {
 	// @group: Fields
 	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptorInternal, error)
+	// @group: Fields
+	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *common.UpdateFieldDescriptorsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiInternalServiceServer()
 }
@@ -72,6 +89,9 @@ type ApiInternalServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedApiInternalServiceServer struct{}
 
+func (UnimplementedApiInternalServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptorInternal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
+}
 func (UnimplementedApiInternalServiceServer) UpdateFieldDescriptors(context.Context, *common.UpdateFieldDescriptorsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptors not implemented")
 }
@@ -94,6 +114,24 @@ func RegisterApiInternalServiceServer(s grpc.ServiceRegistrar, srv ApiInternalSe
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ApiInternalService_ServiceDesc, srv)
+}
+
+func _ApiInternalService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiInternalServiceServer).ListFieldDescriptors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiInternalService_ListFieldDescriptors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiInternalServiceServer).ListFieldDescriptors(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiInternalService_UpdateFieldDescriptors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -121,6 +159,10 @@ var ApiInternalService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svcapi.ApiInternalService",
 	HandlerType: (*ApiInternalServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListFieldDescriptors",
+			Handler:    _ApiInternalService_ListFieldDescriptors_Handler,
+		},
 		{
 			MethodName: "UpdateFieldDescriptors",
 			Handler:    _ApiInternalService_UpdateFieldDescriptors_Handler,

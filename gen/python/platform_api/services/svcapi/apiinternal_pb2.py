@@ -26,7 +26,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from common import internal_pb2 as common_dot_internal__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!services/svcapi/apiinternal.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x15\x63ommon/internal.proto2\x84\x01\n\x12\x41piInternalService\x12n\n\x16UpdateFieldDescriptors\x12<.io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest\x1a\x16.google.protobuf.EmptyB>Z<github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapib\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!services/svcapi/apiinternal.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x15\x63ommon/internal.proto2\xf2\x01\n\x12\x41piInternalService\x12l\n\x14ListFieldDescriptors\x12\x16.google.protobuf.Empty\x1a<.io.clbs.openhes.models.common.ListOfFieldDescriptorInternal\x12n\n\x16UpdateFieldDescriptors\x12<.io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest\x1a\x16.google.protobuf.EmptyB>Z<github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapib\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,5 +35,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z<github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi'
   _globals['_APIINTERNALSERVICE']._serialized_start=123
-  _globals['_APIINTERNALSERVICE']._serialized_end=255
+  _globals['_APIINTERNALSERVICE']._serialized_end=365
 # @@protoc_insertion_point(module_scope)

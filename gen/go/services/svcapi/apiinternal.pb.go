@@ -26,19 +26,23 @@ var File_services_svcapi_apiinternal_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_apiinternal_proto_rawDesc = "" +
 	"\n" +
-	"!services/svcapi/apiinternal.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x15common/internal.proto2\x84\x01\n" +
-	"\x12ApiInternalService\x12n\n" +
+	"!services/svcapi/apiinternal.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x15common/internal.proto2\xf2\x01\n" +
+	"\x12ApiInternalService\x12l\n" +
+	"\x14ListFieldDescriptors\x12\x16.google.protobuf.Empty\x1a<.io.clbs.openhes.models.common.ListOfFieldDescriptorInternal\x12n\n" +
 	"\x16UpdateFieldDescriptors\x12<.io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest\x1a\x16.google.protobuf.EmptyB>Z<github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapib\beditionsp\xe8\a"
 
 var file_services_svcapi_apiinternal_proto_goTypes = []any{
-	(*common.UpdateFieldDescriptorsRequest)(nil), // 0: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
-	(*emptypb.Empty)(nil),                        // 1: google.protobuf.Empty
+	(*emptypb.Empty)(nil),                        // 0: google.protobuf.Empty
+	(*common.UpdateFieldDescriptorsRequest)(nil), // 1: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
+	(*common.ListOfFieldDescriptorInternal)(nil), // 2: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
 }
 var file_services_svcapi_apiinternal_proto_depIdxs = []int32{
-	0, // 0: io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors:input_type -> io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
-	1, // 1: io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors:output_type -> google.protobuf.Empty
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 0: io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors:input_type -> google.protobuf.Empty
+	1, // 1: io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors:input_type -> io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
+	2, // 2: io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors:output_type -> io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
+	0, // 3: io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors:output_type -> google.protobuf.Empty
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

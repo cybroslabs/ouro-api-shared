@@ -35,6 +35,9 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ApiInternalServiceListFieldDescriptorsProcedure is the fully-qualified name of the
+	// ApiInternalService's ListFieldDescriptors RPC.
+	ApiInternalServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiInternalService/ListFieldDescriptors"
 	// ApiInternalServiceUpdateFieldDescriptorsProcedure is the fully-qualified name of the
 	// ApiInternalService's UpdateFieldDescriptors RPC.
 	ApiInternalServiceUpdateFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateFieldDescriptors"
@@ -43,6 +46,9 @@ const (
 // ApiInternalServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiInternalService
 // service.
 type ApiInternalServiceClient interface {
+	// @group: Fields
+	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
@@ -60,6 +66,12 @@ func NewApiInternalServiceClient(httpClient connect.HTTPClient, baseURL string, 
 	baseURL = strings.TrimRight(baseURL, "/")
 	apiInternalServiceMethods := svcapi.File_services_svcapi_apiinternal_proto.Services().ByName("ApiInternalService").Methods()
 	return &apiInternalServiceClient{
+		listFieldDescriptors: connect.NewClient[emptypb.Empty, common.ListOfFieldDescriptorInternal](
+			httpClient,
+			baseURL+ApiInternalServiceListFieldDescriptorsProcedure,
+			connect.WithSchema(apiInternalServiceMethods.ByName("ListFieldDescriptors")),
+			connect.WithClientOptions(opts...),
+		),
 		updateFieldDescriptors: connect.NewClient[common.UpdateFieldDescriptorsRequest, emptypb.Empty](
 			httpClient,
 			baseURL+ApiInternalServiceUpdateFieldDescriptorsProcedure,
@@ -71,7 +83,14 @@ func NewApiInternalServiceClient(httpClient connect.HTTPClient, baseURL string, 
 
 // apiInternalServiceClient implements ApiInternalServiceClient.
 type apiInternalServiceClient struct {
+	listFieldDescriptors   *connect.Client[emptypb.Empty, common.ListOfFieldDescriptorInternal]
 	updateFieldDescriptors *connect.Client[common.UpdateFieldDescriptorsRequest, emptypb.Empty]
+}
+
+// ListFieldDescriptors calls
+// io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors.
+func (c *apiInternalServiceClient) ListFieldDescriptors(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error) {
+	return c.listFieldDescriptors.CallUnary(ctx, req)
 }
 
 // UpdateFieldDescriptors calls
@@ -85,6 +104,9 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, r
 type ApiInternalServiceHandler interface {
 	// @group: Fields
 	// The method to get the list of fields.
+	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
+	// @group: Fields
+	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
@@ -95,6 +117,12 @@ type ApiInternalServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewApiInternalServiceHandler(svc ApiInternalServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	apiInternalServiceMethods := svcapi.File_services_svcapi_apiinternal_proto.Services().ByName("ApiInternalService").Methods()
+	apiInternalServiceListFieldDescriptorsHandler := connect.NewUnaryHandler(
+		ApiInternalServiceListFieldDescriptorsProcedure,
+		svc.ListFieldDescriptors,
+		connect.WithSchema(apiInternalServiceMethods.ByName("ListFieldDescriptors")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiInternalServiceUpdateFieldDescriptorsHandler := connect.NewUnaryHandler(
 		ApiInternalServiceUpdateFieldDescriptorsProcedure,
 		svc.UpdateFieldDescriptors,
@@ -103,6 +131,8 @@ func NewApiInternalServiceHandler(svc ApiInternalServiceHandler, opts ...connect
 	)
 	return "/io.clbs.openhes.services.svcapi.ApiInternalService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ApiInternalServiceListFieldDescriptorsProcedure:
+			apiInternalServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
 		case ApiInternalServiceUpdateFieldDescriptorsProcedure:
 			apiInternalServiceUpdateFieldDescriptorsHandler.ServeHTTP(w, r)
 		default:
@@ -113,6 +143,10 @@ func NewApiInternalServiceHandler(svc ApiInternalServiceHandler, opts ...connect
 
 // UnimplementedApiInternalServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedApiInternalServiceHandler struct{}
+
+func (UnimplementedApiInternalServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors is not implemented"))
+}
 
 func (UnimplementedApiInternalServiceHandler) UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors is not implemented"))

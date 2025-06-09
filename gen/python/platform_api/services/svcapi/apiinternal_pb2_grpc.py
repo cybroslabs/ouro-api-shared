@@ -16,6 +16,11 @@ class ApiInternalServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.ListFieldDescriptors = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiInternalService/ListFieldDescriptors',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=common_dot_internal__pb2.ListOfFieldDescriptorInternal.FromString,
+                _registered_method=True)
         self.UpdateFieldDescriptors = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateFieldDescriptors',
                 request_serializer=common_dot_internal__pb2.UpdateFieldDescriptorsRequest.SerializeToString,
@@ -26,6 +31,14 @@ class ApiInternalServiceStub(object):
 class ApiInternalServiceServicer(object):
     """The Dataproxy related service definition.
     """
+
+    def ListFieldDescriptors(self, request, context):
+        """@group: Fields
+        The method to get the list of fields.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def UpdateFieldDescriptors(self, request, context):
         """@group: Fields
@@ -38,6 +51,11 @@ class ApiInternalServiceServicer(object):
 
 def add_ApiInternalServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'ListFieldDescriptors': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListFieldDescriptors,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=common_dot_internal__pb2.ListOfFieldDescriptorInternal.SerializeToString,
+            ),
             'UpdateFieldDescriptors': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateFieldDescriptors,
                     request_deserializer=common_dot_internal__pb2.UpdateFieldDescriptorsRequest.FromString,
@@ -54,6 +72,33 @@ def add_ApiInternalServiceServicer_to_server(servicer, server):
 class ApiInternalService(object):
     """The Dataproxy related service definition.
     """
+
+    @staticmethod
+    def ListFieldDescriptors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiInternalService/ListFieldDescriptors',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            common_dot_internal__pb2.ListOfFieldDescriptorInternal.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def UpdateFieldDescriptors(request,
