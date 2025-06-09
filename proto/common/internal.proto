@@ -16,8 +16,9 @@ message SetManagedFieldsRequest {
 }
 
 message FieldDescriptorInternal {
-    string db_path                   = 1;  // The database path of the field, used for JSONB columns.
-    FieldDescriptor field_descriptor = 2;  // The field descriptor of the field, used for JSONB columns.
+    string id                        = 1;  // The system-wide unique identifier of the field descriptor.
+    string db_path                   = 2;  // The database path of the field, used for JSONB columns.
+    FieldDescriptor field_descriptor = 3;  // The field descriptor of the field, used for JSONB columns.
 }
 
 message UpdateFieldDescriptorsRequest {

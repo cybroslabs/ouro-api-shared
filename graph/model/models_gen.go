@@ -412,7 +412,6 @@ type EventRecords struct {
 type FieldDescriptor struct {
 	IsUserDefined *bool               `json:"isUserDefined,omitempty"`
 	ObjectType    *ObjectType         `json:"objectType,omitempty"`
-	ObjectGroup   *string             `json:"objectGroup,omitempty"`
 	FieldID       *string             `json:"fieldId,omitempty"`
 	JsPath        *string             `json:"jsPath,omitempty"`
 	Path          *string             `json:"path,omitempty"`

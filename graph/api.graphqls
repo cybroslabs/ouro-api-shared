@@ -1539,8 +1539,6 @@ type FieldDescriptor {
   isUserDefined: Boolean
   # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
   objectType: ObjectType
-  # Defines the group of the resource type for which the field descriptor is defined, e.g., specific driver type
-  objectGroup: String
   # Unique identifier for the field descriptor
   fieldId: String
   # The path to the field in the TypeScript representation

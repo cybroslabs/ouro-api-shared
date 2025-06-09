@@ -177,8 +177,9 @@ func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
 
 type FieldDescriptorInternal struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DbPath          *string                `protobuf:"bytes,1,opt,name=db_path,json=dbPath"`
-	xxx_hidden_FieldDescriptor *FieldDescriptor       `protobuf:"bytes,2,opt,name=field_descriptor,json=fieldDescriptor"`
+	xxx_hidden_Id              *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_DbPath          *string                `protobuf:"bytes,2,opt,name=db_path,json=dbPath"`
+	xxx_hidden_FieldDescriptor *FieldDescriptor       `protobuf:"bytes,3,opt,name=field_descriptor,json=fieldDescriptor"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -210,6 +211,16 @@ func (x *FieldDescriptorInternal) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
+func (x *FieldDescriptorInternal) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *FieldDescriptorInternal) GetDbPath() string {
 	if x != nil {
 		if x.xxx_hidden_DbPath != nil {
@@ -227,20 +238,32 @@ func (x *FieldDescriptorInternal) GetFieldDescriptor() *FieldDescriptor {
 	return nil
 }
 
+func (x *FieldDescriptorInternal) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
 func (x *FieldDescriptorInternal) SetDbPath(v string) {
 	x.xxx_hidden_DbPath = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *FieldDescriptorInternal) SetFieldDescriptor(v *FieldDescriptor) {
 	x.xxx_hidden_FieldDescriptor = v
 }
 
-func (x *FieldDescriptorInternal) HasDbPath() bool {
+func (x *FieldDescriptorInternal) HasId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FieldDescriptorInternal) HasDbPath() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *FieldDescriptorInternal) HasFieldDescriptor() bool {
@@ -250,8 +273,13 @@ func (x *FieldDescriptorInternal) HasFieldDescriptor() bool {
 	return x.xxx_hidden_FieldDescriptor != nil
 }
 
-func (x *FieldDescriptorInternal) ClearDbPath() {
+func (x *FieldDescriptorInternal) ClearId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *FieldDescriptorInternal) ClearDbPath() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_DbPath = nil
 }
 
@@ -262,6 +290,7 @@ func (x *FieldDescriptorInternal) ClearFieldDescriptor() {
 type FieldDescriptorInternal_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Id              *string
 	DbPath          *string
 	FieldDescriptor *FieldDescriptor
 }
@@ -270,8 +299,12 @@ func (b0 FieldDescriptorInternal_builder) Build() *FieldDescriptorInternal {
 	m0 := &FieldDescriptorInternal{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Id = b.Id
+	}
 	if b.DbPath != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_DbPath = b.DbPath
 	}
 	x.xxx_hidden_FieldDescriptor = b.FieldDescriptor
@@ -417,10 +450,11 @@ const file_common_internal_proto_rawDesc = "" +
 	"\x0emanaged_fields\x18\x04 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x1ak\n" +
 	"\x12ManagedFieldsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\x8d\x01\n" +
-	"\x17FieldDescriptorInternal\x12\x17\n" +
-	"\adb_path\x18\x01 \x01(\tR\x06dbPath\x12Y\n" +
-	"\x10field_descriptor\x18\x02 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x0ffieldDescriptor\"\xbd\x01\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\x9d\x01\n" +
+	"\x17FieldDescriptorInternal\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\adb_path\x18\x02 \x01(\tR\x06dbPath\x12Y\n" +
+	"\x10field_descriptor\x18\x03 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x0ffieldDescriptor\"\xbd\x01\n" +
 	"\x1dUpdateFieldDescriptorsRequest\x12%\n" +
 	"\x0ecomponent_type\x18\x01 \x01(\tR\rcomponentType\x12L\n" +
 	"\x05items\x18\x02 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12'\n" +
