@@ -6,6 +6,7 @@ import (
 	"os"
 	"slices"
 
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxy"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistry"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperator"
@@ -28,6 +29,8 @@ type ConnectorsOpts struct {
 	// Hostname for the driver operator service. If the value is empty, it will default to the environment variable OURO_OPERATOR_GRPC_HOST.
 	OuroOperatorHost string
 
+	// Custom gRPC options for the API service.
+	GrpcOptionsApi []grpc.DialOption
 	// Custom gRPC options for the data-proxy service.
 	GrpcOptionsDataproxy []grpc.DialOption
 	// Custom gRPC options for the taskmaster service.
@@ -40,6 +43,8 @@ type ConnectorsOpts struct {
 
 // Connectors is an interface that provides methods to open gRPC connections to various services.
 type Connectors interface {
+	// OpenApiServiceClient opens a new gRPC connection to the API service.
+	OpenApiServiceClient() (svcapi.ApiInternalServiceClient, context.CancelFunc, error)
 	// OpenTaskmasterServiceClient opens a new gRPC connection to the taskmaster service.
 	OpenTaskmasterServiceClient() (svctaskmaster.TaskmasterServiceClient, context.CancelFunc, error)
 	// OpenDataproxyServiceClient opens a new gRPC connection to the data-proxy service.
@@ -60,6 +65,8 @@ type connectors struct {
 	deviceRegistryHost string
 	ouroOperatorHost   string
 
+	// Custom gRPC options for each service.
+	grpcOptionsApi            []grpc.DialOption
 	grpcOptionsDataproxy      []grpc.DialOption
 	grpcOptionsTaskmaster     []grpc.DialOption
 	grpcOptionsDeviceRegistry []grpc.DialOption
@@ -77,12 +84,14 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 		opts = &ConnectorsOpts{}
 	}
 
+	grpcOptionsApi := initGrpcOptions(opts.GrpcOptionsApi)
 	grpcOptionsDataproxy := initGrpcOptions(opts.GrpcOptionsDataproxy)
 	grpcOptionsTaskmaster := initGrpcOptions(opts.GrpcOptionsTaskmaster)
 	grpcOptionsDeviceRegistry := initGrpcOptions(opts.GrpcOptionsDeviceRegistry)
 	grpcOptionsOuroOperator := initGrpcOptions(opts.GrpcOptionsOuroOperator)
 
 	// Attach our 'namespace' to all outgoing unary RPC requests for the data-proxy service
+	grpcOptionsApi = append(grpcOptionsApi, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 	grpcOptionsDataproxy = append(grpcOptionsDataproxy, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 	grpcOptionsTaskmaster = append(grpcOptionsTaskmaster, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 	grpcOptionsDeviceRegistry = append(grpcOptionsDeviceRegistry, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
@@ -95,6 +104,7 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 		deviceRegistryHost: emptyOr(opts.DeviceRegistryHost, os.Getenv("OURO_CORE_DEVICEREGISTRY_GRPC_HOST")),
 		ouroOperatorHost:   emptyOr(opts.OuroOperatorHost, os.Getenv("OURO_OPERATOR_GRPC_HOST")),
 
+		grpcOptionsApi:            grpcOptionsApi,
 		grpcOptionsDataproxy:      grpcOptionsDataproxy,
 		grpcOptionsTaskmaster:     grpcOptionsTaskmaster,
 		grpcOptionsDeviceRegistry: grpcOptionsDeviceRegistry,
@@ -117,6 +127,17 @@ func initGrpcOptions(opts []grpc.DialOption) []grpc.DialOption {
 		}
 	}
 	return slices.Clone(opts)
+}
+
+// Open a new gRPC connection to the API service. The connection must be closed by calling func in the second return value.
+func (ra *connectors) OpenApiServiceClient() (svcapi.ApiInternalServiceClient, context.CancelFunc, error) {
+	conn, err := grpc.NewClient(ra.apiHost, ra.grpcOptionsApi...)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	client := svcapi.NewApiInternalServiceClient(conn)
+	return client, func() { _ = conn.Close() }, nil
 }
 
 // Open a new gRPC connection to the taskmaster service. The connection must be closed by calling func in the second return value.
