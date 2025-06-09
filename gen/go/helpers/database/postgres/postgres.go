@@ -328,9 +328,9 @@ func addSingleOperandOperator(parts *[]string, values *[]any, col string, in *co
 }
 
 func fieldToPath(field string) string {
-	parts := strings.Split(field, ".")
-	if len(parts) >= 2 && (parts[0] == "$") {
-		return "$." + strings.Join(parts[1:], ".")
+	parts := strings.SplitN(field, ".", 2)
+	if len(parts) == 2 && (parts[0] == "$") {
+		return "$." + parts[1]
 	} else {
 		// Neither a valid object field nor a valid column name
 		return ""

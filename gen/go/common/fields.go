@@ -9,7 +9,22 @@ import (
 	"strings"
 
 	"github.com/rmg/iso4217"
+	"k8s.io/utils/ptr"
 )
+
+// NewFieldDescriptorInternal creates a new FieldDescriptorInternal with the given parameters.
+// It is used internally to create a FieldDescriptor with additional metadata like ID, group, and database path.
+// The ID is a system-wide unique identifier for the field descriptor.
+// The group is a field descriptor group key used to clean up removed descriptors.
+// The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
+func NewFieldDescriptorInternal(id string, group string, dbPath string, descriptor *FieldDescriptor) *FieldDescriptorInternal {
+	return FieldDescriptorInternal_builder{
+		Id:              ptr.To(id),
+		Group:           ptr.To(group),
+		DbPath:          ptr.To(dbPath),
+		FieldDescriptor: descriptor,
+	}.Build()
+}
 
 // NewFieldDescriptor creates a new FieldDescriptor with the given parameters.
 // It auto-generates the fieldId from the jsPath if not provided.
