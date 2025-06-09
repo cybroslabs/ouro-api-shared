@@ -1214,6 +1214,7 @@ const (
 	DataLinkProtocolLinkprotoCosemWrapper  DataLinkProtocol = "LINKPROTO_COSEM_WRAPPER"
 	DataLinkProtocolLinkprotoModbus        DataLinkProtocol = "LINKPROTO_MODBUS"
 	DataLinkProtocolLinkprotoMbus          DataLinkProtocol = "LINKPROTO_MBUS"
+	DataLinkProtocolLinkprotoViktor        DataLinkProtocol = "LINKPROTO_VIKTOR"
 	DataLinkProtocolLinkprotoNotApplicable DataLinkProtocol = "LINKPROTO_NOT_APPLICABLE"
 )
 
@@ -1223,12 +1224,13 @@ var AllDataLinkProtocol = []DataLinkProtocol{
 	DataLinkProtocolLinkprotoCosemWrapper,
 	DataLinkProtocolLinkprotoModbus,
 	DataLinkProtocolLinkprotoMbus,
+	DataLinkProtocolLinkprotoViktor,
 	DataLinkProtocolLinkprotoNotApplicable,
 }
 
 func (e DataLinkProtocol) IsValid() bool {
 	switch e {
-	case DataLinkProtocolLinkprotoIec62056_21, DataLinkProtocolLinkprotoHdlc, DataLinkProtocolLinkprotoCosemWrapper, DataLinkProtocolLinkprotoModbus, DataLinkProtocolLinkprotoMbus, DataLinkProtocolLinkprotoNotApplicable:
+	case DataLinkProtocolLinkprotoIec62056_21, DataLinkProtocolLinkprotoHdlc, DataLinkProtocolLinkprotoCosemWrapper, DataLinkProtocolLinkprotoModbus, DataLinkProtocolLinkprotoMbus, DataLinkProtocolLinkprotoViktor, DataLinkProtocolLinkprotoNotApplicable:
 		return true
 	}
 	return false

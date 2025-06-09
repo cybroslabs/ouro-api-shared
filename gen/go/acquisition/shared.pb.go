@@ -420,6 +420,8 @@ const (
 	DataLinkProtocol_LINKPROTO_MODBUS DataLinkProtocol = 3
 	// The M-Bus protocol. It shall be used for M-Bus application protocol.
 	DataLinkProtocol_LINKPROTO_MBUS DataLinkProtocol = 4
+	// The Viktor protocol. It is a proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
+	DataLinkProtocol_LINKPROTO_VIKTOR DataLinkProtocol = 5
 	// The data link protocol is not applicable. It's useful for listening communication type.
 	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99
 )
@@ -432,6 +434,7 @@ var (
 		2:  "LINKPROTO_COSEM_WRAPPER",
 		3:  "LINKPROTO_MODBUS",
 		4:  "LINKPROTO_MBUS",
+		5:  "LINKPROTO_VIKTOR",
 		99: "LINKPROTO_NOT_APPLICABLE",
 	}
 	DataLinkProtocol_value = map[string]int32{
@@ -440,6 +443,7 @@ var (
 		"LINKPROTO_COSEM_WRAPPER":  2,
 		"LINKPROTO_MODBUS":         3,
 		"LINKPROTO_MBUS":           4,
+		"LINKPROTO_VIKTOR":         5,
 		"LINKPROTO_NOT_APPLICABLE": 99,
 	}
 )
@@ -11906,13 +11910,14 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x1dCOMMUNICATION_TYPE_MODEM_POOL\x10\x01\x12)\n" +
 	"%COMMUNICATION_TYPE_SERIAL_LINE_DIRECT\x10\x02\x12'\n" +
 	"#COMMUNICATION_TYPE_SERIAL_LINE_MOXA\x10\x03\x12 \n" +
-	"\x1cCOMMUNICATION_TYPE_LISTENING\x10c*\xa7\x01\n" +
+	"\x1cCOMMUNICATION_TYPE_LISTENING\x10c*\xbd\x01\n" +
 	"\x10DataLinkProtocol\x12\x1a\n" +
 	"\x16LINKPROTO_IEC_62056_21\x10\x00\x12\x12\n" +
 	"\x0eLINKPROTO_HDLC\x10\x01\x12\x1b\n" +
 	"\x17LINKPROTO_COSEM_WRAPPER\x10\x02\x12\x14\n" +
 	"\x10LINKPROTO_MODBUS\x10\x03\x12\x12\n" +
-	"\x0eLINKPROTO_MBUS\x10\x04\x12\x1c\n" +
+	"\x0eLINKPROTO_MBUS\x10\x04\x12\x14\n" +
+	"\x10LINKPROTO_VIKTOR\x10\x05\x12\x1c\n" +
 	"\x18LINKPROTO_NOT_APPLICABLE\x10c*\xae\x01\n" +
 	"\x13ApplicationProtocol\x12\x19\n" +
 	"\x15APPPROTO_IEC_62056_21\x10\x00\x12\x14\n" +

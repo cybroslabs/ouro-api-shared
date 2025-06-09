@@ -117,6 +117,21 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 			}.Build(),
 		}
 
+	case DataLinkProtocol_LINKPROTO_VIKTOR:
+		// Viktor specific fields
+		return []*common.FieldDescriptor{
+			common.FieldDescriptor_builder{
+				FieldId:  ptr.To("serial_number"),
+				Label:    ptr.To("Serial Number"),
+				Tooltip:  ptr.To("Serial Number of the Viktor device. It is required to establish communication with the device."),
+				DataType: common.FieldDataType_TEXT.Enum(),
+				Required: ptr.To(true),
+				Validation: common.FieldValidation_builder{
+					Re: ptr.To(`^\d+$`),
+				}.Build(),
+			}.Build(),
+		}
+
 	default:
 		return []*common.FieldDescriptor{}
 	}

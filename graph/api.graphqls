@@ -102,6 +102,8 @@ enum DataLinkProtocol {
   LINKPROTO_MODBUS
   # The M-Bus protocol. It shall be used for M-Bus application protocol.
   LINKPROTO_MBUS
+  # The Viktor protocol. It is a proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
+  LINKPROTO_VIKTOR
   # The data link protocol is not applicable. It's useful for listening communication type.
   LINKPROTO_NOT_APPLICABLE
 }
