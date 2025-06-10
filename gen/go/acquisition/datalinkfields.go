@@ -130,6 +130,16 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 					Re: ptr.To(`^\d+$`),
 				}.Build(),
 			}.Build(),
+			common.FieldDescriptor_builder{
+				FieldId:  ptr.To("use_tls"),
+				Label:    ptr.To("Use TLS"),
+				Tooltip:  ptr.To("Use TLS for secure communication with the Viktor device."),
+				DataType: common.FieldDataType_BOOLEAN.Enum(),
+				Required: ptr.To(true),
+				DefaultValue: common.FieldValue_builder{
+					BoolValue: ptr.To(false),
+				}.Build(),
+			}.Build(),
 		}
 
 	default:
