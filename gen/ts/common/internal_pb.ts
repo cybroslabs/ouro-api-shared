@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/internal.proto.
  */
 export const file_common_internal: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIr0CChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBRJhCg5tYW5hZ2VkX2ZpZWxkcxgEIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEijwEKF0ZpZWxkRGVzY3JpcHRvckludGVybmFsEgoKAmlkGAEgASgJEg0KBWdyb3VwGAIgASgJEg8KB2RiX3BhdGgYAyABKAkSSAoQZmllbGRfZGVzY3JpcHRvchgEIAEoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvciKXAQodVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QSFgoOY29tcG9uZW50X3R5cGUYASABKAkSRQoFaXRlbXMYAiADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbBIXCg9jbGVhbnVwX21pc3NpbmcYAyABKAgiZgodTGlzdE9mRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSRQoFaXRlbXMYASADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIo0DChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBJhCg5tYW5hZ2VkX2ZpZWxkcxgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRJRCgdnZW5lcmljGAIgASgLMj4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpY0gAEk8KBmRldmljZRgDIAEoCzI9LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZUgAGl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUIKCghzZWxlY3RvciKBAQofU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpYxI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBSLVAQoeU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yRGV2aWNlElkKBmZpbHRlchgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZS5GaWx0ZXJFbnRyeRpYCgtGaWx0ZXJFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASKPAQoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSCgoCaWQYASABKAkSDQoFZ3JvdXAYAiABKAkSDwoHZGJfcGF0aBgDIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAQgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIpcBCh1VcGRhdGVGaWVsZERlc2NyaXB0b3JzUmVxdWVzdBIWCg5jb21wb25lbnRfdHlwZRgBIAEoCRJFCgVpdGVtcxgCIAMoCzI2LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvckludGVybmFsEhcKD2NsZWFudXBfbWlzc2luZxgDIAEoCCJmCh1MaXN0T2ZGaWVsZERlc2NyaXB0b3JJbnRlcm5hbBJFCgVpdGVtcxgBIAMoCzI2LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvckludGVybmFsQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_common_fields, file_common_objects]);
 
 /**
  * The request to set the managed fields of the resource.
@@ -22,6 +22,76 @@ export const file_common_internal: GenFile = /*@__PURE__*/
  * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
  */
 export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.SetManagedFieldsRequest"> & {
+  /**
+   * The fields to set for the resource(s).
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 1;
+   */
+  managedFields: { [key: string]: FieldValue };
+
+  /**
+   * The selector to identify the resource(s) for which the managed fields are set.
+   *
+   * @generated from oneof io.clbs.openhes.models.common.SetManagedFieldsRequest.selector
+   */
+  selector: {
+    /**
+     * The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
+     *
+     * @generated from field: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric generic = 2;
+     */
+    value: SetManagedFieldsSelectorGeneric;
+    case: "generic";
+  } | {
+    /**
+     * The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
+     *
+     * @generated from field: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice device = 3;
+     */
+    value: SetManagedFieldsSelectorDevice;
+    case: "device";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * The request to set the managed fields of the resource.
+ *
+ * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
+ */
+export type SetManagedFieldsRequestJson = {
+  /**
+   * The fields to set for the resource(s).
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 1;
+   */
+  managedFields?: { [key: string]: FieldValueJson };
+
+  /**
+   * The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
+   *
+   * @generated from field: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric generic = 2;
+   */
+  generic?: SetManagedFieldsSelectorGenericJson;
+
+  /**
+   * The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
+   *
+   * @generated from field: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice device = 3;
+   */
+  device?: SetManagedFieldsSelectorDeviceJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.SetManagedFieldsRequest.
+ * Use `create(SetManagedFieldsRequestSchema)` to create a new message.
+ */
+export const SetManagedFieldsRequestSchema: GenMessage<SetManagedFieldsRequest, {jsonType: SetManagedFieldsRequestJson}> = /*@__PURE__*/
+  messageDesc(file_common_internal, 0);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
+ */
+export type SetManagedFieldsSelectorGeneric = Message<"io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric"> & {
   /**
    * The type of the managed fields update. It defines the resource type for which the managed fields are set.
    *
@@ -42,21 +112,12 @@ export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.Set
    * @generated from field: int32 generation = 3;
    */
   generation: number;
-
-  /**
-   * The additional fields managed by system.
-   *
-   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
-   */
-  managedFields: { [key: string]: FieldValue };
 };
 
 /**
- * The request to set the managed fields of the resource.
- *
- * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
+ * @generated from message io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
  */
-export type SetManagedFieldsRequestJson = {
+export type SetManagedFieldsSelectorGenericJson = {
   /**
    * The type of the managed fields update. It defines the resource type for which the managed fields are set.
    *
@@ -77,21 +138,45 @@ export type SetManagedFieldsRequestJson = {
    * @generated from field: int32 generation = 3;
    */
   generation?: number;
-
-  /**
-   * The additional fields managed by system.
-   *
-   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
-   */
-  managedFields?: { [key: string]: FieldValueJson };
 };
 
 /**
- * Describes the message io.clbs.openhes.models.common.SetManagedFieldsRequest.
- * Use `create(SetManagedFieldsRequestSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric.
+ * Use `create(SetManagedFieldsSelectorGenericSchema)` to create a new message.
  */
-export const SetManagedFieldsRequestSchema: GenMessage<SetManagedFieldsRequest, {jsonType: SetManagedFieldsRequestJson}> = /*@__PURE__*/
-  messageDesc(file_common_internal, 0);
+export const SetManagedFieldsSelectorGenericSchema: GenMessage<SetManagedFieldsSelectorGeneric, {jsonType: SetManagedFieldsSelectorGenericJson}> = /*@__PURE__*/
+  messageDesc(file_common_internal, 1);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice
+ */
+export type SetManagedFieldsSelectorDevice = Message<"io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice"> & {
+  /**
+   * The selector filter to identify the resource(s) for which the managed fields are set. The key is the attribute name, the value is the attribute value. If the attribute data type does not match then the method won't set anything.
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> filter = 1;
+   */
+  filter: { [key: string]: FieldValue };
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice
+ */
+export type SetManagedFieldsSelectorDeviceJson = {
+  /**
+   * The selector filter to identify the resource(s) for which the managed fields are set. The key is the attribute name, the value is the attribute value. If the attribute data type does not match then the method won't set anything.
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> filter = 1;
+   */
+  filter?: { [key: string]: FieldValueJson };
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.
+ * Use `create(SetManagedFieldsSelectorDeviceSchema)` to create a new message.
+ */
+export const SetManagedFieldsSelectorDeviceSchema: GenMessage<SetManagedFieldsSelectorDevice, {jsonType: SetManagedFieldsSelectorDeviceJson}> = /*@__PURE__*/
+  messageDesc(file_common_internal, 2);
 
 /**
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorInternal
@@ -164,7 +249,7 @@ export type FieldDescriptorInternalJson = {
  * Use `create(FieldDescriptorInternalSchema)` to create a new message.
  */
 export const FieldDescriptorInternalSchema: GenMessage<FieldDescriptorInternal, {jsonType: FieldDescriptorInternalJson}> = /*@__PURE__*/
-  messageDesc(file_common_internal, 1);
+  messageDesc(file_common_internal, 3);
 
 /**
  * @generated from message io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
@@ -223,7 +308,7 @@ export type UpdateFieldDescriptorsRequestJson = {
  * Use `create(UpdateFieldDescriptorsRequestSchema)` to create a new message.
  */
 export const UpdateFieldDescriptorsRequestSchema: GenMessage<UpdateFieldDescriptorsRequest, {jsonType: UpdateFieldDescriptorsRequestJson}> = /*@__PURE__*/
-  messageDesc(file_common_internal, 2);
+  messageDesc(file_common_internal, 4);
 
 /**
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
@@ -254,5 +339,5 @@ export type ListOfFieldDescriptorInternalJson = {
  * Use `create(ListOfFieldDescriptorInternalSchema)` to create a new message.
  */
 export const ListOfFieldDescriptorInternalSchema: GenMessage<ListOfFieldDescriptorInternal, {jsonType: ListOfFieldDescriptorInternalJson}> = /*@__PURE__*/
-  messageDesc(file_common_internal, 3);
+  messageDesc(file_common_internal, 5);
 

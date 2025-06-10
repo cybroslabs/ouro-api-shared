@@ -155,5 +155,7 @@ service DeviceRegistryService {
     // The method to delete the time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
+    // @group: Metadata
+    // The method to set the managed fields of the resource(s).
     rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
 }

@@ -734,7 +734,9 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetManagedFields(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """@group: Metadata
+        The method to set the managed fields of the resource(s).
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

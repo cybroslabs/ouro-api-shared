@@ -220,6 +220,8 @@ type DeviceRegistryServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -959,6 +961,8 @@ type DeviceRegistryServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
