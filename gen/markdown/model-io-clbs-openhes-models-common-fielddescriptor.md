@@ -8,6 +8,7 @@ The field descriptor.
 | --- | --- |
 | isUserDefined | <b>Type:</b> `bool`<br><b>Description:</b><br>Whether the field descriptor is user-defined (e.g., custom fields added by users) |
 | objectType | <b>Type:</b> [`io.clbs.openhes.models.common.ObjectType`](model-io-clbs-openhes-models-common-objecttype.md)<br><b>Description:</b><br>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc. |
+| gid | <b>Type:</b> `string`<br><b>Description:</b><br>The system-wide unique identifier of the field descriptor. |
 | fieldId | <b>Type:</b> `string`<br><b>Description:</b><br>Unique identifier for the field descriptor |
 | jsPath | <b>Type:</b> `string`<br><b>Description:</b><br>The path to the field in the TypeScript representation |
 | path | <b>Type:</b> `string`<br><b>Description:</b><br>The path to the field in the gRPC/JSON simplified representation |

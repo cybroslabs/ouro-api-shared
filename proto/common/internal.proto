@@ -28,10 +28,9 @@ message SetManagedFieldsSelectorDevice {
 }
 
 message FieldDescriptorInternal {
-    string id                        = 1;  // The system-wide unique identifier of the field descriptor.
-    string group                     = 2;  // The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
-    string db_path                   = 3;  // The database path of the field, used for JSONB columns.
-    FieldDescriptor field_descriptor = 4;  // The field descriptor of the field, used for JSONB columns.
+    string group                     = 1;  // The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
+    string db_path                   = 2;  // The database path of the field, used for JSONB columns.
+    FieldDescriptor field_descriptor = 3;  // The field descriptor of the field, used for JSONB columns.
 }
 
 message UpdateFieldDescriptorsRequest {

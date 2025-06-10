@@ -451,6 +451,7 @@ type ComplexityRoot struct {
 		Editable      func(childComplexity int) int
 		FieldID       func(childComplexity int) int
 		Format        func(childComplexity int) int
+		Gid           func(childComplexity int) int
 		GroupID       func(childComplexity int) int
 		IsUserDefined func(childComplexity int) int
 		JsPath        func(childComplexity int) int
@@ -2390,6 +2391,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldDescriptor.Format(childComplexity), true
+
+	case "FieldDescriptor.gid":
+		if e.complexity.FieldDescriptor.Gid == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Gid(childComplexity), true
 
 	case "FieldDescriptor.groupId":
 		if e.complexity.FieldDescriptor.GroupID == nil {
@@ -6693,6 +6701,8 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
 			case "objectType":
 				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -8288,6 +8298,8 @@ func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ conte
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
 			case "objectType":
 				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -10561,6 +10573,8 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
 			case "objectType":
 				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -13395,6 +13409,47 @@ func (ec *executionContext) fieldContext_FieldDescriptor_objectType(_ context.Co
 	return fc, nil
 }
 
+func (ec *executionContext) _FieldDescriptor_gid(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_gid(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Gid, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_gid(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _FieldDescriptor_fieldId(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 	if err != nil {
@@ -15998,6 +16053,8 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
 			case "objectType":
 				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -18892,6 +18949,8 @@ func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.C
 				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
 			case "objectType":
 				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
 			case "fieldId":
 				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
 			case "jsPath":
@@ -32950,6 +33009,8 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._FieldDescriptor_isUserDefined(ctx, field, obj)
 		case "objectType":
 			out.Values[i] = ec._FieldDescriptor_objectType(ctx, field, obj)
+		case "gid":
+			out.Values[i] = ec._FieldDescriptor_gid(ctx, field, obj)
 		case "fieldId":
 			out.Values[i] = ec._FieldDescriptor_fieldId(ctx, field, obj)
 		case "jsPath":
