@@ -113,7 +113,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(f.GetPath())
 		path, ok := pathToDbPath(path)
 		if !ok {
-			return "", nil, errors.New("unknwon path: " + f.GetPath())
+			return "", nil, errors.New("unknown path: " + f.GetPath())
 		}
 
 		col := dbPathToColumn(path, modelColumn, true)
@@ -219,7 +219,7 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelCol
 		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath())
 		path, ok := pathToDbPath(path)
 		if !ok {
-			return "", errors.New("unknwon path: " + s.GetPath())
+			return "", errors.New("unknown path: " + s.GetPath())
 		}
 
 		col := dbPathToColumn(path, modelColumn, false)
