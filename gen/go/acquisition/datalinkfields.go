@@ -11,6 +11,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 		// HDLC specific fields
 		return []*common.FieldDescriptor{
 			common.FieldDescriptor_builder{
+				Gid:      ptr.To("datalink_hdlc#negotiate"),
 				FieldId:  ptr.To("negotiate"),
 				Label:    ptr.To("Auto HDLC frame size"),
 				Tooltip:  ptr.To("Enable auto negotiation of HDLC frame size."),
@@ -21,6 +22,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#retransmits"),
 				FieldId:      ptr.To("retransmits"),
 				Label:        ptr.To("HDLC retransmissions"),
 				Tooltip:      ptr.To("Number of HDLC frame retransmissions to perform. It can be set to 0 to disable retransmissions."),
@@ -33,6 +35,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#window_size_transmit"),
 				FieldId:      ptr.To("window_size_transmit"),
 				Label:        ptr.To("Window size (transmit)"),
 				Tooltip:      ptr.To("Number of HDLC frame retransmissions to perform. It can be set to 0 to disable retransmissions."),
@@ -45,6 +48,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#window_size_receive"),
 				FieldId:      ptr.To("window_size_receive"),
 				Label:        ptr.To("Window size (receive)"),
 				Tooltip:      ptr.To("Number of HDLC frame retransmissions to perform. It can be set to 0 to disable retransmissions."),
@@ -57,6 +61,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#max_info_field_length_transmit"),
 				FieldId:      ptr.To("max_info_field_length_transmit"),
 				Label:        ptr.To("Max info-field length (transmit)"),
 				Tooltip:      ptr.To("Number of HDLC frame retransmissions to perform. It can be set to 0 to disable retransmissions."),
@@ -69,6 +74,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#max_info_field_length_receive"),
 				FieldId:      ptr.To("max_info_field_length_receive"),
 				Label:        ptr.To("Max info-field length (receive)"),
 				Tooltip:      ptr.To("Number of HDLC frame retransmissions to perform. It can be set to 0 to disable retransmissions."),
@@ -81,6 +87,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:          ptr.To("datalink_hdlc#adaptive_addressing"),
 				FieldId:      ptr.To("adaptive_addressing"),
 				Label:        ptr.To("Adaptive HDLC addressing"),
 				Tooltip:      ptr.To("Disables adaptive HDLC addressing. When disabled the driver always sends 4-byte HDLC addresses."),
@@ -94,6 +101,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 		// COSEM Wrapper specific fields
 		return []*common.FieldDescriptor{
 			common.FieldDescriptor_builder{
+				Gid:      ptr.To("datalink_cosem_wrapper#source_address"),
 				FieldId:  ptr.To("source_address"),
 				Label:    ptr.To("Source address"),
 				Tooltip:  ptr.To("Source address for COSEM Wrapper frames."),
@@ -105,6 +113,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:      ptr.To("datalink_cosem_wrapper#destination_address"),
 				FieldId:  ptr.To("destination_address"),
 				Label:    ptr.To("Destination address"),
 				Tooltip:  ptr.To("Destination address for COSEM Wrapper frames."),
@@ -121,6 +130,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 		// Viktor specific fields
 		return []*common.FieldDescriptor{
 			common.FieldDescriptor_builder{
+				Gid:      ptr.To("datalink_viktor#serial_number"),
 				FieldId:  ptr.To("serial_number"),
 				Label:    ptr.To("Serial Number"),
 				Tooltip:  ptr.To("Serial Number of the Viktor device. It is required to establish communication with the device."),
@@ -131,6 +141,7 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 				}.Build(),
 			}.Build(),
 			common.FieldDescriptor_builder{
+				Gid:      ptr.To("datalink_viktor#use_tls"),
 				FieldId:  ptr.To("use_tls"),
 				Label:    ptr.To("Use TLS"),
 				Tooltip:  ptr.To("Use TLS for secure communication with the Viktor device."),
