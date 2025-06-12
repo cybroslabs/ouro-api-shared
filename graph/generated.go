@@ -402,7 +402,8 @@ type ComplexityRoot struct {
 	}
 
 	Driver struct {
-		Spec func(childComplexity int) int
+		Spec   func(childComplexity int) int
+		Status func(childComplexity int) int
 	}
 
 	DriverSpec struct {
@@ -414,6 +415,10 @@ type ComplexityRoot struct {
 		Templates         func(childComplexity int) int
 		TypicalMemUsage   func(childComplexity int) int
 		Version           func(childComplexity int) int
+	}
+
+	DriverStatus struct {
+		IsLatest func(childComplexity int) int
 	}
 
 	DriverTemplates struct {
@@ -2203,6 +2208,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Driver.Spec(childComplexity), true
 
+	case "Driver.status":
+		if e.complexity.Driver.Status == nil {
+			break
+		}
+
+		return e.complexity.Driver.Status(childComplexity), true
+
 	case "DriverSpec.displayName":
 		if e.complexity.DriverSpec.DisplayName == nil {
 			break
@@ -2258,6 +2270,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.DriverSpec.Version(childComplexity), true
+
+	case "DriverStatus.isLatest":
+		if e.complexity.DriverStatus.IsLatest == nil {
+			break
+		}
+
+		return e.complexity.DriverStatus.IsLatest(childComplexity), true
 
 	case "DriverTemplates.accessTemplates":
 		if e.complexity.DriverTemplates.AccessTemplates == nil {
@@ -12371,6 +12390,51 @@ func (ec *executionContext) fieldContext_Driver_spec(_ context.Context, field gr
 	return fc, nil
 }
 
+func (ec *executionContext) _Driver_status(ctx context.Context, field graphql.CollectedField, obj *model.Driver) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Driver_status(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Status, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.DriverStatus)
+	fc.Result = res
+	return ec.marshalODriverStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverStatus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Driver_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Driver",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "isLatest":
+				return ec.fieldContext_DriverStatus_isLatest(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DriverStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _DriverSpec_version(ctx context.Context, field graphql.CollectedField, obj *model.DriverSpec) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DriverSpec_version(ctx, field)
 	if err != nil {
@@ -12706,6 +12770,47 @@ func (ec *executionContext) fieldContext_DriverSpec_displayName(_ context.Contex
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DriverStatus_isLatest(ctx context.Context, field graphql.CollectedField, obj *model.DriverStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverStatus_isLatest(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.IsLatest, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DriverStatus_isLatest(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DriverStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
 		},
 	}
 	return fc, nil
@@ -18861,6 +18966,8 @@ func (ec *executionContext) fieldContext_ListOfDriver_items(_ context.Context, f
 			switch field.Name {
 			case "spec":
 				return ec.fieldContext_Driver_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_Driver_status(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
 		},
@@ -24969,6 +25076,8 @@ func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, fiel
 			switch field.Name {
 			case "spec":
 				return ec.fieldContext_Driver_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_Driver_status(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
 		},
@@ -32723,6 +32832,8 @@ func (ec *executionContext) _Driver(ctx context.Context, sel ast.SelectionSet, o
 			out.Values[i] = graphql.MarshalString("Driver")
 		case "spec":
 			out.Values[i] = ec._Driver_spec(ctx, field, obj)
+		case "status":
+			out.Values[i] = ec._Driver_status(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -32773,6 +32884,42 @@ func (ec *executionContext) _DriverSpec(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._DriverSpec_templates(ctx, field, obj)
 		case "displayName":
 			out.Values[i] = ec._DriverSpec_displayName(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var driverStatusImplementors = []string{"DriverStatus"}
+
+func (ec *executionContext) _DriverStatus(ctx context.Context, sel ast.SelectionSet, obj *model.DriverStatus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, driverStatusImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DriverStatus")
+		case "isLatest":
+			out.Values[i] = ec._DriverStatus_isLatest(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -39331,6 +39478,13 @@ func (ec *executionContext) marshalODriverSpec2ᚖgithubᚗcomᚋcybroslabsᚋou
 		return graphql.Null
 	}
 	return ec._DriverSpec(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODriverStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverStatus(ctx context.Context, sel ast.SelectionSet, v *model.DriverStatus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DriverStatus(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalODriverTemplates2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDriverTemplates(ctx context.Context, sel ast.SelectionSet, v *model.DriverTemplates) graphql.Marshaler {

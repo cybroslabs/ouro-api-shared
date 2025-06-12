@@ -366,7 +366,8 @@ type DeviceStatus struct {
 }
 
 type Driver struct {
-	Spec *DriverSpec `json:"spec,omitempty"`
+	Spec   *DriverSpec   `json:"spec,omitempty"`
+	Status *DriverStatus `json:"status,omitempty"`
 }
 
 type DriverSpec struct {
@@ -378,6 +379,10 @@ type DriverSpec struct {
 	TypicalMemUsage   *int32           `json:"typicalMemUsage,omitempty"`
 	Templates         *DriverTemplates `json:"templates,omitempty"`
 	DisplayName       *string          `json:"displayName,omitempty"`
+}
+
+type DriverStatus struct {
+	IsLatest *bool `json:"isLatest,omitempty"`
 }
 
 type DriverTemplates struct {

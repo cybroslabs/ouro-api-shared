@@ -896,6 +896,8 @@ type DeviceStatus {
 type Driver {
   # The driver specification.
   spec: DriverSpec
+  # The driver status.
+  status: DriverStatus
 }
 
 type DriverSpec {
@@ -920,6 +922,11 @@ type DriverSpec {
   #
   #  Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
   displayName: String
+}
+
+type DriverStatus {
+  # Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
+  isLatest: Boolean
 }
 
 # Sub-message in driver negotiation request

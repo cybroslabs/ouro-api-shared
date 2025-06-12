@@ -270,8 +270,9 @@ message ListOfDriver {
 }
 
 message Driver {
-    reserved 2, 3;        // reserved for status, metadata
-    DriverSpec spec = 1;  // The driver specification.
+    reserved 3;               // reserved for metadata
+    DriverSpec spec     = 1;  // The driver specification.
+    DriverStatus status = 2;  // The driver status.
 }
 
 message DriverSpec {
@@ -296,6 +297,10 @@ message DriverSpec {
     //
     // Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
     string display_name = 8;
+}
+
+message DriverStatus {
+    bool is_latest = 1;  // Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
 }
 
 // Variables

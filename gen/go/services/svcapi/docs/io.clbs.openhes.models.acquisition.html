@@ -618,6 +618,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DriverStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DriverStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DriverTemplates">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DriverTemplates</code> 
@@ -5569,6 +5578,22 @@
       
     </tr>
     
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DriverStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DriverStatus"><span title="io.clbs.openhes.models.acquisition.DriverStatus">io.clbs.openhes.models.acquisition.DriverStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The driver status.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -5726,6 +5751,56 @@ The value 0 means that the driver can handle any number of cascading jobs.</p></
 It must respect upper/lower characters.
 The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.</p>
 <p>Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DriverStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DriverStatus" title="io.clbs.openhes.models.acquisition.DriverStatus">message DriverStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        isLatest
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!</p></td>
       
     </tr>
     
