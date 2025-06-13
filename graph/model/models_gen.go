@@ -382,7 +382,8 @@ type DriverSpec struct {
 }
 
 type DriverStatus struct {
-	IsLatest *bool `json:"isLatest,omitempty"`
+	IsLatest       *bool `json:"isLatest,omitempty"`
+	UpdateFinished *bool `json:"updateFinished,omitempty"`
 }
 
 type DriverTemplates struct {

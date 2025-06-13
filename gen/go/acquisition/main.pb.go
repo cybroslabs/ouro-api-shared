@@ -4831,12 +4831,13 @@ func (b0 DriverSpec_builder) Build() *DriverSpec {
 }
 
 type DriverStatus struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_IsLatest    bool                   `protobuf:"varint,1,opt,name=is_latest,json=isLatest"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_IsLatest       bool                   `protobuf:"varint,1,opt,name=is_latest,json=isLatest"`
+	xxx_hidden_UpdateFinished bool                   `protobuf:"varint,2,opt,name=update_finished,json=updateFinished"`
+	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
+	XXX_presence              [1]uint32
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *DriverStatus) Reset() {
@@ -4871,9 +4872,21 @@ func (x *DriverStatus) GetIsLatest() bool {
 	return false
 }
 
+func (x *DriverStatus) GetUpdateFinished() bool {
+	if x != nil {
+		return x.xxx_hidden_UpdateFinished
+	}
+	return false
+}
+
 func (x *DriverStatus) SetIsLatest(v bool) {
 	x.xxx_hidden_IsLatest = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DriverStatus) SetUpdateFinished(v bool) {
+	x.xxx_hidden_UpdateFinished = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DriverStatus) HasIsLatest() bool {
@@ -4883,15 +4896,28 @@ func (x *DriverStatus) HasIsLatest() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
+func (x *DriverStatus) HasUpdateFinished() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
 func (x *DriverStatus) ClearIsLatest() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_IsLatest = false
 }
 
+func (x *DriverStatus) ClearUpdateFinished() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UpdateFinished = false
+}
+
 type DriverStatus_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	IsLatest *bool
+	IsLatest       *bool
+	UpdateFinished *bool
 }
 
 func (b0 DriverStatus_builder) Build() *DriverStatus {
@@ -4899,8 +4925,12 @@ func (b0 DriverStatus_builder) Build() *DriverStatus {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.IsLatest != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_IsLatest = *b.IsLatest
+	}
+	if b.UpdateFinished != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_UpdateFinished = *b.UpdateFinished
 	}
 	return m0
 }
@@ -6743,9 +6773,10 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x11max_cascade_depth\x18\x05 \x01(\rR\x0fmaxCascadeDepth\x12*\n" +
 	"\x11typical_mem_usage\x18\x06 \x01(\x05R\x0ftypicalMemUsage\x12Q\n" +
 	"\ttemplates\x18\a \x01(\v23.io.clbs.openhes.models.acquisition.DriverTemplatesR\ttemplates\x12!\n" +
-	"\fdisplay_name\x18\b \x01(\tR\vdisplayName\"+\n" +
+	"\fdisplay_name\x18\b \x01(\tR\vdisplayName\"T\n" +
 	"\fDriverStatus\x12\x1b\n" +
-	"\tis_latest\x18\x01 \x01(\bR\bisLatest\"\xa8\x01\n" +
+	"\tis_latest\x18\x01 \x01(\bR\bisLatest\x12'\n" +
+	"\x0fupdate_finished\x18\x02 \x01(\bR\x0eupdateFinished\"\xa8\x01\n" +
 	"\x15CreateVariableRequest\x12D\n" +
 	"\x04spec\x18\x01 \x01(\v20.io.clbs.openhes.models.acquisition.VariableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"u\n" +

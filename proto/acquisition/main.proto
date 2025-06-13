@@ -300,7 +300,8 @@ message DriverSpec {
 }
 
 message DriverStatus {
-    bool is_latest = 1;  // Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
+    bool is_latest       = 1;  // Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
+    bool update_finished = 2;  // Whether the driver update from previous version (if any) has been finished.
 }
 
 // Variables
