@@ -90,11 +90,16 @@ enum FieldDisplayFormat {
     MULTILINE     = 7;  // The multiline-string display format. Data type must be TEXT.
 }
 
+message CreateFieldDescriptorRequest {
+    reserved 2, 3;             // Reserved for status and metadata fields.
+    FieldDescriptor spec = 1;  // The field descriptor to be created.
+}
+
 // The field descriptor.
 message FieldDescriptor {
     bool is_user_defined       = 1;   // Whether the field descriptor is user-defined (e.g., custom fields added by users)
     ObjectType object_type     = 2;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string gid                 = 3;  // The system-wide unique identifier of the field descriptor.
+    string gid                 = 3;   // The system-wide unique identifier of the field descriptor.
     string field_id            = 4;   // Unique identifier for the field descriptor
     string js_path             = 5;   // The path to the field in the TypeScript representation
     string path                = 6;   // The path to the field in the gRPC/JSON simplified representation

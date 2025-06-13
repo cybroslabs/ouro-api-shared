@@ -54,6 +54,15 @@ service ApiService {
     rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
 
     // @group: Fields
+    // The method to create a new field descriptor user-defined field descriptor.
+    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);
+    // @group: Fields
+    // The method to update the field descriptor.
+    rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);
+    // @group: Fields
+    // The method to delete the field descriptor.
+    rpc DeleteFieldDescriptor(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Fields
     // The method to get the list of fields.
     rpc ListFieldDescriptors(google.protobuf.Empty) returns (io.clbs.openhes.models.common.ListOfFieldDescriptor);
 

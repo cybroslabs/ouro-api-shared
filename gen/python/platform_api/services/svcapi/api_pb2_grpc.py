@@ -102,6 +102,21 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.CreateFieldDescriptor = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateFieldDescriptor',
+                request_serializer=common_dot_fields__pb2.CreateFieldDescriptorRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.UpdateFieldDescriptor = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateFieldDescriptor',
+                request_serializer=common_dot_fields__pb2.FieldDescriptor.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteFieldDescriptor = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteFieldDescriptor',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.ListFieldDescriptors = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
@@ -492,6 +507,30 @@ class ApiServiceServicer(object):
 
     def RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(self, request, context):
         """@group: Device Configuration Templates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateFieldDescriptor(self, request, context):
+        """@group: Fields
+        The method to create a new field descriptor user-defined field descriptor.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateFieldDescriptor(self, request, context):
+        """@group: Fields
+        The method to update the field descriptor.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteFieldDescriptor(self, request, context):
+        """@group: Fields
+        The method to delete the field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1051,6 +1090,21 @@ def add_ApiServiceServicer_to_server(servicer, server):
             'RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate': grpc.unary_unary_rpc_method_handler(
                     servicer.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate,
                     request_deserializer=acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'CreateFieldDescriptor': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFieldDescriptor,
+                    request_deserializer=common_dot_fields__pb2.CreateFieldDescriptorRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'UpdateFieldDescriptor': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateFieldDescriptor,
+                    request_deserializer=common_dot_fields__pb2.FieldDescriptor.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteFieldDescriptor': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFieldDescriptor,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'ListFieldDescriptors': grpc.unary_unary_rpc_method_handler(
@@ -1761,6 +1815,87 @@ class ApiService(object):
             target,
             '/io.clbs.openhes.services.svcapi.ApiService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate',
             acquisition_dot_main__pb2.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateFieldDescriptor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateFieldDescriptor',
+            common_dot_fields__pb2.CreateFieldDescriptorRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateFieldDescriptor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateFieldDescriptor',
+            common_dot_fields__pb2.FieldDescriptor.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteFieldDescriptor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteFieldDescriptor',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

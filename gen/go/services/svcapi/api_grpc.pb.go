@@ -40,6 +40,9 @@ const (
 	ApiService_DeleteDeviceConfigurationTemplate_FullMethodName                                = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceConfigurationTemplate"
 	ApiService_AddDeviceConfigurationRegisterToDeviceConfigurationTemplate_FullMethodName      = "/io.clbs.openhes.services.svcapi.ApiService/AddDeviceConfigurationRegisterToDeviceConfigurationTemplate"
 	ApiService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
+	ApiService_CreateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/CreateFieldDescriptor"
+	ApiService_UpdateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/UpdateFieldDescriptor"
+	ApiService_DeleteFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/DeleteFieldDescriptor"
 	ApiService_ListFieldDescriptors_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
 	ApiService_ListBulks_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	ApiService_ListBulkJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
@@ -137,6 +140,15 @@ type ApiServiceClient interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
@@ -499,6 +511,36 @@ func (c *apiServiceClient) RemoveDeviceConfigurationRegisterFromDeviceConfigurat
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ApiService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1132,6 +1174,15 @@ type ApiServiceServer interface {
 	// @group: Device Configuration Templates
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
 	// @group: Bulks
@@ -1386,6 +1437,15 @@ func (UnimplementedApiServiceServer) AddDeviceConfigurationRegisterToDeviceConfi
 }
 func (UnimplementedApiServiceServer) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate not implemented")
+}
+func (UnimplementedApiServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
@@ -1857,6 +1917,60 @@ func _ApiService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplat
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx, req.(*acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.CreateFieldDescriptorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateFieldDescriptor(ctx, req.(*common.CreateFieldDescriptorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.FieldDescriptor)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateFieldDescriptor(ctx, req.(*common.FieldDescriptor))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2893,6 +3007,18 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate",
 			Handler:    _ApiService_RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate_Handler,
+		},
+		{
+			MethodName: "CreateFieldDescriptor",
+			Handler:    _ApiService_CreateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "UpdateFieldDescriptor",
+			Handler:    _ApiService_UpdateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "DeleteFieldDescriptor",
+			Handler:    _ApiService_DeleteFieldDescriptor_Handler,
 		},
 		{
 			MethodName: "ListFieldDescriptors",

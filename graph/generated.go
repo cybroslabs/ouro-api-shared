@@ -303,6 +303,10 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
+	CreateFieldDescriptorRequest struct {
+		Spec func(childComplexity int) int
+	}
+
 	CreateProxyBulkRequest struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
@@ -813,6 +817,7 @@ type ComplexityRoot struct {
 		CreateDeviceConfigurationRegister                                func(childComplexity int) int
 		CreateDeviceConfigurationTemplate                                func(childComplexity int) int
 		CreateDeviceGroup                                                func(childComplexity int) int
+		CreateFieldDescriptor                                            func(childComplexity int) int
 		CreateModem                                                      func(childComplexity int) int
 		CreateModemPool                                                  func(childComplexity int) int
 		CreateProxyBulk                                                  func(childComplexity int) int
@@ -820,6 +825,7 @@ type ComplexityRoot struct {
 		CreateVariable                                                   func(childComplexity int) int
 		DeleteDeviceConfigurationRegister                                func(childComplexity int) int
 		DeleteDeviceConfigurationTemplate                                func(childComplexity int) int
+		DeleteFieldDescriptor                                            func(childComplexity int) int
 		DeleteModem                                                      func(childComplexity int) int
 		DeleteModemPool                                                  func(childComplexity int) int
 		DeleteTimeOfUseTable                                             func(childComplexity int) int
@@ -868,6 +874,7 @@ type ComplexityRoot struct {
 		UpdateDevice                                                     func(childComplexity int) int
 		UpdateDeviceConfigurationRegister                                func(childComplexity int) int
 		UpdateDeviceConfigurationTemplate                                func(childComplexity int) int
+		UpdateFieldDescriptor                                            func(childComplexity int) int
 		UpdateModem                                                      func(childComplexity int) int
 		UpdateModemPool                                                  func(childComplexity int) int
 		UpdateTimeOfUseTable                                             func(childComplexity int) int
@@ -1054,6 +1061,9 @@ type QueryResolver interface {
 	DeleteModem(ctx context.Context) (*model.Empty, error)
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
+	CreateFieldDescriptor(ctx context.Context) (*model.StringValue, error)
+	UpdateFieldDescriptor(ctx context.Context) (*model.Empty, error)
+	DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
 	GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error)
 	GetMeterDataProfiles(ctx context.Context) (*model.ProfileValues, error)
@@ -1872,6 +1882,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.CreateDeviceRequest.Spec(childComplexity), true
+
+	case "CreateFieldDescriptorRequest.spec":
+		if e.complexity.CreateFieldDescriptorRequest.Spec == nil {
+			break
+		}
+
+		return e.complexity.CreateFieldDescriptorRequest.Spec(childComplexity), true
 
 	case "CreateProxyBulkRequest.metadata":
 		if e.complexity.CreateProxyBulkRequest.Metadata == nil {
@@ -3882,6 +3899,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.CreateDeviceGroup(childComplexity), true
 
+	case "Query.createFieldDescriptor":
+		if e.complexity.Query.CreateFieldDescriptor == nil {
+			break
+		}
+
+		return e.complexity.Query.CreateFieldDescriptor(childComplexity), true
+
 	case "Query.createModem":
 		if e.complexity.Query.CreateModem == nil {
 			break
@@ -3930,6 +3954,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.DeleteDeviceConfigurationTemplate(childComplexity), true
+
+	case "Query.deleteFieldDescriptor":
+		if e.complexity.Query.DeleteFieldDescriptor == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteFieldDescriptor(childComplexity), true
 
 	case "Query.deleteModem":
 		if e.complexity.Query.DeleteModem == nil {
@@ -4266,6 +4297,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.UpdateDeviceConfigurationTemplate(childComplexity), true
+
+	case "Query.updateFieldDescriptor":
+		if e.complexity.Query.UpdateFieldDescriptor == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateFieldDescriptor(childComplexity), true
 
 	case "Query.updateModem":
 		if e.complexity.Query.UpdateModem == nil {
@@ -10157,6 +10195,89 @@ func (ec *executionContext) fieldContext_CreateDeviceRequest_metadata(_ context.
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CreateFieldDescriptorRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.CreateFieldDescriptorRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CreateFieldDescriptorRequest_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDescriptor)
+	fc.Result = res
+	return ec.marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CreateFieldDescriptorRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CreateFieldDescriptorRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
+			case "label":
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
+			case "tooltip":
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
+			case "required":
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
+			case "validation":
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -25136,6 +25257,141 @@ func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, fiel
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_createFieldDescriptor(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_createFieldDescriptor(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().CreateFieldDescriptor(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.StringValue)
+	fc.Result = res
+	return ec.marshalOStringValue2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStringValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_createFieldDescriptor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "value":
+				return ec.fieldContext_StringValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type StringValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_updateFieldDescriptor(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateFieldDescriptor(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateFieldDescriptor(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateFieldDescriptor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteFieldDescriptor(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteFieldDescriptor(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteFieldDescriptor(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteFieldDescriptor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_listFieldDescriptors(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_listFieldDescriptors(ctx, field)
 	if err != nil {
@@ -32198,6 +32454,42 @@ func (ec *executionContext) _CreateDeviceRequest(ctx context.Context, sel ast.Se
 	return out
 }
 
+var createFieldDescriptorRequestImplementors = []string{"CreateFieldDescriptorRequest"}
+
+func (ec *executionContext) _CreateFieldDescriptorRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateFieldDescriptorRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, createFieldDescriptorRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CreateFieldDescriptorRequest")
+		case "spec":
+			out.Values[i] = ec._CreateFieldDescriptorRequest_spec(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var createProxyBulkRequestImplementors = []string{"CreateProxyBulkRequest"}
 
 func (ec *executionContext) _CreateProxyBulkRequest(ctx context.Context, sel ast.SelectionSet, obj *model.CreateProxyBulkRequest) graphql.Marshaler {
@@ -36357,6 +36649,63 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDriver(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "createFieldDescriptor":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_createFieldDescriptor(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateFieldDescriptor":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateFieldDescriptor(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteFieldDescriptor":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteFieldDescriptor(ctx, field)
 				return res
 			}
 

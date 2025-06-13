@@ -267,6 +267,10 @@ type CreateDeviceRequest struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
+type CreateFieldDescriptorRequest struct {
+	Spec *FieldDescriptor `json:"spec,omitempty"`
+}
+
 type CreateProxyBulkRequest struct {
 	Spec     *ProxyBulkSpec  `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`

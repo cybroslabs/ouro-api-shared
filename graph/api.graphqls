@@ -1542,6 +1542,11 @@ type Week {
   dayIds: [String]
 }
 
+type CreateFieldDescriptorRequest {
+  # The field descriptor to be created.
+  spec: FieldDescriptor
+}
+
 # The field descriptor.
 type FieldDescriptor {
   # Whether the field descriptor is user-defined (e.g., custom fields added by users)
@@ -1822,6 +1827,9 @@ type Query {
   deleteModem: Empty
   listDrivers: ListOfDriver
   getDriver: Driver
+  createFieldDescriptor: StringValue
+  updateFieldDescriptor: Empty
+  deleteFieldDescriptor: Empty
   listFieldDescriptors: ListOfFieldDescriptor
   getMeterDataRegisters: RegisterValues
   getMeterDataProfiles: ProfileValues

@@ -88,6 +88,15 @@ const (
 	// fully-qualified name of the ApiService's
 	// RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate RPC.
 	ApiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateProcedure = "/io.clbs.openhes.services.svcapi.ApiService/RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate"
+	// ApiServiceCreateFieldDescriptorProcedure is the fully-qualified name of the ApiService's
+	// CreateFieldDescriptor RPC.
+	ApiServiceCreateFieldDescriptorProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateFieldDescriptor"
+	// ApiServiceUpdateFieldDescriptorProcedure is the fully-qualified name of the ApiService's
+	// UpdateFieldDescriptor RPC.
+	ApiServiceUpdateFieldDescriptorProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateFieldDescriptor"
+	// ApiServiceDeleteFieldDescriptorProcedure is the fully-qualified name of the ApiService's
+	// DeleteFieldDescriptor RPC.
+	ApiServiceDeleteFieldDescriptorProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteFieldDescriptor"
 	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
 	// ListFieldDescriptors RPC.
 	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
@@ -273,6 +282,15 @@ type ApiServiceClient interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Device Configuration Templates
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(context.Context, *connect.Request[common.CreateFieldDescriptorRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
@@ -578,6 +596,24 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		createFieldDescriptor: connect.NewClient[common.CreateFieldDescriptorRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateFieldDescriptorProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateFieldDescriptor")),
+			connect.WithClientOptions(opts...),
+		),
+		updateFieldDescriptor: connect.NewClient[common.FieldDescriptor, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateFieldDescriptorProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateFieldDescriptor")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteFieldDescriptor: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteFieldDescriptorProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteFieldDescriptor")),
 			connect.WithClientOptions(opts...),
 		),
 		listFieldDescriptors: connect.NewClient[emptypb.Empty, common.ListOfFieldDescriptor](
@@ -931,6 +967,9 @@ type apiServiceClient struct {
 	deleteDeviceConfigurationTemplate                                *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	addDeviceConfigurationRegisterToDeviceConfigurationTemplate      *connect.Client[acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, emptypb.Empty]
 	removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate *connect.Client[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, emptypb.Empty]
+	createFieldDescriptor                                            *connect.Client[common.CreateFieldDescriptorRequest, wrapperspb.StringValue]
+	updateFieldDescriptor                                            *connect.Client[common.FieldDescriptor, emptypb.Empty]
+	deleteFieldDescriptor                                            *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	listFieldDescriptors                                             *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
 	listBulks                                                        *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
@@ -1078,6 +1117,21 @@ func (c *apiServiceClient) AddDeviceConfigurationRegisterToDeviceConfigurationTe
 // io.clbs.openhes.services.svcapi.ApiService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate.
 func (c *apiServiceClient) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, req *connect.Request[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
 	return c.removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate.CallUnary(ctx, req)
+}
+
+// CreateFieldDescriptor calls io.clbs.openhes.services.svcapi.ApiService.CreateFieldDescriptor.
+func (c *apiServiceClient) CreateFieldDescriptor(ctx context.Context, req *connect.Request[common.CreateFieldDescriptorRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createFieldDescriptor.CallUnary(ctx, req)
+}
+
+// UpdateFieldDescriptor calls io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor.
+func (c *apiServiceClient) UpdateFieldDescriptor(ctx context.Context, req *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateFieldDescriptor.CallUnary(ctx, req)
+}
+
+// DeleteFieldDescriptor calls io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor.
+func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteFieldDescriptor.CallUnary(ctx, req)
 }
 
 // ListFieldDescriptors calls io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors.
@@ -1398,6 +1452,15 @@ type ApiServiceHandler interface {
 	// @group: Device Configuration Templates
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(context.Context, *connect.Request[common.CreateFieldDescriptorRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
 	// @group: Bulks
@@ -1698,6 +1761,24 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateProcedure,
 		svc.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate,
 		connect.WithSchema(apiServiceMethods.ByName("RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateFieldDescriptorHandler := connect.NewUnaryHandler(
+		ApiServiceCreateFieldDescriptorProcedure,
+		svc.CreateFieldDescriptor,
+		connect.WithSchema(apiServiceMethods.ByName("CreateFieldDescriptor")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateFieldDescriptorHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateFieldDescriptorProcedure,
+		svc.UpdateFieldDescriptor,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateFieldDescriptor")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteFieldDescriptorHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteFieldDescriptorProcedure,
+		svc.DeleteFieldDescriptor,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteFieldDescriptor")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceListFieldDescriptorsHandler := connect.NewUnaryHandler(
@@ -2064,6 +2145,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceAddDeviceConfigurationRegisterToDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
 		case ApiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateProcedure:
 			apiServiceRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateHandler.ServeHTTP(w, r)
+		case ApiServiceCreateFieldDescriptorProcedure:
+			apiServiceCreateFieldDescriptorHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateFieldDescriptorProcedure:
+			apiServiceUpdateFieldDescriptorHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteFieldDescriptorProcedure:
+			apiServiceDeleteFieldDescriptorHandler.ServeHTTP(w, r)
 		case ApiServiceListFieldDescriptorsProcedure:
 			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
 		case ApiServiceListBulksProcedure:
@@ -2245,6 +2332,18 @@ func (UnimplementedApiServiceHandler) AddDeviceConfigurationRegisterToDeviceConf
 
 func (UnimplementedApiServiceHandler) RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *connect.Request[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateFieldDescriptor(context.Context, *connect.Request[common.CreateFieldDescriptorRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateFieldDescriptor is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {

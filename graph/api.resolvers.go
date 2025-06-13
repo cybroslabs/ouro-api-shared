@@ -296,6 +296,21 @@ func (r *queryResolver) GetDriver(ctx context.Context) (*model.Driver, error) {
 	panic(fmt.Errorf("not implemented: GetDriver - getDriver"))
 }
 
+// CreateFieldDescriptor is the resolver for the createFieldDescriptor field.
+func (r *queryResolver) CreateFieldDescriptor(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateFieldDescriptor - createFieldDescriptor"))
+}
+
+// UpdateFieldDescriptor is the resolver for the updateFieldDescriptor field.
+func (r *queryResolver) UpdateFieldDescriptor(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateFieldDescriptor - updateFieldDescriptor"))
+}
+
+// DeleteFieldDescriptor is the resolver for the deleteFieldDescriptor field.
+func (r *queryResolver) DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteFieldDescriptor - deleteFieldDescriptor"))
+}
+
 // ListFieldDescriptors is the resolver for the listFieldDescriptors field.
 func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error) {
 	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
