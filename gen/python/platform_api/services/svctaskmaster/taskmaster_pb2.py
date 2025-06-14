@@ -26,11 +26,12 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import internal_pb2 as acquisition_dot_internal__pb2
+from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import types_pb2 as common_dot_types__pb2
 from common import internal_pb2 as common_dot_internal__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16\x61\x63quisition/main.proto\x1a\x1a\x61\x63quisition/internal.proto\x1a\x12\x63ommon/types.proto\x1a\x15\x63ommon/internal.proto2\xa1\x05\n\x11TaskmasterService\x12Y\n\tQueueJobs\x12\x34.io.clbs.openhes.models.acquisition.QueueJobsRequest\x1a\x16.google.protobuf.Empty\x12Z\n\x06GetJob\x12\x1c.google.protobuf.StringValue\x1a\x32.io.clbs.openhes.models.acquisition.GetJobResponse\x12M\n\nCancelJobs\x12\'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.Empty\x12R\n\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n\x08SetCache\x12\x33.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n\x08GetCache\x12\x33.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a\x34.io.clbs.openhes.models.acquisition.GetCacheResponse\x12\x62\n\x10SetManagedFields\x12\x36.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.EmptyBEZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmasterb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16\x61\x63quisition/main.proto\x1a\x1a\x61\x63quisition/internal.proto\x1a\x18\x61\x63quisition/shared.proto\x1a\x12\x63ommon/types.proto\x1a\x15\x63ommon/internal.proto2\xef\t\n\x11TaskmasterService\x12Y\n\tQueueJobs\x12\x34.io.clbs.openhes.models.acquisition.QueueJobsRequest\x1a\x16.google.protobuf.Empty\x12Z\n\x06GetJob\x12\x1c.google.protobuf.StringValue\x1a\x32.io.clbs.openhes.models.acquisition.GetJobResponse\x12M\n\nCancelJobs\x12\'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.Empty\x12R\n\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n\x08SetCache\x12\x33.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n\x08GetCache\x12\x33.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a\x34.io.clbs.openhes.models.acquisition.GetCacheResponse\x12\x62\n\x10SetManagedFields\x12\x36.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.Empty\x12w\n\x18\x41\x64\x64\x43ommunicationUnitLogs\x12\x43.io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest\x1a\x16.google.protobuf.Empty\x12i\n\x11SetUnknownDevices\x12<.io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest\x1a\x16.google.protobuf.Empty\x12{\n\x17ListDevicesByAttributes\x12\x33.io.clbs.openhes.models.acquisition.FieldValuesList\x1a+.io.clbs.openhes.models.common.ListOfString\x12\x86\x01\n\"ListCommunicationUnitsByAttributes\x12\x33.io.clbs.openhes.models.acquisition.FieldValuesList\x1a+.io.clbs.openhes.models.common.ListOfString\x12\x62\n\x0eSetNeightbours\x12\x38.io.clbs.openhes.models.acquisition.SetNeighboursRequest\x1a\x16.google.protobuf.EmptyBEZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmasterb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -38,6 +39,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'services.svctaskmaster.task
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZCgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmaster'
-  _globals['_TASKMASTERSERVICE']._serialized_start=240
-  _globals['_TASKMASTERSERVICE']._serialized_end=913
+  _globals['_TASKMASTERSERVICE']._serialized_start=266
+  _globals['_TASKMASTERSERVICE']._serialized_end=1529
 # @@protoc_insertion_point(module_scope)

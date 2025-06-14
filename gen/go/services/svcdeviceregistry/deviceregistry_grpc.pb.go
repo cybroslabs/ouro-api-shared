@@ -82,6 +82,11 @@ const (
 	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
 	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
 	DeviceRegistryService_SetManagedFields_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetManagedFields"
+	DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName                                         = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitLogs"
+	DeviceRegistryService_SetUnknownDevices_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetUnknownDevices"
+	DeviceRegistryService_ListDevicesByAttributes_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevicesByAttributes"
+	DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitsByAttributes"
+	DeviceRegistryService_SetNeightbours_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -223,6 +228,27 @@ type DeviceRegistryServiceClient interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// Adds a new log records to the communication unit. Duplicit records are ignored.
+	AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method sets currently known unknown devices visible by the communication unit.
+	SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
+	// The method returns the list of device identifiers that match the given attributes.
+	ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method returns the list of communication unit identifiers that match the given attributes.
+	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
+	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
+	SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -825,6 +851,56 @@ func (c *deviceRegistryServiceClient) SetManagedFields(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetUnknownDevices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfString)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDevicesByAttributes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfString)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetNeightbours_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceRegistryServiceServer is the server API for DeviceRegistryService service.
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
@@ -964,6 +1040,27 @@ type DeviceRegistryServiceServer interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// Adds a new log records to the communication unit. Duplicit records are ignored.
+	AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method sets currently known unknown devices visible by the communication unit.
+	SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: device
+	// The method returns the list of device identifiers that match the given attributes.
+	ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method returns the list of communication unit identifiers that match the given attributes.
+	ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	// @group: Devices
+	// @tag: communicationunit
+	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
+	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
+	SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -1147,6 +1244,21 @@ func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Con
 }
 func (UnimplementedDeviceRegistryServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitLogs not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetUnknownDevices not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDevicesByAttributes not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsByAttributes not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNeightbours not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -2195,6 +2307,96 @@ func _DeviceRegistryService_SetManagedFields_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_AddCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddCommunicationUnitLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).AddCommunicationUnitLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).AddCommunicationUnitLogs(ctx, req.(*acquisition.AddCommunicationUnitLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetUnknownDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetUnknownDevicesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetUnknownDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetUnknownDevices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetUnknownDevices(ctx, req.(*acquisition.SetUnknownDevicesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_ListDevicesByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FieldValuesList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListDevicesByAttributes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.FieldValuesList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FieldValuesList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.FieldValuesList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetNeightbours_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetNeighboursRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetNeightbours(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetNeightbours_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetNeightbours(ctx, req.(*acquisition.SetNeighboursRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceRegistryService_ServiceDesc is the grpc.ServiceDesc for DeviceRegistryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2425,6 +2627,26 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetManagedFields",
 			Handler:    _DeviceRegistryService_SetManagedFields_Handler,
+		},
+		{
+			MethodName: "AddCommunicationUnitLogs",
+			Handler:    _DeviceRegistryService_AddCommunicationUnitLogs_Handler,
+		},
+		{
+			MethodName: "SetUnknownDevices",
+			Handler:    _DeviceRegistryService_SetUnknownDevices_Handler,
+		},
+		{
+			MethodName: "ListDevicesByAttributes",
+			Handler:    _DeviceRegistryService_ListDevicesByAttributes_Handler,
+		},
+		{
+			MethodName: "ListCommunicationUnitsByAttributes",
+			Handler:    _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler,
+		},
+		{
+			MethodName: "SetNeightbours",
+			Handler:    _DeviceRegistryService_SetNeightbours_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

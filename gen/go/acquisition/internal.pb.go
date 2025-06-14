@@ -11,7 +11,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -22,6 +22,97 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
+
+type LogRecordLevel int32
+
+const (
+	LogRecordLevel_LOG_RECORD_LEVEL_DEBUG   LogRecordLevel = 0 // The log record level is debug.
+	LogRecordLevel_LOG_RECORD_LEVEL_INFO    LogRecordLevel = 1 // The log record level is info.
+	LogRecordLevel_LOG_RECORD_LEVEL_WARNING LogRecordLevel = 2 // The log record level is warning.
+	LogRecordLevel_LOG_RECORD_LEVEL_ERROR   LogRecordLevel = 3 // The log record level is error.
+	LogRecordLevel_LOG_RECORD_LEVEL_FATAL   LogRecordLevel = 4 // The log record level is fatal.
+)
+
+// Enum value maps for LogRecordLevel.
+var (
+	LogRecordLevel_name = map[int32]string{
+		0: "LOG_RECORD_LEVEL_DEBUG",
+		1: "LOG_RECORD_LEVEL_INFO",
+		2: "LOG_RECORD_LEVEL_WARNING",
+		3: "LOG_RECORD_LEVEL_ERROR",
+		4: "LOG_RECORD_LEVEL_FATAL",
+	}
+	LogRecordLevel_value = map[string]int32{
+		"LOG_RECORD_LEVEL_DEBUG":   0,
+		"LOG_RECORD_LEVEL_INFO":    1,
+		"LOG_RECORD_LEVEL_WARNING": 2,
+		"LOG_RECORD_LEVEL_ERROR":   3,
+		"LOG_RECORD_LEVEL_FATAL":   4,
+	}
+)
+
+func (x LogRecordLevel) Enum() *LogRecordLevel {
+	p := new(LogRecordLevel)
+	*p = x
+	return p
+}
+
+func (x LogRecordLevel) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LogRecordLevel) Descriptor() protoreflect.EnumDescriptor {
+	return file_acquisition_internal_proto_enumTypes[0].Descriptor()
+}
+
+func (LogRecordLevel) Type() protoreflect.EnumType {
+	return &file_acquisition_internal_proto_enumTypes[0]
+}
+
+func (x LogRecordLevel) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+type DeviceNeighbourType int32
+
+const (
+	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT DeviceNeighbourType = 0 // The device neighbour is a communication unit.
+	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_DEVICE             DeviceNeighbourType = 1 // The device neighbour is a device.
+)
+
+// Enum value maps for DeviceNeighbourType.
+var (
+	DeviceNeighbourType_name = map[int32]string{
+		0: "DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT",
+		1: "DEVICE_NEIGHBOUR_TYPE_DEVICE",
+	}
+	DeviceNeighbourType_value = map[string]int32{
+		"DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT": 0,
+		"DEVICE_NEIGHBOUR_TYPE_DEVICE":             1,
+	}
+)
+
+func (x DeviceNeighbourType) Enum() *DeviceNeighbourType {
+	p := new(DeviceNeighbourType)
+	*p = x
+	return p
+}
+
+func (x DeviceNeighbourType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DeviceNeighbourType) Descriptor() protoreflect.EnumDescriptor {
+	return file_acquisition_internal_proto_enumTypes[1].Descriptor()
+}
+
+func (DeviceNeighbourType) Type() protoreflect.EnumType {
+	return &file_acquisition_internal_proto_enumTypes[1]
+}
+
+func (x DeviceNeighbourType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
 
 type SetCacheRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
@@ -1213,6 +1304,658 @@ func (b0 SetDeviceInfoRequest_builder) Build() *SetDeviceInfoRequest {
 	return m0
 }
 
+type AddCommunicationUnitLogsRequest struct {
+	state                          protoimpl.MessageState         `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnitId *string                        `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_Items               *[]*CommunicationUnitLogRecord `protobuf:"bytes,2,rep,name=items"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
+}
+
+func (x *AddCommunicationUnitLogsRequest) Reset() {
+	*x = AddCommunicationUnitLogsRequest{}
+	mi := &file_acquisition_internal_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddCommunicationUnitLogsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCommunicationUnitLogsRequest) ProtoMessage() {}
+
+func (x *AddCommunicationUnitLogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *AddCommunicationUnitLogsRequest) GetCommunicationUnitId() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitId != nil {
+			return *x.xxx_hidden_CommunicationUnitId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *AddCommunicationUnitLogsRequest) GetItems() []*CommunicationUnitLogRecord {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *AddCommunicationUnitLogsRequest) SetCommunicationUnitId(v string) {
+	x.xxx_hidden_CommunicationUnitId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *AddCommunicationUnitLogsRequest) SetItems(v []*CommunicationUnitLogRecord) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *AddCommunicationUnitLogsRequest) HasCommunicationUnitId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *AddCommunicationUnitLogsRequest) ClearCommunicationUnitId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_CommunicationUnitId = nil
+}
+
+type AddCommunicationUnitLogsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	CommunicationUnitId *string
+	Items               []*CommunicationUnitLogRecord
+}
+
+func (b0 AddCommunicationUnitLogsRequest_builder) Build() *AddCommunicationUnitLogsRequest {
+	m0 := &AddCommunicationUnitLogsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.CommunicationUnitId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
+	}
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
+type CommunicationUnitLogRecord struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp"`
+	xxx_hidden_Level       LogRecordLevel         `protobuf:"varint,3,opt,name=level,enum=io.clbs.openhes.models.acquisition.LogRecordLevel"`
+	xxx_hidden_Message     *string                `protobuf:"bytes,4,opt,name=message"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *CommunicationUnitLogRecord) Reset() {
+	*x = CommunicationUnitLogRecord{}
+	mi := &file_acquisition_internal_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CommunicationUnitLogRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CommunicationUnitLogRecord) ProtoMessage() {}
+
+func (x *CommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CommunicationUnitLogRecord) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CommunicationUnitLogRecord) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_Timestamp
+	}
+	return nil
+}
+
+func (x *CommunicationUnitLogRecord) GetLevel() LogRecordLevel {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+			return x.xxx_hidden_Level
+		}
+	}
+	return LogRecordLevel_LOG_RECORD_LEVEL_DEBUG
+}
+
+func (x *CommunicationUnitLogRecord) GetMessage() string {
+	if x != nil {
+		if x.xxx_hidden_Message != nil {
+			return *x.xxx_hidden_Message
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CommunicationUnitLogRecord) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
+func (x *CommunicationUnitLogRecord) SetTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_Timestamp = v
+}
+
+func (x *CommunicationUnitLogRecord) SetLevel(v LogRecordLevel) {
+	x.xxx_hidden_Level = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+}
+
+func (x *CommunicationUnitLogRecord) SetMessage(v string) {
+	x.xxx_hidden_Message = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+}
+
+func (x *CommunicationUnitLogRecord) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *CommunicationUnitLogRecord) HasTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Timestamp != nil
+}
+
+func (x *CommunicationUnitLogRecord) HasLevel() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *CommunicationUnitLogRecord) HasMessage() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *CommunicationUnitLogRecord) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *CommunicationUnitLogRecord) ClearTimestamp() {
+	x.xxx_hidden_Timestamp = nil
+}
+
+func (x *CommunicationUnitLogRecord) ClearLevel() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Level = LogRecordLevel_LOG_RECORD_LEVEL_DEBUG
+}
+
+func (x *CommunicationUnitLogRecord) ClearMessage() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Message = nil
+}
+
+type CommunicationUnitLogRecord_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id        *string
+	Timestamp *timestamppb.Timestamp
+	Level     *LogRecordLevel
+	Message   *string
+}
+
+func (b0 CommunicationUnitLogRecord_builder) Build() *CommunicationUnitLogRecord {
+	m0 := &CommunicationUnitLogRecord{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_Id = b.Id
+	}
+	x.xxx_hidden_Timestamp = b.Timestamp
+	if b.Level != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		x.xxx_hidden_Level = *b.Level
+	}
+	if b.Message != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		x.xxx_hidden_Message = b.Message
+	}
+	return m0
+}
+
+type SetUnknownDevicesRequest struct {
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_Items               *[]*UnknownDevice      `protobuf:"bytes,2,rep,name=items"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
+}
+
+func (x *SetUnknownDevicesRequest) Reset() {
+	*x = SetUnknownDevicesRequest{}
+	mi := &file_acquisition_internal_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetUnknownDevicesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetUnknownDevicesRequest) ProtoMessage() {}
+
+func (x *SetUnknownDevicesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *SetUnknownDevicesRequest) GetCommunicationUnitId() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitId != nil {
+			return *x.xxx_hidden_CommunicationUnitId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetUnknownDevicesRequest) GetItems() []*UnknownDevice {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *SetUnknownDevicesRequest) SetCommunicationUnitId(v string) {
+	x.xxx_hidden_CommunicationUnitId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *SetUnknownDevicesRequest) SetItems(v []*UnknownDevice) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *SetUnknownDevicesRequest) HasCommunicationUnitId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *SetUnknownDevicesRequest) ClearCommunicationUnitId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_CommunicationUnitId = nil
+}
+
+type SetUnknownDevicesRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	CommunicationUnitId *string
+	Items               []*UnknownDevice
+}
+
+func (b0 SetUnknownDevicesRequest_builder) Build() *SetUnknownDevicesRequest {
+	m0 := &SetUnknownDevicesRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.CommunicationUnitId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
+	}
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
+type UnknownDevice struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_Attributes  *[]*common.FieldValue  `protobuf:"bytes,4,rep,name=attributes"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *UnknownDevice) Reset() {
+	*x = UnknownDevice{}
+	mi := &file_acquisition_internal_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnknownDevice) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnknownDevice) ProtoMessage() {}
+
+func (x *UnknownDevice) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *UnknownDevice) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UnknownDevice) GetAttributes() []*common.FieldValue {
+	if x != nil {
+		if x.xxx_hidden_Attributes != nil {
+			return *x.xxx_hidden_Attributes
+		}
+	}
+	return nil
+}
+
+func (x *UnknownDevice) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *UnknownDevice) SetAttributes(v []*common.FieldValue) {
+	x.xxx_hidden_Attributes = &v
+}
+
+func (x *UnknownDevice) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *UnknownDevice) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+type UnknownDevice_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id         *string
+	Attributes []*common.FieldValue
+}
+
+func (b0 UnknownDevice_builder) Build() *UnknownDevice {
+	m0 := &UnknownDevice{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_Id = b.Id
+	}
+	x.xxx_hidden_Attributes = &b.Attributes
+	return m0
+}
+
+type SetNeighboursRequest struct {
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_Neighbors           []string               `protobuf:"bytes,2,rep,name=neighbors"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
+}
+
+func (x *SetNeighboursRequest) Reset() {
+	*x = SetNeighboursRequest{}
+	mi := &file_acquisition_internal_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetNeighboursRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetNeighboursRequest) ProtoMessage() {}
+
+func (x *SetNeighboursRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *SetNeighboursRequest) GetCommunicationUnitId() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitId != nil {
+			return *x.xxx_hidden_CommunicationUnitId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetNeighboursRequest) GetNeighbors() []string {
+	if x != nil {
+		return x.xxx_hidden_Neighbors
+	}
+	return nil
+}
+
+func (x *SetNeighboursRequest) SetCommunicationUnitId(v string) {
+	x.xxx_hidden_CommunicationUnitId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *SetNeighboursRequest) SetNeighbors(v []string) {
+	x.xxx_hidden_Neighbors = v
+}
+
+func (x *SetNeighboursRequest) HasCommunicationUnitId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *SetNeighboursRequest) ClearCommunicationUnitId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_CommunicationUnitId = nil
+}
+
+type SetNeighboursRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	CommunicationUnitId *string
+	Neighbors           []string
+}
+
+func (b0 SetNeighboursRequest_builder) Build() *SetNeighboursRequest {
+	m0 := &SetNeighboursRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.CommunicationUnitId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
+	}
+	x.xxx_hidden_Neighbors = b.Neighbors
+	return m0
+}
+
+type DeviceNeightbour struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Type        DeviceNeighbourType    `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.acquisition.DeviceNeighbourType"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,2,opt,name=id"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *DeviceNeightbour) Reset() {
+	*x = DeviceNeightbour{}
+	mi := &file_acquisition_internal_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceNeightbour) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceNeightbour) ProtoMessage() {}
+
+func (x *DeviceNeightbour) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeviceNeightbour) GetType() DeviceNeighbourType {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_Type
+		}
+	}
+	return DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT
+}
+
+func (x *DeviceNeightbour) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceNeightbour) SetType(v DeviceNeighbourType) {
+	x.xxx_hidden_Type = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DeviceNeightbour) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *DeviceNeightbour) HasType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *DeviceNeightbour) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DeviceNeightbour) ClearType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Type = DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT
+}
+
+func (x *DeviceNeightbour) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Id = nil
+}
+
+type DeviceNeightbour_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Type *DeviceNeighbourType
+	Id   *string
+}
+
+func (b0 DeviceNeightbour_builder) Build() *DeviceNeightbour {
+	m0 := &DeviceNeightbour{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Type != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_Type = *b.Type
+	}
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Id = b.Id
+	}
+	return m0
+}
+
 var File_acquisition_internal_proto protoreflect.FileDescriptor
 
 const file_acquisition_internal_proto_rawDesc = "" +
@@ -1258,50 +2001,97 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v28.io.clbs.openhes.models.acquisition.ListOfConnectionInfoR\x05value:\x028\x01\"w\n" +
 	"\x14SetDeviceInfoRequest\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12B\n" +
-	"\x04info\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\x04infoB:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\x04info\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\x04info\"\xab\x01\n" +
+	"\x1fAddCommunicationUnitLogsRequest\x122\n" +
+	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12T\n" +
+	"\x05items\x18\x02 \x03(\v2>.io.clbs.openhes.models.acquisition.CommunicationUnitLogRecordR\x05items\"\xca\x01\n" +
+	"\x1aCommunicationUnitLogRecord\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x128\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12H\n" +
+	"\x05level\x18\x03 \x01(\x0e22.io.clbs.openhes.models.acquisition.LogRecordLevelR\x05level\x12\x18\n" +
+	"\amessage\x18\x04 \x01(\tR\amessage\"\x97\x01\n" +
+	"\x18SetUnknownDevicesRequest\x122\n" +
+	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12G\n" +
+	"\x05items\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.UnknownDeviceR\x05items\"j\n" +
+	"\rUnknownDevice\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12I\n" +
+	"\n" +
+	"attributes\x18\x04 \x03(\v2).io.clbs.openhes.models.common.FieldValueR\n" +
+	"attributes\"h\n" +
+	"\x14SetNeighboursRequest\x122\n" +
+	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12\x1c\n" +
+	"\tneighbors\x18\x02 \x03(\tR\tneighbors\"o\n" +
+	"\x10DeviceNeightbour\x12K\n" +
+	"\x04type\x18\x01 \x01(\x0e27.io.clbs.openhes.models.acquisition.DeviceNeighbourTypeR\x04type\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id*\x9d\x01\n" +
+	"\x0eLogRecordLevel\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_DEBUG\x10\x00\x12\x19\n" +
+	"\x15LOG_RECORD_LEVEL_INFO\x10\x01\x12\x1c\n" +
+	"\x18LOG_RECORD_LEVEL_WARNING\x10\x02\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_ERROR\x10\x03\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_FATAL\x10\x04*e\n" +
+	"\x13DeviceNeighbourType\x12,\n" +
+	"(DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT\x10\x00\x12 \n" +
+	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x01B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
-var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_acquisition_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_acquisition_internal_proto_goTypes = []any{
-	(*SetCacheRequest)(nil),         // 0: io.clbs.openhes.models.acquisition.SetCacheRequest
-	(*GetCacheRequest)(nil),         // 1: io.clbs.openhes.models.acquisition.GetCacheRequest
-	(*GetCacheResponse)(nil),        // 2: io.clbs.openhes.models.acquisition.GetCacheResponse
-	(*StartJobsRequest)(nil),        // 3: io.clbs.openhes.models.acquisition.StartJobsRequest
-	(*ProgressUpdate)(nil),          // 4: io.clbs.openhes.models.acquisition.ProgressUpdate
-	(*StartUpgradeRequest)(nil),     // 5: io.clbs.openhes.models.acquisition.StartUpgradeRequest
-	(*QueueJobsRequest)(nil),        // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest
-	(*GetJobResponse)(nil),          // 7: io.clbs.openhes.models.acquisition.GetJobResponse
-	(*SetDriverScaleRequest)(nil),   // 8: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
-	(*GetDriverScaleRequest)(nil),   // 9: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
-	(*MapDeviceConnectionInfo)(nil), // 10: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
-	(*SetDeviceInfoRequest)(nil),    // 11: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
-	nil,                             // 12: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	(*common.FieldValue)(nil),       // 13: io.clbs.openhes.models.common.FieldValue
-	(*ConnectionInfo)(nil),          // 14: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*StartJobData)(nil),            // 15: io.clbs.openhes.models.acquisition.StartJobData
-	(*JobProgressUpdate)(nil),       // 16: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionProgressUpdate)(nil),    // 17: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobSpec)(nil),                 // 18: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobStatus)(nil),               // 19: io.clbs.openhes.models.acquisition.JobStatus
-	(*DeviceInfo)(nil),              // 20: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*ListOfConnectionInfo)(nil),    // 21: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(LogRecordLevel)(0),                     // 0: io.clbs.openhes.models.acquisition.LogRecordLevel
+	(DeviceNeighbourType)(0),                // 1: io.clbs.openhes.models.acquisition.DeviceNeighbourType
+	(*SetCacheRequest)(nil),                 // 2: io.clbs.openhes.models.acquisition.SetCacheRequest
+	(*GetCacheRequest)(nil),                 // 3: io.clbs.openhes.models.acquisition.GetCacheRequest
+	(*GetCacheResponse)(nil),                // 4: io.clbs.openhes.models.acquisition.GetCacheResponse
+	(*StartJobsRequest)(nil),                // 5: io.clbs.openhes.models.acquisition.StartJobsRequest
+	(*ProgressUpdate)(nil),                  // 6: io.clbs.openhes.models.acquisition.ProgressUpdate
+	(*StartUpgradeRequest)(nil),             // 7: io.clbs.openhes.models.acquisition.StartUpgradeRequest
+	(*QueueJobsRequest)(nil),                // 8: io.clbs.openhes.models.acquisition.QueueJobsRequest
+	(*GetJobResponse)(nil),                  // 9: io.clbs.openhes.models.acquisition.GetJobResponse
+	(*SetDriverScaleRequest)(nil),           // 10: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
+	(*GetDriverScaleRequest)(nil),           // 11: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
+	(*MapDeviceConnectionInfo)(nil),         // 12: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
+	(*SetDeviceInfoRequest)(nil),            // 13: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
+	(*AddCommunicationUnitLogsRequest)(nil), // 14: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	(*CommunicationUnitLogRecord)(nil),      // 15: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*SetUnknownDevicesRequest)(nil),        // 16: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	(*UnknownDevice)(nil),                   // 17: io.clbs.openhes.models.acquisition.UnknownDevice
+	(*SetNeighboursRequest)(nil),            // 18: io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	(*DeviceNeightbour)(nil),                // 19: io.clbs.openhes.models.acquisition.DeviceNeightbour
+	nil,                                     // 20: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	(*common.FieldValue)(nil),               // 21: io.clbs.openhes.models.common.FieldValue
+	(*ConnectionInfo)(nil),                  // 22: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*StartJobData)(nil),                    // 23: io.clbs.openhes.models.acquisition.StartJobData
+	(*JobProgressUpdate)(nil),               // 24: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionProgressUpdate)(nil),            // 25: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobSpec)(nil),                         // 26: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobStatus)(nil),                       // 27: io.clbs.openhes.models.acquisition.JobStatus
+	(*DeviceInfo)(nil),                      // 28: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*timestamppb.Timestamp)(nil),           // 29: google.protobuf.Timestamp
+	(*ListOfConnectionInfo)(nil),            // 30: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
-	13, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	13, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	14, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	15, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
-	16, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
-	17, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	18, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	19, // 7: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	12, // 8: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	20, // 9: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	21, // 10: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	21, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	21, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	22, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	23, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
+	24, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
+	25, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	26, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	27, // 7: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	20, // 8: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	28, // 9: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	15, // 10: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	29, // 11: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	0,  // 12: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	17, // 13: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevice
+	21, // 14: io.clbs.openhes.models.acquisition.UnknownDevice.attributes:type_name -> io.clbs.openhes.models.common.FieldValue
+	1,  // 15: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
+	30, // 16: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }
@@ -1319,13 +2109,14 @@ func file_acquisition_internal_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_internal_proto_rawDesc), len(file_acquisition_internal_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   13,
+			NumEnums:      2,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_acquisition_internal_proto_goTypes,
 		DependencyIndexes: file_acquisition_internal_proto_depIdxs,
+		EnumInfos:         file_acquisition_internal_proto_enumTypes,
 		MessageInfos:      file_acquisition_internal_proto_msgTypes,
 	}.Build()
 	File_acquisition_internal_proto = out.File

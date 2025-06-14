@@ -33,8 +33,8 @@ message StartJobsRequest {
 message ProgressUpdate {
     // The oneof field containing the progress update data - either for job or for action.
     oneof progress {
-        JobProgressUpdate job              = 1;  // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
-        ActionProgressUpdate action        = 2;  // The action progress update data. It shall be called for each action in the job.
+        JobProgressUpdate job       = 1;  // The job progress update data. It shall be called once and only once for each job. It shall be also called as the last message in the stream; other updates will be ignored after this.
+        ActionProgressUpdate action = 2;  // The action progress update data. It shall be called for each action in the job.
     }
 }
 
@@ -76,4 +76,49 @@ message MapDeviceConnectionInfo {
 message SetDeviceInfoRequest {
     string device_id            = 1;  // The device identifier.
     acquisition.DeviceInfo info = 2;  // The device information.
+}
+
+message AddCommunicationUnitLogsRequest {
+    string communication_unit_id              = 1;  // The unique identifier of the communication unit for which the logs are being added.
+    repeated CommunicationUnitLogRecord items = 2;  // The list of communication unit log records to be added.
+}
+
+enum LogRecordLevel {
+    LOG_RECORD_LEVEL_DEBUG   = 0;  // The log record level is debug.
+    LOG_RECORD_LEVEL_INFO    = 1;  // The log record level is info.
+    LOG_RECORD_LEVEL_WARNING = 2;  // The log record level is warning.
+    LOG_RECORD_LEVEL_ERROR   = 3;  // The log record level is error.
+    LOG_RECORD_LEVEL_FATAL   = 4;  // The log record level is fatal.
+}
+
+message CommunicationUnitLogRecord {
+    string id                           = 1;  // The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
+    google.protobuf.Timestamp timestamp = 2;  // The timestamp of the log record.
+    LogRecordLevel level                = 3;  // The log level of the log record, if provided.
+    string message                      = 4;  // The log message. It must not be empty.
+}
+
+message SetUnknownDevicesRequest {
+    string communication_unit_id             = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
+    repeated acquisition.UnknownDevice items = 2;  // The list of unknown devices to be set. The list is not empty.
+}
+
+message UnknownDevice {
+    string id                             = 1;  // The unique identifier of the unknown device.
+    repeated common.FieldValue attributes = 4;  // The list of attributes of the unknown device. It must not be empty.
+}
+
+message SetNeighboursRequest {
+    string communication_unit_id = 1;  // The unique identifier of the communication unit for which the neighbors are being set.
+    repeated string neighbors    = 2;  // The list of neighbor device identifiers. The list is not empty.
+}
+
+enum DeviceNeighbourType {
+    DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT = 0;  // The device neighbour is a communication unit.
+    DEVICE_NEIGHBOUR_TYPE_DEVICE             = 1;  // The device neighbour is a device.
+}
+
+message DeviceNeightbour {
+    DeviceNeighbourType type = 1;  // The type of the neighbour.
+    string id                = 2;  // The unique identifier of the neighbour. It is either a communication unit identifier or a device identifier.
 }

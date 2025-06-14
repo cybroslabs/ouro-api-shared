@@ -23,13 +23,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskmasterService_QueueJobs_FullMethodName        = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs"
-	TaskmasterService_GetJob_FullMethodName           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob"
-	TaskmasterService_CancelJobs_FullMethodName       = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs"
-	TaskmasterService_SetDriver_FullMethodName        = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
-	TaskmasterService_SetCache_FullMethodName         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
-	TaskmasterService_GetCache_FullMethodName         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
-	TaskmasterService_SetManagedFields_FullMethodName = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields"
+	TaskmasterService_QueueJobs_FullMethodName                          = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs"
+	TaskmasterService_GetJob_FullMethodName                             = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob"
+	TaskmasterService_CancelJobs_FullMethodName                         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs"
+	TaskmasterService_SetDriver_FullMethodName                          = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
+	TaskmasterService_SetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
+	TaskmasterService_GetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
+	TaskmasterService_SetManagedFields_FullMethodName                   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields"
+	TaskmasterService_AddCommunicationUnitLogs_FullMethodName           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/AddCommunicationUnitLogs"
+	TaskmasterService_SetUnknownDevices_FullMethodName                  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetUnknownDevices"
+	TaskmasterService_ListDevicesByAttributes_FullMethodName            = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes"
+	TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes"
+	TaskmasterService_SetNeightbours_FullMethodName                     = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours"
 )
 
 // TaskmasterServiceClient is the client API for TaskmasterService service.
@@ -54,8 +59,24 @@ type TaskmasterServiceClient interface {
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	GetCache(ctx context.Context, in *acquisition.GetCacheRequest, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error)
 	// @group: Drivers
-	// The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+	// The method sets the managed fields for entities.
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
+	// Adds a new log records to the communication unit. Duplicit records are ignored.
+	AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method sets currently known unknown devices visible by the communication unit.
+	SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method returns the list of device identifiers that match the given attributes.
+	ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	// @group: Drivers
+	// The method returns the list of communication unit identifiers that match the given attributes.
+	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	// @group: Drivers
+	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
+	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
+	SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type taskmasterServiceClient struct {
@@ -136,6 +157,56 @@ func (c *taskmasterServiceClient) SetManagedFields(ctx context.Context, in *comm
 	return out, nil
 }
 
+func (c *taskmasterServiceClient) AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_AddCommunicationUnitLogs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskmasterServiceClient) SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_SetUnknownDevices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskmasterServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfString)
+	err := c.cc.Invoke(ctx, TaskmasterService_ListDevicesByAttributes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskmasterServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.ListOfString)
+	err := c.cc.Invoke(ctx, TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskmasterServiceClient) SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_SetNeightbours_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TaskmasterServiceServer is the server API for TaskmasterService service.
 // All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility.
@@ -158,8 +229,24 @@ type TaskmasterServiceServer interface {
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
 	GetCache(context.Context, *acquisition.GetCacheRequest) (*acquisition.GetCacheResponse, error)
 	// @group: Drivers
-	// The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+	// The method sets the managed fields for entities.
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
+	// @group: Drivers
+	// Adds a new log records to the communication unit. Duplicit records are ignored.
+	AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method sets currently known unknown devices visible by the communication unit.
+	SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method returns the list of device identifiers that match the given attributes.
+	ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	// @group: Drivers
+	// The method returns the list of communication unit identifiers that match the given attributes.
+	ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	// @group: Drivers
+	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
+	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
+	SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -190,6 +277,21 @@ func (UnimplementedTaskmasterServiceServer) GetCache(context.Context, *acquisiti
 }
 func (UnimplementedTaskmasterServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitLogs not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetUnknownDevices not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDevicesByAttributes not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsByAttributes not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNeightbours not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
 func (UnimplementedTaskmasterServiceServer) testEmbeddedByValue()                           {}
@@ -338,6 +440,96 @@ func _TaskmasterService_SetManagedFields_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskmasterService_AddCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddCommunicationUnitLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).AddCommunicationUnitLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_AddCommunicationUnitLogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).AddCommunicationUnitLogs(ctx, req.(*acquisition.AddCommunicationUnitLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_SetUnknownDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetUnknownDevicesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).SetUnknownDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_SetUnknownDevices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).SetUnknownDevices(ctx, req.(*acquisition.SetUnknownDevicesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_ListDevicesByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FieldValuesList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).ListDevicesByAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_ListDevicesByAttributes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.FieldValuesList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_ListCommunicationUnitsByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FieldValuesList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).ListCommunicationUnitsByAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.FieldValuesList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_SetNeightbours_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetNeighboursRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).SetNeightbours(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_SetNeightbours_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).SetNeightbours(ctx, req.(*acquisition.SetNeighboursRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TaskmasterService_ServiceDesc is the grpc.ServiceDesc for TaskmasterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -372,6 +564,26 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetManagedFields",
 			Handler:    _TaskmasterService_SetManagedFields_Handler,
+		},
+		{
+			MethodName: "AddCommunicationUnitLogs",
+			Handler:    _TaskmasterService_AddCommunicationUnitLogs_Handler,
+		},
+		{
+			MethodName: "SetUnknownDevices",
+			Handler:    _TaskmasterService_SetUnknownDevices_Handler,
+		},
+		{
+			MethodName: "ListDevicesByAttributes",
+			Handler:    _TaskmasterService_ListDevicesByAttributes_Handler,
+		},
+		{
+			MethodName: "ListCommunicationUnitsByAttributes",
+			Handler:    _TaskmasterService_ListCommunicationUnitsByAttributes_Handler,
+		},
+		{
+			MethodName: "SetNeightbours",
+			Handler:    _TaskmasterService_SetNeightbours_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

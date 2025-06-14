@@ -4,6 +4,7 @@ import grpc
 
 from acquisition import internal_pb2 as acquisition_dot_internal__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
+from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import internal_pb2 as common_dot_internal__pb2
 from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
@@ -54,6 +55,31 @@ class TaskmasterServiceStub(object):
         self.SetManagedFields = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
                 request_serializer=common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.AddCommunicationUnitLogs = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/AddCommunicationUnitLogs',
+                request_serializer=acquisition_dot_internal__pb2.AddCommunicationUnitLogsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SetUnknownDevices = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetUnknownDevices',
+                request_serializer=acquisition_dot_internal__pb2.SetUnknownDevicesRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.ListDevicesByAttributes = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes',
+                request_serializer=acquisition_dot_shared__pb2.FieldValuesList.SerializeToString,
+                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
+                _registered_method=True)
+        self.ListCommunicationUnitsByAttributes = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes',
+                request_serializer=acquisition_dot_shared__pb2.FieldValuesList.SerializeToString,
+                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
+                _registered_method=True)
+        self.SetNeightbours = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours',
+                request_serializer=acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
@@ -109,7 +135,48 @@ class TaskmasterServiceServicer(object):
 
     def SetManagedFields(self, request, context):
         """@group: Drivers
-        The method called by the driver to set the managed fields. The method is synchronous and returns a response whether the fields were set successfully or not.
+        The method sets the managed fields for entities.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddCommunicationUnitLogs(self, request, context):
+        """@group: Drivers
+        Adds a new log records to the communication unit. Duplicit records are ignored.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetUnknownDevices(self, request, context):
+        """@group: Drivers
+        The method sets currently known unknown devices visible by the communication unit.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListDevicesByAttributes(self, request, context):
+        """@group: Drivers
+        The method returns the list of device identifiers that match the given attributes.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListCommunicationUnitsByAttributes(self, request, context):
+        """@group: Drivers
+        The method returns the list of communication unit identifiers that match the given attributes.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetNeightbours(self, request, context):
+        """@group: Drivers
+        The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
+        If there were other neighbours not listed within the request, they are removed from the neighbours list.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -151,6 +218,31 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             'SetManagedFields': grpc.unary_unary_rpc_method_handler(
                     servicer.SetManagedFields,
                     request_deserializer=common_dot_internal__pb2.SetManagedFieldsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'AddCommunicationUnitLogs': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCommunicationUnitLogs,
+                    request_deserializer=acquisition_dot_internal__pb2.AddCommunicationUnitLogsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetUnknownDevices': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetUnknownDevices,
+                    request_deserializer=acquisition_dot_internal__pb2.SetUnknownDevicesRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'ListDevicesByAttributes': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDevicesByAttributes,
+                    request_deserializer=acquisition_dot_shared__pb2.FieldValuesList.FromString,
+                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
+            ),
+            'ListCommunicationUnitsByAttributes': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCommunicationUnitsByAttributes,
+                    request_deserializer=acquisition_dot_shared__pb2.FieldValuesList.FromString,
+                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
+            ),
+            'SetNeightbours': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetNeightbours,
+                    request_deserializer=acquisition_dot_internal__pb2.SetNeighboursRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -344,6 +436,141 @@ class TaskmasterService(object):
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
             common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddCommunicationUnitLogs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/AddCommunicationUnitLogs',
+            acquisition_dot_internal__pb2.AddCommunicationUnitLogsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetUnknownDevices(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetUnknownDevices',
+            acquisition_dot_internal__pb2.SetUnknownDevicesRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDevicesByAttributes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes',
+            acquisition_dot_shared__pb2.FieldValuesList.SerializeToString,
+            common_dot_types__pb2.ListOfString.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListCommunicationUnitsByAttributes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes',
+            acquisition_dot_shared__pb2.FieldValuesList.SerializeToString,
+            common_dot_types__pb2.ListOfString.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetNeightbours(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours',
+            acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
