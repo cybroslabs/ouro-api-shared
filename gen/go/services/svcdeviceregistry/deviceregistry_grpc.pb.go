@@ -239,11 +239,11 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
@@ -871,7 +871,7 @@ func (c *deviceRegistryServiceClient) SetUnknownDevices(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+func (c *deviceRegistryServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfString)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDevicesByAttributes_FullMethodName, in, out, cOpts...)
@@ -881,7 +881,7 @@ func (c *deviceRegistryServiceClient) ListDevicesByAttributes(ctx context.Contex
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+func (c *deviceRegistryServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfString)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName, in, out, cOpts...)
@@ -1051,11 +1051,11 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
@@ -1251,10 +1251,10 @@ func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitLogs(context
 func (UnimplementedDeviceRegistryServiceServer) SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetUnknownDevices not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDevicesByAttributes not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsByAttributes not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
@@ -2344,7 +2344,7 @@ func _DeviceRegistryService_SetUnknownDevices_Handler(srv interface{}, ctx conte
 }
 
 func _DeviceRegistryService_ListDevicesByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.FieldValuesList)
+	in := new(acquisition.ObjectAttributeSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2356,13 +2356,13 @@ func _DeviceRegistryService_ListDevicesByAttributes_Handler(srv interface{}, ctx
 		FullMethod: DeviceRegistryService_ListDevicesByAttributes_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.FieldValuesList))
+		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.FieldValuesList)
+	in := new(acquisition.ObjectAttributeSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2374,7 +2374,7 @@ func _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler(srv inter
 		FullMethod: DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.FieldValuesList))
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -69,10 +69,10 @@ type TaskmasterServiceClient interface {
 	SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
 	// @group: Drivers
 	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error)
+	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
 	// @group: Drivers
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
@@ -177,7 +177,7 @@ func (c *taskmasterServiceClient) SetUnknownDevices(ctx context.Context, in *acq
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+func (c *taskmasterServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfString)
 	err := c.cc.Invoke(ctx, TaskmasterService_ListDevicesByAttributes_FullMethodName, in, out, cOpts...)
@@ -187,7 +187,7 @@ func (c *taskmasterServiceClient) ListDevicesByAttributes(ctx context.Context, i
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.FieldValuesList, opts ...grpc.CallOption) (*common.ListOfString, error) {
+func (c *taskmasterServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfString)
 	err := c.cc.Invoke(ctx, TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName, in, out, cOpts...)
@@ -239,10 +239,10 @@ type TaskmasterServiceServer interface {
 	SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
 	// @group: Drivers
 	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error)
+	ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
 	// @group: Drivers
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
@@ -284,10 +284,10 @@ func (UnimplementedTaskmasterServiceServer) AddCommunicationUnitLogs(context.Con
 func (UnimplementedTaskmasterServiceServer) SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetUnknownDevices not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) ListDevicesByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+func (UnimplementedTaskmasterServiceServer) ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDevicesByAttributes not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.FieldValuesList) (*common.ListOfString, error) {
+func (UnimplementedTaskmasterServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsByAttributes not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
@@ -477,7 +477,7 @@ func _TaskmasterService_SetUnknownDevices_Handler(srv interface{}, ctx context.C
 }
 
 func _TaskmasterService_ListDevicesByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.FieldValuesList)
+	in := new(acquisition.ObjectAttributeSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -489,13 +489,13 @@ func _TaskmasterService_ListDevicesByAttributes_Handler(srv interface{}, ctx con
 		FullMethod: TaskmasterService_ListDevicesByAttributes_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.FieldValuesList))
+		return srv.(TaskmasterServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TaskmasterService_ListCommunicationUnitsByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.FieldValuesList)
+	in := new(acquisition.ObjectAttributeSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -507,7 +507,7 @@ func _TaskmasterService_ListCommunicationUnitsByAttributes_Handler(srv interface
 		FullMethod: TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.FieldValuesList))
+		return srv.(TaskmasterServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

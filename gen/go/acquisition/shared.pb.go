@@ -9883,27 +9883,27 @@ func (b0 ListOfConnectionInfo_builder) Build() *ListOfConnectionInfo {
 }
 
 // Addon
-type FieldValuesList struct {
-	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Items *[]*common.FieldValues `protobuf:"bytes,1,rep,name=items"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+type ObjectAttributeSelector struct {
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Attributes *common.FieldValues    `protobuf:"bytes,1,opt,name=attributes"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
-func (x *FieldValuesList) Reset() {
-	*x = FieldValuesList{}
+func (x *ObjectAttributeSelector) Reset() {
+	*x = ObjectAttributeSelector{}
 	mi := &file_acquisition_shared_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *FieldValuesList) String() string {
+func (x *ObjectAttributeSelector) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FieldValuesList) ProtoMessage() {}
+func (*ObjectAttributeSelector) ProtoMessage() {}
 
-func (x *FieldValuesList) ProtoReflect() protoreflect.Message {
+func (x *ObjectAttributeSelector) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -9915,30 +9915,39 @@ func (x *FieldValuesList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *FieldValuesList) GetItems() []*common.FieldValues {
+func (x *ObjectAttributeSelector) GetAttributes() *common.FieldValues {
 	if x != nil {
-		if x.xxx_hidden_Items != nil {
-			return *x.xxx_hidden_Items
-		}
+		return x.xxx_hidden_Attributes
 	}
 	return nil
 }
 
-func (x *FieldValuesList) SetItems(v []*common.FieldValues) {
-	x.xxx_hidden_Items = &v
+func (x *ObjectAttributeSelector) SetAttributes(v *common.FieldValues) {
+	x.xxx_hidden_Attributes = v
 }
 
-type FieldValuesList_builder struct {
+func (x *ObjectAttributeSelector) HasAttributes() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Attributes != nil
+}
+
+func (x *ObjectAttributeSelector) ClearAttributes() {
+	x.xxx_hidden_Attributes = nil
+}
+
+type ObjectAttributeSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Items []*common.FieldValues
+	Attributes *common.FieldValues
 }
 
-func (b0 FieldValuesList_builder) Build() *FieldValuesList {
-	m0 := &FieldValuesList{}
+func (b0 ObjectAttributeSelector_builder) Build() *ObjectAttributeSelector {
+	m0 := &ObjectAttributeSelector{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Items = &b.Items
+	x.xxx_hidden_Attributes = b.Attributes
 	return m0
 }
 
@@ -11796,9 +11805,11 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x14ListOfConnectionInfo\x12N\n" +
 	"\x05items\x18\x01 \x03(\v28.io.clbs.openhes.models.acquisition.DeviceConnectionInfoR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"S\n" +
-	"\x0fFieldValuesList\x12@\n" +
-	"\x05items\x18\x01 \x03(\v2*.io.clbs.openhes.models.common.FieldValuesR\x05items\"\x83\x02\n" +
+	"totalCount\"e\n" +
+	"\x17ObjectAttributeSelector\x12J\n" +
+	"\n" +
+	"attributes\x18\x01 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\n" +
+	"attributes\"\x83\x02\n" +
 	"\fActionResult\x12\x1b\n" +
 	"\taction_id\x18\x01 \x01(\tR\bactionId\x12L\n" +
 	"\x06status\x18\x02 \x01(\x0e24.io.clbs.openhes.models.acquisition.ActionResultCodeR\x06status\x12B\n" +
@@ -12049,7 +12060,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*DeviceConnectionInfo)(nil),            // 68: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
 	(*ListOfModemInfo)(nil),                 // 69: io.clbs.openhes.models.acquisition.ListOfModemInfo
 	(*ListOfConnectionInfo)(nil),            // 70: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	(*FieldValuesList)(nil),                 // 71: io.clbs.openhes.models.acquisition.FieldValuesList
+	(*ObjectAttributeSelector)(nil),         // 71: io.clbs.openhes.models.acquisition.ObjectAttributeSelector
 	(*ActionResult)(nil),                    // 72: io.clbs.openhes.models.acquisition.ActionResult
 	(*JobEventData)(nil),                    // 73: io.clbs.openhes.models.acquisition.JobEventData
 	(*DeviceSpec)(nil),                      // 74: io.clbs.openhes.models.acquisition.DeviceSpec
@@ -12209,7 +12220,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	67,  // 123: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
 	21,  // 124: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	68,  // 125: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	99,  // 126: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	99,  // 126: io.clbs.openhes.models.acquisition.ObjectAttributeSelector.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
 	9,   // 127: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
 	36,  // 128: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
 	76,  // 129: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit

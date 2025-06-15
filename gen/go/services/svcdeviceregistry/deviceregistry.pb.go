@@ -29,7 +29,7 @@ var File_services_svcdeviceregistry_deviceregistry_proto protoreflect.FileDescri
 
 const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\n" +
-	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto\x1a\x15common/metadata.proto2\x809\n" +
+	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto\x1a\x15common/metadata.proto2\x919\n" +
 	"\x15DeviceRegistryService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
 	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12V\n" +
@@ -90,9 +90,9 @@ const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12b\n" +
 	"\x10SetManagedFields\x126.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.Empty\x12w\n" +
 	"\x18AddCommunicationUnitLogs\x12C.io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest\x1a\x16.google.protobuf.Empty\x12i\n" +
-	"\x11SetUnknownDevices\x12<.io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest\x1a\x16.google.protobuf.Empty\x12{\n" +
-	"\x17ListDevicesByAttributes\x123.io.clbs.openhes.models.acquisition.FieldValuesList\x1a+.io.clbs.openhes.models.common.ListOfString\x12\x86\x01\n" +
-	"\"ListCommunicationUnitsByAttributes\x123.io.clbs.openhes.models.acquisition.FieldValuesList\x1a+.io.clbs.openhes.models.common.ListOfString\x12b\n" +
+	"\x11SetUnknownDevices\x12<.io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest\x1a\x16.google.protobuf.Empty\x12\x83\x01\n" +
+	"\x17ListDevicesByAttributes\x12;.io.clbs.openhes.models.acquisition.ObjectAttributeSelector\x1a+.io.clbs.openhes.models.common.ListOfString\x12\x8e\x01\n" +
+	"\"ListCommunicationUnitsByAttributes\x12;.io.clbs.openhes.models.acquisition.ObjectAttributeSelector\x1a+.io.clbs.openhes.models.common.ListOfString\x12b\n" +
 	"\x0eSetNeightbours\x128.io.clbs.openhes.models.acquisition.SetNeighboursRequest\x1a\x16.google.protobuf.EmptyBIZGgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistryb\beditionsp\xe8\a"
 
 var file_services_svcdeviceregistry_deviceregistry_proto_goTypes = []any{
@@ -129,7 +129,7 @@ var file_services_svcdeviceregistry_deviceregistry_proto_goTypes = []any{
 	(*common.SetManagedFieldsRequest)(nil),                                                      // 30: io.clbs.openhes.models.common.SetManagedFieldsRequest
 	(*acquisition.AddCommunicationUnitLogsRequest)(nil),                                         // 31: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
 	(*acquisition.SetUnknownDevicesRequest)(nil),                                                // 32: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	(*acquisition.FieldValuesList)(nil),                                                         // 33: io.clbs.openhes.models.acquisition.FieldValuesList
+	(*acquisition.ObjectAttributeSelector)(nil),                                                 // 33: io.clbs.openhes.models.acquisition.ObjectAttributeSelector
 	(*acquisition.SetNeighboursRequest)(nil),                                                    // 34: io.clbs.openhes.models.acquisition.SetNeighboursRequest
 	(*acquisition.ListOfVariable)(nil),                                                          // 35: io.clbs.openhes.models.acquisition.ListOfVariable
 	(*emptypb.Empty)(nil),                                                                       // 36: google.protobuf.Empty
@@ -213,8 +213,8 @@ var file_services_svcdeviceregistry_deviceregistry_proto_depIdxs = []int32{
 	30, // 57: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
 	31, // 58: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitLogs:input_type -> io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
 	32, // 59: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetUnknownDevices:input_type -> io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	33, // 60: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDevicesByAttributes:input_type -> io.clbs.openhes.models.acquisition.FieldValuesList
-	33, // 61: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnitsByAttributes:input_type -> io.clbs.openhes.models.acquisition.FieldValuesList
+	33, // 60: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDevicesByAttributes:input_type -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
+	33, // 61: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnitsByAttributes:input_type -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
 	34, // 62: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetNeightbours:input_type -> io.clbs.openhes.models.acquisition.SetNeighboursRequest
 	3,  // 63: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateVariable:output_type -> google.protobuf.StringValue
 	35, // 64: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable

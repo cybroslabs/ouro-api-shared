@@ -719,8 +719,8 @@ message ListOfConnectionInfo {
 }
 
 // Addon
-message FieldValuesList {
-    repeated common.FieldValues items = 1;  // The list of field values.
+message ObjectAttributeSelector {
+    common.FieldValues attributes = 1;  // The list of field values.
 }
 
 // Job statuses
