@@ -20,11 +20,18 @@ func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDe
 	if strings.Contains(dbPath, ".{") {
 		panic("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
 	}
-	return FieldDescriptorInternal_builder{
+
+	fd_wrapper := FieldDescriptorInternal_builder{
 		Group:           ptr.To(group),
 		DbPath:          ptr.To(dbPath),
 		FieldDescriptor: descriptor,
 	}.Build()
+
+	object_type := descriptor.GetObjectType()
+	fd_wrapper.SetGroup(strings.ToLower(fmt.Sprintf("%s#%s", object_type, "*builtin*")))
+	descriptor.SetGid(strings.ToLower(fmt.Sprintf("%s#%s", object_type, fd_wrapper.GetDbPath())))
+
+	return fd_wrapper
 }
 
 // NewFieldDescriptor creates a new FieldDescriptor with the given parameters.
