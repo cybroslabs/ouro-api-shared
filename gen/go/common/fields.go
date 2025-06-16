@@ -392,7 +392,7 @@ func (fd *FieldDescriptor) GenerateJsPath(prefix string) *string {
 }
 
 var (
-	_re_js_path = regexp.MustCompile(`(?:^|\.)[^\.\{\}]+\.\{([^\}]+)\}`)
+	_re_js_path = regexp.MustCompile(`(^|\.)[^\.\{\}]+\.\{([^\}]+)\}`)
 )
 
 // The method converts a JS path to a standard path format.
@@ -400,7 +400,7 @@ var (
 // In the path the wrapper is not present and the case-value is directly used as a path segment.
 // Example: 'any.dot.path.hide.{selector}.more' -> 'any.dot.path.selector.more'
 func (fd *FieldDescriptor) ConvertJsPathToPath(jsPath string) string {
-	return _re_js_path.ReplaceAllString(jsPath, "$2")
+	return _re_js_path.ReplaceAllString(jsPath, "$1$2")
 }
 
 // The method validates the field values against the field descriptors.

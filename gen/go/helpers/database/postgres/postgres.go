@@ -76,6 +76,15 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelCol
 	return
 }
 
+func escapeForRegex(s string) string {
+	if s == "" {
+		return s
+	}
+	s = strings.ReplaceAll(s, `\`, `\\`) // escape backslash first
+	s = strings.ReplaceAll(s, `"`, `\"`) // then escape double quote
+	return s
+}
+
 func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qArgsIn []any) (qArgs []any) {
 	if len(fixedWhere) == 0 {
 		if qArgsIn == nil {
@@ -137,70 +146,130 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 				makeOpVal := func(operand string) string { return " = " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, "=")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " = \"" + escapeForRegex(value) + "\"", false
+					}
+					return " = ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_EQUAL:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " <> " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, "<>")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " <> \"" + escapeForRegex(value) + "\"", false
+					}
+					return " <> ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " > " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, ">")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " > \"" + escapeForRegex(value) + "\"", false
+					}
+					return " > ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN_OR_EQUAL:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " >= " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, ">=")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " >= \"" + escapeForRegex(value) + "\"", false
+					}
+					return " >= ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " < " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, "<")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " < \"" + escapeForRegex(value) + "\"", false
+					}
+					return " < ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN_OR_EQUAL:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " <= " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, "<=")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " <= \"" + escapeForRegex(value) + "\"", false
+					}
+					return " <= ", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_CONTAINS:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " LIKE '%' || " + operand + " || '%' " }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				return "", nil, errors.New("the CONTAINS operator is not supported for JSONB fields")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " like_regex \"" + escapeForRegex(value) + "\"", false
+					}
+					return "", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_CONTAINS:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " NOT LIKE '%' || " + operand + " || '%' " }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				return "", nil, errors.New("the CONTAINS operator is not supported for JSONB fields")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " like_regex \"" + escapeForRegex(value) + "\"", true
+					}
+					return "", true
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_STARTS_WITH:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " LIKE " + operand + " || '%' " }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				return "", nil, errors.New("the CONTAINS operator is not supported for JSONB fields")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " like_regex \"^" + escapeForRegex(value) + "\"", false
+					}
+					return "", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_ENDS_WITH:
 			if !use_jsonb_func {
 				makeOpVal := func(operand string) string { return " LIKE '%' || " + operand }
 				err = addSingleOperandOperator(&parts, &values, col, f, makeOpVal)
 			} else {
-				return "", nil, errors.New("the CONTAINS operator is not supported for JSONB fields")
+				makeOpVal := func(value string) (string, bool) {
+					if len(value) > 0 {
+						return " like_regex \"" + escapeForRegex(value) + "$\"", false
+					}
+					return "", false
+				}
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		// Multi-operand operators
 		case common.FilterOperator_IN:
@@ -377,19 +446,25 @@ func addSingleOperandOperator(parts *[]string, values *[]any, col string, in *co
 	return nil
 }
 
-func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath string, jsonProperty string, in *common.ListSelectorFilterBy, operator string) error {
+func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath string, jsonProperty string, in *common.ListSelectorFilterBy, composeOpVal func(value string) (result string, invert bool)) error {
 	switch in.GetDataType() {
 	case common.FieldDataType_TEXT:
 		if t := in.GetText(); len(t) != 1 {
 			return errors.New("invalid number of operands")
 		} else {
-			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %s)')", modelColumn, jsonPath, jsonProperty, operator, t[0]))
+			composed, invert := composeOpVal(t[0])
+			if invert {
+				*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (!(%s %s))')", modelColumn, jsonPath, jsonProperty, composed))
+			} else {
+				*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s)')", modelColumn, jsonPath, jsonProperty, composed))
+			}
 		}
 	case common.FieldDataType_INTEGER:
 		if t := in.GetInteger(); len(t) != 1 {
 			return errors.New("invalid number of operands")
 		} else {
-			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %d)')", modelColumn, jsonPath, jsonProperty, operator, t[0]))
+			op, _ := composeOpVal("")
+			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %d)')", modelColumn, jsonPath, jsonProperty, op, t[0]))
 		}
 	case common.FieldDataType_BOOLEAN:
 		if t := in.GetBoolean(); len(t) != 1 {
@@ -399,13 +474,15 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 			if t[0] {
 				b = "true"
 			}
-			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %s)')", modelColumn, jsonPath, jsonProperty, operator, b))
+			op, _ := composeOpVal("")
+			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %s)')", modelColumn, jsonPath, jsonProperty, op, b))
 		}
 	case common.FieldDataType_DOUBLE:
 		if t := in.GetNumber(); len(t) != 1 {
 			return errors.New("invalid number of operands")
 		} else {
-			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %f)')", modelColumn, jsonPath, jsonProperty, operator, t[0]))
+			op, _ := composeOpVal("")
+			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %f)')", modelColumn, jsonPath, jsonProperty, op, t[0]))
 		}
 	default:
 		return errors.New("unsupported data type")
