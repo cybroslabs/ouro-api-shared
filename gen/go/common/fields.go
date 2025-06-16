@@ -16,9 +16,13 @@ import (
 // It is used internally to create a FieldDescriptor with additional metadata like ID, group, and database path.
 // The group is a field descriptor group key used to clean up removed descriptors.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
-func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDescriptor) *FieldDescriptorInternal {
+func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDescriptor) (*FieldDescriptorInternal, error) {
 	if strings.Contains(dbPath, ".{") {
-		panic("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
+		return nil, errors.New("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
+	}
+
+	if len(dbPath) == 0 {
+		return nil, errors.New("dbPath must not be empty")
 	}
 
 	fd_wrapper := FieldDescriptorInternal_builder{
@@ -36,9 +40,22 @@ func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDe
 
 	object_type := descriptor.GetObjectType()
 	fd_wrapper.SetGroup(strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix)))
-	descriptor.SetGid(strings.ToLower(fmt.Sprintf("%s#%s", object_type, fd_wrapper.GetDbPath())))
+	descriptor.SetGid(strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath)))
 
-	return fd_wrapper
+	return fd_wrapper, nil
+}
+
+// NewFieldDescriptorInternal creates a new FieldDescriptorInternal with the given parameters.
+// It is used internally to create a FieldDescriptor with additional metadata like ID, group, and database path.
+// The group is a field descriptor group key used to clean up removed descriptors.
+// The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
+// MustNewFieldDescriptorInternal creates a new FieldDescriptorInternal and panics if there is an error.
+func MustNewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDescriptor) *FieldDescriptorInternal {
+	fd, err := NewFieldDescriptorInternal(group, dbPath, descriptor)
+	if err != nil {
+		panic(err.Error())
+	}
+	return fd
 }
 
 // NewFieldDescriptor creates a new FieldDescriptor with the given parameters.
