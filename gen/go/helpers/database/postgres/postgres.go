@@ -148,11 +148,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " = \"" + escapeForRegex(value) + "\"", false
+						return ` == "` + escapeForRegex(value) + `"`, false
 					}
-					return " = ", false
+					return " == ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_EQUAL:
 			if !use_jsonb_func {
@@ -161,11 +161,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " <> \"" + escapeForRegex(value) + "\"", false
+						return ` <> "` + escapeForRegex(value) + `"`, false
 					}
 					return " <> ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN:
 			if !use_jsonb_func {
@@ -174,11 +174,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " > \"" + escapeForRegex(value) + "\"", false
+						return ` > "` + escapeForRegex(value) + `"`, false
 					}
 					return " > ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN_OR_EQUAL:
 			if !use_jsonb_func {
@@ -187,11 +187,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " >= \"" + escapeForRegex(value) + "\"", false
+						return ` >= "` + escapeForRegex(value) + `"`, false
 					}
 					return " >= ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN:
 			if !use_jsonb_func {
@@ -200,11 +200,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " < \"" + escapeForRegex(value) + "\"", false
+						return ` < "` + escapeForRegex(value) + `"`, false
 					}
 					return " < ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN_OR_EQUAL:
 			if !use_jsonb_func {
@@ -213,11 +213,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " <= \"" + escapeForRegex(value) + "\"", false
+						return ` <= "` + escapeForRegex(value) + `"`, false
 					}
 					return " <= ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_CONTAINS:
 			if !use_jsonb_func {
@@ -226,11 +226,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " like_regex \"" + escapeForRegex(value) + "\"", false
+						return ` like_regex "` + escapeForRegex(value) + `"`, false
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_CONTAINS:
 			if !use_jsonb_func {
@@ -239,11 +239,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " like_regex \"" + escapeForRegex(value) + "\"", true
+						return ` like_regex "` + escapeForRegex(value) + `"`, true
 					}
 					return "", true
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_STARTS_WITH:
 			if !use_jsonb_func {
@@ -252,11 +252,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " like_regex \"^" + escapeForRegex(value) + "\"", false
+						return ` like_regex "^` + escapeForRegex(value) + `"`, false
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_ENDS_WITH:
 			if !use_jsonb_func {
@@ -265,11 +265,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return " like_regex \"" + escapeForRegex(value) + "$\"", false
+						return ` like_regex "` + escapeForRegex(value) + `$"`, false
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
 			}
 		// Multi-operand operators
 		case common.FilterOperator_IN:
