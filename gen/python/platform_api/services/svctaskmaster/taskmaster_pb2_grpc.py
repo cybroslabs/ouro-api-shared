@@ -82,6 +82,11 @@ class TaskmasterServiceStub(object):
                 request_serializer=acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.SetCurrentDeviceCommunicationUnit = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCurrentDeviceCommunicationUnit',
+                request_serializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
 
 
 class TaskmasterServiceServicer(object):
@@ -182,6 +187,16 @@ class TaskmasterServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetCurrentDeviceCommunicationUnit(self, request, context):
+        """@group: Drivers
+        The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+        The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+        The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TaskmasterServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -243,6 +258,11 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             'SetNeightbours': grpc.unary_unary_rpc_method_handler(
                     servicer.SetNeightbours,
                     request_deserializer=acquisition_dot_internal__pb2.SetNeighboursRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetCurrentDeviceCommunicationUnit': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCurrentDeviceCommunicationUnit,
+                    request_deserializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -571,6 +591,33 @@ class TaskmasterService(object):
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours',
             acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetCurrentDeviceCommunicationUnit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCurrentDeviceCommunicationUnit',
+            acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

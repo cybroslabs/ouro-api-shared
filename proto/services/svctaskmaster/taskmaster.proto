@@ -48,4 +48,9 @@ service TaskmasterService {
     // The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
     // If there were other neighbours not listed within the request, they are removed from the neighbours list.
     rpc SetNeightbours(io.clbs.openhes.models.acquisition.SetNeighboursRequest) returns (google.protobuf.Empty);
+    // @group: Drivers
+    // The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+    // The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+    // The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+    rpc SetCurrentDeviceCommunicationUnit(io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest) returns (google.protobuf.Empty);
 }

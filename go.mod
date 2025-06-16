@@ -14,7 +14,7 @@ require (
 	github.com/99designs/gqlgen v0.17.74
 	github.com/google/uuid v1.6.0
 	github.com/rmg/iso4217 v1.0.1
-	github.com/vektah/gqlparser/v2 v2.5.27
+	github.com/vektah/gqlparser/v2 v2.5.28
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto v0.0.0-20250603155806-513f23925822
 	google.golang.org/grpc v1.73.0

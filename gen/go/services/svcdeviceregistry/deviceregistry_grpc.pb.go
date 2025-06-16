@@ -84,9 +84,8 @@ const (
 	DeviceRegistryService_SetManagedFields_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetManagedFields"
 	DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName                                         = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitLogs"
 	DeviceRegistryService_SetUnknownDevices_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetUnknownDevices"
-	DeviceRegistryService_ListDevicesByAttributes_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevicesByAttributes"
-	DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitsByAttributes"
 	DeviceRegistryService_SetNeightbours_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours"
+	DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -237,18 +236,15 @@ type DeviceRegistryServiceClient interface {
 	// The method sets currently known unknown devices visible by the communication unit.
 	SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
-	// @tag: device
-	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
-	// @group: Devices
-	// @tag: communicationunit
-	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error)
-	// @group: Devices
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+	SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -871,30 +867,20 @@ func (c *deviceRegistryServiceClient) SetUnknownDevices(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) ListDevicesByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(common.ListOfString)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDevicesByAttributes_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deviceRegistryServiceClient) ListCommunicationUnitsByAttributes(ctx context.Context, in *acquisition.ObjectAttributeSelector, opts ...grpc.CallOption) (*common.ListOfString, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(common.ListOfString)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *deviceRegistryServiceClient) SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_SetNeightbours_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1049,18 +1035,15 @@ type DeviceRegistryServiceServer interface {
 	// The method sets currently known unknown devices visible by the communication unit.
 	SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error)
 	// @group: Devices
-	// @tag: device
-	// The method returns the list of device identifiers that match the given attributes.
-	ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
-	// @group: Devices
-	// @tag: communicationunit
-	// The method returns the list of communication unit identifiers that match the given attributes.
-	ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error)
-	// @group: Devices
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error)
+	// @group: Devices
+	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+	SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -1251,14 +1234,11 @@ func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitLogs(context
 func (UnimplementedDeviceRegistryServiceServer) SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetUnknownDevices not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) ListDevicesByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDevicesByAttributes not implemented")
-}
-func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitsByAttributes(context.Context, *acquisition.ObjectAttributeSelector) (*common.ListOfString, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitsByAttributes not implemented")
-}
 func (UnimplementedDeviceRegistryServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetNeightbours not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCurrentDeviceCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -2343,42 +2323,6 @@ func _DeviceRegistryService_SetUnknownDevices_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_ListDevicesByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.ObjectAttributeSelector)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DeviceRegistryService_ListDevicesByAttributes_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListDevicesByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.ObjectAttributeSelector)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DeviceRegistryService_ListCommunicationUnitsByAttributes_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitsByAttributes(ctx, req.(*acquisition.ObjectAttributeSelector))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DeviceRegistryService_SetNeightbours_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.SetNeighboursRequest)
 	if err := dec(in); err != nil {
@@ -2393,6 +2337,24 @@ func _DeviceRegistryService_SetNeightbours_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).SetNeightbours(ctx, req.(*acquisition.SetNeighboursRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetCurrentDeviceCommunicationUnitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).SetCurrentDeviceCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).SetCurrentDeviceCommunicationUnit(ctx, req.(*acquisition.SetCurrentDeviceCommunicationUnitRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2637,16 +2599,12 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_SetUnknownDevices_Handler,
 		},
 		{
-			MethodName: "ListDevicesByAttributes",
-			Handler:    _DeviceRegistryService_ListDevicesByAttributes_Handler,
-		},
-		{
-			MethodName: "ListCommunicationUnitsByAttributes",
-			Handler:    _DeviceRegistryService_ListCommunicationUnitsByAttributes_Handler,
-		},
-		{
 			MethodName: "SetNeightbours",
 			Handler:    _DeviceRegistryService_SetNeightbours_Handler,
+		},
+		{
+			MethodName: "SetCurrentDeviceCommunicationUnit",
+			Handler:    _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

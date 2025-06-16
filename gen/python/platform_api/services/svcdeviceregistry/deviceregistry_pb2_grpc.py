@@ -7,7 +7,6 @@ from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 from common import internal_pb2 as common_dot_internal__pb2
-from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
@@ -323,19 +322,14 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=acquisition_dot_internal__pb2.SetUnknownDevicesRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.ListDevicesByAttributes = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevicesByAttributes',
-                request_serializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
-                _registered_method=True)
-        self.ListCommunicationUnitsByAttributes = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitsByAttributes',
-                request_serializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
-                _registered_method=True)
         self.SetNeightbours = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours',
                 request_serializer=acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.SetCurrentDeviceCommunicationUnit = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
+                request_serializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
@@ -785,29 +779,21 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListDevicesByAttributes(self, request, context):
-        """@group: Devices
-        @tag: device
-        The method returns the list of device identifiers that match the given attributes.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListCommunicationUnitsByAttributes(self, request, context):
-        """@group: Devices
-        @tag: communicationunit
-        The method returns the list of communication unit identifiers that match the given attributes.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SetNeightbours(self, request, context):
         """@group: Devices
         @tag: communicationunit
         The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
         If there were other neighbours not listed within the request, they are removed from the neighbours list.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetCurrentDeviceCommunicationUnit(self, request, context):
+        """@group: Devices
+        The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+        The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+        The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1116,19 +1102,14 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_internal__pb2.SetUnknownDevicesRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'ListDevicesByAttributes': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListDevicesByAttributes,
-                    request_deserializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.FromString,
-                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
-            ),
-            'ListCommunicationUnitsByAttributes': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListCommunicationUnitsByAttributes,
-                    request_deserializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.FromString,
-                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
-            ),
             'SetNeightbours': grpc.unary_unary_rpc_method_handler(
                     servicer.SetNeightbours,
                     request_deserializer=acquisition_dot_internal__pb2.SetNeighboursRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SetCurrentDeviceCommunicationUnit': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCurrentDeviceCommunicationUnit,
+                    request_deserializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -2764,60 +2745,6 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def ListDevicesByAttributes(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevicesByAttributes',
-            acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-            common_dot_types__pb2.ListOfString.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def ListCommunicationUnitsByAttributes(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitsByAttributes',
-            acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-            common_dot_types__pb2.ListOfString.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
     def SetNeightbours(request,
             target,
             options=(),
@@ -2833,6 +2760,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours',
             acquisition_dot_internal__pb2.SetNeighboursRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetCurrentDeviceCommunicationUnit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
+            acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

@@ -35,6 +35,7 @@ const (
 	TaskmasterService_ListDevicesByAttributes_FullMethodName            = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes"
 	TaskmasterService_ListCommunicationUnitsByAttributes_FullMethodName = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes"
 	TaskmasterService_SetNeightbours_FullMethodName                     = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours"
+	TaskmasterService_SetCurrentDeviceCommunicationUnit_FullMethodName  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCurrentDeviceCommunicationUnit"
 )
 
 // TaskmasterServiceClient is the client API for TaskmasterService service.
@@ -77,6 +78,11 @@ type TaskmasterServiceClient interface {
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+	SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type taskmasterServiceClient struct {
@@ -207,6 +213,16 @@ func (c *taskmasterServiceClient) SetNeightbours(ctx context.Context, in *acquis
 	return out, nil
 }
 
+func (c *taskmasterServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_SetCurrentDeviceCommunicationUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TaskmasterServiceServer is the server API for TaskmasterService service.
 // All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility.
@@ -247,6 +263,11 @@ type TaskmasterServiceServer interface {
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
+	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
+	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+	SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -292,6 +313,9 @@ func (UnimplementedTaskmasterServiceServer) ListCommunicationUnitsByAttributes(c
 }
 func (UnimplementedTaskmasterServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetNeightbours not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCurrentDeviceCommunicationUnit not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
 func (UnimplementedTaskmasterServiceServer) testEmbeddedByValue()                           {}
@@ -530,6 +554,24 @@ func _TaskmasterService_SetNeightbours_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskmasterService_SetCurrentDeviceCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.SetCurrentDeviceCommunicationUnitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).SetCurrentDeviceCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_SetCurrentDeviceCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).SetCurrentDeviceCommunicationUnit(ctx, req.(*acquisition.SetCurrentDeviceCommunicationUnitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TaskmasterService_ServiceDesc is the grpc.ServiceDesc for TaskmasterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -584,6 +626,10 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetNeightbours",
 			Handler:    _TaskmasterService_SetNeightbours_Handler,
+		},
+		{
+			MethodName: "SetCurrentDeviceCommunicationUnit",
+			Handler:    _TaskmasterService_SetCurrentDeviceCommunicationUnit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

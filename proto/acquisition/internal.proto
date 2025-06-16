@@ -99,8 +99,8 @@ message CommunicationUnitLogRecord {
 }
 
 message SetUnknownDevicesRequest {
-    string communication_unit_id             = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
-    repeated acquisition.UnknownDevice items = 2;  // The list of unknown devices to be set. The list is not empty.
+    string communication_unit_id = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
+    repeated UnknownDevice items = 2;  // The list of unknown devices to be set. The list is not empty.
 }
 
 message UnknownDevice {
@@ -121,4 +121,9 @@ enum DeviceNeighbourType {
 message DeviceNeightbour {
     DeviceNeighbourType type = 1;  // The type of the neighbour.
     string id                = 2;  // The unique identifier of the neighbour. It is either a communication unit identifier or a device identifier.
+}
+
+message SetCurrentDeviceCommunicationUnitRequest {
+    ObjectAttributeSelector device_selector             = 1;  // The device selector. It is used to select the device for which the communication unit is being set.
+    ObjectAttributeSelector communication_unit_selector = 2;  // The communication unit selector. It is used to select the communication unit for the device.
 }
