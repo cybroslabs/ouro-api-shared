@@ -17,6 +17,9 @@ import (
 // The group is a field descriptor group key used to clean up removed descriptors.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
 func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDescriptor) *FieldDescriptorInternal {
+	if strings.Contains(dbPath, ".{") {
+		panic("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
+	}
 	return FieldDescriptorInternal_builder{
 		Group:           ptr.To(group),
 		DbPath:          ptr.To(dbPath),
