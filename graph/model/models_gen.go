@@ -1695,7 +1695,7 @@ type ObjectType string
 const (
 	ObjectTypeBulk              ObjectType = "BULK"
 	ObjectTypeBulkJob           ObjectType = "BULK_JOB"
-	ObjectTypeCommunitationUnit ObjectType = "COMMUNITATION_UNIT"
+	ObjectTypeCommunicationUnit ObjectType = "COMMUNICATION_UNIT"
 	ObjectTypeDevice            ObjectType = "DEVICE"
 	ObjectTypeRegister          ObjectType = "REGISTER"
 	ObjectTypeVariable          ObjectType = "VARIABLE"
@@ -1710,7 +1710,7 @@ const (
 var AllObjectType = []ObjectType{
 	ObjectTypeBulk,
 	ObjectTypeBulkJob,
-	ObjectTypeCommunitationUnit,
+	ObjectTypeCommunicationUnit,
 	ObjectTypeDevice,
 	ObjectTypeRegister,
 	ObjectTypeVariable,
@@ -1724,7 +1724,7 @@ var AllObjectType = []ObjectType{
 
 func (e ObjectType) IsValid() bool {
 	switch e {
-	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunitationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver:
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver:
 		return true
 	}
 	return false

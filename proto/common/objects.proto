@@ -8,7 +8,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 enum ObjectType {
     BULK               = 0;   // The bulk.
     BULK_JOB           = 1;   // The bulk job.
-    COMMUNITATION_UNIT = 2;   // The communication unit.
+    COMMUNICATION_UNIT = 2;   // The communication unit.
     DEVICE             = 3;   // The device.
     REGISTER           = 4;   // The register.
     VARIABLE           = 5;   // The variable.

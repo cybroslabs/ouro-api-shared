@@ -26,7 +26,7 @@ type ObjectType int32
 const (
 	ObjectType_BULK               ObjectType = 0  // The bulk.
 	ObjectType_BULK_JOB           ObjectType = 1  // The bulk job.
-	ObjectType_COMMUNITATION_UNIT ObjectType = 2  // The communication unit.
+	ObjectType_COMMUNICATION_UNIT ObjectType = 2  // The communication unit.
 	ObjectType_DEVICE             ObjectType = 3  // The device.
 	ObjectType_REGISTER           ObjectType = 4  // The register.
 	ObjectType_VARIABLE           ObjectType = 5  // The variable.
@@ -43,7 +43,7 @@ var (
 	ObjectType_name = map[int32]string{
 		0:  "BULK",
 		1:  "BULK_JOB",
-		2:  "COMMUNITATION_UNIT",
+		2:  "COMMUNICATION_UNIT",
 		3:  "DEVICE",
 		4:  "REGISTER",
 		5:  "VARIABLE",
@@ -57,7 +57,7 @@ var (
 	ObjectType_value = map[string]int32{
 		"BULK":               0,
 		"BULK_JOB":           1,
-		"COMMUNITATION_UNIT": 2,
+		"COMMUNICATION_UNIT": 2,
 		"DEVICE":             3,
 		"REGISTER":           4,
 		"VARIABLE":           5,
@@ -101,7 +101,7 @@ const file_common_objects_proto_rawDesc = "" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
 	"\bBULK_JOB\x10\x01\x12\x16\n" +
-	"\x12COMMUNITATION_UNIT\x10\x02\x12\n" +
+	"\x12COMMUNICATION_UNIT\x10\x02\x12\n" +
 	"\n" +
 	"\x06DEVICE\x10\x03\x12\f\n" +
 	"\bREGISTER\x10\x04\x12\f\n" +

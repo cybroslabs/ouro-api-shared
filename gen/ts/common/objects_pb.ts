@@ -9,7 +9,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
  * Describes the file common/objects.proto.
  */
 export const file_common_objects: GenFile = /*@__PURE__*/
-  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24q1QEKCk9iamVjdFR5cGUSCAoEQlVMSxAAEgwKCEJVTEtfSk9CEAESFgoSQ09NTVVOSVRBVElPTl9VTklUEAISCgoGREVWSUNFEAMSDAoIUkVHSVNURVIQBBIMCghWQVJJQUJMRRAFEhMKD0RFVklDRV9URU1QTEFURRAGEhUKEUNPTU1VTklDQVRJT05fQlVTEAcSDgoKTU9ERU1fUE9PTBAIEhAKDERFVklDRV9HUk9VUBAJEhUKEVRJTUVfT0ZfVVNFX1RBQkxFEAoSCgoGRFJJVkVSEAtCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
+  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24q1QEKCk9iamVjdFR5cGUSCAoEQlVMSxAAEgwKCEJVTEtfSk9CEAESFgoSQ09NTVVOSUNBVElPTl9VTklUEAISCgoGREVWSUNFEAMSDAoIUkVHSVNURVIQBBIMCghWQVJJQUJMRRAFEhMKD0RFVklDRV9URU1QTEFURRAGEhUKEUNPTU1VTklDQVRJT05fQlVTEAcSDgoKTU9ERU1fUE9PTBAIEhAKDERFVklDRV9HUk9VUBAJEhUKEVRJTUVfT0ZfVVNFX1RBQkxFEAoSCgoGRFJJVkVSEAtCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
 
 /**
  * Enum representing the object type.
@@ -34,9 +34,9 @@ export enum ObjectType {
   /**
    * The communication unit.
    *
-   * @generated from enum value: COMMUNITATION_UNIT = 2;
+   * @generated from enum value: COMMUNICATION_UNIT = 2;
    */
-  COMMUNITATION_UNIT = 2,
+  COMMUNICATION_UNIT = 2,
 
   /**
    * The device.
@@ -107,7 +107,7 @@ export enum ObjectType {
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */
-export type ObjectTypeJson = "BULK" | "BULK_JOB" | "COMMUNITATION_UNIT" | "DEVICE" | "REGISTER" | "VARIABLE" | "DEVICE_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER";
+export type ObjectTypeJson = "BULK" | "BULK_JOB" | "COMMUNICATION_UNIT" | "DEVICE" | "REGISTER" | "VARIABLE" | "DEVICE_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER";
 
 /**
  * Describes the enum io.clbs.openhes.models.common.ObjectType.

@@ -262,7 +262,7 @@ enum ObjectType {
   # The bulk job.
   BULK_JOB
   # The communication unit.
-  COMMUNITATION_UNIT
+  COMMUNICATION_UNIT
   # The device.
   DEVICE
   # The register.
