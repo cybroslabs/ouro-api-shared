@@ -27,8 +27,15 @@ func NewFieldDescriptorInternal(group string, dbPath string, descriptor *FieldDe
 		FieldDescriptor: descriptor,
 	}.Build()
 
+	var group_suffix string
+	if descriptor.GetIsUserDefined() {
+		group_suffix = "*user*"
+	} else {
+		group_suffix = "*builtin*"
+	}
+
 	object_type := descriptor.GetObjectType()
-	fd_wrapper.SetGroup(strings.ToLower(fmt.Sprintf("%s#%s", object_type, "*builtin*")))
+	fd_wrapper.SetGroup(strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix)))
 	descriptor.SetGid(strings.ToLower(fmt.Sprintf("%s#%s", object_type, fd_wrapper.GetDbPath())))
 
 	return fd_wrapper
