@@ -718,7 +718,12 @@ message ListOfConnectionInfo {
     int32 total_count                   = 2;  // The total number of items.
 }
 
-// Addon
+// Addon for DB
+message FieldValuesList {
+    repeated common.FieldValues items = 1;  // The list of field values.
+}
+
+// Generic attribute selector using field values
 message ObjectAttributeSelector {
     common.FieldValues attributes = 1;  // The list of field values.
 }
