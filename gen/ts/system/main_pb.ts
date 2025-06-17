@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWdCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWcidQoHTGljZW5zZRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJEjsKB29wdGlvbnMYBSABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlc0I1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zeXN0ZW1iCGVkaXRpb25zcOgH", [file_common_fields, file_google_protobuf_struct]);
 
 /**
  * Application config specification.
@@ -184,4 +184,77 @@ export type ApplicationConfigDescriptorJson = {
  */
 export const ApplicationConfigDescriptorSchema: GenMessage<ApplicationConfigDescriptor, {jsonType: ApplicationConfigDescriptorJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 3);
+
+/**
+ * @generated from message io.clbs.openhes.models.system.License
+ */
+export type License = Message<"io.clbs.openhes.models.system.License"> & {
+  /**
+   * The license ID.
+   *
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * The license name.
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * The license description.
+   *
+   * @generated from field: string description = 3;
+   */
+  description: string;
+
+  /**
+   * The licensed options.
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValues options = 5;
+   */
+  options?: FieldValues;
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.system.License
+ */
+export type LicenseJson = {
+  /**
+   * The license ID.
+   *
+   * @generated from field: string id = 1;
+   */
+  id?: string;
+
+  /**
+   * The license name.
+   *
+   * @generated from field: string name = 2;
+   */
+  name?: string;
+
+  /**
+   * The license description.
+   *
+   * @generated from field: string description = 3;
+   */
+  description?: string;
+
+  /**
+   * The licensed options.
+   *
+   * @generated from field: io.clbs.openhes.models.common.FieldValues options = 5;
+   */
+  options?: FieldValuesJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.License.
+ * Use `create(LicenseSchema)` to create a new message.
+ */
+export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 4);
 

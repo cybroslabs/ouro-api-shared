@@ -5489,7 +5489,7 @@ export enum ActionType {
   GET_DEVICE_INFO = 10,
 
   /**
-   * Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+   * Synchronize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
    *
    * @generated from enum value: ACTION_TYPE_SYNC_CLOCK = 11;
    */
@@ -5538,7 +5538,7 @@ export enum ActionType {
   SET_LIMITER = 27,
 
   /**
-   * Reseet billing period.
+   * Reset billing period.
    *
    * @generated from enum value: ACTION_TYPE_RESET_BILLING_PERIOD = 40;
    */

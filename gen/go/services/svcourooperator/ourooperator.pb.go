@@ -28,7 +28,7 @@ var File_services_svcourooperator_ourooperator_proto protoreflect.FileDescriptor
 
 const file_services_svcourooperator_ourooperator_proto_rawDesc = "" +
 	"\n" +
-	"+services/svcourooperator/ourooperator.proto\x12(io.clbs.openhes.services.svcourooperator\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x11system/main.proto2\xa1\a\n" +
+	"+services/svcourooperator/ourooperator.proto\x12(io.clbs.openhes.services.svcourooperator\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x11system/main.proto2\xef\a\n" +
 	"\x13OuroOperatorService\x12W\n" +
 	"\vListDrivers\x12\x16.google.protobuf.Empty\x1a0.io.clbs.openhes.models.acquisition.ListOfDriver\x12O\n" +
 	"\tSetDriver\x12*.io.clbs.openhes.models.acquisition.Driver\x1a\x16.google.protobuf.Empty\x12U\n" +
@@ -38,7 +38,9 @@ const file_services_svcourooperator_ourooperator_proto_rawDesc = "" +
 	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a:.io.clbs.openhes.models.system.ApplicationConfigDescriptor\x12c\n" +
 	"\x17UpdateApplicationConfig\x120.io.clbs.openhes.models.system.ApplicationConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
 	"\x1aSynchronizeComponentConfig\x128.io.clbs.openhes.models.system.ComponentConfigDescriptor\x1a..io.clbs.openhes.models.system.ComponentConfig\x12_\n" +
-	"\fStartUpgrade\x127.io.clbs.openhes.models.acquisition.StartUpgradeRequest\x1a\x16.google.protobuf.EmptyBGZEgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperatorb\beditionsp\xe8\a"
+	"\fStartUpgrade\x127.io.clbs.openhes.models.acquisition.StartUpgradeRequest\x1a\x16.google.protobuf.Empty\x12L\n" +
+	"\n" +
+	"GetLicense\x12\x16.google.protobuf.Empty\x1a&.io.clbs.openhes.models.system.LicenseBGZEgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperatorb\beditionsp\xe8\a"
 
 var file_services_svcourooperator_ourooperator_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),                      // 0: google.protobuf.Empty
@@ -53,6 +55,7 @@ var file_services_svcourooperator_ourooperator_proto_goTypes = []any{
 	(*wrapperspb.UInt32Value)(nil),             // 9: google.protobuf.UInt32Value
 	(*system.ApplicationConfigDescriptor)(nil), // 10: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*system.ComponentConfig)(nil),             // 11: io.clbs.openhes.models.system.ComponentConfig
+	(*system.License)(nil),                     // 12: io.clbs.openhes.models.system.License
 }
 var file_services_svcourooperator_ourooperator_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svcourooperator.OuroOperatorService.ListDrivers:input_type -> google.protobuf.Empty
@@ -64,17 +67,19 @@ var file_services_svcourooperator_ourooperator_proto_depIdxs = []int32{
 	5,  // 6: io.clbs.openhes.services.svcourooperator.OuroOperatorService.UpdateApplicationConfig:input_type -> io.clbs.openhes.models.system.ApplicationConfig
 	6,  // 7: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SynchronizeComponentConfig:input_type -> io.clbs.openhes.models.system.ComponentConfigDescriptor
 	7,  // 8: io.clbs.openhes.services.svcourooperator.OuroOperatorService.StartUpgrade:input_type -> io.clbs.openhes.models.acquisition.StartUpgradeRequest
-	8,  // 9: io.clbs.openhes.services.svcourooperator.OuroOperatorService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
-	0,  // 10: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SetDriver:output_type -> google.protobuf.Empty
-	1,  // 11: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
-	0,  // 12: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SetDriverScale:output_type -> google.protobuf.Empty
-	9,  // 13: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetDriverScale:output_type -> google.protobuf.UInt32Value
-	10, // 14: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfigDescriptor
-	0,  // 15: io.clbs.openhes.services.svcourooperator.OuroOperatorService.UpdateApplicationConfig:output_type -> google.protobuf.Empty
-	11, // 16: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
-	0,  // 17: io.clbs.openhes.services.svcourooperator.OuroOperatorService.StartUpgrade:output_type -> google.protobuf.Empty
-	9,  // [9:18] is the sub-list for method output_type
-	0,  // [0:9] is the sub-list for method input_type
+	0,  // 9: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetLicense:input_type -> google.protobuf.Empty
+	8,  // 10: io.clbs.openhes.services.svcourooperator.OuroOperatorService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
+	0,  // 11: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SetDriver:output_type -> google.protobuf.Empty
+	1,  // 12: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
+	0,  // 13: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SetDriverScale:output_type -> google.protobuf.Empty
+	9,  // 14: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetDriverScale:output_type -> google.protobuf.UInt32Value
+	10, // 15: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfigDescriptor
+	0,  // 16: io.clbs.openhes.services.svcourooperator.OuroOperatorService.UpdateApplicationConfig:output_type -> google.protobuf.Empty
+	11, // 17: io.clbs.openhes.services.svcourooperator.OuroOperatorService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
+	0,  // 18: io.clbs.openhes.services.svcourooperator.OuroOperatorService.StartUpgrade:output_type -> google.protobuf.Empty
+	12, // 19: io.clbs.openhes.services.svcourooperator.OuroOperatorService.GetLicense:output_type -> io.clbs.openhes.models.system.License
+	10, // [10:20] is the sub-list for method output_type
+	0,  // [0:10] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

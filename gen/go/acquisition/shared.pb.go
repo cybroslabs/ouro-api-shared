@@ -548,7 +548,7 @@ const (
 	ActionType_ACTION_TYPE_GET_EVENTS ActionType = 3
 	// Get device info. The action returns info data about remote device.
 	ActionType_ACTION_TYPE_GET_DEVICE_INFO ActionType = 10
-	// Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+	// Synchronize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
 	ActionType_ACTION_TYPE_SYNC_CLOCK ActionType = 11
 	// Set relay state. The action covers single relay.
 	ActionType_ACTION_TYPE_SET_RELAY_STATE ActionType = 21
@@ -562,7 +562,7 @@ const (
 	ActionType_ACTION_TYPE_SET_TOU ActionType = 25
 	// Set limiter settings. The action covers single limiter.
 	ActionType_ACTION_TYPE_SET_LIMITER ActionType = 27
-	// Reseet billing period.
+	// Reset billing period.
 	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD ActionType = 40
 	// Start firmware update. The action updates starts FW upgrade procedure.
 	ActionType_ACTION_TYPE_FW_UPDATE ActionType = 50

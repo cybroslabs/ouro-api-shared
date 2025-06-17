@@ -24,7 +24,7 @@ enum ActionType {
   ACTION_TYPE_GET_EVENTS
   # Get device info. The action returns info data about remote device.
   ACTION_TYPE_GET_DEVICE_INFO
-  # Synchornize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+  # Synchronize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
   ACTION_TYPE_SYNC_CLOCK
   # Set relay state. The action covers single relay.
   ACTION_TYPE_SET_RELAY_STATE
@@ -38,7 +38,7 @@ enum ActionType {
   ACTION_TYPE_SET_TOU
   # Set limiter settings. The action covers single limiter.
   ACTION_TYPE_SET_LIMITER
-  # Reseet billing period.
+  # Reset billing period.
   ACTION_TYPE_RESET_BILLING_PERIOD
   # Start firmware update. The action updates starts FW upgrade procedure.
   ACTION_TYPE_FW_UPDATE

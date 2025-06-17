@@ -26,3 +26,10 @@ message ApplicationConfigDescriptor {
     repeated ComponentConfigDescriptor descriptors = 1;  // The component configuration descriptors.
     repeated ComponentConfig items                 = 2;  // The default values for the application configuration.
 }
+
+message License {
+    string id                  = 1;  // The license ID.
+    string name                = 2;  // The license name.
+    string description         = 3;  // The license description.
+    common.FieldValues options = 5;  // The licensed options.
+}

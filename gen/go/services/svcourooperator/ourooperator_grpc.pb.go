@@ -32,6 +32,7 @@ const (
 	OuroOperatorService_UpdateApplicationConfig_FullMethodName    = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/UpdateApplicationConfig"
 	OuroOperatorService_SynchronizeComponentConfig_FullMethodName = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SynchronizeComponentConfig"
 	OuroOperatorService_StartUpgrade_FullMethodName               = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade"
+	OuroOperatorService_GetLicense_FullMethodName                 = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense"
 )
 
 // OuroOperatorServiceClient is the client API for OuroOperatorService service.
@@ -62,6 +63,8 @@ type OuroOperatorServiceClient interface {
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
 	StartUpgrade(ctx context.Context, in *acquisition.StartUpgradeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// The method is called by all components to validate the license.
+	GetLicense(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.License, error)
 }
 
 type ouroOperatorServiceClient struct {
@@ -162,6 +165,16 @@ func (c *ouroOperatorServiceClient) StartUpgrade(ctx context.Context, in *acquis
 	return out, nil
 }
 
+func (c *ouroOperatorServiceClient) GetLicense(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.License, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.License)
+	err := c.cc.Invoke(ctx, OuroOperatorService_GetLicense_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OuroOperatorServiceServer is the server API for OuroOperatorService service.
 // All implementations must embed UnimplementedOuroOperatorServiceServer
 // for forward compatibility.
@@ -190,6 +203,8 @@ type OuroOperatorServiceServer interface {
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
 	StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error)
+	// The method is called by all components to validate the license.
+	GetLicense(context.Context, *emptypb.Empty) (*system.License, error)
 	mustEmbedUnimplementedOuroOperatorServiceServer()
 }
 
@@ -226,6 +241,9 @@ func (UnimplementedOuroOperatorServiceServer) SynchronizeComponentConfig(context
 }
 func (UnimplementedOuroOperatorServiceServer) StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartUpgrade not implemented")
+}
+func (UnimplementedOuroOperatorServiceServer) GetLicense(context.Context, *emptypb.Empty) (*system.License, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLicense not implemented")
 }
 func (UnimplementedOuroOperatorServiceServer) mustEmbedUnimplementedOuroOperatorServiceServer() {}
 func (UnimplementedOuroOperatorServiceServer) testEmbeddedByValue()                             {}
@@ -410,6 +428,24 @@ func _OuroOperatorService_StartUpgrade_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OuroOperatorService_GetLicense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OuroOperatorServiceServer).GetLicense(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OuroOperatorService_GetLicense_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OuroOperatorServiceServer).GetLicense(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OuroOperatorService_ServiceDesc is the grpc.ServiceDesc for OuroOperatorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -452,6 +488,10 @@ var OuroOperatorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StartUpgrade",
 			Handler:    _OuroOperatorService_StartUpgrade_Handler,
+		},
+		{
+			MethodName: "GetLicense",
+			Handler:    _OuroOperatorService_GetLicense_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

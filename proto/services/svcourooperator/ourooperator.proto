@@ -37,4 +37,7 @@ service OuroOperatorService {
     // The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
     // The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
     rpc StartUpgrade(io.clbs.openhes.models.acquisition.StartUpgradeRequest) returns (google.protobuf.Empty);
+
+    // The method is called by all components to validate the license.
+    rpc GetLicense(google.protobuf.Empty) returns (io.clbs.openhes.models.system.License);
 }

@@ -65,6 +65,11 @@ class OuroOperatorServiceStub(object):
                 request_serializer=acquisition_dot_internal__pb2.StartUpgradeRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetLicense = channel.unary_unary(
+                '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=system_dot_main__pb2.License.FromString,
+                _registered_method=True)
 
 
 class OuroOperatorServiceServicer(object):
@@ -138,6 +143,13 @@ class OuroOperatorServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetLicense(self, request, context):
+        """The method is called by all components to validate the license.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OuroOperatorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -185,6 +197,11 @@ def add_OuroOperatorServiceServicer_to_server(servicer, server):
                     servicer.StartUpgrade,
                     request_deserializer=acquisition_dot_internal__pb2.StartUpgradeRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetLicense': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLicense,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=system_dot_main__pb2.License.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -432,6 +449,33 @@ class OuroOperatorService(object):
             '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade',
             acquisition_dot_internal__pb2.StartUpgradeRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetLicense(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            system_dot_main__pb2.License.FromString,
             options,
             channel_credentials,
             insecure,
