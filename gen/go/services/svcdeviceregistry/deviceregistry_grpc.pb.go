@@ -81,6 +81,9 @@ const (
 	DeviceRegistryService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetTimeOfUseTable"
 	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
 	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
+	DeviceRegistryService_CreateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateFieldDescriptor"
+	DeviceRegistryService_UpdateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateFieldDescriptor"
+	DeviceRegistryService_DeleteFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFieldDescriptor"
 	DeviceRegistryService_SetManagedFields_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetManagedFields"
 	DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName                                         = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitLogs"
 	DeviceRegistryService_SetUnknownDevices_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetUnknownDevices"
@@ -224,6 +227,15 @@ type DeviceRegistryServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -837,6 +849,36 @@ func (c *deviceRegistryServiceClient) DeleteTimeOfUseTable(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -1023,6 +1065,15 @@ type DeviceRegistryServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
@@ -1224,6 +1275,15 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateTimeOfUseTable(context.Con
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
@@ -2269,6 +2329,60 @@ func _DeviceRegistryService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.CreateFieldDescriptorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).CreateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_CreateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).CreateFieldDescriptor(ctx, req.(*common.CreateFieldDescriptorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_UpdateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.FieldDescriptor)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateFieldDescriptor(ctx, req.(*common.FieldDescriptor))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_SetManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.SetManagedFieldsRequest)
 	if err := dec(in); err != nil {
@@ -2585,6 +2699,18 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTimeOfUseTable",
 			Handler:    _DeviceRegistryService_DeleteTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "CreateFieldDescriptor",
+			Handler:    _DeviceRegistryService_CreateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "UpdateFieldDescriptor",
+			Handler:    _DeviceRegistryService_UpdateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "DeleteFieldDescriptor",
+			Handler:    _DeviceRegistryService_DeleteFieldDescriptor_Handler,
 		},
 		{
 			MethodName: "SetManagedFields",

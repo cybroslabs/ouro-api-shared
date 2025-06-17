@@ -38,6 +38,9 @@ const (
 	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
 	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
 	DataproxyService_GetMeterEvents_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents"
+	DataproxyService_CreateFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateFieldDescriptor"
+	DataproxyService_UpdateFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateFieldDescriptor"
+	DataproxyService_DeleteFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteFieldDescriptor"
 	DataproxyService_SetManagedFields_FullMethodName              = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields"
 )
 
@@ -94,6 +97,17 @@ type DataproxyServiceClient interface {
 	// @group: Meter Events
 	// The method to stream out profile-typed meter data.
 	GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -291,6 +305,36 @@ func (c *dataproxyServiceClient) GetMeterEvents(ctx context.Context, in *acquisi
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DataproxyService_GetMeterEventsClient = grpc.ServerStreamingClient[acquisition.EventRecords]
 
+func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_UpdateFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataproxyServiceClient) SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -354,6 +398,17 @@ type DataproxyServiceServer interface {
 	// @group: Meter Events
 	// The method to stream out profile-typed meter data.
 	GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
+	// @group: Fields
+	// The method to create a new field descriptor user-defined field descriptor.
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
+	// @group: Fields
+	// The method to update the field descriptor.
+	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
+	// @group: Fields
+	// The method to delete the field descriptor.
+	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
@@ -409,6 +464,15 @@ func (UnimplementedDataproxyServiceServer) GetMeterDataIrregularProfiles(*acquis
 }
 func (UnimplementedDataproxyServiceServer) GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterEvents not implemented")
+}
+func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
+}
+func (UnimplementedDataproxyServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
+}
+func (UnimplementedDataproxyServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedDataproxyServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
@@ -676,6 +740,60 @@ func _DataproxyService_GetMeterEvents_Handler(srv interface{}, stream grpc.Serve
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DataproxyService_GetMeterEventsServer = grpc.ServerStreamingServer[acquisition.EventRecords]
 
+func _DataproxyService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.CreateFieldDescriptorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).CreateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_CreateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).CreateFieldDescriptor(ctx, req.(*common.CreateFieldDescriptorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_UpdateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.FieldDescriptor)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).UpdateFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_UpdateFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).UpdateFieldDescriptor(ctx, req.(*common.FieldDescriptor))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).DeleteFieldDescriptor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_DeleteFieldDescriptor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataproxyService_SetManagedFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.SetManagedFieldsRequest)
 	if err := dec(in); err != nil {
@@ -744,6 +862,18 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBulk",
 			Handler:    _DataproxyService_UpdateBulk_Handler,
+		},
+		{
+			MethodName: "CreateFieldDescriptor",
+			Handler:    _DataproxyService_CreateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "UpdateFieldDescriptor",
+			Handler:    _DataproxyService_UpdateFieldDescriptor_Handler,
+		},
+		{
+			MethodName: "DeleteFieldDescriptor",
+			Handler:    _DataproxyService_DeleteFieldDescriptor_Handler,
 		},
 		{
 			MethodName: "SetManagedFields",
