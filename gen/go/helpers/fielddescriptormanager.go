@@ -13,7 +13,7 @@ import (
 	"k8s.io/utils/ptr"
 )
 
-type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[string]string) postgres.PathToDbPathFunc
+type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[string]string) func(path string) (dbPath string, useJsonbFunc bool, ok bool)
 
 type FieldDescriptorManager interface {
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
