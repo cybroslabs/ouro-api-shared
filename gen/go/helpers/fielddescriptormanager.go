@@ -17,6 +17,10 @@ type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[
 
 type FieldDescriptorManager interface {
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
+	Refresh(ctx context.Context) error
+	CreateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error
+	UpdateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error
+	DeleteFieldDescriptor(ctx context.Context, selector *common.FieldDescriptorSelector) error
 }
 
 type FieldDescriptorManagerOpts struct {
@@ -120,8 +124,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context) error {
 	return nil
 }
 
-func (fdm *fieldDescriptorManager) validateFieldDescriptor(fdi *common.FieldDescriptorInternal, create bool) error {
-	fd := fdi.GetFieldDescriptor()
+func (fdm *fieldDescriptorManager) validateFieldDescriptor(fieldDescriptorInternal *common.FieldDescriptorInternal, create bool) error {
+	fd := fieldDescriptorInternal.GetFieldDescriptor()
 	if fd == nil {
 		return errors.New("field descriptor cannot be nil")
 	}
@@ -152,17 +156,17 @@ func (fdm *fieldDescriptorManager) validateFieldDescriptor(fdi *common.FieldDesc
 	return nil
 }
 
-func (fdm *fieldDescriptorManager) CreateFieldDescriptor(ctx context.Context, fdi *common.FieldDescriptorInternal) error {
+func (fdm *fieldDescriptorManager) CreateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error {
 	fdm.fieldDescriptorPathMapLock.Lock()
 	defer fdm.fieldDescriptorPathMapLock.Unlock()
 
 	// Validate the field descriptor
-	if err := fdm.validateFieldDescriptor(fdi, true); err != nil {
+	if err := fdm.validateFieldDescriptor(fieldDescriptorInternal, true); err != nil {
 		return err
 	}
 
 	data := slices.Clone(fdm.knownDescriptors)
-	data = append(data, fdi)
+	data = append(data, fieldDescriptorInternal)
 
 	cli, closer, err := fdm.connectors.OpenApiServiceClient()
 	if err != nil {
