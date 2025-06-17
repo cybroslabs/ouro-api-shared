@@ -290,7 +290,7 @@ type ApiServiceClient interface {
 	UpdateFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	DeleteFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptorSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
@@ -610,7 +610,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("UpdateFieldDescriptor")),
 			connect.WithClientOptions(opts...),
 		),
-		deleteFieldDescriptor: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+		deleteFieldDescriptor: connect.NewClient[common.FieldDescriptorSelector, emptypb.Empty](
 			httpClient,
 			baseURL+ApiServiceDeleteFieldDescriptorProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("DeleteFieldDescriptor")),
@@ -969,7 +969,7 @@ type apiServiceClient struct {
 	removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate *connect.Client[acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, emptypb.Empty]
 	createFieldDescriptor                                            *connect.Client[common.CreateFieldDescriptorRequest, wrapperspb.StringValue]
 	updateFieldDescriptor                                            *connect.Client[common.FieldDescriptor, emptypb.Empty]
-	deleteFieldDescriptor                                            *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	deleteFieldDescriptor                                            *connect.Client[common.FieldDescriptorSelector, emptypb.Empty]
 	listFieldDescriptors                                             *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
 	listBulks                                                        *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
@@ -1130,7 +1130,7 @@ func (c *apiServiceClient) UpdateFieldDescriptor(ctx context.Context, req *conne
 }
 
 // DeleteFieldDescriptor calls io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor.
-func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, req *connect.Request[common.FieldDescriptorSelector]) (*connect.Response[emptypb.Empty], error) {
 	return c.deleteFieldDescriptor.CallUnary(ctx, req)
 }
 
@@ -1459,7 +1459,7 @@ type ApiServiceHandler interface {
 	UpdateFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptor]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	DeleteFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptorSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
@@ -2342,7 +2342,7 @@ func (UnimplementedApiServiceHandler) UpdateFieldDescriptor(context.Context, *co
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) DeleteFieldDescriptor(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+func (UnimplementedApiServiceHandler) DeleteFieldDescriptor(context.Context, *connect.Request[common.FieldDescriptorSelector]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor is not implemented"))
 }
 

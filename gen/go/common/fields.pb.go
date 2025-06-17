@@ -782,6 +782,117 @@ func (b0 CreateFieldDescriptorRequest_builder) Build() *CreateFieldDescriptorReq
 	return m0
 }
 
+// The system-wide field descriptor selector.
+type FieldDescriptorSelector struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ObjectType  ObjectType             `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_Gid         *string                `protobuf:"bytes,2,opt,name=gid"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *FieldDescriptorSelector) Reset() {
+	*x = FieldDescriptorSelector{}
+	mi := &file_common_fields_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldDescriptorSelector) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldDescriptorSelector) ProtoMessage() {}
+
+func (x *FieldDescriptorSelector) ProtoReflect() protoreflect.Message {
+	mi := &file_common_fields_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FieldDescriptorSelector) GetObjectType() ObjectType {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_ObjectType
+		}
+	}
+	return ObjectType_BULK
+}
+
+func (x *FieldDescriptorSelector) GetGid() string {
+	if x != nil {
+		if x.xxx_hidden_Gid != nil {
+			return *x.xxx_hidden_Gid
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FieldDescriptorSelector) SetObjectType(v ObjectType) {
+	x.xxx_hidden_ObjectType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *FieldDescriptorSelector) SetGid(v string) {
+	x.xxx_hidden_Gid = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *FieldDescriptorSelector) HasObjectType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FieldDescriptorSelector) HasGid() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *FieldDescriptorSelector) ClearObjectType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ObjectType = ObjectType_BULK
+}
+
+func (x *FieldDescriptorSelector) ClearGid() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Gid = nil
+}
+
+type FieldDescriptorSelector_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ObjectType *ObjectType
+	Gid        *string
+}
+
+func (b0 FieldDescriptorSelector_builder) Build() *FieldDescriptorSelector {
+	m0 := &FieldDescriptorSelector{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ObjectType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_ObjectType = *b.ObjectType
+	}
+	if b.Gid != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Gid = b.Gid
+	}
+	return m0
+}
+
 // The field descriptor.
 type FieldDescriptor struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
@@ -813,7 +924,7 @@ type FieldDescriptor struct {
 
 func (x *FieldDescriptor) Reset() {
 	*x = FieldDescriptor{}
-	mi := &file_common_fields_proto_msgTypes[4]
+	mi := &file_common_fields_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -825,7 +936,7 @@ func (x *FieldDescriptor) String() string {
 func (*FieldDescriptor) ProtoMessage() {}
 
 func (x *FieldDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[4]
+	mi := &file_common_fields_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1467,7 +1578,7 @@ type FieldValidation struct {
 
 func (x *FieldValidation) Reset() {
 	*x = FieldValidation{}
-	mi := &file_common_fields_proto_msgTypes[5]
+	mi := &file_common_fields_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1479,7 +1590,7 @@ func (x *FieldValidation) String() string {
 func (*FieldValidation) ProtoMessage() {}
 
 func (x *FieldValidation) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[5]
+	mi := &file_common_fields_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1730,7 +1841,7 @@ type FieldValue struct {
 
 func (x *FieldValue) Reset() {
 	*x = FieldValue{}
-	mi := &file_common_fields_proto_msgTypes[6]
+	mi := &file_common_fields_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1742,7 +1853,7 @@ func (x *FieldValue) String() string {
 func (*FieldValue) ProtoMessage() {}
 
 func (x *FieldValue) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[6]
+	mi := &file_common_fields_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2042,7 +2153,7 @@ func (b0 FieldValue_builder) Build() *FieldValue {
 type case_FieldValue_Kind protoreflect.FieldNumber
 
 func (x case_FieldValue_Kind) String() string {
-	md := file_common_fields_proto_msgTypes[6].Descriptor()
+	md := file_common_fields_proto_msgTypes[7].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -2104,7 +2215,7 @@ type FieldValues struct {
 
 func (x *FieldValues) Reset() {
 	*x = FieldValues{}
-	mi := &file_common_fields_proto_msgTypes[7]
+	mi := &file_common_fields_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2116,7 +2227,7 @@ func (x *FieldValues) String() string {
 func (*FieldValues) ProtoMessage() {}
 
 func (x *FieldValues) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[7]
+	mi := &file_common_fields_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2164,7 +2275,7 @@ type ListOfFieldValue struct {
 
 func (x *ListOfFieldValue) Reset() {
 	*x = ListOfFieldValue{}
-	mi := &file_common_fields_proto_msgTypes[8]
+	mi := &file_common_fields_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2176,7 +2287,7 @@ func (x *ListOfFieldValue) String() string {
 func (*ListOfFieldValue) ProtoMessage() {}
 
 func (x *ListOfFieldValue) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[8]
+	mi := &file_common_fields_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2255,7 +2366,7 @@ type ListOfFieldDescriptor struct {
 
 func (x *ListOfFieldDescriptor) Reset() {
 	*x = ListOfFieldDescriptor{}
-	mi := &file_common_fields_proto_msgTypes[9]
+	mi := &file_common_fields_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2267,7 +2378,7 @@ func (x *ListOfFieldDescriptor) String() string {
 func (*ListOfFieldDescriptor) ProtoMessage() {}
 
 func (x *ListOfFieldDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_common_fields_proto_msgTypes[9]
+	mi := &file_common_fields_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2358,7 +2469,11 @@ const file_common_fields_proto_rawDesc = "" +
 	"\aboolean\x18\a \x03(\bR\aboolean\x12.\n" +
 	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"n\n" +
 	"\x1cCreateFieldDescriptorRequest\x12B\n" +
-	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\x9f\x06\n" +
+	"\x04spec\x18\x01 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"w\n" +
+	"\x17FieldDescriptorSelector\x12J\n" +
+	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"objectType\x12\x10\n" +
+	"\x03gid\x18\x02 \x01(\tR\x03gid\"\x9f\x06\n" +
 	"\x0fFieldDescriptor\x12&\n" +
 	"\x0fis_user_defined\x18\x01 \x01(\bR\risUserDefined\x12J\n" +
 	"\vobject_type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
@@ -2469,7 +2584,7 @@ const file_common_fields_proto_rawDesc = "" +
 	"\tMULTILINE\x10\aB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_common_fields_proto_goTypes = []any{
 	(FilterOperator)(0),                  // 0: io.clbs.openhes.models.common.FilterOperator
 	(FieldDataType)(0),                   // 1: io.clbs.openhes.models.common.FieldDataType
@@ -2478,42 +2593,44 @@ var file_common_fields_proto_goTypes = []any{
 	(*ListSelectorSortBy)(nil),           // 4: io.clbs.openhes.models.common.ListSelectorSortBy
 	(*ListSelectorFilterBy)(nil),         // 5: io.clbs.openhes.models.common.ListSelectorFilterBy
 	(*CreateFieldDescriptorRequest)(nil), // 6: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
-	(*FieldDescriptor)(nil),              // 7: io.clbs.openhes.models.common.FieldDescriptor
-	(*FieldValidation)(nil),              // 8: io.clbs.openhes.models.common.FieldValidation
-	(*FieldValue)(nil),                   // 9: io.clbs.openhes.models.common.FieldValue
-	(*FieldValues)(nil),                  // 10: io.clbs.openhes.models.common.FieldValues
-	(*ListOfFieldValue)(nil),             // 11: io.clbs.openhes.models.common.ListOfFieldValue
-	(*ListOfFieldDescriptor)(nil),        // 12: io.clbs.openhes.models.common.ListOfFieldDescriptor
-	nil,                                  // 13: io.clbs.openhes.models.common.FieldValidation.OptionsEntry
-	nil,                                  // 14: io.clbs.openhes.models.common.FieldValues.AttributesEntry
-	(*timestamppb.Timestamp)(nil),        // 15: google.protobuf.Timestamp
-	(ObjectType)(0),                      // 16: io.clbs.openhes.models.common.ObjectType
-	(*durationpb.Duration)(nil),          // 17: google.protobuf.Duration
+	(*FieldDescriptorSelector)(nil),      // 7: io.clbs.openhes.models.common.FieldDescriptorSelector
+	(*FieldDescriptor)(nil),              // 8: io.clbs.openhes.models.common.FieldDescriptor
+	(*FieldValidation)(nil),              // 9: io.clbs.openhes.models.common.FieldValidation
+	(*FieldValue)(nil),                   // 10: io.clbs.openhes.models.common.FieldValue
+	(*FieldValues)(nil),                  // 11: io.clbs.openhes.models.common.FieldValues
+	(*ListOfFieldValue)(nil),             // 12: io.clbs.openhes.models.common.ListOfFieldValue
+	(*ListOfFieldDescriptor)(nil),        // 13: io.clbs.openhes.models.common.ListOfFieldDescriptor
+	nil,                                  // 14: io.clbs.openhes.models.common.FieldValidation.OptionsEntry
+	nil,                                  // 15: io.clbs.openhes.models.common.FieldValues.AttributesEntry
+	(*timestamppb.Timestamp)(nil),        // 16: google.protobuf.Timestamp
+	(ObjectType)(0),                      // 17: io.clbs.openhes.models.common.ObjectType
+	(*durationpb.Duration)(nil),          // 18: google.protobuf.Duration
 }
 var file_common_fields_proto_depIdxs = []int32{
 	4,  // 0: io.clbs.openhes.models.common.ListSelector.sort_by:type_name -> io.clbs.openhes.models.common.ListSelectorSortBy
 	5,  // 1: io.clbs.openhes.models.common.ListSelector.filter_by:type_name -> io.clbs.openhes.models.common.ListSelectorFilterBy
 	0,  // 2: io.clbs.openhes.models.common.ListSelectorFilterBy.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
 	1,  // 3: io.clbs.openhes.models.common.ListSelectorFilterBy.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	15, // 4: io.clbs.openhes.models.common.ListSelectorFilterBy.date:type_name -> google.protobuf.Timestamp
-	7,  // 5: io.clbs.openhes.models.common.CreateFieldDescriptorRequest.spec:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	16, // 6: io.clbs.openhes.models.common.FieldDescriptor.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	1,  // 7: io.clbs.openhes.models.common.FieldDescriptor.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	2,  // 8: io.clbs.openhes.models.common.FieldDescriptor.format:type_name -> io.clbs.openhes.models.common.FieldDisplayFormat
-	8,  // 9: io.clbs.openhes.models.common.FieldDescriptor.validation:type_name -> io.clbs.openhes.models.common.FieldValidation
-	9,  // 10: io.clbs.openhes.models.common.FieldDescriptor.default_value:type_name -> io.clbs.openhes.models.common.FieldValue
-	13, // 11: io.clbs.openhes.models.common.FieldValidation.options:type_name -> io.clbs.openhes.models.common.FieldValidation.OptionsEntry
-	15, // 12: io.clbs.openhes.models.common.FieldValue.date_value:type_name -> google.protobuf.Timestamp
-	17, // 13: io.clbs.openhes.models.common.FieldValue.duration_value:type_name -> google.protobuf.Duration
-	14, // 14: io.clbs.openhes.models.common.FieldValues.attributes:type_name -> io.clbs.openhes.models.common.FieldValues.AttributesEntry
-	9,  // 15: io.clbs.openhes.models.common.ListOfFieldValue.items:type_name -> io.clbs.openhes.models.common.FieldValue
-	7,  // 16: io.clbs.openhes.models.common.ListOfFieldDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	9,  // 17: io.clbs.openhes.models.common.FieldValues.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	16, // 4: io.clbs.openhes.models.common.ListSelectorFilterBy.date:type_name -> google.protobuf.Timestamp
+	8,  // 5: io.clbs.openhes.models.common.CreateFieldDescriptorRequest.spec:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	17, // 6: io.clbs.openhes.models.common.FieldDescriptorSelector.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	17, // 7: io.clbs.openhes.models.common.FieldDescriptor.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	1,  // 8: io.clbs.openhes.models.common.FieldDescriptor.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	2,  // 9: io.clbs.openhes.models.common.FieldDescriptor.format:type_name -> io.clbs.openhes.models.common.FieldDisplayFormat
+	9,  // 10: io.clbs.openhes.models.common.FieldDescriptor.validation:type_name -> io.clbs.openhes.models.common.FieldValidation
+	10, // 11: io.clbs.openhes.models.common.FieldDescriptor.default_value:type_name -> io.clbs.openhes.models.common.FieldValue
+	14, // 12: io.clbs.openhes.models.common.FieldValidation.options:type_name -> io.clbs.openhes.models.common.FieldValidation.OptionsEntry
+	16, // 13: io.clbs.openhes.models.common.FieldValue.date_value:type_name -> google.protobuf.Timestamp
+	18, // 14: io.clbs.openhes.models.common.FieldValue.duration_value:type_name -> google.protobuf.Duration
+	15, // 15: io.clbs.openhes.models.common.FieldValues.attributes:type_name -> io.clbs.openhes.models.common.FieldValues.AttributesEntry
+	10, // 16: io.clbs.openhes.models.common.ListOfFieldValue.items:type_name -> io.clbs.openhes.models.common.FieldValue
+	8,  // 17: io.clbs.openhes.models.common.ListOfFieldDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	10, // 18: io.clbs.openhes.models.common.FieldValues.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_common_fields_proto_init() }
@@ -2522,7 +2639,7 @@ func file_common_fields_proto_init() {
 		return
 	}
 	file_common_objects_proto_init()
-	file_common_fields_proto_msgTypes[6].OneofWrappers = []any{
+	file_common_fields_proto_msgTypes[7].OneofWrappers = []any{
 		(*fieldValue_StringValue)(nil),
 		(*fieldValue_IntegerValue)(nil),
 		(*fieldValue_DoubleValue)(nil),
@@ -2537,7 +2654,7 @@ func file_common_fields_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_fields_proto_rawDesc), len(file_common_fields_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

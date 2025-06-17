@@ -319,7 +319,7 @@ class DeviceRegistryServiceStub(object):
                 _registered_method=True)
         self.DeleteFieldDescriptor = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFieldDescriptor',
-                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                request_serializer=common_dot_fields__pb2.FieldDescriptorSelector.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.SetManagedFields = channel.unary_unary(
@@ -1138,7 +1138,7 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             ),
             'DeleteFieldDescriptor': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteFieldDescriptor,
-                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    request_deserializer=common_dot_fields__pb2.FieldDescriptorSelector.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'SetManagedFields': grpc.unary_unary_rpc_method_handler(
@@ -2786,7 +2786,7 @@ class DeviceRegistryService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFieldDescriptor',
-            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            common_dot_fields__pb2.FieldDescriptorSelector.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

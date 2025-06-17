@@ -148,7 +148,7 @@ type ApiServiceClient interface {
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
@@ -537,7 +537,7 @@ func (c *apiServiceClient) UpdateFieldDescriptor(ctx context.Context, in *common
 	return out, nil
 }
 
-func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ApiService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
@@ -1181,7 +1181,7 @@ type ApiServiceServer interface {
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
@@ -1444,7 +1444,7 @@ func (UnimplementedApiServiceServer) CreateFieldDescriptor(context.Context, *com
 func (UnimplementedApiServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
 }
-func (UnimplementedApiServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+func (UnimplementedApiServiceServer) DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
@@ -1958,7 +1958,7 @@ func _ApiService_UpdateFieldDescriptor_Handler(srv interface{}, ctx context.Cont
 }
 
 func _ApiService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+	in := new(common.FieldDescriptorSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1970,7 +1970,7 @@ func _ApiService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Cont
 		FullMethod: ApiService_DeleteFieldDescriptor_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
+		return srv.(ApiServiceServer).DeleteFieldDescriptor(ctx, req.(*common.FieldDescriptorSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

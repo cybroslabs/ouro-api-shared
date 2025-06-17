@@ -442,6 +442,11 @@ type FieldDescriptor struct {
 	DefaultValue  *FieldValue         `json:"defaultValue,omitempty"`
 }
 
+type FieldDescriptorSelector struct {
+	ObjectType *ObjectType `json:"objectType,omitempty"`
+	Gid        *string     `json:"gid,omitempty"`
+}
+
 type FieldValidation struct {
 	Re         *string      `json:"re,omitempty"`
 	MinLength  *int32       `json:"minLength,omitempty"`

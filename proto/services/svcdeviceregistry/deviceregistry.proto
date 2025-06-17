@@ -164,7 +164,7 @@ service DeviceRegistryService {
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);
     // @group: Fields
     // The method to delete the field descriptor.
-    rpc DeleteFieldDescriptor(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc DeleteFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptorSelector) returns (google.protobuf.Empty);
 
     // @group: Metadata
     // The method to set the managed fields of the resource(s).

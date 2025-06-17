@@ -105,7 +105,7 @@ type DataproxyServiceClient interface {
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -325,7 +325,7 @@ func (c *dataproxyServiceClient) UpdateFieldDescriptor(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
@@ -406,7 +406,7 @@ type DataproxyServiceServer interface {
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
@@ -471,7 +471,7 @@ func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context
 func (UnimplementedDataproxyServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
 }
-func (UnimplementedDataproxyServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedDataproxyServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
@@ -777,7 +777,7 @@ func _DataproxyService_UpdateFieldDescriptor_Handler(srv interface{}, ctx contex
 }
 
 func _DataproxyService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+	in := new(common.FieldDescriptorSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -789,7 +789,7 @@ func _DataproxyService_DeleteFieldDescriptor_Handler(srv interface{}, ctx contex
 		FullMethod: DataproxyService_DeleteFieldDescriptor_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataproxyServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
+		return srv.(DataproxyServiceServer).DeleteFieldDescriptor(ctx, req.(*common.FieldDescriptorSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

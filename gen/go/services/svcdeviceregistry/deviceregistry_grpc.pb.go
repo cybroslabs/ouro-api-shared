@@ -235,7 +235,7 @@ type DeviceRegistryServiceClient interface {
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -869,7 +869,7 @@ func (c *deviceRegistryServiceClient) UpdateFieldDescriptor(ctx context.Context,
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) DeleteFieldDescriptor(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deviceRegistryServiceClient) DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteFieldDescriptor_FullMethodName, in, out, cOpts...)
@@ -1073,7 +1073,7 @@ type DeviceRegistryServiceServer interface {
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
 	// @group: Fields
 	// The method to delete the field descriptor.
-	DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error)
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
@@ -1282,7 +1282,7 @@ func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Co
 func (UnimplementedDeviceRegistryServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptor not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) DeleteFieldDescriptor(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+func (UnimplementedDeviceRegistryServiceServer) DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFieldDescriptor not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
@@ -2366,7 +2366,7 @@ func _DeviceRegistryService_UpdateFieldDescriptor_Handler(srv interface{}, ctx c
 }
 
 func _DeviceRegistryService_DeleteFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
+	in := new(common.FieldDescriptorSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2378,7 +2378,7 @@ func _DeviceRegistryService_DeleteFieldDescriptor_Handler(srv interface{}, ctx c
 		FullMethod: DeviceRegistryService_DeleteFieldDescriptor_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).DeleteFieldDescriptor(ctx, req.(*wrapperspb.StringValue))
+		return srv.(DeviceRegistryServiceServer).DeleteFieldDescriptor(ctx, req.(*common.FieldDescriptorSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }

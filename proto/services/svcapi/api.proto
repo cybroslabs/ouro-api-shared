@@ -61,7 +61,7 @@ service ApiService {
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);
     // @group: Fields
     // The method to delete the field descriptor.
-    rpc DeleteFieldDescriptor(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc DeleteFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptorSelector) returns (google.protobuf.Empty);
     // @group: Fields
     // The method to get the list of fields.
     rpc ListFieldDescriptors(google.protobuf.Empty) returns (io.clbs.openhes.models.common.ListOfFieldDescriptor);

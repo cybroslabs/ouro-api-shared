@@ -26,10 +26,10 @@ UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor)
 The method to delete the field descriptor.
 
 ```proto
-DeleteFieldDescriptor(google.protobuf.StringValue)
+DeleteFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptorSelector)
 ```
 
-- Input: `google.protobuf.StringValue`
+- Input: [`io.clbs.openhes.models.common.FieldDescriptorSelector`](model-io-clbs-openhes-models-common-fielddescriptorselector.md)
 
 ## ListFieldDescriptors
 
