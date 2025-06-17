@@ -543,9 +543,8 @@ func (b0 FieldDescriptorInternal_builder) Build() *FieldDescriptorInternal {
 
 type UpdateFieldDescriptorsRequest struct {
 	state                     protoimpl.MessageState      `protogen:"opaque.v1"`
-	xxx_hidden_ComponentType  *string                     `protobuf:"bytes,1,opt,name=component_type,json=componentType"`
-	xxx_hidden_Items          *[]*FieldDescriptorInternal `protobuf:"bytes,2,rep,name=items"`
-	xxx_hidden_CleanupMissing bool                        `protobuf:"varint,3,opt,name=cleanup_missing,json=cleanupMissing"`
+	xxx_hidden_Items          *[]*FieldDescriptorInternal `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_CleanupMissing bool                        `protobuf:"varint,2,opt,name=cleanup_missing,json=cleanupMissing"`
 	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
 	XXX_presence              [1]uint32
 	unknownFields             protoimpl.UnknownFields
@@ -577,16 +576,6 @@ func (x *UpdateFieldDescriptorsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *UpdateFieldDescriptorsRequest) GetComponentType() string {
-	if x != nil {
-		if x.xxx_hidden_ComponentType != nil {
-			return *x.xxx_hidden_ComponentType
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *UpdateFieldDescriptorsRequest) GetItems() []*FieldDescriptorInternal {
 	if x != nil {
 		if x.xxx_hidden_Items != nil {
@@ -603,48 +592,30 @@ func (x *UpdateFieldDescriptorsRequest) GetCleanupMissing() bool {
 	return false
 }
 
-func (x *UpdateFieldDescriptorsRequest) SetComponentType(v string) {
-	x.xxx_hidden_ComponentType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
-}
-
 func (x *UpdateFieldDescriptorsRequest) SetItems(v []*FieldDescriptorInternal) {
 	x.xxx_hidden_Items = &v
 }
 
 func (x *UpdateFieldDescriptorsRequest) SetCleanupMissing(v bool) {
 	x.xxx_hidden_CleanupMissing = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
-}
-
-func (x *UpdateFieldDescriptorsRequest) HasComponentType() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *UpdateFieldDescriptorsRequest) HasCleanupMissing() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *UpdateFieldDescriptorsRequest) ClearComponentType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ComponentType = nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *UpdateFieldDescriptorsRequest) ClearCleanupMissing() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_CleanupMissing = false
 }
 
 type UpdateFieldDescriptorsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ComponentType  *string
 	Items          []*FieldDescriptorInternal
 	CleanupMissing *bool
 }
@@ -653,13 +624,9 @@ func (b0 UpdateFieldDescriptorsRequest_builder) Build() *UpdateFieldDescriptorsR
 	m0 := &UpdateFieldDescriptorsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.ComponentType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
-		x.xxx_hidden_ComponentType = b.ComponentType
-	}
 	x.xxx_hidden_Items = &b.Items
 	if b.CleanupMissing != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
 		x.xxx_hidden_CleanupMissing = *b.CleanupMissing
 	}
 	return m0
@@ -753,11 +720,10 @@ const file_common_internal_proto_rawDesc = "" +
 	"\x17FieldDescriptorInternal\x12\x14\n" +
 	"\x05group\x18\x01 \x01(\tR\x05group\x12\x17\n" +
 	"\adb_path\x18\x02 \x01(\tR\x06dbPath\x12Y\n" +
-	"\x10field_descriptor\x18\x03 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x0ffieldDescriptor\"\xbd\x01\n" +
-	"\x1dUpdateFieldDescriptorsRequest\x12%\n" +
-	"\x0ecomponent_type\x18\x01 \x01(\tR\rcomponentType\x12L\n" +
-	"\x05items\x18\x02 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12'\n" +
-	"\x0fcleanup_missing\x18\x03 \x01(\bR\x0ecleanupMissing\"m\n" +
+	"\x10field_descriptor\x18\x03 \x01(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x0ffieldDescriptor\"\x96\x01\n" +
+	"\x1dUpdateFieldDescriptorsRequest\x12L\n" +
+	"\x05items\x18\x01 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12'\n" +
+	"\x0fcleanup_missing\x18\x02 \x01(\bR\x0ecleanupMissing\"m\n" +
 	"\x1dListOfFieldDescriptorInternal\x12L\n" +
 	"\x05items\x18\x01 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05itemsB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 

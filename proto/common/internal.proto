@@ -12,8 +12,8 @@ message SetManagedFieldsRequest {
     map<string, common.FieldValue> managed_fields = 1;  // The fields to set for the resource(s).
     // The selector to identify the resource(s) for which the managed fields are set.
     oneof selector {
-        SetManagedFieldsSelectorGeneric generic = 2; // The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
-        SetManagedFieldsSelectorDevice device   = 3; // The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
+        SetManagedFieldsSelectorGeneric generic = 2;  // The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
+        SetManagedFieldsSelectorDevice device   = 3;  // The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
     }
 }
 
@@ -34,9 +34,8 @@ message FieldDescriptorInternal {
 }
 
 message UpdateFieldDescriptorsRequest {
-    string component_type                  = 1;  // The type of the component for which the field descriptors are updated, e.g., "device", "bulk", etc.
-    repeated FieldDescriptorInternal items = 2;  // The list of field descriptors.
-    bool cleanup_missing                   = 3;  // If true, it will remove all field descriptors that are not present in the request for given component type.
+    repeated FieldDescriptorInternal items = 1;  // The list of field descriptors.
+    bool cleanup_missing                   = 2;  // If true, it will remove all field descriptors that are not present in the request for given component type.
 }
 
 message ListOfFieldDescriptorInternal {
