@@ -38,6 +38,8 @@ service OuroOperatorService {
     // The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
     rpc StartUpgrade(io.clbs.openhes.models.acquisition.StartUpgradeRequest) returns (google.protobuf.Empty);
 
-    // The method is called by all components to validate the license.
+    // The method returns the current license key.
     rpc GetLicense(google.protobuf.Empty) returns (io.clbs.openhes.models.system.License);
+    // The method stored a new license key. Used only and only for air-gapped installations.
+    rpc SetLicense(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }
