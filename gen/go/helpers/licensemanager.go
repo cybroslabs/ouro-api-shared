@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"context"
+	"errors"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/system"
 )
@@ -22,7 +23,10 @@ type licenseManager struct {
 }
 
 // NewLicenseManager creates a new instance of LicenseManager with the provided options.
-func NewLicenseManager(opts LicenseManagerOpts) LicenseManager {
+func NewLicenseManager(opts *LicenseManagerOpts) LicenseManager {
+	if opts == nil {
+		return nil
+	}
 	return &licenseManager{
 		connectors: opts.Connectors,
 	}
@@ -30,6 +34,10 @@ func NewLicenseManager(opts LicenseManagerOpts) LicenseManager {
 
 // Returns the current license.
 func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, error) {
+	if lm == nil {
+		return nil, errors.New("license manager is not initialized")
+	}
+
 	cli, closer, err := lm.connectors.OpenOuroOperatorServiceClient()
 	if err != nil {
 		return nil, err
