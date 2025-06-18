@@ -31,5 +31,6 @@ message License {
     string id                  = 1;  // The license ID.
     string name                = 2;  // The license name.
     string description         = 3;  // The license description.
-    common.FieldValues options = 5;  // The licensed options.
+    common.FieldValues options = 4;  // The licensed options.
+    string token               = 5;  // The license token.
 }
