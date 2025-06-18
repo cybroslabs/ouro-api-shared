@@ -7,15 +7,15 @@ The field descriptor.
 | Field | Information |
 | --- | --- |
 | isUserDefined | <b>Type:</b> `bool`<br><b>Description:</b><br>Whether the field descriptor is user-defined (e.g., custom fields added by users) |
-| objectType | <b>Type:</b> [`io.clbs.openhes.models.common.ObjectType`](model-io-clbs-openhes-models-common-objecttype.md)<br><b>Description:</b><br>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc. |
+| objectType | <b>Type:</b> [`io.clbs.openhes.models.common.ObjectType`](enum-io-clbs-openhes-models-common-objecttype.md)<br><b>Description:</b><br>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc. |
 | gid | <b>Type:</b> `string`<br><b>Description:</b><br>The system-wide unique identifier of the field descriptor. |
 | fieldId | <b>Type:</b> `string`<br><b>Description:</b><br>Unique identifier for the field descriptor |
 | jsPath | <b>Type:</b> `string`<br><b>Description:</b><br>The path to the field in the TypeScript representation |
 | path | <b>Type:</b> `string`<br><b>Description:</b><br>The path to the field in the gRPC/JSON simplified representation |
 | label | <b>Type:</b> `string`<br><b>Description:</b><br>Label displayed for the field |
 | groupId | <b>Type:</b> `string`<br><b>Description:</b><br>Group (section) identifier for the field |
-| dataType | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDataType`](model-io-clbs-openhes-models-common-fielddatatype.md)<br><b>Description:</b><br>Data type of the field (e.g., text, double) |
-| format | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDisplayFormat`](model-io-clbs-openhes-models-common-fielddisplayformat.md)<br><b>Description:</b><br>Display format (e.g., 1h 30m) |
+| dataType | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDataType`](enum-io-clbs-openhes-models-common-fielddatatype.md)<br><b>Description:</b><br>Data type of the field (e.g., text, double) |
+| format | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDisplayFormat`](enum-io-clbs-openhes-models-common-fielddisplayformat.md)<br><b>Description:</b><br>Display format (e.g., 1h 30m) |
 | unit | <b>Type:</b> `string`<br><b>Description:</b><br>Unit to display (e.g., kWh, USD) |
 | precision | <b>Type:</b> `int32`<br><b>Description:</b><br>Decimal precision for double numbers |
 | tooltip | <b>Type:</b> `string`<br><b>Description:</b><br>Tooltip or hint text |

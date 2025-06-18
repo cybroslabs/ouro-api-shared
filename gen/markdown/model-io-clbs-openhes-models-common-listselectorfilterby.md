@@ -15,8 +15,8 @@ The filtering criteria.
 | Field | Information |
 | --- | --- |
 | path | <b>Type:</b> `string`<br><b>Description:</b><br>The js_path or path from the FieldDescriptor. |
-| operator | <b>Type:</b> [`io.clbs.openhes.models.common.FilterOperator`](model-io-clbs-openhes-models-common-filteroperator.md)<br><b>Description:</b><br>The filter operator. |
-| dataType | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDataType`](model-io-clbs-openhes-models-common-fielddatatype.md)<br><b>Description:</b><br>The data type of the field. |
+| operator | <b>Type:</b> [`io.clbs.openhes.models.common.FilterOperator`](enum-io-clbs-openhes-models-common-filteroperator.md)<br><b>Description:</b><br>The filter operator. |
+| dataType | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDataType`](enum-io-clbs-openhes-models-common-fielddatatype.md)<br><b>Description:</b><br>The data type of the field. |
 | text | <b>Type:</b> `string`<br><b>Description:</b><br>The text-typed value(s) used for filtering. |
 | integer | <b>Type:</b> `sint64`<br><b>Description:</b><br>The integer-typed value(s) used for filtering. |
 | number | <b>Type:</b> `double`<br><b>Description:</b><br>The number-typed value(s) used for filtering. |

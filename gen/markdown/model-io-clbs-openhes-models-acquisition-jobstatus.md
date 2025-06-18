@@ -6,8 +6,8 @@ Sub-message containing job status info
 
 | Field | Information |
 | --- | --- |
-| status | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobStatusCode`](model-io-clbs-openhes-models-acquisition-jobstatuscode.md)<br><b>Description:</b><br>The status of the job. |
-| code | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobErrorCode`](model-io-clbs-openhes-models-acquisition-joberrorcode.md)<br><b>Description:</b><br>The error code of the job. |
+| status | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobStatusCode`](enum-io-clbs-openhes-models-acquisition-jobstatuscode.md)<br><b>Description:</b><br>The status of the job. |
+| code | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobErrorCode`](enum-io-clbs-openhes-models-acquisition-joberrorcode.md)<br><b>Description:</b><br>The error code of the job. |
 | results | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionResult`](model-io-clbs-openhes-models-acquisition-actionresult.md)<br><b>Description:</b><br>The result data for all job actions. |
 | startedAt | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The start timestamp of the job. |
 | finishedAt | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The finish timestamp of the job. |

@@ -46,12 +46,16 @@ def sanitizeUrl(url: str) -> str:
 
 
 def getLinkFromType(
-    full_type: str, clean_google_empty=False, subtype=None
+    full_type: str, clean_google_empty=False, subtype=None, enumList: List[str] = None
 ) -> Tuple[str, str]:
     if (m := re.match(r"^map<([^>,]+), ([^>]+)>$", full_type)) is not None:
-        _, k = getLinkFromType(m.group(1))
-        _, v = getLinkFromType(m.group(2))
+        _, k = getLinkFromType(m.group(1), enumList=enumList)
+        _, v = getLinkFromType(m.group(2), enumList=enumList)
         return full_type, f"map<{k}, {v}>"
+
+    fn_prefix = "model-"
+    if enumList and (full_type in enumList):
+        fn_prefix = "enum-"
 
     full_type_link = ""
     if full_type == "google.protobuf.Empty" and clean_google_empty:
@@ -66,10 +70,10 @@ def getLinkFromType(
     else:
         if subtype is not None:
             full_type_link = (
-                f"[`{full_type} - {subtype}`](model-{sanitizeUrl(full_type)}.md)"
+                f"[`{full_type} - {subtype}`]({fn_prefix}{sanitizeUrl(full_type)}.md)"
             )
         else:
-            full_type_link = f"[`{full_type}`](model-{sanitizeUrl(full_type)}.md)"
+            full_type_link = f"[`{full_type}`]({fn_prefix}{sanitizeUrl(full_type)}.md)"
     return full_type, full_type_link
 
 
@@ -103,6 +107,8 @@ def generate(
                     f"- [{group}](service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md)\n"
                 )
 
+    enum_list = list(set(e.full_name for p in visible_packages for e in p.enums))
+
     for service, groups in tagged_services:
         for group, methods in groups:
             with open(
@@ -116,11 +122,15 @@ def generate(
                 for method, tags in methods:
                     # Request model name (if not google.protobuf.Empty)
                     m_request, m_request_link = getLinkFromType(
-                        method.request.full_type, clean_google_empty=True
+                        method.request.full_type,
+                        clean_google_empty=True,
+                        enumList=enum_list,
                     )
                     # Response model name (if not google.protobuf.Empty)
                     m_response, m_response_link = getLinkFromType(
-                        method.response.full_type, clean_google_empty=True
+                        method.response.full_type,
+                        clean_google_empty=True,
+                        enumList=enum_list,
                     )
 
                     fh.write(f"## {method.name}\n\n")
@@ -140,6 +150,34 @@ def generate(
 
     # Generate files describing models
     for package in visible_packages:
+        for e in package.enums:
+            # model-io-clbs-openhes-models-common-fielddisplayformat.md
+            with open(
+                os.path.join(output_dir, f"enum-{sanitizeUrl(e.full_name)}.md"),
+                "w",
+            ) as fh:
+                fh.write(f"# Enum: {e.full_name}\n\n")
+                if e.description:
+                    fh.write(f"{e.description}\n\n")
+                fh.write("## Options\n\n")
+                if e.values:
+                    fh.write("| Value | Description |\n| --- | --- |\n")
+                    for v in e.values:
+                        if v.description:
+                            # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
+                            tmp, hints = _parseHints(v.description)
+                            value_description = "<br>".join(tmp.split("\n"))
+                        else:
+                            hints = {}
+                            value_description = ""
+
+                        value_description = value_description.replace(
+                            "@values:", "<b>Values:</b>"
+                        )
+                        value_description = value_description.replace(
+                            "@example:", "<b>Example:</b>"
+                        )
+                        fh.write(f"| {v.name} | {value_description} |\n")
         for message in package.messages:
             with open(
                 os.path.join(output_dir, f"model-{sanitizeUrl(message.full_name)}.md"),
@@ -174,6 +212,7 @@ def generate(
                             field.full_type,
                             clean_google_empty=False,
                             subtype=hints.get("gqltype", None),
+                            enumList=enum_list,
                         )
                         field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
                         fh.write(f"| {field.name} | {field_description} |\n")
