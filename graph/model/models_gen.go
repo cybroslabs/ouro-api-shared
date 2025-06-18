@@ -104,6 +104,11 @@ type AddDevicesToGroupRequest struct {
 	DeviceID []*string `json:"deviceId,omitempty"`
 }
 
+type AddRegisterToVariableRequest struct {
+	VariableID *string   `json:"variableId,omitempty"`
+	RegisterID []*string `json:"registerId,omitempty"`
+}
+
 type ApplicationConfig struct {
 	Items []*ComponentConfig `json:"items,omitempty"`
 }
@@ -804,6 +809,11 @@ type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest str
 type RemoveDevicesFromGroupRequest struct {
 	GroupID  *string   `json:"groupId,omitempty"`
 	DeviceID []*string `json:"deviceId,omitempty"`
+}
+
+type RemoveRegisterFromVariableRequest struct {
+	VariableID *string   `json:"variableId,omitempty"`
+	RegisterID []*string `json:"registerId,omitempty"`
 }
 
 type Season struct {

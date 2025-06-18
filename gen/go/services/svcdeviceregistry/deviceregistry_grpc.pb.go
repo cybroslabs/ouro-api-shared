@@ -26,8 +26,11 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceRegistryService_CreateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateVariable"
 	DeviceRegistryService_ListVariables_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListVariables"
+	DeviceRegistryService_GetVariables_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetVariables"
 	DeviceRegistryService_UpdateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateVariable"
 	DeviceRegistryService_DeleteVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable"
+	DeviceRegistryService_AddRegisterToVariable_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToVariable"
+	DeviceRegistryService_RemoveRegisterFromVariable_FullMethodName                                       = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveRegisterFromVariable"
 	DeviceRegistryService_CreateDeviceConfigurationRegister_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceConfigurationRegister"
 	DeviceRegistryService_ListDeviceConfigurationRegisters_FullMethodName                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceConfigurationRegisters"
 	DeviceRegistryService_GetDeviceConfigurationRegister_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConfigurationRegister"
@@ -100,8 +103,11 @@ type DeviceRegistryServiceClient interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
 	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
+	GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationRegister, error)
@@ -287,6 +293,16 @@ func (c *deviceRegistryServiceClient) ListVariables(ctx context.Context, in *com
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.Variable)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetVariables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -301,6 +317,26 @@ func (c *deviceRegistryServiceClient) DeleteVariable(ctx context.Context, in *wr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteVariable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_AddRegisterToVariable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_RemoveRegisterFromVariable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -938,8 +974,11 @@ type DeviceRegistryServiceServer interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
 	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error)
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
+	GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error)
+	RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error)
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
 	ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error)
@@ -1111,11 +1150,20 @@ func (UnimplementedDeviceRegistryServiceServer) CreateVariable(context.Context, 
 func (UnimplementedDeviceRegistryServiceServer) ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListVariables not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVariables not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateVariable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteVariable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRegisterToVariable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveRegisterFromVariable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationRegister not implemented")
@@ -1357,6 +1405,24 @@ func _DeviceRegistryService_ListVariables_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetVariables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetVariables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetVariables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetVariables(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_UpdateVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.Variable)
 	if err := dec(in); err != nil {
@@ -1389,6 +1455,42 @@ func _DeviceRegistryService_DeleteVariable_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).DeleteVariable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_AddRegisterToVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddRegisterToVariableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).AddRegisterToVariable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_AddRegisterToVariable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).AddRegisterToVariable(ctx, req.(*acquisition.AddRegisterToVariableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_RemoveRegisterFromVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.RemoveRegisterFromVariableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).RemoveRegisterFromVariable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_RemoveRegisterFromVariable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).RemoveRegisterFromVariable(ctx, req.(*acquisition.RemoveRegisterFromVariableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2489,12 +2591,24 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_ListVariables_Handler,
 		},
 		{
+			MethodName: "GetVariables",
+			Handler:    _DeviceRegistryService_GetVariables_Handler,
+		},
+		{
 			MethodName: "UpdateVariable",
 			Handler:    _DeviceRegistryService_UpdateVariable_Handler,
 		},
 		{
 			MethodName: "DeleteVariable",
 			Handler:    _DeviceRegistryService_DeleteVariable_Handler,
+		},
+		{
+			MethodName: "AddRegisterToVariable",
+			Handler:    _DeviceRegistryService_AddRegisterToVariable_Handler,
+		},
+		{
+			MethodName: "RemoveRegisterFromVariable",
+			Handler:    _DeviceRegistryService_RemoveRegisterFromVariable_Handler,
 		},
 		{
 			MethodName: "CreateDeviceConfigurationRegister",

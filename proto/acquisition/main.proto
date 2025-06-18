@@ -326,6 +326,16 @@ message VariableSpec {
     repeated string register_id = 1;  // The list of device configuration register identifiers.
 }
 
+message AddRegisterToVariableRequest {
+    string variable_id           = 1;  // The unique identifier of the variable.
+    repeated string register_id  = 2;  // The list of register identifiers to be linked to the variable.
+}
+
+message RemoveRegisterFromVariableRequest {
+    string variable_id           = 1;  // The unique identifier of the variable.
+    repeated string register_id  = 2;  // The list of register identifiers to be linked to the variable.
+}
+
 // Device Configuration Register specification
 
 message CreateDeviceConfigurationRegisterRequest {

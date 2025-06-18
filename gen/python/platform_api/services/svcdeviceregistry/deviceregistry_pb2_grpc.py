@@ -32,6 +32,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfVariable.FromString,
                 _registered_method=True)
+        self.GetVariables = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetVariables',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.Variable.FromString,
+                _registered_method=True)
         self.UpdateVariable = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateVariable',
                 request_serializer=acquisition_dot_main__pb2.Variable.SerializeToString,
@@ -40,6 +45,16 @@ class DeviceRegistryServiceStub(object):
         self.DeleteVariable = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.AddRegisterToVariable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToVariable',
+                request_serializer=acquisition_dot_main__pb2.AddRegisterToVariableRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.RemoveRegisterFromVariable = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveRegisterFromVariable',
+                request_serializer=acquisition_dot_main__pb2.RemoveRegisterFromVariableRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.CreateDeviceConfigurationRegister = channel.unary_unary(
@@ -366,6 +381,12 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetVariables(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def UpdateVariable(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -373,6 +394,18 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddRegisterToVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveRegisterFromVariable(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -851,6 +884,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfVariable.SerializeToString,
             ),
+            'GetVariables': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetVariables,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_main__pb2.Variable.SerializeToString,
+            ),
             'UpdateVariable': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateVariable,
                     request_deserializer=acquisition_dot_main__pb2.Variable.FromString,
@@ -859,6 +897,16 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'DeleteVariable': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteVariable,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'AddRegisterToVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddRegisterToVariable,
+                    request_deserializer=acquisition_dot_main__pb2.AddRegisterToVariableRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RemoveRegisterFromVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveRegisterFromVariable,
+                    request_deserializer=acquisition_dot_main__pb2.RemoveRegisterFromVariableRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateDeviceConfigurationRegister': grpc.unary_unary_rpc_method_handler(
@@ -1233,6 +1281,33 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
+    def GetVariables(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetVariables',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_main__pb2.Variable.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def UpdateVariable(request,
             target,
             options=(),
@@ -1275,6 +1350,60 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddRegisterToVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToVariable',
+            acquisition_dot_main__pb2.AddRegisterToVariableRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RemoveRegisterFromVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveRegisterFromVariable',
+            acquisition_dot_main__pb2.RemoveRegisterFromVariableRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

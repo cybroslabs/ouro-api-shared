@@ -540,6 +540,13 @@ type AddDevicesToGroupRequest {
   deviceId: [String]
 }
 
+type AddRegisterToVariableRequest {
+  # The unique identifier of the variable.
+  variableId: String
+  # The list of register identifiers to be linked to the variable.
+  registerId: [String]
+}
+
 # Sub-message containing destription for one application protocol, e.g. DLMS_SN.
 type ApplicationProtocolTemplate {
   # The application protocol.
@@ -1416,6 +1423,13 @@ type RemoveDevicesFromGroupRequest {
   deviceId: [String]
 }
 
+type RemoveRegisterFromVariableRequest {
+  # The unique identifier of the variable.
+  variableId: String
+  # The list of register identifiers to be linked to the variable.
+  registerId: [String]
+}
+
 type SetDeviceCommunicationUnitsRequest {
   # The unique identifier of the device.
   deviceId: String
@@ -1850,8 +1864,11 @@ type Query {
   deleteTimeOfUseTable: Empty
   createVariable: StringValue
   listVariables: ListOfVariable
+  getVariables: Variable
   updateVariable: Empty
   deleteVariable: Empty
+  addRegisterToVariable: Empty
+  removeRegisterFromVariable: Empty
 }
 
 scalar Timestamp

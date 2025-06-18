@@ -240,6 +240,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>AddRegisterToVariableRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ApplicationProtocolTemplate</code> 
@@ -1035,6 +1044,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>RemoveDevicesFromGroupRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>RemoveRegisterFromVariableRequest</code> 
         </a>
       </p>
       
@@ -2311,6 +2329,73 @@
         </code>
       </td>
       <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest" title="io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest">message AddRegisterToVariableRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        variableId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the variable.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        registerId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of register identifiers to be linked to the variable.</p></td>
       
     </tr>
     
@@ -10165,6 +10250,73 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest" title="io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest">message RemoveRegisterFromVariableRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        variableId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the variable.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        registerId
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of register identifiers to be linked to the variable.</p></td>
       
     </tr>
     

@@ -371,6 +371,11 @@ func (r *queryResolver) ListVariables(ctx context.Context) (*model.ListOfVariabl
 	panic(fmt.Errorf("not implemented: ListVariables - listVariables"))
 }
 
+// GetVariables is the resolver for the getVariables field.
+func (r *queryResolver) GetVariables(ctx context.Context) (*model.Variable, error) {
+	panic(fmt.Errorf("not implemented: GetVariables - getVariables"))
+}
+
 // UpdateVariable is the resolver for the updateVariable field.
 func (r *queryResolver) UpdateVariable(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: UpdateVariable - updateVariable"))
@@ -379,6 +384,16 @@ func (r *queryResolver) UpdateVariable(ctx context.Context) (*model.Empty, error
 // DeleteVariable is the resolver for the deleteVariable field.
 func (r *queryResolver) DeleteVariable(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: DeleteVariable - deleteVariable"))
+}
+
+// AddRegisterToVariable is the resolver for the addRegisterToVariable field.
+func (r *queryResolver) AddRegisterToVariable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: AddRegisterToVariable - addRegisterToVariable"))
+}
+
+// RemoveRegisterFromVariable is the resolver for the removeRegisterFromVariable field.
+func (r *queryResolver) RemoveRegisterFromVariable(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RemoveRegisterFromVariable - removeRegisterFromVariable"))
 }
 
 // Query returns QueryResolver implementation.

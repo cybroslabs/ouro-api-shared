@@ -26,8 +26,11 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ApiService_CreateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateVariable"
 	ApiService_ListVariables_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListVariables"
+	ApiService_GetVariables_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetVariables"
 	ApiService_UpdateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable"
 	ApiService_DeleteVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/DeleteVariable"
+	ApiService_AddRegisterToVariable_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToVariable"
+	ApiService_RemoveRegisterFromVariable_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/RemoveRegisterFromVariable"
 	ApiService_CreateDeviceConfigurationRegister_FullMethodName                                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceConfigurationRegister"
 	ApiService_ListDeviceConfigurationRegisters_FullMethodName                                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceConfigurationRegisters"
 	ApiService_GetDeviceConfigurationRegister_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceConfigurationRegister"
@@ -112,9 +115,15 @@ type ApiServiceClient interface {
 	// @group: Variables
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	// @group: Variables
+	GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
+	// @group: Variables
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Variables
 	DeleteVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Variables
+	AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Variables
+	RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -377,6 +386,16 @@ func (c *apiServiceClient) ListVariables(ctx context.Context, in *common.ListSel
 	return out, nil
 }
 
+func (c *apiServiceClient) GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.Variable)
+	err := c.cc.Invoke(ctx, ApiService_GetVariables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -391,6 +410,26 @@ func (c *apiServiceClient) DeleteVariable(ctx context.Context, in *wrapperspb.St
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ApiService_DeleteVariable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_AddRegisterToVariable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_RemoveRegisterFromVariable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1145,9 +1184,15 @@ type ApiServiceServer interface {
 	// @group: Variables
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	// @group: Variables
+	GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
+	// @group: Variables
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	// @group: Variables
 	DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Variables
+	AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error)
+	// @group: Variables
+	RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
 	// Creates a new register. The register object holds the information about the single device register.
 	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
@@ -1396,11 +1441,20 @@ func (UnimplementedApiServiceServer) CreateVariable(context.Context, *acquisitio
 func (UnimplementedApiServiceServer) ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListVariables not implemented")
 }
+func (UnimplementedApiServiceServer) GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVariables not implemented")
+}
 func (UnimplementedApiServiceServer) UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateVariable not implemented")
 }
 func (UnimplementedApiServiceServer) DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteVariable not implemented")
+}
+func (UnimplementedApiServiceServer) AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRegisterToVariable not implemented")
+}
+func (UnimplementedApiServiceServer) RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveRegisterFromVariable not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationRegister not implemented")
@@ -1669,6 +1723,24 @@ func _ApiService_ListVariables_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetVariables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetVariables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetVariables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetVariables(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_UpdateVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.Variable)
 	if err := dec(in); err != nil {
@@ -1701,6 +1773,42 @@ func _ApiService_DeleteVariable_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).DeleteVariable(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_AddRegisterToVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.AddRegisterToVariableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).AddRegisterToVariable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_AddRegisterToVariable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).AddRegisterToVariable(ctx, req.(*acquisition.AddRegisterToVariableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_RemoveRegisterFromVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.RemoveRegisterFromVariableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).RemoveRegisterFromVariable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_RemoveRegisterFromVariable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).RemoveRegisterFromVariable(ctx, req.(*acquisition.RemoveRegisterFromVariableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2953,12 +3061,24 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_ListVariables_Handler,
 		},
 		{
+			MethodName: "GetVariables",
+			Handler:    _ApiService_GetVariables_Handler,
+		},
+		{
 			MethodName: "UpdateVariable",
 			Handler:    _ApiService_UpdateVariable_Handler,
 		},
 		{
 			MethodName: "DeleteVariable",
 			Handler:    _ApiService_DeleteVariable_Handler,
+		},
+		{
+			MethodName: "AddRegisterToVariable",
+			Handler:    _ApiService_AddRegisterToVariable_Handler,
+		},
+		{
+			MethodName: "RemoveRegisterFromVariable",
+			Handler:    _ApiService_RemoveRegisterFromVariable_Handler,
 		},
 		{
 			MethodName: "CreateDeviceConfigurationRegister",

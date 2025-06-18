@@ -140,6 +140,11 @@ type ComplexityRoot struct {
 		GroupID  func(childComplexity int) int
 	}
 
+	AddRegisterToVariableRequest struct {
+		RegisterID func(childComplexity int) int
+		VariableID func(childComplexity int) int
+	}
+
 	ApplicationConfig struct {
 		Items func(childComplexity int) int
 	}
@@ -813,6 +818,7 @@ type ComplexityRoot struct {
 		AddCommunicationUnitsToCommunicationBus                          func(childComplexity int) int
 		AddDeviceConfigurationRegisterToDeviceConfigurationTemplate      func(childComplexity int) int
 		AddDevicesToGroup                                                func(childComplexity int) int
+		AddRegisterToVariable                                            func(childComplexity int) int
 		CancelBulk                                                       func(childComplexity int) int
 		CancelBulkJobs                                                   func(childComplexity int) int
 		CreateBulk                                                       func(childComplexity int) int
@@ -853,6 +859,7 @@ type ComplexityRoot struct {
 		GetModemPool                                                     func(childComplexity int) int
 		GetProxyBulk                                                     func(childComplexity int) int
 		GetTimeOfUseTable                                                func(childComplexity int) int
+		GetVariables                                                     func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
@@ -870,6 +877,7 @@ type ComplexityRoot struct {
 		RemoveCommunicationUnitsFromCommunicationBus                     func(childComplexity int) int
 		RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate func(childComplexity int) int
 		RemoveDevicesFromGroup                                           func(childComplexity int) int
+		RemoveRegisterFromVariable                                       func(childComplexity int) int
 		SetDeviceCommunicationUnits                                      func(childComplexity int) int
 		SynchronizeComponentConfig                                       func(childComplexity int) int
 		UpdateApplicationConfig                                          func(childComplexity int) int
@@ -914,6 +922,11 @@ type ComplexityRoot struct {
 	RemoveDevicesFromGroupRequest struct {
 		DeviceID func(childComplexity int) int
 		GroupID  func(childComplexity int) int
+	}
+
+	RemoveRegisterFromVariableRequest struct {
+		RegisterID func(childComplexity int) int
+		VariableID func(childComplexity int) int
 	}
 
 	Season struct {
@@ -1081,8 +1094,11 @@ type QueryResolver interface {
 	DeleteTimeOfUseTable(ctx context.Context) (*model.Empty, error)
 	CreateVariable(ctx context.Context) (*model.StringValue, error)
 	ListVariables(ctx context.Context) (*model.ListOfVariable, error)
+	GetVariables(ctx context.Context) (*model.Variable, error)
 	UpdateVariable(ctx context.Context) (*model.Empty, error)
 	DeleteVariable(ctx context.Context) (*model.Empty, error)
+	AddRegisterToVariable(ctx context.Context) (*model.Empty, error)
+	RemoveRegisterFromVariable(ctx context.Context) (*model.Empty, error)
 }
 
 type executableSchema struct {
@@ -1355,6 +1371,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.AddDevicesToGroupRequest.GroupID(childComplexity), true
+
+	case "AddRegisterToVariableRequest.registerId":
+		if e.complexity.AddRegisterToVariableRequest.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.AddRegisterToVariableRequest.RegisterID(childComplexity), true
+
+	case "AddRegisterToVariableRequest.variableId":
+		if e.complexity.AddRegisterToVariableRequest.VariableID == nil {
+			break
+		}
+
+		return e.complexity.AddRegisterToVariableRequest.VariableID(childComplexity), true
 
 	case "ApplicationConfig.items":
 		if e.complexity.ApplicationConfig.Items == nil {
@@ -3855,6 +3885,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.AddDevicesToGroup(childComplexity), true
 
+	case "Query.addRegisterToVariable":
+		if e.complexity.Query.AddRegisterToVariable == nil {
+			break
+		}
+
+		return e.complexity.Query.AddRegisterToVariable(childComplexity), true
+
 	case "Query.cancelBulk":
 		if e.complexity.Query.CancelBulk == nil {
 			break
@@ -4135,6 +4172,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.GetTimeOfUseTable(childComplexity), true
 
+	case "Query.getVariables":
+		if e.complexity.Query.GetVariables == nil {
+			break
+		}
+
+		return e.complexity.Query.GetVariables(childComplexity), true
+
 	case "Query.listBulkJobs":
 		if e.complexity.Query.ListBulkJobs == nil {
 			break
@@ -4253,6 +4297,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.RemoveDevicesFromGroup(childComplexity), true
+
+	case "Query.removeRegisterFromVariable":
+		if e.complexity.Query.RemoveRegisterFromVariable == nil {
+			break
+		}
+
+		return e.complexity.Query.RemoveRegisterFromVariable(childComplexity), true
 
 	case "Query.setDeviceCommunicationUnits":
 		if e.complexity.Query.SetDeviceCommunicationUnits == nil {
@@ -4435,6 +4486,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.RemoveDevicesFromGroupRequest.GroupID(childComplexity), true
+
+	case "RemoveRegisterFromVariableRequest.registerId":
+		if e.complexity.RemoveRegisterFromVariableRequest.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.RemoveRegisterFromVariableRequest.RegisterID(childComplexity), true
+
+	case "RemoveRegisterFromVariableRequest.variableId":
+		if e.complexity.RemoveRegisterFromVariableRequest.VariableID == nil {
+			break
+		}
+
+		return e.complexity.RemoveRegisterFromVariableRequest.VariableID(childComplexity), true
 
 	case "Season.id":
 		if e.complexity.Season.ID == nil {
@@ -6553,6 +6618,88 @@ func (ec *executionContext) _AddDevicesToGroupRequest_deviceId(ctx context.Conte
 func (ec *executionContext) fieldContext_AddDevicesToGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "AddDevicesToGroupRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _AddRegisterToVariableRequest_variableId(ctx context.Context, field graphql.CollectedField, obj *model.AddRegisterToVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddRegisterToVariableRequest_variableId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_AddRegisterToVariableRequest_variableId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "AddRegisterToVariableRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _AddRegisterToVariableRequest_registerId(ctx context.Context, field graphql.CollectedField, obj *model.AddRegisterToVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_AddRegisterToVariableRequest_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_AddRegisterToVariableRequest_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "AddRegisterToVariableRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -26047,6 +26194,53 @@ func (ec *executionContext) fieldContext_Query_listVariables(_ context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_getVariables(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getVariables(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetVariables(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Variable)
+	fc.Result = res
+	return ec.marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getVariables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_Variable_spec(ctx, field)
+			case "metadata":
+				return ec.fieldContext_Variable_metadata(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Variable", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_updateVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_updateVariable(ctx, field)
 	if err != nil {
@@ -26121,6 +26315,96 @@ func (ec *executionContext) _Query_deleteVariable(ctx context.Context, field gra
 }
 
 func (ec *executionContext) fieldContext_Query_deleteVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_addRegisterToVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_addRegisterToVariable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().AddRegisterToVariable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_addRegisterToVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_removeRegisterFromVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_removeRegisterFromVariable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().RemoveRegisterFromVariable(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_removeRegisterFromVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -26780,6 +27064,88 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest_deviceId(ctx context.
 func (ec *executionContext) fieldContext_RemoveDevicesFromGroupRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "RemoveDevicesFromGroupRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RemoveRegisterFromVariableRequest_variableId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveRegisterFromVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveRegisterFromVariableRequest_variableId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RemoveRegisterFromVariableRequest_variableId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RemoveRegisterFromVariableRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _RemoveRegisterFromVariableRequest_registerId(ctx context.Context, field graphql.CollectedField, obj *model.RemoveRegisterFromVariableRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_RemoveRegisterFromVariableRequest_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_RemoveRegisterFromVariableRequest_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "RemoveRegisterFromVariableRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -31394,6 +31760,44 @@ func (ec *executionContext) _AddDevicesToGroupRequest(ctx context.Context, sel a
 			out.Values[i] = ec._AddDevicesToGroupRequest_groupId(ctx, field, obj)
 		case "deviceId":
 			out.Values[i] = ec._AddDevicesToGroupRequest_deviceId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var addRegisterToVariableRequestImplementors = []string{"AddRegisterToVariableRequest"}
+
+func (ec *executionContext) _AddRegisterToVariableRequest(ctx context.Context, sel ast.SelectionSet, obj *model.AddRegisterToVariableRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, addRegisterToVariableRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("AddRegisterToVariableRequest")
+		case "variableId":
+			out.Values[i] = ec._AddRegisterToVariableRequest_variableId(ctx, field, obj)
+		case "registerId":
+			out.Values[i] = ec._AddRegisterToVariableRequest_registerId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -37082,6 +37486,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getVariables":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getVariables(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "updateVariable":
 			field := field
 
@@ -37111,6 +37534,44 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_deleteVariable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "addRegisterToVariable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_addRegisterToVariable(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "removeRegisterFromVariable":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_removeRegisterFromVariable(ctx, field)
 				return res
 			}
 
@@ -37356,6 +37817,44 @@ func (ec *executionContext) _RemoveDevicesFromGroupRequest(ctx context.Context, 
 			out.Values[i] = ec._RemoveDevicesFromGroupRequest_groupId(ctx, field, obj)
 		case "deviceId":
 			out.Values[i] = ec._RemoveDevicesFromGroupRequest_deviceId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var removeRegisterFromVariableRequestImplementors = []string{"RemoveRegisterFromVariableRequest"}
+
+func (ec *executionContext) _RemoveRegisterFromVariableRequest(ctx context.Context, sel ast.SelectionSet, obj *model.RemoveRegisterFromVariableRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, removeRegisterFromVariableRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("RemoveRegisterFromVariableRequest")
+		case "variableId":
+			out.Values[i] = ec._RemoveRegisterFromVariableRequest_variableId(ctx, field, obj)
+		case "registerId":
+			out.Values[i] = ec._RemoveRegisterFromVariableRequest_registerId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
