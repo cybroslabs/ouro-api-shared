@@ -356,11 +356,11 @@ func (b0 ApplicationConfigDescriptor_builder) Build() *ApplicationConfigDescript
 
 type License struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
-	xxx_hidden_Name        *string                `protobuf:"bytes,2,opt,name=name"`
-	xxx_hidden_Description *string                `protobuf:"bytes,3,opt,name=description"`
-	xxx_hidden_Options     *common.FieldValues    `protobuf:"bytes,4,opt,name=options"`
-	xxx_hidden_Token       *string                `protobuf:"bytes,5,opt,name=token"`
+	xxx_hidden_Token       *string                `protobuf:"bytes,1,opt,name=token"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,2,opt,name=id"`
+	xxx_hidden_Name        *string                `protobuf:"bytes,3,opt,name=name"`
+	xxx_hidden_Description *string                `protobuf:"bytes,4,opt,name=description"`
+	xxx_hidden_Options     map[string]string      `protobuf:"bytes,5,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -390,6 +390,16 @@ func (x *License) ProtoReflect() protoreflect.Message {
 		return ms
 	}
 	return mi.MessageOf(x)
+}
+
+func (x *License) GetToken() string {
+	if x != nil {
+		if x.xxx_hidden_Token != nil {
+			return *x.xxx_hidden_Token
+		}
+		return ""
+	}
+	return ""
 }
 
 func (x *License) GetId() string {
@@ -422,137 +432,116 @@ func (x *License) GetDescription() string {
 	return ""
 }
 
-func (x *License) GetOptions() *common.FieldValues {
+func (x *License) GetOptions() map[string]string {
 	if x != nil {
 		return x.xxx_hidden_Options
 	}
 	return nil
 }
 
-func (x *License) GetToken() string {
-	if x != nil {
-		if x.xxx_hidden_Token != nil {
-			return *x.xxx_hidden_Token
-		}
-		return ""
-	}
-	return ""
+func (x *License) SetToken(v string) {
+	x.xxx_hidden_Token = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *License) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *License) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *License) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
 }
 
-func (x *License) SetOptions(v *common.FieldValues) {
+func (x *License) SetOptions(v map[string]string) {
 	x.xxx_hidden_Options = v
-}
-
-func (x *License) SetToken(v string) {
-	x.xxx_hidden_Token = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
-}
-
-func (x *License) HasId() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *License) HasName() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
-func (x *License) HasDescription() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
-}
-
-func (x *License) HasOptions() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Options != nil
 }
 
 func (x *License) HasToken() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *License) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *License) HasName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *License) HasDescription() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *License) ClearToken() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Token = nil
 }
 
 func (x *License) ClearId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Id = nil
 }
 
 func (x *License) ClearName() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Name = nil
 }
 
 func (x *License) ClearDescription() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_Description = nil
-}
-
-func (x *License) ClearOptions() {
-	x.xxx_hidden_Options = nil
-}
-
-func (x *License) ClearToken() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_Token = nil
 }
 
 type License_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Token       *string
 	Id          *string
 	Name        *string
 	Description *string
-	Options     *common.FieldValues
-	Token       *string
+	Options     map[string]string
 }
 
 func (b0 License_builder) Build() *License {
 	m0 := &License{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Id != nil {
+	if b.Token != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Token = b.Token
+	}
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
 		x.xxx_hidden_Name = b.Name
 	}
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
 		x.xxx_hidden_Description = b.Description
 	}
 	x.xxx_hidden_Options = b.Options
-	if b.Token != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
-		x.xxx_hidden_Token = b.Token
-	}
 	return m0
 }
 
@@ -571,31 +560,35 @@ const file_system_main_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n" +
 	"\x1bApplicationConfigDescriptor\x12Z\n" +
 	"\vdescriptors\x18\x01 \x03(\v28.io.clbs.openhes.models.system.ComponentConfigDescriptorR\vdescriptors\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xab\x01\n" +
-	"\aLicense\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12D\n" +
-	"\aoptions\x18\x04 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\aoptions\x12\x14\n" +
-	"\x05token\x18\x05 \x01(\tR\x05tokenB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xf0\x01\n" +
+	"\aLicense\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12M\n" +
+	"\aoptions\x18\x05 \x03(\v23.io.clbs.openhes.models.system.License.OptionsEntryR\aoptions\x1a:\n" +
+	"\fOptionsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_system_main_proto_goTypes = []any{
 	(*ApplicationConfig)(nil),           // 0: io.clbs.openhes.models.system.ApplicationConfig
 	(*ComponentConfig)(nil),             // 1: io.clbs.openhes.models.system.ComponentConfig
 	(*ComponentConfigDescriptor)(nil),   // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
 	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*License)(nil),                     // 4: io.clbs.openhes.models.system.License
-	(*common.FieldValues)(nil),          // 5: io.clbs.openhes.models.common.FieldValues
-	(*common.FieldDescriptor)(nil),      // 6: io.clbs.openhes.models.common.FieldDescriptor
+	nil,                                 // 5: io.clbs.openhes.models.system.License.OptionsEntry
+	(*common.FieldValues)(nil),          // 6: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),      // 7: io.clbs.openhes.models.common.FieldDescriptor
 }
 var file_system_main_proto_depIdxs = []int32{
 	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	5, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	6, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	6, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	7, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	2, // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
 	1, // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	5, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.common.FieldValues
+	5, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
@@ -614,7 +607,7 @@ func file_system_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

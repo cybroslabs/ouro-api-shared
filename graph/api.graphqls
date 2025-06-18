@@ -60,6 +60,10 @@ enum ApplicationProtocol {
   APPPROTO_ANSI_C12
   # The MQTT protocol.
   APPPROTO_MQTT
+  # The MODBUS procotocol.
+  APPPROTO_MODBUS
+  # The MBUS protocol.
+  APPPROTO_MBUS
 }
 
 # Bulk statuses

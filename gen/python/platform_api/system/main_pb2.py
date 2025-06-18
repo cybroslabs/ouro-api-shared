@@ -26,7 +26,7 @@ from common import fields_pb2 as common_dot_fields__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13\x63ommon/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\"Y\n\x11\x41pplicationConfig\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.system.ComponentConfigR\x05items\"g\n\x0f\x43omponentConfig\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12@\n\x05items\x18\x02 \x01(\x0b\x32*.io.clbs.openhes.models.common.FieldValuesR\x05items\"u\n\x19\x43omponentConfigDescriptor\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n\x1b\x41pplicationConfigDescriptor\x12Z\n\x0b\x64\x65scriptors\x18\x01 \x03(\x0b\x32\x38.io.clbs.openhes.models.system.ComponentConfigDescriptorR\x0b\x64\x65scriptors\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xab\x01\n\x07License\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12\x44\n\x07options\x18\x04 \x01(\x0b\x32*.io.clbs.openhes.models.common.FieldValuesR\x07options\x12\x14\n\x05token\x18\x05 \x01(\tR\x05tokenB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13\x63ommon/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\"Y\n\x11\x41pplicationConfig\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.system.ComponentConfigR\x05items\"g\n\x0f\x43omponentConfig\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12@\n\x05items\x18\x02 \x01(\x0b\x32*.io.clbs.openhes.models.common.FieldValuesR\x05items\"u\n\x19\x43omponentConfigDescriptor\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n\x1b\x41pplicationConfigDescriptor\x12Z\n\x0b\x64\x65scriptors\x18\x01 \x03(\x0b\x32\x38.io.clbs.openhes.models.system.ComponentConfigDescriptorR\x0b\x64\x65scriptors\x12\x44\n\x05items\x18\x02 \x03(\x0b\x32..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xf0\x01\n\x07License\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n\x04name\x18\x03 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x04 \x01(\tR\x0b\x64\x65scription\x12M\n\x07options\x18\x05 \x03(\x0b\x32\x33.io.clbs.openhes.models.system.License.OptionsEntryR\x07options\x1a:\n\x0cOptionsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,6 +34,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'system.main_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z3github.com/cybroslabs/ouro-api-shared/gen/go/system'
+  _globals['_LICENSE_OPTIONSENTRY']._loaded_options = None
+  _globals['_LICENSE_OPTIONSENTRY']._serialized_options = b'8\001'
   _globals['_APPLICATIONCONFIG']._serialized_start=103
   _globals['_APPLICATIONCONFIG']._serialized_end=192
   _globals['_COMPONENTCONFIG']._serialized_start=194
@@ -43,5 +45,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_APPLICATIONCONFIGDESCRIPTOR']._serialized_start=419
   _globals['_APPLICATIONCONFIGDESCRIPTOR']._serialized_end=610
   _globals['_LICENSE']._serialized_start=613
-  _globals['_LICENSE']._serialized_end=784
+  _globals['_LICENSE']._serialized_end=853
+  _globals['_LICENSE_OPTIONSENTRY']._serialized_start=795
+  _globals['_LICENSE_OPTIONSENTRY']._serialized_end=853
 # @@protoc_insertion_point(module_scope)

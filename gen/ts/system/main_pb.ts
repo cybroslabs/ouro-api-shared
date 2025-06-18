@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWcihAEKB0xpY2Vuc2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRI7CgdvcHRpb25zGAQgASgLMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZXMSDQoFdG9rZW4YBSABKAlCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWcivQEKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct]);
 
 /**
  * Application config specification.
@@ -190,39 +190,39 @@ export const ApplicationConfigDescriptorSchema: GenMessage<ApplicationConfigDesc
  */
 export type License = Message<"io.clbs.openhes.models.system.License"> & {
   /**
+   * The license token.
+   *
+   * @generated from field: string token = 1;
+   */
+  token: string;
+
+  /**
    * The license ID.
    *
-   * @generated from field: string id = 1;
+   * @generated from field: string id = 2;
    */
   id: string;
 
   /**
    * The license name.
    *
-   * @generated from field: string name = 2;
+   * @generated from field: string name = 3;
    */
   name: string;
 
   /**
    * The license description.
    *
-   * @generated from field: string description = 3;
+   * @generated from field: string description = 4;
    */
   description: string;
 
   /**
    * The licensed options.
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValues options = 4;
+   * @generated from field: map<string, string> options = 5;
    */
-  options?: FieldValues;
-
-  /**
-   * The license token.
-   *
-   * @generated from field: string token = 5;
-   */
-  token: string;
+  options: { [key: string]: string };
 };
 
 /**
@@ -230,39 +230,39 @@ export type License = Message<"io.clbs.openhes.models.system.License"> & {
  */
 export type LicenseJson = {
   /**
+   * The license token.
+   *
+   * @generated from field: string token = 1;
+   */
+  token?: string;
+
+  /**
    * The license ID.
    *
-   * @generated from field: string id = 1;
+   * @generated from field: string id = 2;
    */
   id?: string;
 
   /**
    * The license name.
    *
-   * @generated from field: string name = 2;
+   * @generated from field: string name = 3;
    */
   name?: string;
 
   /**
    * The license description.
    *
-   * @generated from field: string description = 3;
+   * @generated from field: string description = 4;
    */
   description?: string;
 
   /**
    * The licensed options.
    *
-   * @generated from field: io.clbs.openhes.models.common.FieldValues options = 4;
+   * @generated from field: map<string, string> options = 5;
    */
-  options?: FieldValuesJson;
-
-  /**
-   * The license token.
-   *
-   * @generated from field: string token = 5;
-   */
-  token?: string;
+  options?: { [key: string]: string };
 };
 
 /**

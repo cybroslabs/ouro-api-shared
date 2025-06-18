@@ -488,6 +488,10 @@ const (
 	ApplicationProtocol_APPPROTO_ANSI_C12 ApplicationProtocol = 5
 	// The MQTT protocol.
 	ApplicationProtocol_APPPROTO_MQTT ApplicationProtocol = 6
+	// The MODBUS procotocol.
+	ApplicationProtocol_APPPROTO_MODBUS ApplicationProtocol = 7
+	// The MBUS protocol.
+	ApplicationProtocol_APPPROTO_MBUS ApplicationProtocol = 8
 )
 
 // Enum value maps for ApplicationProtocol.
@@ -500,6 +504,8 @@ var (
 		4: "APPPROTO_LIS200",
 		5: "APPPROTO_ANSI_C12",
 		6: "APPPROTO_MQTT",
+		7: "APPPROTO_MODBUS",
+		8: "APPPROTO_MBUS",
 	}
 	ApplicationProtocol_value = map[string]int32{
 		"APPPROTO_IEC_62056_21": 0,
@@ -509,6 +515,8 @@ var (
 		"APPPROTO_LIS200":       4,
 		"APPPROTO_ANSI_C12":     5,
 		"APPPROTO_MQTT":         6,
+		"APPPROTO_MODBUS":       7,
+		"APPPROTO_MBUS":         8,
 	}
 )
 
@@ -11991,7 +11999,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x10LINKPROTO_MODBUS\x10\x03\x12\x12\n" +
 	"\x0eLINKPROTO_MBUS\x10\x04\x12\x14\n" +
 	"\x10LINKPROTO_VIKTOR\x10\x05\x12\x1c\n" +
-	"\x18LINKPROTO_NOT_APPLICABLE\x10c*\xae\x01\n" +
+	"\x18LINKPROTO_NOT_APPLICABLE\x10c*\xd6\x01\n" +
 	"\x13ApplicationProtocol\x12\x19\n" +
 	"\x15APPPROTO_IEC_62056_21\x10\x00\x12\x14\n" +
 	"\x10APPPROTO_DLMS_SN\x10\x01\x12\x14\n" +
@@ -11999,7 +12007,9 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\rAPPPROTO_SCTM\x10\x03\x12\x13\n" +
 	"\x0fAPPPROTO_LIS200\x10\x04\x12\x15\n" +
 	"\x11APPPROTO_ANSI_C12\x10\x05\x12\x11\n" +
-	"\rAPPPROTO_MQTT\x10\x06*\xd3\x03\n" +
+	"\rAPPPROTO_MQTT\x10\x06\x12\x13\n" +
+	"\x0fAPPPROTO_MODBUS\x10\a\x12\x11\n" +
+	"\rAPPPROTO_MBUS\x10\b*\xd3\x03\n" +
 	"\n" +
 	"ActionType\x12\x1c\n" +
 	"\x18ACTION_TYPE_GET_REGISTER\x10\x00\x12&\n" +

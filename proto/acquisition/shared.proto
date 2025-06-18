@@ -319,6 +319,10 @@ enum ApplicationProtocol {
     APPPROTO_ANSI_C12 = 5;
     // The MQTT protocol.
     APPPROTO_MQTT = 6;
+    // The MODBUS procotocol.
+    APPPROTO_MODBUS = 7;
+    // The MBUS protocol.
+    APPPROTO_MBUS = 8;
 }
 
 // Sub-message containing destription for one application protocol, e.g. DLMS_SN.

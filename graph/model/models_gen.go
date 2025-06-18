@@ -1055,6 +1055,8 @@ const (
 	ApplicationProtocolAppprotoLis200      ApplicationProtocol = "APPPROTO_LIS200"
 	ApplicationProtocolAppprotoAnsiC12     ApplicationProtocol = "APPPROTO_ANSI_C12"
 	ApplicationProtocolAppprotoMqtt        ApplicationProtocol = "APPPROTO_MQTT"
+	ApplicationProtocolAppprotoModbus      ApplicationProtocol = "APPPROTO_MODBUS"
+	ApplicationProtocolAppprotoMbus        ApplicationProtocol = "APPPROTO_MBUS"
 )
 
 var AllApplicationProtocol = []ApplicationProtocol{
@@ -1065,11 +1067,13 @@ var AllApplicationProtocol = []ApplicationProtocol{
 	ApplicationProtocolAppprotoLis200,
 	ApplicationProtocolAppprotoAnsiC12,
 	ApplicationProtocolAppprotoMqtt,
+	ApplicationProtocolAppprotoModbus,
+	ApplicationProtocolAppprotoMbus,
 }
 
 func (e ApplicationProtocol) IsValid() bool {
 	switch e {
-	case ApplicationProtocolAppprotoIec62056_21, ApplicationProtocolAppprotoDlmsSn, ApplicationProtocolAppprotoDlmsLn, ApplicationProtocolAppprotoSctm, ApplicationProtocolAppprotoLis200, ApplicationProtocolAppprotoAnsiC12, ApplicationProtocolAppprotoMqtt:
+	case ApplicationProtocolAppprotoIec62056_21, ApplicationProtocolAppprotoDlmsSn, ApplicationProtocolAppprotoDlmsLn, ApplicationProtocolAppprotoSctm, ApplicationProtocolAppprotoLis200, ApplicationProtocolAppprotoAnsiC12, ApplicationProtocolAppprotoMqtt, ApplicationProtocolAppprotoModbus, ApplicationProtocolAppprotoMbus:
 		return true
 	}
 	return false
