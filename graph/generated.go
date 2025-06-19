@@ -489,14 +489,15 @@ type ComplexityRoot struct {
 	}
 
 	FieldValidation struct {
-		MaxInteger func(childComplexity int) int
-		MaxLength  func(childComplexity int) int
-		MaxNumber  func(childComplexity int) int
-		MinInteger func(childComplexity int) int
-		MinLength  func(childComplexity int) int
-		MinNumber  func(childComplexity int) int
-		Options    func(childComplexity int) int
-		Re         func(childComplexity int) int
+		MaxInteger    func(childComplexity int) int
+		MaxLength     func(childComplexity int) int
+		MaxNumber     func(childComplexity int) int
+		MinInteger    func(childComplexity int) int
+		MinLength     func(childComplexity int) int
+		MinNumber     func(childComplexity int) int
+		Options       func(childComplexity int) int
+		OptionsSource func(childComplexity int) int
+		Re            func(childComplexity int) int
 	}
 
 	FieldValue struct {
@@ -2638,6 +2639,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldValidation.Options(childComplexity), true
+
+	case "FieldValidation.optionsSource":
+		if e.complexity.FieldValidation.OptionsSource == nil {
+			break
+		}
+
+		return e.complexity.FieldValidation.OptionsSource(childComplexity), true
 
 	case "FieldValidation.re":
 		if e.complexity.FieldValidation.Re == nil {
@@ -14560,6 +14568,8 @@ func (ec *executionContext) fieldContext_FieldDescriptor_validation(_ context.Co
 				return ec.fieldContext_FieldValidation_maxNumber(ctx, field)
 			case "options":
 				return ec.fieldContext_FieldValidation_options(ctx, field)
+			case "optionsSource":
+				return ec.fieldContext_FieldValidation_optionsSource(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValidation", field.Name)
 		},
@@ -15035,6 +15045,47 @@ func (ec *executionContext) fieldContext_FieldValidation_options(_ context.Conte
 				return ec.fieldContext__mapstring_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapstring", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldValidation_optionsSource(ctx context.Context, field graphql.CollectedField, obj *model.FieldValidation) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldValidation_optionsSource(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.OptionsSource, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldValidation_optionsSource(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldValidation",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -34130,6 +34181,8 @@ func (ec *executionContext) _FieldValidation(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._FieldValidation_maxNumber(ctx, field, obj)
 		case "options":
 			out.Values[i] = ec._FieldValidation_options(ctx, field, obj)
+		case "optionsSource":
+			out.Values[i] = ec._FieldValidation_optionsSource(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

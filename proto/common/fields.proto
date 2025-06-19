@@ -88,6 +88,7 @@ enum FieldDisplayFormat {
     MONEY         = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
     PASSWORD      = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
     MULTILINE     = 7;  // The multiline-string display format. Data type must be TEXT.
+    COMBO         = 8;  // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
     // FIXME: To be added in the future.
     // OBIS_CODE      = 8;  // The OBIS code display format. Data type must be TEXT. The GUI must display the OBIS code in the format: "1-0:1.8.0*255" (e.g., "1-0:1.8.0*255").
     // OBIS_CODE_LIST = 9;  // The OBIS code list display format, separated by semicolon ';' character. Spaces is not allowed.
@@ -138,6 +139,7 @@ message FieldValidation {
     double min_number           = 6;  // The minimum value. It's used for number fields only.
     double max_number           = 7;  // The maximum value. It's used for number fields only.
     map<string, string> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+    string options_source       = 9;  // The options source. If set, then the options shall be dynamically fetched from the server.
 }
 
 message FieldValue {

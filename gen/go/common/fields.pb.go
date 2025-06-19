@@ -172,6 +172,7 @@ const (
 	FieldDisplayFormat_MONEY         FieldDisplayFormat = 5 // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
 	FieldDisplayFormat_PASSWORD      FieldDisplayFormat = 6 // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
 	FieldDisplayFormat_MULTILINE     FieldDisplayFormat = 7 // The multiline-string display format. Data type must be TEXT.
+	FieldDisplayFormat_COMBO         FieldDisplayFormat = 8 // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
 )
 
 // Enum value maps for FieldDisplayFormat.
@@ -185,6 +186,7 @@ var (
 		5: "MONEY",
 		6: "PASSWORD",
 		7: "MULTILINE",
+		8: "COMBO",
 	}
 	FieldDisplayFormat_value = map[string]int32{
 		"DEFAULT":       0,
@@ -195,6 +197,7 @@ var (
 		"MONEY":         5,
 		"PASSWORD":      6,
 		"MULTILINE":     7,
+		"COMBO":         8,
 	}
 )
 
@@ -1561,19 +1564,20 @@ func (b0 FieldDescriptor_builder) Build() *FieldDescriptor {
 
 // Validation rules for the field.
 type FieldValidation struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Re          *string                `protobuf:"bytes,1,opt,name=re"`
-	xxx_hidden_MinLength   int32                  `protobuf:"varint,2,opt,name=min_length,json=minLength"`
-	xxx_hidden_MaxLength   int32                  `protobuf:"varint,3,opt,name=max_length,json=maxLength"`
-	xxx_hidden_MinInteger  int64                  `protobuf:"zigzag64,4,opt,name=min_integer,json=minInteger"`
-	xxx_hidden_MaxInteger  int64                  `protobuf:"zigzag64,5,opt,name=max_integer,json=maxInteger"`
-	xxx_hidden_MinNumber   float64                `protobuf:"fixed64,6,opt,name=min_number,json=minNumber"`
-	xxx_hidden_MaxNumber   float64                `protobuf:"fixed64,7,opt,name=max_number,json=maxNumber"`
-	xxx_hidden_Options     map[string]string      `protobuf:"bytes,8,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Re            *string                `protobuf:"bytes,1,opt,name=re"`
+	xxx_hidden_MinLength     int32                  `protobuf:"varint,2,opt,name=min_length,json=minLength"`
+	xxx_hidden_MaxLength     int32                  `protobuf:"varint,3,opt,name=max_length,json=maxLength"`
+	xxx_hidden_MinInteger    int64                  `protobuf:"zigzag64,4,opt,name=min_integer,json=minInteger"`
+	xxx_hidden_MaxInteger    int64                  `protobuf:"zigzag64,5,opt,name=max_integer,json=maxInteger"`
+	xxx_hidden_MinNumber     float64                `protobuf:"fixed64,6,opt,name=min_number,json=minNumber"`
+	xxx_hidden_MaxNumber     float64                `protobuf:"fixed64,7,opt,name=max_number,json=maxNumber"`
+	xxx_hidden_Options       map[string]string      `protobuf:"bytes,8,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_OptionsSource *string                `protobuf:"bytes,9,opt,name=options_source,json=optionsSource"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *FieldValidation) Reset() {
@@ -1660,43 +1664,58 @@ func (x *FieldValidation) GetOptions() map[string]string {
 	return nil
 }
 
+func (x *FieldValidation) GetOptionsSource() string {
+	if x != nil {
+		if x.xxx_hidden_OptionsSource != nil {
+			return *x.xxx_hidden_OptionsSource
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *FieldValidation) SetRe(v string) {
 	x.xxx_hidden_Re = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
 }
 
 func (x *FieldValidation) SetMinLength(v int32) {
 	x.xxx_hidden_MinLength = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
 }
 
 func (x *FieldValidation) SetMaxLength(v int32) {
 	x.xxx_hidden_MaxLength = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
 func (x *FieldValidation) SetMinInteger(v int64) {
 	x.xxx_hidden_MinInteger = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
 }
 
 func (x *FieldValidation) SetMaxInteger(v int64) {
 	x.xxx_hidden_MaxInteger = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
 }
 
 func (x *FieldValidation) SetMinNumber(v float64) {
 	x.xxx_hidden_MinNumber = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
 }
 
 func (x *FieldValidation) SetMaxNumber(v float64) {
 	x.xxx_hidden_MaxNumber = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 9)
 }
 
 func (x *FieldValidation) SetOptions(v map[string]string) {
 	x.xxx_hidden_Options = v
+}
+
+func (x *FieldValidation) SetOptionsSource(v string) {
+	x.xxx_hidden_OptionsSource = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 9)
 }
 
 func (x *FieldValidation) HasRe() bool {
@@ -1748,6 +1767,13 @@ func (x *FieldValidation) HasMaxNumber() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
+func (x *FieldValidation) HasOptionsSource() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
+}
+
 func (x *FieldValidation) ClearRe() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Re = nil
@@ -1783,17 +1809,23 @@ func (x *FieldValidation) ClearMaxNumber() {
 	x.xxx_hidden_MaxNumber = 0
 }
 
+func (x *FieldValidation) ClearOptionsSource() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	x.xxx_hidden_OptionsSource = nil
+}
+
 type FieldValidation_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Re         *string
-	MinLength  *int32
-	MaxLength  *int32
-	MinInteger *int64
-	MaxInteger *int64
-	MinNumber  *float64
-	MaxNumber  *float64
-	Options    map[string]string
+	Re            *string
+	MinLength     *int32
+	MaxLength     *int32
+	MinInteger    *int64
+	MaxInteger    *int64
+	MinNumber     *float64
+	MaxNumber     *float64
+	Options       map[string]string
+	OptionsSource *string
 }
 
 func (b0 FieldValidation_builder) Build() *FieldValidation {
@@ -1801,34 +1833,38 @@ func (b0 FieldValidation_builder) Build() *FieldValidation {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Re != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
 		x.xxx_hidden_Re = b.Re
 	}
 	if b.MinLength != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
 		x.xxx_hidden_MinLength = *b.MinLength
 	}
 	if b.MaxLength != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
 		x.xxx_hidden_MaxLength = *b.MaxLength
 	}
 	if b.MinInteger != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
 		x.xxx_hidden_MinInteger = *b.MinInteger
 	}
 	if b.MaxInteger != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 9)
 		x.xxx_hidden_MaxInteger = *b.MaxInteger
 	}
 	if b.MinNumber != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
 		x.xxx_hidden_MinNumber = *b.MinNumber
 	}
 	if b.MaxNumber != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 9)
 		x.xxx_hidden_MaxNumber = *b.MaxNumber
 	}
 	x.xxx_hidden_Options = b.Options
+	if b.OptionsSource != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 9)
+		x.xxx_hidden_OptionsSource = b.OptionsSource
+	}
 	return m0
 }
 
@@ -2499,7 +2535,7 @@ const file_common_fields_proto_rawDesc = "" +
 	"\n" +
 	"validation\x18\x13 \x01(\v2..io.clbs.openhes.models.common.FieldValidationR\n" +
 	"validation\x12N\n" +
-	"\rdefault_value\x18\x14 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\fdefaultValue\"\xf2\x02\n" +
+	"\rdefault_value\x18\x14 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\fdefaultValue\"\x99\x03\n" +
 	"\x0fFieldValidation\x12\x0e\n" +
 	"\x02re\x18\x01 \x01(\tR\x02re\x12\x1d\n" +
 	"\n" +
@@ -2514,7 +2550,8 @@ const file_common_fields_proto_rawDesc = "" +
 	"min_number\x18\x06 \x01(\x01R\tminNumber\x12\x1d\n" +
 	"\n" +
 	"max_number\x18\a \x01(\x01R\tmaxNumber\x12U\n" +
-	"\aoptions\x18\b \x03(\v2;.io.clbs.openhes.models.common.FieldValidation.OptionsEntryR\aoptions\x1a:\n" +
+	"\aoptions\x18\b \x03(\v2;.io.clbs.openhes.models.common.FieldValidation.OptionsEntryR\aoptions\x12%\n" +
+	"\x0eoptions_source\x18\t \x01(\tR\roptionsSource\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xcc\x02\n" +
@@ -2572,7 +2609,7 @@ const file_common_fields_proto_rawDesc = "" +
 	"\x06BINARY\x10\x03\x12\v\n" +
 	"\aBOOLEAN\x10\x04\x12\r\n" +
 	"\tTIMESTAMP\x10\x05\x12\f\n" +
-	"\bDURATION\x10\x06*\x8c\x01\n" +
+	"\bDURATION\x10\x06*\x97\x01\n" +
 	"\x12FieldDisplayFormat\x12\v\n" +
 	"\aDEFAULT\x10\x00\x12\r\n" +
 	"\tDATE_ONLY\x10\x01\x12\x10\n" +
@@ -2581,7 +2618,8 @@ const file_common_fields_proto_rawDesc = "" +
 	"\tTIMEOFDAY\x10\x04\x12\t\n" +
 	"\x05MONEY\x10\x05\x12\f\n" +
 	"\bPASSWORD\x10\x06\x12\r\n" +
-	"\tMULTILINE\x10\aB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\tMULTILINE\x10\a\x12\t\n" +
+	"\x05COMBO\x10\bB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 13)

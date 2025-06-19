@@ -14,3 +14,4 @@ Enum representing the field display format.
 | MONEY | The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER. |
 | PASSWORD | The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length. |
 | MULTILINE | The multiline-string display format. Data type must be TEXT. |
+| COMBO | The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options. |

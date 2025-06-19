@@ -108,7 +108,7 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 }
 
 var validFormats = map[FieldDataType][]FieldDisplayFormat{
-	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD},
+	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD, FieldDisplayFormat_COMBO},
 	FieldDataType_INTEGER:   {FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
 	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
 	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE_ONLY, FieldDisplayFormat_UTC_DATETIME, FieldDisplayFormat_UTC_DATE_ONLY},

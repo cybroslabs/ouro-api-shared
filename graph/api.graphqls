@@ -223,6 +223,8 @@ enum FieldDisplayFormat {
   PASSWORD
   # The multiline-string display format. Data type must be TEXT.
   MULTILINE
+  # The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+  COMBO
 }
 
 # The filter operator.
@@ -1635,6 +1637,8 @@ type FieldValidation {
   maxNumber: Float
   # The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
   options: [_mapstring]
+  # The options source. If set, then the options shall be dynamically fetched from the server.
+  optionsSource: String
 }
 
 type FieldValue {

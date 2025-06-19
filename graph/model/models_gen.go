@@ -453,14 +453,15 @@ type FieldDescriptorSelector struct {
 }
 
 type FieldValidation struct {
-	Re         *string      `json:"re,omitempty"`
-	MinLength  *int32       `json:"minLength,omitempty"`
-	MaxLength  *int32       `json:"maxLength,omitempty"`
-	MinInteger *int64       `json:"minInteger,omitempty"`
-	MaxInteger *int64       `json:"maxInteger,omitempty"`
-	MinNumber  *float64     `json:"minNumber,omitempty"`
-	MaxNumber  *float64     `json:"maxNumber,omitempty"`
-	Options    []*Mapstring `json:"options,omitempty"`
+	Re            *string      `json:"re,omitempty"`
+	MinLength     *int32       `json:"minLength,omitempty"`
+	MaxLength     *int32       `json:"maxLength,omitempty"`
+	MinInteger    *int64       `json:"minInteger,omitempty"`
+	MaxInteger    *int64       `json:"maxInteger,omitempty"`
+	MinNumber     *float64     `json:"minNumber,omitempty"`
+	MaxNumber     *float64     `json:"maxNumber,omitempty"`
+	Options       []*Mapstring `json:"options,omitempty"`
+	OptionsSource *string      `json:"optionsSource,omitempty"`
 }
 
 type FieldValue struct {
@@ -1377,6 +1378,7 @@ const (
 	FieldDisplayFormatMoney       FieldDisplayFormat = "MONEY"
 	FieldDisplayFormatPassword    FieldDisplayFormat = "PASSWORD"
 	FieldDisplayFormatMultiline   FieldDisplayFormat = "MULTILINE"
+	FieldDisplayFormatCombo       FieldDisplayFormat = "COMBO"
 )
 
 var AllFieldDisplayFormat = []FieldDisplayFormat{
@@ -1388,11 +1390,12 @@ var AllFieldDisplayFormat = []FieldDisplayFormat{
 	FieldDisplayFormatMoney,
 	FieldDisplayFormatPassword,
 	FieldDisplayFormatMultiline,
+	FieldDisplayFormatCombo,
 }
 
 func (e FieldDisplayFormat) IsValid() bool {
 	switch e {
-	case FieldDisplayFormatDefault, FieldDisplayFormatDateOnly, FieldDisplayFormatUtcDatetime, FieldDisplayFormatUtcDateOnly, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline:
+	case FieldDisplayFormatDefault, FieldDisplayFormatDateOnly, FieldDisplayFormatUtcDatetime, FieldDisplayFormatUtcDateOnly, FieldDisplayFormatTimeofday, FieldDisplayFormatMoney, FieldDisplayFormatPassword, FieldDisplayFormatMultiline, FieldDisplayFormatCombo:
 		return true
 	}
 	return false

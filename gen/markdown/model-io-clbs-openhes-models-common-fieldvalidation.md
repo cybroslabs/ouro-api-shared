@@ -14,4 +14,5 @@ Validation rules for the field.
 | minNumber | <b>Type:</b> `double`<br><b>Description:</b><br>The minimum value. It's used for number fields only. |
 | maxNumber | <b>Type:</b> `double`<br><b>Description:</b><br>The maximum value. It's used for number fields only. |
 | options | <b>Type:</b> map<`string`, `string`><br><b>Description:</b><br>The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed. |
+| optionsSource | <b>Type:</b> `string`<br><b>Description:</b><br>The options source. If set, then the options shall be dynamically fetched from the server. |
 
