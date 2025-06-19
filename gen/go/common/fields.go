@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"regexp"
 	"slices"
-	"strconv"
 	"strings"
 
 	"github.com/rmg/iso4217"
@@ -287,47 +286,54 @@ func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
 }
 
 func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
-	if fd.GetDataType() != FieldDataType_INTEGER && fd.GetDataType() != FieldDataType_TEXT {
-		panic("Options are only supported for INTEGER or TEXT fields")
+	if options == nil {
+		fd.ensureValidation().SetOptions(nil)
+		return fd
 	}
-	if fd.GetDataType() != FieldDataType_INTEGER {
-		// Validate indexes
-		for k := range options {
-			if _, err := strconv.Atoi(k); err != nil {
-				panic("Options keys must be string-integers when FieldDataType is INTEGER")
-			}
-		}
+
+	if fd.GetDataType() != FieldDataType_TEXT {
+		panic("Options are only supported for TEXT fields")
 	}
+
 	fd.SetFormat(FieldDisplayFormat_COMBO)
-	fd.ensureValidation().SetOptions(options)
+	validation := fd.ensureValidation()
+	validation.SetOptions(options)
+	validation.ClearOptionsSource()
 	return fd
 }
 
-func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
-	fd.SetDataType(FieldDataType_INTEGER)
-	tmp := make(map[string]string, len(options))
-	for k, v := range options {
-		tmp[fmt.Sprintf("%d", k)] = v
+type EnumWithString interface {
+	fmt.Stringer
+	~int32
+}
+
+func CreateOptions[T EnumWithString](enumMap map[int32]string) map[string]string {
+	if enumMap == nil {
+		return nil
 	}
-	fd.ensureValidation().SetOptions(tmp)
-	return fd
+
+	result := make(map[string]string, len(enumMap))
+	for val, name := range enumMap {
+		x := T(val)
+		result[x.String()] = name
+	}
+	return result
 }
 
 func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	if source == "" {
 		fd.ensureValidation().ClearOptionsSource()
-		if fd.GetFormat() == FieldDisplayFormat_COMBO {
-			fd.SetFormat(FieldDisplayFormat_DEFAULT)
-		}
 		return fd
 	}
 
-	if fd.GetDataType() != FieldDataType_TEXT && fd.GetDataType() != FieldDataType_INTEGER {
-		panic("Options source is only supported for TEXT or INTEGER fields")
+	if fd.GetDataType() != FieldDataType_TEXT {
+		panic("Options source is only supported for TEXT fields")
 	}
 
 	fd.SetFormat(FieldDisplayFormat_COMBO)
-	fd.ensureValidation().SetOptionsSource(source)
+	validation := fd.ensureValidation()
+	validation.SetOptions(nil)
+	validation.SetOptionsSource(source)
 	return fd
 }
 
