@@ -9,11 +9,9 @@ package svcdriver
 import (
 	context "context"
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
-	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,8 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DriverService_StartJob_FullMethodName  = "/io.clbs.openhes.services.svcdriver.DriverService/StartJob"
-	DriverService_CancelJob_FullMethodName = "/io.clbs.openhes.services.svcdriver.DriverService/CancelJob"
+	DriverService_StartJob_FullMethodName = "/io.clbs.openhes.services.svcdriver.DriverService/StartJob"
 )
 
 // DriverServiceClient is the client API for DriverService service.
@@ -35,8 +32,6 @@ const (
 type DriverServiceClient interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
 	StartJob(ctx context.Context, in *acquisition.StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProgressUpdate], error)
-	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-	CancelJob(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type driverServiceClient struct {
@@ -66,16 +61,6 @@ func (c *driverServiceClient) StartJob(ctx context.Context, in *acquisition.Star
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DriverService_StartJobClient = grpc.ServerStreamingClient[acquisition.ProgressUpdate]
 
-func (c *driverServiceClient) CancelJob(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverService_CancelJob_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DriverServiceServer is the server API for DriverService service.
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
@@ -85,8 +70,6 @@ func (c *driverServiceClient) CancelJob(ctx context.Context, in *common.ListOfId
 type DriverServiceServer interface {
 	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
 	StartJob(*acquisition.StartJobsRequest, grpc.ServerStreamingServer[acquisition.ProgressUpdate]) error
-	// The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-	CancelJob(context.Context, *common.ListOfId) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -99,9 +82,6 @@ type UnimplementedDriverServiceServer struct{}
 
 func (UnimplementedDriverServiceServer) StartJob(*acquisition.StartJobsRequest, grpc.ServerStreamingServer[acquisition.ProgressUpdate]) error {
 	return status.Errorf(codes.Unimplemented, "method StartJob not implemented")
-}
-func (UnimplementedDriverServiceServer) CancelJob(context.Context, *common.ListOfId) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CancelJob not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
 func (UnimplementedDriverServiceServer) testEmbeddedByValue()                       {}
@@ -135,36 +115,13 @@ func _DriverService_StartJob_Handler(srv interface{}, stream grpc.ServerStream) 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DriverService_StartJobServer = grpc.ServerStreamingServer[acquisition.ProgressUpdate]
 
-func _DriverService_CancelJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ListOfId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverServiceServer).CancelJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverService_CancelJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverServiceServer).CancelJob(ctx, req.(*common.ListOfId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DriverService_ServiceDesc is the grpc.ServiceDesc for DriverService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DriverService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svcdriver.DriverService",
 	HandlerType: (*DriverServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CancelJob",
-			Handler:    _DriverService_CancelJob_Handler,
-		},
-	},
+	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StartJob",

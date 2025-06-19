@@ -8,10 +8,10 @@ package svcdriver
 
 import (
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
-	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	_ "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -27,24 +27,19 @@ var File_services_svcdriver_driver_proto protoreflect.FileDescriptor
 
 const file_services_svcdriver_driver_proto_rawDesc = "" +
 	"\n" +
-	"\x1fservices/svcdriver/driver.proto\x12\"io.clbs.openhes.services.svcdriver\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto2\xd5\x01\n" +
+	"\x1fservices/svcdriver/driver.proto\x12\"io.clbs.openhes.services.svcdriver\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto2\x87\x01\n" +
 	"\rDriverService\x12v\n" +
-	"\bStartJob\x124.io.clbs.openhes.models.acquisition.StartJobsRequest\x1a2.io.clbs.openhes.models.acquisition.ProgressUpdate0\x01\x12L\n" +
-	"\tCancelJob\x12'.io.clbs.openhes.models.common.ListOfId\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdriverb\beditionsp\xe8\a"
+	"\bStartJob\x124.io.clbs.openhes.models.acquisition.StartJobsRequest\x1a2.io.clbs.openhes.models.acquisition.ProgressUpdate0\x01BAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdriverb\beditionsp\xe8\a"
 
 var file_services_svcdriver_driver_proto_goTypes = []any{
 	(*acquisition.StartJobsRequest)(nil), // 0: io.clbs.openhes.models.acquisition.StartJobsRequest
-	(*common.ListOfId)(nil),              // 1: io.clbs.openhes.models.common.ListOfId
-	(*acquisition.ProgressUpdate)(nil),   // 2: io.clbs.openhes.models.acquisition.ProgressUpdate
-	(*emptypb.Empty)(nil),                // 3: google.protobuf.Empty
+	(*acquisition.ProgressUpdate)(nil),   // 1: io.clbs.openhes.models.acquisition.ProgressUpdate
 }
 var file_services_svcdriver_driver_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.services.svcdriver.DriverService.StartJob:input_type -> io.clbs.openhes.models.acquisition.StartJobsRequest
-	1, // 1: io.clbs.openhes.services.svcdriver.DriverService.CancelJob:input_type -> io.clbs.openhes.models.common.ListOfId
-	2, // 2: io.clbs.openhes.services.svcdriver.DriverService.StartJob:output_type -> io.clbs.openhes.models.acquisition.ProgressUpdate
-	3, // 3: io.clbs.openhes.services.svcdriver.DriverService.CancelJob:output_type -> google.protobuf.Empty
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	1, // 1: io.clbs.openhes.services.svcdriver.DriverService.StartJob:output_type -> io.clbs.openhes.models.acquisition.ProgressUpdate
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

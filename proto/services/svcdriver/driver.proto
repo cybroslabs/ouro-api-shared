@@ -14,6 +14,4 @@ import "common/types.proto";
 service DriverService {
     // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
     rpc StartJob(io.clbs.openhes.models.acquisition.StartJobsRequest) returns (stream io.clbs.openhes.models.acquisition.ProgressUpdate);
-    // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
-    rpc CancelJob(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 }
