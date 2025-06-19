@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ommon/types.proto\x12\x1dio.clbs.openhes.models.common\"\x1a\n\x08ListOfId\x12\x0e\n\x02id\x18\x01 \x03(\tR\x02id\"#\n\x0bListOfInt64\x12\x14\n\x05value\x18\x01 \x03(\tR\x05value\"E\n\x0cListOfString\x12\x14\n\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCountB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ommon/types.proto\x12\x1dio.clbs.openhes.models.common\"\x1a\n\x08ListOfId\x12\x0e\n\x02id\x18\x01 \x03(\tR\x02id\"#\n\x0bListOfInt64\x12\x14\n\x05value\x18\x01 \x03(\x03R\x05value\"E\n\x0cListOfString\x12\x14\n\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCountB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)

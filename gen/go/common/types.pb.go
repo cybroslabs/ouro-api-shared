@@ -81,7 +81,7 @@ func (b0 ListOfId_builder) Build() *ListOfId {
 // The list of UUID identifiers.
 type ListOfInt64 struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Value []string               `protobuf:"bytes,1,rep,name=value"`
+	xxx_hidden_Value []int64                `protobuf:"varint,1,rep,packed,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -111,21 +111,21 @@ func (x *ListOfInt64) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ListOfInt64) GetValue() []string {
+func (x *ListOfInt64) GetValue() []int64 {
 	if x != nil {
 		return x.xxx_hidden_Value
 	}
 	return nil
 }
 
-func (x *ListOfInt64) SetValue(v []string) {
+func (x *ListOfInt64) SetValue(v []int64) {
 	x.xxx_hidden_Value = v
 }
 
 type ListOfInt64_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Value []string
+	Value []int64
 }
 
 func (b0 ListOfInt64_builder) Build() *ListOfInt64 {
@@ -234,7 +234,7 @@ const file_common_types_proto_rawDesc = "" +
 	"\bListOfId\x12\x0e\n" +
 	"\x02id\x18\x01 \x03(\tR\x02id\"#\n" +
 	"\vListOfInt64\x12\x14\n" +
-	"\x05value\x18\x01 \x03(\tR\x05value\"E\n" +
+	"\x05value\x18\x01 \x03(\x03R\x05value\"E\n" +
 	"\fListOfString\x12\x14\n" +
 	"\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

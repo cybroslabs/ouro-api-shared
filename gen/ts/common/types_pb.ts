@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/types.proto.
  */
 export const file_common_types: GenFile = /*@__PURE__*/
-  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIhYKCExpc3RPZklkEgoKAmlkGAEgAygJIhwKC0xpc3RPZkludDY0Eg0KBXZhbHVlGAEgAygJIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
+  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIhYKCExpc3RPZklkEgoKAmlkGAEgAygJIhwKC0xpc3RPZkludDY0Eg0KBXZhbHVlGAEgAygDIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
 
 /**
  * The list of UUID identifiers.
@@ -56,9 +56,9 @@ export type ListOfInt64 = Message<"io.clbs.openhes.models.common.ListOfInt64"> &
   /**
    * Generic list of UUID identifiers.
    *
-   * @generated from field: repeated string value = 1;
+   * @generated from field: repeated int64 value = 1;
    */
-  value: string[];
+  value: bigint[];
 };
 
 /**
@@ -70,7 +70,7 @@ export type ListOfInt64Json = {
   /**
    * Generic list of UUID identifiers.
    *
-   * @generated from field: repeated string value = 1;
+   * @generated from field: repeated int64 value = 1;
    */
   value?: string[];
 };
