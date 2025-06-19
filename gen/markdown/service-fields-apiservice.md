@@ -41,3 +41,14 @@ ListFieldDescriptors() returns (io.clbs.openhes.models.common.ListOfFieldDescrip
 
 - Output: [`io.clbs.openhes.models.common.ListOfFieldDescriptor`](model-io-clbs-openhes-models-common-listoffielddescriptor.md)
 
+## ListFieldDescriptorOptions
+
+The method to get the options for the field descriptor.
+
+```proto
+ListFieldDescriptorOptions(io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest) returns (io.clbs.openhes.models.common.FieldDescriptorOptions)
+```
+
+- Input: [`io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest`](model-io-clbs-openhes-models-common-listfielddescriptoroptionsrequest.md)
+- Output: [`io.clbs.openhes.models.common.FieldDescriptorOptions`](model-io-clbs-openhes-models-common-fielddescriptoroptions.md)
+

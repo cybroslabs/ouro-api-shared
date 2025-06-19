@@ -1611,6 +1611,13 @@ type FieldDescriptor {
   defaultValue: FieldValue
 }
 
+type FieldDescriptorOptions {
+  # The field descriptor options.
+  options: [_mapstring]
+  # If set to false, the options were filtered out.
+  complete: Boolean
+}
+
 # The system-wide field descriptor selector.
 type FieldDescriptorSelector {
   # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
@@ -1661,6 +1668,13 @@ type FieldValue {
 type FieldValues {
   # The field values.
   attributes: [_mapFieldValue]
+}
+
+type ListFieldDescriptorOptionsRequest {
+  # The options source. Must be set to the options_source field of the FieldDescriptor.
+  optionsSource: String
+  # The filter to apply on the options. If set, only options containing this string will be returned.
+  filterContains: String
 }
 
 type ListOfFieldDescriptor {
@@ -1861,6 +1875,7 @@ type Query {
   updateFieldDescriptor: Empty
   deleteFieldDescriptor: Empty
   listFieldDescriptors: ListOfFieldDescriptor
+  listFieldDescriptorOptions: FieldDescriptorOptions
   getMeterDataRegisters: RegisterValues
   getMeterDataProfiles: ProfileValues
   getMeterDataIrregularProfiles: IrregularProfileValues

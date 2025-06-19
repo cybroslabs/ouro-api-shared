@@ -316,6 +316,11 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 	panic(fmt.Errorf("not implemented: ListFieldDescriptors - listFieldDescriptors"))
 }
 
+// ListFieldDescriptorOptions is the resolver for the listFieldDescriptorOptions field.
+func (r *queryResolver) ListFieldDescriptorOptions(ctx context.Context) (*model.FieldDescriptorOptions, error) {
+	panic(fmt.Errorf("not implemented: ListFieldDescriptorOptions - listFieldDescriptorOptions"))
+}
+
 // GetMeterDataRegisters is the resolver for the getMeterDataRegisters field.
 func (r *queryResolver) GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error) {
 	panic(fmt.Errorf("not implemented: GetMeterDataRegisters - getMeterDataRegisters"))

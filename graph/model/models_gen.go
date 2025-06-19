@@ -447,6 +447,11 @@ type FieldDescriptor struct {
 	DefaultValue  *FieldValue         `json:"defaultValue,omitempty"`
 }
 
+type FieldDescriptorOptions struct {
+	Options  []*Mapstring `json:"options,omitempty"`
+	Complete *bool        `json:"complete,omitempty"`
+}
+
 type FieldDescriptorSelector struct {
 	ObjectType *ObjectType `json:"objectType,omitempty"`
 	Gid        *string     `json:"gid,omitempty"`
@@ -588,6 +593,11 @@ type ListBulkJobsRequest struct {
 type ListDeviceGroupDevicesRequest struct {
 	GroupID  *string       `json:"groupId,omitempty"`
 	Selector *ListSelector `json:"selector,omitempty"`
+}
+
+type ListFieldDescriptorOptionsRequest struct {
+	OptionsSource  *string `json:"optionsSource,omitempty"`
+	FilterContains *string `json:"filterContains,omitempty"`
 }
 
 type ListOfBulk struct {

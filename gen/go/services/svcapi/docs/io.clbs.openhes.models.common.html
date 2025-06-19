@@ -87,6 +87,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.common.FieldDescriptorOptions">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FieldDescriptorOptions</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.common.FieldDescriptorSelector">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>FieldDescriptorSelector</code> 
@@ -117,6 +126,15 @@
         <a href="#message-io.clbs.openhes.models.common.FieldValues">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>FieldValues</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListFieldDescriptorOptionsRequest</code> 
         </a>
       </p>
       
@@ -633,6 +651,77 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldDescriptorOptions">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.FieldDescriptorOptions" title="io.clbs.openhes.models.common.FieldDescriptorOptions">message FieldDescriptorOptions</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+      <th>Default Value</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        options
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The field descriptor options.</p></td>
+      
+      <td></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        complete
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>If set to false, the options were filtered out.</p></td>
+      
+      <td>true</td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.FieldDescriptorSelector">
   <span>
     <a href="#message-io.clbs.openhes.models.common.FieldDescriptorSelector" title="io.clbs.openhes.models.common.FieldDescriptorSelector">message FieldDescriptorSelector</a>
@@ -1084,6 +1173,71 @@
         </code>
       </td>
       <td class="content"><p>The field values.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest" title="io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest">message ListFieldDescriptorOptionsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        optionsSource
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The options source. Must be set to the options_source field of the FieldDescriptor.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        filterContains
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The filter to apply on the options. If set, only options containing this string will be returned.</p></td>
       
     </tr>
     

@@ -47,6 +47,7 @@ const (
 	ApiService_UpdateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/UpdateFieldDescriptor"
 	ApiService_DeleteFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/DeleteFieldDescriptor"
 	ApiService_ListFieldDescriptors_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	ApiService_ListFieldDescriptorOptions_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptorOptions"
 	ApiService_ListBulks_FullMethodName                                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	ApiService_ListBulkJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListBulkJobs"
 	ApiService_GetBulkJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetBulkJob"
@@ -161,6 +162,9 @@ type ApiServiceClient interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
+	// @group: Fields
+	// The method to get the options for the field descriptor.
+	ListFieldDescriptorOptions(ctx context.Context, in *common.ListFieldDescriptorOptionsRequest, opts ...grpc.CallOption) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
 	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
 	// The list contains both the proxy bulks and the regular bulks.
@@ -590,6 +594,16 @@ func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, in *emptypb
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(common.ListOfFieldDescriptor)
 	err := c.cc.Invoke(ctx, ApiService_ListFieldDescriptors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListFieldDescriptorOptions(ctx context.Context, in *common.ListFieldDescriptorOptionsRequest, opts ...grpc.CallOption) (*common.FieldDescriptorOptions, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.FieldDescriptorOptions)
+	err := c.cc.Invoke(ctx, ApiService_ListFieldDescriptorOptions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1230,6 +1244,9 @@ type ApiServiceServer interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
+	// @group: Fields
+	// The method to get the options for the field descriptor.
+	ListFieldDescriptorOptions(context.Context, *common.ListFieldDescriptorOptionsRequest) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
 	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
 	// The list contains both the proxy bulks and the regular bulks.
@@ -1503,6 +1520,9 @@ func (UnimplementedApiServiceServer) DeleteFieldDescriptor(context.Context, *com
 }
 func (UnimplementedApiServiceServer) ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptors not implemented")
+}
+func (UnimplementedApiServiceServer) ListFieldDescriptorOptions(context.Context, *common.ListFieldDescriptorOptionsRequest) (*common.FieldDescriptorOptions, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFieldDescriptorOptions not implemented")
 }
 func (UnimplementedApiServiceServer) ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBulks not implemented")
@@ -2097,6 +2117,24 @@ func _ApiService_ListFieldDescriptors_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).ListFieldDescriptors(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListFieldDescriptorOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListFieldDescriptorOptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListFieldDescriptorOptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListFieldDescriptorOptions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListFieldDescriptorOptions(ctx, req.(*common.ListFieldDescriptorOptionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3143,6 +3181,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListFieldDescriptors",
 			Handler:    _ApiService_ListFieldDescriptors_Handler,
+		},
+		{
+			MethodName: "ListFieldDescriptorOptions",
+			Handler:    _ApiService_ListFieldDescriptorOptions_Handler,
 		},
 		{
 			MethodName: "ListBulks",

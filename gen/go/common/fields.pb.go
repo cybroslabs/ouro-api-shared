@@ -2481,6 +2481,212 @@ func (b0 ListOfFieldDescriptor_builder) Build() *ListOfFieldDescriptor {
 	return m0
 }
 
+type ListFieldDescriptorOptionsRequest struct {
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_OptionsSource  *string                `protobuf:"bytes,1,opt,name=options_source,json=optionsSource"`
+	xxx_hidden_FilterContains *string                `protobuf:"bytes,2,opt,name=filter_contains,json=filterContains"`
+	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
+	XXX_presence              [1]uint32
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *ListFieldDescriptorOptionsRequest) Reset() {
+	*x = ListFieldDescriptorOptionsRequest{}
+	mi := &file_common_fields_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFieldDescriptorOptionsRequest) ProtoMessage() {}
+
+func (x *ListFieldDescriptorOptionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_fields_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) GetOptionsSource() string {
+	if x != nil {
+		if x.xxx_hidden_OptionsSource != nil {
+			return *x.xxx_hidden_OptionsSource
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ListFieldDescriptorOptionsRequest) GetFilterContains() string {
+	if x != nil {
+		if x.xxx_hidden_FilterContains != nil {
+			return *x.xxx_hidden_FilterContains
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ListFieldDescriptorOptionsRequest) SetOptionsSource(v string) {
+	x.xxx_hidden_OptionsSource = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) SetFilterContains(v string) {
+	x.xxx_hidden_FilterContains = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) HasOptionsSource() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) HasFilterContains() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ListFieldDescriptorOptionsRequest) ClearOptionsSource() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_OptionsSource = nil
+}
+
+func (x *ListFieldDescriptorOptionsRequest) ClearFilterContains() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FilterContains = nil
+}
+
+type ListFieldDescriptorOptionsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	OptionsSource  *string
+	FilterContains *string
+}
+
+func (b0 ListFieldDescriptorOptionsRequest_builder) Build() *ListFieldDescriptorOptionsRequest {
+	m0 := &ListFieldDescriptorOptionsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.OptionsSource != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_OptionsSource = b.OptionsSource
+	}
+	if b.FilterContains != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_FilterContains = b.FilterContains
+	}
+	return m0
+}
+
+type FieldDescriptorOptions struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Options     map[string]string      `protobuf:"bytes,1,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Complete    bool                   `protobuf:"varint,2,opt,name=complete,def=1"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+// Default values for FieldDescriptorOptions fields.
+const (
+	Default_FieldDescriptorOptions_Complete = bool(true)
+)
+
+func (x *FieldDescriptorOptions) Reset() {
+	*x = FieldDescriptorOptions{}
+	mi := &file_common_fields_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldDescriptorOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldDescriptorOptions) ProtoMessage() {}
+
+func (x *FieldDescriptorOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_common_fields_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FieldDescriptorOptions) GetOptions() map[string]string {
+	if x != nil {
+		return x.xxx_hidden_Options
+	}
+	return nil
+}
+
+func (x *FieldDescriptorOptions) GetComplete() bool {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_Complete
+		}
+	}
+	return Default_FieldDescriptorOptions_Complete
+}
+
+func (x *FieldDescriptorOptions) SetOptions(v map[string]string) {
+	x.xxx_hidden_Options = v
+}
+
+func (x *FieldDescriptorOptions) SetComplete(v bool) {
+	x.xxx_hidden_Complete = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *FieldDescriptorOptions) HasComplete() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *FieldDescriptorOptions) ClearComplete() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+}
+
+type FieldDescriptorOptions_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Options  map[string]string
+	Complete *bool
+}
+
+func (b0 FieldDescriptorOptions_builder) Build() *FieldDescriptorOptions {
+	m0 := &FieldDescriptorOptions{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Options = b.Options
+	if b.Complete != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Complete = *b.Complete
+	}
+	return m0
+}
+
 var File_common_fields_proto protoreflect.FileDescriptor
 
 const file_common_fields_proto_rawDesc = "" +
@@ -2581,7 +2787,16 @@ const file_common_fields_proto_rawDesc = "" +
 	"\x15ListOfFieldDescriptor\x12D\n" +
 	"\x05items\x18\x01 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*\xfd\x01\n" +
+	"totalCount\"s\n" +
+	"!ListFieldDescriptorOptionsRequest\x12%\n" +
+	"\x0eoptions_source\x18\x01 \x01(\tR\roptionsSource\x12'\n" +
+	"\x0ffilter_contains\x18\x02 \x01(\tR\x0efilterContains\"\xd4\x01\n" +
+	"\x16FieldDescriptorOptions\x12\\\n" +
+	"\aoptions\x18\x01 \x03(\v2B.io.clbs.openhes.models.common.FieldDescriptorOptions.OptionsEntryR\aoptions\x12 \n" +
+	"\bcomplete\x18\x02 \x01(\b:\x04trueR\bcomplete\x1a:\n" +
+	"\fOptionsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\xfd\x01\n" +
 	"\x0eFilterOperator\x12\t\n" +
 	"\x05EQUAL\x10\x00\x12\r\n" +
 	"\tNOT_EQUAL\x10\x01\x12\x10\n" +
@@ -2622,53 +2837,57 @@ const file_common_fields_proto_rawDesc = "" +
 	"\x05COMBO\x10\bB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_common_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_common_fields_proto_goTypes = []any{
-	(FilterOperator)(0),                  // 0: io.clbs.openhes.models.common.FilterOperator
-	(FieldDataType)(0),                   // 1: io.clbs.openhes.models.common.FieldDataType
-	(FieldDisplayFormat)(0),              // 2: io.clbs.openhes.models.common.FieldDisplayFormat
-	(*ListSelector)(nil),                 // 3: io.clbs.openhes.models.common.ListSelector
-	(*ListSelectorSortBy)(nil),           // 4: io.clbs.openhes.models.common.ListSelectorSortBy
-	(*ListSelectorFilterBy)(nil),         // 5: io.clbs.openhes.models.common.ListSelectorFilterBy
-	(*CreateFieldDescriptorRequest)(nil), // 6: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
-	(*FieldDescriptorSelector)(nil),      // 7: io.clbs.openhes.models.common.FieldDescriptorSelector
-	(*FieldDescriptor)(nil),              // 8: io.clbs.openhes.models.common.FieldDescriptor
-	(*FieldValidation)(nil),              // 9: io.clbs.openhes.models.common.FieldValidation
-	(*FieldValue)(nil),                   // 10: io.clbs.openhes.models.common.FieldValue
-	(*FieldValues)(nil),                  // 11: io.clbs.openhes.models.common.FieldValues
-	(*ListOfFieldValue)(nil),             // 12: io.clbs.openhes.models.common.ListOfFieldValue
-	(*ListOfFieldDescriptor)(nil),        // 13: io.clbs.openhes.models.common.ListOfFieldDescriptor
-	nil,                                  // 14: io.clbs.openhes.models.common.FieldValidation.OptionsEntry
-	nil,                                  // 15: io.clbs.openhes.models.common.FieldValues.AttributesEntry
-	(*timestamppb.Timestamp)(nil),        // 16: google.protobuf.Timestamp
-	(ObjectType)(0),                      // 17: io.clbs.openhes.models.common.ObjectType
-	(*durationpb.Duration)(nil),          // 18: google.protobuf.Duration
+	(FilterOperator)(0),                       // 0: io.clbs.openhes.models.common.FilterOperator
+	(FieldDataType)(0),                        // 1: io.clbs.openhes.models.common.FieldDataType
+	(FieldDisplayFormat)(0),                   // 2: io.clbs.openhes.models.common.FieldDisplayFormat
+	(*ListSelector)(nil),                      // 3: io.clbs.openhes.models.common.ListSelector
+	(*ListSelectorSortBy)(nil),                // 4: io.clbs.openhes.models.common.ListSelectorSortBy
+	(*ListSelectorFilterBy)(nil),              // 5: io.clbs.openhes.models.common.ListSelectorFilterBy
+	(*CreateFieldDescriptorRequest)(nil),      // 6: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
+	(*FieldDescriptorSelector)(nil),           // 7: io.clbs.openhes.models.common.FieldDescriptorSelector
+	(*FieldDescriptor)(nil),                   // 8: io.clbs.openhes.models.common.FieldDescriptor
+	(*FieldValidation)(nil),                   // 9: io.clbs.openhes.models.common.FieldValidation
+	(*FieldValue)(nil),                        // 10: io.clbs.openhes.models.common.FieldValue
+	(*FieldValues)(nil),                       // 11: io.clbs.openhes.models.common.FieldValues
+	(*ListOfFieldValue)(nil),                  // 12: io.clbs.openhes.models.common.ListOfFieldValue
+	(*ListOfFieldDescriptor)(nil),             // 13: io.clbs.openhes.models.common.ListOfFieldDescriptor
+	(*ListFieldDescriptorOptionsRequest)(nil), // 14: io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest
+	(*FieldDescriptorOptions)(nil),            // 15: io.clbs.openhes.models.common.FieldDescriptorOptions
+	nil,                                       // 16: io.clbs.openhes.models.common.FieldValidation.OptionsEntry
+	nil,                                       // 17: io.clbs.openhes.models.common.FieldValues.AttributesEntry
+	nil,                                       // 18: io.clbs.openhes.models.common.FieldDescriptorOptions.OptionsEntry
+	(*timestamppb.Timestamp)(nil),             // 19: google.protobuf.Timestamp
+	(ObjectType)(0),                           // 20: io.clbs.openhes.models.common.ObjectType
+	(*durationpb.Duration)(nil),               // 21: google.protobuf.Duration
 }
 var file_common_fields_proto_depIdxs = []int32{
 	4,  // 0: io.clbs.openhes.models.common.ListSelector.sort_by:type_name -> io.clbs.openhes.models.common.ListSelectorSortBy
 	5,  // 1: io.clbs.openhes.models.common.ListSelector.filter_by:type_name -> io.clbs.openhes.models.common.ListSelectorFilterBy
 	0,  // 2: io.clbs.openhes.models.common.ListSelectorFilterBy.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
 	1,  // 3: io.clbs.openhes.models.common.ListSelectorFilterBy.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	16, // 4: io.clbs.openhes.models.common.ListSelectorFilterBy.date:type_name -> google.protobuf.Timestamp
+	19, // 4: io.clbs.openhes.models.common.ListSelectorFilterBy.date:type_name -> google.protobuf.Timestamp
 	8,  // 5: io.clbs.openhes.models.common.CreateFieldDescriptorRequest.spec:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	17, // 6: io.clbs.openhes.models.common.FieldDescriptorSelector.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	17, // 7: io.clbs.openhes.models.common.FieldDescriptor.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	20, // 6: io.clbs.openhes.models.common.FieldDescriptorSelector.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	20, // 7: io.clbs.openhes.models.common.FieldDescriptor.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
 	1,  // 8: io.clbs.openhes.models.common.FieldDescriptor.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
 	2,  // 9: io.clbs.openhes.models.common.FieldDescriptor.format:type_name -> io.clbs.openhes.models.common.FieldDisplayFormat
 	9,  // 10: io.clbs.openhes.models.common.FieldDescriptor.validation:type_name -> io.clbs.openhes.models.common.FieldValidation
 	10, // 11: io.clbs.openhes.models.common.FieldDescriptor.default_value:type_name -> io.clbs.openhes.models.common.FieldValue
-	14, // 12: io.clbs.openhes.models.common.FieldValidation.options:type_name -> io.clbs.openhes.models.common.FieldValidation.OptionsEntry
-	16, // 13: io.clbs.openhes.models.common.FieldValue.date_value:type_name -> google.protobuf.Timestamp
-	18, // 14: io.clbs.openhes.models.common.FieldValue.duration_value:type_name -> google.protobuf.Duration
-	15, // 15: io.clbs.openhes.models.common.FieldValues.attributes:type_name -> io.clbs.openhes.models.common.FieldValues.AttributesEntry
+	16, // 12: io.clbs.openhes.models.common.FieldValidation.options:type_name -> io.clbs.openhes.models.common.FieldValidation.OptionsEntry
+	19, // 13: io.clbs.openhes.models.common.FieldValue.date_value:type_name -> google.protobuf.Timestamp
+	21, // 14: io.clbs.openhes.models.common.FieldValue.duration_value:type_name -> google.protobuf.Duration
+	17, // 15: io.clbs.openhes.models.common.FieldValues.attributes:type_name -> io.clbs.openhes.models.common.FieldValues.AttributesEntry
 	10, // 16: io.clbs.openhes.models.common.ListOfFieldValue.items:type_name -> io.clbs.openhes.models.common.FieldValue
 	8,  // 17: io.clbs.openhes.models.common.ListOfFieldDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	10, // 18: io.clbs.openhes.models.common.FieldValues.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	18, // 18: io.clbs.openhes.models.common.FieldDescriptorOptions.options:type_name -> io.clbs.openhes.models.common.FieldDescriptorOptions.OptionsEntry
+	10, // 19: io.clbs.openhes.models.common.FieldValues.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_common_fields_proto_init() }
@@ -2692,7 +2911,7 @@ func file_common_fields_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_fields_proto_rawDesc), len(file_common_fields_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   13,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

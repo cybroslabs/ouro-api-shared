@@ -108,6 +108,9 @@ const (
 	// ApiServiceListFieldDescriptorsProcedure is the fully-qualified name of the ApiService's
 	// ListFieldDescriptors RPC.
 	ApiServiceListFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors"
+	// ApiServiceListFieldDescriptorOptionsProcedure is the fully-qualified name of the ApiService's
+	// ListFieldDescriptorOptions RPC.
+	ApiServiceListFieldDescriptorOptionsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptorOptions"
 	// ApiServiceListBulksProcedure is the fully-qualified name of the ApiService's ListBulks RPC.
 	ApiServiceListBulksProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListBulks"
 	// ApiServiceListBulkJobsProcedure is the fully-qualified name of the ApiService's ListBulkJobs RPC.
@@ -308,6 +311,9 @@ type ApiServiceClient interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
+	// @group: Fields
+	// The method to get the options for the field descriptor.
+	ListFieldDescriptorOptions(context.Context, *connect.Request[common.ListFieldDescriptorOptionsRequest]) (*connect.Response[common.FieldDescriptorOptions], error)
 	// @group: Bulks
 	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
 	// The list contains both the proxy bulks and the regular bulks.
@@ -652,6 +658,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceListFieldDescriptorsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+			connect.WithClientOptions(opts...),
+		),
+		listFieldDescriptorOptions: connect.NewClient[common.ListFieldDescriptorOptionsRequest, common.FieldDescriptorOptions](
+			httpClient,
+			baseURL+ApiServiceListFieldDescriptorOptionsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptorOptions")),
 			connect.WithClientOptions(opts...),
 		),
 		listBulks: connect.NewClient[common.ListSelector, acquisition.ListOfBulk](
@@ -1006,6 +1018,7 @@ type apiServiceClient struct {
 	updateFieldDescriptor                                            *connect.Client[common.FieldDescriptor, emptypb.Empty]
 	deleteFieldDescriptor                                            *connect.Client[common.FieldDescriptorSelector, emptypb.Empty]
 	listFieldDescriptors                                             *connect.Client[emptypb.Empty, common.ListOfFieldDescriptor]
+	listFieldDescriptorOptions                                       *connect.Client[common.ListFieldDescriptorOptionsRequest, common.FieldDescriptorOptions]
 	listBulks                                                        *connect.Client[common.ListSelector, acquisition.ListOfBulk]
 	listBulkJobs                                                     *connect.Client[acquisition.ListBulkJobsRequest, acquisition.ListOfBulkJob]
 	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
@@ -1188,6 +1201,12 @@ func (c *apiServiceClient) DeleteFieldDescriptor(ctx context.Context, req *conne
 // ListFieldDescriptors calls io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors.
 func (c *apiServiceClient) ListFieldDescriptors(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
 	return c.listFieldDescriptors.CallUnary(ctx, req)
+}
+
+// ListFieldDescriptorOptions calls
+// io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptorOptions.
+func (c *apiServiceClient) ListFieldDescriptorOptions(ctx context.Context, req *connect.Request[common.ListFieldDescriptorOptionsRequest]) (*connect.Response[common.FieldDescriptorOptions], error) {
+	return c.listFieldDescriptorOptions.CallUnary(ctx, req)
 }
 
 // ListBulks calls io.clbs.openhes.services.svcapi.ApiService.ListBulks.
@@ -1520,6 +1539,9 @@ type ApiServiceHandler interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error)
+	// @group: Fields
+	// The method to get the options for the field descriptor.
+	ListFieldDescriptorOptions(context.Context, *connect.Request[common.ListFieldDescriptorOptionsRequest]) (*connect.Response[common.FieldDescriptorOptions], error)
 	// @group: Bulks
 	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
 	// The list contains both the proxy bulks and the regular bulks.
@@ -1860,6 +1882,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceListFieldDescriptorsProcedure,
 		svc.ListFieldDescriptors,
 		connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptors")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListFieldDescriptorOptionsHandler := connect.NewUnaryHandler(
+		ApiServiceListFieldDescriptorOptionsProcedure,
+		svc.ListFieldDescriptorOptions,
+		connect.WithSchema(apiServiceMethods.ByName("ListFieldDescriptorOptions")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceListBulksHandler := connect.NewUnaryHandler(
@@ -2234,6 +2262,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceDeleteFieldDescriptorHandler.ServeHTTP(w, r)
 		case ApiServiceListFieldDescriptorsProcedure:
 			apiServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
+		case ApiServiceListFieldDescriptorOptionsProcedure:
+			apiServiceListFieldDescriptorOptionsHandler.ServeHTTP(w, r)
 		case ApiServiceListBulksProcedure:
 			apiServiceListBulksHandler.ServeHTTP(w, r)
 		case ApiServiceListBulkJobsProcedure:
@@ -2441,6 +2471,10 @@ func (UnimplementedApiServiceHandler) DeleteFieldDescriptor(context.Context, *co
 
 func (UnimplementedApiServiceHandler) ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptor], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListFieldDescriptorOptions(context.Context, *connect.Request[common.ListFieldDescriptorOptionsRequest]) (*connect.Response[common.FieldDescriptorOptions], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptorOptions is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListBulks(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfBulk], error) {

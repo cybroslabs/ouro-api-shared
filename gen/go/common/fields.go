@@ -312,6 +312,20 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 	return fd
 }
 
+func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
+	if source == "" {
+		fd.ensureValidation().ClearOptionsSource()
+		return fd
+	}
+
+	if fd.GetDataType() != FieldDataType_TEXT && fd.GetDataType() != FieldDataType_INTEGER {
+		panic("Options source is only supported for TEXT or INTEGER fields")
+	}
+
+	fd.ensureValidation().SetOptionsSource(source)
+	return fd
+}
+
 func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 	if fd == nil {
 		return nil

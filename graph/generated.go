@@ -483,6 +483,11 @@ type ComplexityRoot struct {
 		Visible       func(childComplexity int) int
 	}
 
+	FieldDescriptorOptions struct {
+		Complete func(childComplexity int) int
+		Options  func(childComplexity int) int
+	}
+
 	FieldDescriptorSelector struct {
 		Gid        func(childComplexity int) int
 		ObjectType func(childComplexity int) int
@@ -624,6 +629,11 @@ type ComplexityRoot struct {
 	ListDeviceGroupDevicesRequest struct {
 		GroupID  func(childComplexity int) int
 		Selector func(childComplexity int) int
+	}
+
+	ListFieldDescriptorOptionsRequest struct {
+		FilterContains func(childComplexity int) int
+		OptionsSource  func(childComplexity int) int
 	}
 
 	ListOfBulk struct {
@@ -871,6 +881,7 @@ type ComplexityRoot struct {
 		ListDeviceGroups                                                 func(childComplexity int) int
 		ListDevices                                                      func(childComplexity int) int
 		ListDrivers                                                      func(childComplexity int) int
+		ListFieldDescriptorOptions                                       func(childComplexity int) int
 		ListFieldDescriptors                                             func(childComplexity int) int
 		ListModemPools                                                   func(childComplexity int) int
 		ListTimeOfUseTables                                              func(childComplexity int) int
@@ -1084,6 +1095,7 @@ type QueryResolver interface {
 	UpdateFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
+	ListFieldDescriptorOptions(ctx context.Context) (*model.FieldDescriptorOptions, error)
 	GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error)
 	GetMeterDataProfiles(ctx context.Context) (*model.ProfileValues, error)
 	GetMeterDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error)
@@ -2577,6 +2589,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldDescriptor.Visible(childComplexity), true
 
+	case "FieldDescriptorOptions.complete":
+		if e.complexity.FieldDescriptorOptions.Complete == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptorOptions.Complete(childComplexity), true
+
+	case "FieldDescriptorOptions.options":
+		if e.complexity.FieldDescriptorOptions.Options == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptorOptions.Options(childComplexity), true
+
 	case "FieldDescriptorSelector.gid":
 		if e.complexity.FieldDescriptorSelector.Gid == nil {
 			break
@@ -3199,6 +3225,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ListDeviceGroupDevicesRequest.Selector(childComplexity), true
+
+	case "ListFieldDescriptorOptionsRequest.filterContains":
+		if e.complexity.ListFieldDescriptorOptionsRequest.FilterContains == nil {
+			break
+		}
+
+		return e.complexity.ListFieldDescriptorOptionsRequest.FilterContains(childComplexity), true
+
+	case "ListFieldDescriptorOptionsRequest.optionsSource":
+		if e.complexity.ListFieldDescriptorOptionsRequest.OptionsSource == nil {
+			break
+		}
+
+		return e.complexity.ListFieldDescriptorOptionsRequest.OptionsSource(childComplexity), true
 
 	case "ListOfBulk.items":
 		if e.complexity.ListOfBulk.Items == nil {
@@ -4256,6 +4296,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.ListDrivers(childComplexity), true
+
+	case "Query.listFieldDescriptorOptions":
+		if e.complexity.Query.ListFieldDescriptorOptions == nil {
+			break
+		}
+
+		return e.complexity.Query.ListFieldDescriptorOptions(childComplexity), true
 
 	case "Query.listFieldDescriptors":
 		if e.complexity.Query.ListFieldDescriptors == nil {
@@ -14634,6 +14681,94 @@ func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.
 	return fc, nil
 }
 
+func (ec *executionContext) _FieldDescriptorOptions_options(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptorOptions) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptorOptions_options(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Options, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Mapstring)
+	fc.Result = res
+	return ec.marshalO_mapstring2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptorOptions_options(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptorOptions",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "key":
+				return ec.fieldContext__mapstring_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapstring_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type _mapstring", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptorOptions_complete(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptorOptions) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptorOptions_complete(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Complete, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptorOptions_complete(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptorOptions",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _FieldDescriptorSelector_objectType(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptorSelector) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_FieldDescriptorSelector_objectType(ctx, field)
 	if err != nil {
@@ -18594,6 +18729,88 @@ func (ec *executionContext) fieldContext_ListDeviceGroupDevicesRequest_selector(
 				return ec.fieldContext_ListSelector_fields(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListSelector", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListFieldDescriptorOptionsRequest_optionsSource(ctx context.Context, field graphql.CollectedField, obj *model.ListFieldDescriptorOptionsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListFieldDescriptorOptionsRequest_optionsSource(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.OptionsSource, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListFieldDescriptorOptionsRequest_optionsSource(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListFieldDescriptorOptionsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListFieldDescriptorOptionsRequest_filterContains(ctx context.Context, field graphql.CollectedField, obj *model.ListFieldDescriptorOptionsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListFieldDescriptorOptionsRequest_filterContains(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.FilterContains, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListFieldDescriptorOptionsRequest_filterContains(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListFieldDescriptorOptionsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -25733,6 +25950,53 @@ func (ec *executionContext) fieldContext_Query_listFieldDescriptors(_ context.Co
 				return ec.fieldContext_ListOfFieldDescriptor_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfFieldDescriptor", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listFieldDescriptorOptions(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listFieldDescriptorOptions(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListFieldDescriptorOptions(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDescriptorOptions)
+	fc.Result = res
+	return ec.marshalOFieldDescriptorOptions2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptorOptions(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listFieldDescriptorOptions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "options":
+				return ec.fieldContext_FieldDescriptorOptions_options(ctx, field)
+			case "complete":
+				return ec.fieldContext_FieldDescriptorOptions_complete(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptorOptions", field.Name)
 		},
 	}
 	return fc, nil
@@ -34116,6 +34380,44 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 	return out
 }
 
+var fieldDescriptorOptionsImplementors = []string{"FieldDescriptorOptions"}
+
+func (ec *executionContext) _FieldDescriptorOptions(ctx context.Context, sel ast.SelectionSet, obj *model.FieldDescriptorOptions) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, fieldDescriptorOptionsImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("FieldDescriptorOptions")
+		case "options":
+			out.Values[i] = ec._FieldDescriptorOptions_options(ctx, field, obj)
+		case "complete":
+			out.Values[i] = ec._FieldDescriptorOptions_complete(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var fieldDescriptorSelectorImplementors = []string{"FieldDescriptorSelector"}
 
 func (ec *executionContext) _FieldDescriptorSelector(ctx context.Context, sel ast.SelectionSet, obj *model.FieldDescriptorSelector) graphql.Marshaler {
@@ -34883,6 +35185,44 @@ func (ec *executionContext) _ListDeviceGroupDevicesRequest(ctx context.Context, 
 			out.Values[i] = ec._ListDeviceGroupDevicesRequest_groupId(ctx, field, obj)
 		case "selector":
 			out.Values[i] = ec._ListDeviceGroupDevicesRequest_selector(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var listFieldDescriptorOptionsRequestImplementors = []string{"ListFieldDescriptorOptionsRequest"}
+
+func (ec *executionContext) _ListFieldDescriptorOptionsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.ListFieldDescriptorOptionsRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listFieldDescriptorOptionsRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListFieldDescriptorOptionsRequest")
+		case "optionsSource":
+			out.Values[i] = ec._ListFieldDescriptorOptionsRequest_optionsSource(ctx, field, obj)
+		case "filterContains":
+			out.Values[i] = ec._ListFieldDescriptorOptionsRequest_filterContains(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -37321,6 +37661,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_listFieldDescriptors(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listFieldDescriptorOptions":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listFieldDescriptorOptions(ctx, field)
 				return res
 			}
 
@@ -40718,6 +41077,13 @@ func (ec *executionContext) marshalOFieldDescriptor2ᚖgithubᚗcomᚋcybroslabs
 		return graphql.Null
 	}
 	return ec._FieldDescriptor(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOFieldDescriptorOptions2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptorOptions(ctx context.Context, sel ast.SelectionSet, v *model.FieldDescriptorOptions) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._FieldDescriptorOptions(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOFieldDisplayFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDisplayFormat(ctx context.Context, v any) (*model.FieldDisplayFormat, error) {

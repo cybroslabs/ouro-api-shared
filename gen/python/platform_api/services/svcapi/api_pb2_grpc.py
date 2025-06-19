@@ -137,6 +137,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=common_dot_fields__pb2.ListOfFieldDescriptor.FromString,
                 _registered_method=True)
+        self.ListFieldDescriptorOptions = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptorOptions',
+                request_serializer=common_dot_fields__pb2.ListFieldDescriptorOptionsRequest.SerializeToString,
+                response_deserializer=common_dot_fields__pb2.FieldDescriptorOptions.FromString,
+                _registered_method=True)
         self.ListBulks = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/ListBulks',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
@@ -575,6 +580,14 @@ class ApiServiceServicer(object):
     def ListFieldDescriptors(self, request, context):
         """@group: Fields
         The method to get the list of fields.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListFieldDescriptorOptions(self, request, context):
+        """@group: Fields
+        The method to get the options for the field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1162,6 +1175,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.ListFieldDescriptors,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=common_dot_fields__pb2.ListOfFieldDescriptor.SerializeToString,
+            ),
+            'ListFieldDescriptorOptions': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListFieldDescriptorOptions,
+                    request_deserializer=common_dot_fields__pb2.ListFieldDescriptorOptionsRequest.FromString,
+                    response_serializer=common_dot_fields__pb2.FieldDescriptorOptions.SerializeToString,
             ),
             'ListBulks': grpc.unary_unary_rpc_method_handler(
                     servicer.ListBulks,
@@ -2056,6 +2074,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptors',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             common_dot_fields__pb2.ListOfFieldDescriptor.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListFieldDescriptorOptions(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListFieldDescriptorOptions',
+            common_dot_fields__pb2.ListFieldDescriptorOptionsRequest.SerializeToString,
+            common_dot_fields__pb2.FieldDescriptorOptions.FromString,
             options,
             channel_credentials,
             insecure,
