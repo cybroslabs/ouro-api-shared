@@ -54,7 +54,8 @@ func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) (FieldDescripto
 		systemDescriptors:      slices.Clone(opts.SystemDescriptors),
 		knownDescriptors:       make([]*common.FieldDescriptorInternal, 0, len(opts.SystemDescriptors)),
 	}
-	err := r.Refresh(context.Background())
+
+	err := r.refresh(context.Background(), true)
 	if err != nil {
 		return nil, err
 	}
@@ -81,15 +82,26 @@ func (fdm *fieldDescriptorManager) Refresh(ctx context.Context) error {
 	fdm.fieldDescriptorPathMapLock.Lock()
 	defer fdm.fieldDescriptorPathMapLock.Unlock()
 
-	return fdm.refresh(ctx)
+	return fdm.refresh(ctx, false)
 }
 
-func (fdm *fieldDescriptorManager) refresh(ctx context.Context) error {
+func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) error {
 	cli, closer, err := fdm.connectors.OpenApiServiceClient()
 	if err != nil {
 		return err
 	}
 	defer closer()
+
+	if update {
+		// After boot we want to update the field descriptors.
+		_, err = cli.UpdateFieldDescriptors(ctx, common.UpdateFieldDescriptorsRequest_builder{
+			Items:          fdm.systemDescriptors,
+			CleanupMissing: ptr.To(true),
+		}.Build())
+		if err != nil {
+			return err
+		}
+	}
 
 	data, err := cli.ListFieldDescriptors(ctx, nil)
 	if err != nil {
@@ -182,7 +194,7 @@ func (fdm *fieldDescriptorManager) CreateFieldDescriptor(ctx context.Context, fi
 		return err
 	}
 
-	err = fdm.refresh(ctx)
+	err = fdm.refresh(ctx, false)
 
 	return err
 }
@@ -219,7 +231,7 @@ func (fdm *fieldDescriptorManager) UpdateFieldDescriptor(ctx context.Context, fd
 		return err
 	}
 
-	err = fdm.refresh(ctx)
+	err = fdm.refresh(ctx, false)
 
 	return err
 }
@@ -260,7 +272,7 @@ func (fdm *fieldDescriptorManager) DeleteFieldDescriptor(ctx context.Context, se
 		return err
 	}
 
-	err = fdm.refresh(ctx)
+	err = fdm.refresh(ctx, false)
 
 	return err
 }
