@@ -298,6 +298,7 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 			}
 		}
 	}
+	fd.SetFormat(FieldDisplayFormat_COMBO)
 	fd.ensureValidation().SetOptions(options)
 	return fd
 }
@@ -315,6 +316,9 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	if source == "" {
 		fd.ensureValidation().ClearOptionsSource()
+		if fd.GetFormat() == FieldDisplayFormat_COMBO {
+			fd.SetFormat(FieldDisplayFormat_DEFAULT)
+		}
 		return fd
 	}
 
@@ -322,6 +326,7 @@ func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 		panic("Options source is only supported for TEXT or INTEGER fields")
 	}
 
+	fd.SetFormat(FieldDisplayFormat_COMBO)
 	fd.ensureValidation().SetOptionsSource(source)
 	return fd
 }
