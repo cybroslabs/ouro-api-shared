@@ -33,6 +33,7 @@ const (
 	OuroOperatorService_SynchronizeComponentConfig_FullMethodName = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SynchronizeComponentConfig"
 	OuroOperatorService_StartUpgrade_FullMethodName               = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/StartUpgrade"
 	OuroOperatorService_GetLicense_FullMethodName                 = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense"
+	OuroOperatorService_GetLicenseRequestCode_FullMethodName      = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicenseRequestCode"
 	OuroOperatorService_SetLicense_FullMethodName                 = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetLicense"
 )
 
@@ -66,6 +67,8 @@ type OuroOperatorServiceClient interface {
 	StartUpgrade(ctx context.Context, in *acquisition.StartUpgradeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method returns the current license key.
 	GetLicense(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.License, error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -178,6 +181,16 @@ func (c *ouroOperatorServiceClient) GetLicense(ctx context.Context, in *emptypb.
 	return out, nil
 }
 
+func (c *ouroOperatorServiceClient) GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, OuroOperatorService_GetLicenseRequestCode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *ouroOperatorServiceClient) SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -218,6 +231,8 @@ type OuroOperatorServiceServer interface {
 	StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error)
 	// The method returns the current license key.
 	GetLicense(context.Context, *emptypb.Empty) (*system.License, error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	mustEmbedUnimplementedOuroOperatorServiceServer()
@@ -259,6 +274,9 @@ func (UnimplementedOuroOperatorServiceServer) StartUpgrade(context.Context, *acq
 }
 func (UnimplementedOuroOperatorServiceServer) GetLicense(context.Context, *emptypb.Empty) (*system.License, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLicense not implemented")
+}
+func (UnimplementedOuroOperatorServiceServer) GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLicenseRequestCode not implemented")
 }
 func (UnimplementedOuroOperatorServiceServer) SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetLicense not implemented")
@@ -464,6 +482,24 @@ func _OuroOperatorService_GetLicense_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OuroOperatorService_GetLicenseRequestCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OuroOperatorServiceServer).GetLicenseRequestCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OuroOperatorService_GetLicenseRequestCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OuroOperatorServiceServer).GetLicenseRequestCode(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OuroOperatorService_SetLicense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
@@ -528,6 +564,10 @@ var OuroOperatorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLicense",
 			Handler:    _OuroOperatorService_GetLicense_Handler,
+		},
+		{
+			MethodName: "GetLicenseRequestCode",
+			Handler:    _OuroOperatorService_GetLicenseRequestCode_Handler,
 		},
 		{
 			MethodName: "SetLicense",

@@ -40,6 +40,8 @@ service OuroOperatorService {
 
     // The method returns the current license key.
     rpc GetLicense(google.protobuf.Empty) returns (io.clbs.openhes.models.system.License);
+    // The method returns the license request code if the license is not set. Otherwise it returns empty string.
+    rpc GetLicenseRequestCode(google.protobuf.Empty) returns (google.protobuf.StringValue);
     // The method stored a new license key. Used only and only for air-gapped installations.
     rpc SetLicense(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }

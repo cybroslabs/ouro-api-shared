@@ -70,6 +70,11 @@ class OuroOperatorServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=system_dot_main__pb2.License.FromString,
                 _registered_method=True)
+        self.GetLicenseRequestCode = channel.unary_unary(
+                '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicenseRequestCode',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
         self.SetLicense = channel.unary_unary(
                 '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetLicense',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
@@ -155,6 +160,13 @@ class OuroOperatorServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetLicenseRequestCode(self, request, context):
+        """The method returns the license request code if the license is not set. Otherwise it returns empty string.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetLicense(self, request, context):
         """The method stored a new license key. Used only and only for air-gapped installations.
         """
@@ -214,6 +226,11 @@ def add_OuroOperatorServiceServicer_to_server(servicer, server):
                     servicer.GetLicense,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=system_dot_main__pb2.License.SerializeToString,
+            ),
+            'GetLicenseRequestCode': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLicenseRequestCode,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             ),
             'SetLicense': grpc.unary_unary_rpc_method_handler(
                     servicer.SetLicense,
@@ -493,6 +510,33 @@ class OuroOperatorService(object):
             '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             system_dot_main__pb2.License.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetLicenseRequestCode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicenseRequestCode',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
             options,
             channel_credentials,
             insecure,
