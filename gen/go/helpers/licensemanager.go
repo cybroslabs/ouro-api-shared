@@ -27,15 +27,17 @@ type LicenseManager interface {
 
 // The LicenseManagerOpts struct contains options for creating a LicenseManager instance.
 type LicenseManagerOpts struct {
-	Connectors Connectors
-	Cancel     context.CancelFunc
-	OnLicense  func(license *system.License)
+	Connectors       Connectors
+	Cancel           context.CancelFunc
+	OnLicenseGranted func(license *system.License)
+	OnLicenseRevoked func()
 }
 
 type licenseManager struct {
-	connectors Connectors
-	license    *system.License
-	onLicense  func(license *system.License)
+	connectors       Connectors
+	license          *system.License
+	onLicenseGranted func(license *system.License)
+	onLicenseRevoked func()
 
 	runCancel    context.CancelFunc
 	outterCancel context.CancelFunc
@@ -50,11 +52,12 @@ func NewLicenseManager(opts *LicenseManagerOpts) LicenseManager {
 	}
 	ctx, ctx_cancel := context.WithCancel(context.Background())
 	lm := &licenseManager{
-		connectors:   opts.Connectors,
-		runCancel:    ctx_cancel,
-		outterCancel: opts.Cancel,
-		onLicense:    opts.OnLicense,
-		event:        make(chan struct{}, 1),
+		connectors:       opts.Connectors,
+		runCancel:        ctx_cancel,
+		outterCancel:     opts.Cancel,
+		onLicenseGranted: opts.OnLicenseGranted,
+		onLicenseRevoked: opts.OnLicenseRevoked,
+		event:            make(chan struct{}, 1),
 	}
 	go lm.run(ctx)
 	return lm
@@ -75,12 +78,11 @@ func (lm *licenseManager) run(ctx context.Context) {
 			if check_failed_count == 3 {
 				// If we failed to get the license three times in a row, we will revoke current license.
 				lm.license = nil
-				select {
-				case lm.event <- struct{}{}:
-				default:
+				for range lm.event {
+					// Drain the event channel to ensure no stale events are left.
 				}
-				if f := lm.onLicense; f != nil {
-					f(nil)
+				if f := lm.onLicenseRevoked; f != nil {
+					f()
 				}
 			}
 
@@ -97,7 +99,7 @@ func (lm *licenseManager) run(ctx context.Context) {
 		case lm.event <- struct{}{}:
 		default:
 		}
-		if f := lm.onLicense; f != nil {
+		if f := lm.onLicenseGranted; f != nil {
 			f(license)
 		}
 
@@ -137,14 +139,14 @@ func (lm *licenseManager) HasLicense() bool {
 // WaitLicense blocks until a license is available or the context is done.
 // It returns an error if the context is canceled, otherwise it returns nil when a license is available.
 func (lm *licenseManager) WaitLicense(ctx context.Context) error {
+	if lm.license != nil {
+		return nil
+	}
 	for {
 		select {
 		case <-ctx.Done():
 			return ctx.Err()
 		case <-lm.event:
-			if lm.license == nil {
-				continue
-			}
 			return nil
 		}
 	}
