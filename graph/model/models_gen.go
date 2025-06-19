@@ -656,8 +656,7 @@ type ListOfFieldDescriptor struct {
 }
 
 type ListOfID struct {
-	ID         []*string `json:"id,omitempty"`
-	TotalCount *int32    `json:"totalCount,omitempty"`
+	ID []*string `json:"id,omitempty"`
 }
 
 type ListOfJobDevice struct {

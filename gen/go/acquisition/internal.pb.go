@@ -824,6 +824,63 @@ func (b0 QueueJobsRequest_builder) Build() *QueueJobsRequest {
 	return m0
 }
 
+type QueueJobsResponse struct {
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_JobIds map[string]uint64      `protobuf:"bytes,1,rep,name=job_ids,json=jobIds" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *QueueJobsResponse) Reset() {
+	*x = QueueJobsResponse{}
+	mi := &file_acquisition_internal_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *QueueJobsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueueJobsResponse) ProtoMessage() {}
+
+func (x *QueueJobsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *QueueJobsResponse) GetJobIds() map[string]uint64 {
+	if x != nil {
+		return x.xxx_hidden_JobIds
+	}
+	return nil
+}
+
+func (x *QueueJobsResponse) SetJobIds(v map[string]uint64) {
+	x.xxx_hidden_JobIds = v
+}
+
+type QueueJobsResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	JobIds map[string]uint64
+}
+
+func (b0 QueueJobsResponse_builder) Build() *QueueJobsResponse {
+	m0 := &QueueJobsResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_JobIds = b.JobIds
+	return m0
+}
+
 type GetJobResponse struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Status *JobStatus             `protobuf:"bytes,1,opt,name=status"`
@@ -833,7 +890,7 @@ type GetJobResponse struct {
 
 func (x *GetJobResponse) Reset() {
 	*x = GetJobResponse{}
-	mi := &file_acquisition_internal_proto_msgTypes[7]
+	mi := &file_acquisition_internal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -845,7 +902,7 @@ func (x *GetJobResponse) String() string {
 func (*GetJobResponse) ProtoMessage() {}
 
 func (x *GetJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[7]
+	mi := &file_acquisition_internal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -905,7 +962,7 @@ type SetDriverScaleRequest struct {
 
 func (x *SetDriverScaleRequest) Reset() {
 	*x = SetDriverScaleRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[8]
+	mi := &file_acquisition_internal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -917,7 +974,7 @@ func (x *SetDriverScaleRequest) String() string {
 func (*SetDriverScaleRequest) ProtoMessage() {}
 
 func (x *SetDriverScaleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[8]
+	mi := &file_acquisition_internal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1045,7 +1102,7 @@ type GetDriverScaleRequest struct {
 
 func (x *GetDriverScaleRequest) Reset() {
 	*x = GetDriverScaleRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[9]
+	mi := &file_acquisition_internal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1057,7 +1114,7 @@ func (x *GetDriverScaleRequest) String() string {
 func (*GetDriverScaleRequest) ProtoMessage() {}
 
 func (x *GetDriverScaleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[9]
+	mi := &file_acquisition_internal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1153,7 +1210,7 @@ type MapDeviceConnectionInfo struct {
 
 func (x *MapDeviceConnectionInfo) Reset() {
 	*x = MapDeviceConnectionInfo{}
-	mi := &file_acquisition_internal_proto_msgTypes[10]
+	mi := &file_acquisition_internal_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1165,7 +1222,7 @@ func (x *MapDeviceConnectionInfo) String() string {
 func (*MapDeviceConnectionInfo) ProtoMessage() {}
 
 func (x *MapDeviceConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[10]
+	mi := &file_acquisition_internal_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1213,7 +1270,7 @@ type SetDeviceInfoRequest struct {
 
 func (x *SetDeviceInfoRequest) Reset() {
 	*x = SetDeviceInfoRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[11]
+	mi := &file_acquisition_internal_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1225,7 +1282,7 @@ func (x *SetDeviceInfoRequest) String() string {
 func (*SetDeviceInfoRequest) ProtoMessage() {}
 
 func (x *SetDeviceInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[11]
+	mi := &file_acquisition_internal_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1316,7 +1373,7 @@ type AddCommunicationUnitLogsRequest struct {
 
 func (x *AddCommunicationUnitLogsRequest) Reset() {
 	*x = AddCommunicationUnitLogsRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[12]
+	mi := &file_acquisition_internal_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1328,7 +1385,7 @@ func (x *AddCommunicationUnitLogsRequest) String() string {
 func (*AddCommunicationUnitLogsRequest) ProtoMessage() {}
 
 func (x *AddCommunicationUnitLogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[12]
+	mi := &file_acquisition_internal_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1412,7 +1469,7 @@ type CommunicationUnitLogRecord struct {
 
 func (x *CommunicationUnitLogRecord) Reset() {
 	*x = CommunicationUnitLogRecord{}
-	mi := &file_acquisition_internal_proto_msgTypes[13]
+	mi := &file_acquisition_internal_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1424,7 +1481,7 @@ func (x *CommunicationUnitLogRecord) String() string {
 func (*CommunicationUnitLogRecord) ProtoMessage() {}
 
 func (x *CommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[13]
+	mi := &file_acquisition_internal_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1578,7 +1635,7 @@ type SetUnknownDevicesRequest struct {
 
 func (x *SetUnknownDevicesRequest) Reset() {
 	*x = SetUnknownDevicesRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[14]
+	mi := &file_acquisition_internal_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1590,7 +1647,7 @@ func (x *SetUnknownDevicesRequest) String() string {
 func (*SetUnknownDevicesRequest) ProtoMessage() {}
 
 func (x *SetUnknownDevicesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[14]
+	mi := &file_acquisition_internal_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1672,7 +1729,7 @@ type UnknownDevice struct {
 
 func (x *UnknownDevice) Reset() {
 	*x = UnknownDevice{}
-	mi := &file_acquisition_internal_proto_msgTypes[15]
+	mi := &file_acquisition_internal_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1684,7 +1741,7 @@ func (x *UnknownDevice) String() string {
 func (*UnknownDevice) ProtoMessage() {}
 
 func (x *UnknownDevice) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[15]
+	mi := &file_acquisition_internal_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1766,7 +1823,7 @@ type SetNeighboursRequest struct {
 
 func (x *SetNeighboursRequest) Reset() {
 	*x = SetNeighboursRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[16]
+	mi := &file_acquisition_internal_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1778,7 +1835,7 @@ func (x *SetNeighboursRequest) String() string {
 func (*SetNeighboursRequest) ProtoMessage() {}
 
 func (x *SetNeighboursRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[16]
+	mi := &file_acquisition_internal_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1858,7 +1915,7 @@ type DeviceNeightbour struct {
 
 func (x *DeviceNeightbour) Reset() {
 	*x = DeviceNeightbour{}
-	mi := &file_acquisition_internal_proto_msgTypes[17]
+	mi := &file_acquisition_internal_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1870,7 +1927,7 @@ func (x *DeviceNeightbour) String() string {
 func (*DeviceNeightbour) ProtoMessage() {}
 
 func (x *DeviceNeightbour) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[17]
+	mi := &file_acquisition_internal_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1966,7 +2023,7 @@ type SetCurrentDeviceCommunicationUnitRequest struct {
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) Reset() {
 	*x = SetCurrentDeviceCommunicationUnitRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[18]
+	mi := &file_acquisition_internal_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1978,7 +2035,7 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) String() string {
 func (*SetCurrentDeviceCommunicationUnitRequest) ProtoMessage() {}
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[18]
+	mi := &file_acquisition_internal_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2075,7 +2132,12 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x0edriver_version\x18\x02 \x01(\tR\rdriverVersion\x12-\n" +
 	"\x12deviceregistry_url\x18\x03 \x01(\tR\x11deviceregistryUrl\"S\n" +
 	"\x10QueueJobsRequest\x12?\n" +
-	"\x04spec\x18\x01 \x03(\v2+.io.clbs.openhes.models.acquisition.JobSpecR\x04spec\"W\n" +
+	"\x04spec\x18\x01 \x03(\v2+.io.clbs.openhes.models.acquisition.JobSpecR\x04spec\"\xaa\x01\n" +
+	"\x11QueueJobsResponse\x12Z\n" +
+	"\ajob_ids\x18\x01 \x03(\v2A.io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntryR\x06jobIds\x1a9\n" +
+	"\vJobIdsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"W\n" +
 	"\x0eGetJobResponse\x12E\n" +
 	"\x06status\x18\x01 \x01(\v2-.io.clbs.openhes.models.acquisition.JobStatusR\x06status\"y\n" +
 	"\x15SetDriverScaleRequest\x12#\n" +
@@ -2131,7 +2193,7 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x01B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_acquisition_internal_proto_goTypes = []any{
 	(LogRecordLevel)(0),                              // 0: io.clbs.openhes.models.acquisition.LogRecordLevel
 	(DeviceNeighbourType)(0),                         // 1: io.clbs.openhes.models.acquisition.DeviceNeighbourType
@@ -2142,56 +2204,59 @@ var file_acquisition_internal_proto_goTypes = []any{
 	(*ProgressUpdate)(nil),                           // 6: io.clbs.openhes.models.acquisition.ProgressUpdate
 	(*StartUpgradeRequest)(nil),                      // 7: io.clbs.openhes.models.acquisition.StartUpgradeRequest
 	(*QueueJobsRequest)(nil),                         // 8: io.clbs.openhes.models.acquisition.QueueJobsRequest
-	(*GetJobResponse)(nil),                           // 9: io.clbs.openhes.models.acquisition.GetJobResponse
-	(*SetDriverScaleRequest)(nil),                    // 10: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
-	(*GetDriverScaleRequest)(nil),                    // 11: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
-	(*MapDeviceConnectionInfo)(nil),                  // 12: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
-	(*SetDeviceInfoRequest)(nil),                     // 13: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
-	(*AddCommunicationUnitLogsRequest)(nil),          // 14: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
-	(*CommunicationUnitLogRecord)(nil),               // 15: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*SetUnknownDevicesRequest)(nil),                 // 16: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	(*UnknownDevice)(nil),                            // 17: io.clbs.openhes.models.acquisition.UnknownDevice
-	(*SetNeighboursRequest)(nil),                     // 18: io.clbs.openhes.models.acquisition.SetNeighboursRequest
-	(*DeviceNeightbour)(nil),                         // 19: io.clbs.openhes.models.acquisition.DeviceNeightbour
-	(*SetCurrentDeviceCommunicationUnitRequest)(nil), // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
-	nil,                             // 21: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	(*common.FieldValue)(nil),       // 22: io.clbs.openhes.models.common.FieldValue
-	(*ConnectionInfo)(nil),          // 23: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*StartJobData)(nil),            // 24: io.clbs.openhes.models.acquisition.StartJobData
-	(*JobProgressUpdate)(nil),       // 25: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionProgressUpdate)(nil),    // 26: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobSpec)(nil),                 // 27: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobStatus)(nil),               // 28: io.clbs.openhes.models.acquisition.JobStatus
-	(*DeviceInfo)(nil),              // 29: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*timestamppb.Timestamp)(nil),   // 30: google.protobuf.Timestamp
-	(*ObjectAttributeSelector)(nil), // 31: io.clbs.openhes.models.acquisition.ObjectAttributeSelector
-	(*ListOfConnectionInfo)(nil),    // 32: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*QueueJobsResponse)(nil),                        // 9: io.clbs.openhes.models.acquisition.QueueJobsResponse
+	(*GetJobResponse)(nil),                           // 10: io.clbs.openhes.models.acquisition.GetJobResponse
+	(*SetDriverScaleRequest)(nil),                    // 11: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
+	(*GetDriverScaleRequest)(nil),                    // 12: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
+	(*MapDeviceConnectionInfo)(nil),                  // 13: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
+	(*SetDeviceInfoRequest)(nil),                     // 14: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
+	(*AddCommunicationUnitLogsRequest)(nil),          // 15: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	(*CommunicationUnitLogRecord)(nil),               // 16: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*SetUnknownDevicesRequest)(nil),                 // 17: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	(*UnknownDevice)(nil),                            // 18: io.clbs.openhes.models.acquisition.UnknownDevice
+	(*SetNeighboursRequest)(nil),                     // 19: io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	(*DeviceNeightbour)(nil),                         // 20: io.clbs.openhes.models.acquisition.DeviceNeightbour
+	(*SetCurrentDeviceCommunicationUnitRequest)(nil), // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
+	nil,                             // 22: io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	nil,                             // 23: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	(*common.FieldValue)(nil),       // 24: io.clbs.openhes.models.common.FieldValue
+	(*ConnectionInfo)(nil),          // 25: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*StartJobData)(nil),            // 26: io.clbs.openhes.models.acquisition.StartJobData
+	(*JobProgressUpdate)(nil),       // 27: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionProgressUpdate)(nil),    // 28: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobSpec)(nil),                 // 29: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobStatus)(nil),               // 30: io.clbs.openhes.models.acquisition.JobStatus
+	(*DeviceInfo)(nil),              // 31: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*timestamppb.Timestamp)(nil),   // 32: google.protobuf.Timestamp
+	(*ObjectAttributeSelector)(nil), // 33: io.clbs.openhes.models.acquisition.ObjectAttributeSelector
+	(*ListOfConnectionInfo)(nil),    // 34: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
-	22, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	22, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	23, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	24, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
-	25, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
-	26, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	27, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	28, // 7: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	21, // 8: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	29, // 9: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	15, // 10: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	30, // 11: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
-	0,  // 12: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
-	17, // 13: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevice
-	22, // 14: io.clbs.openhes.models.acquisition.UnknownDevice.attributes:type_name -> io.clbs.openhes.models.common.FieldValue
-	1,  // 15: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
-	31, // 16: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.device_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
-	31, // 17: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.communication_unit_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
-	32, // 18: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	24, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	24, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	25, // 2: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	26, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
+	27, // 4: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
+	28, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	29, // 6: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	22, // 7: io.clbs.openhes.models.acquisition.QueueJobsResponse.job_ids:type_name -> io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	30, // 8: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	23, // 9: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	31, // 10: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	16, // 11: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	32, // 12: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	0,  // 13: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	18, // 14: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevice
+	24, // 15: io.clbs.openhes.models.acquisition.UnknownDevice.attributes:type_name -> io.clbs.openhes.models.common.FieldValue
+	1,  // 16: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
+	33, // 17: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.device_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
+	33, // 18: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.communication_unit_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
+	34, // 19: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }
@@ -2210,7 +2275,7 @@ func file_acquisition_internal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_internal_proto_rawDesc), len(file_acquisition_internal_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   20,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -692,8 +692,7 @@ type ComplexityRoot struct {
 	}
 
 	ListOfId struct {
-		ID         func(childComplexity int) int
-		TotalCount func(childComplexity int) int
+		ID func(childComplexity int) int
 	}
 
 	ListOfJobDevice struct {
@@ -3400,13 +3399,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ListOfId.ID(childComplexity), true
-
-	case "ListOfId.totalCount":
-		if e.complexity.ListOfId.TotalCount == nil {
-			break
-		}
-
-		return e.complexity.ListOfId.TotalCount(childComplexity), true
 
 	case "ListOfJobDevice.list":
 		if e.complexity.ListOfJobDevice.List == nil {
@@ -19869,47 +19861,6 @@ func (ec *executionContext) fieldContext_ListOfId_id(_ context.Context, field gr
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfId_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfID) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfId_totalCount(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TotalCount, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int32)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ListOfId_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ListOfId",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ListOfJobDevice_list(ctx context.Context, field graphql.CollectedField, obj *model.ListOfJobDevice) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfJobDevice_list(ctx, field)
 	if err != nil {
@@ -35677,8 +35628,6 @@ func (ec *executionContext) _ListOfId(ctx context.Context, sel ast.SelectionSet,
 			out.Values[i] = graphql.MarshalString("ListOfId")
 		case "id":
 			out.Values[i] = ec._ListOfId_id(ctx, field, obj)
-		case "totalCount":
-			out.Values[i] = ec._ListOfId_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

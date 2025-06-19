@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/types.proto.
  */
 export const file_common_types: GenFile = /*@__PURE__*/
-  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIisKCExpc3RPZklkEgoKAmlkGAEgAygJEhMKC3RvdGFsX2NvdW50GAIgASgFIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
+  fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIhYKCExpc3RPZklkEgoKAmlkGAEgAygJIhwKC0xpc3RPZkludDY0Eg0KBXZhbHVlGAEgAygJIjIKDExpc3RPZlN0cmluZxINCgVpdGVtcxgBIAMoCRITCgt0b3RhbF9jb3VudBgCIAEoBUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
 
 /**
  * The list of UUID identifiers.
@@ -24,13 +24,6 @@ export type ListOfId = Message<"io.clbs.openhes.models.common.ListOfId"> & {
    * @generated from field: repeated string id = 1;
    */
   id: string[];
-
-  /**
-   * The total number of items.
-   *
-   * @generated from field: int32 total_count = 2;
-   */
-  totalCount: number;
 };
 
 /**
@@ -45,13 +38,6 @@ export type ListOfIdJson = {
    * @generated from field: repeated string id = 1;
    */
   id?: string[];
-
-  /**
-   * The total number of items.
-   *
-   * @generated from field: int32 total_count = 2;
-   */
-  totalCount?: number;
 };
 
 /**
@@ -60,6 +46,41 @@ export type ListOfIdJson = {
  */
 export const ListOfIdSchema: GenMessage<ListOfId, {jsonType: ListOfIdJson}> = /*@__PURE__*/
   messageDesc(file_common_types, 0);
+
+/**
+ * The list of UUID identifiers.
+ *
+ * @generated from message io.clbs.openhes.models.common.ListOfInt64
+ */
+export type ListOfInt64 = Message<"io.clbs.openhes.models.common.ListOfInt64"> & {
+  /**
+   * Generic list of UUID identifiers.
+   *
+   * @generated from field: repeated string value = 1;
+   */
+  value: string[];
+};
+
+/**
+ * The list of UUID identifiers.
+ *
+ * @generated from message io.clbs.openhes.models.common.ListOfInt64
+ */
+export type ListOfInt64Json = {
+  /**
+   * Generic list of UUID identifiers.
+   *
+   * @generated from field: repeated string value = 1;
+   */
+  value?: string[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.ListOfInt64.
+ * Use `create(ListOfInt64Schema)` to create a new message.
+ */
+export const ListOfInt64Schema: GenMessage<ListOfInt64, {jsonType: ListOfInt64Json}> = /*@__PURE__*/
+  messageDesc(file_common_types, 1);
 
 /**
  * The list of string items.
@@ -108,5 +129,5 @@ export type ListOfStringJson = {
  * Use `create(ListOfStringSchema)` to create a new message.
  */
 export const ListOfStringSchema: GenMessage<ListOfString, {jsonType: ListOfStringJson}> = /*@__PURE__*/
-  messageDesc(file_common_types, 1);
+  messageDesc(file_common_types, 2);
 

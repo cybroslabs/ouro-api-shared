@@ -1688,8 +1688,6 @@ type ListOfFieldDescriptor {
 type ListOfId {
   # Generic list of UUID identifiers.
   id: [String]
-  # The total number of items.
-  totalCount: Int
 }
 
 # The list of string items.

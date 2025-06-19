@@ -25,7 +25,7 @@ class TaskmasterServiceStub(object):
         self.QueueJobs = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs',
                 request_serializer=acquisition_dot_internal__pb2.QueueJobsRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=acquisition_dot_internal__pb2.QueueJobsResponse.FromString,
                 _registered_method=True)
         self.GetJob = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob',
@@ -34,7 +34,7 @@ class TaskmasterServiceStub(object):
                 _registered_method=True)
         self.CancelJobs = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs',
-                request_serializer=common_dot_types__pb2.ListOfId.SerializeToString,
+                request_serializer=common_dot_types__pb2.ListOfInt64.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.SetDriver = channel.unary_unary(
@@ -203,7 +203,7 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             'QueueJobs': grpc.unary_unary_rpc_method_handler(
                     servicer.QueueJobs,
                     request_deserializer=acquisition_dot_internal__pb2.QueueJobsRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=acquisition_dot_internal__pb2.QueueJobsResponse.SerializeToString,
             ),
             'GetJob': grpc.unary_unary_rpc_method_handler(
                     servicer.GetJob,
@@ -212,7 +212,7 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             ),
             'CancelJobs': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelJobs,
-                    request_deserializer=common_dot_types__pb2.ListOfId.FromString,
+                    request_deserializer=common_dot_types__pb2.ListOfInt64.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'SetDriver': grpc.unary_unary_rpc_method_handler(
@@ -294,7 +294,7 @@ class TaskmasterService(object):
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs',
             acquisition_dot_internal__pb2.QueueJobsRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            acquisition_dot_internal__pb2.QueueJobsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -347,7 +347,7 @@ class TaskmasterService(object):
             request,
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs',
-            common_dot_types__pb2.ListOfId.SerializeToString,
+            common_dot_types__pb2.ListOfInt64.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

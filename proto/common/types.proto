@@ -7,7 +7,11 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 // The list of UUID identifiers.
 message ListOfId {
     repeated string id = 1;  // Generic list of UUID identifiers.
-    int32 total_count  = 2;  // The total number of items.
+}
+
+// The list of UUID identifiers.
+message ListOfInt64 {
+    repeated string value = 1;  // Generic list of UUID identifiers.
 }
 
 // The list of string items.

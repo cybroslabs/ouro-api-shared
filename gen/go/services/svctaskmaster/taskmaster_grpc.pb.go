@@ -45,11 +45,11 @@ const (
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceClient interface {
-	QueueJobs(ctx context.Context, in *acquisition.QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	QueueJobs(ctx context.Context, in *acquisition.QueueJobsRequest, opts ...grpc.CallOption) (*acquisition.QueueJobsResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CancelJobs(ctx context.Context, in *common.ListOfInt64, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -93,9 +93,9 @@ func NewTaskmasterServiceClient(cc grpc.ClientConnInterface) TaskmasterServiceCl
 	return &taskmasterServiceClient{cc}
 }
 
-func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *acquisition.QueueJobsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *acquisition.QueueJobsRequest, opts ...grpc.CallOption) (*acquisition.QueueJobsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(acquisition.QueueJobsResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_QueueJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -113,7 +113,7 @@ func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *wrapperspb.Str
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *common.ListOfInt64, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_CancelJobs_FullMethodName, in, out, cOpts...)
@@ -230,11 +230,11 @@ func (c *taskmasterServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceServer interface {
-	QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*emptypb.Empty, error)
+	QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*acquisition.QueueJobsResponse, error)
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
+	CancelJobs(context.Context, *common.ListOfInt64) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
@@ -278,13 +278,13 @@ type TaskmasterServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTaskmasterServiceServer struct{}
 
-func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*acquisition.QueueJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueueJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *common.ListOfInt64) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error) {
@@ -375,7 +375,7 @@ func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ListOfId)
+	in := new(common.ListOfInt64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -387,7 +387,7 @@ func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context,
 		FullMethod: TaskmasterService_CancelJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*common.ListOfId))
+		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*common.ListOfInt64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
