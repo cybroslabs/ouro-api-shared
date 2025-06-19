@@ -19,6 +19,8 @@ type LicenseManager interface {
 	GetLicense(ctx context.Context) (*system.License, error)
 	// HasLicense checks if a license is currently set.
 	HasLicense() bool
+	// WaitLicense blocks until a license is available or the context is done.
+	WaitLicense(ctx context.Context) error
 	// Stop stops the license manager and releases any resources it holds.
 	Stop()
 }
@@ -37,6 +39,8 @@ type licenseManager struct {
 
 	runCancel    context.CancelFunc
 	outterCancel context.CancelFunc
+
+	event chan struct{}
 }
 
 // NewLicenseManager creates a new instance of LicenseManager with the provided options.
@@ -50,6 +54,7 @@ func NewLicenseManager(opts *LicenseManagerOpts) LicenseManager {
 		runCancel:    ctx_cancel,
 		outterCancel: opts.Cancel,
 		onLicense:    opts.OnLicense,
+		event:        make(chan struct{}, 1),
 	}
 	go lm.run(ctx)
 	return lm
@@ -70,6 +75,10 @@ func (lm *licenseManager) run(ctx context.Context) {
 			if check_failed_count == 3 {
 				// If we failed to get the license three times in a row, we will revoke current license.
 				lm.license = nil
+				select {
+				case lm.event <- struct{}{}:
+				default:
+				}
 				if f := lm.onLicense; f != nil {
 					f(nil)
 				}
@@ -84,6 +93,10 @@ func (lm *licenseManager) run(ctx context.Context) {
 		}
 
 		lm.license = license
+		select {
+		case lm.event <- struct{}{}:
+		default:
+		}
 		if f := lm.onLicense; f != nil {
 			f(license)
 		}
@@ -119,4 +132,20 @@ func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, erro
 
 func (lm *licenseManager) HasLicense() bool {
 	return lm.license != nil
+}
+
+// WaitLicense blocks until a license is available or the context is done.
+// It returns an error if the context is canceled, otherwise it returns nil when a license is available.
+func (lm *licenseManager) WaitLicense(ctx context.Context) error {
+	for {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-lm.event:
+			if lm.license == nil {
+				continue
+			}
+			return nil
+		}
+	}
 }
