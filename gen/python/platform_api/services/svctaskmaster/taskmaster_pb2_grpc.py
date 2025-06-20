@@ -70,12 +70,12 @@ class TaskmasterServiceStub(object):
         self.ListDevicesByAttributes = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes',
                 request_serializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
+                response_deserializer=common_dot_types__pb2.ListOfStringResponse.FromString,
                 _registered_method=True)
         self.ListCommunicationUnitsByAttributes = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes',
                 request_serializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-                response_deserializer=common_dot_types__pb2.ListOfString.FromString,
+                response_deserializer=common_dot_types__pb2.ListOfStringResponse.FromString,
                 _registered_method=True)
         self.SetNeightbours = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetNeightbours',
@@ -248,12 +248,12 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             'ListDevicesByAttributes': grpc.unary_unary_rpc_method_handler(
                     servicer.ListDevicesByAttributes,
                     request_deserializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.FromString,
-                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
+                    response_serializer=common_dot_types__pb2.ListOfStringResponse.SerializeToString,
             ),
             'ListCommunicationUnitsByAttributes': grpc.unary_unary_rpc_method_handler(
                     servicer.ListCommunicationUnitsByAttributes,
                     request_deserializer=acquisition_dot_shared__pb2.ObjectAttributeSelector.FromString,
-                    response_serializer=common_dot_types__pb2.ListOfString.SerializeToString,
+                    response_serializer=common_dot_types__pb2.ListOfStringResponse.SerializeToString,
             ),
             'SetNeightbours': grpc.unary_unary_rpc_method_handler(
                     servicer.SetNeightbours,
@@ -537,7 +537,7 @@ class TaskmasterService(object):
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes',
             acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-            common_dot_types__pb2.ListOfString.FromString,
+            common_dot_types__pb2.ListOfStringResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -564,7 +564,7 @@ class TaskmasterService(object):
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListCommunicationUnitsByAttributes',
             acquisition_dot_shared__pb2.ObjectAttributeSelector.SerializeToString,
-            common_dot_types__pb2.ListOfString.FromString,
+            common_dot_types__pb2.ListOfStringResponse.FromString,
             options,
             channel_credentials,
             insecure,

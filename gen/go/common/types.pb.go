@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The list of UUID identifiers.
+// The list of UUID items.
 type ListOfId struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id []string               `protobuf:"bytes,1,rep,name=id"`
@@ -78,10 +78,10 @@ func (b0 ListOfId_builder) Build() *ListOfId {
 	return m0
 }
 
-// The list of UUID identifiers.
+// The list of signed int64 items.
 type ListOfInt64 struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Value []int64                `protobuf:"varint,1,rep,packed,name=value"`
+	xxx_hidden_Items []int64                `protobuf:"varint,1,rep,packed,name=items"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -111,45 +111,100 @@ func (x *ListOfInt64) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ListOfInt64) GetValue() []int64 {
+func (x *ListOfInt64) GetItems() []int64 {
 	if x != nil {
-		return x.xxx_hidden_Value
+		return x.xxx_hidden_Items
 	}
 	return nil
 }
 
-func (x *ListOfInt64) SetValue(v []int64) {
-	x.xxx_hidden_Value = v
+func (x *ListOfInt64) SetItems(v []int64) {
+	x.xxx_hidden_Items = v
 }
 
 type ListOfInt64_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Value []int64
+	Items []int64
 }
 
 func (b0 ListOfInt64_builder) Build() *ListOfInt64 {
 	m0 := &ListOfInt64{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Value = b.Value
+	x.xxx_hidden_Items = b.Items
 	return m0
 }
 
-// The list of string items.
+// The list of unsigned int64 items.
+type ListOfUInt64 struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items []uint64               `protobuf:"varint,1,rep,packed,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ListOfUInt64) Reset() {
+	*x = ListOfUInt64{}
+	mi := &file_common_types_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfUInt64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfUInt64) ProtoMessage() {}
+
+func (x *ListOfUInt64) ProtoReflect() protoreflect.Message {
+	mi := &file_common_types_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfUInt64) GetItems() []uint64 {
+	if x != nil {
+		return x.xxx_hidden_Items
+	}
+	return nil
+}
+
+func (x *ListOfUInt64) SetItems(v []uint64) {
+	x.xxx_hidden_Items = v
+}
+
+type ListOfUInt64_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items []uint64
+}
+
+func (b0 ListOfUInt64_builder) Build() *ListOfUInt64 {
+	m0 := &ListOfUInt64{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = b.Items
+	return m0
+}
+
+// The list of common-string items.
 type ListOfString struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Items       []string               `protobuf:"bytes,1,rep,name=items"`
-	xxx_hidden_TotalCount  int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items []string               `protobuf:"bytes,1,rep,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *ListOfString) Reset() {
 	*x = ListOfString{}
-	mi := &file_common_types_proto_msgTypes[2]
+	mi := &file_common_types_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -161,7 +216,7 @@ func (x *ListOfString) String() string {
 func (*ListOfString) ProtoMessage() {}
 
 func (x *ListOfString) ProtoReflect() protoreflect.Message {
-	mi := &file_common_types_proto_msgTypes[2]
+	mi := &file_common_types_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -179,43 +234,104 @@ func (x *ListOfString) GetItems() []string {
 	return nil
 }
 
-func (x *ListOfString) GetTotalCount() int32 {
+func (x *ListOfString) SetItems(v []string) {
+	x.xxx_hidden_Items = v
+}
+
+type ListOfString_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items []string
+}
+
+func (b0 ListOfString_builder) Build() *ListOfString {
+	m0 := &ListOfString{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = b.Items
+	return m0
+}
+
+// Response model for the list of string items.
+type ListOfStringResponse struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items       []string               `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfStringResponse) Reset() {
+	*x = ListOfStringResponse{}
+	mi := &file_common_types_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfStringResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfStringResponse) ProtoMessage() {}
+
+func (x *ListOfStringResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_types_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfStringResponse) GetItems() []string {
+	if x != nil {
+		return x.xxx_hidden_Items
+	}
+	return nil
+}
+
+func (x *ListOfStringResponse) GetTotalCount() int32 {
 	if x != nil {
 		return x.xxx_hidden_TotalCount
 	}
 	return 0
 }
 
-func (x *ListOfString) SetItems(v []string) {
+func (x *ListOfStringResponse) SetItems(v []string) {
 	x.xxx_hidden_Items = v
 }
 
-func (x *ListOfString) SetTotalCount(v int32) {
+func (x *ListOfStringResponse) SetTotalCount(v int32) {
 	x.xxx_hidden_TotalCount = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
-func (x *ListOfString) HasTotalCount() bool {
+func (x *ListOfStringResponse) HasTotalCount() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *ListOfString) ClearTotalCount() {
+func (x *ListOfStringResponse) ClearTotalCount() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_TotalCount = 0
 }
 
-type ListOfString_builder struct {
+type ListOfStringResponse_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Items      []string
 	TotalCount *int32
 }
 
-func (b0 ListOfString_builder) Build() *ListOfString {
-	m0 := &ListOfString{}
+func (b0 ListOfStringResponse_builder) Build() *ListOfStringResponse {
+	m0 := &ListOfStringResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Items = b.Items
@@ -234,17 +350,23 @@ const file_common_types_proto_rawDesc = "" +
 	"\bListOfId\x12\x0e\n" +
 	"\x02id\x18\x01 \x03(\tR\x02id\"#\n" +
 	"\vListOfInt64\x12\x14\n" +
-	"\x05value\x18\x01 \x03(\x03R\x05value\"E\n" +
+	"\x05items\x18\x01 \x03(\x03R\x05items\"$\n" +
+	"\fListOfUInt64\x12\x14\n" +
+	"\x05items\x18\x01 \x03(\x04R\x05items\"$\n" +
 	"\fListOfString\x12\x14\n" +
+	"\x05items\x18\x01 \x03(\tR\x05items\"M\n" +
+	"\x14ListOfStringResponse\x12\x14\n" +
 	"\x05items\x18\x01 \x03(\tR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCountB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_types_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_common_types_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_common_types_proto_goTypes = []any{
-	(*ListOfId)(nil),     // 0: io.clbs.openhes.models.common.ListOfId
-	(*ListOfInt64)(nil),  // 1: io.clbs.openhes.models.common.ListOfInt64
-	(*ListOfString)(nil), // 2: io.clbs.openhes.models.common.ListOfString
+	(*ListOfId)(nil),             // 0: io.clbs.openhes.models.common.ListOfId
+	(*ListOfInt64)(nil),          // 1: io.clbs.openhes.models.common.ListOfInt64
+	(*ListOfUInt64)(nil),         // 2: io.clbs.openhes.models.common.ListOfUInt64
+	(*ListOfString)(nil),         // 3: io.clbs.openhes.models.common.ListOfString
+	(*ListOfStringResponse)(nil), // 4: io.clbs.openhes.models.common.ListOfStringResponse
 }
 var file_common_types_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -265,7 +387,7 @@ func file_common_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_types_proto_rawDesc), len(file_common_types_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -675,8 +675,7 @@ type ListOfModemPool struct {
 }
 
 type ListOfString struct {
-	Items      []*string `json:"items,omitempty"`
-	TotalCount *int32    `json:"totalCount,omitempty"`
+	Items []*string `json:"items,omitempty"`
 }
 
 type ListOfTimeOfUseTable struct {

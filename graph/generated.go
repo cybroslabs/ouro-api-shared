@@ -711,8 +711,7 @@ type ComplexityRoot struct {
 	}
 
 	ListOfString struct {
-		Items      func(childComplexity int) int
-		TotalCount func(childComplexity int) int
+		Items func(childComplexity int) int
 	}
 
 	ListOfTimeOfUseTable struct {
@@ -3448,13 +3447,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ListOfString.Items(childComplexity), true
-
-	case "ListOfString.totalCount":
-		if e.complexity.ListOfString.TotalCount == nil {
-			break
-		}
-
-		return e.complexity.ListOfString.TotalCount(childComplexity), true
 
 	case "ListOfTimeOfUseTable.items":
 		if e.complexity.ListOfTimeOfUseTable.Items == nil {
@@ -20178,47 +20170,6 @@ func (ec *executionContext) fieldContext_ListOfString_items(_ context.Context, f
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfString_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfString) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfString_totalCount(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TotalCount, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int32)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_ListOfString_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "ListOfString",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _ListOfTimeOfUseTable_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfTimeOfUseTable) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfTimeOfUseTable_items(ctx, field)
 	if err != nil {
@@ -31225,8 +31176,6 @@ func (ec *executionContext) fieldContext__mapListOfString_value(_ context.Contex
 			switch field.Name {
 			case "items":
 				return ec.fieldContext_ListOfString_items(ctx, field)
-			case "totalCount":
-				return ec.fieldContext_ListOfString_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfString", field.Name)
 		},
@@ -35778,8 +35727,6 @@ func (ec *executionContext) _ListOfString(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("ListOfString")
 		case "items":
 			out.Values[i] = ec._ListOfString_items(ctx, field, obj)
-		case "totalCount":
-			out.Values[i] = ec._ListOfString_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
