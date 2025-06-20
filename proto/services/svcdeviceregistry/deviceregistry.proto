@@ -107,6 +107,11 @@ service DeviceRegistryService {
     // @group: Devices
     // The method to stream out profile-typed meter data.
     rpc GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo);
+    // @group: Devices
+    // @tag: device
+    // The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+    rpc GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
+
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
     // The method returns a list of device groups.

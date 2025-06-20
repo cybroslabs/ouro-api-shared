@@ -113,7 +113,6 @@ service ApiService {
     // @group: Bulks
     // Retrieves the bulk info and status.
     rpc GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Bulk);
-
     // @group: Bulks
     // Updates the bulk metadata. The metadata is used to store additional information about the job.
     rpc UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata) returns (google.protobuf.Empty);
@@ -182,6 +181,10 @@ service ApiService {
     // @tag: device
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
+    // @group: Devices
+    // @tag: device
+    // The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+    rpc GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
 
     // @group: Devices
     // @tag: devicegroup

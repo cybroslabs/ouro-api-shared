@@ -216,6 +216,11 @@ func (r *queryResolver) GetDeviceCommunicationUnits(ctx context.Context) (*model
 	panic(fmt.Errorf("not implemented: GetDeviceCommunicationUnits - getDeviceCommunicationUnits"))
 }
 
+// GetDeviceDeviceGroups is the resolver for the getDeviceDeviceGroups field.
+func (r *queryResolver) GetDeviceDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceDeviceGroups - getDeviceDeviceGroups"))
+}
+
 // CreateDeviceGroup is the resolver for the createDeviceGroup field.
 func (r *queryResolver) CreateDeviceGroup(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDeviceGroup - createDeviceGroup"))

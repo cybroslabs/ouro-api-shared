@@ -76,6 +76,7 @@ const (
 	ApiService_GetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceInfo"
 	ApiService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
 	ApiService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
+	ApiService_GetDeviceDeviceGroups_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups"
 	ApiService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
 	ApiService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
 	ApiService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
@@ -265,6 +266,10 @@ type ApiServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error)
+	// @group: Devices
+	// @tag: device
+	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+	GetDeviceDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -890,6 +895,16 @@ func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *apiServiceClient) GetDeviceDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceGroup)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceDeviceGroups_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -1348,6 +1363,10 @@ type ApiServiceServer interface {
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
+	// @tag: device
+	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+	GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error)
+	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
@@ -1607,6 +1626,9 @@ func (UnimplementedApiServiceServer) SetDeviceCommunicationUnits(context.Context
 }
 func (UnimplementedApiServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceDeviceGroups not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -2643,6 +2665,24 @@ func _ApiService_GetDeviceCommunicationUnits_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetDeviceDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceDeviceGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceDeviceGroups_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceDeviceGroups(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateDeviceGroupRequest)
 	if err := dec(in); err != nil {
@@ -3297,6 +3337,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceCommunicationUnits",
 			Handler:    _ApiService_GetDeviceCommunicationUnits_Handler,
+		},
+		{
+			MethodName: "GetDeviceDeviceGroups",
+			Handler:    _ApiService_GetDeviceDeviceGroups_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",

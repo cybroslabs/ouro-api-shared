@@ -1849,6 +1849,7 @@ type Query {
   getDeviceInfo: DeviceInfo
   setDeviceCommunicationUnits: Empty
   getDeviceCommunicationUnits: ListOfDeviceCommunicationUnit
+  getDeviceDeviceGroups: ListOfDeviceGroup
   createDeviceGroup: StringValue
   listDeviceGroups: ListOfDeviceGroup
   getDeviceGroup: DeviceGroup

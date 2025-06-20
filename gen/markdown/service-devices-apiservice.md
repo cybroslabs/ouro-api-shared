@@ -152,6 +152,17 @@ GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhe
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit`](model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md)
 
+## GetDeviceDeviceGroups
+
+The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+
+```proto
+GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup)
+```
+
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceGroup`](model-io-clbs-openhes-models-acquisition-listofdevicegroup.md)
+
 ## CreateDeviceGroup
 
 The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
