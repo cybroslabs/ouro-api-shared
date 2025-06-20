@@ -18,7 +18,7 @@ service TaskmasterService {
     // The method called by the RestApi to get the job status. The parameter contains the job identifier.
     rpc GetJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetJobResponse);
     // The method called by the RestApi to cancel the job.
-    rpc CancelJobs(io.clbs.openhes.models.common.ListOfInt64) returns (google.protobuf.Empty);
+    rpc CancelJobs(io.clbs.openhes.models.common.ListOfUInt64) returns (google.protobuf.Empty);
 
     // @group: Drivers
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.

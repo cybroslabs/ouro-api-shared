@@ -49,7 +49,7 @@ type TaskmasterServiceClient interface {
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(ctx context.Context, in *common.ListOfInt64, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CancelJobs(ctx context.Context, in *common.ListOfUInt64, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -113,7 +113,7 @@ func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *wrapperspb.Str
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *common.ListOfInt64, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *taskmasterServiceClient) CancelJobs(ctx context.Context, in *common.ListOfUInt64, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TaskmasterService_CancelJobs_FullMethodName, in, out, cOpts...)
@@ -234,7 +234,7 @@ type TaskmasterServiceServer interface {
 	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
 	GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
-	CancelJobs(context.Context, *common.ListOfInt64) (*emptypb.Empty, error)
+	CancelJobs(context.Context, *common.ListOfUInt64) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
 	SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
@@ -284,7 +284,7 @@ func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *acquisit
 func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *common.ListOfInt64) (*emptypb.Empty, error) {
+func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *common.ListOfUInt64) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) SetDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error) {
@@ -375,7 +375,7 @@ func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ListOfInt64)
+	in := new(common.ListOfUInt64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -387,7 +387,7 @@ func _TaskmasterService_CancelJobs_Handler(srv interface{}, ctx context.Context,
 		FullMethod: TaskmasterService_CancelJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*common.ListOfInt64))
+		return srv.(TaskmasterServiceServer).CancelJobs(ctx, req.(*common.ListOfUInt64))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -34,7 +34,7 @@ class TaskmasterServiceStub(object):
                 _registered_method=True)
         self.CancelJobs = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs',
-                request_serializer=common_dot_types__pb2.ListOfInt64.SerializeToString,
+                request_serializer=common_dot_types__pb2.ListOfUInt64.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.SetDriver = channel.unary_unary(
@@ -212,7 +212,7 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
             ),
             'CancelJobs': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelJobs,
-                    request_deserializer=common_dot_types__pb2.ListOfInt64.FromString,
+                    request_deserializer=common_dot_types__pb2.ListOfUInt64.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'SetDriver': grpc.unary_unary_rpc_method_handler(
@@ -347,7 +347,7 @@ class TaskmasterService(object):
             request,
             target,
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs',
-            common_dot_types__pb2.ListOfInt64.SerializeToString,
+            common_dot_types__pb2.ListOfUInt64.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

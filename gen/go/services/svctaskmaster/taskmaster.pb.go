@@ -28,12 +28,12 @@ var File_services_svctaskmaster_taskmaster_proto protoreflect.FileDescriptor
 
 const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 	"\n" +
-	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x12common/types.proto\x1a\x15common/internal.proto2\xbe\v\n" +
+	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x12common/types.proto\x1a\x15common/internal.proto2\xbf\v\n" +
 	"\x11TaskmasterService\x12x\n" +
 	"\tQueueJobs\x124.io.clbs.openhes.models.acquisition.QueueJobsRequest\x1a5.io.clbs.openhes.models.acquisition.QueueJobsResponse\x12Z\n" +
-	"\x06GetJob\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.GetJobResponse\x12P\n" +
+	"\x06GetJob\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.GetJobResponse\x12Q\n" +
 	"\n" +
-	"CancelJobs\x12*.io.clbs.openhes.models.common.ListOfInt64\x1a\x16.google.protobuf.Empty\x12R\n" +
+	"CancelJobs\x12+.io.clbs.openhes.models.common.ListOfUInt64\x1a\x16.google.protobuf.Empty\x12R\n" +
 	"\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n" +
 	"\bSetCache\x123.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n" +
 	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponse\x12b\n" +
@@ -48,7 +48,7 @@ const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
 	(*acquisition.QueueJobsRequest)(nil),                         // 0: io.clbs.openhes.models.acquisition.QueueJobsRequest
 	(*wrapperspb.StringValue)(nil),                               // 1: google.protobuf.StringValue
-	(*common.ListOfInt64)(nil),                                   // 2: io.clbs.openhes.models.common.ListOfInt64
+	(*common.ListOfUInt64)(nil),                                  // 2: io.clbs.openhes.models.common.ListOfUInt64
 	(*acquisition.SetDriver)(nil),                                // 3: io.clbs.openhes.models.acquisition.SetDriver
 	(*acquisition.SetCacheRequest)(nil),                          // 4: io.clbs.openhes.models.acquisition.SetCacheRequest
 	(*acquisition.GetCacheRequest)(nil),                          // 5: io.clbs.openhes.models.acquisition.GetCacheRequest
@@ -67,7 +67,7 @@ var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
 var file_services_svctaskmaster_taskmaster_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:input_type -> io.clbs.openhes.models.acquisition.QueueJobsRequest
 	1,  // 1: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetJob:input_type -> google.protobuf.StringValue
-	2,  // 2: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:input_type -> io.clbs.openhes.models.common.ListOfInt64
+	2,  // 2: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:input_type -> io.clbs.openhes.models.common.ListOfUInt64
 	3,  // 3: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:input_type -> io.clbs.openhes.models.acquisition.SetDriver
 	4,  // 4: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:input_type -> io.clbs.openhes.models.acquisition.SetCacheRequest
 	5,  // 5: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:input_type -> io.clbs.openhes.models.acquisition.GetCacheRequest
