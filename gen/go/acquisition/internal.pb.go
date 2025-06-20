@@ -2014,11 +2014,13 @@ func (b0 DeviceNeightbour_builder) Build() *DeviceNeightbour {
 }
 
 type SetCurrentDeviceCommunicationUnitRequest struct {
-	state                                protoimpl.MessageState   `protogen:"opaque.v1"`
-	xxx_hidden_DeviceSelector            *ObjectAttributeSelector `protobuf:"bytes,1,opt,name=device_selector,json=deviceSelector"`
-	xxx_hidden_CommunicationUnitSelector *ObjectAttributeSelector `protobuf:"bytes,2,opt,name=communication_unit_selector,json=communicationUnitSelector"`
-	unknownFields                        protoimpl.UnknownFields
-	sizeCache                            protoimpl.SizeCache
+	state                          protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_CommunicationUnitId *string                  `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_DeviceSelector      *ObjectAttributeSelector `protobuf:"bytes,2,opt,name=device_selector,json=deviceSelector"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) Reset() {
@@ -2046,6 +2048,16 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) ProtoReflect() protoreflect.M
 	return mi.MessageOf(x)
 }
 
+func (x *SetCurrentDeviceCommunicationUnitRequest) GetCommunicationUnitId() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitId != nil {
+			return *x.xxx_hidden_CommunicationUnitId
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *SetCurrentDeviceCommunicationUnitRequest) GetDeviceSelector() *ObjectAttributeSelector {
 	if x != nil {
 		return x.xxx_hidden_DeviceSelector
@@ -2053,19 +2065,20 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) GetDeviceSelector() *ObjectAt
 	return nil
 }
 
-func (x *SetCurrentDeviceCommunicationUnitRequest) GetCommunicationUnitSelector() *ObjectAttributeSelector {
-	if x != nil {
-		return x.xxx_hidden_CommunicationUnitSelector
-	}
-	return nil
+func (x *SetCurrentDeviceCommunicationUnitRequest) SetCommunicationUnitId(v string) {
+	x.xxx_hidden_CommunicationUnitId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) SetDeviceSelector(v *ObjectAttributeSelector) {
 	x.xxx_hidden_DeviceSelector = v
 }
 
-func (x *SetCurrentDeviceCommunicationUnitRequest) SetCommunicationUnitSelector(v *ObjectAttributeSelector) {
-	x.xxx_hidden_CommunicationUnitSelector = v
+func (x *SetCurrentDeviceCommunicationUnitRequest) HasCommunicationUnitId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) HasDeviceSelector() bool {
@@ -2075,34 +2088,31 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) HasDeviceSelector() bool {
 	return x.xxx_hidden_DeviceSelector != nil
 }
 
-func (x *SetCurrentDeviceCommunicationUnitRequest) HasCommunicationUnitSelector() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_CommunicationUnitSelector != nil
+func (x *SetCurrentDeviceCommunicationUnitRequest) ClearCommunicationUnitId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_CommunicationUnitId = nil
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) ClearDeviceSelector() {
 	x.xxx_hidden_DeviceSelector = nil
 }
 
-func (x *SetCurrentDeviceCommunicationUnitRequest) ClearCommunicationUnitSelector() {
-	x.xxx_hidden_CommunicationUnitSelector = nil
-}
-
 type SetCurrentDeviceCommunicationUnitRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DeviceSelector            *ObjectAttributeSelector
-	CommunicationUnitSelector *ObjectAttributeSelector
+	CommunicationUnitId *string
+	DeviceSelector      *ObjectAttributeSelector
 }
 
 func (b0 SetCurrentDeviceCommunicationUnitRequest_builder) Build() *SetCurrentDeviceCommunicationUnitRequest {
 	m0 := &SetCurrentDeviceCommunicationUnitRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.CommunicationUnitId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
+	}
 	x.xxx_hidden_DeviceSelector = b.DeviceSelector
-	x.xxx_hidden_CommunicationUnitSelector = b.CommunicationUnitSelector
 	return m0
 }
 
@@ -2178,10 +2188,10 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\tneighbors\x18\x02 \x03(\tR\tneighbors\"o\n" +
 	"\x10DeviceNeightbour\x12K\n" +
 	"\x04type\x18\x01 \x01(\x0e27.io.clbs.openhes.models.acquisition.DeviceNeighbourTypeR\x04type\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"\x8d\x02\n" +
-	"(SetCurrentDeviceCommunicationUnitRequest\x12d\n" +
-	"\x0fdevice_selector\x18\x01 \x01(\v2;.io.clbs.openhes.models.acquisition.ObjectAttributeSelectorR\x0edeviceSelector\x12{\n" +
-	"\x1bcommunication_unit_selector\x18\x02 \x01(\v2;.io.clbs.openhes.models.acquisition.ObjectAttributeSelectorR\x19communicationUnitSelector*\x9d\x01\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\"\xc4\x01\n" +
+	"(SetCurrentDeviceCommunicationUnitRequest\x122\n" +
+	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12d\n" +
+	"\x0fdevice_selector\x18\x02 \x01(\v2;.io.clbs.openhes.models.acquisition.ObjectAttributeSelectorR\x0edeviceSelector*\x9d\x01\n" +
 	"\x0eLogRecordLevel\x12\x1a\n" +
 	"\x16LOG_RECORD_LEVEL_DEBUG\x10\x00\x12\x19\n" +
 	"\x15LOG_RECORD_LEVEL_INFO\x10\x01\x12\x1c\n" +
@@ -2250,13 +2260,12 @@ var file_acquisition_internal_proto_depIdxs = []int32{
 	24, // 15: io.clbs.openhes.models.acquisition.UnknownDevice.attributes:type_name -> io.clbs.openhes.models.common.FieldValue
 	1,  // 16: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
 	33, // 17: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.device_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
-	33, // 18: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.communication_unit_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
-	34, // 19: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	20, // [20:20] is the sub-list for method output_type
-	20, // [20:20] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	34, // 18: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }

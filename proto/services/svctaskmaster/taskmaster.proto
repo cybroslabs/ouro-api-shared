@@ -40,10 +40,10 @@ service TaskmasterService {
     rpc SetUnknownDevices(io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest) returns (google.protobuf.Empty);
     // @group: Drivers
     // The method returns the list of device identifiers that match the given attributes.
-    rpc ListDevicesByAttributes(io.clbs.openhes.models.acquisition.ObjectAttributeSelector) returns (io.clbs.openhes.models.common.ListOfStringResponse);
+    rpc ListDevicesByAttributes(io.clbs.openhes.models.acquisition.DeviceAttributeSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
     // @group: Drivers
     // The method returns the list of communication unit identifiers that match the given attributes.
-    rpc ListCommunicationUnitsByAttributes(io.clbs.openhes.models.acquisition.ObjectAttributeSelector) returns (io.clbs.openhes.models.common.ListOfStringResponse);
+    rpc ListCommunicationUnitsByAttributes(io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
     // @group: Drivers
     // The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
     // If there were other neighbours not listed within the request, they are removed from the neighbours list.

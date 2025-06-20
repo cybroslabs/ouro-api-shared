@@ -732,6 +732,17 @@ message ObjectAttributeSelector {
     common.FieldValues attributes = 1;  // The list of field values.
 }
 
+// Generic attribute selector using field values for devices
+message DeviceAttributeSelector {
+    common.FieldValues attributes = 2;  // The list of field values.
+}
+
+// Generic attribute selector using field values for devices
+message CommunicationUnitAttributeSelector {
+    DataLinkProtocol link_protocol = 1;  // The application protocol to be used for the communication over the communication unit.
+    common.FieldValues attributes  = 2;  // The list of field values.
+}
+
 // Job statuses
 enum JobStatusCode {
     // The job is waiting in the queue

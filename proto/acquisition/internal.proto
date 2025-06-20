@@ -128,6 +128,6 @@ message DeviceNeightbour {
 }
 
 message SetCurrentDeviceCommunicationUnitRequest {
-    ObjectAttributeSelector device_selector             = 1;  // The device selector. It is used to select the device for which the communication unit is being set.
-    ObjectAttributeSelector communication_unit_selector = 2;  // The communication unit selector. It is used to select the communication unit for the device.
+    string communication_unit_id            = 1;  // The unique identifier of the communication unit for which the device communication unit is being set.
+    ObjectAttributeSelector device_selector = 2;  // The device selector. It is used to select the device for which the communication unit is being set.
 }
