@@ -381,9 +381,9 @@ func (r *queryResolver) ListVariables(ctx context.Context) (*model.ListOfVariabl
 	panic(fmt.Errorf("not implemented: ListVariables - listVariables"))
 }
 
-// GetVariables is the resolver for the getVariables field.
-func (r *queryResolver) GetVariables(ctx context.Context) (*model.Variable, error) {
-	panic(fmt.Errorf("not implemented: GetVariables - getVariables"))
+// GetVariable is the resolver for the getVariable field.
+func (r *queryResolver) GetVariable(ctx context.Context) (*model.Variable, error) {
+	panic(fmt.Errorf("not implemented: GetVariable - getVariable"))
 }
 
 // UpdateVariable is the resolver for the updateVariable field.

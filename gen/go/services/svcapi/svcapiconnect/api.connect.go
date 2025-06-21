@@ -44,8 +44,8 @@ const (
 	// ApiServiceListVariablesProcedure is the fully-qualified name of the ApiService's ListVariables
 	// RPC.
 	ApiServiceListVariablesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListVariables"
-	// ApiServiceGetVariablesProcedure is the fully-qualified name of the ApiService's GetVariables RPC.
-	ApiServiceGetVariablesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetVariables"
+	// ApiServiceGetVariableProcedure is the fully-qualified name of the ApiService's GetVariable RPC.
+	ApiServiceGetVariableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetVariable"
 	// ApiServiceUpdateVariableProcedure is the fully-qualified name of the ApiService's UpdateVariable
 	// RPC.
 	ApiServiceUpdateVariableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable"
@@ -268,7 +268,7 @@ type ApiServiceClient interface {
 	// @group: Variables
 	ListVariables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error)
 	// @group: Variables
-	GetVariables(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error)
+	GetVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error)
 	// @group: Variables
 	UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error)
 	// @group: Variables
@@ -541,10 +541,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("ListVariables")),
 			connect.WithClientOptions(opts...),
 		),
-		getVariables: connect.NewClient[wrapperspb.StringValue, acquisition.Variable](
+		getVariable: connect.NewClient[wrapperspb.StringValue, acquisition.Variable](
 			httpClient,
-			baseURL+ApiServiceGetVariablesProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetVariables")),
+			baseURL+ApiServiceGetVariableProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetVariable")),
 			connect.WithClientOptions(opts...),
 		),
 		updateVariable: connect.NewClient[acquisition.Variable, emptypb.Empty](
@@ -1010,7 +1010,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 type apiServiceClient struct {
 	createVariable                                                   *connect.Client[acquisition.CreateVariableRequest, wrapperspb.StringValue]
 	listVariables                                                    *connect.Client[common.ListSelector, acquisition.ListOfVariable]
-	getVariables                                                     *connect.Client[wrapperspb.StringValue, acquisition.Variable]
+	getVariable                                                      *connect.Client[wrapperspb.StringValue, acquisition.Variable]
 	updateVariable                                                   *connect.Client[acquisition.Variable, emptypb.Empty]
 	deleteVariable                                                   *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	addRegisterToVariable                                            *connect.Client[acquisition.AddRegisterToVariableRequest, emptypb.Empty]
@@ -1099,9 +1099,9 @@ func (c *apiServiceClient) ListVariables(ctx context.Context, req *connect.Reque
 	return c.listVariables.CallUnary(ctx, req)
 }
 
-// GetVariables calls io.clbs.openhes.services.svcapi.ApiService.GetVariables.
-func (c *apiServiceClient) GetVariables(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error) {
-	return c.getVariables.CallUnary(ctx, req)
+// GetVariable calls io.clbs.openhes.services.svcapi.ApiService.GetVariable.
+func (c *apiServiceClient) GetVariable(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error) {
+	return c.getVariable.CallUnary(ctx, req)
 }
 
 // UpdateVariable calls io.clbs.openhes.services.svcapi.ApiService.UpdateVariable.
@@ -1512,7 +1512,7 @@ type ApiServiceHandler interface {
 	// @group: Variables
 	ListVariables(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfVariable], error)
 	// @group: Variables
-	GetVariables(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error)
+	GetVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error)
 	// @group: Variables
 	UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error)
 	// @group: Variables
@@ -1781,10 +1781,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("ListVariables")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetVariablesHandler := connect.NewUnaryHandler(
-		ApiServiceGetVariablesProcedure,
-		svc.GetVariables,
-		connect.WithSchema(apiServiceMethods.ByName("GetVariables")),
+	apiServiceGetVariableHandler := connect.NewUnaryHandler(
+		ApiServiceGetVariableProcedure,
+		svc.GetVariable,
+		connect.WithSchema(apiServiceMethods.ByName("GetVariable")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceUpdateVariableHandler := connect.NewUnaryHandler(
@@ -2249,8 +2249,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceCreateVariableHandler.ServeHTTP(w, r)
 		case ApiServiceListVariablesProcedure:
 			apiServiceListVariablesHandler.ServeHTTP(w, r)
-		case ApiServiceGetVariablesProcedure:
-			apiServiceGetVariablesHandler.ServeHTTP(w, r)
+		case ApiServiceGetVariableProcedure:
+			apiServiceGetVariableHandler.ServeHTTP(w, r)
 		case ApiServiceUpdateVariableProcedure:
 			apiServiceUpdateVariableHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteVariableProcedure:
@@ -2420,8 +2420,8 @@ func (UnimplementedApiServiceHandler) ListVariables(context.Context, *connect.Re
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListVariables is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetVariables(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetVariables is not implemented"))
+func (UnimplementedApiServiceHandler) GetVariable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Variable], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetVariable is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) UpdateVariable(context.Context, *connect.Request[acquisition.Variable]) (*connect.Response[emptypb.Empty], error) {

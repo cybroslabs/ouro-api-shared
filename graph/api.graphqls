@@ -1882,7 +1882,7 @@ type Query {
   deleteTimeOfUseTable: Empty
   createVariable: StringValue
   listVariables: ListOfVariable
-  getVariables: Variable
+  getVariable: Variable
   updateVariable: Empty
   deleteVariable: Empty
   addRegisterToVariable: Empty

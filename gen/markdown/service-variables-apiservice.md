@@ -20,10 +20,10 @@ ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openh
 - Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
 - Output: [`io.clbs.openhes.models.acquisition.ListOfVariable`](model-io-clbs-openhes-models-acquisition-listofvariable.md)
 
-## GetVariables
+## GetVariable
 
 ```proto
-GetVariables(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable)
+GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable)
 ```
 
 - Input: `google.protobuf.StringValue`

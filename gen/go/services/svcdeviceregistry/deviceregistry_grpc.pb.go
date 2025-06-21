@@ -26,7 +26,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceRegistryService_CreateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateVariable"
 	DeviceRegistryService_ListVariables_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListVariables"
-	DeviceRegistryService_GetVariables_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetVariables"
+	DeviceRegistryService_GetVariable_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetVariable"
 	DeviceRegistryService_UpdateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateVariable"
 	DeviceRegistryService_DeleteVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteVariable"
 	DeviceRegistryService_AddRegisterToVariable_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddRegisterToVariable"
@@ -104,7 +104,7 @@ type DeviceRegistryServiceClient interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
 	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
-	GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
+	GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -298,10 +298,10 @@ func (c *deviceRegistryServiceClient) ListVariables(ctx context.Context, in *com
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
+func (c *deviceRegistryServiceClient) GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Variable)
-	err := c.cc.Invoke(ctx, DeviceRegistryService_GetVariables_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetVariable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -989,7 +989,7 @@ type DeviceRegistryServiceServer interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
 	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error)
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
-	GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
+	GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error)
@@ -1169,8 +1169,8 @@ func (UnimplementedDeviceRegistryServiceServer) CreateVariable(context.Context, 
 func (UnimplementedDeviceRegistryServiceServer) ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListVariables not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVariables not implemented")
+func (UnimplementedDeviceRegistryServiceServer) GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVariable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateVariable not implemented")
@@ -1427,20 +1427,20 @@ func _DeviceRegistryService_ListVariables_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceRegistryService_GetVariables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceRegistryService_GetVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceRegistryServiceServer).GetVariables(ctx, in)
+		return srv.(DeviceRegistryServiceServer).GetVariable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceRegistryService_GetVariables_FullMethodName,
+		FullMethod: DeviceRegistryService_GetVariable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetVariables(ctx, req.(*wrapperspb.StringValue))
+		return srv.(DeviceRegistryServiceServer).GetVariable(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2631,8 +2631,8 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_ListVariables_Handler,
 		},
 		{
-			MethodName: "GetVariables",
-			Handler:    _DeviceRegistryService_GetVariables_Handler,
+			MethodName: "GetVariable",
+			Handler:    _DeviceRegistryService_GetVariable_Handler,
 		},
 		{
 			MethodName: "UpdateVariable",

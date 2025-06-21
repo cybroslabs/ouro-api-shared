@@ -30,12 +30,12 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\x82F\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x11system/main.proto2\x81F\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
-	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Z\n" +
-	"\fGetVariables\x12\x1c.google.protobuf.StringValue\x1a,.io.clbs.openhes.models.acquisition.Variable\x12V\n" +
+	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Y\n" +
+	"\vGetVariable\x12\x1c.google.protobuf.StringValue\x1a,.io.clbs.openhes.models.acquisition.Variable\x12V\n" +
 	"\x0eUpdateVariable\x12,.io.clbs.openhes.models.acquisition.Variable\x1a\x16.google.protobuf.Empty\x12F\n" +
 	"\x0eDeleteVariable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12q\n" +
 	"\x15AddRegisterToVariable\x12@.io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest\x1a\x16.google.protobuf.Empty\x12{\n" +
@@ -192,7 +192,7 @@ var file_services_svcapi_api_proto_goTypes = []any{
 var file_services_svcapi_api_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:input_type -> io.clbs.openhes.models.acquisition.CreateVariableRequest
 	1,  // 1: io.clbs.openhes.services.svcapi.ApiService.ListVariables:input_type -> io.clbs.openhes.models.common.ListSelector
-	2,  // 2: io.clbs.openhes.services.svcapi.ApiService.GetVariables:input_type -> google.protobuf.StringValue
+	2,  // 2: io.clbs.openhes.services.svcapi.ApiService.GetVariable:input_type -> google.protobuf.StringValue
 	3,  // 3: io.clbs.openhes.services.svcapi.ApiService.UpdateVariable:input_type -> io.clbs.openhes.models.acquisition.Variable
 	2,  // 4: io.clbs.openhes.services.svcapi.ApiService.DeleteVariable:input_type -> google.protobuf.StringValue
 	4,  // 5: io.clbs.openhes.services.svcapi.ApiService.AddRegisterToVariable:input_type -> io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest
@@ -271,7 +271,7 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	2,  // 78: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:input_type -> google.protobuf.StringValue
 	2,  // 79: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:output_type -> google.protobuf.StringValue
 	42, // 80: io.clbs.openhes.services.svcapi.ApiService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable
-	3,  // 81: io.clbs.openhes.services.svcapi.ApiService.GetVariables:output_type -> io.clbs.openhes.models.acquisition.Variable
+	3,  // 81: io.clbs.openhes.services.svcapi.ApiService.GetVariable:output_type -> io.clbs.openhes.models.acquisition.Variable
 	15, // 82: io.clbs.openhes.services.svcapi.ApiService.UpdateVariable:output_type -> google.protobuf.Empty
 	15, // 83: io.clbs.openhes.services.svcapi.ApiService.DeleteVariable:output_type -> google.protobuf.Empty
 	15, // 84: io.clbs.openhes.services.svcapi.ApiService.AddRegisterToVariable:output_type -> google.protobuf.Empty

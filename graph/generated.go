@@ -869,7 +869,7 @@ type ComplexityRoot struct {
 		GetModemPool                                                     func(childComplexity int) int
 		GetProxyBulk                                                     func(childComplexity int) int
 		GetTimeOfUseTable                                                func(childComplexity int) int
-		GetVariables                                                     func(childComplexity int) int
+		GetVariable                                                      func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
@@ -1107,7 +1107,7 @@ type QueryResolver interface {
 	DeleteTimeOfUseTable(ctx context.Context) (*model.Empty, error)
 	CreateVariable(ctx context.Context) (*model.StringValue, error)
 	ListVariables(ctx context.Context) (*model.ListOfVariable, error)
-	GetVariables(ctx context.Context) (*model.Variable, error)
+	GetVariable(ctx context.Context) (*model.Variable, error)
 	UpdateVariable(ctx context.Context) (*model.Empty, error)
 	DeleteVariable(ctx context.Context) (*model.Empty, error)
 	AddRegisterToVariable(ctx context.Context) (*model.Empty, error)
@@ -4213,12 +4213,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.GetTimeOfUseTable(childComplexity), true
 
-	case "Query.getVariables":
-		if e.complexity.Query.GetVariables == nil {
+	case "Query.getVariable":
+		if e.complexity.Query.GetVariable == nil {
 			break
 		}
 
-		return e.complexity.Query.GetVariables(childComplexity), true
+		return e.complexity.Query.GetVariable(childComplexity), true
 
 	case "Query.listBulkJobs":
 		if e.complexity.Query.ListBulkJobs == nil {
@@ -26467,8 +26467,8 @@ func (ec *executionContext) fieldContext_Query_listVariables(_ context.Context, 
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_getVariables(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_getVariables(ctx, field)
+func (ec *executionContext) _Query_getVariable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getVariable(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -26481,7 +26481,7 @@ func (ec *executionContext) _Query_getVariables(ctx context.Context, field graph
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().GetVariables(rctx)
+		return ec.resolvers.Query().GetVariable(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -26495,7 +26495,7 @@ func (ec *executionContext) _Query_getVariables(ctx context.Context, field graph
 	return ec.marshalOVariable2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐVariable(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_getVariables(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_getVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -37869,7 +37869,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "getVariables":
+		case "getVariable":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -37878,7 +37878,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_getVariables(ctx, field)
+				res = ec._Query_getVariable(ctx, field)
 				return res
 			}
 

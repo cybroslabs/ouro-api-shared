@@ -22,7 +22,7 @@ service ApiService {
     // @group: Variables
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
     // @group: Variables
-    rpc GetVariables(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable);
+    rpc GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable);
     // @group: Variables
     rpc UpdateVariable(io.clbs.openhes.models.acquisition.Variable) returns (google.protobuf.Empty);
     // @group: Variables

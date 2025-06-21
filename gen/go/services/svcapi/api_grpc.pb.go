@@ -26,7 +26,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ApiService_CreateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/CreateVariable"
 	ApiService_ListVariables_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ListVariables"
-	ApiService_GetVariables_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/GetVariables"
+	ApiService_GetVariable_FullMethodName                                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetVariable"
 	ApiService_UpdateVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/UpdateVariable"
 	ApiService_DeleteVariable_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/DeleteVariable"
 	ApiService_AddRegisterToVariable_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/AddRegisterToVariable"
@@ -117,7 +117,7 @@ type ApiServiceClient interface {
 	// @group: Variables
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	// @group: Variables
-	GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
+	GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
 	// @group: Variables
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Variables
@@ -395,10 +395,10 @@ func (c *apiServiceClient) ListVariables(ctx context.Context, in *common.ListSel
 	return out, nil
 }
 
-func (c *apiServiceClient) GetVariables(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
+func (c *apiServiceClient) GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Variable)
-	err := c.cc.Invoke(ctx, ApiService_GetVariables_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ApiService_GetVariable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1213,7 +1213,7 @@ type ApiServiceServer interface {
 	// @group: Variables
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	// @group: Variables
-	GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
+	GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
 	// @group: Variables
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	// @group: Variables
@@ -1477,8 +1477,8 @@ func (UnimplementedApiServiceServer) CreateVariable(context.Context, *acquisitio
 func (UnimplementedApiServiceServer) ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListVariables not implemented")
 }
-func (UnimplementedApiServiceServer) GetVariables(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVariables not implemented")
+func (UnimplementedApiServiceServer) GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVariable not implemented")
 }
 func (UnimplementedApiServiceServer) UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateVariable not implemented")
@@ -1765,20 +1765,20 @@ func _ApiService_ListVariables_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetVariables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_GetVariable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).GetVariables(ctx, in)
+		return srv.(ApiServiceServer).GetVariable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_GetVariables_FullMethodName,
+		FullMethod: ApiService_GetVariable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetVariables(ctx, req.(*wrapperspb.StringValue))
+		return srv.(ApiServiceServer).GetVariable(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3139,8 +3139,8 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_ListVariables_Handler,
 		},
 		{
-			MethodName: "GetVariables",
-			Handler:    _ApiService_GetVariables_Handler,
+			MethodName: "GetVariable",
+			Handler:    _ApiService_GetVariable_Handler,
 		},
 		{
 			MethodName: "UpdateVariable",
