@@ -33,6 +33,10 @@ service TaskmasterService {
     // The method sets the managed fields for entities.
     rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // @group: Drivers
+    // The method returns the list of device x-device-identifiers that match the given device-type specific key.
+    // The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+    rpc GetMapDeviceKeyXId(io.clbs.openhes.models.common.ListOfDeviceKey) returns (io.clbs.openhes.models.common.MapDeviceKeyXId);
+    // @group: Drivers
     // Adds a new log records to the communication unit. Duplicit records are ignored.
     rpc AddCommunicationUnitLogs(io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest) returns (google.protobuf.Empty);
     // @group: Drivers

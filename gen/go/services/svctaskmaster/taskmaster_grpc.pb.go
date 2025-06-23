@@ -30,6 +30,7 @@ const (
 	TaskmasterService_SetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
 	TaskmasterService_GetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
 	TaskmasterService_SetManagedFields_FullMethodName                   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields"
+	TaskmasterService_GetMapDeviceKeyXId_FullMethodName                 = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetMapDeviceKeyXId"
 	TaskmasterService_AddCommunicationUnitLogs_FullMethodName           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/AddCommunicationUnitLogs"
 	TaskmasterService_SetUnknownDevices_FullMethodName                  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetUnknownDevices"
 	TaskmasterService_ListDevicesByAttributes_FullMethodName            = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/ListDevicesByAttributes"
@@ -62,6 +63,10 @@ type TaskmasterServiceClient interface {
 	// @group: Drivers
 	// The method sets the managed fields for entities.
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Drivers
+	// The method returns the list of device x-device-identifiers that match the given device-type specific key.
+	// The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+	GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error)
 	// @group: Drivers
 	// Adds a new log records to the communication unit. Duplicit records are ignored.
 	AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -163,6 +168,16 @@ func (c *taskmasterServiceClient) SetManagedFields(ctx context.Context, in *comm
 	return out, nil
 }
 
+func (c *taskmasterServiceClient) GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.MapDeviceKeyXId)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetMapDeviceKeyXId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *taskmasterServiceClient) AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -248,6 +263,10 @@ type TaskmasterServiceServer interface {
 	// The method sets the managed fields for entities.
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Drivers
+	// The method returns the list of device x-device-identifiers that match the given device-type specific key.
+	// The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+	GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error)
+	// @group: Drivers
 	// Adds a new log records to the communication unit. Duplicit records are ignored.
 	AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error)
 	// @group: Drivers
@@ -298,6 +317,9 @@ func (UnimplementedTaskmasterServiceServer) GetCache(context.Context, *acquisiti
 }
 func (UnimplementedTaskmasterServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMapDeviceKeyXId not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitLogs not implemented")
@@ -464,6 +486,24 @@ func _TaskmasterService_SetManagedFields_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskmasterService_GetMapDeviceKeyXId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListOfDeviceKey)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).GetMapDeviceKeyXId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_GetMapDeviceKeyXId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).GetMapDeviceKeyXId(ctx, req.(*common.ListOfDeviceKey))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TaskmasterService_AddCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.AddCommunicationUnitLogsRequest)
 	if err := dec(in); err != nil {
@@ -606,6 +646,10 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetManagedFields",
 			Handler:    _TaskmasterService_SetManagedFields_Handler,
+		},
+		{
+			MethodName: "GetMapDeviceKeyXId",
+			Handler:    _TaskmasterService_GetMapDeviceKeyXId_Handler,
 		},
 		{
 			MethodName: "AddCommunicationUnitLogs",

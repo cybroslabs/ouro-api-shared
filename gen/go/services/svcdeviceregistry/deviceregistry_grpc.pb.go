@@ -89,6 +89,7 @@ const (
 	DeviceRegistryService_UpdateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateFieldDescriptor"
 	DeviceRegistryService_DeleteFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFieldDescriptor"
 	DeviceRegistryService_SetManagedFields_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetManagedFields"
+	DeviceRegistryService_GetMapDeviceKeyXId_FullMethodName                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetMapDeviceKeyXId"
 	DeviceRegistryService_AddCommunicationUnitLogs_FullMethodName                                         = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitLogs"
 	DeviceRegistryService_SetUnknownDevices_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetUnknownDevices"
 	DeviceRegistryService_SetNeightbours_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours"
@@ -250,20 +251,26 @@ type DeviceRegistryServiceClient interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
+	// @tag: device
+	// The method returns the list of device x-identifiers that match the given device-type specific key.
+	// The key can be any byte-array like unique physical identifier of the device (e.g. serial number, MAC address, etc.) which must be unique for give driver type.
+	GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error)
+	// @group: Internal
 	// @tag: communicationunit
 	// Adds a new log records to the communication unit. Duplicit records are ignored.
 	AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
 	// @tag: communicationunit
 	// The method sets currently known unknown devices visible by the communication unit.
 	SetUnknownDevices(ctx context.Context, in *acquisition.SetUnknownDevicesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(ctx context.Context, in *acquisition.SetNeighboursRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
+	// @tag: device
 	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
@@ -940,6 +947,16 @@ func (c *deviceRegistryServiceClient) SetManagedFields(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(common.MapDeviceKeyXId)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetMapDeviceKeyXId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) AddCommunicationUnitLogs(ctx context.Context, in *acquisition.AddCommunicationUnitLogsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -1135,20 +1152,26 @@ type DeviceRegistryServiceServer interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
+	// @tag: device
+	// The method returns the list of device x-identifiers that match the given device-type specific key.
+	// The key can be any byte-array like unique physical identifier of the device (e.g. serial number, MAC address, etc.) which must be unique for give driver type.
+	GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error)
+	// @group: Internal
 	// @tag: communicationunit
 	// Adds a new log records to the communication unit. Duplicit records are ignored.
 	AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
 	// @tag: communicationunit
 	// The method sets currently known unknown devices visible by the communication unit.
 	SetUnknownDevices(context.Context, *acquisition.SetUnknownDevicesRequest) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
 	// @tag: communicationunit
 	// The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
 	// If there were other neighbours not listed within the request, they are removed from the neighbours list.
 	SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error)
-	// @group: Devices
+	// @group: Internal
+	// @tag: device
 	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
@@ -1357,6 +1380,9 @@ func (UnimplementedDeviceRegistryServiceServer) DeleteFieldDescriptor(context.Co
 }
 func (UnimplementedDeviceRegistryServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMapDeviceKeyXId not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitLogs(context.Context, *acquisition.AddCommunicationUnitLogsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitLogs not implemented")
@@ -2543,6 +2569,24 @@ func _DeviceRegistryService_SetManagedFields_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetMapDeviceKeyXId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListOfDeviceKey)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetMapDeviceKeyXId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetMapDeviceKeyXId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetMapDeviceKeyXId(ctx, req.(*common.ListOfDeviceKey))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_AddCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.AddCommunicationUnitLogsRequest)
 	if err := dec(in); err != nil {
@@ -2873,6 +2917,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetManagedFields",
 			Handler:    _DeviceRegistryService_SetManagedFields_Handler,
+		},
+		{
+			MethodName: "GetMapDeviceKeyXId",
+			Handler:    _DeviceRegistryService_GetMapDeviceKeyXId_Handler,
 		},
 		{
 			MethodName: "AddCommunicationUnitLogs",

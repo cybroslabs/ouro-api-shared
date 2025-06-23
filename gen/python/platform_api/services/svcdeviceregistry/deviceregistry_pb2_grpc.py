@@ -347,6 +347,11 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetMapDeviceKeyXId = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetMapDeviceKeyXId',
+                request_serializer=common_dot_internal__pb2.ListOfDeviceKey.SerializeToString,
+                response_deserializer=common_dot_internal__pb2.MapDeviceKeyXId.FromString,
+                _registered_method=True)
         self.AddCommunicationUnitLogs = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitLogs',
                 request_serializer=acquisition_dot_internal__pb2.AddCommunicationUnitLogsRequest.SerializeToString,
@@ -847,8 +852,18 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetMapDeviceKeyXId(self, request, context):
+        """@group: Internal
+        @tag: device
+        The method returns the list of device x-identifiers that match the given device-type specific key.
+        The key can be any byte-array like unique physical identifier of the device (e.g. serial number, MAC address, etc.) which must be unique for give driver type.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AddCommunicationUnitLogs(self, request, context):
-        """@group: Devices
+        """@group: Internal
         @tag: communicationunit
         Adds a new log records to the communication unit. Duplicit records are ignored.
         """
@@ -857,7 +872,7 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetUnknownDevices(self, request, context):
-        """@group: Devices
+        """@group: Internal
         @tag: communicationunit
         The method sets currently known unknown devices visible by the communication unit.
         """
@@ -866,7 +881,7 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetNeightbours(self, request, context):
-        """@group: Devices
+        """@group: Internal
         @tag: communicationunit
         The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
         If there were other neighbours not listed within the request, they are removed from the neighbours list.
@@ -876,7 +891,8 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetCurrentDeviceCommunicationUnit(self, request, context):
-        """@group: Devices
+        """@group: Internal
+        @tag: device
         The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
         The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
         The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
@@ -1212,6 +1228,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     servicer.SetManagedFields,
                     request_deserializer=common_dot_internal__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetMapDeviceKeyXId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMapDeviceKeyXId,
+                    request_deserializer=common_dot_internal__pb2.ListOfDeviceKey.FromString,
+                    response_serializer=common_dot_internal__pb2.MapDeviceKeyXId.SerializeToString,
             ),
             'AddCommunicationUnitLogs': grpc.unary_unary_rpc_method_handler(
                     servicer.AddCommunicationUnitLogs,
@@ -2990,6 +3011,33 @@ class DeviceRegistryService(object):
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetManagedFields',
             common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMapDeviceKeyXId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetMapDeviceKeyXId',
+            common_dot_internal__pb2.ListOfDeviceKey.SerializeToString,
+            common_dot_internal__pb2.MapDeviceKeyXId.FromString,
             options,
             channel_credentials,
             insecure,

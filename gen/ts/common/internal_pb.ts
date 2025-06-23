@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/internal.proto.
  */
 export const file_common_internal: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIo0DChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBJhCg5tYW5hZ2VkX2ZpZWxkcxgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRJRCgdnZW5lcmljGAIgASgLMj4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpY0gAEk8KBmRldmljZRgDIAEoCzI9LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZUgAGl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUIKCghzZWxlY3RvciKBAQofU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpYxI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBSLVAQoeU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yRGV2aWNlElkKBmZpbHRlchgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZS5GaWx0ZXJFbnRyeRpYCgtGaWx0ZXJFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASKDAQoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSDQoFZ3JvdXAYASABKAkSDwoHZGJfcGF0aBgCIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAMgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIn8KHVVwZGF0ZUZpZWxkRGVzY3JpcHRvcnNSZXF1ZXN0EkUKBWl0ZW1zGAEgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSFwoPY2xlYW51cF9taXNzaW5nGAIgASgIImYKHUxpc3RPZkZpZWxkRGVzY3JpcHRvckludGVybmFsEkUKBWl0ZW1zGAEgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWxCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIo0DChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBJhCg5tYW5hZ2VkX2ZpZWxkcxgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRJRCgdnZW5lcmljGAIgASgLMj4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpY0gAEk8KBmRldmljZRgDIAEoCzI9LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZUgAGl8KEk1hbmFnZWRGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUIKCghzZWxlY3RvciKBAQofU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yR2VuZXJpYxI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAiABKAkSEgoKZ2VuZXJhdGlvbhgDIAEoBSLVAQoeU2V0TWFuYWdlZEZpZWxkc1NlbGVjdG9yRGV2aWNlElkKBmZpbHRlchgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNTZWxlY3RvckRldmljZS5GaWx0ZXJFbnRyeRpYCgtGaWx0ZXJFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ASKDAQoXRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSDQoFZ3JvdXAYASABKAkSDwoHZGJfcGF0aBgCIAEoCRJIChBmaWVsZF9kZXNjcmlwdG9yGAMgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9yIn8KHVVwZGF0ZUZpZWxkRGVzY3JpcHRvcnNSZXF1ZXN0EkUKBWl0ZW1zGAEgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSFwoPY2xlYW51cF9taXNzaW5nGAIgASgIImYKHUxpc3RPZkZpZWxkRGVzY3JpcHRvckludGVybmFsEkUKBWl0ZW1zGAEgAygLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGREZXNjcmlwdG9ySW50ZXJuYWwiNQoPTGlzdE9mRGV2aWNlS2V5EhMKC2RyaXZlcl90eXBlGAEgASgJEg0KBWl0ZW1zGAIgAygJIokBCg9NYXBEZXZpY2VLZXlYSWQSSAoFaXRlbXMYASADKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NYXBEZXZpY2VLZXlYSWQuSXRlbXNFbnRyeRosCgpJdGVtc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoAzoCOAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects]);
 
 /**
  * The request to set the managed fields of the resource.
@@ -312,4 +312,82 @@ export type ListOfFieldDescriptorInternalJson = {
  */
 export const ListOfFieldDescriptorInternalSchema: GenMessage<ListOfFieldDescriptorInternal, {jsonType: ListOfFieldDescriptorInternalJson}> = /*@__PURE__*/
   messageDesc(file_common_internal, 5);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.ListOfDeviceKey
+ */
+export type ListOfDeviceKey = Message<"io.clbs.openhes.models.common.ListOfDeviceKey"> & {
+  /**
+   * The driver type for which the device keys are defined. It is used to identify the device keys for a specific driver.
+   *
+   * @generated from field: string driver_type = 1;
+   */
+  driverType: string;
+
+  /**
+   * The list of device keys. The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+   *
+   * @generated from field: repeated string items = 2;
+   */
+  items: string[];
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.ListOfDeviceKey
+ */
+export type ListOfDeviceKeyJson = {
+  /**
+   * The driver type for which the device keys are defined. It is used to identify the device keys for a specific driver.
+   *
+   * @generated from field: string driver_type = 1;
+   */
+  driverType?: string;
+
+  /**
+   * The list of device keys. The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+   *
+   * @generated from field: repeated string items = 2;
+   */
+  items?: string[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.ListOfDeviceKey.
+ * Use `create(ListOfDeviceKeySchema)` to create a new message.
+ */
+export const ListOfDeviceKeySchema: GenMessage<ListOfDeviceKey, {jsonType: ListOfDeviceKeyJson}> = /*@__PURE__*/
+  messageDesc(file_common_internal, 6);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.MapDeviceKeyXId
+ */
+export type MapDeviceKeyXId = Message<"io.clbs.openhes.models.common.MapDeviceKeyXId"> & {
+  /**
+   * The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
+   * The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+   *
+   * @generated from field: map<string, int64> items = 1;
+   */
+  items: { [key: string]: bigint };
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.MapDeviceKeyXId
+ */
+export type MapDeviceKeyXIdJson = {
+  /**
+   * The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
+   * The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+   *
+   * @generated from field: map<string, int64> items = 1;
+   */
+  items?: { [key: string]: string };
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.MapDeviceKeyXId.
+ * Use `create(MapDeviceKeyXIdSchema)` to create a new message.
+ */
+export const MapDeviceKeyXIdSchema: GenMessage<MapDeviceKeyXId, {jsonType: MapDeviceKeyXIdJson}> = /*@__PURE__*/
+  messageDesc(file_common_internal, 7);
 

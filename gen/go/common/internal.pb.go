@@ -691,6 +691,157 @@ func (b0 ListOfFieldDescriptorInternal_builder) Build() *ListOfFieldDescriptorIn
 	return m0
 }
 
+type ListOfDeviceKey struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
+	xxx_hidden_Items       []string               `protobuf:"bytes,2,rep,name=items"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfDeviceKey) Reset() {
+	*x = ListOfDeviceKey{}
+	mi := &file_common_internal_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfDeviceKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfDeviceKey) ProtoMessage() {}
+
+func (x *ListOfDeviceKey) ProtoReflect() protoreflect.Message {
+	mi := &file_common_internal_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfDeviceKey) GetDriverType() string {
+	if x != nil {
+		if x.xxx_hidden_DriverType != nil {
+			return *x.xxx_hidden_DriverType
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ListOfDeviceKey) GetItems() []string {
+	if x != nil {
+		return x.xxx_hidden_Items
+	}
+	return nil
+}
+
+func (x *ListOfDeviceKey) SetDriverType(v string) {
+	x.xxx_hidden_DriverType = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ListOfDeviceKey) SetItems(v []string) {
+	x.xxx_hidden_Items = v
+}
+
+func (x *ListOfDeviceKey) HasDriverType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ListOfDeviceKey) ClearDriverType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_DriverType = nil
+}
+
+type ListOfDeviceKey_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	DriverType *string
+	Items      []string
+}
+
+func (b0 ListOfDeviceKey_builder) Build() *ListOfDeviceKey {
+	m0 := &ListOfDeviceKey{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.DriverType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_DriverType = b.DriverType
+	}
+	x.xxx_hidden_Items = b.Items
+	return m0
+}
+
+type MapDeviceKeyXId struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items map[string]int64       `protobuf:"bytes,1,rep,name=items" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *MapDeviceKeyXId) Reset() {
+	*x = MapDeviceKeyXId{}
+	mi := &file_common_internal_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MapDeviceKeyXId) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MapDeviceKeyXId) ProtoMessage() {}
+
+func (x *MapDeviceKeyXId) ProtoReflect() protoreflect.Message {
+	mi := &file_common_internal_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MapDeviceKeyXId) GetItems() map[string]int64 {
+	if x != nil {
+		return x.xxx_hidden_Items
+	}
+	return nil
+}
+
+func (x *MapDeviceKeyXId) SetItems(v map[string]int64) {
+	x.xxx_hidden_Items = v
+}
+
+type MapDeviceKeyXId_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
+	// The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+	Items map[string]int64
+}
+
+func (b0 MapDeviceKeyXId_builder) Build() *MapDeviceKeyXId {
+	m0 := &MapDeviceKeyXId{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = b.Items
+	return m0
+}
+
 var File_common_internal_proto protoreflect.FileDescriptor
 
 const file_common_internal_proto_rawDesc = "" +
@@ -725,9 +876,19 @@ const file_common_internal_proto_rawDesc = "" +
 	"\x05items\x18\x01 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12'\n" +
 	"\x0fcleanup_missing\x18\x02 \x01(\bR\x0ecleanupMissing\"m\n" +
 	"\x1dListOfFieldDescriptorInternal\x12L\n" +
-	"\x05items\x18\x01 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05itemsB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x05items\x18\x01 \x03(\v26.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\"H\n" +
+	"\x0fListOfDeviceKey\x12\x1f\n" +
+	"\vdriver_type\x18\x01 \x01(\tR\n" +
+	"driverType\x12\x14\n" +
+	"\x05items\x18\x02 \x03(\tR\x05items\"\x9c\x01\n" +
+	"\x0fMapDeviceKeyXId\x12O\n" +
+	"\x05items\x18\x01 \x03(\v29.io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntryR\x05items\x1a8\n" +
+	"\n" +
+	"ItemsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_common_internal_proto_goTypes = []any{
 	(*SetManagedFieldsRequest)(nil),         // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest
 	(*SetManagedFieldsSelectorGeneric)(nil), // 1: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
@@ -735,28 +896,32 @@ var file_common_internal_proto_goTypes = []any{
 	(*FieldDescriptorInternal)(nil),         // 3: io.clbs.openhes.models.common.FieldDescriptorInternal
 	(*UpdateFieldDescriptorsRequest)(nil),   // 4: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
 	(*ListOfFieldDescriptorInternal)(nil),   // 5: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
-	nil,                                     // 6: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
-	nil,                                     // 7: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
-	(ObjectType)(0),                         // 8: io.clbs.openhes.models.common.ObjectType
-	(*FieldDescriptor)(nil),                 // 9: io.clbs.openhes.models.common.FieldDescriptor
-	(*FieldValue)(nil),                      // 10: io.clbs.openhes.models.common.FieldValue
+	(*ListOfDeviceKey)(nil),                 // 6: io.clbs.openhes.models.common.ListOfDeviceKey
+	(*MapDeviceKeyXId)(nil),                 // 7: io.clbs.openhes.models.common.MapDeviceKeyXId
+	nil,                                     // 8: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	nil,                                     // 9: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
+	nil,                                     // 10: io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
+	(ObjectType)(0),                         // 11: io.clbs.openhes.models.common.ObjectType
+	(*FieldDescriptor)(nil),                 // 12: io.clbs.openhes.models.common.FieldDescriptor
+	(*FieldValue)(nil),                      // 13: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_internal_proto_depIdxs = []int32{
-	6,  // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	8,  // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
 	1,  // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.generic:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
 	2,  // 2: io.clbs.openhes.models.common.SetManagedFieldsRequest.device:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice
-	8,  // 3: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	7,  // 4: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.filter:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
-	9,  // 5: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	11, // 3: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	9,  // 4: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.filter:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
+	12, // 5: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	3,  // 6: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
 	3,  // 7: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
-	10, // 8: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	10, // 9: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	10, // 8: io.clbs.openhes.models.common.MapDeviceKeyXId.items:type_name -> io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
+	13, // 9: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	13, // 10: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_common_internal_proto_init() }
@@ -776,7 +941,7 @@ func file_common_internal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_internal_proto_rawDesc), len(file_common_internal_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -57,6 +57,11 @@ class TaskmasterServiceStub(object):
                 request_serializer=common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetMapDeviceKeyXId = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetMapDeviceKeyXId',
+                request_serializer=common_dot_internal__pb2.ListOfDeviceKey.SerializeToString,
+                response_deserializer=common_dot_internal__pb2.MapDeviceKeyXId.FromString,
+                _registered_method=True)
         self.AddCommunicationUnitLogs = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/AddCommunicationUnitLogs',
                 request_serializer=acquisition_dot_internal__pb2.AddCommunicationUnitLogsRequest.SerializeToString,
@@ -141,6 +146,15 @@ class TaskmasterServiceServicer(object):
     def SetManagedFields(self, request, context):
         """@group: Drivers
         The method sets the managed fields for entities.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMapDeviceKeyXId(self, request, context):
+        """@group: Drivers
+        The method returns the list of device x-device-identifiers that match the given device-type specific key.
+        The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -234,6 +248,11 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
                     servicer.SetManagedFields,
                     request_deserializer=common_dot_internal__pb2.SetManagedFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetMapDeviceKeyXId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMapDeviceKeyXId,
+                    request_deserializer=common_dot_internal__pb2.ListOfDeviceKey.FromString,
+                    response_serializer=common_dot_internal__pb2.MapDeviceKeyXId.SerializeToString,
             ),
             'AddCommunicationUnitLogs': grpc.unary_unary_rpc_method_handler(
                     servicer.AddCommunicationUnitLogs,
@@ -457,6 +476,33 @@ class TaskmasterService(object):
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
             common_dot_internal__pb2.SetManagedFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMapDeviceKeyXId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetMapDeviceKeyXId',
+            common_dot_internal__pb2.ListOfDeviceKey.SerializeToString,
+            common_dot_internal__pb2.MapDeviceKeyXId.FromString,
             options,
             channel_credentials,
             insecure,
