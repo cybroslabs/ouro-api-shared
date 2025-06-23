@@ -1718,13 +1718,13 @@ func (b0 SetUnknownDevicesRequest_builder) Build() *SetUnknownDevicesRequest {
 }
 
 type UnknownDevice struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
-	xxx_hidden_Attributes  *[]*common.FieldValue  `protobuf:"bytes,4,rep,name=attributes"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_XDeviceIdentifier *string                `protobuf:"bytes,1,opt,name=x_device_identifier,json=xDeviceIdentifier"`
+	xxx_hidden_Attributes        *[]*common.FieldValue  `protobuf:"bytes,2,rep,name=attributes"`
+	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
+	XXX_presence                 [1]uint32
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *UnknownDevice) Reset() {
@@ -1752,10 +1752,10 @@ func (x *UnknownDevice) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *UnknownDevice) GetId() string {
+func (x *UnknownDevice) GetXDeviceIdentifier() string {
 	if x != nil {
-		if x.xxx_hidden_Id != nil {
-			return *x.xxx_hidden_Id
+		if x.xxx_hidden_XDeviceIdentifier != nil {
+			return *x.xxx_hidden_XDeviceIdentifier
 		}
 		return ""
 	}
@@ -1771,8 +1771,8 @@ func (x *UnknownDevice) GetAttributes() []*common.FieldValue {
 	return nil
 }
 
-func (x *UnknownDevice) SetId(v string) {
-	x.xxx_hidden_Id = &v
+func (x *UnknownDevice) SetXDeviceIdentifier(v string) {
+	x.xxx_hidden_XDeviceIdentifier = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
@@ -1780,32 +1780,32 @@ func (x *UnknownDevice) SetAttributes(v []*common.FieldValue) {
 	x.xxx_hidden_Attributes = &v
 }
 
-func (x *UnknownDevice) HasId() bool {
+func (x *UnknownDevice) HasXDeviceIdentifier() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *UnknownDevice) ClearId() {
+func (x *UnknownDevice) ClearXDeviceIdentifier() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Id = nil
+	x.xxx_hidden_XDeviceIdentifier = nil
 }
 
 type UnknownDevice_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id         *string
-	Attributes []*common.FieldValue
+	XDeviceIdentifier *string
+	Attributes        []*common.FieldValue
 }
 
 func (b0 UnknownDevice_builder) Build() *UnknownDevice {
 	m0 := &UnknownDevice{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Id != nil {
+	if b.XDeviceIdentifier != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
-		x.xxx_hidden_Id = b.Id
+		x.xxx_hidden_XDeviceIdentifier = b.XDeviceIdentifier
 	}
 	x.xxx_hidden_Attributes = &b.Attributes
 	return m0
@@ -2177,11 +2177,11 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\amessage\x18\x04 \x01(\tR\amessage\"\x97\x01\n" +
 	"\x18SetUnknownDevicesRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12G\n" +
-	"\x05items\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.UnknownDeviceR\x05items\"j\n" +
-	"\rUnknownDevice\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12I\n" +
+	"\x05items\x18\x02 \x03(\v21.io.clbs.openhes.models.acquisition.UnknownDeviceR\x05items\"\x8a\x01\n" +
+	"\rUnknownDevice\x12.\n" +
+	"\x13x_device_identifier\x18\x01 \x01(\tR\x11xDeviceIdentifier\x12I\n" +
 	"\n" +
-	"attributes\x18\x04 \x03(\v2).io.clbs.openhes.models.common.FieldValueR\n" +
+	"attributes\x18\x02 \x03(\v2).io.clbs.openhes.models.common.FieldValueR\n" +
 	"attributes\"h\n" +
 	"\x14SetNeighboursRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12\x1c\n" +

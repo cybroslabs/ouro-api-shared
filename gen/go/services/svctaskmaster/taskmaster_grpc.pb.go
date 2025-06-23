@@ -64,8 +64,9 @@ type TaskmasterServiceClient interface {
 	// The method sets the managed fields for entities.
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
-	// The method returns the list of device x-device-identifiers that match the given device-type specific key.
+	// The method returns the list of x-device-identifiers that match the given device-type specific key.
 	// The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+	// If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
 	GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error)
 	// @group: Drivers
 	// Adds a new log records to the communication unit. Duplicit records are ignored.
@@ -263,8 +264,9 @@ type TaskmasterServiceServer interface {
 	// The method sets the managed fields for entities.
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Drivers
-	// The method returns the list of device x-device-identifiers that match the given device-type specific key.
+	// The method returns the list of x-device-identifiers that match the given device-type specific key.
 	// The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+	// If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
 	GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error)
 	// @group: Drivers
 	// Adds a new log records to the communication unit. Duplicit records are ignored.

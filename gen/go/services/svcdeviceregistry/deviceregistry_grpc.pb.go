@@ -253,8 +253,9 @@ type DeviceRegistryServiceClient interface {
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Internal
 	// @tag: device
-	// The method returns the list of device x-identifiers that match the given device-type specific key.
+	// The method returns the list of x-device-identifiers that match the given device-type specific key.
 	// The key can be any byte-array like unique physical identifier of the device (e.g. serial number, MAC address, etc.) which must be unique for give driver type.
+	// If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
 	GetMapDeviceKeyXId(ctx context.Context, in *common.ListOfDeviceKey, opts ...grpc.CallOption) (*common.MapDeviceKeyXId, error)
 	// @group: Internal
 	// @tag: communicationunit
@@ -1154,8 +1155,9 @@ type DeviceRegistryServiceServer interface {
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Internal
 	// @tag: device
-	// The method returns the list of device x-identifiers that match the given device-type specific key.
+	// The method returns the list of x-device-identifiers that match the given device-type specific key.
 	// The key can be any byte-array like unique physical identifier of the device (e.g. serial number, MAC address, etc.) which must be unique for give driver type.
+	// If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
 	GetMapDeviceKeyXId(context.Context, *common.ListOfDeviceKey) (*common.MapDeviceKeyXId, error)
 	// @group: Internal
 	// @tag: communicationunit

@@ -153,8 +153,9 @@ class TaskmasterServiceServicer(object):
 
     def GetMapDeviceKeyXId(self, request, context):
         """@group: Drivers
-        The method returns the list of device x-device-identifiers that match the given device-type specific key.
+        The method returns the list of x-device-identifiers that match the given device-type specific key.
         The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+        If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
