@@ -125,7 +125,7 @@ message IndirectNeightbours {
 
 message SetNeighboursRequest {
     string communication_unit_id                     = 1;  // The unique identifier of the communication unit for which the neighbors are being set.
-    repeated DirectNeightbours direct_neighbors      = 2;  // The list of neighbor device identifiers next to the communication unit.
+    repeated DirectNeightbours direct_neighbours     = 2;  // The list of neighbor device identifiers next to the communication unit.
     repeated IndirectNeightbours indirect_neighbours = 3;  // The list of indirect neighbour devices.
 }
 

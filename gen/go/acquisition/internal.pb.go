@@ -2000,7 +2000,7 @@ func (b0 IndirectNeightbours_builder) Build() *IndirectNeightbours {
 type SetNeighboursRequest struct {
 	state                          protoimpl.MessageState  `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnitId *string                 `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
-	xxx_hidden_DirectNeighbors     *[]*DirectNeightbours   `protobuf:"bytes,2,rep,name=direct_neighbors,json=directNeighbors"`
+	xxx_hidden_DirectNeighbours    *[]*DirectNeightbours   `protobuf:"bytes,2,rep,name=direct_neighbours,json=directNeighbours"`
 	xxx_hidden_IndirectNeighbours  *[]*IndirectNeightbours `protobuf:"bytes,3,rep,name=indirect_neighbours,json=indirectNeighbours"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
@@ -2043,10 +2043,10 @@ func (x *SetNeighboursRequest) GetCommunicationUnitId() string {
 	return ""
 }
 
-func (x *SetNeighboursRequest) GetDirectNeighbors() []*DirectNeightbours {
+func (x *SetNeighboursRequest) GetDirectNeighbours() []*DirectNeightbours {
 	if x != nil {
-		if x.xxx_hidden_DirectNeighbors != nil {
-			return *x.xxx_hidden_DirectNeighbors
+		if x.xxx_hidden_DirectNeighbours != nil {
+			return *x.xxx_hidden_DirectNeighbours
 		}
 	}
 	return nil
@@ -2066,8 +2066,8 @@ func (x *SetNeighboursRequest) SetCommunicationUnitId(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
-func (x *SetNeighboursRequest) SetDirectNeighbors(v []*DirectNeightbours) {
-	x.xxx_hidden_DirectNeighbors = &v
+func (x *SetNeighboursRequest) SetDirectNeighbours(v []*DirectNeightbours) {
+	x.xxx_hidden_DirectNeighbours = &v
 }
 
 func (x *SetNeighboursRequest) SetIndirectNeighbours(v []*IndirectNeightbours) {
@@ -2090,7 +2090,7 @@ type SetNeighboursRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	CommunicationUnitId *string
-	DirectNeighbors     []*DirectNeightbours
+	DirectNeighbours    []*DirectNeightbours
 	IndirectNeighbours  []*IndirectNeightbours
 }
 
@@ -2102,7 +2102,7 @@ func (b0 SetNeighboursRequest_builder) Build() *SetNeighboursRequest {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
-	x.xxx_hidden_DirectNeighbors = &b.DirectNeighbors
+	x.xxx_hidden_DirectNeighbours = &b.DirectNeighbours
 	x.xxx_hidden_IndirectNeighbours = &b.IndirectNeighbours
 	return m0
 }
@@ -2391,10 +2391,10 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x13x_device_identifier\x18\x01 \x01(\x03R\x11xDeviceIdentifier\"\x83\x01\n" +
 	"\x13IndirectNeightbours\x127\n" +
 	"\x18from_x_device_identifier\x18\x01 \x01(\x03R\x15fromXDeviceIdentifier\x123\n" +
-	"\x16to_x_device_identifier\x18\x02 \x01(\x03R\x13toXDeviceIdentifier\"\x96\x02\n" +
+	"\x16to_x_device_identifier\x18\x02 \x01(\x03R\x13toXDeviceIdentifier\"\x98\x02\n" +
 	"\x14SetNeighboursRequest\x122\n" +
-	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12`\n" +
-	"\x10direct_neighbors\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.DirectNeightboursR\x0fdirectNeighbors\x12h\n" +
+	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12b\n" +
+	"\x11direct_neighbours\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.DirectNeightboursR\x10directNeighbours\x12h\n" +
 	"\x13indirect_neighbours\x18\x03 \x03(\v27.io.clbs.openhes.models.acquisition.IndirectNeightboursR\x12indirectNeighbours\"o\n" +
 	"\x10DeviceNeightbour\x12K\n" +
 	"\x04type\x18\x01 \x01(\x0e27.io.clbs.openhes.models.acquisition.DeviceNeighbourTypeR\x04type\x12\x0e\n" +
@@ -2471,7 +2471,7 @@ var file_acquisition_internal_proto_depIdxs = []int32{
 	0,  // 13: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
 	18, // 14: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevice
 	35, // 15: io.clbs.openhes.models.acquisition.UnknownDevice.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	19, // 16: io.clbs.openhes.models.acquisition.SetNeighboursRequest.direct_neighbors:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours
+	19, // 16: io.clbs.openhes.models.acquisition.SetNeighboursRequest.direct_neighbours:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours
 	20, // 17: io.clbs.openhes.models.acquisition.SetNeighboursRequest.indirect_neighbours:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours
 	1,  // 18: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
 	36, // 19: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.device_selector:type_name -> io.clbs.openhes.models.acquisition.ObjectAttributeSelector
