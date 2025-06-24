@@ -73,6 +73,19 @@ message StreamDevicesDriverTypesResponse {
     map<string, string> data = 1;  // The map of devices to their driver types. The key is the device identifier, the value is the driver type.
 }
 
+// Unknown device specification.
+
+message UnknownDevice {
+    reserved 1;                          // reserved for status
+    UnknownDeviceStatus status     = 2;  // The unknown device status.
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message UnknownDeviceStatus {
+    string driver_type           = 1;  // The driver type of the device.
+    string communication_unit_id = 2;  // The communication unit identifier of the device.
+}
+
 // Device group specification.
 
 message CreateDeviceGroupRequest {
@@ -327,13 +340,13 @@ message VariableSpec {
 }
 
 message AddRegisterToVariableRequest {
-    string variable_id           = 1;  // The unique identifier of the variable.
-    repeated string register_id  = 2;  // The list of register identifiers to be linked to the variable.
+    string variable_id          = 1;  // The unique identifier of the variable.
+    repeated string register_id = 2;  // The list of register identifiers to be linked to the variable.
 }
 
 message RemoveRegisterFromVariableRequest {
-    string variable_id           = 1;  // The unique identifier of the variable.
-    repeated string register_id  = 2;  // The list of register identifiers to be linked to the variable.
+    string variable_id          = 1;  // The unique identifier of the variable.
+    repeated string register_id = 2;  // The list of register identifiers to be linked to the variable.
 }
 
 // Device Configuration Register specification

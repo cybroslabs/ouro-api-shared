@@ -103,11 +103,11 @@ message CommunicationUnitLogRecord {
 }
 
 message SetUnknownDevicesRequest {
-    string communication_unit_id = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
-    repeated UnknownDevice items = 2;  // The list of unknown devices to be set. The list is not empty.
+    string communication_unit_id      = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
+    repeated UnknownDevicesItem items = 2;  // The list of unknown devices to be set. The list is not empty.
 }
 
-message UnknownDevice {
+message UnknownDevicesItem {
     int64 x_device_identifier     = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId.
     common.FieldValues attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
 }
