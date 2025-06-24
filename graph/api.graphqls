@@ -956,6 +956,10 @@ type DriverTemplates {
   accessTemplates: [AccessLevelTemplate]
   # The templates of the job actions constraints.
   actionConstraints: JobActionContraints
+  # The list of descriptors related to the uknown devices visible to the communication unit.
+  #  This relates only to the drivers that communications with a device like data-concentrator that can provide information for unknown devices.
+  #  The descripts must cover all data attributes which drivers sets in the SetUnknownDevicesRequest message.
+  uknownDeviceDescriptors: [FieldDescriptor]
 }
 
 # Sub-message describing a single event.

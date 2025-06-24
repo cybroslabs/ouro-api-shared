@@ -432,11 +432,12 @@ type ComplexityRoot struct {
 	}
 
 	DriverTemplates struct {
-		AccessTemplates        func(childComplexity int) int
-		ActionAttributes       func(childComplexity int) int
-		ActionConstraints      func(childComplexity int) int
-		AppProtocols           func(childComplexity int) int
-		CommunicationTemplates func(childComplexity int) int
+		AccessTemplates         func(childComplexity int) int
+		ActionAttributes        func(childComplexity int) int
+		ActionConstraints       func(childComplexity int) int
+		AppProtocols            func(childComplexity int) int
+		CommunicationTemplates  func(childComplexity int) int
+		UknownDeviceDescriptors func(childComplexity int) int
 	}
 
 	Duration struct {
@@ -2385,6 +2386,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.DriverTemplates.CommunicationTemplates(childComplexity), true
+
+	case "DriverTemplates.uknownDeviceDescriptors":
+		if e.complexity.DriverTemplates.UknownDeviceDescriptors == nil {
+			break
+		}
+
+		return e.complexity.DriverTemplates.UknownDeviceDescriptors(childComplexity), true
 
 	case "Duration.nanos":
 		if e.complexity.Duration.Nanos == nil {
@@ -13072,6 +13080,8 @@ func (ec *executionContext) fieldContext_DriverSpec_templates(_ context.Context,
 				return ec.fieldContext_DriverTemplates_accessTemplates(ctx, field)
 			case "actionConstraints":
 				return ec.fieldContext_DriverTemplates_actionConstraints(ctx, field)
+			case "uknownDeviceDescriptors":
+				return ec.fieldContext_DriverTemplates_uknownDeviceDescriptors(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DriverTemplates", field.Name)
 		},
@@ -13432,6 +13442,89 @@ func (ec *executionContext) fieldContext_DriverTemplates_actionConstraints(_ con
 				return ec.fieldContext_JobActionContraints_getRegisterTypeAttributes(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type JobActionContraints", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DriverTemplates_uknownDeviceDescriptors(ctx context.Context, field graphql.CollectedField, obj *model.DriverTemplates) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DriverTemplates_uknownDeviceDescriptors(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.UknownDeviceDescriptors, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.FieldDescriptor)
+	fc.Result = res
+	return ec.marshalOFieldDescriptor2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDescriptor(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DriverTemplates_uknownDeviceDescriptors(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DriverTemplates",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "isUserDefined":
+				return ec.fieldContext_FieldDescriptor_isUserDefined(ctx, field)
+			case "objectType":
+				return ec.fieldContext_FieldDescriptor_objectType(ctx, field)
+			case "gid":
+				return ec.fieldContext_FieldDescriptor_gid(ctx, field)
+			case "fieldId":
+				return ec.fieldContext_FieldDescriptor_fieldId(ctx, field)
+			case "jsPath":
+				return ec.fieldContext_FieldDescriptor_jsPath(ctx, field)
+			case "path":
+				return ec.fieldContext_FieldDescriptor_path(ctx, field)
+			case "label":
+				return ec.fieldContext_FieldDescriptor_label(ctx, field)
+			case "groupId":
+				return ec.fieldContext_FieldDescriptor_groupId(ctx, field)
+			case "dataType":
+				return ec.fieldContext_FieldDescriptor_dataType(ctx, field)
+			case "format":
+				return ec.fieldContext_FieldDescriptor_format(ctx, field)
+			case "unit":
+				return ec.fieldContext_FieldDescriptor_unit(ctx, field)
+			case "precision":
+				return ec.fieldContext_FieldDescriptor_precision(ctx, field)
+			case "tooltip":
+				return ec.fieldContext_FieldDescriptor_tooltip(ctx, field)
+			case "required":
+				return ec.fieldContext_FieldDescriptor_required(ctx, field)
+			case "editable":
+				return ec.fieldContext_FieldDescriptor_editable(ctx, field)
+			case "visible":
+				return ec.fieldContext_FieldDescriptor_visible(ctx, field)
+			case "multiValue":
+				return ec.fieldContext_FieldDescriptor_multiValue(ctx, field)
+			case "secured":
+				return ec.fieldContext_FieldDescriptor_secured(ctx, field)
+			case "validation":
+				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
+			case "defaultValue":
+				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
 	}
 	return fc, nil
@@ -34085,6 +34178,8 @@ func (ec *executionContext) _DriverTemplates(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._DriverTemplates_accessTemplates(ctx, field, obj)
 		case "actionConstraints":
 			out.Values[i] = ec._DriverTemplates_actionConstraints(ctx, field, obj)
+		case "uknownDeviceDescriptors":
+			out.Values[i] = ec._DriverTemplates_uknownDeviceDescriptors(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

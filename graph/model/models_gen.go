@@ -396,11 +396,12 @@ type DriverStatus struct {
 }
 
 type DriverTemplates struct {
-	CommunicationTemplates []*CommunicationTemplate       `json:"communicationTemplates,omitempty"`
-	AppProtocols           []*ApplicationProtocolTemplate `json:"appProtocols,omitempty"`
-	ActionAttributes       []*JobActionAttributes         `json:"actionAttributes,omitempty"`
-	AccessTemplates        []*AccessLevelTemplate         `json:"accessTemplates,omitempty"`
-	ActionConstraints      *JobActionContraints           `json:"actionConstraints,omitempty"`
+	CommunicationTemplates  []*CommunicationTemplate       `json:"communicationTemplates,omitempty"`
+	AppProtocols            []*ApplicationProtocolTemplate `json:"appProtocols,omitempty"`
+	ActionAttributes        []*JobActionAttributes         `json:"actionAttributes,omitempty"`
+	AccessTemplates         []*AccessLevelTemplate         `json:"accessTemplates,omitempty"`
+	ActionConstraints       *JobActionContraints           `json:"actionConstraints,omitempty"`
+	UknownDeviceDescriptors []*FieldDescriptor             `json:"uknownDeviceDescriptors,omitempty"`
 }
 
 type Duration struct {
