@@ -108,8 +108,8 @@ message SetUnknownDevicesRequest {
 }
 
 message UnknownDevice {
-    string x_device_identifier            = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId. It is used to identify the any device in the system (including unknown devices).
-    repeated common.FieldValue attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
+    int64 x_device_identifier     = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId. It is used to identify the any device in the system (including unknown devices).
+    common.FieldValues attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
 }
 
 message SetNeighboursRequest {
