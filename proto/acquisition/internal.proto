@@ -108,13 +108,25 @@ message SetUnknownDevicesRequest {
 }
 
 message UnknownDevice {
-    int64 x_device_identifier     = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId. It is used to identify the any device in the system (including unknown devices).
+    int64 x_device_identifier     = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId.
     common.FieldValues attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
 }
 
+message DirectNeightbours {
+    int64 x_device_identifier = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId.
+    // FIXME: common.FieldValues attributes = 2;  // The list of attributes of the neighbour device. It must not be empty.
+}
+
+message IndirectNeightbours {
+    int64 from_x_device_identifier = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
+    int64 to_x_device_identifier   = 2;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
+    // FIXME: common.FieldValues attributes  = 3;  // The list of attributes of the neighbour device. It must not be empty.
+}
+
 message SetNeighboursRequest {
-    string communication_unit_id = 1;  // The unique identifier of the communication unit for which the neighbors are being set.
-    repeated string neighbors    = 2;  // The list of neighbor device identifiers. The list is not empty.
+    string communication_unit_id                     = 1;  // The unique identifier of the communication unit for which the neighbors are being set.
+    repeated DirectNeightbours direct_neighbors      = 2;  // The list of neighbor device identifiers next to the communication unit.
+    repeated IndirectNeightbours indirect_neighbours = 3;  // The list of indirect neighbour devices.
 }
 
 enum DeviceNeighbourType {
