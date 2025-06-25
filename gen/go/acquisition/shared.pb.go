@@ -10013,27 +10013,36 @@ func (b0 FieldValuesList_builder) Build() *FieldValuesList {
 }
 
 // Generic attribute selector using field values
-type ObjectAttributeSelector struct {
-	state                 protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Attributes *common.FieldValues    `protobuf:"bytes,1,opt,name=attributes"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+type AttributeSelector struct {
+	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_FieldId     *string                   `protobuf:"bytes,1,opt,name=field_id,json=fieldId"`
+	xxx_hidden_Operator    common.FilterOperator     `protobuf:"varint,2,opt,name=operator,enum=io.clbs.openhes.models.common.FilterOperator"`
+	xxx_hidden_DataType    common.FieldDataType      `protobuf:"varint,3,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
+	xxx_hidden_Text        []string                  `protobuf:"bytes,4,rep,name=text"`
+	xxx_hidden_Integer     []int64                   `protobuf:"zigzag64,5,rep,packed,name=integer"`
+	xxx_hidden_Number      []float64                 `protobuf:"fixed64,6,rep,packed,name=number"`
+	xxx_hidden_Boolean     []bool                    `protobuf:"varint,7,rep,packed,name=boolean"`
+	xxx_hidden_Date        *[]*timestamppb.Timestamp `protobuf:"bytes,8,rep,name=date"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
-func (x *ObjectAttributeSelector) Reset() {
-	*x = ObjectAttributeSelector{}
+func (x *AttributeSelector) Reset() {
+	*x = AttributeSelector{}
 	mi := &file_acquisition_shared_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ObjectAttributeSelector) String() string {
+func (x *AttributeSelector) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ObjectAttributeSelector) ProtoMessage() {}
+func (*AttributeSelector) ProtoMessage() {}
 
-func (x *ObjectAttributeSelector) ProtoReflect() protoreflect.Message {
+func (x *AttributeSelector) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -10045,46 +10054,183 @@ func (x *ObjectAttributeSelector) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ObjectAttributeSelector) GetAttributes() *common.FieldValues {
+func (x *AttributeSelector) GetFieldId() string {
 	if x != nil {
-		return x.xxx_hidden_Attributes
+		if x.xxx_hidden_FieldId != nil {
+			return *x.xxx_hidden_FieldId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *AttributeSelector) GetOperator() common.FilterOperator {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_Operator
+		}
+	}
+	return common.FilterOperator(0)
+}
+
+func (x *AttributeSelector) GetDataType() common.FieldDataType {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+			return x.xxx_hidden_DataType
+		}
+	}
+	return common.FieldDataType(0)
+}
+
+func (x *AttributeSelector) GetText() []string {
+	if x != nil {
+		return x.xxx_hidden_Text
 	}
 	return nil
 }
 
-func (x *ObjectAttributeSelector) SetAttributes(v *common.FieldValues) {
-	x.xxx_hidden_Attributes = v
+func (x *AttributeSelector) GetInteger() []int64 {
+	if x != nil {
+		return x.xxx_hidden_Integer
+	}
+	return nil
 }
 
-func (x *ObjectAttributeSelector) HasAttributes() bool {
+func (x *AttributeSelector) GetNumber() []float64 {
+	if x != nil {
+		return x.xxx_hidden_Number
+	}
+	return nil
+}
+
+func (x *AttributeSelector) GetBoolean() []bool {
+	if x != nil {
+		return x.xxx_hidden_Boolean
+	}
+	return nil
+}
+
+func (x *AttributeSelector) GetDate() []*timestamppb.Timestamp {
+	if x != nil {
+		if x.xxx_hidden_Date != nil {
+			return *x.xxx_hidden_Date
+		}
+	}
+	return nil
+}
+
+func (x *AttributeSelector) SetFieldId(v string) {
+	x.xxx_hidden_FieldId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
+}
+
+func (x *AttributeSelector) SetOperator(v common.FilterOperator) {
+	x.xxx_hidden_Operator = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
+}
+
+func (x *AttributeSelector) SetDataType(v common.FieldDataType) {
+	x.xxx_hidden_DataType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
+}
+
+func (x *AttributeSelector) SetText(v []string) {
+	x.xxx_hidden_Text = v
+}
+
+func (x *AttributeSelector) SetInteger(v []int64) {
+	x.xxx_hidden_Integer = v
+}
+
+func (x *AttributeSelector) SetNumber(v []float64) {
+	x.xxx_hidden_Number = v
+}
+
+func (x *AttributeSelector) SetBoolean(v []bool) {
+	x.xxx_hidden_Boolean = v
+}
+
+func (x *AttributeSelector) SetDate(v []*timestamppb.Timestamp) {
+	x.xxx_hidden_Date = &v
+}
+
+func (x *AttributeSelector) HasFieldId() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_Attributes != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *ObjectAttributeSelector) ClearAttributes() {
-	x.xxx_hidden_Attributes = nil
+func (x *AttributeSelector) HasOperator() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-type ObjectAttributeSelector_builder struct {
+func (x *AttributeSelector) HasDataType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *AttributeSelector) ClearFieldId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FieldId = nil
+}
+
+func (x *AttributeSelector) ClearOperator() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Operator = common.FilterOperator_EQUAL
+}
+
+func (x *AttributeSelector) ClearDataType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+}
+
+type AttributeSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Attributes *common.FieldValues
+	FieldId  *string
+	Operator *common.FilterOperator
+	DataType *common.FieldDataType
+	Text     []string
+	Integer  []int64
+	Number   []float64
+	Boolean  []bool
+	Date     []*timestamppb.Timestamp
 }
 
-func (b0 ObjectAttributeSelector_builder) Build() *ObjectAttributeSelector {
-	m0 := &ObjectAttributeSelector{}
+func (b0 AttributeSelector_builder) Build() *AttributeSelector {
+	m0 := &AttributeSelector{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Attributes = b.Attributes
+	if b.FieldId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 8)
+		x.xxx_hidden_FieldId = b.FieldId
+	}
+	if b.Operator != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
+		x.xxx_hidden_Operator = *b.Operator
+	}
+	if b.DataType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
+		x.xxx_hidden_DataType = *b.DataType
+	}
+	x.xxx_hidden_Text = b.Text
+	x.xxx_hidden_Integer = b.Integer
+	x.xxx_hidden_Number = b.Number
+	x.xxx_hidden_Boolean = b.Boolean
+	x.xxx_hidden_Date = &b.Date
 	return m0
 }
 
 // Generic attribute selector using field values for devices
 type DeviceAttributeSelector struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Attributes *common.FieldValues    `protobuf:"bytes,2,opt,name=attributes"`
+	xxx_hidden_Attributes *[]*AttributeSelector  `protobuf:"bytes,2,rep,name=attributes"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -10114,39 +10260,30 @@ func (x *DeviceAttributeSelector) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DeviceAttributeSelector) GetAttributes() *common.FieldValues {
+func (x *DeviceAttributeSelector) GetAttributes() []*AttributeSelector {
 	if x != nil {
-		return x.xxx_hidden_Attributes
+		if x.xxx_hidden_Attributes != nil {
+			return *x.xxx_hidden_Attributes
+		}
 	}
 	return nil
 }
 
-func (x *DeviceAttributeSelector) SetAttributes(v *common.FieldValues) {
-	x.xxx_hidden_Attributes = v
-}
-
-func (x *DeviceAttributeSelector) HasAttributes() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Attributes != nil
-}
-
-func (x *DeviceAttributeSelector) ClearAttributes() {
-	x.xxx_hidden_Attributes = nil
+func (x *DeviceAttributeSelector) SetAttributes(v []*AttributeSelector) {
+	x.xxx_hidden_Attributes = &v
 }
 
 type DeviceAttributeSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Attributes *common.FieldValues
+	Attributes []*AttributeSelector
 }
 
 func (b0 DeviceAttributeSelector_builder) Build() *DeviceAttributeSelector {
 	m0 := &DeviceAttributeSelector{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Attributes = b.Attributes
+	x.xxx_hidden_Attributes = &b.Attributes
 	return m0
 }
 
@@ -10154,7 +10291,7 @@ func (b0 DeviceAttributeSelector_builder) Build() *DeviceAttributeSelector {
 type CommunicationUnitAttributeSelector struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_LinkProtocol DataLinkProtocol       `protobuf:"varint,1,opt,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
-	xxx_hidden_Attributes   *common.FieldValues    `protobuf:"bytes,2,opt,name=attributes"`
+	xxx_hidden_Attributes   *[]*AttributeSelector  `protobuf:"bytes,2,rep,name=attributes"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -10195,9 +10332,11 @@ func (x *CommunicationUnitAttributeSelector) GetLinkProtocol() DataLinkProtocol 
 	return DataLinkProtocol_LINKPROTO_IEC_62056_21
 }
 
-func (x *CommunicationUnitAttributeSelector) GetAttributes() *common.FieldValues {
+func (x *CommunicationUnitAttributeSelector) GetAttributes() []*AttributeSelector {
 	if x != nil {
-		return x.xxx_hidden_Attributes
+		if x.xxx_hidden_Attributes != nil {
+			return *x.xxx_hidden_Attributes
+		}
 	}
 	return nil
 }
@@ -10207,8 +10346,8 @@ func (x *CommunicationUnitAttributeSelector) SetLinkProtocol(v DataLinkProtocol)
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
-func (x *CommunicationUnitAttributeSelector) SetAttributes(v *common.FieldValues) {
-	x.xxx_hidden_Attributes = v
+func (x *CommunicationUnitAttributeSelector) SetAttributes(v []*AttributeSelector) {
+	x.xxx_hidden_Attributes = &v
 }
 
 func (x *CommunicationUnitAttributeSelector) HasLinkProtocol() bool {
@@ -10218,27 +10357,16 @@ func (x *CommunicationUnitAttributeSelector) HasLinkProtocol() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *CommunicationUnitAttributeSelector) HasAttributes() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Attributes != nil
-}
-
 func (x *CommunicationUnitAttributeSelector) ClearLinkProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINKPROTO_IEC_62056_21
-}
-
-func (x *CommunicationUnitAttributeSelector) ClearAttributes() {
-	x.xxx_hidden_Attributes = nil
 }
 
 type CommunicationUnitAttributeSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	LinkProtocol *DataLinkProtocol
-	Attributes   *common.FieldValues
+	Attributes   []*AttributeSelector
 }
 
 func (b0 CommunicationUnitAttributeSelector_builder) Build() *CommunicationUnitAttributeSelector {
@@ -10249,7 +10377,7 @@ func (b0 CommunicationUnitAttributeSelector_builder) Build() *CommunicationUnitA
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_LinkProtocol = *b.LinkProtocol
 	}
-	x.xxx_hidden_Attributes = b.Attributes
+	x.xxx_hidden_Attributes = &b.Attributes
 	return m0
 }
 
@@ -12448,19 +12576,24 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"S\n" +
 	"\x0fFieldValuesList\x12@\n" +
-	"\x05items\x18\x01 \x03(\v2*.io.clbs.openhes.models.common.FieldValuesR\x05items\"e\n" +
-	"\x17ObjectAttributeSelector\x12J\n" +
+	"\x05items\x18\x01 \x03(\v2*.io.clbs.openhes.models.common.FieldValuesR\x05items\"\xd4\x02\n" +
+	"\x11AttributeSelector\x12\x19\n" +
+	"\bfield_id\x18\x01 \x01(\tR\afieldId\x12I\n" +
+	"\boperator\x18\x02 \x01(\x0e2-.io.clbs.openhes.models.common.FilterOperatorR\boperator\x12I\n" +
+	"\tdata_type\x18\x03 \x01(\x0e2,.io.clbs.openhes.models.common.FieldDataTypeR\bdataType\x12\x12\n" +
+	"\x04text\x18\x04 \x03(\tR\x04text\x12\x18\n" +
+	"\ainteger\x18\x05 \x03(\x12R\ainteger\x12\x16\n" +
+	"\x06number\x18\x06 \x03(\x01R\x06number\x12\x18\n" +
+	"\aboolean\x18\a \x03(\bR\aboolean\x12.\n" +
+	"\x04date\x18\b \x03(\v2\x1a.google.protobuf.TimestampR\x04date\"p\n" +
+	"\x17DeviceAttributeSelector\x12U\n" +
 	"\n" +
-	"attributes\x18\x01 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\n" +
-	"attributes\"e\n" +
-	"\x17DeviceAttributeSelector\x12J\n" +
-	"\n" +
-	"attributes\x18\x02 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\n" +
-	"attributes\"\xcb\x01\n" +
+	"attributes\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.AttributeSelectorR\n" +
+	"attributes\"\xd6\x01\n" +
 	"\"CommunicationUnitAttributeSelector\x12Y\n" +
-	"\rlink_protocol\x18\x01 \x01(\x0e24.io.clbs.openhes.models.acquisition.DataLinkProtocolR\flinkProtocol\x12J\n" +
+	"\rlink_protocol\x18\x01 \x01(\x0e24.io.clbs.openhes.models.acquisition.DataLinkProtocolR\flinkProtocol\x12U\n" +
 	"\n" +
-	"attributes\x18\x02 \x01(\v2*.io.clbs.openhes.models.common.FieldValuesR\n" +
+	"attributes\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.AttributeSelectorR\n" +
 	"attributes\"\x83\x02\n" +
 	"\fActionResult\x12\x1b\n" +
 	"\taction_id\x18\x01 \x01(\tR\bactionId\x12L\n" +
@@ -12735,7 +12868,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*ListOfModemInfo)(nil),                    // 70: io.clbs.openhes.models.acquisition.ListOfModemInfo
 	(*ListOfConnectionInfo)(nil),               // 71: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 	(*FieldValuesList)(nil),                    // 72: io.clbs.openhes.models.acquisition.FieldValuesList
-	(*ObjectAttributeSelector)(nil),            // 73: io.clbs.openhes.models.acquisition.ObjectAttributeSelector
+	(*AttributeSelector)(nil),                  // 73: io.clbs.openhes.models.acquisition.AttributeSelector
 	(*DeviceAttributeSelector)(nil),            // 74: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
 	(*CommunicationUnitAttributeSelector)(nil), // 75: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
 	(*ActionResult)(nil),                       // 76: io.clbs.openhes.models.acquisition.ActionResult
@@ -12769,9 +12902,11 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),                      // 104: google.protobuf.Empty
 	(*timeofuse.TimeOfUseTableSpec)(nil),       // 105: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 	(*common.FieldValues)(nil),                 // 106: io.clbs.openhes.models.common.FieldValues
-	(*common.MetadataFields)(nil),              // 107: io.clbs.openhes.models.common.MetadataFields
-	(*common.FieldValue)(nil),                  // 108: io.clbs.openhes.models.common.FieldValue
-	(*common.ListOfString)(nil),                // 109: io.clbs.openhes.models.common.ListOfString
+	(common.FilterOperator)(0),                 // 107: io.clbs.openhes.models.common.FilterOperator
+	(common.FieldDataType)(0),                  // 108: io.clbs.openhes.models.common.FieldDataType
+	(*common.MetadataFields)(nil),              // 109: io.clbs.openhes.models.common.MetadataFields
+	(*common.FieldValue)(nil),                  // 110: io.clbs.openhes.models.common.FieldValue
+	(*common.ListOfString)(nil),                // 111: io.clbs.openhes.models.common.ListOfString
 }
 var file_acquisition_shared_proto_depIdxs = []int32{
 	101, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
@@ -12902,45 +13037,47 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	22,  // 125: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	69,  // 126: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
 	106, // 127: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	106, // 128: io.clbs.openhes.models.acquisition.ObjectAttributeSelector.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	106, // 129: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	6,   // 130: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	106, // 131: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	9,   // 132: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	37,  // 133: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	80,  // 134: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	40,  // 135: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	7,   // 136: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	100, // 137: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	21,  // 138: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	15,  // 139: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	16,  // 140: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	82,  // 141: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
-	81,  // 142: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	64,  // 143: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	86,  // 144: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	107, // 145: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	24,  // 146: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	88,  // 147: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	107, // 148: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	14,  // 149: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
-	106, // 150: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	106, // 151: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	89,  // 152: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
-	90,  // 153: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
-	108, // 154: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	108, // 155: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	108, // 156: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	109, // 157: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
-	108, // 158: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	108, // 159: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	108, // 160: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	108, // 161: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	162, // [162:162] is the sub-list for method output_type
-	162, // [162:162] is the sub-list for method input_type
-	162, // [162:162] is the sub-list for extension type_name
-	162, // [162:162] is the sub-list for extension extendee
-	0,   // [0:162] is the sub-list for field type_name
+	107, // 128: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
+	108, // 129: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	102, // 130: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
+	73,  // 131: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	6,   // 132: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
+	73,  // 133: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	9,   // 134: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
+	37,  // 135: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	80,  // 136: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	40,  // 137: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	7,   // 138: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	100, // 139: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	21,  // 140: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	15,  // 141: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	16,  // 142: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	82,  // 143: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
+	81,  // 144: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	64,  // 145: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	86,  // 146: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	109, // 147: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	24,  // 148: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	88,  // 149: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	109, // 150: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	14,  // 151: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
+	106, // 152: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	106, // 153: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	89,  // 154: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
+	90,  // 155: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
+	110, // 156: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	110, // 157: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	110, // 158: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	111, // 159: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
+	110, // 160: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	110, // 161: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	110, // 162: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	110, // 163: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	164, // [164:164] is the sub-list for method output_type
+	164, // [164:164] is the sub-list for method input_type
+	164, // [164:164] is the sub-list for extension type_name
+	164, // [164:164] is the sub-list for extension extendee
+	0,   // [0:164] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_shared_proto_init() }

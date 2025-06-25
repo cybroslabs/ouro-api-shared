@@ -732,19 +732,26 @@ message FieldValuesList {
 }
 
 // Generic attribute selector using field values
-message ObjectAttributeSelector {
-    common.FieldValues attributes = 1;  // The list of field values.
+message AttributeSelector {
+    string field_id = 1;                          // The field identifier
+    common.FilterOperator operator = 2;           // The filter operator.
+    common.FieldDataType data_type          = 3;  // The data type of the field.
+    repeated string text                    = 4;  // The text-typed value(s) used for filtering.
+    repeated sint64 integer                 = 5;  // The integer-typed value(s) used for filtering.
+    repeated double number                  = 6;  // The number-typed value(s) used for filtering.
+    repeated bool boolean                   = 7;  // The boolean-typed value(s) used for filtering.
+    repeated google.protobuf.Timestamp date = 8;  // The date-typed value(s) used for filtering.
 }
 
 // Generic attribute selector using field values for devices
 message DeviceAttributeSelector {
-    common.FieldValues attributes = 2;  // The list of field values.
+    repeated AttributeSelector attributes = 2;  // The list of field values.
 }
 
 // Generic attribute selector using field values for devices
 message CommunicationUnitAttributeSelector {
-    DataLinkProtocol link_protocol = 1;  // The application protocol to be used for the communication over the communication unit.
-    common.FieldValues attributes  = 2;  // The list of field values.
+    DataLinkProtocol link_protocol        = 1;  // The application protocol to be used for the communication over the communication unit.
+    repeated AttributeSelector attributes = 2;  // The list of field values.
 }
 
 // Job statuses
