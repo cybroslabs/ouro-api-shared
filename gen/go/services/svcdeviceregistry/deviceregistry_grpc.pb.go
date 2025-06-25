@@ -285,7 +285,7 @@ type DeviceRegistryServiceClient interface {
 	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
-	SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -1018,7 +1018,7 @@ func (c *deviceRegistryServiceClient) SetNeightbours(ctx context.Context, in *ac
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deviceRegistryServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName, in, out, cOpts...)
@@ -1215,7 +1215,7 @@ type DeviceRegistryServiceServer interface {
 	// The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
-	SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error)
+	SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -1439,7 +1439,7 @@ func (UnimplementedDeviceRegistryServiceServer) SetUnknownDevices(context.Contex
 func (UnimplementedDeviceRegistryServiceServer) SetNeightbours(context.Context, *acquisition.SetNeighboursRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetNeightbours not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitRequest) (*emptypb.Empty, error) {
+func (UnimplementedDeviceRegistryServiceServer) SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCurrentDeviceCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
@@ -2724,7 +2724,7 @@ func _DeviceRegistryService_SetNeightbours_Handler(srv interface{}, ctx context.
 }
 
 func _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.SetCurrentDeviceCommunicationUnitRequest)
+	in := new(acquisition.SetCurrentDeviceCommunicationUnitInternalRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2736,7 +2736,7 @@ func _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler(srv interf
 		FullMethod: DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).SetCurrentDeviceCommunicationUnit(ctx, req.(*acquisition.SetCurrentDeviceCommunicationUnitRequest))
+		return srv.(DeviceRegistryServiceServer).SetCurrentDeviceCommunicationUnit(ctx, req.(*acquisition.SetCurrentDeviceCommunicationUnitInternalRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

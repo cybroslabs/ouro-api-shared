@@ -140,6 +140,11 @@ message DeviceNeightbour {
 }
 
 message SetCurrentDeviceCommunicationUnitRequest {
-    string communication_unit_id            = 1;  // The unique identifier of the communication unit for which the device communication unit is being set.
-    ObjectAttributeSelector device_selector = 2;  // The device selector. It is used to select the device for which the communication unit is being set.
+    string communication_unit_id  = 1;  // The unique identifier of the communication unit.
+    common.FieldValues attributes = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
+}
+
+message SetCurrentDeviceCommunicationUnitInternalRequest {
+    string communication_unit_id        = 1;  // The unique identifier of the communication unit.
+    common.ListSelector device_selector = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
 }

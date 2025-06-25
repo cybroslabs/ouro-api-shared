@@ -379,7 +379,7 @@ class DeviceRegistryServiceStub(object):
                 _registered_method=True)
         self.SetCurrentDeviceCommunicationUnit = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
-                request_serializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
+                request_serializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
@@ -1290,7 +1290,7 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             ),
             'SetCurrentDeviceCommunicationUnit': grpc.unary_unary_rpc_method_handler(
                     servicer.SetCurrentDeviceCommunicationUnit,
-                    request_deserializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.FromString,
+                    request_deserializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -3237,7 +3237,7 @@ class DeviceRegistryService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
-            acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitRequest.SerializeToString,
+            acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
