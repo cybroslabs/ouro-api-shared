@@ -15,7 +15,7 @@ import (
 // It is used internally to create a FieldDescriptor with additional metadata like ID, group, and database path.
 // The group is a field descriptor group key used to clean up removed descriptors.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
-func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor) (*FieldDescriptorInternal, error) {
+func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string) (*FieldDescriptorInternal, error) {
 	if strings.Contains(dbPath, ".{") {
 		return nil, errors.New("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
 	}
@@ -34,7 +34,13 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor) (*Fi
 	object_type := descriptor.GetObjectType()
 
 	// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
-	descriptor.SetGid(strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath)))
+	var gid string
+	if cgs := ptr.Deref(customGidSuffix, ""); len(cgs) > 0 {
+		gid = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, dbPath, cgs))
+	} else {
+		gid = strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath))
+	}
+	descriptor.SetGid(gid)
 
 	// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
 	group := strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix))
@@ -50,8 +56,8 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor) (*Fi
 // It is used internally to create a FieldDescriptorInternal wrapper over the FieldDescriptor with additional metadata like group or database path.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
 // MustNewFieldDescriptorInternal creates a new FieldDescriptorInternal and panics if there is an error.
-func MustNewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor) *FieldDescriptorInternal {
-	fd, err := NewFieldDescriptorInternal(dbPath, descriptor)
+func MustNewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string) *FieldDescriptorInternal {
+	fd, err := NewFieldDescriptorInternal(dbPath, descriptor, customGidSuffix)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -334,6 +340,30 @@ func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	validation := fd.ensureValidation()
 	validation.SetOptions(nil)
 	validation.SetOptionsSource(source)
+	return fd
+}
+
+func (fd *FieldDescriptor) WithDefaultValue(value *FieldValue) *FieldDescriptor {
+	if value == nil {
+		fd.ClearDefaultValue()
+		return fd
+	}
+
+	if err := fd.Validate(value); err != nil {
+		panic(fmt.Sprintf("default value is invalid: %s", err.Error()))
+	}
+
+	fd.SetDefaultValue(value)
+	return fd
+}
+
+func (fd *FieldDescriptor) WithValidation(validation *FieldValidation) *FieldDescriptor {
+	if validation == nil {
+		fd.ClearValidation()
+		return fd
+	}
+
+	fd.SetValidation(validation)
 	return fd
 }
 
