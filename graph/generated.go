@@ -798,6 +798,11 @@ type ComplexityRoot struct {
 		Modems func(childComplexity int) int
 	}
 
+	NetworkMap struct {
+		Edges func(childComplexity int) int
+		Nodes func(childComplexity int) int
+	}
+
 	ProfileBlock struct {
 		StartTimestamp func(childComplexity int) int
 		Values         func(childComplexity int) int
@@ -855,6 +860,7 @@ type ComplexityRoot struct {
 		GetBulk                                                          func(childComplexity int) int
 		GetBulkJob                                                       func(childComplexity int) int
 		GetCommunicationUnit                                             func(childComplexity int) int
+		GetCommunicationUnitNetworkMap                                   func(childComplexity int) int
 		GetDevice                                                        func(childComplexity int) int
 		GetDeviceCommunicationUnits                                      func(childComplexity int) int
 		GetDeviceConfigurationRegister                                   func(childComplexity int) int
@@ -862,6 +868,7 @@ type ComplexityRoot struct {
 		GetDeviceDeviceGroups                                            func(childComplexity int) int
 		GetDeviceGroup                                                   func(childComplexity int) int
 		GetDeviceInfo                                                    func(childComplexity int) int
+		GetDeviceNetworkMap                                              func(childComplexity int) int
 		GetDriver                                                        func(childComplexity int) int
 		GetMeterDataIrregularProfiles                                    func(childComplexity int) int
 		GetMeterDataProfiles                                             func(childComplexity int) int
@@ -998,6 +1005,18 @@ type ComplexityRoot struct {
 		Weeks       func(childComplexity int) int
 	}
 
+	TopologyEdge struct {
+		Attributes func(childComplexity int) int
+		FromXId    func(childComplexity int) int
+		ToXId      func(childComplexity int) int
+	}
+
+	TopologyNode struct {
+		Attributes func(childComplexity int) int
+		Type       func(childComplexity int) int
+		XID        func(childComplexity int) int
+	}
+
 	UpdateMetadata struct {
 		Metadata func(childComplexity int) int
 	}
@@ -1064,6 +1083,7 @@ type QueryResolver interface {
 	UpdateCommunicationUnit(ctx context.Context) (*model.Empty, error)
 	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
+	GetCommunicationUnitNetworkMap(ctx context.Context) (*model.NetworkMap, error)
 	CreateCommunicationBus(ctx context.Context) (*model.StringValue, error)
 	ListCommunicationBuses(ctx context.Context) (*model.ListOfCommunicationBus, error)
 	AddCommunicationUnitsToCommunicationBus(ctx context.Context) (*model.Empty, error)
@@ -1076,6 +1096,7 @@ type QueryResolver interface {
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
 	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfDeviceCommunicationUnit, error)
 	GetDeviceDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
+	GetDeviceNetworkMap(ctx context.Context) (*model.NetworkMap, error)
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
 	ListDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
 	GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error)
@@ -3808,6 +3829,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ModemPoolStatus.Modems(childComplexity), true
 
+	case "NetworkMap.edges":
+		if e.complexity.NetworkMap.Edges == nil {
+			break
+		}
+
+		return e.complexity.NetworkMap.Edges(childComplexity), true
+
+	case "NetworkMap.nodes":
+		if e.complexity.NetworkMap.Nodes == nil {
+			break
+		}
+
+		return e.complexity.NetworkMap.Nodes(childComplexity), true
+
 	case "ProfileBlock.startTimestamp":
 		if e.complexity.ProfileBlock.StartTimestamp == nil {
 			break
@@ -4116,6 +4151,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.GetCommunicationUnit(childComplexity), true
 
+	case "Query.getCommunicationUnitNetworkMap":
+		if e.complexity.Query.GetCommunicationUnitNetworkMap == nil {
+			break
+		}
+
+		return e.complexity.Query.GetCommunicationUnitNetworkMap(childComplexity), true
+
 	case "Query.getDevice":
 		if e.complexity.Query.GetDevice == nil {
 			break
@@ -4164,6 +4206,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.GetDeviceInfo(childComplexity), true
+
+	case "Query.getDeviceNetworkMap":
+		if e.complexity.Query.GetDeviceNetworkMap == nil {
+			break
+		}
+
+		return e.complexity.Query.GetDeviceNetworkMap(childComplexity), true
 
 	case "Query.getDriver":
 		if e.complexity.Query.GetDriver == nil {
@@ -4766,6 +4815,48 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.TimeOfUseTableSpec.Weeks(childComplexity), true
+
+	case "TopologyEdge.attributes":
+		if e.complexity.TopologyEdge.Attributes == nil {
+			break
+		}
+
+		return e.complexity.TopologyEdge.Attributes(childComplexity), true
+
+	case "TopologyEdge.fromXId":
+		if e.complexity.TopologyEdge.FromXId == nil {
+			break
+		}
+
+		return e.complexity.TopologyEdge.FromXId(childComplexity), true
+
+	case "TopologyEdge.toXId":
+		if e.complexity.TopologyEdge.ToXId == nil {
+			break
+		}
+
+		return e.complexity.TopologyEdge.ToXId(childComplexity), true
+
+	case "TopologyNode.attributes":
+		if e.complexity.TopologyNode.Attributes == nil {
+			break
+		}
+
+		return e.complexity.TopologyNode.Attributes(childComplexity), true
+
+	case "TopologyNode.type":
+		if e.complexity.TopologyNode.Type == nil {
+			break
+		}
+
+		return e.complexity.TopologyNode.Type(childComplexity), true
+
+	case "TopologyNode.xId":
+		if e.complexity.TopologyNode.XID == nil {
+			break
+		}
+
+		return e.complexity.TopologyNode.XID(childComplexity), true
 
 	case "UpdateMetadata.metadata":
 		if e.complexity.UpdateMetadata.Metadata == nil {
@@ -22442,6 +22533,104 @@ func (ec *executionContext) fieldContext_ModemPoolStatus_modems(_ context.Contex
 	return fc, nil
 }
 
+func (ec *executionContext) _NetworkMap_nodes(ctx context.Context, field graphql.CollectedField, obj *model.NetworkMap) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_NetworkMap_nodes(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Nodes, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.TopologyNode)
+	fc.Result = res
+	return ec.marshalOTopologyNode2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNode(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_NetworkMap_nodes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "NetworkMap",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "xId":
+				return ec.fieldContext_TopologyNode_xId(ctx, field)
+			case "type":
+				return ec.fieldContext_TopologyNode_type(ctx, field)
+			case "attributes":
+				return ec.fieldContext_TopologyNode_attributes(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TopologyNode", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _NetworkMap_edges(ctx context.Context, field graphql.CollectedField, obj *model.NetworkMap) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_NetworkMap_edges(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Edges, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.TopologyEdge)
+	fc.Result = res
+	return ec.marshalOTopologyEdge2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyEdge(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_NetworkMap_edges(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "NetworkMap",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fromXId":
+				return ec.fieldContext_TopologyEdge_fromXId(ctx, field)
+			case "toXId":
+				return ec.fieldContext_TopologyEdge_toXId(ctx, field)
+			case "attributes":
+				return ec.fieldContext_TopologyEdge_attributes(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type TopologyEdge", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ProfileBlock_startTimestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlock) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ProfileBlock_startTimestamp(ctx, field)
 	if err != nil {
@@ -24520,6 +24709,53 @@ func (ec *executionContext) fieldContext_Query_getCommunicationUnit(_ context.Co
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_getCommunicationUnitNetworkMap(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getCommunicationUnitNetworkMap(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetCommunicationUnitNetworkMap(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.NetworkMap)
+	fc.Result = res
+	return ec.marshalONetworkMap2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐNetworkMap(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getCommunicationUnitNetworkMap(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "nodes":
+				return ec.fieldContext_NetworkMap_nodes(ctx, field)
+			case "edges":
+				return ec.fieldContext_NetworkMap_edges(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type NetworkMap", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_createCommunicationBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_createCommunicationBus(ctx, field)
 	if err != nil {
@@ -25083,6 +25319,53 @@ func (ec *executionContext) fieldContext_Query_getDeviceDeviceGroups(_ context.C
 				return ec.fieldContext_ListOfDeviceGroup_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceGroup", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getDeviceNetworkMap(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getDeviceNetworkMap(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetDeviceNetworkMap(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.NetworkMap)
+	fc.Result = res
+	return ec.marshalONetworkMap2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐNetworkMap(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getDeviceNetworkMap(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "nodes":
+				return ec.fieldContext_NetworkMap_nodes(ctx, field)
+			case "edges":
+				return ec.fieldContext_NetworkMap_edges(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type NetworkMap", field.Name)
 		},
 	}
 	return fc, nil
@@ -28875,6 +29158,260 @@ func (ec *executionContext) fieldContext_TimeOfUseTableSpec_specialDays(_ contex
 				return ec.fieldContext_SpecialDay_dayId(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type SpecialDay", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyEdge_fromXId(ctx context.Context, field graphql.CollectedField, obj *model.TopologyEdge) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyEdge_fromXId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.FromXId, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int64)
+	fc.Result = res
+	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyEdge_fromXId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyEdge",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int64 does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyEdge_toXId(ctx context.Context, field graphql.CollectedField, obj *model.TopologyEdge) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyEdge_toXId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ToXId, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int64)
+	fc.Result = res
+	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyEdge_toXId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyEdge",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int64 does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyEdge_attributes(ctx context.Context, field graphql.CollectedField, obj *model.TopologyEdge) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyEdge_attributes(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Attributes, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldValues)
+	fc.Result = res
+	return ec.marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValues(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyEdge_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyEdge",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "attributes":
+				return ec.fieldContext_FieldValues_attributes(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldValues", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyNode_xId(ctx context.Context, field graphql.CollectedField, obj *model.TopologyNode) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyNode_xId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.XID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int64)
+	fc.Result = res
+	return ec.marshalOInt642ᚖint64(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyNode_xId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyNode",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int64 does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyNode_type(ctx context.Context, field graphql.CollectedField, obj *model.TopologyNode) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyNode_type(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Type, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.TopologyNodeType)
+	fc.Result = res
+	return ec.marshalOTopologyNodeType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNodeType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyNode_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyNode",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type TopologyNodeType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TopologyNode_attributes(ctx context.Context, field graphql.CollectedField, obj *model.TopologyNode) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TopologyNode_attributes(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Attributes, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldValues)
+	fc.Result = res
+	return ec.marshalOFieldValues2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldValues(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TopologyNode_attributes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TopologyNode",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "attributes":
+				return ec.fieldContext_FieldValues_attributes(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FieldValues", field.Name)
 		},
 	}
 	return fc, nil
@@ -36375,6 +36912,44 @@ func (ec *executionContext) _ModemPoolStatus(ctx context.Context, sel ast.Select
 	return out
 }
 
+var networkMapImplementors = []string{"NetworkMap"}
+
+func (ec *executionContext) _NetworkMap(ctx context.Context, sel ast.SelectionSet, obj *model.NetworkMap) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, networkMapImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("NetworkMap")
+		case "nodes":
+			out.Values[i] = ec._NetworkMap_nodes(ctx, field, obj)
+		case "edges":
+			out.Values[i] = ec._NetworkMap_edges(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var profileBlockImplementors = []string{"ProfileBlock"}
 
 func (ec *executionContext) _ProfileBlock(ctx context.Context, sel ast.SelectionSet, obj *model.ProfileBlock) graphql.Marshaler {
@@ -37128,6 +37703,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getCommunicationUnitNetworkMap":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getCommunicationUnitNetworkMap(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "createCommunicationBus":
 			field := field
 
@@ -37347,6 +37941,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDeviceDeviceGroups(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getDeviceNetworkMap":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getDeviceNetworkMap(ctx, field)
 				return res
 			}
 
@@ -38699,6 +39312,86 @@ func (ec *executionContext) _TimeOfUseTableSpec(ctx context.Context, sel ast.Sel
 			out.Values[i] = ec._TimeOfUseTableSpec_dayProfiles(ctx, field, obj)
 		case "specialDays":
 			out.Values[i] = ec._TimeOfUseTableSpec_specialDays(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var topologyEdgeImplementors = []string{"TopologyEdge"}
+
+func (ec *executionContext) _TopologyEdge(ctx context.Context, sel ast.SelectionSet, obj *model.TopologyEdge) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, topologyEdgeImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("TopologyEdge")
+		case "fromXId":
+			out.Values[i] = ec._TopologyEdge_fromXId(ctx, field, obj)
+		case "toXId":
+			out.Values[i] = ec._TopologyEdge_toXId(ctx, field, obj)
+		case "attributes":
+			out.Values[i] = ec._TopologyEdge_attributes(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var topologyNodeImplementors = []string{"TopologyNode"}
+
+func (ec *executionContext) _TopologyNode(ctx context.Context, sel ast.SelectionSet, obj *model.TopologyNode) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, topologyNodeImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("TopologyNode")
+		case "xId":
+			out.Values[i] = ec._TopologyNode_xId(ctx, field, obj)
+		case "type":
+			out.Values[i] = ec._TopologyNode_type(ctx, field, obj)
+		case "attributes":
+			out.Values[i] = ec._TopologyNode_attributes(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -42099,6 +42792,13 @@ func (ec *executionContext) marshalOModemPoolStatus2ᚖgithubᚗcomᚋcybroslabs
 	return ec._ModemPoolStatus(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalONetworkMap2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐNetworkMap(ctx context.Context, sel ast.SelectionSet, v *model.NetworkMap) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._NetworkMap(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx context.Context, v any) (*model.ObjectType, error) {
 	if v == nil {
 		return nil, nil
@@ -42619,6 +43319,118 @@ func (ec *executionContext) marshalOTimestamp2ᚖstring(ctx context.Context, sel
 	_ = ctx
 	res := graphql.MarshalString(*v)
 	return res
+}
+
+func (ec *executionContext) marshalOTopologyEdge2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyEdge(ctx context.Context, sel ast.SelectionSet, v []*model.TopologyEdge) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOTopologyEdge2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyEdge(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOTopologyEdge2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyEdge(ctx context.Context, sel ast.SelectionSet, v *model.TopologyEdge) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._TopologyEdge(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOTopologyNode2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNode(ctx context.Context, sel ast.SelectionSet, v []*model.TopologyNode) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOTopologyNode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNode(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOTopologyNode2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNode(ctx context.Context, sel ast.SelectionSet, v *model.TopologyNode) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._TopologyNode(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOTopologyNodeType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNodeType(ctx context.Context, v any) (*model.TopologyNodeType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.TopologyNodeType)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOTopologyNodeType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐTopologyNodeType(ctx context.Context, sel ast.SelectionSet, v *model.TopologyNodeType) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) unmarshalOUUID2ᚖgithubᚗcomᚋgoogleᚋuuidᚐUUID(ctx context.Context, v any) (*uuid.UUID, error) {

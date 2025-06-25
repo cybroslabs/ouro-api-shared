@@ -65,6 +65,7 @@ const (
 	ApiService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateCommunicationUnit"
 	ApiService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnits"
 	ApiService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
+	ApiService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
 	ApiService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
 	ApiService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
 	ApiService_AddCommunicationUnitsToCommunicationBus_FullMethodName                          = "/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToCommunicationBus"
@@ -77,6 +78,7 @@ const (
 	ApiService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/SetDeviceCommunicationUnits"
 	ApiService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
 	ApiService_GetDeviceDeviceGroups_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups"
+	ApiService_GetDeviceNetworkMap_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap"
 	ApiService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
 	ApiService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
 	ApiService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
@@ -228,6 +230,10 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -270,6 +276,10 @@ type ApiServiceClient interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -785,6 +795,16 @@ func (c *apiServiceClient) GetCommunicationUnit(ctx context.Context, in *wrapper
 	return out, nil
 }
 
+func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.NetworkMap)
+	err := c.cc.Invoke(ctx, ApiService_GetCommunicationUnitNetworkMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -899,6 +919,16 @@ func (c *apiServiceClient) GetDeviceDeviceGroups(ctx context.Context, in *wrappe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDeviceGroup)
 	err := c.cc.Invoke(ctx, ApiService_GetDeviceDeviceGroups_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.NetworkMap)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceNetworkMap_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1324,6 +1354,10 @@ type ApiServiceServer interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -1366,6 +1400,10 @@ type ApiServiceServer interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -1594,6 +1632,9 @@ func (UnimplementedApiServiceServer) ListCommunicationUnits(context.Context, *co
 func (UnimplementedApiServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
+func (UnimplementedApiServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
+}
 func (UnimplementedApiServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
 }
@@ -1629,6 +1670,9 @@ func (UnimplementedApiServiceServer) GetDeviceCommunicationUnits(context.Context
 }
 func (UnimplementedApiServiceServer) GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceDeviceGroups not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceNetworkMap not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -2467,6 +2511,24 @@ func _ApiService_GetCommunicationUnit_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetCommunicationUnitNetworkMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetCommunicationUnitNetworkMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetCommunicationUnitNetworkMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetCommunicationUnitNetworkMap(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_CreateCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateCommunicationBusRequest)
 	if err := dec(in); err != nil {
@@ -2679,6 +2741,24 @@ func _ApiService_GetDeviceDeviceGroups_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).GetDeviceDeviceGroups(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetDeviceNetworkMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceNetworkMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceNetworkMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceNetworkMap(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3295,6 +3375,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_GetCommunicationUnit_Handler,
 		},
 		{
+			MethodName: "GetCommunicationUnitNetworkMap",
+			Handler:    _ApiService_GetCommunicationUnitNetworkMap_Handler,
+		},
+		{
 			MethodName: "CreateCommunicationBus",
 			Handler:    _ApiService_CreateCommunicationBus_Handler,
 		},
@@ -3341,6 +3425,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceDeviceGroups",
 			Handler:    _ApiService_GetDeviceDeviceGroups_Handler,
+		},
+		{
+			MethodName: "GetDeviceNetworkMap",
+			Handler:    _ApiService_GetDeviceNetworkMap_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",

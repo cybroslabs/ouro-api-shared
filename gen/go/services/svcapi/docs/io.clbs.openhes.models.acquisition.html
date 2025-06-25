@@ -969,6 +969,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.NetworkMap">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>NetworkMap</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ProfileBlock">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ProfileBlock</code> 
@@ -1095,6 +1104,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.TopologyEdge">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>TopologyEdge</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.TopologyNode">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>TopologyNode</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.Variable">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>Variable</code> 
@@ -1180,6 +1207,13 @@
         <a href="#enum-io.clbs.openhes.models.acquisition.RegisterType">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>RegisterType</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.TopologyNodeType">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>TopologyNodeType</code> 
         </a>
       </p>
     
@@ -9584,6 +9618,77 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.NetworkMap">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.NetworkMap" title="io.clbs.openhes.models.acquisition.NetworkMap">message NetworkMap</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        nodes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.TopologyNode">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.TopologyNode"><span title="io.clbs.openhes.models.acquisition.TopologyNode">io.clbs.openhes.models.acquisition.TopologyNode</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Flat or hierarchical list of topology devices</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        edges
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.TopologyEdge">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.TopologyEdge"><span title="io.clbs.openhes.models.acquisition.TopologyEdge">io.clbs.openhes.models.acquisition.TopologyEdge</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of edges between the devices.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ProfileBlock">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ProfileBlock" title="io.clbs.openhes.models.acquisition.ProfileBlock">message ProfileBlock</a>
@@ -10619,6 +10724,169 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.TopologyEdge">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.TopologyEdge" title="io.clbs.openhes.models.acquisition.TopologyEdge">message TopologyEdge</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        fromXId
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the edge.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        toXId
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the edge.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldValues">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldValues"><span title="io.clbs.openhes.models.common.FieldValues">io.clbs.openhes.models.common.FieldValues</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The attributes of the edge.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.TopologyNode">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.TopologyNode" title="io.clbs.openhes.models.acquisition.TopologyNode">message TopologyNode</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        xId
+      </td>
+      <td>
+        <code title="int64">
+          
+          <span>int64</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the node.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        type
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.TopologyNodeType">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.TopologyNodeType"><span title="io.clbs.openhes.models.acquisition.TopologyNodeType">io.clbs.openhes.models.acquisition.TopologyNodeType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The type of the node, e.g. "device", "communication_unit", etc.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldValues">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FieldValues"><span title="io.clbs.openhes.models.common.FieldValues">io.clbs.openhes.models.common.FieldValues</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The attributes of the node.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Variable">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.Variable" title="io.clbs.openhes.models.acquisition.Variable">message Variable</a>
@@ -11392,6 +11660,42 @@ then then system gets all registers defined for active device configuration temp
       <td><code>Synthetic</code></td>
       <td>99</td>
       <td class="content"><p>Synthetic register, not visible by drivers. It can be defined to store derived or external data.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.TopologyNodeType">
+  <a href="#enum-io.clbs.openhes.models.acquisition.TopologyNodeType" title="io.clbs.openhes.models.acquisition.TopologyNodeType">enum TopologyNodeType</a>
+  
+</h4>
+
+<div class="block content">
+  <p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>TOPOLOGY_NODE_DEVICE</code></td>
+      <td>0</td>
+      <td class="content"><p>The node is a device, such as an electricity meter.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TOPOLOGY_NODE_COMMUNICATION_UNIT</code></td>
+      <td>1</td>
+      <td class="content"><p>The node is a communication unit, such as a modem or a data concentrator.</p></td>
     </tr>
     
   </tbody>

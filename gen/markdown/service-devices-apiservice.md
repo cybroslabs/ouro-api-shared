@@ -43,6 +43,17 @@ GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.model
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.CommunicationUnit`](model-io-clbs-openhes-models-acquisition-communicationunit.md)
 
+## GetCommunicationUnitNetworkMap
+
+Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+
+```proto
+GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap)
+```
+
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.NetworkMap`](model-io-clbs-openhes-models-acquisition-networkmap.md)
+
 ## CreateCommunicationBus
 
 ```proto
@@ -162,6 +173,17 @@ GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.mode
 
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceGroup`](model-io-clbs-openhes-models-acquisition-listofdevicegroup.md)
+
+## GetDeviceNetworkMap
+
+Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+
+```proto
+GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap)
+```
+
+- Input: `google.protobuf.StringValue`
+- Output: [`io.clbs.openhes.models.acquisition.NetworkMap`](model-io-clbs-openhes-models-acquisition-networkmap.md)
 
 ## CreateDeviceGroup
 

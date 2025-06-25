@@ -762,6 +762,11 @@ type ModemPoolStatus struct {
 	Modems []*ModemInfo `json:"modems,omitempty"`
 }
 
+type NetworkMap struct {
+	Nodes []*TopologyNode `json:"nodes,omitempty"`
+	Edges []*TopologyEdge `json:"edges,omitempty"`
+}
+
 type ProfileBlock struct {
 	StartTimestamp *string          `json:"startTimestamp,omitempty"`
 	Values         []*MeasuredValue `json:"values,omitempty"`
@@ -881,6 +886,18 @@ type TimeOfUseTableSpec struct {
 	Weeks       []*Week       `json:"weeks,omitempty"`
 	DayProfiles []*DayProfile `json:"dayProfiles,omitempty"`
 	SpecialDays []*SpecialDay `json:"specialDays,omitempty"`
+}
+
+type TopologyEdge struct {
+	FromXId    *int64       `json:"fromXId,omitempty"`
+	ToXId      *int64       `json:"toXId,omitempty"`
+	Attributes *FieldValues `json:"attributes,omitempty"`
+}
+
+type TopologyNode struct {
+	XID        *int64            `json:"xId,omitempty"`
+	Type       *TopologyNodeType `json:"type,omitempty"`
+	Attributes *FieldValues      `json:"attributes,omitempty"`
 }
 
 type UpdateMetadata struct {
@@ -1907,6 +1924,61 @@ func (e *RelayState) UnmarshalJSON(b []byte) error {
 }
 
 func (e RelayState) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type TopologyNodeType string
+
+const (
+	TopologyNodeTypeTopologyNodeDevice            TopologyNodeType = "TOPOLOGY_NODE_DEVICE"
+	TopologyNodeTypeTopologyNodeCommunicationUnit TopologyNodeType = "TOPOLOGY_NODE_COMMUNICATION_UNIT"
+)
+
+var AllTopologyNodeType = []TopologyNodeType{
+	TopologyNodeTypeTopologyNodeDevice,
+	TopologyNodeTypeTopologyNodeCommunicationUnit,
+}
+
+func (e TopologyNodeType) IsValid() bool {
+	switch e {
+	case TopologyNodeTypeTopologyNodeDevice, TopologyNodeTypeTopologyNodeCommunicationUnit:
+		return true
+	}
+	return false
+}
+
+func (e TopologyNodeType) String() string {
+	return string(e)
+}
+
+func (e *TopologyNodeType) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = TopologyNodeType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid TopologyNodeType", str)
+	}
+	return nil
+}
+
+func (e TopologyNodeType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *TopologyNodeType) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e TopologyNodeType) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

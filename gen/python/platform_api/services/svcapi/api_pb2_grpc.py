@@ -227,6 +227,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.CommunicationUnit.FromString,
                 _registered_method=True)
+        self.GetCommunicationUnitNetworkMap = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.NetworkMap.FromString,
+                _registered_method=True)
         self.CreateCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus',
                 request_serializer=acquisition_dot_main__pb2.CreateCommunicationBusRequest.SerializeToString,
@@ -286,6 +291,11 @@ class ApiServiceStub(object):
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDeviceGroup.FromString,
+                _registered_method=True)
+        self.GetDeviceNetworkMap = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.NetworkMap.FromString,
                 _registered_method=True)
         self.CreateDeviceGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup',
@@ -744,6 +754,15 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetCommunicationUnitNetworkMap(self, request, context):
+        """@group: Devices
+        @tag: communicationunit
+        Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
@@ -842,6 +861,15 @@ class ApiServiceServicer(object):
         """@group: Devices
         @tag: device
         The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceNetworkMap(self, request, context):
+        """@group: Devices
+        @tag: device
+        Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1280,6 +1308,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
             ),
+            'GetCommunicationUnitNetworkMap': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCommunicationUnitNetworkMap,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.NetworkMap.SerializeToString,
+            ),
             'CreateCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationBus,
                     request_deserializer=acquisition_dot_main__pb2.CreateCommunicationBusRequest.FromString,
@@ -1339,6 +1372,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDeviceDeviceGroups,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDeviceGroup.SerializeToString,
+            ),
+            'GetDeviceNetworkMap': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceNetworkMap,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.NetworkMap.SerializeToString,
             ),
             'CreateDeviceGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDeviceGroup,
@@ -2590,6 +2628,33 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
+    def GetCommunicationUnitNetworkMap(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_shared__pb2.NetworkMap.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def CreateCommunicationBus(request,
             target,
             options=(),
@@ -2903,6 +2968,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.ListOfDeviceGroup.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceNetworkMap(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            acquisition_dot_shared__pb2.NetworkMap.FromString,
             options,
             channel_credentials,
             insecure,

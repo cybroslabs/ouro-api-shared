@@ -50,6 +50,7 @@ const (
 	DeviceRegistryService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateCommunicationUnit"
 	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
+	DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnitNetworkMap"
 	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
 	DeviceRegistryService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationBuses"
 	DeviceRegistryService_AddCommunicationUnitsToCommunicationBus_FullMethodName                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToCommunicationBus"
@@ -65,6 +66,7 @@ const (
 	DeviceRegistryService_SetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo"
 	DeviceRegistryService_GetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo"
 	DeviceRegistryService_GetDeviceDeviceGroups_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceDeviceGroups"
+	DeviceRegistryService_GetDeviceNetworkMap_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceNetworkMap"
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
 	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
 	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
@@ -146,6 +148,10 @@ type DeviceRegistryServiceClient interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -191,6 +197,10 @@ type DeviceRegistryServiceClient interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -546,6 +556,16 @@ func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.NetworkMap)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -693,6 +713,16 @@ func (c *deviceRegistryServiceClient) GetDeviceDeviceGroups(ctx context.Context,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDeviceGroup)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceDeviceGroups_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.NetworkMap)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceNetworkMap_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1048,6 +1078,10 @@ type DeviceRegistryServiceServer interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
@@ -1093,6 +1127,10 @@ type DeviceRegistryServiceServer interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
@@ -1266,6 +1304,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.C
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
 }
@@ -1310,6 +1351,9 @@ func (UnimplementedDeviceRegistryServiceServer) GetDeviceInfo(context.Context, *
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceDeviceGroups not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceNetworkMap not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -1887,6 +1931,24 @@ func _DeviceRegistryService_GetCommunicationUnit_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetCommunicationUnitNetworkMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetCommunicationUnitNetworkMap(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_CreateCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateCommunicationBusRequest)
 	if err := dec(in); err != nil {
@@ -2142,6 +2204,24 @@ func _DeviceRegistryService_GetDeviceDeviceGroups_Handler(srv interface{}, ctx c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetDeviceDeviceGroups(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetDeviceNetworkMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetDeviceNetworkMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetDeviceNetworkMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetDeviceNetworkMap(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2773,6 +2853,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_GetCommunicationUnit_Handler,
 		},
 		{
+			MethodName: "GetCommunicationUnitNetworkMap",
+			Handler:    _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler,
+		},
+		{
 			MethodName: "CreateCommunicationBus",
 			Handler:    _DeviceRegistryService_CreateCommunicationBus_Handler,
 		},
@@ -2827,6 +2911,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceDeviceGroups",
 			Handler:    _DeviceRegistryService_GetDeviceDeviceGroups_Handler,
+		},
+		{
+			MethodName: "GetDeviceNetworkMap",
+			Handler:    _DeviceRegistryService_GetDeviceNetworkMap_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",

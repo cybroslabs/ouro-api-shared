@@ -161,6 +161,11 @@ func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.Commun
 	panic(fmt.Errorf("not implemented: GetCommunicationUnit - getCommunicationUnit"))
 }
 
+// GetCommunicationUnitNetworkMap is the resolver for the getCommunicationUnitNetworkMap field.
+func (r *queryResolver) GetCommunicationUnitNetworkMap(ctx context.Context) (*model.NetworkMap, error) {
+	panic(fmt.Errorf("not implemented: GetCommunicationUnitNetworkMap - getCommunicationUnitNetworkMap"))
+}
+
 // CreateCommunicationBus is the resolver for the createCommunicationBus field.
 func (r *queryResolver) CreateCommunicationBus(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateCommunicationBus - createCommunicationBus"))
@@ -219,6 +224,11 @@ func (r *queryResolver) GetDeviceCommunicationUnits(ctx context.Context) (*model
 // GetDeviceDeviceGroups is the resolver for the getDeviceDeviceGroups field.
 func (r *queryResolver) GetDeviceDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error) {
 	panic(fmt.Errorf("not implemented: GetDeviceDeviceGroups - getDeviceDeviceGroups"))
+}
+
+// GetDeviceNetworkMap is the resolver for the getDeviceNetworkMap field.
+func (r *queryResolver) GetDeviceNetworkMap(ctx context.Context) (*model.NetworkMap, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceNetworkMap - getDeviceNetworkMap"))
 }
 
 // CreateDeviceGroup is the resolver for the createDeviceGroup field.

@@ -847,3 +847,30 @@ message CommunicationBus {
 message CommunicationBusStatus {
     repeated string communication_unit_id = 1;  // The list of communication unit identifiers.
 }
+
+// Network map messages
+
+enum TopologyNodeType {
+    // The node is a device, such as an electricity meter.
+    TOPOLOGY_NODE_DEVICE = 0;
+    // The node is a communication unit, such as a modem or a data concentrator.
+    TOPOLOGY_NODE_COMMUNICATION_UNIT = 1;
+}
+
+message TopologyNode {
+    int64 x_id                    = 1;  // The unique identifier of the node.
+    TopologyNodeType type         = 2;  // The type of the node, e.g. "device", "communication_unit", etc.
+    common.FieldValues attributes = 3;  // The attributes of the node.
+}
+
+message TopologyEdge {
+    int64 from_x_id               = 1;  // The unique identifier of the edge.
+    int64 to_x_id                 = 2;  // The unique identifier of the edge.
+    common.FieldValues attributes = 3;  // The attributes of the edge.
+}
+
+message NetworkMap {
+    // Flat or hierarchical list of topology devices
+    repeated TopologyNode nodes = 1;
+    repeated TopologyEdge edges = 2;  // The list of edges between the devices.
+}

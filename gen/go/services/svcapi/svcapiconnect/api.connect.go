@@ -152,6 +152,9 @@ const (
 	// ApiServiceGetCommunicationUnitProcedure is the fully-qualified name of the ApiService's
 	// GetCommunicationUnit RPC.
 	ApiServiceGetCommunicationUnitProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
+	// ApiServiceGetCommunicationUnitNetworkMapProcedure is the fully-qualified name of the ApiService's
+	// GetCommunicationUnitNetworkMap RPC.
+	ApiServiceGetCommunicationUnitNetworkMapProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
 	// ApiServiceCreateCommunicationBusProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationBus RPC.
 	ApiServiceCreateCommunicationBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
@@ -184,6 +187,9 @@ const (
 	// ApiServiceGetDeviceDeviceGroupsProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceDeviceGroups RPC.
 	ApiServiceGetDeviceDeviceGroupsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups"
+	// ApiServiceGetDeviceNetworkMapProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceNetworkMap RPC.
+	ApiServiceGetDeviceNetworkMapProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap"
 	// ApiServiceCreateDeviceGroupProcedure is the fully-qualified name of the ApiService's
 	// CreateDeviceGroup RPC.
 	ApiServiceCreateDeviceGroupProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
@@ -379,6 +385,10 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.CommunicationUnit], error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
@@ -421,6 +431,10 @@ type ApiServiceClient interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceGroup], error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -775,6 +789,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnit")),
 			connect.WithClientOptions(opts...),
 		),
+		getCommunicationUnitNetworkMap: connect.NewClient[wrapperspb.StringValue, acquisition.NetworkMap](
+			httpClient,
+			baseURL+ApiServiceGetCommunicationUnitNetworkMapProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
+			connect.WithClientOptions(opts...),
+		),
 		createCommunicationBus: connect.NewClient[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateCommunicationBusProcedure,
@@ -845,6 +865,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceGetDeviceDeviceGroupsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDeviceGroups")),
+			connect.WithClientOptions(opts...),
+		),
+		getDeviceNetworkMap: connect.NewClient[wrapperspb.StringValue, acquisition.NetworkMap](
+			httpClient,
+			baseURL+ApiServiceGetDeviceNetworkMapProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceNetworkMap")),
 			connect.WithClientOptions(opts...),
 		),
 		createDeviceGroup: connect.NewClient[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue](
@@ -1049,6 +1075,7 @@ type apiServiceClient struct {
 	updateCommunicationUnit                                          *connect.Client[acquisition.CommunicationUnit, emptypb.Empty]
 	listCommunicationUnits                                           *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnit]
 	getCommunicationUnit                                             *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
+	getCommunicationUnitNetworkMap                                   *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
 	createCommunicationBus                                           *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
 	listCommunicationBuses                                           *connect.Client[common.ListSelector, acquisition.ListOfCommunicationBus]
 	addCommunicationUnitsToCommunicationBus                          *connect.Client[acquisition.AddCommunicationUnitsToCommunicationBusRequest, emptypb.Empty]
@@ -1061,6 +1088,7 @@ type apiServiceClient struct {
 	setDeviceCommunicationUnits                                      *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
 	getDeviceCommunicationUnits                                      *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
 	getDeviceDeviceGroups                                            *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceGroup]
+	getDeviceNetworkMap                                              *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
 	createDeviceGroup                                                *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
 	listDeviceGroups                                                 *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
 	getDeviceGroup                                                   *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
@@ -1308,6 +1336,12 @@ func (c *apiServiceClient) GetCommunicationUnit(ctx context.Context, req *connec
 	return c.getCommunicationUnit.CallUnary(ctx, req)
 }
 
+// GetCommunicationUnitNetworkMap calls
+// io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap.
+func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
+	return c.getCommunicationUnitNetworkMap.CallUnary(ctx, req)
+}
+
 // CreateCommunicationBus calls io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus.
 func (c *apiServiceClient) CreateCommunicationBus(ctx context.Context, req *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.createCommunicationBus.CallUnary(ctx, req)
@@ -1370,6 +1404,11 @@ func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, req 
 // GetDeviceDeviceGroups calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups.
 func (c *apiServiceClient) GetDeviceDeviceGroups(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceGroup], error) {
 	return c.getDeviceDeviceGroups.CallUnary(ctx, req)
+}
+
+// GetDeviceNetworkMap calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap.
+func (c *apiServiceClient) GetDeviceNetworkMap(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
+	return c.getDeviceNetworkMap.CallUnary(ctx, req)
 }
 
 // CreateDeviceGroup calls io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup.
@@ -1623,6 +1662,10 @@ type ApiServiceHandler interface {
 	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
 	GetCommunicationUnit(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.CommunicationUnit], error)
 	// @group: Devices
+	// @tag: communicationunit
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
@@ -1665,6 +1708,10 @@ type ApiServiceHandler interface {
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
 	GetDeviceDeviceGroups(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceGroup], error)
+	// @group: Devices
+	// @tag: device
+	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -2015,6 +2062,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnit")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetCommunicationUnitNetworkMapHandler := connect.NewUnaryHandler(
+		ApiServiceGetCommunicationUnitNetworkMapProcedure,
+		svc.GetCommunicationUnitNetworkMap,
+		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateCommunicationBusHandler := connect.NewUnaryHandler(
 		ApiServiceCreateCommunicationBusProcedure,
 		svc.CreateCommunicationBus,
@@ -2085,6 +2138,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceGetDeviceDeviceGroupsProcedure,
 		svc.GetDeviceDeviceGroups,
 		connect.WithSchema(apiServiceMethods.ByName("GetDeviceDeviceGroups")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetDeviceNetworkMapHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceNetworkMapProcedure,
+		svc.GetDeviceNetworkMap,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceNetworkMap")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateDeviceGroupHandler := connect.NewUnaryHandler(
@@ -2327,6 +2386,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceListCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetCommunicationUnitProcedure:
 			apiServiceGetCommunicationUnitHandler.ServeHTTP(w, r)
+		case ApiServiceGetCommunicationUnitNetworkMapProcedure:
+			apiServiceGetCommunicationUnitNetworkMapHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationBusProcedure:
 			apiServiceCreateCommunicationBusHandler.ServeHTTP(w, r)
 		case ApiServiceListCommunicationBusesProcedure:
@@ -2351,6 +2412,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDeviceGroupsProcedure:
 			apiServiceGetDeviceDeviceGroupsHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceNetworkMapProcedure:
+			apiServiceGetDeviceNetworkMapHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceGroupProcedure:
 			apiServiceCreateDeviceGroupHandler.ServeHTTP(w, r)
 		case ApiServiceListDeviceGroupsProcedure:
@@ -2576,6 +2639,10 @@ func (UnimplementedApiServiceHandler) GetCommunicationUnit(context.Context, *con
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit is not implemented"))
 }
 
+func (UnimplementedApiServiceHandler) GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap is not implemented"))
+}
+
 func (UnimplementedApiServiceHandler) CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus is not implemented"))
 }
@@ -2622,6 +2689,10 @@ func (UnimplementedApiServiceHandler) GetDeviceCommunicationUnits(context.Contex
 
 func (UnimplementedApiServiceHandler) GetDeviceDeviceGroups(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceGroup], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error) {

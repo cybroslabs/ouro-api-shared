@@ -64,6 +64,10 @@ service DeviceRegistryService {
     // @tag: communicationunit
     // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
+    // @group: Devices
+    // @tag: communicationunit
+    // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+    rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
     // @group: Devices
     // @tag: communicationbus
@@ -111,6 +115,10 @@ service DeviceRegistryService {
     // @tag: device
     // The method returns a list of device groups that contain the device. The parameter contains the device identifier.
     rpc GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
+    // @group: Devices
+    // @tag: device
+    // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+    rpc GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
     // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
