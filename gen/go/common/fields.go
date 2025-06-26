@@ -33,17 +33,20 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, cust
 
 	object_type := descriptor.GetObjectType()
 
-	// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 	var gid string
+	var group string
 	if cgs := ptr.Deref(customGidSuffix, ""); len(cgs) > 0 {
+		// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 		gid = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, dbPath, cgs))
+		// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
+		group = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, cgs, group_suffix))
 	} else {
+		// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 		gid = strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath))
+		// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
+		group = strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix))
 	}
 	descriptor.SetGid(gid)
-
-	// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
-	group := strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix))
 
 	return FieldDescriptorInternal_builder{
 		Group:           ptr.To(group),
