@@ -22,9 +22,12 @@ const (
 
 // The request to set the managed fields of the resource.
 type SetManagedFieldsRequest struct {
-	state                    protoimpl.MessageState             `protogen:"opaque.v1"`
-	xxx_hidden_ManagedFields map[string]*FieldValue             `protobuf:"bytes,1,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Selector      isSetManagedFieldsRequest_Selector `protobuf_oneof:"selector"`
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,1,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_ObjectType    ObjectType             `protobuf:"varint,2,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_Id            *string                `protobuf:"bytes,3,opt,name=id"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -61,199 +64,16 @@ func (x *SetManagedFieldsRequest) GetManagedFields() map[string]*FieldValue {
 	return nil
 }
 
-func (x *SetManagedFieldsRequest) GetGeneric() *SetManagedFieldsSelectorGeneric {
+func (x *SetManagedFieldsRequest) GetObjectType() ObjectType {
 	if x != nil {
-		if x, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Generic); ok {
-			return x.Generic
-		}
-	}
-	return nil
-}
-
-func (x *SetManagedFieldsRequest) GetDevice() *SetManagedFieldsSelectorDevice {
-	if x != nil {
-		if x, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Device); ok {
-			return x.Device
-		}
-	}
-	return nil
-}
-
-func (x *SetManagedFieldsRequest) SetManagedFields(v map[string]*FieldValue) {
-	x.xxx_hidden_ManagedFields = v
-}
-
-func (x *SetManagedFieldsRequest) SetGeneric(v *SetManagedFieldsSelectorGeneric) {
-	if v == nil {
-		x.xxx_hidden_Selector = nil
-		return
-	}
-	x.xxx_hidden_Selector = &setManagedFieldsRequest_Generic{v}
-}
-
-func (x *SetManagedFieldsRequest) SetDevice(v *SetManagedFieldsSelectorDevice) {
-	if v == nil {
-		x.xxx_hidden_Selector = nil
-		return
-	}
-	x.xxx_hidden_Selector = &setManagedFieldsRequest_Device{v}
-}
-
-func (x *SetManagedFieldsRequest) HasSelector() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_Selector != nil
-}
-
-func (x *SetManagedFieldsRequest) HasGeneric() bool {
-	if x == nil {
-		return false
-	}
-	_, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Generic)
-	return ok
-}
-
-func (x *SetManagedFieldsRequest) HasDevice() bool {
-	if x == nil {
-		return false
-	}
-	_, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Device)
-	return ok
-}
-
-func (x *SetManagedFieldsRequest) ClearSelector() {
-	x.xxx_hidden_Selector = nil
-}
-
-func (x *SetManagedFieldsRequest) ClearGeneric() {
-	if _, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Generic); ok {
-		x.xxx_hidden_Selector = nil
-	}
-}
-
-func (x *SetManagedFieldsRequest) ClearDevice() {
-	if _, ok := x.xxx_hidden_Selector.(*setManagedFieldsRequest_Device); ok {
-		x.xxx_hidden_Selector = nil
-	}
-}
-
-const SetManagedFieldsRequest_Selector_not_set_case case_SetManagedFieldsRequest_Selector = 0
-const SetManagedFieldsRequest_Generic_case case_SetManagedFieldsRequest_Selector = 2
-const SetManagedFieldsRequest_Device_case case_SetManagedFieldsRequest_Selector = 3
-
-func (x *SetManagedFieldsRequest) WhichSelector() case_SetManagedFieldsRequest_Selector {
-	if x == nil {
-		return SetManagedFieldsRequest_Selector_not_set_case
-	}
-	switch x.xxx_hidden_Selector.(type) {
-	case *setManagedFieldsRequest_Generic:
-		return SetManagedFieldsRequest_Generic_case
-	case *setManagedFieldsRequest_Device:
-		return SetManagedFieldsRequest_Device_case
-	default:
-		return SetManagedFieldsRequest_Selector_not_set_case
-	}
-}
-
-type SetManagedFieldsRequest_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	ManagedFields map[string]*FieldValue
-	// The selector to identify the resource(s) for which the managed fields are set.
-
-	// Fields of oneof xxx_hidden_Selector:
-	Generic *SetManagedFieldsSelectorGeneric
-	Device  *SetManagedFieldsSelectorDevice
-	// -- end of xxx_hidden_Selector
-}
-
-func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
-	m0 := &SetManagedFieldsRequest{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_ManagedFields = b.ManagedFields
-	if b.Generic != nil {
-		x.xxx_hidden_Selector = &setManagedFieldsRequest_Generic{b.Generic}
-	}
-	if b.Device != nil {
-		x.xxx_hidden_Selector = &setManagedFieldsRequest_Device{b.Device}
-	}
-	return m0
-}
-
-type case_SetManagedFieldsRequest_Selector protoreflect.FieldNumber
-
-func (x case_SetManagedFieldsRequest_Selector) String() string {
-	md := file_common_internal_proto_msgTypes[0].Descriptor()
-	if x == 0 {
-		return "not set"
-	}
-	return protoimpl.X.MessageFieldStringOf(md, protoreflect.FieldNumber(x))
-}
-
-type isSetManagedFieldsRequest_Selector interface {
-	isSetManagedFieldsRequest_Selector()
-}
-
-type setManagedFieldsRequest_Generic struct {
-	Generic *SetManagedFieldsSelectorGeneric `protobuf:"bytes,2,opt,name=generic,oneof"` // The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
-}
-
-type setManagedFieldsRequest_Device struct {
-	Device *SetManagedFieldsSelectorDevice `protobuf:"bytes,3,opt,name=device,oneof"` // The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
-}
-
-func (*setManagedFieldsRequest_Generic) isSetManagedFieldsRequest_Selector() {}
-
-func (*setManagedFieldsRequest_Device) isSetManagedFieldsRequest_Selector() {}
-
-type SetManagedFieldsSelectorGeneric struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ObjectType  ObjectType             `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,2,opt,name=id"`
-	xxx_hidden_Generation  int32                  `protobuf:"varint,3,opt,name=generation"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
-}
-
-func (x *SetManagedFieldsSelectorGeneric) Reset() {
-	*x = SetManagedFieldsSelectorGeneric{}
-	mi := &file_common_internal_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SetManagedFieldsSelectorGeneric) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SetManagedFieldsSelectorGeneric) ProtoMessage() {}
-
-func (x *SetManagedFieldsSelectorGeneric) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *SetManagedFieldsSelectorGeneric) GetObjectType() ObjectType {
-	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
 			return x.xxx_hidden_ObjectType
 		}
 	}
 	return ObjectType_BULK
 }
 
-func (x *SetManagedFieldsSelectorGeneric) GetId() string {
+func (x *SetManagedFieldsRequest) GetId() string {
 	if x != nil {
 		if x.xxx_hidden_Id != nil {
 			return *x.xxx_hidden_Id
@@ -263,145 +83,65 @@ func (x *SetManagedFieldsSelectorGeneric) GetId() string {
 	return ""
 }
 
-func (x *SetManagedFieldsSelectorGeneric) GetGeneration() int32 {
-	if x != nil {
-		return x.xxx_hidden_Generation
-	}
-	return 0
+func (x *SetManagedFieldsRequest) SetManagedFields(v map[string]*FieldValue) {
+	x.xxx_hidden_ManagedFields = v
 }
 
-func (x *SetManagedFieldsSelectorGeneric) SetObjectType(v ObjectType) {
+func (x *SetManagedFieldsRequest) SetObjectType(v ObjectType) {
 	x.xxx_hidden_ObjectType = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
-}
-
-func (x *SetManagedFieldsSelectorGeneric) SetId(v string) {
-	x.xxx_hidden_Id = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *SetManagedFieldsSelectorGeneric) SetGeneration(v int32) {
-	x.xxx_hidden_Generation = v
+func (x *SetManagedFieldsRequest) SetId(v string) {
+	x.xxx_hidden_Id = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
-func (x *SetManagedFieldsSelectorGeneric) HasObjectType() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *SetManagedFieldsSelectorGeneric) HasId() bool {
+func (x *SetManagedFieldsRequest) HasObjectType() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *SetManagedFieldsSelectorGeneric) HasGeneration() bool {
+func (x *SetManagedFieldsRequest) HasId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *SetManagedFieldsSelectorGeneric) ClearObjectType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+func (x *SetManagedFieldsRequest) ClearObjectType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_ObjectType = ObjectType_BULK
 }
 
-func (x *SetManagedFieldsSelectorGeneric) ClearId() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+func (x *SetManagedFieldsRequest) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Id = nil
 }
 
-func (x *SetManagedFieldsSelectorGeneric) ClearGeneration() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_Generation = 0
-}
-
-type SetManagedFieldsSelectorGeneric_builder struct {
+type SetManagedFieldsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ObjectType *ObjectType
-	Id         *string
-	Generation *int32
+	ManagedFields map[string]*FieldValue
+	ObjectType    *ObjectType
+	Id            *string
 }
 
-func (b0 SetManagedFieldsSelectorGeneric_builder) Build() *SetManagedFieldsSelectorGeneric {
-	m0 := &SetManagedFieldsSelectorGeneric{}
+func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
+	m0 := &SetManagedFieldsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
+	x.xxx_hidden_ManagedFields = b.ManagedFields
 	if b.ObjectType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_ObjectType = *b.ObjectType
 	}
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
 		x.xxx_hidden_Id = b.Id
 	}
-	if b.Generation != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
-		x.xxx_hidden_Generation = *b.Generation
-	}
-	return m0
-}
-
-type SetManagedFieldsSelectorDevice struct {
-	state             protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Filter map[string]*FieldValue `protobuf:"bytes,1,rep,name=filter" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
-}
-
-func (x *SetManagedFieldsSelectorDevice) Reset() {
-	*x = SetManagedFieldsSelectorDevice{}
-	mi := &file_common_internal_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SetManagedFieldsSelectorDevice) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SetManagedFieldsSelectorDevice) ProtoMessage() {}
-
-func (x *SetManagedFieldsSelectorDevice) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *SetManagedFieldsSelectorDevice) GetFilter() map[string]*FieldValue {
-	if x != nil {
-		return x.xxx_hidden_Filter
-	}
-	return nil
-}
-
-func (x *SetManagedFieldsSelectorDevice) SetFilter(v map[string]*FieldValue) {
-	x.xxx_hidden_Filter = v
-}
-
-type SetManagedFieldsSelectorDevice_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Filter map[string]*FieldValue
-}
-
-func (b0 SetManagedFieldsSelectorDevice_builder) Build() *SetManagedFieldsSelectorDevice {
-	m0 := &SetManagedFieldsSelectorDevice{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_Filter = b.Filter
 	return m0
 }
 
@@ -418,7 +158,7 @@ type FieldDescriptorInternal struct {
 
 func (x *FieldDescriptorInternal) Reset() {
 	*x = FieldDescriptorInternal{}
-	mi := &file_common_internal_proto_msgTypes[3]
+	mi := &file_common_internal_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -430,7 +170,7 @@ func (x *FieldDescriptorInternal) String() string {
 func (*FieldDescriptorInternal) ProtoMessage() {}
 
 func (x *FieldDescriptorInternal) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[3]
+	mi := &file_common_internal_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -553,7 +293,7 @@ type UpdateFieldDescriptorsRequest struct {
 
 func (x *UpdateFieldDescriptorsRequest) Reset() {
 	*x = UpdateFieldDescriptorsRequest{}
-	mi := &file_common_internal_proto_msgTypes[4]
+	mi := &file_common_internal_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -565,7 +305,7 @@ func (x *UpdateFieldDescriptorsRequest) String() string {
 func (*UpdateFieldDescriptorsRequest) ProtoMessage() {}
 
 func (x *UpdateFieldDescriptorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[4]
+	mi := &file_common_internal_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,7 +381,7 @@ type ListOfFieldDescriptorInternal struct {
 
 func (x *ListOfFieldDescriptorInternal) Reset() {
 	*x = ListOfFieldDescriptorInternal{}
-	mi := &file_common_internal_proto_msgTypes[5]
+	mi := &file_common_internal_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -653,7 +393,7 @@ func (x *ListOfFieldDescriptorInternal) String() string {
 func (*ListOfFieldDescriptorInternal) ProtoMessage() {}
 
 func (x *ListOfFieldDescriptorInternal) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[5]
+	mi := &file_common_internal_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -703,7 +443,7 @@ type ListOfDeviceKey struct {
 
 func (x *ListOfDeviceKey) Reset() {
 	*x = ListOfDeviceKey{}
-	mi := &file_common_internal_proto_msgTypes[6]
+	mi := &file_common_internal_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -715,7 +455,7 @@ func (x *ListOfDeviceKey) String() string {
 func (*ListOfDeviceKey) ProtoMessage() {}
 
 func (x *ListOfDeviceKey) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[6]
+	mi := &file_common_internal_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -792,7 +532,7 @@ type MapDeviceKeyXId struct {
 
 func (x *MapDeviceKeyXId) Reset() {
 	*x = MapDeviceKeyXId{}
-	mi := &file_common_internal_proto_msgTypes[7]
+	mi := &file_common_internal_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -804,7 +544,7 @@ func (x *MapDeviceKeyXId) String() string {
 func (*MapDeviceKeyXId) ProtoMessage() {}
 
 func (x *MapDeviceKeyXId) ProtoReflect() protoreflect.Message {
-	mi := &file_common_internal_proto_msgTypes[7]
+	mi := &file_common_internal_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -846,26 +586,13 @@ var File_common_internal_proto protoreflect.FileDescriptor
 
 const file_common_internal_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xb9\x03\n" +
+	"\x15common/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xd4\x02\n" +
 	"\x17SetManagedFieldsRequest\x12p\n" +
-	"\x0emanaged_fields\x18\x01 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x12Z\n" +
-	"\ageneric\x18\x02 \x01(\v2>.io.clbs.openhes.models.common.SetManagedFieldsSelectorGenericH\x00R\ageneric\x12W\n" +
-	"\x06device\x18\x03 \x01(\v2=.io.clbs.openhes.models.common.SetManagedFieldsSelectorDeviceH\x00R\x06device\x1ak\n" +
-	"\x12ManagedFieldsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01B\n" +
-	"\n" +
-	"\bselector\"\x9d\x01\n" +
-	"\x1fSetManagedFieldsSelectorGeneric\x12J\n" +
-	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"\x0emanaged_fields\x18\x01 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x12J\n" +
+	"\vobject_type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
 	"objectType\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n" +
-	"\n" +
-	"generation\x18\x03 \x01(\x05R\n" +
-	"generation\"\xe9\x01\n" +
-	"\x1eSetManagedFieldsSelectorDevice\x12a\n" +
-	"\x06filter\x18\x01 \x03(\v2I.io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntryR\x06filter\x1ad\n" +
-	"\vFilterEntry\x12\x10\n" +
+	"\x02id\x18\x03 \x01(\tR\x02id\x1ak\n" +
+	"\x12ManagedFieldsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"\xa3\x01\n" +
 	"\x17FieldDescriptorInternal\x12\x14\n" +
@@ -888,40 +615,33 @@ const file_common_internal_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_common_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_common_internal_proto_goTypes = []any{
-	(*SetManagedFieldsRequest)(nil),         // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest
-	(*SetManagedFieldsSelectorGeneric)(nil), // 1: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
-	(*SetManagedFieldsSelectorDevice)(nil),  // 2: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice
-	(*FieldDescriptorInternal)(nil),         // 3: io.clbs.openhes.models.common.FieldDescriptorInternal
-	(*UpdateFieldDescriptorsRequest)(nil),   // 4: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
-	(*ListOfFieldDescriptorInternal)(nil),   // 5: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
-	(*ListOfDeviceKey)(nil),                 // 6: io.clbs.openhes.models.common.ListOfDeviceKey
-	(*MapDeviceKeyXId)(nil),                 // 7: io.clbs.openhes.models.common.MapDeviceKeyXId
-	nil,                                     // 8: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
-	nil,                                     // 9: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
-	nil,                                     // 10: io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
-	(ObjectType)(0),                         // 11: io.clbs.openhes.models.common.ObjectType
-	(*FieldDescriptor)(nil),                 // 12: io.clbs.openhes.models.common.FieldDescriptor
-	(*FieldValue)(nil),                      // 13: io.clbs.openhes.models.common.FieldValue
+	(*SetManagedFieldsRequest)(nil),       // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest
+	(*FieldDescriptorInternal)(nil),       // 1: io.clbs.openhes.models.common.FieldDescriptorInternal
+	(*UpdateFieldDescriptorsRequest)(nil), // 2: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
+	(*ListOfFieldDescriptorInternal)(nil), // 3: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
+	(*ListOfDeviceKey)(nil),               // 4: io.clbs.openhes.models.common.ListOfDeviceKey
+	(*MapDeviceKeyXId)(nil),               // 5: io.clbs.openhes.models.common.MapDeviceKeyXId
+	nil,                                   // 6: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	nil,                                   // 7: io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
+	(ObjectType)(0),                       // 8: io.clbs.openhes.models.common.ObjectType
+	(*FieldDescriptor)(nil),               // 9: io.clbs.openhes.models.common.FieldDescriptor
+	(*FieldValue)(nil),                    // 10: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_internal_proto_depIdxs = []int32{
-	8,  // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
-	1,  // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.generic:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric
-	2,  // 2: io.clbs.openhes.models.common.SetManagedFieldsRequest.device:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice
-	11, // 3: io.clbs.openhes.models.common.SetManagedFieldsSelectorGeneric.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	9,  // 4: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.filter:type_name -> io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry
-	12, // 5: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	3,  // 6: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
-	3,  // 7: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
-	10, // 8: io.clbs.openhes.models.common.MapDeviceKeyXId.items:type_name -> io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
-	13, // 9: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	13, // 10: io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	6,  // 0: io.clbs.openhes.models.common.SetManagedFieldsRequest.managed_fields:type_name -> io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry
+	8,  // 1: io.clbs.openhes.models.common.SetManagedFieldsRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	9,  // 2: io.clbs.openhes.models.common.FieldDescriptorInternal.field_descriptor:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	1,  // 3: io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
+	1,  // 4: io.clbs.openhes.models.common.ListOfFieldDescriptorInternal.items:type_name -> io.clbs.openhes.models.common.FieldDescriptorInternal
+	7,  // 5: io.clbs.openhes.models.common.MapDeviceKeyXId.items:type_name -> io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntry
+	10, // 6: io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_common_internal_proto_init() }
@@ -931,17 +651,13 @@ func file_common_internal_proto_init() {
 	}
 	file_common_fields_proto_init()
 	file_common_objects_proto_init()
-	file_common_internal_proto_msgTypes[0].OneofWrappers = []any{
-		(*setManagedFieldsRequest_Generic)(nil),
-		(*setManagedFieldsRequest_Device)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_internal_proto_rawDesc), len(file_common_internal_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

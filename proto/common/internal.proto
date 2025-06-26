@@ -10,21 +10,8 @@ import "common/objects.proto";
 // The request to set the managed fields of the resource.
 message SetManagedFieldsRequest {
     map<string, common.FieldValue> managed_fields = 1;  // The fields to set for the resource(s).
-    // The selector to identify the resource(s) for which the managed fields are set.
-    oneof selector {
-        SetManagedFieldsSelectorGeneric generic = 2;  // The generic selector, it enables to use the object type and id to identify the resource for which the managed fields are set.
-        SetManagedFieldsSelectorDevice device   = 3;  // The selector supported by the ouro-core-deviceregistry, it enables to use CommunicationUnit or Device attributes to identify the resource(s) for which the managed fields are set.
-    }
-}
-
-message SetManagedFieldsSelectorGeneric {
-    ObjectType object_type = 1;  // The type of the managed fields update. It defines the resource type for which the managed fields are set.
-    string id              = 2;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
-    int32 generation       = 3;  // The generation of the resource, optional. If set then it must match the current generation of the resource, otherwise the data are overwritten without checking the generation.
-}
-
-message SetManagedFieldsSelectorDevice {
-    map<string, common.FieldValue> filter = 1;  // The selector filter to identify the resource(s) for which the managed fields are set. The key is the attribute name, the value is the attribute value. If the attribute data type does not match then the method won't set anything.
+    ObjectType object_type                        = 2;  // The type of the managed fields update. It defines the resource type for which the managed fields are set.
+    string id                                     = 3;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
 }
 
 message FieldDescriptorInternal {

@@ -26,7 +26,7 @@ from common import fields_pb2 as common_dot_fields__pb2
 from common import objects_pb2 as common_dot_objects__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13\x63ommon/fields.proto\x1a\x14\x63ommon/objects.proto\"\xb9\x03\n\x17SetManagedFieldsRequest\x12p\n\x0emanaged_fields\x18\x01 \x03(\x0b\x32I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x12Z\n\x07generic\x18\x02 \x01(\x0b\x32>.io.clbs.openhes.models.common.SetManagedFieldsSelectorGenericH\x00R\x07generic\x12W\n\x06\x64\x65vice\x18\x03 \x01(\x0b\x32=.io.clbs.openhes.models.common.SetManagedFieldsSelectorDeviceH\x00R\x06\x64\x65vice\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\x42\n\n\x08selector\"\x9d\x01\n\x1fSetManagedFieldsSelectorGeneric\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n\ngeneration\x18\x03 \x01(\x05R\ngeneration\"\xe9\x01\n\x1eSetManagedFieldsSelectorDevice\x12\x61\n\x06\x66ilter\x18\x01 \x03(\x0b\x32I.io.clbs.openhes.models.common.SetManagedFieldsSelectorDevice.FilterEntryR\x06\x66ilter\x1a\x64\n\x0b\x46ilterEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\"\xa3\x01\n\x17\x46ieldDescriptorInternal\x12\x14\n\x05group\x18\x01 \x01(\tR\x05group\x12\x17\n\x07\x64\x62_path\x18\x02 \x01(\tR\x06\x64\x62Path\x12Y\n\x10\x66ield_descriptor\x18\x03 \x01(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x0f\x66ieldDescriptor\"\x96\x01\n\x1dUpdateFieldDescriptorsRequest\x12L\n\x05items\x18\x01 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12\'\n\x0f\x63leanup_missing\x18\x02 \x01(\x08R\x0e\x63leanupMissing\"m\n\x1dListOfFieldDescriptorInternal\x12L\n\x05items\x18\x01 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\"H\n\x0fListOfDeviceKey\x12\x1f\n\x0b\x64river_type\x18\x01 \x01(\tR\ndriverType\x12\x14\n\x05items\x18\x02 \x03(\tR\x05items\"\x9c\x01\n\x0fMapDeviceKeyXId\x12O\n\x05items\x18\x01 \x03(\x0b\x32\x39.io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntryR\x05items\x1a\x38\n\nItemsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\x03R\x05value:\x02\x38\x01\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x63ommon/internal.proto\x12\x1dio.clbs.openhes.models.common\x1a\x13\x63ommon/fields.proto\x1a\x14\x63ommon/objects.proto\"\xd4\x02\n\x17SetManagedFieldsRequest\x12p\n\x0emanaged_fields\x18\x01 \x03(\x0b\x32I.io.clbs.openhes.models.common.SetManagedFieldsRequest.ManagedFieldsEntryR\rmanagedFields\x12J\n\x0bobject_type\x18\x02 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x0e\n\x02id\x18\x03 \x01(\tR\x02id\x1ak\n\x12ManagedFieldsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).io.clbs.openhes.models.common.FieldValueR\x05value:\x02\x38\x01\"\xa3\x01\n\x17\x46ieldDescriptorInternal\x12\x14\n\x05group\x18\x01 \x01(\tR\x05group\x12\x17\n\x07\x64\x62_path\x18\x02 \x01(\tR\x06\x64\x62Path\x12Y\n\x10\x66ield_descriptor\x18\x03 \x01(\x0b\x32..io.clbs.openhes.models.common.FieldDescriptorR\x0f\x66ieldDescriptor\"\x96\x01\n\x1dUpdateFieldDescriptorsRequest\x12L\n\x05items\x18\x01 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\x12\'\n\x0f\x63leanup_missing\x18\x02 \x01(\x08R\x0e\x63leanupMissing\"m\n\x1dListOfFieldDescriptorInternal\x12L\n\x05items\x18\x01 \x03(\x0b\x32\x36.io.clbs.openhes.models.common.FieldDescriptorInternalR\x05items\"H\n\x0fListOfDeviceKey\x12\x1f\n\x0b\x64river_type\x18\x01 \x01(\tR\ndriverType\x12\x14\n\x05items\x18\x02 \x03(\tR\x05items\"\x9c\x01\n\x0fMapDeviceKeyXId\x12O\n\x05items\x18\x01 \x03(\x0b\x32\x39.io.clbs.openhes.models.common.MapDeviceKeyXId.ItemsEntryR\x05items\x1a\x38\n\nItemsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\x03R\x05value:\x02\x38\x01\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,30 +36,22 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'Z3github.com/cybroslabs/ouro-api-shared/gen/go/common'
   _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._loaded_options = None
   _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_options = b'8\001'
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE_FILTERENTRY']._loaded_options = None
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE_FILTERENTRY']._serialized_options = b'8\001'
   _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._loaded_options = None
   _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._serialized_options = b'8\001'
   _globals['_SETMANAGEDFIELDSREQUEST']._serialized_start=100
-  _globals['_SETMANAGEDFIELDSREQUEST']._serialized_end=541
-  _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_start=422
-  _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_end=529
-  _globals['_SETMANAGEDFIELDSSELECTORGENERIC']._serialized_start=544
-  _globals['_SETMANAGEDFIELDSSELECTORGENERIC']._serialized_end=701
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE']._serialized_start=704
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE']._serialized_end=937
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE_FILTERENTRY']._serialized_start=837
-  _globals['_SETMANAGEDFIELDSSELECTORDEVICE_FILTERENTRY']._serialized_end=937
-  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_start=940
-  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_end=1103
-  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_start=1106
-  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_end=1256
-  _globals['_LISTOFFIELDDESCRIPTORINTERNAL']._serialized_start=1258
-  _globals['_LISTOFFIELDDESCRIPTORINTERNAL']._serialized_end=1367
-  _globals['_LISTOFDEVICEKEY']._serialized_start=1369
-  _globals['_LISTOFDEVICEKEY']._serialized_end=1441
-  _globals['_MAPDEVICEKEYXID']._serialized_start=1444
-  _globals['_MAPDEVICEKEYXID']._serialized_end=1600
-  _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._serialized_start=1544
-  _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._serialized_end=1600
+  _globals['_SETMANAGEDFIELDSREQUEST']._serialized_end=440
+  _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_start=333
+  _globals['_SETMANAGEDFIELDSREQUEST_MANAGEDFIELDSENTRY']._serialized_end=440
+  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_start=443
+  _globals['_FIELDDESCRIPTORINTERNAL']._serialized_end=606
+  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_start=609
+  _globals['_UPDATEFIELDDESCRIPTORSREQUEST']._serialized_end=759
+  _globals['_LISTOFFIELDDESCRIPTORINTERNAL']._serialized_start=761
+  _globals['_LISTOFFIELDDESCRIPTORINTERNAL']._serialized_end=870
+  _globals['_LISTOFDEVICEKEY']._serialized_start=872
+  _globals['_LISTOFDEVICEKEY']._serialized_end=944
+  _globals['_MAPDEVICEKEYXID']._serialized_start=947
+  _globals['_MAPDEVICEKEYXID']._serialized_end=1103
+  _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._serialized_start=1047
+  _globals['_MAPDEVICEKEYXID_ITEMSENTRY']._serialized_end=1103
 # @@protoc_insertion_point(module_scope)
