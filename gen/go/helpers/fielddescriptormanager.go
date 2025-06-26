@@ -73,6 +73,14 @@ func (fdm *fieldDescriptorManager) PathToDbPath(objectType common.ObjectType) po
 	return fdm.pathToDbPath(objectType, fd_list)
 }
 
+func (fdm *fieldDescriptorManager) SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error {
+	fdm.fieldDescriptorPathMapLock.Lock()
+	defer fdm.fieldDescriptorPathMapLock.Unlock()
+
+	fdm.systemDescriptors = slices.Clone(systemDescriptors)
+	return fdm.refresh(ctx, true)
+}
+
 func (fdm *fieldDescriptorManager) Refresh(ctx context.Context) error {
 	fdm.fieldDescriptorPathMapLock.Lock()
 	defer fdm.fieldDescriptorPathMapLock.Unlock()
