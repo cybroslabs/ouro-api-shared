@@ -44,7 +44,7 @@ type fieldDescriptorManager struct {
 	knownDescriptors           []*common.FieldDescriptorInternal
 }
 
-func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) (FieldDescriptorManager, error) {
+func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptorManager {
 	r := &fieldDescriptorManager{
 		logger:                 opts.Logger,
 		connectors:             opts.Connectors,
@@ -54,12 +54,7 @@ func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) (FieldDescripto
 		systemDescriptors:      slices.Clone(opts.SystemDescriptors),
 		knownDescriptors:       make([]*common.FieldDescriptorInternal, 0, len(opts.SystemDescriptors)),
 	}
-
-	err := r.refresh(context.Background(), true)
-	if err != nil {
-		return nil, err
-	}
-	return r, nil
+	return r
 }
 
 func (fdm *fieldDescriptorManager) PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc {
