@@ -15,7 +15,7 @@ import (
 // It is used internally to create a FieldDescriptor with additional metadata like ID, group, and database path.
 // The group is a field descriptor group key used to clean up removed descriptors.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
-func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string) (*FieldDescriptorInternal, error) {
+func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string, customGroupSuffix *string) (*FieldDescriptorInternal, error) {
 	if strings.Contains(dbPath, ".{") {
 		return nil, errors.New("dbPath must not contain case selector brackets, use jsPath in FieldDescriptor instead")
 	}
@@ -33,20 +33,22 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, cust
 
 	object_type := descriptor.GetObjectType()
 
+	// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 	var gid string
-	var group string
 	if cgs := ptr.Deref(customGidSuffix, ""); len(cgs) > 0 {
-		// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 		gid = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, dbPath, cgs))
-		// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
-		group = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, cgs, group_suffix))
 	} else {
-		// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 		gid = strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath))
-		// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
-		group = strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix))
 	}
 	descriptor.SetGid(gid)
+
+	// Generate the field descriptor group. It's used to combine built-in vs user-defined fields for specific object type.
+	var group string
+	if cgs := ptr.Deref(customGroupSuffix, ""); len(cgs) > 0 {
+		group = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, cgs, group_suffix))
+	} else {
+		group = strings.ToLower(fmt.Sprintf("%s#%s", object_type, group_suffix))
+	}
 
 	return FieldDescriptorInternal_builder{
 		Group:           ptr.To(group),
@@ -59,8 +61,8 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, cust
 // It is used internally to create a FieldDescriptorInternal wrapper over the FieldDescriptor with additional metadata like group or database path.
 // The dbPath is the database column name or JSONB path. The JSON path must start with '$.' to be registered as a JSONB path.
 // MustNewFieldDescriptorInternal creates a new FieldDescriptorInternal and panics if there is an error.
-func MustNewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string) *FieldDescriptorInternal {
-	fd, err := NewFieldDescriptorInternal(dbPath, descriptor, customGidSuffix)
+func MustNewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, customGidSuffix *string, customGroupSuffix *string) *FieldDescriptorInternal {
+	fd, err := NewFieldDescriptorInternal(dbPath, descriptor, customGidSuffix, customGroupSuffix)
 	if err != nil {
 		panic(err.Error())
 	}
