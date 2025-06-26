@@ -46,14 +46,18 @@ type fieldDescriptorManager struct {
 }
 
 func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptorManager {
+	fdpm := make(map[common.ObjectType]map[string]string, 0)
 	r := &fieldDescriptorManager{
 		logger:                 opts.Logger,
 		connectors:             opts.Connectors,
 		pathToDbPath:           opts.PathToDbPath,
 		relatedObjectTypes:     slices.Clone(opts.RelatedObjectTypes),
-		fieldDescriptorPathMap: make(map[common.ObjectType]map[string]string, 0),
+		fieldDescriptorPathMap: fdpm,
 		systemDescriptors:      slices.Clone(opts.SystemDescriptors),
 		knownDescriptors:       make([]*common.FieldDescriptorInternal, 0, len(opts.SystemDescriptors)),
+	}
+	for _, objectType := range r.relatedObjectTypes {
+		fdpm[objectType] = make(map[string]string, 0)
 	}
 	return r
 }
