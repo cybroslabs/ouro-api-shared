@@ -2221,6 +2221,7 @@ type SetCurrentDeviceCommunicationUnitRequest struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
 	xxx_hidden_Attributes          *[]*AttributeSelector  `protobuf:"bytes,2,rep,name=attributes"`
+	xxx_hidden_ProposedAppProtocol ApplicationProtocol    `protobuf:"varint,3,opt,name=proposed_app_protocol,json=proposedAppProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
 	unknownFields                  protoimpl.UnknownFields
@@ -2271,13 +2272,27 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) GetAttributes() []*AttributeS
 	return nil
 }
 
+func (x *SetCurrentDeviceCommunicationUnitRequest) GetProposedAppProtocol() ApplicationProtocol {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+			return x.xxx_hidden_ProposedAppProtocol
+		}
+	}
+	return ApplicationProtocol_APPPROTO_IEC_62056_21
+}
+
 func (x *SetCurrentDeviceCommunicationUnitRequest) SetCommunicationUnitId(v string) {
 	x.xxx_hidden_CommunicationUnitId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) SetAttributes(v []*AttributeSelector) {
 	x.xxx_hidden_Attributes = &v
+}
+
+func (x *SetCurrentDeviceCommunicationUnitRequest) SetProposedAppProtocol(v ApplicationProtocol) {
+	x.xxx_hidden_ProposedAppProtocol = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) HasCommunicationUnitId() bool {
@@ -2287,9 +2302,21 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) HasCommunicationUnitId() bool
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
+func (x *SetCurrentDeviceCommunicationUnitRequest) HasProposedAppProtocol() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
 func (x *SetCurrentDeviceCommunicationUnitRequest) ClearCommunicationUnitId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_CommunicationUnitId = nil
+}
+
+func (x *SetCurrentDeviceCommunicationUnitRequest) ClearProposedAppProtocol() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
 }
 
 type SetCurrentDeviceCommunicationUnitRequest_builder struct {
@@ -2297,6 +2324,7 @@ type SetCurrentDeviceCommunicationUnitRequest_builder struct {
 
 	CommunicationUnitId *string
 	Attributes          []*AttributeSelector
+	ProposedAppProtocol *ApplicationProtocol
 }
 
 func (b0 SetCurrentDeviceCommunicationUnitRequest_builder) Build() *SetCurrentDeviceCommunicationUnitRequest {
@@ -2304,10 +2332,14 @@ func (b0 SetCurrentDeviceCommunicationUnitRequest_builder) Build() *SetCurrentDe
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.CommunicationUnitId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
 	x.xxx_hidden_Attributes = &b.Attributes
+	if b.ProposedAppProtocol != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_ProposedAppProtocol = *b.ProposedAppProtocol
+	}
 	return m0
 }
 
@@ -2315,6 +2347,7 @@ type SetCurrentDeviceCommunicationUnitInternalRequest struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
 	xxx_hidden_DeviceSelector      *common.ListSelector   `protobuf:"bytes,2,opt,name=device_selector,json=deviceSelector"`
+	xxx_hidden_ProposedAppProtocol ApplicationProtocol    `protobuf:"varint,3,opt,name=proposed_app_protocol,json=proposedAppProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
 	unknownFields                  protoimpl.UnknownFields
@@ -2363,13 +2396,27 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) GetDeviceSelector() *
 	return nil
 }
 
+func (x *SetCurrentDeviceCommunicationUnitInternalRequest) GetProposedAppProtocol() ApplicationProtocol {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+			return x.xxx_hidden_ProposedAppProtocol
+		}
+	}
+	return ApplicationProtocol_APPPROTO_IEC_62056_21
+}
+
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) SetCommunicationUnitId(v string) {
 	x.xxx_hidden_CommunicationUnitId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) SetDeviceSelector(v *common.ListSelector) {
 	x.xxx_hidden_DeviceSelector = v
+}
+
+func (x *SetCurrentDeviceCommunicationUnitInternalRequest) SetProposedAppProtocol(v ApplicationProtocol) {
+	x.xxx_hidden_ProposedAppProtocol = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) HasCommunicationUnitId() bool {
@@ -2386,6 +2433,13 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) HasDeviceSelector() b
 	return x.xxx_hidden_DeviceSelector != nil
 }
 
+func (x *SetCurrentDeviceCommunicationUnitInternalRequest) HasProposedAppProtocol() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ClearCommunicationUnitId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_CommunicationUnitId = nil
@@ -2395,11 +2449,17 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ClearDeviceSelector()
 	x.xxx_hidden_DeviceSelector = nil
 }
 
+func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ClearProposedAppProtocol() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+}
+
 type SetCurrentDeviceCommunicationUnitInternalRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	CommunicationUnitId *string
 	DeviceSelector      *common.ListSelector
+	ProposedAppProtocol *ApplicationProtocol
 }
 
 func (b0 SetCurrentDeviceCommunicationUnitInternalRequest_builder) Build() *SetCurrentDeviceCommunicationUnitInternalRequest {
@@ -2407,10 +2467,14 @@ func (b0 SetCurrentDeviceCommunicationUnitInternalRequest_builder) Build() *SetC
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.CommunicationUnitId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
 	x.xxx_hidden_DeviceSelector = b.DeviceSelector
+	if b.ProposedAppProtocol != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_ProposedAppProtocol = *b.ProposedAppProtocol
+	}
 	return m0
 }
 
@@ -2492,15 +2556,17 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x13indirect_neighbours\x18\x03 \x03(\v27.io.clbs.openhes.models.acquisition.IndirectNeightboursR\x12indirectNeighbours\"o\n" +
 	"\x10DeviceNeightbour\x12K\n" +
 	"\x04type\x18\x01 \x01(\x0e27.io.clbs.openhes.models.acquisition.DeviceNeighbourTypeR\x04type\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"\xb5\x01\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\"\xa2\x02\n" +
 	"(SetCurrentDeviceCommunicationUnitRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12U\n" +
 	"\n" +
 	"attributes\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.AttributeSelectorR\n" +
-	"attributes\"\xbc\x01\n" +
+	"attributes\x12k\n" +
+	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol\"\xa9\x02\n" +
 	"0SetCurrentDeviceCommunicationUnitInternalRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12T\n" +
-	"\x0fdevice_selector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\x0edeviceSelector*\x9d\x01\n" +
+	"\x0fdevice_selector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\x0edeviceSelector\x12k\n" +
+	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol*\x9d\x01\n" +
 	"\x0eLogRecordLevel\x12\x1a\n" +
 	"\x16LOG_RECORD_LEVEL_DEBUG\x10\x00\x12\x19\n" +
 	"\x15LOG_RECORD_LEVEL_INFO\x10\x01\x12\x1c\n" +
@@ -2552,8 +2618,9 @@ var file_acquisition_internal_proto_goTypes = []any{
 	(*timestamppb.Timestamp)(nil), // 35: google.protobuf.Timestamp
 	(*common.FieldValues)(nil),    // 36: io.clbs.openhes.models.common.FieldValues
 	(*AttributeSelector)(nil),     // 37: io.clbs.openhes.models.acquisition.AttributeSelector
-	(*common.ListSelector)(nil),   // 38: io.clbs.openhes.models.common.ListSelector
-	(*ListOfConnectionInfo)(nil),  // 39: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(ApplicationProtocol)(0),      // 38: io.clbs.openhes.models.acquisition.ApplicationProtocol
+	(*common.ListSelector)(nil),   // 39: io.clbs.openhes.models.common.ListSelector
+	(*ListOfConnectionInfo)(nil),  // 40: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
 	27, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
@@ -2576,13 +2643,15 @@ var file_acquisition_internal_proto_depIdxs = []int32{
 	20, // 17: io.clbs.openhes.models.acquisition.SetNeighboursRequest.indirect_neighbours:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours
 	1,  // 18: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
 	37, // 19: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	38, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
-	39, // 21: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	38, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	39, // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	38, // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	40, // 23: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }
