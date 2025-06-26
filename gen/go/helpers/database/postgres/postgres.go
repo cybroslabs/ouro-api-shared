@@ -3,6 +3,7 @@ package postgres
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
@@ -273,7 +274,11 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 			}
 		// Multi-operand operators
 		case common.FilterOperator_IN:
-			err = addMultiOperandOperator(&parts, &values, col, f, "IN")
+			if !use_jsonb_func {
+				err = addMultiOperandOperator(&parts, &values, col, f, "IN")
+			} else {
+				err = addMultiOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, "==")
+			}
 		case common.FilterOperator_NOT_IN:
 			err = addMultiOperandOperator(&parts, &values, col, f, "NOT IN")
 			// 2-operand operators
@@ -487,6 +492,51 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 	default:
 		return errors.New("unsupported data type")
 	}
+
+	return nil
+}
+
+func addMultiOperandOperatorJson(parts *[]string, modelColumn string, jsonPath string, jsonProperty string, in *common.ListSelectorFilterBy, operator string) error {
+	var vals string
+	switch in.GetDataType() {
+	case common.FieldDataType_TEXT:
+		stringified := make([]string, 0, len(in.GetText()))
+		for _, v := range in.GetText() {
+			stringified = append(stringified, escapeForRegex(v))
+		}
+		vals = strings.Join(stringified, `", "`)
+		if len(vals) > 0 {
+			vals = `["` + vals + `"]`
+		} else {
+			vals = "[]"
+		}
+	case common.FieldDataType_INTEGER:
+		stringified := make([]string, 0, len(in.GetInteger()))
+		for _, v := range in.GetInteger() {
+			stringified = append(stringified, strconv.FormatInt(v, 10))
+		}
+		vals = "[" + strings.Join(stringified, `, `) + "]"
+	case common.FieldDataType_BOOLEAN:
+		stringified := make([]string, 0, len(in.GetBoolean()))
+		for _, v := range in.GetBoolean() {
+			if v {
+				stringified = append(stringified, "true")
+			} else {
+				stringified = append(stringified, "false")
+			}
+		}
+		vals = "[" + strings.Join(stringified, `, `) + "]"
+	case common.FieldDataType_DOUBLE:
+		stringified := make([]string, 0, len(in.GetNumber()))
+		for _, v := range in.GetNumber() {
+			stringified = append(stringified, fmt.Sprintf("%f", v))
+		}
+		vals = "[" + strings.Join(stringified, `, `) + "]"
+	default:
+		return errors.New("unsupported data type")
+	}
+
+	*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s $vals)', '{\"vals\": %s}')", modelColumn, jsonPath, jsonProperty, operator, vals))
 
 	return nil
 }
