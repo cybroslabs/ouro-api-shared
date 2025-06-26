@@ -70,8 +70,8 @@ const (
 	// Bit 22: Value was validated by system or operator but found to be invalid
 	StatusBitsInvalidValue StatusBits = 1 << 22
 
-	// Bit 23: Reserved for future data quality extensions
-	StatusBitsDataQualityStatus23 StatusBits = 1 << 23
+	// Bit 23: Value has been read from a concentrator (e.g., a data concentrator or gateway device), not directly from the measurement device
+	StatusBitsDataQualityConcentrator StatusBits = 1 << 23
 
 	// Bit 24: Reserved for future data quality extensions
 	StatusBitsDataQualityStatus24 StatusBits = 1 << 24
