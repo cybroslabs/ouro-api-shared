@@ -16,6 +16,7 @@ import (
 type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[string]string) func(path string) (dbPath string, useJsonbFunc bool, ok bool)
 
 type FieldDescriptorManager interface {
+	SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
 	Refresh(ctx context.Context) error
 	CreateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error
