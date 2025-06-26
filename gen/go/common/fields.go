@@ -455,9 +455,9 @@ func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 }
 
 // GenerateJsPath generates a JavaScript/TypeScript path for the field descriptor.
-func (fd *FieldDescriptor) GenerateJsPath(prefix string) *string {
+func (fd *FieldDescriptor) GenerateJsPath(prefix string) string {
 	if fd == nil {
-		return nil
+		return ""
 	}
 	tmp := prefix + fd.GetFieldId()
 	switch fd.GetDataType() {
@@ -476,9 +476,9 @@ func (fd *FieldDescriptor) GenerateJsPath(prefix string) *string {
 	case FieldDataType_DURATION:
 		tmp += ".kind.{durationValue}"
 	default:
-		return nil
+		return ""
 	}
-	return &tmp
+	return tmp
 }
 
 var (
