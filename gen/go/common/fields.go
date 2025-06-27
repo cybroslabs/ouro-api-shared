@@ -3,6 +3,7 @@ package common
 import (
 	"errors"
 	"fmt"
+	"maps"
 	"regexp"
 	"slices"
 	"strconv"
@@ -10,6 +11,10 @@ import (
 
 	"github.com/rmg/iso4217"
 	"k8s.io/utils/ptr"
+)
+
+var (
+	reCapitals = regexp.MustCompile(`([A-Z]+)`)
 )
 
 // NewFieldDescriptorInternal creates a new FieldDescriptorInternal with the given parameters.
@@ -322,12 +327,28 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 	return fd
 }
 
+// WithIntegerOptions sets the field to an INTEGER type with the given options.
+// The options are a map of integer values to string labels.
+// The keys of the map must be integers, and the values are the labels for the options
+// It's typically used for protobuf enum values.
 func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_INTEGER)
 	tmp := make(map[string]string, len(options))
+	no_space := true
 	for k, v := range options {
 		tmp[strconv.FormatInt(int64(k), 10)] = v
+		if no_space && strings.Contains(v, " ") {
+			no_space = false
+		}
 	}
+
+	if no_space {
+		for k := range maps.Keys(tmp) {
+			// Replace PascalCase values 'v' by prefixing all capital letters with a space.
+			tmp[k] = strings.TrimSpace(reCapitals.ReplaceAllString(tmp[k], " $1"))
+		}
+	}
+
 	fd.ensureValidation().SetOptions(tmp)
 	return fd
 }
