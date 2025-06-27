@@ -341,6 +341,15 @@ type DeviceConfigurationTemplateSpec struct {
 	RegisterID []*string `json:"registerId,omitempty"`
 }
 
+type DeviceData struct {
+	Devices []*DeviceDeviceData `json:"devices,omitempty"`
+}
+
+type DeviceDeviceData struct {
+	DeviceID *string               `json:"deviceId,omitempty"`
+	Data     []*VariableDeviceData `json:"data,omitempty"`
+}
+
 type DeviceGroup struct {
 	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields  `json:"metadata,omitempty"`
@@ -484,11 +493,13 @@ type FieldValues struct {
 	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
-type GetMeterDataRequest struct {
-	From         *string   `json:"from,omitempty"`
-	To           *string   `json:"to,omitempty"`
-	DeviceID     []*string `json:"deviceId,omitempty"`
-	VariableName []*string `json:"variableName,omitempty"`
+type GetDeviceDataRequest struct {
+	From                *string   `json:"from,omitempty"`
+	To                  *string   `json:"to,omitempty"`
+	DeviceID            []*string `json:"deviceId,omitempty"`
+	VariableID          []*string `json:"variableId,omitempty"`
+	FilterIncludeStatus *int64    `json:"filterIncludeStatus,omitempty"`
+	FilterExcludeStatus *int64    `json:"filterExcludeStatus,omitempty"`
 }
 
 type GetMeterEventsRequest struct {
@@ -907,6 +918,13 @@ type UpdateMetadata struct {
 type Variable struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type VariableDeviceData struct {
+	VariableID *string          `json:"variableId,omitempty"`
+	Timestamps []*string        `json:"timestamps,omitempty"`
+	Unit       []*string        `json:"unit,omitempty"`
+	Value      []*MeasuredValue `json:"value,omitempty"`
 }
 
 type VariableSpec struct {

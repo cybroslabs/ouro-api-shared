@@ -175,7 +175,7 @@ service ApiService {
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
     // @group: Devices
-    // The method to stream out profile-typed meter data.
+    // The method to stream out profile-typed device info.
     rpc GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo);
     // @group: Devices
     // @tag: device
@@ -265,20 +265,24 @@ service ApiService {
     // The missing values in the defaults will be deleted if has been set previously in the application configuration.
     rpc SynchronizeComponentConfig(io.clbs.openhes.models.system.ComponentConfigDescriptor) returns (io.clbs.openhes.models.system.ComponentConfig);
 
-    // @group: Meter Data
-    // The method to stream out register-typed meter data.
-    rpc GetMeterDataRegisters(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);
+    // @group: Device Data
+    // The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+    rpc GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData);
 
-    // @group: Meter Data
-    // The method to stream out profile-typed meter data.
-    rpc GetMeterDataProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.ProfileValues);
+    // @group: Device Data
+    // The method to stream out register-typed device data.
+    rpc GetDeviceDataRegisters(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);
 
-    // @group: Meter Data
-    // The method to stream out profile-typed meter data.
-    rpc GetMeterDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.IrregularProfileValues);
+    // @group: Device Data
+    // The method to stream out profile-typed device data.
+    rpc GetDeviceDataProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.ProfileValues);
 
-    // @group: Meter Events
-    // The method to stream out profile-typed meter data.
+    // @group: Device Data
+    // The method to stream out profile-typed device data.
+    rpc GetDeviceDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.IrregularProfileValues);
+
+    // @group: Device Events
+    // The method to stream out profile-typed device events.
     rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
 
     // @group: Time-Of-Use Tables

@@ -96,9 +96,10 @@ const (
 	ApiService_GetApplicationConfig_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetApplicationConfig"
 	ApiService_UpdateApplicationConfig_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateApplicationConfig"
 	ApiService_SynchronizeComponentConfig_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/SynchronizeComponentConfig"
-	ApiService_GetMeterDataRegisters_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
-	ApiService_GetMeterDataProfiles_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles"
-	ApiService_GetMeterDataIrregularProfiles_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles"
+	ApiService_GetDeviceData_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceData"
+	ApiService_GetDeviceDataRegisters_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataRegisters"
+	ApiService_GetDeviceDataProfiles_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataProfiles"
+	ApiService_GetDeviceDataIrregularProfiles_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataIrregularProfiles"
 	ApiService_GetMeterEvents_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents"
 	ApiService_CreateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable"
 	ApiService_ListTimeOfUseTables_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/ListTimeOfUseTables"
@@ -262,7 +263,7 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Device, error)
 	// @group: Devices
-	// The method to stream out profile-typed meter data.
+	// The method to stream out profile-typed device info.
 	GetDeviceInfo(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceInfo, error)
 	// @group: Devices
 	// @tag: device
@@ -348,17 +349,20 @@ type ApiServiceClient interface {
 	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
-	// @group: Meter Data
-	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
-	// @group: Meter Events
-	// The method to stream out profile-typed meter data.
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
+	// @group: Device Data
+	// The method to stream out register-typed device data.
+	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
+	// @group: Device Events
+	// The method to stream out profile-typed device events.
 	GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
@@ -1105,13 +1109,23 @@ func (c *apiServiceClient) SynchronizeComponentConfig(ctx context.Context, in *s
 	return out, nil
 }
 
-func (c *apiServiceClient) GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
+func (c *apiServiceClient) GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[0], ApiService_GetMeterDataRegisters_FullMethodName, cOpts...)
+	out := new(acquisition.DeviceData)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ClientStream: stream}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[0], ApiService_GetDeviceDataRegisters_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1122,15 +1136,15 @@ func (c *apiServiceClient) GetMeterDataRegisters(ctx context.Context, in *acquis
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataRegistersClient = grpc.ServerStreamingClient[acquisition.RegisterValues]
+type ApiService_GetDeviceDataRegistersClient = grpc.ServerStreamingClient[acquisition.RegisterValues]
 
-func (c *apiServiceClient) GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error) {
+func (c *apiServiceClient) GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[1], ApiService_GetMeterDataProfiles_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[1], ApiService_GetDeviceDataProfiles_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1141,15 +1155,15 @@ func (c *apiServiceClient) GetMeterDataProfiles(ctx context.Context, in *acquisi
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataProfilesClient = grpc.ServerStreamingClient[acquisition.ProfileValues]
+type ApiService_GetDeviceDataProfilesClient = grpc.ServerStreamingClient[acquisition.ProfileValues]
 
-func (c *apiServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error) {
+func (c *apiServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[2], ApiService_GetMeterDataIrregularProfiles_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[2], ApiService_GetDeviceDataIrregularProfiles_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1160,7 +1174,7 @@ func (c *apiServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, in
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
+type ApiService_GetDeviceDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
 
 func (c *apiServiceClient) GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -1386,7 +1400,7 @@ type ApiServiceServer interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error)
 	// @group: Devices
-	// The method to stream out profile-typed meter data.
+	// The method to stream out profile-typed device info.
 	GetDeviceInfo(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceInfo, error)
 	// @group: Devices
 	// @tag: device
@@ -1472,17 +1486,20 @@ type ApiServiceServer interface {
 	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
-	// @group: Meter Data
-	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
-	// @group: Meter Events
-	// The method to stream out profile-typed meter data.
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
+	// @group: Device Data
+	// The method to stream out register-typed device data.
+	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
+	// @group: Device Events
+	// The method to stream out profile-typed device events.
 	GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
@@ -1725,14 +1742,17 @@ func (UnimplementedApiServiceServer) UpdateApplicationConfig(context.Context, *s
 func (UnimplementedApiServiceServer) SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeComponentConfig not implemented")
 }
-func (UnimplementedApiServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
+func (UnimplementedApiServiceServer) GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceData not implemented")
 }
-func (UnimplementedApiServiceServer) GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataProfiles not implemented")
+func (UnimplementedApiServiceServer) GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataRegisters not implemented")
 }
-func (UnimplementedApiServiceServer) GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataIrregularProfiles not implemented")
+func (UnimplementedApiServiceServer) GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataProfiles not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataIrregularProfiles not implemented")
 }
 func (UnimplementedApiServiceServer) GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterEvents not implemented")
@@ -3069,38 +3089,56 @@ func _ApiService_SynchronizeComponentConfig_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _ApiService_GetDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.GetDeviceDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceData(ctx, req.(*acquisition.GetDeviceDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetDeviceDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ApiServiceServer).GetMeterDataRegisters(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ServerStream: stream})
+	return srv.(ApiServiceServer).GetDeviceDataRegisters(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataRegistersServer = grpc.ServerStreamingServer[acquisition.RegisterValues]
+type ApiService_GetDeviceDataRegistersServer = grpc.ServerStreamingServer[acquisition.RegisterValues]
 
-func _ApiService_GetMeterDataProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _ApiService_GetDeviceDataProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ApiServiceServer).GetMeterDataProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ServerStream: stream})
+	return srv.(ApiServiceServer).GetDeviceDataProfiles(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataProfilesServer = grpc.ServerStreamingServer[acquisition.ProfileValues]
+type ApiService_GetDeviceDataProfilesServer = grpc.ServerStreamingServer[acquisition.ProfileValues]
 
-func _ApiService_GetMeterDataIrregularProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _ApiService_GetDeviceDataIrregularProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ApiServiceServer).GetMeterDataIrregularProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ServerStream: stream})
+	return srv.(ApiServiceServer).GetDeviceDataIrregularProfiles(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ApiService_GetMeterDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
+type ApiService_GetDeviceDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
 
 func _ApiService_GetMeterEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterEventsRequest)
@@ -3499,6 +3537,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_SynchronizeComponentConfig_Handler,
 		},
 		{
+			MethodName: "GetDeviceData",
+			Handler:    _ApiService_GetDeviceData_Handler,
+		},
+		{
 			MethodName: "CreateTimeOfUseTable",
 			Handler:    _ApiService_CreateTimeOfUseTable_Handler,
 		},
@@ -3521,18 +3563,18 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetMeterDataRegisters",
-			Handler:       _ApiService_GetMeterDataRegisters_Handler,
+			StreamName:    "GetDeviceDataRegisters",
+			Handler:       _ApiService_GetDeviceDataRegisters_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetMeterDataProfiles",
-			Handler:       _ApiService_GetMeterDataProfiles_Handler,
+			StreamName:    "GetDeviceDataProfiles",
+			Handler:       _ApiService_GetDeviceDataProfiles_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetMeterDataIrregularProfiles",
-			Handler:       _ApiService_GetMeterDataIrregularProfiles_Handler,
+			StreamName:    "GetDeviceDataIrregularProfiles",
+			Handler:       _ApiService_GetDeviceDataIrregularProfiles_Handler,
 			ServerStreams: true,
 		},
 		{

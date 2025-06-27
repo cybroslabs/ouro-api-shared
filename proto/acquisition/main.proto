@@ -400,16 +400,34 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
     repeated string register_id = 2;  // The list of register identifiers to be unlinked from the template.
 }
 
-// Meter Data
+// Device Data
 
-message GetMeterDataRequest {
+message GetDeviceDataRequest {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
     repeated string device_id      = 3;  // One or more identifiers of the devices.
-    repeated string variable_name  = 4;  // The unique identifier of the register.
+    repeated string variable_id    = 4;  // The unique identifier of the register.
+    int64 filter_include_status    = 5;  // The filter status bits, only values with these status bits will be returned in the response.
+    int64 filter_exclude_status    = 6;  // The filter status bits, only values without these status bits will be returned in the response.
 }
 
-// Meter Events
+message DeviceData {
+    repeated DeviceDeviceData devices = 1;  // The list of device data items.
+}
+
+message DeviceDeviceData {
+    string device_id                 = 1;  // The unique identifier of the device.
+    repeated VariableDeviceData data = 2;  // The list of variable data items.
+}
+
+message VariableDeviceData {
+    string variable_id                            = 1;  // The unique identifier of the variable.
+    repeated google.protobuf.Timestamp timestamps = 2;  // The list of timestamps for the variable data.
+    repeated string unit                          = 3;  // The unit of the value.
+    repeated MeasuredValue value                  = 4;  // The value.
+}
+
+// Device Events
 
 message GetMeterEventsRequest {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the data.

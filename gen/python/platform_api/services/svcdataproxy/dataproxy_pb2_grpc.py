@@ -77,23 +77,28 @@ class DataproxyServiceStub(object):
                 request_serializer=common_dot_metadata__pb2.UpdateMetadata.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.GetMeterDataRegisters = channel.unary_stream(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters',
-                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+        self.GetDeviceData = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceData',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceData.FromString,
+                _registered_method=True)
+        self.GetDeviceDataRegisters = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataRegisters',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.RegisterValues.FromString,
                 _registered_method=True)
-        self.GetMeterDataProfiles = channel.unary_stream(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles',
-                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+        self.GetDeviceDataProfiles = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataProfiles',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.ProfileValues.FromString,
                 _registered_method=True)
-        self.GetMeterDataIrregularProfiles = channel.unary_stream(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles',
-                request_serializer=acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+        self.GetDeviceDataIrregularProfiles = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataIrregularProfiles',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
                 _registered_method=True)
-        self.GetMeterEvents = channel.unary_stream(
-                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents',
+        self.GetDeviceEvents = channel.unary_stream(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
                 request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
                 _registered_method=True)
@@ -213,32 +218,40 @@ class DataproxyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterDataRegisters(self, request, context):
-        """@group: Meter Data
+    def GetDeviceData(self, request, context):
+        """@group: Device Data
+        The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceDataRegisters(self, request, context):
+        """@group: Device Data
         The method to stream out register-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterDataProfiles(self, request, context):
-        """@group: Meter Data
+    def GetDeviceDataProfiles(self, request, context):
+        """@group: Device Data
         The method to stream out profile-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterDataIrregularProfiles(self, request, context):
-        """@group: Meter Data
+    def GetDeviceDataIrregularProfiles(self, request, context):
+        """@group: Device Data
         The method to stream out profile-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterEvents(self, request, context):
-        """@group: Meter Events
+    def GetDeviceEvents(self, request, context):
+        """@group: Device Events
         The method to stream out profile-typed meter data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -335,23 +348,28 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     request_deserializer=common_dot_metadata__pb2.UpdateMetadata.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'GetMeterDataRegisters': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterDataRegisters,
-                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+            'GetDeviceData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceData,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceData.SerializeToString,
+            ),
+            'GetDeviceDataRegisters': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetDeviceDataRegisters,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.RegisterValues.SerializeToString,
             ),
-            'GetMeterDataProfiles': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterDataProfiles,
-                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+            'GetDeviceDataProfiles': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetDeviceDataProfiles,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.ProfileValues.SerializeToString,
             ),
-            'GetMeterDataIrregularProfiles': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterDataIrregularProfiles,
-                    request_deserializer=acquisition_dot_main__pb2.GetMeterDataRequest.FromString,
+            'GetDeviceDataIrregularProfiles': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetDeviceDataIrregularProfiles,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.IrregularProfileValues.SerializeToString,
             ),
-            'GetMeterEvents': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterEvents,
+            'GetDeviceEvents': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetDeviceEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
             ),
@@ -685,7 +703,34 @@ class DataproxyService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterDataRegisters(request,
+    def GetDeviceData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceData',
+            acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
+            acquisition_dot_main__pb2.DeviceData.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceDataRegisters(request,
             target,
             options=(),
             channel_credentials=None,
@@ -698,8 +743,8 @@ class DataproxyService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters',
-            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataRegisters',
+            acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
             acquisition_dot_shared__pb2.RegisterValues.FromString,
             options,
             channel_credentials,
@@ -712,7 +757,7 @@ class DataproxyService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterDataProfiles(request,
+    def GetDeviceDataProfiles(request,
             target,
             options=(),
             channel_credentials=None,
@@ -725,8 +770,8 @@ class DataproxyService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles',
-            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataProfiles',
+            acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
             acquisition_dot_shared__pb2.ProfileValues.FromString,
             options,
             channel_credentials,
@@ -739,7 +784,7 @@ class DataproxyService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterDataIrregularProfiles(request,
+    def GetDeviceDataIrregularProfiles(request,
             target,
             options=(),
             channel_credentials=None,
@@ -752,8 +797,8 @@ class DataproxyService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles',
-            acquisition_dot_main__pb2.GetMeterDataRequest.SerializeToString,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataIrregularProfiles',
+            acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
             acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
             options,
             channel_credentials,
@@ -766,7 +811,7 @@ class DataproxyService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterEvents(request,
+    def GetDeviceEvents(request,
             target,
             options=(),
             channel_credentials=None,
@@ -779,7 +824,7 @@ class DataproxyService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents',
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
             acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
             acquisition_dot_shared__pb2.EventRecords.FromString,
             options,

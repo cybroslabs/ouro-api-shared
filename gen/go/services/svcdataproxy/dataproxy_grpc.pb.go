@@ -23,25 +23,26 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataproxyService_ListBulks_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
-	DataproxyService_ListBulkJobs_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
-	DataproxyService_GetBulkJob_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
-	DataproxyService_UpdateBulkJob_FullMethodName                 = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob"
-	DataproxyService_CancelBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
-	DataproxyService_CancelBulkJobs_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs"
-	DataproxyService_CreateProxyBulk_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
-	DataproxyService_GetProxyBulk_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
-	DataproxyService_CreateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
-	DataproxyService_GetBulk_FullMethodName                       = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
-	DataproxyService_UpdateBulk_FullMethodName                    = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk"
-	DataproxyService_GetMeterDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataRegisters"
-	DataproxyService_GetMeterDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataProfiles"
-	DataproxyService_GetMeterDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterDataIrregularProfiles"
-	DataproxyService_GetMeterEvents_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetMeterEvents"
-	DataproxyService_CreateFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateFieldDescriptor"
-	DataproxyService_UpdateFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateFieldDescriptor"
-	DataproxyService_DeleteFieldDescriptor_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteFieldDescriptor"
-	DataproxyService_SetManagedFields_FullMethodName              = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields"
+	DataproxyService_ListBulks_FullMethodName                      = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulks"
+	DataproxyService_ListBulkJobs_FullMethodName                   = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListBulkJobs"
+	DataproxyService_GetBulkJob_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulkJob"
+	DataproxyService_UpdateBulkJob_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob"
+	DataproxyService_CancelBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
+	DataproxyService_CancelBulkJobs_FullMethodName                 = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs"
+	DataproxyService_CreateProxyBulk_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
+	DataproxyService_GetProxyBulk_FullMethodName                   = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
+	DataproxyService_CreateBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
+	DataproxyService_GetBulk_FullMethodName                        = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
+	DataproxyService_UpdateBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk"
+	DataproxyService_GetDeviceData_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceData"
+	DataproxyService_GetDeviceDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataRegisters"
+	DataproxyService_GetDeviceDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataProfiles"
+	DataproxyService_GetDeviceDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataIrregularProfiles"
+	DataproxyService_GetDeviceEvents_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents"
+	DataproxyService_CreateFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateFieldDescriptor"
+	DataproxyService_UpdateFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateFieldDescriptor"
+	DataproxyService_DeleteFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteFieldDescriptor"
+	DataproxyService_SetManagedFields_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -85,18 +86,21 @@ type DataproxyServiceClient interface {
 	// @group: Bulks
 	// Updates the bulk metadata. The metadata is used to store additional information about the job.
 	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Meter Data
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
+	// @group: Device Data
 	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
-	// @group: Meter Data
+	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
+	// @group: Device Data
 	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
-	// @group: Meter Data
+	GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
+	// @group: Device Data
 	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
-	// @group: Meter Events
+	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
+	// @group: Device Events
 	// The method to stream out profile-typed meter data.
-	GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
+	GetDeviceEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
 	// @group: Fields
 	// The method to create a new field descriptor user-defined field descriptor.
 	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -229,13 +233,23 @@ func (c *dataproxyServiceClient) UpdateBulk(ctx context.Context, in *common.Upda
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) GetMeterDataRegisters(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
+func (c *dataproxyServiceClient) GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetMeterDataRegisters_FullMethodName, cOpts...)
+	out := new(acquisition.DeviceData)
+	err := c.cc.Invoke(ctx, DataproxyService_GetDeviceData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ClientStream: stream}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetDeviceDataRegisters_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -246,15 +260,15 @@ func (c *dataproxyServiceClient) GetMeterDataRegisters(ctx context.Context, in *
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataRegistersClient = grpc.ServerStreamingClient[acquisition.RegisterValues]
+type DataproxyService_GetDeviceDataRegistersClient = grpc.ServerStreamingClient[acquisition.RegisterValues]
 
-func (c *dataproxyServiceClient) GetMeterDataProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error) {
+func (c *dataproxyServiceClient) GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[1], DataproxyService_GetMeterDataProfiles_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[1], DataproxyService_GetDeviceDataProfiles_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -265,15 +279,15 @@ func (c *dataproxyServiceClient) GetMeterDataProfiles(ctx context.Context, in *a
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataProfilesClient = grpc.ServerStreamingClient[acquisition.ProfileValues]
+type DataproxyService_GetDeviceDataProfilesClient = grpc.ServerStreamingClient[acquisition.ProfileValues]
 
-func (c *dataproxyServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, in *acquisition.GetMeterDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error) {
+func (c *dataproxyServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[2], DataproxyService_GetMeterDataIrregularProfiles_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[2], DataproxyService_GetDeviceDataIrregularProfiles_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -284,11 +298,11 @@ func (c *dataproxyServiceClient) GetMeterDataIrregularProfiles(ctx context.Conte
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
+type DataproxyService_GetDeviceDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
 
-func (c *dataproxyServiceClient) GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
+func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[3], DataproxyService_GetMeterEvents_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[3], DataproxyService_GetDeviceEvents_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -303,7 +317,7 @@ func (c *dataproxyServiceClient) GetMeterEvents(ctx context.Context, in *acquisi
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterEventsClient = grpc.ServerStreamingClient[acquisition.EventRecords]
+type DataproxyService_GetDeviceEventsClient = grpc.ServerStreamingClient[acquisition.EventRecords]
 
 func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -386,18 +400,21 @@ type DataproxyServiceServer interface {
 	// @group: Bulks
 	// Updates the bulk metadata. The metadata is used to store additional information about the job.
 	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
-	// @group: Meter Data
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
+	// @group: Device Data
 	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
-	// @group: Meter Data
+	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
+	// @group: Device Data
 	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
-	// @group: Meter Data
+	GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
+	// @group: Device Data
 	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
-	// @group: Meter Events
+	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
+	// @group: Device Events
 	// The method to stream out profile-typed meter data.
-	GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
+	GetDeviceEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
 	// @group: Fields
 	// The method to create a new field descriptor user-defined field descriptor.
 	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
@@ -453,17 +470,20 @@ func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.
 func (UnimplementedDataproxyServiceServer) UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetMeterDataRegisters(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataRegisters not implemented")
+func (UnimplementedDataproxyServiceServer) GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceData not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetMeterDataProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataProfiles not implemented")
+func (UnimplementedDataproxyServiceServer) GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataRegisters not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetMeterDataIrregularProfiles(*acquisition.GetMeterDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterDataIrregularProfiles not implemented")
+func (UnimplementedDataproxyServiceServer) GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataProfiles not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
-	return status.Errorf(codes.Unimplemented, "method GetMeterEvents not implemented")
+func (UnimplementedDataproxyServiceServer) GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceDataIrregularProfiles not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetDeviceEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
+	return status.Errorf(codes.Unimplemented, "method GetDeviceEvents not implemented")
 }
 func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
@@ -696,49 +716,67 @@ func _DataproxyService_UpdateBulk_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataproxyService_GetMeterDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _DataproxyService_GetDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.GetDeviceDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetDeviceData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetDeviceData(ctx, req.(*acquisition.GetDeviceDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetDeviceDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetMeterDataRegisters(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.RegisterValues]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetDeviceDataRegisters(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataRegistersServer = grpc.ServerStreamingServer[acquisition.RegisterValues]
+type DataproxyService_GetDeviceDataRegistersServer = grpc.ServerStreamingServer[acquisition.RegisterValues]
 
-func _DataproxyService_GetMeterDataProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _DataproxyService_GetDeviceDataProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetMeterDataProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.ProfileValues]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetDeviceDataProfiles(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataProfilesServer = grpc.ServerStreamingServer[acquisition.ProfileValues]
+type DataproxyService_GetDeviceDataProfilesServer = grpc.ServerStreamingServer[acquisition.ProfileValues]
 
-func _DataproxyService_GetMeterDataIrregularProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterDataRequest)
+func _DataproxyService_GetDeviceDataIrregularProfiles_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetMeterDataIrregularProfiles(m, &grpc.GenericServerStream[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetDeviceDataIrregularProfiles(m, &grpc.GenericServerStream[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
+type DataproxyService_GetDeviceDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
 
-func _DataproxyService_GetMeterEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _DataproxyService_GetDeviceEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetMeterEventsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetMeterEvents(m, &grpc.GenericServerStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetDeviceEvents(m, &grpc.GenericServerStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetMeterEventsServer = grpc.ServerStreamingServer[acquisition.EventRecords]
+type DataproxyService_GetDeviceEventsServer = grpc.ServerStreamingServer[acquisition.EventRecords]
 
 func _DataproxyService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.CreateFieldDescriptorRequest)
@@ -864,6 +902,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataproxyService_UpdateBulk_Handler,
 		},
 		{
+			MethodName: "GetDeviceData",
+			Handler:    _DataproxyService_GetDeviceData_Handler,
+		},
+		{
 			MethodName: "CreateFieldDescriptor",
 			Handler:    _DataproxyService_CreateFieldDescriptor_Handler,
 		},
@@ -882,23 +924,23 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetMeterDataRegisters",
-			Handler:       _DataproxyService_GetMeterDataRegisters_Handler,
+			StreamName:    "GetDeviceDataRegisters",
+			Handler:       _DataproxyService_GetDeviceDataRegisters_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetMeterDataProfiles",
-			Handler:       _DataproxyService_GetMeterDataProfiles_Handler,
+			StreamName:    "GetDeviceDataProfiles",
+			Handler:       _DataproxyService_GetDeviceDataProfiles_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetMeterDataIrregularProfiles",
-			Handler:       _DataproxyService_GetMeterDataIrregularProfiles_Handler,
+			StreamName:    "GetDeviceDataIrregularProfiles",
+			Handler:       _DataproxyService_GetDeviceDataIrregularProfiles_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetMeterEvents",
-			Handler:       _DataproxyService_GetMeterEvents_Handler,
+			StreamName:    "GetDeviceEvents",
+			Handler:       _DataproxyService_GetDeviceEvents_Handler,
 			ServerStreams: true,
 		},
 	},

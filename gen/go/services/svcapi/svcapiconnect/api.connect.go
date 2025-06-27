@@ -237,15 +237,18 @@ const (
 	// ApiServiceSynchronizeComponentConfigProcedure is the fully-qualified name of the ApiService's
 	// SynchronizeComponentConfig RPC.
 	ApiServiceSynchronizeComponentConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SynchronizeComponentConfig"
-	// ApiServiceGetMeterDataRegistersProcedure is the fully-qualified name of the ApiService's
-	// GetMeterDataRegisters RPC.
-	ApiServiceGetMeterDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataRegisters"
-	// ApiServiceGetMeterDataProfilesProcedure is the fully-qualified name of the ApiService's
-	// GetMeterDataProfiles RPC.
-	ApiServiceGetMeterDataProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataProfiles"
-	// ApiServiceGetMeterDataIrregularProfilesProcedure is the fully-qualified name of the ApiService's
-	// GetMeterDataIrregularProfiles RPC.
-	ApiServiceGetMeterDataIrregularProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterDataIrregularProfiles"
+	// ApiServiceGetDeviceDataProcedure is the fully-qualified name of the ApiService's GetDeviceData
+	// RPC.
+	ApiServiceGetDeviceDataProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceData"
+	// ApiServiceGetDeviceDataRegistersProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceDataRegisters RPC.
+	ApiServiceGetDeviceDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataRegisters"
+	// ApiServiceGetDeviceDataProfilesProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceDataProfiles RPC.
+	ApiServiceGetDeviceDataProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataProfiles"
+	// ApiServiceGetDeviceDataIrregularProfilesProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceDataIrregularProfiles RPC.
+	ApiServiceGetDeviceDataIrregularProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataIrregularProfiles"
 	// ApiServiceGetMeterEventsProcedure is the fully-qualified name of the ApiService's GetMeterEvents
 	// RPC.
 	ApiServiceGetMeterEventsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents"
@@ -417,7 +420,7 @@ type ApiServiceClient interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Device], error)
 	// @group: Devices
-	// The method to stream out profile-typed meter data.
+	// The method to stream out profile-typed device info.
 	GetDeviceInfo(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error)
 	// @group: Devices
 	// @tag: device
@@ -503,17 +506,20 @@ type ApiServiceClient interface {
 	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(context.Context, *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error)
-	// @group: Meter Data
-	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error)
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error)
-	// @group: Meter Events
-	// The method to stream out profile-typed meter data.
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error)
+	// @group: Device Data
+	// The method to stream out register-typed device data.
+	GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error)
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error)
+	// @group: Device Events
+	// The method to stream out profile-typed device events.
 	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
@@ -975,22 +981,28 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SynchronizeComponentConfig")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterDataRegisters: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.RegisterValues](
+		getDeviceData: connect.NewClient[acquisition.GetDeviceDataRequest, acquisition.DeviceData](
 			httpClient,
-			baseURL+ApiServiceGetMeterDataRegistersProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataRegisters")),
+			baseURL+ApiServiceGetDeviceDataProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceData")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterDataProfiles: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.ProfileValues](
+		getDeviceDataRegisters: connect.NewClient[acquisition.GetDeviceDataRequest, acquisition.RegisterValues](
 			httpClient,
-			baseURL+ApiServiceGetMeterDataProfilesProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataProfiles")),
+			baseURL+ApiServiceGetDeviceDataRegistersProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataRegisters")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterDataIrregularProfiles: connect.NewClient[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues](
+		getDeviceDataProfiles: connect.NewClient[acquisition.GetDeviceDataRequest, acquisition.ProfileValues](
 			httpClient,
-			baseURL+ApiServiceGetMeterDataIrregularProfilesProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetMeterDataIrregularProfiles")),
+			baseURL+ApiServiceGetDeviceDataProfilesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataProfiles")),
+			connect.WithClientOptions(opts...),
+		),
+		getDeviceDataIrregularProfiles: connect.NewClient[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues](
+			httpClient,
+			baseURL+ApiServiceGetDeviceDataIrregularProfilesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataIrregularProfiles")),
 			connect.WithClientOptions(opts...),
 		),
 		getMeterEvents: connect.NewClient[acquisition.GetMeterEventsRequest, acquisition.EventRecords](
@@ -1106,9 +1118,10 @@ type apiServiceClient struct {
 	getApplicationConfig                                             *connect.Client[emptypb.Empty, system.ApplicationConfigDescriptor]
 	updateApplicationConfig                                          *connect.Client[system.ApplicationConfig, emptypb.Empty]
 	synchronizeComponentConfig                                       *connect.Client[system.ComponentConfigDescriptor, system.ComponentConfig]
-	getMeterDataRegisters                                            *connect.Client[acquisition.GetMeterDataRequest, acquisition.RegisterValues]
-	getMeterDataProfiles                                             *connect.Client[acquisition.GetMeterDataRequest, acquisition.ProfileValues]
-	getMeterDataIrregularProfiles                                    *connect.Client[acquisition.GetMeterDataRequest, acquisition.IrregularProfileValues]
+	getDeviceData                                                    *connect.Client[acquisition.GetDeviceDataRequest, acquisition.DeviceData]
+	getDeviceDataRegisters                                           *connect.Client[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]
+	getDeviceDataProfiles                                            *connect.Client[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]
+	getDeviceDataIrregularProfiles                                   *connect.Client[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]
 	getMeterEvents                                                   *connect.Client[acquisition.GetMeterEventsRequest, acquisition.EventRecords]
 	createTimeOfUseTable                                             *connect.Client[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue]
 	listTimeOfUseTables                                              *connect.Client[common.ListSelector, acquisition.ListOfTimeOfUseTable]
@@ -1497,20 +1510,25 @@ func (c *apiServiceClient) SynchronizeComponentConfig(ctx context.Context, req *
 	return c.synchronizeComponentConfig.CallUnary(ctx, req)
 }
 
-// GetMeterDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters.
-func (c *apiServiceClient) GetMeterDataRegisters(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error) {
-	return c.getMeterDataRegisters.CallServerStream(ctx, req)
+// GetDeviceData calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceData.
+func (c *apiServiceClient) GetDeviceData(ctx context.Context, req *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error) {
+	return c.getDeviceData.CallUnary(ctx, req)
 }
 
-// GetMeterDataProfiles calls io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles.
-func (c *apiServiceClient) GetMeterDataProfiles(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error) {
-	return c.getMeterDataProfiles.CallServerStream(ctx, req)
+// GetDeviceDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters.
+func (c *apiServiceClient) GetDeviceDataRegisters(ctx context.Context, req *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error) {
+	return c.getDeviceDataRegisters.CallServerStream(ctx, req)
 }
 
-// GetMeterDataIrregularProfiles calls
-// io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles.
-func (c *apiServiceClient) GetMeterDataIrregularProfiles(ctx context.Context, req *connect.Request[acquisition.GetMeterDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error) {
-	return c.getMeterDataIrregularProfiles.CallServerStream(ctx, req)
+// GetDeviceDataProfiles calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles.
+func (c *apiServiceClient) GetDeviceDataProfiles(ctx context.Context, req *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.ProfileValues], error) {
+	return c.getDeviceDataProfiles.CallServerStream(ctx, req)
+}
+
+// GetDeviceDataIrregularProfiles calls
+// io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles.
+func (c *apiServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, req *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error) {
+	return c.getDeviceDataIrregularProfiles.CallServerStream(ctx, req)
 }
 
 // GetMeterEvents calls io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents.
@@ -1694,7 +1712,7 @@ type ApiServiceHandler interface {
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.Device], error)
 	// @group: Devices
-	// The method to stream out profile-typed meter data.
+	// The method to stream out profile-typed device info.
 	GetDeviceInfo(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.DeviceInfo], error)
 	// @group: Devices
 	// @tag: device
@@ -1780,17 +1798,20 @@ type ApiServiceHandler interface {
 	// The output value will contain currently set values including details which are not set.
 	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
 	SynchronizeComponentConfig(context.Context, *connect.Request[system.ComponentConfigDescriptor]) (*connect.Response[system.ComponentConfig], error)
-	// @group: Meter Data
-	// The method to stream out register-typed meter data.
-	GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error
-	// @group: Meter Data
-	// The method to stream out profile-typed meter data.
-	GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error
-	// @group: Meter Events
-	// The method to stream out profile-typed meter data.
+	// @group: Device Data
+	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error)
+	// @group: Device Data
+	// The method to stream out register-typed device data.
+	GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error
+	// @group: Device Data
+	// The method to stream out profile-typed device data.
+	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error
+	// @group: Device Events
+	// The method to stream out profile-typed device events.
 	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
@@ -2248,22 +2269,28 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SynchronizeComponentConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetMeterDataRegistersHandler := connect.NewServerStreamHandler(
-		ApiServiceGetMeterDataRegistersProcedure,
-		svc.GetMeterDataRegisters,
-		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataRegisters")),
+	apiServiceGetDeviceDataHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceDataProcedure,
+		svc.GetDeviceData,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceData")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetMeterDataProfilesHandler := connect.NewServerStreamHandler(
-		ApiServiceGetMeterDataProfilesProcedure,
-		svc.GetMeterDataProfiles,
-		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataProfiles")),
+	apiServiceGetDeviceDataRegistersHandler := connect.NewServerStreamHandler(
+		ApiServiceGetDeviceDataRegistersProcedure,
+		svc.GetDeviceDataRegisters,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataRegisters")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetMeterDataIrregularProfilesHandler := connect.NewServerStreamHandler(
-		ApiServiceGetMeterDataIrregularProfilesProcedure,
-		svc.GetMeterDataIrregularProfiles,
-		connect.WithSchema(apiServiceMethods.ByName("GetMeterDataIrregularProfiles")),
+	apiServiceGetDeviceDataProfilesHandler := connect.NewServerStreamHandler(
+		ApiServiceGetDeviceDataProfilesProcedure,
+		svc.GetDeviceDataProfiles,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataProfiles")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetDeviceDataIrregularProfilesHandler := connect.NewServerStreamHandler(
+		ApiServiceGetDeviceDataIrregularProfilesProcedure,
+		svc.GetDeviceDataIrregularProfiles,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataIrregularProfiles")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceGetMeterEventsHandler := connect.NewServerStreamHandler(
@@ -2448,12 +2475,14 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateApplicationConfigHandler.ServeHTTP(w, r)
 		case ApiServiceSynchronizeComponentConfigProcedure:
 			apiServiceSynchronizeComponentConfigHandler.ServeHTTP(w, r)
-		case ApiServiceGetMeterDataRegistersProcedure:
-			apiServiceGetMeterDataRegistersHandler.ServeHTTP(w, r)
-		case ApiServiceGetMeterDataProfilesProcedure:
-			apiServiceGetMeterDataProfilesHandler.ServeHTTP(w, r)
-		case ApiServiceGetMeterDataIrregularProfilesProcedure:
-			apiServiceGetMeterDataIrregularProfilesHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceDataProcedure:
+			apiServiceGetDeviceDataHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceDataRegistersProcedure:
+			apiServiceGetDeviceDataRegistersHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceDataProfilesProcedure:
+			apiServiceGetDeviceDataProfilesHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceDataIrregularProfilesProcedure:
+			apiServiceGetDeviceDataIrregularProfilesHandler.ServeHTTP(w, r)
 		case ApiServiceGetMeterEventsProcedure:
 			apiServiceGetMeterEventsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateTimeOfUseTableProcedure:
@@ -2763,16 +2792,20 @@ func (UnimplementedApiServiceHandler) SynchronizeComponentConfig(context.Context
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterDataRegisters(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataRegisters is not implemented"))
+func (UnimplementedApiServiceHandler) GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceData is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterDataProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataProfiles is not implemented"))
+func (UnimplementedApiServiceHandler) GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetMeterDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterDataIrregularProfiles is not implemented"))
+func (UnimplementedApiServiceHandler) GetDeviceDataProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.ProfileValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error {

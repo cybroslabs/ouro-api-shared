@@ -133,7 +133,7 @@ GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisiti
 
 ## GetDeviceInfo
 
-The method to stream out profile-typed meter data.
+The method to stream out profile-typed device info.
 
 ```proto
 GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo)

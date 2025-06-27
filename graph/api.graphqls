@@ -860,6 +860,18 @@ type DeviceConfigurationTemplateSpec {
   registerId: [String]
 }
 
+type DeviceData {
+  # The list of device data items.
+  devices: [DeviceDeviceData]
+}
+
+type DeviceDeviceData {
+  # The unique identifier of the device.
+  deviceId: String
+  # The list of variable data items.
+  data: [VariableDeviceData]
+}
+
 type DeviceGroup {
   # The device group specification.
   spec: DeviceGroupSpec
@@ -989,7 +1001,7 @@ type EventRecords {
   values: [EventRecord]
 }
 
-type GetMeterDataRequest {
+type GetDeviceDataRequest {
   # The start timestamp of the data.
   from: Timestamp
   # The end timestamp of the data.
@@ -997,7 +1009,11 @@ type GetMeterDataRequest {
   # One or more identifiers of the devices.
   deviceId: [String]
   # The unique identifier of the register.
-  variableName: [String]
+  variableId: [String]
+  # The filter status bits, only values with these status bits will be returned in the response.
+  filterIncludeStatus: Int64
+  # The filter status bits, only values without these status bits will be returned in the response.
+  filterExcludeStatus: Int64
 }
 
 type GetMeterEventsRequest {
@@ -1507,6 +1523,17 @@ type Variable {
   metadata: MetadataFields
 }
 
+type VariableDeviceData {
+  # The unique identifier of the variable.
+  variableId: String
+  # The list of timestamps for the variable data.
+  timestamps: [Timestamp]
+  # The unit of the value.
+  unit: [String]
+  # The value.
+  value: [MeasuredValue]
+}
+
 type VariableSpec {
   # The list of device configuration register identifiers.
   registerId: [String]
@@ -1870,6 +1897,11 @@ type Query {
   deleteDeviceConfigurationTemplate: Empty
   addDeviceConfigurationRegisterToDeviceConfigurationTemplate: Empty
   removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate: Empty
+  getDeviceData: DeviceData
+  getDeviceDataRegisters: RegisterValues
+  getDeviceDataProfiles: ProfileValues
+  getDeviceDataIrregularProfiles: IrregularProfileValues
+  getMeterEvents: EventRecords
   createCommunicationUnit: StringValue
   updateCommunicationUnit: Empty
   listCommunicationUnits: ListOfCommunicationUnit
@@ -1909,10 +1941,6 @@ type Query {
   deleteFieldDescriptor: Empty
   listFieldDescriptors: ListOfFieldDescriptor
   listFieldDescriptorOptions: FieldDescriptorOptions
-  getMeterDataRegisters: RegisterValues
-  getMeterDataProfiles: ProfileValues
-  getMeterDataIrregularProfiles: IrregularProfileValues
-  getMeterEvents: EventRecords
   createTimeOfUseTable: StringValue
   listTimeOfUseTables: ListOfTimeOfUseTable
   getTimeOfUseTable: TimeOfUseTable

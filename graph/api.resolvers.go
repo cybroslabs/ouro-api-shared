@@ -141,6 +141,31 @@ func (r *queryResolver) RemoveDeviceConfigurationRegisterFromDeviceConfiguration
 	panic(fmt.Errorf("not implemented: RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate - removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate"))
 }
 
+// GetDeviceData is the resolver for the getDeviceData field.
+func (r *queryResolver) GetDeviceData(ctx context.Context) (*model.DeviceData, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceData - getDeviceData"))
+}
+
+// GetDeviceDataRegisters is the resolver for the getDeviceDataRegisters field.
+func (r *queryResolver) GetDeviceDataRegisters(ctx context.Context) (*model.RegisterValues, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceDataRegisters - getDeviceDataRegisters"))
+}
+
+// GetDeviceDataProfiles is the resolver for the getDeviceDataProfiles field.
+func (r *queryResolver) GetDeviceDataProfiles(ctx context.Context) (*model.ProfileValues, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceDataProfiles - getDeviceDataProfiles"))
+}
+
+// GetDeviceDataIrregularProfiles is the resolver for the getDeviceDataIrregularProfiles field.
+func (r *queryResolver) GetDeviceDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceDataIrregularProfiles - getDeviceDataIrregularProfiles"))
+}
+
+// GetMeterEvents is the resolver for the getMeterEvents field.
+func (r *queryResolver) GetMeterEvents(ctx context.Context) (*model.EventRecords, error) {
+	panic(fmt.Errorf("not implemented: GetMeterEvents - getMeterEvents"))
+}
+
 // CreateCommunicationUnit is the resolver for the createCommunicationUnit field.
 func (r *queryResolver) CreateCommunicationUnit(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateCommunicationUnit - createCommunicationUnit"))
@@ -334,26 +359,6 @@ func (r *queryResolver) ListFieldDescriptors(ctx context.Context) (*model.ListOf
 // ListFieldDescriptorOptions is the resolver for the listFieldDescriptorOptions field.
 func (r *queryResolver) ListFieldDescriptorOptions(ctx context.Context) (*model.FieldDescriptorOptions, error) {
 	panic(fmt.Errorf("not implemented: ListFieldDescriptorOptions - listFieldDescriptorOptions"))
-}
-
-// GetMeterDataRegisters is the resolver for the getMeterDataRegisters field.
-func (r *queryResolver) GetMeterDataRegisters(ctx context.Context) (*model.RegisterValues, error) {
-	panic(fmt.Errorf("not implemented: GetMeterDataRegisters - getMeterDataRegisters"))
-}
-
-// GetMeterDataProfiles is the resolver for the getMeterDataProfiles field.
-func (r *queryResolver) GetMeterDataProfiles(ctx context.Context) (*model.ProfileValues, error) {
-	panic(fmt.Errorf("not implemented: GetMeterDataProfiles - getMeterDataProfiles"))
-}
-
-// GetMeterDataIrregularProfiles is the resolver for the getMeterDataIrregularProfiles field.
-func (r *queryResolver) GetMeterDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error) {
-	panic(fmt.Errorf("not implemented: GetMeterDataIrregularProfiles - getMeterDataIrregularProfiles"))
-}
-
-// GetMeterEvents is the resolver for the getMeterEvents field.
-func (r *queryResolver) GetMeterEvents(ctx context.Context) (*model.EventRecords, error) {
-	panic(fmt.Errorf("not implemented: GetMeterEvents - getMeterEvents"))
 }
 
 // CreateTimeOfUseTable is the resolver for the createTimeOfUseTable field.

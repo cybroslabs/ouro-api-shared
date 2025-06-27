@@ -1,8 +1,8 @@
-# ApiService - Meter Events
+# ApiService - Device Events
 
 ## GetMeterEvents
 
-The method to stream out profile-typed meter data.
+The method to stream out profile-typed device events.
 
 ```proto
 GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (io.clbs.openhes.models.acquisition.EventRecords)

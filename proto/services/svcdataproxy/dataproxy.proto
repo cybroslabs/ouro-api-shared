@@ -55,21 +55,25 @@ service DataproxyService {
     // Updates the bulk metadata. The metadata is used to store additional information about the job.
     rpc UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata) returns (google.protobuf.Empty);
 
-    // @group: Meter Data
+    // @group: Device Data
+    // The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+    rpc GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData);
+
+    // @group: Device Data
     // The method to stream out register-typed meter data.
-    rpc GetMeterDataRegisters(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);
+    rpc GetDeviceDataRegisters(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.RegisterValues);
 
-    // @group: Meter Data
+    // @group: Device Data
     // The method to stream out profile-typed meter data.
-    rpc GetMeterDataProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.ProfileValues);
+    rpc GetDeviceDataProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.ProfileValues);
 
-    // @group: Meter Data
+    // @group: Device Data
     // The method to stream out profile-typed meter data.
-    rpc GetMeterDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetMeterDataRequest) returns (stream io.clbs.openhes.models.acquisition.IrregularProfileValues);
+    rpc GetDeviceDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (stream io.clbs.openhes.models.acquisition.IrregularProfileValues);
 
-    // @group: Meter Events
+    // @group: Device Events
     // The method to stream out profile-typed meter data.
-    rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
+    rpc GetDeviceEvents(io.clbs.openhes.models.acquisition.GetMeterEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
 
     // @group: Fields
     // The method to create a new field descriptor user-defined field descriptor.
