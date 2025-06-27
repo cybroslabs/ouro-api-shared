@@ -108,19 +108,19 @@ message SetUnknownDevicesRequest {
 }
 
 message UnknownDevicesItem {
-    int64 x_device_identifier     = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId.
-    common.FieldValues attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
+    int64 x_device_identifier                 = 1;  // The unique x-device-identifier of the unknown device, see GetMapDeviceKeyXId.
+    map<string, common.FieldValue> attributes = 2;  // The list of attributes of the unknown device. It must not be empty.
 }
 
 message DirectNeightbours {
-    int64 x_device_identifier = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId.
-    // FIXME: common.FieldValues attributes = 2;  // The list of attributes of the neighbour device. It must not be empty.
+    int64 x_device_identifier                 = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId.
+    map<string, common.FieldValue> attributes = 2;  // The field values containing attributes of the neighbour device.
 }
 
 message IndirectNeightbours {
-    int64 from_x_device_identifier = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
-    int64 to_x_device_identifier   = 2;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
-    // FIXME: common.FieldValues attributes  = 3;  // The list of attributes of the neighbour device. It must not be empty.
+    int64 from_x_device_identifier            = 1;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
+    int64 to_x_device_identifier              = 2;  // The unique x-device-identifier of the neighbour device, see GetMapDeviceKeyXId, where 'from' represents a nearer device from the CU in the topology and 'to' represents a further-away device from the CU.
+    map<string, common.FieldValue> attributes = 3;  // The field values containing attributes of the neighbour device.
 }
 
 message SetNeighboursRequest {

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 
 	"github.com/rmg/iso4217"
@@ -302,14 +303,32 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 		return fd
 	}
 
-	if fd.GetDataType() != FieldDataType_TEXT {
-		panic("Options are only supported for TEXT fields")
+	if fd.GetDataType() != FieldDataType_INTEGER && fd.GetDataType() != FieldDataType_TEXT {
+		panic("Options are only supported for INTEGER or TEXT fields")
+	}
+	if fd.GetDataType() == FieldDataType_INTEGER {
+		// Validate indexes
+		for k := range options {
+			if _, err := strconv.Atoi(k); err != nil {
+				panic("Options keys must be string-integers when FieldDataType is INTEGER")
+			}
+		}
 	}
 
 	fd.SetFormat(FieldDisplayFormat_COMBO)
 	validation := fd.ensureValidation()
 	validation.SetOptions(options)
 	validation.ClearOptionsSource()
+	return fd
+}
+
+func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
+	fd.SetDataType(FieldDataType_INTEGER)
+	tmp := make(map[string]string, len(options))
+	for k, v := range options {
+		tmp[strconv.FormatInt(int64(k), 10)] = v
+	}
+	fd.ensureValidation().SetOptions(tmp)
 	return fd
 }
 
