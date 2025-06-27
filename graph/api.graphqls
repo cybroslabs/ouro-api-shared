@@ -844,6 +844,8 @@ type DeviceConfigurationRegisterSpec {
   registerType: RegisterType
   # The field values.
   attributes: [_mapFieldValue]
+  # The data type of the register;
+  dataType: FieldDataType
 }
 
 type DeviceConfigurationTemplate {
@@ -1014,9 +1016,11 @@ type GetDeviceDataRequest {
   filterIncludeStatus: Int64
   # The filter status bits, only values without these status bits will be returned in the response.
   filterExcludeStatus: Int64
+  # If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+  snapshot: Timestamp
 }
 
-type GetMeterEventsRequest {
+type GetDeviceEventsRequest {
   # The start timestamp of the data.
   from: Timestamp
   # The end timestamp of the data.
@@ -1537,6 +1541,10 @@ type VariableDeviceData {
 type VariableSpec {
   # The list of device configuration register identifiers.
   registerId: [String]
+  # The data type of the variable. Only registers of the same data type can be linked to the variable.
+  dataType: FieldDataType
+  # If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).
+  excludeDataFrom: Boolean
 }
 
 # DayProfile represents the profile for a single day, containing multiple Switching times

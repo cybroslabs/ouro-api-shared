@@ -404,7 +404,7 @@ class ApiServiceStub(object):
                 _registered_method=True)
         self.GetMeterEvents = channel.unary_stream(
                 '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
-                request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+                request_serializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
                 _registered_method=True)
         self.CreateTimeOfUseTable = channel.unary_unary(
@@ -1498,7 +1498,7 @@ def add_ApiServiceServicer_to_server(servicer, server):
             ),
             'GetMeterEvents': grpc.unary_stream_rpc_method_handler(
                     servicer.GetMeterEvents,
-                    request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
             ),
             'CreateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
@@ -3605,7 +3605,7 @@ class ApiService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
-            acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+            acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
             acquisition_dot_shared__pb2.EventRecords.FromString,
             options,
             channel_credentials,

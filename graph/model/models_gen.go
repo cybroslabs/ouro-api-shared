@@ -329,6 +329,7 @@ type DeviceConfigurationRegisterSpec struct {
 	DriverType   *string          `json:"driverType,omitempty"`
 	RegisterType *RegisterType    `json:"registerType,omitempty"`
 	Attributes   []*MapFieldValue `json:"attributes,omitempty"`
+	DataType     *FieldDataType   `json:"dataType,omitempty"`
 }
 
 type DeviceConfigurationTemplate struct {
@@ -500,9 +501,10 @@ type GetDeviceDataRequest struct {
 	VariableID          []*string `json:"variableId,omitempty"`
 	FilterIncludeStatus *int64    `json:"filterIncludeStatus,omitempty"`
 	FilterExcludeStatus *int64    `json:"filterExcludeStatus,omitempty"`
+	Snapshot            *string   `json:"snapshot,omitempty"`
 }
 
-type GetMeterEventsRequest struct {
+type GetDeviceEventsRequest struct {
 	From *string `json:"from,omitempty"`
 	To   *string `json:"to,omitempty"`
 }
@@ -928,7 +930,9 @@ type VariableDeviceData struct {
 }
 
 type VariableSpec struct {
-	RegisterID []*string `json:"registerId,omitempty"`
+	RegisterID      []*string      `json:"registerId,omitempty"`
+	DataType        *FieldDataType `json:"dataType,omitempty"`
+	ExcludeDataFrom *bool          `json:"excludeDataFrom,omitempty"`
 }
 
 type Week struct {

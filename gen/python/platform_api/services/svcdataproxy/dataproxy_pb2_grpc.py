@@ -99,7 +99,7 @@ class DataproxyServiceStub(object):
                 _registered_method=True)
         self.GetDeviceEvents = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
-                request_serializer=acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+                request_serializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
                 _registered_method=True)
         self.CreateFieldDescriptor = channel.unary_unary(
@@ -370,7 +370,7 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
             ),
             'GetDeviceEvents': grpc.unary_stream_rpc_method_handler(
                     servicer.GetDeviceEvents,
-                    request_deserializer=acquisition_dot_main__pb2.GetMeterEventsRequest.FromString,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
             ),
             'CreateFieldDescriptor': grpc.unary_unary_rpc_method_handler(
@@ -825,7 +825,7 @@ class DataproxyService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
-            acquisition_dot_main__pb2.GetMeterEventsRequest.SerializeToString,
+            acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
             acquisition_dot_shared__pb2.EventRecords.FromString,
             options,
             channel_credentials,

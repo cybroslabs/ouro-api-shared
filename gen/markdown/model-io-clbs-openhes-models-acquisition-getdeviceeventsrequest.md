@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.GetMeterEventsRequest
+# Model: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
 
 ## Fields
 

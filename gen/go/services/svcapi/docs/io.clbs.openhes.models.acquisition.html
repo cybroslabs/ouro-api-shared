@@ -690,9 +690,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceEventsRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>GetMeterEventsRequest</code> 
+          <code>GetDeviceEventsRequest</code> 
         </a>
       </p>
       
@@ -5085,6 +5085,22 @@
       
     </tr>
     
+    <tr>
+      <td>4</td>
+      <td>
+        dataType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDataType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDataType"><span title="io.clbs.openhes.models.common.FieldDataType">io.clbs.openhes.models.common.FieldDataType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data type of the register;</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -6521,6 +6537,21 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
       
     </tr>
     
+    <tr>
+      <td>7</td>
+      <td>
+        snapshot
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -6532,9 +6563,9 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceEventsRequest">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.GetMeterEventsRequest" title="io.clbs.openhes.models.acquisition.GetMeterEventsRequest">message GetMeterEventsRequest</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceEventsRequest" title="io.clbs.openhes.models.acquisition.GetDeviceEventsRequest">message GetDeviceEventsRequest</a>
   
   </span>
   
@@ -11272,6 +11303,37 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The list of device configuration register identifiers.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        dataType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FieldDataType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.FieldDataType"><span title="io.clbs.openhes.models.common.FieldDataType">io.clbs.openhes.models.common.FieldDataType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data type of the variable. Only registers of the same data type can be linked to the variable.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        excludeDataFrom
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).</p></td>
       
     </tr>
     

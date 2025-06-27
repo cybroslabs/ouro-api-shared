@@ -336,7 +336,9 @@ message Variable {
 }
 
 message VariableSpec {
-    repeated string register_id = 1;  // The list of device configuration register identifiers.
+    repeated string register_id    = 1;  // The list of device configuration register identifiers.
+    common.FieldDataType data_type = 2;  // The data type of the variable. Only registers of the same data type can be linked to the variable.
+    bool exclude_data_from         = 3;  // If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).
 }
 
 message AddRegisterToVariableRequest {
@@ -403,12 +405,13 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
 // Device Data
 
 message GetDeviceDataRequest {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
-    repeated string device_id      = 3;  // One or more identifiers of the devices.
-    repeated string variable_id    = 4;  // The unique identifier of the register.
-    int64 filter_include_status    = 5;  // The filter status bits, only values with these status bits will be returned in the response.
-    int64 filter_exclude_status    = 6;  // The filter status bits, only values without these status bits will be returned in the response.
+    google.protobuf.Timestamp from     = 1;  // The start timestamp of the data.
+    google.protobuf.Timestamp to       = 2;  // The end timestamp of the data.
+    repeated string device_id          = 3;  // One or more identifiers of the devices.
+    repeated string variable_id        = 4;  // The unique identifier of the register.
+    int64 filter_include_status        = 5;  // The filter status bits, only values with these status bits will be returned in the response.
+    int64 filter_exclude_status        = 6;  // The filter status bits, only values without these status bits will be returned in the response.
+    google.protobuf.Timestamp snapshot = 7;  // If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
 }
 
 message DeviceData {
@@ -429,7 +432,7 @@ message VariableDeviceData {
 
 // Device Events
 
-message GetMeterEventsRequest {
+message GetDeviceEventsRequest {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
 }

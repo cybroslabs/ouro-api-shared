@@ -30,7 +30,7 @@ var File_services_svcdataproxy_dataproxy_proto protoreflect.FileDescriptor
 
 const file_services_svcdataproxy_dataproxy_proto_rawDesc = "" +
 	"\n" +
-	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xe4\x10\n" +
+	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xe5\x10\n" +
 	"\x10DataproxyService\x12h\n" +
 	"\tListBulks\x12+.io.clbs.openhes.models.common.ListSelector\x1a..io.clbs.openhes.models.acquisition.ListOfBulk\x12z\n" +
 	"\fListBulkJobs\x127.io.clbs.openhes.models.acquisition.ListBulkJobsRequest\x1a1.io.clbs.openhes.models.acquisition.ListOfBulkJob\x12W\n" +
@@ -50,8 +50,8 @@ const file_services_svcdataproxy_dataproxy_proto_rawDesc = "" +
 	"\rGetDeviceData\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a..io.clbs.openhes.models.acquisition.DeviceData\x12\x88\x01\n" +
 	"\x16GetDeviceDataRegisters\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a2.io.clbs.openhes.models.acquisition.RegisterValues0\x01\x12\x86\x01\n" +
 	"\x15GetDeviceDataProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a1.io.clbs.openhes.models.acquisition.ProfileValues0\x01\x12\x98\x01\n" +
-	"\x1eGetDeviceDataIrregularProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x80\x01\n" +
-	"\x0fGetDeviceEvents\x129.io.clbs.openhes.models.acquisition.GetMeterEventsRequest\x1a0.io.clbs.openhes.models.acquisition.EventRecords0\x01\x12r\n" +
+	"\x1eGetDeviceDataIrregularProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x81\x01\n" +
+	"\x0fGetDeviceEvents\x12:.io.clbs.openhes.models.acquisition.GetDeviceEventsRequest\x1a0.io.clbs.openhes.models.acquisition.EventRecords0\x01\x12r\n" +
 	"\x15CreateFieldDescriptor\x12;.io.clbs.openhes.models.common.CreateFieldDescriptorRequest\x1a\x1c.google.protobuf.StringValue\x12_\n" +
 	"\x15UpdateFieldDescriptor\x12..io.clbs.openhes.models.common.FieldDescriptor\x1a\x16.google.protobuf.Empty\x12g\n" +
 	"\x15DeleteFieldDescriptor\x126.io.clbs.openhes.models.common.FieldDescriptorSelector\x1a\x16.google.protobuf.Empty\x12b\n" +
@@ -66,7 +66,7 @@ var file_services_svcdataproxy_dataproxy_proto_goTypes = []any{
 	(*acquisition.CreateProxyBulkRequest)(nil),  // 5: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest
 	(*acquisition.CreateBulkRequest)(nil),       // 6: io.clbs.openhes.models.acquisition.CreateBulkRequest
 	(*acquisition.GetDeviceDataRequest)(nil),    // 7: io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	(*acquisition.GetMeterEventsRequest)(nil),   // 8: io.clbs.openhes.models.acquisition.GetMeterEventsRequest
+	(*acquisition.GetDeviceEventsRequest)(nil),  // 8: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
 	(*common.CreateFieldDescriptorRequest)(nil), // 9: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
 	(*common.FieldDescriptor)(nil),              // 10: io.clbs.openhes.models.common.FieldDescriptor
 	(*common.FieldDescriptorSelector)(nil),      // 11: io.clbs.openhes.models.common.FieldDescriptorSelector
@@ -99,7 +99,7 @@ var file_services_svcdataproxy_dataproxy_proto_depIdxs = []int32{
 	7,  // 12: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataRegisters:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
 	7,  // 13: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
 	7,  // 14: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataIrregularProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	8,  // 15: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceEvents:input_type -> io.clbs.openhes.models.acquisition.GetMeterEventsRequest
+	8,  // 15: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceEvents:input_type -> io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
 	9,  // 16: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateFieldDescriptor:input_type -> io.clbs.openhes.models.common.CreateFieldDescriptorRequest
 	10, // 17: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptor
 	11, // 18: io.clbs.openhes.services.svcdataproxy.DataproxyService.DeleteFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptorSelector

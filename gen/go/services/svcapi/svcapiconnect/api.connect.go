@@ -520,7 +520,7 @@ type ApiServiceClient interface {
 	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error)
+	GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -1005,7 +1005,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataIrregularProfiles")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterEvents: connect.NewClient[acquisition.GetMeterEventsRequest, acquisition.EventRecords](
+		getMeterEvents: connect.NewClient[acquisition.GetDeviceEventsRequest, acquisition.EventRecords](
 			httpClient,
 			baseURL+ApiServiceGetMeterEventsProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetMeterEvents")),
@@ -1122,7 +1122,7 @@ type apiServiceClient struct {
 	getDeviceDataRegisters                                           *connect.Client[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]
 	getDeviceDataProfiles                                            *connect.Client[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]
 	getDeviceDataIrregularProfiles                                   *connect.Client[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]
-	getMeterEvents                                                   *connect.Client[acquisition.GetMeterEventsRequest, acquisition.EventRecords]
+	getMeterEvents                                                   *connect.Client[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]
 	createTimeOfUseTable                                             *connect.Client[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue]
 	listTimeOfUseTables                                              *connect.Client[common.ListSelector, acquisition.ListOfTimeOfUseTable]
 	getTimeOfUseTable                                                *connect.Client[wrapperspb.StringValue, acquisition.TimeOfUseTable]
@@ -1532,7 +1532,7 @@ func (c *apiServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, r
 }
 
 // GetMeterEvents calls io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents.
-func (c *apiServiceClient) GetMeterEvents(ctx context.Context, req *connect.Request[acquisition.GetMeterEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error) {
+func (c *apiServiceClient) GetMeterEvents(ctx context.Context, req *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error) {
 	return c.getMeterEvents.CallServerStream(ctx, req)
 }
 
@@ -1812,7 +1812,7 @@ type ApiServiceHandler interface {
 	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error
+	GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -2808,7 +2808,7 @@ func (UnimplementedApiServiceHandler) GetDeviceDataIrregularProfiles(context.Con
 	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterEvents(context.Context, *connect.Request[acquisition.GetMeterEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error {
+func (UnimplementedApiServiceHandler) GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents is not implemented"))
 }
 

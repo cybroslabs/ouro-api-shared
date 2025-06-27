@@ -363,6 +363,7 @@ type ComplexityRoot struct {
 
 	DeviceConfigurationRegisterSpec struct {
 		Attributes   func(childComplexity int) int
+		DataType     func(childComplexity int) int
 		DriverType   func(childComplexity int) int
 		RegisterType func(childComplexity int) int
 	}
@@ -534,11 +535,12 @@ type ComplexityRoot struct {
 		FilterExcludeStatus func(childComplexity int) int
 		FilterIncludeStatus func(childComplexity int) int
 		From                func(childComplexity int) int
+		Snapshot            func(childComplexity int) int
 		To                  func(childComplexity int) int
 		VariableID          func(childComplexity int) int
 	}
 
-	GetMeterEventsRequest struct {
+	GetDeviceEventsRequest struct {
 		From func(childComplexity int) int
 		To   func(childComplexity int) int
 	}
@@ -1046,7 +1048,9 @@ type ComplexityRoot struct {
 	}
 
 	VariableSpec struct {
-		RegisterID func(childComplexity int) int
+		DataType        func(childComplexity int) int
+		ExcludeDataFrom func(childComplexity int) int
+		RegisterID      func(childComplexity int) int
 	}
 
 	Week struct {
@@ -2141,6 +2145,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.DeviceConfigurationRegisterSpec.Attributes(childComplexity), true
 
+	case "DeviceConfigurationRegisterSpec.dataType":
+		if e.complexity.DeviceConfigurationRegisterSpec.DataType == nil {
+			break
+		}
+
+		return e.complexity.DeviceConfigurationRegisterSpec.DataType(childComplexity), true
+
 	case "DeviceConfigurationRegisterSpec.driverType":
 		if e.complexity.DeviceConfigurationRegisterSpec.DriverType == nil {
 			break
@@ -2834,6 +2845,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.GetDeviceDataRequest.From(childComplexity), true
 
+	case "GetDeviceDataRequest.snapshot":
+		if e.complexity.GetDeviceDataRequest.Snapshot == nil {
+			break
+		}
+
+		return e.complexity.GetDeviceDataRequest.Snapshot(childComplexity), true
+
 	case "GetDeviceDataRequest.to":
 		if e.complexity.GetDeviceDataRequest.To == nil {
 			break
@@ -2848,19 +2866,19 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.GetDeviceDataRequest.VariableID(childComplexity), true
 
-	case "GetMeterEventsRequest.from":
-		if e.complexity.GetMeterEventsRequest.From == nil {
+	case "GetDeviceEventsRequest.from":
+		if e.complexity.GetDeviceEventsRequest.From == nil {
 			break
 		}
 
-		return e.complexity.GetMeterEventsRequest.From(childComplexity), true
+		return e.complexity.GetDeviceEventsRequest.From(childComplexity), true
 
-	case "GetMeterEventsRequest.to":
-		if e.complexity.GetMeterEventsRequest.To == nil {
+	case "GetDeviceEventsRequest.to":
+		if e.complexity.GetDeviceEventsRequest.To == nil {
 			break
 		}
 
-		return e.complexity.GetMeterEventsRequest.To(childComplexity), true
+		return e.complexity.GetDeviceEventsRequest.To(childComplexity), true
 
 	case "IrregularProfileValues.unit":
 		if e.complexity.IrregularProfileValues.Unit == nil {
@@ -4968,6 +4986,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.VariableDeviceData.VariableID(childComplexity), true
+
+	case "VariableSpec.dataType":
+		if e.complexity.VariableSpec.DataType == nil {
+			break
+		}
+
+		return e.complexity.VariableSpec.DataType(childComplexity), true
+
+	case "VariableSpec.excludeDataFrom":
+		if e.complexity.VariableSpec.ExcludeDataFrom == nil {
+			break
+		}
+
+		return e.complexity.VariableSpec.ExcludeDataFrom(childComplexity), true
 
 	case "VariableSpec.registerId":
 		if e.complexity.VariableSpec.RegisterID == nil {
@@ -10241,6 +10273,8 @@ func (ec *executionContext) fieldContext_CreateDeviceConfigurationRegisterReques
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_registerType(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_attributes(ctx, field)
+			case "dataType":
+				return ec.fieldContext_DeviceConfigurationRegisterSpec_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceConfigurationRegisterSpec", field.Name)
 		},
@@ -10942,6 +10976,10 @@ func (ec *executionContext) fieldContext_CreateVariableRequest_spec(_ context.Co
 			switch field.Name {
 			case "registerId":
 				return ec.fieldContext_VariableSpec_registerId(ctx, field)
+			case "dataType":
+				return ec.fieldContext_VariableSpec_dataType(ctx, field)
+			case "excludeDataFrom":
+				return ec.fieldContext_VariableSpec_excludeDataFrom(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type VariableSpec", field.Name)
 		},
@@ -11704,6 +11742,8 @@ func (ec *executionContext) fieldContext_DeviceConfigurationRegister_spec(_ cont
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_registerType(ctx, field)
 			case "attributes":
 				return ec.fieldContext_DeviceConfigurationRegisterSpec_attributes(ctx, field)
+			case "dataType":
+				return ec.fieldContext_DeviceConfigurationRegisterSpec_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceConfigurationRegisterSpec", field.Name)
 		},
@@ -11888,6 +11928,47 @@ func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_attribu
 				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceConfigurationRegisterSpec_dataType(ctx context.Context, field graphql.CollectedField, obj *model.DeviceConfigurationRegisterSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceConfigurationRegisterSpec_dataType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDataType)
+	fc.Result = res
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceConfigurationRegisterSpec_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceConfigurationRegisterSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDataType does not have child fields")
 		},
 	}
 	return fc, nil
@@ -16218,8 +16299,49 @@ func (ec *executionContext) fieldContext_GetDeviceDataRequest_filterExcludeStatu
 	return fc, nil
 }
 
-func (ec *executionContext) _GetMeterEventsRequest_from(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterEventsRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_GetMeterEventsRequest_from(ctx, field)
+func (ec *executionContext) _GetDeviceDataRequest_snapshot(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceDataRequest_snapshot(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Snapshot, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetDeviceDataRequest_snapshot(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetDeviceDataRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetDeviceEventsRequest_from(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceEventsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceEventsRequest_from(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -16246,9 +16368,9 @@ func (ec *executionContext) _GetMeterEventsRequest_from(ctx context.Context, fie
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_GetMeterEventsRequest_from(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_GetDeviceEventsRequest_from(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "GetMeterEventsRequest",
+		Object:     "GetDeviceEventsRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -16259,8 +16381,8 @@ func (ec *executionContext) fieldContext_GetMeterEventsRequest_from(_ context.Co
 	return fc, nil
 }
 
-func (ec *executionContext) _GetMeterEventsRequest_to(ctx context.Context, field graphql.CollectedField, obj *model.GetMeterEventsRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_GetMeterEventsRequest_to(ctx, field)
+func (ec *executionContext) _GetDeviceEventsRequest_to(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceEventsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceEventsRequest_to(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -16287,9 +16409,9 @@ func (ec *executionContext) _GetMeterEventsRequest_to(ctx context.Context, field
 	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_GetMeterEventsRequest_to(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_GetDeviceEventsRequest_to(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "GetMeterEventsRequest",
+		Object:     "GetDeviceEventsRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -29864,6 +29986,10 @@ func (ec *executionContext) fieldContext_Variable_spec(_ context.Context, field 
 			switch field.Name {
 			case "registerId":
 				return ec.fieldContext_VariableSpec_registerId(ctx, field)
+			case "dataType":
+				return ec.fieldContext_VariableSpec_dataType(ctx, field)
+			case "excludeDataFrom":
+				return ec.fieldContext_VariableSpec_excludeDataFrom(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type VariableSpec", field.Name)
 		},
@@ -30146,6 +30272,88 @@ func (ec *executionContext) fieldContext_VariableSpec_registerId(_ context.Conte
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _VariableSpec_dataType(ctx context.Context, field graphql.CollectedField, obj *model.VariableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_VariableSpec_dataType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDataType)
+	fc.Result = res
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_VariableSpec_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "VariableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDataType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _VariableSpec_excludeDataFrom(ctx context.Context, field graphql.CollectedField, obj *model.VariableSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_VariableSpec_excludeDataFrom(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ExcludeDataFrom, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_VariableSpec_excludeDataFrom(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "VariableSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
 		},
 	}
 	return fc, nil
@@ -34805,6 +35013,8 @@ func (ec *executionContext) _DeviceConfigurationRegisterSpec(ctx context.Context
 			out.Values[i] = ec._DeviceConfigurationRegisterSpec_registerType(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._DeviceConfigurationRegisterSpec_attributes(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._DeviceConfigurationRegisterSpec_dataType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -35819,6 +36029,8 @@ func (ec *executionContext) _GetDeviceDataRequest(ctx context.Context, sel ast.S
 			out.Values[i] = ec._GetDeviceDataRequest_filterIncludeStatus(ctx, field, obj)
 		case "filterExcludeStatus":
 			out.Values[i] = ec._GetDeviceDataRequest_filterExcludeStatus(ctx, field, obj)
+		case "snapshot":
+			out.Values[i] = ec._GetDeviceDataRequest_snapshot(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -35842,21 +36054,21 @@ func (ec *executionContext) _GetDeviceDataRequest(ctx context.Context, sel ast.S
 	return out
 }
 
-var getMeterEventsRequestImplementors = []string{"GetMeterEventsRequest"}
+var getDeviceEventsRequestImplementors = []string{"GetDeviceEventsRequest"}
 
-func (ec *executionContext) _GetMeterEventsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetMeterEventsRequest) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, getMeterEventsRequestImplementors)
+func (ec *executionContext) _GetDeviceEventsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetDeviceEventsRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, getDeviceEventsRequestImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("GetMeterEventsRequest")
+			out.Values[i] = graphql.MarshalString("GetDeviceEventsRequest")
 		case "from":
-			out.Values[i] = ec._GetMeterEventsRequest_from(ctx, field, obj)
+			out.Values[i] = ec._GetDeviceEventsRequest_from(ctx, field, obj)
 		case "to":
-			out.Values[i] = ec._GetMeterEventsRequest_to(ctx, field, obj)
+			out.Values[i] = ec._GetDeviceEventsRequest_to(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -40183,6 +40395,10 @@ func (ec *executionContext) _VariableSpec(ctx context.Context, sel ast.Selection
 			out.Values[i] = graphql.MarshalString("VariableSpec")
 		case "registerId":
 			out.Values[i] = ec._VariableSpec_registerId(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._VariableSpec_dataType(ctx, field, obj)
+		case "excludeDataFrom":
+			out.Values[i] = ec._VariableSpec_excludeDataFrom(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

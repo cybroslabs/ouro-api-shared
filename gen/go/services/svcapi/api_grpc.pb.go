@@ -363,7 +363,7 @@ type ApiServiceClient interface {
 	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
+	GetMeterEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -1176,13 +1176,13 @@ func (c *apiServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, i
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ApiService_GetDeviceDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
 
-func (c *apiServiceClient) GetMeterEvents(ctx context.Context, in *acquisition.GetMeterEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
+func (c *apiServiceClient) GetMeterEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[3], ApiService_GetMeterEvents_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1500,7 +1500,7 @@ type ApiServiceServer interface {
 	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
+	GetMeterEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error)
@@ -1754,7 +1754,7 @@ func (UnimplementedApiServiceServer) GetDeviceDataProfiles(*acquisition.GetDevic
 func (UnimplementedApiServiceServer) GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetDeviceDataIrregularProfiles not implemented")
 }
-func (UnimplementedApiServiceServer) GetMeterEvents(*acquisition.GetMeterEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
+func (UnimplementedApiServiceServer) GetMeterEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
 	return status.Errorf(codes.Unimplemented, "method GetMeterEvents not implemented")
 }
 func (UnimplementedApiServiceServer) CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error) {
@@ -3141,11 +3141,11 @@ func _ApiService_GetDeviceDataIrregularProfiles_Handler(srv interface{}, stream 
 type ApiService_GetDeviceDataIrregularProfilesServer = grpc.ServerStreamingServer[acquisition.IrregularProfileValues]
 
 func _ApiService_GetMeterEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(acquisition.GetMeterEventsRequest)
+	m := new(acquisition.GetDeviceEventsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ApiServiceServer).GetMeterEvents(m, &grpc.GenericServerStream[acquisition.GetMeterEventsRequest, acquisition.EventRecords]{ServerStream: stream})
+	return srv.(ApiServiceServer).GetMeterEvents(m, &grpc.GenericServerStream[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.

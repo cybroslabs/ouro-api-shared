@@ -693,6 +693,7 @@ message DeviceConfigurationRegisterSpec {
     string driver_type                        = 1;  // The device (driver) type.
     RegisterType register_type                = 2;  // The type of action for which the register is defined.
     map<string, common.FieldValue> attributes = 3;  // The field values.
+    common.FieldDataType data_type            = 4;  // The data type of the register;
 }
 
 // Addon
