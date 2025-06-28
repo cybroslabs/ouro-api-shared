@@ -125,7 +125,7 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 
 var validFormats = map[FieldDataType][]FieldDisplayFormat{
 	FieldDataType_TEXT:      {FieldDisplayFormat_MULTILINE, FieldDisplayFormat_PASSWORD, FieldDisplayFormat_COMBO},
-	FieldDataType_INTEGER:   {FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY},
+	FieldDataType_INTEGER:   {FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY, FieldDisplayFormat_COMBO},
 	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
 	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE_ONLY, FieldDisplayFormat_UTC_DATETIME, FieldDisplayFormat_UTC_DATE_ONLY},
 	FieldDataType_BOOLEAN:   {FieldDisplayFormat_DEFAULT},
@@ -304,6 +304,7 @@ func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
 
 func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
 	if options == nil {
+		fd.SetFormat(FieldDisplayFormat_DEFAULT)
 		fd.ensureValidation().SetOptions(nil)
 		return fd
 	}
@@ -332,6 +333,12 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 // The keys of the map must be integers, and the values are the labels for the options
 // It's typically used for protobuf enum values.
 func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
+	if options == nil {
+		fd.SetFormat(FieldDisplayFormat_DEFAULT)
+		fd.ensureValidation().SetOptions(nil)
+		return fd
+	}
+
 	fd.SetDataType(FieldDataType_INTEGER)
 	tmp := make(map[string]string, len(options))
 	no_space := true
@@ -349,7 +356,10 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 		}
 	}
 
-	fd.ensureValidation().SetOptions(tmp)
+	fd.SetFormat(FieldDisplayFormat_COMBO)
+	validation := fd.ensureValidation()
+	validation.SetOptions(tmp)
+	validation.ClearOptionsSource()
 	return fd
 }
 
@@ -373,6 +383,7 @@ func CreateOptions[T EnumWithString](enumMap map[int32]string) map[string]string
 
 func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	if source == "" {
+		fd.SetFormat(FieldDisplayFormat_DEFAULT)
 		fd.ensureValidation().ClearOptionsSource()
 		return fd
 	}
