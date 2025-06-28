@@ -1,0 +1,33 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.cronjobs;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs";
+
+import "common/metadata.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message CreateCronJobRequest {
+    CronJobSpec spec               = 1;
+    common.MetadataFields metadata = 2;  // The metadata fields.
+}
+
+message CronJob {
+    CronJobSpec spec               = 1;
+    CronJobStatus status           = 2;
+    common.MetadataFields metadata = 3;  // The metadata fields.
+}
+
+message CronJobSpec {
+}
+
+message CronJobStatus {
+    google.protobuf.Timestamp last_run_at = 1;  // The timestamp of the last run.
+    google.protobuf.Timestamp next_run_at = 2;  // The timestamp of the next run.
+}
+
+message ListOfCronJob {
+    repeated CronJob items = 1;  // The list of cron jobs.
+    int32 total_count      = 2;  // The total number of items.
+}

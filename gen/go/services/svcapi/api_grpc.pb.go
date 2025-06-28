@@ -10,6 +10,7 @@ import (
 	context "context"
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -106,6 +107,14 @@ const (
 	ApiService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/GetTimeOfUseTable"
 	ApiService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTimeOfUseTable"
 	ApiService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable"
+	ApiService_CreateCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob"
+	ApiService_ListCronJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListCronJobs"
+	ApiService_GetCronJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetCronJob"
+	ApiService_UpdateCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/UpdateCronJob"
+	ApiService_DeleteCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCronJob"
+	ApiService_RunCronJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/RunCronJob"
+	ApiService_PauseCronJob_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob"
+	ApiService_ResumeCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -379,6 +388,30 @@ type ApiServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to create a new cron job.
+	CreateCronJob(ctx context.Context, in *cronjobs.CreateCronJobRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Cron Jobs
+	// The method to get the list of cron jobs.
+	ListCronJobs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*cronjobs.ListOfCronJob, error)
+	// @group: Cron Jobs
+	// The method to get the cron job.
+	GetCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*cronjobs.CronJob, error)
+	// @group: Cron Jobs
+	// The method to update the cron job.
+	UpdateCronJob(ctx context.Context, in *cronjobs.CronJob, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to delete the cron job.
+	DeleteCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to run the cron job immediately.
+	RunCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to pause the cron job.
+	PauseCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to resume the cron job.
+	ResumeCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiServiceClient struct {
@@ -1245,6 +1278,86 @@ func (c *apiServiceClient) DeleteTimeOfUseTable(ctx context.Context, in *wrapper
 	return out, nil
 }
 
+func (c *apiServiceClient) CreateCronJob(ctx context.Context, in *cronjobs.CreateCronJobRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListCronJobs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*cronjobs.ListOfCronJob, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(cronjobs.ListOfCronJob)
+	err := c.cc.Invoke(ctx, ApiService_ListCronJobs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*cronjobs.CronJob, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(cronjobs.CronJob)
+	err := c.cc.Invoke(ctx, ApiService_GetCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateCronJob(ctx context.Context, in *cronjobs.CronJob, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) RunCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_RunCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) PauseCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_PauseCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ResumeCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_ResumeCronJob_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1516,6 +1629,30 @@ type ApiServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to create a new cron job.
+	CreateCronJob(context.Context, *cronjobs.CreateCronJobRequest) (*wrapperspb.StringValue, error)
+	// @group: Cron Jobs
+	// The method to get the list of cron jobs.
+	ListCronJobs(context.Context, *common.ListSelector) (*cronjobs.ListOfCronJob, error)
+	// @group: Cron Jobs
+	// The method to get the cron job.
+	GetCronJob(context.Context, *wrapperspb.StringValue) (*cronjobs.CronJob, error)
+	// @group: Cron Jobs
+	// The method to update the cron job.
+	UpdateCronJob(context.Context, *cronjobs.CronJob) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to delete the cron job.
+	DeleteCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to run the cron job immediately.
+	RunCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to pause the cron job.
+	PauseCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Cron Jobs
+	// The method to resume the cron job.
+	ResumeCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -1771,6 +1908,30 @@ func (UnimplementedApiServiceServer) UpdateTimeOfUseTable(context.Context, *acqu
 }
 func (UnimplementedApiServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
+}
+func (UnimplementedApiServiceServer) CreateCronJob(context.Context, *cronjobs.CreateCronJobRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) ListCronJobs(context.Context, *common.ListSelector) (*cronjobs.ListOfCronJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCronJobs not implemented")
+}
+func (UnimplementedApiServiceServer) GetCronJob(context.Context, *wrapperspb.StringValue) (*cronjobs.CronJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateCronJob(context.Context, *cronjobs.CronJob) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) RunCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) PauseCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PauseCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) ResumeCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResumeCronJob not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -3241,6 +3402,150 @@ func _ApiService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_CreateCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(cronjobs.CreateCronJobRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateCronJob(ctx, req.(*cronjobs.CreateCronJobRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListCronJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListCronJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListCronJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListCronJobs(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetCronJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(cronjobs.CronJob)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateCronJob(ctx, req.(*cronjobs.CronJob))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteCronJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_RunCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).RunCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_RunCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).RunCronJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_PauseCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).PauseCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_PauseCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).PauseCronJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ResumeCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ResumeCronJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ResumeCronJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ResumeCronJob(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3559,6 +3864,38 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTimeOfUseTable",
 			Handler:    _ApiService_DeleteTimeOfUseTable_Handler,
+		},
+		{
+			MethodName: "CreateCronJob",
+			Handler:    _ApiService_CreateCronJob_Handler,
+		},
+		{
+			MethodName: "ListCronJobs",
+			Handler:    _ApiService_ListCronJobs_Handler,
+		},
+		{
+			MethodName: "GetCronJob",
+			Handler:    _ApiService_GetCronJob_Handler,
+		},
+		{
+			MethodName: "UpdateCronJob",
+			Handler:    _ApiService_UpdateCronJob_Handler,
+		},
+		{
+			MethodName: "DeleteCronJob",
+			Handler:    _ApiService_DeleteCronJob_Handler,
+		},
+		{
+			MethodName: "RunCronJob",
+			Handler:    _ApiService_RunCronJob_Handler,
+		},
+		{
+			MethodName: "PauseCronJob",
+			Handler:    _ApiService_PauseCronJob_Handler,
+		},
+		{
+			MethodName: "ResumeCronJob",
+			Handler:    _ApiService_ResumeCronJob_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

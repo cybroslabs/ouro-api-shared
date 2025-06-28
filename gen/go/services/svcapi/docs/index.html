@@ -413,6 +413,181 @@ The missing values in the defaults will be deleted if has been set previously in
 
   <div class="taggroup">
     
+    <h4>Cron Jobs</h4>
+    
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CreateCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CreateCronJob">
+            rpc <code>CreateCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.cronjobs.html#message-io.clbs.openhes.models.cronjobs.CreateCronJobRequest"><span title="io.clbs.openhes.models.cronjobs.CreateCronJobRequest">io.clbs.openhes.models.cronjobs.CreateCronJobRequest</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to create a new cron job.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListCronJobs">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListCronJobs">
+            rpc <code>ListCronJobs</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelector"><span title="io.clbs.openhes.models.common.ListSelector">io.clbs.openhes.models.common.ListSelector</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.cronjobs.html#message-io.clbs.openhes.models.cronjobs.ListOfCronJob"><span title="io.clbs.openhes.models.cronjobs.ListOfCronJob">io.clbs.openhes.models.cronjobs.ListOfCronJob</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to get the list of cron jobs.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetCronJob">
+            rpc <code>GetCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.cronjobs.html#message-io.clbs.openhes.models.cronjobs.CronJob"><span title="io.clbs.openhes.models.cronjobs.CronJob">io.clbs.openhes.models.cronjobs.CronJob</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to get the cron job.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-UpdateCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-UpdateCronJob">
+            rpc <code>UpdateCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.cronjobs.html#message-io.clbs.openhes.models.cronjobs.CronJob"><span title="io.clbs.openhes.models.cronjobs.CronJob">io.clbs.openhes.models.cronjobs.CronJob</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to update the cron job.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-DeleteCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-DeleteCronJob">
+            rpc <code>DeleteCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to delete the cron job.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-RunCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-RunCronJob">
+            rpc <code>RunCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to run the cron job immediately.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-PauseCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-PauseCronJob">
+            rpc <code>PauseCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to pause the cron job.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ResumeCronJob">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ResumeCronJob">
+            rpc <code>ResumeCronJob</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method to resume the cron job.</p></p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <div class="taggroup">
+    
     <h4>Device Configuration Register</h4>
     
     

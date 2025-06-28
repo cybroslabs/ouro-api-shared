@@ -252,6 +252,11 @@ type CreateCommunicationUnitRequest struct {
 	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
+type CreateCronJobRequest struct {
+	Spec     *CronJobSpec    `json:"spec,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
 type CreateDeviceConfigurationRegisterRequest struct {
 	Spec     *DeviceConfigurationRegisterSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields                  `json:"metadata,omitempty"`
@@ -289,6 +294,21 @@ type CreateTimeOfUseTableRequest struct {
 type CreateVariableRequest struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type CronJob struct {
+	Spec     *CronJobSpec    `json:"spec,omitempty"`
+	Status   *CronJobStatus  `json:"status,omitempty"`
+	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type CronJobSpec struct {
+	Empty *bool `json:"_empty,omitempty"`
+}
+
+type CronJobStatus struct {
+	LastRunAt *string `json:"lastRunAt,omitempty"`
+	NextRunAt *string `json:"nextRunAt,omitempty"`
 }
 
 type DataLinkTemplate struct {
@@ -632,6 +652,11 @@ type ListOfCommunicationBus struct {
 type ListOfCommunicationUnit struct {
 	Items      []*CommunicationUnit `json:"items,omitempty"`
 	TotalCount *int32               `json:"totalCount,omitempty"`
+}
+
+type ListOfCronJob struct {
+	Items      []*CronJob `json:"items,omitempty"`
+	TotalCount *int32     `json:"totalCount,omitempty"`
 }
 
 type ListOfDevice struct {

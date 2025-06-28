@@ -1836,6 +1836,37 @@ type UpdateMetadata {
   metadata: MetadataFields
 }
 
+type CreateCronJobRequest {
+  spec: CronJobSpec
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CronJob {
+  spec: CronJobSpec
+  status: CronJobStatus
+  # The metadata fields.
+  metadata: MetadataFields
+}
+
+type CronJobSpec {
+  _empty: Boolean
+}
+
+type CronJobStatus {
+  # The timestamp of the last run.
+  lastRunAt: Timestamp
+  # The timestamp of the next run.
+  nextRunAt: Timestamp
+}
+
+type ListOfCronJob {
+  # The list of cron jobs.
+  items: [CronJob]
+  # The total number of items.
+  totalCount: Int
+}
+
 # Application config specification.
 type ApplicationConfig {
   # The default values for the application configuration.
@@ -1893,6 +1924,14 @@ type Query {
   getApplicationConfig: ApplicationConfigDescriptor
   updateApplicationConfig: Empty
   synchronizeComponentConfig: ComponentConfig
+  createCronJob: StringValue
+  listCronJobs: ListOfCronJob
+  getCronJob: CronJob
+  updateCronJob: Empty
+  deleteCronJob: Empty
+  runCronJob: Empty
+  pauseCronJob: Empty
+  resumeCronJob: Empty
   createDeviceConfigurationRegister: StringValue
   listDeviceConfigurationRegisters: ListOfDeviceConfigurationRegister
   getDeviceConfigurationRegister: DeviceConfigurationRegister

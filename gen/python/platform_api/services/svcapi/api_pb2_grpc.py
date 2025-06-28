@@ -7,6 +7,7 @@ from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 from common import metadata_pb2 as common_dot_metadata__pb2
 from common import types_pb2 as common_dot_types__pb2
+from cronjobs import cronjobs_pb2 as cronjobs_dot_cronjobs__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 from system import main_pb2 as system_dot_main__pb2
@@ -429,6 +430,46 @@ class ApiServiceStub(object):
                 _registered_method=True)
         self.DeleteTimeOfUseTable = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.CreateCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob',
+                request_serializer=cronjobs_dot_cronjobs__pb2.CreateCronJobRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                _registered_method=True)
+        self.ListCronJobs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListCronJobs',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=cronjobs_dot_cronjobs__pb2.ListOfCronJob.FromString,
+                _registered_method=True)
+        self.GetCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetCronJob',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=cronjobs_dot_cronjobs__pb2.CronJob.FromString,
+                _registered_method=True)
+        self.UpdateCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateCronJob',
+                request_serializer=cronjobs_dot_cronjobs__pb2.CronJob.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteCronJob',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.RunCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/RunCronJob',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.PauseCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.ResumeCronJob = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
@@ -1113,6 +1154,70 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to create a new cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListCronJobs(self, request, context):
+        """@group: Cron Jobs
+        The method to get the list of cron jobs.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to get the cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to update the cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to delete the cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RunCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to run the cron job immediately.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PauseCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to pause the cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ResumeCronJob(self, request, context):
+        """@group: Cron Jobs
+        The method to resume the cron job.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1523,6 +1628,46 @@ def add_ApiServiceServicer_to_server(servicer, server):
             ),
             'DeleteTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteTimeOfUseTable,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'CreateCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateCronJob,
+                    request_deserializer=cronjobs_dot_cronjobs__pb2.CreateCronJobRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            ),
+            'ListCronJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCronJobs,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=cronjobs_dot_cronjobs__pb2.ListOfCronJob.SerializeToString,
+            ),
+            'GetCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCronJob,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=cronjobs_dot_cronjobs__pb2.CronJob.SerializeToString,
+            ),
+            'UpdateCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateCronJob,
+                    request_deserializer=cronjobs_dot_cronjobs__pb2.CronJob.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteCronJob,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RunCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.RunCronJob,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'PauseCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.PauseCronJob,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'ResumeCronJob': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResumeCronJob,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
@@ -3740,6 +3885,222 @@ class ApiService(object):
             request,
             target,
             '/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob',
+            cronjobs_dot_cronjobs__pb2.CreateCronJobRequest.SerializeToString,
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListCronJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListCronJobs',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            cronjobs_dot_cronjobs__pb2.ListOfCronJob.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetCronJob',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            cronjobs_dot_cronjobs__pb2.CronJob.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateCronJob',
+            cronjobs_dot_cronjobs__pb2.CronJob.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteCronJob',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RunCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/RunCronJob',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PauseCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ResumeCronJob(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,

@@ -81,6 +81,46 @@ func (r *queryResolver) SynchronizeComponentConfig(ctx context.Context) (*model.
 	panic(fmt.Errorf("not implemented: SynchronizeComponentConfig - synchronizeComponentConfig"))
 }
 
+// CreateCronJob is the resolver for the createCronJob field.
+func (r *queryResolver) CreateCronJob(ctx context.Context) (*model.StringValue, error) {
+	panic(fmt.Errorf("not implemented: CreateCronJob - createCronJob"))
+}
+
+// ListCronJobs is the resolver for the listCronJobs field.
+func (r *queryResolver) ListCronJobs(ctx context.Context) (*model.ListOfCronJob, error) {
+	panic(fmt.Errorf("not implemented: ListCronJobs - listCronJobs"))
+}
+
+// GetCronJob is the resolver for the getCronJob field.
+func (r *queryResolver) GetCronJob(ctx context.Context) (*model.CronJob, error) {
+	panic(fmt.Errorf("not implemented: GetCronJob - getCronJob"))
+}
+
+// UpdateCronJob is the resolver for the updateCronJob field.
+func (r *queryResolver) UpdateCronJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateCronJob - updateCronJob"))
+}
+
+// DeleteCronJob is the resolver for the deleteCronJob field.
+func (r *queryResolver) DeleteCronJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteCronJob - deleteCronJob"))
+}
+
+// RunCronJob is the resolver for the runCronJob field.
+func (r *queryResolver) RunCronJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: RunCronJob - runCronJob"))
+}
+
+// PauseCronJob is the resolver for the pauseCronJob field.
+func (r *queryResolver) PauseCronJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: PauseCronJob - pauseCronJob"))
+}
+
+// ResumeCronJob is the resolver for the resumeCronJob field.
+func (r *queryResolver) ResumeCronJob(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: ResumeCronJob - resumeCronJob"))
+}
+
 // CreateDeviceConfigurationRegister is the resolver for the createDeviceConfigurationRegister field.
 func (r *queryResolver) CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDeviceConfigurationRegister - createDeviceConfigurationRegister"))

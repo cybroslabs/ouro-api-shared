@@ -12,6 +12,7 @@ import "common/types.proto";
 import "acquisition/main.proto";
 import "acquisition/shared.proto";
 import "acquisition/timeofuse/timeofuse.proto";
+import "cronjobs/cronjobs.proto";
 import "system/main.proto";
 
 // The Dataproxy related service definition.
@@ -300,4 +301,29 @@ service ApiService {
     // @group: Time-Of-Use Tables
     // The method to delete the time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+    // @group: Cron Jobs
+    // The method to create a new cron job.
+    rpc CreateCronJob(io.clbs.openhes.models.cronjobs.CreateCronJobRequest) returns (google.protobuf.StringValue);
+    // @group: Cron Jobs
+    // The method to get the list of cron jobs.
+    rpc ListCronJobs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.cronjobs.ListOfCronJob);
+    // @group: Cron Jobs
+    // The method to get the cron job.
+    rpc GetCronJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.cronjobs.CronJob);
+    // @group: Cron Jobs
+    // The method to update the cron job.
+    rpc UpdateCronJob(io.clbs.openhes.models.cronjobs.CronJob) returns (google.protobuf.Empty);
+    // @group: Cron Jobs
+    // The method to delete the cron job.
+    rpc DeleteCronJob(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Cron Jobs
+    // The method to run the cron job immediately.
+    rpc RunCronJob(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Cron Jobs
+    // The method to pause the cron job.
+    rpc PauseCronJob(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Cron Jobs
+    // The method to resume the cron job.
+    rpc ResumeCronJob(google.protobuf.StringValue) returns (google.protobuf.Empty);
 }

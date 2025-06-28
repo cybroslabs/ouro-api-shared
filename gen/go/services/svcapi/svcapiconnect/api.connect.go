@@ -10,6 +10,7 @@ import (
 	errors "errors"
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -267,6 +268,26 @@ const (
 	// ApiServiceDeleteTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
 	// DeleteTimeOfUseTable RPC.
 	ApiServiceDeleteTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable"
+	// ApiServiceCreateCronJobProcedure is the fully-qualified name of the ApiService's CreateCronJob
+	// RPC.
+	ApiServiceCreateCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob"
+	// ApiServiceListCronJobsProcedure is the fully-qualified name of the ApiService's ListCronJobs RPC.
+	ApiServiceListCronJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCronJobs"
+	// ApiServiceGetCronJobProcedure is the fully-qualified name of the ApiService's GetCronJob RPC.
+	ApiServiceGetCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCronJob"
+	// ApiServiceUpdateCronJobProcedure is the fully-qualified name of the ApiService's UpdateCronJob
+	// RPC.
+	ApiServiceUpdateCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateCronJob"
+	// ApiServiceDeleteCronJobProcedure is the fully-qualified name of the ApiService's DeleteCronJob
+	// RPC.
+	ApiServiceDeleteCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCronJob"
+	// ApiServiceRunCronJobProcedure is the fully-qualified name of the ApiService's RunCronJob RPC.
+	ApiServiceRunCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/RunCronJob"
+	// ApiServicePauseCronJobProcedure is the fully-qualified name of the ApiService's PauseCronJob RPC.
+	ApiServicePauseCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob"
+	// ApiServiceResumeCronJobProcedure is the fully-qualified name of the ApiService's ResumeCronJob
+	// RPC.
+	ApiServiceResumeCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -536,6 +557,30 @@ type ApiServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to create a new cron job.
+	CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Cron Jobs
+	// The method to get the list of cron jobs.
+	ListCronJobs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[cronjobs.ListOfCronJob], error)
+	// @group: Cron Jobs
+	// The method to get the cron job.
+	GetCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[cronjobs.CronJob], error)
+	// @group: Cron Jobs
+	// The method to update the cron job.
+	UpdateCronJob(context.Context, *connect.Request[cronjobs.CronJob]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to delete the cron job.
+	DeleteCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to run the cron job immediately.
+	RunCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to pause the cron job.
+	PauseCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to resume the cron job.
+	ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1041,6 +1086,54 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 			connect.WithClientOptions(opts...),
 		),
+		createCronJob: connect.NewClient[cronjobs.CreateCronJobRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		listCronJobs: connect.NewClient[common.ListSelector, cronjobs.ListOfCronJob](
+			httpClient,
+			baseURL+ApiServiceListCronJobsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListCronJobs")),
+			connect.WithClientOptions(opts...),
+		),
+		getCronJob: connect.NewClient[wrapperspb.StringValue, cronjobs.CronJob](
+			httpClient,
+			baseURL+ApiServiceGetCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		updateCronJob: connect.NewClient[cronjobs.CronJob, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteCronJob: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		runCronJob: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceRunCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("RunCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		pauseCronJob: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServicePauseCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("PauseCronJob")),
+			connect.WithClientOptions(opts...),
+		),
+		resumeCronJob: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceResumeCronJobProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ResumeCronJob")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -1128,6 +1221,14 @@ type apiServiceClient struct {
 	getTimeOfUseTable                                                *connect.Client[wrapperspb.StringValue, acquisition.TimeOfUseTable]
 	updateTimeOfUseTable                                             *connect.Client[acquisition.TimeOfUseTable, emptypb.Empty]
 	deleteTimeOfUseTable                                             *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createCronJob                                                    *connect.Client[cronjobs.CreateCronJobRequest, wrapperspb.StringValue]
+	listCronJobs                                                     *connect.Client[common.ListSelector, cronjobs.ListOfCronJob]
+	getCronJob                                                       *connect.Client[wrapperspb.StringValue, cronjobs.CronJob]
+	updateCronJob                                                    *connect.Client[cronjobs.CronJob, emptypb.Empty]
+	deleteCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	runCronJob                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	pauseCronJob                                                     *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1561,6 +1662,46 @@ func (c *apiServiceClient) DeleteTimeOfUseTable(ctx context.Context, req *connec
 	return c.deleteTimeOfUseTable.CallUnary(ctx, req)
 }
 
+// CreateCronJob calls io.clbs.openhes.services.svcapi.ApiService.CreateCronJob.
+func (c *apiServiceClient) CreateCronJob(ctx context.Context, req *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createCronJob.CallUnary(ctx, req)
+}
+
+// ListCronJobs calls io.clbs.openhes.services.svcapi.ApiService.ListCronJobs.
+func (c *apiServiceClient) ListCronJobs(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[cronjobs.ListOfCronJob], error) {
+	return c.listCronJobs.CallUnary(ctx, req)
+}
+
+// GetCronJob calls io.clbs.openhes.services.svcapi.ApiService.GetCronJob.
+func (c *apiServiceClient) GetCronJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[cronjobs.CronJob], error) {
+	return c.getCronJob.CallUnary(ctx, req)
+}
+
+// UpdateCronJob calls io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob.
+func (c *apiServiceClient) UpdateCronJob(ctx context.Context, req *connect.Request[cronjobs.CronJob]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateCronJob.CallUnary(ctx, req)
+}
+
+// DeleteCronJob calls io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob.
+func (c *apiServiceClient) DeleteCronJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteCronJob.CallUnary(ctx, req)
+}
+
+// RunCronJob calls io.clbs.openhes.services.svcapi.ApiService.RunCronJob.
+func (c *apiServiceClient) RunCronJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.runCronJob.CallUnary(ctx, req)
+}
+
+// PauseCronJob calls io.clbs.openhes.services.svcapi.ApiService.PauseCronJob.
+func (c *apiServiceClient) PauseCronJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.pauseCronJob.CallUnary(ctx, req)
+}
+
+// ResumeCronJob calls io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob.
+func (c *apiServiceClient) ResumeCronJob(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.resumeCronJob.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -1828,6 +1969,30 @@ type ApiServiceHandler interface {
 	// @group: Time-Of-Use Tables
 	// The method to delete the time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to create a new cron job.
+	CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Cron Jobs
+	// The method to get the list of cron jobs.
+	ListCronJobs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[cronjobs.ListOfCronJob], error)
+	// @group: Cron Jobs
+	// The method to get the cron job.
+	GetCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[cronjobs.CronJob], error)
+	// @group: Cron Jobs
+	// The method to update the cron job.
+	UpdateCronJob(context.Context, *connect.Request[cronjobs.CronJob]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to delete the cron job.
+	DeleteCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to run the cron job immediately.
+	RunCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to pause the cron job.
+	PauseCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Cron Jobs
+	// The method to resume the cron job.
+	ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -2329,6 +2494,54 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceCreateCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceCreateCronJobProcedure,
+		svc.CreateCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("CreateCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListCronJobsHandler := connect.NewUnaryHandler(
+		ApiServiceListCronJobsProcedure,
+		svc.ListCronJobs,
+		connect.WithSchema(apiServiceMethods.ByName("ListCronJobs")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceGetCronJobProcedure,
+		svc.GetCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("GetCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateCronJobProcedure,
+		svc.UpdateCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteCronJobProcedure,
+		svc.DeleteCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceRunCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceRunCronJobProcedure,
+		svc.RunCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("RunCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServicePauseCronJobHandler := connect.NewUnaryHandler(
+		ApiServicePauseCronJobProcedure,
+		svc.PauseCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("PauseCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceResumeCronJobHandler := connect.NewUnaryHandler(
+		ApiServiceResumeCronJobProcedure,
+		svc.ResumeCronJob,
+		connect.WithSchema(apiServiceMethods.ByName("ResumeCronJob")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -2495,6 +2708,22 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateTimeOfUseTableHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteTimeOfUseTableProcedure:
 			apiServiceDeleteTimeOfUseTableHandler.ServeHTTP(w, r)
+		case ApiServiceCreateCronJobProcedure:
+			apiServiceCreateCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceListCronJobsProcedure:
+			apiServiceListCronJobsHandler.ServeHTTP(w, r)
+		case ApiServiceGetCronJobProcedure:
+			apiServiceGetCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateCronJobProcedure:
+			apiServiceUpdateCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteCronJobProcedure:
+			apiServiceDeleteCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceRunCronJobProcedure:
+			apiServiceRunCronJobHandler.ServeHTTP(w, r)
+		case ApiServicePauseCronJobProcedure:
+			apiServicePauseCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceResumeCronJobProcedure:
+			apiServiceResumeCronJobHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -2830,4 +3059,36 @@ func (UnimplementedApiServiceHandler) UpdateTimeOfUseTable(context.Context, *con
 
 func (UnimplementedApiServiceHandler) DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListCronJobs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[cronjobs.ListOfCronJob], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCronJobs is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[cronjobs.CronJob], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateCronJob(context.Context, *connect.Request[cronjobs.CronJob]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) RunCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.RunCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) PauseCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.PauseCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob is not implemented"))
 }
