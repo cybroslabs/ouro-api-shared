@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x63ommon/objects.proto\x12\x1dio.clbs.openhes.models.common*\xd5\x01\n\nObjectType\x12\x08\n\x04\x42ULK\x10\x00\x12\x0c\n\x08\x42ULK_JOB\x10\x01\x12\x16\n\x12\x43OMMUNICATION_UNIT\x10\x02\x12\n\n\x06\x44\x45VICE\x10\x03\x12\x0c\n\x08REGISTER\x10\x04\x12\x0c\n\x08VARIABLE\x10\x05\x12\x13\n\x0f\x44\x45VICE_TEMPLATE\x10\x06\x12\x15\n\x11\x43OMMUNICATION_BUS\x10\x07\x12\x0e\n\nMODEM_POOL\x10\x08\x12\x10\n\x0c\x44\x45VICE_GROUP\x10\t\x12\x15\n\x11TIME_OF_USE_TABLE\x10\n\x12\n\n\x06\x44RIVER\x10\x0b\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x63ommon/objects.proto\x12\x1dio.clbs.openhes.models.common*\xe3\x01\n\nObjectType\x12\x08\n\x04\x42ULK\x10\x00\x12\x0c\n\x08\x42ULK_JOB\x10\x01\x12\x16\n\x12\x43OMMUNICATION_UNIT\x10\x02\x12\n\n\x06\x44\x45VICE\x10\x03\x12\x0c\n\x08REGISTER\x10\x04\x12\x0c\n\x08VARIABLE\x10\x05\x12\x13\n\x0f\x44\x45VICE_TEMPLATE\x10\x06\x12\x15\n\x11\x43OMMUNICATION_BUS\x10\x07\x12\x0e\n\nMODEM_POOL\x10\x08\x12\x10\n\x0c\x44\x45VICE_GROUP\x10\t\x12\x15\n\x11TIME_OF_USE_TABLE\x10\n\x12\n\n\x06\x44RIVER\x10\x0b\x12\x0c\n\x08\x43RON_JOB\x10\x0c\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,5 +33,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z3github.com/cybroslabs/ouro-api-shared/gen/go/common'
   _globals['_OBJECTTYPE']._serialized_start=56
-  _globals['_OBJECTTYPE']._serialized_end=269
+  _globals['_OBJECTTYPE']._serialized_end=283
 # @@protoc_insertion_point(module_scope)

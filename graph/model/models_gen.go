@@ -303,7 +303,11 @@ type CronJob struct {
 }
 
 type CronJobSpec struct {
-	Empty *bool `json:"_empty,omitempty"`
+	Type     *CronJobTypeEnum `json:"type,omitempty"`
+	Schedule *string          `json:"schedule,omitempty"`
+	Timezone *string          `json:"timezone,omitempty"`
+	Suspend  *bool            `json:"suspend,omitempty"`
+	Data     *Struct          `json:"data,omitempty"`
 }
 
 type CronJobStatus struct {
@@ -751,6 +755,10 @@ type ListSelectorSortBy struct {
 	Desc *bool   `json:"desc,omitempty"`
 }
 
+type ListValue struct {
+	Values []*Value `json:"values,omitempty"`
+}
+
 type MeasuredValue struct {
 	Status           *int64   `json:"status,omitempty"`
 	Exponent         *int32   `json:"exponent,omitempty"`
@@ -904,6 +912,10 @@ type StringValue struct {
 	Value *string `json:"value,omitempty"`
 }
 
+type Struct struct {
+	Fields []*MapValue `json:"fields,omitempty"`
+}
+
 type Switching struct {
 	Hour   *int32              `json:"hour,omitempty"`
 	Minute *int32              `json:"minute,omitempty"`
@@ -942,6 +954,15 @@ type UpdateMetadata struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
+type Value struct {
+	NullValue   *NullValue `json:"nullValue,omitempty"`
+	NumberValue *float64   `json:"numberValue,omitempty"`
+	StringValue *string    `json:"stringValue,omitempty"`
+	BoolValue   *bool      `json:"boolValue,omitempty"`
+	StructValue *Struct    `json:"structValue,omitempty"`
+	ListValue   *ListValue `json:"listValue,omitempty"`
+}
+
 type Variable struct {
 	Spec     *VariableSpec   `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
@@ -974,6 +995,11 @@ type MapFieldValue struct {
 type MapListOfString struct {
 	Key   string        `json:"key"`
 	Value *ListOfString `json:"value,omitempty"`
+}
+
+type MapValue struct {
+	Key   string `json:"key"`
+	Value *Value `json:"value,omitempty"`
 }
 
 type Mapstring struct {
@@ -1305,6 +1331,61 @@ func (e *CommunicationType) UnmarshalJSON(b []byte) error {
 }
 
 func (e CommunicationType) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type CronJobTypeEnum string
+
+const (
+	CronJobTypeEnumCronJobTypeStartBulk      CronJobTypeEnum = "CRON_JOB_TYPE_START_BULK"
+	CronJobTypeEnumCronJobTypeStartProxyBulk CronJobTypeEnum = "CRON_JOB_TYPE_START_PROXY_BULK"
+)
+
+var AllCronJobTypeEnum = []CronJobTypeEnum{
+	CronJobTypeEnumCronJobTypeStartBulk,
+	CronJobTypeEnumCronJobTypeStartProxyBulk,
+}
+
+func (e CronJobTypeEnum) IsValid() bool {
+	switch e {
+	case CronJobTypeEnumCronJobTypeStartBulk, CronJobTypeEnumCronJobTypeStartProxyBulk:
+		return true
+	}
+	return false
+}
+
+func (e CronJobTypeEnum) String() string {
+	return string(e)
+}
+
+func (e *CronJobTypeEnum) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = CronJobTypeEnum(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid CronJobTypeEnum", str)
+	}
+	return nil
+}
+
+func (e CronJobTypeEnum) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *CronJobTypeEnum) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e CronJobTypeEnum) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil
@@ -1785,6 +1866,59 @@ func (e JobStatusCode) MarshalJSON() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
+type NullValue string
+
+const (
+	NullValueNullValue NullValue = "NULL_VALUE"
+)
+
+var AllNullValue = []NullValue{
+	NullValueNullValue,
+}
+
+func (e NullValue) IsValid() bool {
+	switch e {
+	case NullValueNullValue:
+		return true
+	}
+	return false
+}
+
+func (e NullValue) String() string {
+	return string(e)
+}
+
+func (e *NullValue) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = NullValue(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid NullValue", str)
+	}
+	return nil
+}
+
+func (e NullValue) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *NullValue) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e NullValue) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
 type ObjectType string
 
 const (
@@ -1800,6 +1934,7 @@ const (
 	ObjectTypeDeviceGroup       ObjectType = "DEVICE_GROUP"
 	ObjectTypeTimeOfUseTable    ObjectType = "TIME_OF_USE_TABLE"
 	ObjectTypeDriver            ObjectType = "DRIVER"
+	ObjectTypeCronJob           ObjectType = "CRON_JOB"
 )
 
 var AllObjectType = []ObjectType{
@@ -1815,11 +1950,12 @@ var AllObjectType = []ObjectType{
 	ObjectTypeDeviceGroup,
 	ObjectTypeTimeOfUseTable,
 	ObjectTypeDriver,
+	ObjectTypeCronJob,
 }
 
 func (e ObjectType) IsValid() bool {
 	switch e {
-	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver:
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver, ObjectTypeCronJob:
 		return true
 	}
 	return false

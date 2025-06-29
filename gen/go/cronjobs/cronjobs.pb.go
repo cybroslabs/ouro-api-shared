@@ -11,6 +11,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/durationpb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -22,6 +23,47 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
+
+type CronJobTypeEnum int32
+
+const (
+	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 0 // Cron job to start an acquistion bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 1 // Cron job to start a proxy bulk.
+)
+
+// Enum value maps for CronJobTypeEnum.
+var (
+	CronJobTypeEnum_name = map[int32]string{
+		0: "CRON_JOB_TYPE_START_BULK",
+		1: "CRON_JOB_TYPE_START_PROXY_BULK",
+	}
+	CronJobTypeEnum_value = map[string]int32{
+		"CRON_JOB_TYPE_START_BULK":       0,
+		"CRON_JOB_TYPE_START_PROXY_BULK": 1,
+	}
+)
+
+func (x CronJobTypeEnum) Enum() *CronJobTypeEnum {
+	p := new(CronJobTypeEnum)
+	*p = x
+	return p
+}
+
+func (x CronJobTypeEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CronJobTypeEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_cronjobs_cronjobs_proto_enumTypes[0].Descriptor()
+}
+
+func (CronJobTypeEnum) Type() protoreflect.EnumType {
+	return &file_cronjobs_cronjobs_proto_enumTypes[0]
+}
+
+func (x CronJobTypeEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
 
 type CreateCronJobRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
@@ -235,9 +277,16 @@ func (b0 CronJob_builder) Build() *CronJob {
 }
 
 type CronJobSpec struct {
-	state         protoimpl.MessageState `protogen:"opaque.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Type        CronJobTypeEnum        `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.cronjobs.CronJobTypeEnum"`
+	xxx_hidden_Schedule    *string                `protobuf:"bytes,2,opt,name=schedule"`
+	xxx_hidden_Timezone    *string                `protobuf:"bytes,3,opt,name=timezone"`
+	xxx_hidden_Suspend     bool                   `protobuf:"varint,4,opt,name=suspend"`
+	xxx_hidden_Data        *structpb.Struct       `protobuf:"bytes,5,opt,name=data"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *CronJobSpec) Reset() {
@@ -265,15 +314,163 @@ func (x *CronJobSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
+func (x *CronJobSpec) GetType() CronJobTypeEnum {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_Type
+		}
+	}
+	return CronJobTypeEnum_CRON_JOB_TYPE_START_BULK
+}
+
+func (x *CronJobSpec) GetSchedule() string {
+	if x != nil {
+		if x.xxx_hidden_Schedule != nil {
+			return *x.xxx_hidden_Schedule
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CronJobSpec) GetTimezone() string {
+	if x != nil {
+		if x.xxx_hidden_Timezone != nil {
+			return *x.xxx_hidden_Timezone
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CronJobSpec) GetSuspend() bool {
+	if x != nil {
+		return x.xxx_hidden_Suspend
+	}
+	return false
+}
+
+func (x *CronJobSpec) GetData() *structpb.Struct {
+	if x != nil {
+		return x.xxx_hidden_Data
+	}
+	return nil
+}
+
+func (x *CronJobSpec) SetType(v CronJobTypeEnum) {
+	x.xxx_hidden_Type = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *CronJobSpec) SetSchedule(v string) {
+	x.xxx_hidden_Schedule = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *CronJobSpec) SetTimezone(v string) {
+	x.xxx_hidden_Timezone = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *CronJobSpec) SetSuspend(v bool) {
+	x.xxx_hidden_Suspend = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *CronJobSpec) SetData(v *structpb.Struct) {
+	x.xxx_hidden_Data = v
+}
+
+func (x *CronJobSpec) HasType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *CronJobSpec) HasSchedule() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *CronJobSpec) HasTimezone() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *CronJobSpec) HasSuspend() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *CronJobSpec) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Data != nil
+}
+
+func (x *CronJobSpec) ClearType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Type = CronJobTypeEnum_CRON_JOB_TYPE_START_BULK
+}
+
+func (x *CronJobSpec) ClearSchedule() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Schedule = nil
+}
+
+func (x *CronJobSpec) ClearTimezone() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Timezone = nil
+}
+
+func (x *CronJobSpec) ClearSuspend() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Suspend = false
+}
+
+func (x *CronJobSpec) ClearData() {
+	x.xxx_hidden_Data = nil
+}
+
 type CronJobSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Type     *CronJobTypeEnum
+	Schedule *string
+	Timezone *string
+	Suspend  *bool
+	Data     *structpb.Struct
 }
 
 func (b0 CronJobSpec_builder) Build() *CronJobSpec {
 	m0 := &CronJobSpec{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Type != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Type = *b.Type
+	}
+	if b.Schedule != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Schedule = b.Schedule
+	}
+	if b.Timezone != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_Timezone = b.Timezone
+	}
+	if b.Suspend != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Suspend = *b.Suspend
+	}
+	x.xxx_hidden_Data = b.Data
 	return m0
 }
 
@@ -465,47 +662,60 @@ var File_cronjobs_cronjobs_proto protoreflect.FileDescriptor
 
 const file_cronjobs_cronjobs_proto_rawDesc = "" +
 	"\n" +
-	"\x17cronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15common/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\xa3\x01\n" +
+	"\x17cronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15common/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa3\x01\n" +
 	"\x14CreateCronJobRequest\x12@\n" +
 	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xde\x01\n" +
 	"\aCronJob\x12@\n" +
 	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.cronjobs.CronJobStatusR\x06status\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\r\n" +
-	"\vCronJobSpec\"\x87\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xd2\x01\n" +
+	"\vCronJobSpec\x12D\n" +
+	"\x04type\x18\x01 \x01(\x0e20.io.clbs.openhes.models.cronjobs.CronJobTypeEnumR\x04type\x12\x1a\n" +
+	"\bschedule\x18\x02 \x01(\tR\bschedule\x12\x1a\n" +
+	"\btimezone\x18\x03 \x01(\tR\btimezone\x12\x18\n" +
+	"\asuspend\x18\x04 \x01(\bR\asuspend\x12+\n" +
+	"\x04data\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x04data\"\x87\x01\n" +
 	"\rCronJobStatus\x12:\n" +
 	"\vlast_run_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tlastRunAt\x12:\n" +
 	"\vnext_run_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tnextRunAt\"p\n" +
 	"\rListOfCronJob\x12>\n" +
 	"\x05items\x18\x01 \x03(\v2(.io.clbs.openhes.models.cronjobs.CronJobR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCountB7Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\beditionsp\xe8\a"
+	"totalCount*S\n" +
+	"\x0fCronJobTypeEnum\x12\x1c\n" +
+	"\x18CRON_JOB_TYPE_START_BULK\x10\x00\x12\"\n" +
+	"\x1eCRON_JOB_TYPE_START_PROXY_BULK\x10\x01B7Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\beditionsp\xe8\a"
 
+var file_cronjobs_cronjobs_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cronjobs_cronjobs_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cronjobs_cronjobs_proto_goTypes = []any{
-	(*CreateCronJobRequest)(nil),  // 0: io.clbs.openhes.models.cronjobs.CreateCronJobRequest
-	(*CronJob)(nil),               // 1: io.clbs.openhes.models.cronjobs.CronJob
-	(*CronJobSpec)(nil),           // 2: io.clbs.openhes.models.cronjobs.CronJobSpec
-	(*CronJobStatus)(nil),         // 3: io.clbs.openhes.models.cronjobs.CronJobStatus
-	(*ListOfCronJob)(nil),         // 4: io.clbs.openhes.models.cronjobs.ListOfCronJob
-	(*common.MetadataFields)(nil), // 5: io.clbs.openhes.models.common.MetadataFields
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(CronJobTypeEnum)(0),          // 0: io.clbs.openhes.models.cronjobs.CronJobTypeEnum
+	(*CreateCronJobRequest)(nil),  // 1: io.clbs.openhes.models.cronjobs.CreateCronJobRequest
+	(*CronJob)(nil),               // 2: io.clbs.openhes.models.cronjobs.CronJob
+	(*CronJobSpec)(nil),           // 3: io.clbs.openhes.models.cronjobs.CronJobSpec
+	(*CronJobStatus)(nil),         // 4: io.clbs.openhes.models.cronjobs.CronJobStatus
+	(*ListOfCronJob)(nil),         // 5: io.clbs.openhes.models.cronjobs.ListOfCronJob
+	(*common.MetadataFields)(nil), // 6: io.clbs.openhes.models.common.MetadataFields
+	(*structpb.Struct)(nil),       // 7: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_cronjobs_cronjobs_proto_depIdxs = []int32{
-	2, // 0: io.clbs.openhes.models.cronjobs.CreateCronJobRequest.spec:type_name -> io.clbs.openhes.models.cronjobs.CronJobSpec
-	5, // 1: io.clbs.openhes.models.cronjobs.CreateCronJobRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	2, // 2: io.clbs.openhes.models.cronjobs.CronJob.spec:type_name -> io.clbs.openhes.models.cronjobs.CronJobSpec
-	3, // 3: io.clbs.openhes.models.cronjobs.CronJob.status:type_name -> io.clbs.openhes.models.cronjobs.CronJobStatus
-	5, // 4: io.clbs.openhes.models.cronjobs.CronJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	6, // 5: io.clbs.openhes.models.cronjobs.CronJobStatus.last_run_at:type_name -> google.protobuf.Timestamp
-	6, // 6: io.clbs.openhes.models.cronjobs.CronJobStatus.next_run_at:type_name -> google.protobuf.Timestamp
-	1, // 7: io.clbs.openhes.models.cronjobs.ListOfCronJob.items:type_name -> io.clbs.openhes.models.cronjobs.CronJob
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	3,  // 0: io.clbs.openhes.models.cronjobs.CreateCronJobRequest.spec:type_name -> io.clbs.openhes.models.cronjobs.CronJobSpec
+	6,  // 1: io.clbs.openhes.models.cronjobs.CreateCronJobRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	3,  // 2: io.clbs.openhes.models.cronjobs.CronJob.spec:type_name -> io.clbs.openhes.models.cronjobs.CronJobSpec
+	4,  // 3: io.clbs.openhes.models.cronjobs.CronJob.status:type_name -> io.clbs.openhes.models.cronjobs.CronJobStatus
+	6,  // 4: io.clbs.openhes.models.cronjobs.CronJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	0,  // 5: io.clbs.openhes.models.cronjobs.CronJobSpec.type:type_name -> io.clbs.openhes.models.cronjobs.CronJobTypeEnum
+	7,  // 6: io.clbs.openhes.models.cronjobs.CronJobSpec.data:type_name -> google.protobuf.Struct
+	8,  // 7: io.clbs.openhes.models.cronjobs.CronJobStatus.last_run_at:type_name -> google.protobuf.Timestamp
+	8,  // 8: io.clbs.openhes.models.cronjobs.CronJobStatus.next_run_at:type_name -> google.protobuf.Timestamp
+	2,  // 9: io.clbs.openhes.models.cronjobs.ListOfCronJob.items:type_name -> io.clbs.openhes.models.cronjobs.CronJob
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_cronjobs_cronjobs_proto_init() }
@@ -518,13 +728,14 @@ func file_cronjobs_cronjobs_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cronjobs_cronjobs_proto_rawDesc), len(file_cronjobs_cronjobs_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_cronjobs_cronjobs_proto_goTypes,
 		DependencyIndexes: file_cronjobs_cronjobs_proto_depIdxs,
+		EnumInfos:         file_cronjobs_cronjobs_proto_enumTypes,
 		MessageInfos:      file_cronjobs_cronjobs_proto_msgTypes,
 	}.Build()
 	File_cronjobs_cronjobs_proto = out.File

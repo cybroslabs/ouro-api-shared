@@ -18,3 +18,4 @@ Enum representing the object type.
 | DEVICE_GROUP | The device group. |
 | TIME_OF_USE_TABLE | The time-of-use table. |
 | DRIVER | The driver. |
+| CRON_JOB | The cron job. |

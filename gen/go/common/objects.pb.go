@@ -36,6 +36,7 @@ const (
 	ObjectType_DEVICE_GROUP       ObjectType = 9  // The device group.
 	ObjectType_TIME_OF_USE_TABLE  ObjectType = 10 // The time-of-use table.
 	ObjectType_DRIVER             ObjectType = 11 // The driver.
+	ObjectType_CRON_JOB           ObjectType = 12 // The cron job.
 )
 
 // Enum value maps for ObjectType.
@@ -53,6 +54,7 @@ var (
 		9:  "DEVICE_GROUP",
 		10: "TIME_OF_USE_TABLE",
 		11: "DRIVER",
+		12: "CRON_JOB",
 	}
 	ObjectType_value = map[string]int32{
 		"BULK":               0,
@@ -67,6 +69,7 @@ var (
 		"DEVICE_GROUP":       9,
 		"TIME_OF_USE_TABLE":  10,
 		"DRIVER":             11,
+		"CRON_JOB":           12,
 	}
 )
 
@@ -96,7 +99,7 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xd5\x01\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xe3\x01\n" +
 	"\n" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
@@ -114,7 +117,8 @@ const file_common_objects_proto_rawDesc = "" +
 	"\x11TIME_OF_USE_TABLE\x10\n" +
 	"\x12\n" +
 	"\n" +
-	"\x06DRIVER\x10\vB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x06DRIVER\x10\v\x12\f\n" +
+	"\bCRON_JOB\x10\fB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_objects_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_common_objects_proto_goTypes = []any{
