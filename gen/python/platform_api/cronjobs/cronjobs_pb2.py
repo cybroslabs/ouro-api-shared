@@ -28,7 +28,7 @@ from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x63ronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15\x63ommon/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa3\x01\n\x14\x43reateCronJobRequest\x12@\n\x04spec\x18\x01 \x01(\x0b\x32,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12I\n\x08metadata\x18\x02 \x01(\x0b\x32-.io.clbs.openhes.models.common.MetadataFieldsR\x08metadata\"\xde\x01\n\x07\x43ronJob\x12@\n\x04spec\x18\x01 \x01(\x0b\x32,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12\x46\n\x06status\x18\x02 \x01(\x0b\x32..io.clbs.openhes.models.cronjobs.CronJobStatusR\x06status\x12I\n\x08metadata\x18\x03 \x01(\x0b\x32-.io.clbs.openhes.models.common.MetadataFieldsR\x08metadata\"\xd2\x01\n\x0b\x43ronJobSpec\x12\x44\n\x04type\x18\x01 \x01(\x0e\x32\x30.io.clbs.openhes.models.cronjobs.CronJobTypeEnumR\x04type\x12\x1a\n\x08schedule\x18\x02 \x01(\tR\x08schedule\x12\x1a\n\x08timezone\x18\x03 \x01(\tR\x08timezone\x12\x18\n\x07suspend\x18\x04 \x01(\x08R\x07suspend\x12+\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"\x87\x01\n\rCronJobStatus\x12:\n\x0blast_run_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tlastRunAt\x12:\n\x0bnext_run_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tnextRunAt\"p\n\rListOfCronJob\x12>\n\x05items\x18\x01 \x03(\x0b\x32(.io.clbs.openhes.models.cronjobs.CronJobR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount*S\n\x0f\x43ronJobTypeEnum\x12\x1c\n\x18\x43RON_JOB_TYPE_START_BULK\x10\x00\x12\"\n\x1e\x43RON_JOB_TYPE_START_PROXY_BULK\x10\x01\x42\x37Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x63ronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15\x63ommon/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa3\x01\n\x14\x43reateCronJobRequest\x12@\n\x04spec\x18\x01 \x01(\x0b\x32,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12I\n\x08metadata\x18\x02 \x01(\x0b\x32-.io.clbs.openhes.models.common.MetadataFieldsR\x08metadata\"\xde\x01\n\x07\x43ronJob\x12@\n\x04spec\x18\x01 \x01(\x0b\x32,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12\x46\n\x06status\x18\x02 \x01(\x0b\x32..io.clbs.openhes.models.cronjobs.CronJobStatusR\x06status\x12I\n\x08metadata\x18\x03 \x01(\x0b\x32-.io.clbs.openhes.models.common.MetadataFieldsR\x08metadata\"\xd2\x01\n\x0b\x43ronJobSpec\x12\x44\n\x04type\x18\x01 \x01(\x0e\x32\x30.io.clbs.openhes.models.cronjobs.CronJobTypeEnumR\x04type\x12\x1a\n\x08schedule\x18\x02 \x01(\tR\x08schedule\x12\x1a\n\x08timezone\x18\x03 \x01(\tR\x08timezone\x12\x18\n\x07suspend\x18\x04 \x01(\x08R\x07suspend\x12+\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"\x9d\x01\n\rCronJobStatus\x12:\n\x0blast_run_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tlastRunAt\x12:\n\x0bnext_run_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tnextRunAt\x12\x14\n\x05\x65rror\x18\x03 \x01(\tR\x05\x65rror\"p\n\rListOfCronJob\x12>\n\x05items\x18\x01 \x03(\x0b\x32(.io.clbs.openhes.models.cronjobs.CronJobR\x05items\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount*S\n\x0f\x43ronJobTypeEnum\x12\x1c\n\x18\x43RON_JOB_TYPE_START_BULK\x10\x00\x12\"\n\x1e\x43RON_JOB_TYPE_START_PROXY_BULK\x10\x01\x42\x37Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,8 +36,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cronjobs.cronjobs_pb2', _gl
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs'
-  _globals['_CRONJOBTYPEENUM']._serialized_start=1034
-  _globals['_CRONJOBTYPEENUM']._serialized_end=1117
+  _globals['_CRONJOBTYPEENUM']._serialized_start=1056
+  _globals['_CRONJOBTYPEENUM']._serialized_end=1139
   _globals['_CREATECRONJOBREQUEST']._serialized_start=179
   _globals['_CREATECRONJOBREQUEST']._serialized_end=342
   _globals['_CRONJOB']._serialized_start=345
@@ -45,7 +45,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_CRONJOBSPEC']._serialized_start=570
   _globals['_CRONJOBSPEC']._serialized_end=780
   _globals['_CRONJOBSTATUS']._serialized_start=783
-  _globals['_CRONJOBSTATUS']._serialized_end=918
-  _globals['_LISTOFCRONJOB']._serialized_start=920
-  _globals['_LISTOFCRONJOB']._serialized_end=1032
+  _globals['_CRONJOBSTATUS']._serialized_end=940
+  _globals['_LISTOFCRONJOB']._serialized_start=942
+  _globals['_LISTOFCRONJOB']._serialized_end=1054
 # @@protoc_insertion_point(module_scope)

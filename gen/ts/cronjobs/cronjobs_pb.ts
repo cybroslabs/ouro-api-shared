@@ -14,7 +14,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file cronjobs/cronjobs.proto.
  */
 export const file_cronjobs_cronjobs: GenFile = /*@__PURE__*/
-  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QicQoNQ3JvbkpvYlN0YXR1cxIvCgtsYXN0X3J1bl9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLwoLbmV4dF9ydW5fYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIl0KDUxpc3RPZkNyb25Kb2ISNwoFaXRlbXMYASADKAsyKC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2ISEwoLdG90YWxfY291bnQYAiABKAUqUwoPQ3JvbkpvYlR5cGVFbnVtEhwKGENST05fSk9CX1RZUEVfU1RBUlRfQlVMSxAAEiIKHkNST05fSk9CX1RZUEVfU1RBUlRfUFJPWFlfQlVMSxABQjdaNWdpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2Nyb25qb2JzYghlZGl0aW9uc3DoBw", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_duration, file_google_protobuf_struct]);
+  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QigAEKDUNyb25Kb2JTdGF0dXMSLwoLbGFzdF9ydW5fYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC25leHRfcnVuX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVlcnJvchgDIAEoCSJdCg1MaXN0T2ZDcm9uSm9iEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFKlMKD0Nyb25Kb2JUeXBlRW51bRIcChhDUk9OX0pPQl9UWVBFX1NUQVJUX0JVTEsQABIiCh5DUk9OX0pPQl9UWVBFX1NUQVJUX1BST1hZX0JVTEsQAUI3WjVnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcm9uam9ic2IIZWRpdGlvbnNw6Ac", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_duration, file_google_protobuf_struct]);
 
 /**
  * @generated from message io.clbs.openhes.models.cronjobs.CreateCronJobRequest
@@ -212,6 +212,13 @@ export type CronJobStatus = Message<"io.clbs.openhes.models.cronjobs.CronJobStat
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
   nextRunAt?: Timestamp;
+
+  /**
+   * The error message if the cron job schedule is invalid.
+   *
+   * @generated from field: string error = 3;
+   */
+  error: string;
 };
 
 /**
@@ -231,6 +238,13 @@ export type CronJobStatusJson = {
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
   nextRunAt?: TimestampJson;
+
+  /**
+   * The error message if the cron job schedule is invalid.
+   *
+   * @generated from field: string error = 3;
+   */
+  error?: string;
 };
 
 /**

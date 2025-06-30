@@ -475,11 +475,14 @@ func (b0 CronJobSpec_builder) Build() *CronJobSpec {
 }
 
 type CronJobStatus struct {
-	state                protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_LastRunAt *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=last_run_at,json=lastRunAt"`
-	xxx_hidden_NextRunAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=next_run_at,json=nextRunAt"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_LastRunAt   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=last_run_at,json=lastRunAt"`
+	xxx_hidden_NextRunAt   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=next_run_at,json=nextRunAt"`
+	xxx_hidden_Error       *string                `protobuf:"bytes,3,opt,name=error"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *CronJobStatus) Reset() {
@@ -521,12 +524,27 @@ func (x *CronJobStatus) GetNextRunAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *CronJobStatus) GetError() string {
+	if x != nil {
+		if x.xxx_hidden_Error != nil {
+			return *x.xxx_hidden_Error
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *CronJobStatus) SetLastRunAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_LastRunAt = v
 }
 
 func (x *CronJobStatus) SetNextRunAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_NextRunAt = v
+}
+
+func (x *CronJobStatus) SetError(v string) {
+	x.xxx_hidden_Error = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *CronJobStatus) HasLastRunAt() bool {
@@ -543,6 +561,13 @@ func (x *CronJobStatus) HasNextRunAt() bool {
 	return x.xxx_hidden_NextRunAt != nil
 }
 
+func (x *CronJobStatus) HasError() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
 func (x *CronJobStatus) ClearLastRunAt() {
 	x.xxx_hidden_LastRunAt = nil
 }
@@ -551,11 +576,17 @@ func (x *CronJobStatus) ClearNextRunAt() {
 	x.xxx_hidden_NextRunAt = nil
 }
 
+func (x *CronJobStatus) ClearError() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Error = nil
+}
+
 type CronJobStatus_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	LastRunAt *timestamppb.Timestamp
 	NextRunAt *timestamppb.Timestamp
+	Error     *string
 }
 
 func (b0 CronJobStatus_builder) Build() *CronJobStatus {
@@ -564,6 +595,10 @@ func (b0 CronJobStatus_builder) Build() *CronJobStatus {
 	_, _ = b, x
 	x.xxx_hidden_LastRunAt = b.LastRunAt
 	x.xxx_hidden_NextRunAt = b.NextRunAt
+	if b.Error != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_Error = b.Error
+	}
 	return m0
 }
 
@@ -675,10 +710,11 @@ const file_cronjobs_cronjobs_proto_rawDesc = "" +
 	"\bschedule\x18\x02 \x01(\tR\bschedule\x12\x1a\n" +
 	"\btimezone\x18\x03 \x01(\tR\btimezone\x12\x18\n" +
 	"\asuspend\x18\x04 \x01(\bR\asuspend\x12+\n" +
-	"\x04data\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x04data\"\x87\x01\n" +
+	"\x04data\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x04data\"\x9d\x01\n" +
 	"\rCronJobStatus\x12:\n" +
 	"\vlast_run_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tlastRunAt\x12:\n" +
-	"\vnext_run_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tnextRunAt\"p\n" +
+	"\vnext_run_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tnextRunAt\x12\x14\n" +
+	"\x05error\x18\x03 \x01(\tR\x05error\"p\n" +
 	"\rListOfCronJob\x12>\n" +
 	"\x05items\x18\x01 \x03(\v2(.io.clbs.openhes.models.cronjobs.CronJobR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

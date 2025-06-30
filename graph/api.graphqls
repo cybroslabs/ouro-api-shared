@@ -1927,6 +1927,8 @@ type CronJobStatus {
   lastRunAt: Timestamp
   # The timestamp of the next run.
   nextRunAt: Timestamp
+  # The error message if the cron job schedule is invalid.
+  error: String
 }
 
 type ListOfCronJob {

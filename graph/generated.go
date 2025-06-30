@@ -347,6 +347,7 @@ type ComplexityRoot struct {
 	}
 
 	CronJobStatus struct {
+		Error     func(childComplexity int) int
 		LastRunAt func(childComplexity int) int
 		NextRunAt func(childComplexity int) int
 	}
@@ -2162,6 +2163,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.CronJobSpec.Type(childComplexity), true
+
+	case "CronJobStatus.error":
+		if e.complexity.CronJobStatus.Error == nil {
+			break
+		}
+
+		return e.complexity.CronJobStatus.Error(childComplexity), true
 
 	case "CronJobStatus.lastRunAt":
 		if e.complexity.CronJobStatus.LastRunAt == nil {
@@ -11530,6 +11538,8 @@ func (ec *executionContext) fieldContext_CronJob_status(_ context.Context, field
 				return ec.fieldContext_CronJobStatus_lastRunAt(ctx, field)
 			case "nextRunAt":
 				return ec.fieldContext_CronJobStatus_nextRunAt(ctx, field)
+			case "error":
+				return ec.fieldContext_CronJobStatus_error(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type CronJobStatus", field.Name)
 		},
@@ -11876,6 +11886,47 @@ func (ec *executionContext) fieldContext_CronJobStatus_nextRunAt(_ context.Conte
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CronJobStatus_error(ctx context.Context, field graphql.CollectedField, obj *model.CronJobStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CronJobStatus_error(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Error, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CronJobStatus_error(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CronJobStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -36649,6 +36700,8 @@ func (ec *executionContext) _CronJobStatus(ctx context.Context, sel ast.Selectio
 			out.Values[i] = ec._CronJobStatus_lastRunAt(ctx, field, obj)
 		case "nextRunAt":
 			out.Values[i] = ec._CronJobStatus_nextRunAt(ctx, field, obj)
+		case "error":
+			out.Values[i] = ec._CronJobStatus_error(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

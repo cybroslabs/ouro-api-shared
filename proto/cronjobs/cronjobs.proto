@@ -36,6 +36,7 @@ message CronJobSpec {
 message CronJobStatus {
     google.protobuf.Timestamp last_run_at = 1;  // The timestamp of the last run.
     google.protobuf.Timestamp next_run_at = 2;  // The timestamp of the next run.
+    string error                          = 3;  // The error message if the cron job schedule is invalid.
 }
 
 message ListOfCronJob {

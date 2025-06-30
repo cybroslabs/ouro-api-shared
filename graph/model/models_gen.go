@@ -313,6 +313,7 @@ type CronJobSpec struct {
 type CronJobStatus struct {
 	LastRunAt *string `json:"lastRunAt,omitempty"`
 	NextRunAt *string `json:"nextRunAt,omitempty"`
+	Error     *string `json:"error,omitempty"`
 }
 
 type DataLinkTemplate struct {
