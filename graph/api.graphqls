@@ -1592,10 +1592,10 @@ type VariableDeviceData {
   variableId: String
   # The list of timestamps for the variable data.
   timestamps: [Timestamp]
-  # The unit of the value.
-  unit: [String]
-  # The value.
-  value: [MeasuredValue]
+  # The list of units for the variable data.
+  units: [String]
+  # The list of measured values for the variable data.
+  values: [MeasuredValue]
 }
 
 type VariableSpec {

@@ -1097,8 +1097,8 @@ type ComplexityRoot struct {
 
 	VariableDeviceData struct {
 		Timestamps func(childComplexity int) int
-		Unit       func(childComplexity int) int
-		Value      func(childComplexity int) int
+		Units      func(childComplexity int) int
+		Values     func(childComplexity int) int
 		VariableID func(childComplexity int) int
 	}
 
@@ -5251,19 +5251,19 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.VariableDeviceData.Timestamps(childComplexity), true
 
-	case "VariableDeviceData.unit":
-		if e.complexity.VariableDeviceData.Unit == nil {
+	case "VariableDeviceData.units":
+		if e.complexity.VariableDeviceData.Units == nil {
 			break
 		}
 
-		return e.complexity.VariableDeviceData.Unit(childComplexity), true
+		return e.complexity.VariableDeviceData.Units(childComplexity), true
 
-	case "VariableDeviceData.value":
-		if e.complexity.VariableDeviceData.Value == nil {
+	case "VariableDeviceData.values":
+		if e.complexity.VariableDeviceData.Values == nil {
 			break
 		}
 
-		return e.complexity.VariableDeviceData.Value(childComplexity), true
+		return e.complexity.VariableDeviceData.Values(childComplexity), true
 
 	case "VariableDeviceData.variableId":
 		if e.complexity.VariableDeviceData.VariableID == nil {
@@ -13176,10 +13176,10 @@ func (ec *executionContext) fieldContext_DeviceDeviceData_data(_ context.Context
 				return ec.fieldContext_VariableDeviceData_variableId(ctx, field)
 			case "timestamps":
 				return ec.fieldContext_VariableDeviceData_timestamps(ctx, field)
-			case "unit":
-				return ec.fieldContext_VariableDeviceData_unit(ctx, field)
-			case "value":
-				return ec.fieldContext_VariableDeviceData_value(ctx, field)
+			case "units":
+				return ec.fieldContext_VariableDeviceData_units(ctx, field)
+			case "values":
+				return ec.fieldContext_VariableDeviceData_values(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type VariableDeviceData", field.Name)
 		},
@@ -31836,8 +31836,8 @@ func (ec *executionContext) fieldContext_VariableDeviceData_timestamps(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _VariableDeviceData_unit(ctx context.Context, field graphql.CollectedField, obj *model.VariableDeviceData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_VariableDeviceData_unit(ctx, field)
+func (ec *executionContext) _VariableDeviceData_units(ctx context.Context, field graphql.CollectedField, obj *model.VariableDeviceData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_VariableDeviceData_units(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -31850,7 +31850,7 @@ func (ec *executionContext) _VariableDeviceData_unit(ctx context.Context, field 
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Unit, nil
+		return obj.Units, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -31864,7 +31864,7 @@ func (ec *executionContext) _VariableDeviceData_unit(ctx context.Context, field 
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_VariableDeviceData_unit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_VariableDeviceData_units(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "VariableDeviceData",
 		Field:      field,
@@ -31877,8 +31877,8 @@ func (ec *executionContext) fieldContext_VariableDeviceData_unit(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _VariableDeviceData_value(ctx context.Context, field graphql.CollectedField, obj *model.VariableDeviceData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_VariableDeviceData_value(ctx, field)
+func (ec *executionContext) _VariableDeviceData_values(ctx context.Context, field graphql.CollectedField, obj *model.VariableDeviceData) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_VariableDeviceData_values(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -31891,7 +31891,7 @@ func (ec *executionContext) _VariableDeviceData_value(ctx context.Context, field
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Value, nil
+		return obj.Values, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -31905,7 +31905,7 @@ func (ec *executionContext) _VariableDeviceData_value(ctx context.Context, field
 	return ec.marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_VariableDeviceData_value(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_VariableDeviceData_values(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "VariableDeviceData",
 		Field:      field,
@@ -42628,10 +42628,10 @@ func (ec *executionContext) _VariableDeviceData(ctx context.Context, sel ast.Sel
 			out.Values[i] = ec._VariableDeviceData_variableId(ctx, field, obj)
 		case "timestamps":
 			out.Values[i] = ec._VariableDeviceData_timestamps(ctx, field, obj)
-		case "unit":
-			out.Values[i] = ec._VariableDeviceData_unit(ctx, field, obj)
-		case "value":
-			out.Values[i] = ec._VariableDeviceData_value(ctx, field, obj)
+		case "units":
+			out.Values[i] = ec._VariableDeviceData_units(ctx, field, obj)
+		case "values":
+			out.Values[i] = ec._VariableDeviceData_values(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

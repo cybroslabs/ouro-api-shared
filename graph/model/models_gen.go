@@ -972,8 +972,8 @@ type Variable struct {
 type VariableDeviceData struct {
 	VariableID *string          `json:"variableId,omitempty"`
 	Timestamps []*string        `json:"timestamps,omitempty"`
-	Unit       []*string        `json:"unit,omitempty"`
-	Value      []*MeasuredValue `json:"value,omitempty"`
+	Units      []*string        `json:"units,omitempty"`
+	Values     []*MeasuredValue `json:"values,omitempty"`
 }
 
 type VariableSpec struct {

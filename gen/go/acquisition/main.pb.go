@@ -6916,8 +6916,8 @@ type VariableDeviceData struct {
 	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_VariableId  *string                   `protobuf:"bytes,1,opt,name=variable_id,json=variableId"`
 	xxx_hidden_Timestamps  *[]*timestamppb.Timestamp `protobuf:"bytes,2,rep,name=timestamps"`
-	xxx_hidden_Unit        []string                  `protobuf:"bytes,3,rep,name=unit"`
-	xxx_hidden_Value       *[]*MeasuredValue         `protobuf:"bytes,4,rep,name=value"`
+	xxx_hidden_Units       []string                  `protobuf:"bytes,3,rep,name=units"`
+	xxx_hidden_Values      *[]*MeasuredValue         `protobuf:"bytes,4,rep,name=values"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -6968,17 +6968,17 @@ func (x *VariableDeviceData) GetTimestamps() []*timestamppb.Timestamp {
 	return nil
 }
 
-func (x *VariableDeviceData) GetUnit() []string {
+func (x *VariableDeviceData) GetUnits() []string {
 	if x != nil {
-		return x.xxx_hidden_Unit
+		return x.xxx_hidden_Units
 	}
 	return nil
 }
 
-func (x *VariableDeviceData) GetValue() []*MeasuredValue {
+func (x *VariableDeviceData) GetValues() []*MeasuredValue {
 	if x != nil {
-		if x.xxx_hidden_Value != nil {
-			return *x.xxx_hidden_Value
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
 		}
 	}
 	return nil
@@ -6993,12 +6993,12 @@ func (x *VariableDeviceData) SetTimestamps(v []*timestamppb.Timestamp) {
 	x.xxx_hidden_Timestamps = &v
 }
 
-func (x *VariableDeviceData) SetUnit(v []string) {
-	x.xxx_hidden_Unit = v
+func (x *VariableDeviceData) SetUnits(v []string) {
+	x.xxx_hidden_Units = v
 }
 
-func (x *VariableDeviceData) SetValue(v []*MeasuredValue) {
-	x.xxx_hidden_Value = &v
+func (x *VariableDeviceData) SetValues(v []*MeasuredValue) {
+	x.xxx_hidden_Values = &v
 }
 
 func (x *VariableDeviceData) HasVariableId() bool {
@@ -7018,8 +7018,8 @@ type VariableDeviceData_builder struct {
 
 	VariableId *string
 	Timestamps []*timestamppb.Timestamp
-	Unit       []string
-	Value      []*MeasuredValue
+	Units      []string
+	Values     []*MeasuredValue
 }
 
 func (b0 VariableDeviceData_builder) Build() *VariableDeviceData {
@@ -7031,8 +7031,8 @@ func (b0 VariableDeviceData_builder) Build() *VariableDeviceData {
 		x.xxx_hidden_VariableId = b.VariableId
 	}
 	x.xxx_hidden_Timestamps = &b.Timestamps
-	x.xxx_hidden_Unit = b.Unit
-	x.xxx_hidden_Value = &b.Value
+	x.xxx_hidden_Units = b.Units
+	x.xxx_hidden_Values = &b.Values
 	return m0
 }
 
@@ -7672,15 +7672,15 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\adevices\x18\x01 \x03(\v24.io.clbs.openhes.models.acquisition.DeviceDeviceDataR\adevices\"{\n" +
 	"\x10DeviceDeviceData\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12J\n" +
-	"\x04data\x18\x02 \x03(\v26.io.clbs.openhes.models.acquisition.VariableDeviceDataR\x04data\"\xce\x01\n" +
+	"\x04data\x18\x02 \x03(\v26.io.clbs.openhes.models.acquisition.VariableDeviceDataR\x04data\"\xd2\x01\n" +
 	"\x12VariableDeviceData\x12\x1f\n" +
 	"\vvariable_id\x18\x01 \x01(\tR\n" +
 	"variableId\x12:\n" +
 	"\n" +
 	"timestamps\x18\x02 \x03(\v2\x1a.google.protobuf.TimestampR\n" +
-	"timestamps\x12\x12\n" +
-	"\x04unit\x18\x03 \x03(\tR\x04unit\x12G\n" +
-	"\x05value\x18\x04 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"t\n" +
+	"timestamps\x12\x14\n" +
+	"\x05units\x18\x03 \x03(\tR\x05units\x12I\n" +
+	"\x06values\x18\x04 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"t\n" +
 	"\x16GetDeviceEventsRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"\xbe\x01\n" +
@@ -7883,7 +7883,7 @@ var file_acquisition_main_proto_depIdxs = []int32{
 	65, // 85: io.clbs.openhes.models.acquisition.DeviceData.devices:type_name -> io.clbs.openhes.models.acquisition.DeviceDeviceData
 	66, // 86: io.clbs.openhes.models.acquisition.DeviceDeviceData.data:type_name -> io.clbs.openhes.models.acquisition.VariableDeviceData
 	85, // 87: io.clbs.openhes.models.acquisition.VariableDeviceData.timestamps:type_name -> google.protobuf.Timestamp
-	94, // 88: io.clbs.openhes.models.acquisition.VariableDeviceData.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	94, // 88: io.clbs.openhes.models.acquisition.VariableDeviceData.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	85, // 89: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.from:type_name -> google.protobuf.Timestamp
 	85, // 90: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.to:type_name -> google.protobuf.Timestamp
 	95, // 91: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec

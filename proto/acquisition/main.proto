@@ -426,8 +426,8 @@ message DeviceDeviceData {
 message VariableDeviceData {
     string variable_id                            = 1;  // The unique identifier of the variable.
     repeated google.protobuf.Timestamp timestamps = 2;  // The list of timestamps for the variable data.
-    repeated string unit                          = 3;  // The unit of the value.
-    repeated MeasuredValue value                  = 4;  // The value.
+    repeated string units                         = 3;  // The list of units for the variable data.
+    repeated MeasuredValue values                 = 4;  // The list of measured values for the variable data.
 }
 
 // Device Events
