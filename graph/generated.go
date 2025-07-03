@@ -76,17 +76,19 @@ type ComplexityRoot struct {
 	}
 
 	ActionGetIrregularProfile struct {
-		From func(childComplexity int) int
-		To   func(childComplexity int) int
+		DataType func(childComplexity int) int
+		From     func(childComplexity int) int
+		To       func(childComplexity int) int
 	}
 
 	ActionGetPeriodicalProfile struct {
-		From func(childComplexity int) int
-		To   func(childComplexity int) int
+		DataType func(childComplexity int) int
+		From     func(childComplexity int) int
+		To       func(childComplexity int) int
 	}
 
 	ActionGetRegister struct {
-		Empty func(childComplexity int) int
+		DataType func(childComplexity int) int
 	}
 
 	ActionGetTou struct {
@@ -1342,6 +1344,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ActionGetEvents.To(childComplexity), true
 
+	case "ActionGetIrregularProfile.dataType":
+		if e.complexity.ActionGetIrregularProfile.DataType == nil {
+			break
+		}
+
+		return e.complexity.ActionGetIrregularProfile.DataType(childComplexity), true
+
 	case "ActionGetIrregularProfile.from":
 		if e.complexity.ActionGetIrregularProfile.From == nil {
 			break
@@ -1355,6 +1364,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ActionGetIrregularProfile.To(childComplexity), true
+
+	case "ActionGetPeriodicalProfile.dataType":
+		if e.complexity.ActionGetPeriodicalProfile.DataType == nil {
+			break
+		}
+
+		return e.complexity.ActionGetPeriodicalProfile.DataType(childComplexity), true
 
 	case "ActionGetPeriodicalProfile.from":
 		if e.complexity.ActionGetPeriodicalProfile.From == nil {
@@ -1370,12 +1386,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ActionGetPeriodicalProfile.To(childComplexity), true
 
-	case "ActionGetRegister._empty":
-		if e.complexity.ActionGetRegister.Empty == nil {
+	case "ActionGetRegister.dataType":
+		if e.complexity.ActionGetRegister.DataType == nil {
 			break
 		}
 
-		return e.complexity.ActionGetRegister.Empty(childComplexity), true
+		return e.complexity.ActionGetRegister.DataType(childComplexity), true
 
 	case "ActionGetTou.passive":
 		if e.complexity.ActionGetTou.Passive == nil {
@@ -6314,6 +6330,47 @@ func (ec *executionContext) fieldContext_ActionGetIrregularProfile_to(_ context.
 	return fc, nil
 }
 
+func (ec *executionContext) _ActionGetIrregularProfile_dataType(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetIrregularProfile) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetIrregularProfile_dataType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDataType)
+	fc.Result = res
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionGetIrregularProfile_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionGetIrregularProfile",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDataType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ActionGetPeriodicalProfile_from(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetPeriodicalProfile) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ActionGetPeriodicalProfile_from(ctx, field)
 	if err != nil {
@@ -6396,8 +6453,8 @@ func (ec *executionContext) fieldContext_ActionGetPeriodicalProfile_to(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _ActionGetRegister__empty(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetRegister) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ActionGetRegister__empty(ctx, field)
+func (ec *executionContext) _ActionGetPeriodicalProfile_dataType(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetPeriodicalProfile) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetPeriodicalProfile_dataType(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -6410,7 +6467,7 @@ func (ec *executionContext) _ActionGetRegister__empty(ctx context.Context, field
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Empty, nil
+		return obj.DataType, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6419,19 +6476,60 @@ func (ec *executionContext) _ActionGetRegister__empty(ctx context.Context, field
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*bool)
+	res := resTmp.(*model.FieldDataType)
 	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ActionGetRegister__empty(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ActionGetPeriodicalProfile_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionGetPeriodicalProfile",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type FieldDataType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionGetRegister_dataType(ctx context.Context, field graphql.CollectedField, obj *model.ActionGetRegister) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionGetRegister_dataType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FieldDataType)
+	fc.Result = res
+	return ec.marshalOFieldDataType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFieldDataType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionGetRegister_dataType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ActionGetRegister",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
+			return nil, errors.New("field of type FieldDataType does not have child fields")
 		},
 	}
 	return fc, nil
@@ -17688,8 +17786,8 @@ func (ec *executionContext) fieldContext_JobAction_getRegister(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetRegister__empty(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetRegister_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetRegister", field.Name)
 		},
@@ -17737,6 +17835,8 @@ func (ec *executionContext) fieldContext_JobAction_getPeriodicalProfile(_ contex
 				return ec.fieldContext_ActionGetPeriodicalProfile_from(ctx, field)
 			case "to":
 				return ec.fieldContext_ActionGetPeriodicalProfile_to(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetPeriodicalProfile_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetPeriodicalProfile", field.Name)
 		},
@@ -17784,6 +17884,8 @@ func (ec *executionContext) fieldContext_JobAction_getIrregularProfile(_ context
 				return ec.fieldContext_ActionGetIrregularProfile_from(ctx, field)
 			case "to":
 				return ec.fieldContext_ActionGetIrregularProfile_to(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetIrregularProfile_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetIrregularProfile", field.Name)
 		},
@@ -18538,8 +18640,8 @@ func (ec *executionContext) fieldContext_JobActionSet_getRegister(_ context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "_empty":
-				return ec.fieldContext_ActionGetRegister__empty(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetRegister_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetRegister", field.Name)
 		},
@@ -18587,6 +18689,8 @@ func (ec *executionContext) fieldContext_JobActionSet_getPeriodicalProfile(_ con
 				return ec.fieldContext_ActionGetPeriodicalProfile_from(ctx, field)
 			case "to":
 				return ec.fieldContext_ActionGetPeriodicalProfile_to(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetPeriodicalProfile_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetPeriodicalProfile", field.Name)
 		},
@@ -18634,6 +18738,8 @@ func (ec *executionContext) fieldContext_JobActionSet_getIrregularProfile(_ cont
 				return ec.fieldContext_ActionGetIrregularProfile_from(ctx, field)
 			case "to":
 				return ec.fieldContext_ActionGetIrregularProfile_to(ctx, field)
+			case "dataType":
+				return ec.fieldContext_ActionGetIrregularProfile_dataType(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionGetIrregularProfile", field.Name)
 		},
@@ -34788,6 +34894,8 @@ func (ec *executionContext) _ActionGetIrregularProfile(ctx context.Context, sel 
 			out.Values[i] = ec._ActionGetIrregularProfile_from(ctx, field, obj)
 		case "to":
 			out.Values[i] = ec._ActionGetIrregularProfile_to(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._ActionGetIrregularProfile_dataType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -34826,6 +34934,8 @@ func (ec *executionContext) _ActionGetPeriodicalProfile(ctx context.Context, sel
 			out.Values[i] = ec._ActionGetPeriodicalProfile_from(ctx, field, obj)
 		case "to":
 			out.Values[i] = ec._ActionGetPeriodicalProfile_to(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._ActionGetPeriodicalProfile_dataType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -34860,8 +34970,8 @@ func (ec *executionContext) _ActionGetRegister(ctx context.Context, sel ast.Sele
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ActionGetRegister")
-		case "_empty":
-			out.Values[i] = ec._ActionGetRegister__empty(ctx, field, obj)
+		case "dataType":
+			out.Values[i] = ec._ActionGetRegister_dataType(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

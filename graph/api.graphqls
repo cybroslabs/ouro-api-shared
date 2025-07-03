@@ -526,6 +526,8 @@ type ActionGetIrregularProfile {
   from: Timestamp
   # The end timestamp of the profile.
   to: Timestamp
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  dataType: FieldDataType
 }
 
 # Sub-message containing get periodical profile action specification
@@ -534,11 +536,14 @@ type ActionGetPeriodicalProfile {
   from: Timestamp
   # The end timestamp of the profile.
   to: Timestamp
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  dataType: FieldDataType
 }
 
 # Sub-message containing get register action specification
 type ActionGetRegister {
-  _empty: Boolean
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  dataType: FieldDataType
 }
 
 # Sub-message containing get tou action specification

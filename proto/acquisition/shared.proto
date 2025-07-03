@@ -542,18 +542,21 @@ enum ActionType {
 
 // Sub-message containing get register action specification
 message ActionGetRegister {
+    common.FieldDataType data_type = 1;  // The data type of the target register, e.g. integer, double, string, timestamp, etc.
 }
 
 // Sub-message containing get periodical profile action specification
 message ActionGetPeriodicalProfile {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
+    common.FieldDataType data_type        = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc.
 }
 
 // Sub-message containing get irregular profile action specification
 message ActionGetIrregularProfile {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
+    common.FieldDataType data_type        = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc.
 }
 
 // Sub-message containing get events action specification

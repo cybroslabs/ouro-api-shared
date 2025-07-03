@@ -8,4 +8,5 @@ Sub-message containing get periodical profile action specification
 | --- | --- |
 | from | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The start timestamp of the profile. |
 | to | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The end timestamp of the profile. |
+| dataType | <b>Type:</b> [`io.clbs.openhes.models.common.FieldDataType`](enum-io-clbs-openhes-models-common-fielddatatype.md)<br><b>Description:</b><br>The data type of the target register, e.g. integer, double, string, timestamp, etc. |
 

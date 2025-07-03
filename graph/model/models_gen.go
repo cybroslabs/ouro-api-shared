@@ -40,17 +40,19 @@ type ActionGetEvents struct {
 }
 
 type ActionGetIrregularProfile struct {
-	From *string `json:"from,omitempty"`
-	To   *string `json:"to,omitempty"`
+	From     *string        `json:"from,omitempty"`
+	To       *string        `json:"to,omitempty"`
+	DataType *FieldDataType `json:"dataType,omitempty"`
 }
 
 type ActionGetPeriodicalProfile struct {
-	From *string `json:"from,omitempty"`
-	To   *string `json:"to,omitempty"`
+	From     *string        `json:"from,omitempty"`
+	To       *string        `json:"to,omitempty"`
+	DataType *FieldDataType `json:"dataType,omitempty"`
 }
 
 type ActionGetRegister struct {
-	Empty *bool `json:"_empty,omitempty"`
+	DataType *FieldDataType `json:"dataType,omitempty"`
 }
 
 type ActionGetTou struct {
