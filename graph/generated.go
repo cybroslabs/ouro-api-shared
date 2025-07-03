@@ -556,13 +556,17 @@ type ComplexityRoot struct {
 	}
 
 	GetDeviceDataRequest struct {
-		DeviceID            func(childComplexity int) int
 		FilterExcludeStatus func(childComplexity int) int
 		FilterIncludeStatus func(childComplexity int) int
 		From                func(childComplexity int) int
+		Series              func(childComplexity int) int
 		Snapshot            func(childComplexity int) int
 		To                  func(childComplexity int) int
-		VariableID          func(childComplexity int) int
+	}
+
+	GetDeviceDataSeriesSelector struct {
+		DeviceID   func(childComplexity int) int
+		VariableID func(childComplexity int) int
 	}
 
 	GetDeviceEventsRequest struct {
@@ -2976,13 +2980,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldValues.Attributes(childComplexity), true
 
-	case "GetDeviceDataRequest.deviceId":
-		if e.complexity.GetDeviceDataRequest.DeviceID == nil {
-			break
-		}
-
-		return e.complexity.GetDeviceDataRequest.DeviceID(childComplexity), true
-
 	case "GetDeviceDataRequest.filterExcludeStatus":
 		if e.complexity.GetDeviceDataRequest.FilterExcludeStatus == nil {
 			break
@@ -3004,6 +3001,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.GetDeviceDataRequest.From(childComplexity), true
 
+	case "GetDeviceDataRequest.series":
+		if e.complexity.GetDeviceDataRequest.Series == nil {
+			break
+		}
+
+		return e.complexity.GetDeviceDataRequest.Series(childComplexity), true
+
 	case "GetDeviceDataRequest.snapshot":
 		if e.complexity.GetDeviceDataRequest.Snapshot == nil {
 			break
@@ -3018,12 +3022,19 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.GetDeviceDataRequest.To(childComplexity), true
 
-	case "GetDeviceDataRequest.variableId":
-		if e.complexity.GetDeviceDataRequest.VariableID == nil {
+	case "GetDeviceDataSeriesSelector.deviceId":
+		if e.complexity.GetDeviceDataSeriesSelector.DeviceID == nil {
 			break
 		}
 
-		return e.complexity.GetDeviceDataRequest.VariableID(childComplexity), true
+		return e.complexity.GetDeviceDataSeriesSelector.DeviceID(childComplexity), true
+
+	case "GetDeviceDataSeriesSelector.variableId":
+		if e.complexity.GetDeviceDataSeriesSelector.VariableID == nil {
+			break
+		}
+
+		return e.complexity.GetDeviceDataSeriesSelector.VariableID(childComplexity), true
 
 	case "GetDeviceEventsRequest.from":
 		if e.complexity.GetDeviceEventsRequest.From == nil {
@@ -17027,8 +17038,8 @@ func (ec *executionContext) fieldContext_GetDeviceDataRequest_to(_ context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _GetDeviceDataRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_GetDeviceDataRequest_deviceId(ctx, field)
+func (ec *executionContext) _GetDeviceDataRequest_series(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceDataRequest_series(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -17041,7 +17052,7 @@ func (ec *executionContext) _GetDeviceDataRequest_deviceId(ctx context.Context, 
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.DeviceID, nil
+		return obj.Series, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -17050,60 +17061,25 @@ func (ec *executionContext) _GetDeviceDataRequest_deviceId(ctx context.Context, 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*string)
+	res := resTmp.([]*model.GetDeviceDataSeriesSelector)
 	fc.Result = res
-	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+	return ec.marshalOGetDeviceDataSeriesSelector2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐGetDeviceDataSeriesSelector(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_GetDeviceDataRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_GetDeviceDataRequest_series(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "GetDeviceDataRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _GetDeviceDataRequest_variableId(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_GetDeviceDataRequest_variableId(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.VariableID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*string)
-	fc.Result = res
-	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_GetDeviceDataRequest_variableId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "GetDeviceDataRequest",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
+			switch field.Name {
+			case "deviceId":
+				return ec.fieldContext_GetDeviceDataSeriesSelector_deviceId(ctx, field)
+			case "variableId":
+				return ec.fieldContext_GetDeviceDataSeriesSelector_variableId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type GetDeviceDataSeriesSelector", field.Name)
 		},
 	}
 	return fc, nil
@@ -17227,6 +17203,88 @@ func (ec *executionContext) fieldContext_GetDeviceDataRequest_snapshot(_ context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetDeviceDataSeriesSelector_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataSeriesSelector) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceDataSeriesSelector_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetDeviceDataSeriesSelector_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetDeviceDataSeriesSelector",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetDeviceDataSeriesSelector_variableId(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceDataSeriesSelector) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceDataSeriesSelector_variableId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetDeviceDataSeriesSelector_variableId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetDeviceDataSeriesSelector",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -37986,16 +38044,52 @@ func (ec *executionContext) _GetDeviceDataRequest(ctx context.Context, sel ast.S
 			out.Values[i] = ec._GetDeviceDataRequest_from(ctx, field, obj)
 		case "to":
 			out.Values[i] = ec._GetDeviceDataRequest_to(ctx, field, obj)
-		case "deviceId":
-			out.Values[i] = ec._GetDeviceDataRequest_deviceId(ctx, field, obj)
-		case "variableId":
-			out.Values[i] = ec._GetDeviceDataRequest_variableId(ctx, field, obj)
+		case "series":
+			out.Values[i] = ec._GetDeviceDataRequest_series(ctx, field, obj)
 		case "filterIncludeStatus":
 			out.Values[i] = ec._GetDeviceDataRequest_filterIncludeStatus(ctx, field, obj)
 		case "filterExcludeStatus":
 			out.Values[i] = ec._GetDeviceDataRequest_filterExcludeStatus(ctx, field, obj)
 		case "snapshot":
 			out.Values[i] = ec._GetDeviceDataRequest_snapshot(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var getDeviceDataSeriesSelectorImplementors = []string{"GetDeviceDataSeriesSelector"}
+
+func (ec *executionContext) _GetDeviceDataSeriesSelector(ctx context.Context, sel ast.SelectionSet, obj *model.GetDeviceDataSeriesSelector) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, getDeviceDataSeriesSelectorImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("GetDeviceDataSeriesSelector")
+		case "deviceId":
+			out.Values[i] = ec._GetDeviceDataSeriesSelector_deviceId(ctx, field, obj)
+		case "variableId":
+			out.Values[i] = ec._GetDeviceDataSeriesSelector_variableId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -45287,6 +45381,54 @@ func (ec *executionContext) marshalOFloat2ᚖfloat64(ctx context.Context, sel as
 	_ = sel
 	res := graphql.MarshalFloatContext(*v)
 	return graphql.WrapContextMarshaler(ctx, res)
+}
+
+func (ec *executionContext) marshalOGetDeviceDataSeriesSelector2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐGetDeviceDataSeriesSelector(ctx context.Context, sel ast.SelectionSet, v []*model.GetDeviceDataSeriesSelector) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOGetDeviceDataSeriesSelector2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐGetDeviceDataSeriesSelector(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOGetDeviceDataSeriesSelector2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐGetDeviceDataSeriesSelector(ctx context.Context, sel ast.SelectionSet, v *model.GetDeviceDataSeriesSelector) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._GetDeviceDataSeriesSelector(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOInt2ᚕᚖint32(ctx context.Context, v any) ([]*int32, error) {

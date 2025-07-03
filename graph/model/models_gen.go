@@ -520,13 +520,17 @@ type FieldValues struct {
 }
 
 type GetDeviceDataRequest struct {
-	From                *string   `json:"from,omitempty"`
-	To                  *string   `json:"to,omitempty"`
-	DeviceID            []*string `json:"deviceId,omitempty"`
-	VariableID          []*string `json:"variableId,omitempty"`
-	FilterIncludeStatus *int64    `json:"filterIncludeStatus,omitempty"`
-	FilterExcludeStatus *int64    `json:"filterExcludeStatus,omitempty"`
-	Snapshot            *string   `json:"snapshot,omitempty"`
+	From                *string                        `json:"from,omitempty"`
+	To                  *string                        `json:"to,omitempty"`
+	Series              []*GetDeviceDataSeriesSelector `json:"series,omitempty"`
+	FilterIncludeStatus *int64                         `json:"filterIncludeStatus,omitempty"`
+	FilterExcludeStatus *int64                         `json:"filterExcludeStatus,omitempty"`
+	Snapshot            *string                        `json:"snapshot,omitempty"`
+}
+
+type GetDeviceDataSeriesSelector struct {
+	DeviceID   *string `json:"deviceId,omitempty"`
+	VariableID *string `json:"variableId,omitempty"`
 }
 
 type GetDeviceEventsRequest struct {

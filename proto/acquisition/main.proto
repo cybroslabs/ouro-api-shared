@@ -405,13 +405,17 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
 // Device Data
 
 message GetDeviceDataRequest {
-    google.protobuf.Timestamp from     = 1;  // The start timestamp of the data.
-    google.protobuf.Timestamp to       = 2;  // The end timestamp of the data.
-    repeated string device_id          = 3;  // One or more identifiers of the devices.
-    repeated string variable_id        = 4;  // The unique identifier of the register.
-    int64 filter_include_status        = 5;  // The filter status bits, only values with these status bits will be returned in the response.
-    int64 filter_exclude_status        = 6;  // The filter status bits, only values without these status bits will be returned in the response.
-    google.protobuf.Timestamp snapshot = 7;  // If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+    google.protobuf.Timestamp from              = 1;  // The start timestamp of the data.
+    google.protobuf.Timestamp to                = 2;  // The end timestamp of the data.
+    repeated GetDeviceDataSeriesSelector series = 3;  // One or more identifiers of the devices.
+    int64 filter_include_status                 = 4;  // The filter status bits, only values with these status bits will be returned in the response.
+    int64 filter_exclude_status                 = 5;  // The filter status bits, only values without these status bits will be returned in the response.
+    google.protobuf.Timestamp snapshot          = 6;  // If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+}
+
+message GetDeviceDataSeriesSelector {
+    string device_id   = 1;  // The unique identifier of the device.
+    string variable_id = 2;  // The unique identifier of the variable.
 }
 
 message DeviceData {

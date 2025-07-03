@@ -690,6 +690,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDeviceDataSeriesSelector</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceEventsRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>GetDeviceEventsRequest</code> 
@@ -6476,14 +6485,15 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     <tr>
       <td>3</td>
       <td>
-        deviceId
+        series
       </td>
       <td>
-        <code title="string">
+        <code title="io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector">
           
             repeated
           
-          <span>string</span>
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector"><span title="io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector">io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector</span>
+    </a>
         </code>
       </td>
       <td class="content"><p>One or more identifiers of the devices.</p></td>
@@ -6492,23 +6502,6 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     
     <tr>
       <td>4</td>
-      <td>
-        variableId
-      </td>
-      <td>
-        <code title="string">
-          
-            repeated
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The unique identifier of the register.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>5</td>
       <td>
         filterIncludeStatus
       </td>
@@ -6523,7 +6516,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     </tr>
     
     <tr>
-      <td>6</td>
+      <td>5</td>
       <td>
         filterExcludeStatus
       </td>
@@ -6538,7 +6531,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     </tr>
     
     <tr>
-      <td>7</td>
+      <td>6</td>
       <td>
         snapshot
       </td>
@@ -6549,6 +6542,71 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
         </code>
       </td>
       <td class="content"><p>If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector" title="io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector">message GetDeviceDataSeriesSelector</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        deviceId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        variableId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the variable.</p></td>
       
     </tr>
     
