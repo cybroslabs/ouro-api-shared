@@ -526,7 +526,7 @@ type ActionGetIrregularProfile {
   from: Timestamp
   # The end timestamp of the profile.
   to: Timestamp
-  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
   dataType: FieldDataType
 }
 
@@ -536,13 +536,13 @@ type ActionGetPeriodicalProfile {
   from: Timestamp
   # The end timestamp of the profile.
   to: Timestamp
-  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
   dataType: FieldDataType
 }
 
 # Sub-message containing get register action specification
 type ActionGetRegister {
-  # The data type of the target register, e.g. integer, double, string, timestamp, etc.
+  # The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
   dataType: FieldDataType
 }
 

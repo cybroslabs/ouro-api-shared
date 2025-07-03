@@ -3044,7 +3044,7 @@ export const ConnectionTypeControlledSerialSchema: GenMessage<ConnectionTypeCont
  */
 export type ActionGetRegister = Message<"io.clbs.openhes.models.acquisition.ActionGetRegister"> & {
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 1;
    */
@@ -3058,7 +3058,7 @@ export type ActionGetRegister = Message<"io.clbs.openhes.models.acquisition.Acti
  */
 export type ActionGetRegisterJson = {
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 1;
    */
@@ -3093,7 +3093,7 @@ export type ActionGetPeriodicalProfile = Message<"io.clbs.openhes.models.acquisi
   to?: Timestamp;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3121,7 +3121,7 @@ export type ActionGetPeriodicalProfileJson = {
   to?: TimestampJson;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3156,7 +3156,7 @@ export type ActionGetIrregularProfile = Message<"io.clbs.openhes.models.acquisit
   to?: Timestamp;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3184,7 +3184,7 @@ export type ActionGetIrregularProfileJson = {
   to?: TimestampJson;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc.
+   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
