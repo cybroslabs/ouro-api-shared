@@ -18,7 +18,10 @@ type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[
 type FieldDescriptorManager interface {
 	SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
+	// Refresh the field descriptors from the API service.
 	Refresh(ctx context.Context) error
+	// Updates descriptors sourced from the local service and refreshes all the field descriptors back from the API service.
+	RefreshWithUpdate(ctx context.Context) error
 	CreateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error
 	UpdateFieldDescriptor(ctx context.Context, fieldDescriptorInternal *common.FieldDescriptorInternal) error
 	DeleteFieldDescriptor(ctx context.Context, selector *common.FieldDescriptorSelector) error
@@ -91,6 +94,13 @@ func (fdm *fieldDescriptorManager) Refresh(ctx context.Context) error {
 	defer fdm.fieldDescriptorPathMapLock.Unlock()
 
 	return fdm.refresh(ctx, false)
+}
+
+func (fdm *fieldDescriptorManager) RefreshWithUpdate(ctx context.Context) error {
+	fdm.fieldDescriptorPathMapLock.Lock()
+	defer fdm.fieldDescriptorPathMapLock.Unlock()
+
+	return fdm.refresh(ctx, true)
 }
 
 func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) error {
