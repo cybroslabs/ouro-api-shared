@@ -31,7 +31,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x11system/main.proto2\x8aO\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x11system/main.proto2\x88O\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -114,8 +114,8 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\rGetDeviceData\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a..io.clbs.openhes.models.acquisition.DeviceData\x12\x88\x01\n" +
 	"\x16GetDeviceDataRegisters\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a2.io.clbs.openhes.models.acquisition.RegisterValues0\x01\x12\x86\x01\n" +
 	"\x15GetDeviceDataProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a1.io.clbs.openhes.models.acquisition.ProfileValues0\x01\x12\x98\x01\n" +
-	"\x1eGetDeviceDataIrregularProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x80\x01\n" +
-	"\x0eGetMeterEvents\x12:.io.clbs.openhes.models.acquisition.GetDeviceEventsRequest\x1a0.io.clbs.openhes.models.acquisition.EventRecords0\x01\x12u\n" +
+	"\x1eGetDeviceDataIrregularProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x7f\n" +
+	"\x0fGetDeviceEvents\x12:.io.clbs.openhes.models.acquisition.GetDeviceEventsRequest\x1a0.io.clbs.openhes.models.acquisition.DeviceEvents\x12u\n" +
 	"\x14CreateTimeOfUseTable\x12?.io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest\x1a\x1c.google.protobuf.StringValue\x12|\n" +
 	"\x13ListTimeOfUseTables\x12+.io.clbs.openhes.models.common.ListSelector\x1a8.io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable\x12e\n" +
 	"\x11GetTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.TimeOfUseTable\x12b\n" +
@@ -206,7 +206,7 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.RegisterValues)(nil),                                                          // 70: io.clbs.openhes.models.acquisition.RegisterValues
 	(*acquisition.ProfileValues)(nil),                                                           // 71: io.clbs.openhes.models.acquisition.ProfileValues
 	(*acquisition.IrregularProfileValues)(nil),                                                  // 72: io.clbs.openhes.models.acquisition.IrregularProfileValues
-	(*acquisition.EventRecords)(nil),                                                            // 73: io.clbs.openhes.models.acquisition.EventRecords
+	(*acquisition.DeviceEvents)(nil),                                                            // 73: io.clbs.openhes.models.acquisition.DeviceEvents
 	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 74: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 	(*cronjobs.ListOfCronJob)(nil),                                                              // 75: io.clbs.openhes.models.cronjobs.ListOfCronJob
 }
@@ -288,7 +288,7 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	38, // 74: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
 	38, // 75: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
 	38, // 76: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	39, // 77: io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents:input_type -> io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
+	39, // 77: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:input_type -> io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
 	40, // 78: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
 	1,  // 79: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:input_type -> io.clbs.openhes.models.common.ListSelector
 	2,  // 80: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:input_type -> google.protobuf.StringValue
@@ -379,7 +379,7 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	70, // 165: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
 	71, // 166: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
 	72, // 167: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	73, // 168: io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents:output_type -> io.clbs.openhes.models.acquisition.EventRecords
+	73, // 168: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:output_type -> io.clbs.openhes.models.acquisition.DeviceEvents
 	2,  // 169: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
 	74, // 170: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 	41, // 171: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable

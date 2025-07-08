@@ -408,10 +408,10 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
                 _registered_method=True)
-        self.GetMeterEvents = channel.unary_stream(
-                '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
+        self.GetDeviceEvents = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceEvents',
                 request_serializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
-                response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
+                response_deserializer=acquisition_dot_shared__pb2.DeviceEvents.FromString,
                 _registered_method=True)
         self.CreateTimeOfUseTable = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable',
@@ -1120,7 +1120,7 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetMeterEvents(self, request, context):
+    def GetDeviceEvents(self, request, context):
         """@group: Device Events
         The method to stream out profile-typed device events.
         """
@@ -1620,10 +1620,10 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.IrregularProfileValues.SerializeToString,
             ),
-            'GetMeterEvents': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetMeterEvents,
+            'GetDeviceEvents': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.FromString,
-                    response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
+                    response_serializer=acquisition_dot_shared__pb2.DeviceEvents.SerializeToString,
             ),
             'CreateTimeOfUseTable': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateTimeOfUseTable,
@@ -3782,7 +3782,7 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetMeterEvents(request,
+    def GetDeviceEvents(request,
             target,
             options=(),
             channel_credentials=None,
@@ -3792,12 +3792,12 @@ class ApiService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(
+        return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents',
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceEvents',
             acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
-            acquisition_dot_shared__pb2.EventRecords.FromString,
+            acquisition_dot_shared__pb2.DeviceEvents.FromString,
             options,
             channel_credentials,
             insecure,

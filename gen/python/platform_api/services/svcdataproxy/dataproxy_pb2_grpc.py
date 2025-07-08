@@ -100,7 +100,7 @@ class DataproxyServiceStub(object):
         self.GetDeviceEvents = channel.unary_stream(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
                 request_serializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
-                response_deserializer=acquisition_dot_shared__pb2.EventRecords.FromString,
+                response_deserializer=acquisition_dot_shared__pb2.DeviceEvents.FromString,
                 _registered_method=True)
         self.CreateFieldDescriptor = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateFieldDescriptor',
@@ -371,7 +371,7 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
             'GetDeviceEvents': grpc.unary_stream_rpc_method_handler(
                     servicer.GetDeviceEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.FromString,
-                    response_serializer=acquisition_dot_shared__pb2.EventRecords.SerializeToString,
+                    response_serializer=acquisition_dot_shared__pb2.DeviceEvents.SerializeToString,
             ),
             'CreateFieldDescriptor': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateFieldDescriptor,
@@ -826,7 +826,7 @@ class DataproxyService(object):
             target,
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
             acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
-            acquisition_dot_shared__pb2.EventRecords.FromString,
+            acquisition_dot_shared__pb2.DeviceEvents.FromString,
             options,
             channel_credentials,
             insecure,

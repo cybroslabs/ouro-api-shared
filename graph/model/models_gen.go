@@ -388,6 +388,19 @@ type DeviceDeviceData struct {
 	Data     []*VariableDeviceData `json:"data,omitempty"`
 }
 
+type DeviceEventRecord struct {
+	DeviceID    *string `json:"deviceId,omitempty"`
+	Timestamp   *string `json:"timestamp,omitempty"`
+	EventID     *int64  `json:"eventId,omitempty"`
+	EventCode   *int64  `json:"eventCode,omitempty"`
+	EventSource *string `json:"eventSource,omitempty"`
+	EventText   *string `json:"eventText,omitempty"`
+}
+
+type DeviceEvents struct {
+	Events []*DeviceEventRecord `json:"events,omitempty"`
+}
+
 type DeviceGroup struct {
 	Spec     *DeviceGroupSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields  `json:"metadata,omitempty"`

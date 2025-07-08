@@ -100,7 +100,7 @@ type DataproxyServiceClient interface {
 	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
 	// The method to stream out profile-typed meter data.
-	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error)
+	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.DeviceEvents], error)
 	// @group: Fields
 	// The method to create a new field descriptor user-defined field descriptor.
 	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -300,13 +300,13 @@ func (c *dataproxyServiceClient) GetDeviceDataIrregularProfiles(ctx context.Cont
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DataproxyService_GetDeviceDataIrregularProfilesClient = grpc.ServerStreamingClient[acquisition.IrregularProfileValues]
 
-func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.EventRecords], error) {
+func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.DeviceEvents], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[3], DataproxyService_GetDeviceEvents_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]{ClientStream: stream}
+	x := &grpc.GenericClientStream[acquisition.GetDeviceEventsRequest, acquisition.DeviceEvents]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -317,7 +317,7 @@ func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquis
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetDeviceEventsClient = grpc.ServerStreamingClient[acquisition.EventRecords]
+type DataproxyService_GetDeviceEventsClient = grpc.ServerStreamingClient[acquisition.DeviceEvents]
 
 func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -414,7 +414,7 @@ type DataproxyServiceServer interface {
 	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
 	// The method to stream out profile-typed meter data.
-	GetDeviceEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error
+	GetDeviceEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.DeviceEvents]) error
 	// @group: Fields
 	// The method to create a new field descriptor user-defined field descriptor.
 	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
@@ -482,7 +482,7 @@ func (UnimplementedDataproxyServiceServer) GetDeviceDataProfiles(*acquisition.Ge
 func (UnimplementedDataproxyServiceServer) GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetDeviceDataIrregularProfiles not implemented")
 }
-func (UnimplementedDataproxyServiceServer) GetDeviceEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.EventRecords]) error {
+func (UnimplementedDataproxyServiceServer) GetDeviceEvents(*acquisition.GetDeviceEventsRequest, grpc.ServerStreamingServer[acquisition.DeviceEvents]) error {
 	return status.Errorf(codes.Unimplemented, "method GetDeviceEvents not implemented")
 }
 func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
@@ -772,11 +772,11 @@ func _DataproxyService_GetDeviceEvents_Handler(srv interface{}, stream grpc.Serv
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DataproxyServiceServer).GetDeviceEvents(m, &grpc.GenericServerStream[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]{ServerStream: stream})
+	return srv.(DataproxyServiceServer).GetDeviceEvents(m, &grpc.GenericServerStream[acquisition.GetDeviceEventsRequest, acquisition.DeviceEvents]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DataproxyService_GetDeviceEventsServer = grpc.ServerStreamingServer[acquisition.EventRecords]
+type DataproxyService_GetDeviceEventsServer = grpc.ServerStreamingServer[acquisition.DeviceEvents]
 
 func _DataproxyService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.CreateFieldDescriptorRequest)

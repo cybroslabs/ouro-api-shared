@@ -201,9 +201,9 @@ func (r *queryResolver) GetDeviceDataIrregularProfiles(ctx context.Context) (*mo
 	panic(fmt.Errorf("not implemented: GetDeviceDataIrregularProfiles - getDeviceDataIrregularProfiles"))
 }
 
-// GetMeterEvents is the resolver for the getMeterEvents field.
-func (r *queryResolver) GetMeterEvents(ctx context.Context) (*model.EventRecords, error) {
-	panic(fmt.Errorf("not implemented: GetMeterEvents - getMeterEvents"))
+// GetDeviceEvents is the resolver for the getDeviceEvents field.
+func (r *queryResolver) GetDeviceEvents(ctx context.Context) (*model.DeviceEvents, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceEvents - getDeviceEvents"))
 }
 
 // CreateCommunicationUnit is the resolver for the createCommunicationUnit field.

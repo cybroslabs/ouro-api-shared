@@ -288,7 +288,7 @@ service ApiService {
 
     // @group: Device Events
     // The method to stream out profile-typed device events.
-    rpc GetMeterEvents(io.clbs.openhes.models.acquisition.GetDeviceEventsRequest) returns (stream io.clbs.openhes.models.acquisition.EventRecords);
+    rpc GetDeviceEvents(io.clbs.openhes.models.acquisition.GetDeviceEventsRequest) returns (io.clbs.openhes.models.acquisition.DeviceEvents);
 
     // @group: Time-Of-Use Tables
     // The method to create a new time-of-use table.

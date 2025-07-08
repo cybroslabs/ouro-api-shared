@@ -253,9 +253,9 @@ const (
 	// ApiServiceGetDeviceDataIrregularProfilesProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceDataIrregularProfiles RPC.
 	ApiServiceGetDeviceDataIrregularProfilesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataIrregularProfiles"
-	// ApiServiceGetMeterEventsProcedure is the fully-qualified name of the ApiService's GetMeterEvents
-	// RPC.
-	ApiServiceGetMeterEventsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetMeterEvents"
+	// ApiServiceGetDeviceEventsProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceEvents RPC.
+	ApiServiceGetDeviceEventsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceEvents"
 	// ApiServiceCreateTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
 	// CreateTimeOfUseTable RPC.
 	ApiServiceCreateTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateTimeOfUseTable"
@@ -548,7 +548,7 @@ type ApiServiceClient interface {
 	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error)
+	GetDeviceEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.Response[acquisition.DeviceEvents], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -1063,10 +1063,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataIrregularProfiles")),
 			connect.WithClientOptions(opts...),
 		),
-		getMeterEvents: connect.NewClient[acquisition.GetDeviceEventsRequest, acquisition.EventRecords](
+		getDeviceEvents: connect.NewClient[acquisition.GetDeviceEventsRequest, acquisition.DeviceEvents](
 			httpClient,
-			baseURL+ApiServiceGetMeterEventsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetMeterEvents")),
+			baseURL+ApiServiceGetDeviceEventsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceEvents")),
 			connect.WithClientOptions(opts...),
 		),
 		createTimeOfUseTable: connect.NewClient[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue](
@@ -1229,7 +1229,7 @@ type apiServiceClient struct {
 	getDeviceDataRegisters                                           *connect.Client[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]
 	getDeviceDataProfiles                                            *connect.Client[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]
 	getDeviceDataIrregularProfiles                                   *connect.Client[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]
-	getMeterEvents                                                   *connect.Client[acquisition.GetDeviceEventsRequest, acquisition.EventRecords]
+	getDeviceEvents                                                  *connect.Client[acquisition.GetDeviceEventsRequest, acquisition.DeviceEvents]
 	createTimeOfUseTable                                             *connect.Client[acquisition.CreateTimeOfUseTableRequest, wrapperspb.StringValue]
 	listTimeOfUseTables                                              *connect.Client[common.ListSelector, acquisition.ListOfTimeOfUseTable]
 	getTimeOfUseTable                                                *connect.Client[wrapperspb.StringValue, acquisition.TimeOfUseTable]
@@ -1652,9 +1652,9 @@ func (c *apiServiceClient) GetDeviceDataIrregularProfiles(ctx context.Context, r
 	return c.getDeviceDataIrregularProfiles.CallServerStream(ctx, req)
 }
 
-// GetMeterEvents calls io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents.
-func (c *apiServiceClient) GetMeterEvents(ctx context.Context, req *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.ServerStreamForClient[acquisition.EventRecords], error) {
-	return c.getMeterEvents.CallServerStream(ctx, req)
+// GetDeviceEvents calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents.
+func (c *apiServiceClient) GetDeviceEvents(ctx context.Context, req *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.Response[acquisition.DeviceEvents], error) {
+	return c.getDeviceEvents.CallUnary(ctx, req)
 }
 
 // CreateTimeOfUseTable calls io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable.
@@ -1977,7 +1977,7 @@ type ApiServiceHandler interface {
 	GetDeviceDataIrregularProfiles(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
 	// The method to stream out profile-typed device events.
-	GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error
+	GetDeviceEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.Response[acquisition.DeviceEvents], error)
 	// @group: Time-Of-Use Tables
 	// The method to create a new time-of-use table.
 	CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -2488,10 +2488,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetDeviceDataIrregularProfiles")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetMeterEventsHandler := connect.NewServerStreamHandler(
-		ApiServiceGetMeterEventsProcedure,
-		svc.GetMeterEvents,
-		connect.WithSchema(apiServiceMethods.ByName("GetMeterEvents")),
+	apiServiceGetDeviceEventsHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceEventsProcedure,
+		svc.GetDeviceEvents,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceEvents")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateTimeOfUseTableHandler := connect.NewUnaryHandler(
@@ -2728,8 +2728,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDeviceDataProfilesHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDataIrregularProfilesProcedure:
 			apiServiceGetDeviceDataIrregularProfilesHandler.ServeHTTP(w, r)
-		case ApiServiceGetMeterEventsProcedure:
-			apiServiceGetMeterEventsHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceEventsProcedure:
+			apiServiceGetDeviceEventsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateTimeOfUseTableProcedure:
 			apiServiceCreateTimeOfUseTableHandler.ServeHTTP(w, r)
 		case ApiServiceListTimeOfUseTablesProcedure:
@@ -3073,8 +3073,8 @@ func (UnimplementedApiServiceHandler) GetDeviceDataIrregularProfiles(context.Con
 	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetMeterEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest], *connect.ServerStream[acquisition.EventRecords]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetMeterEvents is not implemented"))
+func (UnimplementedApiServiceHandler) GetDeviceEvents(context.Context, *connect.Request[acquisition.GetDeviceEventsRequest]) (*connect.Response[acquisition.DeviceEvents], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateTimeOfUseTable(context.Context, *connect.Request[acquisition.CreateTimeOfUseTableRequest]) (*connect.Response[wrapperspb.StringValue], error) {
