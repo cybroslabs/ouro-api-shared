@@ -546,8 +546,9 @@ type GetDeviceDataSeriesSelector struct {
 }
 
 type GetDeviceEventsRequest struct {
-	From *string `json:"from,omitempty"`
-	To   *string `json:"to,omitempty"`
+	From     *string `json:"from,omitempty"`
+	To       *string `json:"to,omitempty"`
+	DeviceID *string `json:"deviceId,omitempty"`
 }
 
 type IrregularProfileValues struct {

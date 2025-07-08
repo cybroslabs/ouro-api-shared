@@ -582,8 +582,9 @@ type ComplexityRoot struct {
 	}
 
 	GetDeviceEventsRequest struct {
-		From func(childComplexity int) int
-		To   func(childComplexity int) int
+		DeviceID func(childComplexity int) int
+		From     func(childComplexity int) int
+		To       func(childComplexity int) int
 	}
 
 	IrregularProfileValues struct {
@@ -3096,6 +3097,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.GetDeviceDataSeriesSelector.VariableID(childComplexity), true
+
+	case "GetDeviceEventsRequest.deviceId":
+		if e.complexity.GetDeviceEventsRequest.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.GetDeviceEventsRequest.DeviceID(childComplexity), true
 
 	case "GetDeviceEventsRequest.from":
 		if e.complexity.GetDeviceEventsRequest.From == nil {
@@ -17703,6 +17711,47 @@ func (ec *executionContext) fieldContext_GetDeviceEventsRequest_to(_ context.Con
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetDeviceEventsRequest_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceEventsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetDeviceEventsRequest_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetDeviceEventsRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetDeviceEventsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -38685,6 +38734,8 @@ func (ec *executionContext) _GetDeviceEventsRequest(ctx context.Context, sel ast
 			out.Values[i] = ec._GetDeviceEventsRequest_from(ctx, field, obj)
 		case "to":
 			out.Values[i] = ec._GetDeviceEventsRequest_to(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._GetDeviceEventsRequest_deviceId(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

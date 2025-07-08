@@ -1109,6 +1109,8 @@ type GetDeviceEventsRequest {
   from: Timestamp
   # The end timestamp of the data.
   to: Timestamp
+  # The unique identifier of the device.
+  deviceId: String
 }
 
 type IrregularProfileValues {

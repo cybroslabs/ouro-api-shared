@@ -455,6 +455,7 @@ message VariableDeviceData {
 message GetDeviceEventsRequest {
     google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
     google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
+    string device_id               = 3;  // The unique identifier of the device.
 }
 
 // TOU

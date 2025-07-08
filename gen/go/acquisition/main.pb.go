@@ -7431,11 +7431,14 @@ func (b0 VariableDeviceData_builder) Build() *VariableDeviceData {
 }
 
 type GetDeviceEventsRequest struct {
-	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_From *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from"`
-	xxx_hidden_To   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_From        *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from"`
+	xxx_hidden_To          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to"`
+	xxx_hidden_DeviceId    *string                `protobuf:"bytes,3,opt,name=device_id,json=deviceId"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetDeviceEventsRequest) Reset() {
@@ -7477,12 +7480,27 @@ func (x *GetDeviceEventsRequest) GetTo() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *GetDeviceEventsRequest) GetDeviceId() string {
+	if x != nil {
+		if x.xxx_hidden_DeviceId != nil {
+			return *x.xxx_hidden_DeviceId
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *GetDeviceEventsRequest) SetFrom(v *timestamppb.Timestamp) {
 	x.xxx_hidden_From = v
 }
 
 func (x *GetDeviceEventsRequest) SetTo(v *timestamppb.Timestamp) {
 	x.xxx_hidden_To = v
+}
+
+func (x *GetDeviceEventsRequest) SetDeviceId(v string) {
+	x.xxx_hidden_DeviceId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *GetDeviceEventsRequest) HasFrom() bool {
@@ -7499,6 +7517,13 @@ func (x *GetDeviceEventsRequest) HasTo() bool {
 	return x.xxx_hidden_To != nil
 }
 
+func (x *GetDeviceEventsRequest) HasDeviceId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
 func (x *GetDeviceEventsRequest) ClearFrom() {
 	x.xxx_hidden_From = nil
 }
@@ -7507,11 +7532,17 @@ func (x *GetDeviceEventsRequest) ClearTo() {
 	x.xxx_hidden_To = nil
 }
 
+func (x *GetDeviceEventsRequest) ClearDeviceId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_DeviceId = nil
+}
+
 type GetDeviceEventsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	From *timestamppb.Timestamp
-	To   *timestamppb.Timestamp
+	From     *timestamppb.Timestamp
+	To       *timestamppb.Timestamp
+	DeviceId *string
 }
 
 func (b0 GetDeviceEventsRequest_builder) Build() *GetDeviceEventsRequest {
@@ -7520,6 +7551,10 @@ func (b0 GetDeviceEventsRequest_builder) Build() *GetDeviceEventsRequest {
 	_, _ = b, x
 	x.xxx_hidden_From = b.From
 	x.xxx_hidden_To = b.To
+	if b.DeviceId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_DeviceId = b.DeviceId
+	}
 	return m0
 }
 
@@ -8086,10 +8121,11 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"timestamps\x18\x02 \x03(\v2\x1a.google.protobuf.TimestampR\n" +
 	"timestamps\x12\x14\n" +
 	"\x05units\x18\x03 \x03(\tR\x05units\x12I\n" +
-	"\x06values\x18\x04 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"t\n" +
+	"\x06values\x18\x04 \x03(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x06values\"\x91\x01\n" +
 	"\x16GetDeviceEventsRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
-	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\"\xbe\x01\n" +
+	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x1b\n" +
+	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"\xbe\x01\n" +
 	"\x1bCreateTimeOfUseTableRequest\x12T\n" +
 	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x81\x01\n" +
