@@ -73,7 +73,7 @@ service DataproxyService {
 
     // @group: Device Events
     // The method to stream out profile-typed meter data.
-    rpc GetDeviceEvents(io.clbs.openhes.models.acquisition.GetDeviceEventsRequest) returns (stream io.clbs.openhes.models.acquisition.DeviceEvents);
+    rpc GetDeviceEvents(io.clbs.openhes.models.acquisition.GetDeviceEventsRequest) returns (io.clbs.openhes.models.acquisition.DeviceEvents);
 
     // @group: Fields
     // The method to create a new field descriptor user-defined field descriptor.

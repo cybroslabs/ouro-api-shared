@@ -97,7 +97,7 @@ class DataproxyServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.IrregularProfileValues.FromString,
                 _registered_method=True)
-        self.GetDeviceEvents = channel.unary_stream(
+        self.GetDeviceEvents = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
                 request_serializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.DeviceEvents.FromString,
@@ -368,7 +368,7 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.IrregularProfileValues.SerializeToString,
             ),
-            'GetDeviceEvents': grpc.unary_stream_rpc_method_handler(
+            'GetDeviceEvents': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceEvents,
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceEventsRequest.FromString,
                     response_serializer=acquisition_dot_shared__pb2.DeviceEvents.SerializeToString,
@@ -821,7 +821,7 @@ class DataproxyService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(
+        return grpc.experimental.unary_unary(
             request,
             target,
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceEvents',
