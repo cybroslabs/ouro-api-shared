@@ -383,6 +383,16 @@ type ComplexityRoot struct {
 		CommunicationUnitID func(childComplexity int) int
 	}
 
+	DeviceCommunicationUnitChange struct {
+		Status func(childComplexity int) int
+	}
+
+	DeviceCommunicationUnitChangeStatus struct {
+		ChangeAt            func(childComplexity int) int
+		CommunicationUnitID func(childComplexity int) int
+		DeviceID            func(childComplexity int) int
+	}
+
 	DeviceConfigurationRegister struct {
 		Metadata func(childComplexity int) int
 		Spec     func(childComplexity int) int
@@ -716,6 +726,11 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
+	ListOfDeviceCommunicationUnitChange struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
 	ListOfDeviceConfigurationRegister struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
@@ -940,6 +955,7 @@ type ComplexityRoot struct {
 		ListCommunicationBuses                                           func(childComplexity int) int
 		ListCommunicationUnits                                           func(childComplexity int) int
 		ListCronJobs                                                     func(childComplexity int) int
+		ListDeviceCommunicationUnitChanges                               func(childComplexity int) int
 		ListDeviceConfigurationRegisters                                 func(childComplexity int) int
 		ListDeviceConfigurationTemplates                                 func(childComplexity int) int
 		ListDeviceGroupDevices                                           func(childComplexity int) int
@@ -1197,6 +1213,7 @@ type QueryResolver interface {
 	GetDeviceInfo(ctx context.Context) (*model.DeviceInfo, error)
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
 	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfDeviceCommunicationUnit, error)
+	ListDeviceCommunicationUnitChanges(ctx context.Context) (*model.ListOfDeviceCommunicationUnitChange, error)
 	GetDeviceDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
 	GetDeviceNetworkMap(ctx context.Context) (*model.NetworkMap, error)
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
@@ -2302,6 +2319,34 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.DeviceCommunicationUnit.CommunicationUnitID(childComplexity), true
+
+	case "DeviceCommunicationUnitChange.status":
+		if e.complexity.DeviceCommunicationUnitChange.Status == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChange.Status(childComplexity), true
+
+	case "DeviceCommunicationUnitChangeStatus.changeAt":
+		if e.complexity.DeviceCommunicationUnitChangeStatus.ChangeAt == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChangeStatus.ChangeAt(childComplexity), true
+
+	case "DeviceCommunicationUnitChangeStatus.communicationUnitId":
+		if e.complexity.DeviceCommunicationUnitChangeStatus.CommunicationUnitID == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChangeStatus.CommunicationUnitID(childComplexity), true
+
+	case "DeviceCommunicationUnitChangeStatus.deviceId":
+		if e.complexity.DeviceCommunicationUnitChangeStatus.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChangeStatus.DeviceID(childComplexity), true
 
 	case "DeviceConfigurationRegister.metadata":
 		if e.complexity.DeviceConfigurationRegister.Metadata == nil {
@@ -3626,6 +3671,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListOfDeviceCommunicationUnit.TotalCount(childComplexity), true
 
+	case "ListOfDeviceCommunicationUnitChange.items":
+		if e.complexity.ListOfDeviceCommunicationUnitChange.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceCommunicationUnitChange.Items(childComplexity), true
+
+	case "ListOfDeviceCommunicationUnitChange.totalCount":
+		if e.complexity.ListOfDeviceCommunicationUnitChange.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceCommunicationUnitChange.TotalCount(childComplexity), true
+
 	case "ListOfDeviceConfigurationRegister.items":
 		if e.complexity.ListOfDeviceConfigurationRegister.Items == nil {
 			break
@@ -4619,6 +4678,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.ListCronJobs(childComplexity), true
+
+	case "Query.listDeviceCommunicationUnitChanges":
+		if e.complexity.Query.ListDeviceCommunicationUnitChanges == nil {
+			break
+		}
+
+		return e.complexity.Query.ListDeviceCommunicationUnitChanges(childComplexity), true
 
 	case "Query.listDeviceConfigurationRegisters":
 		if e.complexity.Query.ListDeviceConfigurationRegisters == nil {
@@ -12696,6 +12762,178 @@ func (ec *executionContext) fieldContext_DeviceCommunicationUnit_attributes(_ co
 				return ec.fieldContext__mapFieldValue_value(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnitChange_status(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChange) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChange_status(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Status, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.DeviceCommunicationUnitChangeStatus)
+	fc.Result = res
+	return ec.marshalODeviceCommunicationUnitChangeStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChangeStatus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChange_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChange",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "changeAt":
+				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_changeAt(ctx, field)
+			case "communicationUnitId":
+				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx, field)
+			case "deviceId":
+				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnitChangeStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_changeAt(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_changeAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ChangeAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_changeAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChangeStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommunicationUnitID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChangeStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChangeStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -21108,6 +21346,92 @@ func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnit_totalCoun
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfDeviceCommunicationUnitChange_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnitChange) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnitChange_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.DeviceCommunicationUnitChange)
+	fc.Result = res
+	return ec.marshalODeviceCommunicationUnitChange2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChange(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnitChange_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceCommunicationUnitChange",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "status":
+				return ec.fieldContext_DeviceCommunicationUnitChange_status(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnitChange", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfDeviceCommunicationUnitChange_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceCommunicationUnitChange) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceCommunicationUnitChange_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceCommunicationUnitChange_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceCommunicationUnitChange",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfDeviceConfigurationRegister_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceConfigurationRegister) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfDeviceConfigurationRegister_items(ctx, field)
 	if err != nil {
@@ -27503,6 +27827,53 @@ func (ec *executionContext) fieldContext_Query_getDeviceCommunicationUnits(_ con
 				return ec.fieldContext_ListOfDeviceCommunicationUnit_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceCommunicationUnit", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listDeviceCommunicationUnitChanges(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listDeviceCommunicationUnitChanges(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListDeviceCommunicationUnitChanges(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfDeviceCommunicationUnitChange)
+	fc.Result = res
+	return ec.marshalOListOfDeviceCommunicationUnitChange2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceCommunicationUnitChange(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listDeviceCommunicationUnitChanges(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfDeviceCommunicationUnitChange_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDeviceCommunicationUnitChange_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceCommunicationUnitChange", field.Name)
 		},
 	}
 	return fc, nil
@@ -37091,6 +37462,82 @@ func (ec *executionContext) _DeviceCommunicationUnit(ctx context.Context, sel as
 	return out
 }
 
+var deviceCommunicationUnitChangeImplementors = []string{"DeviceCommunicationUnitChange"}
+
+func (ec *executionContext) _DeviceCommunicationUnitChange(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceCommunicationUnitChange) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deviceCommunicationUnitChangeImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeviceCommunicationUnitChange")
+		case "status":
+			out.Values[i] = ec._DeviceCommunicationUnitChange_status(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var deviceCommunicationUnitChangeStatusImplementors = []string{"DeviceCommunicationUnitChangeStatus"}
+
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceCommunicationUnitChangeStatus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deviceCommunicationUnitChangeStatusImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeviceCommunicationUnitChangeStatus")
+		case "changeAt":
+			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_changeAt(ctx, field, obj)
+		case "communicationUnitId":
+			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx, field, obj)
+		case "deviceId":
+			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_deviceId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var deviceConfigurationRegisterImplementors = []string{"DeviceConfigurationRegister"}
 
 func (ec *executionContext) _DeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceConfigurationRegister) graphql.Marshaler {
@@ -39078,6 +39525,44 @@ func (ec *executionContext) _ListOfDeviceCommunicationUnit(ctx context.Context, 
 			out.Values[i] = ec._ListOfDeviceCommunicationUnit_items(ctx, field, obj)
 		case "totalCount":
 			out.Values[i] = ec._ListOfDeviceCommunicationUnit_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var listOfDeviceCommunicationUnitChangeImplementors = []string{"ListOfDeviceCommunicationUnitChange"}
+
+func (ec *executionContext) _ListOfDeviceCommunicationUnitChange(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfDeviceCommunicationUnitChange) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfDeviceCommunicationUnitChangeImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfDeviceCommunicationUnitChange")
+		case "items":
+			out.Values[i] = ec._ListOfDeviceCommunicationUnitChange_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDeviceCommunicationUnitChange_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -41244,6 +41729,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDeviceCommunicationUnits(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listDeviceCommunicationUnitChanges":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listDeviceCommunicationUnitChanges(ctx, field)
 				return res
 			}
 
@@ -44943,6 +45447,61 @@ func (ec *executionContext) marshalODeviceCommunicationUnit2ᚖgithubᚗcomᚋcy
 	return ec._DeviceCommunicationUnit(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalODeviceCommunicationUnitChange2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChange(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceCommunicationUnitChange) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalODeviceCommunicationUnitChange2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChange(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalODeviceCommunicationUnitChange2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChange(ctx context.Context, sel ast.SelectionSet, v *model.DeviceCommunicationUnitChange) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DeviceCommunicationUnitChange(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODeviceCommunicationUnitChangeStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceCommunicationUnitChangeStatus(ctx context.Context, sel ast.SelectionSet, v *model.DeviceCommunicationUnitChangeStatus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DeviceCommunicationUnitChangeStatus(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalODeviceConfigurationRegister2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceConfigurationRegister) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -46048,6 +46607,13 @@ func (ec *executionContext) marshalOListOfDeviceCommunicationUnit2ᚖgithubᚗco
 		return graphql.Null
 	}
 	return ec._ListOfDeviceCommunicationUnit(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfDeviceCommunicationUnitChange2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceCommunicationUnitChange(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceCommunicationUnitChange) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfDeviceCommunicationUnitChange(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfDeviceConfigurationRegister2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceConfigurationRegister(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceConfigurationRegister) graphql.Marshaler {

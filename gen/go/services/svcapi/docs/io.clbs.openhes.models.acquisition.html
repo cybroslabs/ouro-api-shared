@@ -528,6 +528,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceCommunicationUnitChange</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceCommunicationUnitChangeStatus</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceConfigurationRegister</code> 
@@ -864,6 +882,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDeviceCommunicationUnit</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfDeviceCommunicationUnitChange</code> 
         </a>
       </p>
       
@@ -5005,6 +5032,137 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange" title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange">message DeviceCommunicationUnitChange</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        status
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus"><span title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus">io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The device communication unit changes status.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus" title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus">message DeviceCommunicationUnitChangeStatus</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        changeAt
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the change.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        communicationUnitId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        deviceId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.DeviceConfigurationRegister" title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegister">message DeviceConfigurationRegister</a>
@@ -8680,6 +8838,74 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The list of linked communication units.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange" title="io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange">message ListOfDeviceCommunicationUnitChange</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange"><span title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange">io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of device groups.</p></td>
       
     </tr>
     

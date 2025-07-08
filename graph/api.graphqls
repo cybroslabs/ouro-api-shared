@@ -895,6 +895,20 @@ type DeviceCommunicationUnit {
   attributes: [_mapFieldValue]
 }
 
+type DeviceCommunicationUnitChange {
+  # The device communication unit changes status.
+  status: DeviceCommunicationUnitChangeStatus
+}
+
+type DeviceCommunicationUnitChangeStatus {
+  # The timestamp of the change.
+  changeAt: Timestamp
+  # The unique identifier of the communication unit.
+  communicationUnitId: String
+  # The unique identifier of the device.
+  deviceId: String
+}
+
 type DeviceConfigurationRegister {
   # The register specification.
   spec: DeviceConfigurationRegisterSpec
@@ -1316,6 +1330,13 @@ type ListOfDevice {
 type ListOfDeviceCommunicationUnit {
   # The list of linked communication units.
   items: [DeviceCommunicationUnit]
+  # The total number of items.
+  totalCount: Int
+}
+
+type ListOfDeviceCommunicationUnitChange {
+  # The list of device groups.
+  items: [DeviceCommunicationUnitChange]
   # The total number of items.
   totalCount: Int
 }
@@ -2051,6 +2072,7 @@ type Query {
   getDeviceInfo: DeviceInfo
   setDeviceCommunicationUnits: Empty
   getDeviceCommunicationUnits: ListOfDeviceCommunicationUnit
+  listDeviceCommunicationUnitChanges: ListOfDeviceCommunicationUnitChange
   getDeviceDeviceGroups: ListOfDeviceGroup
   getDeviceNetworkMap: NetworkMap
   createDeviceGroup: StringValue

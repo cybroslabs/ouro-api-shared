@@ -163,6 +163,17 @@ GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhe
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit`](model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md)
 
+## ListDeviceCommunicationUnitChanges
+
+The method called by the RestAPI to get the list of device communication unit changes.
+
+```proto
+ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange)
+```
+
+- Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange`](model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunitchange.md)
+
 ## GetDeviceDeviceGroups
 
 The method returns a list of device groups that contain the device. The parameter contains the device identifier.

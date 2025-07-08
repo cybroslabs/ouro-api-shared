@@ -188,6 +188,10 @@ service ApiService {
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
     // @group: Devices
     // @tag: device
+    // The method called by the RestAPI to get the list of device communication unit changes.
+    rpc ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange);
+    // @group: Devices
+    // @tag: device
     // The method returns a list of device groups that contain the device. The parameter contains the device identifier.
     rpc GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
     // @group: Devices

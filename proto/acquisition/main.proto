@@ -73,6 +73,22 @@ message StreamDevicesDriverTypesResponse {
     map<string, string> data = 1;  // The map of devices to their driver types. The key is the device identifier, the value is the driver type.
 }
 
+message ListOfDeviceCommunicationUnitChange {
+    repeated DeviceCommunicationUnitChange items = 1;  // The list of device groups.
+    int32 total_count                            = 2;  // The total number of items.
+}
+
+message DeviceCommunicationUnitChange {
+    reserved 1, 3;
+    DeviceCommunicationUnitChangeStatus status = 2;  // The device communication unit changes status.
+}
+
+message DeviceCommunicationUnitChangeStatus {
+    google.protobuf.Timestamp change_at = 1;  // The timestamp of the change.
+    string communication_unit_id        = 2;  // The unique identifier of the communication unit.
+    string device_id                    = 3;  // The unique identifier of the device.
+}
+
 // Unknown device specification.
 
 message UnknownDevice {

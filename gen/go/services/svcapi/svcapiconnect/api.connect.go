@@ -185,6 +185,9 @@ const (
 	// ApiServiceGetDeviceCommunicationUnitsProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceCommunicationUnits RPC.
 	ApiServiceGetDeviceCommunicationUnitsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits"
+	// ApiServiceListDeviceCommunicationUnitChangesProcedure is the fully-qualified name of the
+	// ApiService's ListDeviceCommunicationUnitChanges RPC.
+	ApiServiceListDeviceCommunicationUnitChangesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceCommunicationUnitChanges"
 	// ApiServiceGetDeviceDeviceGroupsProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceDeviceGroups RPC.
 	ApiServiceGetDeviceDeviceGroupsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups"
@@ -451,6 +454,10 @@ type ApiServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the list of device communication unit changes.
+	ListDeviceCommunicationUnitChanges(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnitChange], error)
 	// @group: Devices
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
@@ -912,6 +919,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceCommunicationUnits")),
 			connect.WithClientOptions(opts...),
 		),
+		listDeviceCommunicationUnitChanges: connect.NewClient[common.ListSelector, acquisition.ListOfDeviceCommunicationUnitChange](
+			httpClient,
+			baseURL+ApiServiceListDeviceCommunicationUnitChangesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDeviceCommunicationUnitChanges")),
+			connect.WithClientOptions(opts...),
+		),
 		getDeviceDeviceGroups: connect.NewClient[wrapperspb.StringValue, acquisition.ListOfDeviceGroup](
 			httpClient,
 			baseURL+ApiServiceGetDeviceDeviceGroupsProcedure,
@@ -1192,6 +1205,7 @@ type apiServiceClient struct {
 	getDeviceInfo                                                    *connect.Client[wrapperspb.StringValue, acquisition.DeviceInfo]
 	setDeviceCommunicationUnits                                      *connect.Client[acquisition.SetDeviceCommunicationUnitsRequest, emptypb.Empty]
 	getDeviceCommunicationUnits                                      *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceCommunicationUnit]
+	listDeviceCommunicationUnitChanges                               *connect.Client[common.ListSelector, acquisition.ListOfDeviceCommunicationUnitChange]
 	getDeviceDeviceGroups                                            *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceGroup]
 	getDeviceNetworkMap                                              *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
 	createDeviceGroup                                                *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
@@ -1513,6 +1527,12 @@ func (c *apiServiceClient) SetDeviceCommunicationUnits(ctx context.Context, req 
 // io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits.
 func (c *apiServiceClient) GetDeviceCommunicationUnits(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error) {
 	return c.getDeviceCommunicationUnits.CallUnary(ctx, req)
+}
+
+// ListDeviceCommunicationUnitChanges calls
+// io.clbs.openhes.services.svcapi.ApiService.ListDeviceCommunicationUnitChanges.
+func (c *apiServiceClient) ListDeviceCommunicationUnitChanges(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnitChange], error) {
+	return c.listDeviceCommunicationUnitChanges.CallUnary(ctx, req)
 }
 
 // GetDeviceDeviceGroups calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups.
@@ -1863,6 +1883,10 @@ type ApiServiceHandler interface {
 	// @tag: device
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the list of device communication unit changes.
+	ListDeviceCommunicationUnitChanges(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnitChange], error)
 	// @group: Devices
 	// @tag: device
 	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
@@ -2320,6 +2344,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetDeviceCommunicationUnits")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceListDeviceCommunicationUnitChangesHandler := connect.NewUnaryHandler(
+		ApiServiceListDeviceCommunicationUnitChangesProcedure,
+		svc.ListDeviceCommunicationUnitChanges,
+		connect.WithSchema(apiServiceMethods.ByName("ListDeviceCommunicationUnitChanges")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetDeviceDeviceGroupsHandler := connect.NewUnaryHandler(
 		ApiServiceGetDeviceDeviceGroupsProcedure,
 		svc.GetDeviceDeviceGroups,
@@ -2650,6 +2680,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceSetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceCommunicationUnitsProcedure:
 			apiServiceGetDeviceCommunicationUnitsHandler.ServeHTTP(w, r)
+		case ApiServiceListDeviceCommunicationUnitChangesProcedure:
+			apiServiceListDeviceCommunicationUnitChangesHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDeviceGroupsProcedure:
 			apiServiceGetDeviceDeviceGroupsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceNetworkMapProcedure:
@@ -2943,6 +2975,10 @@ func (UnimplementedApiServiceHandler) SetDeviceCommunicationUnits(context.Contex
 
 func (UnimplementedApiServiceHandler) GetDeviceCommunicationUnits(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnit], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListDeviceCommunicationUnitChanges(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceCommunicationUnitChange], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListDeviceCommunicationUnitChanges is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetDeviceDeviceGroups(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.ListOfDeviceGroup], error) {

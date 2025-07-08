@@ -104,6 +104,10 @@ service DeviceRegistryService {
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
     // The method called by the RestAPI to get communication units definitions linked to the device(s).
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
+    // @group: Devices
+    // @tag: device
+    // The method called by the RestAPI to get the list of device communication unit changes.
+    rpc ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange);
     // The method called by the DataProxy to resolve connection info for given device(s).
     rpc GetDeviceConnectionInfo(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
     // Sets the device information.

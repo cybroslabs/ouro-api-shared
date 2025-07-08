@@ -347,6 +347,16 @@ type DeviceCommunicationUnit struct {
 	Attributes          []*MapFieldValue     `json:"attributes,omitempty"`
 }
 
+type DeviceCommunicationUnitChange struct {
+	Status *DeviceCommunicationUnitChangeStatus `json:"status,omitempty"`
+}
+
+type DeviceCommunicationUnitChangeStatus struct {
+	ChangeAt            *string `json:"changeAt,omitempty"`
+	CommunicationUnitID *string `json:"communicationUnitId,omitempty"`
+	DeviceID            *string `json:"deviceId,omitempty"`
+}
+
 type DeviceConfigurationRegister struct {
 	Spec     *DeviceConfigurationRegisterSpec `json:"spec,omitempty"`
 	Metadata *MetadataFields                  `json:"metadata,omitempty"`
@@ -678,6 +688,11 @@ type ListOfDevice struct {
 type ListOfDeviceCommunicationUnit struct {
 	Items      []*DeviceCommunicationUnit `json:"items,omitempty"`
 	TotalCount *int32                     `json:"totalCount,omitempty"`
+}
+
+type ListOfDeviceCommunicationUnitChange struct {
+	Items      []*DeviceCommunicationUnitChange `json:"items,omitempty"`
+	TotalCount *int32                           `json:"totalCount,omitempty"`
 }
 
 type ListOfDeviceConfigurationRegister struct {

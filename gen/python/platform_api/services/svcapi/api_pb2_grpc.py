@@ -288,6 +288,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfDeviceCommunicationUnit.FromString,
                 _registered_method=True)
+        self.ListDeviceCommunicationUnitChanges = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceCommunicationUnitChanges',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceCommunicationUnitChange.FromString,
+                _registered_method=True)
         self.GetDeviceDeviceGroups = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
@@ -903,6 +908,15 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListDeviceCommunicationUnitChanges(self, request, context):
+        """@group: Devices
+        @tag: device
+        The method called by the RestAPI to get the list of device communication unit changes.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetDeviceDeviceGroups(self, request, context):
         """@group: Devices
         @tag: device
@@ -1485,6 +1499,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDeviceCommunicationUnits,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfDeviceCommunicationUnit.SerializeToString,
+            ),
+            'ListDeviceCommunicationUnitChanges': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceCommunicationUnitChanges,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceCommunicationUnitChange.SerializeToString,
             ),
             'GetDeviceDeviceGroups': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceDeviceGroups,
@@ -3104,6 +3123,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceCommunicationUnits',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.ListOfDeviceCommunicationUnit.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDeviceCommunicationUnitChanges(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceCommunicationUnitChanges',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDeviceCommunicationUnitChange.FromString,
             options,
             channel_credentials,
             insecure,

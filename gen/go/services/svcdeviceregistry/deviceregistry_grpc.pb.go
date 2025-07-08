@@ -62,6 +62,7 @@ const (
 	DeviceRegistryService_StreamDeviceType_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
+	DeviceRegistryService_ListDeviceCommunicationUnitChanges_FullMethodName                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceCommunicationUnitChanges"
 	DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceConnectionInfo"
 	DeviceRegistryService_SetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceInfo"
 	DeviceRegistryService_GetDeviceInfo_FullMethodName                                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceInfo"
@@ -186,6 +187,10 @@ type DeviceRegistryServiceClient interface {
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the list of device communication unit changes.
+	ListDeviceCommunicationUnitChanges(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// The method called by the DataProxy to resolve connection info for given device(s).
 	GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
@@ -679,6 +684,16 @@ func (c *deviceRegistryServiceClient) GetDeviceCommunicationUnits(ctx context.Co
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) ListDeviceCommunicationUnitChanges(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnitChange, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceCommunicationUnitChange)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListDeviceCommunicationUnitChanges_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.MapDeviceConnectionInfo)
@@ -1116,6 +1131,10 @@ type DeviceRegistryServiceServer interface {
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// The method called by the RestAPI to get communication units definitions linked to the device(s).
 	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error)
+	// @group: Devices
+	// @tag: device
+	// The method called by the RestAPI to get the list of device communication unit changes.
+	ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// The method called by the DataProxy to resolve connection info for given device(s).
 	GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
@@ -1339,6 +1358,9 @@ func (UnimplementedDeviceRegistryServiceServer) SetDeviceCommunicationUnits(cont
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCommunicationUnits not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceCommunicationUnitChanges not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceConnectionInfo not implemented")
@@ -2136,6 +2158,24 @@ func _DeviceRegistryService_GetDeviceCommunicationUnits_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_ListDeviceCommunicationUnitChanges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListDeviceCommunicationUnitChanges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListDeviceCommunicationUnitChanges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListDeviceCommunicationUnitChanges(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_GetDeviceConnectionInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(structpb.ListValue)
 	if err := dec(in); err != nil {
@@ -2895,6 +2935,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceCommunicationUnits",
 			Handler:    _DeviceRegistryService_GetDeviceCommunicationUnits_Handler,
+		},
+		{
+			MethodName: "ListDeviceCommunicationUnitChanges",
+			Handler:    _DeviceRegistryService_ListDeviceCommunicationUnitChanges_Handler,
 		},
 		{
 			MethodName: "GetDeviceConnectionInfo",
