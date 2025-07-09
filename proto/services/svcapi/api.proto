@@ -200,7 +200,7 @@ service ApiService {
     rpc GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
     // @group: Bulks
     // Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
-    rpc GetDeviceBulkJobs(io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulkJobs);
+    rpc GetDeviceBulks(io.clbs.openhes.models.acquisition.GetDeviceBulksRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulks);
 
     // @group: Devices
     // @tag: devicegroup

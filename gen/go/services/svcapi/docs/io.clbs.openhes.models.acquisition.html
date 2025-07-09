@@ -519,9 +519,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulkJobs">
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulks">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>DeviceBulkJobs</code> 
+          <code>DeviceBulks</code> 
         </a>
       </p>
       
@@ -726,9 +726,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">
+        <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>GetDeviceBulkJobsRequest</code> 
+          <code>GetDeviceBulksRequest</code> 
         </a>
       </p>
       
@@ -4987,9 +4987,9 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceBulkJobs">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceBulks">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulkJobs" title="io.clbs.openhes.models.acquisition.DeviceBulkJobs">message DeviceBulkJobs</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulks" title="io.clbs.openhes.models.acquisition.DeviceBulks">message DeviceBulks</a>
   
   </span>
   
@@ -5014,18 +5014,18 @@
     <tr>
       <td>1</td>
       <td>
-        jobs
+        bulks
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.BulkJob">
+        <code title="io.clbs.openhes.models.acquisition.Bulk">
           
             repeated
           
-          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.Bulk"><span title="io.clbs.openhes.models.acquisition.Bulk">io.clbs.openhes.models.acquisition.Bulk</span>
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of jobs.</p></td>
+      <td class="content"><p>The list of bulks.</p></td>
       
     </tr>
     
@@ -6901,9 +6901,9 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest" title="io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">message GetDeviceBulkJobsRequest</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest" title="io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">message GetDeviceBulksRequest</a>
   
   </span>
   
@@ -6936,7 +6936,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The start timestamp of the bulk jobs selection.</p></td>
+      <td class="content"><p>The start timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.</p></td>
       
     </tr>
     
@@ -6951,7 +6951,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The end timestamp of the bulk jobs selection.</p></td>
+      <td class="content"><p>The end timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.</p></td>
       
     </tr>
     

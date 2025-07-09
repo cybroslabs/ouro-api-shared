@@ -7558,7 +7558,7 @@ func (b0 GetDeviceEventsRequest_builder) Build() *GetDeviceEventsRequest {
 	return m0
 }
 
-type GetDeviceBulkJobsRequest struct {
+type GetDeviceBulksRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_From        *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from"`
 	xxx_hidden_To          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to"`
@@ -7569,20 +7569,20 @@ type GetDeviceBulkJobsRequest struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *GetDeviceBulkJobsRequest) Reset() {
-	*x = GetDeviceBulkJobsRequest{}
+func (x *GetDeviceBulksRequest) Reset() {
+	*x = GetDeviceBulksRequest{}
 	mi := &file_acquisition_main_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetDeviceBulkJobsRequest) String() string {
+func (x *GetDeviceBulksRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetDeviceBulkJobsRequest) ProtoMessage() {}
+func (*GetDeviceBulksRequest) ProtoMessage() {}
 
-func (x *GetDeviceBulkJobsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetDeviceBulksRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_main_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7594,21 +7594,21 @@ func (x *GetDeviceBulkJobsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetDeviceBulkJobsRequest) GetFrom() *timestamppb.Timestamp {
+func (x *GetDeviceBulksRequest) GetFrom() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_From
 	}
 	return nil
 }
 
-func (x *GetDeviceBulkJobsRequest) GetTo() *timestamppb.Timestamp {
+func (x *GetDeviceBulksRequest) GetTo() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_To
 	}
 	return nil
 }
 
-func (x *GetDeviceBulkJobsRequest) GetDeviceId() string {
+func (x *GetDeviceBulksRequest) GetDeviceId() string {
 	if x != nil {
 		if x.xxx_hidden_DeviceId != nil {
 			return *x.xxx_hidden_DeviceId
@@ -7618,54 +7618,54 @@ func (x *GetDeviceBulkJobsRequest) GetDeviceId() string {
 	return ""
 }
 
-func (x *GetDeviceBulkJobsRequest) SetFrom(v *timestamppb.Timestamp) {
+func (x *GetDeviceBulksRequest) SetFrom(v *timestamppb.Timestamp) {
 	x.xxx_hidden_From = v
 }
 
-func (x *GetDeviceBulkJobsRequest) SetTo(v *timestamppb.Timestamp) {
+func (x *GetDeviceBulksRequest) SetTo(v *timestamppb.Timestamp) {
 	x.xxx_hidden_To = v
 }
 
-func (x *GetDeviceBulkJobsRequest) SetDeviceId(v string) {
+func (x *GetDeviceBulksRequest) SetDeviceId(v string) {
 	x.xxx_hidden_DeviceId = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
-func (x *GetDeviceBulkJobsRequest) HasFrom() bool {
+func (x *GetDeviceBulksRequest) HasFrom() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_From != nil
 }
 
-func (x *GetDeviceBulkJobsRequest) HasTo() bool {
+func (x *GetDeviceBulksRequest) HasTo() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_To != nil
 }
 
-func (x *GetDeviceBulkJobsRequest) HasDeviceId() bool {
+func (x *GetDeviceBulksRequest) HasDeviceId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *GetDeviceBulkJobsRequest) ClearFrom() {
+func (x *GetDeviceBulksRequest) ClearFrom() {
 	x.xxx_hidden_From = nil
 }
 
-func (x *GetDeviceBulkJobsRequest) ClearTo() {
+func (x *GetDeviceBulksRequest) ClearTo() {
 	x.xxx_hidden_To = nil
 }
 
-func (x *GetDeviceBulkJobsRequest) ClearDeviceId() {
+func (x *GetDeviceBulksRequest) ClearDeviceId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_DeviceId = nil
 }
 
-type GetDeviceBulkJobsRequest_builder struct {
+type GetDeviceBulksRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	From     *timestamppb.Timestamp
@@ -7673,8 +7673,8 @@ type GetDeviceBulkJobsRequest_builder struct {
 	DeviceId *string
 }
 
-func (b0 GetDeviceBulkJobsRequest_builder) Build() *GetDeviceBulkJobsRequest {
-	m0 := &GetDeviceBulkJobsRequest{}
+func (b0 GetDeviceBulksRequest_builder) Build() *GetDeviceBulksRequest {
+	m0 := &GetDeviceBulksRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_From = b.From
@@ -7686,27 +7686,27 @@ func (b0 GetDeviceBulkJobsRequest_builder) Build() *GetDeviceBulkJobsRequest {
 	return m0
 }
 
-type DeviceBulkJobs struct {
-	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Jobs *[]*BulkJob            `protobuf:"bytes,1,rep,name=jobs"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type DeviceBulks struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Bulks *[]*Bulk               `protobuf:"bytes,1,rep,name=bulks"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
-func (x *DeviceBulkJobs) Reset() {
-	*x = DeviceBulkJobs{}
+func (x *DeviceBulks) Reset() {
+	*x = DeviceBulks{}
 	mi := &file_acquisition_main_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeviceBulkJobs) String() string {
+func (x *DeviceBulks) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeviceBulkJobs) ProtoMessage() {}
+func (*DeviceBulks) ProtoMessage() {}
 
-func (x *DeviceBulkJobs) ProtoReflect() protoreflect.Message {
+func (x *DeviceBulks) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_main_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7718,30 +7718,30 @@ func (x *DeviceBulkJobs) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DeviceBulkJobs) GetJobs() []*BulkJob {
+func (x *DeviceBulks) GetBulks() []*Bulk {
 	if x != nil {
-		if x.xxx_hidden_Jobs != nil {
-			return *x.xxx_hidden_Jobs
+		if x.xxx_hidden_Bulks != nil {
+			return *x.xxx_hidden_Bulks
 		}
 	}
 	return nil
 }
 
-func (x *DeviceBulkJobs) SetJobs(v []*BulkJob) {
-	x.xxx_hidden_Jobs = &v
+func (x *DeviceBulks) SetBulks(v []*Bulk) {
+	x.xxx_hidden_Bulks = &v
 }
 
-type DeviceBulkJobs_builder struct {
+type DeviceBulks_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Jobs []*BulkJob
+	Bulks []*Bulk
 }
 
-func (b0 DeviceBulkJobs_builder) Build() *DeviceBulkJobs {
-	m0 := &DeviceBulkJobs{}
+func (b0 DeviceBulks_builder) Build() *DeviceBulks {
+	m0 := &DeviceBulks{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_Jobs = &b.Jobs
+	x.xxx_hidden_Bulks = &b.Bulks
 	return m0
 }
 
@@ -8312,13 +8312,13 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x16GetDeviceEventsRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x1b\n" +
-	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"\x93\x01\n" +
-	"\x18GetDeviceBulkJobsRequest\x12.\n" +
+	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"\x90\x01\n" +
+	"\x15GetDeviceBulksRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x1b\n" +
-	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"Q\n" +
-	"\x0eDeviceBulkJobs\x12?\n" +
-	"\x04jobs\x18\x01 \x03(\v2+.io.clbs.openhes.models.acquisition.BulkJobR\x04jobs\"\xbe\x01\n" +
+	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"M\n" +
+	"\vDeviceBulks\x12>\n" +
+	"\x05bulks\x18\x01 \x03(\v2(.io.clbs.openhes.models.acquisition.BulkR\x05bulks\"\xbe\x01\n" +
 	"\x1bCreateTimeOfUseTableRequest\x12T\n" +
 	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x81\x01\n" +
@@ -8404,8 +8404,8 @@ var file_acquisition_main_proto_goTypes = []any{
 	(*DeviceDeviceData)(nil),                // 69: io.clbs.openhes.models.acquisition.DeviceDeviceData
 	(*VariableDeviceData)(nil),              // 70: io.clbs.openhes.models.acquisition.VariableDeviceData
 	(*GetDeviceEventsRequest)(nil),          // 71: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
-	(*GetDeviceBulkJobsRequest)(nil),        // 72: io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest
-	(*DeviceBulkJobs)(nil),                  // 73: io.clbs.openhes.models.acquisition.DeviceBulkJobs
+	(*GetDeviceBulksRequest)(nil),           // 72: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
+	(*DeviceBulks)(nil),                     // 73: io.clbs.openhes.models.acquisition.DeviceBulks
 	(*CreateTimeOfUseTableRequest)(nil),     // 74: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
 	(*ListOfTimeOfUseTable)(nil),            // 75: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 	(*TimeOfUseTable)(nil),                  // 76: io.clbs.openhes.models.acquisition.TimeOfUseTable
@@ -8531,9 +8531,9 @@ var file_acquisition_main_proto_depIdxs = []int32{
 	100, // 92: io.clbs.openhes.models.acquisition.VariableDeviceData.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	85,  // 93: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.from:type_name -> google.protobuf.Timestamp
 	85,  // 94: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.to:type_name -> google.protobuf.Timestamp
-	85,  // 95: io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest.from:type_name -> google.protobuf.Timestamp
-	85,  // 96: io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest.to:type_name -> google.protobuf.Timestamp
-	33,  // 97: io.clbs.openhes.models.acquisition.DeviceBulkJobs.jobs:type_name -> io.clbs.openhes.models.acquisition.BulkJob
+	85,  // 95: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.from:type_name -> google.protobuf.Timestamp
+	85,  // 96: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.to:type_name -> google.protobuf.Timestamp
+	30,  // 97: io.clbs.openhes.models.acquisition.DeviceBulks.bulks:type_name -> io.clbs.openhes.models.acquisition.Bulk
 	101, // 98: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 	80,  // 99: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	76,  // 100: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable.items:type_name -> io.clbs.openhes.models.acquisition.TimeOfUseTable

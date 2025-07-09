@@ -886,9 +886,9 @@ type Device {
   metadata: MetadataFields
 }
 
-type DeviceBulkJobs {
-  # The list of jobs.
-  jobs: [BulkJob]
+type DeviceBulks {
+  # The list of bulks.
+  bulks: [Bulk]
 }
 
 type DeviceCommunicationUnit {
@@ -1109,10 +1109,10 @@ type EventRecords {
   values: [EventRecord]
 }
 
-type GetDeviceBulkJobsRequest {
-  # The start timestamp of the bulk jobs selection.
+type GetDeviceBulksRequest {
+  # The start timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
   from: Timestamp
-  # The end timestamp of the bulk jobs selection.
+  # The end timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
   to: Timestamp
   # The unique identifier of the device.
   deviceId: String
@@ -2066,7 +2066,7 @@ type Query {
   createBulk: StringValue
   getBulk: Bulk
   updateBulk: Empty
-  getDeviceBulkJobs: DeviceBulkJobs
+  getDeviceBulks: DeviceBulks
   getApplicationConfig: ApplicationConfigDescriptor
   updateApplicationConfig: Empty
   synchronizeComponentConfig: ComponentConfig

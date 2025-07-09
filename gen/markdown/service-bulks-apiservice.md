@@ -1,13 +1,13 @@
 # ApiService - Bulks
 
-## GetDeviceBulkJobs
+## GetDeviceBulks
 
 Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
 
 ```proto
-GetDeviceBulkJobs(io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulkJobs)
+GetDeviceBulks(io.clbs.openhes.models.acquisition.GetDeviceBulksRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulks)
 ```
 
-- Input: [`io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest`](model-io-clbs-openhes-models-acquisition-getdevicebulkjobsrequest.md)
-- Output: [`io.clbs.openhes.models.acquisition.DeviceBulkJobs`](model-io-clbs-openhes-models-acquisition-devicebulkjobs.md)
+- Input: [`io.clbs.openhes.models.acquisition.GetDeviceBulksRequest`](model-io-clbs-openhes-models-acquisition-getdevicebulksrequest.md)
+- Output: [`io.clbs.openhes.models.acquisition.DeviceBulks`](model-io-clbs-openhes-models-acquisition-devicebulks.md)
 

@@ -458,16 +458,16 @@ message GetDeviceEventsRequest {
     string device_id               = 3;  // The unique identifier of the device.
 }
 
-// Device Bulk Jobs
+// Device Bulk
 
-message GetDeviceBulkJobsRequest {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the bulk jobs selection.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the bulk jobs selection.
+message GetDeviceBulksRequest {
+    google.protobuf.Timestamp from = 1;  // The start timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
+    google.protobuf.Timestamp to   = 2;  // The end timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
     string device_id               = 3;  // The unique identifier of the device.
 }
 
-message DeviceBulkJobs {
-    repeated BulkJob jobs = 1;  // The list of jobs.
+message DeviceBulks {
+    repeated Bulk bulks = 1;  // The list of bulks.
 }
 
 // TOU

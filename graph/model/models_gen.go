@@ -341,8 +341,8 @@ type Device struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
-type DeviceBulkJobs struct {
-	Jobs []*BulkJob `json:"jobs,omitempty"`
+type DeviceBulks struct {
+	Bulks []*Bulk `json:"bulks,omitempty"`
 }
 
 type DeviceCommunicationUnit struct {
@@ -548,7 +548,7 @@ type FieldValues struct {
 	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
-type GetDeviceBulkJobsRequest struct {
+type GetDeviceBulksRequest struct {
 	From     *string `json:"from,omitempty"`
 	To       *string `json:"to,omitempty"`
 	DeviceID *string `json:"deviceId,omitempty"`
