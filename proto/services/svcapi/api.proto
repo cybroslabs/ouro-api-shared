@@ -198,6 +198,9 @@ service ApiService {
     // @tag: device
     // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
     rpc GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
+    // @group: Bulks
+    // Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+    rpc GetDeviceBulkJobs(io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulkJobs);
 
     // @group: Devices
     // @tag: devicegroup

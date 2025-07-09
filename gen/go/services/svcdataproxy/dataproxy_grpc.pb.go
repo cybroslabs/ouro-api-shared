@@ -29,6 +29,7 @@ const (
 	DataproxyService_UpdateBulkJob_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulkJob"
 	DataproxyService_CancelBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulk"
 	DataproxyService_CancelBulkJobs_FullMethodName                 = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs"
+	DataproxyService_GetDeviceBulkJobs_FullMethodName              = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceBulkJobs"
 	DataproxyService_CreateProxyBulk_FullMethodName                = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk"
 	DataproxyService_GetProxyBulk_FullMethodName                   = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetProxyBulk"
 	DataproxyService_CreateBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateBulk"
@@ -71,6 +72,9 @@ type DataproxyServiceClient interface {
 	// @group: Bulks
 	// Cancels the job(s) identified by the job identifier(s).
 	CancelBulkJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(ctx context.Context, in *acquisition.GetDeviceBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulkJobs, error)
 	// @group: Bulks
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -177,6 +181,16 @@ func (c *dataproxyServiceClient) CancelBulkJobs(ctx context.Context, in *common.
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CancelBulkJobs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataproxyServiceClient) GetDeviceBulkJobs(ctx context.Context, in *acquisition.GetDeviceBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulkJobs, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.DeviceBulkJobs)
+	err := c.cc.Invoke(ctx, DataproxyService_GetDeviceBulkJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -377,6 +391,9 @@ type DataproxyServiceServer interface {
 	// Cancels the job(s) identified by the job identifier(s).
 	CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
 	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(context.Context, *acquisition.GetDeviceBulkJobsRequest) (*acquisition.DeviceBulkJobs, error)
+	// @group: Bulks
 	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
@@ -445,6 +462,9 @@ func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrappers
 }
 func (UnimplementedDataproxyServiceServer) CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBulkJobs not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetDeviceBulkJobs(context.Context, *acquisition.GetDeviceBulkJobsRequest) (*acquisition.DeviceBulkJobs, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceBulkJobs not implemented")
 }
 func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
@@ -613,6 +633,24 @@ func _DataproxyService_CancelBulkJobs_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataproxyServiceServer).CancelBulkJobs(ctx, req.(*common.ListOfId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataproxyService_GetDeviceBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.GetDeviceBulkJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetDeviceBulkJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetDeviceBulkJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetDeviceBulkJobs(ctx, req.(*acquisition.GetDeviceBulkJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -878,6 +916,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelBulkJobs",
 			Handler:    _DataproxyService_CancelBulkJobs_Handler,
+		},
+		{
+			MethodName: "GetDeviceBulkJobs",
+			Handler:    _DataproxyService_GetDeviceBulkJobs_Handler,
 		},
 		{
 			MethodName: "CreateProxyBulk",

@@ -194,6 +194,9 @@ const (
 	// ApiServiceGetDeviceNetworkMapProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceNetworkMap RPC.
 	ApiServiceGetDeviceNetworkMapProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap"
+	// ApiServiceGetDeviceBulkJobsProcedure is the fully-qualified name of the ApiService's
+	// GetDeviceBulkJobs RPC.
+	ApiServiceGetDeviceBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceBulkJobs"
 	// ApiServiceCreateDeviceGroupProcedure is the fully-qualified name of the ApiService's
 	// CreateDeviceGroup RPC.
 	ApiServiceCreateDeviceGroupProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
@@ -466,6 +469,9 @@ type ApiServiceClient interface {
 	// @tag: device
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(context.Context, *connect.Request[acquisition.GetDeviceBulkJobsRequest]) (*connect.Response[acquisition.DeviceBulkJobs], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -937,6 +943,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceNetworkMap")),
 			connect.WithClientOptions(opts...),
 		),
+		getDeviceBulkJobs: connect.NewClient[acquisition.GetDeviceBulkJobsRequest, acquisition.DeviceBulkJobs](
+			httpClient,
+			baseURL+ApiServiceGetDeviceBulkJobsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetDeviceBulkJobs")),
+			connect.WithClientOptions(opts...),
+		),
 		createDeviceGroup: connect.NewClient[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateDeviceGroupProcedure,
@@ -1208,6 +1220,7 @@ type apiServiceClient struct {
 	listDeviceCommunicationUnitChanges                               *connect.Client[common.ListSelector, acquisition.ListOfDeviceCommunicationUnitChange]
 	getDeviceDeviceGroups                                            *connect.Client[wrapperspb.StringValue, acquisition.ListOfDeviceGroup]
 	getDeviceNetworkMap                                              *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
+	getDeviceBulkJobs                                                *connect.Client[acquisition.GetDeviceBulkJobsRequest, acquisition.DeviceBulkJobs]
 	createDeviceGroup                                                *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
 	listDeviceGroups                                                 *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
 	getDeviceGroup                                                   *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
@@ -1543,6 +1556,11 @@ func (c *apiServiceClient) GetDeviceDeviceGroups(ctx context.Context, req *conne
 // GetDeviceNetworkMap calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap.
 func (c *apiServiceClient) GetDeviceNetworkMap(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
 	return c.getDeviceNetworkMap.CallUnary(ctx, req)
+}
+
+// GetDeviceBulkJobs calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceBulkJobs.
+func (c *apiServiceClient) GetDeviceBulkJobs(ctx context.Context, req *connect.Request[acquisition.GetDeviceBulkJobsRequest]) (*connect.Response[acquisition.DeviceBulkJobs], error) {
+	return c.getDeviceBulkJobs.CallUnary(ctx, req)
 }
 
 // CreateDeviceGroup calls io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup.
@@ -1895,6 +1913,9 @@ type ApiServiceHandler interface {
 	// @tag: device
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(context.Context, *connect.Request[acquisition.GetDeviceBulkJobsRequest]) (*connect.Response[acquisition.DeviceBulkJobs], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -2362,6 +2383,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetDeviceNetworkMap")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetDeviceBulkJobsHandler := connect.NewUnaryHandler(
+		ApiServiceGetDeviceBulkJobsProcedure,
+		svc.GetDeviceBulkJobs,
+		connect.WithSchema(apiServiceMethods.ByName("GetDeviceBulkJobs")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateDeviceGroupHandler := connect.NewUnaryHandler(
 		ApiServiceCreateDeviceGroupProcedure,
 		svc.CreateDeviceGroup,
@@ -2686,6 +2713,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDeviceDeviceGroupsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceNetworkMapProcedure:
 			apiServiceGetDeviceNetworkMapHandler.ServeHTTP(w, r)
+		case ApiServiceGetDeviceBulkJobsProcedure:
+			apiServiceGetDeviceBulkJobsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceGroupProcedure:
 			apiServiceCreateDeviceGroupHandler.ServeHTTP(w, r)
 		case ApiServiceListDeviceGroupsProcedure:
@@ -2987,6 +3016,10 @@ func (UnimplementedApiServiceHandler) GetDeviceDeviceGroups(context.Context, *co
 
 func (UnimplementedApiServiceHandler) GetDeviceNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetDeviceBulkJobs(context.Context, *connect.Request[acquisition.GetDeviceBulkJobsRequest]) (*connect.Response[acquisition.DeviceBulkJobs], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceBulkJobs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error) {

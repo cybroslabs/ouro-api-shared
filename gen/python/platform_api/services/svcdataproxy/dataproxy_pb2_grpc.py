@@ -52,6 +52,11 @@ class DataproxyServiceStub(object):
                 request_serializer=common_dot_types__pb2.ListOfId.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetDeviceBulkJobs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceBulkJobs',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceBulkJobs.FromString,
+                _registered_method=True)
         self.CreateProxyBulk = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CreateProxyBulk',
                 request_serializer=acquisition_dot_main__pb2.CreateProxyBulkRequest.SerializeToString,
@@ -173,6 +178,14 @@ class DataproxyServiceServicer(object):
     def CancelBulkJobs(self, request, context):
         """@group: Bulks
         Cancels the job(s) identified by the job identifier(s).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceBulkJobs(self, request, context):
+        """@group: Bulks
+        Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -322,6 +335,11 @@ def add_DataproxyServiceServicer_to_server(servicer, server):
                     servicer.CancelBulkJobs,
                     request_deserializer=common_dot_types__pb2.ListOfId.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDeviceBulkJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceBulkJobs,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceBulkJobs.SerializeToString,
             ),
             'CreateProxyBulk': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateProxyBulk,
@@ -557,6 +575,33 @@ class DataproxyService(object):
             '/io.clbs.openhes.services.svcdataproxy.DataproxyService/CancelBulkJobs',
             common_dot_types__pb2.ListOfId.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceBulkJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceBulkJobs',
+            acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.SerializeToString,
+            acquisition_dot_main__pb2.DeviceBulkJobs.FromString,
             options,
             channel_credentials,
             insecure,

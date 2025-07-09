@@ -36,6 +36,9 @@ service DataproxyService {
     // @group: Bulks
     // Cancels the job(s) identified by the job identifier(s).
     rpc CancelBulkJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
+    // @group: Bulks
+    // Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+    rpc GetDeviceBulkJobs(io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulkJobs);
 
     // @group: Bulks
     // Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.

@@ -303,6 +303,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.NetworkMap.FromString,
                 _registered_method=True)
+        self.GetDeviceBulkJobs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceBulkJobs',
+                request_serializer=acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.DeviceBulkJobs.FromString,
+                _registered_method=True)
         self.CreateDeviceGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup',
                 request_serializer=acquisition_dot_main__pb2.CreateDeviceGroupRequest.SerializeToString,
@@ -935,6 +940,14 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDeviceBulkJobs(self, request, context):
+        """@group: Bulks
+        Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateDeviceGroup(self, request, context):
         """@group: Devices
         @tag: devicegroup
@@ -1514,6 +1527,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDeviceNetworkMap,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.NetworkMap.SerializeToString,
+            ),
+            'GetDeviceBulkJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceBulkJobs,
+                    request_deserializer=acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.FromString,
+                    response_serializer=acquisition_dot_main__pb2.DeviceBulkJobs.SerializeToString,
             ),
             'CreateDeviceGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDeviceGroup,
@@ -3204,6 +3222,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_shared__pb2.NetworkMap.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDeviceBulkJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceBulkJobs',
+            acquisition_dot_main__pb2.GetDeviceBulkJobsRequest.SerializeToString,
+            acquisition_dot_main__pb2.DeviceBulkJobs.FromString,
             options,
             channel_credentials,
             insecure,

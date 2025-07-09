@@ -341,6 +341,10 @@ type Device struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
 }
 
+type DeviceBulkJobs struct {
+	Jobs []*BulkJob `json:"jobs,omitempty"`
+}
+
 type DeviceCommunicationUnit struct {
 	CommunicationUnitID *string              `json:"communicationUnitId,omitempty"`
 	AppProtocol         *ApplicationProtocol `json:"appProtocol,omitempty"`
@@ -542,6 +546,12 @@ type FieldValue struct {
 
 type FieldValues struct {
 	Attributes []*MapFieldValue `json:"attributes,omitempty"`
+}
+
+type GetDeviceBulkJobsRequest struct {
+	From     *string `json:"from,omitempty"`
+	To       *string `json:"to,omitempty"`
+	DeviceID *string `json:"deviceId,omitempty"`
 }
 
 type GetDeviceDataRequest struct {

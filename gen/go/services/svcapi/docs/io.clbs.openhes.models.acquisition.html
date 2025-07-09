@@ -519,6 +519,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulkJobs">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DeviceBulkJobs</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>DeviceCommunicationUnit</code> 
@@ -711,6 +720,15 @@
         <a href="#message-io.clbs.openhes.models.acquisition.EventRecords">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>EventRecords</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetDeviceBulkJobsRequest</code> 
         </a>
       </p>
       
@@ -4969,6 +4987,59 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceBulkJobs">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DeviceBulkJobs" title="io.clbs.openhes.models.acquisition.DeviceBulkJobs">message DeviceBulkJobs</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        jobs
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.BulkJob">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.BulkJob"><span title="io.clbs.openhes.models.acquisition.BulkJob">io.clbs.openhes.models.acquisition.BulkJob</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of jobs.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.DeviceCommunicationUnit" title="io.clbs.openhes.models.acquisition.DeviceCommunicationUnit">message DeviceCommunicationUnit</a>
@@ -6816,6 +6887,86 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
         </code>
       </td>
       <td class="content"><p>The list of events.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest" title="io.clbs.openhes.models.acquisition.GetDeviceBulkJobsRequest">message GetDeviceBulkJobsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        from
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The start timestamp of the bulk jobs selection.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        to
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The end timestamp of the bulk jobs selection.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        deviceId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
       
     </tr>
     

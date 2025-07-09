@@ -886,6 +886,11 @@ type Device {
   metadata: MetadataFields
 }
 
+type DeviceBulkJobs {
+  # The list of jobs.
+  jobs: [BulkJob]
+}
+
 type DeviceCommunicationUnit {
   # The unique identifier of the communication unit.
   communicationUnitId: String
@@ -1102,6 +1107,15 @@ type EventRecord {
 type EventRecords {
   # The list of events.
   values: [EventRecord]
+}
+
+type GetDeviceBulkJobsRequest {
+  # The start timestamp of the bulk jobs selection.
+  from: Timestamp
+  # The end timestamp of the bulk jobs selection.
+  to: Timestamp
+  # The unique identifier of the device.
+  deviceId: String
 }
 
 type GetDeviceDataRequest {
@@ -2052,6 +2066,7 @@ type Query {
   createBulk: StringValue
   getBulk: Bulk
   updateBulk: Empty
+  getDeviceBulkJobs: DeviceBulkJobs
   getApplicationConfig: ApplicationConfigDescriptor
   updateApplicationConfig: Empty
   synchronizeComponentConfig: ComponentConfig

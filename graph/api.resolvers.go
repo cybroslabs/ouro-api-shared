@@ -66,6 +66,11 @@ func (r *queryResolver) UpdateBulk(ctx context.Context) (*model.Empty, error) {
 	panic(fmt.Errorf("not implemented: UpdateBulk - updateBulk"))
 }
 
+// GetDeviceBulkJobs is the resolver for the getDeviceBulkJobs field.
+func (r *queryResolver) GetDeviceBulkJobs(ctx context.Context) (*model.DeviceBulkJobs, error) {
+	panic(fmt.Errorf("not implemented: GetDeviceBulkJobs - getDeviceBulkJobs"))
+}
+
 // GetApplicationConfig is the resolver for the getApplicationConfig field.
 func (r *queryResolver) GetApplicationConfig(ctx context.Context) (*model.ApplicationConfigDescriptor, error) {
 	panic(fmt.Errorf("not implemented: GetApplicationConfig - getApplicationConfig"))

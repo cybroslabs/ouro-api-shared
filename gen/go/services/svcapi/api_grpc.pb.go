@@ -81,6 +81,7 @@ const (
 	ApiService_ListDeviceCommunicationUnitChanges_FullMethodName                               = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceCommunicationUnitChanges"
 	ApiService_GetDeviceDeviceGroups_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDeviceGroups"
 	ApiService_GetDeviceNetworkMap_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap"
+	ApiService_GetDeviceBulkJobs_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceBulkJobs"
 	ApiService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
 	ApiService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
 	ApiService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
@@ -295,6 +296,9 @@ type ApiServiceClient interface {
 	// @tag: device
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
+	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(ctx context.Context, in *acquisition.GetDeviceBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulkJobs, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -987,6 +991,16 @@ func (c *apiServiceClient) GetDeviceNetworkMap(ctx context.Context, in *wrappers
 	return out, nil
 }
 
+func (c *apiServiceClient) GetDeviceBulkJobs(ctx context.Context, in *acquisition.GetDeviceBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulkJobs, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.DeviceBulkJobs)
+	err := c.cc.Invoke(ctx, ApiService_GetDeviceBulkJobs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -1541,6 +1555,9 @@ type ApiServiceServer interface {
 	// @tag: device
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
+	// @group: Bulks
+	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	GetDeviceBulkJobs(context.Context, *acquisition.GetDeviceBulkJobsRequest) (*acquisition.DeviceBulkJobs, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
@@ -1840,6 +1857,9 @@ func (UnimplementedApiServiceServer) GetDeviceDeviceGroups(context.Context, *wra
 }
 func (UnimplementedApiServiceServer) GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceNetworkMap not implemented")
+}
+func (UnimplementedApiServiceServer) GetDeviceBulkJobs(context.Context, *acquisition.GetDeviceBulkJobsRequest) (*acquisition.DeviceBulkJobs, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceBulkJobs not implemented")
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
@@ -2975,6 +2995,24 @@ func _ApiService_GetDeviceNetworkMap_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetDeviceBulkJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.GetDeviceBulkJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetDeviceBulkJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetDeviceBulkJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetDeviceBulkJobs(ctx, req.(*acquisition.GetDeviceBulkJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(acquisition.CreateDeviceGroupRequest)
 	if err := dec(in); err != nil {
@@ -3814,6 +3852,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceNetworkMap",
 			Handler:    _ApiService_GetDeviceNetworkMap_Handler,
+		},
+		{
+			MethodName: "GetDeviceBulkJobs",
+			Handler:    _ApiService_GetDeviceBulkJobs_Handler,
 		},
 		{
 			MethodName: "CreateDeviceGroup",
