@@ -15,7 +15,14 @@ var (
 )
 
 // PathToDbPathFunc is a function type that maps a object path to its corresponding database column name and or JSONB path within a JSONB column.
-type PathToDbPathFunc func(path string) (dbPath string, useJsonbFunc bool, ok bool)
+// dbPath examples:
+//
+//	schema.table.col:$.level1.level2.levelN
+//	schema.table.col:$.level1.level2.levelN[*]@.propertyName
+//
+// If the dbPath contains ':' then json select shall be used, otherwise it's a direct column name.
+// If the dbPath contains '@' then JSONB_PATH_EXISTS function shall be used, otherwise the JSONB column is used directly.
+type PathToDbPathFunc func(path string) (dbPath string, ok bool)
 
 // PrepareWOL prepares the SQL query with WHERE, ORDER BY, and LIMIT clauses based on the provided DbSelector and the path map.
 // The function returns the WHERE clause, ORDER BY clause, LIMIT clause, and any arguments needed for the query.
@@ -60,7 +67,7 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelCol
 	}
 
 	if in.FilterBy != nil {
-		qWhere, qArgs, err = getWhere(in, pathToDbPath, modelColumn)
+		qWhere, qArgs, err = getWhere(in, pathToDbPath)
 		if err != nil {
 			return
 		}
@@ -68,7 +75,7 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelCol
 
 	qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
 
-	qOrderBy, err = getOrderBy(in, pathToDbPath, modelColumn)
+	qOrderBy, err = getOrderBy(in, pathToDbPath)
 	if err != nil {
 		return
 	}
@@ -111,7 +118,7 @@ func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qAr
 	return
 }
 
-func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColumn string) (string, []any, error) {
+func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, []any, error) {
 	var err error
 	parts := make([]string, 0, len(in.GetFilterBy()))
 	values := make([]any, 0, len(in.GetFilterBy()))
@@ -121,25 +128,16 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 		}
 
 		raw_path := f.GetPath()
-
-		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(raw_path)
-		path, use_jsonb_func, ok := pathToDbPath(path)
+		path, ok := pathToDbPath((&common.FieldDescriptor{}).ConvertJsPathToPath(raw_path))
 		if !ok {
 			return "", nil, errors.New("unknown path: " + raw_path)
 		}
 
-		json_path, json_property := fieldToJsonPath(path)
-		if use_jsonb_func {
-			// If required to use a JSONB function, we need to ensure the path is compatible with JSON selector
-			if len(json_path) == 0 {
-				return "", nil, errors.New("the path is not a compatible with JSON selector: " + raw_path)
-			}
-		}
-
-		col := dbPathToColumn(path, modelColumn, true)
+		col, json_path, json_property := dbPathToDbSelector(path, true)
 		if len(col) == 0 {
 			return "", nil, errors.New("invalid field id")
 		}
+		use_jsonb_func := len(json_property) > 0
 
 		switch f.GetOperator() {
 		case common.FilterOperator_EQUAL:
@@ -153,7 +151,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " == ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_EQUAL:
 			if !use_jsonb_func {
@@ -166,7 +164,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " <> ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN:
 			if !use_jsonb_func {
@@ -179,7 +177,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " > ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_GREATER_THAN_OR_EQUAL:
 			if !use_jsonb_func {
@@ -192,7 +190,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " >= ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN:
 			if !use_jsonb_func {
@@ -205,7 +203,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " < ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_LESS_THAN_OR_EQUAL:
 			if !use_jsonb_func {
@@ -218,7 +216,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return " <= ", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_CONTAINS:
 			if !use_jsonb_func {
@@ -231,7 +229,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_NOT_CONTAINS:
 			if !use_jsonb_func {
@@ -244,7 +242,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return "", true
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_STARTS_WITH:
 			if !use_jsonb_func {
@@ -257,7 +255,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		case common.FilterOperator_ENDS_WITH:
 			if !use_jsonb_func {
@@ -270,14 +268,14 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					}
 					return "", false
 				}
-				err = addSingleOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, makeOpVal)
+				err = addSingleOperandOperatorJson(&parts, col, json_path, json_property, f, makeOpVal)
 			}
 		// Multi-operand operators
 		case common.FilterOperator_IN:
 			if !use_jsonb_func {
 				err = addMultiOperandOperator(&parts, &values, col, f, "IN")
 			} else {
-				err = addMultiOperandOperatorJson(&parts, modelColumn, json_path, json_property, f, "==")
+				err = addMultiOperandOperatorJson(&parts, col, json_path, json_property, f, "==")
 			}
 		case common.FilterOperator_NOT_IN:
 			err = addMultiOperandOperator(&parts, &values, col, f, "NOT IN")
@@ -289,7 +287,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 				} else {
 					if len(json_path) > 0 {
 						// Use jsonb_path_exists to optimize the query
-						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (%s >= %d && %s <= %d)')", modelColumn, json_path, json_property, t[0], json_property, t[1]))
+						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (%s >= %d && %s <= %d)')", col, json_path, json_property, t[0], json_property, t[1]))
 					} else {
 						parts = append(parts, fmt.Sprintf("%s >= $%d AND %s <= $%d", col, len(values)+1, col, len(values)+2))
 						values = append(values, t[0], t[1])
@@ -300,7 +298,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 					return "", nil, errors.New("invalid number of operands")
 				} else {
 					if len(json_path) > 0 {
-						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (%s >= %f && %s <= %f)')", modelColumn, json_path, json_property, t[0], json_property, t[1]))
+						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (%s >= %f && %s <= %f)')", col, json_path, json_property, t[0], json_property, t[1]))
 					} else {
 						parts = append(parts, fmt.Sprintf("%s >= $%d AND %s <= $%d", col, len(values)+1, col, len(values)+2))
 						values = append(values, t[0], t[1])
@@ -328,7 +326,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColum
 	}
 }
 
-func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColumn string) (string, error) {
+func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, error) {
 	if in == nil {
 		return "", nil
 	}
@@ -340,13 +338,12 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelCol
 	tmp := strings.Builder{}
 	tmp.WriteString("ORDER BY ")
 	for i, s := range fields {
-		path := (&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath())
-		path, _, ok := pathToDbPath(path)
+		path, ok := pathToDbPath((&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath()))
 		if !ok {
 			return "", errors.New("unknown path: " + s.GetPath())
 		}
 
-		col := dbPathToColumn(path, modelColumn, false)
+		col, _, _ := dbPathToDbSelector(path, false)
 		if len(col) == 0 {
 			return "", errors.New("invalid field id")
 		}
@@ -541,45 +538,58 @@ func addMultiOperandOperatorJson(parts *[]string, modelColumn string, jsonPath s
 	return nil
 }
 
-// fieldToJsonPath converts a filed to a JSON path
-// Optionally, it splits the JSON path and the property name, if present.
-// For example:
+// dbPathToDbSelector converts a dbPath string into a column with optional -> selector, or column, jsonPath with propertyName triplet.
+// Examples:
 //
-//	$.column.field.path        ...   $.field.path         @
-//	$.column.field.path.@.xx   ...   $.column.field       @.xx
-func fieldToJsonPath(field string) (jsonPath string, propertyName string) {
-	parts := strings.SplitN(field, ".", 2)
-	if len(parts) == 2 && (parts[0] == "$") {
-		parts = strings.SplitN(parts[1], "@", 2)
-		if len(parts) == 2 {
-			// If the field contains a property name, return the JSON path and the property name
-			return "$." + parts[0], "@" + parts[1]
-		} else {
-			// If the field does not contain a property name, return the JSON path and an empty property name
-			return "$." + parts[0], "@"
-		}
-
-	} else {
-		// Neither a valid object field nor a valid column name
-		return "", ""
+//	column:$.level1.field.path        					...   column				$.level1.field.path        	@
+//	alias:$.level1.field.path@.xx   					...   alias					$.level1.field.path	     	@.xx
+//	table.column:$.level1.field.path@.xx  				...   table.column			$.level1.field.path	     	@.xx
+//	schema.table.column:$.level1.field.path[*]@.xx  	...   schema.table.column	$.level1.field.path[*]	    @.xx
+func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference string, jsonPath string, propertyName string) {
+	parts := strings.SplitN(dbPath, ":", 2)
+	if len(parts) == 1 {
+		return dbPath, "", ""
 	}
-}
 
-func dbPathToColumn(dbPath string, modelColumn string, useDoubleArrow bool) string {
-	parts := strings.Split(dbPath, ".")
-	if len(parts) >= 2 && (parts[0] == "$") {
-		if !useDoubleArrow {
-			return modelColumn + "->'" + strings.Join(parts[1:], "'->'") + "'"
+	column := parts[0]
+	path := parts[1]
+
+	subSelectorParts := strings.SplitN(path, "@", 2)
+
+	switch len(subSelectorParts) {
+	case 1:
+		// Simple -> or ->> path (no JSONPath sub-selector)
+		if !strings.HasPrefix(path, "$.") {
+			return "", "", ""
 		}
-		if len(parts) > 2 {
-			return modelColumn + "->'" + strings.Join(parts[1:len(parts)-1], "'->'") + "'->>'" + parts[len(parts)-1] + "'"
-		} else {
-			return modelColumn + "->>'" + parts[len(parts)-1] + "'"
+
+		pathParts := strings.Split(path, ".")
+		pathParts = pathParts[1:]
+
+		switch {
+		case len(pathParts) == 0:
+			return "", "", ""
+		case !useDoubleArrow:
+			return column + "->'" + strings.Join(pathParts, "'->'") + "'", "", ""
+		case len(pathParts) == 1:
+			return column + "->>'" + pathParts[0] + "'", "", ""
+		default:
+			return column + "->'" + strings.Join(pathParts[:len(pathParts)-1], "'->'") + "'->>'" + pathParts[len(pathParts)-1] + "'", "", ""
 		}
-	} else if len(parts) == 1 {
-		return dbPath
-	} else {
-		// Neither a valid object field nor a valid column name
-		return ""
+
+	case 2:
+		// JSONPath query with embedded sub-selector (e.g., `column:$.path.to[*]@.sub`)
+		jsonPath := subSelectorParts[0]
+		property := "@" + subSelectorParts[1]
+
+		if !strings.HasPrefix(jsonPath, "$.") && jsonPath != "$" {
+			return "", "", ""
+		}
+
+		return column, jsonPath, property
+
+	default:
+		// More than one '@' not supported
+		return "", "", ""
 	}
 }

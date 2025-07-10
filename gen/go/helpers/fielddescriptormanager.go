@@ -13,7 +13,7 @@ import (
 	"k8s.io/utils/ptr"
 )
 
-type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[string]string) func(path string) (dbPath string, useJsonbFunc bool, ok bool)
+type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[string]string) func(path string) (dbPath string, ok bool)
 
 type FieldDescriptorManager interface {
 	SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error

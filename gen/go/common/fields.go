@@ -3,7 +3,6 @@ package common
 import (
 	"errors"
 	"fmt"
-	"maps"
 	"regexp"
 	"slices"
 	"strconv"
@@ -14,7 +13,8 @@ import (
 )
 
 var (
-	reCapitals = regexp.MustCompile(`([A-Z]+)`)
+	reCapUnderscores = regexp.MustCompile(`^[A-Z]+(?:_[A-Z]+)*$`)
+	reCapitals       = regexp.MustCompile(`([A-Z]+)`)
 )
 
 // NewFieldDescriptorInternal creates a new FieldDescriptorInternal with the given parameters.
@@ -341,16 +341,35 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 
 	fd.SetDataType(FieldDataType_INTEGER)
 	tmp := make(map[string]string, len(options))
+
+	// Detect enum names format.
+	// If all options are in the format of ALL_CAPS_UNDERSCORES, then we will convert them to a human-readable format with spaces.
+	// If all options are in the format of PascalCase, we will prefix all capital letters with a space to make them more readable.
+	all_cap_underscores := true
 	no_space := true
 	for k, v := range options {
 		tmp[strconv.FormatInt(int64(k), 10)] = v
+		if all_cap_underscores && !reCapUnderscores.MatchString(v) {
+			all_cap_underscores = false
+		}
 		if no_space && strings.Contains(v, " ") {
 			no_space = false
 		}
 	}
 
-	if no_space {
-		for k := range maps.Keys(tmp) {
+	if all_cap_underscores {
+		for k := range tmp {
+			parts := strings.Split(tmp[k], "_")
+			for i, part := range parts {
+				// Capitalize the first letter of each part.
+				if len(part) > 0 {
+					parts[i] = strings.ToUpper(part[:1]) + part[1:]
+				}
+			}
+			tmp[k] = strings.Join(parts, " ")
+		}
+	} else if no_space {
+		for k := range tmp {
 			// Replace PascalCase values 'v' by prefixing all capital letters with a space.
 			tmp[k] = strings.TrimSpace(reCapitals.ReplaceAllString(tmp[k], " $1"))
 		}
