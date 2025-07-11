@@ -132,9 +132,10 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			return "", nil, errors.New("unknown path: " + raw_path)
 		}
 
-		col, json_path, json_property := dbPathToDbSelector(path, true)
-		if len(col) == 0 {
-			return "", nil, errors.New("invalid field id")
+		var col, json_path, json_property string
+		col, json_path, json_property, err = dbPathToDbSelector(path, true)
+		if err != nil {
+			return "", nil, err
 		}
 		use_jsonb_func := len(json_property) > 0
 
@@ -342,9 +343,9 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string,
 			return "", errors.New("unknown path: " + s.GetPath())
 		}
 
-		col, _, _ := dbPathToDbSelector(path, false)
-		if len(col) == 0 {
-			return "", errors.New("invalid field id")
+		col, _, _, err := dbPathToDbSelector(path, false)
+		if err != nil {
+			return "", err
 		}
 		if i > 0 {
 			tmp.WriteString(", ")
@@ -540,17 +541,27 @@ func addMultiOperandOperatorJson(parts *[]string, modelColumn string, jsonPath s
 // dbPathToDbSelector converts a dbPath string into a column with optional -> selector, or column, jsonPath with propertyName triplet.
 // Examples:
 //
-//	column:$.level1.field.path        					...   column				$.level1.field.path        	@
-//	alias:$.level1.field.path@.xx   					...   alias					$.level1.field.path	     	@.xx
-//	table.column:$.level1.field.path@.xx  				...   table.column			$.level1.field.path	     	@.xx
-//	schema.table.column:$.level1.field.path[*]@.xx  	...   schema.table.column	$.level1.field.path[*]	    @.xx
-func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference string, jsonPath string, propertyName string) {
+//	    -:$.level1.field.path         						...   N/A					$.level1.field.path        	@
+//		column:$.level1.field.path        					...   column				$.level1.field.path        	@
+//		alias:$.level1.field.path@.xx   					...   alias					$.level1.field.path	     	@.xx
+//		table.column:$.level1.field.path@.xx  				...   table.column			$.level1.field.path	     	@.xx
+//		schema.table.column:$.level1.field.path[*]@.xx  	...   schema.table.column	$.level1.field.path[*]	    @.xx
+func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference string, jsonPath string, propertyName string, err error) {
 	parts := strings.SplitN(dbPath, ":", 2)
-	if len(parts) == 1 {
-		return dbPath, "", ""
+	if len(parts[0]) == 0 {
+		err = errors.New("the dbPath must contain column name reference, got: " + dbPath)
+		return
+	} else if len(parts) == 1 {
+		columnReference = dbPath
+		return
 	}
 
 	column := parts[0]
+	if column == "-" {
+		err = errors.New("the field descriptor can't be used for filtering or sorting")
+		return
+	}
+
 	path := parts[1]
 
 	subSelectorParts := strings.SplitN(path, "@", 2)
@@ -559,7 +570,8 @@ func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference str
 	case 1:
 		// Simple -> or ->> path (no JSONPath sub-selector)
 		if !strings.HasPrefix(path, "$.") {
-			return "", "", ""
+			err = errors.New("the path must start with '$.', got: " + path)
+			return
 		}
 
 		pathParts := strings.Split(path, ".")
@@ -567,28 +579,35 @@ func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference str
 
 		switch {
 		case len(pathParts) == 0:
-			return "", "", ""
+			err = errors.New("the path must contain at least one part after '$.', got: " + path)
+			return
 		case !useDoubleArrow:
-			return column + "->'" + strings.Join(pathParts, "'->'") + "'", "", ""
+			columnReference = column + "->'" + strings.Join(pathParts, "'->'") + "'"
+			return
 		case len(pathParts) == 1:
-			return column + "->>'" + pathParts[0] + "'", "", ""
+			columnReference = column + "->>'" + pathParts[0] + "'"
+			return
 		default:
-			return column + "->'" + strings.Join(pathParts[:len(pathParts)-1], "'->'") + "'->>'" + pathParts[len(pathParts)-1] + "'", "", ""
+			columnReference = column + "->'" + strings.Join(pathParts[:len(pathParts)-1], "'->'") + "'->>'" + pathParts[len(pathParts)-1] + "'"
+			return
 		}
 
 	case 2:
 		// JSONPath query with embedded sub-selector (e.g., `column:$.path.to[*]@.sub`)
-		jsonPath := subSelectorParts[0]
-		property := "@" + subSelectorParts[1]
+		columnReference = column
+		jsonPath = subSelectorParts[0]
+		propertyName = "@" + subSelectorParts[1]
 
 		if !strings.HasPrefix(jsonPath, "$.") && jsonPath != "$" {
-			return "", "", ""
+			err = errors.New("the JSONPath must start with '$.' or be equal to '$', got: " + jsonPath)
+			return
 		}
 
-		return column, jsonPath, property
+		return
 
 	default:
 		// More than one '@' not supported
-		return "", "", ""
+		err = errors.New("the path must contain at most one '@', got: " + path)
+		return
 	}
 }
