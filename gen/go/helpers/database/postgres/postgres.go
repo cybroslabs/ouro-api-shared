@@ -27,14 +27,13 @@ type PathToDbPathFunc func(path string) (dbPath string, ok bool)
 // PrepareWOL prepares the SQL query with WHERE, ORDER BY, and LIMIT clauses based on the provided DbSelector and the path map.
 // The function returns the WHERE clause, ORDER BY clause, LIMIT clause, and any arguments needed for the query.
 // The pathToDbPath is used to map field paths to their corresponding database column names and or JSONB paths.
-// It uses the specified modelColumn for the JSONB column and idColumn for the ID column.
 // If the DbSelector is nil or has no filters, it returns an empty WHERE clause and a default LIMIT of 100.
 // If the DbSelector contains IDs, it constructs a WHERE clause to filter by those IDs.
 // If fixedWhere is provided, it appends those conditions to the WHERE clause.
 // The function also handles errors related to invalid field IDs or unsupported data types.
 // It is designed to be used in a PostgreSQL context where JSONB fields are queried.
 // The function returns an error if there are issues with the input parameters or if the query cannot be constructed.
-func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, modelColumn string, idColumn string, fixedWhere ...database.PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
+func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, idColumn string, fixedWhere ...database.PersistentWhere) (qWhere string, qOrderBy string, qLimit string, qArgs []any, err error) {
 	if in == nil {
 		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
 		return
