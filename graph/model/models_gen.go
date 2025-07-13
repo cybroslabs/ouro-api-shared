@@ -1968,19 +1968,20 @@ func (e NullValue) MarshalJSON() ([]byte, error) {
 type ObjectType string
 
 const (
-	ObjectTypeBulk              ObjectType = "BULK"
-	ObjectTypeBulkJob           ObjectType = "BULK_JOB"
-	ObjectTypeCommunicationUnit ObjectType = "COMMUNICATION_UNIT"
-	ObjectTypeDevice            ObjectType = "DEVICE"
-	ObjectTypeRegister          ObjectType = "REGISTER"
-	ObjectTypeVariable          ObjectType = "VARIABLE"
-	ObjectTypeDeviceTemplate    ObjectType = "DEVICE_TEMPLATE"
-	ObjectTypeCommunicationBus  ObjectType = "COMMUNICATION_BUS"
-	ObjectTypeModemPool         ObjectType = "MODEM_POOL"
-	ObjectTypeDeviceGroup       ObjectType = "DEVICE_GROUP"
-	ObjectTypeTimeOfUseTable    ObjectType = "TIME_OF_USE_TABLE"
-	ObjectTypeDriver            ObjectType = "DRIVER"
-	ObjectTypeCronJob           ObjectType = "CRON_JOB"
+	ObjectTypeBulk                          ObjectType = "BULK"
+	ObjectTypeBulkJob                       ObjectType = "BULK_JOB"
+	ObjectTypeCommunicationUnit             ObjectType = "COMMUNICATION_UNIT"
+	ObjectTypeDevice                        ObjectType = "DEVICE"
+	ObjectTypeRegister                      ObjectType = "REGISTER"
+	ObjectTypeVariable                      ObjectType = "VARIABLE"
+	ObjectTypeDeviceTemplate                ObjectType = "DEVICE_TEMPLATE"
+	ObjectTypeCommunicationBus              ObjectType = "COMMUNICATION_BUS"
+	ObjectTypeModemPool                     ObjectType = "MODEM_POOL"
+	ObjectTypeDeviceGroup                   ObjectType = "DEVICE_GROUP"
+	ObjectTypeTimeOfUseTable                ObjectType = "TIME_OF_USE_TABLE"
+	ObjectTypeDriver                        ObjectType = "DRIVER"
+	ObjectTypeCronJob                       ObjectType = "CRON_JOB"
+	ObjectTypeDeviceCommunicationUnitChange ObjectType = "DEVICE_COMMUNICATION_UNIT_CHANGE"
 )
 
 var AllObjectType = []ObjectType{
@@ -1997,11 +1998,12 @@ var AllObjectType = []ObjectType{
 	ObjectTypeTimeOfUseTable,
 	ObjectTypeDriver,
 	ObjectTypeCronJob,
+	ObjectTypeDeviceCommunicationUnitChange,
 }
 
 func (e ObjectType) IsValid() bool {
 	switch e {
-	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver, ObjectTypeCronJob:
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver, ObjectTypeCronJob, ObjectTypeDeviceCommunicationUnitChange:
 		return true
 	}
 	return false

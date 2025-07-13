@@ -305,6 +305,8 @@ enum ObjectType {
   DRIVER
   # The cron job.
   CRON_JOB
+  # The device communication unit change.
+  DEVICE_COMMUNICATION_UNIT_CHANGE
 }
 
 enum CronJobTypeEnum {

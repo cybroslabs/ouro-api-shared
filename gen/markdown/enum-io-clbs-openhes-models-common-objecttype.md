@@ -19,3 +19,4 @@ Enum representing the object type.
 | TIME_OF_USE_TABLE | The time-of-use table. |
 | DRIVER | The driver. |
 | CRON_JOB | The cron job. |
+| DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |

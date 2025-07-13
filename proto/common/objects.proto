@@ -19,4 +19,6 @@ enum ObjectType {
     TIME_OF_USE_TABLE  = 10;  // The time-of-use table.
     DRIVER             = 11;  // The driver.
     CRON_JOB           = 12;  // The cron job.
+
+    DEVICE_COMMUNICATION_UNIT_CHANGE = 13; // The device communication unit change.
 }

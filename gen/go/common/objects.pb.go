@@ -24,19 +24,20 @@ const (
 type ObjectType int32
 
 const (
-	ObjectType_BULK               ObjectType = 0  // The bulk.
-	ObjectType_BULK_JOB           ObjectType = 1  // The bulk job.
-	ObjectType_COMMUNICATION_UNIT ObjectType = 2  // The communication unit.
-	ObjectType_DEVICE             ObjectType = 3  // The device.
-	ObjectType_REGISTER           ObjectType = 4  // The register.
-	ObjectType_VARIABLE           ObjectType = 5  // The variable.
-	ObjectType_DEVICE_TEMPLATE    ObjectType = 6  // The device template.
-	ObjectType_COMMUNICATION_BUS  ObjectType = 7  // The communication bus.
-	ObjectType_MODEM_POOL         ObjectType = 8  // The modem pool.
-	ObjectType_DEVICE_GROUP       ObjectType = 9  // The device group.
-	ObjectType_TIME_OF_USE_TABLE  ObjectType = 10 // The time-of-use table.
-	ObjectType_DRIVER             ObjectType = 11 // The driver.
-	ObjectType_CRON_JOB           ObjectType = 12 // The cron job.
+	ObjectType_BULK                             ObjectType = 0  // The bulk.
+	ObjectType_BULK_JOB                         ObjectType = 1  // The bulk job.
+	ObjectType_COMMUNICATION_UNIT               ObjectType = 2  // The communication unit.
+	ObjectType_DEVICE                           ObjectType = 3  // The device.
+	ObjectType_REGISTER                         ObjectType = 4  // The register.
+	ObjectType_VARIABLE                         ObjectType = 5  // The variable.
+	ObjectType_DEVICE_TEMPLATE                  ObjectType = 6  // The device template.
+	ObjectType_COMMUNICATION_BUS                ObjectType = 7  // The communication bus.
+	ObjectType_MODEM_POOL                       ObjectType = 8  // The modem pool.
+	ObjectType_DEVICE_GROUP                     ObjectType = 9  // The device group.
+	ObjectType_TIME_OF_USE_TABLE                ObjectType = 10 // The time-of-use table.
+	ObjectType_DRIVER                           ObjectType = 11 // The driver.
+	ObjectType_CRON_JOB                         ObjectType = 12 // The cron job.
+	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 13 // The device communication unit change.
 )
 
 // Enum value maps for ObjectType.
@@ -55,21 +56,23 @@ var (
 		10: "TIME_OF_USE_TABLE",
 		11: "DRIVER",
 		12: "CRON_JOB",
+		13: "DEVICE_COMMUNICATION_UNIT_CHANGE",
 	}
 	ObjectType_value = map[string]int32{
-		"BULK":               0,
-		"BULK_JOB":           1,
-		"COMMUNICATION_UNIT": 2,
-		"DEVICE":             3,
-		"REGISTER":           4,
-		"VARIABLE":           5,
-		"DEVICE_TEMPLATE":    6,
-		"COMMUNICATION_BUS":  7,
-		"MODEM_POOL":         8,
-		"DEVICE_GROUP":       9,
-		"TIME_OF_USE_TABLE":  10,
-		"DRIVER":             11,
-		"CRON_JOB":           12,
+		"BULK":                             0,
+		"BULK_JOB":                         1,
+		"COMMUNICATION_UNIT":               2,
+		"DEVICE":                           3,
+		"REGISTER":                         4,
+		"VARIABLE":                         5,
+		"DEVICE_TEMPLATE":                  6,
+		"COMMUNICATION_BUS":                7,
+		"MODEM_POOL":                       8,
+		"DEVICE_GROUP":                     9,
+		"TIME_OF_USE_TABLE":                10,
+		"DRIVER":                           11,
+		"CRON_JOB":                         12,
+		"DEVICE_COMMUNICATION_UNIT_CHANGE": 13,
 	}
 )
 
@@ -99,7 +102,7 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xe3\x01\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\x89\x02\n" +
 	"\n" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
@@ -118,7 +121,8 @@ const file_common_objects_proto_rawDesc = "" +
 	"\x12\n" +
 	"\n" +
 	"\x06DRIVER\x10\v\x12\f\n" +
-	"\bCRON_JOB\x10\fB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\bCRON_JOB\x10\f\x12$\n" +
+	" DEVICE_COMMUNICATION_UNIT_CHANGE\x10\rB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_objects_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_common_objects_proto_goTypes = []any{
