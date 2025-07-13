@@ -36,6 +36,7 @@ const (
 	DataproxyService_GetBulk_FullMethodName                        = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetBulk"
 	DataproxyService_UpdateBulk_FullMethodName                     = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateBulk"
 	DataproxyService_GetDeviceData_FullMethodName                  = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceData"
+	DataproxyService_ListDeviceDataInfo_FullMethodName             = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/ListDeviceDataInfo"
 	DataproxyService_GetDeviceDataRegisters_FullMethodName         = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataRegisters"
 	DataproxyService_GetDeviceDataProfiles_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataProfiles"
 	DataproxyService_GetDeviceDataIrregularProfiles_FullMethodName = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetDeviceDataIrregularProfiles"
@@ -93,6 +94,9 @@ type DataproxyServiceClient interface {
 	// @group: Device Data
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
+	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// The method to stream out register-typed meter data.
 	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -257,6 +261,16 @@ func (c *dataproxyServiceClient) GetDeviceData(ctx context.Context, in *acquisit
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceDataInfo)
+	err := c.cc.Invoke(ctx, DataproxyService_ListDeviceDataInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataproxyServiceClient) GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &DataproxyService_ServiceDesc.Streams[0], DataproxyService_GetDeviceDataRegisters_FullMethodName, cOpts...)
@@ -412,6 +426,9 @@ type DataproxyServiceServer interface {
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
+	// @group: Device Data
 	// The method to stream out register-typed meter data.
 	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
 	// @group: Device Data
@@ -483,6 +500,9 @@ func (UnimplementedDataproxyServiceServer) UpdateBulk(context.Context, *common.U
 }
 func (UnimplementedDataproxyServiceServer) GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceData not implemented")
+}
+func (UnimplementedDataproxyServiceServer) ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceDataInfo not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetDeviceDataRegisters not implemented")
@@ -763,6 +783,24 @@ func _DataproxyService_GetDeviceData_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_ListDeviceDataInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).ListDeviceDataInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_ListDeviceDataInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).ListDeviceDataInfo(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataproxyService_GetDeviceDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -944,6 +982,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceData",
 			Handler:    _DataproxyService_GetDeviceData_Handler,
+		},
+		{
+			MethodName: "ListDeviceDataInfo",
+			Handler:    _DataproxyService_ListDeviceDataInfo_Handler,
 		},
 		{
 			MethodName: "GetDeviceEvents",

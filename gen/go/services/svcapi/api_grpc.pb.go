@@ -100,6 +100,7 @@ const (
 	ApiService_UpdateApplicationConfig_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/UpdateApplicationConfig"
 	ApiService_SynchronizeComponentConfig_FullMethodName                                       = "/io.clbs.openhes.services.svcapi.ApiService/SynchronizeComponentConfig"
 	ApiService_GetDeviceData_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceData"
+	ApiService_ListDeviceDataInfo_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceDataInfo"
 	ApiService_GetDeviceDataRegisters_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataRegisters"
 	ApiService_GetDeviceDataProfiles_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataProfiles"
 	ApiService_GetDeviceDataIrregularProfiles_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataIrregularProfiles"
@@ -370,6 +371,9 @@ type ApiServiceClient interface {
 	// @group: Device Data
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
+	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// The method to stream out register-typed device data.
 	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
@@ -1181,6 +1185,16 @@ func (c *apiServiceClient) GetDeviceData(ctx context.Context, in *acquisition.Ge
 	return out, nil
 }
 
+func (c *apiServiceClient) ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfDeviceDataInfo)
+	err := c.cc.Invoke(ctx, ApiService_ListDeviceDataInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[0], ApiService_GetDeviceDataRegisters_FullMethodName, cOpts...)
@@ -1630,6 +1644,9 @@ type ApiServiceServer interface {
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
+	// @group: Device Data
 	// The method to stream out register-typed device data.
 	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
 	// @group: Device Data
@@ -1914,6 +1931,9 @@ func (UnimplementedApiServiceServer) SynchronizeComponentConfig(context.Context,
 }
 func (UnimplementedApiServiceServer) GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceData not implemented")
+}
+func (UnimplementedApiServiceServer) ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceDataInfo not implemented")
 }
 func (UnimplementedApiServiceServer) GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error {
 	return status.Errorf(codes.Unimplemented, "method GetDeviceDataRegisters not implemented")
@@ -3337,6 +3357,24 @@ func _ApiService_GetDeviceData_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_ListDeviceDataInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListDeviceDataInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListDeviceDataInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListDeviceDataInfo(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetDeviceDataRegisters_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(acquisition.GetDeviceDataRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -3928,6 +3966,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceData",
 			Handler:    _ApiService_GetDeviceData_Handler,
+		},
+		{
+			MethodName: "ListDeviceDataInfo",
+			Handler:    _ApiService_ListDeviceDataInfo_Handler,
 		},
 		{
 			MethodName: "GetDeviceEvents",

@@ -247,6 +247,9 @@ const (
 	// ApiServiceGetDeviceDataProcedure is the fully-qualified name of the ApiService's GetDeviceData
 	// RPC.
 	ApiServiceGetDeviceDataProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceData"
+	// ApiServiceListDeviceDataInfoProcedure is the fully-qualified name of the ApiService's
+	// ListDeviceDataInfo RPC.
+	ApiServiceListDeviceDataInfoProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceDataInfo"
 	// ApiServiceGetDeviceDataRegistersProcedure is the fully-qualified name of the ApiService's
 	// GetDeviceDataRegisters RPC.
 	ApiServiceGetDeviceDataRegistersProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataRegisters"
@@ -543,6 +546,9 @@ type ApiServiceClient interface {
 	// @group: Device Data
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error)
+	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceDataInfo], error)
 	// @group: Device Data
 	// The method to stream out register-typed device data.
 	GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error)
@@ -1057,6 +1063,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetDeviceData")),
 			connect.WithClientOptions(opts...),
 		),
+		listDeviceDataInfo: connect.NewClient[common.ListSelector, acquisition.ListOfDeviceDataInfo](
+			httpClient,
+			baseURL+ApiServiceListDeviceDataInfoProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListDeviceDataInfo")),
+			connect.WithClientOptions(opts...),
+		),
 		getDeviceDataRegisters: connect.NewClient[acquisition.GetDeviceDataRequest, acquisition.RegisterValues](
 			httpClient,
 			baseURL+ApiServiceGetDeviceDataRegistersProcedure,
@@ -1239,6 +1251,7 @@ type apiServiceClient struct {
 	updateApplicationConfig                                          *connect.Client[system.ApplicationConfig, emptypb.Empty]
 	synchronizeComponentConfig                                       *connect.Client[system.ComponentConfigDescriptor, system.ComponentConfig]
 	getDeviceData                                                    *connect.Client[acquisition.GetDeviceDataRequest, acquisition.DeviceData]
+	listDeviceDataInfo                                               *connect.Client[common.ListSelector, acquisition.ListOfDeviceDataInfo]
 	getDeviceDataRegisters                                           *connect.Client[acquisition.GetDeviceDataRequest, acquisition.RegisterValues]
 	getDeviceDataProfiles                                            *connect.Client[acquisition.GetDeviceDataRequest, acquisition.ProfileValues]
 	getDeviceDataIrregularProfiles                                   *connect.Client[acquisition.GetDeviceDataRequest, acquisition.IrregularProfileValues]
@@ -1654,6 +1667,11 @@ func (c *apiServiceClient) GetDeviceData(ctx context.Context, req *connect.Reque
 	return c.getDeviceData.CallUnary(ctx, req)
 }
 
+// ListDeviceDataInfo calls io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo.
+func (c *apiServiceClient) ListDeviceDataInfo(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceDataInfo], error) {
+	return c.listDeviceDataInfo.CallUnary(ctx, req)
+}
+
 // GetDeviceDataRegisters calls io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters.
 func (c *apiServiceClient) GetDeviceDataRegisters(ctx context.Context, req *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.ServerStreamForClient[acquisition.RegisterValues], error) {
 	return c.getDeviceDataRegisters.CallServerStream(ctx, req)
@@ -1987,6 +2005,9 @@ type ApiServiceHandler interface {
 	// @group: Device Data
 	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
 	GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error)
+	// @group: Device Data
+	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	ListDeviceDataInfo(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceDataInfo], error)
 	// @group: Device Data
 	// The method to stream out register-typed device data.
 	GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error
@@ -2497,6 +2518,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetDeviceData")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceListDeviceDataInfoHandler := connect.NewUnaryHandler(
+		ApiServiceListDeviceDataInfoProcedure,
+		svc.ListDeviceDataInfo,
+		connect.WithSchema(apiServiceMethods.ByName("ListDeviceDataInfo")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetDeviceDataRegistersHandler := connect.NewServerStreamHandler(
 		ApiServiceGetDeviceDataRegistersProcedure,
 		svc.GetDeviceDataRegisters,
@@ -2751,6 +2778,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceSynchronizeComponentConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDataProcedure:
 			apiServiceGetDeviceDataHandler.ServeHTTP(w, r)
+		case ApiServiceListDeviceDataInfoProcedure:
+			apiServiceListDeviceDataInfoHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDataRegistersProcedure:
 			apiServiceGetDeviceDataRegistersHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceDataProfilesProcedure:
@@ -3092,6 +3121,10 @@ func (UnimplementedApiServiceHandler) SynchronizeComponentConfig(context.Context
 
 func (UnimplementedApiServiceHandler) GetDeviceData(context.Context, *connect.Request[acquisition.GetDeviceDataRequest]) (*connect.Response[acquisition.DeviceData], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetDeviceData is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListDeviceDataInfo(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceDataInfo], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetDeviceDataRegisters(context.Context, *connect.Request[acquisition.GetDeviceDataRequest], *connect.ServerStream[acquisition.RegisterValues]) error {

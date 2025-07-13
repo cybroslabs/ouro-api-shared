@@ -191,6 +191,11 @@ func (r *queryResolver) GetDeviceData(ctx context.Context) (*model.DeviceData, e
 	panic(fmt.Errorf("not implemented: GetDeviceData - getDeviceData"))
 }
 
+// ListDeviceDataInfo is the resolver for the listDeviceDataInfo field.
+func (r *queryResolver) ListDeviceDataInfo(ctx context.Context) (*model.ListOfDeviceDataInfo, error) {
+	panic(fmt.Errorf("not implemented: ListDeviceDataInfo - listDeviceDataInfo"))
+}
+
 // GetDeviceDataRegisters is the resolver for the getDeviceDataRegisters field.
 func (r *queryResolver) GetDeviceDataRegisters(ctx context.Context) (*model.RegisterValues, error) {
 	panic(fmt.Errorf("not implemented: GetDeviceDataRegisters - getDeviceDataRegisters"))

@@ -389,6 +389,23 @@ type DeviceData struct {
 	Devices []*DeviceDeviceData `json:"devices,omitempty"`
 }
 
+type DeviceDataInfo struct {
+	Spec   *DeviceDataInfoSpec   `json:"spec,omitempty"`
+	Status *DeviceDataInfoStatus `json:"status,omitempty"`
+}
+
+type DeviceDataInfoSpec struct {
+	DeviceID   *string `json:"deviceId,omitempty"`
+	RegisterID *string `json:"registerId,omitempty"`
+}
+
+type DeviceDataInfoStatus struct {
+	DeviceName   *string `json:"deviceName,omitempty"`
+	VariableName *string `json:"variableName,omitempty"`
+	Period       *int32  `json:"period,omitempty"`
+	LastValueAt  *string `json:"lastValueAt,omitempty"`
+}
+
 type DeviceDeviceData struct {
 	DeviceID *string               `json:"deviceId,omitempty"`
 	Data     []*VariableDeviceData `json:"data,omitempty"`
@@ -729,6 +746,11 @@ type ListOfDeviceConfigurationRegister struct {
 type ListOfDeviceConfigurationTemplate struct {
 	Items      []*DeviceConfigurationTemplate `json:"items,omitempty"`
 	TotalCount *int32                         `json:"totalCount,omitempty"`
+}
+
+type ListOfDeviceDataInfo struct {
+	Items      []*DeviceDataInfo `json:"items,omitempty"`
+	TotalCount *int32            `json:"totalCount,omitempty"`
 }
 
 type ListOfDeviceGroup struct {

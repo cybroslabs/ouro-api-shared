@@ -398,6 +398,11 @@ class ApiServiceStub(object):
                 request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.DeviceData.FromString,
                 _registered_method=True)
+        self.ListDeviceDataInfo = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceDataInfo',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_main__pb2.ListOfDeviceDataInfo.FromString,
+                _registered_method=True)
         self.GetDeviceDataRegisters = channel.unary_stream(
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceDataRegisters',
                 request_serializer=acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
@@ -1109,6 +1114,14 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListDeviceDataInfo(self, request, context):
+        """@group: Device Data
+        The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetDeviceDataRegisters(self, request, context):
         """@group: Device Data
         The method to stream out register-typed device data.
@@ -1622,6 +1635,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDeviceData,
                     request_deserializer=acquisition_dot_main__pb2.GetDeviceDataRequest.FromString,
                     response_serializer=acquisition_dot_main__pb2.DeviceData.SerializeToString,
+            ),
+            'ListDeviceDataInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListDeviceDataInfo,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_main__pb2.ListOfDeviceDataInfo.SerializeToString,
             ),
             'GetDeviceDataRegisters': grpc.unary_stream_rpc_method_handler(
                     servicer.GetDeviceDataRegisters,
@@ -3735,6 +3753,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceData',
             acquisition_dot_main__pb2.GetDeviceDataRequest.SerializeToString,
             acquisition_dot_main__pb2.DeviceData.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListDeviceDataInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListDeviceDataInfo',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_main__pb2.ListOfDeviceDataInfo.FromString,
             options,
             channel_credentials,
             insecure,

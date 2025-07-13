@@ -425,6 +425,23 @@ type ComplexityRoot struct {
 		Devices func(childComplexity int) int
 	}
 
+	DeviceDataInfo struct {
+		Spec   func(childComplexity int) int
+		Status func(childComplexity int) int
+	}
+
+	DeviceDataInfoSpec struct {
+		DeviceID   func(childComplexity int) int
+		RegisterID func(childComplexity int) int
+	}
+
+	DeviceDataInfoStatus struct {
+		DeviceName   func(childComplexity int) int
+		LastValueAt  func(childComplexity int) int
+		Period       func(childComplexity int) int
+		VariableName func(childComplexity int) int
+	}
+
 	DeviceDeviceData struct {
 		Data     func(childComplexity int) int
 		DeviceID func(childComplexity int) int
@@ -767,6 +784,11 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
+	ListOfDeviceDataInfo struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
 	ListOfDeviceGroup struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
@@ -985,6 +1007,7 @@ type ComplexityRoot struct {
 		ListDeviceCommunicationUnitChanges                               func(childComplexity int) int
 		ListDeviceConfigurationRegisters                                 func(childComplexity int) int
 		ListDeviceConfigurationTemplates                                 func(childComplexity int) int
+		ListDeviceDataInfo                                               func(childComplexity int) int
 		ListDeviceGroupDevices                                           func(childComplexity int) int
 		ListDeviceGroups                                                 func(childComplexity int) int
 		ListDevices                                                      func(childComplexity int) int
@@ -1221,6 +1244,7 @@ type QueryResolver interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error)
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context) (*model.Empty, error)
 	GetDeviceData(ctx context.Context) (*model.DeviceData, error)
+	ListDeviceDataInfo(ctx context.Context) (*model.ListOfDeviceDataInfo, error)
 	GetDeviceDataRegisters(ctx context.Context) (*model.RegisterValues, error)
 	GetDeviceDataProfiles(ctx context.Context) (*model.ProfileValues, error)
 	GetDeviceDataIrregularProfiles(ctx context.Context) (*model.IrregularProfileValues, error)
@@ -2473,6 +2497,62 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.DeviceData.Devices(childComplexity), true
+
+	case "DeviceDataInfo.spec":
+		if e.complexity.DeviceDataInfo.Spec == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfo.Spec(childComplexity), true
+
+	case "DeviceDataInfo.status":
+		if e.complexity.DeviceDataInfo.Status == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfo.Status(childComplexity), true
+
+	case "DeviceDataInfoSpec.deviceId":
+		if e.complexity.DeviceDataInfoSpec.DeviceID == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoSpec.DeviceID(childComplexity), true
+
+	case "DeviceDataInfoSpec.registerId":
+		if e.complexity.DeviceDataInfoSpec.RegisterID == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoSpec.RegisterID(childComplexity), true
+
+	case "DeviceDataInfoStatus.deviceName":
+		if e.complexity.DeviceDataInfoStatus.DeviceName == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoStatus.DeviceName(childComplexity), true
+
+	case "DeviceDataInfoStatus.lastValueAt":
+		if e.complexity.DeviceDataInfoStatus.LastValueAt == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoStatus.LastValueAt(childComplexity), true
+
+	case "DeviceDataInfoStatus.period":
+		if e.complexity.DeviceDataInfoStatus.Period == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoStatus.Period(childComplexity), true
+
+	case "DeviceDataInfoStatus.variableName":
+		if e.complexity.DeviceDataInfoStatus.VariableName == nil {
+			break
+		}
+
+		return e.complexity.DeviceDataInfoStatus.VariableName(childComplexity), true
 
 	case "DeviceDeviceData.data":
 		if e.complexity.DeviceDeviceData.Data == nil {
@@ -3839,6 +3919,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListOfDeviceConfigurationTemplate.TotalCount(childComplexity), true
 
+	case "ListOfDeviceDataInfo.items":
+		if e.complexity.ListOfDeviceDataInfo.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceDataInfo.Items(childComplexity), true
+
+	case "ListOfDeviceDataInfo.totalCount":
+		if e.complexity.ListOfDeviceDataInfo.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfDeviceDataInfo.TotalCount(childComplexity), true
+
 	case "ListOfDeviceGroup.items":
 		if e.complexity.ListOfDeviceGroup.Items == nil {
 			break
@@ -4832,6 +4926,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.ListDeviceConfigurationTemplates(childComplexity), true
+
+	case "Query.listDeviceDataInfo":
+		if e.complexity.Query.ListDeviceDataInfo == nil {
+			break
+		}
+
+		return e.complexity.Query.ListDeviceDataInfo(childComplexity), true
 
 	case "Query.listDeviceGroupDevices":
 		if e.complexity.Query.ListDeviceGroupDevices == nil {
@@ -13710,6 +13811,350 @@ func (ec *executionContext) fieldContext_DeviceData_devices(_ context.Context, f
 	return fc, nil
 }
 
+func (ec *executionContext) _DeviceDataInfo_spec(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfo_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.DeviceDataInfoSpec)
+	fc.Result = res
+	return ec.marshalODeviceDataInfoSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfoSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfo_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "deviceId":
+				return ec.fieldContext_DeviceDataInfoSpec_deviceId(ctx, field)
+			case "registerId":
+				return ec.fieldContext_DeviceDataInfoSpec_registerId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceDataInfoSpec", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfo_status(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfo_status(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Status, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.DeviceDataInfoStatus)
+	fc.Result = res
+	return ec.marshalODeviceDataInfoStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfoStatus(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfo_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "deviceName":
+				return ec.fieldContext_DeviceDataInfoStatus_deviceName(ctx, field)
+			case "variableName":
+				return ec.fieldContext_DeviceDataInfoStatus_variableName(ctx, field)
+			case "period":
+				return ec.fieldContext_DeviceDataInfoStatus_period(ctx, field)
+			case "lastValueAt":
+				return ec.fieldContext_DeviceDataInfoStatus_lastValueAt(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceDataInfoStatus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoSpec_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoSpec_deviceId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoSpec_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoSpec_registerId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoSpec_registerId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegisterID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoSpec_registerId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoStatus_deviceName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoStatus_deviceName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoStatus_deviceName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoStatus_variableName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoStatus_variableName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.VariableName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoStatus_variableName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoStatus_period(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoStatus_period(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Period, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoStatus_period(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceDataInfoStatus_lastValueAt(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoStatus_lastValueAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.LastValueAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceDataInfoStatus_lastValueAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceDataInfoStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _DeviceDeviceData_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDeviceData) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DeviceDeviceData_deviceId(ctx, field)
 	if err != nil {
@@ -22341,6 +22786,94 @@ func (ec *executionContext) fieldContext_ListOfDeviceConfigurationTemplate_total
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfDeviceDataInfo_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceDataInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceDataInfo_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.DeviceDataInfo)
+	fc.Result = res
+	return ec.marshalODeviceDataInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfo(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceDataInfo_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceDataInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "spec":
+				return ec.fieldContext_DeviceDataInfo_spec(ctx, field)
+			case "status":
+				return ec.fieldContext_DeviceDataInfo_status(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type DeviceDataInfo", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfDeviceDataInfo_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceDataInfo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfDeviceDataInfo_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfDeviceDataInfo_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfDeviceDataInfo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfDeviceGroup_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfDeviceGroup) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfDeviceGroup_items(ctx, field)
 	if err != nil {
@@ -27667,6 +28200,53 @@ func (ec *executionContext) fieldContext_Query_getDeviceData(_ context.Context, 
 				return ec.fieldContext_DeviceData_devices(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceData", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listDeviceDataInfo(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listDeviceDataInfo(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListDeviceDataInfo(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfDeviceDataInfo)
+	fc.Result = res
+	return ec.marshalOListOfDeviceDataInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceDataInfo(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listDeviceDataInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfDeviceDataInfo_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfDeviceDataInfo_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfDeviceDataInfo", field.Name)
 		},
 	}
 	return fc, nil
@@ -38548,6 +39128,124 @@ func (ec *executionContext) _DeviceData(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
+var deviceDataInfoImplementors = []string{"DeviceDataInfo"}
+
+func (ec *executionContext) _DeviceDataInfo(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceDataInfo) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deviceDataInfoImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeviceDataInfo")
+		case "spec":
+			out.Values[i] = ec._DeviceDataInfo_spec(ctx, field, obj)
+		case "status":
+			out.Values[i] = ec._DeviceDataInfo_status(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var deviceDataInfoSpecImplementors = []string{"DeviceDataInfoSpec"}
+
+func (ec *executionContext) _DeviceDataInfoSpec(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceDataInfoSpec) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deviceDataInfoSpecImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeviceDataInfoSpec")
+		case "deviceId":
+			out.Values[i] = ec._DeviceDataInfoSpec_deviceId(ctx, field, obj)
+		case "registerId":
+			out.Values[i] = ec._DeviceDataInfoSpec_registerId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var deviceDataInfoStatusImplementors = []string{"DeviceDataInfoStatus"}
+
+func (ec *executionContext) _DeviceDataInfoStatus(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceDataInfoStatus) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, deviceDataInfoStatusImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("DeviceDataInfoStatus")
+		case "deviceName":
+			out.Values[i] = ec._DeviceDataInfoStatus_deviceName(ctx, field, obj)
+		case "variableName":
+			out.Values[i] = ec._DeviceDataInfoStatus_variableName(ctx, field, obj)
+		case "period":
+			out.Values[i] = ec._DeviceDataInfoStatus_period(ctx, field, obj)
+		case "lastValueAt":
+			out.Values[i] = ec._DeviceDataInfoStatus_lastValueAt(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var deviceDeviceDataImplementors = []string{"DeviceDeviceData"}
 
 func (ec *executionContext) _DeviceDeviceData(ctx context.Context, sel ast.SelectionSet, obj *model.DeviceDeviceData) graphql.Marshaler {
@@ -40604,6 +41302,44 @@ func (ec *executionContext) _ListOfDeviceConfigurationTemplate(ctx context.Conte
 	return out
 }
 
+var listOfDeviceDataInfoImplementors = []string{"ListOfDeviceDataInfo"}
+
+func (ec *executionContext) _ListOfDeviceDataInfo(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfDeviceDataInfo) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfDeviceDataInfoImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfDeviceDataInfo")
+		case "items":
+			out.Values[i] = ec._ListOfDeviceDataInfo_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfDeviceDataInfo_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listOfDeviceGroupImplementors = []string{"ListOfDeviceGroup"}
 
 func (ec *executionContext) _ListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfDeviceGroup) graphql.Marshaler {
@@ -42310,6 +43046,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDeviceData(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listDeviceDataInfo":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listDeviceDataInfo(ctx, field)
 				return res
 			}
 
@@ -46587,6 +47342,68 @@ func (ec *executionContext) marshalODeviceData2ᚖgithubᚗcomᚋcybroslabsᚋou
 	return ec._DeviceData(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalODeviceDataInfo2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfo(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceDataInfo) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalODeviceDataInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfo(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalODeviceDataInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfo(ctx context.Context, sel ast.SelectionSet, v *model.DeviceDataInfo) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DeviceDataInfo(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODeviceDataInfoSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfoSpec(ctx context.Context, sel ast.SelectionSet, v *model.DeviceDataInfoSpec) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DeviceDataInfoSpec(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalODeviceDataInfoStatus2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDataInfoStatus(ctx context.Context, sel ast.SelectionSet, v *model.DeviceDataInfoStatus) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._DeviceDataInfoStatus(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalODeviceDeviceData2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDeviceDeviceData(ctx context.Context, sel ast.SelectionSet, v []*model.DeviceDeviceData) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -47651,6 +48468,13 @@ func (ec *executionContext) marshalOListOfDeviceConfigurationTemplate2ᚖgithub�
 		return graphql.Null
 	}
 	return ec._ListOfDeviceConfigurationTemplate(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOListOfDeviceDataInfo2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceDataInfo(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceDataInfo) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfDeviceDataInfo(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfDeviceGroup2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfDeviceGroup(ctx context.Context, sel ast.SelectionSet, v *model.ListOfDeviceGroup) graphql.Marshaler {

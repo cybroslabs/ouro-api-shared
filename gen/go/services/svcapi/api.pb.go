@@ -31,7 +31,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x11system/main.proto2\x86P\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x11system/main.proto2\x83Q\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -112,7 +112,8 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x14GetApplicationConfig\x12\x16.google.protobuf.Empty\x1a:.io.clbs.openhes.models.system.ApplicationConfigDescriptor\x12c\n" +
 	"\x17UpdateApplicationConfig\x120.io.clbs.openhes.models.system.ApplicationConfig\x1a\x16.google.protobuf.Empty\x12\x86\x01\n" +
 	"\x1aSynchronizeComponentConfig\x128.io.clbs.openhes.models.system.ComponentConfigDescriptor\x1a..io.clbs.openhes.models.system.ComponentConfig\x12y\n" +
-	"\rGetDeviceData\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a..io.clbs.openhes.models.acquisition.DeviceData\x12\x88\x01\n" +
+	"\rGetDeviceData\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a..io.clbs.openhes.models.acquisition.DeviceData\x12{\n" +
+	"\x12ListDeviceDataInfo\x12+.io.clbs.openhes.models.common.ListSelector\x1a8.io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo\x12\x88\x01\n" +
 	"\x16GetDeviceDataRegisters\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a2.io.clbs.openhes.models.acquisition.RegisterValues0\x01\x12\x86\x01\n" +
 	"\x15GetDeviceDataProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a1.io.clbs.openhes.models.acquisition.ProfileValues0\x01\x12\x98\x01\n" +
 	"\x1eGetDeviceDataIrregularProfiles\x128.io.clbs.openhes.models.acquisition.GetDeviceDataRequest\x1a:.io.clbs.openhes.models.acquisition.IrregularProfileValues0\x01\x12\x7f\n" +
@@ -206,12 +207,13 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*system.ApplicationConfigDescriptor)(nil),                                                  // 69: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*system.ComponentConfig)(nil),                                                              // 70: io.clbs.openhes.models.system.ComponentConfig
 	(*acquisition.DeviceData)(nil),                                                              // 71: io.clbs.openhes.models.acquisition.DeviceData
-	(*acquisition.RegisterValues)(nil),                                                          // 72: io.clbs.openhes.models.acquisition.RegisterValues
-	(*acquisition.ProfileValues)(nil),                                                           // 73: io.clbs.openhes.models.acquisition.ProfileValues
-	(*acquisition.IrregularProfileValues)(nil),                                                  // 74: io.clbs.openhes.models.acquisition.IrregularProfileValues
-	(*acquisition.DeviceEvents)(nil),                                                            // 75: io.clbs.openhes.models.acquisition.DeviceEvents
-	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 76: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
-	(*cronjobs.ListOfCronJob)(nil),                                                              // 77: io.clbs.openhes.models.cronjobs.ListOfCronJob
+	(*acquisition.ListOfDeviceDataInfo)(nil),                                                    // 72: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
+	(*acquisition.RegisterValues)(nil),                                                          // 73: io.clbs.openhes.models.acquisition.RegisterValues
+	(*acquisition.ProfileValues)(nil),                                                           // 74: io.clbs.openhes.models.acquisition.ProfileValues
+	(*acquisition.IrregularProfileValues)(nil),                                                  // 75: io.clbs.openhes.models.acquisition.IrregularProfileValues
+	(*acquisition.DeviceEvents)(nil),                                                            // 76: io.clbs.openhes.models.acquisition.DeviceEvents
+	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 77: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	(*cronjobs.ListOfCronJob)(nil),                                                              // 78: io.clbs.openhes.models.cronjobs.ListOfCronJob
 }
 var file_services_svcapi_api_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:input_type -> io.clbs.openhes.models.acquisition.CreateVariableRequest
@@ -289,117 +291,119 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	37, // 72: io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig:input_type -> io.clbs.openhes.models.system.ApplicationConfig
 	38, // 73: io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig:input_type -> io.clbs.openhes.models.system.ComponentConfigDescriptor
 	39, // 74: io.clbs.openhes.services.svcapi.ApiService.GetDeviceData:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	39, // 75: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	39, // 76: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	39, // 77: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	40, // 78: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:input_type -> io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
-	41, // 79: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
-	1,  // 80: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:input_type -> io.clbs.openhes.models.common.ListSelector
-	2,  // 81: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:input_type -> google.protobuf.StringValue
-	42, // 82: io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
-	2,  // 83: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:input_type -> google.protobuf.StringValue
-	43, // 84: io.clbs.openhes.services.svcapi.ApiService.CreateCronJob:input_type -> io.clbs.openhes.models.cronjobs.CreateCronJobRequest
-	1,  // 85: io.clbs.openhes.services.svcapi.ApiService.ListCronJobs:input_type -> io.clbs.openhes.models.common.ListSelector
-	2,  // 86: io.clbs.openhes.services.svcapi.ApiService.GetCronJob:input_type -> google.protobuf.StringValue
-	44, // 87: io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob:input_type -> io.clbs.openhes.models.cronjobs.CronJob
-	2,  // 88: io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob:input_type -> google.protobuf.StringValue
-	2,  // 89: io.clbs.openhes.services.svcapi.ApiService.RunCronJob:input_type -> google.protobuf.StringValue
-	2,  // 90: io.clbs.openhes.services.svcapi.ApiService.PauseCronJob:input_type -> google.protobuf.StringValue
-	2,  // 91: io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob:input_type -> google.protobuf.StringValue
-	2,  // 92: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:output_type -> google.protobuf.StringValue
-	45, // 93: io.clbs.openhes.services.svcapi.ApiService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable
-	3,  // 94: io.clbs.openhes.services.svcapi.ApiService.GetVariable:output_type -> io.clbs.openhes.models.acquisition.Variable
-	15, // 95: io.clbs.openhes.services.svcapi.ApiService.UpdateVariable:output_type -> google.protobuf.Empty
-	15, // 96: io.clbs.openhes.services.svcapi.ApiService.DeleteVariable:output_type -> google.protobuf.Empty
-	15, // 97: io.clbs.openhes.services.svcapi.ApiService.AddRegisterToVariable:output_type -> google.protobuf.Empty
-	15, // 98: io.clbs.openhes.services.svcapi.ApiService.RemoveRegisterFromVariable:output_type -> google.protobuf.Empty
-	2,  // 99: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationRegister:output_type -> google.protobuf.StringValue
-	46, // 100: io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationRegisters:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
-	7,  // 101: io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationRegister:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
-	15, // 102: io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationRegister:output_type -> google.protobuf.Empty
-	15, // 103: io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationRegister:output_type -> google.protobuf.Empty
-	2,  // 104: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationTemplate:output_type -> google.protobuf.StringValue
-	47, // 105: io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationTemplates:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
-	9,  // 106: io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationTemplate:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
-	15, // 107: io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	15, // 108: io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	15, // 109: io.clbs.openhes.services.svcapi.ApiService.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	15, // 110: io.clbs.openhes.services.svcapi.ApiService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	2,  // 111: io.clbs.openhes.services.svcapi.ApiService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
-	15, // 112: io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
-	15, // 113: io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
-	48, // 114: io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors:output_type -> io.clbs.openhes.models.common.ListOfFieldDescriptor
-	49, // 115: io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptorOptions:output_type -> io.clbs.openhes.models.common.FieldDescriptorOptions
-	50, // 116: io.clbs.openhes.services.svcapi.ApiService.ListBulks:output_type -> io.clbs.openhes.models.acquisition.ListOfBulk
-	51, // 117: io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs:output_type -> io.clbs.openhes.models.acquisition.ListOfBulkJob
-	52, // 118: io.clbs.openhes.services.svcapi.ApiService.GetBulkJob:output_type -> io.clbs.openhes.models.acquisition.BulkJob
-	15, // 119: io.clbs.openhes.services.svcapi.ApiService.UpdateBulkJob:output_type -> google.protobuf.Empty
-	15, // 120: io.clbs.openhes.services.svcapi.ApiService.CancelBulk:output_type -> google.protobuf.Empty
-	15, // 121: io.clbs.openhes.services.svcapi.ApiService.CancelBulkJobs:output_type -> google.protobuf.Empty
-	2,  // 122: io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk:output_type -> google.protobuf.StringValue
-	53, // 123: io.clbs.openhes.services.svcapi.ApiService.GetProxyBulk:output_type -> io.clbs.openhes.models.acquisition.ProxyBulk
-	2,  // 124: io.clbs.openhes.services.svcapi.ApiService.CreateBulk:output_type -> google.protobuf.StringValue
-	54, // 125: io.clbs.openhes.services.svcapi.ApiService.GetBulk:output_type -> io.clbs.openhes.models.acquisition.Bulk
-	15, // 126: io.clbs.openhes.services.svcapi.ApiService.UpdateBulk:output_type -> google.protobuf.Empty
-	55, // 127: io.clbs.openhes.services.svcapi.ApiService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
-	56, // 128: io.clbs.openhes.services.svcapi.ApiService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
-	2,  // 129: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnit:output_type -> google.protobuf.StringValue
-	15, // 130: io.clbs.openhes.services.svcapi.ApiService.UpdateCommunicationUnit:output_type -> google.protobuf.Empty
-	57, // 131: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	23, // 132: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit:output_type -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	58, // 133: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
-	2,  // 134: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus:output_type -> google.protobuf.StringValue
-	59, // 135: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationBuses:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationBus
-	15, // 136: io.clbs.openhes.services.svcapi.ApiService.AddCommunicationUnitsToCommunicationBus:output_type -> google.protobuf.Empty
-	15, // 137: io.clbs.openhes.services.svcapi.ApiService.RemoveCommunicationUnitsFromCommunicationBus:output_type -> google.protobuf.Empty
-	2,  // 138: io.clbs.openhes.services.svcapi.ApiService.CreateDevice:output_type -> google.protobuf.StringValue
-	15, // 139: io.clbs.openhes.services.svcapi.ApiService.UpdateDevice:output_type -> google.protobuf.Empty
-	60, // 140: io.clbs.openhes.services.svcapi.ApiService.ListDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
-	28, // 141: io.clbs.openhes.services.svcapi.ApiService.GetDevice:output_type -> io.clbs.openhes.models.acquisition.Device
-	61, // 142: io.clbs.openhes.services.svcapi.ApiService.GetDeviceInfo:output_type -> io.clbs.openhes.models.acquisition.DeviceInfo
-	15, // 143: io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
-	62, // 144: io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
-	63, // 145: io.clbs.openhes.services.svcapi.ApiService.ListDeviceCommunicationUnitChanges:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
-	64, // 146: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	58, // 147: io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
-	65, // 148: io.clbs.openhes.services.svcapi.ApiService.GetDeviceBulks:output_type -> io.clbs.openhes.models.acquisition.DeviceBulks
-	2,  // 149: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup:output_type -> google.protobuf.StringValue
-	64, // 150: io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	66, // 151: io.clbs.openhes.services.svcapi.ApiService.GetDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.DeviceGroup
-	15, // 152: io.clbs.openhes.services.svcapi.ApiService.AddDevicesToGroup:output_type -> google.protobuf.Empty
-	15, // 153: io.clbs.openhes.services.svcapi.ApiService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
-	60, // 154: io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroupDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
-	67, // 155: io.clbs.openhes.services.svcapi.ApiService.ListModemPools:output_type -> io.clbs.openhes.models.acquisition.ListOfModemPool
-	68, // 156: io.clbs.openhes.services.svcapi.ApiService.GetModemPool:output_type -> io.clbs.openhes.models.acquisition.ModemPool
-	2,  // 157: io.clbs.openhes.services.svcapi.ApiService.CreateModemPool:output_type -> google.protobuf.StringValue
-	15, // 158: io.clbs.openhes.services.svcapi.ApiService.UpdateModemPool:output_type -> google.protobuf.Empty
-	15, // 159: io.clbs.openhes.services.svcapi.ApiService.DeleteModemPool:output_type -> google.protobuf.Empty
-	2,  // 160: io.clbs.openhes.services.svcapi.ApiService.CreateModem:output_type -> google.protobuf.StringValue
-	15, // 161: io.clbs.openhes.services.svcapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
-	15, // 162: io.clbs.openhes.services.svcapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
-	69, // 163: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfigDescriptor
-	15, // 164: io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig:output_type -> google.protobuf.Empty
-	70, // 165: io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
-	71, // 166: io.clbs.openhes.services.svcapi.ApiService.GetDeviceData:output_type -> io.clbs.openhes.models.acquisition.DeviceData
-	72, // 167: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
-	73, // 168: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
-	74, // 169: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	75, // 170: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:output_type -> io.clbs.openhes.models.acquisition.DeviceEvents
-	2,  // 171: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
-	76, // 172: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
-	42, // 173: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
-	15, // 174: io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable:output_type -> google.protobuf.Empty
-	15, // 175: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:output_type -> google.protobuf.Empty
-	2,  // 176: io.clbs.openhes.services.svcapi.ApiService.CreateCronJob:output_type -> google.protobuf.StringValue
-	77, // 177: io.clbs.openhes.services.svcapi.ApiService.ListCronJobs:output_type -> io.clbs.openhes.models.cronjobs.ListOfCronJob
-	44, // 178: io.clbs.openhes.services.svcapi.ApiService.GetCronJob:output_type -> io.clbs.openhes.models.cronjobs.CronJob
-	15, // 179: io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob:output_type -> google.protobuf.Empty
-	15, // 180: io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob:output_type -> google.protobuf.Empty
-	15, // 181: io.clbs.openhes.services.svcapi.ApiService.RunCronJob:output_type -> google.protobuf.Empty
-	15, // 182: io.clbs.openhes.services.svcapi.ApiService.PauseCronJob:output_type -> google.protobuf.Empty
-	15, // 183: io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob:output_type -> google.protobuf.Empty
-	92, // [92:184] is the sub-list for method output_type
-	0,  // [0:92] is the sub-list for method input_type
+	1,  // 75: io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo:input_type -> io.clbs.openhes.models.common.ListSelector
+	39, // 76: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
+	39, // 77: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
+	39, // 78: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:input_type -> io.clbs.openhes.models.acquisition.GetDeviceDataRequest
+	40, // 79: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:input_type -> io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
+	41, // 80: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
+	1,  // 81: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:input_type -> io.clbs.openhes.models.common.ListSelector
+	2,  // 82: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:input_type -> google.protobuf.StringValue
+	42, // 83: io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
+	2,  // 84: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:input_type -> google.protobuf.StringValue
+	43, // 85: io.clbs.openhes.services.svcapi.ApiService.CreateCronJob:input_type -> io.clbs.openhes.models.cronjobs.CreateCronJobRequest
+	1,  // 86: io.clbs.openhes.services.svcapi.ApiService.ListCronJobs:input_type -> io.clbs.openhes.models.common.ListSelector
+	2,  // 87: io.clbs.openhes.services.svcapi.ApiService.GetCronJob:input_type -> google.protobuf.StringValue
+	44, // 88: io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob:input_type -> io.clbs.openhes.models.cronjobs.CronJob
+	2,  // 89: io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob:input_type -> google.protobuf.StringValue
+	2,  // 90: io.clbs.openhes.services.svcapi.ApiService.RunCronJob:input_type -> google.protobuf.StringValue
+	2,  // 91: io.clbs.openhes.services.svcapi.ApiService.PauseCronJob:input_type -> google.protobuf.StringValue
+	2,  // 92: io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob:input_type -> google.protobuf.StringValue
+	2,  // 93: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:output_type -> google.protobuf.StringValue
+	45, // 94: io.clbs.openhes.services.svcapi.ApiService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable
+	3,  // 95: io.clbs.openhes.services.svcapi.ApiService.GetVariable:output_type -> io.clbs.openhes.models.acquisition.Variable
+	15, // 96: io.clbs.openhes.services.svcapi.ApiService.UpdateVariable:output_type -> google.protobuf.Empty
+	15, // 97: io.clbs.openhes.services.svcapi.ApiService.DeleteVariable:output_type -> google.protobuf.Empty
+	15, // 98: io.clbs.openhes.services.svcapi.ApiService.AddRegisterToVariable:output_type -> google.protobuf.Empty
+	15, // 99: io.clbs.openhes.services.svcapi.ApiService.RemoveRegisterFromVariable:output_type -> google.protobuf.Empty
+	2,  // 100: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationRegister:output_type -> google.protobuf.StringValue
+	46, // 101: io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationRegisters:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
+	7,  // 102: io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationRegister:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
+	15, // 103: io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationRegister:output_type -> google.protobuf.Empty
+	15, // 104: io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationRegister:output_type -> google.protobuf.Empty
+	2,  // 105: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationTemplate:output_type -> google.protobuf.StringValue
+	47, // 106: io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationTemplates:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
+	9,  // 107: io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationTemplate:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
+	15, // 108: io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	15, // 109: io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	15, // 110: io.clbs.openhes.services.svcapi.ApiService.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	15, // 111: io.clbs.openhes.services.svcapi.ApiService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	2,  // 112: io.clbs.openhes.services.svcapi.ApiService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
+	15, // 113: io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
+	15, // 114: io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
+	48, // 115: io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors:output_type -> io.clbs.openhes.models.common.ListOfFieldDescriptor
+	49, // 116: io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptorOptions:output_type -> io.clbs.openhes.models.common.FieldDescriptorOptions
+	50, // 117: io.clbs.openhes.services.svcapi.ApiService.ListBulks:output_type -> io.clbs.openhes.models.acquisition.ListOfBulk
+	51, // 118: io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs:output_type -> io.clbs.openhes.models.acquisition.ListOfBulkJob
+	52, // 119: io.clbs.openhes.services.svcapi.ApiService.GetBulkJob:output_type -> io.clbs.openhes.models.acquisition.BulkJob
+	15, // 120: io.clbs.openhes.services.svcapi.ApiService.UpdateBulkJob:output_type -> google.protobuf.Empty
+	15, // 121: io.clbs.openhes.services.svcapi.ApiService.CancelBulk:output_type -> google.protobuf.Empty
+	15, // 122: io.clbs.openhes.services.svcapi.ApiService.CancelBulkJobs:output_type -> google.protobuf.Empty
+	2,  // 123: io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk:output_type -> google.protobuf.StringValue
+	53, // 124: io.clbs.openhes.services.svcapi.ApiService.GetProxyBulk:output_type -> io.clbs.openhes.models.acquisition.ProxyBulk
+	2,  // 125: io.clbs.openhes.services.svcapi.ApiService.CreateBulk:output_type -> google.protobuf.StringValue
+	54, // 126: io.clbs.openhes.services.svcapi.ApiService.GetBulk:output_type -> io.clbs.openhes.models.acquisition.Bulk
+	15, // 127: io.clbs.openhes.services.svcapi.ApiService.UpdateBulk:output_type -> google.protobuf.Empty
+	55, // 128: io.clbs.openhes.services.svcapi.ApiService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
+	56, // 129: io.clbs.openhes.services.svcapi.ApiService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
+	2,  // 130: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnit:output_type -> google.protobuf.StringValue
+	15, // 131: io.clbs.openhes.services.svcapi.ApiService.UpdateCommunicationUnit:output_type -> google.protobuf.Empty
+	57, // 132: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	23, // 133: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit:output_type -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	58, // 134: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
+	2,  // 135: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus:output_type -> google.protobuf.StringValue
+	59, // 136: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationBuses:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationBus
+	15, // 137: io.clbs.openhes.services.svcapi.ApiService.AddCommunicationUnitsToCommunicationBus:output_type -> google.protobuf.Empty
+	15, // 138: io.clbs.openhes.services.svcapi.ApiService.RemoveCommunicationUnitsFromCommunicationBus:output_type -> google.protobuf.Empty
+	2,  // 139: io.clbs.openhes.services.svcapi.ApiService.CreateDevice:output_type -> google.protobuf.StringValue
+	15, // 140: io.clbs.openhes.services.svcapi.ApiService.UpdateDevice:output_type -> google.protobuf.Empty
+	60, // 141: io.clbs.openhes.services.svcapi.ApiService.ListDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
+	28, // 142: io.clbs.openhes.services.svcapi.ApiService.GetDevice:output_type -> io.clbs.openhes.models.acquisition.Device
+	61, // 143: io.clbs.openhes.services.svcapi.ApiService.GetDeviceInfo:output_type -> io.clbs.openhes.models.acquisition.DeviceInfo
+	15, // 144: io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
+	62, // 145: io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
+	63, // 146: io.clbs.openhes.services.svcapi.ApiService.ListDeviceCommunicationUnitChanges:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
+	64, // 147: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	58, // 148: io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
+	65, // 149: io.clbs.openhes.services.svcapi.ApiService.GetDeviceBulks:output_type -> io.clbs.openhes.models.acquisition.DeviceBulks
+	2,  // 150: io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup:output_type -> google.protobuf.StringValue
+	64, // 151: io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	66, // 152: io.clbs.openhes.services.svcapi.ApiService.GetDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.DeviceGroup
+	15, // 153: io.clbs.openhes.services.svcapi.ApiService.AddDevicesToGroup:output_type -> google.protobuf.Empty
+	15, // 154: io.clbs.openhes.services.svcapi.ApiService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
+	60, // 155: io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroupDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
+	67, // 156: io.clbs.openhes.services.svcapi.ApiService.ListModemPools:output_type -> io.clbs.openhes.models.acquisition.ListOfModemPool
+	68, // 157: io.clbs.openhes.services.svcapi.ApiService.GetModemPool:output_type -> io.clbs.openhes.models.acquisition.ModemPool
+	2,  // 158: io.clbs.openhes.services.svcapi.ApiService.CreateModemPool:output_type -> google.protobuf.StringValue
+	15, // 159: io.clbs.openhes.services.svcapi.ApiService.UpdateModemPool:output_type -> google.protobuf.Empty
+	15, // 160: io.clbs.openhes.services.svcapi.ApiService.DeleteModemPool:output_type -> google.protobuf.Empty
+	2,  // 161: io.clbs.openhes.services.svcapi.ApiService.CreateModem:output_type -> google.protobuf.StringValue
+	15, // 162: io.clbs.openhes.services.svcapi.ApiService.UpdateModem:output_type -> google.protobuf.Empty
+	15, // 163: io.clbs.openhes.services.svcapi.ApiService.DeleteModem:output_type -> google.protobuf.Empty
+	69, // 164: io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig:output_type -> io.clbs.openhes.models.system.ApplicationConfigDescriptor
+	15, // 165: io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig:output_type -> google.protobuf.Empty
+	70, // 166: io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig:output_type -> io.clbs.openhes.models.system.ComponentConfig
+	71, // 167: io.clbs.openhes.services.svcapi.ApiService.GetDeviceData:output_type -> io.clbs.openhes.models.acquisition.DeviceData
+	72, // 168: io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
+	73, // 169: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
+	74, // 170: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
+	75, // 171: io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	76, // 172: io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents:output_type -> io.clbs.openhes.models.acquisition.DeviceEvents
+	2,  // 173: io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
+	77, // 174: io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	42, // 175: io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
+	15, // 176: io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable:output_type -> google.protobuf.Empty
+	15, // 177: io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable:output_type -> google.protobuf.Empty
+	2,  // 178: io.clbs.openhes.services.svcapi.ApiService.CreateCronJob:output_type -> google.protobuf.StringValue
+	78, // 179: io.clbs.openhes.services.svcapi.ApiService.ListCronJobs:output_type -> io.clbs.openhes.models.cronjobs.ListOfCronJob
+	44, // 180: io.clbs.openhes.services.svcapi.ApiService.GetCronJob:output_type -> io.clbs.openhes.models.cronjobs.CronJob
+	15, // 181: io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob:output_type -> google.protobuf.Empty
+	15, // 182: io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob:output_type -> google.protobuf.Empty
+	15, // 183: io.clbs.openhes.services.svcapi.ApiService.RunCronJob:output_type -> google.protobuf.Empty
+	15, // 184: io.clbs.openhes.services.svcapi.ApiService.PauseCronJob:output_type -> google.protobuf.Empty
+	15, // 185: io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob:output_type -> google.protobuf.Empty
+	93, // [93:186] is the sub-list for method output_type
+	0,  // [0:93] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

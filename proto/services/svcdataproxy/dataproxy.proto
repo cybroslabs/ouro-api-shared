@@ -61,6 +61,9 @@ service DataproxyService {
     // @group: Device Data
     // The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
     rpc GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData);
+    // @group: Device Data
+    // The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+    rpc ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo);
 
     // @group: Device Data
     // The method to stream out register-typed meter data.

@@ -957,6 +957,31 @@ type DeviceData {
   devices: [DeviceDeviceData]
 }
 
+type DeviceDataInfo {
+  # The device data info specification.
+  spec: DeviceDataInfoSpec
+  # The device data info status.
+  status: DeviceDataInfoStatus
+}
+
+type DeviceDataInfoSpec {
+  # The device identifier.
+  deviceId: String
+  # The register identifier.
+  registerId: String
+}
+
+type DeviceDataInfoStatus {
+  # The list of device identifiers.
+  deviceName: String
+  # The list of variable identifiers.
+  variableName: String
+  # The period of the regular profile values, if applicable.
+  period: Int
+  # The timestamp of the last stored value.
+  lastValueAt: Timestamp
+}
+
 type DeviceDeviceData {
   # The unique identifier of the device.
   deviceId: String
@@ -1395,6 +1420,13 @@ type ListOfDeviceConfigurationRegister {
 type ListOfDeviceConfigurationTemplate {
   # The list of device configuration templates.
   items: [DeviceConfigurationTemplate]
+  # The total number of items.
+  totalCount: Int
+}
+
+type ListOfDeviceDataInfo {
+  # The list of device data info items.
+  items: [DeviceDataInfo]
   # The total number of items.
   totalCount: Int
 }
@@ -2097,6 +2129,7 @@ type Query {
   addDeviceConfigurationRegisterToDeviceConfigurationTemplate: Empty
   removeDeviceConfigurationRegisterFromDeviceConfigurationTemplate: Empty
   getDeviceData: DeviceData
+  listDeviceDataInfo: ListOfDeviceDataInfo
   getDeviceDataRegisters: RegisterValues
   getDeviceDataProfiles: ProfileValues
   getDeviceDataIrregularProfiles: IrregularProfileValues
