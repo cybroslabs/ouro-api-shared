@@ -394,7 +394,8 @@ message DeviceConfigurationRegisterMap {
 message DeviceConfigurationRegisterMapRecord {
     int64 register_id             = 1;  // The register identifier.
     string public_register_id     = 2;  // The public register identifier.
-    repeated string variable_name = 3;  // The name of the variable, if the register is assigned to some.
+    string register_name          = 3;  // The register name.
+    repeated string variable_name = 4;  // The name of the variable, if the register is assigned to some.
 }
 
 // Device Configuration Template specification.
@@ -476,10 +477,9 @@ message DeviceDataInfoSpec {
 }
 
 message DeviceDataInfoStatus {
-    string device_name                      = 1;  // The list of device identifiers.
-    string variable_name                    = 2;  // The list of variable identifiers.
-    int32 period                            = 3;  // The period of the regular profile values, if applicable.
-    google.protobuf.Timestamp last_value_at = 4;  // The timestamp of the last stored value.
+    string register_name                    = 1;  // The register name.
+    int32 period                            = 2;  // The period of the regular profile values, if applicable.
+    google.protobuf.Timestamp last_value_at = 3;  // The timestamp of the last stored value.
 }
 
 message ListOfDeviceDataInfo {

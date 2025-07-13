@@ -400,8 +400,7 @@ type DeviceDataInfoSpec struct {
 }
 
 type DeviceDataInfoStatus struct {
-	DeviceName   *string `json:"deviceName,omitempty"`
-	VariableName *string `json:"variableName,omitempty"`
+	RegisterName *string `json:"registerName,omitempty"`
 	Period       *int32  `json:"period,omitempty"`
 	LastValueAt  *string `json:"lastValueAt,omitempty"`
 }

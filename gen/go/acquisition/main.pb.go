@@ -6422,7 +6422,8 @@ type DeviceConfigurationRegisterMapRecord struct {
 	state                       protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RegisterId       int64                  `protobuf:"varint,1,opt,name=register_id,json=registerId"`
 	xxx_hidden_PublicRegisterId *string                `protobuf:"bytes,2,opt,name=public_register_id,json=publicRegisterId"`
-	xxx_hidden_VariableName     []string               `protobuf:"bytes,3,rep,name=variable_name,json=variableName"`
+	xxx_hidden_RegisterName     *string                `protobuf:"bytes,3,opt,name=register_name,json=registerName"`
+	xxx_hidden_VariableName     []string               `protobuf:"bytes,4,rep,name=variable_name,json=variableName"`
 	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
 	XXX_presence                [1]uint32
 	unknownFields               protoimpl.UnknownFields
@@ -6471,6 +6472,16 @@ func (x *DeviceConfigurationRegisterMapRecord) GetPublicRegisterId() string {
 	return ""
 }
 
+func (x *DeviceConfigurationRegisterMapRecord) GetRegisterName() string {
+	if x != nil {
+		if x.xxx_hidden_RegisterName != nil {
+			return *x.xxx_hidden_RegisterName
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *DeviceConfigurationRegisterMapRecord) GetVariableName() []string {
 	if x != nil {
 		return x.xxx_hidden_VariableName
@@ -6480,12 +6491,17 @@ func (x *DeviceConfigurationRegisterMapRecord) GetVariableName() []string {
 
 func (x *DeviceConfigurationRegisterMapRecord) SetRegisterId(v int64) {
 	x.xxx_hidden_RegisterId = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
 func (x *DeviceConfigurationRegisterMapRecord) SetPublicRegisterId(v string) {
 	x.xxx_hidden_PublicRegisterId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+}
+
+func (x *DeviceConfigurationRegisterMapRecord) SetRegisterName(v string) {
+	x.xxx_hidden_RegisterName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
 }
 
 func (x *DeviceConfigurationRegisterMapRecord) SetVariableName(v []string) {
@@ -6506,6 +6522,13 @@ func (x *DeviceConfigurationRegisterMapRecord) HasPublicRegisterId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
+func (x *DeviceConfigurationRegisterMapRecord) HasRegisterName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
 func (x *DeviceConfigurationRegisterMapRecord) ClearRegisterId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_RegisterId = 0
@@ -6516,11 +6539,17 @@ func (x *DeviceConfigurationRegisterMapRecord) ClearPublicRegisterId() {
 	x.xxx_hidden_PublicRegisterId = nil
 }
 
+func (x *DeviceConfigurationRegisterMapRecord) ClearRegisterName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_RegisterName = nil
+}
+
 type DeviceConfigurationRegisterMapRecord_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	RegisterId       *int64
 	PublicRegisterId *string
+	RegisterName     *string
 	VariableName     []string
 }
 
@@ -6529,12 +6558,16 @@ func (b0 DeviceConfigurationRegisterMapRecord_builder) Build() *DeviceConfigurat
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.RegisterId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
 		x.xxx_hidden_RegisterId = *b.RegisterId
 	}
 	if b.PublicRegisterId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
 		x.xxx_hidden_PublicRegisterId = b.PublicRegisterId
+	}
+	if b.RegisterName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		x.xxx_hidden_RegisterName = b.RegisterName
 	}
 	x.xxx_hidden_VariableName = b.VariableName
 	return m0
@@ -7883,10 +7916,9 @@ func (b0 DeviceDataInfoSpec_builder) Build() *DeviceDataInfoSpec {
 
 type DeviceDataInfoStatus struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DeviceName   *string                `protobuf:"bytes,1,opt,name=device_name,json=deviceName"`
-	xxx_hidden_VariableName *string                `protobuf:"bytes,2,opt,name=variable_name,json=variableName"`
-	xxx_hidden_Period       int32                  `protobuf:"varint,3,opt,name=period"`
-	xxx_hidden_LastValueAt  *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=last_value_at,json=lastValueAt"`
+	xxx_hidden_RegisterName *string                `protobuf:"bytes,1,opt,name=register_name,json=registerName"`
+	xxx_hidden_Period       int32                  `protobuf:"varint,2,opt,name=period"`
+	xxx_hidden_LastValueAt  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_value_at,json=lastValueAt"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -7918,20 +7950,10 @@ func (x *DeviceDataInfoStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DeviceDataInfoStatus) GetDeviceName() string {
+func (x *DeviceDataInfoStatus) GetRegisterName() string {
 	if x != nil {
-		if x.xxx_hidden_DeviceName != nil {
-			return *x.xxx_hidden_DeviceName
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *DeviceDataInfoStatus) GetVariableName() string {
-	if x != nil {
-		if x.xxx_hidden_VariableName != nil {
-			return *x.xxx_hidden_VariableName
+		if x.xxx_hidden_RegisterName != nil {
+			return *x.xxx_hidden_RegisterName
 		}
 		return ""
 	}
@@ -7952,44 +7974,32 @@ func (x *DeviceDataInfoStatus) GetLastValueAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *DeviceDataInfoStatus) SetDeviceName(v string) {
-	x.xxx_hidden_DeviceName = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
-}
-
-func (x *DeviceDataInfoStatus) SetVariableName(v string) {
-	x.xxx_hidden_VariableName = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+func (x *DeviceDataInfoStatus) SetRegisterName(v string) {
+	x.xxx_hidden_RegisterName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *DeviceDataInfoStatus) SetPeriod(v int32) {
 	x.xxx_hidden_Period = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *DeviceDataInfoStatus) SetLastValueAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_LastValueAt = v
 }
 
-func (x *DeviceDataInfoStatus) HasDeviceName() bool {
+func (x *DeviceDataInfoStatus) HasRegisterName() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *DeviceDataInfoStatus) HasVariableName() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
 func (x *DeviceDataInfoStatus) HasPeriod() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DeviceDataInfoStatus) HasLastValueAt() bool {
@@ -7999,18 +8009,13 @@ func (x *DeviceDataInfoStatus) HasLastValueAt() bool {
 	return x.xxx_hidden_LastValueAt != nil
 }
 
-func (x *DeviceDataInfoStatus) ClearDeviceName() {
+func (x *DeviceDataInfoStatus) ClearRegisterName() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_DeviceName = nil
-}
-
-func (x *DeviceDataInfoStatus) ClearVariableName() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_VariableName = nil
+	x.xxx_hidden_RegisterName = nil
 }
 
 func (x *DeviceDataInfoStatus) ClearPeriod() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Period = 0
 }
 
@@ -8021,8 +8026,7 @@ func (x *DeviceDataInfoStatus) ClearLastValueAt() {
 type DeviceDataInfoStatus_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DeviceName   *string
-	VariableName *string
+	RegisterName *string
 	Period       *int32
 	LastValueAt  *timestamppb.Timestamp
 }
@@ -8031,16 +8035,12 @@ func (b0 DeviceDataInfoStatus_builder) Build() *DeviceDataInfoStatus {
 	m0 := &DeviceDataInfoStatus{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.DeviceName != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
-		x.xxx_hidden_DeviceName = b.DeviceName
-	}
-	if b.VariableName != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
-		x.xxx_hidden_VariableName = b.VariableName
+	if b.RegisterName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_RegisterName = b.RegisterName
 	}
 	if b.Period != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Period = *b.Period
 	}
 	x.xxx_hidden_LastValueAt = b.LastValueAt
@@ -8973,12 +8973,13 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"\x80\x01\n" +
 	"\x1eDeviceConfigurationRegisterMap\x12^\n" +
-	"\x05items\x18\x01 \x03(\v2H.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecordR\x05items\"\x9a\x01\n" +
+	"\x05items\x18\x01 \x03(\v2H.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecordR\x05items\"\xbf\x01\n" +
 	"$DeviceConfigurationRegisterMapRecord\x12\x1f\n" +
 	"\vregister_id\x18\x01 \x01(\x03R\n" +
 	"registerId\x12,\n" +
 	"\x12public_register_id\x18\x02 \x01(\tR\x10publicRegisterId\x12#\n" +
-	"\rvariable_name\x18\x03 \x03(\tR\fvariableName\"\xce\x01\n" +
+	"\rregister_name\x18\x03 \x01(\tR\fregisterName\x12#\n" +
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\xce\x01\n" +
 	"(CreateDeviceConfigurationTemplateRequest\x12W\n" +
 	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x9b\x01\n" +
@@ -9033,13 +9034,11 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x12DeviceDataInfoSpec\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x01(\tR\n" +
-	"registerId\"\xb4\x01\n" +
-	"\x14DeviceDataInfoStatus\x12\x1f\n" +
-	"\vdevice_name\x18\x01 \x01(\tR\n" +
-	"deviceName\x12#\n" +
-	"\rvariable_name\x18\x02 \x01(\tR\fvariableName\x12\x16\n" +
-	"\x06period\x18\x03 \x01(\x05R\x06period\x12>\n" +
-	"\rlast_value_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\vlastValueAt\"\x81\x01\n" +
+	"registerId\"\x93\x01\n" +
+	"\x14DeviceDataInfoStatus\x12#\n" +
+	"\rregister_name\x18\x01 \x01(\tR\fregisterName\x12\x16\n" +
+	"\x06period\x18\x02 \x01(\x05R\x06period\x12>\n" +
+	"\rlast_value_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vlastValueAt\"\x81\x01\n" +
 	"\x14ListOfDeviceDataInfo\x12H\n" +
 	"\x05items\x18\x01 \x03(\v22.io.clbs.openhes.models.acquisition.DeviceDataInfoR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

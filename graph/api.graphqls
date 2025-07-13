@@ -974,10 +974,8 @@ type DeviceDataInfoSpec {
 }
 
 type DeviceDataInfoStatus {
-  # The list of device identifiers.
-  deviceName: String
-  # The list of variable identifiers.
-  variableName: String
+  # The register name.
+  registerName: String
   # The period of the regular profile values, if applicable.
   period: Int
   # The timestamp of the last stored value.

@@ -436,10 +436,9 @@ type ComplexityRoot struct {
 	}
 
 	DeviceDataInfoStatus struct {
-		DeviceName   func(childComplexity int) int
 		LastValueAt  func(childComplexity int) int
 		Period       func(childComplexity int) int
-		VariableName func(childComplexity int) int
+		RegisterName func(childComplexity int) int
 	}
 
 	DeviceDeviceData struct {
@@ -2526,13 +2525,6 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.DeviceDataInfoSpec.RegisterID(childComplexity), true
 
-	case "DeviceDataInfoStatus.deviceName":
-		if e.complexity.DeviceDataInfoStatus.DeviceName == nil {
-			break
-		}
-
-		return e.complexity.DeviceDataInfoStatus.DeviceName(childComplexity), true
-
 	case "DeviceDataInfoStatus.lastValueAt":
 		if e.complexity.DeviceDataInfoStatus.LastValueAt == nil {
 			break
@@ -2547,12 +2539,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.DeviceDataInfoStatus.Period(childComplexity), true
 
-	case "DeviceDataInfoStatus.variableName":
-		if e.complexity.DeviceDataInfoStatus.VariableName == nil {
+	case "DeviceDataInfoStatus.registerName":
+		if e.complexity.DeviceDataInfoStatus.RegisterName == nil {
 			break
 		}
 
-		return e.complexity.DeviceDataInfoStatus.VariableName(childComplexity), true
+		return e.complexity.DeviceDataInfoStatus.RegisterName(childComplexity), true
 
 	case "DeviceDeviceData.data":
 		if e.complexity.DeviceDeviceData.Data == nil {
@@ -13894,10 +13886,8 @@ func (ec *executionContext) fieldContext_DeviceDataInfo_status(_ context.Context
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "deviceName":
-				return ec.fieldContext_DeviceDataInfoStatus_deviceName(ctx, field)
-			case "variableName":
-				return ec.fieldContext_DeviceDataInfoStatus_variableName(ctx, field)
+			case "registerName":
+				return ec.fieldContext_DeviceDataInfoStatus_registerName(ctx, field)
 			case "period":
 				return ec.fieldContext_DeviceDataInfoStatus_period(ctx, field)
 			case "lastValueAt":
@@ -13991,8 +13981,8 @@ func (ec *executionContext) fieldContext_DeviceDataInfoSpec_registerId(_ context
 	return fc, nil
 }
 
-func (ec *executionContext) _DeviceDataInfoStatus_deviceName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceDataInfoStatus_deviceName(ctx, field)
+func (ec *executionContext) _DeviceDataInfoStatus_registerName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceDataInfoStatus_registerName(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -14005,7 +13995,7 @@ func (ec *executionContext) _DeviceDataInfoStatus_deviceName(ctx context.Context
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.DeviceName, nil
+		return obj.RegisterName, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -14019,48 +14009,7 @@ func (ec *executionContext) _DeviceDataInfoStatus_deviceName(ctx context.Context
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_DeviceDataInfoStatus_deviceName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "DeviceDataInfoStatus",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _DeviceDataInfoStatus_variableName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceDataInfoStatus) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_DeviceDataInfoStatus_variableName(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.VariableName, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_DeviceDataInfoStatus_variableName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_DeviceDataInfoStatus_registerName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceDataInfoStatus",
 		Field:      field,
@@ -39215,10 +39164,8 @@ func (ec *executionContext) _DeviceDataInfoStatus(ctx context.Context, sel ast.S
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("DeviceDataInfoStatus")
-		case "deviceName":
-			out.Values[i] = ec._DeviceDataInfoStatus_deviceName(ctx, field, obj)
-		case "variableName":
-			out.Values[i] = ec._DeviceDataInfoStatus_variableName(ctx, field, obj)
+		case "registerName":
+			out.Values[i] = ec._DeviceDataInfoStatus_registerName(ctx, field, obj)
 		case "period":
 			out.Values[i] = ec._DeviceDataInfoStatus_period(ctx, field, obj)
 		case "lastValueAt":
