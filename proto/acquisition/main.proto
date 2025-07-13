@@ -86,7 +86,9 @@ message DeviceCommunicationUnitChange {
 message DeviceCommunicationUnitChangeStatus {
     google.protobuf.Timestamp change_at = 1;  // The timestamp of the change.
     string communication_unit_id        = 2;  // The unique identifier of the communication unit.
-    string device_id                    = 3;  // The unique identifier of the device.
+    string communication_unit_name      = 3;  // The name of the communication unit.
+    string device_id                    = 4;  // The unique identifier of the device.
+    string device_name                  = 5;  // The name of the device.
 }
 
 // Unknown device specification.

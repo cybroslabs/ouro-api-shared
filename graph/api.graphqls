@@ -912,8 +912,12 @@ type DeviceCommunicationUnitChangeStatus {
   changeAt: Timestamp
   # The unique identifier of the communication unit.
   communicationUnitId: String
+  # The name of the communication unit.
+  communicationUnitName: String
   # The unique identifier of the device.
   deviceId: String
+  # The name of the device.
+  deviceName: String
 }
 
 type DeviceConfigurationRegister {

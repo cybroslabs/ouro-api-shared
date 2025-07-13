@@ -1127,14 +1127,16 @@ func (b0 DeviceCommunicationUnitChange_builder) Build() *DeviceCommunicationUnit
 }
 
 type DeviceCommunicationUnitChangeStatus struct {
-	state                          protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ChangeAt            *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=change_at,json=changeAt"`
-	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,2,opt,name=communication_unit_id,json=communicationUnitId"`
-	xxx_hidden_DeviceId            *string                `protobuf:"bytes,3,opt,name=device_id,json=deviceId"`
-	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
-	XXX_presence                   [1]uint32
-	unknownFields                  protoimpl.UnknownFields
-	sizeCache                      protoimpl.SizeCache
+	state                            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ChangeAt              *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=change_at,json=changeAt"`
+	xxx_hidden_CommunicationUnitId   *string                `protobuf:"bytes,2,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_CommunicationUnitName *string                `protobuf:"bytes,3,opt,name=communication_unit_name,json=communicationUnitName"`
+	xxx_hidden_DeviceId              *string                `protobuf:"bytes,4,opt,name=device_id,json=deviceId"`
+	xxx_hidden_DeviceName            *string                `protobuf:"bytes,5,opt,name=device_name,json=deviceName"`
+	XXX_raceDetectHookData           protoimpl.RaceDetectHookData
+	XXX_presence                     [1]uint32
+	unknownFields                    protoimpl.UnknownFields
+	sizeCache                        protoimpl.SizeCache
 }
 
 func (x *DeviceCommunicationUnitChangeStatus) Reset() {
@@ -1179,10 +1181,30 @@ func (x *DeviceCommunicationUnitChangeStatus) GetCommunicationUnitId() string {
 	return ""
 }
 
+func (x *DeviceCommunicationUnitChangeStatus) GetCommunicationUnitName() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitName != nil {
+			return *x.xxx_hidden_CommunicationUnitName
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *DeviceCommunicationUnitChangeStatus) GetDeviceId() string {
 	if x != nil {
 		if x.xxx_hidden_DeviceId != nil {
 			return *x.xxx_hidden_DeviceId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) GetDeviceName() string {
+	if x != nil {
+		if x.xxx_hidden_DeviceName != nil {
+			return *x.xxx_hidden_DeviceName
 		}
 		return ""
 	}
@@ -1195,12 +1217,22 @@ func (x *DeviceCommunicationUnitChangeStatus) SetChangeAt(v *timestamppb.Timesta
 
 func (x *DeviceCommunicationUnitChangeStatus) SetCommunicationUnitId(v string) {
 	x.xxx_hidden_CommunicationUnitId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) SetCommunicationUnitName(v string) {
+	x.xxx_hidden_CommunicationUnitName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *DeviceCommunicationUnitChangeStatus) SetDeviceId(v string) {
 	x.xxx_hidden_DeviceId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) SetDeviceName(v string) {
+	x.xxx_hidden_DeviceName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
 }
 
 func (x *DeviceCommunicationUnitChangeStatus) HasChangeAt() bool {
@@ -1217,11 +1249,25 @@ func (x *DeviceCommunicationUnitChangeStatus) HasCommunicationUnitId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *DeviceCommunicationUnitChangeStatus) HasDeviceId() bool {
+func (x *DeviceCommunicationUnitChangeStatus) HasCommunicationUnitName() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) HasDeviceId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) HasDeviceName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *DeviceCommunicationUnitChangeStatus) ClearChangeAt() {
@@ -1233,17 +1279,29 @@ func (x *DeviceCommunicationUnitChangeStatus) ClearCommunicationUnitId() {
 	x.xxx_hidden_CommunicationUnitId = nil
 }
 
-func (x *DeviceCommunicationUnitChangeStatus) ClearDeviceId() {
+func (x *DeviceCommunicationUnitChangeStatus) ClearCommunicationUnitName() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_CommunicationUnitName = nil
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) ClearDeviceId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_DeviceId = nil
+}
+
+func (x *DeviceCommunicationUnitChangeStatus) ClearDeviceName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_DeviceName = nil
 }
 
 type DeviceCommunicationUnitChangeStatus_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ChangeAt            *timestamppb.Timestamp
-	CommunicationUnitId *string
-	DeviceId            *string
+	ChangeAt              *timestamppb.Timestamp
+	CommunicationUnitId   *string
+	CommunicationUnitName *string
+	DeviceId              *string
+	DeviceName            *string
 }
 
 func (b0 DeviceCommunicationUnitChangeStatus_builder) Build() *DeviceCommunicationUnitChangeStatus {
@@ -1252,12 +1310,20 @@ func (b0 DeviceCommunicationUnitChangeStatus_builder) Build() *DeviceCommunicati
 	_, _ = b, x
 	x.xxx_hidden_ChangeAt = b.ChangeAt
 	if b.CommunicationUnitId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
+	if b.CommunicationUnitName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_CommunicationUnitName = b.CommunicationUnitName
+	}
 	if b.DeviceId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
 		x.xxx_hidden_DeviceId = b.DeviceId
+	}
+	if b.DeviceName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		x.xxx_hidden_DeviceName = b.DeviceName
 	}
 	return m0
 }
@@ -8069,11 +8135,14 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"\x8c\x01\n" +
 	"\x1dDeviceCommunicationUnitChange\x12_\n" +
-	"\x06status\x18\x02 \x01(\v2G.io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatusR\x06statusJ\x04\b\x01\x10\x02J\x04\b\x03\x10\x04\"\xaf\x01\n" +
+	"\x06status\x18\x02 \x01(\v2G.io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatusR\x06statusJ\x04\b\x01\x10\x02J\x04\b\x03\x10\x04\"\x88\x02\n" +
 	"#DeviceCommunicationUnitChangeStatus\x127\n" +
 	"\tchange_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\bchangeAt\x122\n" +
-	"\x15communication_unit_id\x18\x02 \x01(\tR\x13communicationUnitId\x12\x1b\n" +
-	"\tdevice_id\x18\x03 \x01(\tR\bdeviceId\"\xb1\x01\n" +
+	"\x15communication_unit_id\x18\x02 \x01(\tR\x13communicationUnitId\x126\n" +
+	"\x17communication_unit_name\x18\x03 \x01(\tR\x15communicationUnitName\x12\x1b\n" +
+	"\tdevice_id\x18\x04 \x01(\tR\bdeviceId\x12\x1f\n" +
+	"\vdevice_name\x18\x05 \x01(\tR\n" +
+	"deviceName\"\xb1\x01\n" +
 	"\rUnknownDevice\x12O\n" +
 	"\x06status\x18\x02 \x01(\v27.io.clbs.openhes.models.acquisition.UnknownDeviceStatusR\x06status\x12I\n" +
 	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02\"j\n" +

@@ -392,9 +392,11 @@ type ComplexityRoot struct {
 	}
 
 	DeviceCommunicationUnitChangeStatus struct {
-		ChangeAt            func(childComplexity int) int
-		CommunicationUnitID func(childComplexity int) int
-		DeviceID            func(childComplexity int) int
+		ChangeAt              func(childComplexity int) int
+		CommunicationUnitID   func(childComplexity int) int
+		CommunicationUnitName func(childComplexity int) int
+		DeviceID              func(childComplexity int) int
+		DeviceName            func(childComplexity int) int
 	}
 
 	DeviceConfigurationRegister struct {
@@ -2374,12 +2376,26 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.DeviceCommunicationUnitChangeStatus.CommunicationUnitID(childComplexity), true
 
+	case "DeviceCommunicationUnitChangeStatus.communicationUnitName":
+		if e.complexity.DeviceCommunicationUnitChangeStatus.CommunicationUnitName == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChangeStatus.CommunicationUnitName(childComplexity), true
+
 	case "DeviceCommunicationUnitChangeStatus.deviceId":
 		if e.complexity.DeviceCommunicationUnitChangeStatus.DeviceID == nil {
 			break
 		}
 
 		return e.complexity.DeviceCommunicationUnitChangeStatus.DeviceID(childComplexity), true
+
+	case "DeviceCommunicationUnitChangeStatus.deviceName":
+		if e.complexity.DeviceCommunicationUnitChangeStatus.DeviceName == nil {
+			break
+		}
+
+		return e.complexity.DeviceCommunicationUnitChangeStatus.DeviceName(childComplexity), true
 
 	case "DeviceConfigurationRegister.metadata":
 		if e.complexity.DeviceConfigurationRegister.Metadata == nil {
@@ -12973,8 +12989,12 @@ func (ec *executionContext) fieldContext_DeviceCommunicationUnitChange_status(_ 
 				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_changeAt(ctx, field)
 			case "communicationUnitId":
 				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx, field)
+			case "communicationUnitName":
+				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitName(ctx, field)
 			case "deviceId":
 				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(ctx, field)
+			case "deviceName":
+				return ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceName(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceCommunicationUnitChangeStatus", field.Name)
 		},
@@ -13064,6 +13084,47 @@ func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_com
 	return fc, nil
 }
 
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_communicationUnitName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommunicationUnitName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_communicationUnitName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChangeStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_deviceId(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(ctx, field)
 	if err != nil {
@@ -13093,6 +13154,47 @@ func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_deviceId(ctx co
 }
 
 func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "DeviceCommunicationUnitChangeStatus",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _DeviceCommunicationUnitChangeStatus_deviceName(ctx context.Context, field graphql.CollectedField, obj *model.DeviceCommunicationUnitChangeStatus) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_DeviceCommunicationUnitChangeStatus_deviceName(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeviceName, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_DeviceCommunicationUnitChangeStatus_deviceName(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "DeviceCommunicationUnitChangeStatus",
 		Field:      field,
@@ -38225,8 +38327,12 @@ func (ec *executionContext) _DeviceCommunicationUnitChangeStatus(ctx context.Con
 			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_changeAt(ctx, field, obj)
 		case "communicationUnitId":
 			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_communicationUnitId(ctx, field, obj)
+		case "communicationUnitName":
+			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_communicationUnitName(ctx, field, obj)
 		case "deviceId":
 			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_deviceId(ctx, field, obj)
+		case "deviceName":
+			out.Values[i] = ec._DeviceCommunicationUnitChangeStatus_deviceName(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

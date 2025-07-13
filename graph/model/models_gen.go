@@ -356,9 +356,11 @@ type DeviceCommunicationUnitChange struct {
 }
 
 type DeviceCommunicationUnitChangeStatus struct {
-	ChangeAt            *string `json:"changeAt,omitempty"`
-	CommunicationUnitID *string `json:"communicationUnitId,omitempty"`
-	DeviceID            *string `json:"deviceId,omitempty"`
+	ChangeAt              *string `json:"changeAt,omitempty"`
+	CommunicationUnitID   *string `json:"communicationUnitId,omitempty"`
+	CommunicationUnitName *string `json:"communicationUnitName,omitempty"`
+	DeviceID              *string `json:"deviceId,omitempty"`
+	DeviceName            *string `json:"deviceName,omitempty"`
 }
 
 type DeviceConfigurationRegister struct {
