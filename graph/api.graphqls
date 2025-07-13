@@ -307,6 +307,8 @@ enum ObjectType {
   CRON_JOB
   # The device communication unit change.
   DEVICE_COMMUNICATION_UNIT_CHANGE
+  # The device data info.
+  DEVICE_DATA_INFO
 }
 
 enum CronJobTypeEnum {

@@ -20,3 +20,4 @@ Enum representing the object type.
 | DRIVER | The driver. |
 | CRON_JOB | The cron job. |
 | DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |
+| DEVICE_DATA_INFO | The device data info. |

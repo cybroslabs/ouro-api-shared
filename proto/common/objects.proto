@@ -20,5 +20,6 @@ enum ObjectType {
     DRIVER             = 11;  // The driver.
     CRON_JOB           = 12;  // The cron job.
 
-    DEVICE_COMMUNICATION_UNIT_CHANGE = 13; // The device communication unit change.
+    DEVICE_COMMUNICATION_UNIT_CHANGE = 13;  // The device communication unit change.
+    DEVICE_DATA_INFO                 = 14;  // The device data info.
 }
