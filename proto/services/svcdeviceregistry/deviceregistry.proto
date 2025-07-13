@@ -32,6 +32,7 @@ service DeviceRegistryService {
     rpc GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister);
     rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
     rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc GetDeviceConfigurationRegisterMap(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap);
 
     rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
     rpc ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate);

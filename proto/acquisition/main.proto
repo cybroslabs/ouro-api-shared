@@ -387,6 +387,16 @@ message DeviceConfigurationRegister {
     common.MetadataFields metadata       = 3;  // The metadata fields.
 }
 
+message DeviceConfigurationRegisterMap {
+    repeated DeviceConfigurationRegisterMapRecord items = 1;  // The list of device configuration registers to create a map.
+}
+
+message DeviceConfigurationRegisterMapRecord {
+    int64 register_id             = 1;  // The register identifier.
+    string public_register_id     = 2;  // The public register identifier.
+    repeated string variable_name = 3;  // The name of the variable, if the register is assigned to some.
+}
+
 // Device Configuration Template specification.
 
 message CreateDeviceConfigurationTemplateRequest {
