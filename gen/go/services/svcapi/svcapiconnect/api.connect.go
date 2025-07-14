@@ -300,6 +300,9 @@ const (
 	// ApiServiceUpdateObjectFieldsProcedure is the fully-qualified name of the ApiService's
 	// UpdateObjectFields RPC.
 	ApiServiceUpdateObjectFieldsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
+	// ApiServiceGetOpenIdConfigurationProcedure is the fully-qualified name of the ApiService's
+	// GetOpenIdConfiguration RPC.
+	ApiServiceGetOpenIdConfigurationProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -606,6 +609,10 @@ type ApiServiceClient interface {
 	// @group: Metadata
 	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1183,6 +1190,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
 			connect.WithClientOptions(opts...),
 		),
+		getOpenIdConfiguration: connect.NewClient[emptypb.Empty, system.OpenIdConfiguration](
+			httpClient,
+			baseURL+ApiServiceGetOpenIdConfigurationProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -1282,6 +1295,7 @@ type apiServiceClient struct {
 	pauseCronJob                                                     *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
+	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1776,6 +1790,11 @@ func (c *apiServiceClient) UpdateObjectFields(ctx context.Context, req *connect.
 	return c.updateObjectFields.CallUnary(ctx, req)
 }
 
+// GetOpenIdConfiguration calls io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration.
+func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
+	return c.getOpenIdConfiguration.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -2080,6 +2099,10 @@ type ApiServiceHandler interface {
 	// @group: Metadata
 	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -2653,6 +2676,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetOpenIdConfigurationHandler := connect.NewUnaryHandler(
+		ApiServiceGetOpenIdConfigurationProcedure,
+		svc.GetOpenIdConfiguration,
+		connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -2843,6 +2872,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceResumeCronJobHandler.ServeHTTP(w, r)
 		case ApiServiceUpdateObjectFieldsProcedure:
 			apiServiceUpdateObjectFieldsHandler.ServeHTTP(w, r)
+		case ApiServiceGetOpenIdConfigurationProcedure:
+			apiServiceGetOpenIdConfigurationHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -3226,4 +3257,8 @@ func (UnimplementedApiServiceHandler) ResumeCronJob(context.Context, *connect.Re
 
 func (UnimplementedApiServiceHandler) UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateObjectFields is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration is not implemented"))
 }

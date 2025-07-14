@@ -884,6 +884,10 @@ type NetworkMap struct {
 	Edges []*TopologyEdge `json:"edges,omitempty"`
 }
 
+type OpenIDConfiguration struct {
+	Content *string `json:"content,omitempty"`
+}
+
 type ProfileBlock struct {
 	StartTimestamp *string          `json:"startTimestamp,omitempty"`
 	Values         []*MeasuredValue `json:"values,omitempty"`

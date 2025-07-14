@@ -920,6 +920,10 @@ type ComplexityRoot struct {
 		Nodes func(childComplexity int) int
 	}
 
+	OpenIdConfiguration struct {
+		Content func(childComplexity int) int
+	}
+
 	ProfileBlock struct {
 		StartTimestamp func(childComplexity int) int
 		Values         func(childComplexity int) int
@@ -997,6 +1001,7 @@ type ComplexityRoot struct {
 		GetDeviceNetworkMap                                              func(childComplexity int) int
 		GetDriver                                                        func(childComplexity int) int
 		GetModemPool                                                     func(childComplexity int) int
+		GetOpenIDConfiguration                                           func(childComplexity int) int
 		GetProxyBulk                                                     func(childComplexity int) int
 		GetTimeOfUseTable                                                func(childComplexity int) int
 		GetVariable                                                      func(childComplexity int) int
@@ -1302,6 +1307,7 @@ type QueryResolver interface {
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
 	ListFieldDescriptorOptions(ctx context.Context) (*model.FieldDescriptorOptions, error)
 	UpdateObjectFields(ctx context.Context) (*model.Empty, error)
+	GetOpenIDConfiguration(ctx context.Context) (*model.OpenIDConfiguration, error)
 	CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error)
 	ListTimeOfUseTables(ctx context.Context) (*model.ListOfTimeOfUseTable, error)
 	GetTimeOfUseTable(ctx context.Context) (*model.TimeOfUseTable, error)
@@ -4422,6 +4428,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.NetworkMap.Nodes(childComplexity), true
 
+	case "OpenIdConfiguration.content":
+		if e.complexity.OpenIdConfiguration.Content == nil {
+			break
+		}
+
+		return e.complexity.OpenIdConfiguration.Content(childComplexity), true
+
 	case "ProfileBlock.startTimestamp":
 		if e.complexity.ProfileBlock.StartTimestamp == nil {
 			break
@@ -4869,6 +4882,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.GetModemPool(childComplexity), true
+
+	case "Query.getOpenIdConfiguration":
+		if e.complexity.Query.GetOpenIDConfiguration == nil {
+			break
+		}
+
+		return e.complexity.Query.GetOpenIDConfiguration(childComplexity), true
 
 	case "Query.getProxyBulk":
 		if e.complexity.Query.GetProxyBulk == nil {
@@ -25977,6 +25997,47 @@ func (ec *executionContext) fieldContext_NetworkMap_edges(_ context.Context, fie
 	return fc, nil
 }
 
+func (ec *executionContext) _OpenIdConfiguration_content(ctx context.Context, field graphql.CollectedField, obj *model.OpenIDConfiguration) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_OpenIdConfiguration_content(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Content, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_OpenIdConfiguration_content(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "OpenIdConfiguration",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ProfileBlock_startTimestamp(ctx context.Context, field graphql.CollectedField, obj *model.ProfileBlock) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ProfileBlock_startTimestamp(ctx, field)
 	if err != nil {
@@ -30458,6 +30519,51 @@ func (ec *executionContext) fieldContext_Query_updateObjectFields(_ context.Cont
 				return ec.fieldContext_Empty__empty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getOpenIdConfiguration(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getOpenIdConfiguration(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetOpenIDConfiguration(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.OpenIDConfiguration)
+	fc.Result = res
+	return ec.marshalOOpenIdConfiguration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐOpenIDConfiguration(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getOpenIdConfiguration(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "content":
+				return ec.fieldContext_OpenIdConfiguration_content(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type OpenIdConfiguration", field.Name)
 		},
 	}
 	return fc, nil
@@ -42535,6 +42641,42 @@ func (ec *executionContext) _NetworkMap(ctx context.Context, sel ast.SelectionSe
 	return out
 }
 
+var openIdConfigurationImplementors = []string{"OpenIdConfiguration"}
+
+func (ec *executionContext) _OpenIdConfiguration(ctx context.Context, sel ast.SelectionSet, obj *model.OpenIDConfiguration) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, openIdConfigurationImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("OpenIdConfiguration")
+		case "content":
+			out.Values[i] = ec._OpenIdConfiguration_content(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var profileBlockImplementors = []string{"ProfileBlock"}
 
 func (ec *executionContext) _ProfileBlock(ctx context.Context, sel ast.SelectionSet, obj *model.ProfileBlock) graphql.Marshaler {
@@ -44267,6 +44409,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_updateObjectFields(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getOpenIdConfiguration":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getOpenIdConfiguration(ctx, field)
 				return res
 			}
 
@@ -49294,6 +49455,13 @@ func (ec *executionContext) marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋou
 		return graphql.Null
 	}
 	return v
+}
+
+func (ec *executionContext) marshalOOpenIdConfiguration2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐOpenIDConfiguration(ctx context.Context, sel ast.SelectionSet, v *model.OpenIDConfiguration) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._OpenIdConfiguration(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOProfileBlock2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐProfileBlock(ctx context.Context, sel ast.SelectionSet, v []*model.ProfileBlock) graphql.Marshaler {

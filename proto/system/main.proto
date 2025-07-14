@@ -34,3 +34,7 @@ message License {
     string description          = 4;  // The license description.
     map<string, string> options = 5;  // The licensed options.
 }
+
+message OpenIdConfiguration {
+    bytes content = 1;  // The raw JSON configuration of the OIDC service.
+}

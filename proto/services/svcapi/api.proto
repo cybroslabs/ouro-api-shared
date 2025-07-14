@@ -340,4 +340,9 @@ service ApiService {
     // @group: Metadata
     // The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
     rpc UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest) returns (google.protobuf.Empty);
+
+    // @group: System
+    // The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+    // All the authenticated endpoints shall be protected by token from this OIDC service.
+    rpc GetOpenIdConfiguration(google.protobuf.Empty) returns (io.clbs.openhes.models.system.OpenIdConfiguration);
 }

@@ -119,6 +119,7 @@ const (
 	ApiService_PauseCronJob_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob"
 	ApiService_ResumeCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
 	ApiService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
+	ApiService_GetOpenIdConfiguration_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -429,6 +430,10 @@ type ApiServiceClient interface {
 	// @group: Metadata
 	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	GetOpenIdConfiguration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.OpenIdConfiguration, error)
 }
 
 type apiServiceClient struct {
@@ -1406,6 +1411,16 @@ func (c *apiServiceClient) UpdateObjectFields(ctx context.Context, in *common.Up
 	return out, nil
 }
 
+func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.OpenIdConfiguration, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.OpenIdConfiguration)
+	err := c.cc.Invoke(ctx, ApiService_GetOpenIdConfiguration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1714,6 +1729,10 @@ type ApiServiceServer interface {
 	// @group: Metadata
 	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
+	// @group: System
+	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -2005,6 +2024,9 @@ func (UnimplementedApiServiceServer) ResumeCronJob(context.Context, *wrapperspb.
 }
 func (UnimplementedApiServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectFields not implemented")
+}
+func (UnimplementedApiServiceServer) GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOpenIdConfiguration not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -3698,6 +3720,24 @@ func _ApiService_UpdateObjectFields_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetOpenIdConfiguration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetOpenIdConfiguration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetOpenIdConfiguration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetOpenIdConfiguration(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4068,6 +4108,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateObjectFields",
 			Handler:    _ApiService_UpdateObjectFields_Handler,
+		},
+		{
+			MethodName: "GetOpenIdConfiguration",
+			Handler:    _ApiService_GetOpenIdConfiguration_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

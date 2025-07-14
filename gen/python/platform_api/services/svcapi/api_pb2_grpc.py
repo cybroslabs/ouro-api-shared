@@ -493,6 +493,11 @@ class ApiServiceStub(object):
                 request_serializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.GetOpenIdConfiguration = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=system_dot_main__pb2.OpenIdConfiguration.FromString,
+                _registered_method=True)
 
 
 class ApiServiceServicer(object):
@@ -1271,6 +1276,15 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetOpenIdConfiguration(self, request, context):
+        """@group: System
+        The method returns the OIDC configuration, proxied directly from the configured OIDC service.
+        All the authenticated endpoints shall be protected by token from this OIDC service.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1743,6 +1757,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.UpdateObjectFields,
                     request_deserializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetOpenIdConfiguration': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOpenIdConfiguration,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=system_dot_main__pb2.OpenIdConfiguration.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -4284,6 +4303,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields',
             common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetOpenIdConfiguration(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            system_dot_main__pb2.OpenIdConfiguration.FromString,
             options,
             channel_credentials,
             insecure,

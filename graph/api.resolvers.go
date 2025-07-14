@@ -421,6 +421,11 @@ func (r *queryResolver) UpdateObjectFields(ctx context.Context) (*model.Empty, e
 	panic(fmt.Errorf("not implemented: UpdateObjectFields - updateObjectFields"))
 }
 
+// GetOpenIDConfiguration is the resolver for the getOpenIdConfiguration field.
+func (r *queryResolver) GetOpenIDConfiguration(ctx context.Context) (*model.OpenIDConfiguration, error) {
+	panic(fmt.Errorf("not implemented: GetOpenIDConfiguration - getOpenIdConfiguration"))
+}
+
 // CreateTimeOfUseTable is the resolver for the createTimeOfUseTable field.
 func (r *queryResolver) CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateTimeOfUseTable - createTimeOfUseTable"))

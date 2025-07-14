@@ -545,6 +545,84 @@ func (b0 License_builder) Build() *License {
 	return m0
 }
 
+type OpenIdConfiguration struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Content     []byte                 `protobuf:"bytes,1,opt,name=content"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *OpenIdConfiguration) Reset() {
+	*x = OpenIdConfiguration{}
+	mi := &file_system_main_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OpenIdConfiguration) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OpenIdConfiguration) ProtoMessage() {}
+
+func (x *OpenIdConfiguration) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *OpenIdConfiguration) GetContent() []byte {
+	if x != nil {
+		return x.xxx_hidden_Content
+	}
+	return nil
+}
+
+func (x *OpenIdConfiguration) SetContent(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_Content = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
+}
+
+func (x *OpenIdConfiguration) HasContent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *OpenIdConfiguration) ClearContent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Content = nil
+}
+
+type OpenIdConfiguration_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Content []byte
+}
+
+func (b0 OpenIdConfiguration_builder) Build() *OpenIdConfiguration {
+	m0 := &OpenIdConfiguration{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Content != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		x.xxx_hidden_Content = b.Content
+	}
+	return m0
+}
+
 var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
@@ -569,26 +647,29 @@ const file_system_main_proto_rawDesc = "" +
 	"\aoptions\x18\x05 \x03(\v23.io.clbs.openhes.models.system.License.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"/\n" +
+	"\x13OpenIdConfiguration\x12\x18\n" +
+	"\acontent\x18\x01 \x01(\fR\acontentB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_system_main_proto_goTypes = []any{
 	(*ApplicationConfig)(nil),           // 0: io.clbs.openhes.models.system.ApplicationConfig
 	(*ComponentConfig)(nil),             // 1: io.clbs.openhes.models.system.ComponentConfig
 	(*ComponentConfigDescriptor)(nil),   // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
 	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*License)(nil),                     // 4: io.clbs.openhes.models.system.License
-	nil,                                 // 5: io.clbs.openhes.models.system.License.OptionsEntry
-	(*common.FieldValues)(nil),          // 6: io.clbs.openhes.models.common.FieldValues
-	(*common.FieldDescriptor)(nil),      // 7: io.clbs.openhes.models.common.FieldDescriptor
+	(*OpenIdConfiguration)(nil),         // 5: io.clbs.openhes.models.system.OpenIdConfiguration
+	nil,                                 // 6: io.clbs.openhes.models.system.License.OptionsEntry
+	(*common.FieldValues)(nil),          // 7: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),      // 8: io.clbs.openhes.models.common.FieldDescriptor
 }
 var file_system_main_proto_depIdxs = []int32{
 	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	6, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	7, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	7, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	8, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	2, // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
 	1, // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	5, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
+	6, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
@@ -607,7 +688,7 @@ func file_system_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

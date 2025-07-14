@@ -2090,6 +2090,11 @@ type ComponentConfigDescriptor {
   items: [FieldDescriptor]
 }
 
+type OpenIdConfiguration {
+  # The raw JSON configuration of the OIDC service.
+  content: String
+}
+
 type _mapValue {
   key: String!
   value: Value
@@ -2193,6 +2198,7 @@ type Query {
   listFieldDescriptors: ListOfFieldDescriptor
   listFieldDescriptorOptions: FieldDescriptorOptions
   updateObjectFields: Empty
+  getOpenIdConfiguration: OpenIdConfiguration
   createTimeOfUseTable: StringValue
   listTimeOfUseTables: ListOfTimeOfUseTable
   getTimeOfUseTable: TimeOfUseTable
