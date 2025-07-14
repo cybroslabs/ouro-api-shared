@@ -11,7 +11,8 @@ import (
 )
 
 var (
-	_NO_ARGS = make([]any, 0)
+	_NO_ARGS  = make([]any, 0)
+	_DUMMY_FD = &common.FieldDescriptor{}
 )
 
 // PathToDbPathFunc is a function type that maps a object path to its corresponding database column name and or JSONB path within a JSONB column.
@@ -127,7 +128,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 		}
 
 		raw_path := f.GetPath()
-		path, ok := pathToDbPath((&common.FieldDescriptor{}).ConvertJsPathToPath(raw_path))
+		path, ok := pathToDbPath(_DUMMY_FD.ConvertJsPathToPath(raw_path))
 		if !ok {
 			return "", nil, errors.New("unknown path: " + raw_path)
 		}
@@ -335,10 +336,10 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string,
 		return "", nil
 	}
 
-	tmp := strings.Builder{}
+	var tmp strings.Builder
 	tmp.WriteString("ORDER BY ")
 	for i, s := range fields {
-		path, ok := pathToDbPath((&common.FieldDescriptor{}).ConvertJsPathToPath(s.GetPath()))
+		path, ok := pathToDbPath(_DUMMY_FD.ConvertJsPathToPath(s.GetPath()))
 		if !ok {
 			return "", errors.New("unknown path: " + s.GetPath())
 		}
