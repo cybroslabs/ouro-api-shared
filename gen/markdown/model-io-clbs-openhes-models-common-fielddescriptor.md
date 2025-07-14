@@ -26,4 +26,6 @@ The field descriptor.
 | secured | <b>Type:</b> `bool`<br><b>Description:</b><br>Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...) |
 | validation | <b>Type:</b> [`io.clbs.openhes.models.common.FieldValidation`](model-io-clbs-openhes-models-common-fieldvalidation.md)<br><b>Description:</b><br>Validation rules for the field |
 | defaultValue | <b>Type:</b> [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)<br><b>Description:</b><br>The default value of the attribute, it does not support multi-value fields |
+| sortable | <b>Type:</b> `bool`<br><b>Description:</b><br>Whether the field can be used for sorting, default is true |
+| filterable | <b>Type:</b> `bool`<br><b>Description:</b><br>Whether the field can be used for filtering, default is true |
 

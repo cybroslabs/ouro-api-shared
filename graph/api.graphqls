@@ -1847,6 +1847,10 @@ type FieldDescriptor {
   validation: FieldValidation
   # The default value of the attribute, it does not support multi-value fields
   defaultValue: FieldValue
+  # Whether the field can be used for sorting, default is true
+  sortable: Boolean
+  # Whether the field can be used for filtering, default is true
+  filterable: Boolean
 }
 
 type FieldDescriptorOptions {

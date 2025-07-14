@@ -548,6 +548,7 @@ type ComplexityRoot struct {
 		DefaultValue  func(childComplexity int) int
 		Editable      func(childComplexity int) int
 		FieldID       func(childComplexity int) int
+		Filterable    func(childComplexity int) int
 		Format        func(childComplexity int) int
 		Gid           func(childComplexity int) int
 		GroupID       func(childComplexity int) int
@@ -560,6 +561,7 @@ type ComplexityRoot struct {
 		Precision     func(childComplexity int) int
 		Required      func(childComplexity int) int
 		Secured       func(childComplexity int) int
+		Sortable      func(childComplexity int) int
 		Tooltip       func(childComplexity int) int
 		Unit          func(childComplexity int) int
 		Validation    func(childComplexity int) int
@@ -2952,6 +2954,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldDescriptor.FieldID(childComplexity), true
 
+	case "FieldDescriptor.filterable":
+		if e.complexity.FieldDescriptor.Filterable == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Filterable(childComplexity), true
+
 	case "FieldDescriptor.format":
 		if e.complexity.FieldDescriptor.Format == nil {
 			break
@@ -3035,6 +3044,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldDescriptor.Secured(childComplexity), true
+
+	case "FieldDescriptor.sortable":
+		if e.complexity.FieldDescriptor.Sortable == nil {
+			break
+		}
+
+		return e.complexity.FieldDescriptor.Sortable(childComplexity), true
 
 	case "FieldDescriptor.tooltip":
 		if e.complexity.FieldDescriptor.Tooltip == nil {
@@ -7937,6 +7953,10 @@ func (ec *executionContext) fieldContext_ApplicationProtocolTemplate_attributes(
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -9534,6 +9554,10 @@ func (ec *executionContext) fieldContext_ComponentConfigDescriptor_items(_ conte
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -11519,6 +11543,10 @@ func (ec *executionContext) fieldContext_CreateFieldDescriptorRequest_spec(_ con
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -12491,6 +12519,10 @@ func (ec *executionContext) fieldContext_DataLinkTemplate_attributes(_ context.C
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -16126,6 +16158,10 @@ func (ec *executionContext) fieldContext_DriverTemplates_uknownDeviceDescriptors
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -17365,6 +17401,88 @@ func (ec *executionContext) fieldContext_FieldDescriptor_defaultValue(_ context.
 				return ec.fieldContext_FieldValue_durationValue(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_sortable(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Sortable, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_sortable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FieldDescriptor_filterable(ctx context.Context, field graphql.CollectedField, obj *model.FieldDescriptor) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FieldDescriptor_filterable(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Filterable, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	fc.Result = res
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FieldDescriptor_filterable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FieldDescriptor",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Boolean does not have child fields")
 		},
 	}
 	return fc, nil
@@ -19827,6 +19945,10 @@ func (ec *executionContext) fieldContext_JobActionAttributes_attributes(_ contex
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -23075,6 +23197,10 @@ func (ec *executionContext) fieldContext_ListOfFieldDescriptor_items(_ context.C
 				return ec.fieldContext_FieldDescriptor_validation(ctx, field)
 			case "defaultValue":
 				return ec.fieldContext_FieldDescriptor_defaultValue(ctx, field)
+			case "sortable":
+				return ec.fieldContext_FieldDescriptor_sortable(ctx, field)
+			case "filterable":
+				return ec.fieldContext_FieldDescriptor_filterable(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type FieldDescriptor", field.Name)
 		},
@@ -39896,6 +40022,10 @@ func (ec *executionContext) _FieldDescriptor(ctx context.Context, sel ast.Select
 			out.Values[i] = ec._FieldDescriptor_validation(ctx, field, obj)
 		case "defaultValue":
 			out.Values[i] = ec._FieldDescriptor_defaultValue(ctx, field, obj)
+		case "sortable":
+			out.Values[i] = ec._FieldDescriptor_sortable(ctx, field, obj)
+		case "filterable":
+			out.Values[i] = ec._FieldDescriptor_filterable(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}

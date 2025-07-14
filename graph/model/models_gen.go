@@ -528,6 +528,8 @@ type FieldDescriptor struct {
 	Secured       *bool               `json:"secured,omitempty"`
 	Validation    *FieldValidation    `json:"validation,omitempty"`
 	DefaultValue  *FieldValue         `json:"defaultValue,omitempty"`
+	Sortable      *bool               `json:"sortable,omitempty"`
+	Filterable    *bool               `json:"filterable,omitempty"`
 }
 
 type FieldDescriptorOptions struct {

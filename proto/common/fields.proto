@@ -127,6 +127,8 @@ message FieldDescriptor {
     bool secured               = 18;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
     FieldValidation validation = 19;  // Validation rules for the field
     FieldValue default_value   = 20;  // The default value of the attribute, it does not support multi-value fields
+    bool sortable              = 21;  // Whether the field can be used for sorting, default is true
+    bool filterable            = 22;  // Whether the field can be used for filtering, default is true
 }
 
 // Validation rules for the field.
