@@ -1038,6 +1038,7 @@ type ComplexityRoot struct {
 		UpdateFieldDescriptor                                            func(childComplexity int) int
 		UpdateModem                                                      func(childComplexity int) int
 		UpdateModemPool                                                  func(childComplexity int) int
+		UpdateObjectFields                                               func(childComplexity int) int
 		UpdateTimeOfUseTable                                             func(childComplexity int) int
 		UpdateVariable                                                   func(childComplexity int) int
 	}
@@ -1089,6 +1090,12 @@ type ComplexityRoot struct {
 	SetDeviceCommunicationUnitsRequest struct {
 		CommunicationUnits func(childComplexity int) int
 		DeviceID           func(childComplexity int) int
+	}
+
+	SetFieldsSpec struct {
+		Fields     func(childComplexity int) int
+		ObjectID   func(childComplexity int) int
+		ObjectType func(childComplexity int) int
 	}
 
 	SetModemPoolRequest struct {
@@ -1152,6 +1159,10 @@ type ComplexityRoot struct {
 
 	UpdateMetadata struct {
 		Metadata func(childComplexity int) int
+	}
+
+	UpdateObjectFieldsRequest struct {
+		Spec func(childComplexity int) int
 	}
 
 	Value struct {
@@ -1290,6 +1301,7 @@ type QueryResolver interface {
 	DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	ListFieldDescriptors(ctx context.Context) (*model.ListOfFieldDescriptor, error)
 	ListFieldDescriptorOptions(ctx context.Context) (*model.FieldDescriptorOptions, error)
+	UpdateObjectFields(ctx context.Context) (*model.Empty, error)
 	CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error)
 	ListTimeOfUseTables(ctx context.Context) (*model.ListOfTimeOfUseTable, error)
 	GetTimeOfUseTable(ctx context.Context) (*model.TimeOfUseTable, error)
@@ -5145,6 +5157,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.UpdateModemPool(childComplexity), true
 
+	case "Query.updateObjectFields":
+		if e.complexity.Query.UpdateObjectFields == nil {
+			break
+		}
+
+		return e.complexity.Query.UpdateObjectFields(childComplexity), true
+
 	case "Query.updateTimeOfUseTable":
 		if e.complexity.Query.UpdateTimeOfUseTable == nil {
 			break
@@ -5312,6 +5331,27 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.SetDeviceCommunicationUnitsRequest.DeviceID(childComplexity), true
+
+	case "SetFieldsSpec.fields":
+		if e.complexity.SetFieldsSpec.Fields == nil {
+			break
+		}
+
+		return e.complexity.SetFieldsSpec.Fields(childComplexity), true
+
+	case "SetFieldsSpec.objectId":
+		if e.complexity.SetFieldsSpec.ObjectID == nil {
+			break
+		}
+
+		return e.complexity.SetFieldsSpec.ObjectID(childComplexity), true
+
+	case "SetFieldsSpec.objectType":
+		if e.complexity.SetFieldsSpec.ObjectType == nil {
+			break
+		}
+
+		return e.complexity.SetFieldsSpec.ObjectType(childComplexity), true
 
 	case "SetModemPoolRequest.metadata":
 		if e.complexity.SetModemPoolRequest.Metadata == nil {
@@ -5522,6 +5562,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.UpdateMetadata.Metadata(childComplexity), true
+
+	case "UpdateObjectFieldsRequest.spec":
+		if e.complexity.UpdateObjectFieldsRequest.Spec == nil {
+			break
+		}
+
+		return e.complexity.UpdateObjectFieldsRequest.Spec(childComplexity), true
 
 	case "Value.boolValue":
 		if e.complexity.Value.BoolValue == nil {
@@ -30371,6 +30418,51 @@ func (ec *executionContext) fieldContext_Query_listFieldDescriptorOptions(_ cont
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_updateObjectFields(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_updateObjectFields(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().UpdateObjectFields(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_updateObjectFields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_createTimeOfUseTable(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_createTimeOfUseTable(ctx, field)
 	if err != nil {
@@ -31990,6 +32082,135 @@ func (ec *executionContext) fieldContext_SetDeviceCommunicationUnitsRequest_comm
 	return fc, nil
 }
 
+func (ec *executionContext) _SetFieldsSpec_fields(ctx context.Context, field graphql.CollectedField, obj *model.SetFieldsSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetFieldsSpec_fields(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Fields, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.MapFieldValue)
+	fc.Result = res
+	return ec.marshalO_mapFieldValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMapFieldValue(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetFieldsSpec_fields(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetFieldsSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "key":
+				return ec.fieldContext__mapFieldValue_key(ctx, field)
+			case "value":
+				return ec.fieldContext__mapFieldValue_value(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type _mapFieldValue", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetFieldsSpec_objectType(ctx context.Context, field graphql.CollectedField, obj *model.SetFieldsSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetFieldsSpec_objectType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ObjectType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ObjectType)
+	fc.Result = res
+	return ec.marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetFieldsSpec_objectType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetFieldsSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type ObjectType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetFieldsSpec_objectId(ctx context.Context, field graphql.CollectedField, obj *model.SetFieldsSpec) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetFieldsSpec_objectId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ObjectID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetFieldsSpec_objectId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetFieldsSpec",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _SetModemPoolRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.SetModemPoolRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_SetModemPoolRequest_spec(ctx, field)
 	if err != nil {
@@ -33361,6 +33582,55 @@ func (ec *executionContext) fieldContext_UpdateMetadata_metadata(_ context.Conte
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _UpdateObjectFieldsRequest_spec(ctx context.Context, field graphql.CollectedField, obj *model.UpdateObjectFieldsRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_UpdateObjectFieldsRequest_spec(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Spec, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.SetFieldsSpec)
+	fc.Result = res
+	return ec.marshalOSetFieldsSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSetFieldsSpec(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_UpdateObjectFieldsRequest_spec(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "UpdateObjectFieldsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fields":
+				return ec.fieldContext_SetFieldsSpec_fields(ctx, field)
+			case "objectType":
+				return ec.fieldContext_SetFieldsSpec_objectType(ctx, field)
+			case "objectId":
+				return ec.fieldContext_SetFieldsSpec_objectId(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type SetFieldsSpec", field.Name)
 		},
 	}
 	return fc, nil
@@ -43987,6 +44257,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "updateObjectFields":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_updateObjectFields(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "createTimeOfUseTable":
 			field := field
 
@@ -44596,6 +44885,46 @@ func (ec *executionContext) _SetDeviceCommunicationUnitsRequest(ctx context.Cont
 	return out
 }
 
+var setFieldsSpecImplementors = []string{"SetFieldsSpec"}
+
+func (ec *executionContext) _SetFieldsSpec(ctx context.Context, sel ast.SelectionSet, obj *model.SetFieldsSpec) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, setFieldsSpecImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("SetFieldsSpec")
+		case "fields":
+			out.Values[i] = ec._SetFieldsSpec_fields(ctx, field, obj)
+		case "objectType":
+			out.Values[i] = ec._SetFieldsSpec_objectType(ctx, field, obj)
+		case "objectId":
+			out.Values[i] = ec._SetFieldsSpec_objectId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var setModemPoolRequestImplementors = []string{"SetModemPoolRequest"}
 
 func (ec *executionContext) _SetModemPoolRequest(ctx context.Context, sel ast.SelectionSet, obj *model.SetModemPoolRequest) graphql.Marshaler {
@@ -45007,6 +45336,42 @@ func (ec *executionContext) _UpdateMetadata(ctx context.Context, sel ast.Selecti
 			out.Values[i] = graphql.MarshalString("UpdateMetadata")
 		case "metadata":
 			out.Values[i] = ec._UpdateMetadata_metadata(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var updateObjectFieldsRequestImplementors = []string{"UpdateObjectFieldsRequest"}
+
+func (ec *executionContext) _UpdateObjectFieldsRequest(ctx context.Context, sel ast.SelectionSet, obj *model.UpdateObjectFieldsRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, updateObjectFieldsRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("UpdateObjectFieldsRequest")
+		case "spec":
+			out.Values[i] = ec._UpdateObjectFieldsRequest_spec(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -49181,6 +49546,13 @@ func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋouro�
 		return graphql.Null
 	}
 	return ec._Season(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOSetFieldsSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSetFieldsSpec(ctx context.Context, sel ast.SelectionSet, v *model.SetFieldsSpec) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._SetFieldsSpec(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOSpecialDay2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSpecialDay(ctx context.Context, sel ast.SelectionSet, v []*model.SpecialDay) graphql.Marshaler {

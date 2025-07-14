@@ -297,6 +297,9 @@ const (
 	// ApiServiceResumeCronJobProcedure is the fully-qualified name of the ApiService's ResumeCronJob
 	// RPC.
 	ApiServiceResumeCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
+	// ApiServiceUpdateObjectFieldsProcedure is the fully-qualified name of the ApiService's
+	// UpdateObjectFields RPC.
+	ApiServiceUpdateObjectFieldsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -600,6 +603,9 @@ type ApiServiceClient interface {
 	// @group: Cron Jobs
 	// The method to resume the cron job.
 	ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1171,6 +1177,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("ResumeCronJob")),
 			connect.WithClientOptions(opts...),
 		),
+		updateObjectFields: connect.NewClient[common.UpdateObjectFieldsRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateObjectFieldsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -1269,6 +1281,7 @@ type apiServiceClient struct {
 	runCronJob                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	pauseCronJob                                                     *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1758,6 +1771,11 @@ func (c *apiServiceClient) ResumeCronJob(ctx context.Context, req *connect.Reque
 	return c.resumeCronJob.CallUnary(ctx, req)
 }
 
+// UpdateObjectFields calls io.clbs.openhes.services.svcapi.ApiService.UpdateObjectFields.
+func (c *apiServiceClient) UpdateObjectFields(ctx context.Context, req *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateObjectFields.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -2059,6 +2077,9 @@ type ApiServiceHandler interface {
 	// @group: Cron Jobs
 	// The method to resume the cron job.
 	ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -2626,6 +2647,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("ResumeCronJob")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceUpdateObjectFieldsHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateObjectFieldsProcedure,
+		svc.UpdateObjectFields,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -2814,6 +2841,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServicePauseCronJobHandler.ServeHTTP(w, r)
 		case ApiServiceResumeCronJobProcedure:
 			apiServiceResumeCronJobHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateObjectFieldsProcedure:
+			apiServiceUpdateObjectFieldsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -3193,4 +3222,8 @@ func (UnimplementedApiServiceHandler) PauseCronJob(context.Context, *connect.Req
 
 func (UnimplementedApiServiceHandler) ResumeCronJob(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateObjectFields is not implemented"))
 }

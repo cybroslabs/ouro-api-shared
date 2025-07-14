@@ -962,6 +962,12 @@ type SetDeviceCommunicationUnitsRequest struct {
 	CommunicationUnits []*DeviceCommunicationUnit `json:"communicationUnits,omitempty"`
 }
 
+type SetFieldsSpec struct {
+	Fields     []*MapFieldValue `json:"fields,omitempty"`
+	ObjectType *ObjectType      `json:"objectType,omitempty"`
+	ObjectID   *string          `json:"objectId,omitempty"`
+}
+
 type SetModemPoolRequest struct {
 	Spec     *ModemPoolSpec  `json:"spec,omitempty"`
 	Metadata *MetadataFields `json:"metadata,omitempty"`
@@ -1023,6 +1029,10 @@ type TopologyNode struct {
 
 type UpdateMetadata struct {
 	Metadata *MetadataFields `json:"metadata,omitempty"`
+}
+
+type UpdateObjectFieldsRequest struct {
+	Spec *SetFieldsSpec `json:"spec,omitempty"`
 }
 
 type Value struct {

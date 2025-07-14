@@ -118,6 +118,7 @@ const (
 	ApiService_RunCronJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/RunCronJob"
 	ApiService_PauseCronJob_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/PauseCronJob"
 	ApiService_ResumeCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
+	ApiService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -425,6 +426,9 @@ type ApiServiceClient interface {
 	// @group: Cron Jobs
 	// The method to resume the cron job.
 	ResumeCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiServiceClient struct {
@@ -1392,6 +1396,16 @@ func (c *apiServiceClient) ResumeCronJob(ctx context.Context, in *wrapperspb.Str
 	return out, nil
 }
 
+func (c *apiServiceClient) UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateObjectFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1697,6 +1711,9 @@ type ApiServiceServer interface {
 	// @group: Cron Jobs
 	// The method to resume the cron job.
 	ResumeCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -1985,6 +2002,9 @@ func (UnimplementedApiServiceServer) PauseCronJob(context.Context, *wrapperspb.S
 }
 func (UnimplementedApiServiceServer) ResumeCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResumeCronJob not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectFields not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -3660,6 +3680,24 @@ func _ApiService_ResumeCronJob_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_UpdateObjectFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateObjectFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateObjectFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateObjectFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateObjectFields(ctx, req.(*common.UpdateObjectFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4026,6 +4064,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResumeCronJob",
 			Handler:    _ApiService_ResumeCronJob_Handler,
+		},
+		{
+			MethodName: "UpdateObjectFields",
+			Handler:    _ApiService_UpdateObjectFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

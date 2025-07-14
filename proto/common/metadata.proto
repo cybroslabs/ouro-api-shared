@@ -6,6 +6,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 import "google/protobuf/struct.proto";
 import "common/fields.proto";
+import "common/objects.proto";
 
 // The metadata fields managed by user and system.
 message MetadataFields {
@@ -19,4 +20,15 @@ message MetadataFields {
 message UpdateMetadata {
     reserved 1, 2;                // Reserved for compatibility with other typed models where the metadata is at the 3rd position.
     MetadataFields metadata = 3;  // The metadata fields of the resource.
+}
+
+message UpdateObjectFieldsRequest {
+    reserved 2, 3;
+    SetFieldsSpec spec = 1;  // The specification of the fields to set for the resource(s).
+}
+
+message SetFieldsSpec {
+    map<string, common.FieldValue> fields = 1;  // The fields to set for the resource(s).
+    ObjectType object_type                = 2;  // The type of the managed fields update. It defines the resource type for which the fields are set.
+    string object_id                      = 3;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
 }

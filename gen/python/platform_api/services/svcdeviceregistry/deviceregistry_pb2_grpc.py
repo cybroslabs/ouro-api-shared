@@ -7,6 +7,7 @@ from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
 from common import fields_pb2 as common_dot_fields__pb2
 from common import internal_pb2 as common_dot_internal__pb2
+from common import metadata_pb2 as common_dot_metadata__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
@@ -390,6 +391,11 @@ class DeviceRegistryServiceStub(object):
         self.SetCurrentDeviceCommunicationUnit = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
                 request_serializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.UpdateObjectFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateObjectFields',
+                request_serializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
@@ -955,6 +961,14 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateObjectFields(self, request, context):
+        """@group: Metadata
+        The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DeviceRegistryServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1326,6 +1340,11 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
             'SetCurrentDeviceCommunicationUnit': grpc.unary_unary_rpc_method_handler(
                     servicer.SetCurrentDeviceCommunicationUnit,
                     request_deserializer=acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateObjectFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateObjectFields,
+                    request_deserializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -3327,6 +3346,33 @@ class DeviceRegistryService(object):
             target,
             '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit',
             acquisition_dot_internal__pb2.SetCurrentDeviceCommunicationUnitInternalRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateObjectFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateObjectFields',
+            common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

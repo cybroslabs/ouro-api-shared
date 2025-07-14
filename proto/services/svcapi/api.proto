@@ -336,4 +336,8 @@ service ApiService {
     // @group: Cron Jobs
     // The method to resume the cron job.
     rpc ResumeCronJob(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+    // @group: Metadata
+    // The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+    rpc UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest) returns (google.protobuf.Empty);
 }

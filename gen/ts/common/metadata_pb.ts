@@ -7,13 +7,15 @@ import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { FieldValue, FieldValueJson } from "./fields_pb";
 import { file_common_fields } from "./fields_pb";
+import type { ObjectType, ObjectTypeJson } from "./objects_pb";
+import { file_common_objects } from "./objects_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEANCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEAMiYwoZVXBkYXRlT2JqZWN0RmllbGRzUmVxdWVzdBI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0RmllbGRzU3BlY0oECAIQA0oECAMQBCKGAgoNU2V0RmllbGRzU3BlYxJICgZmaWVsZHMYASADKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5TZXRGaWVsZHNTcGVjLkZpZWxkc0VudHJ5Ej4KC29iamVjdF90eXBlGAIgASgOMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uT2JqZWN0VHlwZRIRCglvYmplY3RfaWQYAyABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields, file_common_objects]);
 
 /**
  * The metadata fields managed by user and system.
@@ -136,4 +138,94 @@ export type UpdateMetadataJson = {
  */
 export const UpdateMetadataSchema: GenMessage<UpdateMetadata, {jsonType: UpdateMetadataJson}> = /*@__PURE__*/
   messageDesc(file_common_metadata, 1);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.UpdateObjectFieldsRequest
+ */
+export type UpdateObjectFieldsRequest = Message<"io.clbs.openhes.models.common.UpdateObjectFieldsRequest"> & {
+  /**
+   * The specification of the fields to set for the resource(s).
+   *
+   * @generated from field: io.clbs.openhes.models.common.SetFieldsSpec spec = 1;
+   */
+  spec?: SetFieldsSpec;
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.UpdateObjectFieldsRequest
+ */
+export type UpdateObjectFieldsRequestJson = {
+  /**
+   * The specification of the fields to set for the resource(s).
+   *
+   * @generated from field: io.clbs.openhes.models.common.SetFieldsSpec spec = 1;
+   */
+  spec?: SetFieldsSpecJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.UpdateObjectFieldsRequest.
+ * Use `create(UpdateObjectFieldsRequestSchema)` to create a new message.
+ */
+export const UpdateObjectFieldsRequestSchema: GenMessage<UpdateObjectFieldsRequest, {jsonType: UpdateObjectFieldsRequestJson}> = /*@__PURE__*/
+  messageDesc(file_common_metadata, 2);
+
+/**
+ * @generated from message io.clbs.openhes.models.common.SetFieldsSpec
+ */
+export type SetFieldsSpec = Message<"io.clbs.openhes.models.common.SetFieldsSpec"> & {
+  /**
+   * The fields to set for the resource(s).
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 1;
+   */
+  fields: { [key: string]: FieldValue };
+
+  /**
+   * The type of the managed fields update. It defines the resource type for which the fields are set.
+   *
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
+   */
+  objectType: ObjectType;
+
+  /**
+   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   *
+   * @generated from field: string object_id = 3;
+   */
+  objectId: string;
+};
+
+/**
+ * @generated from message io.clbs.openhes.models.common.SetFieldsSpec
+ */
+export type SetFieldsSpecJson = {
+  /**
+   * The fields to set for the resource(s).
+   *
+   * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 1;
+   */
+  fields?: { [key: string]: FieldValueJson };
+
+  /**
+   * The type of the managed fields update. It defines the resource type for which the fields are set.
+   *
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
+   */
+  objectType?: ObjectTypeJson;
+
+  /**
+   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   *
+   * @generated from field: string object_id = 3;
+   */
+  objectId?: string;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.common.SetFieldsSpec.
+ * Use `create(SetFieldsSpecSchema)` to create a new message.
+ */
+export const SetFieldsSpecSchema: GenMessage<SetFieldsSpec, {jsonType: SetFieldsSpecJson}> = /*@__PURE__*/
+  messageDesc(file_common_metadata, 3);
 

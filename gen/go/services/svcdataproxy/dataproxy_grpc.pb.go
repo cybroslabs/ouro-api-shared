@@ -45,6 +45,7 @@ const (
 	DataproxyService_UpdateFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateFieldDescriptor"
 	DataproxyService_DeleteFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteFieldDescriptor"
 	DataproxyService_SetManagedFields_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields"
+	DataproxyService_UpdateObjectFields_FullMethodName             = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateObjectFields"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -121,6 +122,9 @@ type DataproxyServiceClient interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type dataproxyServiceClient struct {
@@ -378,6 +382,16 @@ func (c *dataproxyServiceClient) SetManagedFields(ctx context.Context, in *commo
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DataproxyService_UpdateObjectFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility.
@@ -452,6 +466,9 @@ type DataproxyServiceServer interface {
 	// @group: Metadata
 	// The method to set the managed fields of the resource(s).
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -527,6 +544,9 @@ func (UnimplementedDataproxyServiceServer) DeleteFieldDescriptor(context.Context
 }
 func (UnimplementedDataproxyServiceServer) SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetManagedFields not implemented")
+}
+func (UnimplementedDataproxyServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectFields not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 func (UnimplementedDataproxyServiceServer) testEmbeddedByValue()                          {}
@@ -924,6 +944,24 @@ func _DataproxyService_SetManagedFields_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_UpdateObjectFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateObjectFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).UpdateObjectFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_UpdateObjectFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).UpdateObjectFields(ctx, req.(*common.UpdateObjectFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1006,6 +1044,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetManagedFields",
 			Handler:    _DataproxyService_SetManagedFields_Handler,
+		},
+		{
+			MethodName: "UpdateObjectFields",
+			Handler:    _DataproxyService_UpdateObjectFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

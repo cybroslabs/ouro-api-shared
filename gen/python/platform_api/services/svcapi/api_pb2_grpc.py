@@ -488,6 +488,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.UpdateObjectFields = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields',
+                request_serializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
 
 
 class ApiServiceServicer(object):
@@ -1258,6 +1263,14 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateObjectFields(self, request, context):
+        """@group: Metadata
+        The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1724,6 +1737,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
             'ResumeCronJob': grpc.unary_unary_rpc_method_handler(
                     servicer.ResumeCronJob,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'UpdateObjectFields': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateObjectFields,
+                    request_deserializer=common_dot_metadata__pb2.UpdateObjectFieldsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -4238,6 +4256,33 @@ class ApiService(object):
             target,
             '/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateObjectFields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields',
+            common_dot_metadata__pb2.UpdateObjectFieldsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

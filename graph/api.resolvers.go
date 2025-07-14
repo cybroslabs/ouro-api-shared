@@ -416,6 +416,11 @@ func (r *queryResolver) ListFieldDescriptorOptions(ctx context.Context) (*model.
 	panic(fmt.Errorf("not implemented: ListFieldDescriptorOptions - listFieldDescriptorOptions"))
 }
 
+// UpdateObjectFields is the resolver for the updateObjectFields field.
+func (r *queryResolver) UpdateObjectFields(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: UpdateObjectFields - updateObjectFields"))
+}
+
 // CreateTimeOfUseTable is the resolver for the createTimeOfUseTable field.
 func (r *queryResolver) CreateTimeOfUseTable(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateTimeOfUseTable - createTimeOfUseTable"))

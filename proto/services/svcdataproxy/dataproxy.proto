@@ -94,4 +94,7 @@ service DataproxyService {
     // @group: Metadata
     // The method to set the managed fields of the resource(s).
     rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
+    // @group: Metadata
+    // The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+    rpc UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest) returns (google.protobuf.Empty);
 }

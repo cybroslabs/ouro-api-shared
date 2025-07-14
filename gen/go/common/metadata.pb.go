@@ -259,11 +259,203 @@ func (b0 UpdateMetadata_builder) Build() *UpdateMetadata {
 	return m0
 }
 
+type UpdateObjectFieldsRequest struct {
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec *SetFieldsSpec         `protobuf:"bytes,1,opt,name=spec"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *UpdateObjectFieldsRequest) Reset() {
+	*x = UpdateObjectFieldsRequest{}
+	mi := &file_common_metadata_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectFieldsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectFieldsRequest) ProtoMessage() {}
+
+func (x *UpdateObjectFieldsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_metadata_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *UpdateObjectFieldsRequest) GetSpec() *SetFieldsSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *UpdateObjectFieldsRequest) SetSpec(v *SetFieldsSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *UpdateObjectFieldsRequest) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *UpdateObjectFieldsRequest) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+type UpdateObjectFieldsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec *SetFieldsSpec
+}
+
+func (b0 UpdateObjectFieldsRequest_builder) Build() *UpdateObjectFieldsRequest {
+	m0 := &UpdateObjectFieldsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	return m0
+}
+
+type SetFieldsSpec struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Fields      map[string]*FieldValue `protobuf:"bytes,1,rep,name=fields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_ObjectType  ObjectType             `protobuf:"varint,2,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_ObjectId    *string                `protobuf:"bytes,3,opt,name=object_id,json=objectId"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *SetFieldsSpec) Reset() {
+	*x = SetFieldsSpec{}
+	mi := &file_common_metadata_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetFieldsSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetFieldsSpec) ProtoMessage() {}
+
+func (x *SetFieldsSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_common_metadata_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *SetFieldsSpec) GetFields() map[string]*FieldValue {
+	if x != nil {
+		return x.xxx_hidden_Fields
+	}
+	return nil
+}
+
+func (x *SetFieldsSpec) GetObjectType() ObjectType {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_ObjectType
+		}
+	}
+	return ObjectType_BULK
+}
+
+func (x *SetFieldsSpec) GetObjectId() string {
+	if x != nil {
+		if x.xxx_hidden_ObjectId != nil {
+			return *x.xxx_hidden_ObjectId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetFieldsSpec) SetFields(v map[string]*FieldValue) {
+	x.xxx_hidden_Fields = v
+}
+
+func (x *SetFieldsSpec) SetObjectType(v ObjectType) {
+	x.xxx_hidden_ObjectType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *SetFieldsSpec) SetObjectId(v string) {
+	x.xxx_hidden_ObjectId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+}
+
+func (x *SetFieldsSpec) HasObjectType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *SetFieldsSpec) HasObjectId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *SetFieldsSpec) ClearObjectType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ObjectType = ObjectType_BULK
+}
+
+func (x *SetFieldsSpec) ClearObjectId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_ObjectId = nil
+}
+
+type SetFieldsSpec_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Fields     map[string]*FieldValue
+	ObjectType *ObjectType
+	ObjectId   *string
+}
+
+func (b0 SetFieldsSpec_builder) Build() *SetFieldsSpec {
+	m0 := &SetFieldsSpec{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Fields = b.Fields
+	if b.ObjectType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_ObjectType = *b.ObjectType
+	}
+	if b.ObjectId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_ObjectId = b.ObjectId
+	}
+	return m0
+}
+
 var File_common_metadata_proto protoreflect.FileDescriptor
 
 const file_common_metadata_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\"\xe3\x03\n" +
+	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xe3\x03\n" +
 	"\x0eMetadataFields\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
@@ -279,27 +471,45 @@ const file_common_metadata_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"g\n" +
 	"\x0eUpdateMetadata\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03\"i\n" +
+	"\x19UpdateObjectFieldsRequest\x12@\n" +
+	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.common.SetFieldsSpecR\x04specJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\xb0\x02\n" +
+	"\rSetFieldsSpec\x12P\n" +
+	"\x06fields\x18\x01 \x03(\v28.io.clbs.openhes.models.common.SetFieldsSpec.FieldsEntryR\x06fields\x12J\n" +
+	"\vobject_type\x18\x02 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"objectType\x12\x1b\n" +
+	"\tobject_id\x18\x03 \x01(\tR\bobjectId\x1ad\n" +
+	"\vFieldsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
-var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_common_metadata_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_common_metadata_proto_goTypes = []any{
-	(*MetadataFields)(nil), // 0: io.clbs.openhes.models.common.MetadataFields
-	(*UpdateMetadata)(nil), // 1: io.clbs.openhes.models.common.UpdateMetadata
-	nil,                    // 2: io.clbs.openhes.models.common.MetadataFields.FieldsEntry
-	nil,                    // 3: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
-	(*FieldValue)(nil),     // 4: io.clbs.openhes.models.common.FieldValue
+	(*MetadataFields)(nil),            // 0: io.clbs.openhes.models.common.MetadataFields
+	(*UpdateMetadata)(nil),            // 1: io.clbs.openhes.models.common.UpdateMetadata
+	(*UpdateObjectFieldsRequest)(nil), // 2: io.clbs.openhes.models.common.UpdateObjectFieldsRequest
+	(*SetFieldsSpec)(nil),             // 3: io.clbs.openhes.models.common.SetFieldsSpec
+	nil,                               // 4: io.clbs.openhes.models.common.MetadataFields.FieldsEntry
+	nil,                               // 5: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
+	nil,                               // 6: io.clbs.openhes.models.common.SetFieldsSpec.FieldsEntry
+	(ObjectType)(0),                   // 7: io.clbs.openhes.models.common.ObjectType
+	(*FieldValue)(nil),                // 8: io.clbs.openhes.models.common.FieldValue
 }
 var file_common_metadata_proto_depIdxs = []int32{
-	2, // 0: io.clbs.openhes.models.common.MetadataFields.fields:type_name -> io.clbs.openhes.models.common.MetadataFields.FieldsEntry
-	3, // 1: io.clbs.openhes.models.common.MetadataFields.managed_fields:type_name -> io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
+	4, // 0: io.clbs.openhes.models.common.MetadataFields.fields:type_name -> io.clbs.openhes.models.common.MetadataFields.FieldsEntry
+	5, // 1: io.clbs.openhes.models.common.MetadataFields.managed_fields:type_name -> io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry
 	0, // 2: io.clbs.openhes.models.common.UpdateMetadata.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	4, // 3: io.clbs.openhes.models.common.MetadataFields.FieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	4, // 4: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	3, // 3: io.clbs.openhes.models.common.UpdateObjectFieldsRequest.spec:type_name -> io.clbs.openhes.models.common.SetFieldsSpec
+	6, // 4: io.clbs.openhes.models.common.SetFieldsSpec.fields:type_name -> io.clbs.openhes.models.common.SetFieldsSpec.FieldsEntry
+	7, // 5: io.clbs.openhes.models.common.SetFieldsSpec.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	8, // 6: io.clbs.openhes.models.common.MetadataFields.FieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	8, // 7: io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	8, // 8: io.clbs.openhes.models.common.SetFieldsSpec.FieldsEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_common_metadata_proto_init() }
@@ -308,13 +518,14 @@ func file_common_metadata_proto_init() {
 		return
 	}
 	file_common_fields_proto_init()
+	file_common_objects_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_metadata_proto_rawDesc), len(file_common_metadata_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

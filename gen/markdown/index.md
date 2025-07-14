@@ -18,5 +18,6 @@ The Dataproxy related service definition.
 - [Devices](service-devices-apiservice.md)
 - [Driver Info](service-driver-info-apiservice.md)
 - [Fields](service-fields-apiservice.md)
+- [Metadata](service-metadata-apiservice.md)
 - [Time-Of-Use Tables](service-time-of-use-tables-apiservice.md)
 - [Variables](service-variables-apiservice.md)

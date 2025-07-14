@@ -2002,9 +2002,23 @@ type MetadataFields {
   name: String
 }
 
+type SetFieldsSpec {
+  # The fields to set for the resource(s).
+  fields: [_mapFieldValue]
+  # The type of the managed fields update. It defines the resource type for which the fields are set.
+  objectType: ObjectType
+  # The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+  objectId: String
+}
+
 type UpdateMetadata {
   # The metadata fields of the resource.
   metadata: MetadataFields
+}
+
+type UpdateObjectFieldsRequest {
+  # The specification of the fields to set for the resource(s).
+  spec: SetFieldsSpec
 }
 
 type CreateCronJobRequest {
@@ -2178,6 +2192,7 @@ type Query {
   deleteFieldDescriptor: Empty
   listFieldDescriptors: ListOfFieldDescriptor
   listFieldDescriptorOptions: FieldDescriptorOptions
+  updateObjectFields: Empty
   createTimeOfUseTable: StringValue
   listTimeOfUseTables: ListOfTimeOfUseTable
   getTimeOfUseTable: TimeOfUseTable

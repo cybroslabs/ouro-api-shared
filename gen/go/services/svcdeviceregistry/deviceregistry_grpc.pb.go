@@ -98,6 +98,7 @@ const (
 	DeviceRegistryService_SetUnknownDevices_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetUnknownDevices"
 	DeviceRegistryService_SetNeightbours_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours"
 	DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit"
+	DeviceRegistryService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateObjectFields"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -293,6 +294,9 @@ type DeviceRegistryServiceClient interface {
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
 	SetCurrentDeviceCommunicationUnit(ctx context.Context, in *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -1055,6 +1059,16 @@ func (c *deviceRegistryServiceClient) SetCurrentDeviceCommunicationUnit(ctx cont
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateObjectFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceRegistryServiceServer is the server API for DeviceRegistryService service.
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
@@ -1248,6 +1262,9 @@ type DeviceRegistryServiceServer interface {
 	// The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
 	// The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
 	SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest) (*emptypb.Empty, error)
+	// @group: Metadata
+	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -1479,6 +1496,9 @@ func (UnimplementedDeviceRegistryServiceServer) SetNeightbours(context.Context, 
 }
 func (UnimplementedDeviceRegistryServiceServer) SetCurrentDeviceCommunicationUnit(context.Context, *acquisition.SetCurrentDeviceCommunicationUnitInternalRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCurrentDeviceCommunicationUnit not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectFields not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -2815,6 +2835,24 @@ func _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler(srv interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_UpdateObjectFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.UpdateObjectFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateObjectFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateObjectFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateObjectFields(ctx, req.(*common.UpdateObjectFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceRegistryService_ServiceDesc is the grpc.ServiceDesc for DeviceRegistryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3109,6 +3147,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetCurrentDeviceCommunicationUnit",
 			Handler:    _DeviceRegistryService_SetCurrentDeviceCommunicationUnit_Handler,
+		},
+		{
+			MethodName: "UpdateObjectFields",
+			Handler:    _DeviceRegistryService_UpdateObjectFields_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
