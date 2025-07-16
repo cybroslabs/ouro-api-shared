@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenHES API</title>
+    <link rel="stylesheet" href="static/mystyles.css" />
+    <script src="static/fontawesome.js"></script>
+    <script src="static/lunr.js"></script>
+    <script src="static/theme.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="level pt-6 mb-5 pb-2 bottom-border">
+        <div class="level-left">
+          <p class="level-item has-text-centered is-size-3 has-text-weight-medium">
+            <a class="link is-info" href="index.html">
+              OpenHES API
+            </a>
+          </p>
+        </div>
+
+        <div class="level-right">
+          
+          <form action="search.html" class="mr-2 has-text-centered">
+            <input type="text" name="query" class="input mr-3 navbar-search-query-input" placeholder="Search">
+            <input type="submit" class="button is-primary mr-5" value="Search" />
+          </form>
+          
+
+          <p class="level-item has-text-centered is-size-5">
+            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite" type="button">
+              <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <mask class="moon" id="moon-mask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+                <g class="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-content" class="container mb-6">
+  <p class="mb-2">
+    <a style="font-size: 0.9em" href="index.html">← Back to packages</a>
+  </p>
+  <h3 class="title is-3">
+    
+    Package <code>io.clbs.openhes.models.crypto</code>
+    
+  </h3>
+
+  <div class="block">
+    
+
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.crypto.CryptoSecret">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CryptoSecret</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.crypto.CryptoSecrets">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CryptoSecrets</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.crypto.GetCryptoSecretRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>GetCryptoSecretRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ImportCryptoSecretRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetCryptoSecretRequest</code> 
+        </a>
+      </p>
+      
+    
+
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.crypto.SecretDataFormat">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SecretDataFormat</code> 
+        </a>
+      </p>
+    
+  </div>
+
+  <div class="block">
+      
+  </div>
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Messages
+    </h3>
+
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.CryptoSecret">
+  <span>
+    <a href="#message-io.clbs.openhes.models.crypto.CryptoSecret" title="io.clbs.openhes.models.crypto.CryptoSecret">message CryptoSecret</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        accessLevel
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Access level for the secret, e.g., "admin", "user", etc.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        keyId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the secret key.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        createdAt
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>Timestamp when the secret was created.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        updatedAt
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>Timestamp when the secret was last updated.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>10</td>
+      <td>
+        data
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The secret data.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.CryptoSecrets">
+  <span>
+    <a href="#message-io.clbs.openhes.models.crypto.CryptoSecrets" title="io.clbs.openhes.models.crypto.CryptoSecrets">message CryptoSecrets</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        secrets
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.crypto.CryptoSecret">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.crypto.html#message-io.clbs.openhes.models.crypto.CryptoSecret"><span title="io.clbs.openhes.models.crypto.CryptoSecret">io.clbs.openhes.models.crypto.CryptoSecret</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>List of secrets.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.GetCryptoSecretRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.crypto.GetCryptoSecretRequest" title="io.clbs.openhes.models.crypto.GetCryptoSecretRequest">message GetCryptoSecretRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        objectType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ObjectType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.ObjectType"><span title="io.clbs.openhes.models.common.ObjectType">io.clbs.openhes.models.common.ObjectType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        cryptoId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The crypto ID of the secret to retrieve.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest" title="io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">message ImportCryptoSecretRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        format
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.crypto.SecretDataFormat">
+          
+          <a href="io.clbs.openhes.models.crypto.html#enum-io.clbs.openhes.models.crypto.SecretDataFormat"><span title="io.clbs.openhes.models.crypto.SecretDataFormat">io.clbs.openhes.models.crypto.SecretDataFormat</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The format of the secret data to import.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        data
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The secret data to import.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest" title="io.clbs.openhes.models.crypto.SetCryptoSecretRequest">message SetCryptoSecretRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        objectType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ObjectType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.ObjectType"><span title="io.clbs.openhes.models.common.ObjectType">io.clbs.openhes.models.common.ObjectType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        cryptoId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The crypto ID of the secret to retrieve.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        accessLevel
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Access level for the secret, e.g., "admin", "user", etc.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        keyId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Unique identifier for the secret key.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>10</td>
+      <td>
+        data
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The secret data.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+
+  
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.crypto.SecretDataFormat">
+  <a href="#enum-io.clbs.openhes.models.crypto.SecretDataFormat" title="io.clbs.openhes.models.crypto.SecretDataFormat">enum SecretDataFormat</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>DLMS crypto mode</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>GULF</code></td>
+      <td>0</td>
+      <td class="content"><p>GULF format</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+
+  
+
+</div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+          <p>© 2025 cybros labs</p>
+        
+        <p>Built with <strong><a href="https://github.com/markvincze/sabledocs" target="_blank">sabledocs</a></strong>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

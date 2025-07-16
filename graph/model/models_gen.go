@@ -318,6 +318,18 @@ type CronJobStatus struct {
 	Error     *string `json:"error,omitempty"`
 }
 
+type CryptoSecret struct {
+	AccessLevel *string `json:"accessLevel,omitempty"`
+	KeyID       *string `json:"keyId,omitempty"`
+	CreatedAt   *string `json:"createdAt,omitempty"`
+	UpdatedAt   *string `json:"updatedAt,omitempty"`
+	Data        *string `json:"data,omitempty"`
+}
+
+type CryptoSecrets struct {
+	Secrets []*CryptoSecret `json:"secrets,omitempty"`
+}
+
 type DataLinkTemplate struct {
 	LinkProtocol    *DataLinkProtocol      `json:"linkProtocol,omitempty"`
 	AppProtocolRefs []*ApplicationProtocol `json:"appProtocolRefs,omitempty"`
@@ -568,6 +580,11 @@ type FieldValues struct {
 	Attributes []*MapFieldValue `json:"attributes,omitempty"`
 }
 
+type GetCryptoSecretRequest struct {
+	ObjectType *ObjectType `json:"objectType,omitempty"`
+	CryptoID   *string     `json:"cryptoId,omitempty"`
+}
+
 type GetDeviceBulksRequest struct {
 	From     *string `json:"from,omitempty"`
 	To       *string `json:"to,omitempty"`
@@ -592,6 +609,11 @@ type GetDeviceEventsRequest struct {
 	From     *string `json:"from,omitempty"`
 	To       *string `json:"to,omitempty"`
 	DeviceID *string `json:"deviceId,omitempty"`
+}
+
+type ImportCryptoSecretRequest struct {
+	Format *SecretDataFormat `json:"format,omitempty"`
+	Data   *string           `json:"data,omitempty"`
 }
 
 type IrregularProfileValues struct {
@@ -959,6 +981,14 @@ type Season struct {
 	StartMonth *int32  `json:"startMonth,omitempty"`
 	StartDay   *int32  `json:"startDay,omitempty"`
 	WeekID     *string `json:"weekId,omitempty"`
+}
+
+type SetCryptoSecretRequest struct {
+	ObjectType  *ObjectType `json:"objectType,omitempty"`
+	CryptoID    *string     `json:"cryptoId,omitempty"`
+	AccessLevel *string     `json:"accessLevel,omitempty"`
+	KeyID       *string     `json:"keyId,omitempty"`
+	Data        *string     `json:"data,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {
@@ -2196,6 +2226,59 @@ func (e *RelayState) UnmarshalJSON(b []byte) error {
 }
 
 func (e RelayState) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type SecretDataFormat string
+
+const (
+	SecretDataFormatGulf SecretDataFormat = "GULF"
+)
+
+var AllSecretDataFormat = []SecretDataFormat{
+	SecretDataFormatGulf,
+}
+
+func (e SecretDataFormat) IsValid() bool {
+	switch e {
+	case SecretDataFormatGulf:
+		return true
+	}
+	return false
+}
+
+func (e SecretDataFormat) String() string {
+	return string(e)
+}
+
+func (e *SecretDataFormat) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = SecretDataFormat(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid SecretDataFormat", str)
+	}
+	return nil
+}
+
+func (e SecretDataFormat) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *SecretDataFormat) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e SecretDataFormat) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

@@ -318,6 +318,12 @@ enum CronJobTypeEnum {
   CRON_JOB_TYPE_START_PROXY_BULK
 }
 
+# DLMS crypto mode
+enum SecretDataFormat {
+  # GULF format
+  GULF
+}
+
 # A Duration represents a signed, fixed-length span of time represented
 #  as a count of seconds and fractions of seconds at nanosecond
 #  resolution. It is independent of any calendar and concepts like "day"
@@ -2063,6 +2069,51 @@ type ListOfCronJob {
   totalCount: Int
 }
 
+type CryptoSecret {
+  # Access level for the secret, e.g., "admin", "user", etc.
+  accessLevel: String
+  # Unique identifier for the secret key.
+  keyId: String
+  # Timestamp when the secret was created.
+  createdAt: Timestamp
+  # Timestamp when the secret was last updated.
+  updatedAt: Timestamp
+  # The secret data.
+  data: String
+}
+
+type CryptoSecrets {
+  # List of secrets.
+  secrets: [CryptoSecret]
+}
+
+type GetCryptoSecretRequest {
+  # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+  objectType: ObjectType
+  # The crypto ID of the secret to retrieve.
+  cryptoId: String
+}
+
+type ImportCryptoSecretRequest {
+  # The format of the secret data to import.
+  format: SecretDataFormat
+  # The secret data to import.
+  data: String
+}
+
+type SetCryptoSecretRequest {
+  # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+  objectType: ObjectType
+  # The crypto ID of the secret to retrieve.
+  cryptoId: String
+  # Access level for the secret, e.g., "admin", "user", etc.
+  accessLevel: String
+  # Unique identifier for the secret key.
+  keyId: String
+  # The secret data.
+  data: String
+}
+
 # Application config specification.
 type ApplicationConfig {
   # The default values for the application configuration.
@@ -2139,6 +2190,9 @@ type Query {
   runCronJob: Empty
   pauseCronJob: Empty
   resumeCronJob: Empty
+  getCryptoSecret: CryptoSecrets
+  setCryptoSecret: Empty
+  importCryptoSecrets: Empty
   createDeviceConfigurationRegister: StringValue
   listDeviceConfigurationRegisters: ListOfDeviceConfigurationRegister
   getDeviceConfigurationRegister: DeviceConfigurationRegister

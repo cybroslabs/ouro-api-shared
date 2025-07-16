@@ -11,6 +11,7 @@ import (
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
+	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -120,6 +121,9 @@ const (
 	ApiService_ResumeCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
 	ApiService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
 	ApiService_GetOpenIdConfiguration_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
+	ApiService_GetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
+	ApiService_SetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
+	ApiService_ImportCryptoSecrets_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/ImportCryptoSecrets"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -434,6 +438,15 @@ type ApiServiceClient interface {
 	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected by token from this OIDC service.
 	GetOpenIdConfiguration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.OpenIdConfiguration, error)
+	// @group: Cryptography
+	// The method returns a secret based on the request.
+	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiServiceClient struct {
@@ -1421,6 +1434,36 @@ func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, in *empty
 	return out, nil
 }
 
+func (c *apiServiceClient) GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(crypto.CryptoSecrets)
+	err := c.cc.Invoke(ctx, ApiService_GetCryptoSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_SetCryptoSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_ImportCryptoSecrets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1733,6 +1776,15 @@ type ApiServiceServer interface {
 	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected by token from this OIDC service.
 	GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error)
+	// @group: Cryptography
+	// The method returns a secret based on the request.
+	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -2027,6 +2079,15 @@ func (UnimplementedApiServiceServer) UpdateObjectFields(context.Context, *common
 }
 func (UnimplementedApiServiceServer) GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOpenIdConfiguration not implemented")
+}
+func (UnimplementedApiServiceServer) GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCryptoSecret not implemented")
+}
+func (UnimplementedApiServiceServer) SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCryptoSecret not implemented")
+}
+func (UnimplementedApiServiceServer) ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImportCryptoSecrets not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -3738,6 +3799,60 @@ func _ApiService_GetOpenIdConfiguration_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetCryptoSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.GetCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetCryptoSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetCryptoSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetCryptoSecret(ctx, req.(*crypto.GetCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_SetCryptoSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.SetCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SetCryptoSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SetCryptoSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SetCryptoSecret(ctx, req.(*crypto.SetCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ImportCryptoSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.ImportCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ImportCryptoSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ImportCryptoSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ImportCryptoSecrets(ctx, req.(*crypto.ImportCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4112,6 +4227,18 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOpenIdConfiguration",
 			Handler:    _ApiService_GetOpenIdConfiguration_Handler,
+		},
+		{
+			MethodName: "GetCryptoSecret",
+			Handler:    _ApiService_GetCryptoSecret_Handler,
+		},
+		{
+			MethodName: "SetCryptoSecret",
+			Handler:    _ApiService_SetCryptoSecret_Handler,
+		},
+		{
+			MethodName: "ImportCryptoSecrets",
+			Handler:    _ApiService_ImportCryptoSecrets_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

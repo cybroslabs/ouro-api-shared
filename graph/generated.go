@@ -354,6 +354,18 @@ type ComplexityRoot struct {
 		NextRunAt func(childComplexity int) int
 	}
 
+	CryptoSecret struct {
+		AccessLevel func(childComplexity int) int
+		CreatedAt   func(childComplexity int) int
+		Data        func(childComplexity int) int
+		KeyID       func(childComplexity int) int
+		UpdatedAt   func(childComplexity int) int
+	}
+
+	CryptoSecrets struct {
+		Secrets func(childComplexity int) int
+	}
+
 	DataLinkTemplate struct {
 		AppProtocolRefs func(childComplexity int) int
 		Attributes      func(childComplexity int) int
@@ -604,6 +616,11 @@ type ComplexityRoot struct {
 		Attributes func(childComplexity int) int
 	}
 
+	GetCryptoSecretRequest struct {
+		CryptoID   func(childComplexity int) int
+		ObjectType func(childComplexity int) int
+	}
+
 	GetDeviceBulksRequest struct {
 		DeviceID func(childComplexity int) int
 		From     func(childComplexity int) int
@@ -628,6 +645,11 @@ type ComplexityRoot struct {
 		DeviceID func(childComplexity int) int
 		From     func(childComplexity int) int
 		To       func(childComplexity int) int
+	}
+
+	ImportCryptoSecretRequest struct {
+		Data   func(childComplexity int) int
+		Format func(childComplexity int) int
 	}
 
 	IrregularProfileValues struct {
@@ -985,6 +1007,7 @@ type ComplexityRoot struct {
 		GetCommunicationUnit                                             func(childComplexity int) int
 		GetCommunicationUnitNetworkMap                                   func(childComplexity int) int
 		GetCronJob                                                       func(childComplexity int) int
+		GetCryptoSecret                                                  func(childComplexity int) int
 		GetDevice                                                        func(childComplexity int) int
 		GetDeviceBulks                                                   func(childComplexity int) int
 		GetDeviceCommunicationUnits                                      func(childComplexity int) int
@@ -1005,6 +1028,7 @@ type ComplexityRoot struct {
 		GetProxyBulk                                                     func(childComplexity int) int
 		GetTimeOfUseTable                                                func(childComplexity int) int
 		GetVariable                                                      func(childComplexity int) int
+		ImportCryptoSecrets                                              func(childComplexity int) int
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
@@ -1030,6 +1054,7 @@ type ComplexityRoot struct {
 		RemoveRegisterFromVariable                                       func(childComplexity int) int
 		ResumeCronJob                                                    func(childComplexity int) int
 		RunCronJob                                                       func(childComplexity int) int
+		SetCryptoSecret                                                  func(childComplexity int) int
 		SetDeviceCommunicationUnits                                      func(childComplexity int) int
 		SynchronizeComponentConfig                                       func(childComplexity int) int
 		UpdateApplicationConfig                                          func(childComplexity int) int
@@ -1090,6 +1115,14 @@ type ComplexityRoot struct {
 		StartMonth func(childComplexity int) int
 		StartYear  func(childComplexity int) int
 		WeekID     func(childComplexity int) int
+	}
+
+	SetCryptoSecretRequest struct {
+		AccessLevel func(childComplexity int) int
+		CryptoID    func(childComplexity int) int
+		Data        func(childComplexity int) int
+		KeyID       func(childComplexity int) int
+		ObjectType  func(childComplexity int) int
 	}
 
 	SetDeviceCommunicationUnitsRequest struct {
@@ -1248,6 +1281,9 @@ type QueryResolver interface {
 	RunCronJob(ctx context.Context) (*model.Empty, error)
 	PauseCronJob(ctx context.Context) (*model.Empty, error)
 	ResumeCronJob(ctx context.Context) (*model.Empty, error)
+	GetCryptoSecret(ctx context.Context) (*model.CryptoSecrets, error)
+	SetCryptoSecret(ctx context.Context) (*model.Empty, error)
+	ImportCryptoSecrets(ctx context.Context) (*model.Empty, error)
 	CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error)
 	ListDeviceConfigurationRegisters(ctx context.Context) (*model.ListOfDeviceConfigurationRegister, error)
 	GetDeviceConfigurationRegister(ctx context.Context) (*model.DeviceConfigurationRegister, error)
@@ -2293,6 +2329,48 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.CronJobStatus.NextRunAt(childComplexity), true
 
+	case "CryptoSecret.accessLevel":
+		if e.complexity.CryptoSecret.AccessLevel == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecret.AccessLevel(childComplexity), true
+
+	case "CryptoSecret.createdAt":
+		if e.complexity.CryptoSecret.CreatedAt == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecret.CreatedAt(childComplexity), true
+
+	case "CryptoSecret.data":
+		if e.complexity.CryptoSecret.Data == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecret.Data(childComplexity), true
+
+	case "CryptoSecret.keyId":
+		if e.complexity.CryptoSecret.KeyID == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecret.KeyID(childComplexity), true
+
+	case "CryptoSecret.updatedAt":
+		if e.complexity.CryptoSecret.UpdatedAt == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecret.UpdatedAt(childComplexity), true
+
+	case "CryptoSecrets.secrets":
+		if e.complexity.CryptoSecrets.Secrets == nil {
+			break
+		}
+
+		return e.complexity.CryptoSecrets.Secrets(childComplexity), true
+
 	case "DataLinkTemplate.appProtocolRefs":
 		if e.complexity.DataLinkTemplate.AppProtocolRefs == nil {
 			break
@@ -3245,6 +3323,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.FieldValues.Attributes(childComplexity), true
 
+	case "GetCryptoSecretRequest.cryptoId":
+		if e.complexity.GetCryptoSecretRequest.CryptoID == nil {
+			break
+		}
+
+		return e.complexity.GetCryptoSecretRequest.CryptoID(childComplexity), true
+
+	case "GetCryptoSecretRequest.objectType":
+		if e.complexity.GetCryptoSecretRequest.ObjectType == nil {
+			break
+		}
+
+		return e.complexity.GetCryptoSecretRequest.ObjectType(childComplexity), true
+
 	case "GetDeviceBulksRequest.deviceId":
 		if e.complexity.GetDeviceBulksRequest.DeviceID == nil {
 			break
@@ -3342,6 +3434,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.GetDeviceEventsRequest.To(childComplexity), true
+
+	case "ImportCryptoSecretRequest.data":
+		if e.complexity.ImportCryptoSecretRequest.Data == nil {
+			break
+		}
+
+		return e.complexity.ImportCryptoSecretRequest.Data(childComplexity), true
+
+	case "ImportCryptoSecretRequest.format":
+		if e.complexity.ImportCryptoSecretRequest.Format == nil {
+			break
+		}
+
+		return e.complexity.ImportCryptoSecretRequest.Format(childComplexity), true
 
 	case "IrregularProfileValues.unit":
 		if e.complexity.IrregularProfileValues.Unit == nil {
@@ -4771,6 +4877,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.GetCronJob(childComplexity), true
 
+	case "Query.getCryptoSecret":
+		if e.complexity.Query.GetCryptoSecret == nil {
+			break
+		}
+
+		return e.complexity.Query.GetCryptoSecret(childComplexity), true
+
 	case "Query.getDevice":
 		if e.complexity.Query.GetDevice == nil {
 			break
@@ -4910,6 +5023,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.GetVariable(childComplexity), true
+
+	case "Query.importCryptoSecrets":
+		if e.complexity.Query.ImportCryptoSecrets == nil {
+			break
+		}
+
+		return e.complexity.Query.ImportCryptoSecrets(childComplexity), true
 
 	case "Query.listBulkJobs":
 		if e.complexity.Query.ListBulkJobs == nil {
@@ -5085,6 +5205,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.RunCronJob(childComplexity), true
+
+	case "Query.setCryptoSecret":
+		if e.complexity.Query.SetCryptoSecret == nil {
+			break
+		}
+
+		return e.complexity.Query.SetCryptoSecret(childComplexity), true
 
 	case "Query.setDeviceCommunicationUnits":
 		if e.complexity.Query.SetDeviceCommunicationUnits == nil {
@@ -5337,6 +5464,41 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Season.WeekID(childComplexity), true
+
+	case "SetCryptoSecretRequest.accessLevel":
+		if e.complexity.SetCryptoSecretRequest.AccessLevel == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.AccessLevel(childComplexity), true
+
+	case "SetCryptoSecretRequest.cryptoId":
+		if e.complexity.SetCryptoSecretRequest.CryptoID == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.CryptoID(childComplexity), true
+
+	case "SetCryptoSecretRequest.data":
+		if e.complexity.SetCryptoSecretRequest.Data == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.Data(childComplexity), true
+
+	case "SetCryptoSecretRequest.keyId":
+		if e.complexity.SetCryptoSecretRequest.KeyID == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.KeyID(childComplexity), true
+
+	case "SetCryptoSecretRequest.objectType":
+		if e.complexity.SetCryptoSecretRequest.ObjectType == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.ObjectType(childComplexity), true
 
 	case "SetDeviceCommunicationUnitsRequest.communicationUnits":
 		if e.complexity.SetDeviceCommunicationUnitsRequest.CommunicationUnits == nil {
@@ -12428,6 +12590,264 @@ func (ec *executionContext) fieldContext_CronJobStatus_error(_ context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _CryptoSecret_accessLevel(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecret) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecret_accessLevel(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.AccessLevel, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecret_accessLevel(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecret",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CryptoSecret_keyId(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecret) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecret_keyId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.KeyID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecret_keyId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecret",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CryptoSecret_createdAt(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecret) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecret_createdAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CreatedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecret_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecret",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CryptoSecret_updatedAt(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecret) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecret_updatedAt(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.UpdatedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecret_updatedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecret",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CryptoSecret_data(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecret) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecret_data(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Data, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecret_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecret",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CryptoSecrets_secrets(ctx context.Context, field graphql.CollectedField, obj *model.CryptoSecrets) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CryptoSecrets_secrets(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Secrets, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.CryptoSecret)
+	fc.Result = res
+	return ec.marshalOCryptoSecret2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecret(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CryptoSecrets_secrets(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CryptoSecrets",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "accessLevel":
+				return ec.fieldContext_CryptoSecret_accessLevel(ctx, field)
+			case "keyId":
+				return ec.fieldContext_CryptoSecret_keyId(ctx, field)
+			case "createdAt":
+				return ec.fieldContext_CryptoSecret_createdAt(ctx, field)
+			case "updatedAt":
+				return ec.fieldContext_CryptoSecret_updatedAt(ctx, field)
+			case "data":
+				return ec.fieldContext_CryptoSecret_data(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type CryptoSecret", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _DataLinkTemplate_linkProtocol(ctx context.Context, field graphql.CollectedField, obj *model.DataLinkTemplate) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_DataLinkTemplate_linkProtocol(ctx, field)
 	if err != nil {
@@ -18440,6 +18860,88 @@ func (ec *executionContext) fieldContext_FieldValues_attributes(_ context.Contex
 	return fc, nil
 }
 
+func (ec *executionContext) _GetCryptoSecretRequest_objectType(ctx context.Context, field graphql.CollectedField, obj *model.GetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetCryptoSecretRequest_objectType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ObjectType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ObjectType)
+	fc.Result = res
+	return ec.marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetCryptoSecretRequest_objectType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type ObjectType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetCryptoSecretRequest_cryptoId(ctx context.Context, field graphql.CollectedField, obj *model.GetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetCryptoSecretRequest_cryptoId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CryptoID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetCryptoSecretRequest_cryptoId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _GetDeviceBulksRequest_from(ctx context.Context, field graphql.CollectedField, obj *model.GetDeviceBulksRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_GetDeviceBulksRequest_from(ctx, field)
 	if err != nil {
@@ -19010,6 +19512,88 @@ func (ec *executionContext) _GetDeviceEventsRequest_deviceId(ctx context.Context
 func (ec *executionContext) fieldContext_GetDeviceEventsRequest_deviceId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "GetDeviceEventsRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ImportCryptoSecretRequest_format(ctx context.Context, field graphql.CollectedField, obj *model.ImportCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ImportCryptoSecretRequest_format(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Format, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.SecretDataFormat)
+	fc.Result = res
+	return ec.marshalOSecretDataFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataFormat(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ImportCryptoSecretRequest_format(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ImportCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type SecretDataFormat does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ImportCryptoSecretRequest_data(ctx context.Context, field graphql.CollectedField, obj *model.ImportCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ImportCryptoSecretRequest_data(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Data, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ImportCryptoSecretRequest_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ImportCryptoSecretRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -27795,6 +28379,141 @@ func (ec *executionContext) fieldContext_Query_resumeCronJob(_ context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_getCryptoSecret(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_getCryptoSecret(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().GetCryptoSecret(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.CryptoSecrets)
+	fc.Result = res
+	return ec.marshalOCryptoSecrets2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecrets(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_getCryptoSecret(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "secrets":
+				return ec.fieldContext_CryptoSecrets_secrets(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type CryptoSecrets", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_setCryptoSecret(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_setCryptoSecret(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().SetCryptoSecret(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_setCryptoSecret(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_importCryptoSecrets(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_importCryptoSecrets(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ImportCryptoSecrets(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_importCryptoSecrets(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_createDeviceConfigurationRegister(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_createDeviceConfigurationRegister(ctx, field)
 	if err != nil {
@@ -32088,6 +32807,211 @@ func (ec *executionContext) _Season_weekId(ctx context.Context, field graphql.Co
 func (ec *executionContext) fieldContext_Season_weekId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Season",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_objectType(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_objectType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ObjectType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ObjectType)
+	fc.Result = res
+	return ec.marshalOObjectType2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐObjectType(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_objectType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type ObjectType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_cryptoId(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_cryptoId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CryptoID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_cryptoId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_accessLevel(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_accessLevel(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.AccessLevel, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_accessLevel(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_keyId(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_keyId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.KeyID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_keyId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_data(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_data(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Data, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_data(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -39073,6 +39997,86 @@ func (ec *executionContext) _CronJobStatus(ctx context.Context, sel ast.Selectio
 	return out
 }
 
+var cryptoSecretImplementors = []string{"CryptoSecret"}
+
+func (ec *executionContext) _CryptoSecret(ctx context.Context, sel ast.SelectionSet, obj *model.CryptoSecret) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, cryptoSecretImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CryptoSecret")
+		case "accessLevel":
+			out.Values[i] = ec._CryptoSecret_accessLevel(ctx, field, obj)
+		case "keyId":
+			out.Values[i] = ec._CryptoSecret_keyId(ctx, field, obj)
+		case "createdAt":
+			out.Values[i] = ec._CryptoSecret_createdAt(ctx, field, obj)
+		case "updatedAt":
+			out.Values[i] = ec._CryptoSecret_updatedAt(ctx, field, obj)
+		case "data":
+			out.Values[i] = ec._CryptoSecret_data(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var cryptoSecretsImplementors = []string{"CryptoSecrets"}
+
+func (ec *executionContext) _CryptoSecrets(ctx context.Context, sel ast.SelectionSet, obj *model.CryptoSecrets) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, cryptoSecretsImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CryptoSecrets")
+		case "secrets":
+			out.Values[i] = ec._CryptoSecrets_secrets(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var dataLinkTemplateImplementors = []string{"DataLinkTemplate"}
 
 func (ec *executionContext) _DataLinkTemplate(ctx context.Context, sel ast.SelectionSet, obj *model.DataLinkTemplate) graphql.Marshaler {
@@ -40637,6 +41641,44 @@ func (ec *executionContext) _FieldValues(ctx context.Context, sel ast.SelectionS
 	return out
 }
 
+var getCryptoSecretRequestImplementors = []string{"GetCryptoSecretRequest"}
+
+func (ec *executionContext) _GetCryptoSecretRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetCryptoSecretRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, getCryptoSecretRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("GetCryptoSecretRequest")
+		case "objectType":
+			out.Values[i] = ec._GetCryptoSecretRequest_objectType(ctx, field, obj)
+		case "cryptoId":
+			out.Values[i] = ec._GetCryptoSecretRequest_cryptoId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var getDeviceBulksRequestImplementors = []string{"GetDeviceBulksRequest"}
 
 func (ec *executionContext) _GetDeviceBulksRequest(ctx context.Context, sel ast.SelectionSet, obj *model.GetDeviceBulksRequest) graphql.Marshaler {
@@ -40778,6 +41820,44 @@ func (ec *executionContext) _GetDeviceEventsRequest(ctx context.Context, sel ast
 			out.Values[i] = ec._GetDeviceEventsRequest_to(ctx, field, obj)
 		case "deviceId":
 			out.Values[i] = ec._GetDeviceEventsRequest_deviceId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var importCryptoSecretRequestImplementors = []string{"ImportCryptoSecretRequest"}
+
+func (ec *executionContext) _ImportCryptoSecretRequest(ctx context.Context, sel ast.SelectionSet, obj *model.ImportCryptoSecretRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, importCryptoSecretRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ImportCryptoSecretRequest")
+		case "format":
+			out.Values[i] = ec._ImportCryptoSecretRequest_format(ctx, field, obj)
+		case "data":
+			out.Values[i] = ec._ImportCryptoSecretRequest_data(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -43297,6 +44377,63 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getCryptoSecret":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getCryptoSecret(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "setCryptoSecret":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_setCryptoSecret(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "importCryptoSecrets":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_importCryptoSecrets(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "createDeviceConfigurationRegister":
 			field := field
 
@@ -44985,6 +46122,50 @@ func (ec *executionContext) _Season(ctx context.Context, sel ast.SelectionSet, o
 			out.Values[i] = ec._Season_startDay(ctx, field, obj)
 		case "weekId":
 			out.Values[i] = ec._Season_weekId(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var setCryptoSecretRequestImplementors = []string{"SetCryptoSecretRequest"}
+
+func (ec *executionContext) _SetCryptoSecretRequest(ctx context.Context, sel ast.SelectionSet, obj *model.SetCryptoSecretRequest) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, setCryptoSecretRequestImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("SetCryptoSecretRequest")
+		case "objectType":
+			out.Values[i] = ec._SetCryptoSecretRequest_objectType(ctx, field, obj)
+		case "cryptoId":
+			out.Values[i] = ec._SetCryptoSecretRequest_cryptoId(ctx, field, obj)
+		case "accessLevel":
+			out.Values[i] = ec._SetCryptoSecretRequest_accessLevel(ctx, field, obj)
+		case "keyId":
+			out.Values[i] = ec._SetCryptoSecretRequest_keyId(ctx, field, obj)
+		case "data":
+			out.Values[i] = ec._SetCryptoSecretRequest_data(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -47551,6 +48732,61 @@ func (ec *executionContext) marshalOCronJobTypeEnum2ᚖgithubᚗcomᚋcybroslabs
 	return v
 }
 
+func (ec *executionContext) marshalOCryptoSecret2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecret(ctx context.Context, sel ast.SelectionSet, v []*model.CryptoSecret) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOCryptoSecret2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecret(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOCryptoSecret2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecret(ctx context.Context, sel ast.SelectionSet, v *model.CryptoSecret) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._CryptoSecret(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOCryptoSecrets2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCryptoSecrets(ctx context.Context, sel ast.SelectionSet, v *model.CryptoSecrets) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._CryptoSecrets(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalODataLinkProtocol2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐDataLinkProtocol(ctx context.Context, v any) (*model.DataLinkProtocol, error) {
 	if v == nil {
 		return nil, nil
@@ -49714,6 +50950,22 @@ func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋouro�
 		return graphql.Null
 	}
 	return ec._Season(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOSecretDataFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataFormat(ctx context.Context, v any) (*model.SecretDataFormat, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.SecretDataFormat)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOSecretDataFormat2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataFormat(ctx context.Context, sel ast.SelectionSet, v *model.SecretDataFormat) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) marshalOSetFieldsSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSetFieldsSpec(ctx context.Context, sel ast.SelectionSet, v *model.SetFieldsSpec) graphql.Marshaler {

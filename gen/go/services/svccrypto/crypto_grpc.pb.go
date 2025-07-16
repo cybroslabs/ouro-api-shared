@@ -12,6 +12,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,7 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CryproService_Dlms_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryproService/Dlms"
+	CryproService_Dlms_FullMethodName                = "/io.clbs.openhes.services.svccrypto.CryproService/Dlms"
+	CryproService_GetCryptoSecret_FullMethodName     = "/io.clbs.openhes.services.svccrypto.CryproService/GetCryptoSecret"
+	CryproService_SetCryptoSecret_FullMethodName     = "/io.clbs.openhes.services.svccrypto.CryproService/SetCryptoSecret"
+	CryproService_ImportCryptoSecrets_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryproService/ImportCryptoSecrets"
 )
 
 // CryproServiceClient is the client API for CryproService service.
@@ -31,6 +35,15 @@ const (
 type CryproServiceClient interface {
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[crypto.DlmsIn, crypto.DlmsOut], error)
+	// @group: Cryptography
+	// The method returns a secret based on the request.
+	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type cryproServiceClient struct {
@@ -54,6 +67,36 @@ func (c *cryproServiceClient) Dlms(ctx context.Context, opts ...grpc.CallOption)
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type CryproService_DlmsClient = grpc.BidiStreamingClient[crypto.DlmsIn, crypto.DlmsOut]
 
+func (c *cryproServiceClient) GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(crypto.CryptoSecrets)
+	err := c.cc.Invoke(ctx, CryproService_GetCryptoSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cryproServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, CryproService_SetCryptoSecret_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cryproServiceClient) ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, CryproService_ImportCryptoSecrets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CryproServiceServer is the server API for CryproService service.
 // All implementations must embed UnimplementedCryproServiceServer
 // for forward compatibility.
@@ -62,6 +105,15 @@ type CryproService_DlmsClient = grpc.BidiStreamingClient[crypto.DlmsIn, crypto.D
 type CryproServiceServer interface {
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]) error
+	// @group: Cryptography
+	// The method returns a secret based on the request.
+	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
+	// @group: Cryptography
+	// The method to store (create or replace) the secret.
+	ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedCryproServiceServer()
 }
 
@@ -74,6 +126,15 @@ type UnimplementedCryproServiceServer struct{}
 
 func (UnimplementedCryproServiceServer) Dlms(grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]) error {
 	return status.Errorf(codes.Unimplemented, "method Dlms not implemented")
+}
+func (UnimplementedCryproServiceServer) GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCryptoSecret not implemented")
+}
+func (UnimplementedCryproServiceServer) SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCryptoSecret not implemented")
+}
+func (UnimplementedCryproServiceServer) ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImportCryptoSecrets not implemented")
 }
 func (UnimplementedCryproServiceServer) mustEmbedUnimplementedCryproServiceServer() {}
 func (UnimplementedCryproServiceServer) testEmbeddedByValue()                       {}
@@ -103,13 +164,80 @@ func _CryproService_Dlms_Handler(srv interface{}, stream grpc.ServerStream) erro
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type CryproService_DlmsServer = grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]
 
+func _CryproService_GetCryptoSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.GetCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CryproServiceServer).GetCryptoSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CryproService_GetCryptoSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CryproServiceServer).GetCryptoSecret(ctx, req.(*crypto.GetCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CryproService_SetCryptoSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.SetCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CryproServiceServer).SetCryptoSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CryproService_SetCryptoSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CryproServiceServer).SetCryptoSecret(ctx, req.(*crypto.SetCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CryproService_ImportCryptoSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(crypto.ImportCryptoSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CryproServiceServer).ImportCryptoSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CryproService_ImportCryptoSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CryproServiceServer).ImportCryptoSecrets(ctx, req.(*crypto.ImportCryptoSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CryproService_ServiceDesc is the grpc.ServiceDesc for CryproService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CryproService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "io.clbs.openhes.services.svccrypto.CryproService",
 	HandlerType: (*CryproServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetCryptoSecret",
+			Handler:    _CryproService_GetCryptoSecret_Handler,
+		},
+		{
+			MethodName: "SetCryptoSecret",
+			Handler:    _CryproService_SetCryptoSecret_Handler,
+		},
+		{
+			MethodName: "ImportCryptoSecrets",
+			Handler:    _CryproService_ImportCryptoSecrets_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Dlms",

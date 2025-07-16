@@ -157,3 +157,26 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 		return []*common.FieldDescriptor{}
 	}
 }
+
+func GetReservedManagedFields() []*common.FieldDescriptor {
+	return []*common.FieldDescriptor{
+		// Communication Unit
+		common.FieldDescriptor_builder{
+			ObjectType: common.ObjectType_COMMUNICATION_UNIT.Enum(),
+			FieldId:    ptr.To("crypto_id"),
+			Label:      ptr.To("Crypto ID"),
+			Tooltip:    ptr.To("The device or communication unit crypto ID"),
+			DataType:   common.FieldDataType_TEXT.Enum(),
+			Required:   ptr.To(false),
+		}.Build(),
+		// Device
+		common.FieldDescriptor_builder{
+			ObjectType: common.ObjectType_DEVICE.Enum(),
+			FieldId:    ptr.To("crypto_id"),
+			Label:      ptr.To("Crypto ID"),
+			Tooltip:    ptr.To("The device or communication unit crypto ID"),
+			DataType:   common.FieldDataType_TEXT.Enum(),
+			Required:   ptr.To(false),
+		}.Build(),
+	}
+}
