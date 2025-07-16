@@ -2113,6 +2113,8 @@ type SetCryptoSecretRequest {
   dataDecryptionSecretId: String
   # Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
   dataDecryptionMethod: SecretDataDesryptionMethod
+  # Initialization vector for the decryption method, if applicable.
+  dataDecryptionIv: String
   # The secret data.
   data: String
 }

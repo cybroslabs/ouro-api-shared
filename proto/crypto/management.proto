@@ -34,7 +34,7 @@ message CryptoSecret {
 }
 
 message SetCryptoSecretRequest {
-    reserved 8, 9, 10, 11, 12, 13, 14;                       // Reserved fields for future use.
+    reserved 9, 10, 11, 12, 13, 14;                          // Reserved fields for future use.
     common.ObjectType object_type                     = 1;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
     string driver_type                                = 2;   // The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
     string crypto_id                                  = 3;   // The crypto ID of the secret to retrieve.
@@ -42,5 +42,6 @@ message SetCryptoSecretRequest {
     string key_id                                     = 5;   // Unique identifier for the secret key.
     string data_decryption_secret_id                  = 6;   // Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
     SecretDataDesryptionMethod data_decryption_method = 7;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    bytes data_decryption_iv                          = 8;   // Initialization vector for the decryption method, if applicable.
     bytes data                                        = 15;  // The secret data.
 }

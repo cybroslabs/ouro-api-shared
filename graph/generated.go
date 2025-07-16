@@ -1116,6 +1116,7 @@ type ComplexityRoot struct {
 		AccessLevel            func(childComplexity int) int
 		CryptoID               func(childComplexity int) int
 		Data                   func(childComplexity int) int
+		DataDecryptionIv       func(childComplexity int) int
 		DataDecryptionMethod   func(childComplexity int) int
 		DataDecryptionSecretID func(childComplexity int) int
 		DriverType             func(childComplexity int) int
@@ -5468,6 +5469,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.SetCryptoSecretRequest.Data(childComplexity), true
+
+	case "SetCryptoSecretRequest.dataDecryptionIv":
+		if e.complexity.SetCryptoSecretRequest.DataDecryptionIv == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.DataDecryptionIv(childComplexity), true
 
 	case "SetCryptoSecretRequest.dataDecryptionMethod":
 		if e.complexity.SetCryptoSecretRequest.DataDecryptionMethod == nil {
@@ -33022,6 +33030,47 @@ func (ec *executionContext) fieldContext_SetCryptoSecretRequest_dataDecryptionMe
 	return fc, nil
 }
 
+func (ec *executionContext) _SetCryptoSecretRequest_dataDecryptionIv(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_dataDecryptionIv(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataDecryptionIv, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_dataDecryptionIv(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _SetCryptoSecretRequest_data(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_SetCryptoSecretRequest_data(ctx, field)
 	if err != nil {
@@ -46156,6 +46205,8 @@ func (ec *executionContext) _SetCryptoSecretRequest(ctx context.Context, sel ast
 			out.Values[i] = ec._SetCryptoSecretRequest_dataDecryptionSecretId(ctx, field, obj)
 		case "dataDecryptionMethod":
 			out.Values[i] = ec._SetCryptoSecretRequest_dataDecryptionMethod(ctx, field, obj)
+		case "dataDecryptionIv":
+			out.Values[i] = ec._SetCryptoSecretRequest_dataDecryptionIv(ctx, field, obj)
 		case "data":
 			out.Values[i] = ec._SetCryptoSecretRequest_data(ctx, field, obj)
 		default:

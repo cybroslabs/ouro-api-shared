@@ -987,6 +987,7 @@ type SetCryptoSecretRequest struct {
 	KeyID                  *string                     `json:"keyId,omitempty"`
 	DataDecryptionSecretID *string                     `json:"dataDecryptionSecretId,omitempty"`
 	DataDecryptionMethod   *SecretDataDesryptionMethod `json:"dataDecryptionMethod,omitempty"`
+	DataDecryptionIv       *string                     `json:"dataDecryptionIv,omitempty"`
 	Data                   *string                     `json:"data,omitempty"`
 }
 

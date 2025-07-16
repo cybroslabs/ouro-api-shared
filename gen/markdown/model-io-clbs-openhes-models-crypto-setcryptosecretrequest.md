@@ -11,5 +11,6 @@
 | keyId | <b>Type:</b> `string`<br><b>Description:</b><br>Unique identifier for the secret key. |
 | dataDecryptionSecretId | <b>Type:</b> `string`<br><b>Description:</b><br>Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa. |
 | dataDecryptionMethod | <b>Type:</b> [`io.clbs.openhes.models.crypto.SecretDataDesryptionMethod`](enum-io-clbs-openhes-models-crypto-secretdatadesryptionmethod.md)<br><b>Description:</b><br>Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa. |
+| dataDecryptionIv | <b>Type:</b> `bytes`<br><b>Description:</b><br>Initialization vector for the decryption method, if applicable. |
 | data | <b>Type:</b> `bytes`<br><b>Description:</b><br>The secret data. |
 
