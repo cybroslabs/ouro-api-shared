@@ -310,9 +310,6 @@ const (
 	// ApiServiceSetCryptoSecretProcedure is the fully-qualified name of the ApiService's
 	// SetCryptoSecret RPC.
 	ApiServiceSetCryptoSecretProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
-	// ApiServiceImportCryptoSecretsProcedure is the fully-qualified name of the ApiService's
-	// ImportCryptoSecrets RPC.
-	ApiServiceImportCryptoSecretsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ImportCryptoSecrets"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -629,9 +626,6 @@ type ApiServiceClient interface {
 	// @group: Cryptography
 	// The method to store (create or replace) the secret.
 	SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
-	// @group: Cryptography
-	// The method to store (create or replace) the secret.
-	ImportCryptoSecrets(context.Context, *connect.Request[crypto.ImportCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1227,12 +1221,6 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetCryptoSecret")),
 			connect.WithClientOptions(opts...),
 		),
-		importCryptoSecrets: connect.NewClient[crypto.ImportCryptoSecretRequest, emptypb.Empty](
-			httpClient,
-			baseURL+ApiServiceImportCryptoSecretsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("ImportCryptoSecrets")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -1335,7 +1323,6 @@ type apiServiceClient struct {
 	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
 	getCryptoSecret                                                  *connect.Client[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets]
 	setCryptoSecret                                                  *connect.Client[crypto.SetCryptoSecretRequest, emptypb.Empty]
-	importCryptoSecrets                                              *connect.Client[crypto.ImportCryptoSecretRequest, emptypb.Empty]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1845,11 +1832,6 @@ func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, req *connect.Req
 	return c.setCryptoSecret.CallUnary(ctx, req)
 }
 
-// ImportCryptoSecrets calls io.clbs.openhes.services.svcapi.ApiService.ImportCryptoSecrets.
-func (c *apiServiceClient) ImportCryptoSecrets(ctx context.Context, req *connect.Request[crypto.ImportCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error) {
-	return c.importCryptoSecrets.CallUnary(ctx, req)
-}
-
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -2164,9 +2146,6 @@ type ApiServiceHandler interface {
 	// @group: Cryptography
 	// The method to store (create or replace) the secret.
 	SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
-	// @group: Cryptography
-	// The method to store (create or replace) the secret.
-	ImportCryptoSecrets(context.Context, *connect.Request[crypto.ImportCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -2758,12 +2737,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetCryptoSecret")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceImportCryptoSecretsHandler := connect.NewUnaryHandler(
-		ApiServiceImportCryptoSecretsProcedure,
-		svc.ImportCryptoSecrets,
-		connect.WithSchema(apiServiceMethods.ByName("ImportCryptoSecrets")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -2960,8 +2933,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetCryptoSecretHandler.ServeHTTP(w, r)
 		case ApiServiceSetCryptoSecretProcedure:
 			apiServiceSetCryptoSecretHandler.ServeHTTP(w, r)
-		case ApiServiceImportCryptoSecretsProcedure:
-			apiServiceImportCryptoSecretsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -3357,8 +3328,4 @@ func (UnimplementedApiServiceHandler) GetCryptoSecret(context.Context, *connect.
 
 func (UnimplementedApiServiceHandler) SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetCryptoSecret is not implemented"))
-}
-
-func (UnimplementedApiServiceHandler) ImportCryptoSecrets(context.Context, *connect.Request[crypto.ImportCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ImportCryptoSecrets is not implemented"))
 }

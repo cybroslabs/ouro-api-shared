@@ -136,11 +136,6 @@ func (r *queryResolver) SetCryptoSecret(ctx context.Context) (*model.Empty, erro
 	panic(fmt.Errorf("not implemented: SetCryptoSecret - setCryptoSecret"))
 }
 
-// ImportCryptoSecrets is the resolver for the importCryptoSecrets field.
-func (r *queryResolver) ImportCryptoSecrets(ctx context.Context) (*model.Empty, error) {
-	panic(fmt.Errorf("not implemented: ImportCryptoSecrets - importCryptoSecrets"))
-}
-
 // CreateDeviceConfigurationRegister is the resolver for the createDeviceConfigurationRegister field.
 func (r *queryResolver) CreateDeviceConfigurationRegister(ctx context.Context) (*model.StringValue, error) {
 	panic(fmt.Errorf("not implemented: CreateDeviceConfigurationRegister - createDeviceConfigurationRegister"))

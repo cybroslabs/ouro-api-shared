@@ -27,7 +27,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from common import objects_pb2 as common_dot_objects__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x63rypto/management.proto\x12\x1dio.clbs.openhes.models.crypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14\x63ommon/objects.proto\"\x81\x01\n\x16GetCryptoSecretRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x1b\n\tcrypto_id\x18\x02 \x01(\tR\x08\x63ryptoId\"V\n\rCryptoSecrets\x12\x45\n\x07secrets\x18\x01 \x03(\x0b\x32+.io.clbs.openhes.models.crypto.CryptoSecretR\x07secrets\"\xf0\x01\n\x0c\x43ryptoSecret\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12\x15\n\x06key_id\x18\x02 \x01(\tR\x05keyId\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n\x04\x64\x61ta\x18\n \x01(\x0cR\x04\x64\x61taJ\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\n\"\xed\x01\n\x16SetCryptoSecretRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x1b\n\tcrypto_id\x18\x02 \x01(\tR\x08\x63ryptoId\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x03 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12\x15\n\x06key_id\x18\x04 \x01(\tR\x05keyId\x12\x12\n\x04\x64\x61ta\x18\n \x01(\x0cR\x04\x64\x61taJ\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\n\"x\n\x19ImportCryptoSecretRequest\x12G\n\x06\x66ormat\x18\x01 \x01(\x0e\x32/.io.clbs.openhes.models.crypto.SecretDataFormatR\x06\x66ormat\x12\x12\n\x04\x64\x61ta\x18\x02 \x01(\x0cR\x04\x64\x61ta*\x1c\n\x10SecretDataFormat\x12\x08\n\x04GULF\x10\x00\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x63rypto/management.proto\x12\x1dio.clbs.openhes.models.crypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14\x63ommon/objects.proto\"\x81\x01\n\x16GetCryptoSecretRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x1b\n\tcrypto_id\x18\x02 \x01(\tR\x08\x63ryptoId\"V\n\rCryptoSecrets\x12\x45\n\x07secrets\x18\x01 \x03(\x0b\x32+.io.clbs.openhes.models.crypto.CryptoSecretR\x07secrets\"\x8e\x02\n\x0c\x43ryptoSecret\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12\x15\n\x06key_id\x18\x02 \x01(\tR\x05keyId\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n\x04\x64\x61ta\x18\x0f \x01(\x0cR\x04\x64\x61taJ\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0bJ\x04\x08\x0b\x10\x0cJ\x04\x08\x0c\x10\rJ\x04\x08\r\x10\x0eJ\x04\x08\x0e\x10\x0f\"\xab\x03\n\x16SetCryptoSecretRequest\x12J\n\x0bobject_type\x18\x01 \x01(\x0e\x32).io.clbs.openhes.models.common.ObjectTypeR\nobjectType\x12\x1b\n\tcrypto_id\x18\x02 \x01(\tR\x08\x63ryptoId\x12!\n\x0c\x61\x63\x63\x65ss_level\x18\x03 \x01(\tR\x0b\x61\x63\x63\x65ssLevel\x12\x15\n\x06key_id\x18\x04 \x01(\tR\x05keyId\x12\x39\n\x19\x64\x61ta_decryption_secret_id\x18\x05 \x01(\tR\x16\x64\x61taDecryptionSecretId\x12o\n\x16\x64\x61ta_decryption_method\x18\x06 \x01(\x0e\x32\x39.io.clbs.openhes.models.crypto.SecretDataDesryptionMethodR\x14\x64\x61taDecryptionMethod\x12\x12\n\x04\x64\x61ta\x18\x0f \x01(\x0cR\x04\x64\x61taJ\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0bJ\x04\x08\x0b\x10\x0cJ\x04\x08\x0c\x10\rJ\x04\x08\r\x10\x0eJ\x04\x08\x0e\x10\x0f*+\n\x1aSecretDataDesryptionMethod\x12\r\n\tAES256CBC\x10\x00\x42\x35Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,16 +35,14 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'crypto.management_pb2', _gl
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z3github.com/cybroslabs/ouro-api-shared/gen/go/crypto'
-  _globals['_SECRETDATAFORMAT']._serialized_start=967
-  _globals['_SECRETDATAFORMAT']._serialized_end=995
+  _globals['_SECRETDATADESRYPTIONMETHOD']._serialized_start=1065
+  _globals['_SECRETDATADESRYPTIONMETHOD']._serialized_end=1108
   _globals['_GETCRYPTOSECRETREQUEST']._serialized_start=143
   _globals['_GETCRYPTOSECRETREQUEST']._serialized_end=272
   _globals['_CRYPTOSECRETS']._serialized_start=274
   _globals['_CRYPTOSECRETS']._serialized_end=360
   _globals['_CRYPTOSECRET']._serialized_start=363
-  _globals['_CRYPTOSECRET']._serialized_end=603
-  _globals['_SETCRYPTOSECRETREQUEST']._serialized_start=606
-  _globals['_SETCRYPTOSECRETREQUEST']._serialized_end=843
-  _globals['_IMPORTCRYPTOSECRETREQUEST']._serialized_start=845
-  _globals['_IMPORTCRYPTOSECRETREQUEST']._serialized_end=965
+  _globals['_CRYPTOSECRET']._serialized_end=633
+  _globals['_SETCRYPTOSECRETREQUEST']._serialized_start=636
+  _globals['_SETCRYPTOSECRETREQUEST']._serialized_end=1063
 # @@protoc_insertion_point(module_scope)

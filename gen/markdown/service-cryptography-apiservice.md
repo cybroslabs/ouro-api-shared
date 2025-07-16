@@ -21,13 +21,3 @@ SetCryptoSecret(io.clbs.openhes.models.crypto.SetCryptoSecretRequest)
 
 - Input: [`io.clbs.openhes.models.crypto.SetCryptoSecretRequest`](model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md)
 
-## ImportCryptoSecrets
-
-The method to store (create or replace) the secret.
-
-```proto
-ImportCryptoSecrets(io.clbs.openhes.models.crypto.ImportCryptoSecretRequest)
-```
-
-- Input: [`io.clbs.openhes.models.crypto.ImportCryptoSecretRequest`](model-io-clbs-openhes-models-crypto-importcryptosecretrequest.md)
-

@@ -20,7 +20,4 @@ service CryproService {
     // @group: Cryptography
     // The method to store (create or replace) the secret.
     rpc SetCryptoSecret(io.clbs.openhes.models.crypto.SetCryptoSecretRequest) returns (google.protobuf.Empty);
-    // @group: Cryptography
-    // The method to store (create or replace) the secret.
-    rpc ImportCryptoSecrets(io.clbs.openhes.models.crypto.ImportCryptoSecretRequest) returns (google.protobuf.Empty);
 }

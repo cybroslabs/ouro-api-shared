@@ -319,9 +319,9 @@ enum CronJobTypeEnum {
 }
 
 # DLMS crypto mode
-enum SecretDataFormat {
-  # GULF format
-  GULF
+enum SecretDataDesryptionMethod {
+  # AES-256-CBC encryption method
+  AES256CBC
 }
 
 # A Duration represents a signed, fixed-length span of time represented
@@ -2094,13 +2094,6 @@ type GetCryptoSecretRequest {
   cryptoId: String
 }
 
-type ImportCryptoSecretRequest {
-  # The format of the secret data to import.
-  format: SecretDataFormat
-  # The secret data to import.
-  data: String
-}
-
 type SetCryptoSecretRequest {
   # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
   objectType: ObjectType
@@ -2110,6 +2103,10 @@ type SetCryptoSecretRequest {
   accessLevel: String
   # Unique identifier for the secret key.
   keyId: String
+  # Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+  dataDecryptionSecretId: String
+  # Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+  dataDecryptionMethod: SecretDataDesryptionMethod
   # The secret data.
   data: String
 }
@@ -2192,7 +2189,6 @@ type Query {
   resumeCronJob: Empty
   getCryptoSecret: CryptoSecrets
   setCryptoSecret: Empty
-  importCryptoSecrets: Empty
   createDeviceConfigurationRegister: StringValue
   listDeviceConfigurationRegisters: ListOfDeviceConfigurationRegister
   getDeviceConfigurationRegister: DeviceConfigurationRegister

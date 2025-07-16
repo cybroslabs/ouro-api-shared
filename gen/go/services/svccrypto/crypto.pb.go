@@ -27,33 +27,29 @@ var File_services_svccrypto_crypto_proto protoreflect.FileDescriptor
 
 const file_services_svccrypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13crypto/crypto.proto\x1a\x17crypto/management.proto2\xad\x03\n" +
+	"\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13crypto/crypto.proto\x1a\x17crypto/management.proto2\xc4\x02\n" +
 	"\rCryproService\x12Y\n" +
 	"\x04Dlms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x010\x01\x12v\n" +
 	"\x0fGetCryptoSecret\x125.io.clbs.openhes.models.crypto.GetCryptoSecretRequest\x1a,.io.clbs.openhes.models.crypto.CryptoSecrets\x12`\n" +
-	"\x0fSetCryptoSecret\x125.io.clbs.openhes.models.crypto.SetCryptoSecretRequest\x1a\x16.google.protobuf.Empty\x12g\n" +
-	"\x13ImportCryptoSecrets\x128.io.clbs.openhes.models.crypto.ImportCryptoSecretRequest\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccryptob\beditionsp\xe8\a"
+	"\x0fSetCryptoSecret\x125.io.clbs.openhes.models.crypto.SetCryptoSecretRequest\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccryptob\beditionsp\xe8\a"
 
 var file_services_svccrypto_crypto_proto_goTypes = []any{
-	(*crypto.DlmsIn)(nil),                    // 0: io.clbs.openhes.models.crypto.DlmsIn
-	(*crypto.GetCryptoSecretRequest)(nil),    // 1: io.clbs.openhes.models.crypto.GetCryptoSecretRequest
-	(*crypto.SetCryptoSecretRequest)(nil),    // 2: io.clbs.openhes.models.crypto.SetCryptoSecretRequest
-	(*crypto.ImportCryptoSecretRequest)(nil), // 3: io.clbs.openhes.models.crypto.ImportCryptoSecretRequest
-	(*crypto.DlmsOut)(nil),                   // 4: io.clbs.openhes.models.crypto.DlmsOut
-	(*crypto.CryptoSecrets)(nil),             // 5: io.clbs.openhes.models.crypto.CryptoSecrets
-	(*emptypb.Empty)(nil),                    // 6: google.protobuf.Empty
+	(*crypto.DlmsIn)(nil),                 // 0: io.clbs.openhes.models.crypto.DlmsIn
+	(*crypto.GetCryptoSecretRequest)(nil), // 1: io.clbs.openhes.models.crypto.GetCryptoSecretRequest
+	(*crypto.SetCryptoSecretRequest)(nil), // 2: io.clbs.openhes.models.crypto.SetCryptoSecretRequest
+	(*crypto.DlmsOut)(nil),                // 3: io.clbs.openhes.models.crypto.DlmsOut
+	(*crypto.CryptoSecrets)(nil),          // 4: io.clbs.openhes.models.crypto.CryptoSecrets
+	(*emptypb.Empty)(nil),                 // 5: google.protobuf.Empty
 }
 var file_services_svccrypto_crypto_proto_depIdxs = []int32{
 	0, // 0: io.clbs.openhes.services.svccrypto.CryproService.Dlms:input_type -> io.clbs.openhes.models.crypto.DlmsIn
 	1, // 1: io.clbs.openhes.services.svccrypto.CryproService.GetCryptoSecret:input_type -> io.clbs.openhes.models.crypto.GetCryptoSecretRequest
 	2, // 2: io.clbs.openhes.services.svccrypto.CryproService.SetCryptoSecret:input_type -> io.clbs.openhes.models.crypto.SetCryptoSecretRequest
-	3, // 3: io.clbs.openhes.services.svccrypto.CryproService.ImportCryptoSecrets:input_type -> io.clbs.openhes.models.crypto.ImportCryptoSecretRequest
-	4, // 4: io.clbs.openhes.services.svccrypto.CryproService.Dlms:output_type -> io.clbs.openhes.models.crypto.DlmsOut
-	5, // 5: io.clbs.openhes.services.svccrypto.CryproService.GetCryptoSecret:output_type -> io.clbs.openhes.models.crypto.CryptoSecrets
-	6, // 6: io.clbs.openhes.services.svccrypto.CryproService.SetCryptoSecret:output_type -> google.protobuf.Empty
-	6, // 7: io.clbs.openhes.services.svccrypto.CryproService.ImportCryptoSecrets:output_type -> google.protobuf.Empty
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	3, // 3: io.clbs.openhes.services.svccrypto.CryproService.Dlms:output_type -> io.clbs.openhes.models.crypto.DlmsOut
+	4, // 4: io.clbs.openhes.services.svccrypto.CryproService.GetCryptoSecret:output_type -> io.clbs.openhes.models.crypto.CryptoSecrets
+	5, // 5: io.clbs.openhes.services.svccrypto.CryproService.SetCryptoSecret:output_type -> google.protobuf.Empty
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

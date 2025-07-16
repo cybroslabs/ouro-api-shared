@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file crypto/management.proto.
  */
 export const file_crypto_management: GenFile = /*@__PURE__*/
-  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8iawoWR2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJIk0KDUNyeXB0b1NlY3JldHMSPAoHc2VjcmV0cxgBIAMoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLkNyeXB0b1NlY3JldCLAAQoMQ3J5cHRvU2VjcmV0EhQKDGFjY2Vzc19sZXZlbBgBIAEoCRIOCgZrZXlfaWQYAiABKAkSLgoKY3JlYXRlZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDAoEZGF0YRgKIAEoDEoECAUQBkoECAYQB0oECAcQCEoECAgQCUoECAkQCiK9AQoWU2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJEhQKDGFjY2Vzc19sZXZlbBgDIAEoCRIOCgZrZXlfaWQYBCABKAkSDAoEZGF0YRgKIAEoDEoECAUQBkoECAYQB0oECAcQCEoECAgQCUoECAkQCiJqChlJbXBvcnRDcnlwdG9TZWNyZXRSZXF1ZXN0Ej8KBmZvcm1hdBgBIAEoDjIvLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLlNlY3JldERhdGFGb3JtYXQSDAoEZGF0YRgCIAEoDCocChBTZWNyZXREYXRhRm9ybWF0EggKBEdVTEYQAEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
+  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8iawoWR2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJIk0KDUNyeXB0b1NlY3JldHMSPAoHc2VjcmV0cxgBIAMoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLkNyeXB0b1NlY3JldCLeAQoMQ3J5cHRvU2VjcmV0EhQKDGFjY2Vzc19sZXZlbBgBIAEoCRIOCgZrZXlfaWQYAiABKAkSLgoKY3JlYXRlZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDAoEZGF0YRgPIAEoDEoECAUQBkoECAYQB0oECAcQCEoECAgQCUoECAkQCkoECAoQC0oECAsQDEoECAwQDUoECA0QDkoECA4QDyLNAgoWU2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJEhQKDGFjY2Vzc19sZXZlbBgDIAEoCRIOCgZrZXlfaWQYBCABKAkSIQoZZGF0YV9kZWNyeXB0aW9uX3NlY3JldF9pZBgFIAEoCRJZChZkYXRhX2RlY3J5cHRpb25fbWV0aG9kGAYgASgOMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8uU2VjcmV0RGF0YURlc3J5cHRpb25NZXRob2QSDAoEZGF0YRgPIAEoDEoECAcQCEoECAgQCUoECAkQCkoECAoQC0oECAsQDEoECAwQDUoECA0QDkoECA4QDyorChpTZWNyZXREYXRhRGVzcnlwdGlvbk1ldGhvZBINCglBRVMyNTZDQkMQAEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
 
 /**
  * @generated from message io.clbs.openhes.models.crypto.GetCryptoSecretRequest
@@ -127,7 +127,7 @@ export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret">
   /**
    * The secret data.
    *
-   * @generated from field: bytes data = 10;
+   * @generated from field: bytes data = 15;
    */
   data: Uint8Array;
 };
@@ -167,7 +167,7 @@ export type CryptoSecretJson = {
   /**
    * The secret data.
    *
-   * @generated from field: bytes data = 10;
+   * @generated from field: bytes data = 15;
    */
   data?: string;
 };
@@ -212,9 +212,23 @@ export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetC
   keyId: string;
 
   /**
+   * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   *
+   * @generated from field: string data_decryption_secret_id = 5;
+   */
+  dataDecryptionSecretId: string;
+
+  /**
+   * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   *
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 6;
+   */
+  dataDecryptionMethod: SecretDataDesryptionMethod;
+
+  /**
    * The secret data.
    *
-   * @generated from field: bytes data = 10;
+   * @generated from field: bytes data = 15;
    */
   data: Uint8Array;
 };
@@ -252,9 +266,23 @@ export type SetCryptoSecretRequestJson = {
   keyId?: string;
 
   /**
+   * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   *
+   * @generated from field: string data_decryption_secret_id = 5;
+   */
+  dataDecryptionSecretId?: string;
+
+  /**
+   * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   *
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 6;
+   */
+  dataDecryptionMethod?: SecretDataDesryptionMethodJson;
+
+  /**
    * The secret data.
    *
-   * @generated from field: bytes data = 10;
+   * @generated from field: bytes data = 15;
    */
   data?: string;
 };
@@ -267,74 +295,29 @@ export const SetCryptoSecretRequestSchema: GenMessage<SetCryptoSecretRequest, {j
   messageDesc(file_crypto_management, 3);
 
 /**
- * @generated from message io.clbs.openhes.models.crypto.ImportCryptoSecretRequest
- */
-export type ImportCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.ImportCryptoSecretRequest"> & {
-  /**
-   * The format of the secret data to import.
-   *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataFormat format = 1;
-   */
-  format: SecretDataFormat;
-
-  /**
-   * The secret data to import.
-   *
-   * @generated from field: bytes data = 2;
-   */
-  data: Uint8Array;
-};
-
-/**
- * @generated from message io.clbs.openhes.models.crypto.ImportCryptoSecretRequest
- */
-export type ImportCryptoSecretRequestJson = {
-  /**
-   * The format of the secret data to import.
-   *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataFormat format = 1;
-   */
-  format?: SecretDataFormatJson;
-
-  /**
-   * The secret data to import.
-   *
-   * @generated from field: bytes data = 2;
-   */
-  data?: string;
-};
-
-/**
- * Describes the message io.clbs.openhes.models.crypto.ImportCryptoSecretRequest.
- * Use `create(ImportCryptoSecretRequestSchema)` to create a new message.
- */
-export const ImportCryptoSecretRequestSchema: GenMessage<ImportCryptoSecretRequest, {jsonType: ImportCryptoSecretRequestJson}> = /*@__PURE__*/
-  messageDesc(file_crypto_management, 4);
-
-/**
  * DLMS crypto mode
  *
- * @generated from enum io.clbs.openhes.models.crypto.SecretDataFormat
+ * @generated from enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
  */
-export enum SecretDataFormat {
+export enum SecretDataDesryptionMethod {
   /**
-   * GULF format
+   * AES-256-CBC encryption method
    *
-   * @generated from enum value: GULF = 0;
+   * @generated from enum value: AES256CBC = 0;
    */
-  GULF = 0,
+  AES256CBC = 0,
 }
 
 /**
  * DLMS crypto mode
  *
- * @generated from enum io.clbs.openhes.models.crypto.SecretDataFormat
+ * @generated from enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
  */
-export type SecretDataFormatJson = "GULF";
+export type SecretDataDesryptionMethodJson = "AES256CBC";
 
 /**
- * Describes the enum io.clbs.openhes.models.crypto.SecretDataFormat.
+ * Describes the enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod.
  */
-export const SecretDataFormatSchema: GenEnum<SecretDataFormat, SecretDataFormatJson> = /*@__PURE__*/
+export const SecretDataDesryptionMethodSchema: GenEnum<SecretDataDesryptionMethod, SecretDataDesryptionMethodJson> = /*@__PURE__*/
   enumDesc(file_crypto_management, 0);
 

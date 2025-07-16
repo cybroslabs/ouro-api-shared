@@ -509,11 +509,6 @@ class ApiServiceStub(object):
                 request_serializer=crypto_dot_management__pb2.SetCryptoSecretRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.ImportCryptoSecrets = channel.unary_unary(
-                '/io.clbs.openhes.services.svcapi.ApiService/ImportCryptoSecrets',
-                request_serializer=crypto_dot_management__pb2.ImportCryptoSecretRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
 
 
 class ApiServiceServicer(object):
@@ -1317,14 +1312,6 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ImportCryptoSecrets(self, request, context):
-        """@group: Cryptography
-        The method to store (create or replace) the secret.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_ApiServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1811,11 +1798,6 @@ def add_ApiServiceServicer_to_server(servicer, server):
             'SetCryptoSecret': grpc.unary_unary_rpc_method_handler(
                     servicer.SetCryptoSecret,
                     request_deserializer=crypto_dot_management__pb2.SetCryptoSecretRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'ImportCryptoSecrets': grpc.unary_unary_rpc_method_handler(
-                    servicer.ImportCryptoSecrets,
-                    request_deserializer=crypto_dot_management__pb2.ImportCryptoSecretRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -4438,33 +4420,6 @@ class ApiService(object):
             target,
             '/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret',
             crypto_dot_management__pb2.SetCryptoSecretRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def ImportCryptoSecrets(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/io.clbs.openhes.services.svcapi.ApiService/ImportCryptoSecrets',
-            crypto_dot_management__pb2.ImportCryptoSecretRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

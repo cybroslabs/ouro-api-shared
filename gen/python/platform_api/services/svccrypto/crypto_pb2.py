@@ -28,7 +28,7 @@ from crypto import crypto_pb2 as crypto_dot_crypto__pb2
 from crypto import management_pb2 as crypto_dot_management__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13\x63rypto/crypto.proto\x1a\x17\x63rypto/management.proto2\xad\x03\n\rCryproService\x12Y\n\x04\x44lms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x01\x30\x01\x12v\n\x0fGetCryptoSecret\x12\x35.io.clbs.openhes.models.crypto.GetCryptoSecretRequest\x1a,.io.clbs.openhes.models.crypto.CryptoSecrets\x12`\n\x0fSetCryptoSecret\x12\x35.io.clbs.openhes.models.crypto.SetCryptoSecretRequest\x1a\x16.google.protobuf.Empty\x12g\n\x13ImportCryptoSecrets\x12\x38.io.clbs.openhes.models.crypto.ImportCryptoSecretRequest\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccryptob\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13\x63rypto/crypto.proto\x1a\x17\x63rypto/management.proto2\xc4\x02\n\rCryproService\x12Y\n\x04\x44lms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x01\x30\x01\x12v\n\x0fGetCryptoSecret\x12\x35.io.clbs.openhes.models.crypto.GetCryptoSecretRequest\x1a,.io.clbs.openhes.models.crypto.CryptoSecrets\x12`\n\x0fSetCryptoSecret\x12\x35.io.clbs.openhes.models.crypto.SetCryptoSecretRequest\x1a\x16.google.protobuf.EmptyBAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccryptob\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -37,5 +37,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z?github.com/cybroslabs/ouro-api-shared/gen/go/services/svccrypto'
   _globals['_CRYPROSERVICE']._serialized_start=180
-  _globals['_CRYPROSERVICE']._serialized_end=609
+  _globals['_CRYPROSERVICE']._serialized_end=504
 # @@protoc_insertion_point(module_scope)

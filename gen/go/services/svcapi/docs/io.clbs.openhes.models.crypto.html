@@ -96,15 +96,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ImportCryptoSecretRequest</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>SetCryptoSecretRequest</code> 
@@ -115,9 +106,9 @@
 
     
       <p>
-        <a href="#enum-io.clbs.openhes.models.crypto.SecretDataFormat">
+        <a href="#enum-io.clbs.openhes.models.crypto.SecretDataDesryptionMethod">
           <span class="tag" style="min-width: 6em">Enum</span>
-          <code>SecretDataFormat</code> 
+          <code>SecretDataDesryptionMethod</code> 
         </a>
       </p>
     
@@ -225,7 +216,7 @@
     </tr>
     
     <tr>
-      <td>10</td>
+      <td>15</td>
       <td>
         data
       </td>
@@ -369,72 +360,6 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">
-  <span>
-    <a href="#message-io.clbs.openhes.models.crypto.ImportCryptoSecretRequest" title="io.clbs.openhes.models.crypto.ImportCryptoSecretRequest">message ImportCryptoSecretRequest</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        format
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.crypto.SecretDataFormat">
-          
-          <a href="io.clbs.openhes.models.crypto.html#enum-io.clbs.openhes.models.crypto.SecretDataFormat"><span title="io.clbs.openhes.models.crypto.SecretDataFormat">io.clbs.openhes.models.crypto.SecretDataFormat</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>The format of the secret data to import.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        data
-      </td>
-      <td>
-        <code title="bytes">
-          
-          <span>bytes</span>
-        </code>
-      </td>
-      <td class="content"><p>The secret data to import.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.crypto.SetCryptoSecretRequest" title="io.clbs.openhes.models.crypto.SetCryptoSecretRequest">message SetCryptoSecretRequest</a>
@@ -521,7 +446,38 @@
     </tr>
     
     <tr>
-      <td>10</td>
+      <td>5</td>
+      <td>
+        dataDecryptionSecretId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        dataDecryptionMethod
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.crypto.SecretDataDesryptionMethod">
+          
+          <a href="io.clbs.openhes.models.crypto.html#enum-io.clbs.openhes.models.crypto.SecretDataDesryptionMethod"><span title="io.clbs.openhes.models.crypto.SecretDataDesryptionMethod">io.clbs.openhes.models.crypto.SecretDataDesryptionMethod</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>15</td>
       <td>
         data
       </td>
@@ -553,8 +509,8 @@
 
     
     <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.crypto.SecretDataFormat">
-  <a href="#enum-io.clbs.openhes.models.crypto.SecretDataFormat" title="io.clbs.openhes.models.crypto.SecretDataFormat">enum SecretDataFormat</a>
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.crypto.SecretDataDesryptionMethod">
+  <a href="#enum-io.clbs.openhes.models.crypto.SecretDataDesryptionMethod" title="io.clbs.openhes.models.crypto.SecretDataDesryptionMethod">enum SecretDataDesryptionMethod</a>
   
 </h4>
 
@@ -573,9 +529,9 @@
   <tbody>
     
     <tr>
-      <td><code>GULF</code></td>
+      <td><code>AES256CBC</code></td>
       <td>0</td>
-      <td class="content"><p>GULF format</p></td>
+      <td class="content"><p>AES-256-CBC encryption method</p></td>
     </tr>
     
   </tbody>

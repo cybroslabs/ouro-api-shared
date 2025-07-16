@@ -9,13 +9,13 @@ import "google/protobuf/timestamp.proto";
 import "common/objects.proto";
 
 // DLMS crypto mode
-enum SecretDataFormat {
-    GULF = 0;  // GULF format
+enum SecretDataDesryptionMethod {
+    AES256CBC = 0;  // AES-256-CBC encryption method
 }
 
 message GetCryptoSecretRequest {
     common.ObjectType object_type = 1;  // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string crypto_id       = 2;  // The crypto ID of the secret to retrieve.
+    string crypto_id              = 2;  // The crypto ID of the secret to retrieve.
 }
 
 message CryptoSecrets {
@@ -23,31 +23,21 @@ message CryptoSecrets {
 }
 
 message CryptoSecret {
-    reserved 5, 6, 7, 8, 9;                     // Reserved fields for future use.
-    string access_level                  = 1;   // Access level for the secret, e.g., "admin", "user", etc.
-    string key_id                        = 2;   // Unique identifier for the secret key.
-    google.protobuf.Timestamp created_at = 3;   // Timestamp when the secret was created.
-    google.protobuf.Timestamp updated_at = 4;   // Timestamp when the secret was last updated.
-    bytes data                           = 10;  // The secret data.
+    reserved 5, 6, 7, 8, 9, 10, 11, 12, 13, 14;  // Reserved fields for future use.
+    string access_level                  = 1;    // Access level for the secret, e.g., "admin", "user", etc.
+    string key_id                        = 2;    // Unique identifier for the secret key.
+    google.protobuf.Timestamp created_at = 3;    // Timestamp when the secret was created.
+    google.protobuf.Timestamp updated_at = 4;    // Timestamp when the secret was last updated.
+    bytes data                           = 15;   // The secret data.
 }
 
 message SetCryptoSecretRequest {
-    reserved 5, 6, 7, 8, 9;                     // Reserved fields for future use.
-    common.ObjectType object_type = 1;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string crypto_id       = 2;   // The crypto ID of the secret to retrieve.
-    string access_level    = 3;   // Access level for the secret, e.g., "admin", "user", etc.
-    string key_id          = 4;   // Unique identifier for the secret key.
-    bytes data             = 10;  // The secret data.
+    reserved 7, 8, 9, 10, 11, 12, 13, 14;                    // Reserved fields for future use.
+    common.ObjectType object_type                     = 1;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+    string crypto_id                                  = 2;   // The crypto ID of the secret to retrieve.
+    string access_level                               = 3;   // Access level for the secret, e.g., "admin", "user", etc.
+    string key_id                                     = 4;   // Unique identifier for the secret key.
+    string data_decryption_secret_id                  = 5;   // Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    SecretDataDesryptionMethod data_decryption_method = 6;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    bytes data                                        = 15;  // The secret data.
 }
-
-message ImportCryptoSecretRequest {
-    SecretDataFormat format = 1;  // The format of the secret data to import.
-    bytes data              = 2;  // The secret data to import.
-}
-
-// // @group: Cryptography
-//     // The method returns a secret based on the request.
-//     rpc GetSecret(io.clbs.openhes.models.crypto.GetSecretRequest) returns (io.clbs.openhes.models.crypto.Secrets);
-//     // @group: Cryptography
-//     // The method to store (create or replace) the secret.
-//     rpc SetSecret(io.clbs.openhes.models.crypto.SetSecretRequest) returns (google.protobuf.Empty);

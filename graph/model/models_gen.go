@@ -611,11 +611,6 @@ type GetDeviceEventsRequest struct {
 	DeviceID *string `json:"deviceId,omitempty"`
 }
 
-type ImportCryptoSecretRequest struct {
-	Format *SecretDataFormat `json:"format,omitempty"`
-	Data   *string           `json:"data,omitempty"`
-}
-
 type IrregularProfileValues struct {
 	Unit   *string           `json:"unit,omitempty"`
 	Values []*IrregularValue `json:"values,omitempty"`
@@ -984,11 +979,13 @@ type Season struct {
 }
 
 type SetCryptoSecretRequest struct {
-	ObjectType  *ObjectType `json:"objectType,omitempty"`
-	CryptoID    *string     `json:"cryptoId,omitempty"`
-	AccessLevel *string     `json:"accessLevel,omitempty"`
-	KeyID       *string     `json:"keyId,omitempty"`
-	Data        *string     `json:"data,omitempty"`
+	ObjectType             *ObjectType                 `json:"objectType,omitempty"`
+	CryptoID               *string                     `json:"cryptoId,omitempty"`
+	AccessLevel            *string                     `json:"accessLevel,omitempty"`
+	KeyID                  *string                     `json:"keyId,omitempty"`
+	DataDecryptionSecretID *string                     `json:"dataDecryptionSecretId,omitempty"`
+	DataDecryptionMethod   *SecretDataDesryptionMethod `json:"dataDecryptionMethod,omitempty"`
+	Data                   *string                     `json:"data,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {
@@ -2231,46 +2228,46 @@ func (e RelayState) MarshalJSON() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-type SecretDataFormat string
+type SecretDataDesryptionMethod string
 
 const (
-	SecretDataFormatGulf SecretDataFormat = "GULF"
+	SecretDataDesryptionMethodAes256cbc SecretDataDesryptionMethod = "AES256CBC"
 )
 
-var AllSecretDataFormat = []SecretDataFormat{
-	SecretDataFormatGulf,
+var AllSecretDataDesryptionMethod = []SecretDataDesryptionMethod{
+	SecretDataDesryptionMethodAes256cbc,
 }
 
-func (e SecretDataFormat) IsValid() bool {
+func (e SecretDataDesryptionMethod) IsValid() bool {
 	switch e {
-	case SecretDataFormatGulf:
+	case SecretDataDesryptionMethodAes256cbc:
 		return true
 	}
 	return false
 }
 
-func (e SecretDataFormat) String() string {
+func (e SecretDataDesryptionMethod) String() string {
 	return string(e)
 }
 
-func (e *SecretDataFormat) UnmarshalGQL(v any) error {
+func (e *SecretDataDesryptionMethod) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
 	}
 
-	*e = SecretDataFormat(str)
+	*e = SecretDataDesryptionMethod(str)
 	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid SecretDataFormat", str)
+		return fmt.Errorf("%s is not a valid SecretDataDesryptionMethod", str)
 	}
 	return nil
 }
 
-func (e SecretDataFormat) MarshalGQL(w io.Writer) {
+func (e SecretDataDesryptionMethod) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
-func (e *SecretDataFormat) UnmarshalJSON(b []byte) error {
+func (e *SecretDataDesryptionMethod) UnmarshalJSON(b []byte) error {
 	s, err := strconv.Unquote(string(b))
 	if err != nil {
 		return err
@@ -2278,7 +2275,7 @@ func (e *SecretDataFormat) UnmarshalJSON(b []byte) error {
 	return e.UnmarshalGQL(s)
 }
 
-func (e SecretDataFormat) MarshalJSON() ([]byte, error) {
+func (e SecretDataDesryptionMethod) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

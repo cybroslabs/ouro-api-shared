@@ -21,10 +21,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CryproService_Dlms_FullMethodName                = "/io.clbs.openhes.services.svccrypto.CryproService/Dlms"
-	CryproService_GetCryptoSecret_FullMethodName     = "/io.clbs.openhes.services.svccrypto.CryproService/GetCryptoSecret"
-	CryproService_SetCryptoSecret_FullMethodName     = "/io.clbs.openhes.services.svccrypto.CryproService/SetCryptoSecret"
-	CryproService_ImportCryptoSecrets_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryproService/ImportCryptoSecrets"
+	CryproService_Dlms_FullMethodName            = "/io.clbs.openhes.services.svccrypto.CryproService/Dlms"
+	CryproService_GetCryptoSecret_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryproService/GetCryptoSecret"
+	CryproService_SetCryptoSecret_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryproService/SetCryptoSecret"
 )
 
 // CryproServiceClient is the client API for CryproService service.
@@ -41,9 +40,6 @@ type CryproServiceClient interface {
 	// @group: Cryptography
 	// The method to store (create or replace) the secret.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Cryptography
-	// The method to store (create or replace) the secret.
-	ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type cryproServiceClient struct {
@@ -87,16 +83,6 @@ func (c *cryproServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.Se
 	return out, nil
 }
 
-func (c *cryproServiceClient) ImportCryptoSecrets(ctx context.Context, in *crypto.ImportCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, CryproService_ImportCryptoSecrets_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CryproServiceServer is the server API for CryproService service.
 // All implementations must embed UnimplementedCryproServiceServer
 // for forward compatibility.
@@ -111,9 +97,6 @@ type CryproServiceServer interface {
 	// @group: Cryptography
 	// The method to store (create or replace) the secret.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
-	// @group: Cryptography
-	// The method to store (create or replace) the secret.
-	ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedCryproServiceServer()
 }
 
@@ -132,9 +115,6 @@ func (UnimplementedCryproServiceServer) GetCryptoSecret(context.Context, *crypto
 }
 func (UnimplementedCryproServiceServer) SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCryptoSecret not implemented")
-}
-func (UnimplementedCryproServiceServer) ImportCryptoSecrets(context.Context, *crypto.ImportCryptoSecretRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ImportCryptoSecrets not implemented")
 }
 func (UnimplementedCryproServiceServer) mustEmbedUnimplementedCryproServiceServer() {}
 func (UnimplementedCryproServiceServer) testEmbeddedByValue()                       {}
@@ -200,24 +180,6 @@ func _CryproService_SetCryptoSecret_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CryproService_ImportCryptoSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(crypto.ImportCryptoSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CryproServiceServer).ImportCryptoSecrets(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CryproService_ImportCryptoSecrets_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CryproServiceServer).ImportCryptoSecrets(ctx, req.(*crypto.ImportCryptoSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CryproService_ServiceDesc is the grpc.ServiceDesc for CryproService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -232,10 +194,6 @@ var CryproService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetCryptoSecret",
 			Handler:    _CryproService_SetCryptoSecret_Handler,
-		},
-		{
-			MethodName: "ImportCryptoSecrets",
-			Handler:    _CryproService_ImportCryptoSecrets_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
