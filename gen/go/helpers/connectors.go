@@ -7,6 +7,7 @@ import (
 	"slices"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
+	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svccrypto"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxy"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdeviceregistry"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcourooperator"
@@ -28,6 +29,8 @@ type ConnectorsOpts struct {
 	DeviceRegistryHost string
 	// Hostname for the driver operator service. If the value is empty, it will default to the environment variable OURO_OPERATOR_GRPC_HOST.
 	OuroOperatorHost string
+	// Hostname for the crypto service. If the value is empty, it will default to the environment variable OURO_CORE_CRYPTO_GRPC_HOST.
+	OuroCryptoHost string
 
 	// Custom gRPC options for the API service.
 	GrpcOptionsApi []grpc.DialOption
@@ -39,6 +42,8 @@ type ConnectorsOpts struct {
 	GrpcOptionsDeviceRegistry []grpc.DialOption
 	// Custom gRPC options for the driver operator service.
 	GrpcOptionsOuroOperator []grpc.DialOption
+	// Custom gRPC options for the crypto service.
+	GrpcOptionsCrypto []grpc.DialOption
 }
 
 // Connectors is an interface that provides methods to open gRPC connections to various services.
@@ -53,6 +58,8 @@ type Connectors interface {
 	OpenDeviceRegistryServiceClient() (svcdeviceregistry.DeviceRegistryServiceClient, context.CancelFunc, error)
 	// OpenOuroOperatorServiceClient opens a new gRPC connection to the OuroOperator service.
 	OpenOuroOperatorServiceClient() (svcourooperator.OuroOperatorServiceClient, context.CancelFunc, error)
+	// OpenCryptoServiceClient opens a new gRPC connection to the crypto service.
+	OpenCryptoServiceClient() (svccrypto.CryproServiceClient, context.CancelFunc, error)
 }
 
 type connectors struct {
@@ -64,6 +71,7 @@ type connectors struct {
 	dataproxyHost      string
 	deviceRegistryHost string
 	ouroOperatorHost   string
+	cryptoHost         string
 
 	// Custom gRPC options for each service.
 	grpcOptionsApi            []grpc.DialOption
@@ -71,6 +79,7 @@ type connectors struct {
 	grpcOptionsTaskmaster     []grpc.DialOption
 	grpcOptionsDeviceRegistry []grpc.DialOption
 	grpcOptionsOuroOperator   []grpc.DialOption
+	grpcOptionsCrypto         []grpc.DialOption
 }
 
 func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
@@ -89,6 +98,7 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 	grpcOptionsTaskmaster := initGrpcOptions(opts.GrpcOptionsTaskmaster)
 	grpcOptionsDeviceRegistry := initGrpcOptions(opts.GrpcOptionsDeviceRegistry)
 	grpcOptionsOuroOperator := initGrpcOptions(opts.GrpcOptionsOuroOperator)
+	grpcOptionsCrypto := initGrpcOptions(opts.GrpcOptionsCrypto)
 
 	// Attach our 'namespace' to all outgoing unary RPC requests for the data-proxy service
 	grpcOptionsApi = append(grpcOptionsApi, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
@@ -96,6 +106,7 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 	grpcOptionsTaskmaster = append(grpcOptionsTaskmaster, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 	grpcOptionsDeviceRegistry = append(grpcOptionsDeviceRegistry, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 	grpcOptionsOuroOperator = append(grpcOptionsOuroOperator, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
+	grpcOptionsCrypto = append(grpcOptionsCrypto, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
 
 	return &connectors{
 		apiHost:            emptyOr(opts.ApiHost, os.Getenv("OURO_API_GRPC_HOST")),
@@ -103,12 +114,14 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 		dataproxyHost:      emptyOr(opts.DataproxyHost, os.Getenv("OURO_CORE_DATAPROXY_GRPC_HOST")),
 		deviceRegistryHost: emptyOr(opts.DeviceRegistryHost, os.Getenv("OURO_CORE_DEVICEREGISTRY_GRPC_HOST")),
 		ouroOperatorHost:   emptyOr(opts.OuroOperatorHost, os.Getenv("OURO_OPERATOR_GRPC_HOST")),
+		cryptoHost:         emptyOr(opts.OuroCryptoHost, os.Getenv("OURO_CORE_CRYPTO_GRPC_HOST")),
 
 		grpcOptionsApi:            grpcOptionsApi,
 		grpcOptionsDataproxy:      grpcOptionsDataproxy,
 		grpcOptionsTaskmaster:     grpcOptionsTaskmaster,
 		grpcOptionsDeviceRegistry: grpcOptionsDeviceRegistry,
 		grpcOptionsOuroOperator:   grpcOptionsOuroOperator,
+		grpcOptionsCrypto:         grpcOptionsCrypto,
 	}, nil
 }
 
@@ -181,5 +194,16 @@ func (ra *connectors) OpenOuroOperatorServiceClient() (svcourooperator.OuroOpera
 	}
 
 	client := svcourooperator.NewOuroOperatorServiceClient(conn)
+	return client, func() { _ = conn.Close() }, nil
+}
+
+// Open a new gRPC connection to the crypto service. The connection must be closed by calling func in the second return value.
+func (ra *connectors) OpenCryptoServiceClient() (svccrypto.CryproServiceClient, context.CancelFunc, error) {
+	conn, err := grpc.NewClient(ra.cryptoHost, ra.grpcOptionsCrypto...)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	client := svccrypto.NewCryproServiceClient(conn)
 	return client, func() { _ = conn.Close() }, nil
 }
