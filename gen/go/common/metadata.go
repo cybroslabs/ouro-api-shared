@@ -3,20 +3,20 @@ package common
 import "github.com/google/uuid"
 
 // Create creates a new Metadata object with a new UUID and generation 1.
-func (x *MetadataFields) Create() error {
+func (x *MetadataFields) Create() (id uuid.UUID, err error) {
 	if x == nil {
-		return nil
+		return uuid.Nil, nil
 	}
 	if len(x.GetManagedFields()) > 0 {
-		return ErrManagedFieldsMustBeEmpty
+		return uuid.Nil, ErrManagedFieldsMustBeEmpty
 	}
-	new_id, err := uuid.NewV7()
+	id, err = uuid.NewV7()
 	if err != nil {
-		return err
+		return uuid.Nil, err
 	}
-	x.SetId(new_id.String())
+	x.SetId(id.String())
 	x.SetGeneration(1)
-	return nil
+	return id, nil
 }
 
 // IncGeneration increments the generation of the object.
