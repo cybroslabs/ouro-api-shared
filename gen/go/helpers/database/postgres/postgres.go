@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/helpers/database"
+	"k8s.io/utils/ptr"
 )
 
 var (
@@ -282,7 +284,8 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			err = addMultiOperandOperator(&parts, &values, col, f, "NOT IN")
 			// 2-operand operators
 		case common.FilterOperator_BETWEEN:
-			if f.GetDataType() == common.FieldDataType_INTEGER {
+			switch f.GetDataType() {
+			case common.FieldDataType_INTEGER:
 				if t := f.GetInteger(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
@@ -294,7 +297,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 						values = append(values, t[0], t[1])
 					}
 				}
-			} else if f.GetDataType() == common.FieldDataType_DOUBLE {
+			case common.FieldDataType_DOUBLE:
 				if t := f.GetNumber(); len(t) != 2 {
 					return "", nil, errors.New("invalid number of operands")
 				} else {
@@ -305,7 +308,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 						values = append(values, t[0], t[1])
 					}
 				}
-			} else {
+			default:
 				return "", nil, errors.New("unsupported data type")
 			}
 			// No-operand operators
@@ -442,6 +445,17 @@ func addSingleOperandOperator(parts *[]string, values *[]any, col string, in *co
 			*values = append(*values, t[0])
 			*parts = append(*parts, "("+col+")::numeric"+composeOpVal(fmt.Sprintf("$%d", len(*values))))
 		}
+	case common.FieldDataType_TIMESTAMP:
+		if t := in.GetDate(); len(t) != 1 {
+			return errors.New("invalid number of operands")
+		} else {
+			var tmp *time.Time
+			if t[0] != nil {
+				tmp = ptr.To(t[0].AsTime())
+			}
+			*values = append(*values, tmp)
+			*parts = append(*parts, "("+col+")::timestamptz"+composeOpVal(fmt.Sprintf("$%d", len(*values))))
+		}
 	default:
 		return errors.New("unsupported data type")
 	}
@@ -486,6 +500,21 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 		} else {
 			op, _ := composeOpVal("")
 			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %f)')", modelColumn, jsonPath, jsonProperty, op, t[0]))
+		}
+	case common.FieldDataType_TIMESTAMP:
+		if t := in.GetDate(); len(t) != 1 {
+			return errors.New("invalid number of operands")
+		} else {
+			var tmp *time.Time
+			if t[0] != nil {
+				tmp = ptr.To(t[0].AsTime())
+			}
+			op, _ := composeOpVal("")
+			if tmp != nil {
+				*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s \"%s\")')", modelColumn, jsonPath, jsonProperty, op, tmp.Format(time.RFC3339)))
+			} else {
+				*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s)')", modelColumn, jsonPath, jsonProperty, op))
+			}
 		}
 	default:
 		return errors.New("unsupported data type")
