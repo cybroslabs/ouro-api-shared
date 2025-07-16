@@ -618,6 +618,7 @@ type ComplexityRoot struct {
 
 	GetCryptoSecretRequest struct {
 		CryptoID   func(childComplexity int) int
+		DriverType func(childComplexity int) int
 		ObjectType func(childComplexity int) int
 	}
 
@@ -1117,6 +1118,7 @@ type ComplexityRoot struct {
 		Data                   func(childComplexity int) int
 		DataDecryptionMethod   func(childComplexity int) int
 		DataDecryptionSecretID func(childComplexity int) int
+		DriverType             func(childComplexity int) int
 		KeyID                  func(childComplexity int) int
 		ObjectType             func(childComplexity int) int
 	}
@@ -3325,6 +3327,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.GetCryptoSecretRequest.CryptoID(childComplexity), true
 
+	case "GetCryptoSecretRequest.driverType":
+		if e.complexity.GetCryptoSecretRequest.DriverType == nil {
+			break
+		}
+
+		return e.complexity.GetCryptoSecretRequest.DriverType(childComplexity), true
+
 	case "GetCryptoSecretRequest.objectType":
 		if e.complexity.GetCryptoSecretRequest.ObjectType == nil {
 			break
@@ -5473,6 +5482,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.SetCryptoSecretRequest.DataDecryptionSecretID(childComplexity), true
+
+	case "SetCryptoSecretRequest.driverType":
+		if e.complexity.SetCryptoSecretRequest.DriverType == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.DriverType(childComplexity), true
 
 	case "SetCryptoSecretRequest.keyId":
 		if e.complexity.SetCryptoSecretRequest.KeyID == nil {
@@ -18884,6 +18900,47 @@ func (ec *executionContext) fieldContext_GetCryptoSecretRequest_objectType(_ con
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type ObjectType does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _GetCryptoSecretRequest_driverType(ctx context.Context, field graphql.CollectedField, obj *model.GetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_GetCryptoSecretRequest_driverType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DriverType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_GetCryptoSecretRequest_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "GetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -32719,6 +32776,47 @@ func (ec *executionContext) fieldContext_SetCryptoSecretRequest_objectType(_ con
 	return fc, nil
 }
 
+func (ec *executionContext) _SetCryptoSecretRequest_driverType(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_driverType(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DriverType, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_driverType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _SetCryptoSecretRequest_cryptoId(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_SetCryptoSecretRequest_cryptoId(ctx, field)
 	if err != nil {
@@ -41597,6 +41695,8 @@ func (ec *executionContext) _GetCryptoSecretRequest(ctx context.Context, sel ast
 			out.Values[i] = graphql.MarshalString("GetCryptoSecretRequest")
 		case "objectType":
 			out.Values[i] = ec._GetCryptoSecretRequest_objectType(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._GetCryptoSecretRequest_driverType(ctx, field, obj)
 		case "cryptoId":
 			out.Values[i] = ec._GetCryptoSecretRequest_cryptoId(ctx, field, obj)
 		default:
@@ -46044,6 +46144,8 @@ func (ec *executionContext) _SetCryptoSecretRequest(ctx context.Context, sel ast
 			out.Values[i] = graphql.MarshalString("SetCryptoSecretRequest")
 		case "objectType":
 			out.Values[i] = ec._SetCryptoSecretRequest_objectType(ctx, field, obj)
+		case "driverType":
+			out.Values[i] = ec._SetCryptoSecretRequest_driverType(ctx, field, obj)
 		case "cryptoId":
 			out.Values[i] = ec._SetCryptoSecretRequest_cryptoId(ctx, field, obj)
 		case "accessLevel":

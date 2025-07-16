@@ -32,6 +32,7 @@ const (
 //
 // The Deviceregistry service definition.
 type CryproServiceClient interface {
+	// @group: Cryptography
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[crypto.DlmsIn, crypto.DlmsOut], error)
 	// @group: Cryptography
@@ -89,6 +90,7 @@ func (c *cryproServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.Se
 //
 // The Deviceregistry service definition.
 type CryproServiceServer interface {
+	// @group: Cryptography
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]) error
 	// @group: Cryptography

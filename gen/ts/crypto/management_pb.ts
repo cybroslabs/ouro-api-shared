@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file crypto/management.proto.
  */
 export const file_crypto_management: GenFile = /*@__PURE__*/
-  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8iawoWR2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJIk0KDUNyeXB0b1NlY3JldHMSPAoHc2VjcmV0cxgBIAMoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLkNyeXB0b1NlY3JldCLeAQoMQ3J5cHRvU2VjcmV0EhQKDGFjY2Vzc19sZXZlbBgBIAEoCRIOCgZrZXlfaWQYAiABKAkSLgoKY3JlYXRlZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDAoEZGF0YRgPIAEoDEoECAUQBkoECAYQB0oECAcQCEoECAgQCUoECAkQCkoECAoQC0oECAsQDEoECAwQDUoECA0QDkoECA4QDyLNAgoWU2V0Q3J5cHRvU2VjcmV0UmVxdWVzdBI+CgtvYmplY3RfdHlwZRgBIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSEQoJY3J5cHRvX2lkGAIgASgJEhQKDGFjY2Vzc19sZXZlbBgDIAEoCRIOCgZrZXlfaWQYBCABKAkSIQoZZGF0YV9kZWNyeXB0aW9uX3NlY3JldF9pZBgFIAEoCRJZChZkYXRhX2RlY3J5cHRpb25fbWV0aG9kGAYgASgOMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8uU2VjcmV0RGF0YURlc3J5cHRpb25NZXRob2QSDAoEZGF0YRgPIAEoDEoECAcQCEoECAgQCUoECAkQCkoECAoQC0oECAsQDEoECAwQDUoECA0QDkoECA4QDyorChpTZWNyZXREYXRhRGVzcnlwdGlvbk1ldGhvZBINCglBRVMyNTZDQkMQAEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
+  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8igAEKFkdldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCSJNCg1DcnlwdG9TZWNyZXRzEjwKB3NlY3JldHMYASADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyeXB0by5DcnlwdG9TZWNyZXQi3gEKDENyeXB0b1NlY3JldBIUCgxhY2Nlc3NfbGV2ZWwYASABKAkSDgoGa2V5X2lkGAIgASgJEi4KCmNyZWF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBGRhdGEYDyABKAxKBAgFEAZKBAgGEAdKBAgHEAhKBAgIEAlKBAgJEApKBAgKEAtKBAgLEAxKBAgMEA1KBAgNEA5KBAgOEA8i3AIKFlNldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCRIUCgxhY2Nlc3NfbGV2ZWwYBCABKAkSDgoGa2V5X2lkGAUgASgJEiEKGWRhdGFfZGVjcnlwdGlvbl9zZWNyZXRfaWQYBiABKAkSWQoWZGF0YV9kZWNyeXB0aW9uX21ldGhvZBgHIAEoDjI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLlNlY3JldERhdGFEZXNyeXB0aW9uTWV0aG9kEgwKBGRhdGEYDyABKAxKBAgIEAlKBAgJEApKBAgKEAtKBAgLEAxKBAgMEA1KBAgNEA5KBAgOEA8qNgoaU2VjcmV0RGF0YURlc3J5cHRpb25NZXRob2QSCQoFUExBSU4QABINCglBRVMyNTZDQkMQAUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
 
 /**
  * @generated from message io.clbs.openhes.models.crypto.GetCryptoSecretRequest
@@ -28,9 +28,16 @@ export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetC
   objectType: ObjectType;
 
   /**
+   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   *
+   * @generated from field: string driver_type = 2;
+   */
+  driverType: string;
+
+  /**
    * The crypto ID of the secret to retrieve.
    *
-   * @generated from field: string crypto_id = 2;
+   * @generated from field: string crypto_id = 3;
    */
   cryptoId: string;
 };
@@ -47,9 +54,16 @@ export type GetCryptoSecretRequestJson = {
   objectType?: ObjectTypeJson;
 
   /**
+   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   *
+   * @generated from field: string driver_type = 2;
+   */
+  driverType?: string;
+
+  /**
    * The crypto ID of the secret to retrieve.
    *
-   * @generated from field: string crypto_id = 2;
+   * @generated from field: string crypto_id = 3;
    */
   cryptoId?: string;
 };
@@ -191,37 +205,44 @@ export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetC
   objectType: ObjectType;
 
   /**
+   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   *
+   * @generated from field: string driver_type = 2;
+   */
+  driverType: string;
+
+  /**
    * The crypto ID of the secret to retrieve.
    *
-   * @generated from field: string crypto_id = 2;
+   * @generated from field: string crypto_id = 3;
    */
   cryptoId: string;
 
   /**
    * Access level for the secret, e.g., "admin", "user", etc.
    *
-   * @generated from field: string access_level = 3;
+   * @generated from field: string access_level = 4;
    */
   accessLevel: string;
 
   /**
    * Unique identifier for the secret key.
    *
-   * @generated from field: string key_id = 4;
+   * @generated from field: string key_id = 5;
    */
   keyId: string;
 
   /**
    * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: string data_decryption_secret_id = 5;
+   * @generated from field: string data_decryption_secret_id = 6;
    */
   dataDecryptionSecretId: string;
 
   /**
    * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 6;
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 7;
    */
   dataDecryptionMethod: SecretDataDesryptionMethod;
 
@@ -245,37 +266,44 @@ export type SetCryptoSecretRequestJson = {
   objectType?: ObjectTypeJson;
 
   /**
+   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   *
+   * @generated from field: string driver_type = 2;
+   */
+  driverType?: string;
+
+  /**
    * The crypto ID of the secret to retrieve.
    *
-   * @generated from field: string crypto_id = 2;
+   * @generated from field: string crypto_id = 3;
    */
   cryptoId?: string;
 
   /**
    * Access level for the secret, e.g., "admin", "user", etc.
    *
-   * @generated from field: string access_level = 3;
+   * @generated from field: string access_level = 4;
    */
   accessLevel?: string;
 
   /**
    * Unique identifier for the secret key.
    *
-   * @generated from field: string key_id = 4;
+   * @generated from field: string key_id = 5;
    */
   keyId?: string;
 
   /**
    * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: string data_decryption_secret_id = 5;
+   * @generated from field: string data_decryption_secret_id = 6;
    */
   dataDecryptionSecretId?: string;
 
   /**
    * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 6;
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 7;
    */
   dataDecryptionMethod?: SecretDataDesryptionMethodJson;
 
@@ -301,11 +329,18 @@ export const SetCryptoSecretRequestSchema: GenMessage<SetCryptoSecretRequest, {j
  */
 export enum SecretDataDesryptionMethod {
   /**
+   * Plain data, no decryption needed
+   *
+   * @generated from enum value: PLAIN = 0;
+   */
+  PLAIN = 0,
+
+  /**
    * AES-256-CBC encryption method
    *
-   * @generated from enum value: AES256CBC = 0;
+   * @generated from enum value: AES256CBC = 1;
    */
-  AES256CBC = 0,
+  AES256CBC = 1,
 }
 
 /**
@@ -313,7 +348,7 @@ export enum SecretDataDesryptionMethod {
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
  */
-export type SecretDataDesryptionMethodJson = "AES256CBC";
+export type SecretDataDesryptionMethodJson = "PLAIN" | "AES256CBC";
 
 /**
  * Describes the enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod.

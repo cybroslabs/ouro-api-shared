@@ -582,6 +582,7 @@ type FieldValues struct {
 
 type GetCryptoSecretRequest struct {
 	ObjectType *ObjectType `json:"objectType,omitempty"`
+	DriverType *string     `json:"driverType,omitempty"`
 	CryptoID   *string     `json:"cryptoId,omitempty"`
 }
 
@@ -980,6 +981,7 @@ type Season struct {
 
 type SetCryptoSecretRequest struct {
 	ObjectType             *ObjectType                 `json:"objectType,omitempty"`
+	DriverType             *string                     `json:"driverType,omitempty"`
 	CryptoID               *string                     `json:"cryptoId,omitempty"`
 	AccessLevel            *string                     `json:"accessLevel,omitempty"`
 	KeyID                  *string                     `json:"keyId,omitempty"`
@@ -2231,16 +2233,18 @@ func (e RelayState) MarshalJSON() ([]byte, error) {
 type SecretDataDesryptionMethod string
 
 const (
+	SecretDataDesryptionMethodPlain     SecretDataDesryptionMethod = "PLAIN"
 	SecretDataDesryptionMethodAes256cbc SecretDataDesryptionMethod = "AES256CBC"
 )
 
 var AllSecretDataDesryptionMethod = []SecretDataDesryptionMethod{
+	SecretDataDesryptionMethodPlain,
 	SecretDataDesryptionMethodAes256cbc,
 }
 
 func (e SecretDataDesryptionMethod) IsValid() bool {
 	switch e {
-	case SecretDataDesryptionMethodAes256cbc:
+	case SecretDataDesryptionMethodPlain, SecretDataDesryptionMethodAes256cbc:
 		return true
 	}
 	return false

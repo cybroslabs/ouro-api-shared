@@ -10,12 +10,14 @@ import "common/objects.proto";
 
 // DLMS crypto mode
 enum SecretDataDesryptionMethod {
-    AES256CBC = 0;  // AES-256-CBC encryption method
+    PLAIN     = 0;  // Plain data, no decryption needed
+    AES256CBC = 1;  // AES-256-CBC encryption method
 }
 
 message GetCryptoSecretRequest {
     common.ObjectType object_type = 1;  // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string crypto_id              = 2;  // The crypto ID of the secret to retrieve.
+    string driver_type            = 2;  // The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+    string crypto_id              = 3;  // The crypto ID of the secret to retrieve.
 }
 
 message CryptoSecrets {
@@ -32,12 +34,13 @@ message CryptoSecret {
 }
 
 message SetCryptoSecretRequest {
-    reserved 7, 8, 9, 10, 11, 12, 13, 14;                    // Reserved fields for future use.
+    reserved 8, 9, 10, 11, 12, 13, 14;                       // Reserved fields for future use.
     common.ObjectType object_type                     = 1;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string crypto_id                                  = 2;   // The crypto ID of the secret to retrieve.
-    string access_level                               = 3;   // Access level for the secret, e.g., "admin", "user", etc.
-    string key_id                                     = 4;   // Unique identifier for the secret key.
-    string data_decryption_secret_id                  = 5;   // Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
-    SecretDataDesryptionMethod data_decryption_method = 6;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    string driver_type                                = 2;   // The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+    string crypto_id                                  = 3;   // The crypto ID of the secret to retrieve.
+    string access_level                               = 4;   // Access level for the secret, e.g., "admin", "user", etc.
+    string key_id                                     = 5;   // Unique identifier for the secret key.
+    string data_decryption_secret_id                  = 6;   // Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    SecretDataDesryptionMethod data_decryption_method = 7;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
     bytes data                                        = 15;  // The secret data.
 }

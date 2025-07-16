@@ -320,6 +320,8 @@ enum CronJobTypeEnum {
 
 # DLMS crypto mode
 enum SecretDataDesryptionMethod {
+  # Plain data, no decryption needed
+  PLAIN
   # AES-256-CBC encryption method
   AES256CBC
 }
@@ -2090,6 +2092,8 @@ type CryptoSecrets {
 type GetCryptoSecretRequest {
   # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
   objectType: ObjectType
+  # The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+  driverType: String
   # The crypto ID of the secret to retrieve.
   cryptoId: String
 }
@@ -2097,6 +2101,8 @@ type GetCryptoSecretRequest {
 type SetCryptoSecretRequest {
   # Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
   objectType: ObjectType
+  # The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+  driverType: String
   # The crypto ID of the secret to retrieve.
   cryptoId: String
   # Access level for the secret, e.g., "admin", "user", etc.

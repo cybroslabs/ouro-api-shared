@@ -6,4 +6,5 @@ DLMS crypto mode
 
 | Value | Description |
 | --- | --- |
+| PLAIN | Plain data, no decryption needed |
 | AES256CBC | AES-256-CBC encryption method |

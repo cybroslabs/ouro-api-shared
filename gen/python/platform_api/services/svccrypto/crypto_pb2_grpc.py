@@ -39,7 +39,8 @@ class CryproServiceServicer(object):
     """
 
     def Dlms(self, request_iterator, context):
-        """Initialize the crypto service stream-based RPC for DLMS frames.
+        """@group: Cryptography
+        Initialize the crypto service stream-based RPC for DLMS frames.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

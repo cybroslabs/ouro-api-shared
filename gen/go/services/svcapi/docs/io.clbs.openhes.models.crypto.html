@@ -337,6 +337,21 @@
     <tr>
       <td>2</td>
       <td>
+        driverType
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
         cryptoId
       </td>
       <td>
@@ -403,6 +418,21 @@
     <tr>
       <td>2</td>
       <td>
+        driverType
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
         cryptoId
       </td>
       <td>
@@ -416,7 +446,7 @@
     </tr>
     
     <tr>
-      <td>3</td>
+      <td>4</td>
       <td>
         accessLevel
       </td>
@@ -431,7 +461,7 @@
     </tr>
     
     <tr>
-      <td>4</td>
+      <td>5</td>
       <td>
         keyId
       </td>
@@ -446,7 +476,7 @@
     </tr>
     
     <tr>
-      <td>5</td>
+      <td>6</td>
       <td>
         dataDecryptionSecretId
       </td>
@@ -461,7 +491,7 @@
     </tr>
     
     <tr>
-      <td>6</td>
+      <td>7</td>
       <td>
         dataDecryptionMethod
       </td>
@@ -529,8 +559,14 @@
   <tbody>
     
     <tr>
-      <td><code>AES256CBC</code></td>
+      <td><code>PLAIN</code></td>
       <td>0</td>
+      <td class="content"><p>Plain data, no decryption needed</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>AES256CBC</code></td>
+      <td>1</td>
       <td class="content"><p>AES-256-CBC encryption method</p></td>
     </tr>
     
