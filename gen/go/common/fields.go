@@ -42,9 +42,9 @@ func NewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, cust
 	// Auto-generate the system-wide unique identifier (gid) for the field descriptor.
 	var gid string
 	if cgs := ptr.Deref(customGidSuffix, ""); len(cgs) > 0 {
-		gid = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, dbPath, cgs))
+		gid = strings.ToLower(fmt.Sprintf("%s#%s#%s", object_type, descriptor.GetPath(), cgs))
 	} else {
-		gid = strings.ToLower(fmt.Sprintf("%s#%s", object_type, dbPath))
+		gid = strings.ToLower(fmt.Sprintf("%s#%s", object_type, descriptor.GetPath()))
 	}
 	descriptor.SetGid(gid)
 
