@@ -1,0 +1,56 @@
+package system
+
+import (
+	"encoding/json"
+	"strconv"
+	"time"
+)
+
+// IsLicensed returns true if the licensed item is present in the license.
+func (l *License) IsLicensed(item string) bool {
+	if opts := l.GetOptions(); opts == nil {
+		return false
+	} else {
+		_, ok := opts[item]
+		return ok
+	}
+}
+
+// GetLicensedString returns the numberic count of the licensed item, or 0 if not licensed.
+func (l *License) GetLicensedCount(item string) int {
+	if opts := l.GetOptions(); opts != nil {
+		if v, ok := opts[item]; ok {
+			if v_int, err := strconv.Atoi(v); err == nil {
+				return v_int
+			}
+		}
+	}
+	return 0
+}
+
+// GetLicensedString returns the array of string as set in the license, or an empty array if not licensed.
+func (l *License) GetLicensedStringArray(item string) []string {
+	result := make([]string, 0)
+	if opts := l.GetOptions(); opts != nil {
+		if v, ok := opts[item]; ok {
+			if err := json.Unmarshal([]byte(v), &result); err == nil {
+				return result
+			}
+		}
+	}
+	return result
+}
+
+// GetLicensedTimestamp returns the timestamp as set in the license, or zero time if not licensed.
+func (l *License) GetLicensedTimestamp(item string) time.Time {
+	if opts := l.GetOptions(); opts != nil {
+		if v, ok := opts[item]; ok {
+			if v_int, err := strconv.Atoi(v); err == nil {
+				return time.Unix(int64(v_int), 0)
+			} else if v_time, err := time.Parse(time.RFC3339, v); err == nil {
+				return v_time
+			}
+		}
+	}
+	return time.Time{}
+}
