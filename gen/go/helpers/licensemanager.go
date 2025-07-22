@@ -21,7 +21,7 @@ const (
 
 // LicenseManager is an interface that defines methods for license operations in the system.
 type LicenseManager interface {
-	// GetLicense retrieves the current license key.
+	// GetLicense retrieves the current license key. If no license is set, it blocks until a license is available or the context is done.
 	GetLicense(ctx context.Context) (*system.License, error)
 	// HasLicense checks if a license is currently set.
 	HasLicense() bool
@@ -78,7 +78,7 @@ func (lm *licenseManager) run(ctx context.Context) {
 	check_period := _periodNoLicense
 	check_failed_count := 0
 	for {
-		license, err := lm.GetLicense(ctx)
+		license, err := lm.fetchLicense(ctx)
 		if err != nil {
 			check_failed_count++
 			if check_failed_count == 3 {
@@ -120,7 +120,7 @@ func (lm *licenseManager) run(ctx context.Context) {
 }
 
 // Returns the current license.
-func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, error) {
+func (lm *licenseManager) fetchLicense(ctx context.Context) (*system.License, error) {
 	if lm == nil {
 		return nil, errors.New("license manager is not initialized")
 	}
@@ -138,6 +138,20 @@ func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, erro
 	return resp, nil
 }
 
+func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, error) {
+	if l := lm.license; l != nil {
+		return l, nil
+	}
+	for {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-lm.event:
+			return lm.license, nil
+		}
+	}
+}
+
 func (lm *licenseManager) HasLicense() bool {
 	return lm.license != nil
 }
@@ -145,15 +159,6 @@ func (lm *licenseManager) HasLicense() bool {
 // WaitLicense blocks until a license is available or the context is done.
 // It returns an error if the context is canceled, otherwise it returns nil when a license is available.
 func (lm *licenseManager) WaitLicense(ctx context.Context) error {
-	if lm.license != nil {
-		return nil
-	}
-	for {
-		select {
-		case <-ctx.Done():
-			return ctx.Err()
-		case <-lm.event:
-			return nil
-		}
-	}
+	_, err := lm.GetLicense(ctx)
+	return err
 }
