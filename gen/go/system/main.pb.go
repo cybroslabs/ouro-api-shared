@@ -361,6 +361,7 @@ type License struct {
 	xxx_hidden_Name        *string                `protobuf:"bytes,3,opt,name=name"`
 	xxx_hidden_Description *string                `protobuf:"bytes,4,opt,name=description"`
 	xxx_hidden_Options     map[string]string      `protobuf:"bytes,5,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Version     int32                  `protobuf:"varint,6,opt,name=version"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -439,28 +440,40 @@ func (x *License) GetOptions() map[string]string {
 	return nil
 }
 
+func (x *License) GetVersion() int32 {
+	if x != nil {
+		return x.xxx_hidden_Version
+	}
+	return 0
+}
+
 func (x *License) SetToken(v string) {
 	x.xxx_hidden_Token = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
 }
 
 func (x *License) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
 }
 
 func (x *License) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 6)
 }
 
 func (x *License) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 6)
 }
 
 func (x *License) SetOptions(v map[string]string) {
 	x.xxx_hidden_Options = v
+}
+
+func (x *License) SetVersion(v int32) {
+	x.xxx_hidden_Version = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *License) HasToken() bool {
@@ -491,6 +504,13 @@ func (x *License) HasDescription() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
+func (x *License) HasVersion() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
 func (x *License) ClearToken() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Token = nil
@@ -511,6 +531,11 @@ func (x *License) ClearDescription() {
 	x.xxx_hidden_Description = nil
 }
 
+func (x *License) ClearVersion() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_Version = 0
+}
+
 type License_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -519,6 +544,7 @@ type License_builder struct {
 	Name        *string
 	Description *string
 	Options     map[string]string
+	Version     *int32
 }
 
 func (b0 License_builder) Build() *License {
@@ -526,22 +552,26 @@ func (b0 License_builder) Build() *License {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Token != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
 		x.xxx_hidden_Token = b.Token
 	}
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 6)
 		x.xxx_hidden_Name = b.Name
 	}
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 6)
 		x.xxx_hidden_Description = b.Description
 	}
 	x.xxx_hidden_Options = b.Options
+	if b.Version != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		x.xxx_hidden_Version = *b.Version
+	}
 	return m0
 }
 
@@ -638,13 +668,14 @@ const file_system_main_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n" +
 	"\x1bApplicationConfigDescriptor\x12Z\n" +
 	"\vdescriptors\x18\x01 \x03(\v28.io.clbs.openhes.models.system.ComponentConfigDescriptorR\vdescriptors\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xf0\x01\n" +
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\x8a\x02\n" +
 	"\aLicense\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12M\n" +
-	"\aoptions\x18\x05 \x03(\v23.io.clbs.openhes.models.system.License.OptionsEntryR\aoptions\x1a:\n" +
+	"\aoptions\x18\x05 \x03(\v23.io.clbs.openhes.models.system.License.OptionsEntryR\aoptions\x12\x18\n" +
+	"\aversion\x18\x06 \x01(\x05R\aversion\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"/\n" +

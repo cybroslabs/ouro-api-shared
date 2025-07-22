@@ -33,6 +33,7 @@ message License {
     string name                 = 3;  // The license name.
     string description          = 4;  // The license description.
     map<string, string> options = 5;  // The licensed options.
+    int32 version               = 6;  // The license options structure version.
 }
 
 message OpenIdConfiguration {
