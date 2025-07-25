@@ -13,12 +13,6 @@ const (
 	_periodRevalidate = 30 * time.Minute
 )
 
-type LicensedItem string
-
-const (
-	LicensedItemParallelAcqusitionChannels LicensedItem = "parallel_acqusition_channels"
-)
-
 // LicenseManager is an interface that defines methods for license operations in the system.
 type LicenseManager interface {
 	// GetLicense retrieves the current license key. If no license is set, it blocks until a license is available or the context is done.

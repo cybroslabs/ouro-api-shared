@@ -6,20 +6,27 @@ import (
 	"time"
 )
 
+type LicensedItem string
+
+const (
+	LicensedItemParallelAcqusitionChannels LicensedItem = "parallel_acqusition_channels"
+	LicensedItemDeviceDrivers              LicensedItem = "device_drivers"
+)
+
 // IsLicensed returns true if the licensed item is present in the license.
-func (l *License) IsLicensed(item string) bool {
+func (l *License) IsLicensed(item LicensedItem) bool {
 	if opts := l.GetOptions(); opts == nil {
 		return false
 	} else {
-		_, ok := opts[item]
+		_, ok := opts[string(item)]
 		return ok
 	}
 }
 
 // GetLicensedString returns the numberic count of the licensed item, or 0 if not licensed.
-func (l *License) GetLicensedCount(item string) int {
+func (l *License) GetLicensedCount(item LicensedItem) int {
 	if opts := l.GetOptions(); opts != nil {
-		if v, ok := opts[item]; ok {
+		if v, ok := opts[string(item)]; ok {
 			if v_int, err := strconv.Atoi(v); err == nil {
 				return v_int
 			}
@@ -29,10 +36,10 @@ func (l *License) GetLicensedCount(item string) int {
 }
 
 // GetLicensedString returns the array of string as set in the license, or an empty array if not licensed.
-func (l *License) GetLicensedStringArray(item string) []string {
+func (l *License) GetLicensedStringArray(item LicensedItem) []string {
 	result := make([]string, 0)
 	if opts := l.GetOptions(); opts != nil {
-		if v, ok := opts[item]; ok {
+		if v, ok := opts[string(item)]; ok {
 			if err := json.Unmarshal([]byte(v), &result); err == nil {
 				return result
 			}
@@ -42,9 +49,9 @@ func (l *License) GetLicensedStringArray(item string) []string {
 }
 
 // GetLicensedTimestamp returns the timestamp as set in the license, or zero time if not licensed.
-func (l *License) GetLicensedTimestamp(item string) time.Time {
+func (l *License) GetLicensedTimestamp(item LicensedItem) time.Time {
 	if opts := l.GetOptions(); opts != nil {
-		if v, ok := opts[item]; ok {
+		if v, ok := opts[string(item)]; ok {
 			if v_int, err := strconv.Atoi(v); err == nil {
 				return time.Unix(int64(v_int), 0)
 			} else if v_time, err := time.Parse(time.RFC3339, v); err == nil {
