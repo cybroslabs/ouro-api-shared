@@ -15,12 +15,12 @@ const (
 
 // LicenseManager is an interface that defines methods for license operations in the system.
 type LicenseManager interface {
-	// GetLicense retrieves the current license key. If no license is set, it blocks until a license is available or the context is done.
-	GetLicense(ctx context.Context) (*system.License, error)
+	// GetLicense retrieves the current license key. If no license is set, it returns nil.
+	GetLicense() *system.License
 	// HasLicense checks if a license is currently set.
 	HasLicense() bool
 	// WaitLicense blocks until a license is available or the context is done.
-	WaitLicense(ctx context.Context) error
+	WaitLicense(ctx context.Context) (*system.License, error)
 	// Stop stops the license manager and releases any resources it holds.
 	Stop()
 }
@@ -63,6 +63,8 @@ func NewLicenseManager(opts *LicenseManagerOpts) LicenseManager {
 	return lm
 }
 
+// Stop stops the license manager and releases any resources it holds.
+// It cancels the running context and the outer cancel function if provided.
 func (lm *licenseManager) Stop() {
 	lm.runCancel()
 	lm.outterCancel()
@@ -132,27 +134,30 @@ func (lm *licenseManager) fetchLicense(ctx context.Context) (*system.License, er
 	return resp, nil
 }
 
-func (lm *licenseManager) GetLicense(ctx context.Context) (*system.License, error) {
-	if l := lm.license; l != nil {
-		return l, nil
-	}
-	for {
-		select {
-		case <-ctx.Done():
-			return nil, ctx.Err()
-		case <-lm.event:
-			return lm.license, nil
-		}
-	}
+// GetLicense retrieves the current license key. If no license is set, it returns nil.
+func (lm *licenseManager) GetLicense() *system.License {
+	return lm.license
 }
 
+// HasLicense checks if a license is currently loaded.
 func (lm *licenseManager) HasLicense() bool {
 	return lm.license != nil
 }
 
 // WaitLicense blocks until a license is available or the context is done.
 // It returns an error if the context is canceled, otherwise it returns nil when a license is available.
-func (lm *licenseManager) WaitLicense(ctx context.Context) error {
-	_, err := lm.GetLicense(ctx)
-	return err
+func (lm *licenseManager) WaitLicense(ctx context.Context) (*system.License, error) {
+	if lm == nil {
+		return nil, errors.New("license manager is not initialized")
+	}
+	for {
+		if l := lm.license; l != nil {
+			return l, nil
+		}
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-lm.event:
+		}
+	}
 }
