@@ -24,44 +24,88 @@ const (
 )
 
 // DLMS crypto mode
-type SecretDataDesryptionMethod int32
+type SecretDataDecryptionMethod int32
 
 const (
-	SecretDataDesryptionMethod_PLAIN     SecretDataDesryptionMethod = 0 // Plain data, no decryption needed
-	SecretDataDesryptionMethod_AES256CBC SecretDataDesryptionMethod = 1 // AES-256-CBC encryption method
+	SecretDataDecryptionMethod_SECRET_DATA_PLAIN     SecretDataDecryptionMethod = 0 // Plain data, no decryption needed
+	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC SecretDataDecryptionMethod = 1 // AES-256-CBC encryption method
 )
 
-// Enum value maps for SecretDataDesryptionMethod.
+// Enum value maps for SecretDataDecryptionMethod.
 var (
-	SecretDataDesryptionMethod_name = map[int32]string{
-		0: "PLAIN",
-		1: "AES256CBC",
+	SecretDataDecryptionMethod_name = map[int32]string{
+		0: "SECRET_DATA_PLAIN",
+		1: "SECRET_DATA_AES256CBC",
 	}
-	SecretDataDesryptionMethod_value = map[string]int32{
-		"PLAIN":     0,
-		"AES256CBC": 1,
+	SecretDataDecryptionMethod_value = map[string]int32{
+		"SECRET_DATA_PLAIN":     0,
+		"SECRET_DATA_AES256CBC": 1,
 	}
 )
 
-func (x SecretDataDesryptionMethod) Enum() *SecretDataDesryptionMethod {
-	p := new(SecretDataDesryptionMethod)
+func (x SecretDataDecryptionMethod) Enum() *SecretDataDecryptionMethod {
+	p := new(SecretDataDecryptionMethod)
 	*p = x
 	return p
 }
 
-func (x SecretDataDesryptionMethod) String() string {
+func (x SecretDataDecryptionMethod) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (SecretDataDesryptionMethod) Descriptor() protoreflect.EnumDescriptor {
+func (SecretDataDecryptionMethod) Descriptor() protoreflect.EnumDescriptor {
 	return file_crypto_management_proto_enumTypes[0].Descriptor()
 }
 
-func (SecretDataDesryptionMethod) Type() protoreflect.EnumType {
+func (SecretDataDecryptionMethod) Type() protoreflect.EnumType {
 	return &file_crypto_management_proto_enumTypes[0]
 }
 
-func (x SecretDataDesryptionMethod) Number() protoreflect.EnumNumber {
+func (x SecretDataDecryptionMethod) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+type SecretSessionKeyDecryptionMethod int32
+
+const (
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE           SecretSessionKeyDecryptionMethod = 0 // No session key decryption method, used when the session key is not set or not used.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Plain session key, no session-key decryption needed.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // RSA-OAEP-MGF1P decryption method, used for session keys.
+)
+
+// Enum value maps for SecretSessionKeyDecryptionMethod.
+var (
+	SecretSessionKeyDecryptionMethod_name = map[int32]string{
+		0: "SECRET_SESSION_NONE",
+		1: "SECRET_SESSION_PLAIN",
+		2: "SECRET_SESSION_RSA_OAEPM_GF1P",
+	}
+	SecretSessionKeyDecryptionMethod_value = map[string]int32{
+		"SECRET_SESSION_NONE":           0,
+		"SECRET_SESSION_PLAIN":          1,
+		"SECRET_SESSION_RSA_OAEPM_GF1P": 2,
+	}
+)
+
+func (x SecretSessionKeyDecryptionMethod) Enum() *SecretSessionKeyDecryptionMethod {
+	p := new(SecretSessionKeyDecryptionMethod)
+	*p = x
+	return p
+}
+
+func (x SecretSessionKeyDecryptionMethod) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SecretSessionKeyDecryptionMethod) Descriptor() protoreflect.EnumDescriptor {
+	return file_crypto_management_proto_enumTypes[1].Descriptor()
+}
+
+func (SecretSessionKeyDecryptionMethod) Type() protoreflect.EnumType {
+	return &file_crypto_management_proto_enumTypes[1]
+}
+
+func (x SecretSessionKeyDecryptionMethod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
@@ -462,20 +506,22 @@ func (b0 CryptoSecret_builder) Build() *CryptoSecret {
 }
 
 type SetCryptoSecretRequest struct {
-	state                             protoimpl.MessageState     `protogen:"opaque.v1"`
-	xxx_hidden_ObjectType             common.ObjectType          `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
-	xxx_hidden_DriverType             *string                    `protobuf:"bytes,2,opt,name=driver_type,json=driverType"`
-	xxx_hidden_CryptoId               *string                    `protobuf:"bytes,3,opt,name=crypto_id,json=cryptoId"`
-	xxx_hidden_AccessLevel            *string                    `protobuf:"bytes,4,opt,name=access_level,json=accessLevel"`
-	xxx_hidden_KeyId                  *string                    `protobuf:"bytes,5,opt,name=key_id,json=keyId"`
-	xxx_hidden_DataDecryptionSecretId *string                    `protobuf:"bytes,6,opt,name=data_decryption_secret_id,json=dataDecryptionSecretId"`
-	xxx_hidden_DataDecryptionMethod   SecretDataDesryptionMethod `protobuf:"varint,7,opt,name=data_decryption_method,json=dataDecryptionMethod,enum=io.clbs.openhes.models.crypto.SecretDataDesryptionMethod"`
-	xxx_hidden_DataDecryptionIv       []byte                     `protobuf:"bytes,8,opt,name=data_decryption_iv,json=dataDecryptionIv"`
-	xxx_hidden_Data                   []byte                     `protobuf:"bytes,15,opt,name=data"`
-	XXX_raceDetectHookData            protoimpl.RaceDetectHookData
-	XXX_presence                      [1]uint32
-	unknownFields                     protoimpl.UnknownFields
-	sizeCache                         protoimpl.SizeCache
+	state                                 protoimpl.MessageState           `protogen:"opaque.v1"`
+	xxx_hidden_ObjectType                 common.ObjectType                `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_DriverType                 *string                          `protobuf:"bytes,2,opt,name=driver_type,json=driverType"`
+	xxx_hidden_CryptoId                   *string                          `protobuf:"bytes,3,opt,name=crypto_id,json=cryptoId"`
+	xxx_hidden_AccessLevel                *string                          `protobuf:"bytes,4,opt,name=access_level,json=accessLevel"`
+	xxx_hidden_KeyId                      *string                          `protobuf:"bytes,5,opt,name=key_id,json=keyId"`
+	xxx_hidden_DecryptionSecretId         *string                          `protobuf:"bytes,6,opt,name=decryption_secret_id,json=decryptionSecretId"`
+	xxx_hidden_SessionKeyDecryptionMethod SecretSessionKeyDecryptionMethod `protobuf:"varint,7,opt,name=session_key_decryption_method,json=sessionKeyDecryptionMethod,enum=io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"`
+	xxx_hidden_SessionKey                 []byte                           `protobuf:"bytes,8,opt,name=session_key,json=sessionKey"`
+	xxx_hidden_DataDecryptionMethod       SecretDataDecryptionMethod       `protobuf:"varint,9,opt,name=data_decryption_method,json=dataDecryptionMethod,enum=io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"`
+	xxx_hidden_DataDecryptionIv           []byte                           `protobuf:"bytes,10,opt,name=data_decryption_iv,json=dataDecryptionIv"`
+	xxx_hidden_Data                       []byte                           `protobuf:"bytes,15,opt,name=data"`
+	XXX_raceDetectHookData                protoimpl.RaceDetectHookData
+	XXX_presence                          [1]uint32
+	unknownFields                         protoimpl.UnknownFields
+	sizeCache                             protoimpl.SizeCache
 }
 
 func (x *SetCryptoSecretRequest) Reset() {
@@ -552,23 +598,39 @@ func (x *SetCryptoSecretRequest) GetKeyId() string {
 	return ""
 }
 
-func (x *SetCryptoSecretRequest) GetDataDecryptionSecretId() string {
+func (x *SetCryptoSecretRequest) GetDecryptionSecretId() string {
 	if x != nil {
-		if x.xxx_hidden_DataDecryptionSecretId != nil {
-			return *x.xxx_hidden_DataDecryptionSecretId
+		if x.xxx_hidden_DecryptionSecretId != nil {
+			return *x.xxx_hidden_DecryptionSecretId
 		}
 		return ""
 	}
 	return ""
 }
 
-func (x *SetCryptoSecretRequest) GetDataDecryptionMethod() SecretDataDesryptionMethod {
+func (x *SetCryptoSecretRequest) GetSessionKeyDecryptionMethod() SecretSessionKeyDecryptionMethod {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 6) {
+			return x.xxx_hidden_SessionKeyDecryptionMethod
+		}
+	}
+	return SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE
+}
+
+func (x *SetCryptoSecretRequest) GetSessionKey() []byte {
+	if x != nil {
+		return x.xxx_hidden_SessionKey
+	}
+	return nil
+}
+
+func (x *SetCryptoSecretRequest) GetDataDecryptionMethod() SecretDataDecryptionMethod {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 8) {
 			return x.xxx_hidden_DataDecryptionMethod
 		}
 	}
-	return SecretDataDesryptionMethod_PLAIN
+	return SecretDataDecryptionMethod_SECRET_DATA_PLAIN
 }
 
 func (x *SetCryptoSecretRequest) GetDataDecryptionIv() []byte {
@@ -587,37 +649,50 @@ func (x *SetCryptoSecretRequest) GetData() []byte {
 
 func (x *SetCryptoSecretRequest) SetObjectType(v common.ObjectType) {
 	x.xxx_hidden_ObjectType = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetDriverType(v string) {
 	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetCryptoId(v string) {
 	x.xxx_hidden_CryptoId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetAccessLevel(v string) {
 	x.xxx_hidden_AccessLevel = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetKeyId(v string) {
 	x.xxx_hidden_KeyId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 11)
 }
 
-func (x *SetCryptoSecretRequest) SetDataDecryptionSecretId(v string) {
-	x.xxx_hidden_DataDecryptionSecretId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
+func (x *SetCryptoSecretRequest) SetDecryptionSecretId(v string) {
+	x.xxx_hidden_DecryptionSecretId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 11)
 }
 
-func (x *SetCryptoSecretRequest) SetDataDecryptionMethod(v SecretDataDesryptionMethod) {
+func (x *SetCryptoSecretRequest) SetSessionKeyDecryptionMethod(v SecretSessionKeyDecryptionMethod) {
+	x.xxx_hidden_SessionKeyDecryptionMethod = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 11)
+}
+
+func (x *SetCryptoSecretRequest) SetSessionKey(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_SessionKey = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 11)
+}
+
+func (x *SetCryptoSecretRequest) SetDataDecryptionMethod(v SecretDataDecryptionMethod) {
 	x.xxx_hidden_DataDecryptionMethod = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetDataDecryptionIv(v []byte) {
@@ -625,7 +700,7 @@ func (x *SetCryptoSecretRequest) SetDataDecryptionIv(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_DataDecryptionIv = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 11)
 }
 
 func (x *SetCryptoSecretRequest) SetData(v []byte) {
@@ -633,7 +708,7 @@ func (x *SetCryptoSecretRequest) SetData(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_Data = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 10, 11)
 }
 
 func (x *SetCryptoSecretRequest) HasObjectType() bool {
@@ -671,32 +746,46 @@ func (x *SetCryptoSecretRequest) HasKeyId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *SetCryptoSecretRequest) HasDataDecryptionSecretId() bool {
+func (x *SetCryptoSecretRequest) HasDecryptionSecretId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *SetCryptoSecretRequest) HasDataDecryptionMethod() bool {
+func (x *SetCryptoSecretRequest) HasSessionKeyDecryptionMethod() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
-func (x *SetCryptoSecretRequest) HasDataDecryptionIv() bool {
+func (x *SetCryptoSecretRequest) HasSessionKey() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
 }
 
-func (x *SetCryptoSecretRequest) HasData() bool {
+func (x *SetCryptoSecretRequest) HasDataDecryptionMethod() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
+}
+
+func (x *SetCryptoSecretRequest) HasDataDecryptionIv() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 9)
+}
+
+func (x *SetCryptoSecretRequest) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 10)
 }
 
 func (x *SetCryptoSecretRequest) ClearObjectType() {
@@ -724,38 +813,50 @@ func (x *SetCryptoSecretRequest) ClearKeyId() {
 	x.xxx_hidden_KeyId = nil
 }
 
-func (x *SetCryptoSecretRequest) ClearDataDecryptionSecretId() {
+func (x *SetCryptoSecretRequest) ClearDecryptionSecretId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
-	x.xxx_hidden_DataDecryptionSecretId = nil
+	x.xxx_hidden_DecryptionSecretId = nil
+}
+
+func (x *SetCryptoSecretRequest) ClearSessionKeyDecryptionMethod() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_SessionKeyDecryptionMethod = SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE
+}
+
+func (x *SetCryptoSecretRequest) ClearSessionKey() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	x.xxx_hidden_SessionKey = nil
 }
 
 func (x *SetCryptoSecretRequest) ClearDataDecryptionMethod() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
-	x.xxx_hidden_DataDecryptionMethod = SecretDataDesryptionMethod_PLAIN
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	x.xxx_hidden_DataDecryptionMethod = SecretDataDecryptionMethod_SECRET_DATA_PLAIN
 }
 
 func (x *SetCryptoSecretRequest) ClearDataDecryptionIv() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
 	x.xxx_hidden_DataDecryptionIv = nil
 }
 
 func (x *SetCryptoSecretRequest) ClearData() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 10)
 	x.xxx_hidden_Data = nil
 }
 
 type SetCryptoSecretRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ObjectType             *common.ObjectType
-	DriverType             *string
-	CryptoId               *string
-	AccessLevel            *string
-	KeyId                  *string
-	DataDecryptionSecretId *string
-	DataDecryptionMethod   *SecretDataDesryptionMethod
-	DataDecryptionIv       []byte
-	Data                   []byte
+	ObjectType                 *common.ObjectType
+	DriverType                 *string
+	CryptoId                   *string
+	AccessLevel                *string
+	KeyId                      *string
+	DecryptionSecretId         *string
+	SessionKeyDecryptionMethod *SecretSessionKeyDecryptionMethod
+	SessionKey                 []byte
+	DataDecryptionMethod       *SecretDataDecryptionMethod
+	DataDecryptionIv           []byte
+	Data                       []byte
 }
 
 func (b0 SetCryptoSecretRequest_builder) Build() *SetCryptoSecretRequest {
@@ -763,39 +864,47 @@ func (b0 SetCryptoSecretRequest_builder) Build() *SetCryptoSecretRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ObjectType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 11)
 		x.xxx_hidden_ObjectType = *b.ObjectType
 	}
 	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 11)
 		x.xxx_hidden_DriverType = b.DriverType
 	}
 	if b.CryptoId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 11)
 		x.xxx_hidden_CryptoId = b.CryptoId
 	}
 	if b.AccessLevel != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 11)
 		x.xxx_hidden_AccessLevel = b.AccessLevel
 	}
 	if b.KeyId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 11)
 		x.xxx_hidden_KeyId = b.KeyId
 	}
-	if b.DataDecryptionSecretId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
-		x.xxx_hidden_DataDecryptionSecretId = b.DataDecryptionSecretId
+	if b.DecryptionSecretId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 11)
+		x.xxx_hidden_DecryptionSecretId = b.DecryptionSecretId
+	}
+	if b.SessionKeyDecryptionMethod != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 11)
+		x.xxx_hidden_SessionKeyDecryptionMethod = *b.SessionKeyDecryptionMethod
+	}
+	if b.SessionKey != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 11)
+		x.xxx_hidden_SessionKey = b.SessionKey
 	}
 	if b.DataDecryptionMethod != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 11)
 		x.xxx_hidden_DataDecryptionMethod = *b.DataDecryptionMethod
 	}
 	if b.DataDecryptionIv != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 11)
 		x.xxx_hidden_DataDecryptionIv = b.DataDecryptionIv
 	}
 	if b.Data != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 10, 11)
 		x.xxx_hidden_Data = b.Data
 	}
 	return m0
@@ -823,7 +932,7 @@ const file_crypto_management_proto_rawDesc = "" +
 	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n" +
 	"\x04data\x18\x0f \x01(\fR\x04dataJ\x04\b\x05\x10\x06J\x04\b\x06\x10\aJ\x04\b\a\x10\bJ\x04\b\b\x10\tJ\x04\b\t\x10\n" +
 	"J\x04\b\n" +
-	"\x10\vJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f\"\xee\x03\n" +
+	"\x10\vJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f\"\xff\x04\n" +
 	"\x16SetCryptoSecretRequest\x12J\n" +
 	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
 	"objectType\x12\x1f\n" +
@@ -831,40 +940,48 @@ const file_crypto_management_proto_rawDesc = "" +
 	"driverType\x12\x1b\n" +
 	"\tcrypto_id\x18\x03 \x01(\tR\bcryptoId\x12!\n" +
 	"\faccess_level\x18\x04 \x01(\tR\vaccessLevel\x12\x15\n" +
-	"\x06key_id\x18\x05 \x01(\tR\x05keyId\x129\n" +
-	"\x19data_decryption_secret_id\x18\x06 \x01(\tR\x16dataDecryptionSecretId\x12o\n" +
-	"\x16data_decryption_method\x18\a \x01(\x0e29.io.clbs.openhes.models.crypto.SecretDataDesryptionMethodR\x14dataDecryptionMethod\x12,\n" +
-	"\x12data_decryption_iv\x18\b \x01(\fR\x10dataDecryptionIv\x12\x12\n" +
-	"\x04data\x18\x0f \x01(\fR\x04dataJ\x04\b\t\x10\n" +
-	"J\x04\b\n" +
-	"\x10\vJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f*6\n" +
-	"\x1aSecretDataDesryptionMethod\x12\t\n" +
-	"\x05PLAIN\x10\x00\x12\r\n" +
-	"\tAES256CBC\x10\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
+	"\x06key_id\x18\x05 \x01(\tR\x05keyId\x120\n" +
+	"\x14decryption_secret_id\x18\x06 \x01(\tR\x12decryptionSecretId\x12\x82\x01\n" +
+	"\x1dsession_key_decryption_method\x18\a \x01(\x0e2?.io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethodR\x1asessionKeyDecryptionMethod\x12\x1f\n" +
+	"\vsession_key\x18\b \x01(\fR\n" +
+	"sessionKey\x12o\n" +
+	"\x16data_decryption_method\x18\t \x01(\x0e29.io.clbs.openhes.models.crypto.SecretDataDecryptionMethodR\x14dataDecryptionMethod\x12,\n" +
+	"\x12data_decryption_iv\x18\n" +
+	" \x01(\fR\x10dataDecryptionIv\x12\x12\n" +
+	"\x04data\x18\x0f \x01(\fR\x04dataJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f*N\n" +
+	"\x1aSecretDataDecryptionMethod\x12\x15\n" +
+	"\x11SECRET_DATA_PLAIN\x10\x00\x12\x19\n" +
+	"\x15SECRET_DATA_AES256CBC\x10\x01*x\n" +
+	" SecretSessionKeyDecryptionMethod\x12\x17\n" +
+	"\x13SECRET_SESSION_NONE\x10\x00\x12\x18\n" +
+	"\x14SECRET_SESSION_PLAIN\x10\x01\x12!\n" +
+	"\x1dSECRET_SESSION_RSA_OAEPM_GF1P\x10\x02B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
 
-var file_crypto_management_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_crypto_management_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_crypto_management_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_crypto_management_proto_goTypes = []any{
-	(SecretDataDesryptionMethod)(0), // 0: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
-	(*GetCryptoSecretRequest)(nil),  // 1: io.clbs.openhes.models.crypto.GetCryptoSecretRequest
-	(*CryptoSecrets)(nil),           // 2: io.clbs.openhes.models.crypto.CryptoSecrets
-	(*CryptoSecret)(nil),            // 3: io.clbs.openhes.models.crypto.CryptoSecret
-	(*SetCryptoSecretRequest)(nil),  // 4: io.clbs.openhes.models.crypto.SetCryptoSecretRequest
-	(common.ObjectType)(0),          // 5: io.clbs.openhes.models.common.ObjectType
-	(*timestamppb.Timestamp)(nil),   // 6: google.protobuf.Timestamp
+	(SecretDataDecryptionMethod)(0),       // 0: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
+	(SecretSessionKeyDecryptionMethod)(0), // 1: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
+	(*GetCryptoSecretRequest)(nil),        // 2: io.clbs.openhes.models.crypto.GetCryptoSecretRequest
+	(*CryptoSecrets)(nil),                 // 3: io.clbs.openhes.models.crypto.CryptoSecrets
+	(*CryptoSecret)(nil),                  // 4: io.clbs.openhes.models.crypto.CryptoSecret
+	(*SetCryptoSecretRequest)(nil),        // 5: io.clbs.openhes.models.crypto.SetCryptoSecretRequest
+	(common.ObjectType)(0),                // 6: io.clbs.openhes.models.common.ObjectType
+	(*timestamppb.Timestamp)(nil),         // 7: google.protobuf.Timestamp
 }
 var file_crypto_management_proto_depIdxs = []int32{
-	5, // 0: io.clbs.openhes.models.crypto.GetCryptoSecretRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	3, // 1: io.clbs.openhes.models.crypto.CryptoSecrets.secrets:type_name -> io.clbs.openhes.models.crypto.CryptoSecret
-	6, // 2: io.clbs.openhes.models.crypto.CryptoSecret.created_at:type_name -> google.protobuf.Timestamp
-	6, // 3: io.clbs.openhes.models.crypto.CryptoSecret.updated_at:type_name -> google.protobuf.Timestamp
-	5, // 4: io.clbs.openhes.models.crypto.SetCryptoSecretRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
-	0, // 5: io.clbs.openhes.models.crypto.SetCryptoSecretRequest.data_decryption_method:type_name -> io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	6, // 0: io.clbs.openhes.models.crypto.GetCryptoSecretRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	4, // 1: io.clbs.openhes.models.crypto.CryptoSecrets.secrets:type_name -> io.clbs.openhes.models.crypto.CryptoSecret
+	7, // 2: io.clbs.openhes.models.crypto.CryptoSecret.created_at:type_name -> google.protobuf.Timestamp
+	7, // 3: io.clbs.openhes.models.crypto.CryptoSecret.updated_at:type_name -> google.protobuf.Timestamp
+	6, // 4: io.clbs.openhes.models.crypto.SetCryptoSecretRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	1, // 5: io.clbs.openhes.models.crypto.SetCryptoSecretRequest.session_key_decryption_method:type_name -> io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
+	0, // 6: io.clbs.openhes.models.crypto.SetCryptoSecretRequest.data_decryption_method:type_name -> io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_crypto_management_proto_init() }
@@ -877,7 +994,7 @@ func file_crypto_management_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_crypto_management_proto_rawDesc), len(file_crypto_management_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,

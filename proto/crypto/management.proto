@@ -9,9 +9,15 @@ import "google/protobuf/timestamp.proto";
 import "common/objects.proto";
 
 // DLMS crypto mode
-enum SecretDataDesryptionMethod {
-    PLAIN     = 0;  // Plain data, no decryption needed
-    AES256CBC = 1;  // AES-256-CBC encryption method
+enum SecretDataDecryptionMethod {
+    SECRET_DATA_PLAIN     = 0;  // Plain data, no decryption needed
+    SECRET_DATA_AES256CBC = 1;  // AES-256-CBC encryption method
+}
+
+enum SecretSessionKeyDecryptionMethod {
+    SECRET_SESSION_NONE           = 0;  // No session key decryption method, used when the session key is not set or not used.
+    SECRET_SESSION_PLAIN          = 1;  // Plain session key, no session-key decryption needed.
+    SECRET_SESSION_RSA_OAEPM_GF1P = 2;  // RSA-OAEP-MGF1P decryption method, used for session keys.
 }
 
 message GetCryptoSecretRequest {
@@ -34,14 +40,18 @@ message CryptoSecret {
 }
 
 message SetCryptoSecretRequest {
-    reserved 9, 10, 11, 12, 13, 14;                          // Reserved fields for future use.
-    common.ObjectType object_type                     = 1;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string driver_type                                = 2;   // The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
-    string crypto_id                                  = 3;   // The crypto ID of the secret to retrieve.
-    string access_level                               = 4;   // Access level for the secret, e.g., "admin", "user", etc.
-    string key_id                                     = 5;   // Unique identifier for the secret key.
-    string data_decryption_secret_id                  = 6;   // Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
-    SecretDataDesryptionMethod data_decryption_method = 7;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
-    bytes data_decryption_iv                          = 8;   // Initialization vector for the decryption method, if applicable.
-    bytes data                                        = 15;  // The secret data.
+    reserved 11, 12, 13, 14;            // Reserved fields for future use.
+    common.ObjectType object_type = 1;  // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+    string driver_type            = 2;  // The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+    string crypto_id              = 3;  // The crypto ID of the secret to retrieve.
+    string access_level           = 4;  // Access level for the secret, e.g., "admin", "user", etc.
+    string key_id                 = 5;  // Unique identifier for the secret key.
+
+    string decryption_secret_id                                    = 6;   // Identifier for the key used to decrypt the either the session key or the data directly.
+    SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;   // Method used to decrypt the session key. May be unset if the session key is unset and no used.
+    bytes session_key                                              = 8;   // The session key, usually encrypted, used to decrypt the data.
+    SecretDataDecryptionMethod data_decryption_method              = 9;   // Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+    bytes data_decryption_iv                                       = 10;  // Initialization vector for the decryption method, if applicable.
+
+    bytes data = 15;  // The secret data.
 }

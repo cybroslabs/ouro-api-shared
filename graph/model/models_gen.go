@@ -980,15 +980,17 @@ type Season struct {
 }
 
 type SetCryptoSecretRequest struct {
-	ObjectType             *ObjectType                 `json:"objectType,omitempty"`
-	DriverType             *string                     `json:"driverType,omitempty"`
-	CryptoID               *string                     `json:"cryptoId,omitempty"`
-	AccessLevel            *string                     `json:"accessLevel,omitempty"`
-	KeyID                  *string                     `json:"keyId,omitempty"`
-	DataDecryptionSecretID *string                     `json:"dataDecryptionSecretId,omitempty"`
-	DataDecryptionMethod   *SecretDataDesryptionMethod `json:"dataDecryptionMethod,omitempty"`
-	DataDecryptionIv       *string                     `json:"dataDecryptionIv,omitempty"`
-	Data                   *string                     `json:"data,omitempty"`
+	ObjectType                 *ObjectType                       `json:"objectType,omitempty"`
+	DriverType                 *string                           `json:"driverType,omitempty"`
+	CryptoID                   *string                           `json:"cryptoId,omitempty"`
+	AccessLevel                *string                           `json:"accessLevel,omitempty"`
+	KeyID                      *string                           `json:"keyId,omitempty"`
+	DecryptionSecretID         *string                           `json:"decryptionSecretId,omitempty"`
+	SessionKeyDecryptionMethod *SecretSessionKeyDecryptionMethod `json:"sessionKeyDecryptionMethod,omitempty"`
+	SessionKey                 *string                           `json:"sessionKey,omitempty"`
+	DataDecryptionMethod       *SecretDataDecryptionMethod       `json:"dataDecryptionMethod,omitempty"`
+	DataDecryptionIv           *string                           `json:"dataDecryptionIv,omitempty"`
+	Data                       *string                           `json:"data,omitempty"`
 }
 
 type SetDeviceCommunicationUnitsRequest struct {
@@ -2231,48 +2233,48 @@ func (e RelayState) MarshalJSON() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-type SecretDataDesryptionMethod string
+type SecretDataDecryptionMethod string
 
 const (
-	SecretDataDesryptionMethodPlain     SecretDataDesryptionMethod = "PLAIN"
-	SecretDataDesryptionMethodAes256cbc SecretDataDesryptionMethod = "AES256CBC"
+	SecretDataDecryptionMethodSecretDataPlain     SecretDataDecryptionMethod = "SECRET_DATA_PLAIN"
+	SecretDataDecryptionMethodSecretDataAes256cbc SecretDataDecryptionMethod = "SECRET_DATA_AES256CBC"
 )
 
-var AllSecretDataDesryptionMethod = []SecretDataDesryptionMethod{
-	SecretDataDesryptionMethodPlain,
-	SecretDataDesryptionMethodAes256cbc,
+var AllSecretDataDecryptionMethod = []SecretDataDecryptionMethod{
+	SecretDataDecryptionMethodSecretDataPlain,
+	SecretDataDecryptionMethodSecretDataAes256cbc,
 }
 
-func (e SecretDataDesryptionMethod) IsValid() bool {
+func (e SecretDataDecryptionMethod) IsValid() bool {
 	switch e {
-	case SecretDataDesryptionMethodPlain, SecretDataDesryptionMethodAes256cbc:
+	case SecretDataDecryptionMethodSecretDataPlain, SecretDataDecryptionMethodSecretDataAes256cbc:
 		return true
 	}
 	return false
 }
 
-func (e SecretDataDesryptionMethod) String() string {
+func (e SecretDataDecryptionMethod) String() string {
 	return string(e)
 }
 
-func (e *SecretDataDesryptionMethod) UnmarshalGQL(v any) error {
+func (e *SecretDataDecryptionMethod) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
 	}
 
-	*e = SecretDataDesryptionMethod(str)
+	*e = SecretDataDecryptionMethod(str)
 	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid SecretDataDesryptionMethod", str)
+		return fmt.Errorf("%s is not a valid SecretDataDecryptionMethod", str)
 	}
 	return nil
 }
 
-func (e SecretDataDesryptionMethod) MarshalGQL(w io.Writer) {
+func (e SecretDataDecryptionMethod) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
-func (e *SecretDataDesryptionMethod) UnmarshalJSON(b []byte) error {
+func (e *SecretDataDecryptionMethod) UnmarshalJSON(b []byte) error {
 	s, err := strconv.Unquote(string(b))
 	if err != nil {
 		return err
@@ -2280,7 +2282,64 @@ func (e *SecretDataDesryptionMethod) UnmarshalJSON(b []byte) error {
 	return e.UnmarshalGQL(s)
 }
 
-func (e SecretDataDesryptionMethod) MarshalJSON() ([]byte, error) {
+func (e SecretDataDecryptionMethod) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type SecretSessionKeyDecryptionMethod string
+
+const (
+	SecretSessionKeyDecryptionMethodSecretSessionNone         SecretSessionKeyDecryptionMethod = "SECRET_SESSION_NONE"
+	SecretSessionKeyDecryptionMethodSecretSessionPlain        SecretSessionKeyDecryptionMethod = "SECRET_SESSION_PLAIN"
+	SecretSessionKeyDecryptionMethodSecretSessionRsaOaepmGf1p SecretSessionKeyDecryptionMethod = "SECRET_SESSION_RSA_OAEPM_GF1P"
+)
+
+var AllSecretSessionKeyDecryptionMethod = []SecretSessionKeyDecryptionMethod{
+	SecretSessionKeyDecryptionMethodSecretSessionNone,
+	SecretSessionKeyDecryptionMethodSecretSessionPlain,
+	SecretSessionKeyDecryptionMethodSecretSessionRsaOaepmGf1p,
+}
+
+func (e SecretSessionKeyDecryptionMethod) IsValid() bool {
+	switch e {
+	case SecretSessionKeyDecryptionMethodSecretSessionNone, SecretSessionKeyDecryptionMethodSecretSessionPlain, SecretSessionKeyDecryptionMethodSecretSessionRsaOaepmGf1p:
+		return true
+	}
+	return false
+}
+
+func (e SecretSessionKeyDecryptionMethod) String() string {
+	return string(e)
+}
+
+func (e *SecretSessionKeyDecryptionMethod) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = SecretSessionKeyDecryptionMethod(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid SecretSessionKeyDecryptionMethod", str)
+	}
+	return nil
+}
+
+func (e SecretSessionKeyDecryptionMethod) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *SecretSessionKeyDecryptionMethod) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e SecretSessionKeyDecryptionMethod) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

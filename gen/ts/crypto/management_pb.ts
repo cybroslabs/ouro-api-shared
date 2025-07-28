@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file crypto/management.proto.
  */
 export const file_crypto_management: GenFile = /*@__PURE__*/
-  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8igAEKFkdldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCSJNCg1DcnlwdG9TZWNyZXRzEjwKB3NlY3JldHMYASADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyeXB0by5DcnlwdG9TZWNyZXQi3gEKDENyeXB0b1NlY3JldBIUCgxhY2Nlc3NfbGV2ZWwYASABKAkSDgoGa2V5X2lkGAIgASgJEi4KCmNyZWF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBGRhdGEYDyABKAxKBAgFEAZKBAgGEAdKBAgHEAhKBAgIEAlKBAgJEApKBAgKEAtKBAgLEAxKBAgMEA1KBAgNEA5KBAgOEA8i8gIKFlNldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCRIUCgxhY2Nlc3NfbGV2ZWwYBCABKAkSDgoGa2V5X2lkGAUgASgJEiEKGWRhdGFfZGVjcnlwdGlvbl9zZWNyZXRfaWQYBiABKAkSWQoWZGF0YV9kZWNyeXB0aW9uX21ldGhvZBgHIAEoDjI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLlNlY3JldERhdGFEZXNyeXB0aW9uTWV0aG9kEhoKEmRhdGFfZGVjcnlwdGlvbl9pdhgIIAEoDBIMCgRkYXRhGA8gASgMSgQICRAKSgQIChALSgQICxAMSgQIDBANSgQIDRAOSgQIDhAPKjYKGlNlY3JldERhdGFEZXNyeXB0aW9uTWV0aG9kEgkKBVBMQUlOEAASDQoJQUVTMjU2Q0JDEAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY3J5cHRvYghlZGl0aW9uc3DoBw", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
+  fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8igAEKFkdldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCSJNCg1DcnlwdG9TZWNyZXRzEjwKB3NlY3JldHMYASADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyeXB0by5DcnlwdG9TZWNyZXQi3gEKDENyeXB0b1NlY3JldBIUCgxhY2Nlc3NfbGV2ZWwYASABKAkSDgoGa2V5X2lkGAIgASgJEi4KCmNyZWF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBGRhdGEYDyABKAxKBAgFEAZKBAgGEAdKBAgHEAhKBAgIEAlKBAgJEApKBAgKEAtKBAgLEAxKBAgMEA1KBAgNEA5KBAgOEA8i3gMKFlNldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCRIUCgxhY2Nlc3NfbGV2ZWwYBCABKAkSDgoGa2V5X2lkGAUgASgJEhwKFGRlY3J5cHRpb25fc2VjcmV0X2lkGAYgASgJEmYKHXNlc3Npb25fa2V5X2RlY3J5cHRpb25fbWV0aG9kGAcgASgOMj8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8uU2VjcmV0U2Vzc2lvbktleURlY3J5cHRpb25NZXRob2QSEwoLc2Vzc2lvbl9rZXkYCCABKAwSWQoWZGF0YV9kZWNyeXB0aW9uX21ldGhvZBgJIAEoDjI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLlNlY3JldERhdGFEZWNyeXB0aW9uTWV0aG9kEhoKEmRhdGFfZGVjcnlwdGlvbl9pdhgKIAEoDBIMCgRkYXRhGA8gASgMSgQICxAMSgQIDBANSgQIDRAOSgQIDhAPKk4KGlNlY3JldERhdGFEZWNyeXB0aW9uTWV0aG9kEhUKEVNFQ1JFVF9EQVRBX1BMQUlOEAASGQoVU0VDUkVUX0RBVEFfQUVTMjU2Q0JDEAEqeAogU2VjcmV0U2Vzc2lvbktleURlY3J5cHRpb25NZXRob2QSFwoTU0VDUkVUX1NFU1NJT05fTk9ORRAAEhgKFFNFQ1JFVF9TRVNTSU9OX1BMQUlOEAESIQodU0VDUkVUX1NFU1NJT05fUlNBX09BRVBNX0dGMVAQAkI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_objects]);
 
 /**
  * @generated from message io.clbs.openhes.models.crypto.GetCryptoSecretRequest
@@ -233,23 +233,37 @@ export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetC
   keyId: string;
 
   /**
-   * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   * Identifier for the key used to decrypt the either the session key or the data directly.
    *
-   * @generated from field: string data_decryption_secret_id = 6;
+   * @generated from field: string decryption_secret_id = 6;
    */
-  dataDecryptionSecretId: string;
+  decryptionSecretId: string;
+
+  /**
+   * Method used to decrypt the session key. May be unset if the session key is unset and no used.
+   *
+   * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
+   */
+  sessionKeyDecryptionMethod: SecretSessionKeyDecryptionMethod;
+
+  /**
+   * The session key, usually encrypted, used to decrypt the data.
+   *
+   * @generated from field: bytes session_key = 8;
+   */
+  sessionKey: Uint8Array;
 
   /**
    * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 7;
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod data_decryption_method = 9;
    */
-  dataDecryptionMethod: SecretDataDesryptionMethod;
+  dataDecryptionMethod: SecretDataDecryptionMethod;
 
   /**
    * Initialization vector for the decryption method, if applicable.
    *
-   * @generated from field: bytes data_decryption_iv = 8;
+   * @generated from field: bytes data_decryption_iv = 10;
    */
   dataDecryptionIv: Uint8Array;
 
@@ -301,23 +315,37 @@ export type SetCryptoSecretRequestJson = {
   keyId?: string;
 
   /**
-   * Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   * Identifier for the key used to decrypt the either the session key or the data directly.
    *
-   * @generated from field: string data_decryption_secret_id = 6;
+   * @generated from field: string decryption_secret_id = 6;
    */
-  dataDecryptionSecretId?: string;
+  decryptionSecretId?: string;
+
+  /**
+   * Method used to decrypt the session key. May be unset if the session key is unset and no used.
+   *
+   * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
+   */
+  sessionKeyDecryptionMethod?: SecretSessionKeyDecryptionMethodJson;
+
+  /**
+   * The session key, usually encrypted, used to decrypt the data.
+   *
+   * @generated from field: bytes session_key = 8;
+   */
+  sessionKey?: string;
 
   /**
    * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
    *
-   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDesryptionMethod data_decryption_method = 7;
+   * @generated from field: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod data_decryption_method = 9;
    */
-  dataDecryptionMethod?: SecretDataDesryptionMethodJson;
+  dataDecryptionMethod?: SecretDataDecryptionMethodJson;
 
   /**
    * Initialization vector for the decryption method, if applicable.
    *
-   * @generated from field: bytes data_decryption_iv = 8;
+   * @generated from field: bytes data_decryption_iv = 10;
    */
   dataDecryptionIv?: string;
 
@@ -339,34 +367,71 @@ export const SetCryptoSecretRequestSchema: GenMessage<SetCryptoSecretRequest, {j
 /**
  * DLMS crypto mode
  *
- * @generated from enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
+ * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
-export enum SecretDataDesryptionMethod {
+export enum SecretDataDecryptionMethod {
   /**
    * Plain data, no decryption needed
    *
-   * @generated from enum value: PLAIN = 0;
+   * @generated from enum value: SECRET_DATA_PLAIN = 0;
    */
-  PLAIN = 0,
+  SECRET_DATA_PLAIN = 0,
 
   /**
    * AES-256-CBC encryption method
    *
-   * @generated from enum value: AES256CBC = 1;
+   * @generated from enum value: SECRET_DATA_AES256CBC = 1;
    */
-  AES256CBC = 1,
+  SECRET_DATA_AES256CBC = 1,
 }
 
 /**
  * DLMS crypto mode
  *
- * @generated from enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod
+ * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
-export type SecretDataDesryptionMethodJson = "PLAIN" | "AES256CBC";
+export type SecretDataDecryptionMethodJson = "SECRET_DATA_PLAIN" | "SECRET_DATA_AES256CBC";
 
 /**
- * Describes the enum io.clbs.openhes.models.crypto.SecretDataDesryptionMethod.
+ * Describes the enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod.
  */
-export const SecretDataDesryptionMethodSchema: GenEnum<SecretDataDesryptionMethod, SecretDataDesryptionMethodJson> = /*@__PURE__*/
+export const SecretDataDecryptionMethodSchema: GenEnum<SecretDataDecryptionMethod, SecretDataDecryptionMethodJson> = /*@__PURE__*/
   enumDesc(file_crypto_management, 0);
+
+/**
+ * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
+ */
+export enum SecretSessionKeyDecryptionMethod {
+  /**
+   * No session key decryption method, used when the session key is not set or not used.
+   *
+   * @generated from enum value: SECRET_SESSION_NONE = 0;
+   */
+  SECRET_SESSION_NONE = 0,
+
+  /**
+   * Plain session key, no session-key decryption needed.
+   *
+   * @generated from enum value: SECRET_SESSION_PLAIN = 1;
+   */
+  SECRET_SESSION_PLAIN = 1,
+
+  /**
+   * RSA-OAEP-MGF1P decryption method, used for session keys.
+   *
+   * @generated from enum value: SECRET_SESSION_RSA_OAEPM_GF1P = 2;
+   */
+  SECRET_SESSION_RSA_OAEPM_GF1P = 2,
+}
+
+/**
+ * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
+ */
+export type SecretSessionKeyDecryptionMethodJson = "SECRET_SESSION_NONE" | "SECRET_SESSION_PLAIN" | "SECRET_SESSION_RSA_OAEPM_GF1P";
+
+/**
+ * Describes the enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod.
+ */
+export const SecretSessionKeyDecryptionMethodSchema: GenEnum<SecretSessionKeyDecryptionMethod, SecretSessionKeyDecryptionMethodJson> = /*@__PURE__*/
+  enumDesc(file_crypto_management, 1);
 

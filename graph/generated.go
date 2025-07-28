@@ -1113,15 +1113,17 @@ type ComplexityRoot struct {
 	}
 
 	SetCryptoSecretRequest struct {
-		AccessLevel            func(childComplexity int) int
-		CryptoID               func(childComplexity int) int
-		Data                   func(childComplexity int) int
-		DataDecryptionIv       func(childComplexity int) int
-		DataDecryptionMethod   func(childComplexity int) int
-		DataDecryptionSecretID func(childComplexity int) int
-		DriverType             func(childComplexity int) int
-		KeyID                  func(childComplexity int) int
-		ObjectType             func(childComplexity int) int
+		AccessLevel                func(childComplexity int) int
+		CryptoID                   func(childComplexity int) int
+		Data                       func(childComplexity int) int
+		DataDecryptionIv           func(childComplexity int) int
+		DataDecryptionMethod       func(childComplexity int) int
+		DecryptionSecretID         func(childComplexity int) int
+		DriverType                 func(childComplexity int) int
+		KeyID                      func(childComplexity int) int
+		ObjectType                 func(childComplexity int) int
+		SessionKey                 func(childComplexity int) int
+		SessionKeyDecryptionMethod func(childComplexity int) int
 	}
 
 	SetDeviceCommunicationUnitsRequest struct {
@@ -5484,12 +5486,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.SetCryptoSecretRequest.DataDecryptionMethod(childComplexity), true
 
-	case "SetCryptoSecretRequest.dataDecryptionSecretId":
-		if e.complexity.SetCryptoSecretRequest.DataDecryptionSecretID == nil {
+	case "SetCryptoSecretRequest.decryptionSecretId":
+		if e.complexity.SetCryptoSecretRequest.DecryptionSecretID == nil {
 			break
 		}
 
-		return e.complexity.SetCryptoSecretRequest.DataDecryptionSecretID(childComplexity), true
+		return e.complexity.SetCryptoSecretRequest.DecryptionSecretID(childComplexity), true
 
 	case "SetCryptoSecretRequest.driverType":
 		if e.complexity.SetCryptoSecretRequest.DriverType == nil {
@@ -5511,6 +5513,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.SetCryptoSecretRequest.ObjectType(childComplexity), true
+
+	case "SetCryptoSecretRequest.sessionKey":
+		if e.complexity.SetCryptoSecretRequest.SessionKey == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.SessionKey(childComplexity), true
+
+	case "SetCryptoSecretRequest.sessionKeyDecryptionMethod":
+		if e.complexity.SetCryptoSecretRequest.SessionKeyDecryptionMethod == nil {
+			break
+		}
+
+		return e.complexity.SetCryptoSecretRequest.SessionKeyDecryptionMethod(childComplexity), true
 
 	case "SetDeviceCommunicationUnitsRequest.communicationUnits":
 		if e.complexity.SetDeviceCommunicationUnitsRequest.CommunicationUnits == nil {
@@ -6057,141 +6073,56 @@ var parsedSchema = gqlparser.MustLoadSchema(sources...)
 func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := ec.field_Query___type_argsName(ctx, rawArgs)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "name", ec.unmarshalNString2string)
 	if err != nil {
 		return nil, err
 	}
 	args["name"] = arg0
 	return args, nil
 }
-func (ec *executionContext) field_Query___type_argsName(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (string, error) {
-	if _, ok := rawArgs["name"]; !ok {
-		var zeroVal string
-		return zeroVal, nil
-	}
-
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
-	if tmp, ok := rawArgs["name"]; ok {
-		return ec.unmarshalNString2string(ctx, tmp)
-	}
-
-	var zeroVal string
-	return zeroVal, nil
-}
 
 func (ec *executionContext) field___Directive_args_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := ec.field___Directive_args_argsIncludeDeprecated(ctx, rawArgs)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "includeDeprecated", ec.unmarshalOBoolean2ᚖbool)
 	if err != nil {
 		return nil, err
 	}
 	args["includeDeprecated"] = arg0
 	return args, nil
-}
-func (ec *executionContext) field___Directive_args_argsIncludeDeprecated(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (*bool, error) {
-	if _, ok := rawArgs["includeDeprecated"]; !ok {
-		var zeroVal *bool
-		return zeroVal, nil
-	}
-
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
-	if tmp, ok := rawArgs["includeDeprecated"]; ok {
-		return ec.unmarshalOBoolean2ᚖbool(ctx, tmp)
-	}
-
-	var zeroVal *bool
-	return zeroVal, nil
 }
 
 func (ec *executionContext) field___Field_args_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := ec.field___Field_args_argsIncludeDeprecated(ctx, rawArgs)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "includeDeprecated", ec.unmarshalOBoolean2ᚖbool)
 	if err != nil {
 		return nil, err
 	}
 	args["includeDeprecated"] = arg0
 	return args, nil
-}
-func (ec *executionContext) field___Field_args_argsIncludeDeprecated(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (*bool, error) {
-	if _, ok := rawArgs["includeDeprecated"]; !ok {
-		var zeroVal *bool
-		return zeroVal, nil
-	}
-
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
-	if tmp, ok := rawArgs["includeDeprecated"]; ok {
-		return ec.unmarshalOBoolean2ᚖbool(ctx, tmp)
-	}
-
-	var zeroVal *bool
-	return zeroVal, nil
 }
 
 func (ec *executionContext) field___Type_enumValues_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := ec.field___Type_enumValues_argsIncludeDeprecated(ctx, rawArgs)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "includeDeprecated", ec.unmarshalOBoolean2bool)
 	if err != nil {
 		return nil, err
 	}
 	args["includeDeprecated"] = arg0
 	return args, nil
-}
-func (ec *executionContext) field___Type_enumValues_argsIncludeDeprecated(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (bool, error) {
-	if _, ok := rawArgs["includeDeprecated"]; !ok {
-		var zeroVal bool
-		return zeroVal, nil
-	}
-
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
-	if tmp, ok := rawArgs["includeDeprecated"]; ok {
-		return ec.unmarshalOBoolean2bool(ctx, tmp)
-	}
-
-	var zeroVal bool
-	return zeroVal, nil
 }
 
 func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := ec.field___Type_fields_argsIncludeDeprecated(ctx, rawArgs)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "includeDeprecated", ec.unmarshalOBoolean2bool)
 	if err != nil {
 		return nil, err
 	}
 	args["includeDeprecated"] = arg0
 	return args, nil
-}
-func (ec *executionContext) field___Type_fields_argsIncludeDeprecated(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (bool, error) {
-	if _, ok := rawArgs["includeDeprecated"]; !ok {
-		var zeroVal bool
-		return zeroVal, nil
-	}
-
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
-	if tmp, ok := rawArgs["includeDeprecated"]; ok {
-		return ec.unmarshalOBoolean2bool(ctx, tmp)
-	}
-
-	var zeroVal bool
-	return zeroVal, nil
 }
 
 // endregion ***************************** args.gotpl *****************************
@@ -32948,8 +32879,8 @@ func (ec *executionContext) fieldContext_SetCryptoSecretRequest_keyId(_ context.
 	return fc, nil
 }
 
-func (ec *executionContext) _SetCryptoSecretRequest_dataDecryptionSecretId(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SetCryptoSecretRequest_dataDecryptionSecretId(ctx, field)
+func (ec *executionContext) _SetCryptoSecretRequest_decryptionSecretId(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_decryptionSecretId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -32962,7 +32893,7 @@ func (ec *executionContext) _SetCryptoSecretRequest_dataDecryptionSecretId(ctx c
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.DataDecryptionSecretID, nil
+		return obj.DecryptionSecretID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -32976,7 +32907,89 @@ func (ec *executionContext) _SetCryptoSecretRequest_dataDecryptionSecretId(ctx c
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_SetCryptoSecretRequest_dataDecryptionSecretId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_decryptionSecretId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_sessionKeyDecryptionMethod(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_sessionKeyDecryptionMethod(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SessionKeyDecryptionMethod, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.SecretSessionKeyDecryptionMethod)
+	fc.Result = res
+	return ec.marshalOSecretSessionKeyDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretSessionKeyDecryptionMethod(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_sessionKeyDecryptionMethod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "SetCryptoSecretRequest",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type SecretSessionKeyDecryptionMethod does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _SetCryptoSecretRequest_sessionKey(ctx context.Context, field graphql.CollectedField, obj *model.SetCryptoSecretRequest) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_SetCryptoSecretRequest_sessionKey(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SessionKey, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_SetCryptoSecretRequest_sessionKey(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SetCryptoSecretRequest",
 		Field:      field,
@@ -33012,9 +33025,9 @@ func (ec *executionContext) _SetCryptoSecretRequest_dataDecryptionMethod(ctx con
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.SecretDataDesryptionMethod)
+	res := resTmp.(*model.SecretDataDecryptionMethod)
 	fc.Result = res
-	return ec.marshalOSecretDataDesryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDesryptionMethod(ctx, field.Selections, res)
+	return ec.marshalOSecretDataDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDecryptionMethod(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_SetCryptoSecretRequest_dataDecryptionMethod(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -33024,7 +33037,7 @@ func (ec *executionContext) fieldContext_SetCryptoSecretRequest_dataDecryptionMe
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type SecretDataDesryptionMethod does not have child fields")
+			return nil, errors.New("field of type SecretDataDecryptionMethod does not have child fields")
 		},
 	}
 	return fc, nil
@@ -46201,8 +46214,12 @@ func (ec *executionContext) _SetCryptoSecretRequest(ctx context.Context, sel ast
 			out.Values[i] = ec._SetCryptoSecretRequest_accessLevel(ctx, field, obj)
 		case "keyId":
 			out.Values[i] = ec._SetCryptoSecretRequest_keyId(ctx, field, obj)
-		case "dataDecryptionSecretId":
-			out.Values[i] = ec._SetCryptoSecretRequest_dataDecryptionSecretId(ctx, field, obj)
+		case "decryptionSecretId":
+			out.Values[i] = ec._SetCryptoSecretRequest_decryptionSecretId(ctx, field, obj)
+		case "sessionKeyDecryptionMethod":
+			out.Values[i] = ec._SetCryptoSecretRequest_sessionKeyDecryptionMethod(ctx, field, obj)
+		case "sessionKey":
+			out.Values[i] = ec._SetCryptoSecretRequest_sessionKey(ctx, field, obj)
 		case "dataDecryptionMethod":
 			out.Values[i] = ec._SetCryptoSecretRequest_dataDecryptionMethod(ctx, field, obj)
 		case "dataDecryptionIv":
@@ -50995,16 +51012,32 @@ func (ec *executionContext) marshalOSeason2ᚖgithubᚗcomᚋcybroslabsᚋouro�
 	return ec._Season(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOSecretDataDesryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDesryptionMethod(ctx context.Context, v any) (*model.SecretDataDesryptionMethod, error) {
+func (ec *executionContext) unmarshalOSecretDataDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDecryptionMethod(ctx context.Context, v any) (*model.SecretDataDecryptionMethod, error) {
 	if v == nil {
 		return nil, nil
 	}
-	var res = new(model.SecretDataDesryptionMethod)
+	var res = new(model.SecretDataDecryptionMethod)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOSecretDataDesryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDesryptionMethod(ctx context.Context, sel ast.SelectionSet, v *model.SecretDataDesryptionMethod) graphql.Marshaler {
+func (ec *executionContext) marshalOSecretDataDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretDataDecryptionMethod(ctx context.Context, sel ast.SelectionSet, v *model.SecretDataDecryptionMethod) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
+}
+
+func (ec *executionContext) unmarshalOSecretSessionKeyDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretSessionKeyDecryptionMethod(ctx context.Context, v any) (*model.SecretSessionKeyDecryptionMethod, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.SecretSessionKeyDecryptionMethod)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOSecretSessionKeyDecryptionMethod2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐSecretSessionKeyDecryptionMethod(ctx context.Context, sel ast.SelectionSet, v *model.SecretSessionKeyDecryptionMethod) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

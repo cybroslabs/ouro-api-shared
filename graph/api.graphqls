@@ -319,11 +319,20 @@ enum CronJobTypeEnum {
 }
 
 # DLMS crypto mode
-enum SecretDataDesryptionMethod {
+enum SecretDataDecryptionMethod {
   # Plain data, no decryption needed
-  PLAIN
+  SECRET_DATA_PLAIN
   # AES-256-CBC encryption method
-  AES256CBC
+  SECRET_DATA_AES256CBC
+}
+
+enum SecretSessionKeyDecryptionMethod {
+  # No session key decryption method, used when the session key is not set or not used.
+  SECRET_SESSION_NONE
+  # Plain session key, no session-key decryption needed.
+  SECRET_SESSION_PLAIN
+  # RSA-OAEP-MGF1P decryption method, used for session keys.
+  SECRET_SESSION_RSA_OAEPM_GF1P
 }
 
 # A Duration represents a signed, fixed-length span of time represented
@@ -2109,10 +2118,14 @@ type SetCryptoSecretRequest {
   accessLevel: String
   # Unique identifier for the secret key.
   keyId: String
-  # Identifier for the key used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
-  dataDecryptionSecretId: String
+  # Identifier for the key used to decrypt the either the session key or the data directly.
+  decryptionSecretId: String
+  # Method used to decrypt the session key. May be unset if the session key is unset and no used.
+  sessionKeyDecryptionMethod: SecretSessionKeyDecryptionMethod
+  # The session key, usually encrypted, used to decrypt the data.
+  sessionKey: String
   # Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
-  dataDecryptionMethod: SecretDataDesryptionMethod
+  dataDecryptionMethod: SecretDataDecryptionMethod
   # Initialization vector for the decryption method, if applicable.
   dataDecryptionIv: String
   # The secret data.
