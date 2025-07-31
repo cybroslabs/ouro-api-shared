@@ -989,9 +989,13 @@ type ComplexityRoot struct {
 		CreateProxyBulk                                                  func(childComplexity int) int
 		CreateTimeOfUseTable                                             func(childComplexity int) int
 		CreateVariable                                                   func(childComplexity int) int
+		DeleteCommunicationBus                                           func(childComplexity int) int
+		DeleteCommunicationUnit                                          func(childComplexity int) int
 		DeleteCronJob                                                    func(childComplexity int) int
+		DeleteDevice                                                     func(childComplexity int) int
 		DeleteDeviceConfigurationRegister                                func(childComplexity int) int
 		DeleteDeviceConfigurationTemplate                                func(childComplexity int) int
+		DeleteDeviceGroup                                                func(childComplexity int) int
 		DeleteFieldDescriptor                                            func(childComplexity int) int
 		DeleteModem                                                      func(childComplexity int) int
 		DeleteModemPool                                                  func(childComplexity int) int
@@ -1306,15 +1310,18 @@ type QueryResolver interface {
 	UpdateCommunicationUnit(ctx context.Context) (*model.Empty, error)
 	ListCommunicationUnits(ctx context.Context) (*model.ListOfCommunicationUnit, error)
 	GetCommunicationUnit(ctx context.Context) (*model.CommunicationUnit, error)
+	DeleteCommunicationUnit(ctx context.Context) (*model.Empty, error)
 	GetCommunicationUnitNetworkMap(ctx context.Context) (*model.NetworkMap, error)
 	CreateCommunicationBus(ctx context.Context) (*model.StringValue, error)
 	ListCommunicationBuses(ctx context.Context) (*model.ListOfCommunicationBus, error)
+	DeleteCommunicationBus(ctx context.Context) (*model.Empty, error)
 	AddCommunicationUnitsToCommunicationBus(ctx context.Context) (*model.Empty, error)
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context) (*model.Empty, error)
 	CreateDevice(ctx context.Context) (*model.StringValue, error)
 	UpdateDevice(ctx context.Context) (*model.Empty, error)
 	ListDevices(ctx context.Context) (*model.ListOfDevice, error)
 	GetDevice(ctx context.Context) (*model.Device, error)
+	DeleteDevice(ctx context.Context) (*model.Empty, error)
 	GetDeviceInfo(ctx context.Context) (*model.DeviceInfo, error)
 	SetDeviceCommunicationUnits(ctx context.Context) (*model.Empty, error)
 	GetDeviceCommunicationUnits(ctx context.Context) (*model.ListOfDeviceCommunicationUnit, error)
@@ -1324,6 +1331,7 @@ type QueryResolver interface {
 	CreateDeviceGroup(ctx context.Context) (*model.StringValue, error)
 	ListDeviceGroups(ctx context.Context) (*model.ListOfDeviceGroup, error)
 	GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error)
+	DeleteDeviceGroup(ctx context.Context) (*model.Empty, error)
 	AddDevicesToGroup(ctx context.Context) (*model.Empty, error)
 	RemoveDevicesFromGroup(ctx context.Context) (*model.Empty, error)
 	ListDeviceGroupDevices(ctx context.Context) (*model.ListOfDevice, error)
@@ -4772,12 +4780,33 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.CreateVariable(childComplexity), true
 
+	case "Query.deleteCommunicationBus":
+		if e.complexity.Query.DeleteCommunicationBus == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteCommunicationBus(childComplexity), true
+
+	case "Query.deleteCommunicationUnit":
+		if e.complexity.Query.DeleteCommunicationUnit == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteCommunicationUnit(childComplexity), true
+
 	case "Query.deleteCronJob":
 		if e.complexity.Query.DeleteCronJob == nil {
 			break
 		}
 
 		return e.complexity.Query.DeleteCronJob(childComplexity), true
+
+	case "Query.deleteDevice":
+		if e.complexity.Query.DeleteDevice == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteDevice(childComplexity), true
 
 	case "Query.deleteDeviceConfigurationRegister":
 		if e.complexity.Query.DeleteDeviceConfigurationRegister == nil {
@@ -4792,6 +4821,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.DeleteDeviceConfigurationTemplate(childComplexity), true
+
+	case "Query.deleteDeviceGroup":
+		if e.complexity.Query.DeleteDeviceGroup == nil {
+			break
+		}
+
+		return e.complexity.Query.DeleteDeviceGroup(childComplexity), true
 
 	case "Query.deleteFieldDescriptor":
 		if e.complexity.Query.DeleteFieldDescriptor == nil {
@@ -29381,6 +29417,51 @@ func (ec *executionContext) fieldContext_Query_getCommunicationUnit(_ context.Co
 	return fc, nil
 }
 
+func (ec *executionContext) _Query_deleteCommunicationUnit(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteCommunicationUnit(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteCommunicationUnit(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteCommunicationUnit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Query_getCommunicationUnitNetworkMap(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Query_getCommunicationUnitNetworkMap(ctx, field)
 	if err != nil {
@@ -29515,6 +29596,51 @@ func (ec *executionContext) fieldContext_Query_listCommunicationBuses(_ context.
 				return ec.fieldContext_ListOfCommunicationBus_totalCount(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationBus", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteCommunicationBus(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteCommunicationBus(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteCommunicationBus(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteCommunicationBus(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
 		},
 	}
 	return fc, nil
@@ -29791,6 +29917,51 @@ func (ec *executionContext) fieldContext_Query_getDevice(_ context.Context, fiel
 				return ec.fieldContext_Device_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Device", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteDevice(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteDevice(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteDevice(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteDevice(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
 		},
 	}
 	return fc, nil
@@ -30224,6 +30395,51 @@ func (ec *executionContext) fieldContext_Query_getDeviceGroup(_ context.Context,
 				return ec.fieldContext_DeviceGroup_metadata(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type DeviceGroup", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_deleteDeviceGroup(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_deleteDeviceGroup(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().DeleteDeviceGroup(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Empty)
+	fc.Result = res
+	return ec.marshalOEmpty2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐEmpty(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_deleteDeviceGroup(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "_empty":
+				return ec.fieldContext_Empty__empty(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Empty", field.Name)
 		},
 	}
 	return fc, nil
@@ -44900,6 +45116,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteCommunicationUnit":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteCommunicationUnit(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
 		case "getCommunicationUnitNetworkMap":
 			field := field
 
@@ -44948,6 +45183,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_listCommunicationBuses(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteCommunicationBus":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteCommunicationBus(ctx, field)
 				return res
 			}
 
@@ -45062,6 +45316,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDevice(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteDevice":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteDevice(ctx, field)
 				return res
 			}
 
@@ -45233,6 +45506,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDeviceGroup(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "deleteDeviceGroup":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_deleteDeviceGroup(ctx, field)
 				return res
 			}
 

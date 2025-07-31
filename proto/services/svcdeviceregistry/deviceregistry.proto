@@ -67,6 +67,10 @@ service DeviceRegistryService {
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
     // @group: Devices
     // @tag: communicationunit
+    // Deletes the communication unit. The parameter contains the communication unit identifier.
+    rpc DeleteCommunicationUnit(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: communicationunit
     // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
     rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
@@ -76,6 +80,10 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: communicationbus
     rpc ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus);
+    // @group: Devices
+    // @tag: communicationbus
+    // Deletes the communication bus. The parameter contains the communication bus identifier.
+    rpc DeleteCommunicationBus(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationbus
     rpc AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest) returns (google.protobuf.Empty);
@@ -98,6 +106,10 @@ service DeviceRegistryService {
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
+    // @group: Devices
+    // @tag: device
+    // Deletes the device. The parameter contains the device identifier.
+    rpc DeleteDevice(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
     rpc StreamDeviceType(stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest) returns (stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse);
@@ -129,10 +141,14 @@ service DeviceRegistryService {
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
     // The method returns a list of device groups.
     rpc ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
-    // The method returns single device group.
     // @param The device group identifier.
     // @return The device group specification.
+    // The method returns single device group.
     rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
+    // @group: Devices
+    // @tag: devicegroup
+    // Deletes the device group. The parameter contains the device group identifier.
+    rpc DeleteDeviceGroup(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // The method returns stream of devices from the device group.
     // @param The device group identifier.

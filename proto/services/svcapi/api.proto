@@ -144,6 +144,10 @@ service ApiService {
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
     // @group: Devices
     // @tag: communicationunit
+    // Deletes the communication unit. The parameter contains the communication unit identifier.
+    rpc DeleteCommunicationUnit(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Devices
+    // @tag: communicationunit
     // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
     rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
@@ -153,6 +157,10 @@ service ApiService {
     // @group: Devices
     // @tag: communicationbus
     rpc ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus);
+    // @group: Devices
+    // @tag: communicationbus
+    // Deletes the communication bus. The parameter contains the communication bus identifier.
+    rpc DeleteCommunicationBus(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationbus
     rpc AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest) returns (google.protobuf.Empty);
@@ -176,6 +184,10 @@ service ApiService {
     // @tag: device
     // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
+    // @group: Devices
+    // @tag: device
+    // Deletes the device. The parameter contains the device identifier.
+    rpc DeleteDevice(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // The method to stream out profile-typed device info.
     rpc GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo);
@@ -217,6 +229,10 @@ service ApiService {
     // @param The device group identifier.
     // @return The device group specification.
     rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
+    // @group: Devices
+    // @tag: devicegroup
+    // Deletes the device group. The parameter contains the device group identifier.
+    rpc DeleteDeviceGroup(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: devicegroup
     // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.

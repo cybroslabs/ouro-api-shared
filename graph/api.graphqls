@@ -2232,15 +2232,18 @@ type Query {
   updateCommunicationUnit: Empty
   listCommunicationUnits: ListOfCommunicationUnit
   getCommunicationUnit: CommunicationUnit
+  deleteCommunicationUnit: Empty
   getCommunicationUnitNetworkMap: NetworkMap
   createCommunicationBus: StringValue
   listCommunicationBuses: ListOfCommunicationBus
+  deleteCommunicationBus: Empty
   addCommunicationUnitsToCommunicationBus: Empty
   removeCommunicationUnitsFromCommunicationBus: Empty
   createDevice: StringValue
   updateDevice: Empty
   listDevices: ListOfDevice
   getDevice: Device
+  deleteDevice: Empty
   getDeviceInfo: DeviceInfo
   setDeviceCommunicationUnits: Empty
   getDeviceCommunicationUnits: ListOfDeviceCommunicationUnit
@@ -2250,6 +2253,7 @@ type Query {
   createDeviceGroup: StringValue
   listDeviceGroups: ListOfDeviceGroup
   getDeviceGroup: DeviceGroup
+  deleteDeviceGroup: Empty
   addDevicesToGroup: Empty
   removeDevicesFromGroup: Empty
   listDeviceGroupDevices: ListOfDevice

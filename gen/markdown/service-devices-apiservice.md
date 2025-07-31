@@ -33,6 +33,16 @@ GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acqu
 - Input: `google.protobuf.StringValue`
 - Output: [`io.clbs.openhes.models.acquisition.DeviceGroup`](model-io-clbs-openhes-models-acquisition-devicegroup.md)
 
+## DeleteDeviceGroup
+
+Deletes the device group. The parameter contains the device group identifier.
+
+```proto
+DeleteDeviceGroup(google.protobuf.StringValue)
+```
+
+- Input: `google.protobuf.StringValue`
+
 ## AddDevicesToGroup
 
 The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.

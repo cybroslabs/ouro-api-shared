@@ -246,6 +246,11 @@ func (r *queryResolver) GetCommunicationUnit(ctx context.Context) (*model.Commun
 	panic(fmt.Errorf("not implemented: GetCommunicationUnit - getCommunicationUnit"))
 }
 
+// DeleteCommunicationUnit is the resolver for the deleteCommunicationUnit field.
+func (r *queryResolver) DeleteCommunicationUnit(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteCommunicationUnit - deleteCommunicationUnit"))
+}
+
 // GetCommunicationUnitNetworkMap is the resolver for the getCommunicationUnitNetworkMap field.
 func (r *queryResolver) GetCommunicationUnitNetworkMap(ctx context.Context) (*model.NetworkMap, error) {
 	panic(fmt.Errorf("not implemented: GetCommunicationUnitNetworkMap - getCommunicationUnitNetworkMap"))
@@ -259,6 +264,11 @@ func (r *queryResolver) CreateCommunicationBus(ctx context.Context) (*model.Stri
 // ListCommunicationBuses is the resolver for the listCommunicationBuses field.
 func (r *queryResolver) ListCommunicationBuses(ctx context.Context) (*model.ListOfCommunicationBus, error) {
 	panic(fmt.Errorf("not implemented: ListCommunicationBuses - listCommunicationBuses"))
+}
+
+// DeleteCommunicationBus is the resolver for the deleteCommunicationBus field.
+func (r *queryResolver) DeleteCommunicationBus(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteCommunicationBus - deleteCommunicationBus"))
 }
 
 // AddCommunicationUnitsToCommunicationBus is the resolver for the addCommunicationUnitsToCommunicationBus field.
@@ -289,6 +299,11 @@ func (r *queryResolver) ListDevices(ctx context.Context) (*model.ListOfDevice, e
 // GetDevice is the resolver for the getDevice field.
 func (r *queryResolver) GetDevice(ctx context.Context) (*model.Device, error) {
 	panic(fmt.Errorf("not implemented: GetDevice - getDevice"))
+}
+
+// DeleteDevice is the resolver for the deleteDevice field.
+func (r *queryResolver) DeleteDevice(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDevice - deleteDevice"))
 }
 
 // GetDeviceInfo is the resolver for the getDeviceInfo field.
@@ -334,6 +349,11 @@ func (r *queryResolver) ListDeviceGroups(ctx context.Context) (*model.ListOfDevi
 // GetDeviceGroup is the resolver for the getDeviceGroup field.
 func (r *queryResolver) GetDeviceGroup(ctx context.Context) (*model.DeviceGroup, error) {
 	panic(fmt.Errorf("not implemented: GetDeviceGroup - getDeviceGroup"))
+}
+
+// DeleteDeviceGroup is the resolver for the deleteDeviceGroup field.
+func (r *queryResolver) DeleteDeviceGroup(ctx context.Context) (*model.Empty, error) {
+	panic(fmt.Errorf("not implemented: DeleteDeviceGroup - deleteDeviceGroup"))
 }
 
 // AddDevicesToGroup is the resolver for the addDevicesToGroup field.

@@ -51,15 +51,18 @@ const (
 	DeviceRegistryService_UpdateCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateCommunicationUnit"
 	DeviceRegistryService_ListCommunicationUnits_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnits"
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
+	DeviceRegistryService_DeleteCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteCommunicationUnit"
 	DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnitNetworkMap"
 	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
 	DeviceRegistryService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationBuses"
+	DeviceRegistryService_DeleteCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteCommunicationBus"
 	DeviceRegistryService_AddCommunicationUnitsToCommunicationBus_FullMethodName                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddCommunicationUnitsToCommunicationBus"
 	DeviceRegistryService_RemoveCommunicationUnitsFromCommunicationBus_FullMethodName                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveCommunicationUnitsFromCommunicationBus"
 	DeviceRegistryService_CreateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDevice"
 	DeviceRegistryService_UpdateDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateDevice"
 	DeviceRegistryService_ListDevices_FullMethodName                                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDevices"
 	DeviceRegistryService_GetDevice_FullMethodName                                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDevice"
+	DeviceRegistryService_DeleteDevice_FullMethodName                                                     = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDevice"
 	DeviceRegistryService_StreamDeviceType_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceType"
 	DeviceRegistryService_SetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetDeviceCommunicationUnits"
 	DeviceRegistryService_GetDeviceCommunicationUnits_FullMethodName                                      = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceCommunicationUnits"
@@ -72,6 +75,7 @@ const (
 	DeviceRegistryService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateDeviceGroup"
 	DeviceRegistryService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListDeviceGroups"
 	DeviceRegistryService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetDeviceGroup"
+	DeviceRegistryService_DeleteDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteDeviceGroup"
 	DeviceRegistryService_StreamDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDeviceGroup"
 	DeviceRegistryService_AddDevicesToGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/AddDevicesToGroup"
 	DeviceRegistryService_RemoveDevicesFromGroup_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/RemoveDevicesFromGroup"
@@ -153,6 +157,10 @@ type DeviceRegistryServiceClient interface {
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
+	// Deletes the communication unit. The parameter contains the communication unit identifier.
+	DeleteCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// @group: Devices
@@ -161,6 +169,10 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationbus
 	ListCommunicationBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationBus, error)
+	// @group: Devices
+	// @tag: communicationbus
+	// Deletes the communication bus. The parameter contains the communication bus identifier.
+	DeleteCommunicationBus(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	AddCommunicationUnitsToCommunicationBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -183,6 +195,10 @@ type DeviceRegistryServiceClient interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Device, error)
+	// @group: Devices
+	// @tag: device
+	// Deletes the device. The parameter contains the device identifier.
+	DeleteDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	StreamDeviceType(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse], error)
@@ -213,10 +229,14 @@ type DeviceRegistryServiceClient interface {
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
 	ListDeviceGroups(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
-	// The method returns single device group.
 	// @param The device group identifier.
 	// @return The device group specification.
+	// The method returns single device group.
 	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceGroup, error)
+	// @group: Devices
+	// @tag: devicegroup
+	// Deletes the device group. The parameter contains the device group identifier.
+	DeleteDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method returns stream of devices from the device group.
 	// @param The device group identifier.
 	StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error)
@@ -577,6 +597,16 @@ func (c *deviceRegistryServiceClient) GetCommunicationUnit(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) DeleteCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteCommunicationUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceRegistryServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.NetworkMap)
@@ -601,6 +631,16 @@ func (c *deviceRegistryServiceClient) ListCommunicationBuses(ctx context.Context
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfCommunicationBus)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationBuses_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteCommunicationBus(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteCommunicationBus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -661,6 +701,16 @@ func (c *deviceRegistryServiceClient) GetDevice(ctx context.Context, in *wrapper
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.Device)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDevice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteDevice_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -784,6 +834,16 @@ func (c *deviceRegistryServiceClient) GetDeviceGroup(ctx context.Context, in *wr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.DeviceGroup)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteDeviceGroup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1121,6 +1181,10 @@ type DeviceRegistryServiceServer interface {
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
+	// Deletes the communication unit. The parameter contains the communication unit identifier.
+	DeleteCommunicationUnit(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// @group: Devices
@@ -1129,6 +1193,10 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationbus
 	ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error)
+	// @group: Devices
+	// @tag: communicationbus
+	// Deletes the communication bus. The parameter contains the communication bus identifier.
+	DeleteCommunicationBus(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	AddCommunicationUnitsToCommunicationBus(context.Context, *acquisition.AddCommunicationUnitsToCommunicationBusRequest) (*emptypb.Empty, error)
@@ -1151,6 +1219,10 @@ type DeviceRegistryServiceServer interface {
 	// @tag: device
 	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
 	GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error)
+	// @group: Devices
+	// @tag: device
+	// Deletes the device. The parameter contains the device identifier.
+	DeleteDevice(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error
@@ -1181,10 +1253,14 @@ type DeviceRegistryServiceServer interface {
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// The method returns a list of device groups.
 	ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error)
-	// The method returns single device group.
 	// @param The device group identifier.
 	// @return The device group specification.
+	// The method returns single device group.
 	GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error)
+	// @group: Devices
+	// @tag: devicegroup
+	// Deletes the device group. The parameter contains the device group identifier.
+	DeleteDeviceGroup(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// The method returns stream of devices from the device group.
 	// @param The device group identifier.
 	StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error
@@ -1356,6 +1432,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnits(context.C
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnit not implemented")
 }
+func (UnimplementedDeviceRegistryServiceServer) DeleteCommunicationUnit(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCommunicationUnit not implemented")
+}
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
 }
@@ -1364,6 +1443,9 @@ func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.C
 }
 func (UnimplementedDeviceRegistryServiceServer) ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationBuses not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteCommunicationBus(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCommunicationBus not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitsToCommunicationBus(context.Context, *acquisition.AddCommunicationUnitsToCommunicationBusRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCommunicationUnitsToCommunicationBus not implemented")
@@ -1382,6 +1464,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListDevices(context.Context, *co
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteDevice(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDevice not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceType not implemented")
@@ -1418,6 +1503,9 @@ func (UnimplementedDeviceRegistryServiceServer) ListDeviceGroups(context.Context
 }
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceGroup not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteDeviceGroup(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceGroup not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceGroup not implemented")
@@ -2007,6 +2095,24 @@ func _DeviceRegistryService_GetCommunicationUnit_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_DeleteCommunicationUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteCommunicationUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteCommunicationUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteCommunicationUnit(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
@@ -2057,6 +2163,24 @@ func _DeviceRegistryService_ListCommunicationBuses_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).ListCommunicationBuses(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteCommunicationBus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteCommunicationBus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteCommunicationBus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteCommunicationBus(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2165,6 +2289,24 @@ func _DeviceRegistryService_GetDevice_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetDevice(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteDevice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteDevice(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2370,6 +2512,24 @@ func _DeviceRegistryService_GetDeviceGroup_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetDeviceGroup(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteDeviceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteDeviceGroup(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2969,6 +3129,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_GetCommunicationUnit_Handler,
 		},
 		{
+			MethodName: "DeleteCommunicationUnit",
+			Handler:    _DeviceRegistryService_DeleteCommunicationUnit_Handler,
+		},
+		{
 			MethodName: "GetCommunicationUnitNetworkMap",
 			Handler:    _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler,
 		},
@@ -2979,6 +3143,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListCommunicationBuses",
 			Handler:    _DeviceRegistryService_ListCommunicationBuses_Handler,
+		},
+		{
+			MethodName: "DeleteCommunicationBus",
+			Handler:    _DeviceRegistryService_DeleteCommunicationBus_Handler,
 		},
 		{
 			MethodName: "AddCommunicationUnitsToCommunicationBus",
@@ -3003,6 +3171,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDevice",
 			Handler:    _DeviceRegistryService_GetDevice_Handler,
+		},
+		{
+			MethodName: "DeleteDevice",
+			Handler:    _DeviceRegistryService_DeleteDevice_Handler,
 		},
 		{
 			MethodName: "SetDeviceCommunicationUnits",
@@ -3047,6 +3219,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceGroup",
 			Handler:    _DeviceRegistryService_GetDeviceGroup_Handler,
+		},
+		{
+			MethodName: "DeleteDeviceGroup",
+			Handler:    _DeviceRegistryService_DeleteDeviceGroup_Handler,
 		},
 		{
 			MethodName: "AddDevicesToGroup",

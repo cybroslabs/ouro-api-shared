@@ -229,6 +229,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.CommunicationUnit.FromString,
                 _registered_method=True)
+        self.DeleteCommunicationUnit = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationUnit',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.GetCommunicationUnitNetworkMap = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
@@ -243,6 +248,11 @@ class ApiServiceStub(object):
                 '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.ListOfCommunicationBus.FromString,
+                _registered_method=True)
+        self.DeleteCommunicationBus = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationBus',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.AddCommunicationUnitsToCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/AddCommunicationUnitsToCommunicationBus',
@@ -273,6 +283,11 @@ class ApiServiceStub(object):
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDevice',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.Device.FromString,
+                _registered_method=True)
+        self.DeleteDevice = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteDevice',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.GetDeviceInfo = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceInfo',
@@ -323,6 +338,11 @@ class ApiServiceStub(object):
                 '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup',
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_main__pb2.DeviceGroup.FromString,
+                _registered_method=True)
+        self.DeleteDeviceGroup = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceGroup',
+                request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.AddDevicesToGroup = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/AddDevicesToGroup',
@@ -836,6 +856,15 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteCommunicationUnit(self, request, context):
+        """@group: Devices
+        @tag: communicationunit
+        Deletes the communication unit. The parameter contains the communication unit identifier.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetCommunicationUnitNetworkMap(self, request, context):
         """@group: Devices
         @tag: communicationunit
@@ -856,6 +885,15 @@ class ApiServiceServicer(object):
     def ListCommunicationBuses(self, request, context):
         """@group: Devices
         @tag: communicationbus
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteCommunicationBus(self, request, context):
+        """@group: Devices
+        @tag: communicationbus
+        Deletes the communication bus. The parameter contains the communication bus identifier.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -908,6 +946,15 @@ class ApiServiceServicer(object):
         """@group: Devices
         @tag: device
         The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteDevice(self, request, context):
+        """@group: Devices
+        @tag: device
+        Deletes the device. The parameter contains the device identifier.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -998,6 +1045,15 @@ class ApiServiceServicer(object):
         The method returns single device group.
         @param The device group identifier.
         @return The device group specification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteDeviceGroup(self, request, context):
+        """@group: Devices
+        @tag: devicegroup
+        Deletes the device group. The parameter contains the device group identifier.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1520,6 +1576,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.CommunicationUnit.SerializeToString,
             ),
+            'DeleteCommunicationUnit': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteCommunicationUnit,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'GetCommunicationUnitNetworkMap': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCommunicationUnitNetworkMap,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
@@ -1534,6 +1595,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.ListCommunicationBuses,
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
                     response_serializer=acquisition_dot_main__pb2.ListOfCommunicationBus.SerializeToString,
+            ),
+            'DeleteCommunicationBus': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteCommunicationBus,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'AddCommunicationUnitsToCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.AddCommunicationUnitsToCommunicationBus,
@@ -1564,6 +1630,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDevice,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.Device.SerializeToString,
+            ),
+            'DeleteDevice': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteDevice,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'GetDeviceInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceInfo,
@@ -1614,6 +1685,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetDeviceGroup,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_main__pb2.DeviceGroup.SerializeToString,
+            ),
+            'DeleteDeviceGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteDeviceGroup,
+                    request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'AddDevicesToGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.AddDevicesToGroup,
@@ -2920,6 +2996,33 @@ class ApiService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteCommunicationUnit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationUnit',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def GetCommunicationUnitNetworkMap(request,
             target,
             options=(),
@@ -2990,6 +3093,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses',
             common_dot_fields__pb2.ListSelector.SerializeToString,
             acquisition_dot_main__pb2.ListOfCommunicationBus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteCommunicationBus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationBus',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -3152,6 +3282,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDevice',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.Device.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteDevice(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteDevice',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -3422,6 +3579,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_main__pb2.DeviceGroup.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteDeviceGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceGroup',
+            google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
