@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "common/messages.proto";
 import "common/fields.proto";
 import "common/metadata.proto";
 import "common/types.proto";
@@ -377,10 +378,11 @@ message DriverTemplates {
 
 // Sub-message containing action progress update
 message ActionProgressUpdate {
-    string job_id         = 1;  // The job identifier.
-    string action_id      = 2;  // The action identifier.
-    ActionResultCode code = 3;  // The status related to the action.
-    ActionData data       = 4;  // The action result data. Shall be empty if the code is not OK.
+    string job_id                         = 1;  // The job identifier.
+    string action_id                      = 2;  // The action identifier.
+    ActionResultCode code                 = 3;  // The status related to the action.
+    ActionData data                       = 4;  // The action result data. Shall be empty if the code is not OK.
+    common.FormattedMessage error_message = 5;  // The user error message related to the action which ends up with code ERROR_CODE_ACTION_ERROR, if any. It is used to provide more details about the action result. It can be multiline and should be in English language.
 }
 
 // Sub-message containing job progress update
@@ -794,11 +796,12 @@ enum JobStatusCode {
 
 // Sub-message containing action result for a single action.
 message ActionResult {
-    string action_id              = 1;  // The action identifier.
-    ActionResultCode status       = 2;  // The status of the action.
-    ActionData data               = 3;  // The action result data.
-    string register_id            = 4;  // The register identifier. It is a read-only value, set only if the action data are related to a register. The value is applicable only and only for results for regular bulks.
-    repeated string variable_name = 5;  // The variable name(s). It is a read-only value, set only if the action data are related to one or more variables based on device template mapping. The value is applicable only and only for results for regular bulks.
+    string action_id                      = 1;  // The action identifier.
+    ActionResultCode status               = 2;  // The status of the action.
+    ActionData data                       = 3;  // The action result data.
+    string register_id                    = 4;  // The register identifier. It is a read-only value, set only if the action data are related to a register. The value is applicable only and only for results for regular bulks.
+    repeated string variable_name         = 5;  // The variable name(s). It is a read-only value, set only if the action data are related to one or more variables based on device template mapping. The value is applicable only and only for results for regular bulks.
+    common.FormattedMessage error_message = 6;  // The user error message related to the action which ends up with code ERROR_CODE_ACTION_ERROR, if any. It is used to provide more details about the action result. It can be multiline and should be in English language.
 }
 
 // Taskmaster -> Dataproxy job/action progress update message

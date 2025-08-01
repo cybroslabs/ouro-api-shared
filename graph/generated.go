@@ -102,6 +102,7 @@ type ComplexityRoot struct {
 	ActionResult struct {
 		ActionID     func(childComplexity int) int
 		Data         func(childComplexity int) int
+		ErrorMessage func(childComplexity int) int
 		RegisterID   func(childComplexity int) int
 		Status       func(childComplexity int) int
 		VariableName func(childComplexity int) int
@@ -614,6 +615,12 @@ type ComplexityRoot struct {
 
 	FieldValues struct {
 		Attributes func(childComplexity int) int
+	}
+
+	FormattedMessage struct {
+		Args    func(childComplexity int) int
+		Message func(childComplexity int) int
+		Params  func(childComplexity int) int
 	}
 
 	GetCryptoSecretRequest struct {
@@ -1552,6 +1559,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.ActionResult.Data(childComplexity), true
+
+	case "ActionResult.errorMessage":
+		if e.complexity.ActionResult.ErrorMessage == nil {
+			break
+		}
+
+		return e.complexity.ActionResult.ErrorMessage(childComplexity), true
 
 	case "ActionResult.registerId":
 		if e.complexity.ActionResult.RegisterID == nil {
@@ -3330,6 +3344,27 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.FieldValues.Attributes(childComplexity), true
+
+	case "FormattedMessage.args":
+		if e.complexity.FormattedMessage.Args == nil {
+			break
+		}
+
+		return e.complexity.FormattedMessage.Args(childComplexity), true
+
+	case "FormattedMessage.message":
+		if e.complexity.FormattedMessage.Message == nil {
+			break
+		}
+
+		return e.complexity.FormattedMessage.Message(childComplexity), true
+
+	case "FormattedMessage.params":
+		if e.complexity.FormattedMessage.Params == nil {
+			break
+		}
+
+		return e.complexity.FormattedMessage.Params(childComplexity), true
 
 	case "GetCryptoSecretRequest.cryptoId":
 		if e.complexity.GetCryptoSecretRequest.CryptoID == nil {
@@ -7349,6 +7384,55 @@ func (ec *executionContext) fieldContext_ActionResult_variableName(_ context.Con
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ActionResult_errorMessage(ctx context.Context, field graphql.CollectedField, obj *model.ActionResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ActionResult_errorMessage(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ErrorMessage, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.FormattedMessage)
+	fc.Result = res
+	return ec.marshalOFormattedMessage2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFormattedMessage(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ActionResult_errorMessage(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ActionResult",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "message":
+				return ec.fieldContext_FormattedMessage_message(ctx, field)
+			case "args":
+				return ec.fieldContext_FormattedMessage_args(ctx, field)
+			case "params":
+				return ec.fieldContext_FormattedMessage_params(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type FormattedMessage", field.Name)
 		},
 	}
 	return fc, nil
@@ -18839,6 +18923,133 @@ func (ec *executionContext) fieldContext_FieldValues_attributes(_ context.Contex
 	return fc, nil
 }
 
+func (ec *executionContext) _FormattedMessage_message(ctx context.Context, field graphql.CollectedField, obj *model.FormattedMessage) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FormattedMessage_message(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Message, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FormattedMessage_message(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FormattedMessage",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FormattedMessage_args(ctx context.Context, field graphql.CollectedField, obj *model.FormattedMessage) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FormattedMessage_args(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Args, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*string)
+	fc.Result = res
+	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FormattedMessage_args(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FormattedMessage",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _FormattedMessage_params(ctx context.Context, field graphql.CollectedField, obj *model.FormattedMessage) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_FormattedMessage_params(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Params, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.Struct)
+	fc.Result = res
+	return ec.marshalOStruct2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐStruct(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_FormattedMessage_params(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "FormattedMessage",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "fields":
+				return ec.fieldContext_Struct_fields(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Struct", field.Name)
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _GetCryptoSecretRequest_objectType(ctx context.Context, field graphql.CollectedField, obj *model.GetCryptoSecretRequest) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_GetCryptoSecretRequest_objectType(ctx, field)
 	if err != nil {
@@ -22056,6 +22267,8 @@ func (ec *executionContext) fieldContext_JobStatus_results(_ context.Context, fi
 				return ec.fieldContext_ActionResult_registerId(ctx, field)
 			case "variableName":
 				return ec.fieldContext_ActionResult_variableName(ctx, field)
+			case "errorMessage":
+				return ec.fieldContext_ActionResult_errorMessage(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type ActionResult", field.Name)
 		},
@@ -38511,6 +38724,8 @@ func (ec *executionContext) _ActionResult(ctx context.Context, sel ast.Selection
 			out.Values[i] = ec._ActionResult_registerId(ctx, field, obj)
 		case "variableName":
 			out.Values[i] = ec._ActionResult_variableName(ctx, field, obj)
+		case "errorMessage":
+			out.Values[i] = ec._ActionResult_errorMessage(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -41937,6 +42152,46 @@ func (ec *executionContext) _FieldValues(ctx context.Context, sel ast.SelectionS
 			out.Values[i] = graphql.MarshalString("FieldValues")
 		case "attributes":
 			out.Values[i] = ec._FieldValues_attributes(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
+var formattedMessageImplementors = []string{"FormattedMessage"}
+
+func (ec *executionContext) _FormattedMessage(ctx context.Context, sel ast.SelectionSet, obj *model.FormattedMessage) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, formattedMessageImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("FormattedMessage")
+		case "message":
+			out.Values[i] = ec._FormattedMessage_message(ctx, field, obj)
+		case "args":
+			out.Values[i] = ec._FormattedMessage_args(ctx, field, obj)
+		case "params":
+			out.Values[i] = ec._FormattedMessage_params(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -50081,6 +50336,13 @@ func (ec *executionContext) marshalOFloat2ᚖfloat64(ctx context.Context, sel as
 	_ = sel
 	res := graphql.MarshalFloatContext(*v)
 	return graphql.WrapContextMarshaler(ctx, res)
+}
+
+func (ec *executionContext) marshalOFormattedMessage2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐFormattedMessage(ctx context.Context, sel ast.SelectionSet, v *model.FormattedMessage) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._FormattedMessage(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOGetDeviceDataSeriesSelector2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐGetDeviceDataSeriesSelector(ctx context.Context, sel ast.SelectionSet, v []*model.GetDeviceDataSeriesSelector) graphql.Marshaler {

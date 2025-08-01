@@ -590,6 +590,8 @@ type ActionResult {
   registerId: String
   # The variable name(s). It is a read-only value, set only if the action data are related to one or more variables based on device template mapping. The value is applicable only and only for results for regular bulks.
   variableName: [String]
+  # The user error message related to the action which ends up with code ERROR_CODE_ACTION_ERROR, if any. It is used to provide more details about the action result. It can be multiline and should be in English language.
+  errorMessage: FormattedMessage
 }
 
 # Sub-message containing set disconnector state action specification
@@ -1927,6 +1929,16 @@ type FieldValue {
 type FieldValues {
   # The field values.
   attributes: [_mapFieldValue]
+}
+
+# The formatted message structure.
+type FormattedMessage {
+  # The message or a format string.
+  message: String
+  # The format arguments. If set then the message is used as a format string.
+  args: [String]
+  # The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.
+  params: Struct
 }
 
 type ListFieldDescriptorOptionsRequest {

@@ -1,0 +1,14 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.common;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
+
+import "google/protobuf/struct.proto";
+
+// The formatted message structure.
+message FormattedMessage {
+    string message                = 1;  // The message or a format string.
+    repeated string args          = 2;  // The format arguments. If set then the message is used as a format string.
+    google.protobuf.Struct params = 3;  // The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.
+}

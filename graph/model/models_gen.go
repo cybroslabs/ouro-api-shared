@@ -69,6 +69,7 @@ type ActionResult struct {
 	Data         *ActionData       `json:"data,omitempty"`
 	RegisterID   *string           `json:"registerId,omitempty"`
 	VariableName []*string         `json:"variableName,omitempty"`
+	ErrorMessage *FormattedMessage `json:"errorMessage,omitempty"`
 }
 
 type ActionSetDisconnectorState struct {
@@ -578,6 +579,12 @@ type FieldValue struct {
 
 type FieldValues struct {
 	Attributes []*MapFieldValue `json:"attributes,omitempty"`
+}
+
+type FormattedMessage struct {
+	Message *string   `json:"message,omitempty"`
+	Args    []*string `json:"args,omitempty"`
+	Params  *Struct   `json:"params,omitempty"`
 }
 
 type GetCryptoSecretRequest struct {
