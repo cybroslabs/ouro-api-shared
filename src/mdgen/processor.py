@@ -135,7 +135,7 @@ def run(
         for i in svc.methods:
             m = re_hint.findall(i.description)
             if m:
-                group = next((x[1] for x in m if x[0] == "group"), None)
+                group = next((x[1].strip() for x in m if x[0] == "group"), None)
                 tags = list((re_spaces.sub("", x[1]) for x in m if x[0] == "tag"))
                 hints = list((x for x in m))
 
@@ -155,7 +155,12 @@ def run(
                 (
                     (a, list(((m["method"], m["tags"]) for m in b)))
                     for a, b in itertools.groupby(
-                        tagger_methods, key=lambda x: x["group"]
+                        # Sort by group before grouping
+                        sorted(
+                            tagger_methods,
+                            key=lambda x: x["group"] if x["group"] else "",
+                        ),
+                        key=lambda x: x["group"],
                     )
                 ),
                 key=lambda x: x[0] if x[0] else "",

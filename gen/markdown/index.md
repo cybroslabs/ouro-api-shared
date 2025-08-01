@@ -7,7 +7,6 @@ This page lists all the services and models available in the API. Each service h
 The Dataproxy related service definition.
 
 - [Bulks](service-bulks-apiservice.md)
-- [Bulks](service-bulks-apiservice.md)
 - [Configuration](service-configuration-apiservice.md)
 - [Cron Jobs](service-cron-jobs-apiservice.md)
 - [Cryptography](service-cryptography-apiservice.md)
@@ -15,7 +14,6 @@ The Dataproxy related service definition.
 - [Device Configuration Templates](service-device-configuration-templates-apiservice.md)
 - [Device Data](service-device-data-apiservice.md)
 - [Device Events](service-device-events-apiservice.md)
-- [Devices](service-devices-apiservice.md)
 - [Devices](service-devices-apiservice.md)
 - [Driver Info](service-driver-info-apiservice.md)
 - [Fields](service-fields-apiservice.md)
