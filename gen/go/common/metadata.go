@@ -10,7 +10,7 @@ func (x *MetadataFields) Create() (id uuid.UUID, err error) {
 	if len(x.GetManagedFields()) > 0 {
 		return uuid.Nil, ErrManagedFieldsMustBeEmpty
 	}
-	id, err = uuid.NewV7()
+	id, err = uuid.NewRandom()
 	if err != nil {
 		return uuid.Nil, err
 	}
