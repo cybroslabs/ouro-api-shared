@@ -32,7 +32,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x11system/main.proto2\xe8W\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x11system/main.proto2\xf4W\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -81,8 +81,8 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x16ListCommunicationUnits\x12+.io.clbs.openhes.models.common.ListSelector\x1a;.io.clbs.openhes.models.acquisition.ListOfCommunicationUnit\x12k\n" +
 	"\x14GetCommunicationUnit\x12\x1c.google.protobuf.StringValue\x1a5.io.clbs.openhes.models.acquisition.CommunicationUnit\x12O\n" +
 	"\x17DeleteCommunicationUnit\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12n\n" +
-	"\x1eGetCommunicationUnitNetworkMap\x12\x1c.google.protobuf.StringValue\x1a..io.clbs.openhes.models.acquisition.NetworkMap\x12\x88\x01\n" +
-	"\x19ListCommunicationUnitLogs\x12+.io.clbs.openhes.models.common.ListSelector\x1a>.io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog\x12y\n" +
+	"\x1eGetCommunicationUnitNetworkMap\x12\x1c.google.protobuf.StringValue\x1a..io.clbs.openhes.models.acquisition.NetworkMap\x12\x94\x01\n" +
+	"\x1fListCommunicationUnitLogRecords\x12+.io.clbs.openhes.models.common.ListSelector\x1aD.io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord\x12y\n" +
 	"\x16CreateCommunicationBus\x12A.io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest\x1a\x1c.google.protobuf.StringValue\x12\x81\x01\n" +
 	"\x16ListCommunicationBuses\x12+.io.clbs.openhes.models.common.ListSelector\x1a:.io.clbs.openhes.models.acquisition.ListOfCommunicationBus\x12N\n" +
 	"\x16DeleteCommunicationBus\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12\x95\x01\n" +
@@ -207,7 +207,7 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.Driver)(nil),                                                                  // 59: io.clbs.openhes.models.acquisition.Driver
 	(*acquisition.ListOfCommunicationUnit)(nil),                                                 // 60: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
 	(*acquisition.NetworkMap)(nil),                                                              // 61: io.clbs.openhes.models.acquisition.NetworkMap
-	(*acquisition.ListOfCommunicationUnitLog)(nil),                                              // 62: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog
+	(*acquisition.ListOfCommunicationUnitLogRecord)(nil),                                        // 62: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
 	(*acquisition.ListOfCommunicationBus)(nil),                                                  // 63: io.clbs.openhes.models.acquisition.ListOfCommunicationBus
 	(*acquisition.ListOfDevice)(nil),                                                            // 64: io.clbs.openhes.models.acquisition.ListOfDevice
 	(*acquisition.DeviceInfo)(nil),                                                              // 65: io.clbs.openhes.models.acquisition.DeviceInfo
@@ -275,7 +275,7 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	2,   // 40: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit:input_type -> google.protobuf.StringValue
 	2,   // 41: io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationUnit:input_type -> google.protobuf.StringValue
 	2,   // 42: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap:input_type -> google.protobuf.StringValue
-	1,   // 43: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs:input_type -> io.clbs.openhes.models.common.ListSelector
+	1,   // 43: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogRecords:input_type -> io.clbs.openhes.models.common.ListSelector
 	24,  // 44: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus:input_type -> io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
 	1,   // 45: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationBuses:input_type -> io.clbs.openhes.models.common.ListSelector
 	2,   // 46: io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationBus:input_type -> google.protobuf.StringValue
@@ -377,7 +377,7 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	23,  // 142: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit:output_type -> io.clbs.openhes.models.acquisition.CommunicationUnit
 	15,  // 143: io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationUnit:output_type -> google.protobuf.Empty
 	61,  // 144: io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
-	62,  // 145: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog
+	62,  // 145: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogRecords:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
 	2,   // 146: io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus:output_type -> google.protobuf.StringValue
 	63,  // 147: io.clbs.openhes.services.svcapi.ApiService.ListCommunicationBuses:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationBus
 	15,  // 148: io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationBus:output_type -> google.protobuf.Empty

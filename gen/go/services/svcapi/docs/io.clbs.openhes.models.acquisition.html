@@ -942,9 +942,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>ListOfCommunicationUnitLog</code> 
+          <code>ListOfCommunicationUnitLogRecord</code> 
         </a>
       </p>
       
@@ -3542,6 +3542,21 @@
     <tr>
       <td>2</td>
       <td>
+        communicationUnitId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the communication unit to which the log record belongs. When adding the log records, it may be empty and relation can be set on the upper object level instead.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
         timestamp
       </td>
       <td>
@@ -3550,12 +3565,12 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the log record.</p></td>
+      <td class="content"><p>The timestamp of the log record. It must not be empty.</p></td>
       
     </tr>
     
     <tr>
-      <td>3</td>
+      <td>4</td>
       <td>
         level
       </td>
@@ -3571,7 +3586,7 @@
     </tr>
     
     <tr>
-      <td>4</td>
+      <td>5</td>
       <td>
         message
       </td>
@@ -9508,9 +9523,9 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog" title="io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">message ListOfCommunicationUnitLog</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord" title="io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord">message ListOfCommunicationUnitLogRecord</a>
   
   </span>
   

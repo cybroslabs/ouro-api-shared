@@ -153,7 +153,7 @@ service ApiService {
     // @group: Drivers
     // @tag: communicationunit
     // Returns the list of communication unit log records.
-    rpc ListCommunicationUnitLogs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog);
+    rpc ListCommunicationUnitLogRecords(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord);
 
     // @group: Devices
     // @tag: communicationbus

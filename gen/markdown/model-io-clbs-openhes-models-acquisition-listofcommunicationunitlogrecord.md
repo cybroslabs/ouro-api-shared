@@ -1,4 +1,4 @@
-# Model: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog
+# Model: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
 
 ## Fields
 

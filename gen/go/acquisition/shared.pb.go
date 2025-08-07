@@ -12761,15 +12761,16 @@ func (b0 NetworkMap_builder) Build() *NetworkMap {
 }
 
 type CommunicationUnitLogRecord struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
-	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp"`
-	xxx_hidden_Level       LogRecordLevel         `protobuf:"varint,3,opt,name=level,enum=io.clbs.openhes.models.acquisition.LogRecordLevel"`
-	xxx_hidden_Message     *string                `protobuf:"bytes,4,opt,name=message"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                  *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_CommunicationUnitId *string                `protobuf:"bytes,2,opt,name=communication_unit_id,json=communicationUnitId"`
+	xxx_hidden_Timestamp           *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=timestamp"`
+	xxx_hidden_Level               LogRecordLevel         `protobuf:"varint,4,opt,name=level,enum=io.clbs.openhes.models.acquisition.LogRecordLevel"`
+	xxx_hidden_Message             *string                `protobuf:"bytes,5,opt,name=message"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *CommunicationUnitLogRecord) Reset() {
@@ -12807,6 +12808,16 @@ func (x *CommunicationUnitLogRecord) GetId() string {
 	return ""
 }
 
+func (x *CommunicationUnitLogRecord) GetCommunicationUnitId() string {
+	if x != nil {
+		if x.xxx_hidden_CommunicationUnitId != nil {
+			return *x.xxx_hidden_CommunicationUnitId
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *CommunicationUnitLogRecord) GetTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_Timestamp
@@ -12816,7 +12827,7 @@ func (x *CommunicationUnitLogRecord) GetTimestamp() *timestamppb.Timestamp {
 
 func (x *CommunicationUnitLogRecord) GetLevel() LogRecordLevel {
 	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 3) {
 			return x.xxx_hidden_Level
 		}
 	}
@@ -12835,7 +12846,12 @@ func (x *CommunicationUnitLogRecord) GetMessage() string {
 
 func (x *CommunicationUnitLogRecord) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *CommunicationUnitLogRecord) SetCommunicationUnitId(v string) {
+	x.xxx_hidden_CommunicationUnitId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *CommunicationUnitLogRecord) SetTimestamp(v *timestamppb.Timestamp) {
@@ -12844,12 +12860,12 @@ func (x *CommunicationUnitLogRecord) SetTimestamp(v *timestamppb.Timestamp) {
 
 func (x *CommunicationUnitLogRecord) SetLevel(v LogRecordLevel) {
 	x.xxx_hidden_Level = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
 }
 
 func (x *CommunicationUnitLogRecord) SetMessage(v string) {
 	x.xxx_hidden_Message = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
 }
 
 func (x *CommunicationUnitLogRecord) HasId() bool {
@@ -12857,6 +12873,13 @@ func (x *CommunicationUnitLogRecord) HasId() bool {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *CommunicationUnitLogRecord) HasCommunicationUnitId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *CommunicationUnitLogRecord) HasTimestamp() bool {
@@ -12870,14 +12893,14 @@ func (x *CommunicationUnitLogRecord) HasLevel() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
 func (x *CommunicationUnitLogRecord) HasMessage() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *CommunicationUnitLogRecord) ClearId() {
@@ -12885,27 +12908,33 @@ func (x *CommunicationUnitLogRecord) ClearId() {
 	x.xxx_hidden_Id = nil
 }
 
+func (x *CommunicationUnitLogRecord) ClearCommunicationUnitId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_CommunicationUnitId = nil
+}
+
 func (x *CommunicationUnitLogRecord) ClearTimestamp() {
 	x.xxx_hidden_Timestamp = nil
 }
 
 func (x *CommunicationUnitLogRecord) ClearLevel() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_Level = LogRecordLevel_LOG_RECORD_LEVEL_DEBUG
 }
 
 func (x *CommunicationUnitLogRecord) ClearMessage() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
 	x.xxx_hidden_Message = nil
 }
 
 type CommunicationUnitLogRecord_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id        *string
-	Timestamp *timestamppb.Timestamp
-	Level     *LogRecordLevel
-	Message   *string
+	Id                  *string
+	CommunicationUnitId *string
+	Timestamp           *timestamppb.Timestamp
+	Level               *LogRecordLevel
+	Message             *string
 }
 
 func (b0 CommunicationUnitLogRecord_builder) Build() *CommunicationUnitLogRecord {
@@ -12913,22 +12942,26 @@ func (b0 CommunicationUnitLogRecord_builder) Build() *CommunicationUnitLogRecord
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
 		x.xxx_hidden_Id = b.Id
+	}
+	if b.CommunicationUnitId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_CommunicationUnitId = b.CommunicationUnitId
 	}
 	x.xxx_hidden_Timestamp = b.Timestamp
 	if b.Level != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
 		x.xxx_hidden_Level = *b.Level
 	}
 	if b.Message != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
 		x.xxx_hidden_Message = b.Message
 	}
 	return m0
 }
 
-type ListOfCommunicationUnitLog struct {
+type ListOfCommunicationUnitLogRecord struct {
 	state                  protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*CommunicationUnitLogRecord `protobuf:"bytes,1,rep,name=items"`
 	xxx_hidden_TotalCount  int32                          `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
@@ -12938,20 +12971,20 @@ type ListOfCommunicationUnitLog struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *ListOfCommunicationUnitLog) Reset() {
-	*x = ListOfCommunicationUnitLog{}
+func (x *ListOfCommunicationUnitLogRecord) Reset() {
+	*x = ListOfCommunicationUnitLogRecord{}
 	mi := &file_acquisition_shared_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListOfCommunicationUnitLog) String() string {
+func (x *ListOfCommunicationUnitLogRecord) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListOfCommunicationUnitLog) ProtoMessage() {}
+func (*ListOfCommunicationUnitLogRecord) ProtoMessage() {}
 
-func (x *ListOfCommunicationUnitLog) ProtoReflect() protoreflect.Message {
+func (x *ListOfCommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -12963,7 +12996,7 @@ func (x *ListOfCommunicationUnitLog) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ListOfCommunicationUnitLog) GetItems() []*CommunicationUnitLogRecord {
+func (x *ListOfCommunicationUnitLogRecord) GetItems() []*CommunicationUnitLogRecord {
 	if x != nil {
 		if x.xxx_hidden_Items != nil {
 			return *x.xxx_hidden_Items
@@ -12972,43 +13005,43 @@ func (x *ListOfCommunicationUnitLog) GetItems() []*CommunicationUnitLogRecord {
 	return nil
 }
 
-func (x *ListOfCommunicationUnitLog) GetTotalCount() int32 {
+func (x *ListOfCommunicationUnitLogRecord) GetTotalCount() int32 {
 	if x != nil {
 		return x.xxx_hidden_TotalCount
 	}
 	return 0
 }
 
-func (x *ListOfCommunicationUnitLog) SetItems(v []*CommunicationUnitLogRecord) {
+func (x *ListOfCommunicationUnitLogRecord) SetItems(v []*CommunicationUnitLogRecord) {
 	x.xxx_hidden_Items = &v
 }
 
-func (x *ListOfCommunicationUnitLog) SetTotalCount(v int32) {
+func (x *ListOfCommunicationUnitLogRecord) SetTotalCount(v int32) {
 	x.xxx_hidden_TotalCount = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
-func (x *ListOfCommunicationUnitLog) HasTotalCount() bool {
+func (x *ListOfCommunicationUnitLogRecord) HasTotalCount() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *ListOfCommunicationUnitLog) ClearTotalCount() {
+func (x *ListOfCommunicationUnitLogRecord) ClearTotalCount() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_TotalCount = 0
 }
 
-type ListOfCommunicationUnitLog_builder struct {
+type ListOfCommunicationUnitLogRecord_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Items      []*CommunicationUnitLogRecord
 	TotalCount *int32
 }
 
-func (b0 ListOfCommunicationUnitLog_builder) Build() *ListOfCommunicationUnitLog {
-	m0 := &ListOfCommunicationUnitLog{}
+func (b0 ListOfCommunicationUnitLogRecord_builder) Build() *ListOfCommunicationUnitLogRecord {
+	m0 := &ListOfCommunicationUnitLogRecord{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Items = &b.Items
@@ -13474,13 +13507,14 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\n" +
 	"NetworkMap\x12F\n" +
 	"\x05nodes\x18\x01 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyNodeR\x05nodes\x12F\n" +
-	"\x05edges\x18\x02 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyEdgeR\x05edges\"\xca\x01\n" +
+	"\x05edges\x18\x02 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyEdgeR\x05edges\"\xfe\x01\n" +
 	"\x1aCommunicationUnitLogRecord\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x128\n" +
-	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12H\n" +
-	"\x05level\x18\x03 \x01(\x0e22.io.clbs.openhes.models.acquisition.LogRecordLevelR\x05level\x12\x18\n" +
-	"\amessage\x18\x04 \x01(\tR\amessage\"\x93\x01\n" +
-	"\x1aListOfCommunicationUnitLog\x12T\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x122\n" +
+	"\x15communication_unit_id\x18\x02 \x01(\tR\x13communicationUnitId\x128\n" +
+	"\ttimestamp\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12H\n" +
+	"\x05level\x18\x04 \x01(\x0e22.io.clbs.openhes.models.acquisition.LogRecordLevelR\x05level\x12\x18\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\"\x99\x01\n" +
+	" ListOfCommunicationUnitLogRecord\x12T\n" +
 	"\x05items\x18\x01 \x03(\v2>.io.clbs.openhes.models.acquisition.CommunicationUnitLogRecordR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount*\xc1\x01\n" +
@@ -13707,7 +13741,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*TopologyEdge)(nil),                       // 93: io.clbs.openhes.models.acquisition.TopologyEdge
 	(*NetworkMap)(nil),                         // 94: io.clbs.openhes.models.acquisition.NetworkMap
 	(*CommunicationUnitLogRecord)(nil),         // 95: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*ListOfCommunicationUnitLog)(nil),         // 96: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog
+	(*ListOfCommunicationUnitLogRecord)(nil),   // 96: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
 	nil,                                        // 97: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
 	nil,                                        // 98: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
 	nil,                                        // 99: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
@@ -13897,7 +13931,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	93,  // 163: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
 	107, // 164: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
 	15,  // 165: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
-	95,  // 166: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	95,  // 166: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
 	116, // 167: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
 	116, // 168: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
 	116, // 169: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue

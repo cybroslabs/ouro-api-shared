@@ -421,9 +421,9 @@ func (r *queryResolver) GetDriver(ctx context.Context) (*model.Driver, error) {
 	panic(fmt.Errorf("not implemented: GetDriver - getDriver"))
 }
 
-// ListCommunicationUnitLogs is the resolver for the listCommunicationUnitLogs field.
-func (r *queryResolver) ListCommunicationUnitLogs(ctx context.Context) (*model.ListOfCommunicationUnitLog, error) {
-	panic(fmt.Errorf("not implemented: ListCommunicationUnitLogs - listCommunicationUnitLogs"))
+// ListCommunicationUnitLogRecords is the resolver for the listCommunicationUnitLogRecords field.
+func (r *queryResolver) ListCommunicationUnitLogRecords(ctx context.Context) (*model.ListOfCommunicationUnitLogRecord, error) {
+	panic(fmt.Errorf("not implemented: ListCommunicationUnitLogRecords - listCommunicationUnitLogRecords"))
 }
 
 // CreateFieldDescriptor is the resolver for the createFieldDescriptor field.

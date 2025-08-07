@@ -181,10 +181,11 @@ type CommunicationUnit struct {
 }
 
 type CommunicationUnitLogRecord struct {
-	ID        *string         `json:"id,omitempty"`
-	Timestamp *string         `json:"timestamp,omitempty"`
-	Level     *LogRecordLevel `json:"level,omitempty"`
-	Message   *string         `json:"message,omitempty"`
+	ID                  *string         `json:"id,omitempty"`
+	CommunicationUnitID *string         `json:"communicationUnitId,omitempty"`
+	Timestamp           *string         `json:"timestamp,omitempty"`
+	Level               *LogRecordLevel `json:"level,omitempty"`
+	Message             *string         `json:"message,omitempty"`
 }
 
 type CommunicationUnitSpec struct {
@@ -751,7 +752,7 @@ type ListOfCommunicationUnit struct {
 	TotalCount *int32               `json:"totalCount,omitempty"`
 }
 
-type ListOfCommunicationUnitLog struct {
+type ListOfCommunicationUnitLogRecord struct {
 	Items      []*CommunicationUnitLogRecord `json:"items,omitempty"`
 	TotalCount *int32                        `json:"totalCount,omitempty"`
 }

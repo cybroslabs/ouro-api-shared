@@ -917,12 +917,13 @@ enum LogRecordLevel {
 
 message CommunicationUnitLogRecord {
     string id                           = 1;  // The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
-    google.protobuf.Timestamp timestamp = 2;  // The timestamp of the log record.
-    LogRecordLevel level                = 3;  // The log level of the log record, if provided.
-    string message                      = 4;  // The log message. It must not be empty.
+    string communication_unit_id        = 2;  // The unique identifier of the communication unit to which the log record belongs. When adding the log records, it may be empty and relation can be set on the upper object level instead.
+    google.protobuf.Timestamp timestamp = 3;  // The timestamp of the log record. It must not be empty.
+    LogRecordLevel level                = 4;  // The log level of the log record, if provided.
+    string message                      = 5;  // The log message. It must not be empty.
 }
 
-message ListOfCommunicationUnitLog {
+message ListOfCommunicationUnitLogRecord {
     repeated CommunicationUnitLogRecord items = 1;
     int32 total_count                         = 2;  // The total number of items.
 }

@@ -69,7 +69,7 @@ const (
 	ApiService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
 	ApiService_DeleteCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationUnit"
 	ApiService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
-	ApiService_ListCommunicationUnitLogs_FullMethodName                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs"
+	ApiService_ListCommunicationUnitLogRecords_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogRecords"
 	ApiService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
 	ApiService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
 	ApiService_DeleteCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationBus"
@@ -263,7 +263,7 @@ type ApiServiceClient interface {
 	// @group: Drivers
 	// @tag: communicationunit
 	// Returns the list of communication unit log records.
-	ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error)
+	ListCommunicationUnitLogRecords(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLogRecord, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -908,10 +908,10 @@ func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, i
 	return out, nil
 }
 
-func (c *apiServiceClient) ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error) {
+func (c *apiServiceClient) ListCommunicationUnitLogRecords(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLogRecord, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.ListOfCommunicationUnitLog)
-	err := c.cc.Invoke(ctx, ApiService_ListCommunicationUnitLogs_FullMethodName, in, out, cOpts...)
+	out := new(acquisition.ListOfCommunicationUnitLogRecord)
+	err := c.cc.Invoke(ctx, ApiService_ListCommunicationUnitLogRecords_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1658,7 +1658,7 @@ type ApiServiceServer interface {
 	// @group: Drivers
 	// @tag: communicationunit
 	// Returns the list of communication unit log records.
-	ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error)
+	ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
@@ -2002,8 +2002,8 @@ func (UnimplementedApiServiceServer) DeleteCommunicationUnit(context.Context, *w
 func (UnimplementedApiServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
 }
-func (UnimplementedApiServiceServer) ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitLogs not implemented")
+func (UnimplementedApiServiceServer) ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitLogRecords not implemented")
 }
 func (UnimplementedApiServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
@@ -2974,20 +2974,20 @@ func _ApiService_GetCommunicationUnitNetworkMap_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_ListCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiService_ListCommunicationUnitLogRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).ListCommunicationUnitLogs(ctx, in)
+		return srv.(ApiServiceServer).ListCommunicationUnitLogRecords(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiService_ListCommunicationUnitLogs_FullMethodName,
+		FullMethod: ApiService_ListCommunicationUnitLogRecords_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).ListCommunicationUnitLogs(ctx, req.(*common.ListSelector))
+		return srv.(ApiServiceServer).ListCommunicationUnitLogRecords(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4195,8 +4195,8 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_GetCommunicationUnitNetworkMap_Handler,
 		},
 		{
-			MethodName: "ListCommunicationUnitLogs",
-			Handler:    _ApiService_ListCommunicationUnitLogs_Handler,
+			MethodName: "ListCommunicationUnitLogRecords",
+			Handler:    _ApiService_ListCommunicationUnitLogRecords_Handler,
 		},
 		{
 			MethodName: "CreateCommunicationBus",

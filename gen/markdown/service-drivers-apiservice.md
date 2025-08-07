@@ -1,13 +1,13 @@
 # ApiService - Drivers
 
-## ListCommunicationUnitLogs
+## ListCommunicationUnitLogRecords
 
 Returns the list of communication unit log records.
 
 ```proto
-ListCommunicationUnitLogs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog)
+ListCommunicationUnitLogRecords(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord)
 ```
 
 - Input: [`io.clbs.openhes.models.common.ListSelector`](model-io-clbs-openhes-models-common-listselector.md)
-- Output: [`io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog`](model-io-clbs-openhes-models-acquisition-listofcommunicationunitlog.md)
+- Output: [`io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord`](model-io-clbs-openhes-models-acquisition-listofcommunicationunitlogrecord.md)
 

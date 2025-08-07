@@ -160,9 +160,9 @@ const (
 	// ApiServiceGetCommunicationUnitNetworkMapProcedure is the fully-qualified name of the ApiService's
 	// GetCommunicationUnitNetworkMap RPC.
 	ApiServiceGetCommunicationUnitNetworkMapProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
-	// ApiServiceListCommunicationUnitLogsProcedure is the fully-qualified name of the ApiService's
-	// ListCommunicationUnitLogs RPC.
-	ApiServiceListCommunicationUnitLogsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs"
+	// ApiServiceListCommunicationUnitLogRecordsProcedure is the fully-qualified name of the
+	// ApiService's ListCommunicationUnitLogRecords RPC.
+	ApiServiceListCommunicationUnitLogRecordsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogRecords"
 	// ApiServiceCreateCommunicationBusProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationBus RPC.
 	ApiServiceCreateCommunicationBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
@@ -455,7 +455,7 @@ type ApiServiceClient interface {
 	// @group: Drivers
 	// @tag: communicationunit
 	// Returns the list of communication unit log records.
-	ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error)
+	ListCommunicationUnitLogRecords(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLogRecord], error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -931,10 +931,10 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
 			connect.WithClientOptions(opts...),
 		),
-		listCommunicationUnitLogs: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnitLog](
+		listCommunicationUnitLogRecords: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnitLogRecord](
 			httpClient,
-			baseURL+ApiServiceListCommunicationUnitLogsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogs")),
+			baseURL+ApiServiceListCommunicationUnitLogRecordsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogRecords")),
 			connect.WithClientOptions(opts...),
 		),
 		createCommunicationBus: connect.NewClient[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue](
@@ -1333,7 +1333,7 @@ type apiServiceClient struct {
 	getCommunicationUnit                                             *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
 	deleteCommunicationUnit                                          *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getCommunicationUnitNetworkMap                                   *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
-	listCommunicationUnitLogs                                        *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnitLog]
+	listCommunicationUnitLogRecords                                  *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnitLogRecord]
 	createCommunicationBus                                           *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
 	listCommunicationBuses                                           *connect.Client[common.ListSelector, acquisition.ListOfCommunicationBus]
 	deleteCommunicationBus                                           *connect.Client[wrapperspb.StringValue, emptypb.Empty]
@@ -1624,10 +1624,10 @@ func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, r
 	return c.getCommunicationUnitNetworkMap.CallUnary(ctx, req)
 }
 
-// ListCommunicationUnitLogs calls
-// io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs.
-func (c *apiServiceClient) ListCommunicationUnitLogs(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error) {
-	return c.listCommunicationUnitLogs.CallUnary(ctx, req)
+// ListCommunicationUnitLogRecords calls
+// io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogRecords.
+func (c *apiServiceClient) ListCommunicationUnitLogRecords(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLogRecord], error) {
+	return c.listCommunicationUnitLogRecords.CallUnary(ctx, req)
 }
 
 // CreateCommunicationBus calls io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus.
@@ -2056,7 +2056,7 @@ type ApiServiceHandler interface {
 	// @group: Drivers
 	// @tag: communicationunit
 	// Returns the list of communication unit log records.
-	ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error)
+	ListCommunicationUnitLogRecords(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLogRecord], error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -2528,10 +2528,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceListCommunicationUnitLogsHandler := connect.NewUnaryHandler(
-		ApiServiceListCommunicationUnitLogsProcedure,
-		svc.ListCommunicationUnitLogs,
-		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogs")),
+	apiServiceListCommunicationUnitLogRecordsHandler := connect.NewUnaryHandler(
+		ApiServiceListCommunicationUnitLogRecordsProcedure,
+		svc.ListCommunicationUnitLogRecords,
+		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogRecords")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateCommunicationBusHandler := connect.NewUnaryHandler(
@@ -2970,8 +2970,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceDeleteCommunicationUnitHandler.ServeHTTP(w, r)
 		case ApiServiceGetCommunicationUnitNetworkMapProcedure:
 			apiServiceGetCommunicationUnitNetworkMapHandler.ServeHTTP(w, r)
-		case ApiServiceListCommunicationUnitLogsProcedure:
-			apiServiceListCommunicationUnitLogsHandler.ServeHTTP(w, r)
+		case ApiServiceListCommunicationUnitLogRecordsProcedure:
+			apiServiceListCommunicationUnitLogRecordsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationBusProcedure:
 			apiServiceCreateCommunicationBusHandler.ServeHTTP(w, r)
 		case ApiServiceListCommunicationBusesProcedure:
@@ -3269,8 +3269,8 @@ func (UnimplementedApiServiceHandler) GetCommunicationUnitNetworkMap(context.Con
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs is not implemented"))
+func (UnimplementedApiServiceHandler) ListCommunicationUnitLogRecords(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLogRecord], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogRecords is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error) {

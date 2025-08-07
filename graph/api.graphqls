@@ -754,7 +754,9 @@ type CommunicationUnit {
 type CommunicationUnitLogRecord {
   # The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
   id: String
-  # The timestamp of the log record.
+  # The unique identifier of the communication unit to which the log record belongs. When adding the log records, it may be empty and relation can be set on the upper object level instead.
+  communicationUnitId: String
+  # The timestamp of the log record. It must not be empty.
   timestamp: Timestamp
   # The log level of the log record, if provided.
   level: LogRecordLevel
@@ -1432,7 +1434,7 @@ type ListOfCommunicationUnit {
   totalCount: Int
 }
 
-type ListOfCommunicationUnitLog {
+type ListOfCommunicationUnitLogRecord {
   items: [CommunicationUnitLogRecord]
   # The total number of items.
   totalCount: Int
@@ -2309,7 +2311,7 @@ type Query {
   deleteModem: Empty
   listDrivers: ListOfDriver
   getDriver: Driver
-  listCommunicationUnitLogs: ListOfCommunicationUnitLog
+  listCommunicationUnitLogRecords: ListOfCommunicationUnitLogRecord
   createFieldDescriptor: StringValue
   updateFieldDescriptor: Empty
   deleteFieldDescriptor: Empty

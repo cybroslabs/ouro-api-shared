@@ -168,10 +168,10 @@ class DeviceRegistryServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.NetworkMap.FromString,
                 _registered_method=True)
-        self.ListCommunicationUnitLogs = channel.unary_unary(
-                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitLogs',
+        self.ListCommunicationUnitLogRecords = channel.unary_unary(
+                '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitLogRecords',
                 request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
-                response_deserializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.FromString,
+                response_deserializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLogRecord.FromString,
                 _registered_method=True)
         self.CreateCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus',
@@ -626,7 +626,7 @@ class DeviceRegistryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListCommunicationUnitLogs(self, request, context):
+    def ListCommunicationUnitLogRecords(self, request, context):
         """@group: Drivers
         @tag: communicationunit
         Returns the list of communication unit log records.
@@ -1187,10 +1187,10 @@ def add_DeviceRegistryServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.NetworkMap.SerializeToString,
             ),
-            'ListCommunicationUnitLogs': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListCommunicationUnitLogs,
+            'ListCommunicationUnitLogRecords': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCommunicationUnitLogRecords,
                     request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
-                    response_serializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.SerializeToString,
+                    response_serializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLogRecord.SerializeToString,
             ),
             'CreateCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationBus,
@@ -2238,7 +2238,7 @@ class DeviceRegistryService(object):
             _registered_method=True)
 
     @staticmethod
-    def ListCommunicationUnitLogs(request,
+    def ListCommunicationUnitLogRecords(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2251,9 +2251,9 @@ class DeviceRegistryService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitLogs',
+            '/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitLogRecords',
             common_dot_fields__pb2.ListSelector.SerializeToString,
-            acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.FromString,
+            acquisition_dot_shared__pb2.ListOfCommunicationUnitLogRecord.FromString,
             options,
             channel_credentials,
             insecure,

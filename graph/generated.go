@@ -217,10 +217,11 @@ type ComplexityRoot struct {
 	}
 
 	CommunicationUnitLogRecord struct {
-		ID        func(childComplexity int) int
-		Level     func(childComplexity int) int
-		Message   func(childComplexity int) int
-		Timestamp func(childComplexity int) int
+		CommunicationUnitID func(childComplexity int) int
+		ID                  func(childComplexity int) int
+		Level               func(childComplexity int) int
+		Message             func(childComplexity int) int
+		Timestamp           func(childComplexity int) int
 	}
 
 	CommunicationUnitSpec struct {
@@ -787,7 +788,7 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
-	ListOfCommunicationUnitLog struct {
+	ListOfCommunicationUnitLogRecord struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
 	}
@@ -1050,7 +1051,7 @@ type ComplexityRoot struct {
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
-		ListCommunicationUnitLogs                                        func(childComplexity int) int
+		ListCommunicationUnitLogRecords                                  func(childComplexity int) int
 		ListCommunicationUnits                                           func(childComplexity int) int
 		ListCronJobs                                                     func(childComplexity int) int
 		ListDeviceCommunicationUnitChanges                               func(childComplexity int) int
@@ -1365,7 +1366,7 @@ type QueryResolver interface {
 	DeleteModem(ctx context.Context) (*model.Empty, error)
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
-	ListCommunicationUnitLogs(ctx context.Context) (*model.ListOfCommunicationUnitLog, error)
+	ListCommunicationUnitLogRecords(ctx context.Context) (*model.ListOfCommunicationUnitLogRecord, error)
 	CreateFieldDescriptor(ctx context.Context) (*model.StringValue, error)
 	UpdateFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error)
@@ -1916,6 +1917,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.CommunicationUnit.Spec(childComplexity), true
+
+	case "CommunicationUnitLogRecord.communicationUnitId":
+		if e.complexity.CommunicationUnitLogRecord.CommunicationUnitID == nil {
+			break
+		}
+
+		return e.complexity.CommunicationUnitLogRecord.CommunicationUnitID(childComplexity), true
 
 	case "CommunicationUnitLogRecord.id":
 		if e.complexity.CommunicationUnitLogRecord.ID == nil {
@@ -4045,19 +4053,19 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListOfCommunicationUnit.TotalCount(childComplexity), true
 
-	case "ListOfCommunicationUnitLog.items":
-		if e.complexity.ListOfCommunicationUnitLog.Items == nil {
+	case "ListOfCommunicationUnitLogRecord.items":
+		if e.complexity.ListOfCommunicationUnitLogRecord.Items == nil {
 			break
 		}
 
-		return e.complexity.ListOfCommunicationUnitLog.Items(childComplexity), true
+		return e.complexity.ListOfCommunicationUnitLogRecord.Items(childComplexity), true
 
-	case "ListOfCommunicationUnitLog.totalCount":
-		if e.complexity.ListOfCommunicationUnitLog.TotalCount == nil {
+	case "ListOfCommunicationUnitLogRecord.totalCount":
+		if e.complexity.ListOfCommunicationUnitLogRecord.TotalCount == nil {
 			break
 		}
 
-		return e.complexity.ListOfCommunicationUnitLog.TotalCount(childComplexity), true
+		return e.complexity.ListOfCommunicationUnitLogRecord.TotalCount(childComplexity), true
 
 	case "ListOfCronJob.items":
 		if e.complexity.ListOfCronJob.Items == nil {
@@ -5165,12 +5173,12 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.ListCommunicationBuses(childComplexity), true
 
-	case "Query.listCommunicationUnitLogs":
-		if e.complexity.Query.ListCommunicationUnitLogs == nil {
+	case "Query.listCommunicationUnitLogRecords":
+		if e.complexity.Query.ListCommunicationUnitLogRecords == nil {
 			break
 		}
 
-		return e.complexity.Query.ListCommunicationUnitLogs(childComplexity), true
+		return e.complexity.Query.ListCommunicationUnitLogRecords(childComplexity), true
 
 	case "Query.listCommunicationUnits":
 		if e.complexity.Query.ListCommunicationUnits == nil {
@@ -9639,6 +9647,47 @@ func (ec *executionContext) _CommunicationUnitLogRecord_id(ctx context.Context, 
 }
 
 func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationUnitLogRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationUnitLogRecord_communicationUnitId(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitLogRecord_communicationUnitId(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CommunicationUnitID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_communicationUnitId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "CommunicationUnitLogRecord",
 		Field:      field,
@@ -23354,8 +23403,8 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnit_totalCount(_ co
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfCommunicationUnitLog_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLog) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfCommunicationUnitLog_items(ctx, field)
+func (ec *executionContext) _ListOfCommunicationUnitLogRecord_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationUnitLogRecord_items(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -23382,9 +23431,9 @@ func (ec *executionContext) _ListOfCommunicationUnitLog_items(ctx context.Contex
 	return ec.marshalOCommunicationUnitLogRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitLogRecord(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListOfCommunicationUnitLogRecord_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "ListOfCommunicationUnitLog",
+		Object:     "ListOfCommunicationUnitLogRecord",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -23392,6 +23441,8 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_items(_ cont
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_CommunicationUnitLogRecord_id(ctx, field)
+			case "communicationUnitId":
+				return ec.fieldContext_CommunicationUnitLogRecord_communicationUnitId(ctx, field)
 			case "timestamp":
 				return ec.fieldContext_CommunicationUnitLogRecord_timestamp(ctx, field)
 			case "level":
@@ -23405,8 +23456,8 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_items(_ cont
 	return fc, nil
 }
 
-func (ec *executionContext) _ListOfCommunicationUnitLog_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLog) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ListOfCommunicationUnitLog_totalCount(ctx, field)
+func (ec *executionContext) _ListOfCommunicationUnitLogRecord_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationUnitLogRecord_totalCount(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -23433,9 +23484,9 @@ func (ec *executionContext) _ListOfCommunicationUnitLog_totalCount(ctx context.C
 	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ListOfCommunicationUnitLogRecord_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "ListOfCommunicationUnitLog",
+		Object:     "ListOfCommunicationUnitLogRecord",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -31574,8 +31625,8 @@ func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, fiel
 	return fc, nil
 }
 
-func (ec *executionContext) _Query_listCommunicationUnitLogs(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Query_listCommunicationUnitLogs(ctx, field)
+func (ec *executionContext) _Query_listCommunicationUnitLogRecords(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listCommunicationUnitLogRecords(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -31588,7 +31639,7 @@ func (ec *executionContext) _Query_listCommunicationUnitLogs(ctx context.Context
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().ListCommunicationUnitLogs(rctx)
+		return ec.resolvers.Query().ListCommunicationUnitLogRecords(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -31597,12 +31648,12 @@ func (ec *executionContext) _Query_listCommunicationUnitLogs(ctx context.Context
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.ListOfCommunicationUnitLog)
+	res := resTmp.(*model.ListOfCommunicationUnitLogRecord)
 	fc.Result = res
-	return ec.marshalOListOfCommunicationUnitLog2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLog(ctx, field.Selections, res)
+	return ec.marshalOListOfCommunicationUnitLogRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLogRecord(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Query_listCommunicationUnitLogs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Query_listCommunicationUnitLogRecords(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Query",
 		Field:      field,
@@ -31611,11 +31662,11 @@ func (ec *executionContext) fieldContext_Query_listCommunicationUnitLogs(_ conte
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "items":
-				return ec.fieldContext_ListOfCommunicationUnitLog_items(ctx, field)
+				return ec.fieldContext_ListOfCommunicationUnitLogRecord_items(ctx, field)
 			case "totalCount":
-				return ec.fieldContext_ListOfCommunicationUnitLog_totalCount(ctx, field)
+				return ec.fieldContext_ListOfCommunicationUnitLogRecord_totalCount(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnitLog", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnitLogRecord", field.Name)
 		},
 	}
 	return fc, nil
@@ -39932,6 +39983,8 @@ func (ec *executionContext) _CommunicationUnitLogRecord(ctx context.Context, sel
 			out.Values[i] = graphql.MarshalString("CommunicationUnitLogRecord")
 		case "id":
 			out.Values[i] = ec._CommunicationUnitLogRecord_id(ctx, field, obj)
+		case "communicationUnitId":
+			out.Values[i] = ec._CommunicationUnitLogRecord_communicationUnitId(ctx, field, obj)
 		case "timestamp":
 			out.Values[i] = ec._CommunicationUnitLogRecord_timestamp(ctx, field, obj)
 		case "level":
@@ -43553,21 +43606,21 @@ func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel as
 	return out
 }
 
-var listOfCommunicationUnitLogImplementors = []string{"ListOfCommunicationUnitLog"}
+var listOfCommunicationUnitLogRecordImplementors = []string{"ListOfCommunicationUnitLogRecord"}
 
-func (ec *executionContext) _ListOfCommunicationUnitLog(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnitLog) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitLogImplementors)
+func (ec *executionContext) _ListOfCommunicationUnitLogRecord(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnitLogRecord) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitLogRecordImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnitLog")
+			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnitLogRecord")
 		case "items":
-			out.Values[i] = ec._ListOfCommunicationUnitLog_items(ctx, field, obj)
+			out.Values[i] = ec._ListOfCommunicationUnitLogRecord_items(ctx, field, obj)
 		case "totalCount":
-			out.Values[i] = ec._ListOfCommunicationUnitLog_totalCount(ctx, field, obj)
+			out.Values[i] = ec._ListOfCommunicationUnitLogRecord_totalCount(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -46482,7 +46535,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			}
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
-		case "listCommunicationUnitLogs":
+		case "listCommunicationUnitLogRecords":
 			field := field
 
 			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
@@ -46491,7 +46544,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_listCommunicationUnitLogs(ctx, field)
+				res = ec._Query_listCommunicationUnitLogRecords(ctx, field)
 				return res
 			}
 
@@ -51394,11 +51447,11 @@ func (ec *executionContext) marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcy
 	return ec._ListOfCommunicationUnit(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOListOfCommunicationUnitLog2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLog(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnitLog) graphql.Marshaler {
+func (ec *executionContext) marshalOListOfCommunicationUnitLogRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLogRecord(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnitLogRecord) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec._ListOfCommunicationUnitLog(ctx, sel, v)
+	return ec._ListOfCommunicationUnitLogRecord(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOListOfCronJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCronJob(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCronJob) graphql.Marshaler {
