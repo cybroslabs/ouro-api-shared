@@ -39,6 +39,7 @@ const (
 	ObjectType_CRON_JOB                         ObjectType = 12 // The cron job.
 	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 13 // The device communication unit change.
 	ObjectType_DEVICE_DATA_INFO                 ObjectType = 14 // The device data info.
+	ObjectType_COMMUNICATION_UNIT_LOG_RECORD    ObjectType = 15 // The communication unit log record.
 )
 
 // Enum value maps for ObjectType.
@@ -59,6 +60,7 @@ var (
 		12: "CRON_JOB",
 		13: "DEVICE_COMMUNICATION_UNIT_CHANGE",
 		14: "DEVICE_DATA_INFO",
+		15: "COMMUNICATION_UNIT_LOG_RECORD",
 	}
 	ObjectType_value = map[string]int32{
 		"BULK":                             0,
@@ -76,6 +78,7 @@ var (
 		"CRON_JOB":                         12,
 		"DEVICE_COMMUNICATION_UNIT_CHANGE": 13,
 		"DEVICE_DATA_INFO":                 14,
+		"COMMUNICATION_UNIT_LOG_RECORD":    15,
 	}
 )
 
@@ -105,7 +108,7 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\x9f\x02\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xc2\x02\n" +
 	"\n" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
@@ -126,7 +129,8 @@ const file_common_objects_proto_rawDesc = "" +
 	"\x06DRIVER\x10\v\x12\f\n" +
 	"\bCRON_JOB\x10\f\x12$\n" +
 	" DEVICE_COMMUNICATION_UNIT_CHANGE\x10\r\x12\x14\n" +
-	"\x10DEVICE_DATA_INFO\x10\x0eB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x10DEVICE_DATA_INFO\x10\x0e\x12!\n" +
+	"\x1dCOMMUNICATION_UNIT_LOG_RECORD\x10\x0fB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_objects_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_common_objects_proto_goTypes = []any{

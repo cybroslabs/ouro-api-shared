@@ -22,4 +22,5 @@ enum ObjectType {
 
     DEVICE_COMMUNICATION_UNIT_CHANGE = 13;  // The device communication unit change.
     DEVICE_DATA_INFO                 = 14;  // The device data info.
+    COMMUNICATION_UNIT_LOG_RECORD    = 15;  // The communication unit log record.
 }

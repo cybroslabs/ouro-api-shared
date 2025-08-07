@@ -322,6 +322,8 @@ enum ObjectType {
   DEVICE_COMMUNICATION_UNIT_CHANGE
   # The device data info.
   DEVICE_DATA_INFO
+  # The communication unit log record.
+  COMMUNICATION_UNIT_LOG_RECORD
 }
 
 enum CronJobTypeEnum {

@@ -21,3 +21,4 @@ Enum representing the object type.
 | CRON_JOB | The cron job. |
 | DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |
 | DEVICE_DATA_INFO | The device data info. |
+| COMMUNICATION_UNIT_LOG_RECORD | The communication unit log record. |

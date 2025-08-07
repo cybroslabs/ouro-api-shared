@@ -2135,6 +2135,7 @@ const (
 	ObjectTypeCronJob                       ObjectType = "CRON_JOB"
 	ObjectTypeDeviceCommunicationUnitChange ObjectType = "DEVICE_COMMUNICATION_UNIT_CHANGE"
 	ObjectTypeDeviceDataInfo                ObjectType = "DEVICE_DATA_INFO"
+	ObjectTypeCommunicationUnitLogRecord    ObjectType = "COMMUNICATION_UNIT_LOG_RECORD"
 )
 
 var AllObjectType = []ObjectType{
@@ -2153,11 +2154,12 @@ var AllObjectType = []ObjectType{
 	ObjectTypeCronJob,
 	ObjectTypeDeviceCommunicationUnitChange,
 	ObjectTypeDeviceDataInfo,
+	ObjectTypeCommunicationUnitLogRecord,
 }
 
 func (e ObjectType) IsValid() bool {
 	switch e {
-	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver, ObjectTypeCronJob, ObjectTypeDeviceCommunicationUnitChange, ObjectTypeDeviceDataInfo:
+	case ObjectTypeBulk, ObjectTypeBulkJob, ObjectTypeCommunicationUnit, ObjectTypeDevice, ObjectTypeRegister, ObjectTypeVariable, ObjectTypeDeviceTemplate, ObjectTypeCommunicationBus, ObjectTypeModemPool, ObjectTypeDeviceGroup, ObjectTypeTimeOfUseTable, ObjectTypeDriver, ObjectTypeCronJob, ObjectTypeDeviceCommunicationUnitChange, ObjectTypeDeviceDataInfo, ObjectTypeCommunicationUnitLogRecord:
 		return true
 	}
 	return false
