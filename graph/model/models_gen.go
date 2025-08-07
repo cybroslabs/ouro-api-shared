@@ -180,6 +180,13 @@ type CommunicationUnit struct {
 	Metadata *MetadataFields        `json:"metadata,omitempty"`
 }
 
+type CommunicationUnitLogRecord struct {
+	ID        *string         `json:"id,omitempty"`
+	Timestamp *string         `json:"timestamp,omitempty"`
+	Level     *LogRecordLevel `json:"level,omitempty"`
+	Message   *string         `json:"message,omitempty"`
+}
+
 type CommunicationUnitSpec struct {
 	ExternalID     *string         `json:"externalId,omitempty"`
 	ConnectionInfo *ConnectionInfo `json:"connectionInfo,omitempty"`
@@ -742,6 +749,11 @@ type ListOfCommunicationBus struct {
 type ListOfCommunicationUnit struct {
 	Items      []*CommunicationUnit `json:"items,omitempty"`
 	TotalCount *int32               `json:"totalCount,omitempty"`
+}
+
+type ListOfCommunicationUnitLog struct {
+	Items      []*CommunicationUnitLogRecord `json:"items,omitempty"`
+	TotalCount *int32                        `json:"totalCount,omitempty"`
 }
 
 type ListOfCronJob struct {
@@ -1985,6 +1997,67 @@ func (e *JobStatusCode) UnmarshalJSON(b []byte) error {
 }
 
 func (e JobStatusCode) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type LogRecordLevel string
+
+const (
+	LogRecordLevelLogRecordLevelDebug   LogRecordLevel = "LOG_RECORD_LEVEL_DEBUG"
+	LogRecordLevelLogRecordLevelInfo    LogRecordLevel = "LOG_RECORD_LEVEL_INFO"
+	LogRecordLevelLogRecordLevelWarning LogRecordLevel = "LOG_RECORD_LEVEL_WARNING"
+	LogRecordLevelLogRecordLevelError   LogRecordLevel = "LOG_RECORD_LEVEL_ERROR"
+	LogRecordLevelLogRecordLevelFatal   LogRecordLevel = "LOG_RECORD_LEVEL_FATAL"
+)
+
+var AllLogRecordLevel = []LogRecordLevel{
+	LogRecordLevelLogRecordLevelDebug,
+	LogRecordLevelLogRecordLevelInfo,
+	LogRecordLevelLogRecordLevelWarning,
+	LogRecordLevelLogRecordLevelError,
+	LogRecordLevelLogRecordLevelFatal,
+}
+
+func (e LogRecordLevel) IsValid() bool {
+	switch e {
+	case LogRecordLevelLogRecordLevelDebug, LogRecordLevelLogRecordLevelInfo, LogRecordLevelLogRecordLevelWarning, LogRecordLevelLogRecordLevelError, LogRecordLevelLogRecordLevelFatal:
+		return true
+	}
+	return false
+}
+
+func (e LogRecordLevel) String() string {
+	return string(e)
+}
+
+func (e *LogRecordLevel) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = LogRecordLevel(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid LogRecordLevel", str)
+	}
+	return nil
+}
+
+func (e LogRecordLevel) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *LogRecordLevel) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e LogRecordLevel) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

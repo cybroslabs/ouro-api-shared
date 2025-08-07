@@ -239,6 +239,11 @@ class ApiServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
                 response_deserializer=acquisition_dot_shared__pb2.NetworkMap.FromString,
                 _registered_method=True)
+        self.ListCommunicationUnitLogs = channel.unary_unary(
+                '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs',
+                request_serializer=common_dot_fields__pb2.ListSelector.SerializeToString,
+                response_deserializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.FromString,
+                _registered_method=True)
         self.CreateCommunicationBus = channel.unary_unary(
                 '/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus',
                 request_serializer=acquisition_dot_main__pb2.CreateCommunicationBusRequest.SerializeToString,
@@ -874,6 +879,15 @@ class ApiServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListCommunicationUnitLogs(self, request, context):
+        """@group: Drivers
+        @tag: communicationunit
+        Returns the list of communication unit log records.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
@@ -918,7 +932,7 @@ class ApiServiceServicer(object):
     def CreateDevice(self, request, context):
         """@group: Devices
         @tag: device
-        The method called by the RestAPI to register a new device. The parameter contains the device specification.
+        Creates a new device. The device object defines the device specification.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1585,6 +1599,11 @@ def add_ApiServiceServicer_to_server(servicer, server):
                     servicer.GetCommunicationUnitNetworkMap,
                     request_deserializer=google_dot_protobuf_dot_wrappers__pb2.StringValue.FromString,
                     response_serializer=acquisition_dot_shared__pb2.NetworkMap.SerializeToString,
+            ),
+            'ListCommunicationUnitLogs': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListCommunicationUnitLogs,
+                    request_deserializer=common_dot_fields__pb2.ListSelector.FromString,
+                    response_serializer=acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.SerializeToString,
             ),
             'CreateCommunicationBus': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCommunicationBus,
@@ -3039,6 +3058,33 @@ class ApiService(object):
             '/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap',
             google_dot_protobuf_dot_wrappers__pb2.StringValue.SerializeToString,
             acquisition_dot_shared__pb2.NetworkMap.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListCommunicationUnitLogs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs',
+            common_dot_fields__pb2.ListSelector.SerializeToString,
+            acquisition_dot_shared__pb2.ListOfCommunicationUnitLog.FromString,
             options,
             channel_credentials,
             insecure,

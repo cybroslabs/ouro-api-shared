@@ -216,6 +216,13 @@ type ComplexityRoot struct {
 		Spec     func(childComplexity int) int
 	}
 
+	CommunicationUnitLogRecord struct {
+		ID        func(childComplexity int) int
+		Level     func(childComplexity int) int
+		Message   func(childComplexity int) int
+		Timestamp func(childComplexity int) int
+	}
+
 	CommunicationUnitSpec struct {
 		ConnectionInfo func(childComplexity int) int
 		ExternalID     func(childComplexity int) int
@@ -780,6 +787,11 @@ type ComplexityRoot struct {
 		TotalCount func(childComplexity int) int
 	}
 
+	ListOfCommunicationUnitLog struct {
+		Items      func(childComplexity int) int
+		TotalCount func(childComplexity int) int
+	}
+
 	ListOfCronJob struct {
 		Items      func(childComplexity int) int
 		TotalCount func(childComplexity int) int
@@ -1038,6 +1050,7 @@ type ComplexityRoot struct {
 		ListBulkJobs                                                     func(childComplexity int) int
 		ListBulks                                                        func(childComplexity int) int
 		ListCommunicationBuses                                           func(childComplexity int) int
+		ListCommunicationUnitLogs                                        func(childComplexity int) int
 		ListCommunicationUnits                                           func(childComplexity int) int
 		ListCronJobs                                                     func(childComplexity int) int
 		ListDeviceCommunicationUnitChanges                               func(childComplexity int) int
@@ -1352,6 +1365,7 @@ type QueryResolver interface {
 	DeleteModem(ctx context.Context) (*model.Empty, error)
 	ListDrivers(ctx context.Context) (*model.ListOfDriver, error)
 	GetDriver(ctx context.Context) (*model.Driver, error)
+	ListCommunicationUnitLogs(ctx context.Context) (*model.ListOfCommunicationUnitLog, error)
 	CreateFieldDescriptor(ctx context.Context) (*model.StringValue, error)
 	UpdateFieldDescriptor(ctx context.Context) (*model.Empty, error)
 	DeleteFieldDescriptor(ctx context.Context) (*model.Empty, error)
@@ -1902,6 +1916,34 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.CommunicationUnit.Spec(childComplexity), true
+
+	case "CommunicationUnitLogRecord.id":
+		if e.complexity.CommunicationUnitLogRecord.ID == nil {
+			break
+		}
+
+		return e.complexity.CommunicationUnitLogRecord.ID(childComplexity), true
+
+	case "CommunicationUnitLogRecord.level":
+		if e.complexity.CommunicationUnitLogRecord.Level == nil {
+			break
+		}
+
+		return e.complexity.CommunicationUnitLogRecord.Level(childComplexity), true
+
+	case "CommunicationUnitLogRecord.message":
+		if e.complexity.CommunicationUnitLogRecord.Message == nil {
+			break
+		}
+
+		return e.complexity.CommunicationUnitLogRecord.Message(childComplexity), true
+
+	case "CommunicationUnitLogRecord.timestamp":
+		if e.complexity.CommunicationUnitLogRecord.Timestamp == nil {
+			break
+		}
+
+		return e.complexity.CommunicationUnitLogRecord.Timestamp(childComplexity), true
 
 	case "CommunicationUnitSpec.connectionInfo":
 		if e.complexity.CommunicationUnitSpec.ConnectionInfo == nil {
@@ -4003,6 +4045,20 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.ListOfCommunicationUnit.TotalCount(childComplexity), true
 
+	case "ListOfCommunicationUnitLog.items":
+		if e.complexity.ListOfCommunicationUnitLog.Items == nil {
+			break
+		}
+
+		return e.complexity.ListOfCommunicationUnitLog.Items(childComplexity), true
+
+	case "ListOfCommunicationUnitLog.totalCount":
+		if e.complexity.ListOfCommunicationUnitLog.TotalCount == nil {
+			break
+		}
+
+		return e.complexity.ListOfCommunicationUnitLog.TotalCount(childComplexity), true
+
 	case "ListOfCronJob.items":
 		if e.complexity.ListOfCronJob.Items == nil {
 			break
@@ -5108,6 +5164,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.ListCommunicationBuses(childComplexity), true
+
+	case "Query.listCommunicationUnitLogs":
+		if e.complexity.Query.ListCommunicationUnitLogs == nil {
+			break
+		}
+
+		return e.complexity.Query.ListCommunicationUnitLogs(childComplexity), true
 
 	case "Query.listCommunicationUnits":
 		if e.complexity.Query.ListCommunicationUnits == nil {
@@ -9542,6 +9605,170 @@ func (ec *executionContext) fieldContext_CommunicationUnit_metadata(_ context.Co
 				return ec.fieldContext_MetadataFields_name(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type MetadataFields", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationUnitLogRecord_id(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitLogRecord_id(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationUnitLogRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationUnitLogRecord_timestamp(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitLogRecord_timestamp(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Timestamp, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOTimestamp2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_timestamp(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationUnitLogRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Timestamp does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationUnitLogRecord_level(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitLogRecord_level(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Level, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.LogRecordLevel)
+	fc.Result = res
+	return ec.marshalOLogRecordLevel2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐLogRecordLevel(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_level(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationUnitLogRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type LogRecordLevel does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _CommunicationUnitLogRecord_message(ctx context.Context, field graphql.CollectedField, obj *model.CommunicationUnitLogRecord) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_CommunicationUnitLogRecord_message(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Message, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_CommunicationUnitLogRecord_message(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "CommunicationUnitLogRecord",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -23127,6 +23354,98 @@ func (ec *executionContext) fieldContext_ListOfCommunicationUnit_totalCount(_ co
 	return fc, nil
 }
 
+func (ec *executionContext) _ListOfCommunicationUnitLog_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLog) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationUnitLog_items(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Items, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.CommunicationUnitLogRecord)
+	fc.Result = res
+	return ec.marshalOCommunicationUnitLogRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitLogRecord(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_items(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfCommunicationUnitLog",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_CommunicationUnitLogRecord_id(ctx, field)
+			case "timestamp":
+				return ec.fieldContext_CommunicationUnitLogRecord_timestamp(ctx, field)
+			case "level":
+				return ec.fieldContext_CommunicationUnitLogRecord_level(ctx, field)
+			case "message":
+				return ec.fieldContext_CommunicationUnitLogRecord_message(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type CommunicationUnitLogRecord", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ListOfCommunicationUnitLog_totalCount(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCommunicationUnitLog) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ListOfCommunicationUnitLog_totalCount(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.TotalCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int32)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint32(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ListOfCommunicationUnitLog_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ListOfCommunicationUnitLog",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ListOfCronJob_items(ctx context.Context, field graphql.CollectedField, obj *model.ListOfCronJob) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ListOfCronJob_items(ctx, field)
 	if err != nil {
@@ -31250,6 +31569,53 @@ func (ec *executionContext) fieldContext_Query_getDriver(_ context.Context, fiel
 				return ec.fieldContext_Driver_status(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Driver", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_listCommunicationUnitLogs(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Query_listCommunicationUnitLogs(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ListCommunicationUnitLogs(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.ListOfCommunicationUnitLog)
+	fc.Result = res
+	return ec.marshalOListOfCommunicationUnitLog2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLog(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Query_listCommunicationUnitLogs(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "items":
+				return ec.fieldContext_ListOfCommunicationUnitLog_items(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_ListOfCommunicationUnitLog_totalCount(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ListOfCommunicationUnitLog", field.Name)
 		},
 	}
 	return fc, nil
@@ -39553,6 +39919,48 @@ func (ec *executionContext) _CommunicationUnit(ctx context.Context, sel ast.Sele
 	return out
 }
 
+var communicationUnitLogRecordImplementors = []string{"CommunicationUnitLogRecord"}
+
+func (ec *executionContext) _CommunicationUnitLogRecord(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationUnitLogRecord) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, communicationUnitLogRecordImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("CommunicationUnitLogRecord")
+		case "id":
+			out.Values[i] = ec._CommunicationUnitLogRecord_id(ctx, field, obj)
+		case "timestamp":
+			out.Values[i] = ec._CommunicationUnitLogRecord_timestamp(ctx, field, obj)
+		case "level":
+			out.Values[i] = ec._CommunicationUnitLogRecord_level(ctx, field, obj)
+		case "message":
+			out.Values[i] = ec._CommunicationUnitLogRecord_message(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var communicationUnitSpecImplementors = []string{"CommunicationUnitSpec"}
 
 func (ec *executionContext) _CommunicationUnitSpec(ctx context.Context, sel ast.SelectionSet, obj *model.CommunicationUnitSpec) graphql.Marshaler {
@@ -43145,6 +43553,44 @@ func (ec *executionContext) _ListOfCommunicationUnit(ctx context.Context, sel as
 	return out
 }
 
+var listOfCommunicationUnitLogImplementors = []string{"ListOfCommunicationUnitLog"}
+
+func (ec *executionContext) _ListOfCommunicationUnitLog(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCommunicationUnitLog) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, listOfCommunicationUnitLogImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	deferred := make(map[string]*graphql.FieldSet)
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ListOfCommunicationUnitLog")
+		case "items":
+			out.Values[i] = ec._ListOfCommunicationUnitLog_items(ctx, field, obj)
+		case "totalCount":
+			out.Values[i] = ec._ListOfCommunicationUnitLog_totalCount(ctx, field, obj)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch(ctx)
+	if out.Invalids > 0 {
+		return graphql.Null
+	}
+
+	atomic.AddInt32(&ec.deferred, int32(len(deferred)))
+
+	for label, dfs := range deferred {
+		ec.processDeferredGroup(graphql.DeferredGroup{
+			Label:    label,
+			Path:     graphql.GetPath(ctx),
+			FieldSet: dfs,
+			Context:  ctx,
+		})
+	}
+
+	return out
+}
+
 var listOfCronJobImplementors = []string{"ListOfCronJob"}
 
 func (ec *executionContext) _ListOfCronJob(ctx context.Context, sel ast.SelectionSet, obj *model.ListOfCronJob) graphql.Marshaler {
@@ -46027,6 +46473,25 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getDriver(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "listCommunicationUnitLogs":
+			field := field
+
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_listCommunicationUnitLogs(ctx, field)
 				return res
 			}
 
@@ -49068,6 +49533,54 @@ func (ec *executionContext) marshalOCommunicationUnit2ᚖgithubᚗcomᚋcybrosla
 	return ec._CommunicationUnit(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOCommunicationUnitLogRecord2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitLogRecord(ctx context.Context, sel ast.SelectionSet, v []*model.CommunicationUnitLogRecord) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOCommunicationUnitLogRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitLogRecord(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOCommunicationUnitLogRecord2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitLogRecord(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitLogRecord) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._CommunicationUnitLogRecord(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOCommunicationUnitSpec2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐCommunicationUnitSpec(ctx context.Context, sel ast.SelectionSet, v *model.CommunicationUnitSpec) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -50881,6 +51394,13 @@ func (ec *executionContext) marshalOListOfCommunicationUnit2ᚖgithubᚗcomᚋcy
 	return ec._ListOfCommunicationUnit(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOListOfCommunicationUnitLog2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCommunicationUnitLog(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCommunicationUnitLog) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ListOfCommunicationUnitLog(ctx, sel, v)
+}
+
 func (ec *executionContext) marshalOListOfCronJob2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐListOfCronJob(ctx context.Context, sel ast.SelectionSet, v *model.ListOfCronJob) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -51101,6 +51621,22 @@ func (ec *executionContext) marshalOListValue2ᚖgithubᚗcomᚋcybroslabsᚋour
 		return graphql.Null
 	}
 	return ec._ListValue(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOLogRecordLevel2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐLogRecordLevel(ctx context.Context, v any) (*model.LogRecordLevel, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.LogRecordLevel)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOLogRecordLevel2ᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐLogRecordLevel(ctx context.Context, sel ast.SelectionSet, v *model.LogRecordLevel) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) marshalOMeasuredValue2ᚕᚖgithubᚗcomᚋcybroslabsᚋouroᚑapiᚑsharedᚋgraphᚋmodelᚐMeasuredValue(ctx context.Context, sel ast.SelectionSet, v []*model.MeasuredValue) graphql.Marshaler {

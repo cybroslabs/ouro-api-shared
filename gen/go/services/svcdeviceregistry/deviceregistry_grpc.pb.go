@@ -53,6 +53,7 @@ const (
 	DeviceRegistryService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnit"
 	DeviceRegistryService_DeleteCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteCommunicationUnit"
 	DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetCommunicationUnitNetworkMap"
+	DeviceRegistryService_ListCommunicationUnitLogs_FullMethodName                                        = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationUnitLogs"
 	DeviceRegistryService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateCommunicationBus"
 	DeviceRegistryService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListCommunicationBuses"
 	DeviceRegistryService_DeleteCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteCommunicationBus"
@@ -163,6 +164,10 @@ type DeviceRegistryServiceClient interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -611,6 +616,16 @@ func (c *deviceRegistryServiceClient) GetCommunicationUnitNetworkMap(ctx context
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.NetworkMap)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetCommunicationUnitNetworkMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfCommunicationUnitLog)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListCommunicationUnitLogs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1187,6 +1202,10 @@ type DeviceRegistryServiceServer interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
@@ -1437,6 +1456,9 @@ func (UnimplementedDeviceRegistryServiceServer) DeleteCommunicationUnit(context.
 }
 func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitLogs not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
@@ -2127,6 +2149,24 @@ func _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler(srv interface
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceRegistryServiceServer).GetCommunicationUnitNetworkMap(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_ListCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListCommunicationUnitLogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListCommunicationUnitLogs(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3135,6 +3175,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCommunicationUnitNetworkMap",
 			Handler:    _DeviceRegistryService_GetCommunicationUnitNetworkMap_Handler,
+		},
+		{
+			MethodName: "ListCommunicationUnitLogs",
+			Handler:    _DeviceRegistryService_ListCommunicationUnitLogs_Handler,
 		},
 		{
 			MethodName: "CreateCommunicationBus",

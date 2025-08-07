@@ -69,6 +69,7 @@ const (
 	ApiService_GetCommunicationUnit_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnit"
 	ApiService_DeleteCommunicationUnit_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationUnit"
 	ApiService_GetCommunicationUnitNetworkMap_FullMethodName                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
+	ApiService_ListCommunicationUnitLogs_FullMethodName                                        = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs"
 	ApiService_CreateCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
 	ApiService_ListCommunicationBuses_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationBuses"
 	ApiService_DeleteCommunicationBus_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/DeleteCommunicationBus"
@@ -259,6 +260,10 @@ type ApiServiceClient interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -277,7 +282,7 @@ type ApiServiceClient interface {
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
+	// Creates a new device. The device object defines the device specification.
 	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
@@ -897,6 +902,16 @@ func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, i
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.NetworkMap)
 	err := c.cc.Invoke(ctx, ApiService_GetCommunicationUnitNetworkMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListCommunicationUnitLogs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLog, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfCommunicationUnitLog)
+	err := c.cc.Invoke(ctx, ApiService_ListCommunicationUnitLogs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1640,6 +1655,10 @@ type ApiServiceServer interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
@@ -1658,7 +1677,7 @@ type ApiServiceServer interface {
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
+	// Creates a new device. The device object defines the device specification.
 	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
@@ -1982,6 +2001,9 @@ func (UnimplementedApiServiceServer) DeleteCommunicationUnit(context.Context, *w
 }
 func (UnimplementedApiServiceServer) GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommunicationUnitNetworkMap not implemented")
+}
+func (UnimplementedApiServiceServer) ListCommunicationUnitLogs(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLog, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitLogs not implemented")
 }
 func (UnimplementedApiServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
@@ -2948,6 +2970,24 @@ func _ApiService_GetCommunicationUnitNetworkMap_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApiServiceServer).GetCommunicationUnitNetworkMap(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListCommunicationUnitLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListCommunicationUnitLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListCommunicationUnitLogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListCommunicationUnitLogs(ctx, req.(*common.ListSelector))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4153,6 +4193,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCommunicationUnitNetworkMap",
 			Handler:    _ApiService_GetCommunicationUnitNetworkMap_Handler,
+		},
+		{
+			MethodName: "ListCommunicationUnitLogs",
+			Handler:    _ApiService_ListCommunicationUnitLogs_Handler,
 		},
 		{
 			MethodName: "CreateCommunicationBus",

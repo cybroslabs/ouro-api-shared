@@ -150,6 +150,10 @@ service ApiService {
     // @tag: communicationunit
     // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
     rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
+    // @group: Drivers
+    // @tag: communicationunit
+    // Returns the list of communication unit log records.
+    rpc ListCommunicationUnitLogs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog);
 
     // @group: Devices
     // @tag: communicationbus
@@ -170,7 +174,7 @@ service ApiService {
 
     // @group: Devices
     // @tag: device
-    // The method called by the RestAPI to register a new device. The parameter contains the device specification.
+    // Creates a new device. The device object defines the device specification.
     rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: device

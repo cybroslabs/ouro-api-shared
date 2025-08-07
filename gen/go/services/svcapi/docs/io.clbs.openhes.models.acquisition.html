@@ -339,6 +339,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CommunicationUnitLogRecord</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitSpec">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CommunicationUnitSpec</code> 
@@ -933,6 +942,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfCommunicationUnitLog</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfDevice</code> 
@@ -1335,6 +1353,13 @@
         <a href="#enum-io.clbs.openhes.models.acquisition.JobStatusCode">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>JobStatusCode</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.LogRecordLevel">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>LogRecordLevel</code> 
         </a>
       </p>
     
@@ -3461,6 +3486,102 @@
         </code>
       </td>
       <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord" title="io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord">message CommunicationUnitLogRecord</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        id
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        timestamp
+      </td>
+      <td>
+        <code title="google.protobuf.Timestamp">
+          
+          <span>google.protobuf.Timestamp</span>
+        </code>
+      </td>
+      <td class="content"><p>The timestamp of the log record.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        level
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.LogRecordLevel">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.LogRecordLevel"><span title="io.clbs.openhes.models.acquisition.LogRecordLevel">io.clbs.openhes.models.acquisition.LogRecordLevel</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The log level of the log record, if provided.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        message
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The log message. It must not be empty.</p></td>
       
     </tr>
     
@@ -9387,6 +9508,74 @@ then then system gets all registers defined for active device configuration temp
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog" title="io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog">message ListOfCommunicationUnitLog</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord"><span title="io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord">io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfDevice">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.ListOfDevice" title="io.clbs.openhes.models.acquisition.ListOfDevice">message ListOfDevice</a>
@@ -13010,6 +13199,60 @@ then then system gets all registers defined for active device configuration temp
       <td><code>JOB_STATUS_EXPIRED</code></td>
       <td>6</td>
       <td class="content"><p>The job has expired</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.LogRecordLevel">
+  <a href="#enum-io.clbs.openhes.models.acquisition.LogRecordLevel" title="io.clbs.openhes.models.acquisition.LogRecordLevel">enum LogRecordLevel</a>
+  
+</h4>
+
+<div class="block content">
+  <p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>LOG_RECORD_LEVEL_DEBUG</code></td>
+      <td>0</td>
+      <td class="content"><p>The log record level is debug.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LOG_RECORD_LEVEL_INFO</code></td>
+      <td>1</td>
+      <td class="content"><p>The log record level is info.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LOG_RECORD_LEVEL_WARNING</code></td>
+      <td>2</td>
+      <td class="content"><p>The log record level is warning.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LOG_RECORD_LEVEL_ERROR</code></td>
+      <td>3</td>
+      <td class="content"><p>The log record level is error.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LOG_RECORD_LEVEL_FATAL</code></td>
+      <td>4</td>
+      <td class="content"><p>The log record level is fatal.</p></td>
     </tr>
     
   </tbody>

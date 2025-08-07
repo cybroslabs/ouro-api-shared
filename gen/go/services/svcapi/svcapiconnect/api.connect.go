@@ -160,6 +160,9 @@ const (
 	// ApiServiceGetCommunicationUnitNetworkMapProcedure is the fully-qualified name of the ApiService's
 	// GetCommunicationUnitNetworkMap RPC.
 	ApiServiceGetCommunicationUnitNetworkMapProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCommunicationUnitNetworkMap"
+	// ApiServiceListCommunicationUnitLogsProcedure is the fully-qualified name of the ApiService's
+	// ListCommunicationUnitLogs RPC.
+	ApiServiceListCommunicationUnitLogsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListCommunicationUnitLogs"
 	// ApiServiceCreateCommunicationBusProcedure is the fully-qualified name of the ApiService's
 	// CreateCommunicationBus RPC.
 	ApiServiceCreateCommunicationBusProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCommunicationBus"
@@ -449,6 +452,10 @@ type ApiServiceClient interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -467,7 +474,7 @@ type ApiServiceClient interface {
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *connect.Request[acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
+	// Creates a new device. The device object defines the device specification.
 	CreateDevice(context.Context, *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
 	// @tag: device
@@ -924,6 +931,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
 			connect.WithClientOptions(opts...),
 		),
+		listCommunicationUnitLogs: connect.NewClient[common.ListSelector, acquisition.ListOfCommunicationUnitLog](
+			httpClient,
+			baseURL+ApiServiceListCommunicationUnitLogsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogs")),
+			connect.WithClientOptions(opts...),
+		),
 		createCommunicationBus: connect.NewClient[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateCommunicationBusProcedure,
@@ -1320,6 +1333,7 @@ type apiServiceClient struct {
 	getCommunicationUnit                                             *connect.Client[wrapperspb.StringValue, acquisition.CommunicationUnit]
 	deleteCommunicationUnit                                          *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getCommunicationUnitNetworkMap                                   *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
+	listCommunicationUnitLogs                                        *connect.Client[common.ListSelector, acquisition.ListOfCommunicationUnitLog]
 	createCommunicationBus                                           *connect.Client[acquisition.CreateCommunicationBusRequest, wrapperspb.StringValue]
 	listCommunicationBuses                                           *connect.Client[common.ListSelector, acquisition.ListOfCommunicationBus]
 	deleteCommunicationBus                                           *connect.Client[wrapperspb.StringValue, emptypb.Empty]
@@ -1608,6 +1622,12 @@ func (c *apiServiceClient) DeleteCommunicationUnit(ctx context.Context, req *con
 // io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap.
 func (c *apiServiceClient) GetCommunicationUnitNetworkMap(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
 	return c.getCommunicationUnitNetworkMap.CallUnary(ctx, req)
+}
+
+// ListCommunicationUnitLogs calls
+// io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs.
+func (c *apiServiceClient) ListCommunicationUnitLogs(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error) {
+	return c.listCommunicationUnitLogs.CallUnary(ctx, req)
 }
 
 // CreateCommunicationBus calls io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus.
@@ -2033,6 +2053,10 @@ type ApiServiceHandler interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error)
+	// @group: Drivers
+	// @tag: communicationunit
+	// Returns the list of communication unit log records.
+	ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error)
 	// @group: Devices
 	// @tag: communicationbus
 	CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -2051,7 +2075,7 @@ type ApiServiceHandler interface {
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *connect.Request[acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to register a new device. The parameter contains the device specification.
+	// Creates a new device. The device object defines the device specification.
 	CreateDevice(context.Context, *connect.Request[acquisition.CreateDeviceRequest]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Devices
 	// @tag: device
@@ -2504,6 +2528,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetCommunicationUnitNetworkMap")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceListCommunicationUnitLogsHandler := connect.NewUnaryHandler(
+		ApiServiceListCommunicationUnitLogsProcedure,
+		svc.ListCommunicationUnitLogs,
+		connect.WithSchema(apiServiceMethods.ByName("ListCommunicationUnitLogs")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateCommunicationBusHandler := connect.NewUnaryHandler(
 		ApiServiceCreateCommunicationBusProcedure,
 		svc.CreateCommunicationBus,
@@ -2940,6 +2970,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceDeleteCommunicationUnitHandler.ServeHTTP(w, r)
 		case ApiServiceGetCommunicationUnitNetworkMapProcedure:
 			apiServiceGetCommunicationUnitNetworkMapHandler.ServeHTTP(w, r)
+		case ApiServiceListCommunicationUnitLogsProcedure:
+			apiServiceListCommunicationUnitLogsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCommunicationBusProcedure:
 			apiServiceCreateCommunicationBusHandler.ServeHTTP(w, r)
 		case ApiServiceListCommunicationBusesProcedure:
@@ -3235,6 +3267,10 @@ func (UnimplementedApiServiceHandler) DeleteCommunicationUnit(context.Context, *
 
 func (UnimplementedApiServiceHandler) GetCommunicationUnitNetworkMap(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.NetworkMap], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListCommunicationUnitLogs(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfCommunicationUnitLog], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateCommunicationBus(context.Context, *connect.Request[acquisition.CreateCommunicationBusRequest]) (*connect.Response[wrapperspb.StringValue], error) {

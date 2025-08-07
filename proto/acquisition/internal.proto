@@ -87,21 +87,6 @@ message AddCommunicationUnitLogsRequest {
     repeated CommunicationUnitLogRecord items = 2;  // The list of communication unit log records to be added.
 }
 
-enum LogRecordLevel {
-    LOG_RECORD_LEVEL_DEBUG   = 0;  // The log record level is debug.
-    LOG_RECORD_LEVEL_INFO    = 1;  // The log record level is info.
-    LOG_RECORD_LEVEL_WARNING = 2;  // The log record level is warning.
-    LOG_RECORD_LEVEL_ERROR   = 3;  // The log record level is error.
-    LOG_RECORD_LEVEL_FATAL   = 4;  // The log record level is fatal.
-}
-
-message CommunicationUnitLogRecord {
-    string id                           = 1;  // The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
-    google.protobuf.Timestamp timestamp = 2;  // The timestamp of the log record.
-    LogRecordLevel level                = 3;  // The log level of the log record, if provided.
-    string message                      = 4;  // The log message. It must not be empty.
-}
-
 message SetUnknownDevicesRequest {
     string communication_unit_id      = 1;  // The unique identifier of the communication unit for which the unknown devices are being set.
     repeated UnknownDevicesItem items = 2;  // The list of unknown devices to be set. The list is not empty.

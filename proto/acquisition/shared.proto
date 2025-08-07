@@ -904,3 +904,25 @@ message NetworkMap {
     repeated TopologyNode nodes = 1;
     repeated TopologyEdge edges = 2;  // The list of edges between the devices.
 }
+
+// Communication Unit Log Records
+
+enum LogRecordLevel {
+    LOG_RECORD_LEVEL_DEBUG   = 0;  // The log record level is debug.
+    LOG_RECORD_LEVEL_INFO    = 1;  // The log record level is info.
+    LOG_RECORD_LEVEL_WARNING = 2;  // The log record level is warning.
+    LOG_RECORD_LEVEL_ERROR   = 3;  // The log record level is error.
+    LOG_RECORD_LEVEL_FATAL   = 4;  // The log record level is fatal.
+}
+
+message CommunicationUnitLogRecord {
+    string id                           = 1;  // The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
+    google.protobuf.Timestamp timestamp = 2;  // The timestamp of the log record.
+    LogRecordLevel level                = 3;  // The log level of the log record, if provided.
+    string message                      = 4;  // The log message. It must not be empty.
+}
+
+message ListOfCommunicationUnitLog {
+    repeated CommunicationUnitLogRecord items = 1;
+    int32 total_count                         = 2;  // The total number of items.
+}

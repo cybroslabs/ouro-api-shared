@@ -110,7 +110,7 @@ RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.
 
 ## CreateDevice
 
-The method called by the RestAPI to register a new device. The parameter contains the device specification.
+Creates a new device. The device object defines the device specification.
 
 ```proto
 CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue)

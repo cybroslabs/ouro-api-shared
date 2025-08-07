@@ -956,6 +956,56 @@ func (x TopologyNodeType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+type LogRecordLevel int32
+
+const (
+	LogRecordLevel_LOG_RECORD_LEVEL_DEBUG   LogRecordLevel = 0 // The log record level is debug.
+	LogRecordLevel_LOG_RECORD_LEVEL_INFO    LogRecordLevel = 1 // The log record level is info.
+	LogRecordLevel_LOG_RECORD_LEVEL_WARNING LogRecordLevel = 2 // The log record level is warning.
+	LogRecordLevel_LOG_RECORD_LEVEL_ERROR   LogRecordLevel = 3 // The log record level is error.
+	LogRecordLevel_LOG_RECORD_LEVEL_FATAL   LogRecordLevel = 4 // The log record level is fatal.
+)
+
+// Enum value maps for LogRecordLevel.
+var (
+	LogRecordLevel_name = map[int32]string{
+		0: "LOG_RECORD_LEVEL_DEBUG",
+		1: "LOG_RECORD_LEVEL_INFO",
+		2: "LOG_RECORD_LEVEL_WARNING",
+		3: "LOG_RECORD_LEVEL_ERROR",
+		4: "LOG_RECORD_LEVEL_FATAL",
+	}
+	LogRecordLevel_value = map[string]int32{
+		"LOG_RECORD_LEVEL_DEBUG":   0,
+		"LOG_RECORD_LEVEL_INFO":    1,
+		"LOG_RECORD_LEVEL_WARNING": 2,
+		"LOG_RECORD_LEVEL_ERROR":   3,
+		"LOG_RECORD_LEVEL_FATAL":   4,
+	}
+)
+
+func (x LogRecordLevel) Enum() *LogRecordLevel {
+	p := new(LogRecordLevel)
+	*p = x
+	return p
+}
+
+func (x LogRecordLevel) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LogRecordLevel) Descriptor() protoreflect.EnumDescriptor {
+	return file_acquisition_shared_proto_enumTypes[15].Descriptor()
+}
+
+func (LogRecordLevel) Type() protoreflect.EnumType {
+	return &file_acquisition_shared_proto_enumTypes[15]
+}
+
+func (x LogRecordLevel) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
 // Sub-message containing job parameters
 type JobSettings struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
@@ -12710,6 +12760,265 @@ func (b0 NetworkMap_builder) Build() *NetworkMap {
 	return m0
 }
 
+type CommunicationUnitLogRecord struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp"`
+	xxx_hidden_Level       LogRecordLevel         `protobuf:"varint,3,opt,name=level,enum=io.clbs.openhes.models.acquisition.LogRecordLevel"`
+	xxx_hidden_Message     *string                `protobuf:"bytes,4,opt,name=message"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *CommunicationUnitLogRecord) Reset() {
+	*x = CommunicationUnitLogRecord{}
+	mi := &file_acquisition_shared_proto_msgTypes[79]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CommunicationUnitLogRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CommunicationUnitLogRecord) ProtoMessage() {}
+
+func (x *CommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[79]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CommunicationUnitLogRecord) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CommunicationUnitLogRecord) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_Timestamp
+	}
+	return nil
+}
+
+func (x *CommunicationUnitLogRecord) GetLevel() LogRecordLevel {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 2) {
+			return x.xxx_hidden_Level
+		}
+	}
+	return LogRecordLevel_LOG_RECORD_LEVEL_DEBUG
+}
+
+func (x *CommunicationUnitLogRecord) GetMessage() string {
+	if x != nil {
+		if x.xxx_hidden_Message != nil {
+			return *x.xxx_hidden_Message
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *CommunicationUnitLogRecord) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
+func (x *CommunicationUnitLogRecord) SetTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_Timestamp = v
+}
+
+func (x *CommunicationUnitLogRecord) SetLevel(v LogRecordLevel) {
+	x.xxx_hidden_Level = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+}
+
+func (x *CommunicationUnitLogRecord) SetMessage(v string) {
+	x.xxx_hidden_Message = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+}
+
+func (x *CommunicationUnitLogRecord) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *CommunicationUnitLogRecord) HasTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Timestamp != nil
+}
+
+func (x *CommunicationUnitLogRecord) HasLevel() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *CommunicationUnitLogRecord) HasMessage() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *CommunicationUnitLogRecord) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *CommunicationUnitLogRecord) ClearTimestamp() {
+	x.xxx_hidden_Timestamp = nil
+}
+
+func (x *CommunicationUnitLogRecord) ClearLevel() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Level = LogRecordLevel_LOG_RECORD_LEVEL_DEBUG
+}
+
+func (x *CommunicationUnitLogRecord) ClearMessage() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Message = nil
+}
+
+type CommunicationUnitLogRecord_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id        *string
+	Timestamp *timestamppb.Timestamp
+	Level     *LogRecordLevel
+	Message   *string
+}
+
+func (b0 CommunicationUnitLogRecord_builder) Build() *CommunicationUnitLogRecord {
+	m0 := &CommunicationUnitLogRecord{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_Id = b.Id
+	}
+	x.xxx_hidden_Timestamp = b.Timestamp
+	if b.Level != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		x.xxx_hidden_Level = *b.Level
+	}
+	if b.Message != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		x.xxx_hidden_Message = b.Message
+	}
+	return m0
+}
+
+type ListOfCommunicationUnitLog struct {
+	state                  protoimpl.MessageState         `protogen:"opaque.v1"`
+	xxx_hidden_Items       *[]*CommunicationUnitLogRecord `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                          `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfCommunicationUnitLog) Reset() {
+	*x = ListOfCommunicationUnitLog{}
+	mi := &file_acquisition_shared_proto_msgTypes[80]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfCommunicationUnitLog) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfCommunicationUnitLog) ProtoMessage() {}
+
+func (x *ListOfCommunicationUnitLog) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[80]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfCommunicationUnitLog) GetItems() []*CommunicationUnitLogRecord {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *ListOfCommunicationUnitLog) GetTotalCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_TotalCount
+	}
+	return 0
+}
+
+func (x *ListOfCommunicationUnitLog) SetItems(v []*CommunicationUnitLogRecord) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *ListOfCommunicationUnitLog) SetTotalCount(v int32) {
+	x.xxx_hidden_TotalCount = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListOfCommunicationUnitLog) HasTotalCount() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ListOfCommunicationUnitLog) ClearTotalCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_TotalCount = 0
+}
+
+type ListOfCommunicationUnitLog_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items      []*CommunicationUnitLogRecord
+	TotalCount *int32
+}
+
+func (b0 ListOfCommunicationUnitLog_builder) Build() *ListOfCommunicationUnitLog {
+	m0 := &ListOfCommunicationUnitLog{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	if b.TotalCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_TotalCount = *b.TotalCount
+	}
+	return m0
+}
+
 var File_acquisition_shared_proto protoreflect.FileDescriptor
 
 const file_acquisition_shared_proto_rawDesc = "" +
@@ -13165,7 +13474,16 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\n" +
 	"NetworkMap\x12F\n" +
 	"\x05nodes\x18\x01 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyNodeR\x05nodes\x12F\n" +
-	"\x05edges\x18\x02 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyEdgeR\x05edges*\xc1\x01\n" +
+	"\x05edges\x18\x02 \x03(\v20.io.clbs.openhes.models.acquisition.TopologyEdgeR\x05edges\"\xca\x01\n" +
+	"\x1aCommunicationUnitLogRecord\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x128\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12H\n" +
+	"\x05level\x18\x03 \x01(\x0e22.io.clbs.openhes.models.acquisition.LogRecordLevelR\x05level\x12\x18\n" +
+	"\amessage\x18\x04 \x01(\tR\amessage\"\x93\x01\n" +
+	"\x1aListOfCommunicationUnitLog\x12T\n" +
+	"\x05items\x18\x01 \x03(\v2>.io.clbs.openhes.models.acquisition.CommunicationUnitLogRecordR\x05items\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount*\xc1\x01\n" +
 	"\vJobPriority\x12\x12\n" +
 	"\x0eJOB_PRIORITY_0\x10\x00\x12\x12\n" +
 	"\x0eJOB_PRIORITY_1\x10\x01\x12\x12\n" +
@@ -13282,10 +13600,16 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x12JOB_STATUS_EXPIRED\x10\x06*R\n" +
 	"\x10TopologyNodeType\x12\x18\n" +
 	"\x14TOPOLOGY_NODE_DEVICE\x10\x00\x12$\n" +
-	" TOPOLOGY_NODE_COMMUNICATION_UNIT\x10\x01B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
+	" TOPOLOGY_NODE_COMMUNICATION_UNIT\x10\x01*\x9d\x01\n" +
+	"\x0eLogRecordLevel\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_DEBUG\x10\x00\x12\x19\n" +
+	"\x15LOG_RECORD_LEVEL_INFO\x10\x01\x12\x1c\n" +
+	"\x18LOG_RECORD_LEVEL_WARNING\x10\x02\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_ERROR\x10\x03\x12\x1a\n" +
+	"\x16LOG_RECORD_LEVEL_FATAL\x10\x04B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
-var file_acquisition_shared_proto_enumTypes = make([]protoimpl.EnumInfo, 15)
-var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 88)
+var file_acquisition_shared_proto_enumTypes = make([]protoimpl.EnumInfo, 16)
+var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 90)
 var file_acquisition_shared_proto_goTypes = []any{
 	(JobPriority)(0),                           // 0: io.clbs.openhes.models.acquisition.JobPriority
 	(SerialConfigParity)(0),                    // 1: io.clbs.openhes.models.acquisition.SerialConfigParity
@@ -13302,285 +13626,291 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(RegisterType)(0),                          // 12: io.clbs.openhes.models.acquisition.RegisterType
 	(JobStatusCode)(0),                         // 13: io.clbs.openhes.models.acquisition.JobStatusCode
 	(TopologyNodeType)(0),                      // 14: io.clbs.openhes.models.acquisition.TopologyNodeType
-	(*JobSettings)(nil),                        // 15: io.clbs.openhes.models.acquisition.JobSettings
-	(*JobAction)(nil),                          // 16: io.clbs.openhes.models.acquisition.JobAction
-	(*JobActionSet)(nil),                       // 17: io.clbs.openhes.models.acquisition.JobActionSet
-	(*ListOfJobDevice)(nil),                    // 18: io.clbs.openhes.models.acquisition.ListOfJobDevice
-	(*ListOfJobDeviceId)(nil),                  // 19: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	(*JobDeviceId)(nil),                        // 20: io.clbs.openhes.models.acquisition.JobDeviceId
-	(*JobDevice)(nil),                          // 21: io.clbs.openhes.models.acquisition.JobDevice
-	(*ModemInfo)(nil),                          // 22: io.clbs.openhes.models.acquisition.ModemInfo
-	(*SerialConfig)(nil),                       // 23: io.clbs.openhes.models.acquisition.SerialConfig
-	(*ConnectionInfo)(nil),                     // 24: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*ConnectionTypeDirectTcpIp)(nil),          // 25: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
-	(*ConnectionTypeModemPool)(nil),            // 26: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
-	(*ConnectionTypeSerialDirect)(nil),         // 27: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
-	(*ConnectionTypeSerialMoxa)(nil),           // 28: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
-	(*ConnectionTypeSerialRfc2217)(nil),        // 29: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
-	(*ApplicationProtocolTemplate)(nil),        // 30: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
-	(*DataLinkTemplate)(nil),                   // 31: io.clbs.openhes.models.acquisition.DataLinkTemplate
-	(*CommunicationTemplate)(nil),              // 32: io.clbs.openhes.models.acquisition.CommunicationTemplate
-	(*AccessLevelTemplate)(nil),                // 33: io.clbs.openhes.models.acquisition.AccessLevelTemplate
-	(*DriverTemplates)(nil),                    // 34: io.clbs.openhes.models.acquisition.DriverTemplates
-	(*ActionProgressUpdate)(nil),               // 35: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobProgressUpdate)(nil),                  // 36: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionData)(nil),                         // 37: io.clbs.openhes.models.acquisition.ActionData
-	(*EventRecords)(nil),                       // 38: io.clbs.openhes.models.acquisition.EventRecords
-	(*EventRecord)(nil),                        // 39: io.clbs.openhes.models.acquisition.EventRecord
-	(*DeviceEventRecord)(nil),                  // 40: io.clbs.openhes.models.acquisition.DeviceEventRecord
-	(*DeviceEvents)(nil),                       // 41: io.clbs.openhes.models.acquisition.DeviceEvents
-	(*DeviceInfo)(nil),                         // 42: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*ProfileValues)(nil),                      // 43: io.clbs.openhes.models.acquisition.ProfileValues
-	(*IrregularProfileValues)(nil),             // 44: io.clbs.openhes.models.acquisition.IrregularProfileValues
-	(*IrregularValue)(nil),                     // 45: io.clbs.openhes.models.acquisition.IrregularValue
-	(*ProfileBlock)(nil),                       // 46: io.clbs.openhes.models.acquisition.ProfileBlock
-	(*RegisterValues)(nil),                     // 47: io.clbs.openhes.models.acquisition.RegisterValues
-	(*RegisterValue)(nil),                      // 48: io.clbs.openhes.models.acquisition.RegisterValue
-	(*MeasuredValue)(nil),                      // 49: io.clbs.openhes.models.acquisition.MeasuredValue
-	(*JobActionAttributes)(nil),                // 50: io.clbs.openhes.models.acquisition.JobActionAttributes
-	(*ConnectionTypeControlledSerial)(nil),     // 51: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
-	(*ActionGetRegister)(nil),                  // 52: io.clbs.openhes.models.acquisition.ActionGetRegister
-	(*ActionGetPeriodicalProfile)(nil),         // 53: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	(*ActionGetIrregularProfile)(nil),          // 54: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	(*ActionGetEvents)(nil),                    // 55: io.clbs.openhes.models.acquisition.ActionGetEvents
-	(*ActionGetDeviceInfo)(nil),                // 56: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	(*ActionSyncClock)(nil),                    // 57: io.clbs.openhes.models.acquisition.ActionSyncClock
-	(*ActionSetRelayState)(nil),                // 58: io.clbs.openhes.models.acquisition.ActionSetRelayState
-	(*ActionSetDisconnectorState)(nil),         // 59: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	(*ActionGetTou)(nil),                       // 60: io.clbs.openhes.models.acquisition.ActionGetTou
-	(*ActionSetTou)(nil),                       // 61: io.clbs.openhes.models.acquisition.ActionSetTou
-	(*ActionSetLimiter)(nil),                   // 62: io.clbs.openhes.models.acquisition.ActionSetLimiter
-	(*ActionResetBillingPeriod)(nil),           // 63: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	(*ActionFwUpdate)(nil),                     // 64: io.clbs.openhes.models.acquisition.ActionFwUpdate
-	(*JobActionContraints)(nil),                // 65: io.clbs.openhes.models.acquisition.JobActionContraints
-	(*JobStatus)(nil),                          // 66: io.clbs.openhes.models.acquisition.JobStatus
-	(*StartJobData)(nil),                       // 67: io.clbs.openhes.models.acquisition.StartJobData
-	(*CancelJobRequest)(nil),                   // 68: io.clbs.openhes.models.acquisition.CancelJobRequest
-	(*DeviceConfigurationRegisterSpec)(nil),    // 69: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	(*DeviceRegister)(nil),                     // 70: io.clbs.openhes.models.acquisition.DeviceRegister
-	(*DeviceConnectionInfo)(nil),               // 71: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	(*ListOfModemInfo)(nil),                    // 72: io.clbs.openhes.models.acquisition.ListOfModemInfo
-	(*ListOfConnectionInfo)(nil),               // 73: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	(*FieldValuesList)(nil),                    // 74: io.clbs.openhes.models.acquisition.FieldValuesList
-	(*AttributeSelector)(nil),                  // 75: io.clbs.openhes.models.acquisition.AttributeSelector
-	(*DeviceAttributeSelector)(nil),            // 76: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
-	(*CommunicationUnitAttributeSelector)(nil), // 77: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
-	(*ActionResult)(nil),                       // 78: io.clbs.openhes.models.acquisition.ActionResult
-	(*JobEventData)(nil),                       // 79: io.clbs.openhes.models.acquisition.JobEventData
-	(*DeviceSpec)(nil),                         // 80: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                       // 81: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*DeviceCommunicationUnit)(nil),            // 82: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*JobSpec)(nil),                            // 83: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobActionMapRecord)(nil),                 // 84: io.clbs.openhes.models.acquisition.JobActionMapRecord
-	(*JobDoneNotification)(nil),                // 85: io.clbs.openhes.models.acquisition.JobDoneNotification
-	(*DriverInfo)(nil),                         // 86: io.clbs.openhes.models.acquisition.DriverInfo
-	(*CommunicationUnit)(nil),                  // 87: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationUnitSpec)(nil),              // 88: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*CommunicationBus)(nil),                   // 89: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*CommunicationBusStatus)(nil),             // 90: io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	(*TopologyNode)(nil),                       // 91: io.clbs.openhes.models.acquisition.TopologyNode
-	(*TopologyEdge)(nil),                       // 92: io.clbs.openhes.models.acquisition.TopologyEdge
-	(*NetworkMap)(nil),                         // 93: io.clbs.openhes.models.acquisition.NetworkMap
-	nil,                                        // 94: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	nil,                                        // 95: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
-	nil,                                        // 96: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	nil,                                        // 97: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	nil,                                        // 98: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
-	nil,                                        // 99: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	nil,                                        // 100: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	nil,                                        // 101: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	nil,                                        // 102: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	(*durationpb.Duration)(nil),                // 103: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),              // 104: google.protobuf.Timestamp
-	(*common.FieldDescriptor)(nil),             // 105: io.clbs.openhes.models.common.FieldDescriptor
-	(*common.FormattedMessage)(nil),            // 106: io.clbs.openhes.models.common.FormattedMessage
-	(*emptypb.Empty)(nil),                      // 107: google.protobuf.Empty
-	(*timeofuse.TimeOfUseTableSpec)(nil),       // 108: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	(common.FieldDataType)(0),                  // 109: io.clbs.openhes.models.common.FieldDataType
-	(*common.FieldValues)(nil),                 // 110: io.clbs.openhes.models.common.FieldValues
-	(common.FilterOperator)(0),                 // 111: io.clbs.openhes.models.common.FilterOperator
-	(*common.MetadataFields)(nil),              // 112: io.clbs.openhes.models.common.MetadataFields
-	(*common.FieldValue)(nil),                  // 113: io.clbs.openhes.models.common.FieldValue
-	(*common.ListOfString)(nil),                // 114: io.clbs.openhes.models.common.ListOfString
+	(LogRecordLevel)(0),                        // 15: io.clbs.openhes.models.acquisition.LogRecordLevel
+	(*JobSettings)(nil),                        // 16: io.clbs.openhes.models.acquisition.JobSettings
+	(*JobAction)(nil),                          // 17: io.clbs.openhes.models.acquisition.JobAction
+	(*JobActionSet)(nil),                       // 18: io.clbs.openhes.models.acquisition.JobActionSet
+	(*ListOfJobDevice)(nil),                    // 19: io.clbs.openhes.models.acquisition.ListOfJobDevice
+	(*ListOfJobDeviceId)(nil),                  // 20: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	(*JobDeviceId)(nil),                        // 21: io.clbs.openhes.models.acquisition.JobDeviceId
+	(*JobDevice)(nil),                          // 22: io.clbs.openhes.models.acquisition.JobDevice
+	(*ModemInfo)(nil),                          // 23: io.clbs.openhes.models.acquisition.ModemInfo
+	(*SerialConfig)(nil),                       // 24: io.clbs.openhes.models.acquisition.SerialConfig
+	(*ConnectionInfo)(nil),                     // 25: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*ConnectionTypeDirectTcpIp)(nil),          // 26: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
+	(*ConnectionTypeModemPool)(nil),            // 27: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
+	(*ConnectionTypeSerialDirect)(nil),         // 28: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
+	(*ConnectionTypeSerialMoxa)(nil),           // 29: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
+	(*ConnectionTypeSerialRfc2217)(nil),        // 30: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
+	(*ApplicationProtocolTemplate)(nil),        // 31: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
+	(*DataLinkTemplate)(nil),                   // 32: io.clbs.openhes.models.acquisition.DataLinkTemplate
+	(*CommunicationTemplate)(nil),              // 33: io.clbs.openhes.models.acquisition.CommunicationTemplate
+	(*AccessLevelTemplate)(nil),                // 34: io.clbs.openhes.models.acquisition.AccessLevelTemplate
+	(*DriverTemplates)(nil),                    // 35: io.clbs.openhes.models.acquisition.DriverTemplates
+	(*ActionProgressUpdate)(nil),               // 36: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobProgressUpdate)(nil),                  // 37: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionData)(nil),                         // 38: io.clbs.openhes.models.acquisition.ActionData
+	(*EventRecords)(nil),                       // 39: io.clbs.openhes.models.acquisition.EventRecords
+	(*EventRecord)(nil),                        // 40: io.clbs.openhes.models.acquisition.EventRecord
+	(*DeviceEventRecord)(nil),                  // 41: io.clbs.openhes.models.acquisition.DeviceEventRecord
+	(*DeviceEvents)(nil),                       // 42: io.clbs.openhes.models.acquisition.DeviceEvents
+	(*DeviceInfo)(nil),                         // 43: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*ProfileValues)(nil),                      // 44: io.clbs.openhes.models.acquisition.ProfileValues
+	(*IrregularProfileValues)(nil),             // 45: io.clbs.openhes.models.acquisition.IrregularProfileValues
+	(*IrregularValue)(nil),                     // 46: io.clbs.openhes.models.acquisition.IrregularValue
+	(*ProfileBlock)(nil),                       // 47: io.clbs.openhes.models.acquisition.ProfileBlock
+	(*RegisterValues)(nil),                     // 48: io.clbs.openhes.models.acquisition.RegisterValues
+	(*RegisterValue)(nil),                      // 49: io.clbs.openhes.models.acquisition.RegisterValue
+	(*MeasuredValue)(nil),                      // 50: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*JobActionAttributes)(nil),                // 51: io.clbs.openhes.models.acquisition.JobActionAttributes
+	(*ConnectionTypeControlledSerial)(nil),     // 52: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	(*ActionGetRegister)(nil),                  // 53: io.clbs.openhes.models.acquisition.ActionGetRegister
+	(*ActionGetPeriodicalProfile)(nil),         // 54: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	(*ActionGetIrregularProfile)(nil),          // 55: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	(*ActionGetEvents)(nil),                    // 56: io.clbs.openhes.models.acquisition.ActionGetEvents
+	(*ActionGetDeviceInfo)(nil),                // 57: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	(*ActionSyncClock)(nil),                    // 58: io.clbs.openhes.models.acquisition.ActionSyncClock
+	(*ActionSetRelayState)(nil),                // 59: io.clbs.openhes.models.acquisition.ActionSetRelayState
+	(*ActionSetDisconnectorState)(nil),         // 60: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	(*ActionGetTou)(nil),                       // 61: io.clbs.openhes.models.acquisition.ActionGetTou
+	(*ActionSetTou)(nil),                       // 62: io.clbs.openhes.models.acquisition.ActionSetTou
+	(*ActionSetLimiter)(nil),                   // 63: io.clbs.openhes.models.acquisition.ActionSetLimiter
+	(*ActionResetBillingPeriod)(nil),           // 64: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	(*ActionFwUpdate)(nil),                     // 65: io.clbs.openhes.models.acquisition.ActionFwUpdate
+	(*JobActionContraints)(nil),                // 66: io.clbs.openhes.models.acquisition.JobActionContraints
+	(*JobStatus)(nil),                          // 67: io.clbs.openhes.models.acquisition.JobStatus
+	(*StartJobData)(nil),                       // 68: io.clbs.openhes.models.acquisition.StartJobData
+	(*CancelJobRequest)(nil),                   // 69: io.clbs.openhes.models.acquisition.CancelJobRequest
+	(*DeviceConfigurationRegisterSpec)(nil),    // 70: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	(*DeviceRegister)(nil),                     // 71: io.clbs.openhes.models.acquisition.DeviceRegister
+	(*DeviceConnectionInfo)(nil),               // 72: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	(*ListOfModemInfo)(nil),                    // 73: io.clbs.openhes.models.acquisition.ListOfModemInfo
+	(*ListOfConnectionInfo)(nil),               // 74: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*FieldValuesList)(nil),                    // 75: io.clbs.openhes.models.acquisition.FieldValuesList
+	(*AttributeSelector)(nil),                  // 76: io.clbs.openhes.models.acquisition.AttributeSelector
+	(*DeviceAttributeSelector)(nil),            // 77: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
+	(*CommunicationUnitAttributeSelector)(nil), // 78: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
+	(*ActionResult)(nil),                       // 79: io.clbs.openhes.models.acquisition.ActionResult
+	(*JobEventData)(nil),                       // 80: io.clbs.openhes.models.acquisition.JobEventData
+	(*DeviceSpec)(nil),                         // 81: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),                       // 82: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*DeviceCommunicationUnit)(nil),            // 83: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*JobSpec)(nil),                            // 84: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobActionMapRecord)(nil),                 // 85: io.clbs.openhes.models.acquisition.JobActionMapRecord
+	(*JobDoneNotification)(nil),                // 86: io.clbs.openhes.models.acquisition.JobDoneNotification
+	(*DriverInfo)(nil),                         // 87: io.clbs.openhes.models.acquisition.DriverInfo
+	(*CommunicationUnit)(nil),                  // 88: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationUnitSpec)(nil),              // 89: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*CommunicationBus)(nil),                   // 90: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*CommunicationBusStatus)(nil),             // 91: io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	(*TopologyNode)(nil),                       // 92: io.clbs.openhes.models.acquisition.TopologyNode
+	(*TopologyEdge)(nil),                       // 93: io.clbs.openhes.models.acquisition.TopologyEdge
+	(*NetworkMap)(nil),                         // 94: io.clbs.openhes.models.acquisition.NetworkMap
+	(*CommunicationUnitLogRecord)(nil),         // 95: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*ListOfCommunicationUnitLog)(nil),         // 96: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog
+	nil,                                        // 97: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	nil,                                        // 98: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	nil,                                        // 99: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	nil,                                        // 100: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	nil,                                        // 101: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	nil,                                        // 102: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	nil,                                        // 103: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	nil,                                        // 104: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	nil,                                        // 105: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	(*durationpb.Duration)(nil),                // 106: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),              // 107: google.protobuf.Timestamp
+	(*common.FieldDescriptor)(nil),             // 108: io.clbs.openhes.models.common.FieldDescriptor
+	(*common.FormattedMessage)(nil),            // 109: io.clbs.openhes.models.common.FormattedMessage
+	(*emptypb.Empty)(nil),                      // 110: google.protobuf.Empty
+	(*timeofuse.TimeOfUseTableSpec)(nil),       // 111: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	(common.FieldDataType)(0),                  // 112: io.clbs.openhes.models.common.FieldDataType
+	(*common.FieldValues)(nil),                 // 113: io.clbs.openhes.models.common.FieldValues
+	(common.FilterOperator)(0),                 // 114: io.clbs.openhes.models.common.FilterOperator
+	(*common.MetadataFields)(nil),              // 115: io.clbs.openhes.models.common.MetadataFields
+	(*common.FieldValue)(nil),                  // 116: io.clbs.openhes.models.common.FieldValue
+	(*common.ListOfString)(nil),                // 117: io.clbs.openhes.models.common.ListOfString
 }
 var file_acquisition_shared_proto_depIdxs = []int32{
-	103, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
+	106, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
 	0,   // 1: io.clbs.openhes.models.acquisition.JobSettings.priority:type_name -> io.clbs.openhes.models.acquisition.JobPriority
-	103, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
-	103, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
-	104, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
-	94,  // 5: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	52,  // 6: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	53,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	54,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	55,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	56,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	57,  // 11: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	58,  // 12: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	59,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	60,  // 14: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	61,  // 15: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	62,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	63,  // 17: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	64,  // 18: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
-	52,  // 19: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	53,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	54,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	55,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	56,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	57,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	58,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	59,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	60,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	61,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	62,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	63,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	64,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
-	21,  // 32: io.clbs.openhes.models.acquisition.ListOfJobDevice.list:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	20,  // 33: io.clbs.openhes.models.acquisition.ListOfJobDeviceId.list:type_name -> io.clbs.openhes.models.acquisition.JobDeviceId
-	95,  // 34: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
-	24,  // 35: io.clbs.openhes.models.acquisition.JobDevice.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	106, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
+	106, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
+	107, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
+	97,  // 5: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	53,  // 6: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	54,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	55,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	56,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	57,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	58,  // 11: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	59,  // 12: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	60,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	61,  // 14: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	62,  // 15: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	63,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	64,  // 17: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	65,  // 18: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	53,  // 19: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	54,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	55,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	56,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	57,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	58,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	59,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	60,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	61,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	62,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	63,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	64,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	65,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	22,  // 32: io.clbs.openhes.models.acquisition.ListOfJobDevice.list:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	21,  // 33: io.clbs.openhes.models.acquisition.ListOfJobDeviceId.list:type_name -> io.clbs.openhes.models.acquisition.JobDeviceId
+	98,  // 34: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	25,  // 35: io.clbs.openhes.models.acquisition.JobDevice.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
 	7,   // 36: io.clbs.openhes.models.acquisition.JobDevice.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	103, // 37: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
-	103, // 38: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
-	25,  // 39: io.clbs.openhes.models.acquisition.ModemInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
-	51,  // 40: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	106, // 37: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
+	106, // 38: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
+	26,  // 39: io.clbs.openhes.models.acquisition.ModemInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
+	52,  // 40: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	2,   // 41: io.clbs.openhes.models.acquisition.SerialConfig.baud_rate:type_name -> io.clbs.openhes.models.acquisition.SerialConfigBaudRate
 	1,   // 42: io.clbs.openhes.models.acquisition.SerialConfig.parity:type_name -> io.clbs.openhes.models.acquisition.SerialConfigParity
 	3,   // 43: io.clbs.openhes.models.acquisition.SerialConfig.data_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigDataBits
 	4,   // 44: io.clbs.openhes.models.acquisition.SerialConfig.stop_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigStopBits
-	25,  // 45: io.clbs.openhes.models.acquisition.ConnectionInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
-	26,  // 46: io.clbs.openhes.models.acquisition.ConnectionInfo.modem_pool:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
-	51,  // 47: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	26,  // 45: io.clbs.openhes.models.acquisition.ConnectionInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
+	27,  // 46: io.clbs.openhes.models.acquisition.ConnectionInfo.modem_pool:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
+	52,  // 47: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	6,   // 48: io.clbs.openhes.models.acquisition.ConnectionInfo.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	96,  // 49: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	103, // 50: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
-	22,  // 51: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	103, // 52: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
-	103, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
-	103, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
+	99,  // 49: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	106, // 50: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
+	23,  // 51: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	106, // 52: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
+	106, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
+	106, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
 	7,   // 55: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	105, // 56: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	108, // 56: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	6,   // 57: io.clbs.openhes.models.acquisition.DataLinkTemplate.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
 	7,   // 58: io.clbs.openhes.models.acquisition.DataLinkTemplate.app_protocol_refs:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	105, // 59: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	108, // 59: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	5,   // 60: io.clbs.openhes.models.acquisition.CommunicationTemplate.type:type_name -> io.clbs.openhes.models.acquisition.CommunicationType
-	31,  // 61: io.clbs.openhes.models.acquisition.CommunicationTemplate.datalinks:type_name -> io.clbs.openhes.models.acquisition.DataLinkTemplate
-	32,  // 62: io.clbs.openhes.models.acquisition.DriverTemplates.communication_templates:type_name -> io.clbs.openhes.models.acquisition.CommunicationTemplate
-	30,  // 63: io.clbs.openhes.models.acquisition.DriverTemplates.app_protocols:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
-	50,  // 64: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
-	33,  // 65: io.clbs.openhes.models.acquisition.DriverTemplates.access_templates:type_name -> io.clbs.openhes.models.acquisition.AccessLevelTemplate
-	65,  // 66: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
-	105, // 67: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	32,  // 61: io.clbs.openhes.models.acquisition.CommunicationTemplate.datalinks:type_name -> io.clbs.openhes.models.acquisition.DataLinkTemplate
+	33,  // 62: io.clbs.openhes.models.acquisition.DriverTemplates.communication_templates:type_name -> io.clbs.openhes.models.acquisition.CommunicationTemplate
+	31,  // 63: io.clbs.openhes.models.acquisition.DriverTemplates.app_protocols:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
+	51,  // 64: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
+	34,  // 65: io.clbs.openhes.models.acquisition.DriverTemplates.access_templates:type_name -> io.clbs.openhes.models.acquisition.AccessLevelTemplate
+	66,  // 66: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
+	108, // 67: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	9,   // 68: io.clbs.openhes.models.acquisition.ActionProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	37,  // 69: io.clbs.openhes.models.acquisition.ActionProgressUpdate.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	106, // 70: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	38,  // 69: io.clbs.openhes.models.acquisition.ActionProgressUpdate.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	109, // 70: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
 	10,  // 71: io.clbs.openhes.models.acquisition.JobProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	103, // 72: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
-	107, // 73: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
-	47,  // 74: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
-	43,  // 75: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
-	44,  // 76: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	42,  // 77: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	38,  // 78: io.clbs.openhes.models.acquisition.ActionData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
-	108, // 79: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	39,  // 80: io.clbs.openhes.models.acquisition.EventRecords.values:type_name -> io.clbs.openhes.models.acquisition.EventRecord
-	104, // 81: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
-	104, // 82: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
-	40,  // 83: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
-	104, // 84: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
-	103, // 85: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
-	46,  // 86: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
-	45,  // 87: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
-	104, // 88: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
-	49,  // 89: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	104, // 90: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
-	49,  // 91: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	48,  // 92: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
-	104, // 93: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
-	49,  // 94: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	104, // 95: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
-	104, // 96: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
+	106, // 72: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
+	110, // 73: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
+	48,  // 74: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
+	44,  // 75: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
+	45,  // 76: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	43,  // 77: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	39,  // 78: io.clbs.openhes.models.acquisition.ActionData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
+	111, // 79: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	40,  // 80: io.clbs.openhes.models.acquisition.EventRecords.values:type_name -> io.clbs.openhes.models.acquisition.EventRecord
+	107, // 81: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	107, // 82: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	41,  // 83: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
+	107, // 84: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
+	106, // 85: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
+	47,  // 86: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
+	46,  // 87: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
+	107, // 88: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
+	50,  // 89: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	107, // 90: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	50,  // 91: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	49,  // 92: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
+	107, // 93: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
+	50,  // 94: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	107, // 95: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
+	107, // 96: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
 	8,   // 97: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
-	105, // 98: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	27,  // 99: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
-	28,  // 100: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
-	29,  // 101: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
-	109, // 102: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	104, // 103: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.from:type_name -> google.protobuf.Timestamp
-	104, // 104: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.to:type_name -> google.protobuf.Timestamp
-	109, // 105: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	104, // 106: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.from:type_name -> google.protobuf.Timestamp
-	104, // 107: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.to:type_name -> google.protobuf.Timestamp
-	109, // 108: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	104, // 109: io.clbs.openhes.models.acquisition.ActionGetEvents.from:type_name -> google.protobuf.Timestamp
-	104, // 110: io.clbs.openhes.models.acquisition.ActionGetEvents.to:type_name -> google.protobuf.Timestamp
-	108, // 111: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	97,  // 112: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	98,  // 113: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	108, // 98: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	28,  // 99: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
+	29,  // 100: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
+	30,  // 101: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
+	112, // 102: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	107, // 103: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.from:type_name -> google.protobuf.Timestamp
+	107, // 104: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.to:type_name -> google.protobuf.Timestamp
+	112, // 105: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	107, // 106: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.from:type_name -> google.protobuf.Timestamp
+	107, // 107: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.to:type_name -> google.protobuf.Timestamp
+	112, // 108: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	107, // 109: io.clbs.openhes.models.acquisition.ActionGetEvents.from:type_name -> google.protobuf.Timestamp
+	107, // 110: io.clbs.openhes.models.acquisition.ActionGetEvents.to:type_name -> google.protobuf.Timestamp
+	111, // 111: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	100, // 112: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	101, // 113: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
 	13,  // 114: io.clbs.openhes.models.acquisition.JobStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
 	10,  // 115: io.clbs.openhes.models.acquisition.JobStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	78,  // 116: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
-	104, // 117: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
-	104, // 118: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
-	42,  // 119: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	99,  // 120: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	15,  // 121: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	16,  // 122: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	79,  // 116: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
+	107, // 117: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
+	107, // 118: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
+	43,  // 119: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	102, // 120: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	16,  // 121: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	17,  // 122: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
 	7,   // 123: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
 	12,  // 124: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.RegisterType
-	100, // 125: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	109, // 126: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	69,  // 127: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	24,  // 128: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	103, // 125: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	112, // 126: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	70,  // 127: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	25,  // 128: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
 	7,   // 129: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	101, // 130: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	70,  // 131: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
-	22,  // 132: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	71,  // 133: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	110, // 134: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	111, // 135: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
-	109, // 136: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	104, // 137: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
-	75,  // 138: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	104, // 130: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	71,  // 131: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
+	23,  // 132: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	72,  // 133: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	113, // 134: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	114, // 135: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
+	112, // 136: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	107, // 137: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
+	76,  // 138: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
 	6,   // 139: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	75,  // 140: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	76,  // 140: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
 	9,   // 141: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	37,  // 142: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	106, // 143: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	82,  // 144: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	42,  // 145: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	38,  // 142: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	109, // 143: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	83,  // 144: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	43,  // 145: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
 	7,   // 146: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	102, // 147: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	21,  // 148: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	15,  // 149: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	16,  // 150: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	84,  // 151: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
-	83,  // 152: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	66,  // 153: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	88,  // 154: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	112, // 155: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	24,  // 156: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	90,  // 157: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	112, // 158: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	105, // 147: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	22,  // 148: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	16,  // 149: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	17,  // 150: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	85,  // 151: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
+	84,  // 152: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	67,  // 153: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	89,  // 154: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	115, // 155: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	25,  // 156: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	91,  // 157: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	115, // 158: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	14,  // 159: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
-	110, // 160: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	110, // 161: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	91,  // 162: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
-	92,  // 163: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
-	113, // 164: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	113, // 165: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	113, // 166: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	114, // 167: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
-	113, // 168: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	113, // 169: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	113, // 170: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	113, // 171: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	172, // [172:172] is the sub-list for method output_type
-	172, // [172:172] is the sub-list for method input_type
-	172, // [172:172] is the sub-list for extension type_name
-	172, // [172:172] is the sub-list for extension extendee
-	0,   // [0:172] is the sub-list for field type_name
+	113, // 160: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	113, // 161: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	92,  // 162: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
+	93,  // 163: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
+	107, // 164: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	15,  // 165: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	95,  // 166: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLog.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	116, // 167: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	116, // 168: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	116, // 169: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	117, // 170: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
+	116, // 171: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	116, // 172: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	116, // 173: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	116, // 174: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	175, // [175:175] is the sub-list for method output_type
+	175, // [175:175] is the sub-list for method input_type
+	175, // [175:175] is the sub-list for extension type_name
+	175, // [175:175] is the sub-list for extension extendee
+	0,   // [0:175] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_shared_proto_init() }
@@ -13654,8 +13984,8 @@ func file_acquisition_shared_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_shared_proto_rawDesc), len(file_acquisition_shared_proto_rawDesc)),
-			NumEnums:      15,
-			NumMessages:   88,
+			NumEnums:      16,
+			NumMessages:   90,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

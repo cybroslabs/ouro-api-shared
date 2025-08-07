@@ -175,6 +175,19 @@ enum JobStatusCode {
   JOB_STATUS_EXPIRED
 }
 
+enum LogRecordLevel {
+  # The log record level is debug.
+  LOG_RECORD_LEVEL_DEBUG
+  # The log record level is info.
+  LOG_RECORD_LEVEL_INFO
+  # The log record level is warning.
+  LOG_RECORD_LEVEL_WARNING
+  # The log record level is error.
+  LOG_RECORD_LEVEL_ERROR
+  # The log record level is fatal.
+  LOG_RECORD_LEVEL_FATAL
+}
+
 enum RegisterType {
   # The register is a generic register.
   Register
@@ -736,6 +749,17 @@ type CommunicationUnit {
   spec: CommunicationUnitSpec
   # The metadata fields.
   metadata: MetadataFields
+}
+
+type CommunicationUnitLogRecord {
+  # The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
+  id: String
+  # The timestamp of the log record.
+  timestamp: Timestamp
+  # The log level of the log record, if provided.
+  level: LogRecordLevel
+  # The log message. It must not be empty.
+  message: String
 }
 
 type CommunicationUnitSpec {
@@ -1404,6 +1428,12 @@ type ListOfCommunicationBus {
 type ListOfCommunicationUnit {
   # The communication unit specification.
   items: [CommunicationUnit]
+  # The total number of items.
+  totalCount: Int
+}
+
+type ListOfCommunicationUnitLog {
+  items: [CommunicationUnitLogRecord]
   # The total number of items.
   totalCount: Int
 }
@@ -2279,6 +2309,7 @@ type Query {
   deleteModem: Empty
   listDrivers: ListOfDriver
   getDriver: Driver
+  listCommunicationUnitLogs: ListOfCommunicationUnitLog
   createFieldDescriptor: StringValue
   updateFieldDescriptor: Empty
   deleteFieldDescriptor: Empty
