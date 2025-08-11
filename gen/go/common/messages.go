@@ -19,7 +19,7 @@ func NewFormattedMessage(format string, a ...any) *FormattedMessage {
 			f.WriteRune(c)
 			switch c { // terminators
 			case '%': // special case
-				res.WriteString(f.String())
+				res.WriteString("%") // fixed string even with invalid prefix like: %0%, still prints % only
 				state = false
 			case 'v', 'T', 't', 'b', 'c', 'd', 'o', 'O', 'q', 'x', 'X', 'U', 'e', 'E', 'f', 'F', 'g', 'G', 's', 'p':
 				res.WriteString("%s")
@@ -28,6 +28,14 @@ func NewFormattedMessage(format string, a ...any) *FormattedMessage {
 					aa = append(aa, "invalid")
 				} else {
 					aa = append(aa, fmt.Sprintf(f.String(), a[len(aa)]))
+				}
+			case 'w': // special case for %w, without damn wrapping, avoid mistakes
+				res.WriteString("%s")
+				state = false
+				if len(a) <= len(aa) {
+					aa = append(aa, "invalid")
+				} else {
+					aa = append(aa, fmt.Sprintf("%v", a[len(aa)]))
 				}
 			}
 		} else {
