@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"strings"
 
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	"k8s.io/utils/ptr"
@@ -9,20 +10,40 @@ import (
 
 // NewFormattedMessage creates a new FormattedMessage with the given format and optional format arguments. The format string must be compatible with fmt.Sprintf.
 func NewFormattedMessage(format string, a ...any) *FormattedMessage {
-	tmp := make([]string, len(a))
-	for i, v := range a {
-		switch vs := v.(type) {
-		case string:
-			tmp[i] = vs
-		case fmt.Stringer:
-			tmp[i] = vs.String()
-		default:
-			tmp[i] = fmt.Sprintf("%v", v) // Fallback: convert anything else to string
+	aa := make([]string, 0, len(a))
+	state := false
+	var res strings.Builder
+	var f strings.Builder
+	for _, c := range format {
+		if state {
+			f.WriteRune(c)
+			switch c { // terminators
+			case '%': // special case
+				res.WriteString(f.String())
+				state = false
+			case 'v', 'T', 't', 'b', 'c', 'd', 'o', 'O', 'q', 'x', 'X', 'U', 'e', 'E', 'f', 'F', 'g', 'G', 's', 'p':
+				res.WriteString("%s")
+				state = false
+				if len(a) <= len(aa) {
+					aa = append(aa, "invalid")
+				} else {
+					aa = append(aa, fmt.Sprintf(f.String(), a[len(aa)]))
+				}
+			}
+		} else {
+			if c == '%' {
+				f.Reset()
+				f.WriteRune(c)
+				state = true
+			} else {
+				res.WriteRune(c)
+			}
 		}
 	}
+
 	return FormattedMessage_builder{
-		Message: ptr.To(format),
-		Args:    tmp,
+		Message: ptr.To(res.String()),
+		Args:    aa,
 	}.Build()
 }
 
