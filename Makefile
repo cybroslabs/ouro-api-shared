@@ -15,9 +15,7 @@ setup:
 gen-go:
 	npm i
 
-	rm -rf ./graph
 	rm -rf ./gen/ts
-	rm -rf ./gen/markdown
 	find ./gen/go -type f -name "*.pb.go" -delete
 	find ./gen/go -depth -type d -name "docs" -exec rm -r {} \;
 	find ./gen/go -type d -empty -delete
@@ -32,6 +30,8 @@ gen-go:
 
 .PHONY: more
 more:
+	rm -rf ./graph
+	rm -rf ./gen/markdown
 	cd proto && npx buf generate --template buf.gen.graphql.yaml
 	go run github.com/99designs/gqlgen generate
 

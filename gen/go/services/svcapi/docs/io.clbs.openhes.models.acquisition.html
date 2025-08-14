@@ -1364,6 +1364,13 @@
       </p>
     
       <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.ReadPathPolicy">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ReadPathPolicy</code> 
+        </a>
+      </p>
+    
+      <p>
         <a href="#enum-io.clbs.openhes.models.acquisition.RegisterType">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>RegisterType</code> 
@@ -8947,6 +8954,22 @@ then then system gets all registers defined for active device configuration temp
       
     </tr>
     
+    <tr>
+      <td>7</td>
+      <td>
+        readPathPolicy
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ReadPathPolicy">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ReadPathPolicy"><span title="io.clbs.openhes.models.acquisition.ReadPathPolicy">io.clbs.openhes.models.acquisition.ReadPathPolicy</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The read path policy for the job. It defines how the job should read data from the device, either from the meter directly or from the data-concentrator first.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -9105,6 +9128,22 @@ then then system gets all registers defined for active device configuration temp
         </code>
       </td>
       <td class="content"><p>The internal queue identifier set by the Taskmaster when the job is queued to process.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>
+        errorMessage
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.FormattedMessage">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.FormattedMessage"><span title="io.clbs.openhes.models.common.FormattedMessage">io.clbs.openhes.models.common.FormattedMessage</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message.</p></td>
       
     </tr>
     
@@ -13268,6 +13307,48 @@ then then system gets all registers defined for active device configuration temp
       <td><code>LOG_RECORD_LEVEL_FATAL</code></td>
       <td>4</td>
       <td class="content"><p>The log record level is fatal.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.ReadPathPolicy">
+  <a href="#enum-io.clbs.openhes.models.acquisition.ReadPathPolicy" title="io.clbs.openhes.models.acquisition.ReadPathPolicy">enum ReadPathPolicy</a>
+  
+</h4>
+
+<div class="block content">
+  <p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>READ_PATH_POLICY_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Keep current behavior (likely data-concentrator first).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>METER_FIRST</code></td>
+      <td>1</td>
+      <td class="content"><p>Try meter directly; fall back to data-concentrator if needed and supported.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DC_FIRST</code></td>
+      <td>2</td>
+      <td class="content"><p>Try data-concentrator first; fall back to meter if needed and supported.</p></td>
     </tr>
     
   </tbody>

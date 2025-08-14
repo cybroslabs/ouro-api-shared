@@ -36,6 +36,12 @@ enum JobPriority {
     JOB_PRIORITY_8 = 8;
 }
 
+enum ReadPathPolicy {
+    READ_PATH_POLICY_UNSPECIFIED = 0;  // Keep current behavior (likely data-concentrator first).
+    METER_FIRST                  = 1;  // Try meter directly; fall back to data-concentrator if needed and supported.
+    DC_FIRST                     = 2;  // Try data-concentrator first; fall back to meter if needed and supported.
+}
+
 // Sub-message containing job parameters
 message JobSettings {
     google.protobuf.Duration max_duration = 1;  // Maximum duration of the job attempt. This is related to the real time for the driver.
@@ -44,6 +50,7 @@ message JobSettings {
     google.protobuf.Duration retry_delay  = 4;  // Delay between two attempts.
     google.protobuf.Duration defer_start  = 5;  // Time to wait before starting the job.
     google.protobuf.Timestamp expires_at  = 6;  // The timestamp when the job expires.
+    ReadPathPolicy read_path_policy       = 7;  // The read path policy for the job. It defines how the job should read data from the device, either from the meter directly or from the data-concentrator first.
 }
 
 // Sub-message containing job action specification.
@@ -682,6 +689,7 @@ message JobStatus {
     int32 attempts_done                   = 6;  // The number of attempts already done.
     DeviceInfo device_info                = 7;  // The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
     int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued to process.
+    common.FormattedMessage error_message = 9;  // The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message.
 }
 
 // Sub-message containing job start request for single device

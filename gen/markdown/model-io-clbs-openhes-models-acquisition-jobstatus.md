@@ -14,4 +14,5 @@ Sub-message containing job status info
 | attemptsDone | <b>Type:</b> `int32`<br><b>Description:</b><br>The number of attempts already done. |
 | deviceInfo | <b>Type:</b> [`io.clbs.openhes.models.acquisition.DeviceInfo`](model-io-clbs-openhes-models-acquisition-deviceinfo.md)<br><b>Description:</b><br>The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO. |
 | queueId | <b>Type:</b> `int64`<br><b>Description:</b><br>The internal queue identifier set by the Taskmaster when the job is queued to process. |
+| errorMessage | <b>Type:</b> [`io.clbs.openhes.models.common.FormattedMessage`](model-io-clbs-openhes-models-common-formattedmessage.md)<br><b>Description:</b><br>The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message. |
 

@@ -12,4 +12,5 @@ Sub-message containing job parameters
 | retryDelay | <b>Type:</b> `google.protobuf.Duration`<br><b>Description:</b><br>Delay between two attempts. |
 | deferStart | <b>Type:</b> `google.protobuf.Duration`<br><b>Description:</b><br>Time to wait before starting the job. |
 | expiresAt | <b>Type:</b> `google.protobuf.Timestamp`<br><b>Description:</b><br>The timestamp when the job expires. |
+| readPathPolicy | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ReadPathPolicy`](enum-io-clbs-openhes-models-acquisition-readpathpolicy.md)<br><b>Description:</b><br>The read path policy for the job. It defines how the job should read data from the device, either from the meter directly or from the data-concentrator first. |
 
