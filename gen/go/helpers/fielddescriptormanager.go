@@ -18,8 +18,8 @@ type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[
 type FieldDescriptorManager interface {
 	SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
-	// GetFieldDescriptorsByObjectType returns a list of field descriptors for the given object type.
-	GetFieldDescriptorsByObjectType(objectType common.ObjectType) []*common.FieldDescriptor
+	// GetFieldDescriptorsByObjectType returns a map of field descriptors for the given object type.
+	GetFieldDescriptorsByObjectType(objectType common.ObjectType) map[string]*common.FieldDescriptor
 	// Refresh the field descriptors from the API service.
 	Refresh(ctx context.Context) error
 	// Updates descriptors sourced from the local service and refreshes all the field descriptors back from the API service.
@@ -47,13 +47,13 @@ type fieldDescriptorManager struct {
 	relatedObjectTypes         []common.ObjectType
 	fieldDescriptorPathMapLock sync.RWMutex
 	fieldDescriptorPathMap     map[common.ObjectType]map[string]string
-	fieldDescriptorGroupMap    map[common.ObjectType][]*common.FieldDescriptor
+	fieldDescriptorGroupMap    map[common.ObjectType]map[string]*common.FieldDescriptor
 	knownDescriptors           []*common.FieldDescriptorInternal
 }
 
 func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptorManager {
 	fdpm := make(map[common.ObjectType]map[string]string, 0)
-	fdgm := make(map[common.ObjectType][]*common.FieldDescriptor, 0)
+	fdgm := make(map[common.ObjectType]map[string]*common.FieldDescriptor, 0)
 	r := &fieldDescriptorManager{
 		logger:                  opts.Logger,
 		connectors:              opts.Connectors,
@@ -66,7 +66,7 @@ func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptor
 	}
 	for _, objectType := range r.relatedObjectTypes {
 		fdpm[objectType] = make(map[string]string, 0)
-		fdgm[objectType] = make([]*common.FieldDescriptor, 0)
+		fdgm[objectType] = make(map[string]*common.FieldDescriptor, 0)
 	}
 	return r
 }
@@ -87,7 +87,7 @@ func (fdm *fieldDescriptorManager) PathToDbPath(objectType common.ObjectType) po
 	return fdm.pathToDbPath(objectType, fd_list)
 }
 
-func (fdm *fieldDescriptorManager) GetFieldDescriptorsByObjectType(objectType common.ObjectType) []*common.FieldDescriptor {
+func (fdm *fieldDescriptorManager) GetFieldDescriptorsByObjectType(objectType common.ObjectType) map[string]*common.FieldDescriptor {
 	fdm.fieldDescriptorPathMapLock.RLock()
 	defer fdm.fieldDescriptorPathMapLock.RUnlock()
 
@@ -95,7 +95,7 @@ func (fdm *fieldDescriptorManager) GetFieldDescriptorsByObjectType(objectType co
 		fdm.logger.Warnf("The object type %s is not registered in FieldDescriptors", objectType.String())
 		return nil
 	} else {
-		return slices.Clone(descriptors)
+		return maps.Clone(descriptors)
 	}
 }
 
@@ -150,7 +150,7 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 
 	for _, objectType := range fdm.relatedObjectTypes {
 		fdm.fieldDescriptorPathMap[objectType] = make(map[string]string, 0)
-		fdm.fieldDescriptorGroupMap[objectType] = make([]*common.FieldDescriptor, 0)
+		fdm.fieldDescriptorGroupMap[objectType] = make(map[string]*common.FieldDescriptor, 0)
 	}
 
 	for _, fd_wrapper := range data.GetItems() {
@@ -160,9 +160,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 			continue
 		}
 		fdm.fieldDescriptorPathMap[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
+		fdm.fieldDescriptorGroupMap[fd_object_type][fd.GetPath()] = fd
 		tmp[fd.GetGid()] = fd_wrapper
-
-		fdm.fieldDescriptorGroupMap[fd_object_type] = append(fdm.fieldDescriptorGroupMap[fd_object_type], fd)
 	}
 
 	// Always overwrite by built-in system descriptors; just in case somebody creates the same FD manually or do some hard modification somehow...
@@ -170,9 +169,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 		fd := fd_wrapper.GetFieldDescriptor()
 		fd_object_type := fd.GetObjectType()
 		fdm.fieldDescriptorPathMap[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
+		fdm.fieldDescriptorGroupMap[fd_object_type][fd.GetPath()] = fd
 		tmp[fd.GetGid()] = fd_wrapper
-
-		fdm.fieldDescriptorGroupMap[fd_object_type] = append(fdm.fieldDescriptorGroupMap[fd_object_type], fd)
 	}
 
 	fdm.knownDescriptors = slices.Collect(maps.Values(tmp))
