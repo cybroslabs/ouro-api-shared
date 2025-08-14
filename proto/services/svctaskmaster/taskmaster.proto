@@ -8,6 +8,7 @@ import "google/protobuf/wrappers.proto";
 import "acquisition/main.proto";
 import "acquisition/internal.proto";
 import "acquisition/shared.proto";
+import "common/fields.proto";
 import "common/types.proto";
 import "common/internal.proto";
 
@@ -29,6 +30,13 @@ service TaskmasterService {
     // @group: Drivers
     // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
     rpc GetCache(io.clbs.openhes.models.acquisition.GetCacheRequest) returns (io.clbs.openhes.models.acquisition.GetCacheResponse);
+    // @group: Drivers
+    // SetDriverConfigDefaults sets the default configuration values for the driver type. It also resets the configuration caches.
+    rpc SetDriverConfigDefaults(io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest) returns (google.protobuf.Empty);
+    // @group: Drivers
+    // GetDriverConfig returns the driver configuration for the given driver type.
+    // The parameter contains the driver type.
+    rpc GetDriverConfig(io.clbs.openhes.models.acquisition.GetDriverConfigRequest) returns (io.clbs.openhes.models.common.FieldValues);
     // @group: Drivers
     // The method sets the managed fields for entities.
     rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);

@@ -24,6 +24,16 @@ message GetCacheResponse {
     common.FieldValue value = 2;  // The value of the cache entry.
 }
 
+message SetConfigDefaultsRequest {
+    string driver_type                    = 1;  // The driver type for which the defaults are being set.
+    repeated common.FieldDescriptor items = 2;  // The list of configuration items to be set as defaults. The list can be empty.
+}
+
+message GetDriverConfigRequest {
+    string driver_type       = 1;  // The driver type for which the configuration is being requested.
+    repeated string field_id = 2;  // The list of options to be returned. If the list is empty, nothing is returned.
+}
+
 message StartJobsRequest {
     ConnectionInfo connection_info = 2;  // The connection info for the job.
     repeated StartJobData jobs     = 1;  // The list of jobs to be started with the same connection info.

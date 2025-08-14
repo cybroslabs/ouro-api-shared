@@ -5,6 +5,7 @@ import grpc
 from acquisition import internal_pb2 as acquisition_dot_internal__pb2
 from acquisition import main_pb2 as acquisition_dot_main__pb2
 from acquisition import shared_pb2 as acquisition_dot_shared__pb2
+from common import fields_pb2 as common_dot_fields__pb2
 from common import internal_pb2 as common_dot_internal__pb2
 from common import types_pb2 as common_dot_types__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
@@ -51,6 +52,16 @@ class TaskmasterServiceStub(object):
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache',
                 request_serializer=acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
                 response_deserializer=acquisition_dot_internal__pb2.GetCacheResponse.FromString,
+                _registered_method=True)
+        self.SetDriverConfigDefaults = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriverConfigDefaults',
+                request_serializer=acquisition_dot_internal__pb2.SetConfigDefaultsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.GetDriverConfig = channel.unary_unary(
+                '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetDriverConfig',
+                request_serializer=acquisition_dot_internal__pb2.GetDriverConfigRequest.SerializeToString,
+                response_deserializer=common_dot_fields__pb2.FieldValues.FromString,
                 _registered_method=True)
         self.SetManagedFields = channel.unary_unary(
                 '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields',
@@ -138,6 +149,23 @@ class TaskmasterServiceServicer(object):
     def GetCache(self, request, context):
         """@group: Drivers
         The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDriverConfigDefaults(self, request, context):
+        """@group: Drivers
+        SetDriverConfigDefaults sets the default configuration values for the driver type. It also resets the configuration caches.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDriverConfig(self, request, context):
+        """@group: Drivers
+        GetDriverConfig returns the driver configuration for the given driver type.
+        The parameter contains the driver type.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -244,6 +272,16 @@ def add_TaskmasterServiceServicer_to_server(servicer, server):
                     servicer.GetCache,
                     request_deserializer=acquisition_dot_internal__pb2.GetCacheRequest.FromString,
                     response_serializer=acquisition_dot_internal__pb2.GetCacheResponse.SerializeToString,
+            ),
+            'SetDriverConfigDefaults': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDriverConfigDefaults,
+                    request_deserializer=acquisition_dot_internal__pb2.SetConfigDefaultsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDriverConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDriverConfig,
+                    request_deserializer=acquisition_dot_internal__pb2.GetDriverConfigRequest.FromString,
+                    response_serializer=common_dot_fields__pb2.FieldValues.SerializeToString,
             ),
             'SetManagedFields': grpc.unary_unary_rpc_method_handler(
                     servicer.SetManagedFields,
@@ -450,6 +488,60 @@ class TaskmasterService(object):
             '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache',
             acquisition_dot_internal__pb2.GetCacheRequest.SerializeToString,
             acquisition_dot_internal__pb2.GetCacheResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetDriverConfigDefaults(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriverConfigDefaults',
+            acquisition_dot_internal__pb2.SetConfigDefaultsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDriverConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetDriverConfig',
+            acquisition_dot_internal__pb2.GetDriverConfigRequest.SerializeToString,
+            common_dot_fields__pb2.FieldValues.FromString,
             options,
             channel_credentials,
             insecure,
