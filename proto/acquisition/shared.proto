@@ -394,9 +394,10 @@ message ActionProgressUpdate {
 
 // Sub-message containing job progress update
 message JobProgressUpdate {
-    string job_id                     = 1;  // The job identifier.
-    JobErrorCode code                 = 2;  // The status related to the job and or action update message.
-    google.protobuf.Duration duration = 3;  // The time spent to handle the job.
+    string job_id                         = 1;  // The job identifier.
+    JobErrorCode code                     = 2;  // The status related to the job and or action update message.
+    google.protobuf.Duration duration     = 3;  // The time spent to handle the job.
+    common.FormattedMessage error_message = 4;  // The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message.
 }
 
 // Sub-message containing action-based variant of data values
