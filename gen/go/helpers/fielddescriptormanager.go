@@ -10,6 +10,7 @@ import (
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/helpers/database/postgres"
 	"go.uber.org/zap"
+	"google.golang.org/protobuf/reflect/protoreflect"
 	"k8s.io/utils/ptr"
 )
 
@@ -18,8 +19,8 @@ type PathToDbPathFunc func(objectType common.ObjectType, fieldDescriptorMap map[
 type FieldDescriptorManager interface {
 	SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error
 	PathToDbPath(objectType common.ObjectType) postgres.PathToDbPathFunc
-	// GetFieldDescriptorsByObjectType returns a map of field descriptors for the given object type.
-	GetFieldDescriptorsByObjectType(objectType common.ObjectType) map[string]*common.FieldDescriptor
+	// ValidateMessage validates the message against the field descriptors.
+	ValidateMessage(objectType common.ObjectType, message protoreflect.Message) error
 	// Refresh the field descriptors from the API service.
 	Refresh(ctx context.Context) error
 	// Updates descriptors sourced from the local service and refreshes all the field descriptors back from the API service.
@@ -49,6 +50,8 @@ type fieldDescriptorManager struct {
 	fieldDescriptorPathMap     map[common.ObjectType]map[string]string
 	fieldDescriptorGroupMap    map[common.ObjectType]map[string]*common.FieldDescriptor
 	knownDescriptors           []*common.FieldDescriptorInternal
+
+	validator *protoValidator
 }
 
 func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptorManager {
@@ -68,6 +71,7 @@ func NewFieldDescriptorManager(opts *FieldDescriptorManagerOpts) FieldDescriptor
 		fdpm[objectType] = make(map[string]string, 0)
 		fdgm[objectType] = make(map[string]*common.FieldDescriptor, 0)
 	}
+	r.validator = newProtoValidator(opts.Logger, r)
 	return r
 }
 
@@ -87,7 +91,7 @@ func (fdm *fieldDescriptorManager) PathToDbPath(objectType common.ObjectType) po
 	return fdm.pathToDbPath(objectType, fd_list)
 }
 
-func (fdm *fieldDescriptorManager) GetFieldDescriptorsByObjectType(objectType common.ObjectType) map[string]*common.FieldDescriptor {
+func (fdm *fieldDescriptorManager) getFieldDescriptorsByObjectType(objectType common.ObjectType) map[string]*common.FieldDescriptor {
 	fdm.fieldDescriptorPathMapLock.RLock()
 	defer fdm.fieldDescriptorPathMapLock.RUnlock()
 
@@ -97,6 +101,11 @@ func (fdm *fieldDescriptorManager) GetFieldDescriptorsByObjectType(objectType co
 	} else {
 		return maps.Clone(descriptors)
 	}
+}
+
+func (fdm *fieldDescriptorManager) ValidateMessage(objectType common.ObjectType, message protoreflect.Message) error {
+	fd_map := fdm.getFieldDescriptorsByObjectType(objectType)
+	return fdm.validator.ValidateMessage(objectType, message, fd_map)
 }
 
 func (fdm *fieldDescriptorManager) SetSystemDescriptors(ctx context.Context, systemDescriptors []*common.FieldDescriptorInternal) error {
