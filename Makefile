@@ -26,12 +26,13 @@ gen-go:
 	cd proto && npx buf generate --template buf.gen.api.yaml
 	cd proto && buf build -o ../gen/go/services/svcapi/raw.binpb
 
-	./src/mdgen/main.py
+	./src/mdgen/main.py --mode html markdown
 
 .PHONY: more
 more:
 	rm -rf ./graph
 	rm -rf ./gen/markdown
+	./src/mdgen/main.py --mode markdown
 	cd proto && npx buf generate --template buf.gen.graphql.yaml
 	go run github.com/99designs/gqlgen generate
 
