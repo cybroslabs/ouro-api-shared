@@ -76,3 +76,18 @@ func (fm *FormattedMessage) AddParams(a ...any) error {
 	}
 	return nil
 }
+
+// String returns the formatted message as a string. It uses the format string and arguments stored in the FormattedMessage.
+// If the message is empty, it returns an empty string.
+func (fm *FormattedMessage) FormattedString() string {
+	m := fm.GetMessage()
+	if len(m) == 0 {
+		return ""
+	}
+	args := fm.GetArgs()
+	tmp := make([]any, len(args))
+	for i, arg := range args {
+		tmp[i] = arg
+	}
+	return fmt.Sprintf(m, tmp...)
+}
