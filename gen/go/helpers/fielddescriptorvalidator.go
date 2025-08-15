@@ -182,7 +182,11 @@ func (pv *protoValidator) validateInternal(m protoreflect.Message, fieldDescript
 			continue
 		}
 		nested_m := m.Get(nested_md.FieldDescriptor)
-		nested_m_typed := nested_m.Interface().(protoreflect.Message)
+		nested_m_typed, ok := nested_m.Interface().(protoreflect.Message)
+		if !ok {
+			pv.logger.Debugf("Field %s is not a message type, skipping validation", k)
+			continue
+		}
 		var nested_fd_prefix string
 		if fdPrefix != "" {
 			nested_fd_prefix = fdPrefix + "." + k
