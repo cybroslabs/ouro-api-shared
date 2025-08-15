@@ -458,7 +458,7 @@ message DeviceInfo {
 
 // Sub-message containing profile-typed values
 message ProfileValues {
-    int32 period                 = 1;  // The period of the profile values.
+    int32 period                 = 1;  // The period of the profile values in seconds.
     string unit                  = 2;  // The unit of the profile values.
     repeated ProfileBlock blocks = 3;  // The list of continuous profile blocks.
 }

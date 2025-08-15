@@ -2634,7 +2634,7 @@ export const DeviceInfoSchema: GenMessage<DeviceInfo, {jsonType: DeviceInfoJson}
  */
 export type ProfileValues = Message<"io.clbs.openhes.models.acquisition.ProfileValues"> & {
   /**
-   * The period of the profile values.
+   * The period of the profile values in seconds.
    *
    * @generated from field: int32 period = 1;
    */
@@ -2662,7 +2662,7 @@ export type ProfileValues = Message<"io.clbs.openhes.models.acquisition.ProfileV
  */
 export type ProfileValuesJson = {
   /**
-   * The period of the profile values.
+   * The period of the profile values in seconds.
    *
    * @generated from field: int32 period = 1;
    */
