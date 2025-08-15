@@ -2,6 +2,7 @@ package system
 
 import (
 	"encoding/json"
+	"slices"
 	"strconv"
 	"time"
 )
@@ -21,6 +22,19 @@ func (l *License) IsLicensed(item LicensedItem) bool {
 		_, ok := opts[string(item)]
 		return ok
 	}
+}
+
+// IsLicensedStringArray checks if the option is present in the license for the given item.
+func (l *License) IsLicensedOneOf(item LicensedItem, option string) bool {
+	if opts := l.GetOptions(); opts != nil {
+		if v, ok := opts[string(item)]; ok {
+			var result []string
+			if err := json.Unmarshal([]byte(v), &result); err == nil {
+				return slices.Contains(result, option)
+			}
+		}
+	}
+	return false
 }
 
 // GetLicensedString returns the numberic count of the licensed item, or 0 if not licensed.
