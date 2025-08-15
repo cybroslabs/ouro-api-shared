@@ -36,10 +36,10 @@ type CryproServiceClient interface {
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[crypto.DlmsIn, crypto.DlmsOut], error)
 	// @group: Cryptography
-	// The method returns a secret based on the request.
+	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// The method to store (create or replace) the secret.
+	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -94,10 +94,10 @@ type CryproServiceServer interface {
 	// Initialize the crypto service stream-based RPC for DLMS frames.
 	Dlms(grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]) error
 	// @group: Cryptography
-	// The method returns a secret based on the request.
+	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// The method to store (create or replace) the secret.
+	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedCryproServiceServer()
 }

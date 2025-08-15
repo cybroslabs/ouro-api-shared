@@ -145,8 +145,8 @@ class DataproxyServiceServicer(object):
 
     def ListBulks(self, request, context):
         """@group: Bulks
-        Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-        The list contains both the proxy bulks and the regular bulks.
+        Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        The list contains both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -154,8 +154,8 @@ class DataproxyServiceServicer(object):
 
     def ListBulkJobs(self, request, context):
         """@group: Bulks
-        Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-        The listing can be used for both proxy bulks and regular bulks.
+        Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        The listing can be used for jobs from both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -163,7 +163,7 @@ class DataproxyServiceServicer(object):
 
     def GetBulkJob(self, request, context):
         """@group: Bulks
-        Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+        Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -179,7 +179,7 @@ class DataproxyServiceServicer(object):
 
     def CancelBulk(self, request, context):
         """@group: Bulks
-        Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+        Cancels the specified job bulk. It can be used for both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -187,7 +187,7 @@ class DataproxyServiceServicer(object):
 
     def CancelBulkJobs(self, request, context):
         """@group: Bulks
-        Cancels the job(s) identified by the job identifier(s).
+        Cancels the specified jobs in an existing bulk.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -195,7 +195,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceBulks(self, request, context):
         """@group: Bulks
-        Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+        Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -203,7 +203,7 @@ class DataproxyServiceServicer(object):
 
     def CreateProxyBulk(self, request, context):
         """@group: Bulks
-        Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+        Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -211,7 +211,7 @@ class DataproxyServiceServicer(object):
 
     def GetProxyBulk(self, request, context):
         """@group: Bulks
-        Retrieves the proxy bulk info and status.
+        Retrieves the details of the specified proxy bulk.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -219,7 +219,7 @@ class DataproxyServiceServicer(object):
 
     def CreateBulk(self, request, context):
         """@group: Bulks
-        Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+        Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -227,7 +227,7 @@ class DataproxyServiceServicer(object):
 
     def GetBulk(self, request, context):
         """@group: Bulks
-        Retrieves the bulk info and status.
+        Retrieves the the details of the specified bulk.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -235,7 +235,7 @@ class DataproxyServiceServicer(object):
 
     def UpdateBulk(self, request, context):
         """@group: Bulks
-        Updates the bulk metadata. The metadata is used to store additional information about the job.
+        Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -243,7 +243,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceData(self, request, context):
         """@group: Device Data
-        The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+        Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -251,7 +251,7 @@ class DataproxyServiceServicer(object):
 
     def ListDeviceDataInfo(self, request, context):
         """@group: Device Data
-        The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+        Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -259,7 +259,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceDataRegisters(self, request, context):
         """@group: Device Data
-        The method to stream out register-typed meter data.
+        Retrieves the list of register-type device data based on the specified criteria.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -267,7 +267,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceDataProfiles(self, request, context):
         """@group: Device Data
-        The method to stream out profile-typed meter data.
+        Retrieves the list of profile-type device data based on the specified criteria.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -275,7 +275,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceDataIrregularProfiles(self, request, context):
         """@group: Device Data
-        The method to stream out profile-typed meter data.
+        Retrieves the list of irregular profile-type device data based on the specified criteria.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -283,7 +283,7 @@ class DataproxyServiceServicer(object):
 
     def GetDeviceEvents(self, request, context):
         """@group: Device Events
-        The method to stream out profile-typed meter data.
+        Retrieves a list of events for the specified device within the specified time range.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -291,7 +291,7 @@ class DataproxyServiceServicer(object):
 
     def CreateFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to create a new field descriptor user-defined field descriptor.
+        Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -299,7 +299,7 @@ class DataproxyServiceServicer(object):
 
     def UpdateFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to update the field descriptor.
+        Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -307,7 +307,7 @@ class DataproxyServiceServicer(object):
 
     def DeleteFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to delete the field descriptor.
+        Deletes the specified field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -315,7 +315,7 @@ class DataproxyServiceServicer(object):
 
     def SetManagedFields(self, request, context):
         """@group: Metadata
-        The method to set the managed fields of the resource(s).
+        Sets or replaces the managed fields of the specified resources.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -323,7 +323,7 @@ class DataproxyServiceServicer(object):
 
     def UpdateObjectFields(self, request, context):
         """@group: Metadata
-        The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+        Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

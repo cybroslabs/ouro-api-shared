@@ -32,7 +32,7 @@ const (
 // The Dataproxy related service definition.
 type ApiInternalServiceClient interface {
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptorInternal, error)
 	// @group: Fields
 	// The method to get the list of fields.
@@ -74,7 +74,7 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, i
 // The Dataproxy related service definition.
 type ApiInternalServiceServer interface {
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptorInternal, error)
 	// @group: Fields
 	// The method to get the list of fields.

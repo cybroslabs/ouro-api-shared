@@ -2,7 +2,7 @@
 
 ## CreateCommunicationUnit
 
-The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+Creates a new communication unit. Returns the identifier of the newly created register.
 
 ```proto
 CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue)
@@ -13,7 +13,7 @@ CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUn
 
 ## UpdateCommunicationUnit
 
-The method updates the communication unit. The parameter contains the communication unit specification.
+Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
 
 ```proto
 UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit)
@@ -23,7 +23,7 @@ UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit)
 
 ## ListCommunicationUnits
 
-The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListCommunicationUnits(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit)
@@ -34,7 +34,7 @@ ListCommunicationUnits(io.clbs.openhes.models.common.ListSelector) returns (io.c
 
 ## GetCommunicationUnit
 
-The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+Retrieves the details of the specified communication unit.
 
 ```proto
 GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit)
@@ -45,7 +45,7 @@ GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.model
 
 ## DeleteCommunicationUnit
 
-Deletes the communication unit. The parameter contains the communication unit identifier.
+Deletes the specified communication unit.
 
 ```proto
 DeleteCommunicationUnit(google.protobuf.StringValue)
@@ -55,7 +55,7 @@ DeleteCommunicationUnit(google.protobuf.StringValue)
 
 ## GetCommunicationUnitNetworkMap
 
-Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 
 ```proto
 GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap)
@@ -66,6 +66,8 @@ GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.ope
 
 ## CreateCommunicationBus
 
+Creates a new communication bus. Returns the identifier of the newly created communication bus.
+
 ```proto
 CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.StringValue)
 ```
@@ -74,6 +76,8 @@ CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBus
 - Output: `google.protobuf.StringValue`
 
 ## ListCommunicationBuses
+
+Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus)
@@ -84,7 +88,7 @@ ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.c
 
 ## DeleteCommunicationBus
 
-Deletes the communication bus. The parameter contains the communication bus identifier.
+Deletes the specified communication bus.
 
 ```proto
 DeleteCommunicationBus(google.protobuf.StringValue)
@@ -94,6 +98,8 @@ DeleteCommunicationBus(google.protobuf.StringValue)
 
 ## AddCommunicationUnitsToCommunicationBus
 
+Adds a specified communication unit to an existing communication bus.
+
 ```proto
 AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest)
 ```
@@ -101,6 +107,8 @@ AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCo
 - Input: [`io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest`](model-io-clbs-openhes-models-acquisition-addcommunicationunitstocommunicationbusrequest.md)
 
 ## RemoveCommunicationUnitsFromCommunicationBus
+
+Removes a specified communication bus from an existing communication bus.
 
 ```proto
 RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest)
@@ -110,7 +118,7 @@ RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.
 
 ## CreateDevice
 
-Creates a new device. The device object defines the device specification.
+Creates a new device. Returns the identifier of the newly created device.
 
 ```proto
 CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue)
@@ -121,7 +129,7 @@ CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (go
 
 ## UpdateDevice
 
-The method updates the device. The parameter contains the device specification.
+Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
 
 ```proto
 UpdateDevice(io.clbs.openhes.models.acquisition.Device)
@@ -131,7 +139,7 @@ UpdateDevice(io.clbs.openhes.models.acquisition.Device)
 
 ## ListDevices
 
-The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
@@ -142,7 +150,7 @@ ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes
 
 ## GetDevice
 
-The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+Retrieves the details of the specified device.
 
 ```proto
 GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device)
@@ -153,7 +161,7 @@ GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisiti
 
 ## DeleteDevice
 
-Deletes the device. The parameter contains the device identifier.
+Deletes the specified device.
 
 ```proto
 DeleteDevice(google.protobuf.StringValue)
@@ -163,7 +171,7 @@ DeleteDevice(google.protobuf.StringValue)
 
 ## GetDeviceInfo
 
-The method to stream out profile-typed device info.
+Retrieves the profile-typed info of the specified device.
 
 ```proto
 GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo)
@@ -174,7 +182,7 @@ GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acqui
 
 ## SetDeviceCommunicationUnits
 
-The method called by the RestAPI to replace ordered set of linked communication units.
+Sets or replaces an ordered set of communication units linked to the specified device.
 
 ```proto
 SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest)
@@ -184,7 +192,7 @@ SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunic
 
 ## GetDeviceCommunicationUnits
 
-The method called by the RestAPI to get communication units definitions linked to the device(s).
+Retrieves a list of communication units linked to the specified device.
 
 ```proto
 GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit)
@@ -195,7 +203,7 @@ GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhe
 
 ## ListDeviceCommunicationUnitChanges
 
-The method called by the RestAPI to get the list of device communication unit changes.
+Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange)
@@ -206,7 +214,7 @@ ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) r
 
 ## GetDeviceDeviceGroups
 
-The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+Retrieves a list of device groups that contain the specified device.
 
 ```proto
 GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup)
@@ -217,7 +225,7 @@ GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.mode
 
 ## GetDeviceNetworkMap
 
-Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
 
 ```proto
 GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap)
@@ -228,7 +236,7 @@ GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models
 
 ## CreateDeviceGroup
 
-The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+Creates a new device group. Returns the identifier of the newly created device group.
 
 ```proto
 CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue)
@@ -239,7 +247,7 @@ CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) r
 
 ## ListDeviceGroups
 
-The method returns a list of device groups.
+Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup)
@@ -250,7 +258,7 @@ ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.op
 
 ## GetDeviceGroup
 
-The method returns single device group.
+Retrieves the details of the specified device group.
 
 ```proto
 GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup)
@@ -261,7 +269,7 @@ GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acqu
 
 ## DeleteDeviceGroup
 
-Deletes the device group. The parameter contains the device group identifier.
+Deletes the specified device group.
 
 ```proto
 DeleteDeviceGroup(google.protobuf.StringValue)
@@ -271,7 +279,7 @@ DeleteDeviceGroup(google.protobuf.StringValue)
 
 ## AddDevicesToGroup
 
-The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+Adds the specified devices to an existing device group.
 
 ```proto
 AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest)
@@ -281,7 +289,7 @@ AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest)
 
 ## RemoveDevicesFromGroup
 
-The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+Removes the specified devices from an existing device group.
 
 ```proto
 RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest)
@@ -290,6 +298,8 @@ RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroup
 - Input: [`io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest`](model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md)
 
 ## ListDeviceGroupDevices
+
+Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest) returns (io.clbs.openhes.models.acquisition.ListOfDevice)
@@ -300,7 +310,7 @@ ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevices
 
 ## ListModemPools
 
-The method to get list of the modem pools.
+Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfModemPool)
@@ -311,7 +321,7 @@ ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.open
 
 ## GetModemPool
 
-The method to get the information about the modem pool. The method returns the modem pool information.
+Retrieves the details of the specified modem pool.
 
 ```proto
 GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ModemPool)
@@ -322,7 +332,7 @@ GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquis
 
 ## CreateModemPool
 
-The method to create a new modem pool.
+Creates a new modem pool. Returns the identifier of the newly craeted modem pool.
 
 ```proto
 CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue)
@@ -333,7 +343,7 @@ CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns 
 
 ## UpdateModemPool
 
-The method to update the modem pool.
+Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
 
 ```proto
 UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest)
@@ -343,7 +353,7 @@ UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest)
 
 ## DeleteModemPool
 
-The method to delete the modem pool.
+Deletes the specified modem pool.
 
 ```proto
 DeleteModemPool(google.protobuf.StringValue)
@@ -353,7 +363,7 @@ DeleteModemPool(google.protobuf.StringValue)
 
 ## CreateModem
 
-The method to create a new modem within the pool.
+Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
 
 ```proto
 CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue)
@@ -364,7 +374,7 @@ CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.
 
 ## UpdateModem
 
-The method to update the modem within the pool.
+Updates the details of an existing modem within the specified modem pool.
 
 ```proto
 UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest)
@@ -374,7 +384,7 @@ UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest)
 
 ## DeleteModem
 
-The method to delete the modem.
+Deletes th specified modem.
 
 ```proto
 DeleteModem(google.protobuf.StringValue)

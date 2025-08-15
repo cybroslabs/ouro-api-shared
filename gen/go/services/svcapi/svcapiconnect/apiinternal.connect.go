@@ -47,7 +47,7 @@ const (
 // service.
 type ApiInternalServiceClient interface {
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
 	// @group: Fields
 	// The method to get the list of fields.
@@ -103,7 +103,7 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, r
 // io.clbs.openhes.services.svcapi.ApiInternalService service.
 type ApiInternalServiceHandler interface {
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
 	// @group: Fields
 	// The method to get the list of fields.

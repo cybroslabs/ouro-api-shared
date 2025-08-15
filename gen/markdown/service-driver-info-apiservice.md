@@ -2,7 +2,7 @@
 
 ## ListDrivers
 
-Retrieves the list of drivers.
+Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDrivers(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDriver)
@@ -13,7 +13,7 @@ ListDrivers(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes
 
 ## GetDriver
 
-Retrieves the driver.
+Retrieves the details of the specified driver.
 
 ```proto
 GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver)

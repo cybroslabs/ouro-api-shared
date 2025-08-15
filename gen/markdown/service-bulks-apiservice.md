@@ -2,8 +2,8 @@
 
 ## ListBulks
 
-Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
- The list contains both the proxy bulks and the regular bulks.
+Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+ The list contains both proxy and regular bulks.
 
 ```proto
 ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk)
@@ -14,8 +14,8 @@ ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.m
 
 ## ListBulkJobs
 
-Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
- The listing can be used for both proxy bulks and regular bulks.
+Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+ The listing can be used for jobs from both proxy and regular bulks.
 
 ```proto
 ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob)
@@ -26,7 +26,7 @@ ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io
 
 ## GetBulkJob
 
-Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
 
 ```proto
 GetBulkJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.BulkJob)
@@ -47,7 +47,7 @@ UpdateBulkJob(io.clbs.openhes.models.common.UpdateMetadata)
 
 ## CancelBulk
 
-Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 
 ```proto
 CancelBulk(google.protobuf.StringValue)
@@ -57,7 +57,7 @@ CancelBulk(google.protobuf.StringValue)
 
 ## CancelBulkJobs
 
-Cancels the job(s) identified by the job identifier(s).
+Cancels the specified jobs in an existing bulk.
 
 ```proto
 CancelBulkJobs(io.clbs.openhes.models.common.ListOfId)
@@ -67,7 +67,7 @@ CancelBulkJobs(io.clbs.openhes.models.common.ListOfId)
 
 ## CreateProxyBulk
 
-Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 
 ```proto
 CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue)
@@ -78,7 +78,7 @@ CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) retur
 
 ## GetProxyBulk
 
-Retrieves the proxy bulk info and status.
+Retrieves the details of the specified proxy bulk.
 
 ```proto
 GetProxyBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ProxyBulk)
@@ -89,7 +89,7 @@ GetProxyBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquis
 
 ## CreateBulk
 
-Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 
 ```proto
 CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue)
@@ -100,7 +100,7 @@ CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google
 
 ## GetBulk
 
-Retrieves the bulk info and status.
+Retrieves the the details of the specified bulk.
 
 ```proto
 GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Bulk)
@@ -111,7 +111,7 @@ GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition
 
 ## UpdateBulk
 
-Updates the bulk metadata. The metadata is used to store additional information about the job.
+Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
 
 ```proto
 UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata)
@@ -121,7 +121,7 @@ UpdateBulk(io.clbs.openhes.models.common.UpdateMetadata)
 
 ## GetDeviceBulks
 
-Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
 
 ```proto
 GetDeviceBulks(io.clbs.openhes.models.acquisition.GetDeviceBulksRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulks)

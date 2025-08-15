@@ -2,6 +2,8 @@
 
 ## CreateDeviceConfigurationTemplate
 
+Creates a new device configuration template. Returns the identifier of the newly created template.
+
 ```proto
 CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue)
 ```
@@ -10,6 +12,8 @@ CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDevic
 - Output: `google.protobuf.StringValue`
 
 ## ListDeviceConfigurationTemplates
+
+Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate)
@@ -20,6 +24,8 @@ ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) ret
 
 ## GetDeviceConfigurationTemplate
 
+Retrieves the details of the specified device configuration template.
+
 ```proto
 GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate)
 ```
@@ -29,6 +35,8 @@ GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.ope
 
 ## UpdateDeviceConfigurationTemplate
 
+Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
+
 ```proto
 UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate)
 ```
@@ -36,6 +44,8 @@ UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfi
 - Input: [`io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate`](model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md)
 
 ## DeleteDeviceConfigurationTemplate
+
+Deletes the specified device configuration template.
 
 ```proto
 DeleteDeviceConfigurationTemplate(google.protobuf.StringValue)
@@ -45,6 +55,8 @@ DeleteDeviceConfigurationTemplate(google.protobuf.StringValue)
 
 ## AddDeviceConfigurationRegisterToDeviceConfigurationTemplate
 
+Adds a specified device configuration register to an existing device configuration template.
+
 ```proto
 AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest)
 ```
@@ -52,6 +64,8 @@ AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.mode
 - Input: [`io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest`](model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md)
 
 ## RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate
+
+Removes a specified device configuration register from a device configuration template.
 
 ```proto
 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest)

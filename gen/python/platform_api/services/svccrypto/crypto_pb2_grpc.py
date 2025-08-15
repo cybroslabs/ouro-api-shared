@@ -48,7 +48,7 @@ class CryproServiceServicer(object):
 
     def GetCryptoSecret(self, request, context):
         """@group: Cryptography
-        The method returns a secret based on the request.
+        Retrieves a cryptographic secret based on the specified request parameters.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -56,7 +56,7 @@ class CryproServiceServicer(object):
 
     def SetCryptoSecret(self, request, context):
         """@group: Cryptography
-        The method to store (create or replace) the secret.
+        Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

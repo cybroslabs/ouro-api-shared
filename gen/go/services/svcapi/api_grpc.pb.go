@@ -137,336 +137,357 @@ const (
 // The Dataproxy related service definition.
 type ApiServiceClient interface {
 	// @group: Variables
-	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
 	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Variables
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	// @group: Variables
+	// Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
 	// @group: Variables
+	// Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
 	UpdateVariable(ctx context.Context, in *acquisition.Variable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Variables
+	// Deletes the specified variable.
 	DeleteVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Variables
+	// Adds a specified register to and existing variable.
 	AddRegisterToVariable(ctx context.Context, in *acquisition.AddRegisterToVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Variables
+	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
-	// Creates a new register. The register object holds the information about the single device register.
+	// Creates a new device configuration register. Returns the identifier of the newly created register.
 	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Device Configuration Register
+	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	// @group: Device Configuration Register
+	// Retrieves the details of the specified device configuration register.
 	GetDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationRegister, error)
 	// @group: Device Configuration Register
+	// Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationRegister(ctx context.Context, in *acquisition.DeviceConfigurationRegister, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
+	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Creates a new device configuration template. Returns the identifier of the newly created template.
 	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Device Configuration Templates
+	// Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceConfigurationTemplates(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	// @group: Device Configuration Templates
+	// Retrieves the details of the specified device configuration template.
 	GetDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationTemplate, error)
 	// @group: Device Configuration Templates
+	// Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.DeviceConfigurationTemplate, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Deletes the specified device configuration template.
 	DeleteDeviceConfigurationTemplate(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Adds a specified device configuration register to an existing device configuration template.
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Removes a specified device configuration register from a device configuration template.
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to create a new field descriptor user-defined field descriptor.
+	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Fields
-	// The method to update the field descriptor.
+	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to delete the field descriptor.
+	// Deletes the specified field descriptor.
 	DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptor, error)
 	// @group: Fields
-	// The method to get the options for the field descriptor.
+	// Retrieves a paginated list of available options for the field descriptor based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptorOptions(ctx context.Context, in *common.ListFieldDescriptorOptionsRequest, opts ...grpc.CallOption) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
-	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-	// The list contains both the proxy bulks and the regular bulks.
+	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The list contains both proxy and regular bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-	// The listing can be used for both proxy bulks and regular bulks.
+	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
-	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	// Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
 	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
 	// @group: Bulks
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the job(s) identified by the job identifier(s).
+	// Cancels the specified jobs in an existing bulk.
 	CancelBulkJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the proxy bulk info and status.
+	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the bulk info and status.
+	// Retrieves the the details of the specified bulk.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
 	// @group: Bulks
-	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	// Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
 	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Driver Info
-	// Retrieves the list of drivers.
+	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
 	// @group: Driver Info
-	// Retrieves the driver.
+	// Retrieves the details of the specified driver.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+	// Creates a new communication unit. Returns the identifier of the newly created register.
 	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method updates the communication unit. The parameter contains the communication unit specification.
+	// Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
 	UpdateCommunicationUnit(ctx context.Context, in *acquisition.CommunicationUnit, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	// Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnits(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	// Retrieves the details of the specified communication unit.
 	GetCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// Deletes the communication unit. The parameter contains the communication unit identifier.
+	// Deletes the specified communication unit.
 	DeleteCommunicationUnit(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// @group: Drivers
 	// @tag: communicationunit
-	// Returns the list of communication unit log records.
+	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLogRecord, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Creates a new communication bus. Returns the identifier of the newly created communication bus.
 	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationBuses(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationBus, error)
 	// @group: Devices
 	// @tag: communicationbus
-	// Deletes the communication bus. The parameter contains the communication bus identifier.
+	// Deletes the specified communication bus.
 	DeleteCommunicationBus(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Adds a specified communication unit to an existing communication bus.
 	AddCommunicationUnitsToCommunicationBus(ctx context.Context, in *acquisition.AddCommunicationUnitsToCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Removes a specified communication bus from an existing communication bus.
 	RemoveCommunicationUnitsFromCommunicationBus(ctx context.Context, in *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// Creates a new device. The device object defines the device specification.
+	// Creates a new device. Returns the identifier of the newly created device.
 	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
-	// The method updates the device. The parameter contains the device specification.
+	// Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
 	UpdateDevice(ctx context.Context, in *acquisition.Device, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	// Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDevices(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	// Retrieves the details of the specified device.
 	GetDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Device, error)
 	// @group: Devices
 	// @tag: device
-	// Deletes the device. The parameter contains the device identifier.
+	// Deletes the specified device.
 	DeleteDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
-	// The method to stream out profile-typed device info.
+	// Retrieves the profile-typed info of the specified device.
 	GetDeviceInfo(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceInfo, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to replace ordered set of linked communication units.
+	// Sets or replaces an ordered set of communication units linked to the specified device.
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get communication units definitions linked to the device(s).
+	// Retrieves a list of communication units linked to the specified device.
 	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the list of device communication unit changes.
+	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// @group: Devices
 	// @tag: device
-	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+	// Retrieves a list of device groups that contain the specified device.
 	GetDeviceDeviceGroups(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
 	// @tag: device
-	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	// Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
 	GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// @group: Bulks
-	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	// Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
 	GetDeviceBulks(ctx context.Context, in *acquisition.GetDeviceBulksRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulks, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+	// Creates a new device group. Returns the identifier of the newly created device group.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method returns a list of device groups.
+	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceGroups(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method returns single device group.
+	// Retrieves the details of the specified device group.
 	// @param The device group identifier.
 	// @return The device group specification.
 	GetDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceGroup, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// Deletes the device group. The parameter contains the device group identifier.
+	// Deletes the specified device group.
 	DeleteDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+	// Adds the specified devices to an existing device group.
 	AddDevicesToGroup(ctx context.Context, in *acquisition.AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+	// Removes the specified devices from an existing device group.
 	RemoveDevicesFromGroup(ctx context.Context, in *acquisition.RemoveDevicesFromGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
+	// Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceGroupDevices(ctx context.Context, in *acquisition.ListDeviceGroupDevicesRequest, opts ...grpc.CallOption) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to get list of the modem pools.
+	// Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
 	ListModemPools(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfModemPool, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to get the information about the modem pool. The method returns the modem pool information.
+	// Retrieves the details of the specified modem pool.
 	GetModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ModemPool, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to create a new modem pool.
+	// Creates a new modem pool. Returns the identifier of the newly craeted modem pool.
 	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to update the modem pool.
+	// Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
 	UpdateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to delete the modem pool.
+	// Deletes the specified modem pool.
 	DeleteModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to create a new modem within the pool.
+	// Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
 	CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to update the modem within the pool.
+	// Updates the details of an existing modem within the specified modem pool.
 	UpdateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to delete the modem.
+	// Deletes th specified modem.
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
-	// Gets the application configuration.
+	// Retrieves the current application configuration settings.
 	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error)
 	// @group: Configuration
-	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	// Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Configuration
-	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values including details which are not set.
-	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	// Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+	// The output value will contain currently set values, including details that are not set.
+	// Values missing from the defaults will be deleted if they were previously set in the application configuration.
 	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
 	// @group: Device Data
-	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
-	// The method to stream out register-typed device data.
+	// Retrieves the list of register-type device data based on the specified criteria.
 	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
 	// @group: Device Data
-	// The method to stream out profile-typed device data.
+	// Retrieves the list of profile-type device data based on the specified criteria.
 	GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
 	// @group: Device Data
-	// The method to stream out profile-typed device data.
+	// Retrieves the list of irregular profile-type device data based on the specified criteria.
 	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
-	// The method to stream out profile-typed device events.
+	// Retrieves a list of events for the specified device within the specified time range.
 	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (*acquisition.DeviceEvents, error)
 	// @group: Time-Of-Use Tables
-	// The method to create a new time-of-use table.
+	// Creates a new time-of-use table. Returns the identifier of the newly created table.
 	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Time-Of-Use Tables
-	// The method to get the list of time-of-use tables.
+	// Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error)
 	// @group: Time-Of-Use Tables
-	// The method to get the time-of-use table.
+	// Retrieves the details of the spcified time-of-use table.
 	GetTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.TimeOfUseTable, error)
 	// @group: Time-Of-Use Tables
-	// The method to update the time-of-use table.
+	// Updates the details of an existing time-of-use table.
 	UpdateTimeOfUseTable(ctx context.Context, in *acquisition.TimeOfUseTable, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
-	// The method to delete the time-of-use table.
+	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to create a new cron job.
+	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(ctx context.Context, in *cronjobs.CreateCronJobRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Cron Jobs
-	// The method to get the list of cron jobs.
+	// Retrieves a paginated list of cron jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListCronJobs(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*cronjobs.ListOfCronJob, error)
 	// @group: Cron Jobs
-	// The method to get the cron job.
+	// Retrieves the details of the specified cron job.
 	GetCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*cronjobs.CronJob, error)
 	// @group: Cron Jobs
-	// The method to update the cron job.
+	// Updates the details of an existing cron job.
 	UpdateCronJob(ctx context.Context, in *cronjobs.CronJob, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to delete the cron job.
+	// Deletes the specified cron job.
 	DeleteCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to run the cron job immediately.
+	// Runs the specified cron job immediately.
 	RunCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to pause the cron job.
+	// Pauses the specified cron job.
 	PauseCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to resume the cron job.
+	// Resumes a paused cron job and restores its scheduled execution.
 	ResumeCronJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
-	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.OpenIdConfiguration, error)
 	// @group: Cryptography
-	// The method returns a secret based on the request.
+	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// The method to store (create or replace) the secret.
+	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -1532,336 +1553,357 @@ func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.SetCr
 // The Dataproxy related service definition.
 type ApiServiceServer interface {
 	// @group: Variables
-	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
 	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error)
 	// @group: Variables
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	// @group: Variables
+	// Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
 	// @group: Variables
+	// Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
 	UpdateVariable(context.Context, *acquisition.Variable) (*emptypb.Empty, error)
 	// @group: Variables
+	// Deletes the specified variable.
 	DeleteVariable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Variables
+	// Adds a specified register to and existing variable.
 	AddRegisterToVariable(context.Context, *acquisition.AddRegisterToVariableRequest) (*emptypb.Empty, error)
 	// @group: Variables
+	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
-	// Creates a new register. The register object holds the information about the single device register.
+	// Creates a new device configuration register. Returns the identifier of the newly created register.
 	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
 	// @group: Device Configuration Register
+	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	// @group: Device Configuration Register
+	// Retrieves the details of the specified device configuration register.
 	GetDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationRegister, error)
 	// @group: Device Configuration Register
+	// Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationRegister(context.Context, *acquisition.DeviceConfigurationRegister) (*emptypb.Empty, error)
 	// @group: Device Configuration Register
+	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Creates a new device configuration template. Returns the identifier of the newly created template.
 	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error)
 	// @group: Device Configuration Templates
+	// Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	// @group: Device Configuration Templates
+	// Retrieves the details of the specified device configuration template.
 	GetDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationTemplate, error)
 	// @group: Device Configuration Templates
+	// Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationTemplate(context.Context, *acquisition.DeviceConfigurationTemplate) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Deletes the specified device configuration template.
 	DeleteDeviceConfigurationTemplate(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Adds a specified device configuration register to an existing device configuration template.
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
+	// Removes a specified device configuration register from a device configuration template.
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to create a new field descriptor user-defined field descriptor.
+	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
 	// @group: Fields
-	// The method to update the field descriptor.
+	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to delete the field descriptor.
+	// Deletes the specified field descriptor.
 	DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptor, error)
 	// @group: Fields
-	// The method to get the options for the field descriptor.
+	// Retrieves a paginated list of available options for the field descriptor based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptorOptions(context.Context, *common.ListFieldDescriptorOptionsRequest) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
-	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-	// The list contains both the proxy bulks and the regular bulks.
+	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The list contains both proxy and regular bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-	// The listing can be used for both proxy bulks and regular bulks.
+	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
-	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	// Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
 	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
 	// @group: Bulks
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the job(s) identified by the job identifier(s).
+	// Cancels the specified jobs in an existing bulk.
 	CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the proxy bulk info and status.
+	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
-	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the bulk info and status.
+	// Retrieves the the details of the specified bulk.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
 	// @group: Bulks
-	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	// Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
 	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Driver Info
-	// Retrieves the list of drivers.
+	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
 	// @group: Driver Info
-	// Retrieves the driver.
+	// Retrieves the details of the specified driver.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+	// Creates a new communication unit. Returns the identifier of the newly created register.
 	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method updates the communication unit. The parameter contains the communication unit specification.
+	// Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
 	UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	// Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnits(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+	// Retrieves the details of the specified communication unit.
 	GetCommunicationUnit(context.Context, *wrapperspb.StringValue) (*acquisition.CommunicationUnit, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// Deletes the communication unit. The parameter contains the communication unit identifier.
+	// Deletes the specified communication unit.
 	DeleteCommunicationUnit(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
-	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// @group: Drivers
 	// @tag: communicationunit
-	// Returns the list of communication unit log records.
+	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Creates a new communication bus. Returns the identifier of the newly created communication bus.
 	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error)
 	// @group: Devices
 	// @tag: communicationbus
-	// Deletes the communication bus. The parameter contains the communication bus identifier.
+	// Deletes the specified communication bus.
 	DeleteCommunicationBus(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Adds a specified communication unit to an existing communication bus.
 	AddCommunicationUnitsToCommunicationBus(context.Context, *acquisition.AddCommunicationUnitsToCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
+	// Removes a specified communication bus from an existing communication bus.
 	RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// Creates a new device. The device object defines the device specification.
+	// Creates a new device. Returns the identifier of the newly created device.
 	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: device
-	// The method updates the device. The parameter contains the device specification.
+	// Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
 	UpdateDevice(context.Context, *acquisition.Device) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	// Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDevices(context.Context, *common.ListSelector) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+	// Retrieves the details of the specified device.
 	GetDevice(context.Context, *wrapperspb.StringValue) (*acquisition.Device, error)
 	// @group: Devices
 	// @tag: device
-	// Deletes the device. The parameter contains the device identifier.
+	// Deletes the specified device.
 	DeleteDevice(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
-	// The method to stream out profile-typed device info.
+	// Retrieves the profile-typed info of the specified device.
 	GetDeviceInfo(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceInfo, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to replace ordered set of linked communication units.
+	// Sets or replaces an ordered set of communication units linked to the specified device.
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get communication units definitions linked to the device(s).
+	// Retrieves a list of communication units linked to the specified device.
 	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: device
-	// The method called by the RestAPI to get the list of device communication unit changes.
+	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// @group: Devices
 	// @tag: device
-	// The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+	// Retrieves a list of device groups that contain the specified device.
 	GetDeviceDeviceGroups(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
 	// @tag: device
-	// Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+	// Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
 	GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// @group: Bulks
-	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	// Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
 	GetDeviceBulks(context.Context, *acquisition.GetDeviceBulksRequest) (*acquisition.DeviceBulks, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+	// Creates a new device group. Returns the identifier of the newly created device group.
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method returns a list of device groups.
+	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method returns single device group.
+	// Retrieves the details of the specified device group.
 	// @param The device group identifier.
 	// @return The device group specification.
 	GetDeviceGroup(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceGroup, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// Deletes the device group. The parameter contains the device group identifier.
+	// Deletes the specified device group.
 	DeleteDeviceGroup(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+	// Adds the specified devices to an existing device group.
 	AddDevicesToGroup(context.Context, *acquisition.AddDevicesToGroupRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
-	// The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+	// Removes the specified devices from an existing device group.
 	RemoveDevicesFromGroup(context.Context, *acquisition.RemoveDevicesFromGroupRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
+	// Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceGroupDevices(context.Context, *acquisition.ListDeviceGroupDevicesRequest) (*acquisition.ListOfDevice, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to get list of the modem pools.
+	// Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
 	ListModemPools(context.Context, *common.ListSelector) (*acquisition.ListOfModemPool, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to get the information about the modem pool. The method returns the modem pool information.
+	// Retrieves the details of the specified modem pool.
 	GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to create a new modem pool.
+	// Creates a new modem pool. Returns the identifier of the newly craeted modem pool.
 	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to update the modem pool.
+	// Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
 	UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modempool
-	// The method to delete the modem pool.
+	// Deletes the specified modem pool.
 	DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to create a new modem within the pool.
+	// Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
 	CreateModem(context.Context, *acquisition.SetModemRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to update the modem within the pool.
+	// Updates the details of an existing modem within the specified modem pool.
 	UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: modem
-	// The method to delete the modem.
+	// Deletes th specified modem.
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Configuration
-	// Gets the application configuration.
+	// Retrieves the current application configuration settings.
 	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error)
 	// @group: Configuration
-	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	// Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
 	// @group: Configuration
-	// Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values including details which are not set.
-	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	// Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+	// The output value will contain currently set values, including details that are not set.
+	// Values missing from the defaults will be deleted if they were previously set in the application configuration.
 	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
 	// @group: Device Data
-	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
-	// The method to stream out register-typed device data.
+	// Retrieves the list of register-type device data based on the specified criteria.
 	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
 	// @group: Device Data
-	// The method to stream out profile-typed device data.
+	// Retrieves the list of profile-type device data based on the specified criteria.
 	GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
 	// @group: Device Data
-	// The method to stream out profile-typed device data.
+	// Retrieves the list of irregular profile-type device data based on the specified criteria.
 	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
-	// The method to stream out profile-typed device events.
+	// Retrieves a list of events for the specified device within the specified time range.
 	GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error)
 	// @group: Time-Of-Use Tables
-	// The method to create a new time-of-use table.
+	// Creates a new time-of-use table. Returns the identifier of the newly created table.
 	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error)
 	// @group: Time-Of-Use Tables
-	// The method to get the list of time-of-use tables.
+	// Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error)
 	// @group: Time-Of-Use Tables
-	// The method to get the time-of-use table.
+	// Retrieves the details of the spcified time-of-use table.
 	GetTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*acquisition.TimeOfUseTable, error)
 	// @group: Time-Of-Use Tables
-	// The method to update the time-of-use table.
+	// Updates the details of an existing time-of-use table.
 	UpdateTimeOfUseTable(context.Context, *acquisition.TimeOfUseTable) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
-	// The method to delete the time-of-use table.
+	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to create a new cron job.
+	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(context.Context, *cronjobs.CreateCronJobRequest) (*wrapperspb.StringValue, error)
 	// @group: Cron Jobs
-	// The method to get the list of cron jobs.
+	// Retrieves a paginated list of cron jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListCronJobs(context.Context, *common.ListSelector) (*cronjobs.ListOfCronJob, error)
 	// @group: Cron Jobs
-	// The method to get the cron job.
+	// Retrieves the details of the specified cron job.
 	GetCronJob(context.Context, *wrapperspb.StringValue) (*cronjobs.CronJob, error)
 	// @group: Cron Jobs
-	// The method to update the cron job.
+	// Updates the details of an existing cron job.
 	UpdateCronJob(context.Context, *cronjobs.CronJob) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to delete the cron job.
+	// Deletes the specified cron job.
 	DeleteCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to run the cron job immediately.
+	// Runs the specified cron job immediately.
 	RunCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to pause the cron job.
+	// Pauses the specified cron job.
 	PauseCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Cron Jobs
-	// The method to resume the cron job.
+	// Resumes a paused cron job and restores its scheduled execution.
 	ResumeCronJob(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	// @group: System
-	// The method returns the OIDC configuration, proxied directly from the configured OIDC service.
-	// All the authenticated endpoints shall be protected by token from this OIDC service.
+	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
+	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error)
 	// @group: Cryptography
-	// The method returns a secret based on the request.
+	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// The method to store (create or replace) the secret.
+	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }

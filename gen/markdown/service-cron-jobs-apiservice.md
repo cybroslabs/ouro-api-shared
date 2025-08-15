@@ -2,7 +2,7 @@
 
 ## CreateCronJob
 
-The method to create a new cron job.
+Creates a new cron job. Returns the identifier of the newly created cron job.
 
 ```proto
 CreateCronJob(io.clbs.openhes.models.cronjobs.CreateCronJobRequest) returns (google.protobuf.StringValue)
@@ -13,7 +13,7 @@ CreateCronJob(io.clbs.openhes.models.cronjobs.CreateCronJobRequest) returns (goo
 
 ## ListCronJobs
 
-The method to get the list of cron jobs.
+Retrieves a paginated list of cron jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 
 ```proto
 ListCronJobs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.cronjobs.ListOfCronJob)
@@ -24,7 +24,7 @@ ListCronJobs(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhe
 
 ## GetCronJob
 
-The method to get the cron job.
+Retrieves the details of the specified cron job.
 
 ```proto
 GetCronJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.cronjobs.CronJob)
@@ -35,7 +35,7 @@ GetCronJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.cronjobs
 
 ## UpdateCronJob
 
-The method to update the cron job.
+Updates the details of an existing cron job.
 
 ```proto
 UpdateCronJob(io.clbs.openhes.models.cronjobs.CronJob)
@@ -45,7 +45,7 @@ UpdateCronJob(io.clbs.openhes.models.cronjobs.CronJob)
 
 ## DeleteCronJob
 
-The method to delete the cron job.
+Deletes the specified cron job.
 
 ```proto
 DeleteCronJob(google.protobuf.StringValue)
@@ -55,7 +55,7 @@ DeleteCronJob(google.protobuf.StringValue)
 
 ## RunCronJob
 
-The method to run the cron job immediately.
+Runs the specified cron job immediately.
 
 ```proto
 RunCronJob(google.protobuf.StringValue)
@@ -65,7 +65,7 @@ RunCronJob(google.protobuf.StringValue)
 
 ## PauseCronJob
 
-The method to pause the cron job.
+Pauses the specified cron job.
 
 ```proto
 PauseCronJob(google.protobuf.StringValue)
@@ -75,7 +75,7 @@ PauseCronJob(google.protobuf.StringValue)
 
 ## ResumeCronJob
 
-The method to resume the cron job.
+Resumes a paused cron job and restores its scheduled execution.
 
 ```proto
 ResumeCronJob(google.protobuf.StringValue)

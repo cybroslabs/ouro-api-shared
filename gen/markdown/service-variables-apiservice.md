@@ -2,7 +2,7 @@
 
 ## CreateVariable
 
-Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
 
 ```proto
 CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue)
@@ -22,6 +22,8 @@ ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openh
 
 ## GetVariable
 
+Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+
 ```proto
 GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable)
 ```
@@ -31,6 +33,8 @@ GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisi
 
 ## UpdateVariable
 
+Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
+
 ```proto
 UpdateVariable(io.clbs.openhes.models.acquisition.Variable)
 ```
@@ -38,6 +42,8 @@ UpdateVariable(io.clbs.openhes.models.acquisition.Variable)
 - Input: [`io.clbs.openhes.models.acquisition.Variable`](model-io-clbs-openhes-models-acquisition-variable.md)
 
 ## DeleteVariable
+
+Deletes the specified variable.
 
 ```proto
 DeleteVariable(google.protobuf.StringValue)
@@ -47,6 +53,8 @@ DeleteVariable(google.protobuf.StringValue)
 
 ## AddRegisterToVariable
 
+Adds a specified register to and existing variable.
+
 ```proto
 AddRegisterToVariable(io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest)
 ```
@@ -54,6 +62,8 @@ AddRegisterToVariable(io.clbs.openhes.models.acquisition.AddRegisterToVariableRe
 - Input: [`io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest`](model-io-clbs-openhes-models-acquisition-addregistertovariablerequest.md)
 
 ## RemoveRegisterFromVariable
+
+Removes a specified register from a variable.
 
 ```proto
 RemoveRegisterFromVariable(io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest)

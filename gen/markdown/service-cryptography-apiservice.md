@@ -2,7 +2,7 @@
 
 ## GetCryptoSecret
 
-The method returns a secret based on the request.
+Retrieves a cryptographic secret based on the specified request parameters.
 
 ```proto
 GetCryptoSecret(io.clbs.openhes.models.crypto.GetCryptoSecretRequest) returns (io.clbs.openhes.models.crypto.CryptoSecrets)
@@ -13,7 +13,7 @@ GetCryptoSecret(io.clbs.openhes.models.crypto.GetCryptoSecretRequest) returns (i
 
 ## SetCryptoSecret
 
-The method to store (create or replace) the secret.
+Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 
 ```proto
 SetCryptoSecret(io.clbs.openhes.models.crypto.SetCryptoSecretRequest)

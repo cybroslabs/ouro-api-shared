@@ -34,7 +34,7 @@ class ApiInternalServiceServicer(object):
 
     def ListFieldDescriptors(self, request, context):
         """@group: Fields
-        The method to get the list of fields.
+        Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

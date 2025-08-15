@@ -55,75 +55,75 @@ const (
 // The Dataproxy related service definition.
 type DataproxyServiceClient interface {
 	// @group: Bulks
-	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-	// The list contains both the proxy bulks and the regular bulks.
+	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The list contains both proxy and regular bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-	// The listing can be used for both proxy bulks and regular bulks.
+	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
-	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	// Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
 	GetBulkJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.BulkJob, error)
 	// @group: Bulks
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the job(s) identified by the job identifier(s).
+	// Cancels the specified jobs in an existing bulk.
 	CancelBulkJobs(ctx context.Context, in *common.ListOfId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	// Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
 	GetDeviceBulks(ctx context.Context, in *acquisition.GetDeviceBulksRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulks, error)
 	// @group: Bulks
-	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the proxy bulk info and status.
+	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
-	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the bulk info and status.
+	// Retrieves the the details of the specified bulk.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
 	// @group: Bulks
-	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	// Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
 	UpdateBulk(ctx context.Context, in *common.UpdateMetadata, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Data
-	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
-	// The method to stream out register-typed meter data.
+	// Retrieves the list of register-type device data based on the specified criteria.
 	GetDeviceDataRegisters(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.RegisterValues], error)
 	// @group: Device Data
-	// The method to stream out profile-typed meter data.
+	// Retrieves the list of profile-type device data based on the specified criteria.
 	GetDeviceDataProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProfileValues], error)
 	// @group: Device Data
-	// The method to stream out profile-typed meter data.
+	// Retrieves the list of irregular profile-type device data based on the specified criteria.
 	GetDeviceDataIrregularProfiles(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.IrregularProfileValues], error)
 	// @group: Device Events
-	// The method to stream out profile-typed meter data.
+	// Retrieves a list of events for the specified device within the specified time range.
 	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (*acquisition.DeviceEvents, error)
 	// @group: Fields
-	// The method to create a new field descriptor user-defined field descriptor.
+	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Fields
-	// The method to update the field descriptor.
+	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to delete the field descriptor.
+	// Deletes the specified field descriptor.
 	DeleteFieldDescriptor(ctx context.Context, in *common.FieldDescriptorSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method to set the managed fields of the resource(s).
+	// Sets or replaces the managed fields of the specified resources.
 	SetManagedFields(ctx context.Context, in *common.SetManagedFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -399,75 +399,75 @@ func (c *dataproxyServiceClient) UpdateObjectFields(ctx context.Context, in *com
 // The Dataproxy related service definition.
 type DataproxyServiceServer interface {
 	// @group: Bulks
-	// Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-	// The list contains both the proxy bulks and the regular bulks.
+	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The list contains both proxy and regular bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-	// The listing can be used for both proxy bulks and regular bulks.
+	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
-	// Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+	// Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
 	GetBulkJob(context.Context, *wrapperspb.StringValue) (*acquisition.BulkJob, error)
 	// @group: Bulks
 	// Updates the job metadata. The metadata is used to store additional information about the job.
 	UpdateBulkJob(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Cancels the job(s) identified by the job identifier(s).
+	// Cancels the specified jobs in an existing bulk.
 	CancelBulkJobs(context.Context, *common.ListOfId) (*emptypb.Empty, error)
 	// @group: Bulks
-	// Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+	// Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
 	GetDeviceBulks(context.Context, *acquisition.GetDeviceBulksRequest) (*acquisition.DeviceBulks, error)
 	// @group: Bulks
-	// Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
 	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the proxy bulk info and status.
+	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
-	// Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
 	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
 	// @group: Bulks
-	// Retrieves the bulk info and status.
+	// Retrieves the the details of the specified bulk.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
 	// @group: Bulks
-	// Updates the bulk metadata. The metadata is used to store additional information about the job.
+	// Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
 	UpdateBulk(context.Context, *common.UpdateMetadata) (*emptypb.Empty, error)
 	// @group: Device Data
-	// The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
-	// The method to stream out register-typed meter data.
+	// Retrieves the list of register-type device data based on the specified criteria.
 	GetDeviceDataRegisters(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.RegisterValues]) error
 	// @group: Device Data
-	// The method to stream out profile-typed meter data.
+	// Retrieves the list of profile-type device data based on the specified criteria.
 	GetDeviceDataProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.ProfileValues]) error
 	// @group: Device Data
-	// The method to stream out profile-typed meter data.
+	// Retrieves the list of irregular profile-type device data based on the specified criteria.
 	GetDeviceDataIrregularProfiles(*acquisition.GetDeviceDataRequest, grpc.ServerStreamingServer[acquisition.IrregularProfileValues]) error
 	// @group: Device Events
-	// The method to stream out profile-typed meter data.
+	// Retrieves a list of events for the specified device within the specified time range.
 	GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error)
 	// @group: Fields
-	// The method to create a new field descriptor user-defined field descriptor.
+	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
 	// @group: Fields
-	// The method to update the field descriptor.
+	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
 	// @group: Fields
-	// The method to delete the field descriptor.
+	// Deletes the specified field descriptor.
 	DeleteFieldDescriptor(context.Context, *common.FieldDescriptorSelector) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method to set the managed fields of the resource(s).
+	// Sets or replaces the managed fields of the specified resources.
 	SetManagedFields(context.Context, *common.SetManagedFieldsRequest) (*emptypb.Empty, error)
 	// @group: Metadata
-	// The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }

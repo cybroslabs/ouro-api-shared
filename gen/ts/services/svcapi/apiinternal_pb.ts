@@ -23,7 +23,7 @@ export const file_services_svcapi_apiinternal: GenFile = /*@__PURE__*/
 export const ApiInternalService: GenService<{
   /**
    * @group: Fields
-   * The method to get the list of fields.
+   * Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors
    */

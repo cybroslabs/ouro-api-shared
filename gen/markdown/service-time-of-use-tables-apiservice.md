@@ -2,7 +2,7 @@
 
 ## CreateTimeOfUseTable
 
-The method to create a new time-of-use table.
+Creates a new time-of-use table. Returns the identifier of the newly created table.
 
 ```proto
 CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.StringValue)
@@ -13,7 +13,7 @@ CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequ
 
 ## ListTimeOfUseTables
 
-The method to get the list of time-of-use tables.
+Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable)
@@ -24,7 +24,7 @@ ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs
 
 ## GetTimeOfUseTable
 
-The method to get the time-of-use table.
+Retrieves the details of the spcified time-of-use table.
 
 ```proto
 GetTimeOfUseTable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.TimeOfUseTable)
@@ -35,7 +35,7 @@ GetTimeOfUseTable(google.protobuf.StringValue) returns (io.clbs.openhes.models.a
 
 ## UpdateTimeOfUseTable
 
-The method to update the time-of-use table.
+Updates the details of an existing time-of-use table.
 
 ```proto
 UpdateTimeOfUseTable(io.clbs.openhes.models.acquisition.TimeOfUseTable)
@@ -45,7 +45,7 @@ UpdateTimeOfUseTable(io.clbs.openhes.models.acquisition.TimeOfUseTable)
 
 ## DeleteTimeOfUseTable
 
-The method to delete the time-of-use table.
+Deletes the specified time-of-use table.
 
 ```proto
 DeleteTimeOfUseTable(google.protobuf.StringValue)

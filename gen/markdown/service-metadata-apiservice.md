@@ -2,7 +2,7 @@
 
 ## UpdateObjectFields
 
-The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 
 ```proto
 UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest)

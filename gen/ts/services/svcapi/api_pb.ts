@@ -38,7 +38,7 @@ export const file_services_svcapi_api: GenFile = /*@__PURE__*/
 export const ApiService: GenService<{
   /**
    * @group: Variables
-   * Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+   * Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateVariable
    */
@@ -59,6 +59,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetVariable
    */
@@ -69,6 +70,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateVariable
    */
@@ -79,6 +81,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Deletes the specified variable.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteVariable
    */
@@ -89,6 +92,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Adds a specified register to and existing variable.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.AddRegisterToVariable
    */
@@ -99,6 +103,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Removes a specified register from a variable.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.RemoveRegisterFromVariable
    */
@@ -109,7 +114,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Register
-   * Creates a new register. The register object holds the information about the single device register.
+   * Creates a new device configuration register. Returns the identifier of the newly created register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationRegister
    */
@@ -120,6 +125,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Register
+   * Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationRegisters
    */
@@ -130,6 +136,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Register
+   * Retrieves the details of the specified device configuration register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationRegister
    */
@@ -140,6 +147,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Register
+   * Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationRegister
    */
@@ -150,6 +158,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Register
+   * Deletes the specified device configuration register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationRegister
    */
@@ -160,6 +169,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Creates a new device configuration template. Returns the identifier of the newly created template.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationTemplate
    */
@@ -170,6 +180,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationTemplates
    */
@@ -180,6 +191,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Retrieves the details of the specified device configuration template.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationTemplate
    */
@@ -190,6 +202,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationTemplate
    */
@@ -200,6 +213,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Deletes the specified device configuration template.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationTemplate
    */
@@ -210,6 +224,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Adds a specified device configuration register to an existing device configuration template.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate
    */
@@ -220,6 +235,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Configuration Templates
+   * Removes a specified device configuration register from a device configuration template.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate
    */
@@ -230,7 +246,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to create a new field descriptor user-defined field descriptor.
+   * Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateFieldDescriptor
    */
@@ -241,7 +257,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to update the field descriptor.
+   * Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateFieldDescriptor
    */
@@ -252,7 +268,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to delete the field descriptor.
+   * Deletes the specified field descriptor.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteFieldDescriptor
    */
@@ -263,7 +279,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to get the list of fields.
+   * Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptors
    */
@@ -274,7 +290,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to get the options for the field descriptor.
+   * Retrieves a paginated list of available options for the field descriptor based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListFieldDescriptorOptions
    */
@@ -285,8 +301,8 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the list of bulks. The list of bulks is paginated. The page size is defined in the request. The page number is 0-based.
-   * The list contains both the proxy bulks and the regular bulks.
+   * Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+   * The list contains both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListBulks
    */
@@ -297,8 +313,8 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the list of jobs. The list of jobs is paginated. The page size is defined in the request. The page number is 0-based.
-   * The listing can be used for both proxy bulks and regular bulks.
+   * Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+   * The listing can be used for jobs from both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs
    */
@@ -309,7 +325,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the job status. It can be used for jobs related to both proxy and regular bulks.
+   * Retrieves the details of the specified job. It can be used for jobs from both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetBulkJob
    */
@@ -331,7 +347,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Cancels the bulk of jobs. It can be used for both proxy and regular bulks.
+   * Cancels the specified job bulk. It can be used for both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CancelBulk
    */
@@ -342,7 +358,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Cancels the job(s) identified by the job identifier(s).
+   * Cancels the specified jobs in an existing bulk.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CancelBulkJobs
    */
@@ -355,7 +371,7 @@ export const ApiService: GenService<{
    * @group: Bulks
    * @tag: acquisition
    * @tag: action
-   * Starts a new proxy bulk. The proxy bolk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
+   * Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk
    */
@@ -366,7 +382,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the proxy bulk info and status.
+   * Retrieves the details of the specified proxy bulk.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetProxyBulk
    */
@@ -379,7 +395,7 @@ export const ApiService: GenService<{
    * @group: Bulks
    * @tag: acquisition
    * @tag: action
-   * Starts a new bulk. The bulk is a collection of jobs where each jobs represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
+   * Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateBulk
    */
@@ -390,7 +406,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the bulk info and status.
+   * Retrieves the the details of the specified bulk.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetBulk
    */
@@ -401,7 +417,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Updates the bulk metadata. The metadata is used to store additional information about the job.
+   * Updates the metadata of an existing bulk. The metadata is used to store additional information about the job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateBulk
    */
@@ -412,7 +428,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Driver Info
-   * Retrieves the list of drivers.
+   * Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDrivers
    */
@@ -423,7 +439,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Driver Info
-   * Retrieves the driver.
+   * Retrieves the details of the specified driver.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDriver
    */
@@ -435,7 +451,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+   * Creates a new communication unit. Returns the identifier of the newly created register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationUnit
    */
@@ -447,7 +463,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * The method updates the communication unit. The parameter contains the communication unit specification.
+   * Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateCommunicationUnit
    */
@@ -459,7 +475,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+   * Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnits
    */
@@ -471,7 +487,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+   * Retrieves the details of the specified communication unit.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnit
    */
@@ -483,7 +499,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * Deletes the communication unit. The parameter contains the communication unit identifier.
+   * Deletes the specified communication unit.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationUnit
    */
@@ -495,7 +511,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationunit
-   * Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+   * Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetCommunicationUnitNetworkMap
    */
@@ -507,7 +523,7 @@ export const ApiService: GenService<{
   /**
    * @group: Drivers
    * @tag: communicationunit
-   * Returns the list of communication unit log records.
+   * Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListCommunicationUnitLogRecords
    */
@@ -519,6 +535,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationbus
+   * Creates a new communication bus. Returns the identifier of the newly created communication bus.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateCommunicationBus
    */
@@ -530,6 +547,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationbus
+   * Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListCommunicationBuses
    */
@@ -541,7 +559,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationbus
-   * Deletes the communication bus. The parameter contains the communication bus identifier.
+   * Deletes the specified communication bus.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteCommunicationBus
    */
@@ -553,6 +571,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationbus
+   * Adds a specified communication unit to an existing communication bus.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.AddCommunicationUnitsToCommunicationBus
    */
@@ -564,6 +583,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: communicationbus
+   * Removes a specified communication bus from an existing communication bus.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.RemoveCommunicationUnitsFromCommunicationBus
    */
@@ -575,7 +595,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * Creates a new device. The device object defines the device specification.
+   * Creates a new device. Returns the identifier of the newly created device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateDevice
    */
@@ -587,7 +607,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method updates the device. The parameter contains the device specification.
+   * Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateDevice
    */
@@ -599,7 +619,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+   * Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDevices
    */
@@ -611,7 +631,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+   * Retrieves the details of the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDevice
    */
@@ -623,7 +643,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * Deletes the device. The parameter contains the device identifier.
+   * Deletes the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteDevice
    */
@@ -634,7 +654,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Devices
-   * The method to stream out profile-typed device info.
+   * Retrieves the profile-typed info of the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceInfo
    */
@@ -646,7 +666,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method called by the RestAPI to replace ordered set of linked communication units.
+   * Sets or replaces an ordered set of communication units linked to the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.SetDeviceCommunicationUnits
    */
@@ -658,7 +678,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method called by the RestAPI to get communication units definitions linked to the device(s).
+   * Retrieves a list of communication units linked to the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceCommunicationUnits
    */
@@ -670,7 +690,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method called by the RestAPI to get the list of device communication unit changes.
+   * Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceCommunicationUnitChanges
    */
@@ -682,7 +702,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+   * Retrieves a list of device groups that contain the specified device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceDeviceGroups
    */
@@ -694,7 +714,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: device
-   * Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+   * Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceNetworkMap
    */
@@ -705,7 +725,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves the list of bulk jobs related to given device in the specified time range. All the parameters are required.
+   * Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceBulks
    */
@@ -717,7 +737,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+   * Creates a new device group. Returns the identifier of the newly created device group.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup
    */
@@ -729,7 +749,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * The method returns a list of device groups.
+   * Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroups
    */
@@ -741,7 +761,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * The method returns single device group.
+   * Retrieves the details of the specified device group.
    * @param The device group identifier.
    * @return The device group specification.
    *
@@ -755,7 +775,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * Deletes the device group. The parameter contains the device group identifier.
+   * Deletes the specified device group.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceGroup
    */
@@ -767,7 +787,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+   * Adds the specified devices to an existing device group.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.AddDevicesToGroup
    */
@@ -779,7 +799,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
-   * The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+   * Removes the specified devices from an existing device group.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.RemoveDevicesFromGroup
    */
@@ -791,6 +811,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: devicegroup
+   * Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroupDevices
    */
@@ -802,7 +823,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modempool
-   * The method to get list of the modem pools.
+   * Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListModemPools
    */
@@ -814,7 +835,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modempool
-   * The method to get the information about the modem pool. The method returns the modem pool information.
+   * Retrieves the details of the specified modem pool.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetModemPool
    */
@@ -826,7 +847,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modempool
-   * The method to create a new modem pool.
+   * Creates a new modem pool. Returns the identifier of the newly craeted modem pool.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateModemPool
    */
@@ -838,7 +859,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modempool
-   * The method to update the modem pool.
+   * Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateModemPool
    */
@@ -850,7 +871,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modempool
-   * The method to delete the modem pool.
+   * Deletes the specified modem pool.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteModemPool
    */
@@ -862,7 +883,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modem
-   * The method to create a new modem within the pool.
+   * Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateModem
    */
@@ -874,7 +895,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modem
-   * The method to update the modem within the pool.
+   * Updates the details of an existing modem within the specified modem pool.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateModem
    */
@@ -886,7 +907,7 @@ export const ApiService: GenService<{
   /**
    * @group: Devices
    * @tag: modem
-   * The method to delete the modem.
+   * Deletes th specified modem.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteModem
    */
@@ -897,7 +918,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Configuration
-   * Gets the application configuration.
+   * Retrieves the current application configuration settings.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetApplicationConfig
    */
@@ -908,7 +929,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Configuration
-   * Updates the application configuration. The missing fields in the request will be kept unchanged.
+   * Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateApplicationConfig
    */
@@ -919,9 +940,9 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Configuration
-   * Synchronizes the application configuration. The input value shall contain all the default values and also all known keys (with null values).
-   * The output value will contain currently set values including details which are not set.
-   * The missing values in the defaults will be deleted if has been set previously in the application configuration.
+   * Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+   * The output value will contain currently set values, including details that are not set.
+   * Values missing from the defaults will be deleted if they were previously set in the application configuration.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.SynchronizeComponentConfig
    */
@@ -932,7 +953,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+   * Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceData
    */
@@ -943,7 +964,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+   * Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo
    */
@@ -954,7 +975,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * The method to stream out register-typed device data.
+   * Retrieves the list of register-type device data based on the specified criteria.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataRegisters
    */
@@ -965,7 +986,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * The method to stream out profile-typed device data.
+   * Retrieves the list of profile-type device data based on the specified criteria.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataProfiles
    */
@@ -976,7 +997,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * The method to stream out profile-typed device data.
+   * Retrieves the list of irregular profile-type device data based on the specified criteria.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceDataIrregularProfiles
    */
@@ -987,7 +1008,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Events
-   * The method to stream out profile-typed device events.
+   * Retrieves a list of events for the specified device within the specified time range.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceEvents
    */
@@ -998,7 +1019,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Time-Of-Use Tables
-   * The method to create a new time-of-use table.
+   * Creates a new time-of-use table. Returns the identifier of the newly created table.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateTimeOfUseTable
    */
@@ -1009,7 +1030,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Time-Of-Use Tables
-   * The method to get the list of time-of-use tables.
+   * Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListTimeOfUseTables
    */
@@ -1020,7 +1041,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Time-Of-Use Tables
-   * The method to get the time-of-use table.
+   * Retrieves the details of the spcified time-of-use table.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetTimeOfUseTable
    */
@@ -1031,7 +1052,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Time-Of-Use Tables
-   * The method to update the time-of-use table.
+   * Updates the details of an existing time-of-use table.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateTimeOfUseTable
    */
@@ -1042,7 +1063,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Time-Of-Use Tables
-   * The method to delete the time-of-use table.
+   * Deletes the specified time-of-use table.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable
    */
@@ -1053,7 +1074,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to create a new cron job.
+   * Creates a new cron job. Returns the identifier of the newly created cron job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateCronJob
    */
@@ -1064,7 +1085,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to get the list of cron jobs.
+   * Retrieves a paginated list of cron jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListCronJobs
    */
@@ -1075,7 +1096,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to get the cron job.
+   * Retrieves the details of the specified cron job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetCronJob
    */
@@ -1086,7 +1107,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to update the cron job.
+   * Updates the details of an existing cron job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateCronJob
    */
@@ -1097,7 +1118,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to delete the cron job.
+   * Deletes the specified cron job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteCronJob
    */
@@ -1108,7 +1129,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to run the cron job immediately.
+   * Runs the specified cron job immediately.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.RunCronJob
    */
@@ -1119,7 +1140,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to pause the cron job.
+   * Pauses the specified cron job.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.PauseCronJob
    */
@@ -1130,7 +1151,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cron Jobs
-   * The method to resume the cron job.
+   * Resumes a paused cron job and restores its scheduled execution.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ResumeCronJob
    */
@@ -1141,7 +1162,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Metadata
-   * The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+   * Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateObjectFields
    */
@@ -1152,8 +1173,8 @@ export const ApiService: GenService<{
   },
   /**
    * @group: System
-   * The method returns the OIDC configuration, proxied directly from the configured OIDC service.
-   * All the authenticated endpoints shall be protected by token from this OIDC service.
+   * Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
+   * All the authenticated endpoints shall be protected using a token issued by this OIDC service.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration
    */
@@ -1164,7 +1185,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cryptography
-   * The method returns a secret based on the request.
+   * Retrieves a cryptographic secret based on the specified request parameters.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetCryptoSecret
    */
@@ -1175,7 +1196,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Cryptography
-   * The method to store (create or replace) the secret.
+   * Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.SetCryptoSecret
    */

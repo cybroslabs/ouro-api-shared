@@ -10,7 +10,7 @@ import "common/internal.proto";
 // The Dataproxy related service definition.
 service ApiInternalService {
     // @group: Fields
-    // The method to get the list of fields.
+    // Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListFieldDescriptors(google.protobuf.Empty) returns (io.clbs.openhes.models.common.ListOfFieldDescriptorInternal);
     // @group: Fields
     // The method to get the list of fields.

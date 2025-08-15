@@ -2,7 +2,7 @@
 
 ## GetDeviceData
 
-The method to returns register/profile/irregular-profile typed device data. The method is generic but limited to return
+Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 
 ```proto
 GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData)
@@ -13,7 +13,7 @@ GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (
 
 ## ListDeviceDataInfo
 
-The method to get the list of device data info. The device data info contains various metadata, such as a period of the regular profiles or a timestamp of the last stored value.
+Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 
 ```proto
 ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo)
@@ -24,7 +24,7 @@ ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.
 
 ## GetDeviceDataRegisters
 
-The method to stream out register-typed device data.
+Retrieves the list of register-type device data based on the specified criteria.
 
 ```proto
 GetDeviceDataRegisters(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.RegisterValues)
@@ -35,7 +35,7 @@ GetDeviceDataRegisters(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) 
 
 ## GetDeviceDataProfiles
 
-The method to stream out profile-typed device data.
+Retrieves the list of profile-type device data based on the specified criteria.
 
 ```proto
 GetDeviceDataProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.ProfileValues)
@@ -46,7 +46,7 @@ GetDeviceDataProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) r
 
 ## GetDeviceDataIrregularProfiles
 
-The method to stream out profile-typed device data.
+Retrieves the list of irregular profile-type device data based on the specified criteria.
 
 ```proto
 GetDeviceDataIrregularProfiles(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.IrregularProfileValues)

@@ -2,7 +2,7 @@
 
 ## ListCommunicationUnitLogRecords
 
-Returns the list of communication unit log records.
+Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 
 ```proto
 ListCommunicationUnitLogRecords(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord)

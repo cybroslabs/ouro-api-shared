@@ -2,7 +2,7 @@
 
 ## GetDeviceEvents
 
-The method to stream out profile-typed device events.
+Retrieves a list of events for the specified device within the specified time range.
 
 ```proto
 GetDeviceEvents(io.clbs.openhes.models.acquisition.GetDeviceEventsRequest) returns (io.clbs.openhes.models.acquisition.DeviceEvents)
