@@ -21,7 +21,7 @@ message GetCacheRequest {
 }
 
 message GetCacheResponse {
-    common.FieldValue value = 2;  // The value of the cache entry.
+    common.FieldValue value = 1;  // The value of the cache entry.
 }
 
 message SetConfigDefaultsRequest {

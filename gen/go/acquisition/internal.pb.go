@@ -247,7 +247,7 @@ func (b0 GetCacheRequest_builder) Build() *GetCacheRequest {
 
 type GetCacheResponse struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Value *common.FieldValue     `protobuf:"bytes,2,opt,name=value"`
+	xxx_hidden_Value *common.FieldValue     `protobuf:"bytes,1,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -2404,7 +2404,7 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x0fGetCacheRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"S\n" +
 	"\x10GetCacheResponse\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"`\n" +
+	"\x05value\x18\x01 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"`\n" +
 	"\x18SetConfigDefaultsRequest\x12D\n" +
 	"\x05items\x18\x01 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"3\n" +
 	"\x16GetDriverConfigRequest\x12\x19\n" +
