@@ -314,13 +314,10 @@ func (b0 GetCacheResponse_builder) Build() *GetCacheResponse {
 }
 
 type SetConfigDefaultsRequest struct {
-	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
-	xxx_hidden_DriverType  *string                    `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
-	xxx_hidden_Items       *[]*common.FieldDescriptor `protobuf:"bytes,2,rep,name=items"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state            protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_Items *[]*common.FieldDescriptor `protobuf:"bytes,1,rep,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *SetConfigDefaultsRequest) Reset() {
@@ -348,16 +345,6 @@ func (x *SetConfigDefaultsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *SetConfigDefaultsRequest) GetDriverType() string {
-	if x != nil {
-		if x.xxx_hidden_DriverType != nil {
-			return *x.xxx_hidden_DriverType
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *SetConfigDefaultsRequest) GetItems() []*common.FieldDescriptor {
 	if x != nil {
 		if x.xxx_hidden_Items != nil {
@@ -367,54 +354,29 @@ func (x *SetConfigDefaultsRequest) GetItems() []*common.FieldDescriptor {
 	return nil
 }
 
-func (x *SetConfigDefaultsRequest) SetDriverType(v string) {
-	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
-}
-
 func (x *SetConfigDefaultsRequest) SetItems(v []*common.FieldDescriptor) {
 	x.xxx_hidden_Items = &v
-}
-
-func (x *SetConfigDefaultsRequest) HasDriverType() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *SetConfigDefaultsRequest) ClearDriverType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_DriverType = nil
 }
 
 type SetConfigDefaultsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DriverType *string
-	Items      []*common.FieldDescriptor
+	Items []*common.FieldDescriptor
 }
 
 func (b0 SetConfigDefaultsRequest_builder) Build() *SetConfigDefaultsRequest {
 	m0 := &SetConfigDefaultsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
-		x.xxx_hidden_DriverType = b.DriverType
-	}
 	x.xxx_hidden_Items = &b.Items
 	return m0
 }
 
 type GetDriverConfigRequest struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
-	xxx_hidden_FieldId     []string               `protobuf:"bytes,2,rep,name=field_id,json=fieldId"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FieldId []string               `protobuf:"bytes,1,rep,name=field_id,json=fieldId"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetDriverConfigRequest) Reset() {
@@ -442,16 +404,6 @@ func (x *GetDriverConfigRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetDriverConfigRequest) GetDriverType() string {
-	if x != nil {
-		if x.xxx_hidden_DriverType != nil {
-			return *x.xxx_hidden_DriverType
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *GetDriverConfigRequest) GetFieldId() []string {
 	if x != nil {
 		return x.xxx_hidden_FieldId
@@ -459,42 +411,20 @@ func (x *GetDriverConfigRequest) GetFieldId() []string {
 	return nil
 }
 
-func (x *GetDriverConfigRequest) SetDriverType(v string) {
-	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
-}
-
 func (x *GetDriverConfigRequest) SetFieldId(v []string) {
 	x.xxx_hidden_FieldId = v
-}
-
-func (x *GetDriverConfigRequest) HasDriverType() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *GetDriverConfigRequest) ClearDriverType() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_DriverType = nil
 }
 
 type GetDriverConfigRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DriverType *string
-	FieldId    []string
+	FieldId []string
 }
 
 func (b0 GetDriverConfigRequest_builder) Build() *GetDriverConfigRequest {
 	m0 := &GetDriverConfigRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
-		x.xxx_hidden_DriverType = b.DriverType
-	}
 	x.xxx_hidden_FieldId = b.FieldId
 	return m0
 }
@@ -2474,15 +2404,11 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x0fGetCacheRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"S\n" +
 	"\x10GetCacheResponse\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"\x81\x01\n" +
-	"\x18SetConfigDefaultsRequest\x12\x1f\n" +
-	"\vdriver_type\x18\x01 \x01(\tR\n" +
-	"driverType\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"T\n" +
-	"\x16GetDriverConfigRequest\x12\x1f\n" +
-	"\vdriver_type\x18\x01 \x01(\tR\n" +
-	"driverType\x12\x19\n" +
-	"\bfield_id\x18\x02 \x03(\tR\afieldId\"\xb5\x01\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"`\n" +
+	"\x18SetConfigDefaultsRequest\x12D\n" +
+	"\x05items\x18\x01 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"3\n" +
+	"\x16GetDriverConfigRequest\x12\x19\n" +
+	"\bfield_id\x18\x01 \x03(\tR\afieldId\"\xb5\x01\n" +
 	"\x10StartJobsRequest\x12[\n" +
 	"\x0fconnection_info\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.ConnectionInfoR\x0econnectionInfo\x12D\n" +
 	"\x04jobs\x18\x01 \x03(\v20.io.clbs.openhes.models.acquisition.StartJobDataR\x04jobs\"\xbb\x01\n" +
