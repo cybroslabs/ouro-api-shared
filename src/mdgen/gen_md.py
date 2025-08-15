@@ -175,6 +175,9 @@ def generate(
                             "@values:", "<b>Values:</b>"
                         )
                         value_description = value_description.replace(
+                            "@default:", "<b>Default value:</b>"
+                        )
+                        value_description = value_description.replace(
                             "@example:", "<b>Example:</b>"
                         )
                         fh.write(f"| {v.name} | {value_description} |\n")
@@ -203,6 +206,9 @@ def generate(
 
                         field_description = field_description.replace(
                             "@values:", "<b>Values:</b>"
+                        )
+                        field_description = field_description.replace(
+                            "@default:", "<b>Default value:</b>"
                         )
                         field_description = field_description.replace(
                             "@example:", "<b>Example:</b>"
