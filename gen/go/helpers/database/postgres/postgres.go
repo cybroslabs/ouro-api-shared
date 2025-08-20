@@ -287,7 +287,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			switch f.GetDataType() {
 			case common.FieldDataType_INTEGER:
 				if t := f.GetInteger(); len(t) != 2 {
-					return "", nil, errors.New("invalid number of operands")
+					return "", nil, fmt.Errorf("invalid number of %s operands", f.GetDataType().String())
 				} else {
 					if len(json_path) > 0 {
 						// Use jsonb_path_exists to optimize the query
@@ -299,7 +299,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 				}
 			case common.FieldDataType_DOUBLE:
 				if t := f.GetNumber(); len(t) != 2 {
-					return "", nil, errors.New("invalid number of operands")
+					return "", nil, fmt.Errorf("invalid number of %s operands", f.GetDataType().String())
 				} else {
 					if len(json_path) > 0 {
 						parts = append(parts, fmt.Sprintf("jsonb_path_exists(%s, '%s ? (%s >= %f && %s <= %f)')", col, json_path, json_property, t[0], json_property, t[1]))
@@ -396,7 +396,7 @@ func addMultiOperandOperator(parts *[]string, values *[]any, col string, in *com
 		return errors.New("unsupported data type")
 	}
 	if len(*values)+1 == base_id {
-		return errors.New("invalid number of operands")
+		return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 	}
 
 	tmp := strings.Builder{}
@@ -419,35 +419,35 @@ func addSingleOperandOperator(parts *[]string, values *[]any, col string, in *co
 	switch in.GetDataType() {
 	case common.FieldDataType_TEXT:
 		if t := in.GetText(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			*values = append(*values, t[0])
 			*parts = append(*parts, col+composeOpVal(fmt.Sprintf("$%d", len(*values))))
 		}
 	case common.FieldDataType_INTEGER:
 		if t := in.GetInteger(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			*values = append(*values, t[0])
 			*parts = append(*parts, "("+col+")::int"+composeOpVal(fmt.Sprintf("$%d", len(*values))))
 		}
 	case common.FieldDataType_BOOLEAN:
 		if t := in.GetBoolean(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			*values = append(*values, t[0])
 			*parts = append(*parts, "("+col+")::bool"+composeOpVal(fmt.Sprintf("$%d", len(*values))))
 		}
 	case common.FieldDataType_DOUBLE:
 		if t := in.GetNumber(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			*values = append(*values, t[0])
 			*parts = append(*parts, "("+col+")::numeric"+composeOpVal(fmt.Sprintf("$%d", len(*values))))
 		}
 	case common.FieldDataType_TIMESTAMP:
 		if t := in.GetDate(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			var tmp *time.Time
 			if t[0] != nil {
@@ -467,7 +467,7 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 	switch in.GetDataType() {
 	case common.FieldDataType_TEXT:
 		if t := in.GetText(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			composed, invert := composeOpVal(t[0])
 			if invert {
@@ -478,14 +478,14 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 		}
 	case common.FieldDataType_INTEGER:
 		if t := in.GetInteger(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			op, _ := composeOpVal("")
 			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %d)')", modelColumn, jsonPath, jsonProperty, op, t[0]))
 		}
 	case common.FieldDataType_BOOLEAN:
 		if t := in.GetBoolean(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			b := "false"
 			if t[0] {
@@ -496,14 +496,14 @@ func addSingleOperandOperatorJson(parts *[]string, modelColumn string, jsonPath 
 		}
 	case common.FieldDataType_DOUBLE:
 		if t := in.GetNumber(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			op, _ := composeOpVal("")
 			*parts = append(*parts, fmt.Sprintf("JSONB_PATH_EXISTS(%s, '%s ? (%s %s %f)')", modelColumn, jsonPath, jsonProperty, op, t[0]))
 		}
 	case common.FieldDataType_TIMESTAMP:
 		if t := in.GetDate(); len(t) != 1 {
-			return errors.New("invalid number of operands")
+			return fmt.Errorf("invalid number of %s operands", in.GetDataType().String())
 		} else {
 			var tmp *time.Time
 			if t[0] != nil {
