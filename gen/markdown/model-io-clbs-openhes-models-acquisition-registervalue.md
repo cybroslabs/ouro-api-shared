@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.acquisition.RegisterValue
 
-Sub-message containing register-typed value
+Defines a single register-type value.
 
 ## Fields
 

@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.acquisition.ProfileValues
 
-Sub-message containing profile-typed values
+Defines the profile-type values.
 
 ## Fields
 

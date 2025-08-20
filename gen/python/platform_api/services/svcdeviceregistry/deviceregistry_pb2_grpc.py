@@ -437,68 +437,78 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListVariables(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetVariable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves the details of the specified variable.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateVariable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteVariable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deletes the specified variable.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def AddRegisterToVariable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Adds a specified register to and existing variable.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RemoveRegisterFromVariable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Removes a specified register from a variable.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateDeviceConfigurationRegister(self, request, context):
-        """Creates a new register. The register object holds the information about the single device register.
+        """Creates a new device configuration register. Returns the identifier of the newly created register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListDeviceConfigurationRegisters(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetDeviceConfigurationRegister(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves the details of the specified device configuration register.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateDeviceConfigurationRegister(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteDeviceConfigurationRegister(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deletes the specified device configuration register.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -510,63 +520,70 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CreateDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Creates a new device configuration template. Returns the identifier of the newly created template.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListDeviceConfigurationTemplates(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Retrieves the details of the specified device configuration template.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deletes the specified device configuration template.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Adds a specified device configuration register to an existing device configuration template.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Removes a specified device configuration register from a device configuration template.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListDrivers(self, request, context):
-        """The method called by the RestApi to get the list of drivers.
+        """Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateDriver(self, request, context):
-        """The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
+        """The method called by the Ouro Operator to set the driver templates. The parameter contains the driver templates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetDriver(self, request, context):
-        """The method called by the RestApi to get the driver templates.
+        """Retrieves the details of the specified driver.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -575,7 +592,7 @@ class DeviceRegistryServiceServicer(object):
     def CreateCommunicationUnit(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+        Creates a new communication unit. Returns the identifier of the newly created register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -584,7 +601,7 @@ class DeviceRegistryServiceServicer(object):
     def UpdateCommunicationUnit(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        The method updates the communication unit. The parameter contains the communication unit specification.
+        Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -593,7 +610,7 @@ class DeviceRegistryServiceServicer(object):
     def ListCommunicationUnits(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+        Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -602,7 +619,7 @@ class DeviceRegistryServiceServicer(object):
     def GetCommunicationUnit(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+        Retrieves the details of the specified communication unit.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -611,7 +628,7 @@ class DeviceRegistryServiceServicer(object):
     def DeleteCommunicationUnit(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        Deletes the communication unit. The parameter contains the communication unit identifier.
+        Deletes the specified communication unit.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -620,7 +637,7 @@ class DeviceRegistryServiceServicer(object):
     def GetCommunicationUnitNetworkMap(self, request, context):
         """@group: Devices
         @tag: communicationunit
-        Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+        Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -629,7 +646,7 @@ class DeviceRegistryServiceServicer(object):
     def ListCommunicationUnitLogRecords(self, request, context):
         """@group: Drivers
         @tag: communicationunit
-        Returns the list of communication unit log records.
+        Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -638,6 +655,7 @@ class DeviceRegistryServiceServicer(object):
     def CreateCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
+        Creates a new communication bus. Returns the identifier of the newly created communication bus.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -646,6 +664,7 @@ class DeviceRegistryServiceServicer(object):
     def ListCommunicationBuses(self, request, context):
         """@group: Devices
         @tag: communicationbus
+        Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -654,7 +673,7 @@ class DeviceRegistryServiceServicer(object):
     def DeleteCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
-        Deletes the communication bus. The parameter contains the communication bus identifier.
+        Deletes the specified communication bus.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -663,6 +682,7 @@ class DeviceRegistryServiceServicer(object):
     def AddCommunicationUnitsToCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
+        Adds a specified communication unit to an existing communication bus.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -671,6 +691,7 @@ class DeviceRegistryServiceServicer(object):
     def RemoveCommunicationUnitsFromCommunicationBus(self, request, context):
         """@group: Devices
         @tag: communicationbus
+        Removes a specified communication bus from an existing communication bus.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -679,7 +700,7 @@ class DeviceRegistryServiceServicer(object):
     def CreateDevice(self, request, context):
         """@group: Devices
         @tag: device
-        The method called by the RestAPI to register a new device. The parameter contains the device specification.
+        Creates a new device. Returns the identifier of the newly created device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -688,7 +709,7 @@ class DeviceRegistryServiceServicer(object):
     def UpdateDevice(self, request, context):
         """@group: Devices
         @tag: device
-        The method updates the device. The parameter contains the device specification.
+        Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -697,7 +718,7 @@ class DeviceRegistryServiceServicer(object):
     def ListDevices(self, request, context):
         """@group: Devices
         @tag: device
-        The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+        Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -706,7 +727,7 @@ class DeviceRegistryServiceServicer(object):
     def GetDevice(self, request, context):
         """@group: Devices
         @tag: device
-        The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+        Retrieves the details of the specified device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -715,7 +736,7 @@ class DeviceRegistryServiceServicer(object):
     def DeleteDevice(self, request, context):
         """@group: Devices
         @tag: device
-        Deletes the device. The parameter contains the device identifier.
+        Deletes the specified device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -737,7 +758,7 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetDeviceCommunicationUnits(self, request, context):
-        """The method called by the RestAPI to get communication units definitions linked to the device(s).
+        """Retrieves a list of communication units linked to the specified device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -746,7 +767,7 @@ class DeviceRegistryServiceServicer(object):
     def ListDeviceCommunicationUnitChanges(self, request, context):
         """@group: Devices
         @tag: device
-        The method called by the RestAPI to get the list of device communication unit changes.
+        Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -768,7 +789,7 @@ class DeviceRegistryServiceServicer(object):
 
     def GetDeviceInfo(self, request, context):
         """@group: Devices
-        The method to stream out profile-typed meter data.
+        Retrieves the profile-typed info of the specified device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -777,7 +798,7 @@ class DeviceRegistryServiceServicer(object):
     def GetDeviceDeviceGroups(self, request, context):
         """@group: Devices
         @tag: device
-        The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+        Retrieves a list of device groups that contain the specified device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -786,21 +807,21 @@ class DeviceRegistryServiceServicer(object):
     def GetDeviceNetworkMap(self, request, context):
         """@group: Devices
         @tag: device
-        Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+        Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateDeviceGroup(self, request, context):
-        """The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+        """Creates a new device group. Returns the identifier of the newly created device group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListDeviceGroups(self, request, context):
-        """The method returns a list of device groups.
+        """Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -809,7 +830,7 @@ class DeviceRegistryServiceServicer(object):
     def GetDeviceGroup(self, request, context):
         """@param The device group identifier.
         @return The device group specification.
-        The method returns single device group.
+        Retrieves the details of the specified device group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -818,7 +839,7 @@ class DeviceRegistryServiceServicer(object):
     def DeleteDeviceGroup(self, request, context):
         """@group: Devices
         @tag: devicegroup
-        Deletes the device group. The parameter contains the device group identifier.
+        Deletes the specified device group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -833,77 +854,77 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def AddDevicesToGroup(self, request, context):
-        """The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+        """Adds the specified devices to an existing device group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RemoveDevicesFromGroup(self, request, context):
-        """The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+        """Removes the specified devices from an existing device group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListDeviceGroupDevices(self, request, context):
-        """The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
+        """Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListModemPools(self, request, context):
-        """The method to get list of the modem pools.
+        """Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetModemPool(self, request, context):
-        """The method to get the information about the modem pool. The method returns the modem pool information.
+        """Retrieves the details of the specified modem pool.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateModemPool(self, request, context):
-        """The method to create a new modem pool.
+        """Creates a new modem pool. Returns the identifier of the newly created modem pool.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateModemPool(self, request, context):
-        """The method to update the modem pool.
+        """Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteModemPool(self, request, context):
-        """The method to delete the modem pool.
+        """Deletes the specified modem pool.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateModem(self, request, context):
-        """The method to create a new modem within the pool.
+        """Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateModem(self, request, context):
-        """The method to update the modem within the pool.
+        """Updates the details of an existing modem within the specified modem pool.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteModem(self, request, context):
-        """The method to delete the modem within the pool.
+        """Deletes th specified modem.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -911,7 +932,7 @@ class DeviceRegistryServiceServicer(object):
 
     def CreateTimeOfUseTable(self, request, context):
         """@group: Time-Of-Use Tables
-        The method to create a new time-of-use table.
+        Creates a new time-of-use table. Returns the identifier of the newly created table.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -919,7 +940,7 @@ class DeviceRegistryServiceServicer(object):
 
     def ListTimeOfUseTables(self, request, context):
         """@group: Time-Of-Use Tables
-        The method to get the list of time-of-use tables.
+        Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -927,7 +948,7 @@ class DeviceRegistryServiceServicer(object):
 
     def GetTimeOfUseTable(self, request, context):
         """@group: Time-Of-Use Tables
-        The method to get the time-of-use table.
+        Retrieves the details of the spcified time-of-use table.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -935,7 +956,7 @@ class DeviceRegistryServiceServicer(object):
 
     def UpdateTimeOfUseTable(self, request, context):
         """@group: Time-Of-Use Tables
-        The method to update the time-of-use table.
+        Updates the details of an existing time-of-use table.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -943,7 +964,7 @@ class DeviceRegistryServiceServicer(object):
 
     def DeleteTimeOfUseTable(self, request, context):
         """@group: Time-Of-Use Tables
-        The method to delete the time-of-use table.
+        Deletes the specified time-of-use table.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -951,7 +972,7 @@ class DeviceRegistryServiceServicer(object):
 
     def CreateFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to create a new field descriptor user-defined field descriptor.
+        Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -959,7 +980,7 @@ class DeviceRegistryServiceServicer(object):
 
     def UpdateFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to update the field descriptor.
+        Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -967,7 +988,7 @@ class DeviceRegistryServiceServicer(object):
 
     def DeleteFieldDescriptor(self, request, context):
         """@group: Fields
-        The method to delete the field descriptor.
+        Deletes the specified field descriptor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1033,7 +1054,7 @@ class DeviceRegistryServiceServicer(object):
 
     def UpdateObjectFields(self, request, context):
         """@group: Metadata
-        The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+        Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

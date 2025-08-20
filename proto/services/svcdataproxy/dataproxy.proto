@@ -17,11 +17,11 @@ import "common/types.proto";
 // The Dataproxy related service definition.
 service DataproxyService {
     // @group: Bulks
-    // Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+    // Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     // The list contains both proxy and regular bulks.
     rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);
     // @group: Bulks
-    // Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+    // Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     // The listing can be used for jobs from both proxy and regular bulks.
     rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
     // @group: Bulks
@@ -62,7 +62,7 @@ service DataproxyService {
     // Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
     rpc GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData);
     // @group: Device Data
-    // Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+    // Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
     rpc ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo);
 
     // @group: Device Data

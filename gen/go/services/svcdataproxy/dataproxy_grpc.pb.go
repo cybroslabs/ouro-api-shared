@@ -55,11 +55,11 @@ const (
 // The Dataproxy related service definition.
 type DataproxyServiceClient interface {
 	// @group: Bulks
-	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The list contains both proxy and regular bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
@@ -96,7 +96,7 @@ type DataproxyServiceClient interface {
 	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+	// Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// Retrieves the list of register-type device data based on the specified criteria.
@@ -399,11 +399,11 @@ func (c *dataproxyServiceClient) UpdateObjectFields(ctx context.Context, in *com
 // The Dataproxy related service definition.
 type DataproxyServiceServer interface {
 	// @group: Bulks
-	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The list contains both proxy and regular bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
@@ -440,7 +440,7 @@ type DataproxyServiceServer interface {
 	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+	// Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// Retrieves the list of register-type device data based on the specified criteria.

@@ -13,6 +13,8 @@ CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns
 
 ## ListVariables
 
+Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+
 ```proto
 ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable)
 ```
@@ -22,7 +24,7 @@ ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openh
 
 ## GetVariable
 
-Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+Retrieves the details of the specified variable.
 
 ```proto
 GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable)

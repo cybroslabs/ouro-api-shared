@@ -2,7 +2,7 @@
 
 ## ListBulks
 
-Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
  The list contains both proxy and regular bulks.
 
 ```proto
@@ -14,7 +14,7 @@ ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.m
 
 ## ListBulkJobs
 
-Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
  The listing can be used for jobs from both proxy and regular bulks.
 
 ```proto

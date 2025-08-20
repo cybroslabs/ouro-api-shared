@@ -19,192 +19,213 @@ import "common/metadata.proto";
 service DeviceRegistryService {
     // Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
     rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue);
+    // Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
+    // Retrieves the details of the specified variable.
     rpc GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable);
+    // Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
     rpc UpdateVariable(io.clbs.openhes.models.acquisition.Variable) returns (google.protobuf.Empty);
+    // Deletes the specified variable.
     rpc DeleteVariable(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // Adds a specified register to and existing variable.
     rpc AddRegisterToVariable(io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest) returns (google.protobuf.Empty);
+    // Removes a specified register from a variable.
     rpc RemoveRegisterFromVariable(io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest) returns (google.protobuf.Empty);
 
-    // Creates a new register. The register object holds the information about the single device register.
+    // Creates a new device configuration register. Returns the identifier of the newly created register.
     rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
+    // Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     rpc ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister);
+    // Retrieves the details of the specified device configuration register.
     rpc GetDeviceConfigurationRegister(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegister);
+    // Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
     rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
+    // Deletes the specified device configuration register.
     rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc GetDeviceConfigurationRegisterMap(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap);
 
+    // Creates a new device configuration template. Returns the identifier of the newly created template.
     rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
+    // Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate);
+    // Retrieves the details of the specified device configuration template.
     rpc GetDeviceConfigurationTemplate(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate);
+    // Updates the details of an existing device configuration template. Fields that are omitted from the request will be left unchanged.
     rpc UpdateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate) returns (google.protobuf.Empty);
+    // Deletes the specified device configuration template.
     rpc DeleteDeviceConfigurationTemplate(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // Adds a specified device configuration register to an existing device configuration template.
     rpc AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
+    // Removes a specified device configuration register from a device configuration template.
     rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
 
-    // The method called by the RestApi to get the list of drivers.
+    // Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDrivers(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
-    // The method called by the OuroOperator to set the driver templates. The parameter contains the driver templates.
+    // The method called by the Ouro Operator to set the driver templates. The parameter contains the driver templates.
     rpc CreateDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
-    // The method called by the RestApi to get the driver templates.
+    // Retrieves the details of the specified driver.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
     // @group: Devices
     // @tag: communicationunit
-    // The method called by the RestAPI to register a new communication unit. The parameter contains the communication unit specification.
+    // Creates a new communication unit. Returns the identifier of the newly created register.
     rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: communicationunit
-    // The method updates the communication unit. The parameter contains the communication unit specification.
+    // Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
     rpc UpdateCommunicationUnit(io.clbs.openhes.models.acquisition.CommunicationUnit) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationunit
-    // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+    // Retrieve a paginated list of communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListCommunicationUnits(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
     // @group: Devices
     // @tag: communicationunit
-    // The method called by the RestAPI to get the information about the communication unit. The parameter contains the search criteria.
+    // Retrieves the details of the specified communication unit.
     rpc GetCommunicationUnit(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.CommunicationUnit);
     // @group: Devices
     // @tag: communicationunit
-    // Deletes the communication unit. The parameter contains the communication unit identifier.
+    // Deletes the specified communication unit.
     rpc DeleteCommunicationUnit(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationunit
-    // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+    // Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
     rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
     // @group: Drivers
     // @tag: communicationunit
-    // Returns the list of communication unit log records.
+    // Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListCommunicationUnitLogRecords(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord);
 
     // @group: Devices
     // @tag: communicationbus
+    // Creates a new communication bus. Returns the identifier of the newly created communication bus.
     rpc CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: communicationbus
+    // Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
     rpc ListCommunicationBuses(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationBus);
     // @group: Devices
     // @tag: communicationbus
-    // Deletes the communication bus. The parameter contains the communication bus identifier.
+    // Deletes the specified communication bus.
     rpc DeleteCommunicationBus(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationbus
+    // Adds a specified communication unit to an existing communication bus.
     rpc AddCommunicationUnitsToCommunicationBus(io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationbus
+    // Removes a specified communication bus from an existing communication bus.
     rpc RemoveCommunicationUnitsFromCommunicationBus(io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
-    // The method called by the RestAPI to register a new device. The parameter contains the device specification.
+    // Creates a new device. Returns the identifier of the newly created device.
     rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
     // @group: Devices
     // @tag: device
-    // The method updates the device. The parameter contains the device specification.
+    // Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
     rpc UpdateDevice(io.clbs.openhes.models.acquisition.Device) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
-    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+    // Retrieves a paginated list of devices based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDevices(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
     // @group: Devices
     // @tag: device
-    // The method called by the RestAPI to get the information about the device. The parameter contains the search criteria.
+    // Retrieves the details of the specified device.
     rpc GetDevice(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Device);
     // @group: Devices
     // @tag: device
-    // Deletes the device. The parameter contains the device identifier.
+    // Deletes the specified device.
     rpc DeleteDevice(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
     rpc StreamDeviceType(stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest) returns (stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse);
     // The method called by the RestAPI to replace ordered set of linked communication units.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
-    // The method called by the RestAPI to get communication units definitions linked to the device(s).
+    // Retrieves a list of communication units linked to the specified device.
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
     // @group: Devices
     // @tag: device
-    // The method called by the RestAPI to get the list of device communication unit changes.
+    // Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange);
     // The method called by the DataProxy to resolve connection info for given device(s).
     rpc GetDeviceConnectionInfo(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
     // Sets the device information.
     rpc SetDeviceInfo(io.clbs.openhes.models.acquisition.SetDeviceInfoRequest) returns (google.protobuf.Empty);
     // @group: Devices
-    // The method to stream out profile-typed meter data.
+    // Retrieves the profile-typed info of the specified device.
     rpc GetDeviceInfo(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceInfo);
     // @group: Devices
     // @tag: device
-    // The method returns a list of device groups that contain the device. The parameter contains the device identifier.
+    // Retrieves a list of device groups that contain the specified device.
     rpc GetDeviceDeviceGroups(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
     // @group: Devices
     // @tag: device
-    // Retrieves the network map (topology) that the data concentrator reports for the specified communication unit.
+    // Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
     rpc GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
-    // The method called by the RestAPI to create a new device group. The parameter contains the device group specification.
+    // Creates a new device group. Returns the identifier of the newly created device group.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
-    // The method returns a list of device groups.
+    // Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
     // @param The device group identifier.
     // @return The device group specification.
-    // The method returns single device group.
+    // Retrieves the details of the specified device group.
     rpc GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup);
     // @group: Devices
     // @tag: devicegroup
-    // Deletes the device group. The parameter contains the device group identifier.
+    // Deletes the specified device group.
     rpc DeleteDeviceGroup(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // The method returns stream of devices from the device group.
     // @param The device group identifier.
     rpc StreamDeviceGroup(google.protobuf.StringValue) returns (stream io.clbs.openhes.models.acquisition.StreamDeviceGroup);
-    // The method called by the RestAPI to add a new device to the device group. The parameter contains the device group specification.
+    // Adds the specified devices to an existing device group.
     rpc AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest) returns (google.protobuf.Empty);
-    // The method called by the RestAPI to remove a device from the device group. The parameter contains the device group specification.
+    // Removes the specified devices from an existing device group.
     rpc RemoveDevicesFromGroup(io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest) returns (google.protobuf.Empty);
-    // The method called by the RestAPI to get the information about the device group. The parameter contains the search criteria.
+    // Retrieves a paginated list of devices in the specified device group. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceGroupDevices(io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
 
-    // The method to get list of the modem pools.
+    // Retrieves a paginated list of modem pools. The page size and page number (zero-based) can be defined in the request.
     rpc ListModemPools(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfModemPool);
-    // The method to get the information about the modem pool. The method returns the modem pool information.
+    // Retrieves the details of the specified modem pool.
     rpc GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ModemPool);
-    // The method to create a new modem pool.
+    // Creates a new modem pool. Returns the identifier of the newly created modem pool.
     rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue);
-    // The method to update the modem pool.
+    // Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
     rpc UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
-    // The method to delete the modem pool.
+    // Deletes the specified modem pool.
     rpc DeleteModemPool(google.protobuf.StringValue) returns (google.protobuf.Empty);
-    // The method to create a new modem within the pool.
+    // Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
     rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue);
-    // The method to update the modem within the pool.
+    // Updates the details of an existing modem within the specified modem pool.
     rpc UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
-    // The method to delete the modem within the pool.
+    // Deletes th specified modem.
     rpc DeleteModem(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: Time-Of-Use Tables
-    // The method to create a new time-of-use table.
+    // Creates a new time-of-use table. Returns the identifier of the newly created table.
     rpc CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.StringValue);
     // @group: Time-Of-Use Tables
-    // The method to get the list of time-of-use tables.
+    // Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable);
     // @group: Time-Of-Use Tables
-    // The method to get the time-of-use table.
+    // Retrieves the details of the spcified time-of-use table.
     rpc GetTimeOfUseTable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.TimeOfUseTable);
     // @group: Time-Of-Use Tables
-    // The method to update the time-of-use table.
+    // Updates the details of an existing time-of-use table.
     rpc UpdateTimeOfUseTable(io.clbs.openhes.models.acquisition.TimeOfUseTable) returns (google.protobuf.Empty);
     // @group: Time-Of-Use Tables
-    // The method to delete the time-of-use table.
+    // Deletes the specified time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: Fields
-    // The method to create a new field descriptor user-defined field descriptor.
+    // Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
     rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);
     // @group: Fields
-    // The method to update the field descriptor.
+    // Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);
     // @group: Fields
-    // The method to delete the field descriptor.
+    // Deletes the specified field descriptor.
     rpc DeleteFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptorSelector) returns (google.protobuf.Empty);
 
     // @group: Metadata
@@ -237,6 +258,6 @@ service DeviceRegistryService {
     rpc SetCurrentDeviceCommunicationUnit(io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest) returns (google.protobuf.Empty);
 
     // @group: Metadata
-    // The method sets the fields of an object. The values are merged with the existing fields to preserve the existing fields that are not set in the request.
+    // Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
     rpc UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest) returns (google.protobuf.Empty);
 }

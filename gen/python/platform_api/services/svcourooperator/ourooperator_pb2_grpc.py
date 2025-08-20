@@ -88,7 +88,7 @@ class OuroOperatorServiceServicer(object):
     """
 
     def ListDrivers(self, request, context):
-        """The method called by the RestApi to get the list of drivers.
+        """Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -102,7 +102,7 @@ class OuroOperatorServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetDriver(self, request, context):
-        """The method called by the RestApi to get the driver templates.
+        """Retrieves the details of the specified driver.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,23 +123,23 @@ class OuroOperatorServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetApplicationConfig(self, request, context):
-        """Gets the application configuration, stored in the Kubernetes.
+        """Retrieves the current application configuration settings.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateApplicationConfig(self, request, context):
-        """Updates the application configuration. The missing fields in the request will be kept unchanged.
+        """Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SynchronizeComponentConfig(self, request, context):
-        """Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
-        The output value will contain currently set values including details which are not set.
-        The missing values in the defaults will be deleted if has been set previously in the application configuration.
+        """Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+        The output value will contain currently set values, including details that are not set.
+        Values missing from the defaults will be deleted if they were previously set in the application configuration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

@@ -1412,7 +1412,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing access level definition</p>
+  <p>Defines the access level configuration for a driver.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1438,7 +1438,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The access level identifier, such as "1", "G", "16" or similar.</p></td>
+      <td class="content"><p>The unique identifier of the access level, such as <code>"1"</code>, <code>"G"</code>, or <code>"16"</code>.</p></td>
       
     </tr>
     
@@ -1453,7 +1453,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The access level name. Should be in English and unique for given driver, e.g. "Management", "Public".</p></td>
+      <td class="content"><p>The name of the access level. It must be unique and written in English (for example, <code>"Management"</code>, <code>"Public"</code>).</p></td>
       
     </tr>
     
@@ -1477,7 +1477,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing action-based variant of data values</p>
+  <p>Defines the action-based variant of data values.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1518,7 +1518,7 @@
               <span>google.protobuf.Empty</span>
             </code>
           </td>
-          <td class="content"><p>No data</p></td>
+          <td class="content"><p>Indicates that no data was returned by the action.</p></td>
           
         </tr>
       
@@ -1538,7 +1538,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Register values</p></td>
+          <td class="content"><p>The set of register values.</p></td>
           
         </tr>
       
@@ -1558,7 +1558,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Profile values</p></td>
+          <td class="content"><p>The set of profile values.</p></td>
           
         </tr>
       
@@ -1578,7 +1578,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Irregular (non-periodical) profile values, e.g. daily profile</p></td>
+          <td class="content"><p>The set of irregular (non-periodical) profile values, such as daily profiles.</p></td>
           
         </tr>
       
@@ -1598,7 +1598,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Device info</p></td>
+          <td class="content"><p>The device information.</p></td>
           
         </tr>
       
@@ -1618,7 +1618,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Event records</p></td>
+          <td class="content"><p>The event records.</p></td>
           
         </tr>
       
@@ -1638,7 +1638,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>The time-of-use table.</p></td>
+          <td class="content"><p>The time-of-use (TOU) table.</p></td>
           
         </tr>
       
@@ -2095,7 +2095,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing action result for a single action.</p>
+  <p>Defines the result of a single action.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2121,7 +2121,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The action identifier.</p></td>
+      <td class="content"><p>The unique action identifier.</p></td>
       
     </tr>
     
@@ -2137,7 +2137,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The status of the action.</p></td>
+      <td class="content"><p>The status code of the action.</p></td>
       
     </tr>
     
@@ -2168,7 +2168,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The register identifier. It is a read-only value, set only if the action data are related to a register. The value is applicable only and only for results for regular bulks.</p></td>
+      <td class="content"><p>The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.</p></td>
       
     </tr>
     
@@ -2185,7 +2185,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The variable name(s). It is a read-only value, set only if the action data are related to one or more variables based on device template mapping. The value is applicable only and only for results for regular bulks.</p></td>
+      <td class="content"><p>The variable names. This is a read-only value and is set only if the action data relates to one or more variables based on device template mapping. Applicable only for results of regular bulks.</p></td>
       
     </tr>
     
@@ -2201,7 +2201,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The user error message related to the action which ends up with code ERROR_CODE_ACTION_ERROR, if any. It is used to provide more details about the action result. It can be multiline and should be in English language.</p></td>
+      <td class="content"><p>The user-facing error message provided when the action ends with <code>ERROR_CODE_ACTION_ERROR</code>. The message provides details about the failure, can be multiline, and should be in English.</p></td>
       
     </tr>
     
@@ -2684,7 +2684,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing destription for one application protocol, e.g. DLMS_SN.</p>
+  <p>Defines the destription for one application protocol, for example DLMS_SN.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2729,7 +2729,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of attribute definitions for the application protocol and those will be instantiated for each device &amp; communication unit pair.</p></td>
+      <td class="content"><p>The list of attribute definitions for the selected application protocol. These attributes are instantiated for each device and communication unit pair.</p></td>
       
     </tr>
     
@@ -3380,7 +3380,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing destription for one communication type, e.g. TCP/IP.</p>
+  <p>Defines the destription of a single communication type, for example <code>TCP/IP</code>.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3407,7 +3407,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of the communication.</p></td>
+      <td class="content"><p>The communication type.</p></td>
       
     </tr>
     
@@ -3425,7 +3425,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of data link protocols and their app protocols supported by the driver.</p></td>
+      <td class="content"><p>The list of supprted data link protocols and their application protocols supported by the driver.</p></td>
       
     </tr>
     
@@ -3693,7 +3693,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing connection info</p>
+  <p>Defines the configuration parameters for device connection.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3735,7 +3735,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The communication bus identifier. It behaves as a custom grouping key to link jobs together across multiple communication units. It shall be used in a situation when multiple entry points share single communication bus, e.g. multi-master RS-485 (primary and backup master). If not set then jobs are grouped by group-key defined based on the connection type.</p></td>
+      <td class="content"><p>he communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (foe example, multi-master RS-485 withprimary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.</p></td>
       
     </tr>
     
@@ -3750,7 +3750,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes, see GetDataLinkFields in the acquisition package.</p></td>
+      <td class="content"><p>The connection attributes. See <code>GetDataLinkFields</code> in the acquisition package.</p></td>
       
     </tr>
     
@@ -3781,7 +3781,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>The TCP connection type.</p></td>
+          <td class="content"><p>The TCP/IP connection type.</p></td>
           
         </tr>
       
@@ -3801,7 +3801,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>The phone connection type.</p></td>
+          <td class="content"><p>The phone-based (modem pool) connection type..</p></td>
           
         </tr>
       
@@ -3821,7 +3821,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>The serial over IP connection type.</p></td>
+          <td class="content"><p>The serial-over-IP connection type.</p></td>
           
         </tr>
       
@@ -3951,7 +3951,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing connection info for TCP connection type</p>
+  <p>Defines the connection information for direct TCP/IP connection type.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3977,7 +3977,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
+      <td class="content"><p>The hostname or IP address of the device to connect to.</p></td>
       
     </tr>
     
@@ -4031,7 +4031,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing connection info for phone line (modem) connection type</p>
+  <p>Defines the connection information for a phone line (modem) connection type.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4072,7 +4072,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.</p></td>
+      <td class="content"><p>The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to the device. The final modem is selected by the Taskmaster at the job start.</p></td>
       
     </tr>
     
@@ -4088,7 +4088,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!</p></td>
+      <td class="content"><p>The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver musr use this modem exclusively for this job!</p></td>
       
     </tr>
     
@@ -4112,7 +4112,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the connection information for a direct serial port connection.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4168,7 +4168,7 @@
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout for direct serial port connection.</p></td>
+      <td class="content"><p>The timeout for the direct serial port connection.</p></td>
       
     </tr>
     
@@ -4192,7 +4192,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing connection info for controlled-serial line (Moxa) connection type</p>
+  <p>Defines the connection information for a controlled serial line using the Moxa protocol.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4233,7 +4233,7 @@
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The TCP port number of the device to connect to - data port.</p></td>
+      <td class="content"><p>The TCP data port number of the device to connect to.</p></td>
       
     </tr>
     
@@ -4248,7 +4248,7 @@
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The TCP port number of the device to connect to - command port.</p></td>
+      <td class="content"><p>The TCP command port number of the device to connect to.</p></td>
       
     </tr>
     
@@ -4263,7 +4263,7 @@
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout for serial port connection that implements the Moxa protocol.</p></td>
+      <td class="content"><p>The timeout for the serial port connection using the Moxa protocol.</p></td>
       
     </tr>
     
@@ -4287,7 +4287,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing connection info for controlled-serial line (RFC 2217) connection type</p>
+  <p>Defines the connection information for a controlled serial line using the RFC 2217 protocol.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4343,7 +4343,7 @@
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The timeout for serial port connection that implements the RFC 2217 protocol.</p></td>
+      <td class="content"><p>The timeout for serial port connection using the RFC 2217 protocol.</p></td>
       
     </tr>
     
@@ -5021,7 +5021,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing destription for one data link protocol, e.g. HDLC.</p>
+  <p>Defines the destription of a single data link protocol, for example <code>HDLC</code>.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5084,7 +5084,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of attribute definitions related to given data link type (see link_protocol property). The field definitions are taken from the system, drivers must leave this empty.</p></td>
+      <td class="content"><p>The list of attribute definitions related to the selected data link type (see l<code>ink_protocol</code> property). These field definitions are provided by the system and drivers must leave this field empty.</p></td>
       
     </tr>
     
@@ -6117,7 +6117,7 @@
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing event data</p>
+  <p>Defines a single event record associated with the specified device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6143,7 +6143,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device identifier.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -6173,7 +6173,7 @@
           <span>int64</span>
         </code>
       </td>
-      <td class="content"><p>The identifier of the event.</p></td>
+      <td class="content"><p>The unique event identifier.</p></td>
       
     </tr>
     
@@ -6188,7 +6188,7 @@
           <span>int64</span>
         </code>
       </td>
-      <td class="content"><p>The code of the event as generated by the device.</p></td>
+      <td class="content"><p>The event code generated by the device.</p></td>
       
     </tr>
     
@@ -6203,7 +6203,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The event source.</p></td>
+      <td class="content"><p>The source of the event.</p></td>
       
     </tr>
     
@@ -6218,7 +6218,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The text of the event.</p></td>
+      <td class="content"><p>The descriptive text of the event.</p></td>
       
     </tr>
     
@@ -6242,7 +6242,7 @@
 </h4>
 
 <div class="block content">
-  <p>Message containing a list of device events.</p>
+  <p>Defines a list of device event records.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6271,7 +6271,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of device events.</p></td>
+      <td class="content"><p>The list of device event records.</p></td>
       
     </tr>
     
@@ -6412,7 +6412,7 @@
 </h4>
 
 <div class="block content">
-  <p>Message holds common device information.</p>
+  <p>Defines common device information.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6453,7 +6453,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The serial number of the device set by manufacturer. Typical source: 0-0:42.0.0.255</p></td>
+      <td class="content"><p>The serial number of the device assigned by the manufacturer. Typical source: <code>0-0:42.0.0.255</code>.</p></td>
       
     </tr>
     
@@ -6468,7 +6468,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device serial number of the device.  Typical source: 0-0:96.1.0.255</p></td>
+      <td class="content"><p>The device serial number.  Typical source: <code>0-0:96.1.0.255</code>.</p></td>
       
     </tr>
     
@@ -6483,7 +6483,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware version identifier of the device. Typical source: 0-0:0.2.0.255</p></td>
+      <td class="content"><p>The device firmware version identifier. Typical source: <code>0-0:0.2.0.255</code>.</p></td>
       
     </tr>
     
@@ -6498,7 +6498,7 @@
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The clock delta against acquisition server clock (got by a driver) where positive value means that the device clock is ahead of local clock and vice versa.</p></td>
+      <td class="content"><p>The time difference (delta) between the device clock and the acquisition server clock (driver). Positive values mean the device clock is ahead, negative values mean the device clock is behind.</p></td>
       
     </tr>
     
@@ -6513,7 +6513,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The model of the device.</p></td>
+      <td class="content"><p>The device model.</p></td>
       
     </tr>
     
@@ -6528,7 +6528,7 @@
           <span>uint64</span>
         </code>
       </td>
-      <td class="content"><p>The error register 0. Typical source: 0-0:97.97.1.255 (higher 32-bit) + 0-0:97.97.0.255 (lower 32-bit)</p></td>
+      <td class="content"><p>The error register (register <code>0</code>). Typical source: <code>0-0:97.97.1.255</code> (higher 32-bit) + <code>0-0:97.97.0.255</code> (lower 32-bit).</p></td>
       
     </tr>
     
@@ -6545,7 +6545,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>The list of relay states. The order of the relays is the same as in the device. The value is true if the relay is connected and false if the relay is disconnected.</p></td>
+      <td class="content"><p>The list of relay states. The order of the relays is the same as in the device. The value is <code>true</code> if the relay is connected and <code>false</code> if the relay is disconnected.</p></td>
       
     </tr>
     
@@ -6560,7 +6560,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>The state of the connection. It represents the disconnector state where true means that the customer is connected and false means that the customer is disconnected.</p></td>
+      <td class="content"><p>The connection (disconnector) state. The value is <code>true</code> if the customer is connected and <code>false</code> if the customer is disconnected.</p></td>
       
     </tr>
     
@@ -7041,7 +7041,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
 </h4>
 
 <div class="block content">
-  <p>Sub-message in driver negotiation request</p>
+  <p>Defines the driver templates exchanged during driver negotiation.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7070,7 +7070,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.</p></td>
+      <td class="content"><p>The supported communication options templates. Each template represents one communication method. A driver can support multiple communication templates.</p></td>
       
     </tr>
     
@@ -7088,7 +7088,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The templates of the application protocols supported by the driver.</p></td>
+      <td class="content"><p>The supported application protocol templates.</p></td>
       
     </tr>
     
@@ -7106,7 +7106,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.</p></td>
+      <td class="content"><p>The job action templates all supported action types. Each supported action type must appear onbly once.</p></td>
       
     </tr>
     
@@ -7124,7 +7124,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The templates of the access levels supported by the driver.</p></td>
+      <td class="content"><p>The supported access level templates.</p></td>
       
     </tr>
     
@@ -7140,7 +7140,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The templates of the job actions constraints.</p></td>
+      <td class="content"><p>The supported templates of the job actions constraints.</p></td>
       
     </tr>
     
@@ -7158,9 +7158,9 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of descriptors related to the uknown devices visible to the communication unit.
-This relates only to the drivers that communications with a device like data-concentrator that can provide information for unknown devices.
-The descripts must cover all data attributes which drivers sets in the SetUnknownDevicesRequest message.</p></td>
+      <td class="content"><p>The list of descriptors for uknown devices detected by the communication unit.
+This applies only to drivers that communicate with devices like data concentrators that can provide information for unknown devices.
+The descriptors must cover all data attributes used in the <code>SetUnknownDevicesRequest</code> message.</p></td>
       
     </tr>
     
@@ -7184,7 +7184,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
 </h4>
 
 <div class="block content">
-  <p>Sub-message describing a single event.</p>
+  <p>Defines a single event reported by a device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7240,7 +7240,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
           <span>int64</span>
         </code>
       </td>
-      <td class="content"><p>The code of the event as generated by the device.</p></td>
+      <td class="content"><p>The event code generated by the device.</p></td>
       
     </tr>
     
@@ -7255,7 +7255,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The text of the event.</p></td>
+      <td class="content"><p>The descriptive text of the event.</p></td>
       
     </tr>
     
@@ -7270,7 +7270,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The event source.</p></td>
+      <td class="content"><p>The source of the event.</p></td>
       
     </tr>
     
@@ -7294,7 +7294,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing event records</p>
+  <p>Defines a list of event records.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7323,7 +7323,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of events.</p></td>
+      <td class="content"><p>The list of event records.</p></td>
       
     </tr>
     
@@ -7700,7 +7700,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the irregular (non-perioic) profile values.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7744,7 +7744,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of continuous profile blocks.</p></td>
+      <td class="content"><p>The list of irregular values.</p></td>
       
     </tr>
     
@@ -7768,7 +7768,7 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a single irregular (non-periodic) value with a timestamp.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7834,9 +7834,9 @@ The descripts must cover all data attributes which drivers sets in the SetUnknow
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing job action specification.
-The JobAction is used to define a single action to be performed on a single device.
-For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.</p>
+  <p>Defines the job action specification.
+The <code>JobAction</code> represents a single action to be performed on a single device.
+For example, if the action is <code>ActionGetRegister</code>, it specifies a single register to be read from the devices.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7862,7 +7862,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The action identifier.</p></td>
+      <td class="content"><p>The unique identifier of the action.</p></td>
       
     </tr>
     
@@ -7908,7 +7908,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get register action specification.</p></td>
+          <td class="content"><p>Defines the GetRegister action.</p></td>
           
         </tr>
       
@@ -7928,7 +7928,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get periodical profile action specification.</p></td>
+          <td class="content"><p>Defines the GetPeriodicalProfile action.</p></td>
           
         </tr>
       
@@ -7948,7 +7948,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get irregular profile action specification.</p></td>
+          <td class="content"><p>Defines the GetIrregularProfile action.</p></td>
           
         </tr>
       
@@ -7968,7 +7968,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get events action specification.</p></td>
+          <td class="content"><p>Defines the GetEvents action.</p></td>
           
         </tr>
       
@@ -7988,7 +7988,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get device info action specification.</p></td>
+          <td class="content"><p>Defines the GetDeviceInfo action.</p></td>
           
         </tr>
       
@@ -8008,7 +8008,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The sync clock action specification.</p></td>
+          <td class="content"><p>Defines the SyncClock action.</p></td>
           
         </tr>
       
@@ -8028,7 +8028,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The set relay state action specification.</p></td>
+          <td class="content"><p>Defines the SetRelayState action.</p></td>
           
         </tr>
       
@@ -8048,7 +8048,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The set disconnector state action specification.</p></td>
+          <td class="content"><p>Defines the SetDisconnectorState action.</p></td>
           
         </tr>
       
@@ -8068,7 +8068,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The get tou action specification.</p></td>
+          <td class="content"><p>Defines the GetTou action.</p></td>
           
         </tr>
       
@@ -8088,7 +8088,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The set tou action specification.</p></td>
+          <td class="content"><p>Defines the SetTou action..</p></td>
           
         </tr>
       
@@ -8108,7 +8108,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The set limiter action specification.</p></td>
+          <td class="content"><p>Defines the SetLimiter action.</p></td>
           
         </tr>
       
@@ -8128,7 +8128,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The reset billing period action specification.</p></td>
+          <td class="content"><p>Defines the ResetBillingPeriod action.</p></td>
           
         </tr>
       
@@ -8148,7 +8148,7 @@ For example, if the JobAction is of the ActionGetRegister type then it specifies
     </a>
             </code>
           </td>
-          <td class="content"><p>The firmware update action specification.</p></td>
+          <td class="content"><p>Defines the firmware update action.</p></td>
           
         </tr>
       
@@ -8309,10 +8309,9 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing job action set specification.
-In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
-For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
-then then system gets all registers defined for active device configuration template and reads them all.</p>
+  <p>Defines the job action set specification.
+Unlike a single <code>JobAction</code> that is used only once per bulk. <code>JobActionSet</code> may internally cover multiple <code>JobActions</code>.
+For example, if the action type is <code>GetRegister</code> and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8340,9 +8339,9 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The filter, meaning depends on the action.
-- GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.
-- Others: Not applicable, ignored.</p></td>
+      <td class="content"><p>The variable filter. Meaning depends on the action type:
+ - <code>GetRegister</code>, <code>GetPeriodicalProfile</code> and <code>GetIrregularProfile</code>: List of variable identifiers (for example, <code>"A+"</code>) defined in the system. If not set, all variables are read.
+- Others: Not applicable (ignored).</p></td>
       
     </tr>
     
@@ -8373,7 +8372,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get register action specification.</p></td>
+          <td class="content"><p>Defines the GetRegister action.</p></td>
           
         </tr>
       
@@ -8393,7 +8392,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get periodical profile action specification.</p></td>
+          <td class="content"><p>Defines the GetPeriodicalProfile action.</p></td>
           
         </tr>
       
@@ -8413,7 +8412,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get irregular profile action specification.</p></td>
+          <td class="content"><p>Defines the GetIrregularProfile action.</p></td>
           
         </tr>
       
@@ -8433,7 +8432,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get events action specification.</p></td>
+          <td class="content"><p>Defines the GetEvents action.</p></td>
           
         </tr>
       
@@ -8453,7 +8452,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get device info action specification.</p></td>
+          <td class="content"><p>Defines the GetDeviceInfo action.</p></td>
           
         </tr>
       
@@ -8473,7 +8472,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The sync clock action specification.</p></td>
+          <td class="content"><p>Defines the SyncClock action.</p></td>
           
         </tr>
       
@@ -8493,7 +8492,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The set relay state action specification.</p></td>
+          <td class="content"><p>Defines the SetRelayState action.</p></td>
           
         </tr>
       
@@ -8513,7 +8512,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The set disconnector state action specification.</p></td>
+          <td class="content"><p>Defines the SetDisconnectorState action.</p></td>
           
         </tr>
       
@@ -8533,7 +8532,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The get tou action specification.</p></td>
+          <td class="content"><p>Defines the GetTou action.</p></td>
           
         </tr>
       
@@ -8553,7 +8552,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The set tou action specification.</p></td>
+          <td class="content"><p>Defines the SetTou action..</p></td>
           
         </tr>
       
@@ -8573,7 +8572,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The set limiter action specification.</p></td>
+          <td class="content"><p>Defines the SetLimiter action.</p></td>
           
         </tr>
       
@@ -8593,7 +8592,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The reset billing period action specification.</p></td>
+          <td class="content"><p>Defines the ResetBillingPeriod action.</p></td>
           
         </tr>
       
@@ -8613,7 +8612,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The firmware update action specification.</p></td>
+          <td class="content"><p>Defines the firmware update action.</p></td>
           
         </tr>
       
@@ -8637,7 +8636,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message representing a single job-device info.</p>
+  <p>Defines single job-device job-device information.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8663,7 +8662,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device's job identifier within the parent bulk.</p></td>
+      <td class="content"><p>The device job identifier within the parent bulk.</p></td>
       
     </tr>
     
@@ -8678,7 +8677,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device identifier. If set then all below is loaded from the device registry.</p></td>
+      <td class="content"><p>The device identifier. If set, all subsequent details are loaded from the device registry.</p></td>
       
     </tr>
     
@@ -8693,7 +8692,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The external identifier.</p></td>
+      <td class="content"><p>The external identifier of the device.</p></td>
       
     </tr>
     
@@ -8708,7 +8707,7 @@ then then system gets all registers defined for active device configuration temp
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes to the device, see options in the ApplicationProtocolTemplate for given application protocol (see app_protocol property).</p></td>
+      <td class="content"><p>The connection attributes for the device. Options depend on the <code>ApplicationProtocolTemplate</code> of the given application protocol (see the <code>app_protocol</code> property).</p></td>
       
     </tr>
     
@@ -8726,7 +8725,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>The connection (device) parameters.</p></td>
+      <td class="content"><p>The device connection parameters.</p></td>
       
     </tr>
     
@@ -8742,7 +8741,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>The application protocol.</p></td>
+      <td class="content"><p>The application protocol used by the device.</p></td>
       
     </tr>
     
@@ -8757,7 +8756,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      <td class="content"><p>The timezone associated with the device. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>.</p></td>
       
     </tr>
     
@@ -8781,7 +8780,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the association between bulk jobs and individual devices.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8807,7 +8806,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device's job identifier within the parent bulk.</p></td>
+      <td class="content"><p>The identifier of the device's job within the parent bulk.</p></td>
       
     </tr>
     
@@ -8822,7 +8821,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device identifier.</p></td>
+      <td class="content"><p>The unique identifier of the device.</p></td>
       
     </tr>
     
@@ -8846,7 +8845,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing job parameters</p>
+  <p>Defines the parameters and execution rules that control how a job is processed.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8872,7 +8871,7 @@ then then system gets all registers defined for active device configuration temp
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Maximum duration of the job attempt. This is related to the real time for the driver.</p></td>
+      <td class="content"><p>The maximum duration allowed for a job attempt. This value defines the real- time window for the driver to execute the job.</p></td>
       
     </tr>
     
@@ -8888,7 +8887,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>Priority of the job.</p></td>
+      <td class="content"><p>The execution priority assigned to the job.</p></td>
       
     </tr>
     
@@ -8905,7 +8904,7 @@ then then system gets all registers defined for active device configuration temp
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Maximum number of attempts, 1 is the minimum.</p></td>
+      <td class="content"><p>The maximum number of allowed job attempts. Must be at least <code>1</code>.</p></td>
       
     </tr>
     
@@ -8920,7 +8919,7 @@ then then system gets all registers defined for active device configuration temp
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Delay between two attempts.</p></td>
+      <td class="content"><p>The delay between two attempts.</p></td>
       
     </tr>
     
@@ -8935,7 +8934,7 @@ then then system gets all registers defined for active device configuration temp
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>Time to wait before starting the job.</p></td>
+      <td class="content"><p>The time offset to wait before starting the job.</p></td>
       
     </tr>
     
@@ -8950,7 +8949,7 @@ then then system gets all registers defined for active device configuration temp
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp when the job expires.</p></td>
+      <td class="content"><p>The timestamp that specifies when the job expires and should no longer not be executed.</p></td>
       
     </tr>
     
@@ -8966,7 +8965,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>The read path policy for the job. It defines how the job should read data from the device, either from the meter directly or from the data-concentrator first.</p></td>
+      <td class="content"><p>The policy that determines how data is read from devices.  It can be red directly from devices (meters) or via the data concentrator.</p></td>
       
     </tr>
     
@@ -10251,7 +10250,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of device identifiers.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10280,7 +10279,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of devices in the bulk.</p></td>
+      <td class="content"><p>The list of device identifiers in the bulk.</p></td>
       
     </tr>
     
@@ -10295,7 +10294,7 @@ then then system gets all registers defined for active device configuration temp
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of device identifiers in the list.</p></td>
       
     </tr>
     
@@ -10743,7 +10742,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing modem connection info</p>
+  <p>Defines modem connection information.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10769,7 +10768,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem identifier. It is automatically generated during creation.</p></td>
+      <td class="content"><p>The unique identifier of the modem. It is automatically generated during creation.</p></td>
       
     </tr>
     
@@ -10799,7 +10798,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem initialization command, e.g. AT&amp;FE0X3</p></td>
+      <td class="content"><p>The modem initialization command. For example, <code>AT&amp;FE0X3</code>.</p></td>
       
     </tr>
     
@@ -10814,7 +10813,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem dial command, e.g. ATD.</p></td>
+      <td class="content"><p>The modem dial command. For example, <code>ATD</code>.</p></td>
       
     </tr>
     
@@ -10829,7 +10828,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem hangup command, e.g. ATH.</p></td>
+      <td class="content"><p>The modem hangup command. For example, <code>ATH</code>.</p></td>
       
     </tr>
     
@@ -10844,7 +10843,7 @@ then then system gets all registers defined for active device configuration temp
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem escape command, e.g. +++.</p></td>
+      <td class="content"><p>The modem escape command. For exampl, <code>+++</code>.</p></td>
       
     </tr>
     
@@ -10859,7 +10858,7 @@ then then system gets all registers defined for active device configuration temp
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The modem connection timeout, if applicable given by the modem_connection field.</p></td>
+      <td class="content"><p>The modem connection timeout, if applicable by the <code>modem_connection</code> field.</p></td>
       
     </tr>
     
@@ -10889,7 +10888,7 @@ then then system gets all registers defined for active device configuration temp
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The serial baud rate, if applicable given by the modem_connection field.</p></td>
+      <td class="content"><p>The serial baud rate, if applicable by the <code>modem_connection</code> field.</p></td>
       
     </tr>
     
@@ -10920,7 +10919,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.</p></td>
+          <td class="content"><p>The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration.</p></td>
           
         </tr>
       
@@ -10940,7 +10939,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
             </code>
           </td>
-          <td class="content"><p>The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.</p></td>
+          <td class="content"><p>The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling.</p></td>
           
         </tr>
       
@@ -11206,7 +11205,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing a single profile block</p>
+  <p>Defines a single profile block containing the measured values.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11250,7 +11249,7 @@ then then system gets all registers defined for active device configuration temp
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of profile values. Values are ordered by timestamp.</p></td>
+      <td class="content"><p>The list of profile values, ordered by the timestamp.</p></td>
       
     </tr>
     
@@ -11274,7 +11273,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing profile-typed values</p>
+  <p>Defines the profile-type values.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11571,7 +11570,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing register-typed value</p>
+  <p>Defines a single register-type value.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11652,7 +11651,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p>Sub-message containing register-typed values</p>
+  <p>Defines the register-type values.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12874,7 +12873,7 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td><code>APPPROTO_MODBUS</code></td>
       <td>7</td>
-      <td class="content"><p>The MODBUS procotocol.</p></td>
+      <td class="content"><p>The MODBUS protocol.</p></td>
     </tr>
     
     <tr>
@@ -12976,19 +12975,19 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td><code>COMMUNICATION_TYPE_SERIAL_LINE_DIRECT</code></td>
       <td>2</td>
-      <td class="content"><p>The communication is done via direct serial line.</p></td>
+      <td class="content"><p>The communication is done via a direct serial line.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_TYPE_SERIAL_LINE_MOXA</code></td>
       <td>3</td>
-      <td class="content"><p>The communication is done via controller-serial line (Moxa).</p></td>
+      <td class="content"><p>The communication is done via a controlled  serial line (Moxa).</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_TYPE_LISTENING</code></td>
       <td>99</td>
-      <td class="content"><p>The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).</p></td>
+      <td class="content"><p>The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).</p></td>
     </tr>
     
   </tbody>
@@ -13018,43 +13017,43 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td><code>LINKPROTO_IEC_62056_21</code></td>
       <td>0</td>
-      <td class="content"><p>The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.</p></td>
+      <td class="content"><p>The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and switches to the mode E (HDLC+DLMS) protocol. Supports multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_HDLC</code></td>
       <td>1</td>
-      <td class="content"><p>The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.</p></td>
+      <td class="content"><p>The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_COSEM_WRAPPER</code></td>
       <td>2</td>
-      <td class="content"><p>The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.</p></td>
+      <td class="content"><p>The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_MODBUS</code></td>
       <td>3</td>
-      <td class="content"><p>The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.</p></td>
+      <td class="content"><p>The Modbus protocol. Used with the Modbus application protocol where no other data link , such as HDLC is used.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_MBUS</code></td>
       <td>4</td>
-      <td class="content"><p>The M-Bus protocol. It shall be used for M-Bus application protocol.</p></td>
+      <td class="content"><p>The M-Bus protocol. Used with the M-Bus application protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_VIKTOR</code></td>
       <td>5</td>
-      <td class="content"><p>The Viktor protocol. It is a proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.</p></td>
+      <td class="content"><p>The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_NOT_APPLICABLE</code></td>
       <td>99</td>
-      <td class="content"><p>The data link protocol is not applicable. It's useful for listening communication type.</p></td>
+      <td class="content"><p>No data link protocol is applicable. Used with listening communication types.</p></td>
     </tr>
     
   </tbody>
@@ -13122,7 +13121,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p><p>Job priorities</p></p>
+  <p><p>Defines the available job priority levels.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -13138,55 +13137,55 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td><code>JOB_PRIORITY_0</code></td>
       <td>0</td>
-      <td class="content"><p>The lowest priority</p></td>
+      <td class="content"><p>Lowest priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_1</code></td>
       <td>1</td>
-      <td class="content"><p>The priority 1</p></td>
+      <td class="content"><p>Priority 1.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_2</code></td>
       <td>2</td>
-      <td class="content"><p>The priority 2</p></td>
+      <td class="content"><p>Priority 2.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_3</code></td>
       <td>3</td>
-      <td class="content"><p>The priority 3</p></td>
+      <td class="content"><p>Priority 3.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_4</code></td>
       <td>4</td>
-      <td class="content"><p>The priority 4</p></td>
+      <td class="content"><p>Priority 4.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_5</code></td>
       <td>5</td>
-      <td class="content"><p>The priority 5</p></td>
+      <td class="content"><p>Priority 5.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_6</code></td>
       <td>6</td>
-      <td class="content"><p>The priority 6</p></td>
+      <td class="content"><p>Priority 6.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_7</code></td>
       <td>7</td>
-      <td class="content"><p>The priority 7</p></td>
+      <td class="content"><p>Priority 7.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_8</code></td>
       <td>8</td>
-      <td class="content"><p>The highest priority</p></td>
+      <td class="content"><p>Highest priority.</p></td>
     </tr>
     
   </tbody>
@@ -13320,7 +13319,7 @@ then then system gets all registers defined for active device configuration temp
 </h4>
 
 <div class="block content">
-  <p></p>
+  <p><p>Defines the read path policies for retrieving data from devices.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -13336,19 +13335,19 @@ then then system gets all registers defined for active device configuration temp
     <tr>
       <td><code>READ_PATH_POLICY_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Keep current behavior (likely data-concentrator first).</p></td>
+      <td class="content"><p>Keeps the current behavior (typically data-concentrator first).</p></td>
     </tr>
     
     <tr>
       <td><code>METER_FIRST</code></td>
       <td>1</td>
-      <td class="content"><p>Try meter directly; fall back to data-concentrator if needed and supported.</p></td>
+      <td class="content"><p>Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.</p></td>
     </tr>
     
     <tr>
       <td><code>DC_FIRST</code></td>
       <td>2</td>
-      <td class="content"><p>Try data-concentrator first; fall back to meter if needed and supported.</p></td>
+      <td class="content"><p>Attempts to read from the data concentrator first and falls back to the meter if needed and supported.</p></td>
     </tr>
     
   </tbody>

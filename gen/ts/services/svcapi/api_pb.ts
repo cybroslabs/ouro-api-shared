@@ -49,6 +49,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
+   * Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListVariables
    */
@@ -59,7 +60,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Variables
-   * Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+   * Retrieves the details of the specified variable.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetVariable
    */
@@ -301,7 +302,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+   * Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
    * The list contains both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListBulks
@@ -313,7 +314,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Bulks
-   * Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+   * Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
    * The listing can be used for jobs from both proxy and regular bulks.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListBulkJobs
@@ -964,7 +965,7 @@ export const ApiService: GenService<{
   },
   /**
    * @group: Device Data
-   * Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+   * Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceDataInfo
    */
