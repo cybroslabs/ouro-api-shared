@@ -90,7 +90,7 @@ service DeviceRegistryService {
     // @tag: communicationunit
     // Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
     rpc GetCommunicationUnitNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
-    // @group: Drivers
+    // @group: Devices
     // @tag: communicationunit
     // Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListCommunicationUnitLogRecords(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord);

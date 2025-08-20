@@ -644,7 +644,7 @@ class DeviceRegistryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListCommunicationUnitLogRecords(self, request, context):
-        """@group: Drivers
+        """@group: Devices
         @tag: communicationunit
         Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """

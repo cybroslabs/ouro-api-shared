@@ -157,19 +157,19 @@ type ApiServiceClient interface {
 	// @group: Variables
 	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Creates a new device configuration register. Returns the identifier of the newly created register.
 	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationRegister, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Retrieves the details of the specified device configuration register.
 	GetDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationRegister, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationRegister(ctx context.Context, in *acquisition.DeviceConfigurationRegister, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
@@ -277,7 +277,7 @@ type ApiServiceClient interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
-	// @group: Drivers
+	// @group: Devices
 	// @tag: communicationunit
 	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLogRecord, error)
@@ -1574,19 +1574,19 @@ type ApiServiceServer interface {
 	// @group: Variables
 	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Creates a new device configuration register. Returns the identifier of the newly created register.
 	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Retrieves the details of the specified device configuration register.
 	GetDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*acquisition.DeviceConfigurationRegister, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceConfigurationRegister(context.Context, *acquisition.DeviceConfigurationRegister) (*emptypb.Empty, error)
-	// @group: Device Configuration Register
+	// @group: Device Configuration Registers
 	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Device Configuration Templates
@@ -1694,7 +1694,7 @@ type ApiServiceServer interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
-	// @group: Drivers
+	// @group: Devices
 	// @tag: communicationunit
 	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error)

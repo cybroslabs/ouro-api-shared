@@ -597,7 +597,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CreateDeviceConfigurationRegister(self, request, context):
-        """@group: Device Configuration Register
+        """@group: Device Configuration Registers
         Creates a new device configuration register. Returns the identifier of the newly created register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -605,7 +605,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListDeviceConfigurationRegisters(self, request, context):
-        """@group: Device Configuration Register
+        """@group: Device Configuration Registers
         Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -613,7 +613,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetDeviceConfigurationRegister(self, request, context):
-        """@group: Device Configuration Register
+        """@group: Device Configuration Registers
         Retrieves the details of the specified device configuration register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -621,7 +621,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def UpdateDeviceConfigurationRegister(self, request, context):
-        """@group: Device Configuration Register
+        """@group: Device Configuration Registers
         Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -629,7 +629,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteDeviceConfigurationRegister(self, request, context):
-        """@group: Device Configuration Register
+        """@group: Device Configuration Registers
         Deletes the specified device configuration register.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -897,7 +897,7 @@ class ApiServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListCommunicationUnitLogRecords(self, request, context):
-        """@group: Drivers
+        """@group: Devices
         @tag: communicationunit
         Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """

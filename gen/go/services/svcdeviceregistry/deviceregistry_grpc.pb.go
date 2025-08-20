@@ -181,7 +181,7 @@ type DeviceRegistryServiceClient interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
-	// @group: Drivers
+	// @group: Devices
 	// @tag: communicationunit
 	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfCommunicationUnitLogRecord, error)
@@ -1240,7 +1240,7 @@ type DeviceRegistryServiceServer interface {
 	// @tag: communicationunit
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified communication unit.
 	GetCommunicationUnitNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
-	// @group: Drivers
+	// @group: Devices
 	// @tag: communicationunit
 	// Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error)

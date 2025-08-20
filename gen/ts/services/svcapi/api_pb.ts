@@ -114,7 +114,7 @@ export const ApiService: GenService<{
     output: typeof EmptySchema;
   },
   /**
-   * @group: Device Configuration Register
+   * @group: Device Configuration Registers
    * Creates a new device configuration register. Returns the identifier of the newly created register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.CreateDeviceConfigurationRegister
@@ -125,7 +125,7 @@ export const ApiService: GenService<{
     output: typeof StringValueSchema;
   },
   /**
-   * @group: Device Configuration Register
+   * @group: Device Configuration Registers
    * Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.ListDeviceConfigurationRegisters
@@ -136,7 +136,7 @@ export const ApiService: GenService<{
     output: typeof ListOfDeviceConfigurationRegisterSchema;
   },
   /**
-   * @group: Device Configuration Register
+   * @group: Device Configuration Registers
    * Retrieves the details of the specified device configuration register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.GetDeviceConfigurationRegister
@@ -147,7 +147,7 @@ export const ApiService: GenService<{
     output: typeof DeviceConfigurationRegisterSchema;
   },
   /**
-   * @group: Device Configuration Register
+   * @group: Device Configuration Registers
    * Updates the details of an existing device configuration register. Fields that are omitted from the request will be left unchanged.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceConfigurationRegister
@@ -158,7 +158,7 @@ export const ApiService: GenService<{
     output: typeof EmptySchema;
   },
   /**
-   * @group: Device Configuration Register
+   * @group: Device Configuration Registers
    * Deletes the specified device configuration register.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiService.DeleteDeviceConfigurationRegister
@@ -522,7 +522,7 @@ export const ApiService: GenService<{
     output: typeof NetworkMapSchema;
   },
   /**
-   * @group: Drivers
+   * @group: Devices
    * @tag: communicationunit
    * Retrieves a paginated list of communication unit log records based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
    *
