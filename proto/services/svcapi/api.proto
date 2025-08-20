@@ -22,9 +22,10 @@ service ApiService {
     // Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
     rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue);
     // @group: Variables
+    // Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
     // @group: Variables
-    // Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    // Retrieves the details of the specified variable.
     rpc GetVariable(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Variable);
     // @group: Variables
     // Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
@@ -94,11 +95,11 @@ service ApiService {
     rpc ListFieldDescriptorOptions(io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest) returns (io.clbs.openhes.models.common.FieldDescriptorOptions);
 
     // @group: Bulks
-    // Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+    // Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     // The list contains both proxy and regular bulks.
     rpc ListBulks(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfBulk);
     // @group: Bulks
-    // Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+    // Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     // The listing can be used for jobs from both proxy and regular bulks.
     rpc ListBulkJobs(io.clbs.openhes.models.acquisition.ListBulkJobsRequest) returns (io.clbs.openhes.models.acquisition.ListOfBulkJob);
     // @group: Bulks
@@ -319,7 +320,7 @@ service ApiService {
     // Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
     rpc GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (io.clbs.openhes.models.acquisition.DeviceData);
     // @group: Device Data
-    // Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+    // Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
     rpc ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo);
 
     // @group: Device Data

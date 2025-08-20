@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.IrregularValue
 
+Defines a single irregular (non-periodic) value with a timestamp.
+
 ## Fields
 
 | Field | Information |

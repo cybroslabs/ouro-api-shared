@@ -26,27 +26,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Job priorities
+// Defines the available job priority levels.
 type JobPriority int32
 
 const (
-	// The lowest priority
+	// Lowest priority.
 	JobPriority_JOB_PRIORITY_0 JobPriority = 0
-	// The priority 1
+	// Priority 1.
 	JobPriority_JOB_PRIORITY_1 JobPriority = 1
-	// The priority 2
+	// Priority 2.
 	JobPriority_JOB_PRIORITY_2 JobPriority = 2
-	// The priority 3
+	// Priority 3.
 	JobPriority_JOB_PRIORITY_3 JobPriority = 3
-	// The priority 4
+	// Priority 4.
 	JobPriority_JOB_PRIORITY_4 JobPriority = 4
-	// The priority 5
+	// Priority 5.
 	JobPriority_JOB_PRIORITY_5 JobPriority = 5
-	// The priority 6
+	// Priority 6.
 	JobPriority_JOB_PRIORITY_6 JobPriority = 6
-	// The priority 7
+	// Priority 7.
 	JobPriority_JOB_PRIORITY_7 JobPriority = 7
-	// The highest priority
+	// Highest priority.
 	JobPriority_JOB_PRIORITY_8 JobPriority = 8
 )
 
@@ -98,12 +98,13 @@ func (x JobPriority) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the read path policies for retrieving data from devices.
 type ReadPathPolicy int32
 
 const (
-	ReadPathPolicy_READ_PATH_POLICY_UNSPECIFIED ReadPathPolicy = 0 // Keep current behavior (likely data-concentrator first).
-	ReadPathPolicy_METER_FIRST                  ReadPathPolicy = 1 // Try meter directly; fall back to data-concentrator if needed and supported.
-	ReadPathPolicy_DC_FIRST                     ReadPathPolicy = 2 // Try data-concentrator first; fall back to meter if needed and supported.
+	ReadPathPolicy_READ_PATH_POLICY_UNSPECIFIED ReadPathPolicy = 0 // Keeps the current behavior (typically data-concentrator first).
+	ReadPathPolicy_METER_FIRST                  ReadPathPolicy = 1 // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
+	ReadPathPolicy_DC_FIRST                     ReadPathPolicy = 2 // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
 )
 
 // Enum value maps for ReadPathPolicy.
@@ -146,15 +147,15 @@ func (x ReadPathPolicy) Number() protoreflect.EnumNumber {
 type SerialConfigParity int32
 
 const (
-	// No parity
+	// No parity.
 	SerialConfigParity_PARITY_NONE SerialConfigParity = 0
-	// Even parity
+	// Even parity.
 	SerialConfigParity_PARITY_EVEN SerialConfigParity = 1
-	// Odd parity
+	// Odd parity.
 	SerialConfigParity_PARITY_ODD SerialConfigParity = 2
-	// Mark parity
+	// Mark parity.
 	SerialConfigParity_PARITY_MARK SerialConfigParity = 3
-	// Space parity
+	// Space parity.
 	SerialConfigParity_PARITY_SPACE SerialConfigParity = 4
 )
 
@@ -402,11 +403,11 @@ const (
 	CommunicationType_COMMUNICATION_TYPE_TCPIP CommunicationType = 0
 	// The communication is done via phone line (modem).
 	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL CommunicationType = 1
-	// The communication is done via direct serial line.
+	// The communication is done via a direct serial line.
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 2
-	// The communication is done via controller-serial line (Moxa).
+	// The communication is done via a controlled  serial line (Moxa).
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA CommunicationType = 3
-	// The communication is passive, the driver is a service that listens on a port (DLMS devices in push mode) or a service that implements a subscriber to a message queue (e.g. MQTT).
+	// The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 	CommunicationType_COMMUNICATION_TYPE_LISTENING CommunicationType = 99
 )
 
@@ -454,19 +455,19 @@ func (x CommunicationType) Number() protoreflect.EnumNumber {
 type DataLinkProtocol int32
 
 const (
-	// The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line.
+	// The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and switches to the mode E (HDLC+DLMS) protocol. Supports multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_IEC_62056_21 DataLinkProtocol = 0
-	// The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line.
+	// The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_HDLC DataLinkProtocol = 1
-	// The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line.
+	// The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER DataLinkProtocol = 2
-	// The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used.
+	// The Modbus protocol. Used with the Modbus application protocol where no other data link , such as HDLC is used.
 	DataLinkProtocol_LINKPROTO_MODBUS DataLinkProtocol = 3
-	// The M-Bus protocol. It shall be used for M-Bus application protocol.
+	// The M-Bus protocol. Used with the M-Bus application protocol.
 	DataLinkProtocol_LINKPROTO_MBUS DataLinkProtocol = 4
-	// The Viktor protocol. It is a proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
+	// The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
 	DataLinkProtocol_LINKPROTO_VIKTOR DataLinkProtocol = 5
-	// The data link protocol is not applicable. It's useful for listening communication type.
+	// No data link protocol is applicable. Used with listening communication types.
 	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99
 )
 
@@ -532,7 +533,7 @@ const (
 	ApplicationProtocol_APPPROTO_ANSI_C12 ApplicationProtocol = 5
 	// The MQTT protocol.
 	ApplicationProtocol_APPPROTO_MQTT ApplicationProtocol = 6
-	// The MODBUS procotocol.
+	// The MODBUS protocol.
 	ApplicationProtocol_APPPROTO_MODBUS ApplicationProtocol = 7
 	// The MBUS protocol.
 	ApplicationProtocol_APPPROTO_MBUS ApplicationProtocol = 8
@@ -1050,7 +1051,7 @@ func (x LogRecordLevel) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Sub-message containing job parameters
+// Defines the parameters and execution rules that control how a job is processed.
 type JobSettings struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_MaxDuration    *durationpb.Duration   `protobuf:"bytes,1,opt,name=max_duration,json=maxDuration"`
@@ -1274,9 +1275,9 @@ func (b0 JobSettings_builder) Build() *JobSettings {
 	return m0
 }
 
-// Sub-message containing job action specification.
-// The JobAction is used to define a single action to be performed on a single device.
-// For example, if the JobAction is of the ActionGetRegister type then it specifies single register to be read from the devices.
+// Defines the job action specification.
+// The `JobAction` represents a single action to be performed on a single device.
+// For example, if the action is `ActionGetRegister`, it specifies a single register to be read from the devices.
 type JobAction struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_ActionId    *string                       `protobuf:"bytes,1,opt,name=action_id,json=actionId"`
@@ -1904,55 +1905,55 @@ type isJobAction_Action interface {
 }
 
 type jobAction_GetRegister struct {
-	GetRegister *ActionGetRegister `protobuf:"bytes,3,opt,name=get_register,json=getRegister,oneof"` // The get register action specification.
+	GetRegister *ActionGetRegister `protobuf:"bytes,3,opt,name=get_register,json=getRegister,oneof"` // Defines the GetRegister action.
 }
 
 type jobAction_GetPeriodicalProfile struct {
-	GetPeriodicalProfile *ActionGetPeriodicalProfile `protobuf:"bytes,4,opt,name=get_periodical_profile,json=getPeriodicalProfile,oneof"` // The get periodical profile action specification.
+	GetPeriodicalProfile *ActionGetPeriodicalProfile `protobuf:"bytes,4,opt,name=get_periodical_profile,json=getPeriodicalProfile,oneof"` // Defines the GetPeriodicalProfile action.
 }
 
 type jobAction_GetIrregularProfile struct {
-	GetIrregularProfile *ActionGetIrregularProfile `protobuf:"bytes,5,opt,name=get_irregular_profile,json=getIrregularProfile,oneof"` // The get irregular profile action specification.
+	GetIrregularProfile *ActionGetIrregularProfile `protobuf:"bytes,5,opt,name=get_irregular_profile,json=getIrregularProfile,oneof"` // Defines the GetIrregularProfile action.
 }
 
 type jobAction_GetEvents struct {
-	GetEvents *ActionGetEvents `protobuf:"bytes,6,opt,name=get_events,json=getEvents,oneof"` // The get events action specification.
+	GetEvents *ActionGetEvents `protobuf:"bytes,6,opt,name=get_events,json=getEvents,oneof"` // Defines the GetEvents action.
 }
 
 type jobAction_GetDeviceInfo struct {
-	GetDeviceInfo *ActionGetDeviceInfo `protobuf:"bytes,7,opt,name=get_device_info,json=getDeviceInfo,oneof"` // The get device info action specification.
+	GetDeviceInfo *ActionGetDeviceInfo `protobuf:"bytes,7,opt,name=get_device_info,json=getDeviceInfo,oneof"` // Defines the GetDeviceInfo action.
 }
 
 type jobAction_SyncClock struct {
-	SyncClock *ActionSyncClock `protobuf:"bytes,8,opt,name=sync_clock,json=syncClock,oneof"` // The sync clock action specification.
+	SyncClock *ActionSyncClock `protobuf:"bytes,8,opt,name=sync_clock,json=syncClock,oneof"` // Defines the SyncClock action.
 }
 
 type jobAction_SetRelayState struct {
-	SetRelayState *ActionSetRelayState `protobuf:"bytes,10,opt,name=set_relay_state,json=setRelayState,oneof"` // The set relay state action specification.
+	SetRelayState *ActionSetRelayState `protobuf:"bytes,10,opt,name=set_relay_state,json=setRelayState,oneof"` // Defines the SetRelayState action.
 }
 
 type jobAction_SetDisconnectorState struct {
-	SetDisconnectorState *ActionSetDisconnectorState `protobuf:"bytes,12,opt,name=set_disconnector_state,json=setDisconnectorState,oneof"` // The set disconnector state action specification.
+	SetDisconnectorState *ActionSetDisconnectorState `protobuf:"bytes,12,opt,name=set_disconnector_state,json=setDisconnectorState,oneof"` // Defines the SetDisconnectorState action.
 }
 
 type jobAction_GetTou struct {
-	GetTou *ActionGetTou `protobuf:"bytes,13,opt,name=get_tou,json=getTou,oneof"` // The get tou action specification.
+	GetTou *ActionGetTou `protobuf:"bytes,13,opt,name=get_tou,json=getTou,oneof"` // Defines the GetTou action.
 }
 
 type jobAction_SetTou struct {
-	SetTou *ActionSetTou `protobuf:"bytes,14,opt,name=set_tou,json=setTou,oneof"` // The set tou action specification.
+	SetTou *ActionSetTou `protobuf:"bytes,14,opt,name=set_tou,json=setTou,oneof"` // Defines the SetTou action..
 }
 
 type jobAction_SetLimiter struct {
-	SetLimiter *ActionSetLimiter `protobuf:"bytes,16,opt,name=set_limiter,json=setLimiter,oneof"` // The set limiter action specification.
+	SetLimiter *ActionSetLimiter `protobuf:"bytes,16,opt,name=set_limiter,json=setLimiter,oneof"` // Defines the SetLimiter action.
 }
 
 type jobAction_ResetBillingPeriod struct {
-	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // The reset billing period action specification.
+	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // Defines the ResetBillingPeriod action.
 }
 
 type jobAction_FwUpdate struct {
-	FwUpdate *ActionFwUpdate `protobuf:"bytes,18,opt,name=fw_update,json=fwUpdate,oneof"` // The firmware update action specification.
+	FwUpdate *ActionFwUpdate `protobuf:"bytes,18,opt,name=fw_update,json=fwUpdate,oneof"` // Defines the firmware update action.
 }
 
 func (*jobAction_GetRegister) isJobAction_Action() {}
@@ -1981,10 +1982,9 @@ func (*jobAction_ResetBillingPeriod) isJobAction_Action() {}
 
 func (*jobAction_FwUpdate) isJobAction_Action() {}
 
-// Sub-message containing job action set specification.
-// In comparison the JobAction shall be used only once per bulk but internally it may cover multiple JobActions.
-// For example, if the JobActionSet is of the ActionGetRegister type and no variables filter is set
-// then then system gets all registers defined for active device configuration template and reads them all.
+// Defines the job action set specification.
+// Unlike a single `JobAction` that is used only once per bulk. `JobActionSet` may internally cover multiple `JobActions`.
+// For example, if the action type is `GetRegister` and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.
 type JobActionSet struct {
 	state                protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Variables []string               `protobuf:"bytes,2,rep,name=variables"`
@@ -2497,9 +2497,10 @@ func (x *JobActionSet) WhichAction() case_JobActionSet_Action {
 type JobActionSet_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The filter, meaning depends on the action.
-	// - GetRegister, GetPeriodicalProfile and GetIrregularProfile: It's the list of variable identifiers, e.g. "A+" defined in the system. If not set then all variables are read.
-	// - Others: Not applicable, ignored.
+	// The variable filter. Meaning depends on the action type:
+	//   - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable identifiers (for example, `"A+"`) defined in the system. If not set, all variables are read.
+	//
+	// - Others: Not applicable (ignored).
 	Variables []string
 	// Fields of oneof xxx_hidden_Action:
 	GetRegister          *ActionGetRegister
@@ -2580,55 +2581,55 @@ type isJobActionSet_Action interface {
 }
 
 type jobActionSet_GetRegister struct {
-	GetRegister *ActionGetRegister `protobuf:"bytes,3,opt,name=get_register,json=getRegister,oneof"` // The get register action specification.
+	GetRegister *ActionGetRegister `protobuf:"bytes,3,opt,name=get_register,json=getRegister,oneof"` // Defines the GetRegister action.
 }
 
 type jobActionSet_GetPeriodicalProfile struct {
-	GetPeriodicalProfile *ActionGetPeriodicalProfile `protobuf:"bytes,4,opt,name=get_periodical_profile,json=getPeriodicalProfile,oneof"` // The get periodical profile action specification.
+	GetPeriodicalProfile *ActionGetPeriodicalProfile `protobuf:"bytes,4,opt,name=get_periodical_profile,json=getPeriodicalProfile,oneof"` // Defines the GetPeriodicalProfile action.
 }
 
 type jobActionSet_GetIrregularProfile struct {
-	GetIrregularProfile *ActionGetIrregularProfile `protobuf:"bytes,5,opt,name=get_irregular_profile,json=getIrregularProfile,oneof"` // The get irregular profile action specification.
+	GetIrregularProfile *ActionGetIrregularProfile `protobuf:"bytes,5,opt,name=get_irregular_profile,json=getIrregularProfile,oneof"` // Defines the GetIrregularProfile action.
 }
 
 type jobActionSet_GetEvents struct {
-	GetEvents *ActionGetEvents `protobuf:"bytes,6,opt,name=get_events,json=getEvents,oneof"` // The get events action specification.
+	GetEvents *ActionGetEvents `protobuf:"bytes,6,opt,name=get_events,json=getEvents,oneof"` // Defines the GetEvents action.
 }
 
 type jobActionSet_GetDeviceInfo struct {
-	GetDeviceInfo *ActionGetDeviceInfo `protobuf:"bytes,7,opt,name=get_device_info,json=getDeviceInfo,oneof"` // The get device info action specification.
+	GetDeviceInfo *ActionGetDeviceInfo `protobuf:"bytes,7,opt,name=get_device_info,json=getDeviceInfo,oneof"` // Defines the GetDeviceInfo action.
 }
 
 type jobActionSet_SyncClock struct {
-	SyncClock *ActionSyncClock `protobuf:"bytes,8,opt,name=sync_clock,json=syncClock,oneof"` // The sync clock action specification.
+	SyncClock *ActionSyncClock `protobuf:"bytes,8,opt,name=sync_clock,json=syncClock,oneof"` // Defines the SyncClock action.
 }
 
 type jobActionSet_SetRelayState struct {
-	SetRelayState *ActionSetRelayState `protobuf:"bytes,10,opt,name=set_relay_state,json=setRelayState,oneof"` // The set relay state action specification.
+	SetRelayState *ActionSetRelayState `protobuf:"bytes,10,opt,name=set_relay_state,json=setRelayState,oneof"` // Defines the SetRelayState action.
 }
 
 type jobActionSet_SetDisconnectorState struct {
-	SetDisconnectorState *ActionSetDisconnectorState `protobuf:"bytes,12,opt,name=set_disconnector_state,json=setDisconnectorState,oneof"` // The set disconnector state action specification.
+	SetDisconnectorState *ActionSetDisconnectorState `protobuf:"bytes,12,opt,name=set_disconnector_state,json=setDisconnectorState,oneof"` // Defines the SetDisconnectorState action.
 }
 
 type jobActionSet_GetTou struct {
-	GetTou *ActionGetTou `protobuf:"bytes,13,opt,name=get_tou,json=getTou,oneof"` // The get tou action specification.
+	GetTou *ActionGetTou `protobuf:"bytes,13,opt,name=get_tou,json=getTou,oneof"` // Defines the GetTou action.
 }
 
 type jobActionSet_SetTou struct {
-	SetTou *ActionSetTou `protobuf:"bytes,14,opt,name=set_tou,json=setTou,oneof"` // The set tou action specification.
+	SetTou *ActionSetTou `protobuf:"bytes,14,opt,name=set_tou,json=setTou,oneof"` // Defines the SetTou action..
 }
 
 type jobActionSet_SetLimiter struct {
-	SetLimiter *ActionSetLimiter `protobuf:"bytes,16,opt,name=set_limiter,json=setLimiter,oneof"` // The set limiter action specification.
+	SetLimiter *ActionSetLimiter `protobuf:"bytes,16,opt,name=set_limiter,json=setLimiter,oneof"` // Defines the SetLimiter action.
 }
 
 type jobActionSet_ResetBillingPeriod struct {
-	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // The reset billing period action specification.
+	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // Defines the ResetBillingPeriod action.
 }
 
 type jobActionSet_FwUpdate struct {
-	FwUpdate *ActionFwUpdate `protobuf:"bytes,18,opt,name=fw_update,json=fwUpdate,oneof"` // The firmware update action specification.
+	FwUpdate *ActionFwUpdate `protobuf:"bytes,18,opt,name=fw_update,json=fwUpdate,oneof"` // Defines the firmware update action.
 }
 
 func (*jobActionSet_GetRegister) isJobActionSet_Action() {}
@@ -2748,6 +2749,7 @@ func (b0 ListOfJobDevice_builder) Build() *ListOfJobDevice {
 	return m0
 }
 
+// Defines a list of device identifiers.
 type ListOfJobDeviceId struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_List        *[]*JobDeviceId        `protobuf:"bytes,1,rep,name=list"`
@@ -2839,6 +2841,7 @@ func (b0 ListOfJobDeviceId_builder) Build() *ListOfJobDeviceId {
 	return m0
 }
 
+// Defines the association between bulk jobs and individual devices.
 type JobDeviceId struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_JobId       *string                `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -2950,7 +2953,7 @@ func (b0 JobDeviceId_builder) Build() *JobDeviceId {
 	return m0
 }
 
-// Sub-message representing a single job-device info.
+// Defines single job-device job-device information.
 type JobDevice struct {
 	state                       protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_JobId            *string                       `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -3190,7 +3193,7 @@ func (b0 JobDevice_builder) Build() *JobDevice {
 	return m0
 }
 
-// Sub-message containing modem connection info
+// Defines modem connection information.
 type ModemInfo struct {
 	state                      protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_ModemId         *string                     `protobuf:"bytes,1,opt,name=modem_id,json=modemId"`
@@ -3633,18 +3636,18 @@ type isModemInfo_ModemConnection interface {
 }
 
 type modemInfo_Tcpip struct {
-	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,9,opt,name=tcpip,oneof"` // The TCP connection type. The modem has either TCP or there is a IP-to-serial converter which handles the serial configuration so no additional serial configuration is needed.
+	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,9,opt,name=tcpip,oneof"` // The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration.
 }
 
 type modemInfo_SerialOverIp struct {
-	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,10,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial over IP connection type. The modem is connected behind an IP-to-serial converter and needs connection specific handling.
+	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,10,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling.
 }
 
 func (*modemInfo_Tcpip) isModemInfo_ModemConnection() {}
 
 func (*modemInfo_SerialOverIp) isModemInfo_ModemConnection() {}
 
-// Sub-message containing serial port configuration
+// Defines the parameters for serial port configuration.
 type SerialConfig struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_BaudRate    SerialConfigBaudRate   `protobuf:"varint,1,opt,name=baud_rate,json=baudRate,enum=io.clbs.openhes.models.acquisition.SerialConfigBaudRate"`
@@ -3818,7 +3821,7 @@ func (b0 SerialConfig_builder) Build() *SerialConfig {
 	return m0
 }
 
-// Sub-message containing connection info
+// Defines the configuration parameters for device connection.
 type ConnectionInfo struct {
 	state                         protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Connection         isConnectionInfo_Connection   `protobuf_oneof:"connection"`
@@ -4048,7 +4051,7 @@ func (x *ConnectionInfo) WhichConnection() case_ConnectionInfo_Connection {
 type ConnectionInfo_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The entrypoint connection description. It can be either direct TCP, a modem from a pool or a direct serial line over IP (using IP-to-serial converter).
+	// The entrypoint connection description. The connection can be either direct TCP, a modem from a pool, or a direct serial line over IP (via an using IP-to-serial converter).
 
 	// Fields of oneof xxx_hidden_Connection:
 	Tcpip        *ConnectionTypeDirectTcpIp
@@ -4100,15 +4103,15 @@ type isConnectionInfo_Connection interface {
 }
 
 type connectionInfo_Tcpip struct {
-	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,1,opt,name=tcpip,oneof"` // The TCP connection type.
+	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,1,opt,name=tcpip,oneof"` // The TCP/IP connection type.
 }
 
 type connectionInfo_ModemPool struct {
-	ModemPool *ConnectionTypeModemPool `protobuf:"bytes,2,opt,name=modem_pool,json=modemPool,oneof"` // The phone connection type.
+	ModemPool *ConnectionTypeModemPool `protobuf:"bytes,2,opt,name=modem_pool,json=modemPool,oneof"` // The phone-based (modem pool) connection type..
 }
 
 type connectionInfo_SerialOverIp struct {
-	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,3,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial over IP connection type.
+	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,3,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial-over-IP connection type.
 }
 
 func (*connectionInfo_Tcpip) isConnectionInfo_Connection() {}
@@ -4117,7 +4120,7 @@ func (*connectionInfo_ModemPool) isConnectionInfo_Connection() {}
 
 func (*connectionInfo_SerialOverIp) isConnectionInfo_Connection() {}
 
-// Sub-message containing connection info for TCP connection type
+// Defines the connection information for direct TCP/IP connection type.
 type ConnectionTypeDirectTcpIp struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
@@ -4251,7 +4254,7 @@ func (b0 ConnectionTypeDirectTcpIp_builder) Build() *ConnectionTypeDirectTcpIp {
 	return m0
 }
 
-// Sub-message containing connection info for phone line (modem) connection type
+// Defines the connection information for a phone line (modem) connection type.
 type ConnectionTypeModemPool struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Number      *string                `protobuf:"bytes,1,opt,name=number"`
@@ -4369,9 +4372,9 @@ type ConnectionTypeModemPool_builder struct {
 
 	// The phone number of the device to connect to.
 	Number *string
-	// The modem pool identifier. The pool is a group of modems that can be used to connect to the device. Final modem is selected by the Taskmaster at the time of the job start.
+	// The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to the device. The final modem is selected by the Taskmaster at the job start.
 	PoolId *string
-	// The modem device assigned to the job. This is filled only and only when the connection type is modem. The value is assigned by the Taskmaster when to job is being started. Driver is required to use this modem device to connect to the meter only and only for the time of this job!
+	// The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver musr use this modem exclusively for this job!
 	Modem *ModemInfo
 }
 
@@ -4391,6 +4394,7 @@ func (b0 ConnectionTypeModemPool_builder) Build() *ConnectionTypeModemPool {
 	return m0
 }
 
+// Defines the connection information for a direct serial port connection.
 type ConnectionTypeSerialDirect struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
@@ -4524,7 +4528,7 @@ func (b0 ConnectionTypeSerialDirect_builder) Build() *ConnectionTypeSerialDirect
 	return m0
 }
 
-// Sub-message containing connection info for controlled-serial line (Moxa) connection type
+// Defines the connection information for a controlled serial line using the Moxa protocol.
 type ConnectionTypeSerialMoxa struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
@@ -4688,7 +4692,7 @@ func (b0 ConnectionTypeSerialMoxa_builder) Build() *ConnectionTypeSerialMoxa {
 	return m0
 }
 
-// Sub-message containing connection info for controlled-serial line (RFC 2217) connection type
+// Defines the connection information for a controlled serial line using the RFC 2217 protocol.
 type ConnectionTypeSerialRfc2217 struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
@@ -4822,7 +4826,7 @@ func (b0 ConnectionTypeSerialRfc2217_builder) Build() *ConnectionTypeSerialRfc22
 	return m0
 }
 
-// Sub-message containing destription for one application protocol, e.g. DLMS_SN.
+// Defines the destription for one application protocol, for example DLMS_SN.
 type ApplicationProtocolTemplate struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_Protocol    ApplicationProtocol        `protobuf:"varint,1,opt,name=protocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
@@ -4902,7 +4906,7 @@ type ApplicationProtocolTemplate_builder struct {
 
 	// The application protocol.
 	Protocol *ApplicationProtocol
-	// The list of attribute definitions for the application protocol and those will be instantiated for each device & communication unit pair.
+	// The list of attribute definitions for the selected application protocol. These attributes are instantiated for each device and communication unit pair.
 	Attributes []*common.FieldDescriptor
 }
 
@@ -4918,7 +4922,7 @@ func (b0 ApplicationProtocolTemplate_builder) Build() *ApplicationProtocolTempla
 	return m0
 }
 
-// Sub-message containing destription for one data link protocol, e.g. HDLC.
+// Defines the destription of a single data link protocol, for example `HDLC`.
 type DataLinkTemplate struct {
 	state                      protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_LinkProtocol    DataLinkProtocol           `protobuf:"varint,1,opt,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
@@ -5012,7 +5016,7 @@ type DataLinkTemplate_builder struct {
 	LinkProtocol *DataLinkProtocol
 	// The list of application protocol identifiers supported by the driver.
 	AppProtocolRefs []ApplicationProtocol
-	// The list of attribute definitions related to given data link type (see link_protocol property). The field definitions are taken from the system, drivers must leave this empty.
+	// The list of attribute definitions related to the selected data link type (see l`ink_protocol` property). These field definitions are provided by the system and drivers must leave this field empty.
 	Attributes []*common.FieldDescriptor
 }
 
@@ -5029,7 +5033,7 @@ func (b0 DataLinkTemplate_builder) Build() *DataLinkTemplate {
 	return m0
 }
 
-// Sub-message containing destription for one communication type, e.g. TCP/IP.
+// Defines the destription of a single communication type, for example `TCP/IP`.
 type CommunicationTemplate struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Type        CommunicationType      `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.acquisition.CommunicationType"`
@@ -5107,9 +5111,9 @@ func (x *CommunicationTemplate) ClearType() {
 type CommunicationTemplate_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The type of the communication.
+	// The communication type.
 	Type *CommunicationType
-	// The list of data link protocols and their app protocols supported by the driver.
+	// The list of supprted data link protocols and their application protocols supported by the driver.
 	Datalinks []*DataLinkTemplate
 }
 
@@ -5125,7 +5129,7 @@ func (b0 CommunicationTemplate_builder) Build() *CommunicationTemplate {
 	return m0
 }
 
-// Sub-message containing access level definition
+// Defines the access level configuration for a driver.
 type AccessLevelTemplate struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
@@ -5237,7 +5241,7 @@ func (b0 AccessLevelTemplate_builder) Build() *AccessLevelTemplate {
 	return m0
 }
 
-// Sub-message in driver negotiation request
+// Defines the driver templates exchanged during driver negotiation.
 type DriverTemplates struct {
 	state                              protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationTemplates  *[]*CommunicationTemplate       `protobuf:"bytes,1,rep,name=communication_templates,json=communicationTemplates"`
@@ -5365,19 +5369,19 @@ func (x *DriverTemplates) ClearActionConstraints() {
 type DriverTemplates_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The templates of the communication options. Every template represents an option how the drivers allows to communicate. The driver can support multiple communication templates.
+	// The supported communication options templates. Each template represents one communication method. A driver can support multiple communication templates.
 	CommunicationTemplates []*CommunicationTemplate
-	// The templates of the application protocols supported by the driver.
+	// The supported application protocol templates.
 	AppProtocols []*ApplicationProtocolTemplate
-	// The templates of the job actions for all supported action types. It must contain every action type supported by the driver once and only once.
+	// The job action templates all supported action types. Each supported action type must appear onbly once.
 	ActionAttributes []*JobActionAttributes
-	// The templates of the access levels supported by the driver.
+	// The supported access level templates.
 	AccessTemplates []*AccessLevelTemplate
-	// The templates of the job actions constraints.
+	// The supported templates of the job actions constraints.
 	ActionConstraints *JobActionContraints
-	// The list of descriptors related to the uknown devices visible to the communication unit.
-	// This relates only to the drivers that communications with a device like data-concentrator that can provide information for unknown devices.
-	// The descripts must cover all data attributes which drivers sets in the SetUnknownDevicesRequest message.
+	// The list of descriptors for uknown devices detected by the communication unit.
+	// This applies only to drivers that communicate with devices like data concentrators that can provide information for unknown devices.
+	// The descriptors must cover all data attributes used in the `SetUnknownDevicesRequest` message.
 	UknownDeviceDescriptors []*common.FieldDescriptor
 }
 
@@ -5394,7 +5398,7 @@ func (b0 DriverTemplates_builder) Build() *DriverTemplates {
 	return m0
 }
 
-// Sub-message containing action progress update
+// Defines a progress update for an action within a job.
 type ActionProgressUpdate struct {
 	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_JobId        *string                  `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -5588,7 +5592,7 @@ func (b0 ActionProgressUpdate_builder) Build() *ActionProgressUpdate {
 	return m0
 }
 
-// Sub-message containing job progress update
+// Defines a progress update for a job.
 type JobProgressUpdate struct {
 	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_JobId        *string                  `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -5749,7 +5753,7 @@ func (b0 JobProgressUpdate_builder) Build() *JobProgressUpdate {
 	return m0
 }
 
-// Sub-message containing action-based variant of data values
+// Defines the action-based variant of data values.
 type ActionData struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Data isActionData_Data      `protobuf_oneof:"data"`
@@ -6100,31 +6104,31 @@ type isActionData_Data interface {
 }
 
 type actionData_Nodata struct {
-	Nodata *emptypb.Empty `protobuf:"bytes,1,opt,name=nodata,oneof"` // No data
+	Nodata *emptypb.Empty `protobuf:"bytes,1,opt,name=nodata,oneof"` // Indicates that no data was returned by the action.
 }
 
 type actionData_Registers struct {
-	Registers *RegisterValues `protobuf:"bytes,2,opt,name=registers,oneof"` // Register values
+	Registers *RegisterValues `protobuf:"bytes,2,opt,name=registers,oneof"` // The set of register values.
 }
 
 type actionData_Profile struct {
-	Profile *ProfileValues `protobuf:"bytes,3,opt,name=profile,oneof"` // Profile values
+	Profile *ProfileValues `protobuf:"bytes,3,opt,name=profile,oneof"` // The set of profile values.
 }
 
 type actionData_IrregularProfile struct {
-	IrregularProfile *IrregularProfileValues `protobuf:"bytes,4,opt,name=irregular_profile,json=irregularProfile,oneof"` // Irregular (non-periodical) profile values, e.g. daily profile
+	IrregularProfile *IrregularProfileValues `protobuf:"bytes,4,opt,name=irregular_profile,json=irregularProfile,oneof"` // The set of irregular (non-periodical) profile values, such as daily profiles.
 }
 
 type actionData_DeviceInfo struct {
-	DeviceInfo *DeviceInfo `protobuf:"bytes,5,opt,name=device_info,json=deviceInfo,oneof"` // Device info
+	DeviceInfo *DeviceInfo `protobuf:"bytes,5,opt,name=device_info,json=deviceInfo,oneof"` // The device information.
 }
 
 type actionData_Events struct {
-	Events *EventRecords `protobuf:"bytes,6,opt,name=events,oneof"` // Event records
+	Events *EventRecords `protobuf:"bytes,6,opt,name=events,oneof"` // The event records.
 }
 
 type actionData_TouTable struct {
-	TouTable *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,7,opt,name=tou_table,json=touTable,oneof"` // The time-of-use table.
+	TouTable *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,7,opt,name=tou_table,json=touTable,oneof"` // The time-of-use (TOU) table.
 }
 
 func (*actionData_Nodata) isActionData_Data() {}
@@ -6141,7 +6145,7 @@ func (*actionData_Events) isActionData_Data() {}
 
 func (*actionData_TouTable) isActionData_Data() {}
 
-// Sub-message containing event records
+// Defines a list of event records.
 type EventRecords struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Values *[]*EventRecord        `protobuf:"bytes,1,rep,name=values"`
@@ -6201,7 +6205,7 @@ func (b0 EventRecords_builder) Build() *EventRecords {
 	return m0
 }
 
-// Sub-message describing a single event.
+// Defines a single event reported by a device.
 type EventRecord struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
@@ -6398,7 +6402,7 @@ func (b0 EventRecord_builder) Build() *EventRecord {
 	return m0
 }
 
-// Sub-message containing event data
+// Defines a single event record associated with the specified device.
 type DeviceEventRecord struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId    *string                `protobuf:"bytes,1,opt,name=device_id,json=deviceId"`
@@ -6628,7 +6632,7 @@ func (b0 DeviceEventRecord_builder) Build() *DeviceEventRecord {
 	return m0
 }
 
-// Message containing a list of device events.
+// Defines a list of device event records.
 type DeviceEvents struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Events *[]*DeviceEventRecord  `protobuf:"bytes,1,rep,name=events"`
@@ -6677,7 +6681,7 @@ func (x *DeviceEvents) SetEvents(v []*DeviceEventRecord) {
 type DeviceEvents_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The list of device events.
+	// The list of device event records.
 	Events []*DeviceEventRecord
 }
 
@@ -6689,7 +6693,7 @@ func (b0 DeviceEvents_builder) Build() *DeviceEvents {
 	return m0
 }
 
-// Message holds common device information.
+// Defines common device information.
 type DeviceInfo struct {
 	state                               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_InfoTimestamp            *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=info_timestamp,json=infoTimestamp"`
@@ -6991,7 +6995,7 @@ func (b0 DeviceInfo_builder) Build() *DeviceInfo {
 	return m0
 }
 
-// Sub-message containing profile-typed values
+// Defines the profile-type values.
 type ProfileValues struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Period      int32                  `protobuf:"varint,1,opt,name=period"`
@@ -7116,6 +7120,7 @@ func (b0 ProfileValues_builder) Build() *ProfileValues {
 	return m0
 }
 
+// Defines the irregular (non-perioic) profile values.
 type IrregularProfileValues struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Unit        *string                `protobuf:"bytes,1,opt,name=unit"`
@@ -7210,6 +7215,7 @@ func (b0 IrregularProfileValues_builder) Build() *IrregularProfileValues {
 	return m0
 }
 
+// Defines a single irregular (non-periodic) value with a timestamp.
 type IrregularValue struct {
 	state                protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Timestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
@@ -7303,7 +7309,7 @@ func (b0 IrregularValue_builder) Build() *IrregularValue {
 	return m0
 }
 
-// Sub-message containing a single profile block
+// Defines a single profile block containing the measured values.
 type ProfileBlock struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
@@ -7388,7 +7394,7 @@ func (b0 ProfileBlock_builder) Build() *ProfileBlock {
 	return m0
 }
 
-// Sub-message containing register-typed values
+// Defines the register-type values.
 type RegisterValues struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Values *[]*RegisterValue      `protobuf:"bytes,1,rep,name=values"`
@@ -7448,7 +7454,7 @@ func (b0 RegisterValues_builder) Build() *RegisterValues {
 	return m0
 }
 
-// Sub-message containing register-typed value
+// Defines a single register-type value.
 type RegisterValue struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
@@ -11007,7 +11013,7 @@ func (b0 CommunicationUnitAttributeSelector_builder) Build() *CommunicationUnitA
 	return m0
 }
 
-// Sub-message containing action result for a single action.
+// Defines the result of a single action.
 type ActionResult struct {
 	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_ActionId     *string                  `protobuf:"bytes,1,opt,name=action_id,json=actionId"`

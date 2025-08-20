@@ -145,7 +145,7 @@ class DataproxyServiceServicer(object):
 
     def ListBulks(self, request, context):
         """@group: Bulks
-        Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
         The list contains both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -154,7 +154,7 @@ class DataproxyServiceServicer(object):
 
     def ListBulkJobs(self, request, context):
         """@group: Bulks
-        Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
         The listing can be used for jobs from both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -251,7 +251,7 @@ class DataproxyServiceServicer(object):
 
     def ListDeviceDataInfo(self, request, context):
         """@group: Device Data
-        Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+        Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

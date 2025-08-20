@@ -1,13 +1,13 @@
 # Model: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
 
-Sub-message containing connection info for controlled-serial line (Moxa) connection type
+Defines the connection information for a controlled serial line using the Moxa protocol.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
 | host | <b>Type:</b> `string`<br><b>Description:</b><br>The host name or IP address of the device to connect to. |
-| dataPort | <b>Type:</b> `uint32`<br><b>Description:</b><br>The TCP port number of the device to connect to - data port. |
-| commandPort | <b>Type:</b> `uint32`<br><b>Description:</b><br>The TCP port number of the device to connect to - command port. |
-| timeout | <b>Type:</b> `google.protobuf.Duration`<br><b>Description:</b><br>The timeout for serial port connection that implements the Moxa protocol. |
+| dataPort | <b>Type:</b> `uint32`<br><b>Description:</b><br>The TCP data port number of the device to connect to. |
+| commandPort | <b>Type:</b> `uint32`<br><b>Description:</b><br>The TCP command port number of the device to connect to. |
+| timeout | <b>Type:</b> `google.protobuf.Duration`<br><b>Description:</b><br>The timeout for the serial port connection using the Moxa protocol. |
 

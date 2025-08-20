@@ -13,5 +13,5 @@ Application protocols
 | APPPROTO_LIS200 | The LIS200 protocol. |
 | APPPROTO_ANSI_C12 | The ANSI C12 protocol. |
 | APPPROTO_MQTT | The MQTT protocol. |
-| APPPROTO_MODBUS | The MODBUS procotocol. |
+| APPPROTO_MODBUS | The MODBUS protocol. |
 | APPPROTO_MBUS | The MBUS protocol. |

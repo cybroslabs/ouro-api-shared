@@ -13,7 +13,7 @@ GetDeviceData(io.clbs.openhes.models.acquisition.GetDeviceDataRequest) returns (
 
 ## ListDeviceDataInfo
 
-Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 
 ```proto
 ListDeviceDataInfo(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo)

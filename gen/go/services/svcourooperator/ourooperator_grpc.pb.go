@@ -44,23 +44,23 @@ const (
 // The Ouro Operator service definition.
 // Those are the gRPC services that the Ouro Operator provides for other components.
 type OuroOperatorServiceClient interface {
-	// The method called by the RestApi to get the list of drivers.
+	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver to set the driver templates. The parameter contains the driver templates.
 	SetDriver(ctx context.Context, in *acquisition.Driver, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the driver templates.
+	// Retrieves the details of the specified driver.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
 	// The method called by the Taskmaster to set the driver scale.
 	SetDriverScale(ctx context.Context, in *acquisition.SetDriverScaleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// The method called by the Taskmaster to get the driver scale.
 	GetDriverScale(ctx context.Context, in *acquisition.GetDriverScaleRequest, opts ...grpc.CallOption) (*wrapperspb.UInt32Value, error)
-	// Gets the application configuration, stored in the Kubernetes.
+	// Retrieves the current application configuration settings.
 	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error)
-	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	// Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values including details which are not set.
-	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	// Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+	// The output value will contain currently set values, including details that are not set.
+	// Values missing from the defaults will be deleted if they were previously set in the application configuration.
 	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.
@@ -208,23 +208,23 @@ func (c *ouroOperatorServiceClient) SetLicense(ctx context.Context, in *wrappers
 // The Ouro Operator service definition.
 // Those are the gRPC services that the Ouro Operator provides for other components.
 type OuroOperatorServiceServer interface {
-	// The method called by the RestApi to get the list of drivers.
+	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error)
 	// The method called by the Driver to set the driver templates. The parameter contains the driver templates.
 	SetDriver(context.Context, *acquisition.Driver) (*emptypb.Empty, error)
-	// The method called by the RestApi to get the driver templates.
+	// Retrieves the details of the specified driver.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
 	// The method called by the Taskmaster to set the driver scale.
 	SetDriverScale(context.Context, *acquisition.SetDriverScaleRequest) (*emptypb.Empty, error)
 	// The method called by the Taskmaster to get the driver scale.
 	GetDriverScale(context.Context, *acquisition.GetDriverScaleRequest) (*wrapperspb.UInt32Value, error)
-	// Gets the application configuration, stored in the Kubernetes.
+	// Retrieves the current application configuration settings.
 	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error)
-	// Updates the application configuration. The missing fields in the request will be kept unchanged.
+	// Updates the details of an existing application configuration. Fields that are omitted from the request will be left unchanged.
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
-	// Synchronizes the application's component configuration. The input value shall contain all the default values and also all known keys (with null values).
-	// The output value will contain currently set values including details which are not set.
-	// The missing values in the defaults will be deleted if has been set previously in the application configuration.
+	// Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
+	// The output value will contain currently set values, including details that are not set.
+	// Values missing from the defaults will be deleted if they were previously set in the application configuration.
 	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
 	// The method called by the DeviceRegistry to start the driver in upgrade mode. It will provide structure upgrade between the driver versions.
 	// The driver is started as Kubernetes job and ends when all the structures are upgraded; which is controlled by the DeviceRegistry.

@@ -550,6 +550,7 @@ class ApiServiceServicer(object):
 
     def ListVariables(self, request, context):
         """@group: Variables
+        Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -557,7 +558,7 @@ class ApiServiceServicer(object):
 
     def GetVariable(self, request, context):
         """@group: Variables
-        Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+        Retrieves the details of the specified variable.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -733,7 +734,7 @@ class ApiServiceServicer(object):
 
     def ListBulks(self, request, context):
         """@group: Bulks
-        Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
         The list contains both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -742,7 +743,7 @@ class ApiServiceServicer(object):
 
     def ListBulkJobs(self, request, context):
         """@group: Bulks
-        Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+        Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
         The listing can be used for jobs from both proxy and regular bulks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1228,7 +1229,7 @@ class ApiServiceServicer(object):
 
     def ListDeviceDataInfo(self, request, context):
         """@group: Device Data
-        Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+        Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

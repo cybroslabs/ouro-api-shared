@@ -140,9 +140,10 @@ type ApiServiceClient interface {
 	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
 	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Variables
+	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	// @group: Variables
-	// Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves the details of the specified variable.
 	GetVariable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Variable, error)
 	// @group: Variables
 	// Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
@@ -208,11 +209,11 @@ type ApiServiceClient interface {
 	// Retrieves a paginated list of available options for the field descriptor based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptorOptions(ctx context.Context, in *common.ListFieldDescriptorOptionsRequest, opts ...grpc.CallOption) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The list contains both proxy and regular bulks.
 	ListBulks(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(ctx context.Context, in *acquisition.ListBulkJobsRequest, opts ...grpc.CallOption) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
@@ -423,7 +424,7 @@ type ApiServiceClient interface {
 	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(ctx context.Context, in *acquisition.GetDeviceDataRequest, opts ...grpc.CallOption) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+	// Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// Retrieves the list of register-type device data based on the specified criteria.
@@ -1556,9 +1557,10 @@ type ApiServiceServer interface {
 	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
 	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error)
 	// @group: Variables
+	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	// @group: Variables
-	// Retrieves a pagianted list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves the details of the specified variable.
 	GetVariable(context.Context, *wrapperspb.StringValue) (*acquisition.Variable, error)
 	// @group: Variables
 	// Updates the details of an existing variable. Fields that are omitted from the request will be left unchanged.
@@ -1624,11 +1626,11 @@ type ApiServiceServer interface {
 	// Retrieves a paginated list of available options for the field descriptor based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFieldDescriptorOptions(context.Context, *common.ListFieldDescriptorOptionsRequest) (*common.FieldDescriptorOptions, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of bulks based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The list contains both proxy and regular bulks.
 	ListBulks(context.Context, *common.ListSelector) (*acquisition.ListOfBulk, error)
 	// @group: Bulks
-	// Retrieves a pagianted list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
+	// Retrieves a paginated list of jobs based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	// The listing can be used for jobs from both proxy and regular bulks.
 	ListBulkJobs(context.Context, *acquisition.ListBulkJobsRequest) (*acquisition.ListOfBulkJob, error)
 	// @group: Bulks
@@ -1839,7 +1841,7 @@ type ApiServiceServer interface {
 	// Retrieves device data of the specified type (register, profile, irregular profile) based on the specified criteria. The method is generic but limited to return
 	GetDeviceData(context.Context, *acquisition.GetDeviceDataRequest) (*acquisition.DeviceData, error)
 	// @group: Device Data
-	// Retrieves a pagianted list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
+	// Retrieves a paginated list of device data info based on the specified criteria. The page size and page number (zero-based) can be defined in the request. The device data info stores various metadata, such as the period of the regular profiles or the timestamp of the last stored value.
 	ListDeviceDataInfo(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceDataInfo, error)
 	// @group: Device Data
 	// Retrieves the list of register-type device data based on the specified criteria.

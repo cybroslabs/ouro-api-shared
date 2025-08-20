@@ -6,10 +6,10 @@ Data link protocols
 
 | Value | Description |
 | --- | --- |
-| LINKPROTO_IEC_62056_21 | The VDEW (IEC 62056-21, IEC-61107) protocol. In combination with DLMS protocol the driver initiates the communication by IEC and switches to the mode E to the HDLC+DLMS protocol. Supports addressing = multiple devices on the same line. |
-| LINKPROTO_HDLC | The HDLC (ISO/IEC-3309) framing. It can be used for various application protocols, such as DLMS or MODBUS. Supports client/server addressing = multiple devices on the same line. |
-| LINKPROTO_COSEM_WRAPPER | The COSEM wrapper. It can be used for DLMS application protocol. Supports client/server addressing = multiple devices on the same line. |
-| LINKPROTO_MODBUS | The Modbus protocol. It shall be used for Modbus application protocol where no other data link layer, such as HDLC, is used. |
-| LINKPROTO_MBUS | The M-Bus protocol. It shall be used for M-Bus application protocol. |
-| LINKPROTO_VIKTOR | The Viktor protocol. It is a proprietary protocol used by Viktor-based devices, such as DC450 Vitkor. |
-| LINKPROTO_NOT_APPLICABLE | The data link protocol is not applicable. It's useful for listening communication type. |
+| LINKPROTO_IEC_62056_21 | The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and switches to the mode E (HDLC+DLMS) protocol. Supports multiple devices on the same line. |
+| LINKPROTO_HDLC | The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line. |
+| LINKPROTO_COSEM_WRAPPER | The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line. |
+| LINKPROTO_MODBUS | The Modbus protocol. Used with the Modbus application protocol where no other data link , such as HDLC is used. |
+| LINKPROTO_MBUS | The M-Bus protocol. Used with the M-Bus application protocol. |
+| LINKPROTO_VIKTOR | The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Vitkor. |
+| LINKPROTO_NOT_APPLICABLE | No data link protocol is applicable. Used with listening communication types. |
