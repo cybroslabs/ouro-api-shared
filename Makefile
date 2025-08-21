@@ -26,7 +26,7 @@ gen-go:
 	cd proto && npx buf generate --template buf.gen.api.yaml
 	cd proto && buf build -o ../gen/go/services/svcapi/raw.binpb
 
-	./src/mdgen/main.py --mode html markdown
+	./src/mdgen/main.py --mode html markdown --validate
 
 .PHONY: more
 more:

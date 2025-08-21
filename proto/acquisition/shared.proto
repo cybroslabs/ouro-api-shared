@@ -578,22 +578,22 @@ message ActionGetRegister {
 
 // Sub-message containing get periodical profile action specification
 message ActionGetPeriodicalProfile {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
-    common.FieldDataType data_type = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout.
+    common.FieldDataType data_type        = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
 }
 
 // Sub-message containing get irregular profile action specification
 message ActionGetIrregularProfile {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
-    common.FieldDataType data_type = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout.
+    common.FieldDataType data_type        = 3;  // The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
 }
 
 // Sub-message containing get events action specification
 message ActionGetEvents {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the profile.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the profile.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the event readout.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the event readout.
 }
 
 // Sub-message containing get device info action specification

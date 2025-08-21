@@ -434,8 +434,8 @@ message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest 
 // Device Data
 
 message GetDeviceDataRequest {
-    google.protobuf.Timestamp from              = 1;  // The start timestamp of the data.
-    google.protobuf.Timestamp to                = 2;  // The end timestamp of the data.
+    google.protobuf.Timestamp range_start       = 1;  // The start timestamp of the data. The exclusivness/inclusiveness of the timestamp is defined in the variable.
+    google.protobuf.Timestamp range_end         = 2;  // The end timestamp of the data. It is inclusive.
     repeated GetDeviceDataSeriesSelector series = 3;  // One or more identifiers of the devices.
     int64 filter_include_status                 = 4;  // The filter status bits, only values with these status bits will be returned in the response.
     int64 filter_exclude_status                 = 5;  // The filter status bits, only values without these status bits will be returned in the response.
@@ -490,17 +490,17 @@ message ListOfDeviceDataInfo {
 // Device Events
 
 message GetDeviceEventsRequest {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the data.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the data.
-    string device_id               = 3;  // The unique identifier of the device.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the device events selection. It is inclusive.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the device events selection. It is inclusive.
+    string device_id                      = 3;  // The unique identifier of the device.
 }
 
 // Device Bulk
 
 message GetDeviceBulksRequest {
-    google.protobuf.Timestamp from = 1;  // The start timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
-    google.protobuf.Timestamp to   = 2;  // The end timestamp of the bulks selection. If the time range in not specified, the system will return maximum 1000 latest bulks.
-    string device_id               = 3;  // The unique identifier of the device.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the bulks selection. It is inclusive.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the bulks selection. It is inclusive.
+    string device_id                      = 3;  // The unique identifier of the device.
 }
 
 message DeviceBulks {
