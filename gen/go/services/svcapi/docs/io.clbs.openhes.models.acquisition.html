@@ -1336,6 +1336,13 @@
       </p>
     
       <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>DeviceConfigurationRegisterKind</code> 
+        </a>
+      </p>
+    
+      <p>
         <a href="#enum-io.clbs.openhes.models.acquisition.JobErrorCode">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>JobErrorCode</code> 
@@ -1367,13 +1374,6 @@
         <a href="#enum-io.clbs.openhes.models.acquisition.ReadPathPolicy">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>ReadPathPolicy</code> 
-        </a>
-      </p>
-    
-      <p>
-        <a href="#enum-io.clbs.openhes.models.acquisition.RegisterType">
-          <span class="tag" style="min-width: 6em">Enum</span>
-          <code>RegisterType</code> 
         </a>
       </p>
     
@@ -5589,13 +5589,13 @@
         registerType
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.RegisterType">
+        <code title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind">
           
-          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.RegisterType"><span title="io.clbs.openhes.models.acquisition.RegisterType">io.clbs.openhes.models.acquisition.RegisterType</span>
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"><span title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind">io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind</span>
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of action for which the register is defined.</p></td>
+      <td class="content"><p>The kind of device configuration register.</p></td>
       
     </tr>
     
@@ -13061,6 +13061,54 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </div>
     
     <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind">
+  <a href="#enum-io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind" title="io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind">enum DeviceConfigurationRegisterKind</a>
+  
+</h4>
+
+<div class="block content">
+  <p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>Register</code></td>
+      <td>0</td>
+      <td class="content"><p>The object represents a generic register.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PeriodicalProfile</code></td>
+      <td>1</td>
+      <td class="content"><p>The object represents a periodical profile.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>IrregularProfile</code></td>
+      <td>2</td>
+      <td class="content"><p>The object represents an irregular profile.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>Synthetic</code></td>
+      <td>99</td>
+      <td class="content"><p>The object represents a synthetic register, not visible by drivers. It can be defined to store derived or external data.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
       <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.JobErrorCode">
   <a href="#enum-io.clbs.openhes.models.acquisition.JobErrorCode" title="io.clbs.openhes.models.acquisition.JobErrorCode">enum JobErrorCode</a>
   
@@ -13348,54 +13396,6 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       <td><code>DC_FIRST</code></td>
       <td>2</td>
       <td class="content"><p>Attempts to read from the data concentrator first and falls back to the meter if needed and supported.</p></td>
-    </tr>
-    
-  </tbody>
-</table> 
-    </div>
-    
-    <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.RegisterType">
-  <a href="#enum-io.clbs.openhes.models.acquisition.RegisterType" title="io.clbs.openhes.models.acquisition.RegisterType">enum RegisterType</a>
-  
-</h4>
-
-<div class="block content">
-  <p></p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td><code>Register</code></td>
-      <td>0</td>
-      <td class="content"><p>The register is a generic register.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>PeriodicalProfile</code></td>
-      <td>1</td>
-      <td class="content"><p>The register is part of a periodical profile.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>IrregularProfile</code></td>
-      <td>2</td>
-      <td class="content"><p>The register is part of an irregular profile.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>Synthetic</code></td>
-      <td>99</td>
-      <td class="content"><p>Synthetic register, not visible by drivers. It can be defined to store derived or external data.</p></td>
     </tr>
     
   </tbody>

@@ -713,22 +713,22 @@ message CancelJobRequest {
     string job_id = 1;  // The job identifier.
 }
 
-enum RegisterType {
-    // The register is a generic register.
+enum DeviceConfigurationRegisterKind {
+    // The object represents a generic register.
     Register = 0;
-    // The register is part of a periodical profile.
+    // The object represents a periodical profile.
     PeriodicalProfile = 1;
-    // The register is part of an irregular profile.
+    // The object represents an irregular profile.
     IrregularProfile = 2;
-    // Synthetic register, not visible by drivers. It can be defined to store derived or external data.
+    // The object represents a synthetic register, not visible by drivers. It can be defined to store derived or external data.
     Synthetic = 99;
 }
 
 message DeviceConfigurationRegisterSpec {
-    string driver_type                        = 1;  // The device (driver) type.
-    RegisterType register_type                = 2;  // The type of action for which the register is defined.
-    map<string, common.FieldValue> attributes = 3;  // The field values.
-    common.FieldDataType data_type            = 4;  // The data type of the register;
+    string driver_type                            = 1;  // The device (driver) type.
+    DeviceConfigurationRegisterKind register_type = 2;  // The kind of device configuration register.
+    map<string, common.FieldValue> attributes     = 3;  // The field values.
+    common.FieldDataType data_type                = 4;  // The data type of the register;
 }
 
 // Addon

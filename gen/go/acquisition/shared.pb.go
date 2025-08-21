@@ -843,28 +843,28 @@ func (x BulkStatusCode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-type RegisterType int32
+type DeviceConfigurationRegisterKind int32
 
 const (
-	// The register is a generic register.
-	RegisterType_Register RegisterType = 0
-	// The register is part of a periodical profile.
-	RegisterType_PeriodicalProfile RegisterType = 1
-	// The register is part of an irregular profile.
-	RegisterType_IrregularProfile RegisterType = 2
-	// Synthetic register, not visible by drivers. It can be defined to store derived or external data.
-	RegisterType_Synthetic RegisterType = 99
+	// The object represents a generic register.
+	DeviceConfigurationRegisterKind_Register DeviceConfigurationRegisterKind = 0
+	// The object represents a periodical profile.
+	DeviceConfigurationRegisterKind_PeriodicalProfile DeviceConfigurationRegisterKind = 1
+	// The object represents an irregular profile.
+	DeviceConfigurationRegisterKind_IrregularProfile DeviceConfigurationRegisterKind = 2
+	// The object represents a synthetic register, not visible by drivers. It can be defined to store derived or external data.
+	DeviceConfigurationRegisterKind_Synthetic DeviceConfigurationRegisterKind = 99
 )
 
-// Enum value maps for RegisterType.
+// Enum value maps for DeviceConfigurationRegisterKind.
 var (
-	RegisterType_name = map[int32]string{
+	DeviceConfigurationRegisterKind_name = map[int32]string{
 		0:  "Register",
 		1:  "PeriodicalProfile",
 		2:  "IrregularProfile",
 		99: "Synthetic",
 	}
-	RegisterType_value = map[string]int32{
+	DeviceConfigurationRegisterKind_value = map[string]int32{
 		"Register":          0,
 		"PeriodicalProfile": 1,
 		"IrregularProfile":  2,
@@ -872,25 +872,25 @@ var (
 	}
 )
 
-func (x RegisterType) Enum() *RegisterType {
-	p := new(RegisterType)
+func (x DeviceConfigurationRegisterKind) Enum() *DeviceConfigurationRegisterKind {
+	p := new(DeviceConfigurationRegisterKind)
 	*p = x
 	return p
 }
 
-func (x RegisterType) String() string {
+func (x DeviceConfigurationRegisterKind) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (RegisterType) Descriptor() protoreflect.EnumDescriptor {
+func (DeviceConfigurationRegisterKind) Descriptor() protoreflect.EnumDescriptor {
 	return file_acquisition_shared_proto_enumTypes[13].Descriptor()
 }
 
-func (RegisterType) Type() protoreflect.EnumType {
+func (DeviceConfigurationRegisterKind) Type() protoreflect.EnumType {
 	return &file_acquisition_shared_proto_enumTypes[13]
 }
 
-func (x RegisterType) Number() protoreflect.EnumNumber {
+func (x DeviceConfigurationRegisterKind) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
@@ -9865,11 +9865,11 @@ func (b0 CancelJobRequest_builder) Build() *CancelJobRequest {
 }
 
 type DeviceConfigurationRegisterSpec struct {
-	state                   protoimpl.MessageState        `protogen:"opaque.v1"`
-	xxx_hidden_DriverType   *string                       `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
-	xxx_hidden_RegisterType RegisterType                  `protobuf:"varint,2,opt,name=register_type,json=registerType,enum=io.clbs.openhes.models.acquisition.RegisterType"`
-	xxx_hidden_Attributes   map[string]*common.FieldValue `protobuf:"bytes,3,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_DataType     common.FieldDataType          `protobuf:"varint,4,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
+	state                   protoimpl.MessageState          `protogen:"opaque.v1"`
+	xxx_hidden_DriverType   *string                         `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
+	xxx_hidden_RegisterType DeviceConfigurationRegisterKind `protobuf:"varint,2,opt,name=register_type,json=registerType,enum=io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"`
+	xxx_hidden_Attributes   map[string]*common.FieldValue   `protobuf:"bytes,3,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_DataType     common.FieldDataType            `protobuf:"varint,4,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -9911,13 +9911,13 @@ func (x *DeviceConfigurationRegisterSpec) GetDriverType() string {
 	return ""
 }
 
-func (x *DeviceConfigurationRegisterSpec) GetRegisterType() RegisterType {
+func (x *DeviceConfigurationRegisterSpec) GetRegisterType() DeviceConfigurationRegisterKind {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
 			return x.xxx_hidden_RegisterType
 		}
 	}
-	return RegisterType_Register
+	return DeviceConfigurationRegisterKind_Register
 }
 
 func (x *DeviceConfigurationRegisterSpec) GetAttributes() map[string]*common.FieldValue {
@@ -9941,7 +9941,7 @@ func (x *DeviceConfigurationRegisterSpec) SetDriverType(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
-func (x *DeviceConfigurationRegisterSpec) SetRegisterType(v RegisterType) {
+func (x *DeviceConfigurationRegisterSpec) SetRegisterType(v DeviceConfigurationRegisterKind) {
 	x.xxx_hidden_RegisterType = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
 }
@@ -9983,7 +9983,7 @@ func (x *DeviceConfigurationRegisterSpec) ClearDriverType() {
 
 func (x *DeviceConfigurationRegisterSpec) ClearRegisterType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_RegisterType = RegisterType_Register
+	x.xxx_hidden_RegisterType = DeviceConfigurationRegisterKind_Register
 }
 
 func (x *DeviceConfigurationRegisterSpec) ClearDataType() {
@@ -9995,7 +9995,7 @@ type DeviceConfigurationRegisterSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	DriverType   *string
-	RegisterType *RegisterType
+	RegisterType *DeviceConfigurationRegisterKind
 	Attributes   map[string]*common.FieldValue
 	DataType     *common.FieldDataType
 }
@@ -13508,11 +13508,11 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\")\n" +
 	"\x10CancelJobRequest\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xc3\x03\n" +
+	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xd6\x03\n" +
 	"\x1fDeviceConfigurationRegisterSpec\x12\x1f\n" +
 	"\vdriver_type\x18\x01 \x01(\tR\n" +
-	"driverType\x12U\n" +
-	"\rregister_type\x18\x02 \x01(\x0e20.io.clbs.openhes.models.acquisition.RegisterTypeR\fregisterType\x12s\n" +
+	"driverType\x12h\n" +
+	"\rregister_type\x18\x02 \x01(\x0e2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKindR\fregisterType\x12s\n" +
 	"\n" +
 	"attributes\x18\x03 \x03(\v2S.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntryR\n" +
 	"attributes\x12I\n" +
@@ -13760,8 +13760,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x13BULK_STATUS_RUNNING\x10\x01\x12\x19\n" +
 	"\x15BULK_STATUS_COMPLETED\x10\x02\x12\x19\n" +
 	"\x15BULK_STATUS_CANCELLED\x10\x03\x12\x17\n" +
-	"\x13BULK_STATUS_EXPIRED\x10\x04*X\n" +
-	"\fRegisterType\x12\f\n" +
+	"\x13BULK_STATUS_EXPIRED\x10\x04*k\n" +
+	"\x1fDeviceConfigurationRegisterKind\x12\f\n" +
 	"\bRegister\x10\x00\x12\x15\n" +
 	"\x11PeriodicalProfile\x10\x01\x12\x14\n" +
 	"\x10IrregularProfile\x10\x02\x12\r\n" +
@@ -13800,7 +13800,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(ActionResultCode)(0),                      // 10: io.clbs.openhes.models.acquisition.ActionResultCode
 	(JobErrorCode)(0),                          // 11: io.clbs.openhes.models.acquisition.JobErrorCode
 	(BulkStatusCode)(0),                        // 12: io.clbs.openhes.models.acquisition.BulkStatusCode
-	(RegisterType)(0),                          // 13: io.clbs.openhes.models.acquisition.RegisterType
+	(DeviceConfigurationRegisterKind)(0),       // 13: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
 	(JobStatusCode)(0),                         // 14: io.clbs.openhes.models.acquisition.JobStatusCode
 	(TopologyNodeType)(0),                      // 15: io.clbs.openhes.models.acquisition.TopologyNodeType
 	(LogRecordLevel)(0),                        // 16: io.clbs.openhes.models.acquisition.LogRecordLevel
@@ -14035,7 +14035,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	17,  // 124: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
 	18,  // 125: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
 	8,   // 126: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	13,  // 127: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.RegisterType
+	13,  // 127: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
 	104, // 128: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
 	113, // 129: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
 	71,  // 130: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
