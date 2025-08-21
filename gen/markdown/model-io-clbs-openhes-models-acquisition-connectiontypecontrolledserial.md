@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 
-Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
 
 ## Fields
 

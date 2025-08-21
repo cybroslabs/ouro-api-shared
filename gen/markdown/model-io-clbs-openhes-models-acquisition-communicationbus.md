@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CommunicationBus
 
+Defines the the communication bus information.
+
 ## Fields
 
 | Field | Information |

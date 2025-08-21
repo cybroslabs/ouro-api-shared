@@ -1,4 +1,4 @@
 # Model: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
 
-Sub-message containing get device info action specification
+Defines the get device info action specification.
 

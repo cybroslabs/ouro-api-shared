@@ -406,7 +406,7 @@ export const JobActionSchema: GenMessage<JobAction, {jsonType: JobActionJson}> =
 export type JobActionSet = Message<"io.clbs.openhes.models.acquisition.JobActionSet"> & {
   /**
    * The variable filter. Meaning depends on the action type:
-   *  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable identifiers (for example, `"A+"`) defined in the system. If not set, all variables are read.
+   *  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.
    * - Others: Not applicable (ignored).
    *
    * @generated from field: repeated string variables = 2;
@@ -533,7 +533,7 @@ export type JobActionSet = Message<"io.clbs.openhes.models.acquisition.JobAction
 export type JobActionSetJson = {
   /**
    * The variable filter. Meaning depends on the action type:
-   *  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable identifiers (for example, `"A+"`) defined in the system. If not set, all variables are read.
+   *  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.
    * - Others: Not applicable (ignored).
    *
    * @generated from field: repeated string variables = 2;
@@ -644,14 +644,14 @@ export const JobActionSetSchema: GenMessage<JobActionSet, {jsonType: JobActionSe
  */
 export type ListOfJobDevice = Message<"io.clbs.openhes.models.acquisition.ListOfJobDevice"> & {
   /**
-   * The list of devices in the bulk.
+   * The list of devices included in the bulk.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobDevice list = 1;
    */
   list: JobDevice[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -663,14 +663,14 @@ export type ListOfJobDevice = Message<"io.clbs.openhes.models.acquisition.ListOf
  */
 export type ListOfJobDeviceJson = {
   /**
-   * The list of devices in the bulk.
+   * The list of devices included in the bulk.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobDevice list = 1;
    */
   list?: JobDeviceJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2946,7 +2946,7 @@ export const RegisterValueSchema: GenMessage<RegisterValue, {jsonType: RegisterV
   messageDesc(file_acquisition_shared, 33);
 
 /**
- * Sub-message containing measured value
+ * Defines a measured value.
  *
  * @generated from message io.clbs.openhes.models.acquisition.MeasuredValue
  */
@@ -2959,7 +2959,7 @@ export type MeasuredValue = Message<"io.clbs.openhes.models.acquisition.Measured
   status: bigint;
 
   /**
-   * The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
+   * The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
    *
    * @generated from field: int32 exponent = 2;
    */
@@ -3002,7 +3002,7 @@ export type MeasuredValue = Message<"io.clbs.openhes.models.acquisition.Measured
     case: "timestampValue";
   } | {
     /**
-     * The timestamp with timezone-typed value, stored as string in ISO-8601.
+     * The timestamp with timezone-typed value, stored as an ISO-8601 string.
      *
      * @generated from field: string timestamp_tz_value = 7;
      */
@@ -3019,14 +3019,14 @@ export type MeasuredValue = Message<"io.clbs.openhes.models.acquisition.Measured
   } | { case: undefined; value?: undefined };
 
   /**
-   * The normalized status of the value, see StatusBits enum for more details.
+   * The normalized status of the value. See `StatusBits` enum for details.
    *
    * @generated from field: uint64 nstatus = 9;
    */
   nstatus: bigint;
 
   /**
-   * The timestamp when the value (e.g. peak) was recorded. It's typically before the capture timestamp.
+   * The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
    *
    * @generated from field: google.protobuf.Timestamp peak_ts = 10;
    */
@@ -3034,7 +3034,7 @@ export type MeasuredValue = Message<"io.clbs.openhes.models.acquisition.Measured
 };
 
 /**
- * Sub-message containing measured value
+ * Defines a measured value.
  *
  * @generated from message io.clbs.openhes.models.acquisition.MeasuredValue
  */
@@ -3047,7 +3047,7 @@ export type MeasuredValueJson = {
   status?: string;
 
   /**
-   * The exponent of the value. It's used to calculate the real value as value * 10^exponent for double and int values.
+   * The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
    *
    * @generated from field: int32 exponent = 2;
    */
@@ -3082,7 +3082,7 @@ export type MeasuredValueJson = {
   timestampValue?: TimestampJson;
 
   /**
-   * The timestamp with timezone-typed value, stored as string in ISO-8601.
+   * The timestamp with timezone-typed value, stored as an ISO-8601 string.
    *
    * @generated from field: string timestamp_tz_value = 7;
    */
@@ -3096,14 +3096,14 @@ export type MeasuredValueJson = {
   boolValue?: boolean;
 
   /**
-   * The normalized status of the value, see StatusBits enum for more details.
+   * The normalized status of the value. See `StatusBits` enum for details.
    *
    * @generated from field: uint64 nstatus = 9;
    */
   nstatus?: string;
 
   /**
-   * The timestamp when the value (e.g. peak) was recorded. It's typically before the capture timestamp.
+   * The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
    *
    * @generated from field: google.protobuf.Timestamp peak_ts = 10;
    */
@@ -3118,20 +3118,20 @@ export const MeasuredValueSchema: GenMessage<MeasuredValue, {jsonType: MeasuredV
   messageDesc(file_acquisition_shared, 34);
 
 /**
- * Sub-message containing job action attributes
+ * Defines the template for job action attributes.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionAttributes
  */
 export type JobActionAttributes = Message<"io.clbs.openhes.models.acquisition.JobActionAttributes"> & {
   /**
-   * The type of action for which this instance of the template is defined.
+   * The type of action for which this template template is defined.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ActionType type = 1;
    */
   type: ActionType;
 
   /**
-   * The template of the action attributes. It is represented as a list of attribute definitions.
+   * TThe list attribute definitions for the action attributes template.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor attributes = 2;
    */
@@ -3139,20 +3139,20 @@ export type JobActionAttributes = Message<"io.clbs.openhes.models.acquisition.Jo
 };
 
 /**
- * Sub-message containing job action attributes
+ * Defines the template for job action attributes.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionAttributes
  */
 export type JobActionAttributesJson = {
   /**
-   * The type of action for which this instance of the template is defined.
+   * The type of action for which this template template is defined.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ActionType type = 1;
    */
   type?: ActionTypeJson;
 
   /**
-   * The template of the action attributes. It is represented as a list of attribute definitions.
+   * TThe list attribute definitions for the action attributes template.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor attributes = 2;
    */
@@ -3167,7 +3167,7 @@ export const JobActionAttributesSchema: GenMessage<JobActionAttributes, {jsonTyp
   messageDesc(file_acquisition_shared, 35);
 
 /**
- * Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+ * Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
  *
  * @generated from message io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
  */
@@ -3205,7 +3205,7 @@ export type ConnectionTypeControlledSerial = Message<"io.clbs.openhes.models.acq
 };
 
 /**
- * Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+ * Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
  *
  * @generated from message io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
  */
@@ -3240,13 +3240,13 @@ export const ConnectionTypeControlledSerialSchema: GenMessage<ConnectionTypeCont
   messageDesc(file_acquisition_shared, 36);
 
 /**
- * Sub-message containing get register action specification
+ * Defines the get register action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetRegister
  */
 export type ActionGetRegister = Message<"io.clbs.openhes.models.acquisition.ActionGetRegister"> & {
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 1;
    */
@@ -3254,13 +3254,13 @@ export type ActionGetRegister = Message<"io.clbs.openhes.models.acquisition.Acti
 };
 
 /**
- * Sub-message containing get register action specification
+ * Defines the get register action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetRegister
  */
 export type ActionGetRegisterJson = {
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 1;
    */
@@ -3275,7 +3275,7 @@ export const ActionGetRegisterSchema: GenMessage<ActionGetRegister, {jsonType: A
   messageDesc(file_acquisition_shared, 37);
 
 /**
- * Sub-message containing get periodical profile action specification
+ * Defines the get periodical profile action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
  */
@@ -3295,7 +3295,7 @@ export type ActionGetPeriodicalProfile = Message<"io.clbs.openhes.models.acquisi
   rangeEnd?: Timestamp;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3303,7 +3303,7 @@ export type ActionGetPeriodicalProfile = Message<"io.clbs.openhes.models.acquisi
 };
 
 /**
- * Sub-message containing get periodical profile action specification
+ * Defines the get periodical profile action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
  */
@@ -3323,7 +3323,7 @@ export type ActionGetPeriodicalProfileJson = {
   rangeEnd?: TimestampJson;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3338,7 +3338,7 @@ export const ActionGetPeriodicalProfileSchema: GenMessage<ActionGetPeriodicalPro
   messageDesc(file_acquisition_shared, 38);
 
 /**
- * Sub-message containing get irregular profile action specification
+ * Defines the get irregular profile action.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
  */
@@ -3358,7 +3358,7 @@ export type ActionGetIrregularProfile = Message<"io.clbs.openhes.models.acquisit
   rangeEnd?: Timestamp;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3366,7 +3366,7 @@ export type ActionGetIrregularProfile = Message<"io.clbs.openhes.models.acquisit
 };
 
 /**
- * Sub-message containing get irregular profile action specification
+ * Defines the get irregular profile action.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
  */
@@ -3386,7 +3386,7 @@ export type ActionGetIrregularProfileJson = {
   rangeEnd?: TimestampJson;
 
   /**
-   * The data type of the target register, e.g. integer, double, string, timestamp, etc. This value can be specified for proxy bulk, while it's automatically taken from the register definition in the system for bulks.
+   * The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 3;
    */
@@ -3401,7 +3401,7 @@ export const ActionGetIrregularProfileSchema: GenMessage<ActionGetIrregularProfi
   messageDesc(file_acquisition_shared, 39);
 
 /**
- * Sub-message containing get events action specification
+ * Defines the get events action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetEvents
  */
@@ -3422,7 +3422,7 @@ export type ActionGetEvents = Message<"io.clbs.openhes.models.acquisition.Action
 };
 
 /**
- * Sub-message containing get events action specification
+ * Defines the get events action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetEvents
  */
@@ -3450,7 +3450,7 @@ export const ActionGetEventsSchema: GenMessage<ActionGetEvents, {jsonType: Actio
   messageDesc(file_acquisition_shared, 40);
 
 /**
- * Sub-message containing get device info action specification
+ * Defines the get device info action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
  */
@@ -3458,7 +3458,7 @@ export type ActionGetDeviceInfo = Message<"io.clbs.openhes.models.acquisition.Ac
 };
 
 /**
- * Sub-message containing get device info action specification
+ * Defines the get device info action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
  */
@@ -3473,7 +3473,7 @@ export const ActionGetDeviceInfoSchema: GenMessage<ActionGetDeviceInfo, {jsonTyp
   messageDesc(file_acquisition_shared, 41);
 
 /**
- * Sub-message containing sync clock action specification
+ * Defines the sync clock action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSyncClock
  */
@@ -3481,7 +3481,7 @@ export type ActionSyncClock = Message<"io.clbs.openhes.models.acquisition.Action
 };
 
 /**
- * Sub-message containing sync clock action specification
+ * Defines the sync clock action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSyncClock
  */
@@ -3496,7 +3496,7 @@ export const ActionSyncClockSchema: GenMessage<ActionSyncClock, {jsonType: Actio
   messageDesc(file_acquisition_shared, 42);
 
 /**
- * Sub-message containing set relay state action specification
+ * Defines the set relay state action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetRelayState
  */
@@ -3504,7 +3504,7 @@ export type ActionSetRelayState = Message<"io.clbs.openhes.models.acquisition.Ac
 };
 
 /**
- * Sub-message containing set relay state action specification
+ * Defines the set relay state action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetRelayState
  */
@@ -3519,7 +3519,7 @@ export const ActionSetRelayStateSchema: GenMessage<ActionSetRelayState, {jsonTyp
   messageDesc(file_acquisition_shared, 43);
 
 /**
- * Sub-message containing set disconnector state action specification
+ * Defines the set disconnector state action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
  */
@@ -3527,7 +3527,7 @@ export type ActionSetDisconnectorState = Message<"io.clbs.openhes.models.acquisi
 };
 
 /**
- * Sub-message containing set disconnector state action specification
+ * Defines the set disconnector state action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
  */
@@ -3542,13 +3542,13 @@ export const ActionSetDisconnectorStateSchema: GenMessage<ActionSetDisconnectorS
   messageDesc(file_acquisition_shared, 44);
 
 /**
- * Sub-message containing get tou action specification
+ * Defines the get TOU action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetTou
  */
 export type ActionGetTou = Message<"io.clbs.openhes.models.acquisition.ActionGetTou"> & {
   /**
-   * Identifies whether to read passive TOU table. By default it is set to false to read active TOU table.
+   * Specifies whether to read the passive TOU table. By default, it is set to `false`, meaning the active TOU table is read.
    *
    * @generated from field: bool passive = 1;
    */
@@ -3556,13 +3556,13 @@ export type ActionGetTou = Message<"io.clbs.openhes.models.acquisition.ActionGet
 };
 
 /**
- * Sub-message containing get tou action specification
+ * Defines the get TOU action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionGetTou
  */
 export type ActionGetTouJson = {
   /**
-   * Identifies whether to read passive TOU table. By default it is set to false to read active TOU table.
+   * Specifies whether to read the passive TOU table. By default, it is set to `false`, meaning the active TOU table is read.
    *
    * @generated from field: bool passive = 1;
    */
@@ -3577,13 +3577,13 @@ export const ActionGetTouSchema: GenMessage<ActionGetTou, {jsonType: ActionGetTo
   messageDesc(file_acquisition_shared, 45);
 
 /**
- * Sub-message containing set tou action specification
+ * Defines the set TOU action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetTou
  */
 export type ActionSetTou = Message<"io.clbs.openhes.models.acquisition.ActionSetTou"> & {
   /**
-   * The time-of-use table to be set.
+   * The TOU table to be set.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec table = 1;
    */
@@ -3591,13 +3591,13 @@ export type ActionSetTou = Message<"io.clbs.openhes.models.acquisition.ActionSet
 };
 
 /**
- * Sub-message containing set tou action specification
+ * Defines the set TOU action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetTou
  */
 export type ActionSetTouJson = {
   /**
-   * The time-of-use table to be set.
+   * The TOU table to be set.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec table = 1;
    */
@@ -3612,7 +3612,7 @@ export const ActionSetTouSchema: GenMessage<ActionSetTou, {jsonType: ActionSetTo
   messageDesc(file_acquisition_shared, 46);
 
 /**
- * Sub-message containing set limiter action specification
+ * Defines the set limiter action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetLimiter
  */
@@ -3620,7 +3620,7 @@ export type ActionSetLimiter = Message<"io.clbs.openhes.models.acquisition.Actio
 };
 
 /**
- * Sub-message containing set limiter action specification
+ * Defines the set limiter action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionSetLimiter
  */
@@ -3635,7 +3635,7 @@ export const ActionSetLimiterSchema: GenMessage<ActionSetLimiter, {jsonType: Act
   messageDesc(file_acquisition_shared, 47);
 
 /**
- * Sub-message containing reset billing period action specification
+ * Defines the reset billing period action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
  */
@@ -3643,7 +3643,7 @@ export type ActionResetBillingPeriod = Message<"io.clbs.openhes.models.acquisiti
 };
 
 /**
- * Sub-message containing reset billing period action specification
+ * Defines the reset billing period action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
  */
@@ -3658,7 +3658,7 @@ export const ActionResetBillingPeriodSchema: GenMessage<ActionResetBillingPeriod
   messageDesc(file_acquisition_shared, 48);
 
 /**
- * Sub-message containing firmware update action specification
+ * Defines the firmware update action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionFwUpdate
  */
@@ -3666,7 +3666,7 @@ export type ActionFwUpdate = Message<"io.clbs.openhes.models.acquisition.ActionF
 };
 
 /**
- * Sub-message containing firmware update action specification
+ * Defines the firmware update action specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ActionFwUpdate
  */
@@ -3681,13 +3681,14 @@ export const ActionFwUpdateSchema: GenMessage<ActionFwUpdate, {jsonType: ActionF
   messageDesc(file_acquisition_shared, 49);
 
 /**
- * Sub-message containing constraints for job actions.
+ * Defines the constraints for job actions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionContraints
  */
 export type JobActionContraints = Message<"io.clbs.openhes.models.acquisition.JobActionContraints"> & {
   /**
-   * Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+   * Contains all register types and their names in English.
+   * Example: [gen]="Generic Register", [vqi]="Quality VQI Register"
    * Action: ACTION_TYPE_GET_REGISTER
    *
    * @generated from field: map<string, string> get_register_type_name = 1;
@@ -3695,8 +3696,9 @@ export type JobActionContraints = Message<"io.clbs.openhes.models.acquisition.Jo
   getRegisterTypeName: { [key: string]: string };
 
   /**
-   * Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
-   * See JobActionAttributes for the attribute definitions.
+   * Contains all register types and their attributes.
+   * Example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+   * See `JobActionAttributes` for the attribute definitions.
    * Action: ACTION_TYPE_GET_REGISTER
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.ListOfString> get_register_type_attributes = 2;
@@ -3705,13 +3707,14 @@ export type JobActionContraints = Message<"io.clbs.openhes.models.acquisition.Jo
 };
 
 /**
- * Sub-message containing constraints for job actions.
+ * Defines the constraints for job actions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionContraints
  */
 export type JobActionContraintsJson = {
   /**
-   * Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+   * Contains all register types and their names in English.
+   * Example: [gen]="Generic Register", [vqi]="Quality VQI Register"
    * Action: ACTION_TYPE_GET_REGISTER
    *
    * @generated from field: map<string, string> get_register_type_name = 1;
@@ -3719,8 +3722,9 @@ export type JobActionContraintsJson = {
   getRegisterTypeName?: { [key: string]: string };
 
   /**
-   * Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
-   * See JobActionAttributes for the attribute definitions.
+   * Contains all register types and their attributes.
+   * Example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+   * See `JobActionAttributes` for the attribute definitions.
    * Action: ACTION_TYPE_GET_REGISTER
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.ListOfString> get_register_type_attributes = 2;
@@ -3736,7 +3740,7 @@ export const JobActionContraintsSchema: GenMessage<JobActionContraints, {jsonTyp
   messageDesc(file_acquisition_shared, 50);
 
 /**
- * Sub-message containing job status info
+ * Defines the status information of a single job within a bulk.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobStatus
  */
@@ -3756,7 +3760,7 @@ export type JobStatus = Message<"io.clbs.openhes.models.acquisition.JobStatus"> 
   code: JobErrorCode;
 
   /**
-   * The result data for all job actions.
+   * The result data for all executed job actions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.ActionResult results = 3;
    */
@@ -3784,21 +3788,21 @@ export type JobStatus = Message<"io.clbs.openhes.models.acquisition.JobStatus"> 
   attemptsDone: number;
 
   /**
-   * The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
+   * The device informatiom from the `ACTION_TYPE_GET_DEVICE_INFO` action.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceInfo device_info = 7;
    */
   deviceInfo?: DeviceInfo;
 
   /**
-   * The internal queue identifier set by the Taskmaster when the job is queued to process.
+   * The internal queue identifier set by the Taskmaster when the job is queued for processing.
    *
    * @generated from field: int64 queue_id = 8;
    */
   queueId: bigint;
 
   /**
-   * The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message.
+   * The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
    *
    * @generated from field: io.clbs.openhes.models.common.FormattedMessage error_message = 9;
    */
@@ -3806,7 +3810,7 @@ export type JobStatus = Message<"io.clbs.openhes.models.acquisition.JobStatus"> 
 };
 
 /**
- * Sub-message containing job status info
+ * Defines the status information of a single job within a bulk.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobStatus
  */
@@ -3826,7 +3830,7 @@ export type JobStatusJson = {
   code?: JobErrorCodeJson;
 
   /**
-   * The result data for all job actions.
+   * The result data for all executed job actions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.ActionResult results = 3;
    */
@@ -3854,21 +3858,21 @@ export type JobStatusJson = {
   attemptsDone?: number;
 
   /**
-   * The device info. It contains the data from the action ACTION_TYPE_GET_DEVICE_INFO.
+   * The device informatiom from the `ACTION_TYPE_GET_DEVICE_INFO` action.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceInfo device_info = 7;
    */
   deviceInfo?: DeviceInfoJson;
 
   /**
-   * The internal queue identifier set by the Taskmaster when the job is queued to process.
+   * The internal queue identifier set by the Taskmaster when the job is queued for processing.
    *
    * @generated from field: int64 queue_id = 8;
    */
   queueId?: string;
 
   /**
-   * The user error message related to the whole job. This is used especially when no action is executed to log a non-action related error message.
+   * The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
    *
    * @generated from field: io.clbs.openhes.models.common.FormattedMessage error_message = 9;
    */
@@ -3883,20 +3887,20 @@ export const JobStatusSchema: GenMessage<JobStatus, {jsonType: JobStatusJson}> =
   messageDesc(file_acquisition_shared, 51);
 
 /**
- * Sub-message containing job start request for single device
+ * Defines the job start request for a single device.
  *
  * @generated from message io.clbs.openhes.models.acquisition.StartJobData
  */
 export type StartJobData = Message<"io.clbs.openhes.models.acquisition.StartJobData"> & {
   /**
-   * The device attributes. For example HDLC address, password and other driver-specific attributes.
+   * The device attributes required by the driver. For example HDLC address, password, and other driver-specific attributes.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> device_attributes = 1;
    */
   deviceAttributes: { [key: string]: FieldValue };
 
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: string job_id = 2;
    */
@@ -3910,21 +3914,21 @@ export type StartJobData = Message<"io.clbs.openhes.models.acquisition.StartJobD
   jobSettings?: JobSettings;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction job_actions = 4;
    */
   jobActions: JobAction[];
 
   /**
-   * The application protocol.
+   * The application protocol used for communication with the device.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 5;
    */
   appProtocol: ApplicationProtocol;
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 6;
    */
@@ -3932,20 +3936,20 @@ export type StartJobData = Message<"io.clbs.openhes.models.acquisition.StartJobD
 };
 
 /**
- * Sub-message containing job start request for single device
+ * Defines the job start request for a single device.
  *
  * @generated from message io.clbs.openhes.models.acquisition.StartJobData
  */
 export type StartJobDataJson = {
   /**
-   * The device attributes. For example HDLC address, password and other driver-specific attributes.
+   * The device attributes required by the driver. For example HDLC address, password, and other driver-specific attributes.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> device_attributes = 1;
    */
   deviceAttributes?: { [key: string]: FieldValueJson };
 
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: string job_id = 2;
    */
@@ -3959,21 +3963,21 @@ export type StartJobDataJson = {
   jobSettings?: JobSettingsJson;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction job_actions = 4;
    */
   jobActions?: JobActionJson[];
 
   /**
-   * The application protocol.
+   * The application protocol used for communication with the device.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 5;
    */
   appProtocol?: ApplicationProtocolJson;
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 6;
    */
@@ -3988,13 +3992,13 @@ export const StartJobDataSchema: GenMessage<StartJobData, {jsonType: StartJobDat
   messageDesc(file_acquisition_shared, 52);
 
 /**
- * Taskmaster -> Driver cancel job request message
+ * Defines the cancel job request message sent from the Taskmaster to the driver.
  *
  * @generated from message io.clbs.openhes.models.acquisition.CancelJobRequest
  */
 export type CancelJobRequest = Message<"io.clbs.openhes.models.acquisition.CancelJobRequest"> & {
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: string job_id = 1;
    */
@@ -4002,13 +4006,13 @@ export type CancelJobRequest = Message<"io.clbs.openhes.models.acquisition.Cance
 };
 
 /**
- * Taskmaster -> Driver cancel job request message
+ * Defines the cancel job request message sent from the Taskmaster to the driver.
  *
  * @generated from message io.clbs.openhes.models.acquisition.CancelJobRequest
  */
 export type CancelJobRequestJson = {
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: string job_id = 1;
    */
@@ -4023,6 +4027,8 @@ export const CancelJobRequestSchema: GenMessage<CancelJobRequest, {jsonType: Can
   messageDesc(file_acquisition_shared, 53);
 
 /**
+ * Defines the configuration of a register for a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
  */
 export type DeviceConfigurationRegisterSpec = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec"> & {
@@ -4041,7 +4047,7 @@ export type DeviceConfigurationRegisterSpec = Message<"io.clbs.openhes.models.ac
   registerType: DeviceConfigurationRegisterKind;
 
   /**
-   * The field values.
+   * The field values assigned to the register.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 3;
    */
@@ -4056,6 +4062,8 @@ export type DeviceConfigurationRegisterSpec = Message<"io.clbs.openhes.models.ac
 };
 
 /**
+ * Defines the configuration of a register for a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
  */
 export type DeviceConfigurationRegisterSpecJson = {
@@ -4074,7 +4082,7 @@ export type DeviceConfigurationRegisterSpecJson = {
   registerType?: DeviceConfigurationRegisterKindJson;
 
   /**
-   * The field values.
+   * The field values assigned to the register.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 3;
    */
@@ -4096,13 +4104,13 @@ export const DeviceConfigurationRegisterSpecSchema: GenMessage<DeviceConfigurati
   messageDesc(file_acquisition_shared, 54);
 
 /**
- * Addon
+ * [ADDON] Defines the device register specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceRegister
  */
 export type DeviceRegister = Message<"io.clbs.openhes.models.acquisition.DeviceRegister"> & {
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: int64 register_id = 1;
    */
@@ -4116,14 +4124,14 @@ export type DeviceRegister = Message<"io.clbs.openhes.models.acquisition.DeviceR
   publicRegisterId: string;
 
   /**
-   * The register spec.
+   * The register specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec spec = 3;
    */
   spec?: DeviceConfigurationRegisterSpec;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * The list of variable names if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -4131,13 +4139,13 @@ export type DeviceRegister = Message<"io.clbs.openhes.models.acquisition.DeviceR
 };
 
 /**
- * Addon
+ * [ADDON] Defines the device register specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceRegister
  */
 export type DeviceRegisterJson = {
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: int64 register_id = 1;
    */
@@ -4151,14 +4159,14 @@ export type DeviceRegisterJson = {
   publicRegisterId?: string;
 
   /**
-   * The register spec.
+   * The register specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec spec = 3;
    */
   spec?: DeviceConfigurationRegisterSpecJson;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * The list of variable names if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -4173,34 +4181,34 @@ export const DeviceRegisterSchema: GenMessage<DeviceRegister, {jsonType: DeviceR
   messageDesc(file_acquisition_shared, 55);
 
 /**
- * Addon
+ * [ADDON] Defines the device connection information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConnectionInfo
  */
 export type DeviceConnectionInfo = Message<"io.clbs.openhes.models.acquisition.DeviceConnectionInfo"> & {
   /**
-   * The unique identifier of the communication unit.
+   * The unique communication unit identifier.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ConnectionInfo communication_unit = 1;
    */
   communicationUnit?: ConnectionInfo;
 
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The application protocol to be used for communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 2;
    */
   appProtocol: ApplicationProtocol;
 
   /**
-   * The device attributes. For example HDLC address, password and other driver-specific attributes.
+   * The device attributes. For example HDLC address, password, and other driver-specific attributes.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> device_attributes = 3;
    */
   deviceAttributes: { [key: string]: FieldValue };
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 4;
    */
@@ -4221,7 +4229,7 @@ export type DeviceConnectionInfo = Message<"io.clbs.openhes.models.acquisition.D
   driverVersion: string;
 
   /**
-   * The list of registers get using current device configuration template.
+   * The list of registers defined for device according to its configuration template.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceRegister registers = 8;
    */
@@ -4229,34 +4237,34 @@ export type DeviceConnectionInfo = Message<"io.clbs.openhes.models.acquisition.D
 };
 
 /**
- * Addon
+ * [ADDON] Defines the device connection information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConnectionInfo
  */
 export type DeviceConnectionInfoJson = {
   /**
-   * The unique identifier of the communication unit.
+   * The unique communication unit identifier.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ConnectionInfo communication_unit = 1;
    */
   communicationUnit?: ConnectionInfoJson;
 
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The application protocol to be used for communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 2;
    */
   appProtocol?: ApplicationProtocolJson;
 
   /**
-   * The device attributes. For example HDLC address, password and other driver-specific attributes.
+   * The device attributes. For example HDLC address, password, and other driver-specific attributes.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> device_attributes = 3;
    */
   deviceAttributes?: { [key: string]: FieldValueJson };
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 4;
    */
@@ -4277,7 +4285,7 @@ export type DeviceConnectionInfoJson = {
   driverVersion?: string;
 
   /**
-   * The list of registers get using current device configuration template.
+   * The list of registers defined for device according to its configuration template.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceRegister registers = 8;
    */
@@ -4292,18 +4300,20 @@ export const DeviceConnectionInfoSchema: GenMessage<DeviceConnectionInfo, {jsonT
   messageDesc(file_acquisition_shared, 56);
 
 /**
- * Addon for DB
+ * [ADDON for DB] Defines a list of modem information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfModemInfo
  */
 export type ListOfModemInfo = Message<"io.clbs.openhes.models.acquisition.ListOfModemInfo"> & {
   /**
+   * The list of modem information records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.ModemInfo items = 1;
    */
   items: ModemInfo[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -4311,18 +4321,20 @@ export type ListOfModemInfo = Message<"io.clbs.openhes.models.acquisition.ListOf
 };
 
 /**
- * Addon for DB
+ * [ADDON for DB] Defines a list of modem information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfModemInfo
  */
 export type ListOfModemInfoJson = {
   /**
+   * The list of modem information records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.ModemInfo items = 1;
    */
   items?: ModemInfoJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -4337,18 +4349,20 @@ export const ListOfModemInfoSchema: GenMessage<ListOfModemInfo, {jsonType: ListO
   messageDesc(file_acquisition_shared, 57);
 
 /**
- * Addon for DB
+ * [ADDON for DB] Defines a list of device connection information records.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfConnectionInfo
  */
 export type ListOfConnectionInfo = Message<"io.clbs.openhes.models.acquisition.ListOfConnectionInfo"> & {
   /**
+   * The list of device connection information records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceConnectionInfo items = 1;
    */
   items: DeviceConnectionInfo[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -4356,18 +4370,20 @@ export type ListOfConnectionInfo = Message<"io.clbs.openhes.models.acquisition.L
 };
 
 /**
- * Addon for DB
+ * [ADDON for DB] Defines a list of device connection information records.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfConnectionInfo
  */
 export type ListOfConnectionInfoJson = {
   /**
+   * The list of device connection information records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceConnectionInfo items = 1;
    */
   items?: DeviceConnectionInfoJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -4382,7 +4398,7 @@ export const ListOfConnectionInfoSchema: GenMessage<ListOfConnectionInfo, {jsonT
   messageDesc(file_acquisition_shared, 58);
 
 /**
- * Addon for DB
+ * [ADDON for DB] The list of field values.
  *
  * @generated from message io.clbs.openhes.models.acquisition.FieldValuesList
  */
@@ -4396,7 +4412,7 @@ export type FieldValuesList = Message<"io.clbs.openhes.models.acquisition.FieldV
 };
 
 /**
- * Addon for DB
+ * [ADDON for DB] The list of field values.
  *
  * @generated from message io.clbs.openhes.models.acquisition.FieldValuesList
  */
@@ -4417,7 +4433,7 @@ export const FieldValuesListSchema: GenMessage<FieldValuesList, {jsonType: Field
   messageDesc(file_acquisition_shared, 59);
 
 /**
- * Generic attribute selector using field values
+ * Defines a generic attribute selector using field values.
  *
  * @generated from message io.clbs.openhes.models.acquisition.AttributeSelector
  */
@@ -4444,35 +4460,35 @@ export type AttributeSelector = Message<"io.clbs.openhes.models.acquisition.Attr
   dataType: FieldDataType;
 
   /**
-   * The text-typed value(s) used for filtering.
+   * The text-typed values used for filtering.
    *
    * @generated from field: repeated string text = 4;
    */
   text: string[];
 
   /**
-   * The integer-typed value(s) used for filtering.
+   * The integer-typed values used for filtering.
    *
    * @generated from field: repeated sint64 integer = 5;
    */
   integer: bigint[];
 
   /**
-   * The number-typed value(s) used for filtering.
+   * The number-typed values used for filtering.
    *
    * @generated from field: repeated double number = 6;
    */
   number: number[];
 
   /**
-   * The boolean-typed value(s) used for filtering.
+   * The boolean-typed values used for filtering.
    *
    * @generated from field: repeated bool boolean = 7;
    */
   boolean: boolean[];
 
   /**
-   * The date-typed value(s) used for filtering.
+   * The date-typed values used for filtering.
    *
    * @generated from field: repeated google.protobuf.Timestamp date = 8;
    */
@@ -4480,7 +4496,7 @@ export type AttributeSelector = Message<"io.clbs.openhes.models.acquisition.Attr
 };
 
 /**
- * Generic attribute selector using field values
+ * Defines a generic attribute selector using field values.
  *
  * @generated from message io.clbs.openhes.models.acquisition.AttributeSelector
  */
@@ -4507,35 +4523,35 @@ export type AttributeSelectorJson = {
   dataType?: FieldDataTypeJson;
 
   /**
-   * The text-typed value(s) used for filtering.
+   * The text-typed values used for filtering.
    *
    * @generated from field: repeated string text = 4;
    */
   text?: string[];
 
   /**
-   * The integer-typed value(s) used for filtering.
+   * The integer-typed values used for filtering.
    *
    * @generated from field: repeated sint64 integer = 5;
    */
   integer?: string[];
 
   /**
-   * The number-typed value(s) used for filtering.
+   * The number-typed values used for filtering.
    *
    * @generated from field: repeated double number = 6;
    */
   number?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
-   * The boolean-typed value(s) used for filtering.
+   * The boolean-typed values used for filtering.
    *
    * @generated from field: repeated bool boolean = 7;
    */
   boolean?: boolean[];
 
   /**
-   * The date-typed value(s) used for filtering.
+   * The date-typed values used for filtering.
    *
    * @generated from field: repeated google.protobuf.Timestamp date = 8;
    */
@@ -4550,7 +4566,7 @@ export const AttributeSelectorSchema: GenMessage<AttributeSelector, {jsonType: A
   messageDesc(file_acquisition_shared, 60);
 
 /**
- * Generic attribute selector using field values for devices
+ * Defines the attribute selector using field values for devices.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceAttributeSelector
  */
@@ -4564,7 +4580,7 @@ export type DeviceAttributeSelector = Message<"io.clbs.openhes.models.acquisitio
 };
 
 /**
- * Generic attribute selector using field values for devices
+ * Defines the attribute selector using field values for devices.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceAttributeSelector
  */
@@ -4585,13 +4601,13 @@ export const DeviceAttributeSelectorSchema: GenMessage<DeviceAttributeSelector, 
   messageDesc(file_acquisition_shared, 61);
 
 /**
- * Generic attribute selector using field values for devices
+ * Defines the attribute selector using field values for communication units.
  *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
  */
 export type CommunicationUnitAttributeSelector = Message<"io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector"> & {
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The data link protocol to be used for communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DataLinkProtocol link_protocol = 1;
    */
@@ -4606,13 +4622,13 @@ export type CommunicationUnitAttributeSelector = Message<"io.clbs.openhes.models
 };
 
 /**
- * Generic attribute selector using field values for devices
+ * Defines the attribute selector using field values for communication units.
  *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
  */
 export type CommunicationUnitAttributeSelectorJson = {
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The data link protocol to be used for communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DataLinkProtocol link_protocol = 1;
    */
@@ -4739,13 +4755,13 @@ export const ActionResultSchema: GenMessage<ActionResult, {jsonType: ActionResul
   messageDesc(file_acquisition_shared, 63);
 
 /**
- * Taskmaster -> Dataproxy job/action progress update message
+ * Defines the job or action progress update message sent from Taskmaster to Dataproxy.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobEventData
  */
 export type JobEventData = Message<"io.clbs.openhes.models.acquisition.JobEventData"> & {
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: bytes job_id = 1;
    */
@@ -4753,13 +4769,13 @@ export type JobEventData = Message<"io.clbs.openhes.models.acquisition.JobEventD
 };
 
 /**
- * Taskmaster -> Dataproxy job/action progress update message
+ * Defines the job or action progress update message sent from Taskmaster to Dataproxy.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobEventData
  */
 export type JobEventDataJson = {
   /**
-   * The job identifier.
+   * The unique job identifier.
    *
    * @generated from field: bytes job_id = 1;
    */
@@ -4774,7 +4790,7 @@ export const JobEventDataSchema: GenMessage<JobEventData, {jsonType: JobEventDat
   messageDesc(file_acquisition_shared, 64);
 
 /**
- * Sub-message - the device specification.
+ * Defines the device specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceSpec
  */
@@ -4782,7 +4798,7 @@ export type DeviceSpec = Message<"io.clbs.openhes.models.acquisition.DeviceSpec"
   /**
    * @gqltype: UUID
    *
-   * The device configuration template identifier.
+   * The identifier of the device configuration template.
    *
    * @generated from field: string dct_id = 1;
    */
@@ -4796,14 +4812,14 @@ export type DeviceSpec = Message<"io.clbs.openhes.models.acquisition.DeviceSpec"
   externalId: string;
 
   /**
-   * The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
+   * The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceCommunicationUnit communication_unit_link = 3;
    */
   communicationUnitLink: DeviceCommunicationUnit[];
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 4;
    */
@@ -4811,7 +4827,7 @@ export type DeviceSpec = Message<"io.clbs.openhes.models.acquisition.DeviceSpec"
 };
 
 /**
- * Sub-message - the device specification.
+ * Defines the device specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceSpec
  */
@@ -4819,7 +4835,7 @@ export type DeviceSpecJson = {
   /**
    * @gqltype: UUID
    *
-   * The device configuration template identifier.
+   * The identifier of the device configuration template.
    *
    * @generated from field: string dct_id = 1;
    */
@@ -4833,14 +4849,14 @@ export type DeviceSpecJson = {
   externalId?: string;
 
   /**
-   * The list of communication unit identifiers (and additional info) that set CUs usable to communicate with the device. It's an ordered set where the first element is the primary communication unit with the highest priority.
+   * The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceCommunicationUnit communication_unit_link = 3;
    */
   communicationUnitLink?: DeviceCommunicationUnitJson[];
 
   /**
-   * The timezone related to the device, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
    *
    * @generated from field: string timezone = 4;
    */
@@ -4855,18 +4871,20 @@ export const DeviceSpecSchema: GenMessage<DeviceSpec, {jsonType: DeviceSpecJson}
   messageDesc(file_acquisition_shared, 65);
 
 /**
+ * Defines the current status of a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceStatus
  */
 export type DeviceStatus = Message<"io.clbs.openhes.models.acquisition.DeviceStatus"> & {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceInfo info = 1;
    */
   info?: DeviceInfo;
 
   /**
-   * The driver type selecte by it's device configuration template.
+   * The driver type selected according to the device configuration template.
    *
    * @generated from field: string driver_type = 2;
    */
@@ -4874,18 +4892,20 @@ export type DeviceStatus = Message<"io.clbs.openhes.models.acquisition.DeviceSta
 };
 
 /**
+ * Defines the current status of a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceStatus
  */
 export type DeviceStatusJson = {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceInfo info = 1;
    */
   info?: DeviceInfoJson;
 
   /**
-   * The driver type selecte by it's device configuration template.
+   * The driver type selected according to the device configuration template.
    *
    * @generated from field: string driver_type = 2;
    */
@@ -4900,6 +4920,8 @@ export const DeviceStatusSchema: GenMessage<DeviceStatus, {jsonType: DeviceStatu
   messageDesc(file_acquisition_shared, 66);
 
 /**
+ * Defines the mapping between a device and its communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
  */
 export type DeviceCommunicationUnit = Message<"io.clbs.openhes.models.acquisition.DeviceCommunicationUnit"> & {
@@ -4911,14 +4933,14 @@ export type DeviceCommunicationUnit = Message<"io.clbs.openhes.models.acquisitio
   communicationUnitId: string;
 
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The application protocol used communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 2;
    */
   appProtocol: ApplicationProtocol;
 
   /**
-   * The app-protocol related device attributes. It is represented as a list of attribute definitions.
+   * The application protocol related device attributes, represented as a list of attribute definitions.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 3;
    */
@@ -4926,6 +4948,8 @@ export type DeviceCommunicationUnit = Message<"io.clbs.openhes.models.acquisitio
 };
 
 /**
+ * Defines the mapping between a device and its communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
  */
 export type DeviceCommunicationUnitJson = {
@@ -4937,14 +4961,14 @@ export type DeviceCommunicationUnitJson = {
   communicationUnitId?: string;
 
   /**
-   * The application protocol to be used for the communication over the communication unit.
+   * The application protocol used communication over the communication unit.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ApplicationProtocol app_protocol = 2;
    */
   appProtocol?: ApplicationProtocolJson;
 
   /**
-   * The app-protocol related device attributes. It is represented as a list of attribute definitions.
+   * The application protocol related device attributes, represented as a list of attribute definitions.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 3;
    */
@@ -4959,13 +4983,13 @@ export const DeviceCommunicationUnitSchema: GenMessage<DeviceCommunicationUnit, 
   messageDesc(file_acquisition_shared, 67);
 
 /**
- * Sub-message - job specification
+ * Defines the job specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobSpec
  */
 export type JobSpec = Message<"io.clbs.openhes.models.acquisition.JobSpec"> & {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobDevice device = 2;
    */
@@ -4986,14 +5010,14 @@ export type JobSpec = Message<"io.clbs.openhes.models.acquisition.JobSpec"> & {
   driverType: string;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed within the job.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction job_actions = 5;
    */
   jobActions: JobAction[];
 
   /**
-   * The mapping data for all actions.
+   * The mapping data for all job actions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionMapRecord job_action_info = 6;
    */
@@ -5001,13 +5025,13 @@ export type JobSpec = Message<"io.clbs.openhes.models.acquisition.JobSpec"> & {
 };
 
 /**
- * Sub-message - job specification
+ * Defines the job specification.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobSpec
  */
 export type JobSpecJson = {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobDevice device = 2;
    */
@@ -5028,14 +5052,14 @@ export type JobSpecJson = {
   driverType?: string;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed within the job.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction job_actions = 5;
    */
   jobActions?: JobActionJson[];
 
   /**
-   * The mapping data for all actions.
+   * The mapping data for all job actions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionMapRecord job_action_info = 6;
    */
@@ -5050,11 +5074,13 @@ export const JobSpecSchema: GenMessage<JobSpec, {jsonType: JobSpecJson}> = /*@__
   messageDesc(file_acquisition_shared, 68);
 
 /**
+ * Defines the mapping information for the specified job action.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionMapRecord
  */
 export type JobActionMapRecord = Message<"io.clbs.openhes.models.acquisition.JobActionMapRecord"> & {
   /**
-   * The index of the action in the job_actions list.
+   * The index of the action in the `job_actions` list.
    *
    * @generated from field: int32 action_index = 1;
    */
@@ -5068,14 +5094,14 @@ export type JobActionMapRecord = Message<"io.clbs.openhes.models.acquisition.Job
   registerId: bigint;
 
   /**
-   * The register identifier.
+   * The public register identifier.
    *
    * @generated from field: string public_register_id = 2;
    */
   publicRegisterId: string;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * The names of variables, if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -5083,11 +5109,13 @@ export type JobActionMapRecord = Message<"io.clbs.openhes.models.acquisition.Job
 };
 
 /**
+ * Defines the mapping information for the specified job action.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.JobActionMapRecord
  */
 export type JobActionMapRecordJson = {
   /**
-   * The index of the action in the job_actions list.
+   * The index of the action in the `job_actions` list.
    *
    * @generated from field: int32 action_index = 1;
    */
@@ -5101,14 +5129,14 @@ export type JobActionMapRecordJson = {
   registerId?: string;
 
   /**
-   * The register identifier.
+   * The public register identifier.
    *
    * @generated from field: string public_register_id = 2;
    */
   publicRegisterId?: string;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * The names of variables, if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -5123,7 +5151,7 @@ export const JobActionMapRecordSchema: GenMessage<JobActionMapRecord, {jsonType:
   messageDesc(file_acquisition_shared, 69);
 
 /**
- * Message used to notify DP that the job is done, sent by Taskmaster
+ * Defines the notification sent by the Taskmaster to Dataproxy that a job has been completed.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobDoneNotification
  */
@@ -5136,7 +5164,7 @@ export type JobDoneNotification = Message<"io.clbs.openhes.models.acquisition.Jo
   spec?: JobSpec;
 
   /**
-   * The status of the job
+   * The status of the job.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobStatus status = 2;
    */
@@ -5144,7 +5172,7 @@ export type JobDoneNotification = Message<"io.clbs.openhes.models.acquisition.Jo
 };
 
 /**
- * Message used to notify DP that the job is done, sent by Taskmaster
+ * Defines the notification sent by the Taskmaster to Dataproxy that a job has been completed.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobDoneNotification
  */
@@ -5157,7 +5185,7 @@ export type JobDoneNotificationJson = {
   spec?: JobSpecJson;
 
   /**
-   * The status of the job
+   * The status of the job.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobStatus status = 2;
    */
@@ -5172,13 +5200,13 @@ export const JobDoneNotificationSchema: GenMessage<JobDoneNotification, {jsonTyp
   messageDesc(file_acquisition_shared, 70);
 
 /**
- * Sub-message containing driver info
+ * Defines the driver information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DriverInfo
  */
 export type DriverInfo = Message<"io.clbs.openhes.models.acquisition.DriverInfo"> & {
   /**
-   * The driver unique identifier.
+   * The unique driver identifier.
    *
    * @generated from field: string driver_type = 1;
    */
@@ -5193,13 +5221,13 @@ export type DriverInfo = Message<"io.clbs.openhes.models.acquisition.DriverInfo"
 };
 
 /**
- * Sub-message containing driver info
+ * Defines the driver information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DriverInfo
  */
 export type DriverInfoJson = {
   /**
-   * The driver unique identifier.
+   * The unique driver identifier.
    *
    * @generated from field: string driver_type = 1;
    */
@@ -5221,6 +5249,8 @@ export const DriverInfoSchema: GenMessage<DriverInfo, {jsonType: DriverInfoJson}
   messageDesc(file_acquisition_shared, 71);
 
 /**
+ * Defines the communication unit information.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnit
  */
 export type CommunicationUnit = Message<"io.clbs.openhes.models.acquisition.CommunicationUnit"> & {
@@ -5240,6 +5270,8 @@ export type CommunicationUnit = Message<"io.clbs.openhes.models.acquisition.Comm
 };
 
 /**
+ * Defines the communication unit information.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnit
  */
 export type CommunicationUnitJson = {
@@ -5266,6 +5298,8 @@ export const CommunicationUnitSchema: GenMessage<CommunicationUnit, {jsonType: C
   messageDesc(file_acquisition_shared, 72);
 
 /**
+ * Defines the communication unit specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitSpec
  */
 export type CommunicationUnitSpec = Message<"io.clbs.openhes.models.acquisition.CommunicationUnitSpec"> & {
@@ -5277,7 +5311,7 @@ export type CommunicationUnitSpec = Message<"io.clbs.openhes.models.acquisition.
   externalId: string;
 
   /**
-   * The connection info.
+   * The connection parameters.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ConnectionInfo connection_info = 2;
    */
@@ -5285,6 +5319,8 @@ export type CommunicationUnitSpec = Message<"io.clbs.openhes.models.acquisition.
 };
 
 /**
+ * Defines the communication unit specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitSpec
  */
 export type CommunicationUnitSpecJson = {
@@ -5296,7 +5332,7 @@ export type CommunicationUnitSpecJson = {
   externalId?: string;
 
   /**
-   * The connection info.
+   * The connection parameters.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ConnectionInfo connection_info = 2;
    */
@@ -5311,6 +5347,8 @@ export const CommunicationUnitSpecSchema: GenMessage<CommunicationUnitSpec, {jso
   messageDesc(file_acquisition_shared, 73);
 
 /**
+ * Defines the the communication bus information.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationBus
  */
 export type CommunicationBus = Message<"io.clbs.openhes.models.acquisition.CommunicationBus"> & {
@@ -5330,6 +5368,8 @@ export type CommunicationBus = Message<"io.clbs.openhes.models.acquisition.Commu
 };
 
 /**
+ * Defines the the communication bus information.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationBus
  */
 export type CommunicationBusJson = {
@@ -5356,11 +5396,13 @@ export const CommunicationBusSchema: GenMessage<CommunicationBus, {jsonType: Com
   messageDesc(file_acquisition_shared, 74);
 
 /**
+ * Defines the communication bus status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationBusStatus
  */
 export type CommunicationBusStatus = Message<"io.clbs.openhes.models.acquisition.CommunicationBusStatus"> & {
   /**
-   * The list of communication unit identifiers.
+   * The list of communication unit identifiers connected to the communication bus.
    *
    * @generated from field: repeated string communication_unit_id = 1;
    */
@@ -5368,11 +5410,13 @@ export type CommunicationBusStatus = Message<"io.clbs.openhes.models.acquisition
 };
 
 /**
+ * Defines the communication bus status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationBusStatus
  */
 export type CommunicationBusStatusJson = {
   /**
-   * The list of communication unit identifiers.
+   * The list of communication unit identifiers connected to the communication bus.
    *
    * @generated from field: repeated string communication_unit_id = 1;
    */
@@ -5387,25 +5431,27 @@ export const CommunicationBusStatusSchema: GenMessage<CommunicationBusStatus, {j
   messageDesc(file_acquisition_shared, 75);
 
 /**
+ * Defines a node in the network topology.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.TopologyNode
  */
 export type TopologyNode = Message<"io.clbs.openhes.models.acquisition.TopologyNode"> & {
   /**
-   * The unique identifier of the node.
+   * The unique node identifier.
    *
    * @generated from field: int64 x_id = 1;
    */
   xId: bigint;
 
   /**
-   * The type of the node, e.g. "device", "communication_unit", etc.
+   * The type of the node, for example "device", "communication_unit".
    *
    * @generated from field: io.clbs.openhes.models.acquisition.TopologyNodeType type = 2;
    */
   type: TopologyNodeType;
 
   /**
-   * The attributes of the node.
+   * The node attributes.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues attributes = 3;
    */
@@ -5413,25 +5459,27 @@ export type TopologyNode = Message<"io.clbs.openhes.models.acquisition.TopologyN
 };
 
 /**
+ * Defines a node in the network topology.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.TopologyNode
  */
 export type TopologyNodeJson = {
   /**
-   * The unique identifier of the node.
+   * The unique node identifier.
    *
    * @generated from field: int64 x_id = 1;
    */
   xId?: string;
 
   /**
-   * The type of the node, e.g. "device", "communication_unit", etc.
+   * The type of the node, for example "device", "communication_unit".
    *
    * @generated from field: io.clbs.openhes.models.acquisition.TopologyNodeType type = 2;
    */
   type?: TopologyNodeTypeJson;
 
   /**
-   * The attributes of the node.
+   * The node attributes.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues attributes = 3;
    */
@@ -5446,25 +5494,27 @@ export const TopologyNodeSchema: GenMessage<TopologyNode, {jsonType: TopologyNod
   messageDesc(file_acquisition_shared, 76);
 
 /**
+ * Defines an edge between two nodes in the network topology.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.TopologyEdge
  */
 export type TopologyEdge = Message<"io.clbs.openhes.models.acquisition.TopologyEdge"> & {
   /**
-   * The unique identifier of the edge.
+   * The unique identifier of source edge.
    *
    * @generated from field: int64 from_x_id = 1;
    */
   fromXId: bigint;
 
   /**
-   * The unique identifier of the edge.
+   * The unique identifier of the target edge.
    *
    * @generated from field: int64 to_x_id = 2;
    */
   toXId: bigint;
 
   /**
-   * The attributes of the edge.
+   * The edge attributes.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues attributes = 3;
    */
@@ -5472,25 +5522,27 @@ export type TopologyEdge = Message<"io.clbs.openhes.models.acquisition.TopologyE
 };
 
 /**
+ * Defines an edge between two nodes in the network topology.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.TopologyEdge
  */
 export type TopologyEdgeJson = {
   /**
-   * The unique identifier of the edge.
+   * The unique identifier of source edge.
    *
    * @generated from field: int64 from_x_id = 1;
    */
   fromXId?: string;
 
   /**
-   * The unique identifier of the edge.
+   * The unique identifier of the target edge.
    *
    * @generated from field: int64 to_x_id = 2;
    */
   toXId?: string;
 
   /**
-   * The attributes of the edge.
+   * The edge attributes.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues attributes = 3;
    */
@@ -5505,11 +5557,13 @@ export const TopologyEdgeSchema: GenMessage<TopologyEdge, {jsonType: TopologyEdg
   messageDesc(file_acquisition_shared, 77);
 
 /**
+ * Defines the network map specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.NetworkMap
  */
 export type NetworkMap = Message<"io.clbs.openhes.models.acquisition.NetworkMap"> & {
   /**
-   * Flat or hierarchical list of topology devices
+   * The list of topology nodes. Can represent a flat or hierarchical structure.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.TopologyNode nodes = 1;
    */
@@ -5524,11 +5578,13 @@ export type NetworkMap = Message<"io.clbs.openhes.models.acquisition.NetworkMap"
 };
 
 /**
+ * Defines the network map specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.NetworkMap
  */
 export type NetworkMapJson = {
   /**
-   * Flat or hierarchical list of topology devices
+   * The list of topology nodes. Can represent a flat or hierarchical structure.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.TopologyNode nodes = 1;
    */
@@ -5550,39 +5606,41 @@ export const NetworkMapSchema: GenMessage<NetworkMap, {jsonType: NetworkMapJson}
   messageDesc(file_acquisition_shared, 78);
 
 /**
+ * Defines a single log record of a communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
  */
 export type CommunicationUnitLogRecord = Message<"io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord"> & {
   /**
-   * The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
+   * The unique identifier of the log record. If not provided, a hash of the log data is auto-generated.
    *
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * The unique identifier of the communication unit to which the log record belongs. When adding the log records, it may be empty and relation can be set on the upper object level instead.
+   * The unique identifier of the communication unit to which the log record belongs. May be empty and the relation can be set at a higher object level.
    *
    * @generated from field: string communication_unit_id = 2;
    */
   communicationUnitId: string;
 
   /**
-   * The timestamp of the log record. It must not be empty.
+   * The timestamp of the log record. Must not be empty.
    *
    * @generated from field: google.protobuf.Timestamp timestamp = 3;
    */
   timestamp?: Timestamp;
 
   /**
-   * The log level of the log record, if provided.
+   * The severity level of the log record.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.LogRecordLevel level = 4;
    */
   level: LogRecordLevel;
 
   /**
-   * The log message. It must not be empty.
+   * The log message. Must not be empty.
    *
    * @generated from field: string message = 5;
    */
@@ -5590,39 +5648,41 @@ export type CommunicationUnitLogRecord = Message<"io.clbs.openhes.models.acquisi
 };
 
 /**
+ * Defines a single log record of a communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
  */
 export type CommunicationUnitLogRecordJson = {
   /**
-   * The unique identifier of the log record, if provided. If not provided, a hash of the log data is auto-generated.
+   * The unique identifier of the log record. If not provided, a hash of the log data is auto-generated.
    *
    * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * The unique identifier of the communication unit to which the log record belongs. When adding the log records, it may be empty and relation can be set on the upper object level instead.
+   * The unique identifier of the communication unit to which the log record belongs. May be empty and the relation can be set at a higher object level.
    *
    * @generated from field: string communication_unit_id = 2;
    */
   communicationUnitId?: string;
 
   /**
-   * The timestamp of the log record. It must not be empty.
+   * The timestamp of the log record. Must not be empty.
    *
    * @generated from field: google.protobuf.Timestamp timestamp = 3;
    */
   timestamp?: TimestampJson;
 
   /**
-   * The log level of the log record, if provided.
+   * The severity level of the log record.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.LogRecordLevel level = 4;
    */
   level?: LogRecordLevelJson;
 
   /**
-   * The log message. It must not be empty.
+   * The log message. Must not be empty.
    *
    * @generated from field: string message = 5;
    */
@@ -5637,16 +5697,20 @@ export const CommunicationUnitLogRecordSchema: GenMessage<CommunicationUnitLogRe
   messageDesc(file_acquisition_shared, 79);
 
 /**
+ * Defines a list of communication unit log records.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
  */
 export type ListOfCommunicationUnitLogRecord = Message<"io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord"> & {
   /**
+   * The list of communication unit log records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord items = 1;
    */
   items: CommunicationUnitLogRecord[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -5654,16 +5718,20 @@ export type ListOfCommunicationUnitLogRecord = Message<"io.clbs.openhes.models.a
 };
 
 /**
+ * Defines a list of communication unit log records.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
  */
 export type ListOfCommunicationUnitLogRecordJson = {
   /**
+   * The list of communication unit log records.
+   *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord items = 1;
    */
   items?: CommunicationUnitLogRecordJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -5802,7 +5870,7 @@ export const ReadPathPolicySchema: GenEnum<ReadPathPolicy, ReadPathPolicyJson> =
   enumDesc(file_acquisition_shared, 1);
 
 /**
- * Parity types
+ * Defines the available serial port parity types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigParity
  */
@@ -5844,7 +5912,7 @@ export enum SerialConfigParity {
 }
 
 /**
- * Parity types
+ * Defines the available serial port parity types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigParity
  */
@@ -5857,111 +5925,111 @@ export const SerialConfigParitySchema: GenEnum<SerialConfigParity, SerialConfigP
   enumDesc(file_acquisition_shared, 2);
 
 /**
- * Baud rate types
+ * Defines the available serial port baud rate types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigBaudRate
  */
 export enum SerialConfigBaudRate {
   /**
-   * 110 baud
+   * 110 baud.
    *
    * @generated from enum value: BAUD_RATE_110 = 0;
    */
   BAUD_RATE_110 = 0,
 
   /**
-   * 300 baud
+   * 300 baud.
    *
    * @generated from enum value: BAUD_RATE_300 = 1;
    */
   BAUD_RATE_300 = 1,
 
   /**
-   * 600 baud
+   * 600 baud.
    *
    * @generated from enum value: BAUD_RATE_600 = 2;
    */
   BAUD_RATE_600 = 2,
 
   /**
-   * 1200 baud
+   * 1200 baud.
    *
    * @generated from enum value: BAUD_RATE_1200 = 3;
    */
   BAUD_RATE_1200 = 3,
 
   /**
-   * 2400 baud
+   * 2400 baud.
    *
    * @generated from enum value: BAUD_RATE_2400 = 4;
    */
   BAUD_RATE_2400 = 4,
 
   /**
-   * 4800 baud
+   * 4800 baud.
    *
    * @generated from enum value: BAUD_RATE_4800 = 5;
    */
   BAUD_RATE_4800 = 5,
 
   /**
-   * 9600 baud
+   * 9600 baud.
    *
    * @generated from enum value: BAUD_RATE_9600 = 6;
    */
   BAUD_RATE_9600 = 6,
 
   /**
-   * 14400 baud
+   * 14400 baud.
    *
    * @generated from enum value: BAUD_RATE_14400 = 7;
    */
   BAUD_RATE_14400 = 7,
 
   /**
-   * 19200 baud
+   * 19200 baud.
    *
    * @generated from enum value: BAUD_RATE_19200 = 8;
    */
   BAUD_RATE_19200 = 8,
 
   /**
-   * 38400 baud
+   * 38400 baud.
    *
    * @generated from enum value: BAUD_RATE_38400 = 9;
    */
   BAUD_RATE_38400 = 9,
 
   /**
-   * 57600 baud
+   * 57600 baud.
    *
    * @generated from enum value: BAUD_RATE_57600 = 10;
    */
   BAUD_RATE_57600 = 10,
 
   /**
-   * 115200 baud
+   * 115200 baud.
    *
    * @generated from enum value: BAUD_RATE_115200 = 11;
    */
   BAUD_RATE_115200 = 11,
 
   /**
-   * 230400 baud
+   * 230400 baud.
    *
    * @generated from enum value: BAUD_RATE_230400 = 12;
    */
   BAUD_RATE_230400 = 12,
 
   /**
-   * 460800 baud
+   * 460800 baud.
    *
    * @generated from enum value: BAUD_RATE_460800 = 13;
    */
   BAUD_RATE_460800 = 13,
 
   /**
-   * 921600 baud
+   * 921600 baud.
    *
    * @generated from enum value: BAUD_RATE_921600 = 14;
    */
@@ -5969,7 +6037,7 @@ export enum SerialConfigBaudRate {
 }
 
 /**
- * Baud rate types
+ * Defines the available serial port baud rate types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigBaudRate
  */
@@ -5982,7 +6050,7 @@ export const SerialConfigBaudRateSchema: GenEnum<SerialConfigBaudRate, SerialCon
   enumDesc(file_acquisition_shared, 3);
 
 /**
- * Data bits types
+ * Defines the available serial port data bit types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigDataBits
  */
@@ -6017,7 +6085,7 @@ export enum SerialConfigDataBits {
 }
 
 /**
- * Data bits types
+ * Defines the available serial port data bit types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigDataBits
  */
@@ -6030,7 +6098,7 @@ export const SerialConfigDataBitsSchema: GenEnum<SerialConfigDataBits, SerialCon
   enumDesc(file_acquisition_shared, 4);
 
 /**
- * Stop bits types
+ * Defines the available serial port stop bit types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigStopBits
  */
@@ -6058,7 +6126,7 @@ export enum SerialConfigStopBits {
 }
 
 /**
- * Stop bits types
+ * Defines the available serial port stop bit types.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.SerialConfigStopBits
  */
@@ -6071,34 +6139,34 @@ export const SerialConfigStopBitsSchema: GenEnum<SerialConfigStopBits, SerialCon
   enumDesc(file_acquisition_shared, 5);
 
 /**
- * Connection types
+ * Defines the supported communication types for device connections.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.CommunicationType
  */
 export enum CommunicationType {
   /**
-   * The communication is done via direct TCP/IP.
+   * The communication is established via direct TCP/IP.
    *
    * @generated from enum value: COMMUNICATION_TYPE_TCPIP = 0;
    */
   TCPIP = 0,
 
   /**
-   * The communication is done via phone line (modem).
+   * The communication is established via phone line (modem).
    *
    * @generated from enum value: COMMUNICATION_TYPE_MODEM_POOL = 1;
    */
   MODEM_POOL = 1,
 
   /**
-   * The communication is done via a direct serial line.
+   * The communication is established via a direct serial line.
    *
    * @generated from enum value: COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 2;
    */
   SERIAL_LINE_DIRECT = 2,
 
   /**
-   * The communication is done via a controlled  serial line (Moxa).
+   * The communication is established via a controlled  serial line (Moxa).
    *
    * @generated from enum value: COMMUNICATION_TYPE_SERIAL_LINE_MOXA = 3;
    */
@@ -6113,7 +6181,7 @@ export enum CommunicationType {
 }
 
 /**
- * Connection types
+ * Defines the supported communication types for device connections.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.CommunicationType
  */
@@ -6126,13 +6194,13 @@ export const CommunicationTypeSchema: GenEnum<CommunicationType, CommunicationTy
   enumDesc(file_acquisition_shared, 6);
 
 /**
- * Data link protocols
+ * Defines the supported data link protocols.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.DataLinkProtocol
  */
 export enum DataLinkProtocol {
   /**
-   * The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and switches to the mode E (HDLC+DLMS) protocol. Supports multiple devices on the same line.
+   * The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
    *
    * @generated from enum value: LINKPROTO_IEC_62056_21 = 0;
    */
@@ -6153,7 +6221,7 @@ export enum DataLinkProtocol {
   LINKPROTO_COSEM_WRAPPER = 2,
 
   /**
-   * The Modbus protocol. Used with the Modbus application protocol where no other data link , such as HDLC is used.
+   * The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
    *
    * @generated from enum value: LINKPROTO_MODBUS = 3;
    */
@@ -6167,7 +6235,7 @@ export enum DataLinkProtocol {
   LINKPROTO_MBUS = 4,
 
   /**
-   * The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
+   * The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
    *
    * @generated from enum value: LINKPROTO_VIKTOR = 5;
    */
@@ -6182,7 +6250,7 @@ export enum DataLinkProtocol {
 }
 
 /**
- * Data link protocols
+ * Defines the supported data link protocols.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.DataLinkProtocol
  */
@@ -6195,7 +6263,7 @@ export const DataLinkProtocolSchema: GenEnum<DataLinkProtocol, DataLinkProtocolJ
   enumDesc(file_acquisition_shared, 7);
 
 /**
- * Application protocols
+ * Defines the supported application protocols.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ApplicationProtocol
  */
@@ -6265,7 +6333,7 @@ export enum ApplicationProtocol {
 }
 
 /**
- * Application protocols
+ * Defines the supported application protocols.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ApplicationProtocol
  */
@@ -6278,69 +6346,69 @@ export const ApplicationProtocolSchema: GenEnum<ApplicationProtocol, Application
   enumDesc(file_acquisition_shared, 8);
 
 /**
- * Action types
+ * Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ActionType
  */
 export enum ActionType {
   /**
-   * Get register value, for example instantaneous values. The action covers specific register.
+   * Get a register value, for example an instantaneous values. The action covers a specific register.
    *
    * @generated from enum value: ACTION_TYPE_GET_REGISTER = 0;
    */
   GET_REGISTER = 0,
 
   /**
-   * Get periodical profile, for example load-profile. The action covers specific profile column.
+   * Get a periodical profile, for example a load profile. The action covers a specific profile column.
    *
    * @generated from enum value: ACTION_TYPE_GET_PERIODICAL_PROFILE = 1;
    */
   GET_PERIODICAL_PROFILE = 1,
 
   /**
-   * Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.
+   * Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
    *
    * @generated from enum value: ACTION_TYPE_GET_IRREGULAR_PROFILE = 2;
    */
   GET_IRREGULAR_PROFILE = 2,
 
   /**
-   * Get event log. The action covers specific event log.
+   * Get an event log. The action covers a specific event log.
    *
    * @generated from enum value: ACTION_TYPE_GET_EVENTS = 3;
    */
   GET_EVENTS = 3,
 
   /**
-   * Get device info. The action returns info data about remote device.
+   * Get device information. The action returns detailed information data about the remote device.
    *
    * @generated from enum value: ACTION_TYPE_GET_DEVICE_INFO = 10;
    */
   GET_DEVICE_INFO = 10,
 
   /**
-   * Synchronize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+   * Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
    *
    * @generated from enum value: ACTION_TYPE_SYNC_CLOCK = 11;
    */
   SYNC_CLOCK = 11,
 
   /**
-   * Set relay state. The action covers single relay.
+   * Set relay state. The action covers a single relay.
    *
    * @generated from enum value: ACTION_TYPE_SET_RELAY_STATE = 21;
    */
   SET_RELAY_STATE = 21,
 
   /**
-   * Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
+   * Get the disconnector state.
    *
    * @generated from enum value: ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;
    */
   GET_DISCONNECTOR_STATE = 22,
 
   /**
-   * Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.
+   * Set the disconnector state.
    *
    * @generated from enum value: ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;
    */
@@ -6368,14 +6436,14 @@ export enum ActionType {
   SET_LIMITER = 27,
 
   /**
-   * Reset billing period.
+   * Reset the billing period.
    *
    * @generated from enum value: ACTION_TYPE_RESET_BILLING_PERIOD = 40;
    */
   RESET_BILLING_PERIOD = 40,
 
   /**
-   * Start firmware update. The action updates starts FW upgrade procedure.
+   * Start a firmware update.
    *
    * @generated from enum value: ACTION_TYPE_FW_UPDATE = 50;
    */
@@ -6383,7 +6451,7 @@ export enum ActionType {
 }
 
 /**
- * Action types
+ * Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ActionType
  */
@@ -6396,7 +6464,7 @@ export const ActionTypeSchema: GenEnum<ActionType, ActionTypeJson> = /*@__PURE__
   enumDesc(file_acquisition_shared, 9);
 
 /**
- * Result codes related to job actions
+ * Defines the result codes related to job actions.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ActionResultCode
  */
@@ -6409,7 +6477,7 @@ export enum ActionResultCode {
   ERROR_CODE_ACTION_OK = 0,
 
   /**
-   * The action is not supported by the driver (or device).
+   * The action is not supported by the driver or device.
    *
    * @generated from enum value: ERROR_CODE_ACTION_UNSUPPORTED = 1;
    */
@@ -6423,7 +6491,7 @@ export enum ActionResultCode {
   ERROR_CODE_ACTION_PENDING = 3,
 
   /**
-   * The action failed.
+   * The action has failed.
    *
    * @generated from enum value: ERROR_CODE_ACTION_ERROR = 5;
    */
@@ -6431,7 +6499,7 @@ export enum ActionResultCode {
 }
 
 /**
- * Result codes related to job actions
+ * Defines the result codes related to job actions.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.ActionResultCode
  */
@@ -6444,7 +6512,7 @@ export const ActionResultCodeSchema: GenEnum<ActionResultCode, ActionResultCodeJ
   enumDesc(file_acquisition_shared, 10);
 
 /**
- * Error codes related to jobs
+ * Defines the error codes related to jobs.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobErrorCode
  */
@@ -6464,21 +6532,21 @@ export enum JobErrorCode {
   BUSY = 1,
 
   /**
-   * The job failed, the retry will be attempted.
+   * The job has failed; a retry will be attempted.
    *
    * @generated from enum value: JOB_ERROR_CODE_ERROR = 5;
    */
   ERROR = 5,
 
   /**
-   * This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
+   * This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
    *
    * @generated from enum value: JOB_ERROR_CODE_ALREADY_EXISTS = 8;
    */
   ALREADY_EXISTS = 8,
 
   /**
-   * The job failed, the retry will NOT be attempted.
+   * The job failed, not retry will be attempted.
    *
    * @generated from enum value: JOB_ERROR_CODE_FATAL = 9;
    */
@@ -6486,7 +6554,7 @@ export enum JobErrorCode {
 }
 
 /**
- * Error codes related to jobs
+ * Defines the error codes related to jobs.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobErrorCode
  */
@@ -6499,41 +6567,41 @@ export const JobErrorCodeSchema: GenEnum<JobErrorCode, JobErrorCodeJson> = /*@__
   enumDesc(file_acquisition_shared, 11);
 
 /**
- * Bulk statuses
+ * Defines the status information of an entire bulk.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.BulkStatusCode
  */
 export enum BulkStatusCode {
   /**
-   * The job is waiting in the queue
+   * The bulk is waiting in the queue.
    *
    * @generated from enum value: BULK_STATUS_QUEUED = 0;
    */
   BULK_STATUS_QUEUED = 0,
 
   /**
-   * The job is running
+   * The bulk is currently running.
    *
    * @generated from enum value: BULK_STATUS_RUNNING = 1;
    */
   BULK_STATUS_RUNNING = 1,
 
   /**
-   * The job is completed
+   * The bulk has been completed.
    *
    * @generated from enum value: BULK_STATUS_COMPLETED = 2;
    */
   BULK_STATUS_COMPLETED = 2,
 
   /**
-   * The job is cancelled
+   * The bulk has been cancelled.
    *
    * @generated from enum value: BULK_STATUS_CANCELLED = 3;
    */
   BULK_STATUS_CANCELLED = 3,
 
   /**
-   * The job has expired
+   * The bulk has expired.
    *
    * @generated from enum value: BULK_STATUS_EXPIRED = 4;
    */
@@ -6541,7 +6609,7 @@ export enum BulkStatusCode {
 }
 
 /**
- * Bulk statuses
+ * Defines the status information of an entire bulk.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.BulkStatusCode
  */
@@ -6554,6 +6622,8 @@ export const BulkStatusCodeSchema: GenEnum<BulkStatusCode, BulkStatusCodeJson> =
   enumDesc(file_acquisition_shared, 12);
 
 /**
+ * Defines the possible register types.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
  */
 export enum DeviceConfigurationRegisterKind {
@@ -6579,7 +6649,7 @@ export enum DeviceConfigurationRegisterKind {
   IrregularProfile = 2,
 
   /**
-   * The object represents a synthetic register, not visible by drivers. It can be defined to store derived or external data.
+   * The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
    *
    * @generated from enum value: Synthetic = 99;
    */
@@ -6587,6 +6657,8 @@ export enum DeviceConfigurationRegisterKind {
 }
 
 /**
+ * Defines the possible register types.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
  */
 export type DeviceConfigurationRegisterKindJson = "Register" | "PeriodicalProfile" | "IrregularProfile" | "Synthetic";
@@ -6598,55 +6670,55 @@ export const DeviceConfigurationRegisterKindSchema: GenEnum<DeviceConfigurationR
   enumDesc(file_acquisition_shared, 13);
 
 /**
- * Job statuses
+ * Defines the possible statuses of jobs.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobStatusCode
  */
 export enum JobStatusCode {
   /**
-   * The job is waiting in the queue
+   * The job is waiting in the queue for execution.
    *
    * @generated from enum value: JOB_STATUS_QUEUED = 0;
    */
   JOB_STATUS_QUEUED = 0,
 
   /**
-   * The job is running
+   * The job is currently running.
    *
    * @generated from enum value: JOB_STATUS_RUNNING = 1;
    */
   JOB_STATUS_RUNNING = 1,
 
   /**
-   * The data has been fully acquired and is being processed
+   * The job has finished acquiring data and is now processing it.
    *
    * @generated from enum value: JOB_STATUS_PROCESSING_DATA = 2;
    */
   JOB_STATUS_PROCESSING_DATA = 2,
 
   /**
-   * The job is completed
+   * The job has been completed.
    *
    * @generated from enum value: JOB_STATUS_COMPLETED = 3;
    */
   JOB_STATUS_COMPLETED = 3,
 
   /**
-   * The job is failed
+   * The job has failed.
    *
    * @generated from enum value: JOB_STATUS_FAILED = 4;
    */
   JOB_STATUS_FAILED = 4,
 
   /**
-   * The job is cancelled
+   * The job has been cancelled.
    *
    * @generated from enum value: JOB_STATUS_CANCELLED = 5;
    */
   JOB_STATUS_CANCELLED = 5,
 
   /**
-   * The job has expired
+   * The job has expired.
    *
    * @generated from enum value: JOB_STATUS_EXPIRED = 6;
    */
@@ -6654,7 +6726,7 @@ export enum JobStatusCode {
 }
 
 /**
- * Job statuses
+ * Defines the possible statuses of jobs.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobStatusCode
  */
@@ -6667,6 +6739,8 @@ export const JobStatusCodeSchema: GenEnum<JobStatusCode, JobStatusCodeJson> = /*
   enumDesc(file_acquisition_shared, 14);
 
 /**
+ * Defines the types of nodes in the network topology.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.TopologyNodeType
  */
 export enum TopologyNodeType {
@@ -6686,6 +6760,8 @@ export enum TopologyNodeType {
 }
 
 /**
+ * Defines the types of nodes in the network topology.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.TopologyNodeType
  */
 export type TopologyNodeTypeJson = "TOPOLOGY_NODE_DEVICE" | "TOPOLOGY_NODE_COMMUNICATION_UNIT";
@@ -6697,39 +6773,41 @@ export const TopologyNodeTypeSchema: GenEnum<TopologyNodeType, TopologyNodeTypeJ
   enumDesc(file_acquisition_shared, 15);
 
 /**
+ * Defines the severity levels for communication unit log records.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.LogRecordLevel
  */
 export enum LogRecordLevel {
   /**
-   * The log record level is debug.
+   * Debug log record.
    *
    * @generated from enum value: LOG_RECORD_LEVEL_DEBUG = 0;
    */
   DEBUG = 0,
 
   /**
-   * The log record level is info.
+   * Information log record.
    *
    * @generated from enum value: LOG_RECORD_LEVEL_INFO = 1;
    */
   INFO = 1,
 
   /**
-   * The log record level is warning.
+   * Warning log record.
    *
    * @generated from enum value: LOG_RECORD_LEVEL_WARNING = 2;
    */
   WARNING = 2,
 
   /**
-   * The log record level is error.
+   * Error log record.
    *
    * @generated from enum value: LOG_RECORD_LEVEL_ERROR = 3;
    */
   ERROR = 3,
 
   /**
-   * The log record level is fatal.
+   * Fatal log record.
    *
    * @generated from enum value: LOG_RECORD_LEVEL_FATAL = 4;
    */
@@ -6737,6 +6815,8 @@ export enum LogRecordLevel {
 }
 
 /**
+ * Defines the severity levels for communication unit log records.
+ *
  * @generated from enum io.clbs.openhes.models.acquisition.LogRecordLevel
  */
 export type LogRecordLevelJson = "LOG_RECORD_LEVEL_DEBUG" | "LOG_RECORD_LEVEL_INFO" | "LOG_RECORD_LEVEL_WARNING" | "LOG_RECORD_LEVEL_ERROR" | "LOG_RECORD_LEVEL_FATAL";

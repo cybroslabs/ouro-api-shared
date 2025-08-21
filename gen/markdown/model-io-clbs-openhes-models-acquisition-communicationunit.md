@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CommunicationUnit
 
+Defines the communication unit information.
+
 ## Fields
 
 | Field | Information |

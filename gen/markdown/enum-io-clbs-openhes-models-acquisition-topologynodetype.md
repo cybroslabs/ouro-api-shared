@@ -1,5 +1,7 @@
 # Enum: io.clbs.openhes.models.acquisition.TopologyNodeType
 
+Defines the types of nodes in the network topology.
+
 ## Options
 
 | Value | Description |

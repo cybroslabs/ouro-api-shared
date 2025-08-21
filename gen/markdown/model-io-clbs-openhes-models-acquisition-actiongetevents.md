@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.acquisition.ActionGetEvents
 
-Sub-message containing get events action specification
+Defines the get events action specification.
 
 ## Fields
 

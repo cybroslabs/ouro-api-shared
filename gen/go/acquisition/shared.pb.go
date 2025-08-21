@@ -143,7 +143,7 @@ func (x ReadPathPolicy) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Parity types
+// Defines the available serial port parity types.
 type SerialConfigParity int32
 
 const (
@@ -199,39 +199,39 @@ func (x SerialConfigParity) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Baud rate types
+// Defines the available serial port baud rate types.
 type SerialConfigBaudRate int32
 
 const (
-	// 110 baud
+	// 110 baud.
 	SerialConfigBaudRate_BAUD_RATE_110 SerialConfigBaudRate = 0
-	// 300 baud
+	// 300 baud.
 	SerialConfigBaudRate_BAUD_RATE_300 SerialConfigBaudRate = 1
-	// 600 baud
+	// 600 baud.
 	SerialConfigBaudRate_BAUD_RATE_600 SerialConfigBaudRate = 2
-	// 1200 baud
+	// 1200 baud.
 	SerialConfigBaudRate_BAUD_RATE_1200 SerialConfigBaudRate = 3
-	// 2400 baud
+	// 2400 baud.
 	SerialConfigBaudRate_BAUD_RATE_2400 SerialConfigBaudRate = 4
-	// 4800 baud
+	// 4800 baud.
 	SerialConfigBaudRate_BAUD_RATE_4800 SerialConfigBaudRate = 5
-	// 9600 baud
+	// 9600 baud.
 	SerialConfigBaudRate_BAUD_RATE_9600 SerialConfigBaudRate = 6
-	// 14400 baud
+	// 14400 baud.
 	SerialConfigBaudRate_BAUD_RATE_14400 SerialConfigBaudRate = 7
-	// 19200 baud
+	// 19200 baud.
 	SerialConfigBaudRate_BAUD_RATE_19200 SerialConfigBaudRate = 8
-	// 38400 baud
+	// 38400 baud.
 	SerialConfigBaudRate_BAUD_RATE_38400 SerialConfigBaudRate = 9
-	// 57600 baud
+	// 57600 baud.
 	SerialConfigBaudRate_BAUD_RATE_57600 SerialConfigBaudRate = 10
-	// 115200 baud
+	// 115200 baud.
 	SerialConfigBaudRate_BAUD_RATE_115200 SerialConfigBaudRate = 11
-	// 230400 baud
+	// 230400 baud.
 	SerialConfigBaudRate_BAUD_RATE_230400 SerialConfigBaudRate = 12
-	// 460800 baud
+	// 460800 baud.
 	SerialConfigBaudRate_BAUD_RATE_460800 SerialConfigBaudRate = 13
-	// 921600 baud
+	// 921600 baud.
 	SerialConfigBaudRate_BAUD_RATE_921600 SerialConfigBaudRate = 14
 )
 
@@ -295,7 +295,7 @@ func (x SerialConfigBaudRate) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Data bits types
+// Defines the available serial port data bit types.
 type SerialConfigDataBits int32
 
 const (
@@ -347,7 +347,7 @@ func (x SerialConfigDataBits) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Stop bits types
+// Defines the available serial port stop bit types.
 type SerialConfigStopBits int32
 
 const (
@@ -395,17 +395,17 @@ func (x SerialConfigStopBits) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Connection types
+// Defines the supported communication types for device connections.
 type CommunicationType int32
 
 const (
-	// The communication is done via direct TCP/IP.
+	// The communication is established via direct TCP/IP.
 	CommunicationType_COMMUNICATION_TYPE_TCPIP CommunicationType = 0
-	// The communication is done via phone line (modem).
+	// The communication is established via phone line (modem).
 	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL CommunicationType = 1
-	// The communication is done via a direct serial line.
+	// The communication is established via a direct serial line.
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 2
-	// The communication is done via a controlled  serial line (Moxa).
+	// The communication is established via a controlled  serial line (Moxa).
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA CommunicationType = 3
 	// The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 	CommunicationType_COMMUNICATION_TYPE_LISTENING CommunicationType = 99
@@ -451,21 +451,21 @@ func (x CommunicationType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Data link protocols
+// Defines the supported data link protocols.
 type DataLinkProtocol int32
 
 const (
-	// The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and switches to the mode E (HDLC+DLMS) protocol. Supports multiple devices on the same line.
+	// The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_IEC_62056_21 DataLinkProtocol = 0
 	// The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_HDLC DataLinkProtocol = 1
 	// The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
 	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER DataLinkProtocol = 2
-	// The Modbus protocol. Used with the Modbus application protocol where no other data link , such as HDLC is used.
+	// The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
 	DataLinkProtocol_LINKPROTO_MODBUS DataLinkProtocol = 3
 	// The M-Bus protocol. Used with the M-Bus application protocol.
 	DataLinkProtocol_LINKPROTO_MBUS DataLinkProtocol = 4
-	// The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Vitkor.
+	// The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
 	DataLinkProtocol_LINKPROTO_VIKTOR DataLinkProtocol = 5
 	// No data link protocol is applicable. Used with listening communication types.
 	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99
@@ -515,7 +515,7 @@ func (x DataLinkProtocol) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Application protocols
+// Defines the supported application protocols.
 type ApplicationProtocol int32
 
 const (
@@ -587,27 +587,27 @@ func (x ApplicationProtocol) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Action types
+// Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.
 type ActionType int32
 
 const (
-	// Get register value, for example instantaneous values. The action covers specific register.
+	// Get a register value, for example an instantaneous values. The action covers a specific register.
 	ActionType_ACTION_TYPE_GET_REGISTER ActionType = 0
-	// Get periodical profile, for example load-profile. The action covers specific profile column.
+	// Get a periodical profile, for example a load profile. The action covers a specific profile column.
 	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 1
-	// Get non-periodical profile, for example daily profile or monthly billing registers. The action covers specific profile column and or specific billing register.
+	// Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
 	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE ActionType = 2
-	// Get event log. The action covers specific event log.
+	// Get an event log. The action covers a specific event log.
 	ActionType_ACTION_TYPE_GET_EVENTS ActionType = 3
-	// Get device info. The action returns info data about remote device.
+	// Get device information. The action returns detailed information data about the remote device.
 	ActionType_ACTION_TYPE_GET_DEVICE_INFO ActionType = 10
-	// Synchronize clock. The action synchronizes the time in the device, it can forcefully set it if force attribute is set.
+	// Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
 	ActionType_ACTION_TYPE_SYNC_CLOCK ActionType = 11
-	// Set relay state. The action covers single relay.
+	// Set relay state. The action covers a single relay.
 	ActionType_ACTION_TYPE_SET_RELAY_STATE ActionType = 21
-	// Get disconnector state. The action covers single disconnector if multiple disconnectors are present in the device.
+	// Get the disconnector state.
 	ActionType_ACTION_TYPE_GET_DISCONNECTOR_STATE ActionType = 22
-	// Set disconnector state. The action covers single relay. The action covers single disconnector if multiple disconnectors are present in the device.
+	// Set the disconnector state.
 	ActionType_ACTION_TYPE_SET_DISCONNECTOR_STATE ActionType = 23
 	// Get time-of-use table.
 	ActionType_ACTION_TYPE_GET_TOU ActionType = 24
@@ -615,9 +615,9 @@ const (
 	ActionType_ACTION_TYPE_SET_TOU ActionType = 25
 	// Set limiter settings. The action covers single limiter.
 	ActionType_ACTION_TYPE_SET_LIMITER ActionType = 27
-	// Reset billing period.
+	// Reset the billing period.
 	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD ActionType = 40
-	// Start firmware update. The action updates starts FW upgrade procedure.
+	// Start a firmware update.
 	ActionType_ACTION_TYPE_FW_UPDATE ActionType = 50
 )
 
@@ -679,17 +679,17 @@ func (x ActionType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Result codes related to job actions
+// Defines the result codes related to job actions.
 type ActionResultCode int32
 
 const (
 	// The action has been completed successfully.
 	ActionResultCode_ERROR_CODE_ACTION_OK ActionResultCode = 0
-	// The action is not supported by the driver (or device).
+	// The action is not supported by the driver or device.
 	ActionResultCode_ERROR_CODE_ACTION_UNSUPPORTED ActionResultCode = 1
 	// The action is pending.
 	ActionResultCode_ERROR_CODE_ACTION_PENDING ActionResultCode = 3
-	// The action failed.
+	// The action has failed.
 	ActionResultCode_ERROR_CODE_ACTION_ERROR ActionResultCode = 5
 )
 
@@ -731,7 +731,7 @@ func (x ActionResultCode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Error codes related to jobs
+// Defines the error codes related to jobs.
 type JobErrorCode int32
 
 const (
@@ -739,11 +739,11 @@ const (
 	JobErrorCode_JOB_ERROR_CODE_NONE JobErrorCode = 0
 	// There is no free slot in the driver to handle the job; the job shall be send again later.
 	JobErrorCode_JOB_ERROR_CODE_BUSY JobErrorCode = 1
-	// The job failed, the retry will be attempted.
+	// The job has failed; a retry will be attempted.
 	JobErrorCode_JOB_ERROR_CODE_ERROR JobErrorCode = 5
-	// This should never happen! It means that the same job is currently being processed by the driver and it was sent to the driver mutliple times which would mean that there is a bug.
+	// This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
 	JobErrorCode_JOB_ERROR_CODE_ALREADY_EXISTS JobErrorCode = 8
-	// The job failed, the retry will NOT be attempted.
+	// The job failed, not retry will be attempted.
 	JobErrorCode_JOB_ERROR_CODE_FATAL JobErrorCode = 9
 )
 
@@ -787,19 +787,19 @@ func (x JobErrorCode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Bulk statuses
+// Defines the status information of an entire bulk.
 type BulkStatusCode int32
 
 const (
-	// The job is waiting in the queue
+	// The bulk is waiting in the queue.
 	BulkStatusCode_BULK_STATUS_QUEUED BulkStatusCode = 0
-	// The job is running
+	// The bulk is currently running.
 	BulkStatusCode_BULK_STATUS_RUNNING BulkStatusCode = 1
-	// The job is completed
+	// The bulk has been completed.
 	BulkStatusCode_BULK_STATUS_COMPLETED BulkStatusCode = 2
-	// The job is cancelled
+	// The bulk has been cancelled.
 	BulkStatusCode_BULK_STATUS_CANCELLED BulkStatusCode = 3
-	// The job has expired
+	// The bulk has expired.
 	BulkStatusCode_BULK_STATUS_EXPIRED BulkStatusCode = 4
 )
 
@@ -843,6 +843,7 @@ func (x BulkStatusCode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the possible register types.
 type DeviceConfigurationRegisterKind int32
 
 const (
@@ -852,7 +853,7 @@ const (
 	DeviceConfigurationRegisterKind_PeriodicalProfile DeviceConfigurationRegisterKind = 1
 	// The object represents an irregular profile.
 	DeviceConfigurationRegisterKind_IrregularProfile DeviceConfigurationRegisterKind = 2
-	// The object represents a synthetic register, not visible by drivers. It can be defined to store derived or external data.
+	// The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
 	DeviceConfigurationRegisterKind_Synthetic DeviceConfigurationRegisterKind = 99
 )
 
@@ -894,23 +895,23 @@ func (x DeviceConfigurationRegisterKind) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Job statuses
+// Defines the possible statuses of jobs.
 type JobStatusCode int32
 
 const (
-	// The job is waiting in the queue
+	// The job is waiting in the queue for execution.
 	JobStatusCode_JOB_STATUS_QUEUED JobStatusCode = 0
-	// The job is running
+	// The job is currently running.
 	JobStatusCode_JOB_STATUS_RUNNING JobStatusCode = 1
-	// The data has been fully acquired and is being processed
+	// The job has finished acquiring data and is now processing it.
 	JobStatusCode_JOB_STATUS_PROCESSING_DATA JobStatusCode = 2
-	// The job is completed
+	// The job has been completed.
 	JobStatusCode_JOB_STATUS_COMPLETED JobStatusCode = 3
-	// The job is failed
+	// The job has failed.
 	JobStatusCode_JOB_STATUS_FAILED JobStatusCode = 4
-	// The job is cancelled
+	// The job has been cancelled.
 	JobStatusCode_JOB_STATUS_CANCELLED JobStatusCode = 5
-	// The job has expired
+	// The job has expired.
 	JobStatusCode_JOB_STATUS_EXPIRED JobStatusCode = 6
 )
 
@@ -958,6 +959,7 @@ func (x JobStatusCode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the types of nodes in the network topology.
 type TopologyNodeType int32
 
 const (
@@ -1001,14 +1003,15 @@ func (x TopologyNodeType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the severity levels for communication unit log records.
 type LogRecordLevel int32
 
 const (
-	LogRecordLevel_LOG_RECORD_LEVEL_DEBUG   LogRecordLevel = 0 // The log record level is debug.
-	LogRecordLevel_LOG_RECORD_LEVEL_INFO    LogRecordLevel = 1 // The log record level is info.
-	LogRecordLevel_LOG_RECORD_LEVEL_WARNING LogRecordLevel = 2 // The log record level is warning.
-	LogRecordLevel_LOG_RECORD_LEVEL_ERROR   LogRecordLevel = 3 // The log record level is error.
-	LogRecordLevel_LOG_RECORD_LEVEL_FATAL   LogRecordLevel = 4 // The log record level is fatal.
+	LogRecordLevel_LOG_RECORD_LEVEL_DEBUG   LogRecordLevel = 0 // Debug log record.
+	LogRecordLevel_LOG_RECORD_LEVEL_INFO    LogRecordLevel = 1 // Information log record.
+	LogRecordLevel_LOG_RECORD_LEVEL_WARNING LogRecordLevel = 2 // Warning log record.
+	LogRecordLevel_LOG_RECORD_LEVEL_ERROR   LogRecordLevel = 3 // Error log record.
+	LogRecordLevel_LOG_RECORD_LEVEL_FATAL   LogRecordLevel = 4 // Fatal log record.
 )
 
 // Enum value maps for LogRecordLevel.
@@ -2498,7 +2501,7 @@ type JobActionSet_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// The variable filter. Meaning depends on the action type:
-	//   - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable identifiers (for example, `"A+"`) defined in the system. If not set, all variables are read.
+	//   - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.
 	//
 	// - Others: Not applicable (ignored).
 	Variables []string
@@ -7583,7 +7586,7 @@ func (b0 RegisterValue_builder) Build() *RegisterValue {
 	return m0
 }
 
-// Sub-message containing measured value
+// Defines a measured value.
 type MeasuredValue struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Status      int64                  `protobuf:"varint,1,opt,name=status"`
@@ -8009,7 +8012,7 @@ type measuredValue_TimestampValue struct {
 }
 
 type measuredValue_TimestampTzValue struct {
-	TimestampTzValue string `protobuf:"bytes,7,opt,name=timestamp_tz_value,json=timestampTzValue,oneof"` // The timestamp with timezone-typed value, stored as string in ISO-8601.
+	TimestampTzValue string `protobuf:"bytes,7,opt,name=timestamp_tz_value,json=timestampTzValue,oneof"` // The timestamp with timezone-typed value, stored as an ISO-8601 string.
 }
 
 type measuredValue_BoolValue struct {
@@ -8028,7 +8031,7 @@ func (*measuredValue_TimestampTzValue) isMeasuredValue_Kind() {}
 
 func (*measuredValue_BoolValue) isMeasuredValue_Kind() {}
 
-// Sub-message containing job action attributes
+// Defines the template for job action attributes.
 type JobActionAttributes struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_Type        ActionType                 `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.acquisition.ActionType"`
@@ -8106,9 +8109,9 @@ func (x *JobActionAttributes) ClearType() {
 type JobActionAttributes_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The type of action for which this instance of the template is defined.
+	// The type of action for which this template template is defined.
 	Type *ActionType
-	// The template of the action attributes. It is represented as a list of attribute definitions.
+	// TThe list attribute definitions for the action attributes template.
 	Attributes []*common.FieldDescriptor
 }
 
@@ -8124,7 +8127,7 @@ func (b0 JobActionAttributes_builder) Build() *JobActionAttributes {
 	return m0
 }
 
-// Sub-message containing connection info for controlled-serial line over IP (e.g. Moxa) connection type
+// Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
 type ConnectionTypeControlledSerial struct {
 	state                protoimpl.MessageState                     `protogen:"opaque.v1"`
 	xxx_hidden_Converter isConnectionTypeControlledSerial_Converter `protobuf_oneof:"converter"`
@@ -8342,7 +8345,7 @@ func (*connectionTypeControlledSerial_Moxa) isConnectionTypeControlledSerial_Con
 
 func (*connectionTypeControlledSerial_Rfc2217) isConnectionTypeControlledSerial_Converter() {}
 
-// Sub-message containing get register action specification
+// Defines the get register action specification.
 type ActionGetRegister struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DataType    common.FieldDataType   `protobuf:"varint,1,opt,name=data_type,json=dataType,enum=io.clbs.openhes.models.common.FieldDataType"`
@@ -8420,7 +8423,7 @@ func (b0 ActionGetRegister_builder) Build() *ActionGetRegister {
 	return m0
 }
 
-// Sub-message containing get periodical profile action specification
+// Defines the get periodical profile action specification.
 type ActionGetPeriodicalProfile struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -8548,7 +8551,7 @@ func (b0 ActionGetPeriodicalProfile_builder) Build() *ActionGetPeriodicalProfile
 	return m0
 }
 
-// Sub-message containing get irregular profile action specification
+// Defines the get irregular profile action.
 type ActionGetIrregularProfile struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -8676,7 +8679,7 @@ func (b0 ActionGetIrregularProfile_builder) Build() *ActionGetIrregularProfile {
 	return m0
 }
 
-// Sub-message containing get events action specification
+// Defines the get events action specification.
 type ActionGetEvents struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -8770,7 +8773,7 @@ func (b0 ActionGetEvents_builder) Build() *ActionGetEvents {
 	return m0
 }
 
-// Sub-message containing get device info action specification
+// Defines the get device info action specification.
 type ActionGetDeviceInfo struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -8814,7 +8817,7 @@ func (b0 ActionGetDeviceInfo_builder) Build() *ActionGetDeviceInfo {
 	return m0
 }
 
-// Sub-message containing sync clock action specification
+// Defines the sync clock action specification.
 type ActionSyncClock struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -8858,7 +8861,7 @@ func (b0 ActionSyncClock_builder) Build() *ActionSyncClock {
 	return m0
 }
 
-// Sub-message containing set relay state action specification
+// Defines the set relay state action specification.
 type ActionSetRelayState struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -8902,7 +8905,7 @@ func (b0 ActionSetRelayState_builder) Build() *ActionSetRelayState {
 	return m0
 }
 
-// Sub-message containing set disconnector state action specification
+// Defines the set disconnector state action specification.
 type ActionSetDisconnectorState struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -8946,7 +8949,7 @@ func (b0 ActionSetDisconnectorState_builder) Build() *ActionSetDisconnectorState
 	return m0
 }
 
-// Sub-message containing get tou action specification
+// Defines the get TOU action specification.
 type ActionGetTou struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Passive     bool                   `protobuf:"varint,1,opt,name=passive"`
@@ -9022,7 +9025,7 @@ func (b0 ActionGetTou_builder) Build() *ActionGetTou {
 	return m0
 }
 
-// Sub-message containing set tou action specification
+// Defines the set TOU action specification.
 type ActionSetTou struct {
 	state            protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Table *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,opt,name=table"`
@@ -9091,7 +9094,7 @@ func (b0 ActionSetTou_builder) Build() *ActionSetTou {
 	return m0
 }
 
-// Sub-message containing set limiter action specification
+// Defines the set limiter action specification.
 type ActionSetLimiter struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -9135,7 +9138,7 @@ func (b0 ActionSetLimiter_builder) Build() *ActionSetLimiter {
 	return m0
 }
 
-// Sub-message containing reset billing period action specification
+// Defines the reset billing period action specification.
 type ActionResetBillingPeriod struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -9179,7 +9182,7 @@ func (b0 ActionResetBillingPeriod_builder) Build() *ActionResetBillingPeriod {
 	return m0
 }
 
-// Sub-message containing firmware update action specification
+// Defines the firmware update action specification.
 type ActionFwUpdate struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -9223,7 +9226,7 @@ func (b0 ActionFwUpdate_builder) Build() *ActionFwUpdate {
 	return m0
 }
 
-// Sub-message containing constraints for job actions.
+// Defines the constraints for job actions.
 type JobActionContraints struct {
 	state                                protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_GetRegisterTypeName       map[string]string               `protobuf:"bytes,1,rep,name=get_register_type_name,json=getRegisterTypeName" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -9282,11 +9285,13 @@ func (x *JobActionContraints) SetGetRegisterTypeAttributes(v map[string]*common.
 type JobActionContraints_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Contains all the register types & their names in the English language. For example: [gen]="Generic Register", [vqi]="Quality VQI Register"
+	// Contains all register types and their names in English.
+	// Example: [gen]="Generic Register", [vqi]="Quality VQI Register"
 	// Action: ACTION_TYPE_GET_REGISTER
 	GetRegisterTypeName map[string]string
-	// Contains all the register types & their attributes. For example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
-	// See JobActionAttributes for the attribute definitions.
+	// Contains all register types and their attributes.
+	// Example: [gen]=["attribute1", "attribute2"], [vqi]=["attribute1", "attribute3"]
+	// See `JobActionAttributes` for the attribute definitions.
 	// Action: ACTION_TYPE_GET_REGISTER
 	GetRegisterTypeAttributes map[string]*common.ListOfString
 }
@@ -9300,7 +9305,7 @@ func (b0 JobActionContraints_builder) Build() *JobActionContraints {
 	return m0
 }
 
-// Sub-message containing job status info
+// Defines the status information of a single job within a bulk.
 type JobStatus struct {
 	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_Status       JobStatusCode            `protobuf:"varint,1,opt,name=status,enum=io.clbs.openhes.models.acquisition.JobStatusCode"`
@@ -9586,7 +9591,7 @@ func (b0 JobStatus_builder) Build() *JobStatus {
 	return m0
 }
 
-// Sub-message containing job start request for single device
+// Defines the job start request for a single device.
 type StartJobData struct {
 	state                       protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_DeviceAttributes map[string]*common.FieldValue `protobuf:"bytes,1,rep,name=device_attributes,json=deviceAttributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -9785,7 +9790,7 @@ func (b0 StartJobData_builder) Build() *StartJobData {
 	return m0
 }
 
-// Taskmaster -> Driver cancel job request message
+// Defines the cancel job request message sent from the Taskmaster to the driver.
 type CancelJobRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_JobId       *string                `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -9864,6 +9869,7 @@ func (b0 CancelJobRequest_builder) Build() *CancelJobRequest {
 	return m0
 }
 
+// Defines the configuration of a register for a device.
 type DeviceConfigurationRegisterSpec struct {
 	state                   protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_DriverType   *string                         `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -10020,7 +10026,7 @@ func (b0 DeviceConfigurationRegisterSpec_builder) Build() *DeviceConfigurationRe
 	return m0
 }
 
-// Addon
+// [ADDON] Defines the device register specification.
 type DeviceRegister struct {
 	state                       protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_RegisterId       int64                            `protobuf:"varint,1,opt,name=register_id,json=registerId"`
@@ -10168,7 +10174,7 @@ func (b0 DeviceRegister_builder) Build() *DeviceRegister {
 	return m0
 }
 
-// Addon
+// [ADDON] Defines the device connection information.
 type DeviceConnectionInfo struct {
 	state                        protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnit *ConnectionInfo               `protobuf:"bytes,1,opt,name=communication_unit,json=communicationUnit"`
@@ -10400,7 +10406,7 @@ func (b0 DeviceConnectionInfo_builder) Build() *DeviceConnectionInfo {
 	return m0
 }
 
-// Addon for DB
+// [ADDON for DB] Defines a list of modem information.
 type ListOfModemInfo struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*ModemInfo          `protobuf:"bytes,1,rep,name=items"`
@@ -10492,7 +10498,7 @@ func (b0 ListOfModemInfo_builder) Build() *ListOfModemInfo {
 	return m0
 }
 
-// Addon for DB
+// [ADDON for DB] Defines a list of device connection information records.
 type ListOfConnectionInfo struct {
 	state                  protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceConnectionInfo `protobuf:"bytes,1,rep,name=items"`
@@ -10584,7 +10590,7 @@ func (b0 ListOfConnectionInfo_builder) Build() *ListOfConnectionInfo {
 	return m0
 }
 
-// Addon for DB
+// [ADDON for DB] The list of field values.
 type FieldValuesList struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items *[]*common.FieldValues `protobuf:"bytes,1,rep,name=items"`
@@ -10644,7 +10650,7 @@ func (b0 FieldValuesList_builder) Build() *FieldValuesList {
 	return m0
 }
 
-// Generic attribute selector using field values
+// Defines a generic attribute selector using field values.
 type AttributeSelector struct {
 	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_FieldId     *string                   `protobuf:"bytes,1,opt,name=field_id,json=fieldId"`
@@ -10859,7 +10865,7 @@ func (b0 AttributeSelector_builder) Build() *AttributeSelector {
 	return m0
 }
 
-// Generic attribute selector using field values for devices
+// Defines the attribute selector using field values for devices.
 type DeviceAttributeSelector struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Attributes *[]*AttributeSelector  `protobuf:"bytes,2,rep,name=attributes"`
@@ -10919,7 +10925,7 @@ func (b0 DeviceAttributeSelector_builder) Build() *DeviceAttributeSelector {
 	return m0
 }
 
-// Generic attribute selector using field values for devices
+// Defines the attribute selector using field values for communication units.
 type CommunicationUnitAttributeSelector struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_LinkProtocol DataLinkProtocol       `protobuf:"varint,1,opt,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
@@ -11221,7 +11227,7 @@ func (b0 ActionResult_builder) Build() *ActionResult {
 	return m0
 }
 
-// Taskmaster -> Dataproxy job/action progress update message
+// Defines the job or action progress update message sent from Taskmaster to Dataproxy.
 type JobEventData struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_JobId       []byte                 `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -11300,7 +11306,7 @@ func (b0 JobEventData_builder) Build() *JobEventData {
 	return m0
 }
 
-// Sub-message - the device specification.
+// Defines the device specification.
 type DeviceSpec struct {
 	state                            protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_DctId                 *string                     `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
@@ -11462,6 +11468,7 @@ func (b0 DeviceSpec_builder) Build() *DeviceSpec {
 	return m0
 }
 
+// Defines the current status of a device.
 type DeviceStatus struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Info        *DeviceInfo            `protobuf:"bytes,1,opt,name=info"`
@@ -11565,6 +11572,7 @@ func (b0 DeviceStatus_builder) Build() *DeviceStatus {
 	return m0
 }
 
+// Defines the mapping between a device and its communication unit.
 type DeviceCommunicationUnit struct {
 	state                          protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnitId *string                       `protobuf:"bytes,1,opt,name=communication_unit_id,json=communicationUnitId"`
@@ -11689,7 +11697,7 @@ func (b0 DeviceCommunicationUnit_builder) Build() *DeviceCommunicationUnit {
 	return m0
 }
 
-// Sub-message - job specification
+// Defines the job specification.
 type JobSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Device        *JobDevice             `protobuf:"bytes,2,opt,name=device"`
@@ -11850,6 +11858,7 @@ func (b0 JobSpec_builder) Build() *JobSpec {
 	return m0
 }
 
+// Defines the mapping information for the specified job action.
 type JobActionMapRecord struct {
 	state                       protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ActionIndex      int32                  `protobuf:"varint,1,opt,name=action_index,json=actionIndex"`
@@ -12002,7 +12011,7 @@ func (b0 JobActionMapRecord_builder) Build() *JobActionMapRecord {
 	return m0
 }
 
-// Message used to notify DP that the job is done, sent by Taskmaster
+// Defines the notification sent by the Taskmaster to Dataproxy that a job has been completed.
 type JobDoneNotification struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec   *JobSpec               `protobuf:"bytes,1,opt,name=spec"`
@@ -12096,7 +12105,7 @@ func (b0 JobDoneNotification_builder) Build() *JobDoneNotification {
 	return m0
 }
 
-// Sub-message containing driver info
+// Defines the driver information.
 type DriverInfo struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -12208,6 +12217,7 @@ func (b0 DriverInfo_builder) Build() *DriverInfo {
 	return m0
 }
 
+// Defines the communication unit information.
 type CommunicationUnit struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *CommunicationUnitSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -12301,6 +12311,7 @@ func (b0 CommunicationUnit_builder) Build() *CommunicationUnit {
 	return m0
 }
 
+// Defines the communication unit specification.
 type CommunicationUnitSpec struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ExternalId     *string                `protobuf:"bytes,1,opt,name=external_id,json=externalId"`
@@ -12404,6 +12415,7 @@ func (b0 CommunicationUnitSpec_builder) Build() *CommunicationUnitSpec {
 	return m0
 }
 
+// Defines the the communication bus information.
 type CommunicationBus struct {
 	state               protoimpl.MessageState  `protogen:"opaque.v1"`
 	xxx_hidden_Status   *CommunicationBusStatus `protobuf:"bytes,2,opt,name=status"`
@@ -12497,6 +12509,7 @@ func (b0 CommunicationBus_builder) Build() *CommunicationBus {
 	return m0
 }
 
+// Defines the communication bus status.
 type CommunicationBusStatus struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationUnitId []string               `protobuf:"bytes,1,rep,name=communication_unit_id,json=communicationUnitId"`
@@ -12554,6 +12567,7 @@ func (b0 CommunicationBusStatus_builder) Build() *CommunicationBusStatus {
 	return m0
 }
 
+// Defines a node in the network topology.
 type TopologyNode struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_XId         int64                  `protobuf:"varint,1,opt,name=x_id,json=xId"`
@@ -12686,6 +12700,7 @@ func (b0 TopologyNode_builder) Build() *TopologyNode {
 	return m0
 }
 
+// Defines an edge between two nodes in the network topology.
 type TopologyEdge struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_FromXId     int64                  `protobuf:"varint,1,opt,name=from_x_id,json=fromXId"`
@@ -12816,6 +12831,7 @@ func (b0 TopologyEdge_builder) Build() *TopologyEdge {
 	return m0
 }
 
+// Defines the network map specification.
 type NetworkMap struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Nodes *[]*TopologyNode       `protobuf:"bytes,1,rep,name=nodes"`
@@ -12878,7 +12894,6 @@ func (x *NetworkMap) SetEdges(v []*TopologyEdge) {
 type NetworkMap_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Flat or hierarchical list of topology devices
 	Nodes []*TopologyNode
 	Edges []*TopologyEdge
 }
@@ -12892,6 +12907,7 @@ func (b0 NetworkMap_builder) Build() *NetworkMap {
 	return m0
 }
 
+// Defines a single log record of a communication unit.
 type CommunicationUnitLogRecord struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id                  *string                `protobuf:"bytes,1,opt,name=id"`
@@ -13093,6 +13109,7 @@ func (b0 CommunicationUnitLogRecord_builder) Build() *CommunicationUnitLogRecord
 	return m0
 }
 
+// Defines a list of communication unit log records.
 type ListOfCommunicationUnitLogRecord struct {
 	state                  protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*CommunicationUnitLogRecord `protobuf:"bytes,1,rep,name=items"`

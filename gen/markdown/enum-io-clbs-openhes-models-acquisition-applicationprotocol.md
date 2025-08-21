@@ -1,6 +1,6 @@
 # Enum: io.clbs.openhes.models.acquisition.ApplicationProtocol
 
-Application protocols
+Defines the supported application protocols.
 
 ## Options
 

@@ -1,13 +1,13 @@
 # Enum: io.clbs.openhes.models.acquisition.BulkStatusCode
 
-Bulk statuses
+Defines the status information of an entire bulk.
 
 ## Options
 
 | Value | Description |
 | --- | --- |
-| BULK_STATUS_QUEUED | The job is waiting in the queue |
-| BULK_STATUS_RUNNING | The job is running |
-| BULK_STATUS_COMPLETED | The job is completed |
-| BULK_STATUS_CANCELLED | The job is cancelled |
-| BULK_STATUS_EXPIRED | The job has expired |
+| BULK_STATUS_QUEUED | The bulk is waiting in the queue. |
+| BULK_STATUS_RUNNING | The bulk is currently running. |
+| BULK_STATUS_COMPLETED | The bulk has been completed. |
+| BULK_STATUS_CANCELLED | The bulk has been cancelled. |
+| BULK_STATUS_EXPIRED | The bulk has expired. |
