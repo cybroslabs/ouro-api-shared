@@ -5,7 +5,7 @@ from sabledocs.proto_model import SableConfig, SableContext, Package, Service
 from typing import List, Tuple, Any
 
 re_format = re.compile(r"map<string,\s*([^\s]+)\s*>")
-re_hint = re.compile(r"@([a-z]+): (.*)")
+re_hint = re.compile(r"@([a-z]+):\s*(.*)")
 
 # Map of protobuf types to GraphQL types
 type_map = {

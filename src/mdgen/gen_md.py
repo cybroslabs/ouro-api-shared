@@ -171,14 +171,10 @@ def generate(
                             hints = {}
                             value_description = ""
 
-                        value_description = value_description.replace(
-                            "@values:", "<b>Values:</b>"
-                        )
-                        value_description = value_description.replace(
-                            "@default:", "<b>Default value:</b>"
-                        )
-                        value_description = value_description.replace(
-                            "@example:", "<b>Example:</b>"
+                        value_description = (
+                            value_description.replace("@values:", "<b>Values:</b>")
+                            .replace("@default:", "<b>Default value:</b>")
+                            .replace("@example:", "<b>Example:</b>")
                         )
                         fh.write(f"| {v.name} | {value_description} |\n")
         for message in package.messages:
@@ -204,14 +200,10 @@ def generate(
                             hints = {}
                             field_description = ""
 
-                        field_description = field_description.replace(
-                            "@values:", "<b>Values:</b>"
-                        )
-                        field_description = field_description.replace(
-                            "@default:", "<b>Default value:</b>"
-                        )
-                        field_description = field_description.replace(
-                            "@example:", "<b>Example:</b>"
+                        field_description = (
+                            field_description.replace("@values:", "<b>Values:</b>")
+                            .replace("@default:", "<b>Default value:</b>")
+                            .replace("@example:", "<b>Example:</b>")
                         )
 
                         _, full_type_link = getLinkFromType(

@@ -5354,8 +5354,7 @@ type DriverSpec_builder struct {
 	// The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
 	// It must respect upper/lower characters.
 	// The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-	//
-	// Examples: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+	// @example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
 	DisplayName *string
 }
 
