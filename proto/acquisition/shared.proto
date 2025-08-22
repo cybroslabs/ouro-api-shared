@@ -830,10 +830,11 @@ message JobEventData {
 // Defines the device specification.
 message DeviceSpec {
     // @gqltype: UUID
-    string dct_id                                            = 1;  // The identifier of the device configuration template.
-    string external_id                                       = 2;  // The external identifier of the device.
-    repeated DeviceCommunicationUnit communication_unit_link = 3;  // The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
-    string timezone                                          = 4;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    string dct_id                                                             = 1;  // The identifier of the device configuration template.
+    string external_id                                                        = 2;  // The external identifier of the device.
+    repeated DeviceCommunicationUnit communication_unit_link                  = 3;  // The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
+    string timezone                                                           = 4;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    repeated DefaultDeviceCommunicationUnitAttributes default_link_attributes = 5;  // The default communication unit link attributes used when the device is created without a communication unit link. Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically. The list must not contain same application protocol more than once.
 }
 
 // Defines the current status of a device.
@@ -847,6 +848,12 @@ message DeviceCommunicationUnit {
     string communication_unit_id              = 1;  // The unique identifier of the communication unit.
     ApplicationProtocol app_protocol          = 2;  // The application protocol used communication over the communication unit.
     map<string, common.FieldValue> attributes = 3;  // The application protocol related device attributes, represented as a list of attribute definitions.
+}
+
+// Defines the default attributes for mapping between a device and its communication unit for a specific application protocol.
+message DefaultDeviceCommunicationUnitAttributes {
+    ApplicationProtocol app_protocol          = 1;  // The application protocol.
+    map<string, common.FieldValue> attributes = 2;  // The application protocol related device attributes, represented as a list of attribute definitions.
 }
 
 // Defines the job specification.

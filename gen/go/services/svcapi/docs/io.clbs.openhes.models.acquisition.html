@@ -519,6 +519,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>DefaultDeviceCommunicationUnitAttributes</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.Device">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>Device</code> 
@@ -5099,6 +5108,72 @@
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes" title="io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes">message DefaultDeviceCommunicationUnitAttributes</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the default attributes for mapping between a device and its communication unit for a specific application protocol.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        appProtocol
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.ApplicationProtocol">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.ApplicationProtocol"><span title="io.clbs.openhes.models.acquisition.ApplicationProtocol">io.clbs.openhes.models.acquisition.ApplicationProtocol</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        attributes
+      </td>
+      <td>
+        <code title="map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;">
+          
+          <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>The application protocol related device attributes, represented as a list of attribute definitions.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.Device">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.Device" title="io.clbs.openhes.models.acquisition.Device">message Device</a>
@@ -6660,6 +6735,24 @@
         </code>
       </td>
       <td class="content"><p>The timezone associated with the device. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        defaultLinkAttributes
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes"><span title="io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes">io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The default communication unit link attributes used when the device is created without a communication unit link. Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically. The list must not contain same application protocol more than once.</p></td>
       
     </tr>
     
