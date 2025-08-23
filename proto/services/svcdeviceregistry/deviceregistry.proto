@@ -12,7 +12,6 @@ import "acquisition/internal.proto";
 import "acquisition/shared.proto";
 import "common/fields.proto";
 import "common/internal.proto";
-import "common/types.proto";
 import "common/metadata.proto";
 
 // The Deviceregistry service definition.

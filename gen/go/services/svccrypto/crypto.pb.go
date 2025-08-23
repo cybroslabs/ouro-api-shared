@@ -11,7 +11,6 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -27,7 +26,7 @@ var File_services_svccrypto_crypto_proto protoreflect.FileDescriptor
 
 const file_services_svccrypto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13crypto/crypto.proto\x1a\x17crypto/management.proto2\xc4\x02\n" +
+	"\x1fservices/svccrypto/crypto.proto\x12\"io.clbs.openhes.services.svccrypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x13crypto/crypto.proto\x1a\x17crypto/management.proto2\xc4\x02\n" +
 	"\rCryproService\x12Y\n" +
 	"\x04Dlms\x12%.io.clbs.openhes.models.crypto.DlmsIn\x1a&.io.clbs.openhes.models.crypto.DlmsOut(\x010\x01\x12v\n" +
 	"\x0fGetCryptoSecret\x125.io.clbs.openhes.models.crypto.GetCryptoSecretRequest\x1a,.io.clbs.openhes.models.crypto.CryptoSecrets\x12`\n" +

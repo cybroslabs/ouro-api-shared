@@ -8,7 +8,6 @@ package svcapi
 
 import (
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
-	_ "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuse"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
@@ -32,7 +31,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a%acquisition/timeofuse/timeofuse.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x11system/main.proto2\xf4W\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x11system/main.proto2\xf4W\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +

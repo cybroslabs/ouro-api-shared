@@ -3,11 +3,7 @@ edition = "2023";
 package io.clbs.openhes.services.svcdriver;
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdriver";
 
-import "google/protobuf/empty.proto";
 import "acquisition/internal.proto";
-import "acquisition/main.proto";
-import "common/internal.proto";
-import "common/types.proto";
 
 // The driver service definition.
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.

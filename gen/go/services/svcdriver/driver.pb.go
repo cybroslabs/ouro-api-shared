@@ -8,10 +8,8 @@ package svcdriver
 
 import (
 	acquisition "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition"
-	_ "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -27,7 +25,7 @@ var File_services_svcdriver_driver_proto protoreflect.FileDescriptor
 
 const file_services_svcdriver_driver_proto_rawDesc = "" +
 	"\n" +
-	"\x1fservices/svcdriver/driver.proto\x12\"io.clbs.openhes.services.svcdriver\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1aacquisition/internal.proto\x1a\x16acquisition/main.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto2\x87\x01\n" +
+	"\x1fservices/svcdriver/driver.proto\x12\"io.clbs.openhes.services.svcdriver\x1a\x1aacquisition/internal.proto2\x87\x01\n" +
 	"\rDriverService\x12v\n" +
 	"\bStartJob\x124.io.clbs.openhes.models.acquisition.StartJobsRequest\x1a2.io.clbs.openhes.models.acquisition.ProgressUpdate0\x01BAZ?github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdriverb\beditionsp\xe8\a"
 

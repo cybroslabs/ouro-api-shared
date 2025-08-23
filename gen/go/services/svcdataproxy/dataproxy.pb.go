@@ -12,8 +12,6 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/structpb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -30,7 +28,7 @@ var File_services_svcdataproxy_dataproxy_proto protoreflect.FileDescriptor
 
 const file_services_svcdataproxy_dataproxy_proto_rawDesc = "" +
 	"\n" +
-	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xc5\x13\n" +
+	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xc5\x13\n" +
 	"\x10DataproxyService\x12h\n" +
 	"\tListBulks\x12+.io.clbs.openhes.models.common.ListSelector\x1a..io.clbs.openhes.models.acquisition.ListOfBulk\x12z\n" +
 	"\fListBulkJobs\x127.io.clbs.openhes.models.acquisition.ListBulkJobsRequest\x1a1.io.clbs.openhes.models.acquisition.ListOfBulkJob\x12W\n" +

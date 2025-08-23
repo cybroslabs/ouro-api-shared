@@ -29,7 +29,7 @@ var File_services_svcdeviceregistry_deviceregistry_proto protoreflect.FileDescri
 
 const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\n" +
-	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x12common/types.proto\x1a\x15common/metadata.proto2\x9fG\n" +
+	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\x9fG\n" +
 	"\x15DeviceRegistryService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
 	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Y\n" +
