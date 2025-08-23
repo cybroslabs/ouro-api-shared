@@ -267,7 +267,7 @@ def generate(
 
     with open(os.path.join(output_dir, "search_index.json"), "w") as fh:
         index = [
-            {"filname": k, "tags": sanitize_search_words(v)}
+            {"filename": k, "tags": sanitize_search_words(v)}
             for k, v in search_index.items()
         ]
         json.dump(index, fh, indent=2)
