@@ -268,7 +268,7 @@ message ConnectionTypeSerialDirect {
 // Defines the connection information for a controlled serial line using the Moxa protocol.
 message ConnectionTypeSerialMoxa {
     string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 dataPort                  = 2;  // The TCP data port number of the device to connect to.
+    uint32 data_port                 = 2;  // The TCP data port number of the device to connect to.
     uint32 command_port              = 3;  // The TCP command port number of the device to connect to.
     google.protobuf.Duration timeout = 4;  // The timeout for the serial port connection using the Moxa protocol.
 }

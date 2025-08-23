@@ -4535,7 +4535,7 @@ func (b0 ConnectionTypeSerialDirect_builder) Build() *ConnectionTypeSerialDirect
 type ConnectionTypeSerialMoxa struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Host        *string                `protobuf:"bytes,1,opt,name=host"`
-	xxx_hidden_DataPort    uint32                 `protobuf:"varint,2,opt,name=dataPort"`
+	xxx_hidden_DataPort    uint32                 `protobuf:"varint,2,opt,name=data_port,json=dataPort"`
 	xxx_hidden_CommandPort uint32                 `protobuf:"varint,3,opt,name=command_port,json=commandPort"`
 	xxx_hidden_Timeout     *durationpb.Duration   `protobuf:"bytes,4,opt,name=timeout"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
@@ -13440,10 +13440,10 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x1aConnectionTypeSerialDirect\x12\x12\n" +
 	"\x04host\x18\x01 \x01(\tR\x04host\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x123\n" +
-	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xa2\x01\n" +
+	"\atimeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"\xa3\x01\n" +
 	"\x18ConnectionTypeSerialMoxa\x12\x12\n" +
-	"\x04host\x18\x01 \x01(\tR\x04host\x12\x1a\n" +
-	"\bdataPort\x18\x02 \x01(\rR\bdataPort\x12!\n" +
+	"\x04host\x18\x01 \x01(\tR\x04host\x12\x1b\n" +
+	"\tdata_port\x18\x02 \x01(\rR\bdataPort\x12!\n" +
 	"\fcommand_port\x18\x03 \x01(\rR\vcommandPort\x123\n" +
 	"\atimeout\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\atimeout\"z\n" +
 	"\x1bConnectionTypeSerialRfc2217\x12\x12\n" +
