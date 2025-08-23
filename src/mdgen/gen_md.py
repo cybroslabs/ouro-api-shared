@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os, re
+import os, re, json
 from shutil import copy, copytree, rmtree
-from sabledocs.lunr_search import build_search_index
 from sabledocs.proto_model import SableConfig, SableContext, Package, Service
 from typing import List, Tuple, Dict, Any
 
@@ -77,6 +76,19 @@ def getLinkFromType(
     return full_type, full_type_link
 
 
+def sanitize_search_words(tags: set) -> List[str]:
+    tmp = []
+    for t in tags:
+        if t.startswith("io.clbs."):
+            tmp.append(t.split(".")[-1])
+        elif t.startswith("google.protobuf."):
+            continue
+        else:
+            tmp.extend((i for i in re.split(r"\W+", t) if i))
+    tags = set(t.lower() for t in tmp)
+    return list(sorted(tags))
+
+
 def generate(
     sable_config: SableConfig,
     sable_context: SableContext,
@@ -89,6 +101,8 @@ def generate(
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+
+    search_index: dict[str, set] = {}
 
     with open(os.path.join(output_dir, "index.md"), "w") as fh:
         fh.write("# API\n\n")
@@ -111,15 +125,25 @@ def generate(
 
     for service, groups in tagged_services:
         for group, methods in groups:
+            filename = f"service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md"
+            search_index_page = search_index[filename] = set()
             with open(
                 os.path.join(
                     output_dir,
-                    f"service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md",
+                    filename,
                 ),
                 "w",
             ) as fh:
+                search_index_page.update([service.name, group])
                 fh.write(f"# {service.name} - {group}\n\n")
                 for method, tags in methods:
+                    search_index_page.update(
+                        [
+                            method.name,
+                            method.request.full_type,
+                            method.response.full_type,
+                        ]
+                    )
                     # Request model name (if not google.protobuf.Empty)
                     m_request, m_request_link = getLinkFromType(
                         method.request.full_type,
@@ -158,11 +182,13 @@ def generate(
     # Generate files describing models
     for package in visible_packages:
         for e in package.enums:
-            # model-io-clbs-openhes-models-common-fielddisplayformat.md
+            filename = f"enum-{sanitizeUrl(e.full_name)}.md"
+            search_index_page = search_index[filename] = set()
             with open(
-                os.path.join(output_dir, f"enum-{sanitizeUrl(e.full_name)}.md"),
+                os.path.join(output_dir, filename),
                 "w",
             ) as fh:
+                search_index_page.add(e.full_name)
                 fh.write(f"# Enum: {e.full_name}\n\n")
                 enum_description, section_hints = _parseHints(e.description)
                 if enum_description:
@@ -174,6 +200,7 @@ def generate(
 
                     fh.write("| Value | Description |\n| --- | --- |\n")
                     for v in enum_values:
+                        search_index_page.add(v.name)
                         # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
                         tmp, hints = _parseHints(v.description)
                         value_description = "<br>".join(tmp.split("\n"))
@@ -193,10 +220,13 @@ def generate(
 
                         fh.write(f"| {v.name} | {value_description} |\n")
         for message in package.messages:
+            filename = f"model-{sanitizeUrl(message.full_name)}.md"
+            search_index_page = search_index[filename] = set()
             with open(
-                os.path.join(output_dir, f"model-{sanitizeUrl(message.full_name)}.md"),
+                os.path.join(output_dir, filename),
                 "w",
             ) as fh:
+                search_index_page.add(message.full_name)
                 fh.write(f"# Model: {message.full_name}\n\n")
                 if message.description:
                     fh.write(f"{message.description}\n\n")
@@ -207,6 +237,7 @@ def generate(
                     # ... it may need to prefix all lines and merge them fit into single cell - The key is to use HTML line breaks (<br>) within the cell content to create new lines.
                     fh.write("| Field | Information |\n| --- | --- |\n")
                     for field in message.fields:
+                        search_index_page.add(field.name)
                         # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
                         tmp, hints = _parseHints(field.description)
                         field_description = "<br>".join(tmp.split("\n"))
@@ -233,3 +264,10 @@ def generate(
                         field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
                         fh.write(f"| {field.name} | {field_description} |\n")
                     fh.write("\n")
+
+    with open(os.path.join(output_dir, "search_index.json"), "w") as fh:
+        index = [
+            {"filname": k, "tags": sanitize_search_words(v)}
+            for k, v in search_index.items()
+        ]
+        json.dump(index, fh, indent=2)
