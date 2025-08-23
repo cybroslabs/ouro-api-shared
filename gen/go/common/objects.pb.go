@@ -21,22 +21,26 @@ const (
 )
 
 // Enum representing the object type.
+// @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
+// @sort
 type ObjectType int32
 
 const (
-	ObjectType_BULK                             ObjectType = 0  // The bulk.
-	ObjectType_BULK_JOB                         ObjectType = 1  // The bulk job.
-	ObjectType_COMMUNICATION_UNIT               ObjectType = 2  // The communication unit.
-	ObjectType_DEVICE                           ObjectType = 3  // The device.
-	ObjectType_REGISTER                         ObjectType = 4  // The register.
-	ObjectType_VARIABLE                         ObjectType = 5  // The variable.
-	ObjectType_DEVICE_TEMPLATE                  ObjectType = 6  // The device template.
-	ObjectType_COMMUNICATION_BUS                ObjectType = 7  // The communication bus.
-	ObjectType_MODEM_POOL                       ObjectType = 8  // The modem pool.
-	ObjectType_DEVICE_GROUP                     ObjectType = 9  // The device group.
-	ObjectType_TIME_OF_USE_TABLE                ObjectType = 10 // The time-of-use table.
-	ObjectType_DRIVER                           ObjectType = 11 // The driver.
-	ObjectType_CRON_JOB                         ObjectType = 12 // The cron job.
+	// @internal: The main object types.
+	ObjectType_BULK                          ObjectType = 0  // The bulk.
+	ObjectType_BULK_JOB                      ObjectType = 1  // The bulk job.
+	ObjectType_COMMUNICATION_UNIT            ObjectType = 2  // The communication unit.
+	ObjectType_DEVICE                        ObjectType = 3  // The device.
+	ObjectType_DEVICE_CONFIGURATION_REGISTER ObjectType = 4  // The register.
+	ObjectType_VARIABLE                      ObjectType = 5  // The variable.
+	ObjectType_DEVICE_CONFIGURATION_TEMPLATE ObjectType = 6  // The device template.
+	ObjectType_COMMUNICATION_BUS             ObjectType = 7  // The communication bus.
+	ObjectType_MODEM_POOL                    ObjectType = 8  // The modem pool.
+	ObjectType_DEVICE_GROUP                  ObjectType = 9  // The device group.
+	ObjectType_TIME_OF_USE_TABLE             ObjectType = 10 // The time-of-use table.
+	ObjectType_DRIVER                        ObjectType = 11 // The driver.
+	ObjectType_CRON_JOB                      ObjectType = 12 // The cron job.
+	// @internal: The derived object types.
 	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 13 // The device communication unit change.
 	ObjectType_DEVICE_DATA_INFO                 ObjectType = 14 // The device data info.
 	ObjectType_COMMUNICATION_UNIT_LOG_RECORD    ObjectType = 15 // The communication unit log record.
@@ -49,9 +53,9 @@ var (
 		1:  "BULK_JOB",
 		2:  "COMMUNICATION_UNIT",
 		3:  "DEVICE",
-		4:  "REGISTER",
+		4:  "DEVICE_CONFIGURATION_REGISTER",
 		5:  "VARIABLE",
-		6:  "DEVICE_TEMPLATE",
+		6:  "DEVICE_CONFIGURATION_TEMPLATE",
 		7:  "COMMUNICATION_BUS",
 		8:  "MODEM_POOL",
 		9:  "DEVICE_GROUP",
@@ -67,9 +71,9 @@ var (
 		"BULK_JOB":                         1,
 		"COMMUNICATION_UNIT":               2,
 		"DEVICE":                           3,
-		"REGISTER":                         4,
+		"DEVICE_CONFIGURATION_REGISTER":    4,
 		"VARIABLE":                         5,
-		"DEVICE_TEMPLATE":                  6,
+		"DEVICE_CONFIGURATION_TEMPLATE":    6,
 		"COMMUNICATION_BUS":                7,
 		"MODEM_POOL":                       8,
 		"DEVICE_GROUP":                     9,
@@ -108,17 +112,17 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xc2\x02\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xe5\x02\n" +
 	"\n" +
 	"ObjectType\x12\b\n" +
 	"\x04BULK\x10\x00\x12\f\n" +
 	"\bBULK_JOB\x10\x01\x12\x16\n" +
 	"\x12COMMUNICATION_UNIT\x10\x02\x12\n" +
 	"\n" +
-	"\x06DEVICE\x10\x03\x12\f\n" +
-	"\bREGISTER\x10\x04\x12\f\n" +
-	"\bVARIABLE\x10\x05\x12\x13\n" +
-	"\x0fDEVICE_TEMPLATE\x10\x06\x12\x15\n" +
+	"\x06DEVICE\x10\x03\x12!\n" +
+	"\x1dDEVICE_CONFIGURATION_REGISTER\x10\x04\x12\f\n" +
+	"\bVARIABLE\x10\x05\x12!\n" +
+	"\x1dDEVICE_CONFIGURATION_TEMPLATE\x10\x06\x12\x15\n" +
 	"\x11COMMUNICATION_BUS\x10\a\x12\x0e\n" +
 	"\n" +
 	"MODEM_POOL\x10\b\x12\x10\n" +

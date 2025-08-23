@@ -8,7 +8,7 @@ Defines the job action set specification.
 
 | Field | Information |
 | --- | --- |
-| variables | <b>Type:</b> `string`<br><b>Description:</b><br>The variable filter. Meaning depends on the action type:<br>  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.<br> - Others: Not applicable (ignored). |
+| variables | <b>Type:</b> `string`<br><b>Description:</b><br>The variable filter. Meaning depends on the action type:<br> - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.<br>- Others: Not applicable (ignored). |
 | getRegister | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetRegister`](model-io-clbs-openhes-models-acquisition-actiongetregister.md)<br><b>Description:</b><br>Defines the GetRegister action. |
 | getPeriodicalProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile`](model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md)<br><b>Description:</b><br>Defines the GetPeriodicalProfile action. |
 | getIrregularProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetIrregularProfile`](model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md)<br><b>Description:</b><br>Defines the GetIrregularProfile action. |

@@ -8,17 +8,17 @@ Enum representing the object type.
 | --- | --- |
 | BULK | The bulk. |
 | BULK_JOB | The bulk job. |
-| COMMUNICATION_UNIT | The communication unit. |
-| DEVICE | The device. |
-| REGISTER | The register. |
-| VARIABLE | The variable. |
-| DEVICE_TEMPLATE | The device template. |
 | COMMUNICATION_BUS | The communication bus. |
-| MODEM_POOL | The modem pool. |
-| DEVICE_GROUP | The device group. |
-| TIME_OF_USE_TABLE | The time-of-use table. |
-| DRIVER | The driver. |
-| CRON_JOB | The cron job. |
-| DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |
-| DEVICE_DATA_INFO | The device data info. |
+| COMMUNICATION_UNIT | The communication unit. |
 | COMMUNICATION_UNIT_LOG_RECORD | The communication unit log record. |
+| CRON_JOB | The cron job. |
+| DEVICE | The device. |
+| DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |
+| DEVICE_CONFIGURATION_REGISTER | The register. |
+| DEVICE_CONFIGURATION_TEMPLATE | The device template. |
+| DEVICE_DATA_INFO | The device data info. |
+| DEVICE_GROUP | The device group. |
+| DRIVER | The driver. |
+| MODEM_POOL | The modem pool. |
+| TIME_OF_USE_TABLE | The time-of-use table. |
+| VARIABLE | The variable. |

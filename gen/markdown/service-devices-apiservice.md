@@ -271,6 +271,12 @@ ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.op
 
 Retrieves the details of the specified device group.
 
+### Input
+The device group identifier.
+
+### Output
+The device group specification.
+
 ```proto
 GetDeviceGroup(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.DeviceGroup)
 ```

@@ -23,8 +23,8 @@ UpdateApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig)
 ## SynchronizeComponentConfig
 
 Synchronizes the application configuration. The input value shall contain all default values and all known keys (even with null values).
- The output value will contain currently set values, including details that are not set.
- Values missing from the defaults will be deleted if they were previously set in the application configuration.
+The output value will contain currently set values, including details that are not set.
+Values missing from the defaults will be deleted if they were previously set in the application configuration.
 
 ```proto
 SynchronizeComponentConfig(io.clbs.openhes.models.system.ComponentConfigDescriptor) returns (io.clbs.openhes.models.system.ComponentConfig)

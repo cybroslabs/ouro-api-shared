@@ -5,21 +5,26 @@ package io.clbs.openhes.models.common;
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 // Enum representing the object type.
+// @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
+// @sort
+//
 enum ObjectType {
-    BULK               = 0;   // The bulk.
-    BULK_JOB           = 1;   // The bulk job.
-    COMMUNICATION_UNIT = 2;   // The communication unit.
-    DEVICE             = 3;   // The device.
-    REGISTER           = 4;   // The register.
-    VARIABLE           = 5;   // The variable.
-    DEVICE_TEMPLATE    = 6;   // The device template.
-    COMMUNICATION_BUS  = 7;   // The communication bus.
-    MODEM_POOL         = 8;   // The modem pool.
-    DEVICE_GROUP       = 9;   // The device group.
-    TIME_OF_USE_TABLE  = 10;  // The time-of-use table.
-    DRIVER             = 11;  // The driver.
-    CRON_JOB           = 12;  // The cron job.
+    // @internal: The main object types.
+    BULK                          = 0;   // The bulk.
+    BULK_JOB                      = 1;   // The bulk job.
+    COMMUNICATION_UNIT            = 2;   // The communication unit.
+    DEVICE                        = 3;   // The device.
+    DEVICE_CONFIGURATION_REGISTER = 4;   // The register.
+    VARIABLE                      = 5;   // The variable.
+    DEVICE_CONFIGURATION_TEMPLATE = 6;   // The device template.
+    COMMUNICATION_BUS             = 7;   // The communication bus.
+    MODEM_POOL                    = 8;   // The modem pool.
+    DEVICE_GROUP                  = 9;   // The device group.
+    TIME_OF_USE_TABLE             = 10;  // The time-of-use table.
+    DRIVER                        = 11;  // The driver.
+    CRON_JOB                      = 12;  // The cron job.
 
+    // @internal: The derived object types.
     DEVICE_COMMUNICATION_UNIT_CHANGE = 13;  // The device communication unit change.
     DEVICE_DATA_INFO                 = 14;  // The device data info.
     COMMUNICATION_UNIT_LOG_RECORD    = 15;  // The communication unit log record.

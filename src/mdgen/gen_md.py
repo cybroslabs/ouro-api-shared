@@ -6,32 +6,32 @@ from sabledocs.lunr_search import build_search_index
 from sabledocs.proto_model import SableConfig, SableContext, Package, Service
 from typing import List, Tuple, Dict, Any
 
-re_hint = re.compile(r"@([a-z]+): (.*)")
+RE_HINT = re.compile(r"\s*@([a-z]+)(?::?\s*(.*))?$")
+RE_SINGLE_SPACE = re.compile(r"^\s(?:[^\s]*|$)")
 
 
-def _parseHints(description: str) -> Tuple[str, Dict[str, str]]:
+def _parseHints(description: str | None) -> Tuple[str, Dict[str, str]]:
     """
     Parse the hints in the description and return a list of tuples with the hint type and value.
     """
-    result = []
     hints = {}
+    if not description:
+        return "", hints
+    result = []
     for line in description.splitlines():
-        if (m := re_hint.match(line)) is not None:
+        line = line.rstrip()
+        # Detect lines starting with a single space and remove the space
+        if RE_SINGLE_SPACE.match(line):
+            line = line[1:]
+        if (m := RE_HINT.match(line)) is not None:
             hints[m.group(1)] = m.group(2)
-            line = re_hint.sub("", line).strip()
+            line = RE_HINT.sub("", line)
             if line:
                 result.append(line)
         else:
             result.append(line)
 
     return "\n".join(result).strip(), hints
-
-
-def _sanitizeMethodDescripton(description: str) -> str:
-    description = [
-        line for line in description.split("\n") if not line.lstrip().startswith("@")
-    ]
-    return "\n".join(description).strip()
 
 
 def sanitizeUrl(url: str) -> str:
@@ -134,8 +134,15 @@ def generate(
                     )
 
                     fh.write(f"## {method.name}\n\n")
-                    if (d := _sanitizeMethodDescripton(method.description)) and d:
-                        fh.write(f"{d}\n\n")
+                    method_description, hints = _parseHints(method.description)
+                    if method_description:
+                        fh.write(f"{method_description}\n\n")
+                    d_request_in = hints.get("param", "")
+                    if d_request_in:
+                        fh.write(f"### Input\n{d_request_in}\n\n")
+                    d_request_out = hints.get("return", "")
+                    if d_request_out:
+                        fh.write(f"### Output\n{d_request_out}\n\n")
                     if m_response:
                         fh.write(
                             f"```proto\n{method.name}({m_request}) returns ({m_response})\n```\n\n"
@@ -157,25 +164,33 @@ def generate(
                 "w",
             ) as fh:
                 fh.write(f"# Enum: {e.full_name}\n\n")
-                if e.description:
-                    fh.write(f"{e.description}\n\n")
+                enum_description, section_hints = _parseHints(e.description)
+                if enum_description:
+                    fh.write(f"{enum_description}\n\n")
                 fh.write("## Options\n\n")
-                if e.values:
-                    fh.write("| Value | Description |\n| --- | --- |\n")
-                    for v in e.values:
-                        if v.description:
-                            # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
-                            tmp, hints = _parseHints(v.description)
-                            value_description = "<br>".join(tmp.split("\n"))
-                        else:
-                            hints = {}
-                            value_description = ""
+                if enum_values := e.values:
+                    if "sort" in section_hints:
+                        enum_values = sorted(e.values, key=lambda x: x.name)
 
-                        value_description = (
-                            value_description.replace("@values:", "<b>Values:</b>")
-                            .replace("@default:", "<b>Default value:</b>")
-                            .replace("@example:", "<b>Example:</b>")
-                        )
+                    fh.write("| Value | Description |\n| --- | --- |\n")
+                    for v in enum_values:
+                        # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
+                        tmp, hints = _parseHints(v.description)
+                        value_description = "<br>".join(tmp.split("\n"))
+
+                        if (tmp := hints.get("values", None)) is not None:
+                            value_description = (
+                                f"{value_description}<br><b>Options:</b> {tmp}"
+                            )
+                        if (tmp := hints.get("default", None)) is not None:
+                            value_description = (
+                                f"{value_description}<br><b>Default value:</b> {tmp}"
+                            )
+                        if (tmp := hints.get("example", None)) is not None:
+                            value_description = (
+                                f"{value_description}<br><b>Example:</b> {tmp}"
+                            )
+
                         fh.write(f"| {v.name} | {value_description} |\n")
         for message in package.messages:
             with open(
@@ -192,19 +207,22 @@ def generate(
                     # ... it may need to prefix all lines and merge them fit into single cell - The key is to use HTML line breaks (<br>) within the cell content to create new lines.
                     fh.write("| Field | Information |\n| --- | --- |\n")
                     for field in message.fields:
-                        if field.description:
-                            # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
-                            tmp, hints = _parseHints(field.description)
-                            field_description = "<br>".join(tmp.split("\n"))
-                        else:
-                            hints = {}
-                            field_description = ""
+                        # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
+                        tmp, hints = _parseHints(field.description)
+                        field_description = "<br>".join(tmp.split("\n"))
 
-                        field_description = (
-                            field_description.replace("@values:", "<b>Values:</b>")
-                            .replace("@default:", "<b>Default value:</b>")
-                            .replace("@example:", "<b>Example:</b>")
-                        )
+                        if (tmp := hints.get("values", None)) is not None:
+                            field_description = (
+                                f"{field_description}<br><b>Values:</b> {tmp}"
+                            )
+                        if (tmp := hints.get("default", None)) is not None:
+                            field_description = (
+                                f"{field_description}<br><b>Default value:</b> {tmp}"
+                            )
+                        if (tmp := hints.get("example", None)) is not None:
+                            field_description = (
+                                f"{field_description}<br><b>Example:</b> {tmp}"
+                            )
 
                         _, full_type_link = getLinkFromType(
                             field.full_type,

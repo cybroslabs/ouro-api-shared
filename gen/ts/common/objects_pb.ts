@@ -9,15 +9,20 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
  * Describes the file common/objects.proto.
  */
 export const file_common_objects: GenFile = /*@__PURE__*/
-  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24qwgIKCk9iamVjdFR5cGUSCAoEQlVMSxAAEgwKCEJVTEtfSk9CEAESFgoSQ09NTVVOSUNBVElPTl9VTklUEAISCgoGREVWSUNFEAMSDAoIUkVHSVNURVIQBBIMCghWQVJJQUJMRRAFEhMKD0RFVklDRV9URU1QTEFURRAGEhUKEUNPTU1VTklDQVRJT05fQlVTEAcSDgoKTU9ERU1fUE9PTBAIEhAKDERFVklDRV9HUk9VUBAJEhUKEVRJTUVfT0ZfVVNFX1RBQkxFEAoSCgoGRFJJVkVSEAsSDAoIQ1JPTl9KT0IQDBIkCiBERVZJQ0VfQ09NTVVOSUNBVElPTl9VTklUX0NIQU5HRRANEhQKEERFVklDRV9EQVRBX0lORk8QDhIhCh1DT01NVU5JQ0FUSU9OX1VOSVRfTE9HX1JFQ09SRBAPQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac");
+  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24q5QIKCk9iamVjdFR5cGUSCAoEQlVMSxAAEgwKCEJVTEtfSk9CEAESFgoSQ09NTVVOSUNBVElPTl9VTklUEAISCgoGREVWSUNFEAMSIQodREVWSUNFX0NPTkZJR1VSQVRJT05fUkVHSVNURVIQBBIMCghWQVJJQUJMRRAFEiEKHURFVklDRV9DT05GSUdVUkFUSU9OX1RFTVBMQVRFEAYSFQoRQ09NTVVOSUNBVElPTl9CVVMQBxIOCgpNT0RFTV9QT09MEAgSEAoMREVWSUNFX0dST1VQEAkSFQoRVElNRV9PRl9VU0VfVEFCTEUQChIKCgZEUklWRVIQCxIMCghDUk9OX0pPQhAMEiQKIERFVklDRV9DT01NVU5JQ0FUSU9OX1VOSVRfQ0hBTkdFEA0SFAoQREVWSUNFX0RBVEFfSU5GTxAOEiEKHUNPTU1VTklDQVRJT05fVU5JVF9MT0dfUkVDT1JEEA9CNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
 
 /**
  * Enum representing the object type.
+ * @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
+ * @sort
+ *
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */
 export enum ObjectType {
   /**
+   * @internal: The main object types.
+   *
    * The bulk.
    *
    * @generated from enum value: BULK = 0;
@@ -48,9 +53,9 @@ export enum ObjectType {
   /**
    * The register.
    *
-   * @generated from enum value: REGISTER = 4;
+   * @generated from enum value: DEVICE_CONFIGURATION_REGISTER = 4;
    */
-  REGISTER = 4,
+  DEVICE_CONFIGURATION_REGISTER = 4,
 
   /**
    * The variable.
@@ -62,9 +67,9 @@ export enum ObjectType {
   /**
    * The device template.
    *
-   * @generated from enum value: DEVICE_TEMPLATE = 6;
+   * @generated from enum value: DEVICE_CONFIGURATION_TEMPLATE = 6;
    */
-  DEVICE_TEMPLATE = 6,
+  DEVICE_CONFIGURATION_TEMPLATE = 6,
 
   /**
    * The communication bus.
@@ -109,6 +114,8 @@ export enum ObjectType {
   CRON_JOB = 12,
 
   /**
+   * @internal: The derived object types.
+   *
    * The device communication unit change.
    *
    * @generated from enum value: DEVICE_COMMUNICATION_UNIT_CHANGE = 13;
@@ -132,10 +139,13 @@ export enum ObjectType {
 
 /**
  * Enum representing the object type.
+ * @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
+ * @sort
+ *
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */
-export type ObjectTypeJson = "BULK" | "BULK_JOB" | "COMMUNICATION_UNIT" | "DEVICE" | "REGISTER" | "VARIABLE" | "DEVICE_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER" | "CRON_JOB" | "DEVICE_COMMUNICATION_UNIT_CHANGE" | "DEVICE_DATA_INFO" | "COMMUNICATION_UNIT_LOG_RECORD";
+export type ObjectTypeJson = "BULK" | "BULK_JOB" | "COMMUNICATION_UNIT" | "DEVICE" | "DEVICE_CONFIGURATION_REGISTER" | "VARIABLE" | "DEVICE_CONFIGURATION_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER" | "CRON_JOB" | "DEVICE_COMMUNICATION_UNIT_CHANGE" | "DEVICE_DATA_INFO" | "COMMUNICATION_UNIT_LOG_RECORD";
 
 /**
  * Describes the enum io.clbs.openhes.models.common.ObjectType.
