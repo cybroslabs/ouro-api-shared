@@ -1,2177 +1,3229 @@
 [
   {
     "filename": "service-bulks-apiservice.md",
-    "tags": [
-      "apiservice",
-      "bulk",
-      "bulkjob",
-      "bulks",
-      "cancelbulk",
-      "cancelbulkjobs",
-      "createbulk",
-      "createbulkrequest",
-      "createproxybulk",
-      "createproxybulkrequest",
-      "devicebulks",
-      "getbulk",
-      "getbulkjob",
-      "getdevicebulks",
-      "getdevicebulksrequest",
-      "getproxybulk",
-      "listbulkjobs",
-      "listbulkjobsrequest",
-      "listbulks",
-      "listofbulk",
-      "listofbulkjob",
-      "listofid",
-      "listselector",
-      "proxybulk",
-      "updatebulk",
-      "updatebulkjob",
-      "updatemetadata"
-    ]
+    "tags0": [
+      "GetBulk",
+      "ListBulks",
+      "GetBulkJob",
+      "CancelBulk",
+      "CreateBulk",
+      "UpdateBulk",
+      "ListBulkJobs",
+      "GetProxyBulk",
+      "UpdateBulkJob",
+      "CancelBulkJobs",
+      "GetDeviceBulks",
+      "CreateProxyBulk",
+      "io.clbs.openhes.models.common.ListOfId",
+      "io.clbs.openhes.models.acquisition.Bulk",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.BulkJob",
+      "io.clbs.openhes.models.common.UpdateMetadata",
+      "io.clbs.openhes.models.acquisition.ProxyBulk",
+      "io.clbs.openhes.models.acquisition.ListOfBulk",
+      "io.clbs.openhes.models.acquisition.DeviceBulks",
+      "io.clbs.openhes.models.acquisition.ListOfBulkJob",
+      "io.clbs.openhes.models.acquisition.CreateBulkRequest",
+      "io.clbs.openhes.models.acquisition.ListBulkJobsRequest",
+      "io.clbs.openhes.models.acquisition.GetDeviceBulksRequest",
+      "io.clbs.openhes.models.acquisition.CreateProxyBulkRequest"
+    ],
+    "tags1": [
+      "ListOfBulkJob",
+      "ListOfId",
+      "Bulk",
+      "ListOfBulk",
+      "GetDeviceBulksRequest",
+      "DeviceBulks",
+      "CreateProxyBulkRequest",
+      "ListBulkJobsRequest",
+      "ListSelector",
+      "BulkJob",
+      "CreateBulkRequest",
+      "ProxyBulk",
+      "UpdateMetadata"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-configuration-apiservice.md",
-    "tags": [
-      "apiservice",
-      "applicationconfig",
-      "applicationconfigdescriptor",
-      "componentconfig",
-      "componentconfigdescriptor",
-      "configuration",
-      "getapplicationconfig",
-      "synchronizecomponentconfig",
-      "updateapplicationconfig"
-    ]
+    "tags0": [
+      "GetApplicationConfig",
+      "UpdateApplicationConfig",
+      "SynchronizeComponentConfig",
+      "io.clbs.openhes.models.system.ComponentConfig",
+      "io.clbs.openhes.models.system.ApplicationConfig",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor",
+      "ApplicationConfig",
+      "ComponentConfigDescriptor",
+      "ComponentConfig"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-cron-jobs-apiservice.md",
-    "tags": [
-      "apiservice",
-      "createcronjob",
-      "createcronjobrequest",
-      "cron",
-      "cronjob",
-      "deletecronjob",
-      "getcronjob",
-      "jobs",
-      "listcronjobs",
-      "listofcronjob",
-      "listselector",
-      "pausecronjob",
-      "resumecronjob",
-      "runcronjob",
-      "updatecronjob"
-    ]
+    "tags0": [
+      "GetCronJob",
+      "RunCronJob",
+      "ListCronJobs",
+      "PauseCronJob",
+      "CreateCronJob",
+      "UpdateCronJob",
+      "DeleteCronJob",
+      "ResumeCronJob",
+      "io.clbs.openhes.models.cronjobs.CronJob",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+    ],
+    "tags1": [
+      "ListSelector",
+      "ListOfCronJob",
+      "CreateCronJobRequest",
+      "CronJob"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-cryptography-apiservice.md",
-    "tags": [
-      "apiservice",
-      "cryptography",
-      "cryptosecrets",
-      "getcryptosecret",
-      "getcryptosecretrequest",
-      "setcryptosecret",
-      "setcryptosecretrequest"
-    ]
+    "tags0": [
+      "GetCryptoSecret",
+      "SetCryptoSecret",
+      "io.clbs.openhes.models.crypto.CryptoSecrets",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "GetCryptoSecretRequest",
+      "SetCryptoSecretRequest",
+      "CryptoSecrets"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-device-configuration-registers-apiservice.md",
-    "tags": [
-      "apiservice",
-      "configuration",
-      "createdeviceconfigurationregister",
-      "createdeviceconfigurationregisterrequest",
-      "deletedeviceconfigurationregister",
-      "device",
-      "deviceconfigurationregister",
-      "getdeviceconfigurationregister",
-      "listdeviceconfigurationregisters",
-      "listofdeviceconfigurationregister",
-      "listselector",
-      "registers",
-      "updatedeviceconfigurationregister"
-    ]
+    "tags0": [
+      "GetDeviceConfigurationRegister",
+      "ListDeviceConfigurationRegisters",
+      "CreateDeviceConfigurationRegister",
+      "UpdateDeviceConfigurationRegister",
+      "DeleteDeviceConfigurationRegister",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationRegister",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister",
+      "io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest"
+    ],
+    "tags1": [
+      "CreateDeviceConfigurationRegisterRequest",
+      "ListSelector",
+      "ListOfDeviceConfigurationRegister",
+      "DeviceConfigurationRegister"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-device-configuration-templates-apiservice.md",
-    "tags": [
-      "adddeviceconfigurationregistertodeviceconfigurationtemplate",
-      "adddeviceconfigurationregistertodeviceconfigurationtemplaterequest",
-      "apiservice",
-      "configuration",
-      "createdeviceconfigurationtemplate",
-      "createdeviceconfigurationtemplaterequest",
-      "deletedeviceconfigurationtemplate",
-      "device",
-      "deviceconfigurationtemplate",
-      "getdeviceconfigurationtemplate",
-      "listdeviceconfigurationtemplates",
-      "listofdeviceconfigurationtemplate",
-      "listselector",
-      "removedeviceconfigurationregisterfromdeviceconfigurationtemplate",
-      "removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest",
-      "templates",
-      "updatedeviceconfigurationtemplate"
-    ]
+    "tags0": [
+      "GetDeviceConfigurationTemplate",
+      "ListDeviceConfigurationTemplates",
+      "CreateDeviceConfigurationTemplate",
+      "UpdateDeviceConfigurationTemplate",
+      "DeleteDeviceConfigurationTemplate",
+      "io.clbs.openhes.models.common.ListSelector",
+      "AddDeviceConfigurationRegisterToDeviceConfigurationTemplate",
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate",
+      "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate",
+      "io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest",
+      "io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest",
+      "io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
+    ],
+    "tags1": [
+      "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest",
+      "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest",
+      "ListOfDeviceConfigurationTemplate",
+      "DeviceConfigurationTemplate",
+      "CreateDeviceConfigurationTemplateRequest",
+      "ListSelector"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-device-data-apiservice.md",
-    "tags": [
-      "apiservice",
-      "data",
-      "device",
-      "devicedata",
-      "getdevicedata",
-      "getdevicedatairregularprofiles",
-      "getdevicedataprofiles",
-      "getdevicedataregisters",
-      "getdevicedatarequest",
-      "irregularprofilevalues",
-      "listdevicedatainfo",
-      "listofdevicedatainfo",
-      "listselector",
-      "profilevalues",
-      "registervalues"
-    ]
+    "tags0": [
+      "GetDeviceData",
+      "ListDeviceDataInfo",
+      "GetDeviceDataProfiles",
+      "GetDeviceDataRegisters",
+      "GetDeviceDataIrregularProfiles",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.DeviceData",
+      "io.clbs.openhes.models.acquisition.ProfileValues",
+      "io.clbs.openhes.models.acquisition.RegisterValues",
+      "io.clbs.openhes.models.acquisition.GetDeviceDataRequest",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo",
+      "io.clbs.openhes.models.acquisition.IrregularProfileValues"
+    ],
+    "tags1": [
+      "ProfileValues",
+      "IrregularProfileValues",
+      "GetDeviceDataRequest",
+      "RegisterValues",
+      "ListOfDeviceDataInfo",
+      "ListSelector",
+      "DeviceData"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-device-events-apiservice.md",
-    "tags": [
-      "apiservice",
-      "device",
-      "deviceevents",
-      "events",
-      "getdeviceevents",
-      "getdeviceeventsrequest"
-    ]
+    "tags0": [
+      "GetDeviceEvents",
+      "io.clbs.openhes.models.acquisition.DeviceEvents",
+      "io.clbs.openhes.models.acquisition.GetDeviceEventsRequest"
+    ],
+    "tags1": [
+      "DeviceEvents",
+      "GetDeviceEventsRequest"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-devices-apiservice.md",
-    "tags": [
-      "addcommunicationunitstocommunicationbus",
-      "addcommunicationunitstocommunicationbusrequest",
-      "adddevicestogroup",
-      "adddevicestogrouprequest",
-      "apiservice",
-      "communicationunit",
-      "createcommunicationbus",
-      "createcommunicationbusrequest",
-      "createcommunicationunit",
-      "createcommunicationunitrequest",
-      "createdevice",
-      "createdevicegroup",
-      "createdevicegrouprequest",
-      "createdevicerequest",
-      "createmodem",
-      "createmodempool",
-      "deletecommunicationbus",
-      "deletecommunicationunit",
-      "deletedevice",
-      "deletedevicegroup",
-      "deletemodem",
-      "deletemodempool",
-      "device",
-      "devicegroup",
-      "deviceinfo",
-      "devices",
-      "getcommunicationunit",
-      "getcommunicationunitnetworkmap",
-      "getdevice",
-      "getdevicecommunicationunits",
-      "getdevicedevicegroups",
-      "getdevicegroup",
-      "getdeviceinfo",
-      "getdevicenetworkmap",
-      "getmodempool",
-      "listcommunicationbuses",
-      "listcommunicationunitlogrecords",
-      "listcommunicationunits",
-      "listdevicecommunicationunitchanges",
-      "listdevicegroupdevices",
-      "listdevicegroupdevicesrequest",
-      "listdevicegroups",
-      "listdevices",
-      "listmodempools",
-      "listofcommunicationbus",
-      "listofcommunicationunit",
-      "listofcommunicationunitlogrecord",
-      "listofdevice",
-      "listofdevicecommunicationunit",
-      "listofdevicecommunicationunitchange",
-      "listofdevicegroup",
-      "listofmodempool",
-      "listselector",
-      "modempool",
-      "networkmap",
-      "removecommunicationunitsfromcommunicationbus",
-      "removecommunicationunitsfromcommunicationbusrequest",
-      "removedevicesfromgroup",
-      "removedevicesfromgrouprequest",
-      "setdevicecommunicationunits",
-      "setdevicecommunicationunitsrequest",
-      "setmodempoolrequest",
-      "setmodemrequest",
-      "updatecommunicationunit",
-      "updatedevice",
-      "updatemodem",
-      "updatemodempool"
-    ]
+    "tags0": [
+      "GetDevice",
+      "ListDevices",
+      "CreateModem",
+      "UpdateModem",
+      "DeleteModem",
+      "CreateDevice",
+      "UpdateDevice",
+      "DeleteDevice",
+      "GetModemPool",
+      "GetDeviceInfo",
+      "GetDeviceGroup",
+      "ListModemPools",
+      "CreateModemPool",
+      "UpdateModemPool",
+      "DeleteModemPool",
+      "ListDeviceGroups",
+      "CreateDeviceGroup",
+      "DeleteDeviceGroup",
+      "AddDevicesToGroup",
+      "GetDeviceNetworkMap",
+      "GetCommunicationUnit",
+      "GetDeviceDeviceGroups",
+      "ListCommunicationUnits",
+      "CreateCommunicationBus",
+      "ListCommunicationBuses",
+      "DeleteCommunicationBus",
+      "RemoveDevicesFromGroup",
+      "ListDeviceGroupDevices",
+      "CreateCommunicationUnit",
+      "UpdateCommunicationUnit",
+      "DeleteCommunicationUnit",
+      "SetDeviceCommunicationUnits",
+      "GetDeviceCommunicationUnits",
+      "GetCommunicationUnitNetworkMap",
+      "ListCommunicationUnitLogRecords",
+      "ListDeviceCommunicationUnitChanges",
+      "AddCommunicationUnitsToCommunicationBus",
+      "io.clbs.openhes.models.acquisition.Device",
+      "io.clbs.openhes.models.common.ListSelector",
+      "RemoveCommunicationUnitsFromCommunicationBus",
+      "io.clbs.openhes.models.acquisition.ModemPool",
+      "io.clbs.openhes.models.acquisition.NetworkMap",
+      "io.clbs.openhes.models.acquisition.DeviceInfo",
+      "io.clbs.openhes.models.acquisition.DeviceGroup",
+      "io.clbs.openhes.models.acquisition.ListOfDevice",
+      "io.clbs.openhes.models.acquisition.ListOfModemPool",
+      "io.clbs.openhes.models.acquisition.SetModemRequest",
+      "io.clbs.openhes.models.acquisition.CommunicationUnit",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceGroup",
+      "io.clbs.openhes.models.acquisition.CreateDeviceRequest",
+      "io.clbs.openhes.models.acquisition.SetModemPoolRequest",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationBus",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationUnit",
+      "io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest",
+      "io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest",
+      "io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit",
+      "io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest",
+      "io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest",
+      "io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord",
+      "io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange",
+      "io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest",
+      "io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest"
+    ],
+    "tags1": [
+      "CreateCommunicationUnitRequest",
+      "CommunicationUnit",
+      "ListOfCommunicationUnitLogRecord",
+      "CreateDeviceGroupRequest",
+      "Device",
+      "RemoveCommunicationUnitsFromCommunicationBusRequest",
+      "RemoveDevicesFromGroupRequest",
+      "ListOfDevice",
+      "SetModemPoolRequest",
+      "SetDeviceCommunicationUnitsRequest",
+      "DeviceInfo",
+      "ListOfDeviceGroup",
+      "AddDevicesToGroupRequest",
+      "DeviceGroup",
+      "AddCommunicationUnitsToCommunicationBusRequest",
+      "CreateDeviceRequest",
+      "CreateCommunicationBusRequest",
+      "SetModemRequest",
+      "ListOfDeviceCommunicationUnitChange",
+      "NetworkMap",
+      "ListOfCommunicationUnit",
+      "ListDeviceGroupDevicesRequest",
+      "ModemPool",
+      "ListOfModemPool",
+      "ListOfDeviceCommunicationUnit",
+      "ListSelector",
+      "ListOfCommunicationBus"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-driver-info-apiservice.md",
-    "tags": [
-      "apiservice",
-      "driver",
-      "getdriver",
-      "info",
-      "listdrivers",
-      "listofdriver",
-      "listselector"
-    ]
+    "tags0": [
+      "GetDriver",
+      "ListDrivers",
+      "io.clbs.openhes.models.acquisition.Driver",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.ListOfDriver"
+    ],
+    "tags1": [
+      "ListSelector",
+      "Driver",
+      "ListOfDriver"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-fields-apiservice.md",
-    "tags": [
-      "apiservice",
-      "createfielddescriptor",
-      "createfielddescriptorrequest",
-      "deletefielddescriptor",
-      "fielddescriptor",
-      "fielddescriptoroptions",
-      "fielddescriptorselector",
-      "fields",
-      "listfielddescriptoroptions",
-      "listfielddescriptoroptionsrequest",
-      "listfielddescriptors",
-      "listoffielddescriptor",
-      "updatefielddescriptor"
-    ]
+    "tags0": [
+      "ListFieldDescriptors",
+      "CreateFieldDescriptor",
+      "UpdateFieldDescriptor",
+      "DeleteFieldDescriptor",
+      "ListFieldDescriptorOptions",
+      "io.clbs.openhes.models.common.FieldDescriptor",
+      "io.clbs.openhes.models.common.ListOfFieldDescriptor",
+      "io.clbs.openhes.models.common.FieldDescriptorOptions",
+      "io.clbs.openhes.models.common.FieldDescriptorSelector",
+      "io.clbs.openhes.models.common.CreateFieldDescriptorRequest",
+      "io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"
+    ],
+    "tags1": [
+      "FieldDescriptorOptions",
+      "ListOfFieldDescriptor",
+      "CreateFieldDescriptorRequest",
+      "FieldDescriptorSelector",
+      "FieldDescriptor",
+      "ListFieldDescriptorOptionsRequest"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-metadata-apiservice.md",
-    "tags": [
-      "apiservice",
-      "metadata",
-      "updateobjectfields",
-      "updateobjectfieldsrequest"
-    ]
+    "tags0": [
+      "UpdateObjectFields",
+      "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
+    ],
+    "tags1": [
+      "UpdateObjectFieldsRequest"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-system-apiservice.md",
-    "tags": [
-      "apiservice",
-      "getopenidconfiguration",
-      "openidconfiguration",
-      "system"
-    ]
+    "tags0": [
+      "GetOpenIdConfiguration",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-time-of-use-tables-apiservice.md",
-    "tags": [
-      "apiservice",
-      "createtimeofusetable",
-      "createtimeofusetablerequest",
-      "deletetimeofusetable",
-      "gettimeofusetable",
-      "listoftimeofusetable",
-      "listselector",
-      "listtimeofusetables",
-      "of",
-      "tables",
-      "time",
-      "timeofusetable",
-      "updatetimeofusetable",
-      "use"
-    ]
+    "tags0": [
+      "GetTimeOfUseTable",
+      "ListTimeOfUseTables",
+      "CreateTimeOfUseTable",
+      "UpdateTimeOfUseTable",
+      "DeleteTimeOfUseTable",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.TimeOfUseTable",
+      "io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable",
+      "io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest"
+    ],
+    "tags1": [
+      "ListOfTimeOfUseTable",
+      "TimeOfUseTable",
+      "ListSelector",
+      "CreateTimeOfUseTableRequest"
+    ],
+    "tags2": ""
   },
   {
     "filename": "service-variables-apiservice.md",
-    "tags": [
-      "addregistertovariable",
-      "addregistertovariablerequest",
-      "apiservice",
-      "createvariable",
-      "createvariablerequest",
-      "deletevariable",
-      "getvariable",
-      "listofvariable",
-      "listselector",
-      "listvariables",
-      "removeregisterfromvariable",
-      "removeregisterfromvariablerequest",
-      "updatevariable",
-      "variable",
-      "variables"
-    ]
+    "tags0": [
+      "GetVariable",
+      "ListVariables",
+      "CreateVariable",
+      "UpdateVariable",
+      "DeleteVariable",
+      "AddRegisterToVariable",
+      "RemoveRegisterFromVariable",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.acquisition.Variable",
+      "io.clbs.openhes.models.acquisition.ListOfVariable",
+      "io.clbs.openhes.models.acquisition.CreateVariableRequest",
+      "io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest",
+      "io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest"
+    ],
+    "tags1": [
+      "RemoveRegisterFromVariableRequest",
+      "ListOfVariable",
+      "CreateVariableRequest",
+      "Variable",
+      "ListSelector",
+      "AddRegisterToVariableRequest"
+    ],
+    "tags2": ""
   },
   {
     "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "tags": [
-      "applicationconfig",
-      "items"
-    ]
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Application config specification The default values for the application configuration"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "tags": [
-      "applicationconfigdescriptor",
+    "tags0": [
+      "items",
       "descriptors",
-      "items"
-    ]
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "The component configuration descriptors The default values for the application configuration"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "tags": [
-      "componentconfig",
+    "tags0": [
+      "name",
       "items",
-      "name"
-    ]
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "The component name The component configuration values"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "tags": [
-      "componentconfigdescriptor",
+    "tags0": [
+      "name",
       "items",
-      "name"
-    ]
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "The component name The component configuration descriptors"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "tags": [
+    "tags0": [
       "content",
-      "openidconfiguration"
-    ]
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "The raw JSON configuration the OIDC service"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
-    "tags": [
-      "connect",
-      "disconnect",
-      "noop",
-      "relaystate"
-    ]
+    "tags0": [
+      "NOOP",
+      "CONNECT",
+      "DISCONNECT",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayState"
+    ],
+    "tags1": [
+      "RelayState"
+    ],
+    "tags2": "Enumeration for Relay State Relay state ignored action Relay connects Relay disconnects"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
-    "tags": [
-      "dayid",
-      "dayprofile",
-      "switching"
-    ]
+    "tags0": [
+      "dayId",
+      "switching",
+      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
+    ],
+    "tags1": [
+      "DayProfile"
+    ],
+    "tags2": "DayProfile represents the profile for single day containing multiple Switching times Unique identifier for the day profile List switching events each with specific time and relay states"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
-    "tags": [
-      "relayid",
-      "relaystaterecord",
-      "state"
-    ]
+    "tags0": [
+      "state",
+      "relayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
+    ],
+    "tags1": [
+      "RelayStateRecord"
+    ],
+    "tags2": "RelayStateRecord represents the state relay specific time contains the relay and its state CONNECT DISCONNECT The relay must unique within the list relays Relay State the relay CONNECT DISCONNECT"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
-    "tags": [
+    "tags0": [
       "id",
       "name",
-      "season",
-      "startday",
-      "startmonth",
-      "startyear",
-      "weekid"
-    ]
+      "weekId",
+      "startDay",
+      "startYear",
+      "startMonth",
+      "io.clbs.openhes.models.acquisition.timeofuse.Season"
+    ],
+    "tags1": [
+      "Season"
+    ],
+    "tags2": "Season represents season which spans across specific start date and references week Unique identifier for the season Name the season Start year the season Start month the season Start day the season Reference Week that this season associated with"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
-    "tags": [
+    "tags0": [
       "day",
-      "dayid",
+      "year",
       "month",
-      "specialday",
-      "year"
-    ]
+      "dayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
+    ],
+    "tags1": [
+      "SpecialDay"
+    ],
+    "tags2": "SpecialDay represents specific days such holidays exceptions Year the special day Month the special day Day the special day Unique identifier for the special day"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
-    "tags": [
+    "tags0": [
       "hour",
       "minute",
+      "tariff",
       "relays",
-      "switching",
-      "tariff"
-    ]
+      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
+    ],
+    "tags1": [
+      "Switching"
+    ],
+    "tags2": "Switching data includes tariffs and relay states for specific times Hour the switching event Minute the switching event Tariff Map relay relay state The list must not contain duplicit relay IDs"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
-    "tags": [
-      "activateat",
-      "dayprofiles",
-      "expiesat",
-      "hdogroupid",
+    "tags0": [
+      "weeks",
       "seasons",
-      "specialdays",
-      "timeofusetablespec",
-      "weeks"
-    ]
+      "expiesAt",
+      "hdoGroupId",
+      "activateAt",
+      "dayProfiles",
+      "specialDays",
+      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
+    ],
+    "tags1": [
+      "TimeOfUseTableSpec"
+    ],
+    "tags2": "TimeOfUse represents the main Time Use TOU table containing all relevant definitions Expiration date the TOU table HDO High Demand Option Group Activation date the TOU table List seasons defined the TOU List weeks defined the TOU List day profiles each day having list switching events List special days holidays exceptions"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
-    "tags": [
-      "dayids",
-      "week",
-      "weekid",
-      "weekname"
-    ]
+    "tags0": [
+      "weekId",
+      "dayIds",
+      "weekName",
+      "io.clbs.openhes.models.acquisition.timeofuse.Week"
+    ],
+    "tags1": [
+      "Week"
+    ],
+    "tags2": "Week represents week the year containing list Day IDs and Week Name Unique identifier for the week Name the week List day IDs that belong this week"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "tags": [
-      "secret_data_aes256cbc",
-      "secret_data_plain",
-      "secretdatadecryptionmethod"
-    ]
+    "tags0": [
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+    ],
+    "tags1": [
+      "DATA",
+      "AES256CBC",
+      "PLAIN",
+      "SecretDataDecryptionMethod",
+      "SECRET"
+    ],
+    "tags2": "DLMS crypto mode Plain data decryption needed AES CBC encryption method"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "tags": [
-      "secret_session_none",
-      "secret_session_plain",
-      "secret_session_rsa_oaepm_gf1p",
-      "secretsessionkeydecryptionmethod"
-    ]
+    "tags0": [
+      "SECRET_SESSION_NONE",
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+    ],
+    "tags1": [
+      "NONE",
+      "RSA",
+      "OAEPM",
+      "SESSION",
+      "GF1P",
+      "SECRET",
+      "PLAIN",
+      "SecretSessionKeyDecryptionMethod"
+    ],
+    "tags2": "session key decryption method used when the session key not set not used Plain session key session key decryption needed RSA OAEP MGF1P decryption method used for session keys"
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "tags": [
-      "accesslevel",
-      "createdat",
-      "cryptosecret",
+    "tags0": [
       "data",
-      "keyid",
-      "updatedat"
-    ]
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
+    ],
+    "tags1": [
+      "CryptoSecret"
+    ],
+    "tags2": "Access level for the secret admin user etc Unique identifier for the secret key Timestamp when the secret was created Timestamp when the secret was last updated The secret data"
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "tags": [
-      "cryptosecrets",
-      "secrets"
-    ]
+    "tags0": [
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
+    ],
+    "tags1": [
+      "CryptoSecrets"
+    ],
+    "tags2": "List secrets"
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "tags": [
-      "cryptoid",
-      "drivertype",
-      "getcryptosecretrequest",
-      "objecttype"
-    ]
+    "tags0": [
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "GetCryptoSecretRequest"
+    ],
+    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve"
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "tags": [
-      "accesslevel",
-      "cryptoid",
+    "tags0": [
       "data",
-      "datadecryptioniv",
-      "datadecryptionmethod",
-      "decryptionsecretid",
-      "drivertype",
-      "keyid",
-      "objecttype",
-      "sessionkey",
-      "sessionkeydecryptionmethod",
-      "setcryptosecretrequest"
-    ]
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "SetCryptoSecretRequest"
+    ],
+    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve Access level for the secret admin user etc Unique identifier for the secret key Identifier for the key used decrypt the either the session key the data directly Method used decrypt the session key May unset the session key unset and used The session key usually encrypted used decrypt the data Method used decrypt the secret data May unset the data not encrypted and vice versa Initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
-    "tags": [
-      "binary",
-      "boolean",
-      "double",
-      "duration",
-      "fielddatatype",
-      "integer",
-      "text",
-      "timestamp"
-    ]
+    "tags0": [
+      "TEXT",
+      "DOUBLE",
+      "BINARY",
+      "INTEGER",
+      "BOOLEAN",
+      "DURATION",
+      "TIMESTAMP",
+      "io.clbs.openhes.models.common.FieldDataType"
+    ],
+    "tags1": [
+      "FieldDataType"
+    ],
+    "tags2": "Enum representing the field data type The text data type The integer data type The double data type The binary data type The boolean data type The timestamp data type represented google protobuf Timestamp The duration data type represented google protobuf Duration"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddisplayformat.md",
-    "tags": [
-      "combo",
-      "date_only",
-      "default",
-      "fielddisplayformat",
-      "money",
-      "multiline",
-      "password",
-      "timeofday",
-      "utc_date_only",
-      "utc_datetime"
-    ]
+    "tags0": [
+      "MONEY",
+      "COMBO",
+      "DEFAULT",
+      "PASSWORD",
+      "DATE_ONLY",
+      "TIMEOFDAY",
+      "MULTILINE",
+      "UTC_DATETIME",
+      "UTC_DATE_ONLY",
+      "io.clbs.openhes.models.common.FieldDisplayFormat"
+    ],
+    "tags1": [
+      "DATE",
+      "UTC",
+      "ONLY",
+      "FieldDisplayFormat",
+      "DATETIME"
+    ],
+    "tags2": "Enum representing the field display format The default display format The GUI shows text int double date time duration the default format The date only display format local date time Data type must TIMESTAMP string The date time display format with UTC timezone Data type must TIMESTAMP string The date display format with UTC timezone Data type must TIMESTAMP string The time day display format Data type must INTEGER milliseconds The money display format The unit must set the currency code ISO standard USD EUR Data type must DOUBLE INTEGER The password display format Data type must TEXT The GUI must always display six starts not reveal the actual password length The multiline string display format Data type must TEXT The combo box display style format Data type must TEXT The GUI must display the value combo box with the list options"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-filteroperator.md",
-    "tags": [
-      "between",
-      "contains",
-      "ends_with",
-      "equal",
-      "filteroperator",
-      "greater_than",
-      "greater_than_or_equal",
-      "in",
-      "is_not_null",
-      "is_null",
-      "less_than",
-      "less_than_or_equal",
-      "not_contains",
-      "not_equal",
-      "not_in",
-      "starts_with"
-    ]
+    "tags0": [
+      "IN",
+      "EQUAL",
+      "NOT_IN",
+      "BETWEEN",
+      "IS_NULL",
+      "CONTAINS",
+      "NOT_EQUAL",
+      "LESS_THAN",
+      "ENDS_WITH",
+      "STARTS_WITH",
+      "IS_NOT_NULL",
+      "GREATER_THAN",
+      "NOT_CONTAINS",
+      "LESS_THAN_OR_EQUAL",
+      "GREATER_THAN_OR_EQUAL",
+      "io.clbs.openhes.models.common.FilterOperator"
+    ],
+    "tags1": [
+      "STARTS",
+      "IS",
+      "OR",
+      "EQUAL",
+      "NOT",
+      "ENDS",
+      "WITH",
+      "IN",
+      "LESS",
+      "THAN",
+      "GREATER",
+      "FilterOperator",
+      "NULL",
+      "CONTAINS"
+    ],
+    "tags2": "The filter operator Single operand operator for text integer number boolean date fields Single operand operator for text integer number boolean date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Multiple operand operator for text integer number boolean fields Multiple operand operator for text integer number boolean fields Two operand operator for integer number date fields operand operator For both null and empty string operand operator For both null and empty string"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-objecttype.md",
-    "tags": [
-      "bulk",
-      "bulk_job",
-      "communication_bus",
-      "communication_unit",
-      "communication_unit_log_record",
-      "cron_job",
-      "device",
-      "device_communication_unit_change",
-      "device_configuration_register",
-      "device_configuration_template",
-      "device_data_info",
-      "device_group",
-      "driver",
-      "modem_pool",
-      "objecttype",
-      "time_of_use_table",
-      "variable"
-    ]
+    "tags0": [
+      "BULK",
+      "DEVICE",
+      "DRIVER",
+      "BULK_JOB",
+      "CRON_JOB",
+      "VARIABLE",
+      "MODEM_POOL",
+      "DEVICE_GROUP",
+      "DEVICE_DATA_INFO",
+      "COMMUNICATION_BUS",
+      "TIME_OF_USE_TABLE",
+      "COMMUNICATION_UNIT",
+      "COMMUNICATION_UNIT_LOG_RECORD",
+      "DEVICE_CONFIGURATION_REGISTER",
+      "DEVICE_CONFIGURATION_TEMPLATE",
+      "DEVICE_COMMUNICATION_UNIT_CHANGE",
+      "io.clbs.openhes.models.common.ObjectType"
+    ],
+    "tags1": [
+      "RECORD",
+      "CRON",
+      "TIME",
+      "CONFIGURATION",
+      "LOG",
+      "USE",
+      "BULK",
+      "JOB",
+      "INFO",
+      "REGISTER",
+      "COMMUNICATION",
+      "ObjectType",
+      "POOL",
+      "CHANGE",
+      "GROUP",
+      "OF",
+      "BUS",
+      "TABLE",
+      "TEMPLATE",
+      "MODEM",
+      "DEVICE",
+      "DATA",
+      "UNIT"
+    ],
+    "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool The time use table The variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-createfielddescriptorrequest.md",
-    "tags": [
-      "createfielddescriptorrequest",
-      "spec"
-    ]
+    "tags0": [
+      "spec",
+      "io.clbs.openhes.models.common.CreateFieldDescriptorRequest"
+    ],
+    "tags1": [
+      "CreateFieldDescriptorRequest"
+    ],
+    "tags2": "The field descriptor created"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptor.md",
-    "tags": [
-      "datatype",
-      "defaultvalue",
-      "editable",
-      "fielddescriptor",
-      "fieldid",
-      "filterable",
-      "format",
+    "tags0": [
       "gid",
-      "groupid",
-      "isuserdefined",
-      "jspath",
-      "label",
-      "multivalue",
-      "objecttype",
       "path",
-      "precision",
-      "required",
-      "secured",
-      "sortable",
-      "tooltip",
       "unit",
+      "label",
+      "jsPath",
+      "format",
+      "fieldId",
+      "groupId",
+      "tooltip",
+      "visible",
+      "secured",
+      "dataType",
+      "required",
+      "editable",
+      "sortable",
+      "precision",
+      "objectType",
+      "multiValue",
       "validation",
-      "visible"
-    ]
+      "filterable",
+      "defaultValue",
+      "isUserDefined",
+      "io.clbs.openhes.models.common.FieldDescriptor"
+    ],
+    "tags1": [
+      "FieldDescriptor"
+    ],
+    "tags2": "The field descriptor Whether the field descriptor user defined custom fields added users Defines the resource type for which the field descriptor defined BULK DEVICE etc The system wide unique identifier the field descriptor Unique identifier for the field descriptor The path the field the TypeScript representation The path the field the gRPC JSON simplified representation Label displayed for the field Group section identifier for the field Data type the field text double Display format 30m Unit display kWh USD Decimal precision for double numbers Tooltip hint text Whether the field mandatory Whether the field editable Whether the field visible Whether the field can have multiple values Whether the field shall handled security fields password certificate input area Validation rules for the field The default value the attribute does not support multi value fields Whether the field can used for sorting default true Whether the field can used for filtering default true"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptoroptions.md",
-    "tags": [
+    "tags0": [
+      "options",
       "complete",
-      "fielddescriptoroptions",
-      "options"
-    ]
+      "io.clbs.openhes.models.common.FieldDescriptorOptions"
+    ],
+    "tags1": [
+      "FieldDescriptorOptions"
+    ],
+    "tags2": "The field descriptor options set false the options were filtered out"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptorselector.md",
-    "tags": [
-      "fielddescriptorselector",
+    "tags0": [
       "gid",
-      "objecttype"
-    ]
+      "objectType",
+      "io.clbs.openhes.models.common.FieldDescriptorSelector"
+    ],
+    "tags1": [
+      "FieldDescriptorSelector"
+    ],
+    "tags2": "The system wide field descriptor selector Defines the resource type for which the field descriptor defined BULK DEVICE etc The system wide unique identifier the field descriptor"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalidation.md",
-    "tags": [
-      "fieldvalidation",
-      "maxinteger",
-      "maxlength",
-      "maxnumber",
-      "mininteger",
-      "minlength",
-      "minnumber",
+    "tags0": [
+      "re",
       "options",
-      "optionssource",
-      "re"
-    ]
+      "minLength",
+      "maxLength",
+      "minNumber",
+      "maxNumber",
+      "minInteger",
+      "maxInteger",
+      "optionsSource",
+      "io.clbs.openhes.models.common.FieldValidation"
+    ],
+    "tags1": [
+      "FieldValidation"
+    ],
+    "tags2": "Validation rules for the field Regular expression describing input format not set then any value given type can used can used for string int double fields only The minimum length used for string fields only The maximum length used for string fields only The minimum value used for integer fields only The maximum value used for integer fields only The minimum value used for number fields only The maximum value used for number fields only The list allowed values set key value pairs The key here represents the field value set and the value here represents the label displayed The options source set then the options shall dynamically fetched from the server"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalue.md",
-    "tags": [
-      "binaryvalue",
-      "boolvalue",
-      "datevalue",
-      "doublevalue",
-      "durationvalue",
-      "fieldvalue",
-      "integervalue",
-      "stringvalue"
-    ]
+    "tags0": [
+      "boolValue",
+      "dateValue",
+      "stringValue",
+      "doubleValue",
+      "binaryValue",
+      "integerValue",
+      "durationValue",
+      "io.clbs.openhes.models.common.FieldValue"
+    ],
+    "tags1": [
+      "FieldValue"
+    ],
+    "tags2": "Represents string typed value Represents bit integer typed value Represents bit double typed value Represents binary typed value Represents boolean typed value Represents date typed value Represents duration typed value"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalues.md",
-    "tags": [
+    "tags0": [
       "attributes",
-      "fieldvalues"
-    ]
+      "io.clbs.openhes.models.common.FieldValues"
+    ],
+    "tags1": [
+      "FieldValues"
+    ],
+    "tags2": "The field values"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-formattedmessage.md",
-    "tags": [
+    "tags0": [
       "args",
-      "formattedmessage",
+      "params",
       "message",
-      "params"
-    ]
+      "io.clbs.openhes.models.common.FormattedMessage"
+    ],
+    "tags1": [
+      "FormattedMessage"
+    ],
+    "tags2": "The formatted message structure The message format string The format arguments set then the message used format string The additional named parameters must single level map must not contain nested objects arrays"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listfielddescriptoroptionsrequest.md",
-    "tags": [
-      "filtercontains",
-      "listfielddescriptoroptionsrequest",
-      "optionssource"
-    ]
+    "tags0": [
+      "optionsSource",
+      "filterContains",
+      "io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"
+    ],
+    "tags1": [
+      "ListFieldDescriptorOptionsRequest"
+    ],
+    "tags2": "The options source Must set the options source field the FieldDescriptor The filter apply the options set only options containing this string will returned"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listoffielddescriptor.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listoffielddescriptor",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.common.ListOfFieldDescriptor"
+    ],
+    "tags1": [
+      "ListOfFieldDescriptor"
+    ],
+    "tags2": "The list field descriptors The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listofid.md",
-    "tags": [
+    "tags0": [
       "id",
-      "listofid"
-    ]
+      "io.clbs.openhes.models.common.ListOfId"
+    ],
+    "tags1": [
+      "ListOfId"
+    ],
+    "tags2": "The list UUID items"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listofstring.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofstring"
-    ]
+      "io.clbs.openhes.models.common.ListOfString"
+    ],
+    "tags1": [
+      "ListOfString"
+    ],
+    "tags2": "The list common string items"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselector.md",
-    "tags": [
-      "fields",
-      "filterby",
-      "listselector",
+    "tags0": [
       "offset",
-      "pagesize",
-      "sortby"
-    ]
+      "sortBy",
+      "fields",
+      "pageSize",
+      "filterBy",
+      "io.clbs.openhes.models.common.ListSelector"
+    ],
+    "tags1": [
+      "ListSelector"
+    ],
+    "tags2": "The listing selector The number items per page The offset the first item return zero based The sorting criteria The filtering criteria FIXME This needs designed properly The list additional fields returned"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselectorfilterby.md",
-    "tags": [
-      "boolean",
-      "datatype",
-      "date",
-      "integer",
-      "listselectorfilterby",
-      "number",
-      "operator",
+    "tags0": [
       "path",
-      "text"
-    ]
+      "text",
+      "date",
+      "number",
+      "integer",
+      "boolean",
+      "operator",
+      "dataType",
+      "io.clbs.openhes.models.common.ListSelectorFilterBy"
+    ],
+    "tags1": [
+      "ListSelectorFilterBy"
+    ],
+    "tags2": "The filtering criteria Depending the operator the text integer number boolean date field should used value must set for operators NULL NOT NULL Exactly One value must set for single operand operators EQUAL NOT EQUAL GREATER THAN GREATER THAN EQUAL LESS THAN LESS THAN EQUAL CONTAINS NOT CONTAINS STARTS WITH ENDS WITH Exactly Two values must set for two operand operators BETWEEN Zero more values can set for generic operators NOT Field type determines the data type and only related field should used Other fields shall not set and will ignored the system The path path from the FieldDescriptor The filter operator The data type the field The text typed value used for filtering The integer typed value used for filtering The number typed value used for filtering The boolean typed value used for filtering The date typed value used for filtering"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselectorsortby.md",
-    "tags": [
+    "tags0": [
+      "path",
       "desc",
-      "listselectorsortby",
-      "path"
-    ]
+      "io.clbs.openhes.models.common.ListSelectorSortBy"
+    ],
+    "tags1": [
+      "ListSelectorSortBy"
+    ],
+    "tags2": "The sorting criteria The path path from the FieldDescriptor Set true sort descending order"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-metadatafields.md",
-    "tags": [
+    "tags0": [
+      "id",
+      "name",
       "fields",
       "generation",
-      "id",
-      "managedfields",
-      "metadatafields",
-      "name"
-    ]
+      "managedFields",
+      "io.clbs.openhes.models.common.MetadataFields"
+    ],
+    "tags1": [
+      "MetadataFields"
+    ],
+    "tags2": "The metadata fields managed user and system The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations The generation the resource The additional fields managed user The additional fields managed system The name the resource mutable and typically set user Must set"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-setfieldsspec.md",
-    "tags": [
+    "tags0": [
       "fields",
-      "objectid",
-      "objecttype",
-      "setfieldsspec"
-    ]
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.common.SetFieldsSpec"
+    ],
+    "tags1": [
+      "SetFieldsSpec"
+    ],
+    "tags2": "The fields set for the resource The type the managed fields update defines the resource type for which the fields are set The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-updatemetadata.md",
-    "tags": [
+    "tags0": [
       "metadata",
-      "updatemetadata"
-    ]
+      "io.clbs.openhes.models.common.UpdateMetadata"
+    ],
+    "tags1": [
+      "UpdateMetadata"
+    ],
+    "tags2": "The metadata fields the resource"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-updateobjectfieldsrequest.md",
-    "tags": [
+    "tags0": [
       "spec",
-      "updateobjectfieldsrequest"
-    ]
+      "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
+    ],
+    "tags1": [
+      "UpdateObjectFieldsRequest"
+    ],
+    "tags2": "The specification the fields set for the resource"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
-    "tags": [
-      "actionresultcode",
-      "error_code_action_error",
-      "error_code_action_ok",
-      "error_code_action_pending",
-      "error_code_action_unsupported"
-    ]
+    "tags0": [
+      "ERROR_CODE_ACTION_OK",
+      "ERROR_CODE_ACTION_ERROR",
+      "ERROR_CODE_ACTION_PENDING",
+      "ERROR_CODE_ACTION_UNSUPPORTED",
+      "io.clbs.openhes.models.acquisition.ActionResultCode"
+    ],
+    "tags1": [
+      "CODE",
+      "ERROR",
+      "OK",
+      "ACTION",
+      "PENDING",
+      "UNSUPPORTED",
+      "ActionResultCode"
+    ],
+    "tags2": "Defines the result codes related job actions The action has been completed successfully The action not supported the driver device The action pending The action has failed"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actiontype.md",
-    "tags": [
-      "action_type_fw_update",
-      "action_type_get_device_info",
-      "action_type_get_disconnector_state",
-      "action_type_get_events",
-      "action_type_get_irregular_profile",
-      "action_type_get_periodical_profile",
-      "action_type_get_register",
-      "action_type_get_tou",
-      "action_type_reset_billing_period",
-      "action_type_set_disconnector_state",
-      "action_type_set_limiter",
-      "action_type_set_relay_state",
-      "action_type_set_tou",
-      "action_type_sync_clock",
-      "actiontype"
-    ]
+    "tags0": [
+      "ACTION_TYPE_GET_TOU",
+      "ACTION_TYPE_SET_TOU",
+      "ACTION_TYPE_FW_UPDATE",
+      "ACTION_TYPE_GET_EVENTS",
+      "ACTION_TYPE_SYNC_CLOCK",
+      "ACTION_TYPE_SET_LIMITER",
+      "ACTION_TYPE_GET_REGISTER",
+      "ACTION_TYPE_GET_DEVICE_INFO",
+      "ACTION_TYPE_SET_RELAY_STATE",
+      "ACTION_TYPE_RESET_BILLING_PERIOD",
+      "ACTION_TYPE_GET_IRREGULAR_PROFILE",
+      "ACTION_TYPE_GET_PERIODICAL_PROFILE",
+      "ACTION_TYPE_GET_DISCONNECTOR_STATE",
+      "ACTION_TYPE_SET_DISCONNECTOR_STATE",
+      "io.clbs.openhes.models.acquisition.ActionType"
+    ],
+    "tags1": [
+      "CLOCK",
+      "PROFILE",
+      "GET",
+      "LIMITER",
+      "INFO",
+      "ActionType",
+      "REGISTER",
+      "ACTION",
+      "RESET",
+      "FW",
+      "SYNC",
+      "EVENTS",
+      "DISCONNECTOR",
+      "PERIOD",
+      "BILLING",
+      "STATE",
+      "PERIODICAL",
+      "DEVICE",
+      "UPDATE",
+      "TOU",
+      "RELAY",
+      "TYPE",
+      "SET",
+      "IRREGULAR"
+    ],
+    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Get register value for example instantaneous values The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-applicationprotocol.md",
-    "tags": [
-      "applicationprotocol",
-      "appproto_ansi_c12",
-      "appproto_dlms_ln",
-      "appproto_dlms_sn",
-      "appproto_iec_62056_21",
-      "appproto_lis200",
-      "appproto_mbus",
-      "appproto_modbus",
-      "appproto_mqtt",
-      "appproto_sctm"
-    ]
+    "tags0": [
+      "APPPROTO_SCTM",
+      "APPPROTO_MQTT",
+      "APPPROTO_MBUS",
+      "APPPROTO_LIS200",
+      "APPPROTO_MODBUS",
+      "APPPROTO_DLMS_SN",
+      "APPPROTO_DLMS_LN",
+      "APPPROTO_ANSI_C12",
+      "APPPROTO_IEC_62056_21",
+      "io.clbs.openhes.models.acquisition.ApplicationProtocol"
+    ],
+    "tags1": [
+      "LN",
+      "APPPROTO",
+      "ANSI",
+      "IEC",
+      "ApplicationProtocol",
+      "C12",
+      "MBUS",
+      "MODBUS",
+      "SCTM",
+      "DLMS",
+      "SN",
+      "LIS200",
+      "MQTT"
+    ],
+    "tags2": "Defines the supported application protocols The IEC IEC VDEW protocol The DLMS short name protocol The DLMS logical name protocol The SCTM protocol The LIS200 protocol The ANSI C12 protocol The MQTT protocol The MODBUS protocol The MBUS protocol"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-bulkstatuscode.md",
-    "tags": [
-      "bulk_status_cancelled",
-      "bulk_status_completed",
-      "bulk_status_expired",
-      "bulk_status_queued",
-      "bulk_status_running",
-      "bulkstatuscode"
-    ]
+    "tags0": [
+      "BULK_STATUS_QUEUED",
+      "BULK_STATUS_RUNNING",
+      "BULK_STATUS_EXPIRED",
+      "BULK_STATUS_COMPLETED",
+      "BULK_STATUS_CANCELLED",
+      "io.clbs.openhes.models.acquisition.BulkStatusCode"
+    ],
+    "tags1": [
+      "STATUS",
+      "QUEUED",
+      "COMPLETED",
+      "CANCELLED",
+      "EXPIRED",
+      "BulkStatusCode",
+      "RUNNING",
+      "BULK"
+    ],
+    "tags2": "Defines the status information entire bulk The bulk waiting the queue The bulk currently running The bulk has been completed The bulk has been cancelled The bulk has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-communicationtype.md",
-    "tags": [
-      "communication_type_listening",
-      "communication_type_modem_pool",
-      "communication_type_serial_line_direct",
-      "communication_type_serial_line_moxa",
-      "communication_type_tcpip",
-      "communicationtype"
-    ]
+    "tags0": [
+      "COMMUNICATION_TYPE_TCPIP",
+      "COMMUNICATION_TYPE_LISTENING",
+      "COMMUNICATION_TYPE_MODEM_POOL",
+      "COMMUNICATION_TYPE_SERIAL_LINE_MOXA",
+      "COMMUNICATION_TYPE_SERIAL_LINE_DIRECT",
+      "io.clbs.openhes.models.acquisition.CommunicationType"
+    ],
+    "tags1": [
+      "MODEM",
+      "MOXA",
+      "TYPE",
+      "TCPIP",
+      "COMMUNICATION",
+      "CommunicationType",
+      "POOL",
+      "LINE",
+      "DIRECT",
+      "SERIAL",
+      "LISTENING"
+    ],
+    "tags2": "Defines the supported communication types for device connections The communication established via direct TCP The communication established via phone line modem The communication established via direct serial line The communication established via controlled serial line Moxa The communication passive The driver listens port for example DLMS devices push mode subscribes message queue for example MQTT"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-datalinkprotocol.md",
-    "tags": [
-      "datalinkprotocol",
-      "linkproto_cosem_wrapper",
-      "linkproto_hdlc",
-      "linkproto_iec_62056_21",
-      "linkproto_mbus",
-      "linkproto_modbus",
-      "linkproto_not_applicable",
-      "linkproto_viktor"
-    ]
+    "tags0": [
+      "LINKPROTO_HDLC",
+      "LINKPROTO_MBUS",
+      "LINKPROTO_MODBUS",
+      "LINKPROTO_VIKTOR",
+      "LINKPROTO_IEC_62056_21",
+      "LINKPROTO_COSEM_WRAPPER",
+      "LINKPROTO_NOT_APPLICABLE",
+      "io.clbs.openhes.models.acquisition.DataLinkProtocol"
+    ],
+    "tags1": [
+      "DataLinkProtocol",
+      "WRAPPER",
+      "NOT",
+      "COSEM",
+      "IEC",
+      "LINKPROTO",
+      "MBUS",
+      "VIKTOR",
+      "MODBUS",
+      "APPLICABLE",
+      "HDLC"
+    ],
+    "tags2": "Defines the supported data link protocols The VDEW IEC IEC protocol When combined with the DLMS protocol the driver initiates communication via IEC and then switches the mode HDLC DLMS Supports multiple devices the same line The HDLC ISO IEC framing Used with various application protocols such DLMS MODBUS Supports client server addressing for multiple devices the same line The COSEM wrapper Used with the DLMS application protocol Supports client server addressing for multiple devices the same line The Modbus protocol Used with the Modbus application protocol where other data link used The Bus protocol Used with the Bus application protocol The Viktor protocol proprietary protocol used Viktor based devices such DC450 Viktor data link protocol applicable Used with listening communication types"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-deviceconfigurationregisterkind.md",
-    "tags": [
-      "deviceconfigurationregisterkind",
-      "irregularprofile",
-      "periodicalprofile",
-      "register",
-      "synthetic"
-    ]
+    "tags0": [
+      "Register",
+      "Synthetic",
+      "IrregularProfile",
+      "PeriodicalProfile",
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"
+    ],
+    "tags1": [
+      "DeviceConfigurationRegisterKind"
+    ],
+    "tags2": "Defines the possible register types The object represents generic register The object represents periodical profile The object represents irregular profile The object represents synthetic register not visible drivers can defined store derived external data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-joberrorcode.md",
-    "tags": [
-      "job_error_code_already_exists",
-      "job_error_code_busy",
-      "job_error_code_error",
-      "job_error_code_fatal",
-      "job_error_code_none",
-      "joberrorcode"
-    ]
+    "tags0": [
+      "JOB_ERROR_CODE_NONE",
+      "JOB_ERROR_CODE_BUSY",
+      "JOB_ERROR_CODE_ERROR",
+      "JOB_ERROR_CODE_FATAL",
+      "JOB_ERROR_CODE_ALREADY_EXISTS",
+      "io.clbs.openhes.models.acquisition.JobErrorCode"
+    ],
+    "tags1": [
+      "NONE",
+      "JOB",
+      "CODE",
+      "ERROR",
+      "JobErrorCode",
+      "ALREADY",
+      "FATAL",
+      "BUSY",
+      "EXISTS"
+    ],
+    "tags2": "Defines the error codes related jobs The job has been completed successfully There free slot the driver handle the job the job shall send again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times the driver which would point bug The job failed not retry will attempted"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobpriority.md",
-    "tags": [
-      "job_priority_0",
-      "job_priority_1",
-      "job_priority_2",
-      "job_priority_3",
-      "job_priority_4",
-      "job_priority_5",
-      "job_priority_6",
-      "job_priority_7",
-      "job_priority_8",
-      "jobpriority"
-    ]
+    "tags0": [
+      "JOB_PRIORITY_0",
+      "JOB_PRIORITY_1",
+      "JOB_PRIORITY_2",
+      "JOB_PRIORITY_3",
+      "JOB_PRIORITY_4",
+      "JOB_PRIORITY_5",
+      "JOB_PRIORITY_6",
+      "JOB_PRIORITY_7",
+      "JOB_PRIORITY_8",
+      "io.clbs.openhes.models.acquisition.JobPriority"
+    ],
+    "tags1": [
+      "JOB",
+      "JobPriority",
+      "PRIORITY"
+    ],
+    "tags2": "Defines the available job priority levels Lowest priority Priority Priority Priority Priority Priority Priority Priority Highest priority"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobstatuscode.md",
-    "tags": [
-      "job_status_cancelled",
-      "job_status_completed",
-      "job_status_expired",
-      "job_status_failed",
-      "job_status_processing_data",
-      "job_status_queued",
-      "job_status_running",
-      "jobstatuscode"
-    ]
+    "tags0": [
+      "JOB_STATUS_QUEUED",
+      "JOB_STATUS_FAILED",
+      "JOB_STATUS_RUNNING",
+      "JOB_STATUS_EXPIRED",
+      "JOB_STATUS_COMPLETED",
+      "JOB_STATUS_CANCELLED",
+      "JOB_STATUS_PROCESSING_DATA",
+      "io.clbs.openhes.models.acquisition.JobStatusCode"
+    ],
+    "tags1": [
+      "JOB",
+      "STATUS",
+      "PROCESSING",
+      "QUEUED",
+      "DATA",
+      "FAILED",
+      "JobStatusCode",
+      "COMPLETED",
+      "CANCELLED",
+      "EXPIRED",
+      "RUNNING"
+    ],
+    "tags2": "Defines the possible statuses jobs The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job has been cancelled The job has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-logrecordlevel.md",
-    "tags": [
-      "log_record_level_debug",
-      "log_record_level_error",
-      "log_record_level_fatal",
-      "log_record_level_info",
-      "log_record_level_warning",
-      "logrecordlevel"
-    ]
+    "tags0": [
+      "LOG_RECORD_LEVEL_INFO",
+      "LOG_RECORD_LEVEL_DEBUG",
+      "LOG_RECORD_LEVEL_ERROR",
+      "LOG_RECORD_LEVEL_FATAL",
+      "LOG_RECORD_LEVEL_WARNING",
+      "io.clbs.openhes.models.acquisition.LogRecordLevel"
+    ],
+    "tags1": [
+      "RECORD",
+      "INFO",
+      "WARNING",
+      "ERROR",
+      "FATAL",
+      "LOG",
+      "LogRecordLevel",
+      "DEBUG",
+      "LEVEL"
+    ],
+    "tags2": "Defines the severity levels for communication unit log records Debug log record Information log record Warning log record Error log record Fatal log record"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-readpathpolicy.md",
-    "tags": [
-      "dc_first",
-      "meter_first",
-      "read_path_policy_unspecified",
-      "readpathpolicy"
-    ]
+    "tags0": [
+      "DC_FIRST",
+      "METER_FIRST",
+      "READ_PATH_POLICY_UNSPECIFIED",
+      "io.clbs.openhes.models.acquisition.ReadPathPolicy"
+    ],
+    "tags1": [
+      "PATH",
+      "POLICY",
+      "METER",
+      "ReadPathPolicy",
+      "READ",
+      "UNSPECIFIED",
+      "FIRST",
+      "DC"
+    ],
+    "tags2": "Defines the read path policies for retrieving data from devices Keeps the current behavior typically data concentrator first Attempts read directly from the meter and falls back the data concentrator needed and supported Attempts read from the data concentrator first and falls back the meter needed and supported"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-topologynodetype.md",
-    "tags": [
-      "topology_node_communication_unit",
-      "topology_node_device",
-      "topologynodetype"
-    ]
+    "tags0": [
+      "TOPOLOGY_NODE_DEVICE",
+      "TOPOLOGY_NODE_COMMUNICATION_UNIT",
+      "io.clbs.openhes.models.acquisition.TopologyNodeType"
+    ],
+    "tags1": [
+      "TopologyNodeType",
+      "TOPOLOGY",
+      "COMMUNICATION",
+      "NODE",
+      "DEVICE",
+      "UNIT"
+    ],
+    "tags2": "Defines the types nodes the network topology The node device such electricity meter The node communication unit such modem data concentrator"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-accessleveltemplate.md",
-    "tags": [
-      "accessleveltemplate",
+    "tags0": [
       "id",
-      "name"
-    ]
+      "name",
+      "io.clbs.openhes.models.acquisition.AccessLevelTemplate"
+    ],
+    "tags1": [
+      "AccessLevelTemplate"
+    ],
+    "tags2": "Defines the access level configuration for driver The unique identifier the access level such The name the access level must unique and written English for example Management Public"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiondata.md",
-    "tags": [
-      "actiondata",
-      "deviceinfo",
-      "events",
-      "irregularprofile",
+    "tags0": [
       "nodata",
+      "events",
       "profile",
+      "touTable",
       "registers",
-      "toutable"
-    ]
+      "deviceInfo",
+      "irregularProfile",
+      "io.clbs.openhes.models.acquisition.ActionData"
+    ],
+    "tags1": [
+      "ActionData"
+    ],
+    "tags2": "Defines the action based variant data values Indicates that data was returned the action The set register values The set profile values The set irregular non periodical profile values such daily profiles The device information The event records The time use TOU table"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionfwupdate.md",
-    "tags": [
-      "actionfwupdate"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionFwUpdate"
+    ],
+    "tags1": [
+      "ActionFwUpdate"
+    ],
+    "tags2": "Defines the firmware update action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetdeviceinfo.md",
-    "tags": [
-      "actiongetdeviceinfo"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionGetDeviceInfo"
+    ],
+    "tags1": [
+      "ActionGetDeviceInfo"
+    ],
+    "tags2": "Defines the get device info action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetevents.md",
-    "tags": [
-      "actiongetevents",
-      "rangeend",
-      "rangestart"
-    ]
+    "tags0": [
+      "rangeEnd",
+      "rangeStart",
+      "io.clbs.openhes.models.acquisition.ActionGetEvents"
+    ],
+    "tags1": [
+      "ActionGetEvents"
+    ],
+    "tags2": "Defines the get events action specification The start timestamp the event readout The end timestamp the event readout"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md",
-    "tags": [
-      "actiongetirregularprofile",
-      "datatype",
-      "rangeend",
-      "rangestart"
-    ]
+    "tags0": [
+      "rangeEnd",
+      "dataType",
+      "rangeStart",
+      "io.clbs.openhes.models.acquisition.ActionGetIrregularProfile"
+    ],
+    "tags1": [
+      "ActionGetIrregularProfile"
+    ],
+    "tags2": "Defines the get irregular profile action The start timestamp the profile readout The end timestamp the profile readout The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md",
-    "tags": [
-      "actiongetperiodicalprofile",
-      "datatype",
-      "rangeend",
-      "rangestart"
-    ]
+    "tags0": [
+      "rangeEnd",
+      "dataType",
+      "rangeStart",
+      "io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile"
+    ],
+    "tags1": [
+      "ActionGetPeriodicalProfile"
+    ],
+    "tags2": "Defines the get periodical profile action specification The start timestamp the profile readout The end timestamp the profile readout The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetregister.md",
-    "tags": [
-      "actiongetregister",
-      "datatype"
-    ]
+    "tags0": [
+      "dataType",
+      "io.clbs.openhes.models.acquisition.ActionGetRegister"
+    ],
+    "tags1": [
+      "ActionGetRegister"
+    ],
+    "tags2": "Defines the get register action specification The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongettou.md",
-    "tags": [
-      "actiongettou",
-      "passive"
-    ]
+    "tags0": [
+      "passive",
+      "io.clbs.openhes.models.acquisition.ActionGetTou"
+    ],
+    "tags1": [
+      "ActionGetTou"
+    ],
+    "tags2": "Defines the get TOU action specification Specifies whether read the passive TOU table default set false meaning the active TOU table read"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionresetbillingperiod.md",
-    "tags": [
-      "actionresetbillingperiod"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionResetBillingPeriod"
+    ],
+    "tags1": [
+      "ActionResetBillingPeriod"
+    ],
+    "tags2": "Defines the reset billing period action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionresult.md",
-    "tags": [
-      "actionid",
-      "actionresult",
+    "tags0": [
       "data",
-      "errormessage",
-      "registerid",
       "status",
-      "variablename"
-    ]
+      "actionId",
+      "registerId",
+      "variableName",
+      "errorMessage",
+      "io.clbs.openhes.models.acquisition.ActionResult"
+    ],
+    "tags1": [
+      "ActionResult"
+    ],
+    "tags2": "Defines the result single action The unique action identifier The status code the action The action result data The unique register identifier This read only value and set only the action data relats register Applicable only for results regular bulks The variable names This read only value and set only the action data relates one more variables based device template mapping Applicable only for results regular bulks The user facing error message provided when the action ends with ERROR CODE ACTION ERROR The message provides details about the failure can multiline and should English"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetdisconnectorstate.md",
-    "tags": [
-      "actionsetdisconnectorstate"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionSetDisconnectorState"
+    ],
+    "tags1": [
+      "ActionSetDisconnectorState"
+    ],
+    "tags2": "Defines the set disconnector state action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetlimiter.md",
-    "tags": [
-      "actionsetlimiter"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionSetLimiter"
+    ],
+    "tags1": [
+      "ActionSetLimiter"
+    ],
+    "tags2": "Defines the set limiter action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetrelaystate.md",
-    "tags": [
-      "actionsetrelaystate"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionSetRelayState"
+    ],
+    "tags1": [
+      "ActionSetRelayState"
+    ],
+    "tags2": "Defines the set relay state action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsettou.md",
-    "tags": [
-      "actionsettou",
-      "table"
-    ]
+    "tags0": [
+      "table",
+      "io.clbs.openhes.models.acquisition.ActionSetTou"
+    ],
+    "tags1": [
+      "ActionSetTou"
+    ],
+    "tags2": "Defines the set TOU action specification The TOU table set"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsyncclock.md",
-    "tags": [
-      "actionsyncclock"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ActionSyncClock"
+    ],
+    "tags1": [
+      "ActionSyncClock"
+    ],
+    "tags2": "Defines the sync clock action specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-addcommunicationunitstocommunicationbusrequest.md",
-    "tags": [
-      "addcommunicationunitstocommunicationbusrequest",
-      "communicationbusid",
-      "communicationunitid"
-    ]
+    "tags0": [
+      "communicationBusId",
+      "communicationUnitId",
+      "io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest"
+    ],
+    "tags1": [
+      "AddCommunicationUnitsToCommunicationBusRequest"
+    ],
+    "tags2": "The unique identifier the communication bus The unique identifier the communication unit"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md",
-    "tags": [
-      "adddeviceconfigurationregistertodeviceconfigurationtemplaterequest",
-      "dctid",
-      "registerid"
-    ]
+    "tags0": [
+      "dctId",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest"
+    ],
+    "tags1": [
+      "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest"
+    ],
+    "tags2": "The identifier the device configuration template The list register identifiers linked the template"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-adddevicestogrouprequest.md",
-    "tags": [
-      "adddevicestogrouprequest",
-      "deviceid",
-      "groupid"
-    ]
+    "tags0": [
+      "groupId",
+      "deviceId",
+      "io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest"
+    ],
+    "tags1": [
+      "AddDevicesToGroupRequest"
+    ],
+    "tags2": "The unique identifier the device group The unique identifier the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-addregistertovariablerequest.md",
-    "tags": [
-      "addregistertovariablerequest",
-      "registerid",
-      "variableid"
-    ]
+    "tags0": [
+      "variableId",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest"
+    ],
+    "tags1": [
+      "AddRegisterToVariableRequest"
+    ],
+    "tags2": "The unique identifier the variable The list register identifiers linked the variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-applicationprotocoltemplate.md",
-    "tags": [
-      "applicationprotocoltemplate",
+    "tags0": [
+      "protocol",
       "attributes",
-      "protocol"
-    ]
+      "io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate"
+    ],
+    "tags1": [
+      "ApplicationProtocolTemplate"
+    ],
+    "tags2": "Defines the destription for one application protocol for example DLMS The application protocol The list attribute definitions for the selected application protocol These attributes are instantiated for each device and communication unit pair"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulk.md",
-    "tags": [
-      "bulk",
-      "metadata",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.acquisition.Bulk"
+    ],
+    "tags1": [
+      "Bulk"
+    ],
+    "tags2": "The bulk job spec The bulk job status data The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkjob.md",
-    "tags": [
-      "bulkjob",
-      "metadata",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.acquisition.BulkJob"
+    ],
+    "tags1": [
+      "BulkJob"
+    ],
+    "tags2": "The job spec The job status The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkjobspec.md",
-    "tags": [
-      "bulkjobspec",
-      "device"
-    ]
+    "tags0": [
+      "device",
+      "io.clbs.openhes.models.acquisition.BulkJobSpec"
+    ],
+    "tags1": [
+      "BulkJobSpec"
+    ],
+    "tags2": "The device info"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkspec.md",
-    "tags": [
-      "actions",
-      "bulkspec",
-      "correlationid",
-      "devicegroupid",
+    "tags0": [
       "devices",
+      "actions",
       "settings",
-      "webhookurl"
-    ]
+      "webhookUrl",
+      "correlationId",
+      "deviceGroupId",
+      "io.clbs.openhes.models.acquisition.BulkSpec"
+    ],
+    "tags1": [
+      "BulkSpec"
+    ],
+    "tags2": "The correlation identifier define relation non homogenous group The list devices the bulk The device group identifier The bulk shared job settings The list actions executed The webhook URL call when the bulk completed"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkstatus.md",
-    "tags": [
-      "bulkstatus",
-      "createdat",
-      "finishedat",
-      "jobscount",
-      "jobsfinished",
-      "jobssuccessful",
-      "startedat",
-      "status"
-    ]
+    "tags0": [
+      "status",
+      "jobsCount",
+      "createdAt",
+      "startedAt",
+      "finishedAt",
+      "jobsFinished",
+      "jobsSuccessful",
+      "io.clbs.openhes.models.acquisition.BulkStatus"
+    ],
+    "tags1": [
+      "BulkStatus"
+    ],
+    "tags2": "The job status The number jobs the bulk The number jobs finished The number jobs successful The creation timestamp the bulk The start timestamp the bulk The finish timestamp the bulk"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationbus.md",
-    "tags": [
-      "communicationbus",
+    "tags0": [
+      "status",
       "metadata",
-      "status"
-    ]
+      "io.clbs.openhes.models.acquisition.CommunicationBus"
+    ],
+    "tags1": [
+      "CommunicationBus"
+    ],
+    "tags2": "Defines the the communication bus information The communication bus status The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationbusstatus.md",
-    "tags": [
-      "communicationbusstatus",
-      "communicationunitid"
-    ]
+    "tags0": [
+      "communicationUnitId",
+      "io.clbs.openhes.models.acquisition.CommunicationBusStatus"
+    ],
+    "tags1": [
+      "CommunicationBusStatus"
+    ],
+    "tags2": "Defines the communication bus status The list communication unit identifiers connected the communication bus"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationtemplate.md",
-    "tags": [
-      "communicationtemplate",
+    "tags0": [
+      "type",
       "datalinks",
-      "type"
-    ]
+      "io.clbs.openhes.models.acquisition.CommunicationTemplate"
+    ],
+    "tags1": [
+      "CommunicationTemplate"
+    ],
+    "tags2": "Defines the destription single communication type for example TCP The communication type The list supprted data link protocols and their application protocols supported the driver"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunit.md",
-    "tags": [
-      "communicationunit",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CommunicationUnit"
+    ],
+    "tags1": [
+      "CommunicationUnit"
+    ],
+    "tags2": "Defines the communication unit information The communication unit specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunitlogrecord.md",
-    "tags": [
-      "communicationunitid",
-      "communicationunitlogrecord",
+    "tags0": [
       "id",
       "level",
       "message",
-      "timestamp"
-    ]
+      "timestamp",
+      "communicationUnitId",
+      "io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord"
+    ],
+    "tags1": [
+      "CommunicationUnitLogRecord"
+    ],
+    "tags2": "Defines single log record communication unit The unique identifier the log record not provided hash the log data auto generated The unique identifier the communication unit which the log record belongs May empty and the relation can set higher object level The timestamp the log record Must not empty The severity level the log record The log message Must not empty"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunitspec.md",
-    "tags": [
-      "communicationunitspec",
-      "connectioninfo",
-      "externalid"
-    ]
+    "tags0": [
+      "externalId",
+      "connectionInfo",
+      "io.clbs.openhes.models.acquisition.CommunicationUnitSpec"
+    ],
+    "tags1": [
+      "CommunicationUnitSpec"
+    ],
+    "tags2": "Defines the communication unit specification The external identifier the communication unit The connection parameters"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectioninfo.md",
-    "tags": [
+    "tags0": [
+      "tcpip",
+      "modemPool",
       "attributes",
-      "communicationbusid",
-      "connectioninfo",
-      "linkprotocol",
-      "modempool",
-      "serialoverip",
-      "tcpip"
-    ]
+      "serialOverIp",
+      "linkProtocol",
+      "communicationBusId",
+      "io.clbs.openhes.models.acquisition.ConnectionInfo"
+    ],
+    "tags1": [
+      "ConnectionInfo"
+    ],
+    "tags2": "Defines the configuration parameters for device connection The TCP connection type The phone based modem pool connection type The serial over connection type The data link protocol communication bus identifier Works custom grouping key link jobs across multiple communication units when multiple entry points share single communication bus foe example multi master withprimary and backup masters not set jobs are grouped the default group key based the connection type The connection attributes See GetDataLinkFields the acquisition package"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypecontrolledserial.md",
-    "tags": [
-      "connectiontypecontrolledserial",
-      "direct",
+    "tags0": [
       "moxa",
-      "rfc2217"
-    ]
+      "direct",
+      "rfc2217",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial"
+    ],
+    "tags1": [
+      "ConnectionTypeControlledSerial"
+    ],
+    "tags2": "Defines the connection infoformation for controlled serial line over for example Moxa The simple direct serial connection type The Moxa connection type The RFC connection type"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md",
-    "tags": [
-      "connectiontypedirecttcpip",
+    "tags0": [
       "host",
       "port",
-      "timeout"
-    ]
+      "timeout",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp"
+    ],
+    "tags1": [
+      "ConnectionTypeDirectTcpIp"
+    ],
+    "tags2": "Defines the connection information for direct TCP connection type The hostname address the device connect The TCP port number the device connect The timeout for TCP connection"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypemodempool.md",
-    "tags": [
-      "connectiontypemodempool",
+    "tags0": [
       "modem",
       "number",
-      "poolid"
-    ]
+      "poolId",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeModemPool"
+    ],
+    "tags1": [
+      "ConnectionTypeModemPool"
+    ],
+    "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect the device The final modem selected the Taskmaster the job start The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver musr use this modem exclusively for this job"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialdirect.md",
-    "tags": [
-      "connectiontypeserialdirect",
+    "tags0": [
       "host",
       "port",
-      "timeout"
-    ]
+      "timeout",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect"
+    ],
+    "tags1": [
+      "ConnectionTypeSerialDirect"
+    ],
+    "tags2": "Defines the connection information for direct serial port connection The host name address the device connect The TCP port number the device connect The timeout for the direct serial port connection"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialmoxa.md",
-    "tags": [
-      "commandport",
-      "connectiontypeserialmoxa",
-      "dataport",
+    "tags0": [
       "host",
-      "timeout"
-    ]
+      "timeout",
+      "dataPort",
+      "commandPort",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa"
+    ],
+    "tags1": [
+      "ConnectionTypeSerialMoxa"
+    ],
+    "tags2": "Defines the connection information for controlled serial line using the Moxa protocol The host name address the device connect The TCP data port number the device connect The TCP command port number the device connect The timeout for the serial port connection using the Moxa protocol"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialrfc2217.md",
-    "tags": [
-      "connectiontypeserialrfc2217",
+    "tags0": [
       "host",
       "port",
-      "timeout"
-    ]
+      "timeout",
+      "io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217"
+    ],
+    "tags1": [
+      "ConnectionTypeSerialRfc2217"
+    ],
+    "tags2": "Defines the connection information for controlled serial line using the RFC protocol The host name address the device connect The TCP port number the device connect The timeout for serial port connection using the RFC protocol"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createbulkrequest.md",
-    "tags": [
-      "createbulkrequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateBulkRequest"
+    ],
+    "tags1": [
+      "CreateBulkRequest"
+    ],
+    "tags2": "The bulk job spec The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createcommunicationbusrequest.md",
-    "tags": [
-      "createcommunicationbusrequest",
-      "metadata"
-    ]
+    "tags0": [
+      "metadata",
+      "io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest"
+    ],
+    "tags1": [
+      "CreateCommunicationBusRequest"
+    ],
+    "tags2": "The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createcommunicationunitrequest.md",
-    "tags": [
-      "createcommunicationunitrequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest"
+    ],
+    "tags1": [
+      "CreateCommunicationUnitRequest"
+    ],
+    "tags2": "The communication unit specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdeviceconfigurationregisterrequest.md",
-    "tags": [
-      "createdeviceconfigurationregisterrequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest"
+    ],
+    "tags1": [
+      "CreateDeviceConfigurationRegisterRequest"
+    ],
+    "tags2": "The register specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdeviceconfigurationtemplaterequest.md",
-    "tags": [
-      "createdeviceconfigurationtemplaterequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest"
+    ],
+    "tags1": [
+      "CreateDeviceConfigurationTemplateRequest"
+    ],
+    "tags2": "The device configuration template specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdevicegrouprequest.md",
-    "tags": [
-      "createdevicegrouprequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest"
+    ],
+    "tags1": [
+      "CreateDeviceGroupRequest"
+    ],
+    "tags2": "The device group specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdevicerequest.md",
-    "tags": [
-      "createdevicerequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateDeviceRequest"
+    ],
+    "tags1": [
+      "CreateDeviceRequest"
+    ],
+    "tags2": "The device specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createproxybulkrequest.md",
-    "tags": [
-      "createproxybulkrequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateProxyBulkRequest"
+    ],
+    "tags1": [
+      "CreateProxyBulkRequest"
+    ],
+    "tags2": "The proxy bulk job spec The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createtimeofusetablerequest.md",
-    "tags": [
-      "createtimeofusetablerequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest"
+    ],
+    "tags1": [
+      "CreateTimeOfUseTableRequest"
+    ],
+    "tags2": "The time use table specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createvariablerequest.md",
-    "tags": [
-      "createvariablerequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.CreateVariableRequest"
+    ],
+    "tags1": [
+      "CreateVariableRequest"
+    ],
+    "tags2": "The variable specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-datalinktemplate.md",
-    "tags": [
-      "appprotocolrefs",
+    "tags0": [
       "attributes",
-      "datalinktemplate",
-      "linkprotocol"
-    ]
+      "linkProtocol",
+      "appProtocolRefs",
+      "io.clbs.openhes.models.acquisition.DataLinkTemplate"
+    ],
+    "tags1": [
+      "DataLinkTemplate"
+    ],
+    "tags2": "Defines the destription single data link protocol for example HDLC The data link protocol The list application protocol identifiers supported the driver The list attribute definitions related the selected data link type see ink protocol property These field definitions are provided the system and drivers must leave this field empty"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-defaultdevicecommunicationunitattributes.md",
-    "tags": [
-      "appprotocol",
+    "tags0": [
       "attributes",
-      "defaultdevicecommunicationunitattributes"
-    ]
+      "appProtocol",
+      "io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes"
+    ],
+    "tags1": [
+      "DefaultDeviceCommunicationUnitAttributes"
+    ],
+    "tags2": "Defines the default attributes for mapping between device and its communication unit for specific application protocol The application protocol The application protocol related device attributes represented list attribute definitions"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-device.md",
-    "tags": [
-      "device",
-      "metadata",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.acquisition.Device"
+    ],
+    "tags1": [
+      "Device"
+    ],
+    "tags2": "The device specification The device status The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicebulks.md",
-    "tags": [
+    "tags0": [
       "bulks",
-      "devicebulks"
-    ]
+      "io.clbs.openhes.models.acquisition.DeviceBulks"
+    ],
+    "tags1": [
+      "DeviceBulks"
+    ],
+    "tags2": "The list bulks"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunit.md",
-    "tags": [
-      "appprotocol",
+    "tags0": [
       "attributes",
-      "communicationunitid",
-      "devicecommunicationunit"
-    ]
+      "appProtocol",
+      "communicationUnitId",
+      "io.clbs.openhes.models.acquisition.DeviceCommunicationUnit"
+    ],
+    "tags1": [
+      "DeviceCommunicationUnit"
+    ],
+    "tags2": "Defines the mapping between device and its communication unit The unique identifier the communication unit The application protocol used communication over the communication unit The application protocol related device attributes represented list attribute definitions"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunitchange.md",
-    "tags": [
-      "devicecommunicationunitchange",
-      "status"
-    ]
+    "tags0": [
+      "status",
+      "io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange"
+    ],
+    "tags1": [
+      "DeviceCommunicationUnitChange"
+    ],
+    "tags2": "The device communication unit changes status"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunitchangestatus.md",
-    "tags": [
-      "changeat",
-      "communicationunitid",
-      "communicationunitname",
-      "devicecommunicationunitchangestatus",
-      "deviceid",
-      "devicename"
-    ]
+    "tags0": [
+      "changeAt",
+      "deviceId",
+      "deviceName",
+      "communicationUnitId",
+      "communicationUnitName",
+      "io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus"
+    ],
+    "tags1": [
+      "DeviceCommunicationUnitChangeStatus"
+    ],
+    "tags2": "The timestamp the change The unique identifier the communication unit The name the communication unit The unique identifier the device The name the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md",
-    "tags": [
-      "deviceconfigurationregister",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationRegister"
+    ],
+    "tags1": [
+      "DeviceConfigurationRegister"
+    ],
+    "tags2": "The register specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationregisterspec.md",
-    "tags": [
+    "tags0": [
+      "dataType",
+      "driverType",
       "attributes",
-      "datatype",
-      "deviceconfigurationregisterspec",
-      "drivertype",
-      "registertype"
-    ]
+      "registerType",
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec"
+    ],
+    "tags1": [
+      "DeviceConfigurationRegisterSpec"
+    ],
+    "tags2": "Defines the configuration register for device The device driver type The kind device configuration register The field values assigned the register The data type the register"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md",
-    "tags": [
-      "deviceconfigurationtemplate",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate"
+    ],
+    "tags1": [
+      "DeviceConfigurationTemplate"
+    ],
+    "tags2": "The device configuration template specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplatespec.md",
-    "tags": [
-      "deviceconfigurationtemplatespec",
-      "drivertype",
-      "registerid"
-    ]
+    "tags0": [
+      "driverType",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec"
+    ],
+    "tags1": [
+      "DeviceConfigurationTemplateSpec"
+    ],
+    "tags2": "The device driver type The list device configuration register identifiers"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedata.md",
-    "tags": [
-      "devicedata",
-      "devices"
-    ]
+    "tags0": [
+      "devices",
+      "io.clbs.openhes.models.acquisition.DeviceData"
+    ],
+    "tags1": [
+      "DeviceData"
+    ],
+    "tags2": "The list device data items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfo.md",
-    "tags": [
-      "devicedatainfo",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "io.clbs.openhes.models.acquisition.DeviceDataInfo"
+    ],
+    "tags1": [
+      "DeviceDataInfo"
+    ],
+    "tags2": "The device data info specification The device data info status"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfospec.md",
-    "tags": [
-      "devicedatainfospec",
-      "deviceid",
-      "registerid"
-    ]
+    "tags0": [
+      "deviceId",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.DeviceDataInfoSpec"
+    ],
+    "tags1": [
+      "DeviceDataInfoSpec"
+    ],
+    "tags2": "The device identifier The register identifier"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfostatus.md",
-    "tags": [
-      "devicedatainfostatus",
-      "lastvalueat",
+    "tags0": [
       "period",
-      "registername"
-    ]
+      "lastValueAt",
+      "registerName",
+      "io.clbs.openhes.models.acquisition.DeviceDataInfoStatus"
+    ],
+    "tags1": [
+      "DeviceDataInfoStatus"
+    ],
+    "tags2": "The register name The period the regular profile values applicable The timestamp the last stored value"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedevicedata.md",
-    "tags": [
+    "tags0": [
       "data",
-      "devicedevicedata",
-      "deviceid"
-    ]
+      "deviceId",
+      "io.clbs.openhes.models.acquisition.DeviceDeviceData"
+    ],
+    "tags1": [
+      "DeviceDeviceData"
+    ],
+    "tags2": "The unique identifier the device The list variable data items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceeventrecord.md",
-    "tags": [
-      "deviceeventrecord",
-      "deviceid",
-      "eventcode",
-      "eventid",
-      "eventsource",
-      "eventtext",
-      "timestamp"
-    ]
+    "tags0": [
+      "eventId",
+      "deviceId",
+      "timestamp",
+      "eventCode",
+      "eventText",
+      "eventSource",
+      "io.clbs.openhes.models.acquisition.DeviceEventRecord"
+    ],
+    "tags1": [
+      "DeviceEventRecord"
+    ],
+    "tags2": "Defines single event record associated with the specified device The unique device identifier The timestamp the event The unique event identifier The event code generated the device The source the event The descriptive text the event"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceevents.md",
-    "tags": [
-      "deviceevents",
-      "events"
-    ]
+    "tags0": [
+      "events",
+      "io.clbs.openhes.models.acquisition.DeviceEvents"
+    ],
+    "tags1": [
+      "DeviceEvents"
+    ],
+    "tags2": "Defines list device event records The list device event records"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicegroup.md",
-    "tags": [
-      "devicegroup",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.DeviceGroup"
+    ],
+    "tags1": [
+      "DeviceGroup"
+    ],
+    "tags2": "The device group specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicegroupspec.md",
-    "tags": [
-      "devicegroupspec",
-      "externalid"
-    ]
+    "tags0": [
+      "externalId",
+      "io.clbs.openhes.models.acquisition.DeviceGroupSpec"
+    ],
+    "tags1": [
+      "DeviceGroupSpec"
+    ],
+    "tags2": "The external identifier the communication unit"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceinfo.md",
-    "tags": [
-      "clockdelta",
-      "connectionstate",
-      "deviceinfo",
-      "devicemodel",
-      "deviceserialnumber",
-      "errorregister",
-      "firmwareversion",
-      "infotimestamp",
-      "manufacturerserialnumber",
-      "relaystates"
-    ]
+    "tags0": [
+      "clockDelta",
+      "deviceModel",
+      "relayStates",
+      "infoTimestamp",
+      "errorRegister",
+      "firmwareVersion",
+      "connectionState",
+      "deviceSerialNumber",
+      "manufacturerSerialNumber",
+      "io.clbs.openhes.models.acquisition.DeviceInfo"
+    ],
+    "tags1": [
+      "DeviceInfo"
+    ],
+    "tags2": "Defines common device information The timestamp when the values were read The serial number the device assigned the manufacturer Typical source The device serial number Typical source The device firmware version identifier Typical source The time difference delta between the device clock and the acquisition server clock driver Positive values mean the device clock ahead negative values mean the device clock behind The device model The error register register Typical source higher bit lower bit The list relay states The order the relays the same the device The value true the relay connected and false the relay disconnected The connection disconnector state The value true the customer connected and false the customer disconnected"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicespec.md",
-    "tags": [
-      "communicationunitlink",
-      "dctid",
-      "defaultlinkattributes",
-      "devicespec",
-      "externalid",
-      "timezone"
-    ]
+    "tags0": [
+      "dctId",
+      "timezone",
+      "externalId",
+      "communicationUnitLink",
+      "defaultLinkAttributes",
+      "io.clbs.openhes.models.acquisition.DeviceSpec"
+    ],
+    "tags1": [
+      "DeviceSpec"
+    ],
+    "tags2": "Defines the device specification The identifier the device configuration template The external identifier the device The ordered list communication units with additional info linked the device The first entry the primary communication unit with the highest priority The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT The default communication unit link attributes used when the device created without communication unit link Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically The list must not contain same application protocol more than once"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicestatus.md",
-    "tags": [
-      "devicestatus",
-      "drivertype",
-      "info"
-    ]
+    "tags0": [
+      "info",
+      "driverType",
+      "io.clbs.openhes.models.acquisition.DeviceStatus"
+    ],
+    "tags1": [
+      "DeviceStatus"
+    ],
+    "tags2": "Defines the current status device The device information The driver type selected according the device configuration template"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driver.md",
-    "tags": [
-      "driver",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "io.clbs.openhes.models.acquisition.Driver"
+    ],
+    "tags1": [
+      "Driver"
+    ],
+    "tags2": "The driver specification The driver status"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driverspec.md",
-    "tags": [
-      "displayname",
-      "driverspec",
-      "drivertype",
-      "listeningport",
-      "maxcascadedepth",
-      "maxconcurrentjobs",
+    "tags0": [
+      "version",
       "templates",
-      "typicalmemusage",
-      "version"
-    ]
+      "driverType",
+      "displayName",
+      "listeningPort",
+      "maxCascadeDepth",
+      "typicalMemUsage",
+      "maxConcurrentJobs",
+      "io.clbs.openhes.models.acquisition.DriverSpec"
+    ],
+    "tags1": [
+      "DriverSpec"
+    ],
+    "tags2": "The driver version The format not defined The driver itself versioned the docker image tags this value shall either the same set during the image build any useful user readable version string The port the driver gRPC will listen The technical internal the driver The maximum number concurrent jobs the driver can handle The value not allowed the maximum number respect typical mem usage not overgrow the memory resources The maximum cascade depth the driver can handle Number means that the driver cannot handle cascading jobs means that the driver can handle cascading jobs with one level depth etc The value means that the driver can handle any number cascading jobs The typical memory usage the driver The connection and action templates The display name the driver Must format manufacturer device type device type version must respect upper lower characters The generic drivers such cybros labs generic must named driver company name generic"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driverstatus.md",
-    "tags": [
-      "driverstatus",
-      "islatest",
-      "updatefinished"
-    ]
+    "tags0": [
+      "isLatest",
+      "updateFinished",
+      "io.clbs.openhes.models.acquisition.DriverStatus"
+    ],
+    "tags1": [
+      "DriverStatus"
+    ],
+    "tags2": "Whether the driver the latest installed version the system Note that this does not mean that the driver the latest released version Whether the driver update from previous version any has been finished"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-drivertemplates.md",
-    "tags": [
-      "accesstemplates",
-      "actionattributes",
-      "actionconstraints",
-      "appprotocols",
-      "communicationtemplates",
-      "drivertemplates",
-      "uknowndevicedescriptors"
-    ]
+    "tags0": [
+      "appProtocols",
+      "accessTemplates",
+      "actionAttributes",
+      "actionConstraints",
+      "communicationTemplates",
+      "uknownDeviceDescriptors",
+      "io.clbs.openhes.models.acquisition.DriverTemplates"
+    ],
+    "tags1": [
+      "DriverTemplates"
+    ],
+    "tags2": "Defines the driver templates exchanged during driver negotiation The supported communication options templates Each template represents one communication method driver can support multiple communication templates The supported application protocol templates The job action templates all supported action types Each supported action type must appear onbly once The supported access level templates The supported templates the job actions constraints The list descriptors for uknown devices detected the communication unit This applies only drivers that communicate with devices like data concentrators that can provide information for unknown devices The descriptors must cover all data attributes used the SetUnknownDevicesRequest message"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-eventrecord.md",
-    "tags": [
-      "eventcode",
-      "eventid",
-      "eventrecord",
-      "eventsource",
-      "eventtext",
-      "timestamp"
-    ]
+    "tags0": [
+      "eventId",
+      "timestamp",
+      "eventCode",
+      "eventText",
+      "eventSource",
+      "io.clbs.openhes.models.acquisition.EventRecord"
+    ],
+    "tags1": [
+      "EventRecord"
+    ],
+    "tags2": "Defines single event reported device The timestamp the event The identifier the event The event code generated the device The descriptive text the event The source the event"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-eventrecords.md",
-    "tags": [
-      "eventrecords",
-      "values"
-    ]
+    "tags0": [
+      "values",
+      "io.clbs.openhes.models.acquisition.EventRecords"
+    ],
+    "tags1": [
+      "EventRecords"
+    ],
+    "tags2": "Defines list event records The list event records"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicebulksrequest.md",
-    "tags": [
-      "deviceid",
-      "getdevicebulksrequest",
-      "rangeend",
-      "rangestart"
-    ]
+    "tags0": [
+      "rangeEnd",
+      "deviceId",
+      "rangeStart",
+      "io.clbs.openhes.models.acquisition.GetDeviceBulksRequest"
+    ],
+    "tags1": [
+      "GetDeviceBulksRequest"
+    ],
+    "tags2": "The start timestamp the bulks selection inclusive The end timestamp the bulks selection inclusive The unique identifier the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicedatarequest.md",
-    "tags": [
-      "filterexcludestatus",
-      "filterincludestatus",
-      "getdevicedatarequest",
-      "rangeend",
-      "rangestart",
+    "tags0": [
       "series",
-      "snapshot"
-    ]
+      "rangeEnd",
+      "snapshot",
+      "rangeStart",
+      "filterIncludeStatus",
+      "filterExcludeStatus",
+      "io.clbs.openhes.models.acquisition.GetDeviceDataRequest"
+    ],
+    "tags1": [
+      "GetDeviceDataRequest"
+    ],
+    "tags2": "The start timestamp the data The exclusivness inclusiveness the timestamp defined the variable The end timestamp the data inclusive One more identifiers the devices The filter status bits only values with these status bits will returned the response The filter status bits only values without these status bits will returned the response set the system will return snapshot from the given point time what has been stored the system yesterday"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicedataseriesselector.md",
-    "tags": [
-      "deviceid",
-      "getdevicedataseriesselector",
-      "variableid"
-    ]
+    "tags0": [
+      "deviceId",
+      "variableId",
+      "io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector"
+    ],
+    "tags1": [
+      "GetDeviceDataSeriesSelector"
+    ],
+    "tags2": "The unique identifier the device The unique identifier the variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdeviceeventsrequest.md",
-    "tags": [
-      "deviceid",
-      "getdeviceeventsrequest",
-      "rangeend",
-      "rangestart"
-    ]
+    "tags0": [
+      "rangeEnd",
+      "deviceId",
+      "rangeStart",
+      "io.clbs.openhes.models.acquisition.GetDeviceEventsRequest"
+    ],
+    "tags1": [
+      "GetDeviceEventsRequest"
+    ],
+    "tags2": "The start timestamp the device events selection inclusive The end timestamp the device events selection inclusive The unique identifier the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-irregularprofilevalues.md",
-    "tags": [
-      "irregularprofilevalues",
+    "tags0": [
       "unit",
-      "values"
-    ]
+      "values",
+      "io.clbs.openhes.models.acquisition.IrregularProfileValues"
+    ],
+    "tags1": [
+      "IrregularProfileValues"
+    ],
+    "tags2": "Defines the irregular non perioic profile values The unit the profile values The list irregular values"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-irregularvalue.md",
-    "tags": [
-      "irregularvalue",
+    "tags0": [
+      "value",
       "timestamp",
-      "value"
-    ]
+      "io.clbs.openhes.models.acquisition.IrregularValue"
+    ],
+    "tags1": [
+      "IrregularValue"
+    ],
+    "tags2": "Defines single irregular non periodic value with timestamp The timestamp the value The value"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobaction.md",
-    "tags": [
-      "actionid",
+    "tags0": [
+      "getTou",
+      "setTou",
+      "actionId",
+      "fwUpdate",
+      "getEvents",
+      "syncClock",
       "attributes",
-      "fwupdate",
-      "getdeviceinfo",
-      "getevents",
-      "getirregularprofile",
-      "getperiodicalprofile",
-      "getregister",
-      "gettou",
-      "jobaction",
-      "resetbillingperiod",
-      "setdisconnectorstate",
-      "setlimiter",
-      "setrelaystate",
-      "settou",
-      "syncclock"
-    ]
+      "setLimiter",
+      "getRegister",
+      "getDeviceInfo",
+      "setRelayState",
+      "resetBillingPeriod",
+      "getIrregularProfile",
+      "getPeriodicalProfile",
+      "setDisconnectorState",
+      "io.clbs.openhes.models.acquisition.JobAction"
+    ],
+    "tags1": [
+      "JobAction"
+    ],
+    "tags2": "Defines the job action specification The JobAction represents single action performed single device For example the action ActionGetRegister specifies single register read from the devices The unique identifier the action The action attributes Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the firmware update action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionattributes.md",
-    "tags": [
+    "tags0": [
+      "type",
       "attributes",
-      "jobactionattributes",
-      "type"
-    ]
+      "io.clbs.openhes.models.acquisition.JobActionAttributes"
+    ],
+    "tags1": [
+      "JobActionAttributes"
+    ],
+    "tags2": "Defines the template for job action attributes The type action for which this template template defined TThe list attribute definitions for the action attributes template"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactioncontraints.md",
-    "tags": [
-      "getregistertypeattributes",
-      "getregistertypename",
-      "jobactioncontraints"
-    ]
+    "tags0": [
+      "getRegisterTypeName",
+      "getRegisterTypeAttributes",
+      "io.clbs.openhes.models.acquisition.JobActionContraints"
+    ],
+    "tags1": [
+      "JobActionContraints"
+    ],
+    "tags2": "Defines the constraints for job actions Contains all register types and their names English Example gen Generic Register vqi Quality VQI Register Action ACTION TYPE GET REGISTER Contains all register types and their attributes Example gen attribute1 attribute2 vqi attribute1 attribute3 See JobActionAttributes for the attribute definitions Action ACTION TYPE GET REGISTER"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionset.md",
-    "tags": [
-      "fwupdate",
-      "getdeviceinfo",
-      "getevents",
-      "getirregularprofile",
-      "getperiodicalprofile",
-      "getregister",
-      "gettou",
-      "jobactionset",
-      "resetbillingperiod",
-      "setdisconnectorstate",
-      "setlimiter",
-      "setrelaystate",
-      "settou",
-      "syncclock",
-      "variables"
-    ]
+    "tags0": [
+      "getTou",
+      "setTou",
+      "fwUpdate",
+      "variables",
+      "getEvents",
+      "syncClock",
+      "setLimiter",
+      "getRegister",
+      "getDeviceInfo",
+      "setRelayState",
+      "resetBillingPeriod",
+      "getIrregularProfile",
+      "getPeriodicalProfile",
+      "setDisconnectorState",
+      "io.clbs.openhes.models.acquisition.JobActionSet"
+    ],
+    "tags1": [
+      "JobActionSet"
+    ],
+    "tags2": "Defines the job action set specification Unlike single JobAction that used only once per bulk JobActionSet may internally cover multiple JobActions For example the action type GetRegister and variable filter specified the system automatically retrieves all registers defined the active device configuration template The variable filter Meaning depends the action type GetRegister GetPeriodicalProfile and GetIrregularProfile List variable names for example defined the system not set all variables the given type are read Others Not applicable ignored Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the firmware update action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdevice.md",
-    "tags": [
-      "appprotocol",
-      "connectioninfo",
-      "deviceattributes",
-      "deviceid",
-      "externalid",
-      "jobdevice",
-      "jobid",
-      "timezone"
-    ]
+    "tags0": [
+      "jobId",
+      "deviceId",
+      "timezone",
+      "externalId",
+      "appProtocol",
+      "connectionInfo",
+      "deviceAttributes",
+      "io.clbs.openhes.models.acquisition.JobDevice"
+    ],
+    "tags1": [
+      "JobDevice"
+    ],
+    "tags2": "Defines single job device job device information The device job identifier within the parent bulk The device identifier set all subsequent details are loaded from the device registry The external identifier the device The connection attributes for the device Options depend the ApplicationProtocolTemplate the given application protocol see the app protocol property The device connection parameters The application protocol used the device The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdeviceid.md",
-    "tags": [
-      "deviceid",
-      "jobdeviceid",
-      "jobid"
-    ]
+    "tags0": [
+      "jobId",
+      "deviceId",
+      "io.clbs.openhes.models.acquisition.JobDeviceId"
+    ],
+    "tags1": [
+      "JobDeviceId"
+    ],
+    "tags2": "Defines the association between bulk jobs and individual devices The identifier the device job within the parent bulk The unique identifier the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobsettings.md",
-    "tags": [
-      "attempts",
-      "deferstart",
-      "expiresat",
-      "jobsettings",
-      "maxduration",
+    "tags0": [
       "priority",
-      "readpathpolicy",
-      "retrydelay"
-    ]
+      "attempts",
+      "expiresAt",
+      "retryDelay",
+      "deferStart",
+      "maxDuration",
+      "readPathPolicy",
+      "io.clbs.openhes.models.acquisition.JobSettings"
+    ],
+    "tags1": [
+      "JobSettings"
+    ],
+    "tags2": "Defines the parameters and execution rules that control how job processed The maximum duration allowed for job attempt This value defines the real time window for the driver execute the job The execution priority assigned the job The maximum number allowed job attempts Must least The delay between two attempts The time offset wait before starting the job The timestamp that specifies when the job expires and should longer not executed The policy that determines how data read from devices can red directly from devices meters via the data concentrator"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobstatus.md",
-    "tags": [
-      "attemptsdone",
+    "tags0": [
       "code",
-      "deviceinfo",
-      "errormessage",
-      "finishedat",
-      "jobstatus",
-      "queueid",
+      "status",
       "results",
-      "startedat",
-      "status"
-    ]
+      "queueId",
+      "startedAt",
+      "finishedAt",
+      "deviceInfo",
+      "attemptsDone",
+      "errorMessage",
+      "io.clbs.openhes.models.acquisition.JobStatus"
+    ],
+    "tags1": [
+      "JobStatus"
+    ],
+    "tags2": "Defines the status information single job within bulk The status the job The error code the job The result data for all executed job actions The start timestamp the job The finish timestamp the job The number attempts already done The device informatiom from the ACTION TYPE GET DEVICE INFO action The internal queue identifier set the Taskmaster when the job queued for processing The user facing error message related the whole job This used especially relevant when action was executed allowing log non action related errors"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md",
-    "tags": [
-      "bulkid",
-      "listbulkjobsrequest",
-      "selector"
-    ]
+    "tags0": [
+      "bulkId",
+      "selector",
+      "io.clbs.openhes.models.acquisition.ListBulkJobsRequest"
+    ],
+    "tags1": [
+      "ListBulkJobsRequest"
+    ],
+    "tags2": "The bulk identifier The list selector"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listdevicegroupdevicesrequest.md",
-    "tags": [
-      "groupid",
-      "listdevicegroupdevicesrequest",
-      "selector"
-    ]
+    "tags0": [
+      "groupId",
+      "selector",
+      "io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest"
+    ],
+    "tags1": [
+      "ListDeviceGroupDevicesRequest"
+    ],
+    "tags2": "The unique identifier the device group The list selector"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofbulk.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofbulk",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfBulk"
+    ],
+    "tags1": [
+      "ListOfBulk"
+    ],
+    "tags2": "The list bulks The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofbulkjob.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofbulkjob",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfBulkJob"
+    ],
+    "tags1": [
+      "ListOfBulkJob"
+    ],
+    "tags2": "The list jobs The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationbus.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofcommunicationbus",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationBus"
+    ],
+    "tags1": [
+      "ListOfCommunicationBus"
+    ],
+    "tags2": "The list communication unit buses The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationunit.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofcommunicationunit",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationUnit"
+    ],
+    "tags1": [
+      "ListOfCommunicationUnit"
+    ],
+    "tags2": "The communication unit specification The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationunitlogrecord.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofcommunicationunitlogrecord",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord"
+    ],
+    "tags1": [
+      "ListOfCommunicationUnitLogRecord"
+    ],
+    "tags2": "Defines list communication unit log records The list communication unit log records The total number items the list"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevice.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdevice",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDevice"
+    ],
+    "tags1": [
+      "ListOfDevice"
+    ],
+    "tags2": "The list devices The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdevicecommunicationunit",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit"
+    ],
+    "tags1": [
+      "ListOfDeviceCommunicationUnit"
+    ],
+    "tags2": "The list linked communication units The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunitchange.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdevicecommunicationunitchange",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange"
+    ],
+    "tags1": [
+      "ListOfDeviceCommunicationUnitChange"
+    ],
+    "tags2": "The list device groups The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationregister.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdeviceconfigurationregister",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister"
+    ],
+    "tags1": [
+      "ListOfDeviceConfigurationRegister"
+    ],
+    "tags2": "The list registers The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationtemplate.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdeviceconfigurationtemplate",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate"
+    ],
+    "tags1": [
+      "ListOfDeviceConfigurationTemplate"
+    ],
+    "tags2": "The list device configuration templates The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicedatainfo.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdevicedatainfo",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo"
+    ],
+    "tags1": [
+      "ListOfDeviceDataInfo"
+    ],
+    "tags2": "The list device data info items The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicegroup.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdevicegroup",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDeviceGroup"
+    ],
+    "tags1": [
+      "ListOfDeviceGroup"
+    ],
+    "tags2": "The list device groups The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdriver.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofdriver",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfDriver"
+    ],
+    "tags1": [
+      "ListOfDriver"
+    ],
+    "tags2": "The list drivers The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofjobdevice.md",
-    "tags": [
+    "tags0": [
       "list",
-      "listofjobdevice",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfJobDevice"
+    ],
+    "tags1": [
+      "ListOfJobDevice"
+    ],
+    "tags2": "The list devices included the bulk The total number items the list"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofjobdeviceid.md",
-    "tags": [
+    "tags0": [
       "list",
-      "listofjobdeviceid",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfJobDeviceId"
+    ],
+    "tags1": [
+      "ListOfJobDeviceId"
+    ],
+    "tags2": "Defines list device identifiers The list device identifiers the bulk The total number device identifiers the list"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofmodempool.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofmodempool",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfModemPool"
+    ],
+    "tags1": [
+      "ListOfModemPool"
+    ],
+    "tags2": "The list modem pools The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listoftimeofusetable.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listoftimeofusetable",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable"
+    ],
+    "tags1": [
+      "ListOfTimeOfUseTable"
+    ],
+    "tags2": "The list time use tables The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofvariable.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofvariable",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.acquisition.ListOfVariable"
+    ],
+    "tags1": [
+      "ListOfVariable"
+    ],
+    "tags2": "The list variables The total number items"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-measuredvalue.md",
-    "tags": [
-      "boolvalue",
-      "doublevalue",
-      "exponent",
-      "integervalue",
-      "measuredvalue",
-      "nstatus",
-      "peakts",
+    "tags0": [
       "status",
-      "stringvalue",
-      "timestamptzvalue",
-      "timestampvalue"
-    ]
+      "peakTs",
+      "nstatus",
+      "exponent",
+      "boolValue",
+      "doubleValue",
+      "stringValue",
+      "integerValue",
+      "timestampValue",
+      "timestampTzValue",
+      "io.clbs.openhes.models.acquisition.MeasuredValue"
+    ],
+    "tags1": [
+      "MeasuredValue"
+    ],
+    "tags2": "Defines measured value The status the value The exponent the value Used calculate the real value value exponent for double and integer values The double typed value The integer typed value The string typed value The timestamp typed value The timestamp with timezone typed value stored ISO string The boolean typed value The normalized status the value See StatusBits enum for details The timestamp when the value for example peak was recorded Typically before the capture timestamp"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modeminfo.md",
-    "tags": [
-      "atdial",
-      "atescape",
-      "athangup",
-      "atinit",
-      "commandtimeout",
-      "connecttimeout",
-      "modemid",
-      "modeminfo",
+    "tags0": [
       "name",
-      "serialbaudrate",
-      "serialoverip",
-      "tcpip"
-    ]
+      "tcpip",
+      "atInit",
+      "atDial",
+      "modemId",
+      "atHangup",
+      "atEscape",
+      "serialOverIp",
+      "connectTimeout",
+      "commandTimeout",
+      "serialBaudRate",
+      "io.clbs.openhes.models.acquisition.ModemInfo"
+    ],
+    "tags1": [
+      "ModemInfo"
+    ],
+    "tags2": "Defines modem connection information The unique identifier the modem automatically generated during creation The name the modem The modem initialization command For example FE0X3 The modem dial command For example ATD The modem hangup command For example ATH The modem escape command For exampl The modem connection timeout applicable the modem connection field The modem command timeout applicable given the modem connection field The TCP connection type The modem either supports TCP directly serial converter used that handles the serial configuration The serial over connection type Used when the modem connected via serial converter and requires specific handling The serial baud rate applicable the modem connection field"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempool.md",
-    "tags": [
-      "metadata",
-      "modempool",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.acquisition.ModemPool"
+    ],
+    "tags1": [
+      "ModemPool"
+    ],
+    "tags2": "The modem pool specification The modem pool status The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempoolspec.md",
-    "tags": [
-      "modempoolspec"
-    ]
+    "tags0": [
+      "io.clbs.openhes.models.acquisition.ModemPoolSpec"
+    ],
+    "tags1": [
+      "ModemPoolSpec"
+    ],
+    "tags2": ""
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempoolstatus.md",
-    "tags": [
-      "modempoolstatus",
-      "modems"
-    ]
+    "tags0": [
+      "modems",
+      "io.clbs.openhes.models.acquisition.ModemPoolStatus"
+    ],
+    "tags1": [
+      "ModemPoolStatus"
+    ],
+    "tags2": "The list modems the pool"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-networkmap.md",
-    "tags": [
+    "tags0": [
+      "nodes",
       "edges",
-      "networkmap",
-      "nodes"
-    ]
+      "io.clbs.openhes.models.acquisition.NetworkMap"
+    ],
+    "tags1": [
+      "NetworkMap"
+    ],
+    "tags2": "Defines the network map specification The list topology nodes Can represent flat hierarchical structure The list edges between the devices"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-profileblock.md",
-    "tags": [
-      "profileblock",
-      "starttimestamp",
-      "values"
-    ]
+    "tags0": [
+      "values",
+      "startTimestamp",
+      "io.clbs.openhes.models.acquisition.ProfileBlock"
+    ],
+    "tags1": [
+      "ProfileBlock"
+    ],
+    "tags2": "Defines single profile block containing the measured values The start timestamp the block The list profile values ordered the timestamp"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-profilevalues.md",
-    "tags": [
-      "blocks",
+    "tags0": [
+      "unit",
       "period",
-      "profilevalues",
-      "unit"
-    ]
+      "blocks",
+      "io.clbs.openhes.models.acquisition.ProfileValues"
+    ],
+    "tags1": [
+      "ProfileValues"
+    ],
+    "tags2": "Defines the profile type values The period the profile values seconds The unit the profile values The list continuous profile blocks"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-proxybulk.md",
-    "tags": [
-      "metadata",
-      "proxybulk",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.acquisition.ProxyBulk"
+    ],
+    "tags1": [
+      "ProxyBulk"
+    ],
+    "tags2": "The bulk job spec The bulk job status data The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-proxybulkspec.md",
-    "tags": [
-      "actions",
-      "correlationid",
+    "tags0": [
       "devices",
-      "drivertype",
-      "proxybulkspec",
+      "actions",
       "settings",
-      "webhookurl"
-    ]
+      "driverType",
+      "webhookUrl",
+      "correlationId",
+      "io.clbs.openhes.models.acquisition.ProxyBulkSpec"
+    ],
+    "tags1": [
+      "ProxyBulkSpec"
+    ],
+    "tags2": "The correlation identifier define relation non homogenous group The device driver type The list custom devices the proxy bulk The bulk shared job settings The list actions executed The webhook URL call when the proxy bulk completed"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-registervalue.md",
-    "tags": [
-      "registervalue",
-      "timestamp",
+    "tags0": [
       "unit",
-      "value"
-    ]
+      "value",
+      "timestamp",
+      "io.clbs.openhes.models.acquisition.RegisterValue"
+    ],
+    "tags1": [
+      "RegisterValue"
+    ],
+    "tags2": "Defines single register type value The timestamp the value The unit the value The value"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-registervalues.md",
-    "tags": [
-      "registervalues",
-      "values"
-    ]
+    "tags0": [
+      "values",
+      "io.clbs.openhes.models.acquisition.RegisterValues"
+    ],
+    "tags1": [
+      "RegisterValues"
+    ],
+    "tags2": "Defines the register type values The list register values"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removecommunicationunitsfromcommunicationbusrequest.md",
-    "tags": [
-      "communicationbusid",
-      "communicationunitid",
-      "removecommunicationunitsfromcommunicationbusrequest"
-    ]
+    "tags0": [
+      "communicationBusId",
+      "communicationUnitId",
+      "io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest"
+    ],
+    "tags1": [
+      "RemoveCommunicationUnitsFromCommunicationBusRequest"
+    ],
+    "tags2": "The unique identifier the communication bus The unique identifier the communication unit"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest.md",
-    "tags": [
-      "dctid",
-      "registerid",
-      "removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest"
-    ]
+    "tags0": [
+      "dctId",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
+    ],
+    "tags1": [
+      "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
+    ],
+    "tags2": "The identifier the device configuration template The list register identifiers unlinked from the template"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md",
-    "tags": [
-      "deviceid",
-      "groupid",
-      "removedevicesfromgrouprequest"
-    ]
+    "tags0": [
+      "groupId",
+      "deviceId",
+      "io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest"
+    ],
+    "tags1": [
+      "RemoveDevicesFromGroupRequest"
+    ],
+    "tags2": "The unique identifier the device group The unique identifier the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removeregisterfromvariablerequest.md",
-    "tags": [
-      "registerid",
-      "removeregisterfromvariablerequest",
-      "variableid"
-    ]
+    "tags0": [
+      "variableId",
+      "registerId",
+      "io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest"
+    ],
+    "tags1": [
+      "RemoveRegisterFromVariableRequest"
+    ],
+    "tags2": "The unique identifier the variable The list register identifiers linked the variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setdevicecommunicationunitsrequest.md",
-    "tags": [
-      "communicationunits",
-      "deviceid",
-      "setdevicecommunicationunitsrequest"
-    ]
+    "tags0": [
+      "deviceId",
+      "communicationUnits",
+      "io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest"
+    ],
+    "tags1": [
+      "SetDeviceCommunicationUnitsRequest"
+    ],
+    "tags2": "The unique identifier the device The list linked communication units"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md",
-    "tags": [
+    "tags0": [
+      "spec",
       "metadata",
-      "setmodempoolrequest",
-      "spec"
-    ]
+      "io.clbs.openhes.models.acquisition.SetModemPoolRequest"
+    ],
+    "tags1": [
+      "SetModemPoolRequest"
+    ],
+    "tags2": "The modem pool specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setmodemrequest.md",
-    "tags": [
+    "tags0": [
       "modem",
-      "poolid",
-      "setmodemrequest"
-    ]
+      "poolId",
+      "io.clbs.openhes.models.acquisition.SetModemRequest"
+    ],
+    "tags1": [
+      "SetModemRequest"
+    ],
+    "tags2": "The modem pool identifier required for update operation The modem specification"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofusetable.md",
-    "tags": [
-      "metadata",
+    "tags0": [
       "spec",
-      "timeofusetable"
-    ]
+      "metadata",
+      "io.clbs.openhes.models.acquisition.TimeOfUseTable"
+    ],
+    "tags1": [
+      "TimeOfUseTable"
+    ],
+    "tags2": "The time use table specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-topologyedge.md",
-    "tags": [
+    "tags0": [
+      "toXId",
+      "fromXId",
       "attributes",
-      "fromxid",
-      "topologyedge",
-      "toxid"
-    ]
+      "io.clbs.openhes.models.acquisition.TopologyEdge"
+    ],
+    "tags1": [
+      "TopologyEdge"
+    ],
+    "tags2": "Defines edge between two nodes the network topology The unique identifier source edge The unique identifier the target edge The edge attributes"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-topologynode.md",
-    "tags": [
-      "attributes",
-      "topologynode",
+    "tags0": [
+      "xId",
       "type",
-      "xid"
-    ]
+      "attributes",
+      "io.clbs.openhes.models.acquisition.TopologyNode"
+    ],
+    "tags1": [
+      "TopologyNode"
+    ],
+    "tags2": "Defines node the network topology The unique node identifier The type the node for example device communication unit The node attributes"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variable.md",
-    "tags": [
-      "metadata",
+    "tags0": [
       "spec",
-      "variable"
-    ]
+      "metadata",
+      "io.clbs.openhes.models.acquisition.Variable"
+    ],
+    "tags1": [
+      "Variable"
+    ],
+    "tags2": "The variable specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variabledevicedata.md",
-    "tags": [
-      "timestamps",
+    "tags0": [
       "units",
       "values",
-      "variabledevicedata",
-      "variableid"
-    ]
+      "variableId",
+      "timestamps",
+      "io.clbs.openhes.models.acquisition.VariableDeviceData"
+    ],
+    "tags1": [
+      "VariableDeviceData"
+    ],
+    "tags2": "The unique identifier the variable The list timestamps for the variable data The list units for the variable data The list measured values for the variable data"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variablespec.md",
-    "tags": [
-      "datatype",
-      "excludedatafrom",
-      "registerid",
-      "variablespec"
-    ]
+    "tags0": [
+      "dataType",
+      "registerId",
+      "excludeDataFrom",
+      "io.clbs.openhes.models.acquisition.VariableSpec"
+    ],
+    "tags1": [
+      "VariableSpec"
+    ],
+    "tags2": "The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable true the device data returned for this variable will exclude values from timestamp Default false include values from timestamp"
   },
   {
     "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "tags": [
-      "cron_job_type_start_bulk",
-      "cron_job_type_start_proxy_bulk",
-      "cronjobtypeenum"
-    ]
+    "tags0": [
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+    ],
+    "tags1": [
+      "JOB",
+      "CRON",
+      "START",
+      "BULK",
+      "TYPE",
+      "PROXY",
+      "CronJobTypeEnum"
+    ],
+    "tags2": "Cron job start acquistion bulk Cron job start proxy bulk"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "tags": [
-      "createcronjobrequest",
+    "tags0": [
+      "spec",
       "metadata",
-      "spec"
-    ]
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+    ],
+    "tags1": [
+      "CreateCronJobRequest"
+    ],
+    "tags2": "The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "tags": [
-      "cronjob",
-      "metadata",
+    "tags0": [
       "spec",
-      "status"
-    ]
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CronJob"
+    ],
+    "tags1": [
+      "CronJob"
+    ],
+    "tags2": "The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "tags": [
-      "cronjobspec",
+    "tags0": [
+      "type",
       "data",
-      "schedule",
       "suspend",
+      "schedule",
       "timezone",
-      "type"
-    ]
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
+    ],
+    "tags1": [
+      "CronJobSpec"
+    ],
+    "tags2": "The type the cron job CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition for every hour The timezone related the cron job America New York Europe Prague CET GMT Etc GMT Whether the cron job suspended not default false not suspended The payload sent when the cron job runs"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "tags": [
-      "cronjobstatus",
+    "tags0": [
       "error",
-      "lastrunat",
-      "nextrunat"
-    ]
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+    ],
+    "tags1": [
+      "CronJobStatus"
+    ],
+    "tags2": "The timestamp the last run The timestamp the next run The error message the cron job schedule invalid"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "tags": [
+    "tags0": [
       "items",
-      "listofcronjob",
-      "totalcount"
-    ]
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+    ],
+    "tags1": [
+      "ListOfCronJob"
+    ],
+    "tags2": "The list cron jobs The total number items"
   }
 ]

@@ -4,9 +4,82 @@ import os, re, json
 from shutil import copy, copytree, rmtree
 from sabledocs.proto_model import SableConfig, SableContext, Package, Service
 from typing import List, Tuple, Dict, Any
+from itertools import groupby
 
 RE_HINT = re.compile(r"\s*@([a-z]+)(?::?\s*(.*))?$")
 RE_SINGLE_SPACE = re.compile(r"^\s(?:[^\s]*|$)")
+
+# Word -> Filename: Weight, Count
+
+
+class SearchIndexEntry:
+    def __init__(self, count: int = 1, comment: str | None = None):
+        self.count = count
+        self.comment = comment
+
+    def update(self, comment: str | None = None):
+        self.count += 1
+        if comment:
+            comment = re.sub(r"\s+", " ", comment).strip()
+        if comment and self.comment:
+            self.comment = self.comment + comment
+        else:
+            self.comment = comment or self.comment
+
+
+class SearchIndex:
+    def __init__(self):
+        self.data: dict[str, dict[str, SearchIndexEntry]] = {}
+
+    def add(
+        self,
+        filename: str,
+        word: str | List[str],
+        comment: str | None = None,
+    ):
+        if filename not in self.data:
+            self.data[filename] = {}
+        if isinstance(word, list):
+            for w in word:
+                self.add(filename, w)
+            return
+        if word.startswith("google.protobuf."):
+            return
+        if word not in self.data[filename]:
+            self.data[filename][word] = SearchIndexEntry(count=1, comment=comment)
+        else:
+            self.data[filename][word].update(comment=comment)
+
+    def to_list(self) -> List[dict[str, Any]]:
+        """
+        Returns a list of objects. Each object contains a "filename" and "tags0" that are a list of words.
+        """
+        result = []
+        for filename, tags in self.data.items():
+            entry = {
+                "filename": filename,
+                "tags0": list(sorted(tags.keys(), key=lambda x: len(x))),
+            }
+            tmp = set(
+                part for tag in tags.keys() for part in tag.split("_") if "_" in tag
+            ).union(tag.split(".")[-1] for tag in tags.keys() if "." in tag)
+            tmp = set(
+                part for part in tmp if len(part) >= 2 and not re.match(r"^\d+$", part)
+            )
+            entry["tags1"] = list(tmp)
+            entry["tags2"] = list(
+                word
+                for k in tags.values()
+                if k.comment
+                for word in re.split(r"[\W_]+", k.comment)
+                if len(word) >= 3 and not re.match(r"^\d+$", word)
+            )
+            result.append(entry)
+        # Cleanup common words
+        for entry in result:
+            entry["tags2"] = " ".join((w for w in entry["tags2"])).strip()
+        # Filter out common words
+        return result
 
 
 def _parseHints(description: str | None) -> Tuple[str, Dict[str, str]]:
@@ -102,7 +175,7 @@ def generate(
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    search_index: dict[str, set] = {}
+    search_index: SearchIndex = SearchIndex()
 
     with open(os.path.join(output_dir, "index.md"), "w") as fh:
         fh.write("# API\n\n")
@@ -126,7 +199,6 @@ def generate(
     for service, groups in tagged_services:
         for group, methods in groups:
             filename = f"service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md"
-            search_index_page = search_index[filename] = set()
             with open(
                 os.path.join(
                     output_dir,
@@ -134,15 +206,15 @@ def generate(
                 ),
                 "w",
             ) as fh:
-                search_index_page.update([service.name, group])
                 fh.write(f"# {service.name} - {group}\n\n")
                 for method, tags in methods:
-                    search_index_page.update(
+                    search_index.add(
+                        filename,
                         [
                             method.name,
                             method.request.full_type,
                             method.response.full_type,
-                        ]
+                        ],
                     )
                     # Request model name (if not google.protobuf.Empty)
                     m_request, m_request_link = getLinkFromType(
@@ -183,16 +255,15 @@ def generate(
     for package in visible_packages:
         for e in package.enums:
             filename = f"enum-{sanitizeUrl(e.full_name)}.md"
-            search_index_page = search_index[filename] = set()
             with open(
                 os.path.join(output_dir, filename),
                 "w",
             ) as fh:
-                search_index_page.add(e.full_name)
                 fh.write(f"# Enum: {e.full_name}\n\n")
                 enum_description, section_hints = _parseHints(e.description)
                 if enum_description:
                     fh.write(f"{enum_description}\n\n")
+                search_index.add(filename, e.full_name, enum_description)
                 fh.write("## Options\n\n")
                 if enum_values := e.values:
                     if "sort" in section_hints:
@@ -200,10 +271,10 @@ def generate(
 
                     fh.write("| Value | Description |\n| --- | --- |\n")
                     for v in enum_values:
-                        search_index_page.add(v.name)
                         # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
                         tmp, hints = _parseHints(v.description)
                         value_description = "<br>".join(tmp.split("\n"))
+                        search_index.add(filename, v.name, tmp)
 
                         if (tmp := hints.get("values", None)) is not None:
                             value_description = (
@@ -221,15 +292,14 @@ def generate(
                         fh.write(f"| {v.name} | {value_description} |\n")
         for message in package.messages:
             filename = f"model-{sanitizeUrl(message.full_name)}.md"
-            search_index_page = search_index[filename] = set()
             with open(
                 os.path.join(output_dir, filename),
                 "w",
             ) as fh:
-                search_index_page.add(message.full_name)
                 fh.write(f"# Model: {message.full_name}\n\n")
                 if message.description:
                     fh.write(f"{message.description}\n\n")
+                search_index.add(filename, message.full_name, message.description)
                 if message.fields:
                     fh.write("## Fields\n\n")
                     # Generate message.fields as a table; look for longest values and align them to genarate a markdown table
@@ -237,10 +307,10 @@ def generate(
                     # ... it may need to prefix all lines and merge them fit into single cell - The key is to use HTML line breaks (<br>) within the cell content to create new lines.
                     fh.write("| Field | Information |\n| --- | --- |\n")
                     for field in message.fields:
-                        search_index_page.add(field.name)
                         # Split the field.description by \n and join them with <br> to create new lines in the markdown table cell
                         tmp, hints = _parseHints(field.description)
                         field_description = "<br>".join(tmp.split("\n"))
+                        search_index.add(filename, field.name, tmp)
 
                         if (tmp := hints.get("values", None)) is not None:
                             field_description = (
@@ -262,12 +332,9 @@ def generate(
                             enumList=enum_list,
                         )
                         field_description = f"<b>Type:</b> {full_type_link}<br><b>Description:</b><br>{field_description}"
+
                         fh.write(f"| {field.name} | {field_description} |\n")
                     fh.write("\n")
 
     with open(os.path.join(output_dir, "search_index.json"), "w") as fh:
-        index = [
-            {"filename": k, "tags": sanitize_search_words(v)}
-            for k, v in search_index.items()
-        ]
-        json.dump(index, fh, indent=2)
+        json.dump(search_index.to_list(), fh, indent=2)
