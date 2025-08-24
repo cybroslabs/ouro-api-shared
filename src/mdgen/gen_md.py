@@ -9,7 +9,19 @@ from itertools import groupby
 RE_HINT = re.compile(r"\s*@([a-z]+)(?::?\s*(.*))?$")
 RE_SINGLE_SPACE = re.compile(r"^\s(?:[^\s]*|$)")
 
-# Word -> Filename: Weight, Count
+
+class SearchIndexFile(object):
+    def __init__(self, tag: str, title: str | None = None):
+        self.tag = tag
+        self.title = title or ""
+
+    def __hash__(self):
+        return hash(self.tag)
+
+    def __eq__(self, value):
+        if not isinstance(value, SearchIndexFile):
+            return False
+        return self.tag == value.tag
 
 
 class SearchIndexEntry:
@@ -29,26 +41,34 @@ class SearchIndexEntry:
 
 class SearchIndex:
     def __init__(self):
-        self.data: dict[str, dict[str, SearchIndexEntry]] = {}
+        self.data: dict[SearchIndexFile, dict[str, SearchIndexEntry]] = {}
 
     def add(
         self,
         filename: str,
         word: str | List[str],
         comment: str | None = None,
+        title: str | None = None,
     ):
-        if filename not in self.data:
-            self.data[filename] = {}
+        if isinstance(word, str) and word.startswith("google.protobuf."):
+            return
+
+        tag, data = next(
+            ((k, v) for k, v in self.data.items() if k.tag == filename), (None, None)
+        )
+        if tag is None:
+            data = self.data[SearchIndexFile(filename, title)] = {}
+        else:
+            tag.title = title or tag.title
+
         if isinstance(word, list):
             for w in word:
                 self.add(filename, w)
             return
-        if word.startswith("google.protobuf."):
-            return
-        if word not in self.data[filename]:
-            self.data[filename][word] = SearchIndexEntry(count=1, comment=comment)
+        if word not in data:
+            data[word] = SearchIndexEntry(count=1, comment=comment)
         else:
-            self.data[filename][word].update(comment=comment)
+            data[word].update(comment=comment)
 
     def to_list(self) -> List[dict[str, Any]]:
         """
@@ -57,7 +77,8 @@ class SearchIndex:
         result = []
         for filename, tags in self.data.items():
             entry = {
-                "filename": filename,
+                "filename": filename.tag,
+                "title": filename.title,
                 "tags0": list(sorted(tags.keys(), key=lambda x: len(x))),
             }
             tmp = set(
@@ -66,7 +87,7 @@ class SearchIndex:
             tmp = set(
                 part for part in tmp if len(part) >= 2 and not re.match(r"^\d+$", part)
             )
-            entry["tags1"] = list(tmp)
+            entry["tags1"] = list(sorted(tmp))
             entry["tags2"] = list(
                 word
                 for k in tags.values()
@@ -206,7 +227,8 @@ def generate(
                 ),
                 "w",
             ) as fh:
-                fh.write(f"# {service.name} - {group}\n\n")
+                title = f"{service.name} - {group}"
+                fh.write(f"# {title}\n\n")
                 for method, tags in methods:
                     search_index.add(
                         filename,
@@ -215,6 +237,7 @@ def generate(
                             method.request.full_type,
                             method.response.full_type,
                         ],
+                        title=title,
                     )
                     # Request model name (if not google.protobuf.Empty)
                     m_request, m_request_link = getLinkFromType(
@@ -259,11 +282,12 @@ def generate(
                 os.path.join(output_dir, filename),
                 "w",
             ) as fh:
-                fh.write(f"# Enum: {e.full_name}\n\n")
+                title = f"Enum: {e.full_name}"
+                fh.write(f"# {title}\n\n")
                 enum_description, section_hints = _parseHints(e.description)
                 if enum_description:
                     fh.write(f"{enum_description}\n\n")
-                search_index.add(filename, e.full_name, enum_description)
+                search_index.add(filename, title, enum_description, title=title)
                 fh.write("## Options\n\n")
                 if enum_values := e.values:
                     if "sort" in section_hints:
@@ -296,10 +320,13 @@ def generate(
                 os.path.join(output_dir, filename),
                 "w",
             ) as fh:
-                fh.write(f"# Model: {message.full_name}\n\n")
+                title = f"Model: {message.full_name}"
+                fh.write(f"# {title}\n\n")
                 if message.description:
                     fh.write(f"{message.description}\n\n")
-                search_index.add(filename, message.full_name, message.description)
+                search_index.add(
+                    filename, message.full_name, message.description, title=title
+                )
                 if message.fields:
                     fh.write("## Fields\n\n")
                     # Generate message.fields as a table; look for longest values and align them to genarate a markdown table

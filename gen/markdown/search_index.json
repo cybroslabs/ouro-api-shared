@@ -1,6 +1,7 @@
 [
   {
     "filename": "service-bulks-apiservice.md",
+    "title": "ApiService - Bulks",
     "tags0": [
       "GetBulk",
       "ListBulks",
@@ -29,17 +30,17 @@
       "io.clbs.openhes.models.acquisition.CreateProxyBulkRequest"
     ],
     "tags1": [
-      "ListOfBulkJob",
-      "ListOfId",
       "Bulk",
-      "ListOfBulk",
-      "GetDeviceBulksRequest",
-      "DeviceBulks",
-      "CreateProxyBulkRequest",
-      "ListBulkJobsRequest",
-      "ListSelector",
       "BulkJob",
       "CreateBulkRequest",
+      "CreateProxyBulkRequest",
+      "DeviceBulks",
+      "GetDeviceBulksRequest",
+      "ListBulkJobsRequest",
+      "ListOfBulk",
+      "ListOfBulkJob",
+      "ListOfId",
+      "ListSelector",
       "ProxyBulk",
       "UpdateMetadata"
     ],
@@ -47,6 +48,7 @@
   },
   {
     "filename": "service-configuration-apiservice.md",
+    "title": "ApiService - Configuration",
     "tags0": [
       "GetApplicationConfig",
       "UpdateApplicationConfig",
@@ -57,15 +59,16 @@
       "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor",
       "ApplicationConfig",
-      "ComponentConfigDescriptor",
-      "ComponentConfig"
+      "ApplicationConfigDescriptor",
+      "ComponentConfig",
+      "ComponentConfigDescriptor"
     ],
     "tags2": ""
   },
   {
     "filename": "service-cron-jobs-apiservice.md",
+    "title": "ApiService - Cron Jobs",
     "tags0": [
       "GetCronJob",
       "RunCronJob",
@@ -81,15 +84,16 @@
       "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "ListSelector",
-      "ListOfCronJob",
       "CreateCronJobRequest",
-      "CronJob"
+      "CronJob",
+      "ListOfCronJob",
+      "ListSelector"
     ],
     "tags2": ""
   },
   {
     "filename": "service-cryptography-apiservice.md",
+    "title": "ApiService - Cryptography",
     "tags0": [
       "GetCryptoSecret",
       "SetCryptoSecret",
@@ -98,14 +102,15 @@
       "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
     ],
     "tags1": [
+      "CryptoSecrets",
       "GetCryptoSecretRequest",
-      "SetCryptoSecretRequest",
-      "CryptoSecrets"
+      "SetCryptoSecretRequest"
     ],
     "tags2": ""
   },
   {
     "filename": "service-device-configuration-registers-apiservice.md",
+    "title": "ApiService - Device Configuration Registers",
     "tags0": [
       "GetDeviceConfigurationRegister",
       "ListDeviceConfigurationRegisters",
@@ -119,14 +124,15 @@
     ],
     "tags1": [
       "CreateDeviceConfigurationRegisterRequest",
-      "ListSelector",
+      "DeviceConfigurationRegister",
       "ListOfDeviceConfigurationRegister",
-      "DeviceConfigurationRegister"
+      "ListSelector"
     ],
     "tags2": ""
   },
   {
     "filename": "service-device-configuration-templates-apiservice.md",
+    "title": "ApiService - Device Configuration Templates",
     "tags0": [
       "GetDeviceConfigurationTemplate",
       "ListDeviceConfigurationTemplates",
@@ -143,17 +149,18 @@
       "io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
     ],
     "tags1": [
-      "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest",
       "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest",
-      "ListOfDeviceConfigurationTemplate",
-      "DeviceConfigurationTemplate",
       "CreateDeviceConfigurationTemplateRequest",
-      "ListSelector"
+      "DeviceConfigurationTemplate",
+      "ListOfDeviceConfigurationTemplate",
+      "ListSelector",
+      "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
     ],
     "tags2": ""
   },
   {
     "filename": "service-device-data-apiservice.md",
+    "title": "ApiService - Device Data",
     "tags0": [
       "GetDeviceData",
       "ListDeviceDataInfo",
@@ -169,18 +176,19 @@
       "io.clbs.openhes.models.acquisition.IrregularProfileValues"
     ],
     "tags1": [
-      "ProfileValues",
-      "IrregularProfileValues",
+      "DeviceData",
       "GetDeviceDataRequest",
-      "RegisterValues",
+      "IrregularProfileValues",
       "ListOfDeviceDataInfo",
       "ListSelector",
-      "DeviceData"
+      "ProfileValues",
+      "RegisterValues"
     ],
     "tags2": ""
   },
   {
     "filename": "service-device-events-apiservice.md",
+    "title": "ApiService - Device Events",
     "tags0": [
       "GetDeviceEvents",
       "io.clbs.openhes.models.acquisition.DeviceEvents",
@@ -194,6 +202,7 @@
   },
   {
     "filename": "service-devices-apiservice.md",
+    "title": "ApiService - Devices",
     "tags0": [
       "GetDevice",
       "ListDevices",
@@ -262,38 +271,39 @@
       "io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest"
     ],
     "tags1": [
-      "CreateCommunicationUnitRequest",
+      "AddCommunicationUnitsToCommunicationBusRequest",
+      "AddDevicesToGroupRequest",
       "CommunicationUnit",
-      "ListOfCommunicationUnitLogRecord",
+      "CreateCommunicationBusRequest",
+      "CreateCommunicationUnitRequest",
       "CreateDeviceGroupRequest",
+      "CreateDeviceRequest",
       "Device",
+      "DeviceGroup",
+      "DeviceInfo",
+      "ListDeviceGroupDevicesRequest",
+      "ListOfCommunicationBus",
+      "ListOfCommunicationUnit",
+      "ListOfCommunicationUnitLogRecord",
+      "ListOfDevice",
+      "ListOfDeviceCommunicationUnit",
+      "ListOfDeviceCommunicationUnitChange",
+      "ListOfDeviceGroup",
+      "ListOfModemPool",
+      "ListSelector",
+      "ModemPool",
+      "NetworkMap",
       "RemoveCommunicationUnitsFromCommunicationBusRequest",
       "RemoveDevicesFromGroupRequest",
-      "ListOfDevice",
-      "SetModemPoolRequest",
       "SetDeviceCommunicationUnitsRequest",
-      "DeviceInfo",
-      "ListOfDeviceGroup",
-      "AddDevicesToGroupRequest",
-      "DeviceGroup",
-      "AddCommunicationUnitsToCommunicationBusRequest",
-      "CreateDeviceRequest",
-      "CreateCommunicationBusRequest",
-      "SetModemRequest",
-      "ListOfDeviceCommunicationUnitChange",
-      "NetworkMap",
-      "ListOfCommunicationUnit",
-      "ListDeviceGroupDevicesRequest",
-      "ModemPool",
-      "ListOfModemPool",
-      "ListOfDeviceCommunicationUnit",
-      "ListSelector",
-      "ListOfCommunicationBus"
+      "SetModemPoolRequest",
+      "SetModemRequest"
     ],
     "tags2": ""
   },
   {
     "filename": "service-driver-info-apiservice.md",
+    "title": "ApiService - Driver Info",
     "tags0": [
       "GetDriver",
       "ListDrivers",
@@ -302,14 +312,15 @@
       "io.clbs.openhes.models.acquisition.ListOfDriver"
     ],
     "tags1": [
-      "ListSelector",
       "Driver",
-      "ListOfDriver"
+      "ListOfDriver",
+      "ListSelector"
     ],
     "tags2": ""
   },
   {
     "filename": "service-fields-apiservice.md",
+    "title": "ApiService - Fields",
     "tags0": [
       "ListFieldDescriptors",
       "CreateFieldDescriptor",
@@ -324,17 +335,18 @@
       "io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"
     ],
     "tags1": [
-      "FieldDescriptorOptions",
-      "ListOfFieldDescriptor",
       "CreateFieldDescriptorRequest",
-      "FieldDescriptorSelector",
       "FieldDescriptor",
-      "ListFieldDescriptorOptionsRequest"
+      "FieldDescriptorOptions",
+      "FieldDescriptorSelector",
+      "ListFieldDescriptorOptionsRequest",
+      "ListOfFieldDescriptor"
     ],
     "tags2": ""
   },
   {
     "filename": "service-metadata-apiservice.md",
+    "title": "ApiService - Metadata",
     "tags0": [
       "UpdateObjectFields",
       "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
@@ -346,6 +358,7 @@
   },
   {
     "filename": "service-system-apiservice.md",
+    "title": "ApiService - System",
     "tags0": [
       "GetOpenIdConfiguration",
       "io.clbs.openhes.models.system.OpenIdConfiguration"
@@ -357,6 +370,7 @@
   },
   {
     "filename": "service-time-of-use-tables-apiservice.md",
+    "title": "ApiService - Time-Of-Use Tables",
     "tags0": [
       "GetTimeOfUseTable",
       "ListTimeOfUseTables",
@@ -369,15 +383,16 @@
       "io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest"
     ],
     "tags1": [
+      "CreateTimeOfUseTableRequest",
       "ListOfTimeOfUseTable",
-      "TimeOfUseTable",
       "ListSelector",
-      "CreateTimeOfUseTableRequest"
+      "TimeOfUseTable"
     ],
     "tags2": ""
   },
   {
     "filename": "service-variables-apiservice.md",
+    "title": "ApiService - Variables",
     "tags0": [
       "GetVariable",
       "ListVariables",
@@ -394,17 +409,18 @@
       "io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest"
     ],
     "tags1": [
-      "RemoveRegisterFromVariableRequest",
-      "ListOfVariable",
+      "AddRegisterToVariableRequest",
       "CreateVariableRequest",
-      "Variable",
+      "ListOfVariable",
       "ListSelector",
-      "AddRegisterToVariableRequest"
+      "RemoveRegisterFromVariableRequest",
+      "Variable"
     ],
     "tags2": ""
   },
   {
     "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
     "tags0": [
       "items",
       "io.clbs.openhes.models.system.ApplicationConfig"
@@ -416,6 +432,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
     "tags0": [
       "items",
       "descriptors",
@@ -428,6 +445,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
     "tags0": [
       "name",
       "items",
@@ -440,6 +458,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
     "tags0": [
       "name",
       "items",
@@ -452,6 +471,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
     "tags0": [
       "content",
       "io.clbs.openhes.models.system.OpenIdConfiguration"
@@ -463,11 +483,12 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
     "tags0": [
       "NOOP",
       "CONNECT",
       "DISCONNECT",
-      "io.clbs.openhes.models.acquisition.timeofuse.RelayState"
+      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
     ],
     "tags1": [
       "RelayState"
@@ -476,6 +497,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
     "tags0": [
       "dayId",
       "switching",
@@ -488,6 +510,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
     "tags0": [
       "state",
       "relayId",
@@ -500,6 +523,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
     "tags0": [
       "id",
       "name",
@@ -516,6 +540,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
     "tags0": [
       "day",
       "year",
@@ -530,6 +555,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
     "tags0": [
       "hour",
       "minute",
@@ -544,6 +570,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
     "tags0": [
       "weeks",
       "seasons",
@@ -561,6 +588,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
     "tags0": [
       "weekId",
       "dayIds",
@@ -574,42 +602,45 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
       "SECRET_DATA_PLAIN",
       "SECRET_DATA_AES256CBC",
-      "io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
-      "DATA",
       "AES256CBC",
+      "DATA",
       "PLAIN",
-      "SecretDataDecryptionMethod",
-      "SECRET"
+      "SECRET",
+      "SecretDataDecryptionMethod"
     ],
     "tags2": "DLMS crypto mode Plain data decryption needed AES CBC encryption method"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
       "SECRET_SESSION_NONE",
       "SECRET_SESSION_PLAIN",
       "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
-      "NONE",
-      "RSA",
-      "OAEPM",
-      "SESSION",
       "GF1P",
-      "SECRET",
+      "NONE",
+      "OAEPM",
       "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
       "SecretSessionKeyDecryptionMethod"
     ],
     "tags2": "session key decryption method used when the session key not set not used Plain session key session key decryption needed RSA OAEP MGF1P decryption method used for session keys"
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
     "tags0": [
       "data",
       "keyId",
@@ -625,6 +656,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
     "tags0": [
       "secrets",
       "io.clbs.openhes.models.crypto.CryptoSecrets"
@@ -636,6 +668,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
     "tags0": [
       "cryptoId",
       "objectType",
@@ -649,6 +682,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
     "tags0": [
       "data",
       "keyId",
@@ -670,6 +704,7 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
+    "title": "Enum: io.clbs.openhes.models.common.FieldDataType",
     "tags0": [
       "TEXT",
       "DOUBLE",
@@ -678,7 +713,7 @@
       "BOOLEAN",
       "DURATION",
       "TIMESTAMP",
-      "io.clbs.openhes.models.common.FieldDataType"
+      "Enum: io.clbs.openhes.models.common.FieldDataType"
     ],
     "tags1": [
       "FieldDataType"
@@ -687,6 +722,7 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddisplayformat.md",
+    "title": "Enum: io.clbs.openhes.models.common.FieldDisplayFormat",
     "tags0": [
       "MONEY",
       "COMBO",
@@ -697,19 +733,20 @@
       "MULTILINE",
       "UTC_DATETIME",
       "UTC_DATE_ONLY",
-      "io.clbs.openhes.models.common.FieldDisplayFormat"
+      "Enum: io.clbs.openhes.models.common.FieldDisplayFormat"
     ],
     "tags1": [
       "DATE",
-      "UTC",
-      "ONLY",
+      "DATETIME",
       "FieldDisplayFormat",
-      "DATETIME"
+      "ONLY",
+      "UTC"
     ],
     "tags2": "Enum representing the field display format The default display format The GUI shows text int double date time duration the default format The date only display format local date time Data type must TIMESTAMP string The date time display format with UTC timezone Data type must TIMESTAMP string The date display format with UTC timezone Data type must TIMESTAMP string The time day display format Data type must INTEGER milliseconds The money display format The unit must set the currency code ISO standard USD EUR Data type must DOUBLE INTEGER The password display format Data type must TEXT The GUI must always display six starts not reveal the actual password length The multiline string display format Data type must TEXT The combo box display style format Data type must TEXT The GUI must display the value combo box with the list options"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-filteroperator.md",
+    "title": "Enum: io.clbs.openhes.models.common.FilterOperator",
     "tags0": [
       "IN",
       "EQUAL",
@@ -726,28 +763,29 @@
       "NOT_CONTAINS",
       "LESS_THAN_OR_EQUAL",
       "GREATER_THAN_OR_EQUAL",
-      "io.clbs.openhes.models.common.FilterOperator"
+      "Enum: io.clbs.openhes.models.common.FilterOperator"
     ],
     "tags1": [
-      "STARTS",
-      "IS",
-      "OR",
-      "EQUAL",
-      "NOT",
+      "CONTAINS",
       "ENDS",
-      "WITH",
-      "IN",
-      "LESS",
-      "THAN",
-      "GREATER",
+      "EQUAL",
       "FilterOperator",
+      "GREATER",
+      "IN",
+      "IS",
+      "LESS",
+      "NOT",
       "NULL",
-      "CONTAINS"
+      "OR",
+      "STARTS",
+      "THAN",
+      "WITH"
     ],
     "tags2": "The filter operator Single operand operator for text integer number boolean date fields Single operand operator for text integer number boolean date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Multiple operand operator for text integer number boolean fields Multiple operand operator for text integer number boolean fields Two operand operator for integer number date fields operand operator For both null and empty string operand operator For both null and empty string"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-objecttype.md",
+    "title": "Enum: io.clbs.openhes.models.common.ObjectType",
     "tags0": [
       "BULK",
       "DEVICE",
@@ -765,37 +803,38 @@
       "DEVICE_CONFIGURATION_REGISTER",
       "DEVICE_CONFIGURATION_TEMPLATE",
       "DEVICE_COMMUNICATION_UNIT_CHANGE",
-      "io.clbs.openhes.models.common.ObjectType"
+      "Enum: io.clbs.openhes.models.common.ObjectType"
     ],
     "tags1": [
-      "RECORD",
-      "CRON",
-      "TIME",
-      "CONFIGURATION",
-      "LOG",
-      "USE",
       "BULK",
-      "JOB",
-      "INFO",
-      "REGISTER",
+      "BUS",
+      "CHANGE",
       "COMMUNICATION",
+      "CONFIGURATION",
+      "CRON",
+      "DATA",
+      "DEVICE",
+      "GROUP",
+      "INFO",
+      "JOB",
+      "LOG",
+      "MODEM",
+      "OF",
       "ObjectType",
       "POOL",
-      "CHANGE",
-      "GROUP",
-      "OF",
-      "BUS",
+      "RECORD",
+      "REGISTER",
       "TABLE",
       "TEMPLATE",
-      "MODEM",
-      "DEVICE",
-      "DATA",
-      "UNIT"
+      "TIME",
+      "UNIT",
+      "USE"
     ],
     "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool The time use table The variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-createfielddescriptorrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.CreateFieldDescriptorRequest",
     "tags0": [
       "spec",
       "io.clbs.openhes.models.common.CreateFieldDescriptorRequest"
@@ -807,6 +846,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptor.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptor",
     "tags0": [
       "gid",
       "path",
@@ -839,6 +879,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptoroptions.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorOptions",
     "tags0": [
       "options",
       "complete",
@@ -851,6 +892,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fielddescriptorselector.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorSelector",
     "tags0": [
       "gid",
       "objectType",
@@ -863,6 +905,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalidation.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValidation",
     "tags0": [
       "re",
       "options",
@@ -882,6 +925,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalue.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValue",
     "tags0": [
       "boolValue",
       "dateValue",
@@ -899,6 +943,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-fieldvalues.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValues",
     "tags0": [
       "attributes",
       "io.clbs.openhes.models.common.FieldValues"
@@ -910,6 +955,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-formattedmessage.md",
+    "title": "Model: io.clbs.openhes.models.common.FormattedMessage",
     "tags0": [
       "args",
       "params",
@@ -923,6 +969,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listfielddescriptoroptionsrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest",
     "tags0": [
       "optionsSource",
       "filterContains",
@@ -935,6 +982,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listoffielddescriptor.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfFieldDescriptor",
     "tags0": [
       "items",
       "totalCount",
@@ -947,6 +995,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listofid.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfId",
     "tags0": [
       "id",
       "io.clbs.openhes.models.common.ListOfId"
@@ -958,6 +1007,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listofstring.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfString",
     "tags0": [
       "items",
       "io.clbs.openhes.models.common.ListOfString"
@@ -969,6 +1019,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselector.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelector",
     "tags0": [
       "offset",
       "sortBy",
@@ -984,6 +1035,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselectorfilterby.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelectorFilterBy",
     "tags0": [
       "path",
       "text",
@@ -1002,6 +1054,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listselectorsortby.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelectorSortBy",
     "tags0": [
       "path",
       "desc",
@@ -1014,6 +1067,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-metadatafields.md",
+    "title": "Model: io.clbs.openhes.models.common.MetadataFields",
     "tags0": [
       "id",
       "name",
@@ -1029,6 +1083,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-setfieldsspec.md",
+    "title": "Model: io.clbs.openhes.models.common.SetFieldsSpec",
     "tags0": [
       "fields",
       "objectId",
@@ -1042,6 +1097,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-updatemetadata.md",
+    "title": "Model: io.clbs.openhes.models.common.UpdateMetadata",
     "tags0": [
       "metadata",
       "io.clbs.openhes.models.common.UpdateMetadata"
@@ -1053,6 +1109,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-common-updateobjectfieldsrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.UpdateObjectFieldsRequest",
     "tags0": [
       "spec",
       "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
@@ -1064,26 +1121,28 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.ActionResultCode",
     "tags0": [
       "ERROR_CODE_ACTION_OK",
       "ERROR_CODE_ACTION_ERROR",
       "ERROR_CODE_ACTION_PENDING",
       "ERROR_CODE_ACTION_UNSUPPORTED",
-      "io.clbs.openhes.models.acquisition.ActionResultCode"
+      "Enum: io.clbs.openhes.models.acquisition.ActionResultCode"
     ],
     "tags1": [
+      "ACTION",
+      "ActionResultCode",
       "CODE",
       "ERROR",
       "OK",
-      "ACTION",
       "PENDING",
-      "UNSUPPORTED",
-      "ActionResultCode"
+      "UNSUPPORTED"
     ],
     "tags2": "Defines the result codes related job actions The action has been completed successfully The action not supported the driver device The action pending The action has failed"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actiontype.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.ActionType",
     "tags0": [
       "ACTION_TYPE_GET_TOU",
       "ACTION_TYPE_SET_TOU",
@@ -1099,38 +1158,39 @@
       "ACTION_TYPE_GET_PERIODICAL_PROFILE",
       "ACTION_TYPE_GET_DISCONNECTOR_STATE",
       "ACTION_TYPE_SET_DISCONNECTOR_STATE",
-      "io.clbs.openhes.models.acquisition.ActionType"
+      "Enum: io.clbs.openhes.models.acquisition.ActionType"
     ],
     "tags1": [
-      "CLOCK",
-      "PROFILE",
-      "GET",
-      "LIMITER",
-      "INFO",
-      "ActionType",
-      "REGISTER",
       "ACTION",
-      "RESET",
-      "FW",
-      "SYNC",
-      "EVENTS",
-      "DISCONNECTOR",
-      "PERIOD",
+      "ActionType",
       "BILLING",
-      "STATE",
-      "PERIODICAL",
+      "CLOCK",
       "DEVICE",
-      "UPDATE",
-      "TOU",
+      "DISCONNECTOR",
+      "EVENTS",
+      "FW",
+      "GET",
+      "INFO",
+      "IRREGULAR",
+      "LIMITER",
+      "PERIOD",
+      "PERIODICAL",
+      "PROFILE",
+      "REGISTER",
       "RELAY",
-      "TYPE",
+      "RESET",
       "SET",
-      "IRREGULAR"
+      "STATE",
+      "SYNC",
+      "TOU",
+      "TYPE",
+      "UPDATE"
     ],
     "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Get register value for example instantaneous values The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-applicationprotocol.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.ApplicationProtocol",
     "tags0": [
       "APPPROTO_SCTM",
       "APPPROTO_MQTT",
@@ -1141,74 +1201,77 @@
       "APPPROTO_DLMS_LN",
       "APPPROTO_ANSI_C12",
       "APPPROTO_IEC_62056_21",
-      "io.clbs.openhes.models.acquisition.ApplicationProtocol"
+      "Enum: io.clbs.openhes.models.acquisition.ApplicationProtocol"
     ],
     "tags1": [
-      "LN",
-      "APPPROTO",
       "ANSI",
-      "IEC",
+      "APPPROTO",
       "ApplicationProtocol",
       "C12",
+      "DLMS",
+      "IEC",
+      "LIS200",
+      "LN",
       "MBUS",
       "MODBUS",
+      "MQTT",
       "SCTM",
-      "DLMS",
-      "SN",
-      "LIS200",
-      "MQTT"
+      "SN"
     ],
     "tags2": "Defines the supported application protocols The IEC IEC VDEW protocol The DLMS short name protocol The DLMS logical name protocol The SCTM protocol The LIS200 protocol The ANSI C12 protocol The MQTT protocol The MODBUS protocol The MBUS protocol"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-bulkstatuscode.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.BulkStatusCode",
     "tags0": [
       "BULK_STATUS_QUEUED",
       "BULK_STATUS_RUNNING",
       "BULK_STATUS_EXPIRED",
       "BULK_STATUS_COMPLETED",
       "BULK_STATUS_CANCELLED",
-      "io.clbs.openhes.models.acquisition.BulkStatusCode"
+      "Enum: io.clbs.openhes.models.acquisition.BulkStatusCode"
     ],
     "tags1": [
-      "STATUS",
-      "QUEUED",
-      "COMPLETED",
-      "CANCELLED",
-      "EXPIRED",
+      "BULK",
       "BulkStatusCode",
+      "CANCELLED",
+      "COMPLETED",
+      "EXPIRED",
+      "QUEUED",
       "RUNNING",
-      "BULK"
+      "STATUS"
     ],
     "tags2": "Defines the status information entire bulk The bulk waiting the queue The bulk currently running The bulk has been completed The bulk has been cancelled The bulk has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-communicationtype.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.CommunicationType",
     "tags0": [
       "COMMUNICATION_TYPE_TCPIP",
       "COMMUNICATION_TYPE_LISTENING",
       "COMMUNICATION_TYPE_MODEM_POOL",
       "COMMUNICATION_TYPE_SERIAL_LINE_MOXA",
       "COMMUNICATION_TYPE_SERIAL_LINE_DIRECT",
-      "io.clbs.openhes.models.acquisition.CommunicationType"
+      "Enum: io.clbs.openhes.models.acquisition.CommunicationType"
     ],
     "tags1": [
-      "MODEM",
-      "MOXA",
-      "TYPE",
-      "TCPIP",
       "COMMUNICATION",
       "CommunicationType",
-      "POOL",
-      "LINE",
       "DIRECT",
+      "LINE",
+      "LISTENING",
+      "MODEM",
+      "MOXA",
+      "POOL",
       "SERIAL",
-      "LISTENING"
+      "TCPIP",
+      "TYPE"
     ],
     "tags2": "Defines the supported communication types for device connections The communication established via direct TCP The communication established via phone line modem The communication established via direct serial line The communication established via controlled serial line Moxa The communication passive The driver listens port for example DLMS devices push mode subscribes message queue for example MQTT"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-datalinkprotocol.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.DataLinkProtocol",
     "tags0": [
       "LINKPROTO_HDLC",
       "LINKPROTO_MBUS",
@@ -1217,31 +1280,32 @@
       "LINKPROTO_IEC_62056_21",
       "LINKPROTO_COSEM_WRAPPER",
       "LINKPROTO_NOT_APPLICABLE",
-      "io.clbs.openhes.models.acquisition.DataLinkProtocol"
+      "Enum: io.clbs.openhes.models.acquisition.DataLinkProtocol"
     ],
     "tags1": [
-      "DataLinkProtocol",
-      "WRAPPER",
-      "NOT",
+      "APPLICABLE",
       "COSEM",
+      "DataLinkProtocol",
+      "HDLC",
       "IEC",
       "LINKPROTO",
       "MBUS",
-      "VIKTOR",
       "MODBUS",
-      "APPLICABLE",
-      "HDLC"
+      "NOT",
+      "VIKTOR",
+      "WRAPPER"
     ],
     "tags2": "Defines the supported data link protocols The VDEW IEC IEC protocol When combined with the DLMS protocol the driver initiates communication via IEC and then switches the mode HDLC DLMS Supports multiple devices the same line The HDLC ISO IEC framing Used with various application protocols such DLMS MODBUS Supports client server addressing for multiple devices the same line The COSEM wrapper Used with the DLMS application protocol Supports client server addressing for multiple devices the same line The Modbus protocol Used with the Modbus application protocol where other data link used The Bus protocol Used with the Bus application protocol The Viktor protocol proprietary protocol used Viktor based devices such DC450 Viktor data link protocol applicable Used with listening communication types"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-deviceconfigurationregisterkind.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind",
     "tags0": [
       "Register",
       "Synthetic",
       "IrregularProfile",
       "PeriodicalProfile",
-      "io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"
+      "Enum: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"
     ],
     "tags1": [
       "DeviceConfigurationRegisterKind"
@@ -1250,29 +1314,31 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-joberrorcode.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.JobErrorCode",
     "tags0": [
       "JOB_ERROR_CODE_NONE",
       "JOB_ERROR_CODE_BUSY",
       "JOB_ERROR_CODE_ERROR",
       "JOB_ERROR_CODE_FATAL",
       "JOB_ERROR_CODE_ALREADY_EXISTS",
-      "io.clbs.openhes.models.acquisition.JobErrorCode"
+      "Enum: io.clbs.openhes.models.acquisition.JobErrorCode"
     ],
     "tags1": [
-      "NONE",
-      "JOB",
+      "ALREADY",
+      "BUSY",
       "CODE",
       "ERROR",
-      "JobErrorCode",
-      "ALREADY",
+      "EXISTS",
       "FATAL",
-      "BUSY",
-      "EXISTS"
+      "JOB",
+      "JobErrorCode",
+      "NONE"
     ],
     "tags2": "Defines the error codes related jobs The job has been completed successfully There free slot the driver handle the job the job shall send again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times the driver which would point bug The job failed not retry will attempted"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobpriority.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.JobPriority",
     "tags0": [
       "JOB_PRIORITY_0",
       "JOB_PRIORITY_1",
@@ -1283,7 +1349,7 @@
       "JOB_PRIORITY_6",
       "JOB_PRIORITY_7",
       "JOB_PRIORITY_8",
-      "io.clbs.openhes.models.acquisition.JobPriority"
+      "Enum: io.clbs.openhes.models.acquisition.JobPriority"
     ],
     "tags1": [
       "JOB",
@@ -1294,6 +1360,7 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobstatuscode.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.JobStatusCode",
     "tags0": [
       "JOB_STATUS_QUEUED",
       "JOB_STATUS_FAILED",
@@ -1302,85 +1369,89 @@
       "JOB_STATUS_COMPLETED",
       "JOB_STATUS_CANCELLED",
       "JOB_STATUS_PROCESSING_DATA",
-      "io.clbs.openhes.models.acquisition.JobStatusCode"
+      "Enum: io.clbs.openhes.models.acquisition.JobStatusCode"
     ],
     "tags1": [
+      "CANCELLED",
+      "COMPLETED",
+      "DATA",
+      "EXPIRED",
+      "FAILED",
       "JOB",
-      "STATUS",
+      "JobStatusCode",
       "PROCESSING",
       "QUEUED",
-      "DATA",
-      "FAILED",
-      "JobStatusCode",
-      "COMPLETED",
-      "CANCELLED",
-      "EXPIRED",
-      "RUNNING"
+      "RUNNING",
+      "STATUS"
     ],
     "tags2": "Defines the possible statuses jobs The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job has been cancelled The job has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-logrecordlevel.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.LogRecordLevel",
     "tags0": [
       "LOG_RECORD_LEVEL_INFO",
       "LOG_RECORD_LEVEL_DEBUG",
       "LOG_RECORD_LEVEL_ERROR",
       "LOG_RECORD_LEVEL_FATAL",
       "LOG_RECORD_LEVEL_WARNING",
-      "io.clbs.openhes.models.acquisition.LogRecordLevel"
+      "Enum: io.clbs.openhes.models.acquisition.LogRecordLevel"
     ],
     "tags1": [
-      "RECORD",
-      "INFO",
-      "WARNING",
+      "DEBUG",
       "ERROR",
       "FATAL",
+      "INFO",
+      "LEVEL",
       "LOG",
       "LogRecordLevel",
-      "DEBUG",
-      "LEVEL"
+      "RECORD",
+      "WARNING"
     ],
     "tags2": "Defines the severity levels for communication unit log records Debug log record Information log record Warning log record Error log record Fatal log record"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-readpathpolicy.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.ReadPathPolicy",
     "tags0": [
       "DC_FIRST",
       "METER_FIRST",
       "READ_PATH_POLICY_UNSPECIFIED",
-      "io.clbs.openhes.models.acquisition.ReadPathPolicy"
+      "Enum: io.clbs.openhes.models.acquisition.ReadPathPolicy"
     ],
     "tags1": [
+      "DC",
+      "FIRST",
+      "METER",
       "PATH",
       "POLICY",
-      "METER",
-      "ReadPathPolicy",
       "READ",
-      "UNSPECIFIED",
-      "FIRST",
-      "DC"
+      "ReadPathPolicy",
+      "UNSPECIFIED"
     ],
     "tags2": "Defines the read path policies for retrieving data from devices Keeps the current behavior typically data concentrator first Attempts read directly from the meter and falls back the data concentrator needed and supported Attempts read from the data concentrator first and falls back the meter needed and supported"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-topologynodetype.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.TopologyNodeType",
     "tags0": [
       "TOPOLOGY_NODE_DEVICE",
       "TOPOLOGY_NODE_COMMUNICATION_UNIT",
-      "io.clbs.openhes.models.acquisition.TopologyNodeType"
+      "Enum: io.clbs.openhes.models.acquisition.TopologyNodeType"
     ],
     "tags1": [
-      "TopologyNodeType",
-      "TOPOLOGY",
       "COMMUNICATION",
-      "NODE",
       "DEVICE",
+      "NODE",
+      "TOPOLOGY",
+      "TopologyNodeType",
       "UNIT"
     ],
     "tags2": "Defines the types nodes the network topology The node device such electricity meter The node communication unit such modem data concentrator"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-accessleveltemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.AccessLevelTemplate",
     "tags0": [
       "id",
       "name",
@@ -1393,6 +1464,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiondata.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionData",
     "tags0": [
       "nodata",
       "events",
@@ -1410,6 +1482,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionfwupdate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionFwUpdate",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionFwUpdate"
     ],
@@ -1420,6 +1493,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetdeviceinfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionGetDeviceInfo"
     ],
@@ -1430,6 +1504,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetevents.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetEvents",
     "tags0": [
       "rangeEnd",
       "rangeStart",
@@ -1442,6 +1517,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile",
     "tags0": [
       "rangeEnd",
       "dataType",
@@ -1455,6 +1531,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile",
     "tags0": [
       "rangeEnd",
       "dataType",
@@ -1468,6 +1545,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetregister.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetRegister",
     "tags0": [
       "dataType",
       "io.clbs.openhes.models.acquisition.ActionGetRegister"
@@ -1479,6 +1557,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongettou.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionGetTou",
     "tags0": [
       "passive",
       "io.clbs.openhes.models.acquisition.ActionGetTou"
@@ -1490,6 +1569,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionresetbillingperiod.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionResetBillingPeriod"
     ],
@@ -1500,6 +1580,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionresult.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionResult",
     "tags0": [
       "data",
       "status",
@@ -1516,6 +1597,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetdisconnectorstate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionSetDisconnectorState"
     ],
@@ -1526,6 +1608,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetlimiter.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionSetLimiter",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionSetLimiter"
     ],
@@ -1536,6 +1619,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetrelaystate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionSetRelayState",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionSetRelayState"
     ],
@@ -1546,6 +1630,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsettou.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionSetTou",
     "tags0": [
       "table",
       "io.clbs.openhes.models.acquisition.ActionSetTou"
@@ -1557,6 +1642,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsyncclock.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionSyncClock",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ActionSyncClock"
     ],
@@ -1567,6 +1653,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-addcommunicationunitstocommunicationbusrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest",
     "tags0": [
       "communicationBusId",
       "communicationUnitId",
@@ -1579,6 +1666,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-adddeviceconfigurationregistertodeviceconfigurationtemplaterequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest",
     "tags0": [
       "dctId",
       "registerId",
@@ -1591,6 +1679,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-adddevicestogrouprequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest",
     "tags0": [
       "groupId",
       "deviceId",
@@ -1603,6 +1692,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-addregistertovariablerequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest",
     "tags0": [
       "variableId",
       "registerId",
@@ -1615,6 +1705,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-applicationprotocoltemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate",
     "tags0": [
       "protocol",
       "attributes",
@@ -1627,6 +1718,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulk.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.Bulk",
     "tags0": [
       "spec",
       "status",
@@ -1640,6 +1732,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkjob.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.BulkJob",
     "tags0": [
       "spec",
       "status",
@@ -1653,6 +1746,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkjobspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.BulkJobSpec",
     "tags0": [
       "device",
       "io.clbs.openhes.models.acquisition.BulkJobSpec"
@@ -1664,6 +1758,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.BulkSpec",
     "tags0": [
       "devices",
       "actions",
@@ -1680,6 +1775,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkstatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.BulkStatus",
     "tags0": [
       "status",
       "jobsCount",
@@ -1697,6 +1793,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationbus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationBus",
     "tags0": [
       "status",
       "metadata",
@@ -1709,6 +1806,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationbusstatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationBusStatus",
     "tags0": [
       "communicationUnitId",
       "io.clbs.openhes.models.acquisition.CommunicationBusStatus"
@@ -1720,6 +1818,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationtemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationTemplate",
     "tags0": [
       "type",
       "datalinks",
@@ -1732,6 +1831,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunit.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationUnit",
     "tags0": [
       "spec",
       "metadata",
@@ -1744,6 +1844,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunitlogrecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord",
     "tags0": [
       "id",
       "level",
@@ -1759,6 +1860,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunitspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CommunicationUnitSpec",
     "tags0": [
       "externalId",
       "connectionInfo",
@@ -1771,6 +1873,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectioninfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionInfo",
     "tags0": [
       "tcpip",
       "modemPool",
@@ -1787,6 +1890,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypecontrolledserial.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial",
     "tags0": [
       "moxa",
       "direct",
@@ -1800,6 +1904,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp",
     "tags0": [
       "host",
       "port",
@@ -1813,6 +1918,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypemodempool.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool",
     "tags0": [
       "modem",
       "number",
@@ -1826,6 +1932,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialdirect.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect",
     "tags0": [
       "host",
       "port",
@@ -1839,6 +1946,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialmoxa.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa",
     "tags0": [
       "host",
       "timeout",
@@ -1853,6 +1961,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialrfc2217.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217",
     "tags0": [
       "host",
       "port",
@@ -1866,6 +1975,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createbulkrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateBulkRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1878,6 +1988,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createcommunicationbusrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest",
     "tags0": [
       "metadata",
       "io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest"
@@ -1889,6 +2000,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createcommunicationunitrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1901,6 +2013,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdeviceconfigurationregisterrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1913,6 +2026,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdeviceconfigurationtemplaterequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1925,6 +2039,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdevicegrouprequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1937,6 +2052,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createdevicerequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateDeviceRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1949,6 +2065,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createproxybulkrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1961,6 +2078,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createtimeofusetablerequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1973,6 +2091,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createvariablerequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.CreateVariableRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -1985,6 +2104,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-datalinktemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DataLinkTemplate",
     "tags0": [
       "attributes",
       "linkProtocol",
@@ -1998,6 +2118,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-defaultdevicecommunicationunitattributes.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes",
     "tags0": [
       "attributes",
       "appProtocol",
@@ -2010,6 +2131,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-device.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.Device",
     "tags0": [
       "spec",
       "status",
@@ -2023,6 +2145,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicebulks.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceBulks",
     "tags0": [
       "bulks",
       "io.clbs.openhes.models.acquisition.DeviceBulks"
@@ -2034,6 +2157,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunit.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit",
     "tags0": [
       "attributes",
       "appProtocol",
@@ -2047,6 +2171,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunitchange.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange",
     "tags0": [
       "status",
       "io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange"
@@ -2058,6 +2183,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicecommunicationunitchangestatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus",
     "tags0": [
       "changeAt",
       "deviceId",
@@ -2073,6 +2199,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationregister.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister",
     "tags0": [
       "spec",
       "metadata",
@@ -2085,6 +2212,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationregisterspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec",
     "tags0": [
       "dataType",
       "driverType",
@@ -2099,6 +2227,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate",
     "tags0": [
       "spec",
       "metadata",
@@ -2111,6 +2240,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceconfigurationtemplatespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec",
     "tags0": [
       "driverType",
       "registerId",
@@ -2123,6 +2253,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedata.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceData",
     "tags0": [
       "devices",
       "io.clbs.openhes.models.acquisition.DeviceData"
@@ -2134,6 +2265,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceDataInfo",
     "tags0": [
       "spec",
       "status",
@@ -2146,6 +2278,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfospec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceDataInfoSpec",
     "tags0": [
       "deviceId",
       "registerId",
@@ -2158,6 +2291,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedatainfostatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus",
     "tags0": [
       "period",
       "lastValueAt",
@@ -2171,6 +2305,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedevicedata.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceDeviceData",
     "tags0": [
       "data",
       "deviceId",
@@ -2183,6 +2318,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceeventrecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceEventRecord",
     "tags0": [
       "eventId",
       "deviceId",
@@ -2199,6 +2335,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceevents.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceEvents",
     "tags0": [
       "events",
       "io.clbs.openhes.models.acquisition.DeviceEvents"
@@ -2210,6 +2347,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicegroup.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceGroup",
     "tags0": [
       "spec",
       "metadata",
@@ -2222,6 +2360,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicegroupspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceGroupSpec",
     "tags0": [
       "externalId",
       "io.clbs.openhes.models.acquisition.DeviceGroupSpec"
@@ -2233,6 +2372,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-deviceinfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceInfo",
     "tags0": [
       "clockDelta",
       "deviceModel",
@@ -2252,6 +2392,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceSpec",
     "tags0": [
       "dctId",
       "timezone",
@@ -2267,6 +2408,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicestatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DeviceStatus",
     "tags0": [
       "info",
       "driverType",
@@ -2279,6 +2421,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driver.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.Driver",
     "tags0": [
       "spec",
       "status",
@@ -2291,6 +2434,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driverspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DriverSpec",
     "tags0": [
       "version",
       "templates",
@@ -2309,6 +2453,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-driverstatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DriverStatus",
     "tags0": [
       "isLatest",
       "updateFinished",
@@ -2321,6 +2466,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-drivertemplates.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.DriverTemplates",
     "tags0": [
       "appProtocols",
       "accessTemplates",
@@ -2337,6 +2483,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-eventrecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.EventRecord",
     "tags0": [
       "eventId",
       "timestamp",
@@ -2352,6 +2499,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-eventrecords.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.EventRecords",
     "tags0": [
       "values",
       "io.clbs.openhes.models.acquisition.EventRecords"
@@ -2363,6 +2511,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicebulksrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest",
     "tags0": [
       "rangeEnd",
       "deviceId",
@@ -2376,6 +2525,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicedatarequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.GetDeviceDataRequest",
     "tags0": [
       "series",
       "rangeEnd",
@@ -2392,6 +2542,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdevicedataseriesselector.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector",
     "tags0": [
       "deviceId",
       "variableId",
@@ -2404,6 +2555,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-getdeviceeventsrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest",
     "tags0": [
       "rangeEnd",
       "deviceId",
@@ -2417,6 +2569,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-irregularprofilevalues.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.IrregularProfileValues",
     "tags0": [
       "unit",
       "values",
@@ -2429,6 +2582,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-irregularvalue.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.IrregularValue",
     "tags0": [
       "value",
       "timestamp",
@@ -2441,6 +2595,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobaction.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobAction",
     "tags0": [
       "getTou",
       "setTou",
@@ -2466,6 +2621,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionattributes.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobActionAttributes",
     "tags0": [
       "type",
       "attributes",
@@ -2478,6 +2634,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactioncontraints.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobActionContraints",
     "tags0": [
       "getRegisterTypeName",
       "getRegisterTypeAttributes",
@@ -2490,6 +2647,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionset.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobActionSet",
     "tags0": [
       "getTou",
       "setTou",
@@ -2514,6 +2672,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdevice.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobDevice",
     "tags0": [
       "jobId",
       "deviceId",
@@ -2531,6 +2690,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdeviceid.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobDeviceId",
     "tags0": [
       "jobId",
       "deviceId",
@@ -2543,6 +2703,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobsettings.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobSettings",
     "tags0": [
       "priority",
       "attempts",
@@ -2560,6 +2721,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobstatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.JobStatus",
     "tags0": [
       "code",
       "status",
@@ -2579,6 +2741,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListBulkJobsRequest",
     "tags0": [
       "bulkId",
       "selector",
@@ -2591,6 +2754,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listdevicegroupdevicesrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest",
     "tags0": [
       "groupId",
       "selector",
@@ -2603,6 +2767,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofbulk.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfBulk",
     "tags0": [
       "items",
       "totalCount",
@@ -2615,6 +2780,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofbulkjob.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfBulkJob",
     "tags0": [
       "items",
       "totalCount",
@@ -2627,6 +2793,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationbus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfCommunicationBus",
     "tags0": [
       "items",
       "totalCount",
@@ -2639,6 +2806,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationunit.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit",
     "tags0": [
       "items",
       "totalCount",
@@ -2651,6 +2819,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofcommunicationunitlogrecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord",
     "tags0": [
       "items",
       "totalCount",
@@ -2663,6 +2832,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevice.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDevice",
     "tags0": [
       "items",
       "totalCount",
@@ -2675,6 +2845,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunit.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit",
     "tags0": [
       "items",
       "totalCount",
@@ -2687,6 +2858,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicecommunicationunitchange.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange",
     "tags0": [
       "items",
       "totalCount",
@@ -2699,6 +2871,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationregister.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister",
     "tags0": [
       "items",
       "totalCount",
@@ -2711,6 +2884,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdeviceconfigurationtemplate.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate",
     "tags0": [
       "items",
       "totalCount",
@@ -2723,6 +2897,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicedatainfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo",
     "tags0": [
       "items",
       "totalCount",
@@ -2735,6 +2910,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdevicegroup.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDeviceGroup",
     "tags0": [
       "items",
       "totalCount",
@@ -2747,6 +2923,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofdriver.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfDriver",
     "tags0": [
       "items",
       "totalCount",
@@ -2759,6 +2936,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofjobdevice.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfJobDevice",
     "tags0": [
       "list",
       "totalCount",
@@ -2771,6 +2949,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofjobdeviceid.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfJobDeviceId",
     "tags0": [
       "list",
       "totalCount",
@@ -2783,6 +2962,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofmodempool.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfModemPool",
     "tags0": [
       "items",
       "totalCount",
@@ -2795,6 +2975,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listoftimeofusetable.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable",
     "tags0": [
       "items",
       "totalCount",
@@ -2807,6 +2988,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listofvariable.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ListOfVariable",
     "tags0": [
       "items",
       "totalCount",
@@ -2819,6 +3001,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-measuredvalue.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.MeasuredValue",
     "tags0": [
       "status",
       "peakTs",
@@ -2839,6 +3022,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modeminfo.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ModemInfo",
     "tags0": [
       "name",
       "tcpip",
@@ -2860,6 +3044,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempool.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ModemPool",
     "tags0": [
       "spec",
       "status",
@@ -2873,6 +3058,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempoolspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ModemPoolSpec",
     "tags0": [
       "io.clbs.openhes.models.acquisition.ModemPoolSpec"
     ],
@@ -2883,6 +3069,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempoolstatus.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ModemPoolStatus",
     "tags0": [
       "modems",
       "io.clbs.openhes.models.acquisition.ModemPoolStatus"
@@ -2894,6 +3081,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-networkmap.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.NetworkMap",
     "tags0": [
       "nodes",
       "edges",
@@ -2906,6 +3094,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-profileblock.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ProfileBlock",
     "tags0": [
       "values",
       "startTimestamp",
@@ -2918,6 +3107,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-profilevalues.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ProfileValues",
     "tags0": [
       "unit",
       "period",
@@ -2931,6 +3121,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-proxybulk.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ProxyBulk",
     "tags0": [
       "spec",
       "status",
@@ -2944,6 +3135,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-proxybulkspec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ProxyBulkSpec",
     "tags0": [
       "devices",
       "actions",
@@ -2960,6 +3152,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-registervalue.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RegisterValue",
     "tags0": [
       "unit",
       "value",
@@ -2973,6 +3166,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-registervalues.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RegisterValues",
     "tags0": [
       "values",
       "io.clbs.openhes.models.acquisition.RegisterValues"
@@ -2984,6 +3178,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removecommunicationunitsfromcommunicationbusrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest",
     "tags0": [
       "communicationBusId",
       "communicationUnitId",
@@ -2996,6 +3191,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removedeviceconfigurationregisterfromdeviceconfigurationtemplaterequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest",
     "tags0": [
       "dctId",
       "registerId",
@@ -3008,6 +3204,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest",
     "tags0": [
       "groupId",
       "deviceId",
@@ -3020,6 +3217,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removeregisterfromvariablerequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest",
     "tags0": [
       "variableId",
       "registerId",
@@ -3032,6 +3230,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setdevicecommunicationunitsrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest",
     "tags0": [
       "deviceId",
       "communicationUnits",
@@ -3044,6 +3243,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setmodempoolrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.SetModemPoolRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -3056,6 +3256,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setmodemrequest.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.SetModemRequest",
     "tags0": [
       "modem",
       "poolId",
@@ -3068,6 +3269,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofusetable.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.TimeOfUseTable",
     "tags0": [
       "spec",
       "metadata",
@@ -3080,6 +3282,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-topologyedge.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.TopologyEdge",
     "tags0": [
       "toXId",
       "fromXId",
@@ -3093,6 +3296,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-topologynode.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.TopologyNode",
     "tags0": [
       "xId",
       "type",
@@ -3106,6 +3310,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variable.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.Variable",
     "tags0": [
       "spec",
       "metadata",
@@ -3118,6 +3323,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variabledevicedata.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.VariableDeviceData",
     "tags0": [
       "units",
       "values",
@@ -3132,6 +3338,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-variablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.VariableSpec",
     "tags0": [
       "dataType",
       "registerId",
@@ -3145,24 +3352,26 @@
   },
   {
     "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
       "CRON_JOB_TYPE_START_BULK",
       "CRON_JOB_TYPE_START_PROXY_BULK",
-      "io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "JOB",
-      "CRON",
-      "START",
       "BULK",
-      "TYPE",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
       "PROXY",
-      "CronJobTypeEnum"
+      "START",
+      "TYPE"
     ],
     "tags2": "Cron job start acquistion bulk Cron job start proxy bulk"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
       "spec",
       "metadata",
@@ -3175,6 +3384,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
       "spec",
       "status",
@@ -3188,6 +3398,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
     "tags0": [
       "type",
       "data",
@@ -3203,6 +3414,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
     "tags0": [
       "error",
       "lastRunAt",
@@ -3216,6 +3428,7 @@
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
     "tags0": [
       "items",
       "totalCount",
