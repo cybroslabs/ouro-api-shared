@@ -24,20 +24,20 @@ const (
 type AuthenticatedEncryption int32
 
 const (
-	AuthenticatedEncryption_AE_NONE        AuthenticatedEncryption = 0
-	AuthenticatedEncryption_AE_AES_GCM_128 AuthenticatedEncryption = 1
-	AuthenticatedEncryption_AE_AES_GCM_256 AuthenticatedEncryption = 2
+	AuthenticatedEncryption_AE_UNSPECIFIED AuthenticatedEncryption = 0 // No authenticated encryption.
+	AuthenticatedEncryption_AE_AES_GCM_128 AuthenticatedEncryption = 1 // AES-GCM with 128-bit key.
+	AuthenticatedEncryption_AE_AES_GCM_256 AuthenticatedEncryption = 2 // AES-GCM with 256-bit key.
 )
 
 // Enum value maps for AuthenticatedEncryption.
 var (
 	AuthenticatedEncryption_name = map[int32]string{
-		0: "AE_NONE",
+		0: "AE_UNSPECIFIED",
 		1: "AE_AES_GCM_128",
 		2: "AE_AES_GCM_256",
 	}
 	AuthenticatedEncryption_value = map[string]int32{
-		"AE_NONE":        0,
+		"AE_UNSPECIFIED": 0,
 		"AE_AES_GCM_128": 1,
 		"AE_AES_GCM_256": 2,
 	}
@@ -68,22 +68,22 @@ func (x AuthenticatedEncryption) Number() protoreflect.EnumNumber {
 type DigitalSignature int32
 
 const (
-	DigitalSignature_DS_ECDSA_NONE  DigitalSignature = 0
-	DigitalSignature_DS_ECDSA_P_256 DigitalSignature = 1
-	DigitalSignature_DS_ECDSA_P_384 DigitalSignature = 2
+	DigitalSignature_DS_ECDSA_UNSPECIFIED DigitalSignature = 0 // No digital signature.
+	DigitalSignature_DS_ECDSA_P_256       DigitalSignature = 1 // ECDSA using the NIST P-256 curve.
+	DigitalSignature_DS_ECDSA_P_384       DigitalSignature = 2 // ECDSA using the NIST P-384 curve.
 )
 
 // Enum value maps for DigitalSignature.
 var (
 	DigitalSignature_name = map[int32]string{
-		0: "DS_ECDSA_NONE",
+		0: "DS_ECDSA_UNSPECIFIED",
 		1: "DS_ECDSA_P_256",
 		2: "DS_ECDSA_P_384",
 	}
 	DigitalSignature_value = map[string]int32{
-		"DS_ECDSA_NONE":  0,
-		"DS_ECDSA_P_256": 1,
-		"DS_ECDSA_P_384": 2,
+		"DS_ECDSA_UNSPECIFIED": 0,
+		"DS_ECDSA_P_256":       1,
+		"DS_ECDSA_P_384":       2,
 	}
 )
 
@@ -112,22 +112,22 @@ func (x DigitalSignature) Number() protoreflect.EnumNumber {
 type KeyAgreement int32
 
 const (
-	KeyAgreement_KA_NONE       KeyAgreement = 0
-	KeyAgreement_KA_ECDH_P_256 KeyAgreement = 1
-	KeyAgreement_KA_ECDH_P_384 KeyAgreement = 2
+	KeyAgreement_KA_UNSPECIFIED KeyAgreement = 0 // No key agreement.
+	KeyAgreement_KA_ECDH_P_256  KeyAgreement = 1 // ECDH using the NIST P-256 curve.
+	KeyAgreement_KA_ECDH_P_384  KeyAgreement = 2 // ECDH using the NIST P-384 curve.
 )
 
 // Enum value maps for KeyAgreement.
 var (
 	KeyAgreement_name = map[int32]string{
-		0: "KA_NONE",
+		0: "KA_UNSPECIFIED",
 		1: "KA_ECDH_P_256",
 		2: "KA_ECDH_P_384",
 	}
 	KeyAgreement_value = map[string]int32{
-		"KA_NONE":       0,
-		"KA_ECDH_P_256": 1,
-		"KA_ECDH_P_384": 2,
+		"KA_UNSPECIFIED": 0,
+		"KA_ECDH_P_256":  1,
+		"KA_ECDH_P_384":  2,
 	}
 )
 
@@ -156,7 +156,8 @@ func (x KeyAgreement) Number() protoreflect.EnumNumber {
 type Hash int32
 
 const (
-	Hash_HASH_NONE Hash = 0
+	// No hash.
+	Hash_HASH_UNSPECIFIED Hash = 0
 	// MD5 hash.
 	// In standard DLMS:
 	//
@@ -187,7 +188,7 @@ const (
 // Enum value maps for Hash.
 var (
 	Hash_name = map[int32]string{
-		0: "HASH_NONE",
+		0: "HASH_UNSPECIFIED",
 		1: "HASH_MD5",
 		2: "HASH_SHA_1",
 		3: "HASH_GMAC",
@@ -195,12 +196,12 @@ var (
 		5: "HASH_ECDSA",
 	}
 	Hash_value = map[string]int32{
-		"HASH_NONE":    0,
-		"HASH_MD5":     1,
-		"HASH_SHA_1":   2,
-		"HASH_GMAC":    3,
-		"HASH_SHA_256": 4,
-		"HASH_ECDSA":   5,
+		"HASH_UNSPECIFIED": 0,
+		"HASH_MD5":         1,
+		"HASH_SHA_1":       2,
+		"HASH_GMAC":        3,
+		"HASH_SHA_256":     4,
+		"HASH_ECDSA":       5,
 	}
 )
 
@@ -229,21 +230,22 @@ func (x Hash) Number() protoreflect.EnumNumber {
 type HashDirection int32
 
 const (
-	// The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
-	HashDirection_CLIENT_TO_SERVER HashDirection = 0
-	// The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
-	HashDirection_SERVER_TO_CLIENT HashDirection = 1
+	HashDirection_HASH_DIRECTION_UNSPECIFIED      HashDirection = 0 // Unspecified direction.
+	HashDirection_HASH_DIRECTION_CLIENT_TO_SERVER HashDirection = 1 // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
+	HashDirection_HASH_DIRECTION_SERVER_TO_CLIENT HashDirection = 2 // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
 )
 
 // Enum value maps for HashDirection.
 var (
 	HashDirection_name = map[int32]string{
-		0: "CLIENT_TO_SERVER",
-		1: "SERVER_TO_CLIENT",
+		0: "HASH_DIRECTION_UNSPECIFIED",
+		1: "HASH_DIRECTION_CLIENT_TO_SERVER",
+		2: "HASH_DIRECTION_SERVER_TO_CLIENT",
 	}
 	HashDirection_value = map[string]int32{
-		"CLIENT_TO_SERVER": 0,
-		"SERVER_TO_CLIENT": 1,
+		"HASH_DIRECTION_UNSPECIFIED":      0,
+		"HASH_DIRECTION_CLIENT_TO_SERVER": 1,
+		"HASH_DIRECTION_SERVER_TO_CLIENT": 2,
 	}
 )
 
@@ -696,7 +698,7 @@ func (x *DlmsInit) GetEncryption() AuthenticatedEncryption {
 			return x.xxx_hidden_Encryption
 		}
 	}
-	return AuthenticatedEncryption_AE_NONE
+	return AuthenticatedEncryption_AE_UNSPECIFIED
 }
 
 func (x *DlmsInit) GetSignature() DigitalSignature {
@@ -705,7 +707,7 @@ func (x *DlmsInit) GetSignature() DigitalSignature {
 			return x.xxx_hidden_Signature
 		}
 	}
-	return DigitalSignature_DS_ECDSA_NONE
+	return DigitalSignature_DS_ECDSA_UNSPECIFIED
 }
 
 func (x *DlmsInit) GetDriverId() string {
@@ -866,12 +868,12 @@ func (x *DlmsInit) HasCToS() bool {
 
 func (x *DlmsInit) ClearEncryption() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Encryption = AuthenticatedEncryption_AE_NONE
+	x.xxx_hidden_Encryption = AuthenticatedEncryption_AE_UNSPECIFIED
 }
 
 func (x *DlmsInit) ClearSignature() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Signature = DigitalSignature_DS_ECDSA_NONE
+	x.xxx_hidden_Signature = DigitalSignature_DS_ECDSA_UNSPECIFIED
 }
 
 func (x *DlmsInit) ClearDriverId() {
@@ -1519,7 +1521,7 @@ func (x *DlmsHash) GetDirection() HashDirection {
 			return x.xxx_hidden_Direction
 		}
 	}
-	return HashDirection_CLIENT_TO_SERVER
+	return HashDirection_HASH_DIRECTION_UNSPECIFIED
 }
 
 func (x *DlmsHash) GetMode() Hash {
@@ -1528,7 +1530,7 @@ func (x *DlmsHash) GetMode() Hash {
 			return x.xxx_hidden_Mode
 		}
 	}
-	return Hash_HASH_NONE
+	return Hash_HASH_UNSPECIFIED
 }
 
 func (x *DlmsHash) GetFrameCounter() uint32 {
@@ -1595,12 +1597,12 @@ func (x *DlmsHash) HasSecurityControl() bool {
 
 func (x *DlmsHash) ClearDirection() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Direction = HashDirection_CLIENT_TO_SERVER
+	x.xxx_hidden_Direction = HashDirection_HASH_DIRECTION_UNSPECIFIED
 }
 
 func (x *DlmsHash) ClearMode() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Mode = Hash_HASH_NONE
+	x.xxx_hidden_Mode = Hash_HASH_UNSPECIFIED
 }
 
 func (x *DlmsHash) ClearFrameCounter() {
@@ -1689,7 +1691,7 @@ func (x *DlmsAuthVerify) GetDirection() HashDirection {
 			return x.xxx_hidden_Direction
 		}
 	}
-	return HashDirection_CLIENT_TO_SERVER
+	return HashDirection_HASH_DIRECTION_UNSPECIFIED
 }
 
 func (x *DlmsAuthVerify) GetMode() Hash {
@@ -1698,7 +1700,7 @@ func (x *DlmsAuthVerify) GetMode() Hash {
 			return x.xxx_hidden_Mode
 		}
 	}
-	return Hash_HASH_NONE
+	return Hash_HASH_UNSPECIFIED
 }
 
 func (x *DlmsAuthVerify) GetFrameCounter() uint32 {
@@ -1787,12 +1789,12 @@ func (x *DlmsAuthVerify) HasData() bool {
 
 func (x *DlmsAuthVerify) ClearDirection() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Direction = HashDirection_CLIENT_TO_SERVER
+	x.xxx_hidden_Direction = HashDirection_HASH_DIRECTION_UNSPECIFIED
 }
 
 func (x *DlmsAuthVerify) ClearMode() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Mode = Hash_HASH_NONE
+	x.xxx_hidden_Mode = Hash_HASH_UNSPECIFIED
 }
 
 func (x *DlmsAuthVerify) ClearFrameCounter() {
@@ -2011,31 +2013,32 @@ const file_crypto_crypto_proto_rawDesc = "" +
 	"\x04data\x18\x05 \x01(\fR\x04data\"<\n" +
 	"\fErrorMessage\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\rR\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage*N\n" +
-	"\x17AuthenticatedEncryption\x12\v\n" +
-	"\aAE_NONE\x10\x00\x12\x12\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage*U\n" +
+	"\x17AuthenticatedEncryption\x12\x12\n" +
+	"\x0eAE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eAE_AES_GCM_128\x10\x01\x12\x12\n" +
-	"\x0eAE_AES_GCM_256\x10\x02*M\n" +
-	"\x10DigitalSignature\x12\x11\n" +
-	"\rDS_ECDSA_NONE\x10\x00\x12\x12\n" +
+	"\x0eAE_AES_GCM_256\x10\x02*T\n" +
+	"\x10DigitalSignature\x12\x18\n" +
+	"\x14DS_ECDSA_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eDS_ECDSA_P_256\x10\x01\x12\x12\n" +
-	"\x0eDS_ECDSA_P_384\x10\x02*A\n" +
-	"\fKeyAgreement\x12\v\n" +
-	"\aKA_NONE\x10\x00\x12\x11\n" +
+	"\x0eDS_ECDSA_P_384\x10\x02*H\n" +
+	"\fKeyAgreement\x12\x12\n" +
+	"\x0eKA_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rKA_ECDH_P_256\x10\x01\x12\x11\n" +
-	"\rKA_ECDH_P_384\x10\x02*d\n" +
-	"\x04Hash\x12\r\n" +
-	"\tHASH_NONE\x10\x00\x12\f\n" +
+	"\rKA_ECDH_P_384\x10\x02*k\n" +
+	"\x04Hash\x12\x14\n" +
+	"\x10HASH_UNSPECIFIED\x10\x00\x12\f\n" +
 	"\bHASH_MD5\x10\x01\x12\x0e\n" +
 	"\n" +
 	"HASH_SHA_1\x10\x02\x12\r\n" +
 	"\tHASH_GMAC\x10\x03\x12\x10\n" +
 	"\fHASH_SHA_256\x10\x04\x12\x0e\n" +
 	"\n" +
-	"HASH_ECDSA\x10\x05*;\n" +
-	"\rHashDirection\x12\x14\n" +
-	"\x10CLIENT_TO_SERVER\x10\x00\x12\x14\n" +
-	"\x10SERVER_TO_CLIENT\x10\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
+	"HASH_ECDSA\x10\x05*y\n" +
+	"\rHashDirection\x12\x1e\n" +
+	"\x1aHASH_DIRECTION_UNSPECIFIED\x10\x00\x12#\n" +
+	"\x1fHASH_DIRECTION_CLIENT_TO_SERVER\x10\x01\x12#\n" +
+	"\x1fHASH_DIRECTION_SERVER_TO_CLIENT\x10\x02B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
 
 var file_crypto_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_crypto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 9)

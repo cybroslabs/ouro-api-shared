@@ -123,8 +123,9 @@ message SetNeighboursRequest {
 }
 
 enum DeviceNeighbourType {
-    DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT = 0;  // The device neighbour is a communication unit.
-    DEVICE_NEIGHBOUR_TYPE_DEVICE             = 1;  // The device neighbour is a device.
+    DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED        = 0;  // Unspecified type.
+    DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT = 1;  // The device neighbour is a communication unit.
+    DEVICE_NEIGHBOUR_TYPE_DEVICE             = 2;  // The device neighbour is a device.
 }
 
 message DeviceNeightbour {

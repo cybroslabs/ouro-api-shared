@@ -27,19 +27,22 @@ const (
 type CronJobTypeEnum int32
 
 const (
-	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 0 // Cron job to start an acquistion bulk.
-	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 1 // Cron job to start a proxy bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED      CronJobTypeEnum = 0 // Unspecified cron job type.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 1 // Cron job to start an acquistion bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 2 // Cron job to start a proxy bulk.
 )
 
 // Enum value maps for CronJobTypeEnum.
 var (
 	CronJobTypeEnum_name = map[int32]string{
-		0: "CRON_JOB_TYPE_START_BULK",
-		1: "CRON_JOB_TYPE_START_PROXY_BULK",
+		0: "CRON_JOB_TYPE_UNSPECIFIED",
+		1: "CRON_JOB_TYPE_START_BULK",
+		2: "CRON_JOB_TYPE_START_PROXY_BULK",
 	}
 	CronJobTypeEnum_value = map[string]int32{
-		"CRON_JOB_TYPE_START_BULK":       0,
-		"CRON_JOB_TYPE_START_PROXY_BULK": 1,
+		"CRON_JOB_TYPE_UNSPECIFIED":      0,
+		"CRON_JOB_TYPE_START_BULK":       1,
+		"CRON_JOB_TYPE_START_PROXY_BULK": 2,
 	}
 )
 
@@ -320,7 +323,7 @@ func (x *CronJobSpec) GetType() CronJobTypeEnum {
 			return x.xxx_hidden_Type
 		}
 	}
-	return CronJobTypeEnum_CRON_JOB_TYPE_START_BULK
+	return CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED
 }
 
 func (x *CronJobSpec) GetSchedule() string {
@@ -418,7 +421,7 @@ func (x *CronJobSpec) HasData() bool {
 
 func (x *CronJobSpec) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = CronJobTypeEnum_CRON_JOB_TYPE_START_BULK
+	x.xxx_hidden_Type = CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED
 }
 
 func (x *CronJobSpec) ClearSchedule() {
@@ -718,10 +721,11 @@ const file_cronjobs_cronjobs_proto_rawDesc = "" +
 	"\rListOfCronJob\x12>\n" +
 	"\x05items\x18\x01 \x03(\v2(.io.clbs.openhes.models.cronjobs.CronJobR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*S\n" +
-	"\x0fCronJobTypeEnum\x12\x1c\n" +
-	"\x18CRON_JOB_TYPE_START_BULK\x10\x00\x12\"\n" +
-	"\x1eCRON_JOB_TYPE_START_PROXY_BULK\x10\x01B7Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\beditionsp\xe8\a"
+	"totalCount*r\n" +
+	"\x0fCronJobTypeEnum\x12\x1d\n" +
+	"\x19CRON_JOB_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18CRON_JOB_TYPE_START_BULK\x10\x01\x12\"\n" +
+	"\x1eCRON_JOB_TYPE_START_PROXY_BULK\x10\x02B7Z5github.com/cybroslabs/ouro-api-shared/gen/go/cronjobsb\beditionsp\xe8\a"
 
 var file_cronjobs_cronjobs_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cronjobs_cronjobs_proto_msgTypes = make([]protoimpl.MessageInfo, 5)

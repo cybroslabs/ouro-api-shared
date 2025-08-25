@@ -3336,7 +3336,7 @@ func (x *BulkStatus) GetStatus() BulkStatusCode {
 			return x.xxx_hidden_Status
 		}
 	}
-	return BulkStatusCode_BULK_STATUS_QUEUED
+	return BulkStatusCode_BULK_STATUS_UNSPECIFIED
 }
 
 func (x *BulkStatus) GetJobsCount() int32 {
@@ -3464,7 +3464,7 @@ func (x *BulkStatus) HasFinishedAt() bool {
 
 func (x *BulkStatus) ClearStatus() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Status = BulkStatusCode_BULK_STATUS_QUEUED
+	x.xxx_hidden_Status = BulkStatusCode_BULK_STATUS_UNSPECIFIED
 }
 
 func (x *BulkStatus) ClearJobsCount() {
@@ -5865,7 +5865,7 @@ func (x *VariableSpec) HasExcludeDataFrom() bool {
 
 func (x *VariableSpec) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 func (x *VariableSpec) ClearExcludeDataFrom() {

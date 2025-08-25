@@ -419,81 +419,114 @@
     "tags2": ""
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "ApplicationConfig"
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Application config specification The default values for the application configuration"
+    "tags2": "Unspecified cron job type Cron job start acquistion bulk Cron job start proxy bulk"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor"
+      "CreateCronJobRequest"
     ],
-    "tags2": "The component configuration descriptors The default values for the application configuration"
+    "tags2": "The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
+      "spec",
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CronJob"
     ],
     "tags1": [
-      "ComponentConfig"
+      "CronJob"
     ],
-    "tags2": "The component name The component configuration values"
+    "tags2": "The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+      "type",
+      "data",
+      "suspend",
+      "schedule",
+      "timezone",
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
     ],
     "tags1": [
-      "ComponentConfigDescriptor"
+      "CronJobSpec"
     ],
-    "tags2": "The component name The component configuration descriptors"
+    "tags2": "The type the cron job CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition for every hour The timezone related the cron job America New York Europe Prague CET GMT Etc GMT Whether the cron job suspended not default false not suspended The payload sent when the cron job runs"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
     "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
     ],
     "tags1": [
-      "OpenIdConfiguration"
+      "CronJobStatus"
     ],
-    "tags2": "The raw JSON configuration the OIDC service"
+    "tags2": "The timestamp the last run The timestamp the next run The error message the cron job schedule invalid"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "tags0": [
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+    ],
+    "tags1": [
+      "ListOfCronJob"
+    ],
+    "tags2": "The list cron jobs The total number items"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
     "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
     "tags0": [
-      "NOOP",
-      "CONNECT",
-      "DISCONNECT",
+      "RELAY_STATE_CONNECT",
+      "RELAY_STATE_DISCONNECT",
+      "RELAY_STATE_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
     ],
     "tags1": [
-      "RelayState"
+      "CONNECT",
+      "DISCONNECT",
+      "RELAY",
+      "RelayState",
+      "STATE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Enumeration for Relay State Relay state ignored action Relay connects Relay disconnects"
+    "tags2": "Enumeration for Relay State Unspecified relay state Relay state ignored action Relay connects Relay disconnects"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
@@ -606,6 +639,7 @@
     "tags0": [
       "SECRET_DATA_PLAIN",
       "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
@@ -613,28 +647,29 @@
       "DATA",
       "PLAIN",
       "SECRET",
-      "SecretDataDecryptionMethod"
+      "SecretDataDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "DLMS crypto mode Plain data decryption needed AES CBC encryption method"
+    "tags2": "DLMS crypto mode Unspecified decryption method Plain data decryption needed AES CBC encryption method"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
     "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
-      "SECRET_SESSION_NONE",
       "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
       "SECRET_SESSION_RSA_OAEPM_GF1P",
       "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
       "GF1P",
-      "NONE",
       "OAEPM",
       "PLAIN",
       "RSA",
       "SECRET",
       "SESSION",
-      "SecretSessionKeyDecryptionMethod"
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
     ],
     "tags2": "session key decryption method used when the session key not set not used Plain session key session key decryption needed RSA OAEP MGF1P decryption method used for session keys"
   },
@@ -713,12 +748,16 @@
       "BOOLEAN",
       "DURATION",
       "TIMESTAMP",
+      "DATA_TYPE_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.common.FieldDataType"
     ],
     "tags1": [
-      "FieldDataType"
+      "DATA",
+      "FieldDataType",
+      "TYPE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Enum representing the field data type The text data type The integer data type The double data type The binary data type The boolean data type The timestamp data type represented google protobuf Timestamp The duration data type represented google protobuf Duration"
+    "tags2": "Enum representing the field data type Unspecified data type The text data type The integer data type The double data type The binary data type The boolean data type The timestamp data type represented google protobuf Timestamp The duration data type represented google protobuf Duration"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddisplayformat.md",
@@ -726,20 +765,23 @@
     "tags0": [
       "MONEY",
       "COMBO",
-      "DEFAULT",
       "PASSWORD",
       "DATE_ONLY",
       "TIMEOFDAY",
       "MULTILINE",
       "UTC_DATETIME",
       "UTC_DATE_ONLY",
+      "DISPLAY_FORMAT_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.common.FieldDisplayFormat"
     ],
     "tags1": [
       "DATE",
       "DATETIME",
+      "DISPLAY",
+      "FORMAT",
       "FieldDisplayFormat",
       "ONLY",
+      "UNSPECIFIED",
       "UTC"
     ],
     "tags2": "Enum representing the field display format The default display format The GUI shows text int double date time duration the default format The date only display format local date time Data type must TIMESTAMP string The date time display format with UTC timezone Data type must TIMESTAMP string The date display format with UTC timezone Data type must TIMESTAMP string The time day display format Data type must INTEGER milliseconds The money display format The unit must set the currency code ISO standard USD EUR Data type must DOUBLE INTEGER The password display format Data type must TEXT The GUI must always display six starts not reveal the actual password length The multiline string display format Data type must TEXT The combo box display style format Data type must TEXT The GUI must display the value combo box with the list options"
@@ -763,12 +805,14 @@
       "NOT_CONTAINS",
       "LESS_THAN_OR_EQUAL",
       "GREATER_THAN_OR_EQUAL",
+      "FILTER_OPERATOR_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.common.FilterOperator"
     ],
     "tags1": [
       "CONTAINS",
       "ENDS",
       "EQUAL",
+      "FILTER",
       "FilterOperator",
       "GREATER",
       "IN",
@@ -776,12 +820,14 @@
       "LESS",
       "NOT",
       "NULL",
+      "OPERATOR",
       "OR",
       "STARTS",
       "THAN",
+      "UNSPECIFIED",
       "WITH"
     ],
-    "tags2": "The filter operator Single operand operator for text integer number boolean date fields Single operand operator for text integer number boolean date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Multiple operand operator for text integer number boolean fields Multiple operand operator for text integer number boolean fields Two operand operator for integer number date fields operand operator For both null and empty string operand operator For both null and empty string"
+    "tags2": "The filter operator Unspecified filter operator Single operand operator for text integer number boolean date fields Single operand operator for text integer number boolean date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Multiple operand operator for text integer number boolean fields Multiple operand operator for text integer number boolean fields Two operand operator for integer number date fields operand operator For both null and empty string operand operator For both null and empty string"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-objecttype.md",
@@ -799,6 +845,7 @@
       "COMMUNICATION_BUS",
       "TIME_OF_USE_TABLE",
       "COMMUNICATION_UNIT",
+      "OBJECT_TYPE_UNSPECIFIED",
       "COMMUNICATION_UNIT_LOG_RECORD",
       "DEVICE_CONFIGURATION_REGISTER",
       "DEVICE_CONFIGURATION_TEMPLATE",
@@ -819,6 +866,7 @@
       "JOB",
       "LOG",
       "MODEM",
+      "OBJECT",
       "OF",
       "ObjectType",
       "POOL",
@@ -827,10 +875,12 @@
       "TABLE",
       "TEMPLATE",
       "TIME",
+      "TYPE",
       "UNIT",
+      "UNSPECIFIED",
       "USE"
     ],
-    "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool The time use table The variable"
+    "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool Unspecified object type The time use table The variable"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-createfielddescriptorrequest.md",
@@ -1120,12 +1170,76 @@
     "tags2": "The specification the fields set for the resource"
   },
   {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Application config specification The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "The component configuration descriptors The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "The component name The component configuration descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "tags0": [
+      "content",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "The raw JSON configuration the OIDC service"
+  },
+  {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
     "title": "Enum: io.clbs.openhes.models.acquisition.ActionResultCode",
     "tags0": [
       "ERROR_CODE_ACTION_OK",
       "ERROR_CODE_ACTION_ERROR",
       "ERROR_CODE_ACTION_PENDING",
+      "ERROR_CODE_ACTION_UNSPECIFIED",
       "ERROR_CODE_ACTION_UNSUPPORTED",
       "Enum: io.clbs.openhes.models.acquisition.ActionResultCode"
     ],
@@ -1136,9 +1250,10 @@
       "ERROR",
       "OK",
       "PENDING",
+      "UNSPECIFIED",
       "UNSUPPORTED"
     ],
-    "tags2": "Defines the result codes related job actions The action has been completed successfully The action not supported the driver device The action pending The action has failed"
+    "tags2": "Defines the result codes related job actions Unspecified action result code The action has been completed successfully The action not supported the driver device The action pending The action has failed"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actiontype.md",
@@ -1149,6 +1264,7 @@
       "ACTION_TYPE_FW_UPDATE",
       "ACTION_TYPE_GET_EVENTS",
       "ACTION_TYPE_SYNC_CLOCK",
+      "ACTION_TYPE_UNSPECIFIED",
       "ACTION_TYPE_SET_LIMITER",
       "ACTION_TYPE_GET_REGISTER",
       "ACTION_TYPE_GET_DEVICE_INFO",
@@ -1184,9 +1300,10 @@
       "SYNC",
       "TOU",
       "TYPE",
+      "UNSPECIFIED",
       "UPDATE"
     ],
-    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Get register value for example instantaneous values The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
+    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Unspecified action type Get register value for example instantaneous values The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-applicationprotocol.md",
@@ -1200,6 +1317,7 @@
       "APPPROTO_DLMS_SN",
       "APPPROTO_DLMS_LN",
       "APPPROTO_ANSI_C12",
+      "APPPROTO_UNSPECIFIED",
       "APPPROTO_IEC_62056_21",
       "Enum: io.clbs.openhes.models.acquisition.ApplicationProtocol"
     ],
@@ -1216,9 +1334,10 @@
       "MODBUS",
       "MQTT",
       "SCTM",
-      "SN"
+      "SN",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the supported application protocols The IEC IEC VDEW protocol The DLMS short name protocol The DLMS logical name protocol The SCTM protocol The LIS200 protocol The ANSI C12 protocol The MQTT protocol The MODBUS protocol The MBUS protocol"
+    "tags2": "Defines the supported application protocols Unspecified application protocol The IEC IEC VDEW protocol The DLMS short name protocol The DLMS logical name protocol The SCTM protocol The LIS200 protocol The ANSI C12 protocol The MQTT protocol The MODBUS protocol The MBUS protocol"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-bulkstatuscode.md",
@@ -1229,6 +1348,7 @@
       "BULK_STATUS_EXPIRED",
       "BULK_STATUS_COMPLETED",
       "BULK_STATUS_CANCELLED",
+      "BULK_STATUS_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.acquisition.BulkStatusCode"
     ],
     "tags1": [
@@ -1239,9 +1359,10 @@
       "EXPIRED",
       "QUEUED",
       "RUNNING",
-      "STATUS"
+      "STATUS",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the status information entire bulk The bulk waiting the queue The bulk currently running The bulk has been completed The bulk has been cancelled The bulk has expired"
+    "tags2": "Defines the status information entire bulk Unspecified bulk status The bulk waiting the queue The bulk currently running The bulk has been completed The bulk has been cancelled The bulk has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-communicationtype.md",
@@ -1250,6 +1371,7 @@
       "COMMUNICATION_TYPE_TCPIP",
       "COMMUNICATION_TYPE_LISTENING",
       "COMMUNICATION_TYPE_MODEM_POOL",
+      "COMMUNICATION_TYPE_UNSPECIFIED",
       "COMMUNICATION_TYPE_SERIAL_LINE_MOXA",
       "COMMUNICATION_TYPE_SERIAL_LINE_DIRECT",
       "Enum: io.clbs.openhes.models.acquisition.CommunicationType"
@@ -1265,9 +1387,10 @@
       "POOL",
       "SERIAL",
       "TCPIP",
-      "TYPE"
+      "TYPE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the supported communication types for device connections The communication established via direct TCP The communication established via phone line modem The communication established via direct serial line The communication established via controlled serial line Moxa The communication passive The driver listens port for example DLMS devices push mode subscribes message queue for example MQTT"
+    "tags2": "Defines the supported communication types for device connections Unspecified communication type The communication established via direct TCP The communication established via phone line modem The communication established via direct serial line The communication established via controlled serial line Moxa The communication passive The driver listens port for example DLMS devices push mode subscribes message queue for example MQTT"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-datalinkprotocol.md",
@@ -1277,6 +1400,7 @@
       "LINKPROTO_MBUS",
       "LINKPROTO_MODBUS",
       "LINKPROTO_VIKTOR",
+      "LINTPROTO_UNSPECIFIED",
       "LINKPROTO_IEC_62056_21",
       "LINKPROTO_COSEM_WRAPPER",
       "LINKPROTO_NOT_APPLICABLE",
@@ -1289,28 +1413,38 @@
       "HDLC",
       "IEC",
       "LINKPROTO",
+      "LINTPROTO",
       "MBUS",
       "MODBUS",
       "NOT",
+      "UNSPECIFIED",
       "VIKTOR",
       "WRAPPER"
     ],
-    "tags2": "Defines the supported data link protocols The VDEW IEC IEC protocol When combined with the DLMS protocol the driver initiates communication via IEC and then switches the mode HDLC DLMS Supports multiple devices the same line The HDLC ISO IEC framing Used with various application protocols such DLMS MODBUS Supports client server addressing for multiple devices the same line The COSEM wrapper Used with the DLMS application protocol Supports client server addressing for multiple devices the same line The Modbus protocol Used with the Modbus application protocol where other data link used The Bus protocol Used with the Bus application protocol The Viktor protocol proprietary protocol used Viktor based devices such DC450 Viktor data link protocol applicable Used with listening communication types"
+    "tags2": "Defines the supported data link protocols Unspecified data link protocol The VDEW IEC IEC protocol When combined with the DLMS protocol the driver initiates communication via IEC and then switches the mode HDLC DLMS Supports multiple devices the same line The HDLC ISO IEC framing Used with various application protocols such DLMS MODBUS Supports client server addressing for multiple devices the same line The COSEM wrapper Used with the DLMS application protocol Supports client server addressing for multiple devices the same line The Modbus protocol Used with the Modbus application protocol where other data link used The Bus protocol Used with the Bus application protocol The Viktor protocol proprietary protocol used Viktor based devices such DC450 Viktor data link protocol applicable Used with listening communication types"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-deviceconfigurationregisterkind.md",
     "title": "Enum: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind",
     "tags0": [
-      "Register",
-      "Synthetic",
-      "IrregularProfile",
-      "PeriodicalProfile",
+      "KIND_REGISTER",
+      "KIND_SYNTHETIC",
+      "KIND_UNSPECIFIED",
+      "KIND_IRREGULAR_PROFILE",
+      "KIND_PERIODICAL_PROFILE",
       "Enum: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind"
     ],
     "tags1": [
-      "DeviceConfigurationRegisterKind"
+      "DeviceConfigurationRegisterKind",
+      "IRREGULAR",
+      "KIND",
+      "PERIODICAL",
+      "PROFILE",
+      "REGISTER",
+      "SYNTHETIC",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the possible register types The object represents generic register The object represents periodical profile The object represents irregular profile The object represents synthetic register not visible drivers can defined store derived external data"
+    "tags2": "Defines the possible register types Unspecified register kind The object represents generic register The object represents periodical profile The object represents irregular profile The object represents synthetic register not visible drivers can defined store derived external data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-joberrorcode.md",
@@ -1320,6 +1454,7 @@
       "JOB_ERROR_CODE_BUSY",
       "JOB_ERROR_CODE_ERROR",
       "JOB_ERROR_CODE_FATAL",
+      "JOB_ERROR_CODE_UNSPECIFIED",
       "JOB_ERROR_CODE_ALREADY_EXISTS",
       "Enum: io.clbs.openhes.models.acquisition.JobErrorCode"
     ],
@@ -1332,9 +1467,10 @@
       "FATAL",
       "JOB",
       "JobErrorCode",
-      "NONE"
+      "NONE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the error codes related jobs The job has been completed successfully There free slot the driver handle the job the job shall send again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times the driver which would point bug The job failed not retry will attempted"
+    "tags2": "Defines the error codes related jobs Unspecified job error code The job has been completed successfully There free slot the driver handle the job the job shall send again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times the driver which would point bug The job failed not retry will attempted"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobpriority.md",
@@ -1349,14 +1485,16 @@
       "JOB_PRIORITY_6",
       "JOB_PRIORITY_7",
       "JOB_PRIORITY_8",
+      "JOB_PRIORITY_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.acquisition.JobPriority"
     ],
     "tags1": [
       "JOB",
       "JobPriority",
-      "PRIORITY"
+      "PRIORITY",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the available job priority levels Lowest priority Priority Priority Priority Priority Priority Priority Priority Highest priority"
+    "tags2": "Defines the available job priority levels Unspecified priority Lowest priority Priority Priority Priority Priority Priority Priority Priority Highest priority"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobstatuscode.md",
@@ -1368,6 +1506,7 @@
       "JOB_STATUS_EXPIRED",
       "JOB_STATUS_COMPLETED",
       "JOB_STATUS_CANCELLED",
+      "JOB_STATUS_UNSPECIFIED",
       "JOB_STATUS_PROCESSING_DATA",
       "Enum: io.clbs.openhes.models.acquisition.JobStatusCode"
     ],
@@ -1382,9 +1521,10 @@
       "PROCESSING",
       "QUEUED",
       "RUNNING",
-      "STATUS"
+      "STATUS",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the possible statuses jobs The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job has been cancelled The job has expired"
+    "tags2": "Defines the possible statuses jobs Unspecified job status The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job has been cancelled The job has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-logrecordlevel.md",
@@ -1436,6 +1576,7 @@
     "title": "Enum: io.clbs.openhes.models.acquisition.TopologyNodeType",
     "tags0": [
       "TOPOLOGY_NODE_DEVICE",
+      "TOPOLOGY_NODE_UNSPECIFIED",
       "TOPOLOGY_NODE_COMMUNICATION_UNIT",
       "Enum: io.clbs.openhes.models.acquisition.TopologyNodeType"
     ],
@@ -1445,9 +1586,10 @@
       "NODE",
       "TOPOLOGY",
       "TopologyNodeType",
-      "UNIT"
+      "UNIT",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the types nodes the network topology The node device such electricity meter The node communication unit such modem data concentrator"
+    "tags2": "Defines the types nodes the network topology Unspecified node type The node device such electricity meter The node communication unit such modem data concentrator"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-accessleveltemplate.md",
@@ -3349,94 +3491,5 @@
       "VariableSpec"
     ],
     "tags2": "The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable true the device data returned for this variable will exclude values from timestamp Default false include values from timestamp"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
-    "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
-    ],
-    "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE"
-    ],
-    "tags2": "Cron job start acquistion bulk Cron job start proxy bulk"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
-    "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
-    ],
-    "tags1": [
-      "CreateCronJobRequest"
-    ],
-    "tags2": "The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
-    "tags0": [
-      "spec",
-      "status",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
-    ],
-    "tags1": [
-      "CronJob"
-    ],
-    "tags2": "The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
-    "tags0": [
-      "type",
-      "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
-    ],
-    "tags1": [
-      "CronJobSpec"
-    ],
-    "tags2": "The type the cron job CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition for every hour The timezone related the cron job America New York Europe Prague CET GMT Etc GMT Whether the cron job suspended not default false not suspended The payload sent when the cron job runs"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
-    "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
-    ],
-    "tags1": [
-      "CronJobStatus"
-    ],
-    "tags2": "The timestamp the last run The timestamp the next run The error message the cron job schedule invalid"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
-    "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
-    ],
-    "tags1": [
-      "ListOfCronJob"
-    ],
-    "tags2": "The list cron jobs The total number items"
   }
 ]

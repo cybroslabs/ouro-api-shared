@@ -27,19 +27,22 @@ const (
 type SecretDataDecryptionMethod int32
 
 const (
-	SecretDataDecryptionMethod_SECRET_DATA_PLAIN     SecretDataDecryptionMethod = 0 // Plain data, no decryption needed
-	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC SecretDataDecryptionMethod = 1 // AES-256-CBC encryption method
+	SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED SecretDataDecryptionMethod = 0 // Unspecified decryption method.
+	SecretDataDecryptionMethod_SECRET_DATA_PLAIN       SecretDataDecryptionMethod = 1 // Plain data, no decryption needed
+	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC   SecretDataDecryptionMethod = 2 // AES-256-CBC encryption method
 )
 
 // Enum value maps for SecretDataDecryptionMethod.
 var (
 	SecretDataDecryptionMethod_name = map[int32]string{
-		0: "SECRET_DATA_PLAIN",
-		1: "SECRET_DATA_AES256CBC",
+		0: "SECRET_DATA_UNSPECIFIED",
+		1: "SECRET_DATA_PLAIN",
+		2: "SECRET_DATA_AES256CBC",
 	}
 	SecretDataDecryptionMethod_value = map[string]int32{
-		"SECRET_DATA_PLAIN":     0,
-		"SECRET_DATA_AES256CBC": 1,
+		"SECRET_DATA_UNSPECIFIED": 0,
+		"SECRET_DATA_PLAIN":       1,
+		"SECRET_DATA_AES256CBC":   2,
 	}
 )
 
@@ -68,7 +71,7 @@ func (x SecretDataDecryptionMethod) Number() protoreflect.EnumNumber {
 type SecretSessionKeyDecryptionMethod int32
 
 const (
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE           SecretSessionKeyDecryptionMethod = 0 // No session key decryption method, used when the session key is not set or not used.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED    SecretSessionKeyDecryptionMethod = 0 // No session key decryption method, used when the session key is not set or not used.
 	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Plain session key, no session-key decryption needed.
 	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // RSA-OAEP-MGF1P decryption method, used for session keys.
 )
@@ -76,12 +79,12 @@ const (
 // Enum value maps for SecretSessionKeyDecryptionMethod.
 var (
 	SecretSessionKeyDecryptionMethod_name = map[int32]string{
-		0: "SECRET_SESSION_NONE",
+		0: "SECRET_SESSION_UNSPECIFIED",
 		1: "SECRET_SESSION_PLAIN",
 		2: "SECRET_SESSION_RSA_OAEPM_GF1P",
 	}
 	SecretSessionKeyDecryptionMethod_value = map[string]int32{
-		"SECRET_SESSION_NONE":           0,
+		"SECRET_SESSION_UNSPECIFIED":    0,
 		"SECRET_SESSION_PLAIN":          1,
 		"SECRET_SESSION_RSA_OAEPM_GF1P": 2,
 	}
@@ -212,7 +215,7 @@ func (x *GetCryptoSecretRequest) HasCryptoId() bool {
 
 func (x *GetCryptoSecretRequest) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ObjectType = common.ObjectType_BULK
+	x.xxx_hidden_ObjectType = common.ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *GetCryptoSecretRequest) ClearDriverType() {
@@ -614,7 +617,7 @@ func (x *SetCryptoSecretRequest) GetSessionKeyDecryptionMethod() SecretSessionKe
 			return x.xxx_hidden_SessionKeyDecryptionMethod
 		}
 	}
-	return SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE
+	return SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED
 }
 
 func (x *SetCryptoSecretRequest) GetSessionKey() []byte {
@@ -630,7 +633,7 @@ func (x *SetCryptoSecretRequest) GetDataDecryptionMethod() SecretDataDecryptionM
 			return x.xxx_hidden_DataDecryptionMethod
 		}
 	}
-	return SecretDataDecryptionMethod_SECRET_DATA_PLAIN
+	return SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED
 }
 
 func (x *SetCryptoSecretRequest) GetDataDecryptionIv() []byte {
@@ -790,7 +793,7 @@ func (x *SetCryptoSecretRequest) HasData() bool {
 
 func (x *SetCryptoSecretRequest) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ObjectType = common.ObjectType_BULK
+	x.xxx_hidden_ObjectType = common.ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *SetCryptoSecretRequest) ClearDriverType() {
@@ -820,7 +823,7 @@ func (x *SetCryptoSecretRequest) ClearDecryptionSecretId() {
 
 func (x *SetCryptoSecretRequest) ClearSessionKeyDecryptionMethod() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
-	x.xxx_hidden_SessionKeyDecryptionMethod = SecretSessionKeyDecryptionMethod_SECRET_SESSION_NONE
+	x.xxx_hidden_SessionKeyDecryptionMethod = SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED
 }
 
 func (x *SetCryptoSecretRequest) ClearSessionKey() {
@@ -830,7 +833,7 @@ func (x *SetCryptoSecretRequest) ClearSessionKey() {
 
 func (x *SetCryptoSecretRequest) ClearDataDecryptionMethod() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
-	x.xxx_hidden_DataDecryptionMethod = SecretDataDecryptionMethod_SECRET_DATA_PLAIN
+	x.xxx_hidden_DataDecryptionMethod = SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED
 }
 
 func (x *SetCryptoSecretRequest) ClearDataDecryptionIv() {
@@ -948,12 +951,13 @@ const file_crypto_management_proto_rawDesc = "" +
 	"\x16data_decryption_method\x18\t \x01(\x0e29.io.clbs.openhes.models.crypto.SecretDataDecryptionMethodR\x14dataDecryptionMethod\x12,\n" +
 	"\x12data_decryption_iv\x18\n" +
 	" \x01(\fR\x10dataDecryptionIv\x12\x12\n" +
-	"\x04data\x18\x0f \x01(\fR\x04dataJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f*N\n" +
-	"\x1aSecretDataDecryptionMethod\x12\x15\n" +
-	"\x11SECRET_DATA_PLAIN\x10\x00\x12\x19\n" +
-	"\x15SECRET_DATA_AES256CBC\x10\x01*x\n" +
-	" SecretSessionKeyDecryptionMethod\x12\x17\n" +
-	"\x13SECRET_SESSION_NONE\x10\x00\x12\x18\n" +
+	"\x04data\x18\x0f \x01(\fR\x04dataJ\x04\b\v\x10\fJ\x04\b\f\x10\rJ\x04\b\r\x10\x0eJ\x04\b\x0e\x10\x0f*k\n" +
+	"\x1aSecretDataDecryptionMethod\x12\x1b\n" +
+	"\x17SECRET_DATA_UNSPECIFIED\x10\x00\x12\x15\n" +
+	"\x11SECRET_DATA_PLAIN\x10\x01\x12\x19\n" +
+	"\x15SECRET_DATA_AES256CBC\x10\x02*\x7f\n" +
+	" SecretSessionKeyDecryptionMethod\x12\x1e\n" +
+	"\x1aSECRET_SESSION_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14SECRET_SESSION_PLAIN\x10\x01\x12!\n" +
 	"\x1dSECRET_SESSION_RSA_OAEPM_GF1P\x10\x02B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/cryptob\beditionsp\xe8\a"
 

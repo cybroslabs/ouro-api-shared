@@ -6,6 +6,7 @@ Defines the error codes related to jobs.
 
 | Value | Description |
 | --- | --- |
+| JOB_ERROR_CODE_UNSPECIFIED | Unspecified job error code. |
 | JOB_ERROR_CODE_NONE | The job has been completed successfully. |
 | JOB_ERROR_CODE_BUSY | There is no free slot in the driver to handle the job; the job shall be send again later. |
 | JOB_ERROR_CODE_ERROR | The job has failed; a retry will be attempted. |

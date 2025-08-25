@@ -6,6 +6,7 @@ Defines the available job priority levels.
 
 | Value | Description |
 | --- | --- |
+| JOB_PRIORITY_UNSPECIFIED | Unspecified priority. |
 | JOB_PRIORITY_0 | Lowest priority. |
 | JOB_PRIORITY_1 | Priority 1. |
 | JOB_PRIORITY_2 | Priority 2. |

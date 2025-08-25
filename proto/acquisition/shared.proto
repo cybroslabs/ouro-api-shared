@@ -16,24 +16,16 @@ import "acquisition/timeofuse/timeofuse.proto";
 
 // Defines the available job priority levels.
 enum JobPriority {
-    // Lowest priority.
-    JOB_PRIORITY_0 = 0;
-    // Priority 1.
-    JOB_PRIORITY_1 = 1;
-    // Priority 2.
-    JOB_PRIORITY_2 = 2;
-    // Priority 3.
-    JOB_PRIORITY_3 = 3;
-    // Priority 4.
-    JOB_PRIORITY_4 = 4;
-    // Priority 5.
-    JOB_PRIORITY_5 = 5;
-    // Priority 6.
-    JOB_PRIORITY_6 = 6;
-    // Priority 7.
-    JOB_PRIORITY_7 = 7;
-    // Highest priority.
-    JOB_PRIORITY_8 = 8;
+    JOB_PRIORITY_UNSPECIFIED = 0;  // Unspecified priority.
+    JOB_PRIORITY_0           = 1;  // Lowest priority.
+    JOB_PRIORITY_1           = 2;  // Priority 1.
+    JOB_PRIORITY_2           = 3;  // Priority 2.
+    JOB_PRIORITY_3           = 4;  // Priority 3.
+    JOB_PRIORITY_4           = 5;  // Priority 4.
+    JOB_PRIORITY_5           = 6;  // Priority 5.
+    JOB_PRIORITY_6           = 7;  // Priority 6.
+    JOB_PRIORITY_7           = 8;  // Priority 7.
+    JOB_PRIORITY_8           = 9;  // Highest priority.
 }
 
 // Defines the read path policies for retrieving data from devices.
@@ -152,45 +144,49 @@ message ModemInfo {
 
 // Defines the available serial port parity types.
 enum SerialConfigParity {
-    PARITY_NONE  = 0;  // No parity.
-    PARITY_EVEN  = 1;  // Even parity.
-    PARITY_ODD   = 3;  // Odd parity.
-    PARITY_MARK  = 4;  // Mark parity.
-    PARITY_SPACE = 5;  // Space parity.
+    PARITY_UNSPECIFIED = 0;  // Unspecified parity.
+    PARITY_NONE        = 1;  // No parity.
+    PARITY_EVEN        = 2;  // Even parity.
+    PARITY_ODD         = 3;  // Odd parity.
+    PARITY_MARK        = 4;  // Mark parity.
+    PARITY_SPACE       = 5;  // Space parity.
 }
 
 // Defines the available serial port baud rate types.
 enum SerialConfigBaudRate {
-    BAUD_RATE_110    = 0;   // 110 baud.
-    BAUD_RATE_300    = 1;   // 300 baud.
-    BAUD_RATE_600    = 2;   // 600 baud.
-    BAUD_RATE_1200   = 3;   // 1200 baud.
-    BAUD_RATE_2400   = 4;   // 2400 baud.
-    BAUD_RATE_4800   = 5;   // 4800 baud.
-    BAUD_RATE_9600   = 6;   // 9600 baud.
-    BAUD_RATE_14400  = 7;   // 14400 baud.
-    BAUD_RATE_19200  = 8;   // 19200 baud.
-    BAUD_RATE_38400  = 9;   // 38400 baud.
-    BAUD_RATE_57600  = 10;  // 57600 baud.
-    BAUD_RATE_115200 = 11;  // 115200 baud.
-    BAUD_RATE_230400 = 12;  // 230400 baud.
-    BAUD_RATE_460800 = 13;  // 460800 baud.
-    BAUD_RATE_921600 = 14;  // 921600 baud.
+    BAUD_RATE_UNSPECIFIED = 0;   // Unspecified baud rate.
+    BAUD_RATE_110         = 1;   // 110 baud.
+    BAUD_RATE_300         = 2;   // 300 baud.
+    BAUD_RATE_600         = 3;   // 600 baud.
+    BAUD_RATE_1200        = 4;   // 1200 baud.
+    BAUD_RATE_2400        = 5;   // 2400 baud.
+    BAUD_RATE_4800        = 6;   // 4800 baud.
+    BAUD_RATE_9600        = 7;   // 9600 baud.
+    BAUD_RATE_14400       = 8;   // 14400 baud.
+    BAUD_RATE_19200       = 9;   // 19200 baud.
+    BAUD_RATE_38400       = 10;  // 38400 baud.
+    BAUD_RATE_57600       = 11;  // 57600 baud.
+    BAUD_RATE_115200      = 12;  // 115200 baud.
+    BAUD_RATE_230400      = 13;  // 230400 baud.
+    BAUD_RATE_460800      = 14;  // 460800 baud.
+    BAUD_RATE_921600      = 15;  // 921600 baud.
 }
 
 // Defines the available serial port data bit types.
 enum SerialConfigDataBits {
-    DATA_BITS_5 = 0;  // 5 data bits
-    DATA_BITS_6 = 1;  // 6 data bits
-    DATA_BITS_7 = 2;  // 7 data bits
-    DATA_BITS_8 = 3;  // 8 data bits
+    DATA_BITS_UNSPECIFIED = 0;  // Unspecified data bits.
+    DATA_BITS_5           = 1;  // 5 data bits
+    DATA_BITS_6           = 2;  // 6 data bits
+    DATA_BITS_7           = 3;  // 7 data bits
+    DATA_BITS_8           = 4;  // 8 data bits
 }
 
 // Defines the available serial port stop bit types.
 enum SerialConfigStopBits {
-    STOP_BITS_1   = 0;  // 1 stop bit
-    STOP_BITS_1_5 = 1;  // 1.5 stop bits
-    STOP_BITS_2   = 2;  // 2 stop bits
+    STOP_BITS_UNSPECIFIED = 0;  // Unspecified stop bits.
+    STOP_BITS_1           = 1;  // 1 stop bit
+    STOP_BITS_1_5         = 2;  // 1.5 stop bits
+    STOP_BITS_2           = 3;  // 2 stop bits
 }
 
 // Defines the parameters for serial port configuration.
@@ -255,45 +251,39 @@ message ConnectionTypeSerialRfc2217 {
 
 // Defines the supported communication types for device connections.
 enum CommunicationType {
-    COMMUNICATION_TYPE_TCPIP              = 0;   // The communication is established via direct TCP/IP.
-    COMMUNICATION_TYPE_MODEM_POOL         = 1;   // The communication is established via phone line (modem).
-    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 2;   // The communication is established via a direct serial line.
-    COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 3;   // The communication is established via a controlled  serial line (Moxa).
+    COMMUNICATION_TYPE_UNSPECIFIED        = 0;   // Unspecified communication type.
+    COMMUNICATION_TYPE_TCPIP              = 1;   // The communication is established via direct TCP/IP.
+    COMMUNICATION_TYPE_MODEM_POOL         = 2;   // The communication is established via phone line (modem).
+    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 3;   // The communication is established via a direct serial line.
+    COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 4;   // The communication is established via a controlled  serial line (Moxa).
     COMMUNICATION_TYPE_LISTENING          = 99;  // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 }
 
 // Defines the supported data link protocols.
 enum DataLinkProtocol {
-    LINKPROTO_IEC_62056_21  = 0;  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
-    LINKPROTO_HDLC          = 1;  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_COSEM_WRAPPER = 2;  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_MODBUS        = 3;  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
-    LINKPROTO_MBUS          = 4;  // The M-Bus protocol. Used with the M-Bus application protocol.
-    LINKPROTO_VIKTOR        = 5;  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
+    LINTPROTO_UNSPECIFIED   = 0;  // Unspecified data link protocol.
+    LINKPROTO_IEC_62056_21  = 1;  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
+    LINKPROTO_HDLC          = 2;  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_COSEM_WRAPPER = 3;  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_MODBUS        = 4;  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
+    LINKPROTO_MBUS          = 5;  // The M-Bus protocol. Used with the M-Bus application protocol.
+    LINKPROTO_VIKTOR        = 6;  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
 
     LINKPROTO_NOT_APPLICABLE = 99;  // No data link protocol is applicable. Used with listening communication types.
 }
 
 // Defines the supported application protocols.
 enum ApplicationProtocol {
-    // The IEC 62056-21 (IEC-61107, VDEW) protocol.
-    APPPROTO_IEC_62056_21 = 0;
-    // The DLMS short-name protocol.
-    APPPROTO_DLMS_SN = 1;
-    // The DLMS logical-name protocol.
-    APPPROTO_DLMS_LN = 2;
-    // The SCTM protocol.
-    APPPROTO_SCTM = 3;
-    // The LIS200 protocol.
-    APPPROTO_LIS200 = 4;
-    // The ANSI C12 protocol.
-    APPPROTO_ANSI_C12 = 5;
-    // The MQTT protocol.
-    APPPROTO_MQTT = 6;
-    // The MODBUS protocol.
-    APPPROTO_MODBUS = 7;
-    // The MBUS protocol.
-    APPPROTO_MBUS = 8;
+    APPPROTO_UNSPECIFIED  = 0;  // Unspecified application protocol.
+    APPPROTO_IEC_62056_21 = 1;  // The IEC 62056-21 (IEC-61107, VDEW) protocol.
+    APPPROTO_DLMS_SN      = 2;  // The DLMS short-name protocol.
+    APPPROTO_DLMS_LN      = 3;  // The DLMS logical-name protocol.
+    APPPROTO_SCTM         = 4;  // The SCTM protocol.
+    APPPROTO_LIS200       = 5;  // The LIS200 protocol.
+    APPPROTO_ANSI_C12     = 6;  // The ANSI C12 protocol.
+    APPPROTO_MQTT         = 7;  // The MQTT protocol.
+    APPPROTO_MODBUS       = 8;  // The MODBUS protocol.
+    APPPROTO_MBUS         = 9;  // The MBUS protocol.
 }
 
 // Defines the destription for one application protocol, for example DLMS_SN.
@@ -493,42 +483,30 @@ message ConnectionTypeControlledSerial {
 
 // Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.
 enum ActionType {
-    // Get a register value, for example an instantaneous values. The action covers a specific register.
-    ACTION_TYPE_GET_REGISTER = 0;
-    // Get a periodical profile, for example a load profile. The action covers a specific profile column.
-    ACTION_TYPE_GET_PERIODICAL_PROFILE = 1;
-    // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
-    ACTION_TYPE_GET_IRREGULAR_PROFILE = 2;
-    // Get an event log. The action covers a specific event log.
-    ACTION_TYPE_GET_EVENTS = 3;
+    ACTION_TYPE_UNSPECIFIED = 0;  // Unspecified action type.
 
-    // Get device information. The action returns detailed information data about the remote device.
-    ACTION_TYPE_GET_DEVICE_INFO = 10;
+    ACTION_TYPE_GET_REGISTER           = 1;  // Get a register value, for example an instantaneous values. The action covers a specific register.
+    ACTION_TYPE_GET_PERIODICAL_PROFILE = 2;  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
+    ACTION_TYPE_GET_IRREGULAR_PROFILE  = 3;  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
+    ACTION_TYPE_GET_EVENTS             = 4;  // Get an event log. The action covers a specific event log.
 
-    // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
-    ACTION_TYPE_SYNC_CLOCK = 11;
+    ACTION_TYPE_GET_DEVICE_INFO = 10;  // Get device information. The action returns detailed information data about the remote device.
 
-    // Set relay state. The action covers a single relay.
-    ACTION_TYPE_SET_RELAY_STATE = 21;
+    ACTION_TYPE_SYNC_CLOCK = 11;  // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
 
-    // Get the disconnector state.
-    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;
-    // Set the disconnector state.
-    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;
+    ACTION_TYPE_SET_RELAY_STATE = 21;  // Set relay state. The action covers a single relay.
 
-    // Get time-of-use table.
-    ACTION_TYPE_GET_TOU = 24;
-    // Set time-of-use table.
-    ACTION_TYPE_SET_TOU = 25;
+    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;  // Get the disconnector state.
+    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;  // Set the disconnector state.
 
-    // Set limiter settings. The action covers single limiter.
-    ACTION_TYPE_SET_LIMITER = 27;
+    ACTION_TYPE_GET_TOU = 24;  // Get time-of-use table.
+    ACTION_TYPE_SET_TOU = 25;  // Set time-of-use table.
 
-    // Reset the billing period.
-    ACTION_TYPE_RESET_BILLING_PERIOD = 40;
+    ACTION_TYPE_SET_LIMITER = 27;  // Set limiter settings. The action covers single limiter.
 
-    // Start a firmware update.
-    ACTION_TYPE_FW_UPDATE = 50;
+    ACTION_TYPE_RESET_BILLING_PERIOD = 40;  // Reset the billing period.
+
+    ACTION_TYPE_FW_UPDATE = 50;  // Start a firmware update.
 }
 
 // Defines the get register action specification.
@@ -596,28 +574,21 @@ message ActionFwUpdate {
 
 // Defines the result codes related to job actions.
 enum ActionResultCode {
-    // The action has been completed successfully.
-    ERROR_CODE_ACTION_OK = 0;
-    // The action is not supported by the driver or device.
-    ERROR_CODE_ACTION_UNSUPPORTED = 1;
-    // The action is pending.
-    ERROR_CODE_ACTION_PENDING = 3;
-    // The action has failed.
-    ERROR_CODE_ACTION_ERROR = 5;
+    ERROR_CODE_ACTION_UNSPECIFIED = 0;  // Unspecified action result code.
+    ERROR_CODE_ACTION_OK          = 1;  // The action has been completed successfully.
+    ERROR_CODE_ACTION_UNSUPPORTED = 2;  // The action is not supported by the driver or device.
+    ERROR_CODE_ACTION_PENDING     = 3;  // The action is pending.
+    ERROR_CODE_ACTION_ERROR       = 5;  // The action has failed.
 }
 
 // Defines the error codes related to jobs.
 enum JobErrorCode {
-    // The job has been completed successfully.
-    JOB_ERROR_CODE_NONE = 0;
-    // There is no free slot in the driver to handle the job; the job shall be send again later.
-    JOB_ERROR_CODE_BUSY = 1;
-    // The job has failed; a retry will be attempted.
-    JOB_ERROR_CODE_ERROR = 5;
-    // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
-    JOB_ERROR_CODE_ALREADY_EXISTS = 8;
-    // The job failed, not retry will be attempted.
-    JOB_ERROR_CODE_FATAL = 9;
+    JOB_ERROR_CODE_UNSPECIFIED    = 0;  // Unspecified job error code.
+    JOB_ERROR_CODE_NONE           = 1;  // The job has been completed successfully.
+    JOB_ERROR_CODE_BUSY           = 2;  // There is no free slot in the driver to handle the job; the job shall be send again later.
+    JOB_ERROR_CODE_ERROR          = 5;  // The job has failed; a retry will be attempted.
+    JOB_ERROR_CODE_ALREADY_EXISTS = 8;  // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
+    JOB_ERROR_CODE_FATAL          = 9;  // The job failed, not retry will be attempted.
 }
 
 // Defines the constraints for job actions.
@@ -635,16 +606,12 @@ message JobActionContraints {
 
 // Defines the status information of an entire bulk.
 enum BulkStatusCode {
-    // The bulk is waiting in the queue.
-    BULK_STATUS_QUEUED = 0;
-    // The bulk is currently running.
-    BULK_STATUS_RUNNING = 1;
-    // The bulk has been completed.
-    BULK_STATUS_COMPLETED = 2;
-    // The bulk has been cancelled.
-    BULK_STATUS_CANCELLED = 3;
-    // The bulk has expired.
-    BULK_STATUS_EXPIRED = 4;
+    BULK_STATUS_UNSPECIFIED = 0;  // Unspecified bulk status.
+    BULK_STATUS_QUEUED      = 1;  // The bulk is waiting in the queue.
+    BULK_STATUS_RUNNING     = 2;  // The bulk is currently running.
+    BULK_STATUS_COMPLETED   = 3;  // The bulk has been completed.
+    BULK_STATUS_CANCELLED   = 4;  // The bulk has been cancelled.
+    BULK_STATUS_EXPIRED     = 5;  // The bulk has expired.
 }
 
 // Defines the status information of a single job within a bulk.
@@ -677,14 +644,11 @@ message CancelJobRequest {
 
 // Defines the possible register types.
 enum DeviceConfigurationRegisterKind {
-    // The object represents a generic register.
-    Register = 0;
-    // The object represents a periodical profile.
-    PeriodicalProfile = 1;
-    // The object represents an irregular profile.
-    IrregularProfile = 2;
-    // The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
-    Synthetic = 99;
+    KIND_UNSPECIFIED        = 0;   // Unspecified register kind.
+    KIND_REGISTER           = 1;   // The object represents a generic register.
+    KIND_PERIODICAL_PROFILE = 2;   // The object represents a periodical profile.
+    KIND_IRREGULAR_PROFILE  = 3;   // The object represents an irregular profile.
+    KIND_SYNTHETIC          = 99;  // The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
 }
 
 // Defines the configuration of a register for a device.
@@ -756,20 +720,14 @@ message CommunicationUnitAttributeSelector {
 
 // Defines the possible statuses of jobs.
 enum JobStatusCode {
-    // The job is waiting in the queue for execution.
-    JOB_STATUS_QUEUED = 0;
-    // The job is currently running.
-    JOB_STATUS_RUNNING = 1;
-    // The job has finished acquiring data and is now processing it.
-    JOB_STATUS_PROCESSING_DATA = 2;
-    // The job has been completed.
-    JOB_STATUS_COMPLETED = 3;
-    // The job has failed.
-    JOB_STATUS_FAILED = 4;
-    // The job has been cancelled.
-    JOB_STATUS_CANCELLED = 5;
-    // The job has expired.
-    JOB_STATUS_EXPIRED = 6;
+    JOB_STATUS_UNSPECIFIED     = 0;  // Unspecified job status.
+    JOB_STATUS_QUEUED          = 1;  // The job is waiting in the queue for execution.
+    JOB_STATUS_RUNNING         = 2;  // The job is currently running.
+    JOB_STATUS_PROCESSING_DATA = 3;  // The job has finished acquiring data and is now processing it.
+    JOB_STATUS_COMPLETED       = 4;  // The job has been completed.
+    JOB_STATUS_FAILED          = 5;  // The job has failed.
+    JOB_STATUS_CANCELLED       = 6;  // The job has been cancelled.
+    JOB_STATUS_EXPIRED         = 7;  // The job has expired.
 }
 
 // Defines the result of a single action.
@@ -874,10 +832,9 @@ message CommunicationBusStatus {
 
 // Defines the types of nodes in the network topology.
 enum TopologyNodeType {
-    // The node is a device, such as an electricity meter.
-    TOPOLOGY_NODE_DEVICE = 0;
-    // The node is a communication unit, such as a modem or a data concentrator.
-    TOPOLOGY_NODE_COMMUNICATION_UNIT = 1;
+    TOPOLOGY_NODE_UNSPECIFIED        = 0;  // Unspecified node type.
+    TOPOLOGY_NODE_DEVICE             = 1;  // The node is a device, such as an electricity meter.
+    TOPOLOGY_NODE_COMMUNICATION_UNIT = 2;  // The node is a communication unit, such as a modem or a data concentrator.
 }
 
 // Defines a node in the network topology.

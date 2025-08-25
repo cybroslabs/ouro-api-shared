@@ -6,6 +6,6 @@ Enumeration for Relay State
 
 | Value | Description |
 | --- | --- |
-| NOOP | Relay state is ignored (no action) |
-| CONNECT | Relay connects |
-| DISCONNECT | Relay disconnects |
+| RELAY_STATE_UNSPECIFIED | Unspecified relay state. Relay state is ignored (no action) |
+| RELAY_STATE_CONNECT | Relay connects |
+| RELAY_STATE_DISCONNECT | Relay disconnects |

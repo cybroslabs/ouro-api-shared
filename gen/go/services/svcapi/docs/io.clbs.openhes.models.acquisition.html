@@ -12768,14 +12768,20 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>ERROR_CODE_ACTION_OK</code></td>
+      <td><code>ERROR_CODE_ACTION_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified action result code.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ERROR_CODE_ACTION_OK</code></td>
+      <td>1</td>
       <td class="content"><p>The action has been completed successfully.</p></td>
     </tr>
     
     <tr>
       <td><code>ERROR_CODE_ACTION_UNSUPPORTED</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The action is not supported by the driver or device.</p></td>
     </tr>
     
@@ -12816,26 +12822,32 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>ACTION_TYPE_GET_REGISTER</code></td>
+      <td><code>ACTION_TYPE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified action type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>ACTION_TYPE_GET_REGISTER</code></td>
+      <td>1</td>
       <td class="content"><p>Get a register value, for example an instantaneous values. The action covers a specific register.</p></td>
     </tr>
     
     <tr>
       <td><code>ACTION_TYPE_GET_PERIODICAL_PROFILE</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>Get a periodical profile, for example a load profile. The action covers a specific profile column.</p></td>
     </tr>
     
     <tr>
       <td><code>ACTION_TYPE_GET_IRREGULAR_PROFILE</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.</p></td>
     </tr>
     
     <tr>
       <td><code>ACTION_TYPE_GET_EVENTS</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>Get an event log. The action covers a specific event log.</p></td>
     </tr>
     
@@ -12924,56 +12936,62 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>APPPROTO_IEC_62056_21</code></td>
+      <td><code>APPPROTO_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified application protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>APPPROTO_IEC_62056_21</code></td>
+      <td>1</td>
       <td class="content"><p>The IEC 62056-21 (IEC-61107, VDEW) protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_DLMS_SN</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The DLMS short-name protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_DLMS_LN</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The DLMS logical-name protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_SCTM</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The SCTM protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_LIS200</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The LIS200 protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_ANSI_C12</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>The ANSI C12 protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_MQTT</code></td>
-      <td>6</td>
+      <td>7</td>
       <td class="content"><p>The MQTT protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_MODBUS</code></td>
-      <td>7</td>
+      <td>8</td>
       <td class="content"><p>The MODBUS protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>APPPROTO_MBUS</code></td>
-      <td>8</td>
+      <td>9</td>
       <td class="content"><p>The MBUS protocol.</p></td>
     </tr>
     
@@ -13002,32 +13020,38 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>BULK_STATUS_QUEUED</code></td>
+      <td><code>BULK_STATUS_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified bulk status.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK_STATUS_QUEUED</code></td>
+      <td>1</td>
       <td class="content"><p>The bulk is waiting in the queue.</p></td>
     </tr>
     
     <tr>
       <td><code>BULK_STATUS_RUNNING</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The bulk is currently running.</p></td>
     </tr>
     
     <tr>
       <td><code>BULK_STATUS_COMPLETED</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The bulk has been completed.</p></td>
     </tr>
     
     <tr>
       <td><code>BULK_STATUS_CANCELLED</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The bulk has been cancelled.</p></td>
     </tr>
     
     <tr>
       <td><code>BULK_STATUS_EXPIRED</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The bulk has expired.</p></td>
     </tr>
     
@@ -13056,26 +13080,32 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>COMMUNICATION_TYPE_TCPIP</code></td>
+      <td><code>COMMUNICATION_TYPE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified communication type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>COMMUNICATION_TYPE_TCPIP</code></td>
+      <td>1</td>
       <td class="content"><p>The communication is established via direct TCP/IP.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_TYPE_MODEM_POOL</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The communication is established via phone line (modem).</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_TYPE_SERIAL_LINE_DIRECT</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The communication is established via a direct serial line.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_TYPE_SERIAL_LINE_MOXA</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The communication is established via a controlled  serial line (Moxa).</p></td>
     </tr>
     
@@ -13110,38 +13140,44 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>LINKPROTO_IEC_62056_21</code></td>
+      <td><code>LINTPROTO_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified data link protocol.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>LINKPROTO_IEC_62056_21</code></td>
+      <td>1</td>
       <td class="content"><p>The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_HDLC</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_COSEM_WRAPPER</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_MODBUS</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The Modbus protocol. Used with the Modbus application protocol where no other data link is used.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_MBUS</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The M-Bus protocol. Used with the M-Bus application protocol.</p></td>
     </tr>
     
     <tr>
       <td><code>LINKPROTO_VIKTOR</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.</p></td>
     </tr>
     
@@ -13176,25 +13212,31 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>Register</code></td>
+      <td><code>KIND_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified register kind.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>KIND_REGISTER</code></td>
+      <td>1</td>
       <td class="content"><p>The object represents a generic register.</p></td>
     </tr>
     
     <tr>
-      <td><code>PeriodicalProfile</code></td>
-      <td>1</td>
+      <td><code>KIND_PERIODICAL_PROFILE</code></td>
+      <td>2</td>
       <td class="content"><p>The object represents a periodical profile.</p></td>
     </tr>
     
     <tr>
-      <td><code>IrregularProfile</code></td>
-      <td>2</td>
+      <td><code>KIND_IRREGULAR_PROFILE</code></td>
+      <td>3</td>
       <td class="content"><p>The object represents an irregular profile.</p></td>
     </tr>
     
     <tr>
-      <td><code>Synthetic</code></td>
+      <td><code>KIND_SYNTHETIC</code></td>
       <td>99</td>
       <td class="content"><p>The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.</p></td>
     </tr>
@@ -13224,14 +13266,20 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>JOB_ERROR_CODE_NONE</code></td>
+      <td><code>JOB_ERROR_CODE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified job error code.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_ERROR_CODE_NONE</code></td>
+      <td>1</td>
       <td class="content"><p>The job has been completed successfully.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_ERROR_CODE_BUSY</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>There is no free slot in the driver to handle the job; the job shall be send again later.</p></td>
     </tr>
     
@@ -13278,56 +13326,62 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>JOB_PRIORITY_0</code></td>
+      <td><code>JOB_PRIORITY_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified priority.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_PRIORITY_0</code></td>
+      <td>1</td>
       <td class="content"><p>Lowest priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_1</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>Priority 1.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_2</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>Priority 2.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_3</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>Priority 3.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_4</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>Priority 4.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_5</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>Priority 5.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_6</code></td>
-      <td>6</td>
+      <td>7</td>
       <td class="content"><p>Priority 6.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_7</code></td>
-      <td>7</td>
+      <td>8</td>
       <td class="content"><p>Priority 7.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_8</code></td>
-      <td>8</td>
+      <td>9</td>
       <td class="content"><p>Highest priority.</p></td>
     </tr>
     
@@ -13356,44 +13410,50 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>JOB_STATUS_QUEUED</code></td>
+      <td><code>JOB_STATUS_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified job status.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>JOB_STATUS_QUEUED</code></td>
+      <td>1</td>
       <td class="content"><p>The job is waiting in the queue for execution.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_RUNNING</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The job is currently running.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_PROCESSING_DATA</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The job has finished acquiring data and is now processing it.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_COMPLETED</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The job has been completed.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_FAILED</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The job has failed.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_CANCELLED</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>The job has been cancelled.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_STATUS_EXPIRED</code></td>
-      <td>6</td>
+      <td>7</td>
       <td class="content"><p>The job has expired.</p></td>
     </tr>
     
@@ -13518,14 +13578,20 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
   <tbody>
     
     <tr>
-      <td><code>TOPOLOGY_NODE_DEVICE</code></td>
+      <td><code>TOPOLOGY_NODE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified node type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TOPOLOGY_NODE_DEVICE</code></td>
+      <td>1</td>
       <td class="content"><p>The node is a device, such as an electricity meter.</p></td>
     </tr>
     
     <tr>
       <td><code>TOPOLOGY_NODE_COMMUNICATION_UNIT</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The node is a communication unit, such as a modem or a data concentrator.</p></td>
     </tr>
     

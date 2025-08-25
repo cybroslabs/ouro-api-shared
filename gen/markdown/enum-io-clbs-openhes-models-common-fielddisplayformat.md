@@ -6,7 +6,7 @@ Enum representing the field display format.
 
 | Value | Description |
 | --- | --- |
-| DEFAULT | The default display format. The GUI shows text, int, double, date-time or duration in the default format. |
+| DISPLAY_FORMAT_UNSPECIFIED | The default display format. The GUI shows text, int, double, date-time or duration in the default format. |
 | DATE_ONLY | The date-only display format of local date-time. Data type must be TIMESTAMP or string. |
 | UTC_DATETIME | The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string. |
 | UTC_DATE_ONLY | The date display format with in UTC timezone. Data type must be TIMESTAMP or string. |

@@ -2248,44 +2248,50 @@
   <tbody>
     
     <tr>
-      <td><code>TEXT</code></td>
+      <td><code>DATA_TYPE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified data type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>TEXT</code></td>
+      <td>1</td>
       <td class="content"><p>The text data type.</p></td>
     </tr>
     
     <tr>
       <td><code>INTEGER</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The integer data type.</p></td>
     </tr>
     
     <tr>
       <td><code>DOUBLE</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The double data type.</p></td>
     </tr>
     
     <tr>
       <td><code>BINARY</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The binary data type.</p></td>
     </tr>
     
     <tr>
       <td><code>BOOLEAN</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The boolean data type.</p></td>
     </tr>
     
     <tr>
       <td><code>TIMESTAMP</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>The timestamp data type, represented by google.protobuf.Timestamp.</p></td>
     </tr>
     
     <tr>
       <td><code>DURATION</code></td>
-      <td>6</td>
+      <td>7</td>
       <td class="content"><p>The duration data type, represented by google.protobuf.Duration.</p></td>
     </tr>
     
@@ -2314,7 +2320,7 @@
   <tbody>
     
     <tr>
-      <td><code>DEFAULT</code></td>
+      <td><code>DISPLAY_FORMAT_UNSPECIFIED</code></td>
       <td>0</td>
       <td class="content"><p>The default display format. The GUI shows text, int, double, date-time or duration in the default format.</p></td>
     </tr>
@@ -2392,92 +2398,98 @@
   <tbody>
     
     <tr>
-      <td><code>EQUAL</code></td>
+      <td><code>FILTER_OPERATOR_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Single operand operator for text, integer, number, boolean, date fields.</p></td>
+      <td class="content"><p>Unspecified filter operator.</p></td>
     </tr>
     
     <tr>
-      <td><code>NOT_EQUAL</code></td>
+      <td><code>EQUAL</code></td>
       <td>1</td>
       <td class="content"><p>Single operand operator for text, integer, number, boolean, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>GREATER_THAN</code></td>
+      <td><code>NOT_EQUAL</code></td>
       <td>2</td>
-      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
+      <td class="content"><p>Single operand operator for text, integer, number, boolean, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>GREATER_THAN_OR_EQUAL</code></td>
+      <td><code>GREATER_THAN</code></td>
       <td>3</td>
       <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>LESS_THAN</code></td>
+      <td><code>GREATER_THAN_OR_EQUAL</code></td>
       <td>4</td>
       <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>LESS_THAN_OR_EQUAL</code></td>
+      <td><code>LESS_THAN</code></td>
       <td>5</td>
       <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>CONTAINS</code></td>
+      <td><code>LESS_THAN_OR_EQUAL</code></td>
       <td>6</td>
-      <td class="content"><p>Single operand operator for text fields.</p></td>
+      <td class="content"><p>Single operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>NOT_CONTAINS</code></td>
+      <td><code>CONTAINS</code></td>
       <td>7</td>
       <td class="content"><p>Single operand operator for text fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>STARTS_WITH</code></td>
+      <td><code>NOT_CONTAINS</code></td>
       <td>8</td>
       <td class="content"><p>Single operand operator for text fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>ENDS_WITH</code></td>
+      <td><code>STARTS_WITH</code></td>
       <td>9</td>
       <td class="content"><p>Single operand operator for text fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>IN</code></td>
+      <td><code>ENDS_WITH</code></td>
       <td>10</td>
-      <td class="content"><p>Multiple operand operator for text, integer, number, boolean fields.</p></td>
+      <td class="content"><p>Single operand operator for text fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>NOT_IN</code></td>
+      <td><code>IN</code></td>
       <td>11</td>
       <td class="content"><p>Multiple operand operator for text, integer, number, boolean fields.</p></td>
     </tr>
     
     <tr>
-      <td><code>BETWEEN</code></td>
+      <td><code>NOT_IN</code></td>
       <td>12</td>
+      <td class="content"><p>Multiple operand operator for text, integer, number, boolean fields.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BETWEEN</code></td>
+      <td>13</td>
       <td class="content"><p>Two operand operator for integer, number, date fields.</p></td>
     </tr>
     
     <tr>
       <td><code>IS_NULL</code></td>
-      <td>13</td>
+      <td>14</td>
       <td class="content"><p>No operand operator. For both null and empty string.</p></td>
     </tr>
     
     <tr>
       <td><code>IS_NOT_NULL</code></td>
-      <td>14</td>
+      <td>15</td>
       <td class="content"><p>No operand operator. For both null and empty string.</p></td>
     </tr>
     
@@ -2508,100 +2520,107 @@
   <tbody>
     
     <tr>
-      <td><code>BULK</code></td>
+      <td><code>OBJECT_TYPE_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>@internal: The unspecified object type.</p>
+<p>Unspecified object type.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BULK</code></td>
+      <td>1</td>
       <td class="content"><p>@internal: The main object types.</p>
 <p>The bulk.</p></td>
     </tr>
     
     <tr>
       <td><code>BULK_JOB</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>The bulk job.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_UNIT</code></td>
-      <td>2</td>
+      <td>3</td>
       <td class="content"><p>The communication unit.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE</code></td>
-      <td>3</td>
+      <td>4</td>
       <td class="content"><p>The device.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE_CONFIGURATION_REGISTER</code></td>
-      <td>4</td>
+      <td>5</td>
       <td class="content"><p>The register.</p></td>
     </tr>
     
     <tr>
       <td><code>VARIABLE</code></td>
-      <td>5</td>
+      <td>6</td>
       <td class="content"><p>The variable.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE_CONFIGURATION_TEMPLATE</code></td>
-      <td>6</td>
+      <td>7</td>
       <td class="content"><p>The device template.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_BUS</code></td>
-      <td>7</td>
+      <td>8</td>
       <td class="content"><p>The communication bus.</p></td>
     </tr>
     
     <tr>
       <td><code>MODEM_POOL</code></td>
-      <td>8</td>
+      <td>9</td>
       <td class="content"><p>The modem pool.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE_GROUP</code></td>
-      <td>9</td>
+      <td>10</td>
       <td class="content"><p>The device group.</p></td>
     </tr>
     
     <tr>
       <td><code>TIME_OF_USE_TABLE</code></td>
-      <td>10</td>
+      <td>11</td>
       <td class="content"><p>The time-of-use table.</p></td>
     </tr>
     
     <tr>
       <td><code>DRIVER</code></td>
-      <td>11</td>
+      <td>12</td>
       <td class="content"><p>The driver.</p></td>
     </tr>
     
     <tr>
       <td><code>CRON_JOB</code></td>
-      <td>12</td>
+      <td>13</td>
       <td class="content"><p>The cron job.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE_COMMUNICATION_UNIT_CHANGE</code></td>
-      <td>13</td>
+      <td>14</td>
       <td class="content"><p>@internal: The derived object types.</p>
 <p>The device communication unit change.</p></td>
     </tr>
     
     <tr>
       <td><code>DEVICE_DATA_INFO</code></td>
-      <td>14</td>
+      <td>15</td>
       <td class="content"><p>The device data info.</p></td>
     </tr>
     
     <tr>
       <td><code>COMMUNICATION_UNIT_LOG_RECORD</code></td>
-      <td>15</td>
+      <td>16</td>
       <td class="content"><p>The communication unit log record.</p></td>
     </tr>
     

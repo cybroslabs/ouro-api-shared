@@ -6,6 +6,7 @@ Enum representing the field data type.
 
 | Value | Description |
 | --- | --- |
+| DATA_TYPE_UNSPECIFIED | Unspecified data type. |
 | TEXT | The text data type. |
 | INTEGER | The integer data type. |
 | DOUBLE | The double data type. |

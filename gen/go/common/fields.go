@@ -114,7 +114,7 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		Visible:    &visible,
 		MultiValue: &multiValue,
 		Secured:    &secured,
-		Format:     FieldDisplayFormat_DEFAULT.Enum(),
+		Format:     FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED.Enum(),
 		Sortable:   &sortable,
 		Filterable: &filterable,
 	}.Build()
@@ -137,16 +137,16 @@ var validFormats = map[FieldDataType][]FieldDisplayFormat{
 	FieldDataType_INTEGER:   {FieldDisplayFormat_MONEY, FieldDisplayFormat_TIMEOFDAY, FieldDisplayFormat_COMBO},
 	FieldDataType_DOUBLE:    {FieldDisplayFormat_MONEY},
 	FieldDataType_TIMESTAMP: {FieldDisplayFormat_DATE_ONLY, FieldDisplayFormat_UTC_DATETIME, FieldDisplayFormat_UTC_DATE_ONLY},
-	FieldDataType_BOOLEAN:   {FieldDisplayFormat_DEFAULT},
+	FieldDataType_BOOLEAN:   {},
 }
 
 func validateDisplayFormat(dataType FieldDataType, format *FieldDisplayFormat) FieldDisplayFormat {
-	if format == nil || *format == FieldDisplayFormat_DEFAULT {
-		return FieldDisplayFormat_DEFAULT
+	if ptr.Deref(format, FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED) == FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED {
+		return FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED
 	}
 	allowed, ok := validFormats[dataType]
 	if !ok {
-		return FieldDisplayFormat_DEFAULT
+		return FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED
 	}
 	if slices.Contains(allowed, *format) {
 		return *format
@@ -225,7 +225,7 @@ func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
 	fd.SetDataType(FieldDataType_BOOLEAN)
 	fd.ClearPrecision()
 	fd.ClearUnit()
-	fd.SetFormat(FieldDisplayFormat_DEFAULT)
+	fd.ClearFormat()
 	return fd
 }
 
@@ -313,7 +313,7 @@ func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
 
 func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
 	if options == nil {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
+		fd.ClearFormat()
 		fd.ensureValidation().SetOptions(nil)
 		return fd
 	}
@@ -343,7 +343,7 @@ func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescript
 // It's typically used for protobuf enum values.
 func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDescriptor {
 	if options == nil {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
+		fd.ClearFormat()
 		fd.ensureValidation().SetOptions(nil)
 		return fd
 	}
@@ -411,7 +411,7 @@ func CreateOptions[T EnumWithString](enumMap map[int32]string) map[string]string
 
 func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	if source == "" {
-		fd.SetFormat(FieldDisplayFormat_DEFAULT)
+		fd.ClearFormat()
 		fd.ensureValidation().ClearOptionsSource()
 		return fd
 	}

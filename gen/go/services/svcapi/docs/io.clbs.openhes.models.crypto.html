@@ -612,14 +612,20 @@
   <tbody>
     
     <tr>
-      <td><code>SECRET_DATA_PLAIN</code></td>
+      <td><code>SECRET_DATA_UNSPECIFIED</code></td>
       <td>0</td>
+      <td class="content"><p>Unspecified decryption method.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>SECRET_DATA_PLAIN</code></td>
+      <td>1</td>
       <td class="content"><p>Plain data, no decryption needed</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_DATA_AES256CBC</code></td>
-      <td>1</td>
+      <td>2</td>
       <td class="content"><p>AES-256-CBC encryption method</p></td>
     </tr>
     
@@ -648,7 +654,7 @@
   <tbody>
     
     <tr>
-      <td><code>SECRET_SESSION_NONE</code></td>
+      <td><code>SECRET_SESSION_UNSPECIFIED</code></td>
       <td>0</td>
       <td class="content"><p>No session key decryption method, used when the session key is not set or not used.</p></td>
     </tr>

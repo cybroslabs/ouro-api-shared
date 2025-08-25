@@ -10,12 +10,13 @@ import "common/objects.proto";
 
 // DLMS crypto mode
 enum SecretDataDecryptionMethod {
-    SECRET_DATA_PLAIN     = 0;  // Plain data, no decryption needed
-    SECRET_DATA_AES256CBC = 1;  // AES-256-CBC encryption method
+    SECRET_DATA_UNSPECIFIED = 0;  // Unspecified decryption method.
+    SECRET_DATA_PLAIN       = 1;  // Plain data, no decryption needed
+    SECRET_DATA_AES256CBC   = 2;  // AES-256-CBC encryption method
 }
 
 enum SecretSessionKeyDecryptionMethod {
-    SECRET_SESSION_NONE           = 0;  // No session key decryption method, used when the session key is not set or not used.
+    SECRET_SESSION_UNSPECIFIED    = 0;  // No session key decryption method, used when the session key is not set or not used.
     SECRET_SESSION_PLAIN          = 1;  // Plain session key, no session-key decryption needed.
     SECRET_SESSION_RSA_OAEPM_GF1P = 2;  // RSA-OAEP-MGF1P decryption method, used for session keys.
 }

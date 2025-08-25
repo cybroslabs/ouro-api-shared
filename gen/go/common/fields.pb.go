@@ -26,58 +26,61 @@ const (
 type FilterOperator int32
 
 const (
-	FilterOperator_EQUAL                 FilterOperator = 0  // Single operand operator for text, integer, number, boolean, date fields.
-	FilterOperator_NOT_EQUAL             FilterOperator = 1  // Single operand operator for text, integer, number, boolean, date fields.
-	FilterOperator_GREATER_THAN          FilterOperator = 2  // Single operand operator for integer, number, date fields.
-	FilterOperator_GREATER_THAN_OR_EQUAL FilterOperator = 3  // Single operand operator for integer, number, date fields.
-	FilterOperator_LESS_THAN             FilterOperator = 4  // Single operand operator for integer, number, date fields.
-	FilterOperator_LESS_THAN_OR_EQUAL    FilterOperator = 5  // Single operand operator for integer, number, date fields.
-	FilterOperator_CONTAINS              FilterOperator = 6  // Single operand operator for text fields.
-	FilterOperator_NOT_CONTAINS          FilterOperator = 7  // Single operand operator for text fields.
-	FilterOperator_STARTS_WITH           FilterOperator = 8  // Single operand operator for text fields.
-	FilterOperator_ENDS_WITH             FilterOperator = 9  // Single operand operator for text fields.
-	FilterOperator_IN                    FilterOperator = 10 // Multiple operand operator for text, integer, number, boolean fields.
-	FilterOperator_NOT_IN                FilterOperator = 11 // Multiple operand operator for text, integer, number, boolean fields.
-	FilterOperator_BETWEEN               FilterOperator = 12 // Two operand operator for integer, number, date fields.
-	FilterOperator_IS_NULL               FilterOperator = 13 // No operand operator. For both null and empty string.
-	FilterOperator_IS_NOT_NULL           FilterOperator = 14 // No operand operator. For both null and empty string.
+	FilterOperator_FILTER_OPERATOR_UNSPECIFIED FilterOperator = 0  // Unspecified filter operator.
+	FilterOperator_EQUAL                       FilterOperator = 1  // Single operand operator for text, integer, number, boolean, date fields.
+	FilterOperator_NOT_EQUAL                   FilterOperator = 2  // Single operand operator for text, integer, number, boolean, date fields.
+	FilterOperator_GREATER_THAN                FilterOperator = 3  // Single operand operator for integer, number, date fields.
+	FilterOperator_GREATER_THAN_OR_EQUAL       FilterOperator = 4  // Single operand operator for integer, number, date fields.
+	FilterOperator_LESS_THAN                   FilterOperator = 5  // Single operand operator for integer, number, date fields.
+	FilterOperator_LESS_THAN_OR_EQUAL          FilterOperator = 6  // Single operand operator for integer, number, date fields.
+	FilterOperator_CONTAINS                    FilterOperator = 7  // Single operand operator for text fields.
+	FilterOperator_NOT_CONTAINS                FilterOperator = 8  // Single operand operator for text fields.
+	FilterOperator_STARTS_WITH                 FilterOperator = 9  // Single operand operator for text fields.
+	FilterOperator_ENDS_WITH                   FilterOperator = 10 // Single operand operator for text fields.
+	FilterOperator_IN                          FilterOperator = 11 // Multiple operand operator for text, integer, number, boolean fields.
+	FilterOperator_NOT_IN                      FilterOperator = 12 // Multiple operand operator for text, integer, number, boolean fields.
+	FilterOperator_BETWEEN                     FilterOperator = 13 // Two operand operator for integer, number, date fields.
+	FilterOperator_IS_NULL                     FilterOperator = 14 // No operand operator. For both null and empty string.
+	FilterOperator_IS_NOT_NULL                 FilterOperator = 15 // No operand operator. For both null and empty string.
 )
 
 // Enum value maps for FilterOperator.
 var (
 	FilterOperator_name = map[int32]string{
-		0:  "EQUAL",
-		1:  "NOT_EQUAL",
-		2:  "GREATER_THAN",
-		3:  "GREATER_THAN_OR_EQUAL",
-		4:  "LESS_THAN",
-		5:  "LESS_THAN_OR_EQUAL",
-		6:  "CONTAINS",
-		7:  "NOT_CONTAINS",
-		8:  "STARTS_WITH",
-		9:  "ENDS_WITH",
-		10: "IN",
-		11: "NOT_IN",
-		12: "BETWEEN",
-		13: "IS_NULL",
-		14: "IS_NOT_NULL",
+		0:  "FILTER_OPERATOR_UNSPECIFIED",
+		1:  "EQUAL",
+		2:  "NOT_EQUAL",
+		3:  "GREATER_THAN",
+		4:  "GREATER_THAN_OR_EQUAL",
+		5:  "LESS_THAN",
+		6:  "LESS_THAN_OR_EQUAL",
+		7:  "CONTAINS",
+		8:  "NOT_CONTAINS",
+		9:  "STARTS_WITH",
+		10: "ENDS_WITH",
+		11: "IN",
+		12: "NOT_IN",
+		13: "BETWEEN",
+		14: "IS_NULL",
+		15: "IS_NOT_NULL",
 	}
 	FilterOperator_value = map[string]int32{
-		"EQUAL":                 0,
-		"NOT_EQUAL":             1,
-		"GREATER_THAN":          2,
-		"GREATER_THAN_OR_EQUAL": 3,
-		"LESS_THAN":             4,
-		"LESS_THAN_OR_EQUAL":    5,
-		"CONTAINS":              6,
-		"NOT_CONTAINS":          7,
-		"STARTS_WITH":           8,
-		"ENDS_WITH":             9,
-		"IN":                    10,
-		"NOT_IN":                11,
-		"BETWEEN":               12,
-		"IS_NULL":               13,
-		"IS_NOT_NULL":           14,
+		"FILTER_OPERATOR_UNSPECIFIED": 0,
+		"EQUAL":                       1,
+		"NOT_EQUAL":                   2,
+		"GREATER_THAN":                3,
+		"GREATER_THAN_OR_EQUAL":       4,
+		"LESS_THAN":                   5,
+		"LESS_THAN_OR_EQUAL":          6,
+		"CONTAINS":                    7,
+		"NOT_CONTAINS":                8,
+		"STARTS_WITH":                 9,
+		"ENDS_WITH":                   10,
+		"IN":                          11,
+		"NOT_IN":                      12,
+		"BETWEEN":                     13,
+		"IS_NULL":                     14,
+		"IS_NOT_NULL":                 15,
 	}
 )
 
@@ -107,34 +110,37 @@ func (x FilterOperator) Number() protoreflect.EnumNumber {
 type FieldDataType int32
 
 const (
-	FieldDataType_TEXT      FieldDataType = 0 // The text data type.
-	FieldDataType_INTEGER   FieldDataType = 1 // The integer data type.
-	FieldDataType_DOUBLE    FieldDataType = 2 // The double data type.
-	FieldDataType_BINARY    FieldDataType = 3 // The binary data type.
-	FieldDataType_BOOLEAN   FieldDataType = 4 // The boolean data type.
-	FieldDataType_TIMESTAMP FieldDataType = 5 // The timestamp data type, represented by google.protobuf.Timestamp.
-	FieldDataType_DURATION  FieldDataType = 6 // The duration data type, represented by google.protobuf.Duration.
+	FieldDataType_DATA_TYPE_UNSPECIFIED FieldDataType = 0 // Unspecified data type.
+	FieldDataType_TEXT                  FieldDataType = 1 // The text data type.
+	FieldDataType_INTEGER               FieldDataType = 2 // The integer data type.
+	FieldDataType_DOUBLE                FieldDataType = 3 // The double data type.
+	FieldDataType_BINARY                FieldDataType = 4 // The binary data type.
+	FieldDataType_BOOLEAN               FieldDataType = 5 // The boolean data type.
+	FieldDataType_TIMESTAMP             FieldDataType = 6 // The timestamp data type, represented by google.protobuf.Timestamp.
+	FieldDataType_DURATION              FieldDataType = 7 // The duration data type, represented by google.protobuf.Duration.
 )
 
 // Enum value maps for FieldDataType.
 var (
 	FieldDataType_name = map[int32]string{
-		0: "TEXT",
-		1: "INTEGER",
-		2: "DOUBLE",
-		3: "BINARY",
-		4: "BOOLEAN",
-		5: "TIMESTAMP",
-		6: "DURATION",
+		0: "DATA_TYPE_UNSPECIFIED",
+		1: "TEXT",
+		2: "INTEGER",
+		3: "DOUBLE",
+		4: "BINARY",
+		5: "BOOLEAN",
+		6: "TIMESTAMP",
+		7: "DURATION",
 	}
 	FieldDataType_value = map[string]int32{
-		"TEXT":      0,
-		"INTEGER":   1,
-		"DOUBLE":    2,
-		"BINARY":    3,
-		"BOOLEAN":   4,
-		"TIMESTAMP": 5,
-		"DURATION":  6,
+		"DATA_TYPE_UNSPECIFIED": 0,
+		"TEXT":                  1,
+		"INTEGER":               2,
+		"DOUBLE":                3,
+		"BINARY":                4,
+		"BOOLEAN":               5,
+		"TIMESTAMP":             6,
+		"DURATION":              7,
 	}
 )
 
@@ -164,21 +170,21 @@ func (x FieldDataType) Number() protoreflect.EnumNumber {
 type FieldDisplayFormat int32
 
 const (
-	FieldDisplayFormat_DEFAULT       FieldDisplayFormat = 0 // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
-	FieldDisplayFormat_DATE_ONLY     FieldDisplayFormat = 1 // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_UTC_DATETIME  FieldDisplayFormat = 2 // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_UTC_DATE_ONLY FieldDisplayFormat = 3 // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_TIMEOFDAY     FieldDisplayFormat = 4 // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-	FieldDisplayFormat_MONEY         FieldDisplayFormat = 5 // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-	FieldDisplayFormat_PASSWORD      FieldDisplayFormat = 6 // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
-	FieldDisplayFormat_MULTILINE     FieldDisplayFormat = 7 // The multiline-string display format. Data type must be TEXT.
-	FieldDisplayFormat_COMBO         FieldDisplayFormat = 8 // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+	FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED FieldDisplayFormat = 0 // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
+	FieldDisplayFormat_DATE_ONLY                  FieldDisplayFormat = 1 // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
+	FieldDisplayFormat_UTC_DATETIME               FieldDisplayFormat = 2 // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
+	FieldDisplayFormat_UTC_DATE_ONLY              FieldDisplayFormat = 3 // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
+	FieldDisplayFormat_TIMEOFDAY                  FieldDisplayFormat = 4 // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
+	FieldDisplayFormat_MONEY                      FieldDisplayFormat = 5 // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+	FieldDisplayFormat_PASSWORD                   FieldDisplayFormat = 6 // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
+	FieldDisplayFormat_MULTILINE                  FieldDisplayFormat = 7 // The multiline-string display format. Data type must be TEXT.
+	FieldDisplayFormat_COMBO                      FieldDisplayFormat = 8 // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
 )
 
 // Enum value maps for FieldDisplayFormat.
 var (
 	FieldDisplayFormat_name = map[int32]string{
-		0: "DEFAULT",
+		0: "DISPLAY_FORMAT_UNSPECIFIED",
 		1: "DATE_ONLY",
 		2: "UTC_DATETIME",
 		3: "UTC_DATE_ONLY",
@@ -189,15 +195,15 @@ var (
 		8: "COMBO",
 	}
 	FieldDisplayFormat_value = map[string]int32{
-		"DEFAULT":       0,
-		"DATE_ONLY":     1,
-		"UTC_DATETIME":  2,
-		"UTC_DATE_ONLY": 3,
-		"TIMEOFDAY":     4,
-		"MONEY":         5,
-		"PASSWORD":      6,
-		"MULTILINE":     7,
-		"COMBO":         8,
+		"DISPLAY_FORMAT_UNSPECIFIED": 0,
+		"DATE_ONLY":                  1,
+		"UTC_DATETIME":               2,
+		"UTC_DATE_ONLY":              3,
+		"TIMEOFDAY":                  4,
+		"MONEY":                      5,
+		"PASSWORD":                   6,
+		"MULTILINE":                  7,
+		"COMBO":                      8,
 	}
 )
 
@@ -560,7 +566,7 @@ func (x *ListSelectorFilterBy) GetOperator() FilterOperator {
 			return x.xxx_hidden_Operator
 		}
 	}
-	return FilterOperator_EQUAL
+	return FilterOperator_FILTER_OPERATOR_UNSPECIFIED
 }
 
 func (x *ListSelectorFilterBy) GetDataType() FieldDataType {
@@ -569,7 +575,7 @@ func (x *ListSelectorFilterBy) GetDataType() FieldDataType {
 			return x.xxx_hidden_DataType
 		}
 	}
-	return FieldDataType_TEXT
+	return FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 func (x *ListSelectorFilterBy) GetText() []string {
@@ -672,12 +678,12 @@ func (x *ListSelectorFilterBy) ClearPath() {
 
 func (x *ListSelectorFilterBy) ClearOperator() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Operator = FilterOperator_EQUAL
+	x.xxx_hidden_Operator = FilterOperator_FILTER_OPERATOR_UNSPECIFIED
 }
 
 func (x *ListSelectorFilterBy) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_DataType = FieldDataType_TEXT
+	x.xxx_hidden_DataType = FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type ListSelectorFilterBy_builder struct {
@@ -827,7 +833,7 @@ func (x *FieldDescriptorSelector) GetObjectType() ObjectType {
 			return x.xxx_hidden_ObjectType
 		}
 	}
-	return ObjectType_BULK
+	return ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptorSelector) GetGid() string {
@@ -866,7 +872,7 @@ func (x *FieldDescriptorSelector) HasGid() bool {
 
 func (x *FieldDescriptorSelector) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ObjectType = ObjectType_BULK
+	x.xxx_hidden_ObjectType = ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptorSelector) ClearGid() {
@@ -965,7 +971,7 @@ func (x *FieldDescriptor) GetObjectType() ObjectType {
 			return x.xxx_hidden_ObjectType
 		}
 	}
-	return ObjectType_BULK
+	return ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) GetGid() string {
@@ -1034,7 +1040,7 @@ func (x *FieldDescriptor) GetDataType() FieldDataType {
 			return x.xxx_hidden_DataType
 		}
 	}
-	return FieldDataType_TEXT
+	return FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) GetFormat() FieldDisplayFormat {
@@ -1043,7 +1049,7 @@ func (x *FieldDescriptor) GetFormat() FieldDisplayFormat {
 			return x.xxx_hidden_Format
 		}
 	}
-	return FieldDisplayFormat_DEFAULT
+	return FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) GetUnit() string {
@@ -1405,7 +1411,7 @@ func (x *FieldDescriptor) ClearIsUserDefined() {
 
 func (x *FieldDescriptor) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_ObjectType = ObjectType_BULK
+	x.xxx_hidden_ObjectType = ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) ClearGid() {
@@ -1440,12 +1446,12 @@ func (x *FieldDescriptor) ClearGroupId() {
 
 func (x *FieldDescriptor) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
-	x.xxx_hidden_DataType = FieldDataType_TEXT
+	x.xxx_hidden_DataType = FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) ClearFormat() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
-	x.xxx_hidden_Format = FieldDisplayFormat_DEFAULT
+	x.xxx_hidden_Format = FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED
 }
 
 func (x *FieldDescriptor) ClearUnit() {
@@ -2860,37 +2866,39 @@ const file_common_fields_proto_rawDesc = "" +
 	"\bcomplete\x18\x02 \x01(\b:\x04trueR\bcomplete\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\xfd\x01\n" +
-	"\x0eFilterOperator\x12\t\n" +
-	"\x05EQUAL\x10\x00\x12\r\n" +
-	"\tNOT_EQUAL\x10\x01\x12\x10\n" +
-	"\fGREATER_THAN\x10\x02\x12\x19\n" +
-	"\x15GREATER_THAN_OR_EQUAL\x10\x03\x12\r\n" +
-	"\tLESS_THAN\x10\x04\x12\x16\n" +
-	"\x12LESS_THAN_OR_EQUAL\x10\x05\x12\f\n" +
-	"\bCONTAINS\x10\x06\x12\x10\n" +
-	"\fNOT_CONTAINS\x10\a\x12\x0f\n" +
-	"\vSTARTS_WITH\x10\b\x12\r\n" +
-	"\tENDS_WITH\x10\t\x12\x06\n" +
-	"\x02IN\x10\n" +
-	"\x12\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\x9e\x02\n" +
+	"\x0eFilterOperator\x12\x1f\n" +
+	"\x1bFILTER_OPERATOR_UNSPECIFIED\x10\x00\x12\t\n" +
+	"\x05EQUAL\x10\x01\x12\r\n" +
+	"\tNOT_EQUAL\x10\x02\x12\x10\n" +
+	"\fGREATER_THAN\x10\x03\x12\x19\n" +
+	"\x15GREATER_THAN_OR_EQUAL\x10\x04\x12\r\n" +
+	"\tLESS_THAN\x10\x05\x12\x16\n" +
+	"\x12LESS_THAN_OR_EQUAL\x10\x06\x12\f\n" +
+	"\bCONTAINS\x10\a\x12\x10\n" +
+	"\fNOT_CONTAINS\x10\b\x12\x0f\n" +
+	"\vSTARTS_WITH\x10\t\x12\r\n" +
+	"\tENDS_WITH\x10\n" +
+	"\x12\x06\n" +
+	"\x02IN\x10\v\x12\n" +
 	"\n" +
-	"\x06NOT_IN\x10\v\x12\v\n" +
-	"\aBETWEEN\x10\f\x12\v\n" +
-	"\aIS_NULL\x10\r\x12\x0f\n" +
-	"\vIS_NOT_NULL\x10\x0e*h\n" +
-	"\rFieldDataType\x12\b\n" +
-	"\x04TEXT\x10\x00\x12\v\n" +
-	"\aINTEGER\x10\x01\x12\n" +
+	"\x06NOT_IN\x10\f\x12\v\n" +
+	"\aBETWEEN\x10\r\x12\v\n" +
+	"\aIS_NULL\x10\x0e\x12\x0f\n" +
+	"\vIS_NOT_NULL\x10\x0f*\x83\x01\n" +
+	"\rFieldDataType\x12\x19\n" +
+	"\x15DATA_TYPE_UNSPECIFIED\x10\x00\x12\b\n" +
+	"\x04TEXT\x10\x01\x12\v\n" +
+	"\aINTEGER\x10\x02\x12\n" +
 	"\n" +
-	"\x06DOUBLE\x10\x02\x12\n" +
+	"\x06DOUBLE\x10\x03\x12\n" +
 	"\n" +
-	"\x06BINARY\x10\x03\x12\v\n" +
-	"\aBOOLEAN\x10\x04\x12\r\n" +
-	"\tTIMESTAMP\x10\x05\x12\f\n" +
-	"\bDURATION\x10\x06*\x97\x01\n" +
-	"\x12FieldDisplayFormat\x12\v\n" +
-	"\aDEFAULT\x10\x00\x12\r\n" +
+	"\x06BINARY\x10\x04\x12\v\n" +
+	"\aBOOLEAN\x10\x05\x12\r\n" +
+	"\tTIMESTAMP\x10\x06\x12\f\n" +
+	"\bDURATION\x10\a*\xaa\x01\n" +
+	"\x12FieldDisplayFormat\x12\x1e\n" +
+	"\x1aDISPLAY_FORMAT_UNSPECIFIED\x10\x00\x12\r\n" +
 	"\tDATE_ONLY\x10\x01\x12\x10\n" +
 	"\fUTC_DATETIME\x10\x02\x12\x11\n" +
 	"\rUTC_DATE_ONLY\x10\x03\x12\r\n" +

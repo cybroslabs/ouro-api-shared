@@ -26,63 +26,67 @@ const (
 type ObjectType int32
 
 const (
+	// @internal: The unspecified object type.
+	ObjectType_OBJECT_TYPE_UNSPECIFIED ObjectType = 0 // Unspecified object type.
 	// @internal: The main object types.
-	ObjectType_BULK                          ObjectType = 0  // The bulk.
-	ObjectType_BULK_JOB                      ObjectType = 1  // The bulk job.
-	ObjectType_COMMUNICATION_UNIT            ObjectType = 2  // The communication unit.
-	ObjectType_DEVICE                        ObjectType = 3  // The device.
-	ObjectType_DEVICE_CONFIGURATION_REGISTER ObjectType = 4  // The register.
-	ObjectType_VARIABLE                      ObjectType = 5  // The variable.
-	ObjectType_DEVICE_CONFIGURATION_TEMPLATE ObjectType = 6  // The device template.
-	ObjectType_COMMUNICATION_BUS             ObjectType = 7  // The communication bus.
-	ObjectType_MODEM_POOL                    ObjectType = 8  // The modem pool.
-	ObjectType_DEVICE_GROUP                  ObjectType = 9  // The device group.
-	ObjectType_TIME_OF_USE_TABLE             ObjectType = 10 // The time-of-use table.
-	ObjectType_DRIVER                        ObjectType = 11 // The driver.
-	ObjectType_CRON_JOB                      ObjectType = 12 // The cron job.
+	ObjectType_BULK                          ObjectType = 1  // The bulk.
+	ObjectType_BULK_JOB                      ObjectType = 2  // The bulk job.
+	ObjectType_COMMUNICATION_UNIT            ObjectType = 3  // The communication unit.
+	ObjectType_DEVICE                        ObjectType = 4  // The device.
+	ObjectType_DEVICE_CONFIGURATION_REGISTER ObjectType = 5  // The register.
+	ObjectType_VARIABLE                      ObjectType = 6  // The variable.
+	ObjectType_DEVICE_CONFIGURATION_TEMPLATE ObjectType = 7  // The device template.
+	ObjectType_COMMUNICATION_BUS             ObjectType = 8  // The communication bus.
+	ObjectType_MODEM_POOL                    ObjectType = 9  // The modem pool.
+	ObjectType_DEVICE_GROUP                  ObjectType = 10 // The device group.
+	ObjectType_TIME_OF_USE_TABLE             ObjectType = 11 // The time-of-use table.
+	ObjectType_DRIVER                        ObjectType = 12 // The driver.
+	ObjectType_CRON_JOB                      ObjectType = 13 // The cron job.
 	// @internal: The derived object types.
-	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 13 // The device communication unit change.
-	ObjectType_DEVICE_DATA_INFO                 ObjectType = 14 // The device data info.
-	ObjectType_COMMUNICATION_UNIT_LOG_RECORD    ObjectType = 15 // The communication unit log record.
+	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 14 // The device communication unit change.
+	ObjectType_DEVICE_DATA_INFO                 ObjectType = 15 // The device data info.
+	ObjectType_COMMUNICATION_UNIT_LOG_RECORD    ObjectType = 16 // The communication unit log record.
 )
 
 // Enum value maps for ObjectType.
 var (
 	ObjectType_name = map[int32]string{
-		0:  "BULK",
-		1:  "BULK_JOB",
-		2:  "COMMUNICATION_UNIT",
-		3:  "DEVICE",
-		4:  "DEVICE_CONFIGURATION_REGISTER",
-		5:  "VARIABLE",
-		6:  "DEVICE_CONFIGURATION_TEMPLATE",
-		7:  "COMMUNICATION_BUS",
-		8:  "MODEM_POOL",
-		9:  "DEVICE_GROUP",
-		10: "TIME_OF_USE_TABLE",
-		11: "DRIVER",
-		12: "CRON_JOB",
-		13: "DEVICE_COMMUNICATION_UNIT_CHANGE",
-		14: "DEVICE_DATA_INFO",
-		15: "COMMUNICATION_UNIT_LOG_RECORD",
+		0:  "OBJECT_TYPE_UNSPECIFIED",
+		1:  "BULK",
+		2:  "BULK_JOB",
+		3:  "COMMUNICATION_UNIT",
+		4:  "DEVICE",
+		5:  "DEVICE_CONFIGURATION_REGISTER",
+		6:  "VARIABLE",
+		7:  "DEVICE_CONFIGURATION_TEMPLATE",
+		8:  "COMMUNICATION_BUS",
+		9:  "MODEM_POOL",
+		10: "DEVICE_GROUP",
+		11: "TIME_OF_USE_TABLE",
+		12: "DRIVER",
+		13: "CRON_JOB",
+		14: "DEVICE_COMMUNICATION_UNIT_CHANGE",
+		15: "DEVICE_DATA_INFO",
+		16: "COMMUNICATION_UNIT_LOG_RECORD",
 	}
 	ObjectType_value = map[string]int32{
-		"BULK":                             0,
-		"BULK_JOB":                         1,
-		"COMMUNICATION_UNIT":               2,
-		"DEVICE":                           3,
-		"DEVICE_CONFIGURATION_REGISTER":    4,
-		"VARIABLE":                         5,
-		"DEVICE_CONFIGURATION_TEMPLATE":    6,
-		"COMMUNICATION_BUS":                7,
-		"MODEM_POOL":                       8,
-		"DEVICE_GROUP":                     9,
-		"TIME_OF_USE_TABLE":                10,
-		"DRIVER":                           11,
-		"CRON_JOB":                         12,
-		"DEVICE_COMMUNICATION_UNIT_CHANGE": 13,
-		"DEVICE_DATA_INFO":                 14,
-		"COMMUNICATION_UNIT_LOG_RECORD":    15,
+		"OBJECT_TYPE_UNSPECIFIED":          0,
+		"BULK":                             1,
+		"BULK_JOB":                         2,
+		"COMMUNICATION_UNIT":               3,
+		"DEVICE":                           4,
+		"DEVICE_CONFIGURATION_REGISTER":    5,
+		"VARIABLE":                         6,
+		"DEVICE_CONFIGURATION_TEMPLATE":    7,
+		"COMMUNICATION_BUS":                8,
+		"MODEM_POOL":                       9,
+		"DEVICE_GROUP":                     10,
+		"TIME_OF_USE_TABLE":                11,
+		"DRIVER":                           12,
+		"CRON_JOB":                         13,
+		"DEVICE_COMMUNICATION_UNIT_CHANGE": 14,
+		"DEVICE_DATA_INFO":                 15,
+		"COMMUNICATION_UNIT_LOG_RECORD":    16,
 	}
 )
 
@@ -112,29 +116,30 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\xe5\x02\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\x82\x03\n" +
 	"\n" +
-	"ObjectType\x12\b\n" +
-	"\x04BULK\x10\x00\x12\f\n" +
-	"\bBULK_JOB\x10\x01\x12\x16\n" +
-	"\x12COMMUNICATION_UNIT\x10\x02\x12\n" +
+	"ObjectType\x12\x1b\n" +
+	"\x17OBJECT_TYPE_UNSPECIFIED\x10\x00\x12\b\n" +
+	"\x04BULK\x10\x01\x12\f\n" +
+	"\bBULK_JOB\x10\x02\x12\x16\n" +
+	"\x12COMMUNICATION_UNIT\x10\x03\x12\n" +
 	"\n" +
-	"\x06DEVICE\x10\x03\x12!\n" +
-	"\x1dDEVICE_CONFIGURATION_REGISTER\x10\x04\x12\f\n" +
-	"\bVARIABLE\x10\x05\x12!\n" +
-	"\x1dDEVICE_CONFIGURATION_TEMPLATE\x10\x06\x12\x15\n" +
-	"\x11COMMUNICATION_BUS\x10\a\x12\x0e\n" +
+	"\x06DEVICE\x10\x04\x12!\n" +
+	"\x1dDEVICE_CONFIGURATION_REGISTER\x10\x05\x12\f\n" +
+	"\bVARIABLE\x10\x06\x12!\n" +
+	"\x1dDEVICE_CONFIGURATION_TEMPLATE\x10\a\x12\x15\n" +
+	"\x11COMMUNICATION_BUS\x10\b\x12\x0e\n" +
 	"\n" +
-	"MODEM_POOL\x10\b\x12\x10\n" +
-	"\fDEVICE_GROUP\x10\t\x12\x15\n" +
-	"\x11TIME_OF_USE_TABLE\x10\n" +
-	"\x12\n" +
+	"MODEM_POOL\x10\t\x12\x10\n" +
+	"\fDEVICE_GROUP\x10\n" +
+	"\x12\x15\n" +
+	"\x11TIME_OF_USE_TABLE\x10\v\x12\n" +
 	"\n" +
-	"\x06DRIVER\x10\v\x12\f\n" +
-	"\bCRON_JOB\x10\f\x12$\n" +
-	" DEVICE_COMMUNICATION_UNIT_CHANGE\x10\r\x12\x14\n" +
-	"\x10DEVICE_DATA_INFO\x10\x0e\x12!\n" +
-	"\x1dCOMMUNICATION_UNIT_LOG_RECORD\x10\x0fB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
+	"\x06DRIVER\x10\f\x12\f\n" +
+	"\bCRON_JOB\x10\r\x12$\n" +
+	" DEVICE_COMMUNICATION_UNIT_CHANGE\x10\x0e\x12\x14\n" +
+	"\x10DEVICE_DATA_INFO\x10\x0f\x12!\n" +
+	"\x1dCOMMUNICATION_UNIT_LOG_RECORD\x10\x10B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"
 
 var file_common_objects_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_common_objects_proto_goTypes = []any{

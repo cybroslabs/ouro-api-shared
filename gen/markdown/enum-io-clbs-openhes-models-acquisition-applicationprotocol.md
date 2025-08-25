@@ -6,6 +6,7 @@ Defines the supported application protocols.
 
 | Value | Description |
 | --- | --- |
+| APPPROTO_UNSPECIFIED | Unspecified application protocol. |
 | APPPROTO_IEC_62056_21 | The IEC 62056-21 (IEC-61107, VDEW) protocol. |
 | APPPROTO_DLMS_SN | The DLMS short-name protocol. |
 | APPPROTO_DLMS_LN | The DLMS logical-name protocol. |

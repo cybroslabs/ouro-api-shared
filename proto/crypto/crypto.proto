@@ -6,25 +6,26 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/crypto";
 
 // DLMS crypto mode
 enum AuthenticatedEncryption {
-    AE_NONE        = 0;
-    AE_AES_GCM_128 = 1;
-    AE_AES_GCM_256 = 2;
+    AE_UNSPECIFIED = 0;  // No authenticated encryption.
+    AE_AES_GCM_128 = 1;  // AES-GCM with 128-bit key.
+    AE_AES_GCM_256 = 2;  // AES-GCM with 256-bit key.
 }
 
 enum DigitalSignature {
-    DS_ECDSA_NONE  = 0;
-    DS_ECDSA_P_256 = 1;
-    DS_ECDSA_P_384 = 2;
+    DS_ECDSA_UNSPECIFIED = 0;  // No digital signature.
+    DS_ECDSA_P_256       = 1;  // ECDSA using the NIST P-256 curve.
+    DS_ECDSA_P_384       = 2;  // ECDSA using the NIST P-384 curve.
 }
 
 enum KeyAgreement {
-    KA_NONE       = 0;
-    KA_ECDH_P_256 = 1;
-    KA_ECDH_P_384 = 2;
+    KA_UNSPECIFIED = 0;  // No key agreement.
+    KA_ECDH_P_256  = 1;  // ECDH using the NIST P-256 curve.
+    KA_ECDH_P_384  = 2;  // ECDH using the NIST P-384 curve.
 }
 
 enum Hash {
-    HASH_NONE = 0;
+    // No hash.
+    HASH_UNSPECIFIED = 0;
     // MD5 hash.
     // In standard DLMS:
     //   MD5(StoC || HLS Secret)
@@ -48,10 +49,9 @@ enum Hash {
 }
 
 enum HashDirection {
-    // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
-    CLIENT_TO_SERVER = 0;
-    // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
-    SERVER_TO_CLIENT = 1;
+    HASH_DIRECTION_UNSPECIFIED      = 0;  // Unspecified direction.
+    HASH_DIRECTION_CLIENT_TO_SERVER = 1;  // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
+    HASH_DIRECTION_SERVER_TO_CLIENT = 2;  // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
 }
 
 // Sub-message containing job parameters

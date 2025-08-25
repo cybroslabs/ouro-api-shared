@@ -70,7 +70,7 @@ func (x *SetManagedFieldsRequest) GetObjectType() ObjectType {
 			return x.xxx_hidden_ObjectType
 		}
 	}
-	return ObjectType_BULK
+	return ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *SetManagedFieldsRequest) GetId() string {
@@ -113,7 +113,7 @@ func (x *SetManagedFieldsRequest) HasId() bool {
 
 func (x *SetManagedFieldsRequest) ClearObjectType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_ObjectType = ObjectType_BULK
+	x.xxx_hidden_ObjectType = ObjectType_OBJECT_TYPE_UNSPECIFIED
 }
 
 func (x *SetManagedFieldsRequest) ClearId() {

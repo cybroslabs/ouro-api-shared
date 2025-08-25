@@ -6,5 +6,6 @@ DLMS crypto mode
 
 | Value | Description |
 | --- | --- |
+| SECRET_DATA_UNSPECIFIED | Unspecified decryption method. |
 | SECRET_DATA_PLAIN | Plain data, no decryption needed |
 | SECRET_DATA_AES256CBC | AES-256-CBC encryption method |

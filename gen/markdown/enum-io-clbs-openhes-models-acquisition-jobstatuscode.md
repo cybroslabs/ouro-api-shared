@@ -6,6 +6,7 @@ Defines the possible statuses of jobs.
 
 | Value | Description |
 | --- | --- |
+| JOB_STATUS_UNSPECIFIED | Unspecified job status. |
 | JOB_STATUS_QUEUED | The job is waiting in the queue for execution. |
 | JOB_STATUS_RUNNING | The job is currently running. |
 | JOB_STATUS_PROCESSING_DATA | The job has finished acquiring data and is now processing it. |

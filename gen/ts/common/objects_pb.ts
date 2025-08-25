@@ -9,7 +9,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
  * Describes the file common/objects.proto.
  */
 export const file_common_objects: GenFile = /*@__PURE__*/
-  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24q5QIKCk9iamVjdFR5cGUSCAoEQlVMSxAAEgwKCEJVTEtfSk9CEAESFgoSQ09NTVVOSUNBVElPTl9VTklUEAISCgoGREVWSUNFEAMSIQodREVWSUNFX0NPTkZJR1VSQVRJT05fUkVHSVNURVIQBBIMCghWQVJJQUJMRRAFEiEKHURFVklDRV9DT05GSUdVUkFUSU9OX1RFTVBMQVRFEAYSFQoRQ09NTVVOSUNBVElPTl9CVVMQBxIOCgpNT0RFTV9QT09MEAgSEAoMREVWSUNFX0dST1VQEAkSFQoRVElNRV9PRl9VU0VfVEFCTEUQChIKCgZEUklWRVIQCxIMCghDUk9OX0pPQhAMEiQKIERFVklDRV9DT01NVU5JQ0FUSU9OX1VOSVRfQ0hBTkdFEA0SFAoQREVWSUNFX0RBVEFfSU5GTxAOEiEKHUNPTU1VTklDQVRJT05fVU5JVF9MT0dfUkVDT1JEEA9CNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
+  fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24qggMKCk9iamVjdFR5cGUSGwoXT0JKRUNUX1RZUEVfVU5TUEVDSUZJRUQQABIICgRCVUxLEAESDAoIQlVMS19KT0IQAhIWChJDT01NVU5JQ0FUSU9OX1VOSVQQAxIKCgZERVZJQ0UQBBIhCh1ERVZJQ0VfQ09ORklHVVJBVElPTl9SRUdJU1RFUhAFEgwKCFZBUklBQkxFEAYSIQodREVWSUNFX0NPTkZJR1VSQVRJT05fVEVNUExBVEUQBxIVChFDT01NVU5JQ0FUSU9OX0JVUxAIEg4KCk1PREVNX1BPT0wQCRIQCgxERVZJQ0VfR1JPVVAQChIVChFUSU1FX09GX1VTRV9UQUJMRRALEgoKBkRSSVZFUhAMEgwKCENST05fSk9CEA0SJAogREVWSUNFX0NPTU1VTklDQVRJT05fVU5JVF9DSEFOR0UQDhIUChBERVZJQ0VfREFUQV9JTkZPEA8SIQodQ09NTVVOSUNBVElPTl9VTklUX0xPR19SRUNPUkQQEEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
 
 /**
  * Enum representing the object type.
@@ -21,120 +21,129 @@ export const file_common_objects: GenFile = /*@__PURE__*/
  */
 export enum ObjectType {
   /**
+   * @internal: The unspecified object type.
+   *
+   * Unspecified object type.
+   *
+   * @generated from enum value: OBJECT_TYPE_UNSPECIFIED = 0;
+   */
+  OBJECT_TYPE_UNSPECIFIED = 0,
+
+  /**
    * @internal: The main object types.
    *
    * The bulk.
    *
-   * @generated from enum value: BULK = 0;
+   * @generated from enum value: BULK = 1;
    */
-  BULK = 0,
+  BULK = 1,
 
   /**
    * The bulk job.
    *
-   * @generated from enum value: BULK_JOB = 1;
+   * @generated from enum value: BULK_JOB = 2;
    */
-  BULK_JOB = 1,
+  BULK_JOB = 2,
 
   /**
    * The communication unit.
    *
-   * @generated from enum value: COMMUNICATION_UNIT = 2;
+   * @generated from enum value: COMMUNICATION_UNIT = 3;
    */
-  COMMUNICATION_UNIT = 2,
+  COMMUNICATION_UNIT = 3,
 
   /**
    * The device.
    *
-   * @generated from enum value: DEVICE = 3;
+   * @generated from enum value: DEVICE = 4;
    */
-  DEVICE = 3,
+  DEVICE = 4,
 
   /**
    * The register.
    *
-   * @generated from enum value: DEVICE_CONFIGURATION_REGISTER = 4;
+   * @generated from enum value: DEVICE_CONFIGURATION_REGISTER = 5;
    */
-  DEVICE_CONFIGURATION_REGISTER = 4,
+  DEVICE_CONFIGURATION_REGISTER = 5,
 
   /**
    * The variable.
    *
-   * @generated from enum value: VARIABLE = 5;
+   * @generated from enum value: VARIABLE = 6;
    */
-  VARIABLE = 5,
+  VARIABLE = 6,
 
   /**
    * The device template.
    *
-   * @generated from enum value: DEVICE_CONFIGURATION_TEMPLATE = 6;
+   * @generated from enum value: DEVICE_CONFIGURATION_TEMPLATE = 7;
    */
-  DEVICE_CONFIGURATION_TEMPLATE = 6,
+  DEVICE_CONFIGURATION_TEMPLATE = 7,
 
   /**
    * The communication bus.
    *
-   * @generated from enum value: COMMUNICATION_BUS = 7;
+   * @generated from enum value: COMMUNICATION_BUS = 8;
    */
-  COMMUNICATION_BUS = 7,
+  COMMUNICATION_BUS = 8,
 
   /**
    * The modem pool.
    *
-   * @generated from enum value: MODEM_POOL = 8;
+   * @generated from enum value: MODEM_POOL = 9;
    */
-  MODEM_POOL = 8,
+  MODEM_POOL = 9,
 
   /**
    * The device group.
    *
-   * @generated from enum value: DEVICE_GROUP = 9;
+   * @generated from enum value: DEVICE_GROUP = 10;
    */
-  DEVICE_GROUP = 9,
+  DEVICE_GROUP = 10,
 
   /**
    * The time-of-use table.
    *
-   * @generated from enum value: TIME_OF_USE_TABLE = 10;
+   * @generated from enum value: TIME_OF_USE_TABLE = 11;
    */
-  TIME_OF_USE_TABLE = 10,
+  TIME_OF_USE_TABLE = 11,
 
   /**
    * The driver.
    *
-   * @generated from enum value: DRIVER = 11;
+   * @generated from enum value: DRIVER = 12;
    */
-  DRIVER = 11,
+  DRIVER = 12,
 
   /**
    * The cron job.
    *
-   * @generated from enum value: CRON_JOB = 12;
+   * @generated from enum value: CRON_JOB = 13;
    */
-  CRON_JOB = 12,
+  CRON_JOB = 13,
 
   /**
    * @internal: The derived object types.
    *
    * The device communication unit change.
    *
-   * @generated from enum value: DEVICE_COMMUNICATION_UNIT_CHANGE = 13;
+   * @generated from enum value: DEVICE_COMMUNICATION_UNIT_CHANGE = 14;
    */
-  DEVICE_COMMUNICATION_UNIT_CHANGE = 13,
+  DEVICE_COMMUNICATION_UNIT_CHANGE = 14,
 
   /**
    * The device data info.
    *
-   * @generated from enum value: DEVICE_DATA_INFO = 14;
+   * @generated from enum value: DEVICE_DATA_INFO = 15;
    */
-  DEVICE_DATA_INFO = 14,
+  DEVICE_DATA_INFO = 15,
 
   /**
    * The communication unit log record.
    *
-   * @generated from enum value: COMMUNICATION_UNIT_LOG_RECORD = 15;
+   * @generated from enum value: COMMUNICATION_UNIT_LOG_RECORD = 16;
    */
-  COMMUNICATION_UNIT_LOG_RECORD = 15,
+  COMMUNICATION_UNIT_LOG_RECORD = 16,
 }
 
 /**
@@ -145,7 +154,7 @@ export enum ObjectType {
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */
-export type ObjectTypeJson = "BULK" | "BULK_JOB" | "COMMUNICATION_UNIT" | "DEVICE" | "DEVICE_CONFIGURATION_REGISTER" | "VARIABLE" | "DEVICE_CONFIGURATION_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER" | "CRON_JOB" | "DEVICE_COMMUNICATION_UNIT_CHANGE" | "DEVICE_DATA_INFO" | "COMMUNICATION_UNIT_LOG_RECORD";
+export type ObjectTypeJson = "OBJECT_TYPE_UNSPECIFIED" | "BULK" | "BULK_JOB" | "COMMUNICATION_UNIT" | "DEVICE" | "DEVICE_CONFIGURATION_REGISTER" | "VARIABLE" | "DEVICE_CONFIGURATION_TEMPLATE" | "COMMUNICATION_BUS" | "MODEM_POOL" | "DEVICE_GROUP" | "TIME_OF_USE_TABLE" | "DRIVER" | "CRON_JOB" | "DEVICE_COMMUNICATION_UNIT_CHANGE" | "DEVICE_DATA_INFO" | "COMMUNICATION_UNIT_LOG_RECORD";
 
 /**
  * Describes the enum io.clbs.openhes.models.common.ObjectType.

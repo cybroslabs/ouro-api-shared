@@ -26,22 +26,22 @@ const (
 type RelayState int32
 
 const (
-	RelayState_NOOP       RelayState = 0 // Relay state is ignored (no action)
-	RelayState_CONNECT    RelayState = 1 // Relay connects
-	RelayState_DISCONNECT RelayState = 2 // Relay disconnects
+	RelayState_RELAY_STATE_UNSPECIFIED RelayState = 0 // Unspecified relay state. Relay state is ignored (no action)
+	RelayState_RELAY_STATE_CONNECT     RelayState = 1 // Relay connects
+	RelayState_RELAY_STATE_DISCONNECT  RelayState = 2 // Relay disconnects
 )
 
 // Enum value maps for RelayState.
 var (
 	RelayState_name = map[int32]string{
-		0: "NOOP",
-		1: "CONNECT",
-		2: "DISCONNECT",
+		0: "RELAY_STATE_UNSPECIFIED",
+		1: "RELAY_STATE_CONNECT",
+		2: "RELAY_STATE_DISCONNECT",
 	}
 	RelayState_value = map[string]int32{
-		"NOOP":       0,
-		"CONNECT":    1,
-		"DISCONNECT": 2,
+		"RELAY_STATE_UNSPECIFIED": 0,
+		"RELAY_STATE_CONNECT":     1,
+		"RELAY_STATE_DISCONNECT":  2,
 	}
 )
 
@@ -280,7 +280,7 @@ func (x *RelayStateRecord) GetState() RelayState {
 			return x.xxx_hidden_State
 		}
 	}
-	return RelayState_NOOP
+	return RelayState_RELAY_STATE_UNSPECIFIED
 }
 
 func (x *RelayStateRecord) SetRelayId(v int32) {
@@ -314,7 +314,7 @@ func (x *RelayStateRecord) ClearRelayId() {
 
 func (x *RelayStateRecord) ClearState() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_State = RelayState_NOOP
+	x.xxx_hidden_State = RelayState_RELAY_STATE_UNSPECIFIED
 }
 
 type RelayStateRecord_builder struct {
@@ -1250,13 +1250,12 @@ const file_acquisition_timeofuse_timeofuse_proto_rawDesc = "" +
 	"\aseasons\x18\x06 \x03(\v24.io.clbs.openhes.models.acquisition.timeofuse.SeasonR\aseasons\x12H\n" +
 	"\x05weeks\x18\a \x03(\v22.io.clbs.openhes.models.acquisition.timeofuse.WeekR\x05weeks\x12[\n" +
 	"\fday_profiles\x18\b \x03(\v28.io.clbs.openhes.models.acquisition.timeofuse.DayProfileR\vdayProfiles\x12[\n" +
-	"\fspecial_days\x18\t \x03(\v28.io.clbs.openhes.models.acquisition.timeofuse.SpecialDayR\vspecialDays*3\n" +
+	"\fspecial_days\x18\t \x03(\v28.io.clbs.openhes.models.acquisition.timeofuse.SpecialDayR\vspecialDays*^\n" +
 	"\n" +
-	"RelayState\x12\b\n" +
-	"\x04NOOP\x10\x00\x12\v\n" +
-	"\aCONNECT\x10\x01\x12\x0e\n" +
-	"\n" +
-	"DISCONNECT\x10\x02BDZBgithub.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuseb\beditionsp\xe8\a"
+	"RelayState\x12\x1b\n" +
+	"\x17RELAY_STATE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13RELAY_STATE_CONNECT\x10\x01\x12\x1a\n" +
+	"\x16RELAY_STATE_DISCONNECT\x10\x02BDZBgithub.com/cybroslabs/ouro-api-shared/gen/go/acquisition/timeofuseb\beditionsp\xe8\a"
 
 var file_acquisition_timeofuse_timeofuse_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_acquisition_timeofuse_timeofuse_proto_msgTypes = make([]protoimpl.MessageInfo, 7)

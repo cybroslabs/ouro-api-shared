@@ -6,6 +6,7 @@ The filter operator.
 
 | Value | Description |
 | --- | --- |
+| FILTER_OPERATOR_UNSPECIFIED | Unspecified filter operator. |
 | EQUAL | Single operand operator for text, integer, number, boolean, date fields. |
 | NOT_EQUAL | Single operand operator for text, integer, number, boolean, date fields. |
 | GREATER_THAN | Single operand operator for integer, number, date fields. |

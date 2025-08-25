@@ -30,49 +30,43 @@ const (
 type JobPriority int32
 
 const (
-	// Lowest priority.
-	JobPriority_JOB_PRIORITY_0 JobPriority = 0
-	// Priority 1.
-	JobPriority_JOB_PRIORITY_1 JobPriority = 1
-	// Priority 2.
-	JobPriority_JOB_PRIORITY_2 JobPriority = 2
-	// Priority 3.
-	JobPriority_JOB_PRIORITY_3 JobPriority = 3
-	// Priority 4.
-	JobPriority_JOB_PRIORITY_4 JobPriority = 4
-	// Priority 5.
-	JobPriority_JOB_PRIORITY_5 JobPriority = 5
-	// Priority 6.
-	JobPriority_JOB_PRIORITY_6 JobPriority = 6
-	// Priority 7.
-	JobPriority_JOB_PRIORITY_7 JobPriority = 7
-	// Highest priority.
-	JobPriority_JOB_PRIORITY_8 JobPriority = 8
+	JobPriority_JOB_PRIORITY_UNSPECIFIED JobPriority = 0 // Unspecified priority.
+	JobPriority_JOB_PRIORITY_0           JobPriority = 1 // Lowest priority.
+	JobPriority_JOB_PRIORITY_1           JobPriority = 2 // Priority 1.
+	JobPriority_JOB_PRIORITY_2           JobPriority = 3 // Priority 2.
+	JobPriority_JOB_PRIORITY_3           JobPriority = 4 // Priority 3.
+	JobPriority_JOB_PRIORITY_4           JobPriority = 5 // Priority 4.
+	JobPriority_JOB_PRIORITY_5           JobPriority = 6 // Priority 5.
+	JobPriority_JOB_PRIORITY_6           JobPriority = 7 // Priority 6.
+	JobPriority_JOB_PRIORITY_7           JobPriority = 8 // Priority 7.
+	JobPriority_JOB_PRIORITY_8           JobPriority = 9 // Highest priority.
 )
 
 // Enum value maps for JobPriority.
 var (
 	JobPriority_name = map[int32]string{
-		0: "JOB_PRIORITY_0",
-		1: "JOB_PRIORITY_1",
-		2: "JOB_PRIORITY_2",
-		3: "JOB_PRIORITY_3",
-		4: "JOB_PRIORITY_4",
-		5: "JOB_PRIORITY_5",
-		6: "JOB_PRIORITY_6",
-		7: "JOB_PRIORITY_7",
-		8: "JOB_PRIORITY_8",
+		0: "JOB_PRIORITY_UNSPECIFIED",
+		1: "JOB_PRIORITY_0",
+		2: "JOB_PRIORITY_1",
+		3: "JOB_PRIORITY_2",
+		4: "JOB_PRIORITY_3",
+		5: "JOB_PRIORITY_4",
+		6: "JOB_PRIORITY_5",
+		7: "JOB_PRIORITY_6",
+		8: "JOB_PRIORITY_7",
+		9: "JOB_PRIORITY_8",
 	}
 	JobPriority_value = map[string]int32{
-		"JOB_PRIORITY_0": 0,
-		"JOB_PRIORITY_1": 1,
-		"JOB_PRIORITY_2": 2,
-		"JOB_PRIORITY_3": 3,
-		"JOB_PRIORITY_4": 4,
-		"JOB_PRIORITY_5": 5,
-		"JOB_PRIORITY_6": 6,
-		"JOB_PRIORITY_7": 7,
-		"JOB_PRIORITY_8": 8,
+		"JOB_PRIORITY_UNSPECIFIED": 0,
+		"JOB_PRIORITY_0":           1,
+		"JOB_PRIORITY_1":           2,
+		"JOB_PRIORITY_2":           3,
+		"JOB_PRIORITY_3":           4,
+		"JOB_PRIORITY_4":           5,
+		"JOB_PRIORITY_5":           6,
+		"JOB_PRIORITY_6":           7,
+		"JOB_PRIORITY_7":           8,
+		"JOB_PRIORITY_8":           9,
 	}
 )
 
@@ -147,28 +141,31 @@ func (x ReadPathPolicy) Number() protoreflect.EnumNumber {
 type SerialConfigParity int32
 
 const (
-	SerialConfigParity_PARITY_NONE  SerialConfigParity = 0 // No parity.
-	SerialConfigParity_PARITY_EVEN  SerialConfigParity = 1 // Even parity.
-	SerialConfigParity_PARITY_ODD   SerialConfigParity = 3 // Odd parity.
-	SerialConfigParity_PARITY_MARK  SerialConfigParity = 4 // Mark parity.
-	SerialConfigParity_PARITY_SPACE SerialConfigParity = 5 // Space parity.
+	SerialConfigParity_PARITY_UNSPECIFIED SerialConfigParity = 0 // Unspecified parity.
+	SerialConfigParity_PARITY_NONE        SerialConfigParity = 1 // No parity.
+	SerialConfigParity_PARITY_EVEN        SerialConfigParity = 2 // Even parity.
+	SerialConfigParity_PARITY_ODD         SerialConfigParity = 3 // Odd parity.
+	SerialConfigParity_PARITY_MARK        SerialConfigParity = 4 // Mark parity.
+	SerialConfigParity_PARITY_SPACE       SerialConfigParity = 5 // Space parity.
 )
 
 // Enum value maps for SerialConfigParity.
 var (
 	SerialConfigParity_name = map[int32]string{
-		0: "PARITY_NONE",
-		1: "PARITY_EVEN",
+		0: "PARITY_UNSPECIFIED",
+		1: "PARITY_NONE",
+		2: "PARITY_EVEN",
 		3: "PARITY_ODD",
 		4: "PARITY_MARK",
 		5: "PARITY_SPACE",
 	}
 	SerialConfigParity_value = map[string]int32{
-		"PARITY_NONE":  0,
-		"PARITY_EVEN":  1,
-		"PARITY_ODD":   3,
-		"PARITY_MARK":  4,
-		"PARITY_SPACE": 5,
+		"PARITY_UNSPECIFIED": 0,
+		"PARITY_NONE":        1,
+		"PARITY_EVEN":        2,
+		"PARITY_ODD":         3,
+		"PARITY_MARK":        4,
+		"PARITY_SPACE":       5,
 	}
 )
 
@@ -198,58 +195,61 @@ func (x SerialConfigParity) Number() protoreflect.EnumNumber {
 type SerialConfigBaudRate int32
 
 const (
-	SerialConfigBaudRate_BAUD_RATE_110    SerialConfigBaudRate = 0  // 110 baud.
-	SerialConfigBaudRate_BAUD_RATE_300    SerialConfigBaudRate = 1  // 300 baud.
-	SerialConfigBaudRate_BAUD_RATE_600    SerialConfigBaudRate = 2  // 600 baud.
-	SerialConfigBaudRate_BAUD_RATE_1200   SerialConfigBaudRate = 3  // 1200 baud.
-	SerialConfigBaudRate_BAUD_RATE_2400   SerialConfigBaudRate = 4  // 2400 baud.
-	SerialConfigBaudRate_BAUD_RATE_4800   SerialConfigBaudRate = 5  // 4800 baud.
-	SerialConfigBaudRate_BAUD_RATE_9600   SerialConfigBaudRate = 6  // 9600 baud.
-	SerialConfigBaudRate_BAUD_RATE_14400  SerialConfigBaudRate = 7  // 14400 baud.
-	SerialConfigBaudRate_BAUD_RATE_19200  SerialConfigBaudRate = 8  // 19200 baud.
-	SerialConfigBaudRate_BAUD_RATE_38400  SerialConfigBaudRate = 9  // 38400 baud.
-	SerialConfigBaudRate_BAUD_RATE_57600  SerialConfigBaudRate = 10 // 57600 baud.
-	SerialConfigBaudRate_BAUD_RATE_115200 SerialConfigBaudRate = 11 // 115200 baud.
-	SerialConfigBaudRate_BAUD_RATE_230400 SerialConfigBaudRate = 12 // 230400 baud.
-	SerialConfigBaudRate_BAUD_RATE_460800 SerialConfigBaudRate = 13 // 460800 baud.
-	SerialConfigBaudRate_BAUD_RATE_921600 SerialConfigBaudRate = 14 // 921600 baud.
+	SerialConfigBaudRate_BAUD_RATE_UNSPECIFIED SerialConfigBaudRate = 0  // Unspecified baud rate.
+	SerialConfigBaudRate_BAUD_RATE_110         SerialConfigBaudRate = 1  // 110 baud.
+	SerialConfigBaudRate_BAUD_RATE_300         SerialConfigBaudRate = 2  // 300 baud.
+	SerialConfigBaudRate_BAUD_RATE_600         SerialConfigBaudRate = 3  // 600 baud.
+	SerialConfigBaudRate_BAUD_RATE_1200        SerialConfigBaudRate = 4  // 1200 baud.
+	SerialConfigBaudRate_BAUD_RATE_2400        SerialConfigBaudRate = 5  // 2400 baud.
+	SerialConfigBaudRate_BAUD_RATE_4800        SerialConfigBaudRate = 6  // 4800 baud.
+	SerialConfigBaudRate_BAUD_RATE_9600        SerialConfigBaudRate = 7  // 9600 baud.
+	SerialConfigBaudRate_BAUD_RATE_14400       SerialConfigBaudRate = 8  // 14400 baud.
+	SerialConfigBaudRate_BAUD_RATE_19200       SerialConfigBaudRate = 9  // 19200 baud.
+	SerialConfigBaudRate_BAUD_RATE_38400       SerialConfigBaudRate = 10 // 38400 baud.
+	SerialConfigBaudRate_BAUD_RATE_57600       SerialConfigBaudRate = 11 // 57600 baud.
+	SerialConfigBaudRate_BAUD_RATE_115200      SerialConfigBaudRate = 12 // 115200 baud.
+	SerialConfigBaudRate_BAUD_RATE_230400      SerialConfigBaudRate = 13 // 230400 baud.
+	SerialConfigBaudRate_BAUD_RATE_460800      SerialConfigBaudRate = 14 // 460800 baud.
+	SerialConfigBaudRate_BAUD_RATE_921600      SerialConfigBaudRate = 15 // 921600 baud.
 )
 
 // Enum value maps for SerialConfigBaudRate.
 var (
 	SerialConfigBaudRate_name = map[int32]string{
-		0:  "BAUD_RATE_110",
-		1:  "BAUD_RATE_300",
-		2:  "BAUD_RATE_600",
-		3:  "BAUD_RATE_1200",
-		4:  "BAUD_RATE_2400",
-		5:  "BAUD_RATE_4800",
-		6:  "BAUD_RATE_9600",
-		7:  "BAUD_RATE_14400",
-		8:  "BAUD_RATE_19200",
-		9:  "BAUD_RATE_38400",
-		10: "BAUD_RATE_57600",
-		11: "BAUD_RATE_115200",
-		12: "BAUD_RATE_230400",
-		13: "BAUD_RATE_460800",
-		14: "BAUD_RATE_921600",
+		0:  "BAUD_RATE_UNSPECIFIED",
+		1:  "BAUD_RATE_110",
+		2:  "BAUD_RATE_300",
+		3:  "BAUD_RATE_600",
+		4:  "BAUD_RATE_1200",
+		5:  "BAUD_RATE_2400",
+		6:  "BAUD_RATE_4800",
+		7:  "BAUD_RATE_9600",
+		8:  "BAUD_RATE_14400",
+		9:  "BAUD_RATE_19200",
+		10: "BAUD_RATE_38400",
+		11: "BAUD_RATE_57600",
+		12: "BAUD_RATE_115200",
+		13: "BAUD_RATE_230400",
+		14: "BAUD_RATE_460800",
+		15: "BAUD_RATE_921600",
 	}
 	SerialConfigBaudRate_value = map[string]int32{
-		"BAUD_RATE_110":    0,
-		"BAUD_RATE_300":    1,
-		"BAUD_RATE_600":    2,
-		"BAUD_RATE_1200":   3,
-		"BAUD_RATE_2400":   4,
-		"BAUD_RATE_4800":   5,
-		"BAUD_RATE_9600":   6,
-		"BAUD_RATE_14400":  7,
-		"BAUD_RATE_19200":  8,
-		"BAUD_RATE_38400":  9,
-		"BAUD_RATE_57600":  10,
-		"BAUD_RATE_115200": 11,
-		"BAUD_RATE_230400": 12,
-		"BAUD_RATE_460800": 13,
-		"BAUD_RATE_921600": 14,
+		"BAUD_RATE_UNSPECIFIED": 0,
+		"BAUD_RATE_110":         1,
+		"BAUD_RATE_300":         2,
+		"BAUD_RATE_600":         3,
+		"BAUD_RATE_1200":        4,
+		"BAUD_RATE_2400":        5,
+		"BAUD_RATE_4800":        6,
+		"BAUD_RATE_9600":        7,
+		"BAUD_RATE_14400":       8,
+		"BAUD_RATE_19200":       9,
+		"BAUD_RATE_38400":       10,
+		"BAUD_RATE_57600":       11,
+		"BAUD_RATE_115200":      12,
+		"BAUD_RATE_230400":      13,
+		"BAUD_RATE_460800":      14,
+		"BAUD_RATE_921600":      15,
 	}
 )
 
@@ -279,25 +279,28 @@ func (x SerialConfigBaudRate) Number() protoreflect.EnumNumber {
 type SerialConfigDataBits int32
 
 const (
-	SerialConfigDataBits_DATA_BITS_5 SerialConfigDataBits = 0 // 5 data bits
-	SerialConfigDataBits_DATA_BITS_6 SerialConfigDataBits = 1 // 6 data bits
-	SerialConfigDataBits_DATA_BITS_7 SerialConfigDataBits = 2 // 7 data bits
-	SerialConfigDataBits_DATA_BITS_8 SerialConfigDataBits = 3 // 8 data bits
+	SerialConfigDataBits_DATA_BITS_UNSPECIFIED SerialConfigDataBits = 0 // Unspecified data bits.
+	SerialConfigDataBits_DATA_BITS_5           SerialConfigDataBits = 1 // 5 data bits
+	SerialConfigDataBits_DATA_BITS_6           SerialConfigDataBits = 2 // 6 data bits
+	SerialConfigDataBits_DATA_BITS_7           SerialConfigDataBits = 3 // 7 data bits
+	SerialConfigDataBits_DATA_BITS_8           SerialConfigDataBits = 4 // 8 data bits
 )
 
 // Enum value maps for SerialConfigDataBits.
 var (
 	SerialConfigDataBits_name = map[int32]string{
-		0: "DATA_BITS_5",
-		1: "DATA_BITS_6",
-		2: "DATA_BITS_7",
-		3: "DATA_BITS_8",
+		0: "DATA_BITS_UNSPECIFIED",
+		1: "DATA_BITS_5",
+		2: "DATA_BITS_6",
+		3: "DATA_BITS_7",
+		4: "DATA_BITS_8",
 	}
 	SerialConfigDataBits_value = map[string]int32{
-		"DATA_BITS_5": 0,
-		"DATA_BITS_6": 1,
-		"DATA_BITS_7": 2,
-		"DATA_BITS_8": 3,
+		"DATA_BITS_UNSPECIFIED": 0,
+		"DATA_BITS_5":           1,
+		"DATA_BITS_6":           2,
+		"DATA_BITS_7":           3,
+		"DATA_BITS_8":           4,
 	}
 )
 
@@ -327,22 +330,25 @@ func (x SerialConfigDataBits) Number() protoreflect.EnumNumber {
 type SerialConfigStopBits int32
 
 const (
-	SerialConfigStopBits_STOP_BITS_1   SerialConfigStopBits = 0 // 1 stop bit
-	SerialConfigStopBits_STOP_BITS_1_5 SerialConfigStopBits = 1 // 1.5 stop bits
-	SerialConfigStopBits_STOP_BITS_2   SerialConfigStopBits = 2 // 2 stop bits
+	SerialConfigStopBits_STOP_BITS_UNSPECIFIED SerialConfigStopBits = 0 // Unspecified stop bits.
+	SerialConfigStopBits_STOP_BITS_1           SerialConfigStopBits = 1 // 1 stop bit
+	SerialConfigStopBits_STOP_BITS_1_5         SerialConfigStopBits = 2 // 1.5 stop bits
+	SerialConfigStopBits_STOP_BITS_2           SerialConfigStopBits = 3 // 2 stop bits
 )
 
 // Enum value maps for SerialConfigStopBits.
 var (
 	SerialConfigStopBits_name = map[int32]string{
-		0: "STOP_BITS_1",
-		1: "STOP_BITS_1_5",
-		2: "STOP_BITS_2",
+		0: "STOP_BITS_UNSPECIFIED",
+		1: "STOP_BITS_1",
+		2: "STOP_BITS_1_5",
+		3: "STOP_BITS_2",
 	}
 	SerialConfigStopBits_value = map[string]int32{
-		"STOP_BITS_1":   0,
-		"STOP_BITS_1_5": 1,
-		"STOP_BITS_2":   2,
+		"STOP_BITS_UNSPECIFIED": 0,
+		"STOP_BITS_1":           1,
+		"STOP_BITS_1_5":         2,
+		"STOP_BITS_2":           3,
 	}
 )
 
@@ -372,27 +378,30 @@ func (x SerialConfigStopBits) Number() protoreflect.EnumNumber {
 type CommunicationType int32
 
 const (
-	CommunicationType_COMMUNICATION_TYPE_TCPIP              CommunicationType = 0  // The communication is established via direct TCP/IP.
-	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL         CommunicationType = 1  // The communication is established via phone line (modem).
-	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 2  // The communication is established via a direct serial line.
-	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA   CommunicationType = 3  // The communication is established via a controlled  serial line (Moxa).
+	CommunicationType_COMMUNICATION_TYPE_UNSPECIFIED        CommunicationType = 0  // Unspecified communication type.
+	CommunicationType_COMMUNICATION_TYPE_TCPIP              CommunicationType = 1  // The communication is established via direct TCP/IP.
+	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL         CommunicationType = 2  // The communication is established via phone line (modem).
+	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 3  // The communication is established via a direct serial line.
+	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA   CommunicationType = 4  // The communication is established via a controlled  serial line (Moxa).
 	CommunicationType_COMMUNICATION_TYPE_LISTENING          CommunicationType = 99 // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 )
 
 // Enum value maps for CommunicationType.
 var (
 	CommunicationType_name = map[int32]string{
-		0:  "COMMUNICATION_TYPE_TCPIP",
-		1:  "COMMUNICATION_TYPE_MODEM_POOL",
-		2:  "COMMUNICATION_TYPE_SERIAL_LINE_DIRECT",
-		3:  "COMMUNICATION_TYPE_SERIAL_LINE_MOXA",
+		0:  "COMMUNICATION_TYPE_UNSPECIFIED",
+		1:  "COMMUNICATION_TYPE_TCPIP",
+		2:  "COMMUNICATION_TYPE_MODEM_POOL",
+		3:  "COMMUNICATION_TYPE_SERIAL_LINE_DIRECT",
+		4:  "COMMUNICATION_TYPE_SERIAL_LINE_MOXA",
 		99: "COMMUNICATION_TYPE_LISTENING",
 	}
 	CommunicationType_value = map[string]int32{
-		"COMMUNICATION_TYPE_TCPIP":              0,
-		"COMMUNICATION_TYPE_MODEM_POOL":         1,
-		"COMMUNICATION_TYPE_SERIAL_LINE_DIRECT": 2,
-		"COMMUNICATION_TYPE_SERIAL_LINE_MOXA":   3,
+		"COMMUNICATION_TYPE_UNSPECIFIED":        0,
+		"COMMUNICATION_TYPE_TCPIP":              1,
+		"COMMUNICATION_TYPE_MODEM_POOL":         2,
+		"COMMUNICATION_TYPE_SERIAL_LINE_DIRECT": 3,
+		"COMMUNICATION_TYPE_SERIAL_LINE_MOXA":   4,
 		"COMMUNICATION_TYPE_LISTENING":          99,
 	}
 )
@@ -423,33 +432,36 @@ func (x CommunicationType) Number() protoreflect.EnumNumber {
 type DataLinkProtocol int32
 
 const (
-	DataLinkProtocol_LINKPROTO_IEC_62056_21   DataLinkProtocol = 0  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_HDLC           DataLinkProtocol = 1  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER  DataLinkProtocol = 2  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_MODBUS         DataLinkProtocol = 3  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
-	DataLinkProtocol_LINKPROTO_MBUS           DataLinkProtocol = 4  // The M-Bus protocol. Used with the M-Bus application protocol.
-	DataLinkProtocol_LINKPROTO_VIKTOR         DataLinkProtocol = 5  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
+	DataLinkProtocol_LINTPROTO_UNSPECIFIED    DataLinkProtocol = 0  // Unspecified data link protocol.
+	DataLinkProtocol_LINKPROTO_IEC_62056_21   DataLinkProtocol = 1  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_HDLC           DataLinkProtocol = 2  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER  DataLinkProtocol = 3  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_MODBUS         DataLinkProtocol = 4  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
+	DataLinkProtocol_LINKPROTO_MBUS           DataLinkProtocol = 5  // The M-Bus protocol. Used with the M-Bus application protocol.
+	DataLinkProtocol_LINKPROTO_VIKTOR         DataLinkProtocol = 6  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
 	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99 // No data link protocol is applicable. Used with listening communication types.
 )
 
 // Enum value maps for DataLinkProtocol.
 var (
 	DataLinkProtocol_name = map[int32]string{
-		0:  "LINKPROTO_IEC_62056_21",
-		1:  "LINKPROTO_HDLC",
-		2:  "LINKPROTO_COSEM_WRAPPER",
-		3:  "LINKPROTO_MODBUS",
-		4:  "LINKPROTO_MBUS",
-		5:  "LINKPROTO_VIKTOR",
+		0:  "LINTPROTO_UNSPECIFIED",
+		1:  "LINKPROTO_IEC_62056_21",
+		2:  "LINKPROTO_HDLC",
+		3:  "LINKPROTO_COSEM_WRAPPER",
+		4:  "LINKPROTO_MODBUS",
+		5:  "LINKPROTO_MBUS",
+		6:  "LINKPROTO_VIKTOR",
 		99: "LINKPROTO_NOT_APPLICABLE",
 	}
 	DataLinkProtocol_value = map[string]int32{
-		"LINKPROTO_IEC_62056_21":   0,
-		"LINKPROTO_HDLC":           1,
-		"LINKPROTO_COSEM_WRAPPER":  2,
-		"LINKPROTO_MODBUS":         3,
-		"LINKPROTO_MBUS":           4,
-		"LINKPROTO_VIKTOR":         5,
+		"LINTPROTO_UNSPECIFIED":    0,
+		"LINKPROTO_IEC_62056_21":   1,
+		"LINKPROTO_HDLC":           2,
+		"LINKPROTO_COSEM_WRAPPER":  3,
+		"LINKPROTO_MODBUS":         4,
+		"LINKPROTO_MBUS":           5,
+		"LINKPROTO_VIKTOR":         6,
 		"LINKPROTO_NOT_APPLICABLE": 99,
 	}
 )
@@ -480,49 +492,43 @@ func (x DataLinkProtocol) Number() protoreflect.EnumNumber {
 type ApplicationProtocol int32
 
 const (
-	// The IEC 62056-21 (IEC-61107, VDEW) protocol.
-	ApplicationProtocol_APPPROTO_IEC_62056_21 ApplicationProtocol = 0
-	// The DLMS short-name protocol.
-	ApplicationProtocol_APPPROTO_DLMS_SN ApplicationProtocol = 1
-	// The DLMS logical-name protocol.
-	ApplicationProtocol_APPPROTO_DLMS_LN ApplicationProtocol = 2
-	// The SCTM protocol.
-	ApplicationProtocol_APPPROTO_SCTM ApplicationProtocol = 3
-	// The LIS200 protocol.
-	ApplicationProtocol_APPPROTO_LIS200 ApplicationProtocol = 4
-	// The ANSI C12 protocol.
-	ApplicationProtocol_APPPROTO_ANSI_C12 ApplicationProtocol = 5
-	// The MQTT protocol.
-	ApplicationProtocol_APPPROTO_MQTT ApplicationProtocol = 6
-	// The MODBUS protocol.
-	ApplicationProtocol_APPPROTO_MODBUS ApplicationProtocol = 7
-	// The MBUS protocol.
-	ApplicationProtocol_APPPROTO_MBUS ApplicationProtocol = 8
+	ApplicationProtocol_APPPROTO_UNSPECIFIED  ApplicationProtocol = 0 // Unspecified application protocol.
+	ApplicationProtocol_APPPROTO_IEC_62056_21 ApplicationProtocol = 1 // The IEC 62056-21 (IEC-61107, VDEW) protocol.
+	ApplicationProtocol_APPPROTO_DLMS_SN      ApplicationProtocol = 2 // The DLMS short-name protocol.
+	ApplicationProtocol_APPPROTO_DLMS_LN      ApplicationProtocol = 3 // The DLMS logical-name protocol.
+	ApplicationProtocol_APPPROTO_SCTM         ApplicationProtocol = 4 // The SCTM protocol.
+	ApplicationProtocol_APPPROTO_LIS200       ApplicationProtocol = 5 // The LIS200 protocol.
+	ApplicationProtocol_APPPROTO_ANSI_C12     ApplicationProtocol = 6 // The ANSI C12 protocol.
+	ApplicationProtocol_APPPROTO_MQTT         ApplicationProtocol = 7 // The MQTT protocol.
+	ApplicationProtocol_APPPROTO_MODBUS       ApplicationProtocol = 8 // The MODBUS protocol.
+	ApplicationProtocol_APPPROTO_MBUS         ApplicationProtocol = 9 // The MBUS protocol.
 )
 
 // Enum value maps for ApplicationProtocol.
 var (
 	ApplicationProtocol_name = map[int32]string{
-		0: "APPPROTO_IEC_62056_21",
-		1: "APPPROTO_DLMS_SN",
-		2: "APPPROTO_DLMS_LN",
-		3: "APPPROTO_SCTM",
-		4: "APPPROTO_LIS200",
-		5: "APPPROTO_ANSI_C12",
-		6: "APPPROTO_MQTT",
-		7: "APPPROTO_MODBUS",
-		8: "APPPROTO_MBUS",
+		0: "APPPROTO_UNSPECIFIED",
+		1: "APPPROTO_IEC_62056_21",
+		2: "APPPROTO_DLMS_SN",
+		3: "APPPROTO_DLMS_LN",
+		4: "APPPROTO_SCTM",
+		5: "APPPROTO_LIS200",
+		6: "APPPROTO_ANSI_C12",
+		7: "APPPROTO_MQTT",
+		8: "APPPROTO_MODBUS",
+		9: "APPPROTO_MBUS",
 	}
 	ApplicationProtocol_value = map[string]int32{
-		"APPPROTO_IEC_62056_21": 0,
-		"APPPROTO_DLMS_SN":      1,
-		"APPPROTO_DLMS_LN":      2,
-		"APPPROTO_SCTM":         3,
-		"APPPROTO_LIS200":       4,
-		"APPPROTO_ANSI_C12":     5,
-		"APPPROTO_MQTT":         6,
-		"APPPROTO_MODBUS":       7,
-		"APPPROTO_MBUS":         8,
+		"APPPROTO_UNSPECIFIED":  0,
+		"APPPROTO_IEC_62056_21": 1,
+		"APPPROTO_DLMS_SN":      2,
+		"APPPROTO_DLMS_LN":      3,
+		"APPPROTO_SCTM":         4,
+		"APPPROTO_LIS200":       5,
+		"APPPROTO_ANSI_C12":     6,
+		"APPPROTO_MQTT":         7,
+		"APPPROTO_MODBUS":       8,
+		"APPPROTO_MBUS":         9,
 	}
 )
 
@@ -552,43 +558,31 @@ func (x ApplicationProtocol) Number() protoreflect.EnumNumber {
 type ActionType int32
 
 const (
-	// Get a register value, for example an instantaneous values. The action covers a specific register.
-	ActionType_ACTION_TYPE_GET_REGISTER ActionType = 0
-	// Get a periodical profile, for example a load profile. The action covers a specific profile column.
-	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 1
-	// Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
-	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE ActionType = 2
-	// Get an event log. The action covers a specific event log.
-	ActionType_ACTION_TYPE_GET_EVENTS ActionType = 3
-	// Get device information. The action returns detailed information data about the remote device.
-	ActionType_ACTION_TYPE_GET_DEVICE_INFO ActionType = 10
-	// Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
-	ActionType_ACTION_TYPE_SYNC_CLOCK ActionType = 11
-	// Set relay state. The action covers a single relay.
-	ActionType_ACTION_TYPE_SET_RELAY_STATE ActionType = 21
-	// Get the disconnector state.
-	ActionType_ACTION_TYPE_GET_DISCONNECTOR_STATE ActionType = 22
-	// Set the disconnector state.
-	ActionType_ACTION_TYPE_SET_DISCONNECTOR_STATE ActionType = 23
-	// Get time-of-use table.
-	ActionType_ACTION_TYPE_GET_TOU ActionType = 24
-	// Set time-of-use table.
-	ActionType_ACTION_TYPE_SET_TOU ActionType = 25
-	// Set limiter settings. The action covers single limiter.
-	ActionType_ACTION_TYPE_SET_LIMITER ActionType = 27
-	// Reset the billing period.
-	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD ActionType = 40
-	// Start a firmware update.
-	ActionType_ACTION_TYPE_FW_UPDATE ActionType = 50
+	ActionType_ACTION_TYPE_UNSPECIFIED            ActionType = 0  // Unspecified action type.
+	ActionType_ACTION_TYPE_GET_REGISTER           ActionType = 1  // Get a register value, for example an instantaneous values. The action covers a specific register.
+	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 2  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
+	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE  ActionType = 3  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
+	ActionType_ACTION_TYPE_GET_EVENTS             ActionType = 4  // Get an event log. The action covers a specific event log.
+	ActionType_ACTION_TYPE_GET_DEVICE_INFO        ActionType = 10 // Get device information. The action returns detailed information data about the remote device.
+	ActionType_ACTION_TYPE_SYNC_CLOCK             ActionType = 11 // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
+	ActionType_ACTION_TYPE_SET_RELAY_STATE        ActionType = 21 // Set relay state. The action covers a single relay.
+	ActionType_ACTION_TYPE_GET_DISCONNECTOR_STATE ActionType = 22 // Get the disconnector state.
+	ActionType_ACTION_TYPE_SET_DISCONNECTOR_STATE ActionType = 23 // Set the disconnector state.
+	ActionType_ACTION_TYPE_GET_TOU                ActionType = 24 // Get time-of-use table.
+	ActionType_ACTION_TYPE_SET_TOU                ActionType = 25 // Set time-of-use table.
+	ActionType_ACTION_TYPE_SET_LIMITER            ActionType = 27 // Set limiter settings. The action covers single limiter.
+	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD   ActionType = 40 // Reset the billing period.
+	ActionType_ACTION_TYPE_FW_UPDATE              ActionType = 50 // Start a firmware update.
 )
 
 // Enum value maps for ActionType.
 var (
 	ActionType_name = map[int32]string{
-		0:  "ACTION_TYPE_GET_REGISTER",
-		1:  "ACTION_TYPE_GET_PERIODICAL_PROFILE",
-		2:  "ACTION_TYPE_GET_IRREGULAR_PROFILE",
-		3:  "ACTION_TYPE_GET_EVENTS",
+		0:  "ACTION_TYPE_UNSPECIFIED",
+		1:  "ACTION_TYPE_GET_REGISTER",
+		2:  "ACTION_TYPE_GET_PERIODICAL_PROFILE",
+		3:  "ACTION_TYPE_GET_IRREGULAR_PROFILE",
+		4:  "ACTION_TYPE_GET_EVENTS",
 		10: "ACTION_TYPE_GET_DEVICE_INFO",
 		11: "ACTION_TYPE_SYNC_CLOCK",
 		21: "ACTION_TYPE_SET_RELAY_STATE",
@@ -601,10 +595,11 @@ var (
 		50: "ACTION_TYPE_FW_UPDATE",
 	}
 	ActionType_value = map[string]int32{
-		"ACTION_TYPE_GET_REGISTER":           0,
-		"ACTION_TYPE_GET_PERIODICAL_PROFILE": 1,
-		"ACTION_TYPE_GET_IRREGULAR_PROFILE":  2,
-		"ACTION_TYPE_GET_EVENTS":             3,
+		"ACTION_TYPE_UNSPECIFIED":            0,
+		"ACTION_TYPE_GET_REGISTER":           1,
+		"ACTION_TYPE_GET_PERIODICAL_PROFILE": 2,
+		"ACTION_TYPE_GET_IRREGULAR_PROFILE":  3,
+		"ACTION_TYPE_GET_EVENTS":             4,
 		"ACTION_TYPE_GET_DEVICE_INFO":        10,
 		"ACTION_TYPE_SYNC_CLOCK":             11,
 		"ACTION_TYPE_SET_RELAY_STATE":        21,
@@ -644,27 +639,26 @@ func (x ActionType) Number() protoreflect.EnumNumber {
 type ActionResultCode int32
 
 const (
-	// The action has been completed successfully.
-	ActionResultCode_ERROR_CODE_ACTION_OK ActionResultCode = 0
-	// The action is not supported by the driver or device.
-	ActionResultCode_ERROR_CODE_ACTION_UNSUPPORTED ActionResultCode = 1
-	// The action is pending.
-	ActionResultCode_ERROR_CODE_ACTION_PENDING ActionResultCode = 3
-	// The action has failed.
-	ActionResultCode_ERROR_CODE_ACTION_ERROR ActionResultCode = 5
+	ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED ActionResultCode = 0 // Unspecified action result code.
+	ActionResultCode_ERROR_CODE_ACTION_OK          ActionResultCode = 1 // The action has been completed successfully.
+	ActionResultCode_ERROR_CODE_ACTION_UNSUPPORTED ActionResultCode = 2 // The action is not supported by the driver or device.
+	ActionResultCode_ERROR_CODE_ACTION_PENDING     ActionResultCode = 3 // The action is pending.
+	ActionResultCode_ERROR_CODE_ACTION_ERROR       ActionResultCode = 5 // The action has failed.
 )
 
 // Enum value maps for ActionResultCode.
 var (
 	ActionResultCode_name = map[int32]string{
-		0: "ERROR_CODE_ACTION_OK",
-		1: "ERROR_CODE_ACTION_UNSUPPORTED",
+		0: "ERROR_CODE_ACTION_UNSPECIFIED",
+		1: "ERROR_CODE_ACTION_OK",
+		2: "ERROR_CODE_ACTION_UNSUPPORTED",
 		3: "ERROR_CODE_ACTION_PENDING",
 		5: "ERROR_CODE_ACTION_ERROR",
 	}
 	ActionResultCode_value = map[string]int32{
-		"ERROR_CODE_ACTION_OK":          0,
-		"ERROR_CODE_ACTION_UNSUPPORTED": 1,
+		"ERROR_CODE_ACTION_UNSPECIFIED": 0,
+		"ERROR_CODE_ACTION_OK":          1,
+		"ERROR_CODE_ACTION_UNSUPPORTED": 2,
 		"ERROR_CODE_ACTION_PENDING":     3,
 		"ERROR_CODE_ACTION_ERROR":       5,
 	}
@@ -696,30 +690,28 @@ func (x ActionResultCode) Number() protoreflect.EnumNumber {
 type JobErrorCode int32
 
 const (
-	// The job has been completed successfully.
-	JobErrorCode_JOB_ERROR_CODE_NONE JobErrorCode = 0
-	// There is no free slot in the driver to handle the job; the job shall be send again later.
-	JobErrorCode_JOB_ERROR_CODE_BUSY JobErrorCode = 1
-	// The job has failed; a retry will be attempted.
-	JobErrorCode_JOB_ERROR_CODE_ERROR JobErrorCode = 5
-	// This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
-	JobErrorCode_JOB_ERROR_CODE_ALREADY_EXISTS JobErrorCode = 8
-	// The job failed, not retry will be attempted.
-	JobErrorCode_JOB_ERROR_CODE_FATAL JobErrorCode = 9
+	JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED    JobErrorCode = 0 // Unspecified job error code.
+	JobErrorCode_JOB_ERROR_CODE_NONE           JobErrorCode = 1 // The job has been completed successfully.
+	JobErrorCode_JOB_ERROR_CODE_BUSY           JobErrorCode = 2 // There is no free slot in the driver to handle the job; the job shall be send again later.
+	JobErrorCode_JOB_ERROR_CODE_ERROR          JobErrorCode = 5 // The job has failed; a retry will be attempted.
+	JobErrorCode_JOB_ERROR_CODE_ALREADY_EXISTS JobErrorCode = 8 // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
+	JobErrorCode_JOB_ERROR_CODE_FATAL          JobErrorCode = 9 // The job failed, not retry will be attempted.
 )
 
 // Enum value maps for JobErrorCode.
 var (
 	JobErrorCode_name = map[int32]string{
-		0: "JOB_ERROR_CODE_NONE",
-		1: "JOB_ERROR_CODE_BUSY",
+		0: "JOB_ERROR_CODE_UNSPECIFIED",
+		1: "JOB_ERROR_CODE_NONE",
+		2: "JOB_ERROR_CODE_BUSY",
 		5: "JOB_ERROR_CODE_ERROR",
 		8: "JOB_ERROR_CODE_ALREADY_EXISTS",
 		9: "JOB_ERROR_CODE_FATAL",
 	}
 	JobErrorCode_value = map[string]int32{
-		"JOB_ERROR_CODE_NONE":           0,
-		"JOB_ERROR_CODE_BUSY":           1,
+		"JOB_ERROR_CODE_UNSPECIFIED":    0,
+		"JOB_ERROR_CODE_NONE":           1,
+		"JOB_ERROR_CODE_BUSY":           2,
 		"JOB_ERROR_CODE_ERROR":          5,
 		"JOB_ERROR_CODE_ALREADY_EXISTS": 8,
 		"JOB_ERROR_CODE_FATAL":          9,
@@ -752,33 +744,31 @@ func (x JobErrorCode) Number() protoreflect.EnumNumber {
 type BulkStatusCode int32
 
 const (
-	// The bulk is waiting in the queue.
-	BulkStatusCode_BULK_STATUS_QUEUED BulkStatusCode = 0
-	// The bulk is currently running.
-	BulkStatusCode_BULK_STATUS_RUNNING BulkStatusCode = 1
-	// The bulk has been completed.
-	BulkStatusCode_BULK_STATUS_COMPLETED BulkStatusCode = 2
-	// The bulk has been cancelled.
-	BulkStatusCode_BULK_STATUS_CANCELLED BulkStatusCode = 3
-	// The bulk has expired.
-	BulkStatusCode_BULK_STATUS_EXPIRED BulkStatusCode = 4
+	BulkStatusCode_BULK_STATUS_UNSPECIFIED BulkStatusCode = 0 // Unspecified bulk status.
+	BulkStatusCode_BULK_STATUS_QUEUED      BulkStatusCode = 1 // The bulk is waiting in the queue.
+	BulkStatusCode_BULK_STATUS_RUNNING     BulkStatusCode = 2 // The bulk is currently running.
+	BulkStatusCode_BULK_STATUS_COMPLETED   BulkStatusCode = 3 // The bulk has been completed.
+	BulkStatusCode_BULK_STATUS_CANCELLED   BulkStatusCode = 4 // The bulk has been cancelled.
+	BulkStatusCode_BULK_STATUS_EXPIRED     BulkStatusCode = 5 // The bulk has expired.
 )
 
 // Enum value maps for BulkStatusCode.
 var (
 	BulkStatusCode_name = map[int32]string{
-		0: "BULK_STATUS_QUEUED",
-		1: "BULK_STATUS_RUNNING",
-		2: "BULK_STATUS_COMPLETED",
-		3: "BULK_STATUS_CANCELLED",
-		4: "BULK_STATUS_EXPIRED",
+		0: "BULK_STATUS_UNSPECIFIED",
+		1: "BULK_STATUS_QUEUED",
+		2: "BULK_STATUS_RUNNING",
+		3: "BULK_STATUS_COMPLETED",
+		4: "BULK_STATUS_CANCELLED",
+		5: "BULK_STATUS_EXPIRED",
 	}
 	BulkStatusCode_value = map[string]int32{
-		"BULK_STATUS_QUEUED":    0,
-		"BULK_STATUS_RUNNING":   1,
-		"BULK_STATUS_COMPLETED": 2,
-		"BULK_STATUS_CANCELLED": 3,
-		"BULK_STATUS_EXPIRED":   4,
+		"BULK_STATUS_UNSPECIFIED": 0,
+		"BULK_STATUS_QUEUED":      1,
+		"BULK_STATUS_RUNNING":     2,
+		"BULK_STATUS_COMPLETED":   3,
+		"BULK_STATUS_CANCELLED":   4,
+		"BULK_STATUS_EXPIRED":     5,
 	}
 )
 
@@ -808,29 +798,28 @@ func (x BulkStatusCode) Number() protoreflect.EnumNumber {
 type DeviceConfigurationRegisterKind int32
 
 const (
-	// The object represents a generic register.
-	DeviceConfigurationRegisterKind_Register DeviceConfigurationRegisterKind = 0
-	// The object represents a periodical profile.
-	DeviceConfigurationRegisterKind_PeriodicalProfile DeviceConfigurationRegisterKind = 1
-	// The object represents an irregular profile.
-	DeviceConfigurationRegisterKind_IrregularProfile DeviceConfigurationRegisterKind = 2
-	// The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
-	DeviceConfigurationRegisterKind_Synthetic DeviceConfigurationRegisterKind = 99
+	DeviceConfigurationRegisterKind_KIND_UNSPECIFIED        DeviceConfigurationRegisterKind = 0  // Unspecified register kind.
+	DeviceConfigurationRegisterKind_KIND_REGISTER           DeviceConfigurationRegisterKind = 1  // The object represents a generic register.
+	DeviceConfigurationRegisterKind_KIND_PERIODICAL_PROFILE DeviceConfigurationRegisterKind = 2  // The object represents a periodical profile.
+	DeviceConfigurationRegisterKind_KIND_IRREGULAR_PROFILE  DeviceConfigurationRegisterKind = 3  // The object represents an irregular profile.
+	DeviceConfigurationRegisterKind_KIND_SYNTHETIC          DeviceConfigurationRegisterKind = 99 // The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
 )
 
 // Enum value maps for DeviceConfigurationRegisterKind.
 var (
 	DeviceConfigurationRegisterKind_name = map[int32]string{
-		0:  "Register",
-		1:  "PeriodicalProfile",
-		2:  "IrregularProfile",
-		99: "Synthetic",
+		0:  "KIND_UNSPECIFIED",
+		1:  "KIND_REGISTER",
+		2:  "KIND_PERIODICAL_PROFILE",
+		3:  "KIND_IRREGULAR_PROFILE",
+		99: "KIND_SYNTHETIC",
 	}
 	DeviceConfigurationRegisterKind_value = map[string]int32{
-		"Register":          0,
-		"PeriodicalProfile": 1,
-		"IrregularProfile":  2,
-		"Synthetic":         99,
+		"KIND_UNSPECIFIED":        0,
+		"KIND_REGISTER":           1,
+		"KIND_PERIODICAL_PROFILE": 2,
+		"KIND_IRREGULAR_PROFILE":  3,
+		"KIND_SYNTHETIC":          99,
 	}
 )
 
@@ -860,41 +849,37 @@ func (x DeviceConfigurationRegisterKind) Number() protoreflect.EnumNumber {
 type JobStatusCode int32
 
 const (
-	// The job is waiting in the queue for execution.
-	JobStatusCode_JOB_STATUS_QUEUED JobStatusCode = 0
-	// The job is currently running.
-	JobStatusCode_JOB_STATUS_RUNNING JobStatusCode = 1
-	// The job has finished acquiring data and is now processing it.
-	JobStatusCode_JOB_STATUS_PROCESSING_DATA JobStatusCode = 2
-	// The job has been completed.
-	JobStatusCode_JOB_STATUS_COMPLETED JobStatusCode = 3
-	// The job has failed.
-	JobStatusCode_JOB_STATUS_FAILED JobStatusCode = 4
-	// The job has been cancelled.
-	JobStatusCode_JOB_STATUS_CANCELLED JobStatusCode = 5
-	// The job has expired.
-	JobStatusCode_JOB_STATUS_EXPIRED JobStatusCode = 6
+	JobStatusCode_JOB_STATUS_UNSPECIFIED     JobStatusCode = 0 // Unspecified job status.
+	JobStatusCode_JOB_STATUS_QUEUED          JobStatusCode = 1 // The job is waiting in the queue for execution.
+	JobStatusCode_JOB_STATUS_RUNNING         JobStatusCode = 2 // The job is currently running.
+	JobStatusCode_JOB_STATUS_PROCESSING_DATA JobStatusCode = 3 // The job has finished acquiring data and is now processing it.
+	JobStatusCode_JOB_STATUS_COMPLETED       JobStatusCode = 4 // The job has been completed.
+	JobStatusCode_JOB_STATUS_FAILED          JobStatusCode = 5 // The job has failed.
+	JobStatusCode_JOB_STATUS_CANCELLED       JobStatusCode = 6 // The job has been cancelled.
+	JobStatusCode_JOB_STATUS_EXPIRED         JobStatusCode = 7 // The job has expired.
 )
 
 // Enum value maps for JobStatusCode.
 var (
 	JobStatusCode_name = map[int32]string{
-		0: "JOB_STATUS_QUEUED",
-		1: "JOB_STATUS_RUNNING",
-		2: "JOB_STATUS_PROCESSING_DATA",
-		3: "JOB_STATUS_COMPLETED",
-		4: "JOB_STATUS_FAILED",
-		5: "JOB_STATUS_CANCELLED",
-		6: "JOB_STATUS_EXPIRED",
+		0: "JOB_STATUS_UNSPECIFIED",
+		1: "JOB_STATUS_QUEUED",
+		2: "JOB_STATUS_RUNNING",
+		3: "JOB_STATUS_PROCESSING_DATA",
+		4: "JOB_STATUS_COMPLETED",
+		5: "JOB_STATUS_FAILED",
+		6: "JOB_STATUS_CANCELLED",
+		7: "JOB_STATUS_EXPIRED",
 	}
 	JobStatusCode_value = map[string]int32{
-		"JOB_STATUS_QUEUED":          0,
-		"JOB_STATUS_RUNNING":         1,
-		"JOB_STATUS_PROCESSING_DATA": 2,
-		"JOB_STATUS_COMPLETED":       3,
-		"JOB_STATUS_FAILED":          4,
-		"JOB_STATUS_CANCELLED":       5,
-		"JOB_STATUS_EXPIRED":         6,
+		"JOB_STATUS_UNSPECIFIED":     0,
+		"JOB_STATUS_QUEUED":          1,
+		"JOB_STATUS_RUNNING":         2,
+		"JOB_STATUS_PROCESSING_DATA": 3,
+		"JOB_STATUS_COMPLETED":       4,
+		"JOB_STATUS_FAILED":          5,
+		"JOB_STATUS_CANCELLED":       6,
+		"JOB_STATUS_EXPIRED":         7,
 	}
 )
 
@@ -924,21 +909,22 @@ func (x JobStatusCode) Number() protoreflect.EnumNumber {
 type TopologyNodeType int32
 
 const (
-	// The node is a device, such as an electricity meter.
-	TopologyNodeType_TOPOLOGY_NODE_DEVICE TopologyNodeType = 0
-	// The node is a communication unit, such as a modem or a data concentrator.
-	TopologyNodeType_TOPOLOGY_NODE_COMMUNICATION_UNIT TopologyNodeType = 1
+	TopologyNodeType_TOPOLOGY_NODE_UNSPECIFIED        TopologyNodeType = 0 // Unspecified node type.
+	TopologyNodeType_TOPOLOGY_NODE_DEVICE             TopologyNodeType = 1 // The node is a device, such as an electricity meter.
+	TopologyNodeType_TOPOLOGY_NODE_COMMUNICATION_UNIT TopologyNodeType = 2 // The node is a communication unit, such as a modem or a data concentrator.
 )
 
 // Enum value maps for TopologyNodeType.
 var (
 	TopologyNodeType_name = map[int32]string{
-		0: "TOPOLOGY_NODE_DEVICE",
-		1: "TOPOLOGY_NODE_COMMUNICATION_UNIT",
+		0: "TOPOLOGY_NODE_UNSPECIFIED",
+		1: "TOPOLOGY_NODE_DEVICE",
+		2: "TOPOLOGY_NODE_COMMUNICATION_UNIT",
 	}
 	TopologyNodeType_value = map[string]int32{
-		"TOPOLOGY_NODE_DEVICE":             0,
-		"TOPOLOGY_NODE_COMMUNICATION_UNIT": 1,
+		"TOPOLOGY_NODE_UNSPECIFIED":        0,
+		"TOPOLOGY_NODE_DEVICE":             1,
+		"TOPOLOGY_NODE_COMMUNICATION_UNIT": 2,
 	}
 )
 
@@ -1069,7 +1055,7 @@ func (x *JobSettings) GetPriority() JobPriority {
 			return x.xxx_hidden_Priority
 		}
 	}
-	return JobPriority_JOB_PRIORITY_0
+	return JobPriority_JOB_PRIORITY_UNSPECIFIED
 }
 
 func (x *JobSettings) GetAttempts() []int32 {
@@ -1187,7 +1173,7 @@ func (x *JobSettings) ClearMaxDuration() {
 
 func (x *JobSettings) ClearPriority() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Priority = JobPriority_JOB_PRIORITY_0
+	x.xxx_hidden_Priority = JobPriority_JOB_PRIORITY_UNSPECIFIED
 }
 
 func (x *JobSettings) ClearRetryDelay() {
@@ -3010,7 +2996,7 @@ func (x *JobDevice) GetAppProtocol() ApplicationProtocol {
 			return x.xxx_hidden_AppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *JobDevice) GetTimezone() string {
@@ -3108,7 +3094,7 @@ func (x *JobDevice) ClearExternalId() {
 
 func (x *JobDevice) ClearAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
-	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *JobDevice) ClearTimezone() {
@@ -3655,7 +3641,7 @@ func (x *SerialConfig) GetBaudRate() SerialConfigBaudRate {
 			return x.xxx_hidden_BaudRate
 		}
 	}
-	return SerialConfigBaudRate_BAUD_RATE_110
+	return SerialConfigBaudRate_BAUD_RATE_UNSPECIFIED
 }
 
 func (x *SerialConfig) GetParity() SerialConfigParity {
@@ -3664,7 +3650,7 @@ func (x *SerialConfig) GetParity() SerialConfigParity {
 			return x.xxx_hidden_Parity
 		}
 	}
-	return SerialConfigParity_PARITY_NONE
+	return SerialConfigParity_PARITY_UNSPECIFIED
 }
 
 func (x *SerialConfig) GetDataBits() SerialConfigDataBits {
@@ -3673,7 +3659,7 @@ func (x *SerialConfig) GetDataBits() SerialConfigDataBits {
 			return x.xxx_hidden_DataBits
 		}
 	}
-	return SerialConfigDataBits_DATA_BITS_5
+	return SerialConfigDataBits_DATA_BITS_UNSPECIFIED
 }
 
 func (x *SerialConfig) GetStopBits() SerialConfigStopBits {
@@ -3682,7 +3668,7 @@ func (x *SerialConfig) GetStopBits() SerialConfigStopBits {
 			return x.xxx_hidden_StopBits
 		}
 	}
-	return SerialConfigStopBits_STOP_BITS_1
+	return SerialConfigStopBits_STOP_BITS_UNSPECIFIED
 }
 
 func (x *SerialConfig) SetBaudRate(v SerialConfigBaudRate) {
@@ -3735,22 +3721,22 @@ func (x *SerialConfig) HasStopBits() bool {
 
 func (x *SerialConfig) ClearBaudRate() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_BaudRate = SerialConfigBaudRate_BAUD_RATE_110
+	x.xxx_hidden_BaudRate = SerialConfigBaudRate_BAUD_RATE_UNSPECIFIED
 }
 
 func (x *SerialConfig) ClearParity() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Parity = SerialConfigParity_PARITY_NONE
+	x.xxx_hidden_Parity = SerialConfigParity_PARITY_UNSPECIFIED
 }
 
 func (x *SerialConfig) ClearDataBits() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_DataBits = SerialConfigDataBits_DATA_BITS_5
+	x.xxx_hidden_DataBits = SerialConfigDataBits_DATA_BITS_UNSPECIFIED
 }
 
 func (x *SerialConfig) ClearStopBits() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
-	x.xxx_hidden_StopBits = SerialConfigStopBits_STOP_BITS_1
+	x.xxx_hidden_StopBits = SerialConfigStopBits_STOP_BITS_UNSPECIFIED
 }
 
 type SerialConfig_builder struct {
@@ -3856,7 +3842,7 @@ func (x *ConnectionInfo) GetLinkProtocol() DataLinkProtocol {
 			return x.xxx_hidden_LinkProtocol
 		}
 	}
-	return DataLinkProtocol_LINKPROTO_IEC_62056_21
+	return DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 func (x *ConnectionInfo) GetCommunicationBusId() string {
@@ -3983,7 +3969,7 @@ func (x *ConnectionInfo) ClearSerialOverIp() {
 
 func (x *ConnectionInfo) ClearLinkProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINKPROTO_IEC_62056_21
+	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 func (x *ConnectionInfo) ClearCommunicationBusId() {
@@ -4832,7 +4818,7 @@ func (x *ApplicationProtocolTemplate) GetProtocol() ApplicationProtocol {
 			return x.xxx_hidden_Protocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *ApplicationProtocolTemplate) GetAttributes() []*common.FieldDescriptor {
@@ -4862,7 +4848,7 @@ func (x *ApplicationProtocolTemplate) HasProtocol() bool {
 
 func (x *ApplicationProtocolTemplate) ClearProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Protocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_Protocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 type ApplicationProtocolTemplate_builder struct {
@@ -4929,7 +4915,7 @@ func (x *DataLinkTemplate) GetLinkProtocol() DataLinkProtocol {
 			return x.xxx_hidden_LinkProtocol
 		}
 	}
-	return DataLinkProtocol_LINKPROTO_IEC_62056_21
+	return DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 func (x *DataLinkTemplate) GetAppProtocolRefs() []ApplicationProtocol {
@@ -4970,7 +4956,7 @@ func (x *DataLinkTemplate) HasLinkProtocol() bool {
 
 func (x *DataLinkTemplate) ClearLinkProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINKPROTO_IEC_62056_21
+	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 type DataLinkTemplate_builder struct {
@@ -5039,7 +5025,7 @@ func (x *CommunicationTemplate) GetType() CommunicationType {
 			return x.xxx_hidden_Type
 		}
 	}
-	return CommunicationType_COMMUNICATION_TYPE_TCPIP
+	return CommunicationType_COMMUNICATION_TYPE_UNSPECIFIED
 }
 
 func (x *CommunicationTemplate) GetDatalinks() []*DataLinkTemplate {
@@ -5069,7 +5055,7 @@ func (x *CommunicationTemplate) HasType() bool {
 
 func (x *CommunicationTemplate) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = CommunicationType_COMMUNICATION_TYPE_TCPIP
+	x.xxx_hidden_Type = CommunicationType_COMMUNICATION_TYPE_UNSPECIFIED
 }
 
 type CommunicationTemplate_builder struct {
@@ -5427,7 +5413,7 @@ func (x *ActionProgressUpdate) GetCode() ActionResultCode {
 			return x.xxx_hidden_Code
 		}
 	}
-	return ActionResultCode_ERROR_CODE_ACTION_OK
+	return ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED
 }
 
 func (x *ActionProgressUpdate) GetData() *ActionData {
@@ -5514,7 +5500,7 @@ func (x *ActionProgressUpdate) ClearActionId() {
 
 func (x *ActionProgressUpdate) ClearCode() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_Code = ActionResultCode_ERROR_CODE_ACTION_OK
+	x.xxx_hidden_Code = ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED
 }
 
 func (x *ActionProgressUpdate) ClearData() {
@@ -5610,7 +5596,7 @@ func (x *JobProgressUpdate) GetCode() JobErrorCode {
 			return x.xxx_hidden_Code
 		}
 	}
-	return JobErrorCode_JOB_ERROR_CODE_NONE
+	return JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
 }
 
 func (x *JobProgressUpdate) GetDuration() *durationpb.Duration {
@@ -5680,7 +5666,7 @@ func (x *JobProgressUpdate) ClearJobId() {
 
 func (x *JobProgressUpdate) ClearCode() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Code = JobErrorCode_JOB_ERROR_CODE_NONE
+	x.xxx_hidden_Code = JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
 }
 
 func (x *JobProgressUpdate) ClearDuration() {
@@ -8034,7 +8020,7 @@ func (x *JobActionAttributes) GetType() ActionType {
 			return x.xxx_hidden_Type
 		}
 	}
-	return ActionType_ACTION_TYPE_GET_REGISTER
+	return ActionType_ACTION_TYPE_UNSPECIFIED
 }
 
 func (x *JobActionAttributes) GetAttributes() []*common.FieldDescriptor {
@@ -8064,7 +8050,7 @@ func (x *JobActionAttributes) HasType() bool {
 
 func (x *JobActionAttributes) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = ActionType_ACTION_TYPE_GET_REGISTER
+	x.xxx_hidden_Type = ActionType_ACTION_TYPE_UNSPECIFIED
 }
 
 type JobActionAttributes_builder struct {
@@ -8364,7 +8350,7 @@ func (x *ActionGetRegister) HasDataType() bool {
 
 func (x *ActionGetRegister) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type ActionGetRegister_builder struct {
@@ -8488,7 +8474,7 @@ func (x *ActionGetPeriodicalProfile) ClearRangeEnd() {
 
 func (x *ActionGetPeriodicalProfile) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type ActionGetPeriodicalProfile_builder struct {
@@ -8616,7 +8602,7 @@ func (x *ActionGetIrregularProfile) ClearRangeEnd() {
 
 func (x *ActionGetIrregularProfile) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type ActionGetIrregularProfile_builder struct {
@@ -9315,7 +9301,7 @@ func (x *JobStatus) GetStatus() JobStatusCode {
 			return x.xxx_hidden_Status
 		}
 	}
-	return JobStatusCode_JOB_STATUS_QUEUED
+	return JobStatusCode_JOB_STATUS_UNSPECIFIED
 }
 
 func (x *JobStatus) GetCode() JobErrorCode {
@@ -9324,7 +9310,7 @@ func (x *JobStatus) GetCode() JobErrorCode {
 			return x.xxx_hidden_Code
 		}
 	}
-	return JobErrorCode_JOB_ERROR_CODE_NONE
+	return JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
 }
 
 func (x *JobStatus) GetResults() []*ActionResult {
@@ -9476,12 +9462,12 @@ func (x *JobStatus) HasErrorMessage() bool {
 
 func (x *JobStatus) ClearStatus() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Status = JobStatusCode_JOB_STATUS_QUEUED
+	x.xxx_hidden_Status = JobStatusCode_JOB_STATUS_UNSPECIFIED
 }
 
 func (x *JobStatus) ClearCode() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Code = JobErrorCode_JOB_ERROR_CODE_NONE
+	x.xxx_hidden_Code = JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
 }
 
 func (x *JobStatus) ClearStartedAt() {
@@ -9631,7 +9617,7 @@ func (x *StartJobData) GetAppProtocol() ApplicationProtocol {
 			return x.xxx_hidden_AppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *StartJobData) GetTimezone() string {
@@ -9710,7 +9696,7 @@ func (x *StartJobData) ClearJobSettings() {
 
 func (x *StartJobData) ClearAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *StartJobData) ClearTimezone() {
@@ -9884,7 +9870,7 @@ func (x *DeviceConfigurationRegisterSpec) GetRegisterType() DeviceConfigurationR
 			return x.xxx_hidden_RegisterType
 		}
 	}
-	return DeviceConfigurationRegisterKind_Register
+	return DeviceConfigurationRegisterKind_KIND_UNSPECIFIED
 }
 
 func (x *DeviceConfigurationRegisterSpec) GetAttributes() map[string]*common.FieldValue {
@@ -9950,12 +9936,12 @@ func (x *DeviceConfigurationRegisterSpec) ClearDriverType() {
 
 func (x *DeviceConfigurationRegisterSpec) ClearRegisterType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_RegisterType = DeviceConfigurationRegisterKind_Register
+	x.xxx_hidden_RegisterType = DeviceConfigurationRegisterKind_KIND_UNSPECIFIED
 }
 
 func (x *DeviceConfigurationRegisterSpec) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type DeviceConfigurationRegisterSpec_builder struct {
@@ -10189,7 +10175,7 @@ func (x *DeviceConnectionInfo) GetAppProtocol() ApplicationProtocol {
 			return x.xxx_hidden_AppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *DeviceConnectionInfo) GetDeviceAttributes() map[string]*common.FieldValue {
@@ -10311,7 +10297,7 @@ func (x *DeviceConnectionInfo) ClearCommunicationUnit() {
 
 func (x *DeviceConnectionInfo) ClearAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *DeviceConnectionInfo) ClearTimezone() {
@@ -10781,12 +10767,12 @@ func (x *AttributeSelector) ClearFieldId() {
 
 func (x *AttributeSelector) ClearOperator() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Operator = common.FilterOperator_EQUAL
+	x.xxx_hidden_Operator = common.FilterOperator_FILTER_OPERATOR_UNSPECIFIED
 }
 
 func (x *AttributeSelector) ClearDataType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_DataType = common.FieldDataType_TEXT
+	x.xxx_hidden_DataType = common.FieldDataType_DATA_TYPE_UNSPECIFIED
 }
 
 type AttributeSelector_builder struct {
@@ -10928,7 +10914,7 @@ func (x *CommunicationUnitAttributeSelector) GetLinkProtocol() DataLinkProtocol 
 			return x.xxx_hidden_LinkProtocol
 		}
 	}
-	return DataLinkProtocol_LINKPROTO_IEC_62056_21
+	return DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 func (x *CommunicationUnitAttributeSelector) GetAttributes() []*AttributeSelector {
@@ -10958,7 +10944,7 @@ func (x *CommunicationUnitAttributeSelector) HasLinkProtocol() bool {
 
 func (x *CommunicationUnitAttributeSelector) ClearLinkProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINKPROTO_IEC_62056_21
+	x.xxx_hidden_LinkProtocol = DataLinkProtocol_LINTPROTO_UNSPECIFIED
 }
 
 type CommunicationUnitAttributeSelector_builder struct {
@@ -11036,7 +11022,7 @@ func (x *ActionResult) GetStatus() ActionResultCode {
 			return x.xxx_hidden_Status
 		}
 	}
-	return ActionResultCode_ERROR_CODE_ACTION_OK
+	return ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED
 }
 
 func (x *ActionResult) GetData() *ActionData {
@@ -11139,7 +11125,7 @@ func (x *ActionResult) ClearActionId() {
 
 func (x *ActionResult) ClearStatus() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Status = ActionResultCode_ERROR_CODE_ACTION_OK
+	x.xxx_hidden_Status = ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED
 }
 
 func (x *ActionResult) ClearData() {
@@ -11602,7 +11588,7 @@ func (x *DeviceCommunicationUnit) GetAppProtocol() ApplicationProtocol {
 			return x.xxx_hidden_AppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *DeviceCommunicationUnit) GetAttributes() map[string]*common.FieldValue {
@@ -11647,7 +11633,7 @@ func (x *DeviceCommunicationUnit) ClearCommunicationUnitId() {
 
 func (x *DeviceCommunicationUnit) ClearAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 type DeviceCommunicationUnit_builder struct {
@@ -11716,7 +11702,7 @@ func (x *DefaultDeviceCommunicationUnitAttributes) GetAppProtocol() ApplicationP
 			return x.xxx_hidden_AppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *DefaultDeviceCommunicationUnitAttributes) GetAttributes() map[string]*common.FieldValue {
@@ -11744,7 +11730,7 @@ func (x *DefaultDeviceCommunicationUnitAttributes) HasAppProtocol() bool {
 
 func (x *DefaultDeviceCommunicationUnitAttributes) ClearAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_AppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 type DefaultDeviceCommunicationUnitAttributes_builder struct {
@@ -12686,7 +12672,7 @@ func (x *TopologyNode) GetType() TopologyNodeType {
 			return x.xxx_hidden_Type
 		}
 	}
-	return TopologyNodeType_TOPOLOGY_NODE_DEVICE
+	return TopologyNodeType_TOPOLOGY_NODE_UNSPECIFIED
 }
 
 func (x *TopologyNode) GetAttributes() *common.FieldValues {
@@ -12738,7 +12724,7 @@ func (x *TopologyNode) ClearXId() {
 
 func (x *TopologyNode) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Type = TopologyNodeType_TOPOLOGY_NODE_DEVICE
+	x.xxx_hidden_Type = TopologyNodeType_TOPOLOGY_NODE_UNSPECIFIED
 }
 
 func (x *TopologyNode) ClearAttributes() {
@@ -13750,84 +13736,93 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	" ListOfCommunicationUnitLogRecord\x12T\n" +
 	"\x05items\x18\x01 \x03(\v2>.io.clbs.openhes.models.acquisition.CommunicationUnitLogRecordR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*\xc1\x01\n" +
-	"\vJobPriority\x12\x12\n" +
-	"\x0eJOB_PRIORITY_0\x10\x00\x12\x12\n" +
-	"\x0eJOB_PRIORITY_1\x10\x01\x12\x12\n" +
-	"\x0eJOB_PRIORITY_2\x10\x02\x12\x12\n" +
-	"\x0eJOB_PRIORITY_3\x10\x03\x12\x12\n" +
-	"\x0eJOB_PRIORITY_4\x10\x04\x12\x12\n" +
-	"\x0eJOB_PRIORITY_5\x10\x05\x12\x12\n" +
-	"\x0eJOB_PRIORITY_6\x10\x06\x12\x12\n" +
-	"\x0eJOB_PRIORITY_7\x10\a\x12\x12\n" +
-	"\x0eJOB_PRIORITY_8\x10\b*s\n" +
+	"totalCount*\xdf\x01\n" +
+	"\vJobPriority\x12\x1c\n" +
+	"\x18JOB_PRIORITY_UNSPECIFIED\x10\x00\x12\x12\n" +
+	"\x0eJOB_PRIORITY_0\x10\x01\x12\x12\n" +
+	"\x0eJOB_PRIORITY_1\x10\x02\x12\x12\n" +
+	"\x0eJOB_PRIORITY_2\x10\x03\x12\x12\n" +
+	"\x0eJOB_PRIORITY_3\x10\x04\x12\x12\n" +
+	"\x0eJOB_PRIORITY_4\x10\x05\x12\x12\n" +
+	"\x0eJOB_PRIORITY_5\x10\x06\x12\x12\n" +
+	"\x0eJOB_PRIORITY_6\x10\a\x12\x12\n" +
+	"\x0eJOB_PRIORITY_7\x10\b\x12\x12\n" +
+	"\x0eJOB_PRIORITY_8\x10\t*s\n" +
 	"\x0eReadPathPolicy\x12 \n" +
 	"\x1cREAD_PATH_POLICY_UNSPECIFIED\x10\x00\x12 \n" +
 	"\x1cREAD_PATH_POLICY_METER_FIRST\x10\x01\x12\x1d\n" +
-	"\x19READ_PATH_POLICY_DC_FIRST\x10\x02*i\n" +
-	"\x12SerialConfigParity\x12\x0f\n" +
-	"\vPARITY_NONE\x10\x00\x12\x0f\n" +
-	"\vPARITY_EVEN\x10\x01\x12\x0e\n" +
+	"\x19READ_PATH_POLICY_DC_FIRST\x10\x02*\x81\x01\n" +
+	"\x12SerialConfigParity\x12\x16\n" +
+	"\x12PARITY_UNSPECIFIED\x10\x00\x12\x0f\n" +
+	"\vPARITY_NONE\x10\x01\x12\x0f\n" +
+	"\vPARITY_EVEN\x10\x02\x12\x0e\n" +
 	"\n" +
 	"PARITY_ODD\x10\x03\x12\x0f\n" +
 	"\vPARITY_MARK\x10\x04\x12\x10\n" +
-	"\fPARITY_SPACE\x10\x05*\xcb\x02\n" +
-	"\x14SerialConfigBaudRate\x12\x11\n" +
-	"\rBAUD_RATE_110\x10\x00\x12\x11\n" +
-	"\rBAUD_RATE_300\x10\x01\x12\x11\n" +
-	"\rBAUD_RATE_600\x10\x02\x12\x12\n" +
-	"\x0eBAUD_RATE_1200\x10\x03\x12\x12\n" +
-	"\x0eBAUD_RATE_2400\x10\x04\x12\x12\n" +
-	"\x0eBAUD_RATE_4800\x10\x05\x12\x12\n" +
-	"\x0eBAUD_RATE_9600\x10\x06\x12\x13\n" +
-	"\x0fBAUD_RATE_14400\x10\a\x12\x13\n" +
-	"\x0fBAUD_RATE_19200\x10\b\x12\x13\n" +
-	"\x0fBAUD_RATE_38400\x10\t\x12\x13\n" +
-	"\x0fBAUD_RATE_57600\x10\n" +
-	"\x12\x14\n" +
-	"\x10BAUD_RATE_115200\x10\v\x12\x14\n" +
-	"\x10BAUD_RATE_230400\x10\f\x12\x14\n" +
-	"\x10BAUD_RATE_460800\x10\r\x12\x14\n" +
-	"\x10BAUD_RATE_921600\x10\x0e*Z\n" +
-	"\x14SerialConfigDataBits\x12\x0f\n" +
-	"\vDATA_BITS_5\x10\x00\x12\x0f\n" +
-	"\vDATA_BITS_6\x10\x01\x12\x0f\n" +
-	"\vDATA_BITS_7\x10\x02\x12\x0f\n" +
-	"\vDATA_BITS_8\x10\x03*K\n" +
-	"\x14SerialConfigStopBits\x12\x0f\n" +
-	"\vSTOP_BITS_1\x10\x00\x12\x11\n" +
-	"\rSTOP_BITS_1_5\x10\x01\x12\x0f\n" +
-	"\vSTOP_BITS_2\x10\x02*\xca\x01\n" +
-	"\x11CommunicationType\x12\x1c\n" +
-	"\x18COMMUNICATION_TYPE_TCPIP\x10\x00\x12!\n" +
-	"\x1dCOMMUNICATION_TYPE_MODEM_POOL\x10\x01\x12)\n" +
-	"%COMMUNICATION_TYPE_SERIAL_LINE_DIRECT\x10\x02\x12'\n" +
-	"#COMMUNICATION_TYPE_SERIAL_LINE_MOXA\x10\x03\x12 \n" +
-	"\x1cCOMMUNICATION_TYPE_LISTENING\x10c*\xbd\x01\n" +
-	"\x10DataLinkProtocol\x12\x1a\n" +
-	"\x16LINKPROTO_IEC_62056_21\x10\x00\x12\x12\n" +
-	"\x0eLINKPROTO_HDLC\x10\x01\x12\x1b\n" +
-	"\x17LINKPROTO_COSEM_WRAPPER\x10\x02\x12\x14\n" +
-	"\x10LINKPROTO_MODBUS\x10\x03\x12\x12\n" +
-	"\x0eLINKPROTO_MBUS\x10\x04\x12\x14\n" +
-	"\x10LINKPROTO_VIKTOR\x10\x05\x12\x1c\n" +
-	"\x18LINKPROTO_NOT_APPLICABLE\x10c*\xd6\x01\n" +
-	"\x13ApplicationProtocol\x12\x19\n" +
-	"\x15APPPROTO_IEC_62056_21\x10\x00\x12\x14\n" +
-	"\x10APPPROTO_DLMS_SN\x10\x01\x12\x14\n" +
-	"\x10APPPROTO_DLMS_LN\x10\x02\x12\x11\n" +
-	"\rAPPPROTO_SCTM\x10\x03\x12\x13\n" +
-	"\x0fAPPPROTO_LIS200\x10\x04\x12\x15\n" +
-	"\x11APPPROTO_ANSI_C12\x10\x05\x12\x11\n" +
-	"\rAPPPROTO_MQTT\x10\x06\x12\x13\n" +
-	"\x0fAPPPROTO_MODBUS\x10\a\x12\x11\n" +
-	"\rAPPPROTO_MBUS\x10\b*\xd3\x03\n" +
+	"\fPARITY_SPACE\x10\x05*\xe6\x02\n" +
+	"\x14SerialConfigBaudRate\x12\x19\n" +
+	"\x15BAUD_RATE_UNSPECIFIED\x10\x00\x12\x11\n" +
+	"\rBAUD_RATE_110\x10\x01\x12\x11\n" +
+	"\rBAUD_RATE_300\x10\x02\x12\x11\n" +
+	"\rBAUD_RATE_600\x10\x03\x12\x12\n" +
+	"\x0eBAUD_RATE_1200\x10\x04\x12\x12\n" +
+	"\x0eBAUD_RATE_2400\x10\x05\x12\x12\n" +
+	"\x0eBAUD_RATE_4800\x10\x06\x12\x12\n" +
+	"\x0eBAUD_RATE_9600\x10\a\x12\x13\n" +
+	"\x0fBAUD_RATE_14400\x10\b\x12\x13\n" +
+	"\x0fBAUD_RATE_19200\x10\t\x12\x13\n" +
+	"\x0fBAUD_RATE_38400\x10\n" +
+	"\x12\x13\n" +
+	"\x0fBAUD_RATE_57600\x10\v\x12\x14\n" +
+	"\x10BAUD_RATE_115200\x10\f\x12\x14\n" +
+	"\x10BAUD_RATE_230400\x10\r\x12\x14\n" +
+	"\x10BAUD_RATE_460800\x10\x0e\x12\x14\n" +
+	"\x10BAUD_RATE_921600\x10\x0f*u\n" +
+	"\x14SerialConfigDataBits\x12\x19\n" +
+	"\x15DATA_BITS_UNSPECIFIED\x10\x00\x12\x0f\n" +
+	"\vDATA_BITS_5\x10\x01\x12\x0f\n" +
+	"\vDATA_BITS_6\x10\x02\x12\x0f\n" +
+	"\vDATA_BITS_7\x10\x03\x12\x0f\n" +
+	"\vDATA_BITS_8\x10\x04*f\n" +
+	"\x14SerialConfigStopBits\x12\x19\n" +
+	"\x15STOP_BITS_UNSPECIFIED\x10\x00\x12\x0f\n" +
+	"\vSTOP_BITS_1\x10\x01\x12\x11\n" +
+	"\rSTOP_BITS_1_5\x10\x02\x12\x0f\n" +
+	"\vSTOP_BITS_2\x10\x03*\xee\x01\n" +
+	"\x11CommunicationType\x12\"\n" +
+	"\x1eCOMMUNICATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18COMMUNICATION_TYPE_TCPIP\x10\x01\x12!\n" +
+	"\x1dCOMMUNICATION_TYPE_MODEM_POOL\x10\x02\x12)\n" +
+	"%COMMUNICATION_TYPE_SERIAL_LINE_DIRECT\x10\x03\x12'\n" +
+	"#COMMUNICATION_TYPE_SERIAL_LINE_MOXA\x10\x04\x12 \n" +
+	"\x1cCOMMUNICATION_TYPE_LISTENING\x10c*\xd8\x01\n" +
+	"\x10DataLinkProtocol\x12\x19\n" +
+	"\x15LINTPROTO_UNSPECIFIED\x10\x00\x12\x1a\n" +
+	"\x16LINKPROTO_IEC_62056_21\x10\x01\x12\x12\n" +
+	"\x0eLINKPROTO_HDLC\x10\x02\x12\x1b\n" +
+	"\x17LINKPROTO_COSEM_WRAPPER\x10\x03\x12\x14\n" +
+	"\x10LINKPROTO_MODBUS\x10\x04\x12\x12\n" +
+	"\x0eLINKPROTO_MBUS\x10\x05\x12\x14\n" +
+	"\x10LINKPROTO_VIKTOR\x10\x06\x12\x1c\n" +
+	"\x18LINKPROTO_NOT_APPLICABLE\x10c*\xf0\x01\n" +
+	"\x13ApplicationProtocol\x12\x18\n" +
+	"\x14APPPROTO_UNSPECIFIED\x10\x00\x12\x19\n" +
+	"\x15APPPROTO_IEC_62056_21\x10\x01\x12\x14\n" +
+	"\x10APPPROTO_DLMS_SN\x10\x02\x12\x14\n" +
+	"\x10APPPROTO_DLMS_LN\x10\x03\x12\x11\n" +
+	"\rAPPPROTO_SCTM\x10\x04\x12\x13\n" +
+	"\x0fAPPPROTO_LIS200\x10\x05\x12\x15\n" +
+	"\x11APPPROTO_ANSI_C12\x10\x06\x12\x11\n" +
+	"\rAPPPROTO_MQTT\x10\a\x12\x13\n" +
+	"\x0fAPPPROTO_MODBUS\x10\b\x12\x11\n" +
+	"\rAPPPROTO_MBUS\x10\t*\xf0\x03\n" +
 	"\n" +
-	"ActionType\x12\x1c\n" +
-	"\x18ACTION_TYPE_GET_REGISTER\x10\x00\x12&\n" +
-	"\"ACTION_TYPE_GET_PERIODICAL_PROFILE\x10\x01\x12%\n" +
-	"!ACTION_TYPE_GET_IRREGULAR_PROFILE\x10\x02\x12\x1a\n" +
-	"\x16ACTION_TYPE_GET_EVENTS\x10\x03\x12\x1f\n" +
+	"ActionType\x12\x1b\n" +
+	"\x17ACTION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18ACTION_TYPE_GET_REGISTER\x10\x01\x12&\n" +
+	"\"ACTION_TYPE_GET_PERIODICAL_PROFILE\x10\x02\x12%\n" +
+	"!ACTION_TYPE_GET_IRREGULAR_PROFILE\x10\x03\x12\x1a\n" +
+	"\x16ACTION_TYPE_GET_EVENTS\x10\x04\x12\x1f\n" +
 	"\x1bACTION_TYPE_GET_DEVICE_INFO\x10\n" +
 	"\x12\x1a\n" +
 	"\x16ACTION_TYPE_SYNC_CLOCK\x10\v\x12\x1f\n" +
@@ -13838,40 +13833,46 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x13ACTION_TYPE_SET_TOU\x10\x19\x12\x1b\n" +
 	"\x17ACTION_TYPE_SET_LIMITER\x10\x1b\x12$\n" +
 	" ACTION_TYPE_RESET_BILLING_PERIOD\x10(\x12\x19\n" +
-	"\x15ACTION_TYPE_FW_UPDATE\x102*\x8b\x01\n" +
-	"\x10ActionResultCode\x12\x18\n" +
-	"\x14ERROR_CODE_ACTION_OK\x10\x00\x12!\n" +
-	"\x1dERROR_CODE_ACTION_UNSUPPORTED\x10\x01\x12\x1d\n" +
+	"\x15ACTION_TYPE_FW_UPDATE\x102*\xae\x01\n" +
+	"\x10ActionResultCode\x12!\n" +
+	"\x1dERROR_CODE_ACTION_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14ERROR_CODE_ACTION_OK\x10\x01\x12!\n" +
+	"\x1dERROR_CODE_ACTION_UNSUPPORTED\x10\x02\x12\x1d\n" +
 	"\x19ERROR_CODE_ACTION_PENDING\x10\x03\x12\x1b\n" +
-	"\x17ERROR_CODE_ACTION_ERROR\x10\x05*\x97\x01\n" +
-	"\fJobErrorCode\x12\x17\n" +
-	"\x13JOB_ERROR_CODE_NONE\x10\x00\x12\x17\n" +
-	"\x13JOB_ERROR_CODE_BUSY\x10\x01\x12\x18\n" +
+	"\x17ERROR_CODE_ACTION_ERROR\x10\x05*\xb7\x01\n" +
+	"\fJobErrorCode\x12\x1e\n" +
+	"\x1aJOB_ERROR_CODE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13JOB_ERROR_CODE_NONE\x10\x01\x12\x17\n" +
+	"\x13JOB_ERROR_CODE_BUSY\x10\x02\x12\x18\n" +
 	"\x14JOB_ERROR_CODE_ERROR\x10\x05\x12!\n" +
 	"\x1dJOB_ERROR_CODE_ALREADY_EXISTS\x10\b\x12\x18\n" +
-	"\x14JOB_ERROR_CODE_FATAL\x10\t*\x90\x01\n" +
-	"\x0eBulkStatusCode\x12\x16\n" +
-	"\x12BULK_STATUS_QUEUED\x10\x00\x12\x17\n" +
-	"\x13BULK_STATUS_RUNNING\x10\x01\x12\x19\n" +
-	"\x15BULK_STATUS_COMPLETED\x10\x02\x12\x19\n" +
-	"\x15BULK_STATUS_CANCELLED\x10\x03\x12\x17\n" +
-	"\x13BULK_STATUS_EXPIRED\x10\x04*k\n" +
-	"\x1fDeviceConfigurationRegisterKind\x12\f\n" +
-	"\bRegister\x10\x00\x12\x15\n" +
-	"\x11PeriodicalProfile\x10\x01\x12\x14\n" +
-	"\x10IrregularProfile\x10\x02\x12\r\n" +
-	"\tSynthetic\x10c*\xc1\x01\n" +
-	"\rJobStatusCode\x12\x15\n" +
-	"\x11JOB_STATUS_QUEUED\x10\x00\x12\x16\n" +
-	"\x12JOB_STATUS_RUNNING\x10\x01\x12\x1e\n" +
-	"\x1aJOB_STATUS_PROCESSING_DATA\x10\x02\x12\x18\n" +
-	"\x14JOB_STATUS_COMPLETED\x10\x03\x12\x15\n" +
-	"\x11JOB_STATUS_FAILED\x10\x04\x12\x18\n" +
-	"\x14JOB_STATUS_CANCELLED\x10\x05\x12\x16\n" +
-	"\x12JOB_STATUS_EXPIRED\x10\x06*R\n" +
-	"\x10TopologyNodeType\x12\x18\n" +
-	"\x14TOPOLOGY_NODE_DEVICE\x10\x00\x12$\n" +
-	" TOPOLOGY_NODE_COMMUNICATION_UNIT\x10\x01*\x9d\x01\n" +
+	"\x14JOB_ERROR_CODE_FATAL\x10\t*\xad\x01\n" +
+	"\x0eBulkStatusCode\x12\x1b\n" +
+	"\x17BULK_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12BULK_STATUS_QUEUED\x10\x01\x12\x17\n" +
+	"\x13BULK_STATUS_RUNNING\x10\x02\x12\x19\n" +
+	"\x15BULK_STATUS_COMPLETED\x10\x03\x12\x19\n" +
+	"\x15BULK_STATUS_CANCELLED\x10\x04\x12\x17\n" +
+	"\x13BULK_STATUS_EXPIRED\x10\x05*\x97\x01\n" +
+	"\x1fDeviceConfigurationRegisterKind\x12\x14\n" +
+	"\x10KIND_UNSPECIFIED\x10\x00\x12\x11\n" +
+	"\rKIND_REGISTER\x10\x01\x12\x1b\n" +
+	"\x17KIND_PERIODICAL_PROFILE\x10\x02\x12\x1a\n" +
+	"\x16KIND_IRREGULAR_PROFILE\x10\x03\x12\x12\n" +
+	"\x0eKIND_SYNTHETIC\x10c*\xdd\x01\n" +
+	"\rJobStatusCode\x12\x1a\n" +
+	"\x16JOB_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
+	"\x11JOB_STATUS_QUEUED\x10\x01\x12\x16\n" +
+	"\x12JOB_STATUS_RUNNING\x10\x02\x12\x1e\n" +
+	"\x1aJOB_STATUS_PROCESSING_DATA\x10\x03\x12\x18\n" +
+	"\x14JOB_STATUS_COMPLETED\x10\x04\x12\x15\n" +
+	"\x11JOB_STATUS_FAILED\x10\x05\x12\x18\n" +
+	"\x14JOB_STATUS_CANCELLED\x10\x06\x12\x16\n" +
+	"\x12JOB_STATUS_EXPIRED\x10\a*q\n" +
+	"\x10TopologyNodeType\x12\x1d\n" +
+	"\x19TOPOLOGY_NODE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14TOPOLOGY_NODE_DEVICE\x10\x01\x12$\n" +
+	" TOPOLOGY_NODE_COMMUNICATION_UNIT\x10\x02*\x9d\x01\n" +
 	"\x0eLogRecordLevel\x12\x1a\n" +
 	"\x16LOG_RECORD_LEVEL_DEBUG\x10\x00\x12\x19\n" +
 	"\x15LOG_RECORD_LEVEL_INFO\x10\x01\x12\x1c\n" +

@@ -6,6 +6,7 @@ Defines the status information of an entire bulk.
 
 | Value | Description |
 | --- | --- |
+| BULK_STATUS_UNSPECIFIED | Unspecified bulk status. |
 | BULK_STATUS_QUEUED | The bulk is waiting in the queue. |
 | BULK_STATUS_RUNNING | The bulk is currently running. |
 | BULK_STATUS_COMPLETED | The bulk has been completed. |

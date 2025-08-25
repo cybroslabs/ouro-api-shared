@@ -9,9 +9,9 @@ import "google/type/date.proto";
 
 // Enumeration for Relay State
 enum RelayState {
-    NOOP       = 0;  // Relay state is ignored (no action)
-    CONNECT    = 1;  // Relay connects
-    DISCONNECT = 2;  // Relay disconnects
+    RELAY_STATE_UNSPECIFIED = 0;  // Unspecified relay state. Relay state is ignored (no action)
+    RELAY_STATE_CONNECT     = 1;  // Relay connects
+    RELAY_STATE_DISCONNECT  = 2;  // Relay disconnects
 }
 
 // Switching data includes tariffs and relay states for specific times

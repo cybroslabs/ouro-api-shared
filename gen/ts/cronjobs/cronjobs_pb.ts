@@ -14,7 +14,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file cronjobs/cronjobs.proto.
  */
 export const file_cronjobs_cronjobs: GenFile = /*@__PURE__*/
-  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QigAEKDUNyb25Kb2JTdGF0dXMSLwoLbGFzdF9ydW5fYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC25leHRfcnVuX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVlcnJvchgDIAEoCSJdCg1MaXN0T2ZDcm9uSm9iEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFKlMKD0Nyb25Kb2JUeXBlRW51bRIcChhDUk9OX0pPQl9UWVBFX1NUQVJUX0JVTEsQABIiCh5DUk9OX0pPQl9UWVBFX1NUQVJUX1BST1hZX0JVTEsQAUI3WjVnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcm9uam9ic2IIZWRpdGlvbnNw6Ac", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_duration, file_google_protobuf_struct]);
+  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QigAEKDUNyb25Kb2JTdGF0dXMSLwoLbGFzdF9ydW5fYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC25leHRfcnVuX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVlcnJvchgDIAEoCSJdCg1MaXN0T2ZDcm9uSm9iEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFKnIKD0Nyb25Kb2JUeXBlRW51bRIdChlDUk9OX0pPQl9UWVBFX1VOU1BFQ0lGSUVEEAASHAoYQ1JPTl9KT0JfVFlQRV9TVEFSVF9CVUxLEAESIgoeQ1JPTl9KT0JfVFlQRV9TVEFSVF9QUk9YWV9CVUxLEAJCN1o1Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY3JvbmpvYnNiCGVkaXRpb25zcOgH", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_duration, file_google_protobuf_struct]);
 
 /**
  * @generated from message io.clbs.openhes.models.cronjobs.CreateCronJobRequest
@@ -304,24 +304,31 @@ export const ListOfCronJobSchema: GenMessage<ListOfCronJob, {jsonType: ListOfCro
  */
 export enum CronJobTypeEnum {
   /**
+   * Unspecified cron job type.
+   *
+   * @generated from enum value: CRON_JOB_TYPE_UNSPECIFIED = 0;
+   */
+  CRON_JOB_TYPE_UNSPECIFIED = 0,
+
+  /**
    * Cron job to start an acquistion bulk.
    *
-   * @generated from enum value: CRON_JOB_TYPE_START_BULK = 0;
+   * @generated from enum value: CRON_JOB_TYPE_START_BULK = 1;
    */
-  CRON_JOB_TYPE_START_BULK = 0,
+  CRON_JOB_TYPE_START_BULK = 1,
 
   /**
    * Cron job to start a proxy bulk.
    *
-   * @generated from enum value: CRON_JOB_TYPE_START_PROXY_BULK = 1;
+   * @generated from enum value: CRON_JOB_TYPE_START_PROXY_BULK = 2;
    */
-  CRON_JOB_TYPE_START_PROXY_BULK = 1,
+  CRON_JOB_TYPE_START_PROXY_BULK = 2,
 }
 
 /**
  * @generated from enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum
  */
-export type CronJobTypeEnumJson = "CRON_JOB_TYPE_START_BULK" | "CRON_JOB_TYPE_START_PROXY_BULK";
+export type CronJobTypeEnumJson = "CRON_JOB_TYPE_UNSPECIFIED" | "CRON_JOB_TYPE_START_BULK" | "CRON_JOB_TYPE_START_PROXY_BULK";
 
 /**
  * Describes the enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum.

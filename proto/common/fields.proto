@@ -30,21 +30,22 @@ message ListSelectorSortBy {
 
 // The filter operator.
 enum FilterOperator {
-    EQUAL                 = 0;   // Single operand operator for text, integer, number, boolean, date fields.
-    NOT_EQUAL             = 1;   // Single operand operator for text, integer, number, boolean, date fields.
-    GREATER_THAN          = 2;   // Single operand operator for integer, number, date fields.
-    GREATER_THAN_OR_EQUAL = 3;   // Single operand operator for integer, number, date fields.
-    LESS_THAN             = 4;   // Single operand operator for integer, number, date fields.
-    LESS_THAN_OR_EQUAL    = 5;   // Single operand operator for integer, number, date fields.
-    CONTAINS              = 6;   // Single operand operator for text fields.
-    NOT_CONTAINS          = 7;   // Single operand operator for text fields.
-    STARTS_WITH           = 8;   // Single operand operator for text fields.
-    ENDS_WITH             = 9;   // Single operand operator for text fields.
-    IN                    = 10;  // Multiple operand operator for text, integer, number, boolean fields.
-    NOT_IN                = 11;  // Multiple operand operator for text, integer, number, boolean fields.
-    BETWEEN               = 12;  // Two operand operator for integer, number, date fields.
-    IS_NULL               = 13;  // No operand operator. For both null and empty string.
-    IS_NOT_NULL           = 14;  // No operand operator. For both null and empty string.
+    FILTER_OPERATOR_UNSPECIFIED = 0;   // Unspecified filter operator.
+    EQUAL                       = 1;   // Single operand operator for text, integer, number, boolean, date fields.
+    NOT_EQUAL                   = 2;   // Single operand operator for text, integer, number, boolean, date fields.
+    GREATER_THAN                = 3;   // Single operand operator for integer, number, date fields.
+    GREATER_THAN_OR_EQUAL       = 4;   // Single operand operator for integer, number, date fields.
+    LESS_THAN                   = 5;   // Single operand operator for integer, number, date fields.
+    LESS_THAN_OR_EQUAL          = 6;   // Single operand operator for integer, number, date fields.
+    CONTAINS                    = 7;   // Single operand operator for text fields.
+    NOT_CONTAINS                = 8;   // Single operand operator for text fields.
+    STARTS_WITH                 = 9;   // Single operand operator for text fields.
+    ENDS_WITH                   = 10;  // Single operand operator for text fields.
+    IN                          = 11;  // Multiple operand operator for text, integer, number, boolean fields.
+    NOT_IN                      = 12;  // Multiple operand operator for text, integer, number, boolean fields.
+    BETWEEN                     = 13;  // Two operand operator for integer, number, date fields.
+    IS_NULL                     = 14;  // No operand operator. For both null and empty string.
+    IS_NOT_NULL                 = 15;  // No operand operator. For both null and empty string.
 }
 
 // The filtering criteria.
@@ -69,26 +70,27 @@ message ListSelectorFilterBy {
 
 // Enum representing the field data type.
 enum FieldDataType {
-    TEXT      = 0;  // The text data type.
-    INTEGER   = 1;  // The integer data type.
-    DOUBLE    = 2;  // The double data type.
-    BINARY    = 3;  // The binary data type.
-    BOOLEAN   = 4;  // The boolean data type.
-    TIMESTAMP = 5;  // The timestamp data type, represented by google.protobuf.Timestamp.
-    DURATION  = 6;  // The duration data type, represented by google.protobuf.Duration.
+    DATA_TYPE_UNSPECIFIED = 0;  // Unspecified data type.
+    TEXT                  = 1;  // The text data type.
+    INTEGER               = 2;  // The integer data type.
+    DOUBLE                = 3;  // The double data type.
+    BINARY                = 4;  // The binary data type.
+    BOOLEAN               = 5;  // The boolean data type.
+    TIMESTAMP             = 6;  // The timestamp data type, represented by google.protobuf.Timestamp.
+    DURATION              = 7;  // The duration data type, represented by google.protobuf.Duration.
 }
 
 // Enum representing the field display format.
 enum FieldDisplayFormat {
-    DEFAULT       = 0;  // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
-    DATE_ONLY     = 1;  // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
-    UTC_DATETIME  = 2;  // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
-    UTC_DATE_ONLY = 3;  // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-    TIMEOFDAY     = 4;  // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-    MONEY         = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-    PASSWORD      = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
-    MULTILINE     = 7;  // The multiline-string display format. Data type must be TEXT.
-    COMBO         = 8;  // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+    DISPLAY_FORMAT_UNSPECIFIED = 0;  // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
+    DATE_ONLY                  = 1;  // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
+    UTC_DATETIME               = 2;  // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
+    UTC_DATE_ONLY              = 3;  // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
+    TIMEOFDAY                  = 4;  // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
+    MONEY                      = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+    PASSWORD                   = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
+    MULTILINE                  = 7;  // The multiline-string display format. Data type must be TEXT.
+    COMBO                      = 8;  // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
     // FIXME: To be added in the future.
     // OBIS_CODE      = 8;  // The OBIS code display format. Data type must be TEXT. The GUI must display the OBIS code in the format: "1-0:1.8.0*255" (e.g., "1-0:1.8.0*255").
     // OBIS_CODE_LIST = 9;  // The OBIS code list display format, separated by semicolon ';' character. Spaces is not allowed.

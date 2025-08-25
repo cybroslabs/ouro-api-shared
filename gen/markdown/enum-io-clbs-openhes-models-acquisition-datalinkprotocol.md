@@ -6,6 +6,7 @@ Defines the supported data link protocols.
 
 | Value | Description |
 | --- | --- |
+| LINTPROTO_UNSPECIFIED | Unspecified data link protocol. |
 | LINKPROTO_IEC_62056_21 | The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line. |
 | LINKPROTO_HDLC | The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line. |
 | LINKPROTO_COSEM_WRAPPER | The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line. |

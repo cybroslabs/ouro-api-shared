@@ -26,19 +26,22 @@ const (
 type DeviceNeighbourType int32
 
 const (
-	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT DeviceNeighbourType = 0 // The device neighbour is a communication unit.
-	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_DEVICE             DeviceNeighbourType = 1 // The device neighbour is a device.
+	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED        DeviceNeighbourType = 0 // Unspecified type.
+	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT DeviceNeighbourType = 1 // The device neighbour is a communication unit.
+	DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_DEVICE             DeviceNeighbourType = 2 // The device neighbour is a device.
 )
 
 // Enum value maps for DeviceNeighbourType.
 var (
 	DeviceNeighbourType_name = map[int32]string{
-		0: "DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT",
-		1: "DEVICE_NEIGHBOUR_TYPE_DEVICE",
+		0: "DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED",
+		1: "DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT",
+		2: "DEVICE_NEIGHBOUR_TYPE_DEVICE",
 	}
 	DeviceNeighbourType_value = map[string]int32{
-		"DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT": 0,
-		"DEVICE_NEIGHBOUR_TYPE_DEVICE":             1,
+		"DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED":        0,
+		"DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT": 1,
+		"DEVICE_NEIGHBOUR_TYPE_DEVICE":             2,
 	}
 )
 
@@ -2063,7 +2066,7 @@ func (x *DeviceNeightbour) GetType() DeviceNeighbourType {
 			return x.xxx_hidden_Type
 		}
 	}
-	return DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT
+	return DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED
 }
 
 func (x *DeviceNeightbour) GetId() string {
@@ -2102,7 +2105,7 @@ func (x *DeviceNeightbour) HasId() bool {
 
 func (x *DeviceNeightbour) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Type = DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT
+	x.xxx_hidden_Type = DeviceNeighbourType_DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED
 }
 
 func (x *DeviceNeightbour) ClearId() {
@@ -2193,7 +2196,7 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) GetProposedAppProtocol() Appl
 			return x.xxx_hidden_ProposedAppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) SetCommunicationUnitId(v string) {
@@ -2231,7 +2234,7 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) ClearCommunicationUnitId() {
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) ClearProposedAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 type SetCurrentDeviceCommunicationUnitRequest_builder struct {
@@ -2317,7 +2320,7 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) GetProposedAppProtoco
 			return x.xxx_hidden_ProposedAppProtocol
 		}
 	}
-	return ApplicationProtocol_APPPROTO_IEC_62056_21
+	return ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) SetCommunicationUnitId(v string) {
@@ -2366,7 +2369,7 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ClearDeviceSelector()
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ClearProposedAppProtocol() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_IEC_62056_21
+	x.xxx_hidden_ProposedAppProtocol = ApplicationProtocol_APPPROTO_UNSPECIFIED
 }
 
 type SetCurrentDeviceCommunicationUnitInternalRequest_builder struct {
@@ -2495,10 +2498,11 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"0SetCurrentDeviceCommunicationUnitInternalRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12T\n" +
 	"\x0fdevice_selector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\x0edeviceSelector\x12k\n" +
-	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol*e\n" +
-	"\x13DeviceNeighbourType\x12,\n" +
-	"(DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT\x10\x00\x12 \n" +
-	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x01B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol*\x8c\x01\n" +
+	"\x13DeviceNeighbourType\x12%\n" +
+	"!DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED\x10\x00\x12,\n" +
+	"(DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT\x10\x01\x12 \n" +
+	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x02B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 29)

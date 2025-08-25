@@ -20,5 +20,6 @@ Enum representing the object type.
 | DEVICE_GROUP | The device group. |
 | DRIVER | The driver. |
 | MODEM_POOL | The modem pool. |
+| OBJECT_TYPE_UNSPECIFIED | Unspecified object type. |
 | TIME_OF_USE_TABLE | The time-of-use table. |
 | VARIABLE | The variable. |

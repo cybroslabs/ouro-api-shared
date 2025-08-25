@@ -6,6 +6,7 @@ Defines the supported action types. Each action type corresponds to a specific o
 
 | Value | Description |
 | --- | --- |
+| ACTION_TYPE_UNSPECIFIED | Unspecified action type. |
 | ACTION_TYPE_GET_REGISTER | Get a register value, for example an instantaneous values. The action covers a specific register. |
 | ACTION_TYPE_GET_PERIODICAL_PROFILE | Get a periodical profile, for example a load profile. The action covers a specific profile column. |
 | ACTION_TYPE_GET_IRREGULAR_PROFILE | Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register. |
