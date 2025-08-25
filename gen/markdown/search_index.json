@@ -1414,9 +1414,9 @@
     "filename": "enum-io-clbs-openhes-models-acquisition-readpathpolicy.md",
     "title": "Enum: io.clbs.openhes.models.acquisition.ReadPathPolicy",
     "tags0": [
-      "DC_FIRST",
-      "METER_FIRST",
+      "READ_PATH_POLICY_DC_FIRST",
       "READ_PATH_POLICY_UNSPECIFIED",
+      "READ_PATH_POLICY_METER_FIRST",
       "Enum: io.clbs.openhes.models.acquisition.ReadPathPolicy"
     ],
     "tags1": [

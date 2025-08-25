@@ -103,21 +103,21 @@ type ReadPathPolicy int32
 
 const (
 	ReadPathPolicy_READ_PATH_POLICY_UNSPECIFIED ReadPathPolicy = 0 // Keeps the current behavior (typically data-concentrator first).
-	ReadPathPolicy_METER_FIRST                  ReadPathPolicy = 1 // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
-	ReadPathPolicy_DC_FIRST                     ReadPathPolicy = 2 // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
+	ReadPathPolicy_READ_PATH_POLICY_METER_FIRST ReadPathPolicy = 1 // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
+	ReadPathPolicy_READ_PATH_POLICY_DC_FIRST    ReadPathPolicy = 2 // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
 )
 
 // Enum value maps for ReadPathPolicy.
 var (
 	ReadPathPolicy_name = map[int32]string{
 		0: "READ_PATH_POLICY_UNSPECIFIED",
-		1: "METER_FIRST",
-		2: "DC_FIRST",
+		1: "READ_PATH_POLICY_METER_FIRST",
+		2: "READ_PATH_POLICY_DC_FIRST",
 	}
 	ReadPathPolicy_value = map[string]int32{
 		"READ_PATH_POLICY_UNSPECIFIED": 0,
-		"METER_FIRST":                  1,
-		"DC_FIRST":                     2,
+		"READ_PATH_POLICY_METER_FIRST": 1,
+		"READ_PATH_POLICY_DC_FIRST":    2,
 	}
 )
 
@@ -147,16 +147,11 @@ func (x ReadPathPolicy) Number() protoreflect.EnumNumber {
 type SerialConfigParity int32
 
 const (
-	// No parity.
-	SerialConfigParity_PARITY_NONE SerialConfigParity = 0
-	// Even parity.
-	SerialConfigParity_PARITY_EVEN SerialConfigParity = 1
-	// Odd parity.
-	SerialConfigParity_PARITY_ODD SerialConfigParity = 2
-	// Mark parity.
-	SerialConfigParity_PARITY_MARK SerialConfigParity = 3
-	// Space parity.
-	SerialConfigParity_PARITY_SPACE SerialConfigParity = 4
+	SerialConfigParity_PARITY_NONE  SerialConfigParity = 0 // No parity.
+	SerialConfigParity_PARITY_EVEN  SerialConfigParity = 1 // Even parity.
+	SerialConfigParity_PARITY_ODD   SerialConfigParity = 3 // Odd parity.
+	SerialConfigParity_PARITY_MARK  SerialConfigParity = 4 // Mark parity.
+	SerialConfigParity_PARITY_SPACE SerialConfigParity = 5 // Space parity.
 )
 
 // Enum value maps for SerialConfigParity.
@@ -164,16 +159,16 @@ var (
 	SerialConfigParity_name = map[int32]string{
 		0: "PARITY_NONE",
 		1: "PARITY_EVEN",
-		2: "PARITY_ODD",
-		3: "PARITY_MARK",
-		4: "PARITY_SPACE",
+		3: "PARITY_ODD",
+		4: "PARITY_MARK",
+		5: "PARITY_SPACE",
 	}
 	SerialConfigParity_value = map[string]int32{
 		"PARITY_NONE":  0,
 		"PARITY_EVEN":  1,
-		"PARITY_ODD":   2,
-		"PARITY_MARK":  3,
-		"PARITY_SPACE": 4,
+		"PARITY_ODD":   3,
+		"PARITY_MARK":  4,
+		"PARITY_SPACE": 5,
 	}
 )
 
@@ -203,36 +198,21 @@ func (x SerialConfigParity) Number() protoreflect.EnumNumber {
 type SerialConfigBaudRate int32
 
 const (
-	// 110 baud.
-	SerialConfigBaudRate_BAUD_RATE_110 SerialConfigBaudRate = 0
-	// 300 baud.
-	SerialConfigBaudRate_BAUD_RATE_300 SerialConfigBaudRate = 1
-	// 600 baud.
-	SerialConfigBaudRate_BAUD_RATE_600 SerialConfigBaudRate = 2
-	// 1200 baud.
-	SerialConfigBaudRate_BAUD_RATE_1200 SerialConfigBaudRate = 3
-	// 2400 baud.
-	SerialConfigBaudRate_BAUD_RATE_2400 SerialConfigBaudRate = 4
-	// 4800 baud.
-	SerialConfigBaudRate_BAUD_RATE_4800 SerialConfigBaudRate = 5
-	// 9600 baud.
-	SerialConfigBaudRate_BAUD_RATE_9600 SerialConfigBaudRate = 6
-	// 14400 baud.
-	SerialConfigBaudRate_BAUD_RATE_14400 SerialConfigBaudRate = 7
-	// 19200 baud.
-	SerialConfigBaudRate_BAUD_RATE_19200 SerialConfigBaudRate = 8
-	// 38400 baud.
-	SerialConfigBaudRate_BAUD_RATE_38400 SerialConfigBaudRate = 9
-	// 57600 baud.
-	SerialConfigBaudRate_BAUD_RATE_57600 SerialConfigBaudRate = 10
-	// 115200 baud.
-	SerialConfigBaudRate_BAUD_RATE_115200 SerialConfigBaudRate = 11
-	// 230400 baud.
-	SerialConfigBaudRate_BAUD_RATE_230400 SerialConfigBaudRate = 12
-	// 460800 baud.
-	SerialConfigBaudRate_BAUD_RATE_460800 SerialConfigBaudRate = 13
-	// 921600 baud.
-	SerialConfigBaudRate_BAUD_RATE_921600 SerialConfigBaudRate = 14
+	SerialConfigBaudRate_BAUD_RATE_110    SerialConfigBaudRate = 0  // 110 baud.
+	SerialConfigBaudRate_BAUD_RATE_300    SerialConfigBaudRate = 1  // 300 baud.
+	SerialConfigBaudRate_BAUD_RATE_600    SerialConfigBaudRate = 2  // 600 baud.
+	SerialConfigBaudRate_BAUD_RATE_1200   SerialConfigBaudRate = 3  // 1200 baud.
+	SerialConfigBaudRate_BAUD_RATE_2400   SerialConfigBaudRate = 4  // 2400 baud.
+	SerialConfigBaudRate_BAUD_RATE_4800   SerialConfigBaudRate = 5  // 4800 baud.
+	SerialConfigBaudRate_BAUD_RATE_9600   SerialConfigBaudRate = 6  // 9600 baud.
+	SerialConfigBaudRate_BAUD_RATE_14400  SerialConfigBaudRate = 7  // 14400 baud.
+	SerialConfigBaudRate_BAUD_RATE_19200  SerialConfigBaudRate = 8  // 19200 baud.
+	SerialConfigBaudRate_BAUD_RATE_38400  SerialConfigBaudRate = 9  // 38400 baud.
+	SerialConfigBaudRate_BAUD_RATE_57600  SerialConfigBaudRate = 10 // 57600 baud.
+	SerialConfigBaudRate_BAUD_RATE_115200 SerialConfigBaudRate = 11 // 115200 baud.
+	SerialConfigBaudRate_BAUD_RATE_230400 SerialConfigBaudRate = 12 // 230400 baud.
+	SerialConfigBaudRate_BAUD_RATE_460800 SerialConfigBaudRate = 13 // 460800 baud.
+	SerialConfigBaudRate_BAUD_RATE_921600 SerialConfigBaudRate = 14 // 921600 baud.
 )
 
 // Enum value maps for SerialConfigBaudRate.
@@ -299,14 +279,10 @@ func (x SerialConfigBaudRate) Number() protoreflect.EnumNumber {
 type SerialConfigDataBits int32
 
 const (
-	// 5 data bits
-	SerialConfigDataBits_DATA_BITS_5 SerialConfigDataBits = 0
-	// 6 data bits
-	SerialConfigDataBits_DATA_BITS_6 SerialConfigDataBits = 1
-	// 7 data bits
-	SerialConfigDataBits_DATA_BITS_7 SerialConfigDataBits = 2
-	// 8 data bits
-	SerialConfigDataBits_DATA_BITS_8 SerialConfigDataBits = 3
+	SerialConfigDataBits_DATA_BITS_5 SerialConfigDataBits = 0 // 5 data bits
+	SerialConfigDataBits_DATA_BITS_6 SerialConfigDataBits = 1 // 6 data bits
+	SerialConfigDataBits_DATA_BITS_7 SerialConfigDataBits = 2 // 7 data bits
+	SerialConfigDataBits_DATA_BITS_8 SerialConfigDataBits = 3 // 8 data bits
 )
 
 // Enum value maps for SerialConfigDataBits.
@@ -351,12 +327,9 @@ func (x SerialConfigDataBits) Number() protoreflect.EnumNumber {
 type SerialConfigStopBits int32
 
 const (
-	// 1 stop bit
-	SerialConfigStopBits_STOP_BITS_1 SerialConfigStopBits = 0
-	// 1.5 stop bits
-	SerialConfigStopBits_STOP_BITS_1_5 SerialConfigStopBits = 1
-	// 2 stop bits
-	SerialConfigStopBits_STOP_BITS_2 SerialConfigStopBits = 2
+	SerialConfigStopBits_STOP_BITS_1   SerialConfigStopBits = 0 // 1 stop bit
+	SerialConfigStopBits_STOP_BITS_1_5 SerialConfigStopBits = 1 // 1.5 stop bits
+	SerialConfigStopBits_STOP_BITS_2   SerialConfigStopBits = 2 // 2 stop bits
 )
 
 // Enum value maps for SerialConfigStopBits.
@@ -399,16 +372,11 @@ func (x SerialConfigStopBits) Number() protoreflect.EnumNumber {
 type CommunicationType int32
 
 const (
-	// The communication is established via direct TCP/IP.
-	CommunicationType_COMMUNICATION_TYPE_TCPIP CommunicationType = 0
-	// The communication is established via phone line (modem).
-	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL CommunicationType = 1
-	// The communication is established via a direct serial line.
-	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 2
-	// The communication is established via a controlled  serial line (Moxa).
-	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA CommunicationType = 3
-	// The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
-	CommunicationType_COMMUNICATION_TYPE_LISTENING CommunicationType = 99
+	CommunicationType_COMMUNICATION_TYPE_TCPIP              CommunicationType = 0  // The communication is established via direct TCP/IP.
+	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL         CommunicationType = 1  // The communication is established via phone line (modem).
+	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 2  // The communication is established via a direct serial line.
+	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA   CommunicationType = 3  // The communication is established via a controlled  serial line (Moxa).
+	CommunicationType_COMMUNICATION_TYPE_LISTENING          CommunicationType = 99 // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 )
 
 // Enum value maps for CommunicationType.
@@ -455,20 +423,13 @@ func (x CommunicationType) Number() protoreflect.EnumNumber {
 type DataLinkProtocol int32
 
 const (
-	// The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_IEC_62056_21 DataLinkProtocol = 0
-	// The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_HDLC DataLinkProtocol = 1
-	// The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
-	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER DataLinkProtocol = 2
-	// The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
-	DataLinkProtocol_LINKPROTO_MODBUS DataLinkProtocol = 3
-	// The M-Bus protocol. Used with the M-Bus application protocol.
-	DataLinkProtocol_LINKPROTO_MBUS DataLinkProtocol = 4
-	// The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
-	DataLinkProtocol_LINKPROTO_VIKTOR DataLinkProtocol = 5
-	// No data link protocol is applicable. Used with listening communication types.
-	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99
+	DataLinkProtocol_LINKPROTO_IEC_62056_21   DataLinkProtocol = 0  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_HDLC           DataLinkProtocol = 1  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_COSEM_WRAPPER  DataLinkProtocol = 2  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
+	DataLinkProtocol_LINKPROTO_MODBUS         DataLinkProtocol = 3  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
+	DataLinkProtocol_LINKPROTO_MBUS           DataLinkProtocol = 4  // The M-Bus protocol. Used with the M-Bus application protocol.
+	DataLinkProtocol_LINKPROTO_VIKTOR         DataLinkProtocol = 5  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
+	DataLinkProtocol_LINKPROTO_NOT_APPLICABLE DataLinkProtocol = 99 // No data link protocol is applicable. Used with listening communication types.
 )
 
 // Enum value maps for DataLinkProtocol.
@@ -13799,18 +13760,18 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x0eJOB_PRIORITY_5\x10\x05\x12\x12\n" +
 	"\x0eJOB_PRIORITY_6\x10\x06\x12\x12\n" +
 	"\x0eJOB_PRIORITY_7\x10\a\x12\x12\n" +
-	"\x0eJOB_PRIORITY_8\x10\b*Q\n" +
+	"\x0eJOB_PRIORITY_8\x10\b*s\n" +
 	"\x0eReadPathPolicy\x12 \n" +
-	"\x1cREAD_PATH_POLICY_UNSPECIFIED\x10\x00\x12\x0f\n" +
-	"\vMETER_FIRST\x10\x01\x12\f\n" +
-	"\bDC_FIRST\x10\x02*i\n" +
+	"\x1cREAD_PATH_POLICY_UNSPECIFIED\x10\x00\x12 \n" +
+	"\x1cREAD_PATH_POLICY_METER_FIRST\x10\x01\x12\x1d\n" +
+	"\x19READ_PATH_POLICY_DC_FIRST\x10\x02*i\n" +
 	"\x12SerialConfigParity\x12\x0f\n" +
 	"\vPARITY_NONE\x10\x00\x12\x0f\n" +
 	"\vPARITY_EVEN\x10\x01\x12\x0e\n" +
 	"\n" +
-	"PARITY_ODD\x10\x02\x12\x0f\n" +
-	"\vPARITY_MARK\x10\x03\x12\x10\n" +
-	"\fPARITY_SPACE\x10\x04*\xcb\x02\n" +
+	"PARITY_ODD\x10\x03\x12\x0f\n" +
+	"\vPARITY_MARK\x10\x04\x12\x10\n" +
+	"\fPARITY_SPACE\x10\x05*\xcb\x02\n" +
 	"\x14SerialConfigBaudRate\x12\x11\n" +
 	"\rBAUD_RATE_110\x10\x00\x12\x11\n" +
 	"\rBAUD_RATE_300\x10\x01\x12\x11\n" +

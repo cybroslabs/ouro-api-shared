@@ -39,8 +39,8 @@ enum JobPriority {
 // Defines the read path policies for retrieving data from devices.
 enum ReadPathPolicy {
     READ_PATH_POLICY_UNSPECIFIED = 0;  // Keeps the current behavior (typically data-concentrator first).
-    METER_FIRST                  = 1;  // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
-    DC_FIRST                     = 2;  // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
+    READ_PATH_POLICY_METER_FIRST = 1;  // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
+    READ_PATH_POLICY_DC_FIRST    = 2;  // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
 }
 
 // Defines the parameters and execution rules that control how a job is processed.
@@ -152,72 +152,45 @@ message ModemInfo {
 
 // Defines the available serial port parity types.
 enum SerialConfigParity {
-    // No parity.
-    PARITY_NONE = 0;
-    // Even parity.
-    PARITY_EVEN = 1;
-    // Odd parity.
-    PARITY_ODD = 2;
-    // Mark parity.
-    PARITY_MARK = 3;
-    // Space parity.
-    PARITY_SPACE = 4;
+    PARITY_NONE  = 0;  // No parity.
+    PARITY_EVEN  = 1;  // Even parity.
+    PARITY_ODD   = 3;  // Odd parity.
+    PARITY_MARK  = 4;  // Mark parity.
+    PARITY_SPACE = 5;  // Space parity.
 }
 
 // Defines the available serial port baud rate types.
 enum SerialConfigBaudRate {
-    // 110 baud.
-    BAUD_RATE_110 = 0;
-    // 300 baud.
-    BAUD_RATE_300 = 1;
-    // 600 baud.
-    BAUD_RATE_600 = 2;
-    // 1200 baud.
-    BAUD_RATE_1200 = 3;
-    // 2400 baud.
-    BAUD_RATE_2400 = 4;
-    // 4800 baud.
-    BAUD_RATE_4800 = 5;
-    // 9600 baud.
-    BAUD_RATE_9600 = 6;
-    // 14400 baud.
-    BAUD_RATE_14400 = 7;
-    // 19200 baud.
-    BAUD_RATE_19200 = 8;
-    // 38400 baud.
-    BAUD_RATE_38400 = 9;
-    // 57600 baud.
-    BAUD_RATE_57600 = 10;
-    // 115200 baud.
-    BAUD_RATE_115200 = 11;
-    // 230400 baud.
-    BAUD_RATE_230400 = 12;
-    // 460800 baud.
-    BAUD_RATE_460800 = 13;
-    // 921600 baud.
-    BAUD_RATE_921600 = 14;
+    BAUD_RATE_110    = 0;   // 110 baud.
+    BAUD_RATE_300    = 1;   // 300 baud.
+    BAUD_RATE_600    = 2;   // 600 baud.
+    BAUD_RATE_1200   = 3;   // 1200 baud.
+    BAUD_RATE_2400   = 4;   // 2400 baud.
+    BAUD_RATE_4800   = 5;   // 4800 baud.
+    BAUD_RATE_9600   = 6;   // 9600 baud.
+    BAUD_RATE_14400  = 7;   // 14400 baud.
+    BAUD_RATE_19200  = 8;   // 19200 baud.
+    BAUD_RATE_38400  = 9;   // 38400 baud.
+    BAUD_RATE_57600  = 10;  // 57600 baud.
+    BAUD_RATE_115200 = 11;  // 115200 baud.
+    BAUD_RATE_230400 = 12;  // 230400 baud.
+    BAUD_RATE_460800 = 13;  // 460800 baud.
+    BAUD_RATE_921600 = 14;  // 921600 baud.
 }
 
 // Defines the available serial port data bit types.
 enum SerialConfigDataBits {
-    // 5 data bits
-    DATA_BITS_5 = 0;
-    // 6 data bits
-    DATA_BITS_6 = 1;
-    // 7 data bits
-    DATA_BITS_7 = 2;
-    // 8 data bits
-    DATA_BITS_8 = 3;
+    DATA_BITS_5 = 0;  // 5 data bits
+    DATA_BITS_6 = 1;  // 6 data bits
+    DATA_BITS_7 = 2;  // 7 data bits
+    DATA_BITS_8 = 3;  // 8 data bits
 }
 
 // Defines the available serial port stop bit types.
 enum SerialConfigStopBits {
-    // 1 stop bit
-    STOP_BITS_1 = 0;
-    // 1.5 stop bits
-    STOP_BITS_1_5 = 1;
-    // 2 stop bits
-    STOP_BITS_2 = 2;
+    STOP_BITS_1   = 0;  // 1 stop bit
+    STOP_BITS_1_5 = 1;  // 1.5 stop bits
+    STOP_BITS_2   = 2;  // 2 stop bits
 }
 
 // Defines the parameters for serial port configuration.
@@ -282,36 +255,23 @@ message ConnectionTypeSerialRfc2217 {
 
 // Defines the supported communication types for device connections.
 enum CommunicationType {
-    // The communication is established via direct TCP/IP.
-    COMMUNICATION_TYPE_TCPIP = 0;
-    // The communication is established via phone line (modem).
-    COMMUNICATION_TYPE_MODEM_POOL = 1;
-    // The communication is established via a direct serial line.
-    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 2;
-    // The communication is established via a controlled  serial line (Moxa).
-    COMMUNICATION_TYPE_SERIAL_LINE_MOXA = 3;
-
-    // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
-    COMMUNICATION_TYPE_LISTENING = 99;
+    COMMUNICATION_TYPE_TCPIP              = 0;   // The communication is established via direct TCP/IP.
+    COMMUNICATION_TYPE_MODEM_POOL         = 1;   // The communication is established via phone line (modem).
+    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 2;   // The communication is established via a direct serial line.
+    COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 3;   // The communication is established via a controlled  serial line (Moxa).
+    COMMUNICATION_TYPE_LISTENING          = 99;  // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 }
 
 // Defines the supported data link protocols.
 enum DataLinkProtocol {
-    // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
-    LINKPROTO_IEC_62056_21 = 0;
-    // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_HDLC = 1;
-    // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_COSEM_WRAPPER = 2;
-    // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
-    LINKPROTO_MODBUS = 3;
-    // The M-Bus protocol. Used with the M-Bus application protocol.
-    LINKPROTO_MBUS = 4;
-    // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
-    LINKPROTO_VIKTOR = 5;
+    LINKPROTO_IEC_62056_21  = 0;  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
+    LINKPROTO_HDLC          = 1;  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_COSEM_WRAPPER = 2;  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_MODBUS        = 3;  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
+    LINKPROTO_MBUS          = 4;  // The M-Bus protocol. Used with the M-Bus application protocol.
+    LINKPROTO_VIKTOR        = 5;  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
 
-    // No data link protocol is applicable. Used with listening communication types.
-    LINKPROTO_NOT_APPLICABLE = 99;
+    LINKPROTO_NOT_APPLICABLE = 99;  // No data link protocol is applicable. Used with listening communication types.
 }
 
 // Defines the supported application protocols.
