@@ -94,7 +94,7 @@ message DeviceCommunicationUnitChangeStatus {
 // Unknown device specification.
 
 message UnknownDevice {
-    reserved 1;                          // reserved for status
+    reserved 1;
     UnknownDeviceStatus status     = 2;  // The unknown device status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }

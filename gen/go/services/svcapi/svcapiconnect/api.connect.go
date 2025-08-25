@@ -12,6 +12,7 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
+	messaging "github.com/cybroslabs/ouro-api-shared/gen/go/messaging"
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -324,6 +325,18 @@ const (
 	// ApiServiceSetCryptoSecretProcedure is the fully-qualified name of the ApiService's
 	// SetCryptoSecret RPC.
 	ApiServiceSetCryptoSecretProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
+	// ApiServiceCreateMessagingConsumerProcedure is the fully-qualified name of the ApiService's
+	// CreateMessagingConsumer RPC.
+	ApiServiceCreateMessagingConsumerProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingConsumer"
+	// ApiServiceCreateMessagingPublisherProcedure is the fully-qualified name of the ApiService's
+	// CreateMessagingPublisher RPC.
+	ApiServiceCreateMessagingPublisherProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingPublisher"
+	// ApiServiceListMessagingComponentsProcedure is the fully-qualified name of the ApiService's
+	// ListMessagingComponents RPC.
+	ApiServiceListMessagingComponentsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListMessagingComponents"
+	// ApiServiceUpdateMessagingComponentProcedure is the fully-qualified name of the ApiService's
+	// UpdateMessagingComponent RPC.
+	ApiServiceUpdateMessagingComponentProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateMessagingComponent"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -682,6 +695,18 @@ type ApiServiceClient interface {
 	// @group: Cryptography
 	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Messaging
+	// Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.
+	CreateMessagingConsumer(context.Context) *connect.BidiStreamForClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
+	// @group: Messaging
+	// Creates a new messaging publisher. The stream allows sending messages to be published.
+	CreateMessagingPublisher(context.Context) *connect.ClientStreamForClient[messaging.MessagingPublisherClient, emptypb.Empty]
+	// @group: Messaging
+	// Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListMessagingComponents(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[messaging.ListOfMessagingComponent], error)
+	// @group: Messaging
+	// Updates the details of an existing messaging component.
+	UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1307,6 +1332,30 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetCryptoSecret")),
 			connect.WithClientOptions(opts...),
 		),
+		createMessagingConsumer: connect.NewClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer](
+			httpClient,
+			baseURL+ApiServiceCreateMessagingConsumerProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateMessagingConsumer")),
+			connect.WithClientOptions(opts...),
+		),
+		createMessagingPublisher: connect.NewClient[messaging.MessagingPublisherClient, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceCreateMessagingPublisherProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateMessagingPublisher")),
+			connect.WithClientOptions(opts...),
+		),
+		listMessagingComponents: connect.NewClient[common.ListSelector, messaging.ListOfMessagingComponent](
+			httpClient,
+			baseURL+ApiServiceListMessagingComponentsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListMessagingComponents")),
+			connect.WithClientOptions(opts...),
+		),
+		updateMessagingComponent: connect.NewClient[messaging.MessagingComponent, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateMessagingComponentProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateMessagingComponent")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -1414,6 +1463,10 @@ type apiServiceClient struct {
 	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
 	getCryptoSecret                                                  *connect.Client[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets]
 	setCryptoSecret                                                  *connect.Client[crypto.SetCryptoSecretRequest, emptypb.Empty]
+	createMessagingConsumer                                          *connect.Client[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
+	createMessagingPublisher                                         *connect.Client[messaging.MessagingPublisherClient, emptypb.Empty]
+	listMessagingComponents                                          *connect.Client[common.ListSelector, messaging.ListOfMessagingComponent]
+	updateMessagingComponent                                         *connect.Client[messaging.MessagingComponent, emptypb.Empty]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -1949,6 +2002,28 @@ func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, req *connect.Req
 	return c.setCryptoSecret.CallUnary(ctx, req)
 }
 
+// CreateMessagingConsumer calls io.clbs.openhes.services.svcapi.ApiService.CreateMessagingConsumer.
+func (c *apiServiceClient) CreateMessagingConsumer(ctx context.Context) *connect.BidiStreamForClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer] {
+	return c.createMessagingConsumer.CallBidiStream(ctx)
+}
+
+// CreateMessagingPublisher calls
+// io.clbs.openhes.services.svcapi.ApiService.CreateMessagingPublisher.
+func (c *apiServiceClient) CreateMessagingPublisher(ctx context.Context) *connect.ClientStreamForClient[messaging.MessagingPublisherClient, emptypb.Empty] {
+	return c.createMessagingPublisher.CallClientStream(ctx)
+}
+
+// ListMessagingComponents calls io.clbs.openhes.services.svcapi.ApiService.ListMessagingComponents.
+func (c *apiServiceClient) ListMessagingComponents(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[messaging.ListOfMessagingComponent], error) {
+	return c.listMessagingComponents.CallUnary(ctx, req)
+}
+
+// UpdateMessagingComponent calls
+// io.clbs.openhes.services.svcapi.ApiService.UpdateMessagingComponent.
+func (c *apiServiceClient) UpdateMessagingComponent(ctx context.Context, req *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateMessagingComponent.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -2305,6 +2380,18 @@ type ApiServiceHandler interface {
 	// @group: Cryptography
 	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Messaging
+	// Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.
+	CreateMessagingConsumer(context.Context, *connect.BidiStream[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]) error
+	// @group: Messaging
+	// Creates a new messaging publisher. The stream allows sending messages to be published.
+	CreateMessagingPublisher(context.Context, *connect.ClientStream[messaging.MessagingPublisherClient]) (*connect.Response[emptypb.Empty], error)
+	// @group: Messaging
+	// Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListMessagingComponents(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[messaging.ListOfMessagingComponent], error)
+	// @group: Messaging
+	// Updates the details of an existing messaging component.
+	UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -2926,6 +3013,30 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetCryptoSecret")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceCreateMessagingConsumerHandler := connect.NewBidiStreamHandler(
+		ApiServiceCreateMessagingConsumerProcedure,
+		svc.CreateMessagingConsumer,
+		connect.WithSchema(apiServiceMethods.ByName("CreateMessagingConsumer")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceCreateMessagingPublisherHandler := connect.NewClientStreamHandler(
+		ApiServiceCreateMessagingPublisherProcedure,
+		svc.CreateMessagingPublisher,
+		connect.WithSchema(apiServiceMethods.ByName("CreateMessagingPublisher")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListMessagingComponentsHandler := connect.NewUnaryHandler(
+		ApiServiceListMessagingComponentsProcedure,
+		svc.ListMessagingComponents,
+		connect.WithSchema(apiServiceMethods.ByName("ListMessagingComponents")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateMessagingComponentHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateMessagingComponentProcedure,
+		svc.UpdateMessagingComponent,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateMessagingComponent")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -3132,6 +3243,14 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetCryptoSecretHandler.ServeHTTP(w, r)
 		case ApiServiceSetCryptoSecretProcedure:
 			apiServiceSetCryptoSecretHandler.ServeHTTP(w, r)
+		case ApiServiceCreateMessagingConsumerProcedure:
+			apiServiceCreateMessagingConsumerHandler.ServeHTTP(w, r)
+		case ApiServiceCreateMessagingPublisherProcedure:
+			apiServiceCreateMessagingPublisherHandler.ServeHTTP(w, r)
+		case ApiServiceListMessagingComponentsProcedure:
+			apiServiceListMessagingComponentsHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateMessagingComponentProcedure:
+			apiServiceUpdateMessagingComponentHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -3547,4 +3666,20 @@ func (UnimplementedApiServiceHandler) GetCryptoSecret(context.Context, *connect.
 
 func (UnimplementedApiServiceHandler) SetCryptoSecret(context.Context, *connect.Request[crypto.SetCryptoSecretRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetCryptoSecret is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateMessagingConsumer(context.Context, *connect.BidiStream[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateMessagingConsumer is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateMessagingPublisher(context.Context, *connect.ClientStream[messaging.MessagingPublisherClient]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateMessagingPublisher is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListMessagingComponents(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[messaging.ListOfMessagingComponent], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListMessagingComponents is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateMessagingComponent is not implemented"))
 }

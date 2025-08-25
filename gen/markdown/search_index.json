@@ -345,6 +345,31 @@
     "tags2": ""
   },
   {
+    "filename": "service-messaging-apiservice.md",
+    "title": "ApiService - Messaging",
+    "tags0": [
+      "CreateMessagingConsumer",
+      "ListMessagingComponents",
+      "CreateMessagingPublisher",
+      "UpdateMessagingComponent",
+      "io.clbs.openhes.models.common.ListSelector",
+      "io.clbs.openhes.models.messaging.MessagingComponent",
+      "io.clbs.openhes.models.messaging.MessagingConsumerClient",
+      "io.clbs.openhes.models.messaging.MessagingConsumerServer",
+      "io.clbs.openhes.models.messaging.MessagingPublisherClient",
+      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
+    ],
+    "tags1": [
+      "ListOfMessagingComponent",
+      "ListSelector",
+      "MessagingComponent",
+      "MessagingConsumerClient",
+      "MessagingConsumerServer",
+      "MessagingPublisherClient"
+    ],
+    "tags2": ""
+  },
+  {
     "filename": "service-metadata-apiservice.md",
     "title": "ApiService - Metadata",
     "tags0": [
@@ -1170,67 +1195,181 @@
     "tags2": "The specification the fields set for the resource"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "filename": "enum-io-clbs-openhes-models-messaging-messagingdeliverypolicy.md",
+    "title": "Enum: io.clbs.openhes.models.messaging.MessagingDeliveryPolicy",
     "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
+      "MESSAGING_DELIVERY_ALL",
+      "MESSAGING_DELIVERY_WORK_QUEUE",
+      "MESSAGING_DELIVERY_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.messaging.MessagingDeliveryPolicy"
     ],
     "tags1": [
-      "ApplicationConfig"
+      "ALL",
+      "DELIVERY",
+      "MESSAGING",
+      "MessagingDeliveryPolicy",
+      "QUEUE",
+      "UNSPECIFIED",
+      "WORK"
     ],
-    "tags2": "Application config specification The default values for the application configuration"
+    "tags2": "Unspecified delivery policy Deliver the message single consumer work queue style Deliver the message all defined consumers"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
     "tags0": [
       "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+      "totalCount",
+      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor"
+      "ListOfMessagingComponent"
     ],
-    "tags2": "The component configuration descriptors The default values for the application configuration"
+    "tags2": "The list messaging components known the system The total number items"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponent",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
+      "spec",
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingComponent"
     ],
     "tags1": [
-      "ComponentConfig"
+      "MessagingComponent"
     ],
-    "tags2": "The component name The component configuration values"
+    "tags2": "Specification the messaging component Specification the messaging component The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentconsumersettings.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+      "subjects",
+      "consumerId",
+      "deliveryPolicy",
+      "maxInFlightMessages",
+      "io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"
     ],
     "tags1": [
-      "ComponentConfigDescriptor"
+      "MessagingComponentConsumerSettings"
     ],
-    "tags2": "The component name The component configuration descriptors"
+    "tags2": "Unique UUID identifier for the consumer must unique across all consumers the same component Delivery policy for the consumer Maximum number flight unacknowledged messages allowed for the consumer Value means that multiple consumers may receive messages concurrently without preserving order Value means that only single message may flight any time preserving order even when multiple consumers are running List subjects the consumer interested must not empty changed then all existing consumers for the same component will affected"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentSpec",
     "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
+      "enabled",
+      "consumers",
+      "io.clbs.openhes.models.messaging.MessagingComponentSpec"
     ],
     "tags1": [
-      "OpenIdConfiguration"
+      "MessagingComponentSpec"
     ],
-    "tags2": "The raw JSON configuration the OIDC service"
+    "tags2": "Whether the component enabled disabled disabled the component will not receive any messages Settings for the messaging component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentstatus.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentStatus",
+    "tags0": [
+      "io.clbs.openhes.models.messaging.MessagingComponentStatus"
+    ],
+    "tags1": [
+      "MessagingComponentStatus"
+    ],
+    "tags2": "FIXME Add status fields needed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerClient",
+    "tags0": [
+      "ack",
+      "nak",
+      "setup",
+      "io.clbs.openhes.models.messaging.MessagingConsumerClient"
+    ],
+    "tags1": [
+      "MessagingConsumerClient"
+    ],
+    "tags2": "Setup action initialize the consumer must the first message sent defining the consumer Any other subsequent setup message will rejected Acknowledgement action confirm the message with the given message Negative acknowledgement action reject and requeue the message with the given message"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerserver.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerServer",
+    "tags0": [
+      "receive",
+      "io.clbs.openhes.models.messaging.MessagingConsumerServer"
+    ],
+    "tags1": [
+      "MessagingConsumerServer"
+    ],
+    "tags2": "Receive action deliver message the consumer"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerSetup",
+    "tags0": [
+      "settings",
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingConsumerSetup"
+    ],
+    "tags1": [
+      "MessagingConsumerSetup"
+    ],
+    "tags2": "Settings for the messaging component The metadata fields The and name represents the component and name and must the same for all publishers and consumers the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishmessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublishMessage",
+    "tags0": [
+      "data",
+      "subject",
+      "io.clbs.openhes.models.messaging.MessagingPublishMessage"
+    ],
+    "tags1": [
+      "MessagingPublishMessage"
+    ],
+    "tags2": "Subject the message published The message data published"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherClient",
+    "tags0": [
+      "setup",
+      "publish",
+      "io.clbs.openhes.models.messaging.MessagingPublisherClient"
+    ],
+    "tags1": [
+      "MessagingPublisherClient"
+    ],
+    "tags2": "Setup action initialize the publisher must the first message sent defining the publisher Any other subsequent setup message will rejected Publish action send message published"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherSetup",
+    "tags0": [
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingPublisherSetup"
+    ],
+    "tags1": [
+      "MessagingPublisherSetup"
+    ],
+    "tags2": "The metadata fields The and name represents the component and name and must the same for all publishers and consumers the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingreceivemessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingReceiveMessage",
+    "tags0": [
+      "data",
+      "subject",
+      "messageId",
+      "io.clbs.openhes.models.messaging.MessagingReceiveMessage"
+    ],
+    "tags1": [
+      "MessagingReceiveMessage"
+    ],
+    "tags2": "Unique identifier the message Subject the message The message data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -3491,5 +3630,68 @@
       "VariableSpec"
     ],
     "tags2": "The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable true the device data returned for this variable will exclude values from timestamp Default false include values from timestamp"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Application config specification The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "The component configuration descriptors The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "The component name The component configuration descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "tags0": [
+      "content",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "The raw JSON configuration the OIDC service"
   }
 ]

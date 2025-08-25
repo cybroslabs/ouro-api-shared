@@ -12,6 +12,7 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
+	messaging "github.com/cybroslabs/ouro-api-shared/gen/go/messaging"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -128,6 +129,10 @@ const (
 	ApiService_GetOpenIdConfiguration_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
 	ApiService_GetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
 	ApiService_SetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
+	ApiService_CreateMessagingConsumer_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingConsumer"
+	ApiService_CreateMessagingPublisher_FullMethodName                                         = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingPublisher"
+	ApiService_ListMessagingComponents_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/ListMessagingComponents"
+	ApiService_UpdateMessagingComponent_FullMethodName                                         = "/io.clbs.openhes.services.svcapi.ApiService/UpdateMessagingComponent"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -490,6 +495,18 @@ type ApiServiceClient interface {
 	// @group: Cryptography
 	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Messaging
+	// Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.
+	CreateMessagingConsumer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer], error)
+	// @group: Messaging
+	// Creates a new messaging publisher. The stream allows sending messages to be published.
+	CreateMessagingPublisher(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[messaging.MessagingPublisherClient, emptypb.Empty], error)
+	// @group: Messaging
+	// Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListMessagingComponents(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*messaging.ListOfMessagingComponent, error)
+	// @group: Messaging
+	// Updates the details of an existing messaging component.
+	UpdateMessagingComponent(ctx context.Context, in *messaging.MessagingComponent, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiServiceClient struct {
@@ -1547,6 +1564,52 @@ func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.SetCr
 	return out, nil
 }
 
+func (c *apiServiceClient) CreateMessagingConsumer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[3], ApiService_CreateMessagingConsumer_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_CreateMessagingConsumerClient = grpc.BidiStreamingClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
+
+func (c *apiServiceClient) CreateMessagingPublisher(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[messaging.MessagingPublisherClient, emptypb.Empty], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[4], ApiService_CreateMessagingPublisher_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[messaging.MessagingPublisherClient, emptypb.Empty]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_CreateMessagingPublisherClient = grpc.ClientStreamingClient[messaging.MessagingPublisherClient, emptypb.Empty]
+
+func (c *apiServiceClient) ListMessagingComponents(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*messaging.ListOfMessagingComponent, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(messaging.ListOfMessagingComponent)
+	err := c.cc.Invoke(ctx, ApiService_ListMessagingComponents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateMessagingComponent(ctx context.Context, in *messaging.MessagingComponent, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateMessagingComponent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -1907,6 +1970,18 @@ type ApiServiceServer interface {
 	// @group: Cryptography
 	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
+	// @group: Messaging
+	// Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.
+	CreateMessagingConsumer(grpc.BidiStreamingServer[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]) error
+	// @group: Messaging
+	// Creates a new messaging publisher. The stream allows sending messages to be published.
+	CreateMessagingPublisher(grpc.ClientStreamingServer[messaging.MessagingPublisherClient, emptypb.Empty]) error
+	// @group: Messaging
+	// Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListMessagingComponents(context.Context, *common.ListSelector) (*messaging.ListOfMessagingComponent, error)
+	// @group: Messaging
+	// Updates the details of an existing messaging component.
+	UpdateMessagingComponent(context.Context, *messaging.MessagingComponent) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -2222,6 +2297,18 @@ func (UnimplementedApiServiceServer) GetCryptoSecret(context.Context, *crypto.Ge
 }
 func (UnimplementedApiServiceServer) SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCryptoSecret not implemented")
+}
+func (UnimplementedApiServiceServer) CreateMessagingConsumer(grpc.BidiStreamingServer[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]) error {
+	return status.Errorf(codes.Unimplemented, "method CreateMessagingConsumer not implemented")
+}
+func (UnimplementedApiServiceServer) CreateMessagingPublisher(grpc.ClientStreamingServer[messaging.MessagingPublisherClient, emptypb.Empty]) error {
+	return status.Errorf(codes.Unimplemented, "method CreateMessagingPublisher not implemented")
+}
+func (UnimplementedApiServiceServer) ListMessagingComponents(context.Context, *common.ListSelector) (*messaging.ListOfMessagingComponent, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMessagingComponents not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateMessagingComponent(context.Context, *messaging.MessagingComponent) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessagingComponent not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -4059,6 +4146,56 @@ func _ApiService_SetCryptoSecret_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_CreateMessagingConsumer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ApiServiceServer).CreateMessagingConsumer(&grpc.GenericServerStream[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_CreateMessagingConsumerServer = grpc.BidiStreamingServer[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
+
+func _ApiService_CreateMessagingPublisher_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ApiServiceServer).CreateMessagingPublisher(&grpc.GenericServerStream[messaging.MessagingPublisherClient, emptypb.Empty]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_CreateMessagingPublisherServer = grpc.ClientStreamingServer[messaging.MessagingPublisherClient, emptypb.Empty]
+
+func _ApiService_ListMessagingComponents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListMessagingComponents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListMessagingComponents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListMessagingComponents(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateMessagingComponent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(messaging.MessagingComponent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateMessagingComponent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateMessagingComponent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateMessagingComponent(ctx, req.(*messaging.MessagingComponent))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4462,6 +4599,14 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "SetCryptoSecret",
 			Handler:    _ApiService_SetCryptoSecret_Handler,
 		},
+		{
+			MethodName: "ListMessagingComponents",
+			Handler:    _ApiService_ListMessagingComponents_Handler,
+		},
+		{
+			MethodName: "UpdateMessagingComponent",
+			Handler:    _ApiService_UpdateMessagingComponent_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -4478,6 +4623,17 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "GetDeviceDataIrregularProfiles",
 			Handler:       _ApiService_GetDeviceDataIrregularProfiles_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "CreateMessagingConsumer",
+			Handler:       _ApiService_CreateMessagingConsumer_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "CreateMessagingPublisher",
+			Handler:       _ApiService_CreateMessagingPublisher_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "services/svcapi/api.proto",
