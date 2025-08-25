@@ -1,0 +1,72 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.messaging;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/messaging";
+
+import "google/protobuf/wrappers.proto";
+import "common/fields.proto";
+import "common/metadata.proto";
+
+message MessagingConsumerClient {
+    oneof kind {
+        MessagingConsumerSetup setup    = 1;  // Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.
+        google.protobuf.StringValue ack = 2;  // Acknowledgement action to confirm the message with the given message ID.
+        google.protobuf.StringValue nak = 3;  // Negative-acknowledgement action to reject the message with the given message ID.
+    }
+}
+
+message MessagingConsumerServer {
+    oneof kine {
+        MessagingReceiveMessage receive = 1;  // Receive action to deliver a message to the consumer.
+    }
+}
+
+message MessagingPublisherClient {
+    oneof kind {
+        MessagingPublishMessage publish = 1;  // Publish action to send a message to be published.
+    }
+}
+
+message MessagingPublishMessage {
+    string component_id = 1;  // Component ID to which the publisher is associated.
+    string subject      = 2;  // Subject of the message to be published.
+    bytes data          = 3;  // The message data to be published.
+}
+
+enum MessagingDeliveryPolicy {
+    MESSAGING_DELIVERY_UNSPECIFIED = 0;  // Unspecified delivery policy.
+    MESSAGING_DELIVERY_WORK_QUEUE  = 1;  // Deliver the message to single consumer - work queue style.
+    MESSAGING_DELIVERY_ALL         = 2;  // Deliver the message to all defined consumers.
+}
+
+message MessagingConsumerSetup {
+    string component_id                     = 1;  // Component ID to which the consumer is associated.
+    MessagingDeliveryPolicy delivery_policy = 2;  // Delivery policy for the consumer.
+    int32 max_in_flight_messages            = 3;  // Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
+}
+
+message MessagingReceiveMessage {
+    string message_id = 1;  // Unique identifier of the message.
+    string subject    = 2;  // Subject of the message.
+    bytes data        = 3;  // The message data.
+}
+
+message ListOfMessagingComponent {
+    repeated MessagingComponent items = 1;  // The list of messaging components known to the system.
+    int32 total_count                 = 2;  // The total number of items.
+}
+
+message MessagingComponent {
+    MessagingComponentSpec spec     = 1;  // Specification of the messaging component.
+    MessagingComponentStatus status = 2;  // Specification of the messaging component.
+    common.MetadataFields metadata  = 3;  // The metadata fields.
+}
+
+message MessagingComponentSpec {
+    bool enabled = 1;  // Whether the component is enabled or disabled. If disabled, the component will not receive any messages.
+}
+
+message MessagingComponentStatus {
+    // FIXME: Add status fields as needed
+}

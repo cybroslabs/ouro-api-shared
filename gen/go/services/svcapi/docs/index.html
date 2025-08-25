@@ -2254,6 +2254,97 @@ Values missing from the defaults will be deleted if they were previously set in 
 
   <div class="taggroup">
     
+    <h4>Messaging</h4>
+    
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CreateMessagingConsumer">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CreateMessagingConsumer">
+            rpc <code>CreateMessagingConsumer</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.messaging.html#message-io.clbs.openhes.models.messaging.MessagingConsumerClient"><span title="io.clbs.openhes.models.messaging.MessagingConsumerClient">io.clbs.openhes.models.messaging.MessagingConsumerClient</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.messaging.html#message-io.clbs.openhes.models.messaging.MessagingConsumerServer"><span title="io.clbs.openhes.models.messaging.MessagingConsumerServer">io.clbs.openhes.models.messaging.MessagingConsumerServer</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-CreateMessagingPublisher">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-CreateMessagingPublisher">
+            rpc <code>CreateMessagingPublisher</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.messaging.html#message-io.clbs.openhes.models.messaging.MessagingPublisherClient"><span title="io.clbs.openhes.models.messaging.MessagingPublisherClient">io.clbs.openhes.models.messaging.MessagingPublisherClient</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Creates a new messaging publisher. The stream allows sending messages to be published.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-ListMessagingComponents">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-ListMessagingComponents">
+            rpc <code>ListMessagingComponents</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.ListSelector"><span title="io.clbs.openhes.models.common.ListSelector">io.clbs.openhes.models.common.ListSelector</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.messaging.html#message-io.clbs.openhes.models.messaging.ListOfMessagingComponent"><span title="io.clbs.openhes.models.messaging.ListOfMessagingComponent">io.clbs.openhes.models.messaging.ListOfMessagingComponent</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-UpdateMessagingComponent">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-UpdateMessagingComponent">
+            rpc <code>UpdateMessagingComponent</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.messaging.html#message-io.clbs.openhes.models.messaging.MessagingComponent"><span title="io.clbs.openhes.models.messaging.MessagingComponent">io.clbs.openhes.models.messaging.MessagingComponent</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Updates the details of an existing messaging component.</p></p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <div class="taggroup">
+    
     <h4>Metadata</h4>
     
     

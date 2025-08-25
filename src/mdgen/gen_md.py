@@ -211,6 +211,7 @@ def generate(
             if service.description:
                 fh.write(f"{service.description}\n\n")
             for group, methods in groups:
+                group = group or "General"
                 fh.write(
                     f"- [{group}](service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md)\n"
                 )
@@ -219,6 +220,7 @@ def generate(
 
     for service, groups in tagged_services:
         for group, methods in groups:
+            group = group or "General"
             filename = f"service-{sanitizeUrl(group)}-{sanitizeUrl(service.name)}.md"
             with open(
                 os.path.join(

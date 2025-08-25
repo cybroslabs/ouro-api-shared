@@ -102,6 +102,8 @@ def validate(
                     )
 
     for service in tagged_services:
+        if not service[0]:
+            continue
         if service[0].name in RESERVED_WORDS:
             print(
                 f"Error: Service name '{service[0].name}' is a reserved word.",
@@ -114,6 +116,8 @@ def validate(
                 file=sys.stderr,
             )
         for method in service[1]:
+            if not method[0]:
+                continue
             if method[0] in RESERVED_WORDS:
                 print(
                     f"Error: Method name '{method[0]}' in service '{service[0].name}' is a reserved word.",

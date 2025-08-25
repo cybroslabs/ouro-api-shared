@@ -13,6 +13,7 @@ import "acquisition/main.proto";
 import "acquisition/shared.proto";
 import "cronjobs/cronjobs.proto";
 import "crypto/management.proto";
+import "messaging/messaging.proto";
 import "system/main.proto";
 
 // The Dataproxy related service definition.
@@ -394,4 +395,17 @@ service ApiService {
     // @group: Cryptography
     // Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
     rpc SetCryptoSecret(io.clbs.openhes.models.crypto.SetCryptoSecretRequest) returns (google.protobuf.Empty);
+
+    // @group: Messaging
+    // Creates a new messaging bi-directional consumer. The stream allows receiving messages and sending acknowledgements.
+    rpc CreateMessagingConsumer(stream io.clbs.openhes.models.messaging.MessagingConsumerClient) returns (stream io.clbs.openhes.models.messaging.MessagingConsumerServer);
+    // @group: Messaging
+    // Creates a new messaging publisher. The stream allows sending messages to be published.
+    rpc CreateMessagingPublisher(stream io.clbs.openhes.models.messaging.MessagingPublisherClient) returns (google.protobuf.Empty);
+    // @group: Messaging
+    // Retrieves a paginated list of messaging components based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    rpc ListMessagingComponents(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.messaging.ListOfMessagingComponent);
+    // @group: Messaging
+    // Updates the details of an existing messaging component.
+    rpc UpdateMessagingComponent(io.clbs.openhes.models.messaging.MessagingComponent) returns (google.protobuf.Empty);
 }

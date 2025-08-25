@@ -10,7 +10,6 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -917,7 +916,7 @@ var File_crypto_management_proto protoreflect.FileDescriptor
 
 const file_crypto_management_proto_rawDesc = "" +
 	"\n" +
-	"\x17crypto/management.proto\x12\x1dio.clbs.openhes.models.crypto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14common/objects.proto\"\xa2\x01\n" +
+	"\x17crypto/management.proto\x12\x1dio.clbs.openhes.models.crypto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14common/objects.proto\"\xa2\x01\n" +
 	"\x16GetCryptoSecretRequest\x12J\n" +
 	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
 	"objectType\x12\x1f\n" +
